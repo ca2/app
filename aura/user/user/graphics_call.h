@@ -10,7 +10,7 @@
 //   {
 //   public:
 //
-//      virtual void call(::draw2d::graphics_pointer & pgraphics) = 0;
+//      virtual void call(::draw2d::graphics_pointer & pdraw2dgraphics) = 0;
 //
 //
 //   };
@@ -25,10 +25,10 @@
 //
 //      graphics_call(PRED pred) : m_predicate(pred) {}
 //
-//      void call(::draw2d::graphics_pointer & pgraphics)
+//      void call(::draw2d::graphics_pointer & pdraw2dgraphics)
 //      {
 //
-//         m_predicate(pgraphics);
+//         m_predicate(pdraw2dgraphics);
 //
 //      }
 //

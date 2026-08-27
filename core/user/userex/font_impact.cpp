@@ -103,9 +103,9 @@ namespace userex
 
                m_ptopimpact->m_peditimpact->set_text(strText, ::e_source_sync);
 
-               defer_constructø(m_ptopimpact->m_peditimpact->m_pfont);
+               defer_constructø(m_ptopimpact->m_peditimpact->m_pwritetextfont);
 
-               m_ptopimpact->m_peditimpact->m_pfont->set_family_name(strText);
+               m_ptopimpact->m_peditimpact->m_pwritetextfont->set_family_name(strText);
 
                m_pimpact->m_pfontlist->m_strText = "";
 
@@ -173,17 +173,17 @@ namespace userex
 //   void font_impact::do_graphics()
 //   {
 //
-//      //m_pprimitiveimpl->defer_do_graphics(pgraphics);
+//      //m_pprimitiveimpl->defer_do_graphics(pdraw2dgraphics);
 //
 //      ::user::split_impact::do_graphics();
 //
 //   }
 
 
-   void font_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void font_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::split_impact::on_layout(pgraphics);
+      ::user::split_impact::on_layout(pdraw2dgraphics);
 
    }
 
@@ -196,9 +196,9 @@ namespace userex
 
          m_ptopimpact->m_peditimpact->set_text(scopedstr, ::e_source_sync);
 
-         defer_constructø(m_ptopimpact->m_peditimpact->m_pfont);
+         defer_constructø(m_ptopimpact->m_peditimpact->m_pwritetextfont);
 
-         m_ptopimpact->m_peditimpact->m_pfont->set_family_name(scopedstr);
+         m_ptopimpact->m_peditimpact->m_pwritetextfont->set_family_name(scopedstr);
 
       }
 
@@ -248,9 +248,9 @@ namespace userex
 
    //            m_ptopimpact->m_peditimpact->set_text(strText, ::e_source_sync);
 
-   //            m_ptopimpact->m_peditimpact->m_pfont.defer_create(this);
+   //            m_ptopimpact->m_peditimpact->m_pwritetextfont.defer_create(this);
 
-   //            m_ptopimpact->m_peditimpact->m_pfont->set_family_name(strText);
+   //            m_ptopimpact->m_peditimpact->m_pwritetextfont->set_family_name(strText);
 
    //            m_pimpact->m_pfontlist->m_strText = "";
 

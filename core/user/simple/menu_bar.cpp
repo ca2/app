@@ -72,7 +72,7 @@ bool simple_menu_bar::LoadMenuBar(::u32 nIDResource)
          m_pimagelist,
          m_pimagelistDisabled,
          m_prel,
-         &m_pfont);
+         &m_pwritetextfont);
 
       m_menu.LoadMenu(m_uResourceId);*/
 
@@ -385,20 +385,20 @@ bool simple_menu_bar::Initialize(
 ::image::image_list_pointer   imagelist,
 ::image::image_list_pointer   imagelistDisabled,
 i32_spreadset * prel,
-::write_text::font *        pfont)
+::write_text::font *        pwritetextfont)
 {
 
    //   m_menuhook.Initialize(
    //    imagelist,
    //imagelistDisabled,
    //prel,
-   //pfont);
+   //pwritetextfont);
 
    m_pimagelist = imagelist;
    m_pimagelistDisabled = imagelistDisabled;
    m_prel = prel;
 
-   //m_pfont->operator=(*pfont);
+   //m_pwritetextfont->operator=(*pwritetextfont);
 
    return true;
 
@@ -505,14 +505,14 @@ bool simple_menu_bar::ReloadMenuBar()
 }
 
 
-/*void simple_menu_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+/*void simple_menu_bar::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
    auto rectangleX = this->rectangle();
    class imaging & imaging = psystem->imaging();
    if(m_iHover >= -1)
    {
       imaging.color_blend(
-         pgraphics,
+         pdraw2dgraphics,
          rectangleX.left,
          rectangleX.top,
          rectangleX.width(),
@@ -523,7 +523,7 @@ bool simple_menu_bar::ReloadMenuBar()
    else
    {
       imaging.color_blend(
-         pgraphics,
+         pdraw2dgraphics,
          rectangleX.left,
          rectangleX.top,
          rectangleX.width(),
@@ -532,11 +532,11 @@ bool simple_menu_bar::ReloadMenuBar()
          56);
    }
 
-   pgraphics->set(pdraw2d->fonts().GetMenuFont());
-   pgraphics->SetBkMode(TRANSPARENT);
+   pdraw2dgraphics->set(pdraw2d->fonts().GetMenuFont());
+   pdraw2dgraphics->SetBkMode(TRANSPARENT);
    for(::collection::index iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
-      _001DrawItem(pgraphics, iItem);
+      _001DrawItem(pdraw2dgraphics, iItem);
    }
 
 }
@@ -624,8 +624,8 @@ bool simple_menu_bar::ReloadMenuBar()
 
 /*void simple_menu_bar::_001Layout()
 {
-   ::draw2d::memory_graphics pgraphics(this);;
-   pgraphics->set(pdraw2d->fonts().GetMenuFont());
+   ::draw2d::memory_graphics pdraw2dgraphics(this);;
+   pdraw2dgraphics->set(pdraw2d->fonts().GetMenuFont());
 
    ::i32_size size;
    ::collection::index ix = ITEMCHECKEDPADLEFT;
@@ -633,7 +633,7 @@ bool simple_menu_bar::ReloadMenuBar()
    for(::collection::index iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
       ::GetTextExtentPoint32W(
-         (HDC)pgraphics->get_os_data(),
+         (HDC)pdraw2dgraphics->get_os_data(),
          m_buttona[iItem].m_wstr,
          m_buttona[iItem].m_wstr.get_length(),
          &size);
@@ -791,29 +791,29 @@ i32_size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
       ::draw2d::pen_pointer ppenShadow(get_app(), PS_SOLID, 1, rgb(127, 127, 127));
       ::draw2d::brush_pointer pbrushShadow(get_app(), rgb(127, 127, 127));
-      ::draw2d::pen * ppenOld = pgraphics->set(ppenShadow);
-      ::draw2d::brush * pbrushOld = pgraphics->set(pbrushShadow);
-      pgraphics->rectangle(rectangleShadow);
+      ::draw2d::pen * ppenOld = pdraw2dgraphics->set(ppenShadow);
+      ::draw2d::brush * pbrushOld = pdraw2dgraphics->set(pbrushShadow);
+      pdraw2dgraphics->rectangle(rectangleShadow);
 
       ::draw2d::pen_pointer pen(get_app(), PS_SOLID, 1, rgb(92, 92, 92));
       ::draw2d::brush_pointer brush(get_app(), rgb(255, 255, 255));
-      pgraphics->set(ppen);
-      pgraphics->set(pbrush);
-      pgraphics->rectangle(rectangleItem);
-      pgraphics->set(ppenOld);
-      pgraphics->set(pbrushOld);
+      pdraw2dgraphics->set(pdraw2dpen);
+      pdraw2dgraphics->set(pdraw2dbrush);
+      pdraw2dgraphics->rectangle(rectangleItem);
+      pdraw2dgraphics->set(ppenOld);
+      pdraw2dgraphics->set(pbrushOld);
 
       ::i32_rectangle rectangle;
       index_item_rectangle(iItem, rectangle, e_element_text);
-      pgraphics->set_text_color(rgb(192, 192, 192));
-      draw2d::graphics_extension::_DrawText(pgraphics,
+      pdraw2dgraphics->set_text_color(rgb(192, 192, 192));
+      draw2d::graphics_extension::_DrawText(pdraw2dgraphics,
          button.m_wstr,
          rectangle,
          e_align_left_center);
    }
 
-   pgraphics->set_text_color(rgb(0, 0, 0));
-   draw2d::graphics_extension::_DrawText(pgraphics,
+   pdraw2dgraphics->set_text_color(rgb(0, 0, 0));
+   draw2d::graphics_extension::_DrawText(pdraw2dgraphics,
       button.m_wstr,
       rectangleText,
       e_align_left_center);
@@ -875,7 +875,7 @@ void simple_menu_bar::operator()(::timer * ptimer)
 }
 
 /*
-bool simple_menu_bar::OnEraseBkgnd(::draw2d::graphics_pointer & pgraphics)
+bool simple_menu_bar::OnEraseBkgnd(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
    return true;
 }

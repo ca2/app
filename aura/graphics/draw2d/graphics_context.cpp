@@ -34,12 +34,12 @@
 //   void graphics_context::start_frame()
 //   {
 //
-//      auto pgraphics = draw2d_graphics();
+//      auto pdraw2dgraphics = draw2d_graphics();
 //
-//      if (::is_set(pgraphics))
+//      if (::is_set(pdraw2dgraphics))
 //      {
 //
-//         pgraphics->start_frame(this);
+//         pdraw2dgraphics->start_frame(this);
 //
 //      }
 //
@@ -49,12 +49,12 @@
 //   void graphics_context::end_frame()
 //   {
 //
-//      auto pgraphics = draw2d_graphics();
+//      auto pdraw2dgraphics = draw2d_graphics();
 //
-//      if (::is_set(pgraphics))
+//      if (::is_set(pdraw2dgraphics))
 //      {
 //
-//         pgraphics->end_frame(this);
+//         pdraw2dgraphics->end_frame(this);
 //
 //      }
 //

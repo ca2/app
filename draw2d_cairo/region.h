@@ -42,9 +42,9 @@ namespace draw2d_cairo
       ~region() override;
 
 
-      virtual bool create(::draw2d::graphics * pgraphics);
+      void update(::draw2d::graphics * pdraw2dgraphics) override;
       void destroy() override;
-      void destroy_os_data() override;
+      // void destroy_os_data() override;
 
 
       bool mask_fill(cairo_t * pdc);

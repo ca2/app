@@ -7,6 +7,7 @@
 #include "acme/prototype/geometry2d/rectangle.h"
 
 
+
 namespace user
 {
 
@@ -335,7 +336,7 @@ namespace user
 
       //::draw2d::graphics_pointer      m_pgraphics;
       //::pointer<::geometry2d::region>     m_pregion;
-      ::pointer<::draw2d::path>     m_ppath;
+      ::pointer < ::draw2d::path >  m_pdraw2dpath;
       ::pointer<::user::mouse>      m_pmouse;
       //bool                             m_bAnyHoverChange;
       
@@ -377,7 +378,7 @@ namespace user
          m_rectangle2 = item.m_rectangle2;
          //m_uFlags = itemdataadditions.m_uFlags;
          m_pparticle = item.m_pparticle;
-         m_ppath = item.m_ppath;
+         m_pdraw2dpath = item.m_pdraw2dpath;
 
          return *this;
 

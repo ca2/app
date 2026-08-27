@@ -211,7 +211,7 @@ namespace aura
    //}
 
 
-   //bool session::simple_ui_draw_focus_rect(::user::interaction* pinteraction, ::draw2d::graphics_pointer& pgraphics)
+   //bool session::simple_ui_draw_focus_rect(::user::interaction* pinteraction, ::draw2d::graphics_pointer& pdraw2dgraphics)
    //{
 
    //   return false;
@@ -2472,7 +2472,7 @@ namespace aura
 
          //      ppane->m_istrTitleEx = pszTitle;
 
-         //      ppaneimpact->on_layout(pgraphics);
+         //      ppaneimpact->on_layout(pdraw2dgraphics);
 
          //   }
 

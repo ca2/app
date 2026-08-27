@@ -25,7 +25,7 @@ namespace filemanager
       // void assert_ok() const override;
       //void dump(dump_context & action_context) const override;
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       ::pointer<operation_document>get_document();
 

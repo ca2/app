@@ -24,7 +24,7 @@ public:
 
    void pre_subclass_window() override;
    
-   void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+   void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
    //virtual ~simple_still();
 
    //LRESULT OnSetIcon(wparam wparam, lparam lparam);

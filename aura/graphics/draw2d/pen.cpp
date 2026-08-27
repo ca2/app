@@ -37,7 +37,7 @@ namespace draw2d
          && m_epenalign == ppenSrc->m_epenalign
          && is_similar(m_dWidth, ppenSrc->m_dWidth)
          && m_color == ppenSrc->m_color
-         && m_pbrush == ppenSrc->m_pbrush)
+         && m_pdraw2dbrush == ppenSrc->m_pdraw2dbrush)
       {
          
          return true;
@@ -66,7 +66,7 @@ namespace draw2d
       m_epenalign = ppenSrc->m_epenalign;
       m_dWidth = ppenSrc->m_dWidth;
       m_color = ppenSrc->m_color;
-      m_pbrush = ppenSrc->m_pbrush;
+      m_pdraw2dbrush = ppenSrc->m_pdraw2dbrush;
       
       return true;
 
@@ -114,12 +114,12 @@ namespace draw2d
    }
 
 
-   bool pen::create_brush(::f64 dWidth, ::draw2d::brush * pbrush)
+   bool pen::create_brush(::f64 dWidth, ::draw2d::brush * pdraw2dbrush)
    {
 
       m_epen = e_pen_brush;
       m_dWidth = dWidth;
-      m_pbrush = pbrush;
+      m_pdraw2dbrush = pdraw2dbrush;
 
       set_modified();
 
@@ -134,7 +134,7 @@ namespace draw2d
       m_epen            = ppenSrc.m_epen;
       m_dWidth          = ppenSrc.m_dWidth;
       m_color           = ppenSrc.m_color;
-      m_pbrush          = ppenSrc.m_pbrush;
+      m_pdraw2dbrush          = ppenSrc.m_pdraw2dbrush;
       m_elinecapBeg     = ppenSrc.m_elinecapBeg;
       m_elinecapEnd     = ppenSrc.m_elinecapEnd;
       m_elinejoin       = ppenSrc.m_elinejoin;

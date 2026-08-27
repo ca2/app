@@ -180,14 +180,14 @@ namespace user
       }
 
 
-      void span::calculate_position(::draw2d::graphics_pointer & pgraphics)
+      void span::calculate_position(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
-         pgraphics->set(m_pformat->get_font(pgraphics));
+         pdraw2dgraphics->set(m_pformat->get_font(pdraw2dgraphics));
 
-         m_sizeSpan = pgraphics->get_text_extent(m_str);
+         m_sizeSpan = pdraw2dgraphics->get_text_extent(m_str);
 
-         pgraphics->get_character_extent(m_daPositionLeft, m_daPositionRight, m_str);
+         pdraw2dgraphics->get_character_extent(m_daPositionLeft, m_daPositionRight, m_str);
 
       }
 

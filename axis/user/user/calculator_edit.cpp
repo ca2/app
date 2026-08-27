@@ -440,7 +440,7 @@ namespace calculator
    }
 
 
-   void edit::plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context& context)
+   void edit::plain_edit_on_after_change_text(::draw2d::graphics_pointer& pdraw2dgraphics, const ::action_context& context)
    {
 
       auto pplaineditview = this;
@@ -451,7 +451,7 @@ namespace calculator
 
       route(ptopic);
 
-      plain_edit::plain_edit_on_after_change_text(pgraphics, context);
+      plain_edit::plain_edit_on_after_change_text(pdraw2dgraphics, context);
 
    }
 

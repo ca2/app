@@ -289,10 +289,10 @@ void html_impact::soft_reload()
 }
 
 
-void html_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+void html_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
-   ::html_form::_001OnDraw(pgraphics);
+   ::html_form::_001OnDraw(pdraw2dgraphics);
 
 }
 
@@ -314,10 +314,10 @@ void html_impact::on_form_implemented()
 }
 
 
-void html_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+void html_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
-   ::html_form::on_layout(pgraphics);
+   ::html_form::on_layout(pdraw2dgraphics);
 
 }
 

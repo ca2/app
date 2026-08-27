@@ -11,7 +11,7 @@ namespace draw2d
    public:
 
       
-      virtual void call(::draw2d::graphics_pointer & pgraphics) = 0;
+      virtual void call(::draw2d::graphics_pointer & pdraw2dgraphics) = 0;
 
 
    };
@@ -27,10 +27,10 @@ namespace draw2d
 
       graphics_call(const ::function<void(::draw2d::graphics_pointer&)> & function) : m_function(function) {}
 
-      void call(::draw2d::graphics_pointer & pgraphics)
+      void call(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
-         this->m_function(pgraphics);
+         this->m_function(pdraw2dgraphics);
 
       }
 

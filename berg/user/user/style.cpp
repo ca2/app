@@ -80,14 +80,14 @@ namespace berg
    // }
 
 
-   ::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer& pstyle, ::draw2d::graphics_pointer & pgraphics, ::menu::item* pitem)
+   ::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer& pstyle, ::draw2d::graphics_pointer & pdraw2dgraphics, ::menu::item* pitem)
    {
 
       auto puser = user();
 
-      pgraphics->m_puserstyleGraphics = this;
+      pdraw2dgraphics->m_puserstyleGraphics = this;
 
-      return puser->create_menu_button(pitem->m_pmenu, pgraphics, pitem);
+      return puser->create_menu_button(pitem->m_pmenu, pdraw2dgraphics, pitem);
 
    }
 
@@ -107,7 +107,7 @@ namespace berg
    }
 
 
-   bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer& pgraphics, ::user::tab* ptab)
+   bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::tab* ptab)
    {
 
       return false;
@@ -115,7 +115,7 @@ namespace berg
    }
 
 
-   bool style::_001OnDrawMenuInteraction(::draw2d::graphics_pointer& pgraphics, ::user::menu_interaction* pbutton)
+   bool style::_001OnDrawMenuInteraction(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::menu_interaction* pbutton)
    {
 
       return false;
@@ -123,14 +123,14 @@ namespace berg
    }
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer& pgraphics, const ::i32_rectangle& rectangle, ::draw2d::brush_pointer& pbrushText, const ::user::e_state & estate)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer& pdraw2dgraphics, const ::i32_rectangle& rectangle, ::draw2d::brush_pointer& pbrushText, const ::user::e_state & estate)
    {
 
 
    }
 
 
-   bool style::_001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab* ptab)
+   bool style::_001OnTabLayout(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::tab* ptab)
    {
 
       return false;
@@ -273,14 +273,14 @@ namespace berg
 //
 //   //virtual ::user::menu_interaction * create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) override;
 
-   bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item* pitem)
+   bool style::prepare_menu(::draw2d::graphics_pointer& pdraw2dgraphics, ::menu::item* pitem)
    {
 
          return true;
 
       }
 
-   bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item* pitem)
+   bool style::prepare_menu_button(::draw2d::graphics_pointer& pdraw2dgraphics, ::menu::item* pitem)
    {
 
       return true;
@@ -288,25 +288,25 @@ namespace berg
 }
 //
 //
-//   //virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_interaction * pframe) override;
-//   //virtual void DrawCheck(enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics) override;
-//   //virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics) override;
+//   //virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::frame_interaction * pframe) override;
+//   //virtual void DrawCheck(enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pdraw2dgraphics) override;
+//   //virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pdraw2dgraphics) override;
 //   //virtual bool on_ui_event(enum_happening ehappening, e_object eobject, ::user::interaction * pinteraction) override;
-//   //virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab) override;
-//   //virtual bool _001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pbutton) override;
-//   //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText) override;
+//   //virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pdraw2dgraphics, tab * ptab) override;
+//   //virtual bool _001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pdraw2dgraphics, menu_interaction * pbutton) override;
+//   //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText) override;
 
 //   //virtual bool _001OnTabLayout(::user::tab * ptab) override;
-//   //virtual void _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, ::enum_check echeck) override;
+//   //virtual void _001DrawCheckBox(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX, ::enum_check echeck) override;
 
-//   //virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::i32 iItem, ::user::toolbar * ptoolbar) override;
-//   //virtual bool _001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, simple_scroll_bar * pbar) override;
-//   //virtual bool _001DrawScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar) override;
+//   //virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 iItem, ::user::toolbar * ptoolbar) override;
+//   //virtual bool _001DrawSimpleScrollBar(::draw2d::graphics_pointer & pdraw2dgraphics, simple_scroll_bar * pbar) override;
+//   //virtual bool _001DrawScrollBar(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::scroll_bar * pbar) override;
 //
 //
-//   //virtual bool select_text_color(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics, e_color ecolor = color_text);
-//   //virtual bool select_solid_brush(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics, e_color ecolor);
-//   //virtual bool set(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics, e_font efont = font_default);
+//   //virtual bool select_text_color(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pdraw2dgraphics, e_color ecolor = color_text);
+//   //virtual bool select_solid_brush(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pdraw2dgraphics, e_color ecolor);
+//   //virtual bool set(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pdraw2dgraphics, e_font efont = font_default);
 //
 //
 //
@@ -317,7 +317,7 @@ namespace berg
 //
 //
 //   //virtual ::color::color           _001GetColor(::user::interaction * pinteraction, e_color ecolor, ::color::color crDefault = 0);
-//   //virtual ::write_text::font_pointer  _001GetFont(::user::interaction * pinteraction, e_font efont, ::write_text::font * pfont = nullptr);
+//   //virtual ::write_text::font_pointer  _001GetFont(::user::interaction * pinteraction, e_font efont, ::write_text::font * pwritetextfont = nullptr);
 //   //virtual enum_translucency     _001GetTranslucency(::user::interaction * pinteraction, const ::e_element & eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
 //   //virtual bool               _001GetFlag(::user::interaction * pinteraction, ::user::enum_flag eflag, bool bDefault = false);
 //   //virtual const i32_rectangle &               _001GetRect(::user::interaction * pinteraction, ::user::e_rect erect, ::i32_rectangle rectangleDefault = nullptr);

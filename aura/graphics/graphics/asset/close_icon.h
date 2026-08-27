@@ -13,7 +13,7 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      if (!pitem->m_ppath)
+      if (!pitem->m_pdraw2dpath)
       {
 
          ::f64_rectangle rectangle(pitem->m_rectangle);
@@ -32,11 +32,11 @@ namespace user
 
          ::f64 h2 = rectangle.height();
 
-         pitem->m_ppath.create();
+         pitem->m_pdraw2dpath.create();
 
-         pitem->m_ppath->add_rect(rectangle, 45_degrees);
+         pitem->m_pdraw2dpath->add_rect(rectangle, 45_degrees);
 
-         pitem->m_ppath->add_rect(rectangle, -45_degrees);
+         pitem->m_pdraw2dpath->add_rect(rectangle, -45_degrees);
 
       }
 
@@ -59,7 +59,7 @@ namespace user
 
       pgraphics->set(pbrush);
 
-      pgraphics->fill_path(pitem->m_ppath);
+      pgraphics->fill_path(pitem->m_pdraw2dpath);
 
    }
 

@@ -15,7 +15,7 @@ namespace draw2d_cairo
    public:
 
 
-      cairo_surface_t *       m_psurface;
+      cairo_surface_t *       m_pcairosurface;
       memory                  m_mem;
       ::i32_size              m_size;
 
@@ -28,14 +28,14 @@ namespace draw2d_cairo
       bool LoadBitmap(::u32 nIDResource);
       bool LoadOEMBitmap(::u32 nIDBitmap); // for OBM_/OCR_/OIC_
    
-      bool CreateBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, ::i32 iStride);
-//      bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap);
-      void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight) override;
-      void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight) override;
-      void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, ::pixmap * ppixmap) override;
-      void CreateDIBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void *pjBits, ::u32 iUsage) override;
+      bool CreateBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, ::i32 iStride);
+//      bool CreateBitmapIndirect(::draw2d::graphics * pdraw2dgraphics, LPBITMAP lpBitmap);
+      void CreateCompatibleBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight) override;
+      void CreateDiscardableBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight) override;
+      void create_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size, ::pixmap * ppixmap) override;
+      void CreateDIBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void *pjBits, ::u32 iUsage) override;
 
-      bool host_bitmap(::draw2d::graphics * pgraphics, ::pixmap_t * ppixmap) override;
+      bool host_bitmap(::draw2d::graphics * pdraw2dgraphics, ::pixmap_t * ppixmap) override;
 
 
       ::i32 stride_for_width(::i32 iWidth) override;
@@ -55,7 +55,7 @@ namespace draw2d_cairo
 
 
       void destroy() override;
-      void destroy_os_data() override;
+      // void destroy_os_data() override;
 
 
 

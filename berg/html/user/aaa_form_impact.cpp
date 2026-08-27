@@ -65,10 +65,10 @@ void html_form_impact::on_form_implemented()
 
 ///////////////////////////////////////////////////////////////////////////////
 //// html_form_impact drawing
-//void html_form_impact::OnDraw(::draw2d::graphics_pointer & pgraphics)
+//void html_form_impact::OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 //{
 //
-//   __UNREFERENCED_PARAMETER(pgraphics);
+//   __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 //
 //}
 

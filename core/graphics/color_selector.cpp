@@ -23,7 +23,7 @@ namespace app_core_flag
 {
 
 
-   void dk(::draw2d::graphics_pointer & pgraphics, ::f64 x, ::f64 y, ::f64 w, ::f64 h)
+   void dk(::draw2d::graphics_pointer & pdraw2dgraphics, ::f64 x, ::f64 y, ::f64 w, ::f64 h)
    {
 
       ::color::color crDenmarkRoed = argb(255, 200, 16, 46);
@@ -32,15 +32,15 @@ namespace app_core_flag
 
       ::f64 Δy = h / 70.0;
 
-      pgraphics->fill_rectangle(::f64_rectangle_dimension(x + 0, y + 0, 90.0 * Δx, 70.0 * Δy), argb(255, 255, 255, 255));
+      pdraw2dgraphics->fill_rectangle(::f64_rectangle_dimension(x + 0, y + 0, 90.0 * Δx, 70.0 * Δy), argb(255, 255, 255, 255));
 
-      pgraphics->fill_rectangle(::f64_rectangle_dimension(x + 0, y + 0, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pdraw2dgraphics->fill_rectangle(::f64_rectangle_dimension(x + 0, y + 0, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::f64_rectangle_dimension(x + 40.0 * Δx, y, 50 * Δx, 30 * Δy), crDenmarkRoed);
+      pdraw2dgraphics->fill_rectangle(::f64_rectangle_dimension(x + 40.0 * Δx, y, 50 * Δx, 30 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::f64_rectangle_dimension(x + 0, y + 40.0 * Δy, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pdraw2dgraphics->fill_rectangle(::f64_rectangle_dimension(x + 0, y + 40.0 * Δy, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::f64_rectangle_dimension(x + 40.0 * Δx, y + 40.0 * Δy, 50.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pdraw2dgraphics->fill_rectangle(::f64_rectangle_dimension(x + 40.0 * Δx, y + 40.0 * Δy, 50.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
    }
 
@@ -510,11 +510,11 @@ namespace core
 
       //   //m_pimageBeam->fill(0);
 
-      //   //auto ppen = createø < ::draw2d::pen > ();
+      //   //auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-      //   //ppen->create_solid(1.0, argb(255, 255, 255, 255));
+      //   //pdraw2dpen->create_solid(1.0, argb(255, 255, 255, 255));
 
-      //   //m_pgraphicsImageBeam->set(ppen);
+      //   //m_pgraphicsImageBeam->set(pdraw2dpen);
 
       //   //m_pgraphicsImageBeam->DrawEllipse(i32_rectangle_dimension(0, 0, 32, 32));
 
@@ -776,7 +776,7 @@ namespace core
       }
 
 
-      void color_selector::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::i32_point & pointParam)
+      void color_selector::draw_beam(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_point & pointParam)
       {
 
          ::f64_point point(pointParam);
@@ -791,11 +791,11 @@ namespace core
 
          rectangleInner.deflate(sizeBeam.cx / 4.0, sizeBeam.cy / 4.0);
 
-         auto pbrush = createø < ::draw2d::brush >();
+         auto pdraw2dbrush = createø < ::draw2d::brush >();
 
-         pbrush->create_solid(argb(255, 0, 0, 0));
+         pdraw2dbrush->create_solid(argb(255, 0, 0, 0));
 
-         pgraphics->set(pbrush);
+         pdraw2dgraphics->set(pdraw2dbrush);
 
          ::f64 dHalfTriBase = dSize / 8.0;
 
@@ -807,7 +807,7 @@ namespace core
             pointa.add(::f64_point(rectangleInner.left, point.y));
             pointa.add(::f64_point(rectangleOuter.left, point.y + dHalfTriBase));
 
-            pgraphics->fill_polygon(pointa);
+            pdraw2dgraphics->fill_polygon(pointa);
 
          }
 
@@ -819,7 +819,7 @@ namespace core
             pointa.add(::f64_point(point.x, rectangleInner.top));
             pointa.add(::f64_point(point.x + dHalfTriBase, rectangleOuter.top));
 
-            pgraphics->fill_polygon(pointa);
+            pdraw2dgraphics->fill_polygon(pointa);
 
          }
 
@@ -831,7 +831,7 @@ namespace core
             pointa.add(::f64_point(rectangleInner.right, point.y));
             pointa.add(::f64_point(rectangleOuter.right, point.y + dHalfTriBase));
 
-            pgraphics->fill_polygon(pointa);
+            pdraw2dgraphics->fill_polygon(pointa);
 
          }
 
@@ -843,14 +843,14 @@ namespace core
             pointa.add(::f64_point(point.x, rectangleInner.bottom));
             pointa.add(::f64_point(point.x + dHalfTriBase, rectangleOuter.bottom));
 
-            pgraphics->fill_polygon(pointa);
+            pdraw2dgraphics->fill_polygon(pointa);
 
          }
 
       }
 
 
-      void color_selector::draw_level(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleW, ::i32 yParam)
+      void color_selector::draw_level(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleW, ::i32 yParam)
       {
 
          ::f64 y = yParam;
@@ -863,11 +863,11 @@ namespace core
 
          rectangleOuter.inflate(dSize / 2.0, dSize / 2.0);
 
-         auto pbrush = createø < ::draw2d::brush >();
+         auto pdraw2dbrush = createø < ::draw2d::brush >();
 
-         pbrush->create_solid(argb(255, 0, 0, 0));
+         pdraw2dbrush->create_solid(argb(255, 0, 0, 0));
 
-         pgraphics->set(pbrush);
+         pdraw2dgraphics->set(pdraw2dbrush);
 
          ::f64 dHalfTriBase = dSize / 8.0;
 
@@ -879,7 +879,7 @@ namespace core
             pointa.add(::f64_point(rectangleInner.left, y));
             pointa.add(::f64_point(rectangleOuter.left, y + dHalfTriBase));
 
-            pgraphics->fill_polygon(pointa);
+            pdraw2dgraphics->fill_polygon(pointa);
 
          }
 
@@ -891,14 +891,14 @@ namespace core
             pointa.add(::f64_point(rectangleInner.right, y));
             pointa.add(::f64_point(rectangleOuter.right, y + dHalfTriBase));
 
-            pgraphics->fill_polygon(pointa);
+            pdraw2dgraphics->fill_polygon(pointa);
 
          }
 
       }
 
 
-      void color_selector::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+      void color_selector::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
          ::i32_rectangle rC;
@@ -907,7 +907,7 @@ namespace core
 
          rC = m_rectangleColors;
 
-         pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          auto & rTarget = m_rectangleTarget;
 
@@ -934,7 +934,7 @@ namespace core
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pgraphics->draw(imagedrawing);
+            pdraw2dgraphics->draw(imagedrawing);
 
          }
 
@@ -957,7 +957,7 @@ namespace core
 
          }
 
-         draw_beam(pgraphics, point);
+         draw_beam(pdraw2dgraphics, point);
 
          ::i32_rectangle rectangleLum1;
 
@@ -967,7 +967,7 @@ namespace core
 
          rSource = m_pimageLuminance->rectangle();
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          {
 
@@ -977,7 +977,7 @@ namespace core
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pgraphics->draw(imagedrawing);
+            pdraw2dgraphics->draw(imagedrawing);
 
          }
 
@@ -985,31 +985,31 @@ namespace core
 
          rTarget.set_size(m_rectangleColors.right - rTarget.left, m_pimage->height());
 
-         pgraphics->fill_rectangle(rTarget, get_sel_color());
+         pdraw2dgraphics->fill_rectangle(rTarget, get_sel_color());
 
          ::i32 y = (::i32)(rectangleLum1.top + (1.0 - m_hls.m_dL) * rectangleLum1.height());
 
-         draw_level(pgraphics, rectangleLum1, y);
+         draw_level(pdraw2dgraphics, rectangleLum1, y);
 
          if (m_strOk.has_character() && m_pfontOk)
          {
 
-            pgraphics->set(m_pfontOk);
+            pdraw2dgraphics->set(m_pfontOk);
 
             if (m_hls.m_dL >= 0.5)
             {
 
-               pgraphics->set_text_color(argb(255, 0, 0, 0));
+               pdraw2dgraphics->set_text_color(argb(255, 0, 0, 0));
 
             }
             else
             {
 
-               pgraphics->set_text_color(argb(255, 255, 255, 255));
+               pdraw2dgraphics->set_text_color(argb(255, 255, 255, 255));
 
             }
 
-            pgraphics->draw_text(m_strOk, rTarget, e_align_center);
+            pdraw2dgraphics->draw_text(m_strOk, rTarget, e_align_center);
 
          }
 
@@ -1114,7 +1114,7 @@ namespace core
       void color_selector::layout_color_selector(const ::i32_rectangle & rectangle)
       {
 
-         //   ::user::impact::on_layout(pgraphics);
+         //   ::user::impact::on_layout(pdraw2dgraphics);
 
          //   auto rectangleX = this->rectangle();
 

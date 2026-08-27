@@ -80,7 +80,7 @@ namespace userfs
       virtual void _017OpenContextMenu(const ::action_context & action_context);
       //void TakeAnimationSnapshot();
       //virtual void StartAnimation();
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       //void GetSelectedFilePath(string_array_base & array);
       void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
       void _001GetSubItemText(::user::mesh_subitem * psubitem) override;

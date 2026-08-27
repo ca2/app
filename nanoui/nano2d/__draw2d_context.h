@@ -39,7 +39,7 @@ namespace nano2d
 
          ::draw2d::brush_pointer       m_pbrush;
 
-         ::draw2d::path_pointer        m_ppath;
+         ::draw2d::path_pointer        m_pdraw2dpath;
 
          string                        m_strFontFace;
          ::f32                         m_fFontSize;

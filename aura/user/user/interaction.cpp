@@ -124,12 +124,12 @@ CLASS_DECL_AURA::i32_rectangle bounding_box(const ::user::item * pitem)
 
    }
 
-   if (::is_set(pitem->m_ppath))
+   if (::is_set(pitem->m_pdraw2dpath))
    {
 
       ::f64_rectangle rectangleBounding;
 
-      pitem->m_ppath->get_bounding_box(rectangleBounding);
+      pitem->m_pdraw2dpath->get_bounding_box(rectangleBounding);
 
       return rectangleBounding;
 
@@ -668,7 +668,7 @@ namespace user
    //   }
 
 
-   bool interaction::set_position(const ::i32_point & point, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   bool interaction::set_position(const ::i32_point & point, enum_layout elayout, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       auto pointNew = point;
@@ -678,7 +678,7 @@ namespace user
 
          //information() << "interaction::set_position !on_set_position";
 
-//         if (::is_set(pgraphics) && elayout == ::user::e_layout_layout)
+//         if (::is_set(pdraw2dgraphics) && elayout == ::user::e_layout_layout)
 //         {
 //
 //            pointNew = layout().layout().m_point2;
@@ -741,7 +741,7 @@ namespace user
 
       }
 
-      if (::is_set(pgraphics) && elayout == ::user::e_layout_layout)
+      if (::is_set(pdraw2dgraphics) && elayout == ::user::e_layout_layout)
       {
 
          layout().sketch().m_point2 = pointNew;
@@ -755,13 +755,13 @@ namespace user
 
          //window()->set_position(pointNew);
 
-         set_need_redraw({}, pgraphics);
+         set_need_redraw({}, pdraw2dgraphics);
 
       }
       else
       {
 
-         set_need_redraw({}, pgraphics);
+         set_need_redraw({}, pdraw2dgraphics);
 
       }
 
@@ -772,7 +772,7 @@ namespace user
    }
 
 
-   bool interaction::set_size(const ::i32_size & size, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   bool interaction::set_size(const ::i32_size & size, enum_layout elayout, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       auto sizeNew = size;
@@ -807,7 +807,7 @@ namespace user
 
          layoutstate.m_size = sizeNew;
 
-         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         if (::is_set(pdraw2dgraphics) && elayout == e_layout_layout)
          {
 
             layout().sketch().m_size = sizeNew;
@@ -839,7 +839,7 @@ namespace user
          auto rectangleaCertainlyDamaged = get_top_left_oriented_damaged_areas_by_resizing(rectangleAfter,
                                                                                            rectangleBefore, false);
 
-         set_need_redraw(rectangleaCertainlyDamaged, pgraphics);
+         set_need_redraw(rectangleaCertainlyDamaged, pdraw2dgraphics);
 
       }
       else
@@ -848,11 +848,11 @@ namespace user
          auto rectangleaCertainlyDamaged = get_top_left_oriented_damaged_areas_by_resizing(rectangleAfter,
             rectangleBefore, false);
 
-         set_need_redraw(rectangleaCertainlyDamaged, pgraphics);
+         set_need_redraw(rectangleaCertainlyDamaged, pdraw2dgraphics);
 
       }
 
-      if (::is_null(pgraphics))
+      if (::is_null(pdraw2dgraphics))
       {
 
          post_redraw();
@@ -874,7 +874,7 @@ namespace user
    }
 
 
-   void interaction::set_width(::i32 width, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::set_width(::i32 width, enum_layout elayout, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       auto size = this->size(elayout);
@@ -886,7 +886,7 @@ namespace user
 
          m_layout.m_statea[elayout].m_size = size;
 
-         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         if (::is_set(pdraw2dgraphics) && elayout == e_layout_layout)
          {
 
             m_layout.m_statea[e_layout_sketch].m_size = size;
@@ -904,7 +904,7 @@ namespace user
    }
 
 
-   void interaction::set_height(::i32 height, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::set_height(::i32 height, enum_layout elayout, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       auto size = this->size(elayout);
@@ -916,7 +916,7 @@ namespace user
 
          m_layout.m_statea[elayout].m_size = size;
 
-         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         if (::is_set(pdraw2dgraphics) && elayout == e_layout_layout)
          {
 
             m_layout.m_statea[e_layout_sketch].m_size = size;
@@ -934,7 +934,7 @@ namespace user
    }
 
 
-   void interaction::shift_left(::i32 left, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::shift_left(::i32 left, enum_layout elayout, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       auto point = this->position(elayout);
@@ -956,7 +956,7 @@ namespace user
 
          m_layout.m_statea[elayout].m_size = size;
 
-         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         if (::is_set(pdraw2dgraphics) && elayout == e_layout_layout)
          {
 
             m_layout.m_statea[e_layout_sketch].set_visual_state_origin(point);
@@ -978,7 +978,7 @@ namespace user
    }
 
 
-   void interaction::set_right(::i32 right, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::set_right(::i32 right, enum_layout elayout, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       auto point = this->position(elayout);
@@ -999,7 +999,7 @@ namespace user
 
          m_layout.m_statea[elayout].set_visual_state_origin(point);
 
-         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         if (::is_set(pdraw2dgraphics) && elayout == e_layout_layout)
          {
 
             m_layout.m_statea[e_layout_sketch].set_visual_state_origin(point);
@@ -1013,7 +1013,7 @@ namespace user
    }
 
 
-   void interaction::set_top(const ::i32 top, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::set_top(const ::i32 top, enum_layout elayout, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       auto point = position(elayout);
@@ -1025,7 +1025,7 @@ namespace user
 
          m_layout.m_statea[elayout].m_point2 = point;
 
-         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         if (::is_set(pdraw2dgraphics) && elayout == e_layout_layout)
          {
 
             m_layout.m_statea[e_layout_sketch].m_point2 = point;
@@ -1782,10 +1782,10 @@ namespace user
    }
 
 
-   ::user::style * interaction::get_style(::draw2d::graphics_pointer & pgraphics)
+   ::user::style * interaction::get_style(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      return pgraphics ? get_style(pgraphics->m_puserstyleGraphics) : get_style();
+      return pdraw2dgraphics ? get_style(pdraw2dgraphics->m_puserstyleGraphics) : get_style();
 
    }
 
@@ -2099,7 +2099,7 @@ namespace user
 
    void interaction::set_need_redraw(
       const ::i32_rectangle_array_base & rectangleaNeedRedraw,
-      ::draw2d::graphics * pgraphics,
+      ::draw2d::graphics * pdraw2dgraphics,
       function<void()> function,
       bool bAscendants)
    {
@@ -2113,7 +2113,7 @@ namespace user
 
       //}
 
-      if (::is_set(pgraphics))
+      if (::is_set(pdraw2dgraphics))
       {
 
          if (function)
@@ -2240,7 +2240,7 @@ namespace user
 
       }
 
-      if (::is_set(pgraphics))
+      if (::is_set(pdraw2dgraphics))
       {
 
          for (auto & rectangleHost : rectanglea)
@@ -2255,7 +2255,7 @@ namespace user
 
          }
 
-         pgraphics->user_redraw()->set_need_redraw(rectanglea);
+         pdraw2dgraphics->user_redraw()->set_need_redraw(rectanglea);
 
          return;
 
@@ -2304,7 +2304,7 @@ namespace user
    }
 
 
-   bool interaction::needs_to_draw(::draw2d::graphics * pgraphics, const ::i32_rectangle & rectangleNeedsToDraw)
+   bool interaction::needs_to_draw(::draw2d::graphics * pdraw2dgraphics, const ::i32_rectangle & rectangleNeedsToDraw)
    {
 
       //return true;
@@ -2356,7 +2356,7 @@ namespace user
 
          }
 
-         auto puserredraw = pgraphics->user_redraw();
+         auto puserredraw = pdraw2dgraphics->user_redraw();
 
          if (::is_set(puserredraw))
          {
@@ -5275,7 +5275,7 @@ namespace user
    }
 
 
-   void interaction::set_context_org(::draw2d::graphics_pointer & pgraphics)
+   void interaction::set_context_org(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //if (window() == nullptr)
@@ -5285,7 +5285,7 @@ namespace user
 
       //}
 
-      //window()->set_origin(pgraphics);
+      //window()->set_origin(pdraw2dgraphics);
 
    }
 
@@ -5394,22 +5394,22 @@ namespace user
    }
 
 
-   void interaction::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      //window()->_001OnNcClip(pgraphics);
+      //window()->_001OnNcClip(pdraw2dgraphics);
 
       if (m_pacmewindowingwindow)
       {
 
-         _001OnTopNcClip(pgraphics);
+         _001OnTopNcClip(pdraw2dgraphics);
 
       }
 
    }
 
 
-   void interaction::_001OnTopNcClip(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_001OnTopNcClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       
       const char * pszType = nullptr;
@@ -5447,7 +5447,7 @@ namespace user
          
       }
       
-      if (::is_set(pgraphics->m_pgraphicsgraphics) && !pgraphics->m_pgraphicsgraphics->is_single_buffer_mode())
+      if (::is_set(pdraw2dgraphics->m_pgraphicsgraphics) && !pdraw2dgraphics->m_pgraphicsgraphics->is_single_buffer_mode())
       {
 
          if(pszDebugType)
@@ -5480,7 +5480,7 @@ namespace user
          
 #if !defined(APPLE_IOS)
 
-         auto puserredraw = pgraphics->user_redraw();
+         auto puserredraw = pdraw2dgraphics->user_redraw();
 
          if (::is_set(puserredraw))
          {
@@ -5516,14 +5516,14 @@ namespace user
 
          }
 
-         //pgraphics->reset_clip();
+         //pdraw2dgraphics->reset_clip();
 
-         //if (pgraphics->m_rectangleaNeedRedraw.has_element())
+         //if (pdraw2dgraphics->m_rectangleaNeedRedraw.has_element())
          //{
 
          //   ::draw2d::clip_group clipgroup;
 
-         //   for (auto rectangleHostNeedRedraw: pgraphics->m_rectangleaNeedRedraw)
+         //   for (auto rectangleHostNeedRedraw: pdraw2dgraphics->m_rectangleaNeedRedraw)
          //   {
 
          //      auto rectangleNeedRedraw = rectangleHostNeedRedraw;
@@ -5540,7 +5540,7 @@ namespace user
 
          //   }
 
-         //   pgraphics->intersect_clip(clipgroup);
+         //   pdraw2dgraphics->intersect_clip(clipgroup);
 
          //}
          
@@ -5557,7 +5557,7 @@ namespace user
    }
 
 
-   void interaction::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       try
@@ -5604,7 +5604,7 @@ namespace user
 
          }
 
-         pgraphics->intersect_clip(m_rectangleClip);
+         pdraw2dgraphics->intersect_clip(m_rectangleClip);
 
       }
       catch (...)
@@ -5617,23 +5617,23 @@ namespace user
    }
 
 
-   void interaction::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      scoped_restore(pgraphics->m_pacmeuserinteractionAffinity);
+      scoped_restore(pdraw2dgraphics->m_pacmeuserinteractionAffinity);
 
-      pgraphics->m_pacmeuserinteractionAffinity = this;
+      pdraw2dgraphics->m_pacmeuserinteractionAffinity = this;
 
-      if (pgraphics == nullptr)
+      if (pdraw2dgraphics == nullptr)
       {
 
          throw ::exception(error_bad_argument);
 
       }
 
-      //scoped_restore(pgraphics->m_puserinteraction);
+      //scoped_restore(pdraw2dgraphics->m_puserinteraction);
 
-      //pgraphics->m_puserinteraction = this;
+      //pdraw2dgraphics->m_puserinteraction = this;
 
       try
       {
@@ -5642,7 +5642,7 @@ namespace user
 
             //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            if (pgraphics->m_bDraw)
+            if (pdraw2dgraphics->m_bDraw)
             {
 
 #ifdef _DEBUG
@@ -5662,11 +5662,11 @@ namespace user
 
                //}
 
-               //_001OnNcClip(pgraphics);
+               //_001OnNcClip(pdraw2dgraphics);
 
-               ////auto pstyle = get_style(pgraphics);
+               ////auto pstyle = get_style(pdraw2dgraphics);
 
-               //_001OnNcDraw(pgraphics);
+               //_001OnNcDraw(pdraw2dgraphics);
 
 
 #ifdef _DEBUG
@@ -5683,7 +5683,7 @@ namespace user
                   information("\n");
 
                   // let's trye to see what happened?
-                  //_001OnNcDraw(pgraphics);
+                  //_001OnNcDraw(pdraw2dgraphics);
 
 
                }
@@ -5705,12 +5705,12 @@ namespace user
 
             {
 
-               ::draw2d::save_context savecontext(pgraphics);
+               ::draw2d::save_context savecontext(pdraw2dgraphics);
 
                try
                {
 
-                  _001CallOnDraw(pgraphics);
+                  _001CallOnDraw(pdraw2dgraphics);
 
                }
                catch (...)
@@ -5744,7 +5744,7 @@ namespace user
 << timeElapsed.integral_millisecond() << ")!!\n");
 
                // let's trye to see what happened?
-               //_001CallOnDraw(pgraphics);
+               //_001CallOnDraw(pdraw2dgraphics);
 
 #endif
 
@@ -5809,7 +5809,7 @@ namespace user
    }
 
 
-   void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (!should_draw())
@@ -5819,16 +5819,16 @@ namespace user
 
       }
 
-      scoped_restore(pgraphics->m_pacmeuserinteractionAffinity);
+      scoped_restore(pdraw2dgraphics->m_pacmeuserinteractionAffinity);
 
-      pgraphics->m_pacmeuserinteractionAffinity = this;
+      pdraw2dgraphics->m_pacmeuserinteractionAffinity = this;
 
       //i32_point pointScroll = m_pointScroll;
 
       //if (!pointScroll.is_null())
       //{
 
-      //   pgraphics->offset_origin(-pointScroll.x, -pointScroll.y);
+      //   pdraw2dgraphics->offset_origin(-pointScroll.x, -pointScroll.y);
 
       //}
 
@@ -5837,11 +5837,11 @@ namespace user
       //if (!pointDragScroll.is_null())
       //{
 
-      //   pgraphics->offset_origin(-pointDragScroll.x, -pointDragScroll.y);
+      //   pdraw2dgraphics->offset_origin(-pointDragScroll.x, -pointDragScroll.y);
 
       //}
 
-      //on_context_offset(pgraphics);
+      //on_context_offset(pdraw2dgraphics);
 
 #ifdef _DEBUG
 
@@ -5853,7 +5853,7 @@ namespace user
 
       {
 
-         if (pgraphics->m_bDraw)
+         if (pdraw2dgraphics->m_bDraw)
          {
 
 #ifdef _DEBUG
@@ -5862,15 +5862,15 @@ namespace user
 
 #endif //__DEBUG
 
-            _001OnClip(pgraphics);
+            _001OnClip(pdraw2dgraphics);
 
             ::i32_rectangle rectangleDraw;
 
             rectangleDraw = this->rectangle();
 
-            pgraphics->m_rectangleDraw = rectangleDraw;
+            pdraw2dgraphics->m_rectangleDraw = rectangleDraw;
 
-            _001OnDraw(pgraphics);
+            _001OnDraw(pdraw2dgraphics);
 
             //#ifdef _DEBUG
             //
@@ -5907,7 +5907,7 @@ namespace user
             //               information()(e_trace_category_graphics_thread) << "\n";
             //
             //               // let's trye to see what happened?
-            //               //_001OnDraw(pgraphics);
+            //               //_001OnDraw(pdraw2dgraphics);
             //
             //            }
             //
@@ -5938,24 +5938,24 @@ namespace user
 
 #endif //__DEBUG
 
-      //pgraphics->offset_origin(pointScroll.x, pointScroll.y);
+      //pdraw2dgraphics->offset_origin(pointScroll.x, pointScroll.y);
 
    }
 
 
-   void interaction::_008CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_008CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::draw2d::save_context savecontext(pgraphics);
+      ::draw2d::save_context savecontext(pdraw2dgraphics);
 
       try
       {
 
-         set_context_org(pgraphics);
+         set_context_org(pdraw2dgraphics);
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         _008OnDraw(pgraphics);
+         _008OnDraw(pdraw2dgraphics);
 
       }
       catch (...)
@@ -5966,7 +5966,7 @@ namespace user
    }
 
 
-   void interaction::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
+   void interaction::on_context_offset_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //::i32_point pointOffset;
@@ -5982,7 +5982,7 @@ namespace user
 
       //auto offset = pointOffset - pointContextOffset;
 
-      //pgraphics->offset_origin((::i32)offset.cx, (::i32)offset.cy);
+      //pdraw2dgraphics->offset_origin((::i32)offset.cx, (::i32)offset.cy);
 
    }
 
@@ -6024,7 +6024,7 @@ namespace user
 
          targetscope.offset_and_set_size(rectangle);
 
-         //pgraphics->shift_impact_area(pointOffset, sizeImpact);
+         //pdraw2dgraphics->shift_impact_area(pointOffset, sizeImpact);
 
       }
 
@@ -6041,7 +6041,7 @@ namespace user
    }
 
 
-   //void interaction::on_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //void interaction::on_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   ::i32_point pointOffset;
@@ -6064,7 +6064,7 @@ namespace user
 
    //   auto offset = pointOffset - pointContextOffset;
 
-   //   pgraphics->offset_origin((::i32)offset.cx, (::i32)offset.cy);
+   //   pdraw2dgraphics->offset_origin((::i32)offset.cx, (::i32)offset.cy);
 
    //}
 
@@ -6099,16 +6099,16 @@ namespace user
 
       }
 
-      auto pgraphics = pwindow->m_pgraphicsgraphics;
+      auto pdraw2dgraphics = pwindow->m_pgraphicsgraphics;
 
-      if (::is_null(pgraphics))
+      if (::is_null(pdraw2dgraphics))
       {
 
          return nullptr;
 
       }
 
-      return pgraphics->synchronization();
+      return pdraw2dgraphics->synchronization();
 
    }
 
@@ -6122,7 +6122,7 @@ namespace user
 
 
 
-   void interaction::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //i32_point pointContextOffset = get_context_offset();
@@ -6136,9 +6136,9 @@ namespace user
       try
       {
 
-         //::draw2d::save_context savecontext(pgraphics);
+         //::draw2d::save_context savecontext(pdraw2dgraphics);
 
-         //on_context_offset(pgraphics);
+         //on_context_offset(pdraw2dgraphics);
          //// while drawing layout can occur and machine z-order.
          //// keep this past z-order
          //interaction_pointer_array uia;
@@ -6199,8 +6199,8 @@ namespace user
                      //   if (!bParentScrollX && pinteraction->m_bParentScrollX)
                      //   {
 
-                     //      pgraphics->offset_origin(-pointScroll.x, 0);
-                     //      //pgraphics->offset_origin(-pointDragScroll.x, 0);
+                     //      pdraw2dgraphics->offset_origin(-pointScroll.x, 0);
+                     //      //pdraw2dgraphics->offset_origin(-pointDragScroll.x, 0);
 
                      //      bParentScrollX = true;
 
@@ -6208,8 +6208,8 @@ namespace user
                      //   else if (bParentScrollX && !pinteraction->m_bParentScrollX)
                      //   {
 
-                     //      pgraphics->offset_origin(pointScroll.x, 0);
-                     //      //pgraphics->offset_origin(pointDragScroll.x, 0);
+                     //      pdraw2dgraphics->offset_origin(pointScroll.x, 0);
+                     //      //pdraw2dgraphics->offset_origin(pointDragScroll.x, 0);
 
 
                      //      bParentScrollX = false;
@@ -6219,8 +6219,8 @@ namespace user
                      //   if (!bParentScrollY && pinteraction->m_bParentScrollY)
                      //   {
 
-                     //      pgraphics->offset_origin(0, -pointScroll.y);
-                     //      //pgraphics->offset_origin(0, -pointDragScroll.y);
+                     //      pdraw2dgraphics->offset_origin(0, -pointScroll.y);
+                     //      //pdraw2dgraphics->offset_origin(0, -pointDragScroll.y);
 
                      //      bParentScrollY = true;
 
@@ -6228,8 +6228,8 @@ namespace user
                      //   else if (bParentScrollY && !pinteraction->m_bParentScrollY)
                      //   {
 
-                     //      pgraphics->offset_origin(0, pointScroll.y);
-                     //      //pgraphics->offset_origin(0, pointDragScroll.y);
+                     //      pdraw2dgraphics->offset_origin(0, pointScroll.y);
+                     //      //pdraw2dgraphics->offset_origin(0, pointDragScroll.y);
 
                      //      bParentScrollY = false;
 
@@ -6237,24 +6237,24 @@ namespace user
 
                      //}
 
-                     //pinteraction->_000CallOnDraw(pgraphics);
+                     //pinteraction->_000CallOnDraw(pdraw2dgraphics);
 
                      //synchronouslock.unlock();
 
                      {
 
-                        ::draw2d::save_context savecontext(pgraphics);
+                        ::draw2d::save_context savecontext(pdraw2dgraphics);
 
-                        //puserinteraction->do_graphics(pgraphics);
+                        //puserinteraction->do_graphics(pdraw2dgraphics);
 
-                        puserinteraction->_000CallOnDraw(pgraphics);
+                        puserinteraction->_000CallOnDraw(pdraw2dgraphics);
 
                      }
                      
 //                     if (m_pacmewindowingwindow && !get_parent())
 //                     {
 //
-//                      //  window()->do_graphics(pgraphics);
+//                      //  window()->do_graphics(pdraw2dgraphics);
 //                        
 //                        window()->do_graphics();
 //
@@ -6262,7 +6262,7 @@ namespace user
 //                     else
 //                     {
 //
-//                        _000CallOnDraw(pgraphics);
+//                        _000CallOnDraw(pdraw2dgraphics);
 //
 //                     }
 
@@ -6272,7 +6272,7 @@ namespace user
 
                      //   //::time t1 = ::time::now();
 
-                     //   pinteraction->_000OnDraw(pgraphics);
+                     //   pinteraction->_000OnDraw(pdraw2dgraphics);
 
                      //   ///::time d1 = t1.elapsed();
 
@@ -6290,7 +6290,7 @@ namespace user
 
                      //   //   CINFO(prodevian)("(more than 50ms)(D) "+strType+"::_000OnDraw took " + as_string(d1.m_i32) + "::time.\n");
 
-                     //   //   //pinteraction->_000OnDraw(pgraphics);
+                     //   //   //pinteraction->_000OnDraw(pdraw2dgraphics);
 
                      //   //}
 
@@ -6318,31 +6318,31 @@ namespace user
 
       }
 
-      //pgraphics->offset_origin(pointScroll.x, pointScroll.y);
+      //pdraw2dgraphics->offset_origin(pointScroll.x, pointScroll.y);
 
       //if (bParentScrollX && pointContextOffset.x)
       //{
 
-      //   pgraphics->offset_origin(pointContextOffset.x, 0);
+      //   pdraw2dgraphics->offset_origin(pointContextOffset.x, 0);
 
       //}
 
       //if (bParentScrollY && pointContextOffset.y)
       //{
 
-      //   pgraphics->offset_origin(0, pointContextOffset.y);
+      //   pdraw2dgraphics->offset_origin(0, pointContextOffset.y);
 
       //}
 
    }
 
 
-      void interaction::do_graphics(::draw2d::graphics_pointer &pgraphics)
+      void interaction::do_graphics(::draw2d::graphics_pointer &pdraw2dgraphics)
       {
 
       throw "error";
    
-         ::draw2d::save_context savecontext(pgraphics);
+         ::draw2d::save_context savecontext(pdraw2dgraphics);
    
          payload("draw_control_background_counter") = 0;
    
@@ -6351,7 +6351,7 @@ namespace user
          try
          {
    
-            //_000CallOnDraw(pgraphics);
+            //_000CallOnDraw(pdraw2dgraphics);
    
          }
          catch (...)
@@ -6364,7 +6364,7 @@ namespace user
    //      if (::is_set(pwindowing) && pwindowing->m_bDrawCursor)
    //      {
    //
-   //         ::draw2d::save_context savecontext(pgraphics);
+   //         ::draw2d::save_context savecontext(pdraw2dgraphics);
    //
    //         try
    //         {
@@ -6379,12 +6379,12 @@ namespace user
    //
    //            auto *pcursor = pwindowing->get_cursor();
    //
-   //            if (pcursor != nullptr && pgraphics != nullptr)
+   //            if (pcursor != nullptr && pdraw2dgraphics != nullptr)
    //            {
    //
-   //               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //
-   //               //pgraphics->draw(pointCursor, pcursor);
+   //               //pdraw2dgraphics->draw(pointCursor, pcursor);
    //
    //            }
    //
@@ -6438,7 +6438,7 @@ namespace user
    }
 
 
-   //   void interaction::_000CallOnDraw(::draw2d::graphics_pointer &pgraphics)
+   //   void interaction::_000CallOnDraw(::draw2d::graphics_pointer &pdraw2dgraphics)
    //   {
    //
    //      if (!(m_ewindowflag & e_window_flag_window_created))
@@ -6479,9 +6479,9 @@ namespace user
    //
    //      }
    //
-   //      scoped_restore(pgraphics->m_puserinteraction);
+   //      scoped_restore(pdraw2dgraphics->m_puserinteraction);
    //
-   //      pgraphics->m_puserinteraction = this;
+   //      pdraw2dgraphics->m_puserinteraction = this;
    //
    //      auto phostwindow = this->get_host_user_interaction();
    //
@@ -6514,7 +6514,7 @@ namespace user
    //
    //         m_bSketchToLayoutLading = false;
    //
-   //         design_layout(pgraphics);
+   //         design_layout(pdraw2dgraphics);
    //
    //      }
    //
@@ -6527,7 +6527,7 @@ namespace user
    //
    //      }
    //
-   //      process_graphics_call_queue(pgraphics);
+   //      process_graphics_call_queue(pdraw2dgraphics);
    //
    //      if (!is_this_visible(e_layout_design))
    //      {
@@ -6633,14 +6633,14 @@ namespace user
    //      if (!pointOffset.is_null())
    //      {
    //
-   //         pgraphics->offset_origin(pointOffset.x, pointOffset.y);
+   //         pdraw2dgraphics->offset_origin(pointOffset.x, pointOffset.y);
    //
    //      }
    //
    //      try
    //      {
    //
-   //         _000OnDraw(pgraphics);
+   //         _000OnDraw(pdraw2dgraphics);
    //
    //      }
    //      catch (...)
@@ -6651,7 +6651,7 @@ namespace user
    //      if (!pointOffset.is_null())
    //      {
    //
-   //         pgraphics->offset_origin(-pointOffset.x, -pointOffset.y);
+   //         pdraw2dgraphics->offset_origin(-pointOffset.x, -pointOffset.y);
    //
    //      }
    //
@@ -6672,16 +6672,16 @@ namespace user
    //
    //   ::i32_rectangle rectangleHint(rectangleX);
    //
-   //   pgraphics->SelectClipRgn(nullptr);
+   //   pdraw2dgraphics->SelectClipRgn(nullptr);
    //
-   //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //
-   //   pgraphics->fill_rectangle(rectangleHint, argb(128, random(128, 255), random(128, 255), random(128, 255)));
+   //   pdraw2dgraphics->fill_rectangle(rectangleHint, argb(128, random(128, 255), random(128, 255), random(128, 255)));
    //
    //   //}
    //
    //#endif
-   ////      pgraphics->fill_solid_rect_dim(10, 50, 200, 200, argb(128, random(128, 255), random(128, 255), random(128, 255)));
+   ////      pdraw2dgraphics->fill_solid_rect_dim(10, 50, 200, 200, argb(128, random(128, 255), random(128, 255), random(128, 255)));
    //
    //
    //      windowing_output_debug_string("\ndo_graphics : after Print");
@@ -6701,19 +6701,19 @@ namespace user
    //   }
    //
    //
-   ////   void interaction::on_graphics(::draw2d::graphics_pointer & pgraphics)
+   ////   void interaction::on_graphics(::draw2d::graphics_pointer & pdraw2dgraphics)
    ////   {
    ////
    ////      windowing_output_debug_string("\n_001Print A");
    ////
    ////      {
    ////
-   ////         ::draw2d::save_context savecontext(pgraphics);
+   ////         ::draw2d::save_context savecontext(pdraw2dgraphics);
    ////
    ////         try
    ////         {
    ////
-   ////            _000CallOnDraw(pgraphics);
+   ////            _000CallOnDraw(pdraw2dgraphics);
    ////
    ////         }
    ////         catch (...)
@@ -6732,7 +6732,7 @@ namespace user
    ////
    ////         {
    ////
-   ////            ::draw2d::save_context savecontext(pgraphics);
+   ////            ::draw2d::save_context savecontext(pdraw2dgraphics);
    ////
    ////            try
    ////            {
@@ -6747,12 +6747,12 @@ namespace user
    ////
    ////               auto * pcursor = pwindowing->get_cursor();
    ////
-   ////               if (pcursor != nullptr && pgraphics != nullptr)
+   ////               if (pcursor != nullptr && pdraw2dgraphics != nullptr)
    ////               {
    ////
-   ////                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   ////                  pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    ////
-   ////                  //pgraphics->draw(pointCursor, pcursor);
+   ////                  //pdraw2dgraphics->draw(pointCursor, pcursor);
    ////
    ////               }
    ////
@@ -6810,10 +6810,10 @@ namespace user
 
 
 
-   //void interaction::defer_draw(::draw2d::graphics_pointer & pgraphics)
+   //void interaction::defer_draw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
-   //   window()->defer_draw(pgraphics);
+   //   window()->defer_draw(pdraw2dgraphics);
 
    //}
 
@@ -6826,26 +6826,26 @@ namespace user
    }
 
 
-//   void interaction::do_graphics(::draw2d::graphics_pointer & pgraphics)
+//   void interaction::do_graphics(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   {
 //
 //      if (m_pacmewindowingwindow && !get_parent())
 //      {
 //
-//         window()->do_graphics(pgraphics);
+//         window()->do_graphics(pdraw2dgraphics);
 //
 //      }
 //      else
 //      {
 //
-//         _000CallOnDraw(pgraphics);
+//         _000CallOnDraw(pdraw2dgraphics);
 //
 //      }
 //
 //   }
 
 
-   void interaction::_000TopCallOnLayout(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_000TopCallOnLayout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //bool bZorder = check_child_zorder();
@@ -6857,15 +6857,15 @@ namespace user
 
       //}
 
-      //if (should_perform_layout(pgraphics))
+      //if (should_perform_layout(pdraw2dgraphics))
       //{
 
-      //   perform_layout(pgraphics);
+      //   perform_layout(pdraw2dgraphics);
 
       //}
 
-      //if (should_perform_layout(pgraphics))
-      //if (pgraphics->m_egraphics & e_graphics_layout)
+      //if (should_perform_layout(pdraw2dgraphics))
+      //if (pdraw2dgraphics->m_egraphics & e_graphics_layout)
       //{
 
       ::string strType = typeid(*this).name();
@@ -6890,20 +6890,20 @@ namespace user
       }
 
 
-      perform_layout(pgraphics);
+      perform_layout(pdraw2dgraphics);
 
-      defer_do_layout(pgraphics);
+      defer_do_layout(pdraw2dgraphics);
 
       //}
 
-      //pgraphics->fill_solid_rectangle({ 100, 100, 200, 200 }, ::color::white);
+      //pdraw2dgraphics->fill_solid_rectangle({ 100, 100, 200, 200 }, ::color::white);
 
-      //_000CallOnDraw(pgraphics);
+      //_000CallOnDraw(pdraw2dgraphics);
 
    }
 
 
-   void interaction::_000TopCallOnDraw(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_000TopCallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //bool bZorder = check_child_zorder();
@@ -6915,15 +6915,15 @@ namespace user
 
       //}
 
-      //if (should_perform_layout(pgraphics))
+      //if (should_perform_layout(pdraw2dgraphics))
       //{
 
-      //   perform_layout(pgraphics);
+      //   perform_layout(pdraw2dgraphics);
 
       //}
 
-      //if (should_perform_layout(pgraphics))
-      //if (pgraphics->m_egraphics & e_graphics_layout)
+      //if (should_perform_layout(pdraw2dgraphics))
+      //if (pdraw2dgraphics->m_egraphics & e_graphics_layout)
       //{
 
       //   ::string strType = typeid(*this).name();
@@ -6935,29 +6935,29 @@ namespace user
 
       //   }
 
-      //   perform_layout(pgraphics);
+      //   perform_layout(pdraw2dgraphics);
 
-      //   defer_do_layout(pgraphics);
+      //   defer_do_layout(pdraw2dgraphics);
 
       //}
 
-      //pgraphics->fill_solid_rectangle({ 100, 100, 200, 200 }, ::color::white);
+      //pdraw2dgraphics->fill_solid_rectangle({ 100, 100, 200, 200 }, ::color::white);
 
-      _000CallOnDraw(pgraphics);
+      _000CallOnDraw(pdraw2dgraphics);
 
    }
 
 
-   void interaction::defer_do_layout(::draw2d::graphics_pointer & pgraphics)
+   void interaction::defer_do_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      //scoped_restore(pgraphics->m_pacmeuserinteractionAffinity);
+      //scoped_restore(pdraw2dgraphics->m_pacmeuserinteractionAffinity);
 
-      //pgraphics->m_pacmeuserinteractionAffinity = this;
+      //pdraw2dgraphics->m_pacmeuserinteractionAffinity = this;
 
       ::string strType = ::platform::type(this).name();
 
-      if (pgraphics->m_egraphics & e_graphics_layout)
+      if (pdraw2dgraphics->m_egraphics & e_graphics_layout)
       {
 
          layout_to_design();
@@ -6965,7 +6965,7 @@ namespace user
          if (m_bLadingToLayout)
          {
 
-            if (layout_layout(pgraphics))
+            if (layout_layout(pdraw2dgraphics))
             {
 
                m_bLadingToLayout = false;
@@ -6977,7 +6977,7 @@ namespace user
          if (m_bContextOffsetLadingToLayout)
          {
 
-            on_context_offset_layout(pgraphics);
+            on_context_offset_layout(pdraw2dgraphics);
 
             m_bContextOffsetLadingToLayout = false;
 
@@ -6985,10 +6985,10 @@ namespace user
 
       }
 
-      if (pgraphics->m_egraphics & e_graphics_layout)
+      if (pdraw2dgraphics->m_egraphics & e_graphics_layout)
       {
 
-         process_graphics_call_queue(pgraphics);
+         process_graphics_call_queue(pdraw2dgraphics);
 
          if (get_parent() != nullptr)
          {
@@ -7031,7 +7031,7 @@ namespace user
 
             //}
 
-            puserinteraction->defer_do_layout(pgraphics);
+            puserinteraction->defer_do_layout(pdraw2dgraphics);
 
          }
          catch (...)
@@ -7046,14 +7046,14 @@ namespace user
    }
 
 
-   void interaction::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_000CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      scoped_restore(pgraphics->m_pacmeuserinteractionAffinity);
+      scoped_restore(pdraw2dgraphics->m_pacmeuserinteractionAffinity);
 
-      //pgraphics->m_puserinteraction = m_puserinteraction;
+      //pdraw2dgraphics->m_puserinteraction = m_puserinteraction;
 
-      //if (pgraphics->m_egraphics & e_graphics_layout)
+      //if (pdraw2dgraphics->m_egraphics & e_graphics_layout)
       //{
 
       //   layout_to_design();
@@ -7063,16 +7063,16 @@ namespace user
 
       //      m_bLadingToLayout = false;
 
-      //      layout_layout(pgraphics);
+      //      layout_layout(pdraw2dgraphics);
 
       //   }
 
       //}
 
-      //if (pgraphics->m_egraphics & e_graphics_layout)
+      //if (pdraw2dgraphics->m_egraphics & e_graphics_layout)
       //{
 
-      //   process_graphics_call_queue(pgraphics);
+      //   process_graphics_call_queue(pdraw2dgraphics);
 
       //   if (get_parent() != nullptr)
       //   {
@@ -7191,7 +7191,7 @@ namespace user
       //if (!pointOffset.is_null())
       //{
 
-      //   pgraphics->offset_origin(pointOffset.x, pointOffset.y);
+      //   pdraw2dgraphics->offset_origin(pointOffset.x, pointOffset.y);
 
       //}
 
@@ -7203,13 +7203,13 @@ namespace user
          if (pdrawable)
          {
 
-            pdrawable->_000DrawImpl(pgraphics);
+            pdrawable->_000DrawImpl(pdraw2dgraphics);
 
          }
          else
          {
 
-            _000OnDraw(pgraphics);
+            _000OnDraw(pdraw2dgraphics);
 
          }
 
@@ -7222,7 +7222,7 @@ namespace user
       //if (!pointOffset.is_null())
       //{
 
-      //   pgraphics->offset_origin(-pointOffset.x, -pointOffset.y);
+      //   pdraw2dgraphics->offset_origin(-pointOffset.x, -pointOffset.y);
 
       //}
 
@@ -7253,7 +7253,7 @@ namespace user
    }
 
 
-   void interaction::process_graphics_call_queue(::draw2d::graphics_pointer & pgraphics)
+   void interaction::process_graphics_call_queue(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -7271,7 +7271,7 @@ namespace user
             try
             {
 
-               pcall->call(pgraphics);
+               pcall->call(pdraw2dgraphics);
 
             }
             catch (...)
@@ -7288,7 +7288,7 @@ namespace user
    }
 
 
-   //void interaction::defer_update_hover(::draw2d::graphics_pointer & pgraphics)
+   //void interaction::defer_update_hover(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   {
@@ -7318,7 +7318,7 @@ namespace user
 
    //         scoped_restore (m_pgraphicsInternalPriority);
 
-   //         m_pgraphicsInternalPriority = pgraphics.m_p;
+   //         m_pgraphicsInternalPriority = pdraw2dgraphics.m_p;
    //         ::item_pointer pitemFront;
 
    //         ::item_pointer pitemBack;
@@ -7364,12 +7364,12 @@ namespace user
    //}
 
 
-   void interaction::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      scoped_restore(pgraphics->m_bInheritDraw);
+      scoped_restore(pdraw2dgraphics->m_bInheritDraw);
 
-      //defer_update_hover(pgraphics);
+      //defer_update_hover(pdraw2dgraphics);
 
       //      auto pszType = typeid(*this).name();
       //
@@ -7387,26 +7387,26 @@ namespace user
       //      }
 
 
-      //      if (!pgraphics->m_bInheritDraw)
+      //      if (!pdraw2dgraphics->m_bInheritDraw)
       //      {
       //         if (!get_parent())
       //         {
       //
-      //            information() << "!get_parent !pgraphics->m_bInheritDraw";
+      //            information() << "!get_parent !pdraw2dgraphics->m_bInheritDraw";
       //
       //         }
       //
       //      }
 
-      if (pgraphics->m_bInheritDraw && !(pgraphics->m_egraphics & e_graphics_draw))
+      if (pdraw2dgraphics->m_bInheritDraw && !(pdraw2dgraphics->m_egraphics & e_graphics_draw))
       {
 
-         pgraphics->m_bInheritDraw = false;
+         pdraw2dgraphics->m_bInheritDraw = false;
 
          //         if (!get_parent())
          //         {
          //
-         //            information() << "!get_parent !(pgraphics->m_egraphics & e_graphics_draw)";
+         //            information() << "!get_parent !(pdraw2dgraphics->m_egraphics & e_graphics_draw)";
          //
          //         }
 
@@ -7415,7 +7415,7 @@ namespace user
 
       bool bIsThisVisible = this->is_this_visible();
 
-      if (pgraphics->m_bInheritDraw && !bIsThisVisible)
+      if (pdraw2dgraphics->m_bInheritDraw && !bIsThisVisible)
       {
 
          //         if (!get_parent())
@@ -7432,14 +7432,14 @@ namespace user
          //         }
 
 
-         pgraphics->m_bInheritDraw = false;
+         pdraw2dgraphics->m_bInheritDraw = false;
 
       }
 
-      if (pgraphics->m_bInheritDraw && !pgraphics->m_bDraw)
+      if (pdraw2dgraphics->m_bInheritDraw && !pdraw2dgraphics->m_bDraw)
       {
 
-         //         if (pgraphics->payload("set_transparent") == "set_transparent")
+         //         if (pdraw2dgraphics->payload("set_transparent") == "set_transparent")
          //         {
          //
          //            information() << "Not draw (!m_bDraw) !?!?!";
@@ -7448,15 +7448,15 @@ namespace user
          //         else if (!get_parent())
          //         {
          //
-         //            information() << "!get_parent !pgraphics->m_bDraw";
+         //            information() << "!get_parent !pdraw2dgraphics->m_bDraw";
          //
          //         }
 
-         pgraphics->m_bInheritDraw = false;
+         pdraw2dgraphics->m_bInheritDraw = false;
 
       }
 
-      if (pgraphics->m_bInheritDraw && !needs_to_draw(pgraphics))
+      if (pdraw2dgraphics->m_bInheritDraw && !needs_to_draw(pdraw2dgraphics))
       {
 
          //         ::string strType = ::platform::type(this).name();
@@ -7480,12 +7480,12 @@ namespace user
          //
          //         }
          //
-         //         if (pgraphics->payload("set_transparent") == "set_transparent")
+         //         if (pdraw2dgraphics->payload("set_transparent") == "set_transparent")
          //         {
          //
          //            //information() << "Not draw (!needs_to_draw)!?!?!";
          //
-         //            //if (!needs_to_draw(pgraphics))
+         //            //if (!needs_to_draw(pdraw2dgraphics))
          //            //{
          //
          //
@@ -7495,17 +7495,17 @@ namespace user
          //
          //         //return;
 
-         pgraphics->m_bInheritDraw = false;
+         pdraw2dgraphics->m_bInheritDraw = false;
 
       }
 
-      if (!pgraphics->m_bInheritDraw)
+      if (!pdraw2dgraphics->m_bInheritDraw)
       {
 
          //         if (!get_parent())
          //         {
          //
-         //            information() << "_000OnDraw exit on !pgraphics->m_bInheritDraw";
+         //            information() << "_000OnDraw exit on !pdraw2dgraphics->m_bInheritDraw";
          //
          //         }
 
@@ -7533,16 +7533,16 @@ namespace user
          //if (!pointScroll.is_null())
          //{
 
-         //   pgraphics->offset_origin(-pointScroll.x, -pointScroll.y);
+         //   pdraw2dgraphics->offset_origin(-pointScroll.x, -pointScroll.y);
 
          //}
 
 
-         //pgraphics->m_dFontFactor = 1.0;
+         //pdraw2dgraphics->m_dFontFactor = 1.0;
          
-         ::draw2d::save_context savecontext(pgraphics);
+         ::draw2d::save_context savecontext(pdraw2dgraphics);
 
-         auto targetscope = pgraphics->target_scope();
+         auto targetscope = pdraw2dgraphics->target_scope();
          
          auto pszType = typeid(*this).name();
 
@@ -7601,7 +7601,7 @@ namespace user
                //
                //                     }
 
-                                    //if (pgraphics->m_bDraw)
+                                    //if (pdraw2dgraphics->m_bDraw)
                                     //{
 
 #ifdef _DEBUG
@@ -7624,13 +7624,13 @@ namespace user
                //if (is_top_level())
                //{
 
-               _001OnNcClip(pgraphics);
+               _001OnNcClip(pdraw2dgraphics);
 
                //}
 
-               //auto pstyle = get_style(pgraphics);
+               //auto pstyle = get_style(pdraw2dgraphics);
 
-               _001OnNcDraw(pgraphics);
+               _001OnNcDraw(pdraw2dgraphics);
 
                //         if (type.name().contains("waven::impact"))
                //         {
@@ -7643,33 +7643,33 @@ namespace user
                //            informationf("menu_list_impact");
                //
                //         }
-               //   if (!is_custom_draw() && pgraphics->m_pnext == nullptr)
+               //   if (!is_custom_draw() && pdraw2dgraphics->m_pnext == nullptr)
                //   {
 
-               //      set_context_org(pgraphics);
+               //      set_context_org(pdraw2dgraphics);
 
                //   }
 
                //}
                ////         ::i32_point pointParentOffset = get_parent_context_offset();
                ////
-               ////         pgraphics->offset_origin(-pointParentOffset.x, -pointParentOffset.y);
+               ////         pdraw2dgraphics->offset_origin(-pointParentOffset.x, -pointParentOffset.y);
                {
 
-                  ::draw2d::save_context savecontextThis(pgraphics);
+                  ::draw2d::save_context savecontextThis(pdraw2dgraphics);
 
                   //{
 
                   //   auto rectangleClient = this->client2_rectangle();
 
-                  //   pgraphics->offset_origin(rectangleClient.left, rectangleClient.top);
+                  //   pdraw2dgraphics->offset_origin(rectangleClient.left, rectangleClient.top);
 
                   //}
 
                   try
                   {
 
-                     _001DrawThis(pgraphics);
+                     _001DrawThis(pdraw2dgraphics);
 
                   }
                   catch (...)
@@ -7692,14 +7692,14 @@ namespace user
                //if (m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->has_interaction())
                {
 
-                  //::draw2d::save_context savecontext(pgraphics);
+                  //::draw2d::save_context savecontext(pdraw2dgraphics);
 
                   //synchronouslock.unlock();
 
                   try
                   {
 
-                     _001DrawChildren(pgraphics);
+                     _001DrawChildren(pdraw2dgraphics);
 
                   }
                   catch (...)
@@ -7720,7 +7720,7 @@ namespace user
 
             }
 
-            if (pgraphics->m_bInheritDraw && should_draw())
+            if (pdraw2dgraphics->m_bInheritDraw && should_draw())
             {
 
                try
@@ -7733,7 +7733,7 @@ namespace user
 
                         auto t1 = ::time::now();
 
-                        _008CallOnDraw(pgraphics);
+                        _008CallOnDraw(pdraw2dgraphics);
 
                         auto d1 = t1.elapsed();
 
@@ -7758,7 +7758,7 @@ namespace user
                   try
                   {
 
-                     _001OnNcPostDraw(pgraphics);
+                     _001OnNcPostDraw(pdraw2dgraphics);
 
                   }
                   catch (...)
@@ -7792,20 +7792,20 @@ namespace user
    }
 
 
-   void interaction::_008OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_008OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
    }
 
 
-   void interaction::draw_control_background(::draw2d::graphics_pointer & pgraphics)
+   void interaction::draw_control_background(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain<::aura::draw_context>::get_last();
+      ::aura::draw_context * pdrawcontext = pdraw2dgraphics->::aura::simple_chain<::aura::draw_context>::get_last();
 
       auto rectangleRaw = this->rectangle();
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       ::string strType = ::platform::type(this).name();
 
@@ -7838,7 +7838,7 @@ namespace user
       {
 
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          auto colorBackground = get_color(pstyle, e_element_background);
 
@@ -7859,13 +7859,13 @@ namespace user
          if (colorBackground.is_ok())
          {
 
-            auto esmoothmode = pgraphics->get_smooth_mode();
+            auto esmoothmode = pdraw2dgraphics->get_smooth_mode();
 
-            pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+            pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-            pgraphics->fill_rectangle(rectangleRaw, colorBackground);
+            pdraw2dgraphics->fill_rectangle(rectangleRaw, colorBackground);
 
-            pgraphics->set_smooth_mode(esmoothmode);
+            pdraw2dgraphics->set_smooth_mode(esmoothmode);
 
          }
 
@@ -7895,9 +7895,9 @@ namespace user
 
          //return;
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->fill_rectangle(rectangleRaw, colorBackground);
+         pdraw2dgraphics->fill_rectangle(rectangleRaw, colorBackground);
 
          auto puserinteractionHost = host_interaction();
 
@@ -13147,7 +13147,7 @@ if(get_parent())
    }
 
 
-   void interaction::RepositionBars(::draw2d::graphics_pointer &pgraphics, ::u32 nIDFirst, ::u32 nIDLast,
+   void interaction::RepositionBars(::draw2d::graphics_pointer &pdraw2dgraphics, ::u32 nIDFirst, ::u32 nIDLast,
                                     ::user::interaction *puserinteractionLeftOver, ::u32 nFlags,
                                     ::i32_rectangle * prectParam, const ::i32_rectangle & rectangleX,
                                     bool bStretch)
@@ -13178,7 +13178,7 @@ if(get_parent())
       ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery ||
              (nFlags & ~reposNoPosLeftOver) == reposExtra);
 
-      size_parent_layout sizeparentlayout(pgraphics);
+      size_parent_layout sizeparentlayout(pdraw2dgraphics);
 
       ::pointer<::user::interaction> puiLeft;
 
@@ -14501,7 +14501,7 @@ if(get_parent())
    }
 
 
-   ::i32_size interaction::preferred_size(::draw2d::graphics_pointer & pgraphics)
+   ::i32_size interaction::preferred_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pappearance = get_appearance();
@@ -14509,7 +14509,7 @@ if(get_parent())
       if (::is_set(pappearance))
       {
 
-         return pappearance->preferred_size(pgraphics);
+         return pappearance->preferred_size(pdraw2dgraphics);
 
       }
 
@@ -14574,7 +14574,7 @@ if(get_parent())
    }
 
 
-   bool interaction::layout_layout(::draw2d::graphics_pointer & pgraphics)
+   bool interaction::layout_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -14629,14 +14629,14 @@ if(get_parent())
 
       //}
 
-      if (pgraphics)
+      if (pdraw2dgraphics)
       {
 
-         //defer_graphics(pgraphics);
+         //defer_graphics(pdraw2dgraphics);
 
-         //window()->on_layout(pgraphics);
+         //window()->on_layout(pdraw2dgraphics);
 
-         on_layout(pgraphics);
+         on_layout(pdraw2dgraphics);
 
          //on_change_sketch_scroll_state();
 
@@ -14645,7 +14645,7 @@ if(get_parent())
          if (::is_set(pappearance))
          {
 
-            pappearance->perform_layout(pgraphics);
+            pappearance->perform_layout(pdraw2dgraphics);
 
          }
 
@@ -14706,10 +14706,10 @@ if(get_parent())
 
       }
 
-      if (pgraphics)
+      if (pdraw2dgraphics)
       {
 
-         on_drag_scroll_layout(pgraphics);
+         on_drag_scroll_layout(pdraw2dgraphics);
 
       }
 
@@ -14727,7 +14727,7 @@ if(get_parent())
 
       //   }
 
-      //   m_playout->on_layout(pgraphics);
+      //   m_playout->on_layout(pdraw2dgraphics);
 
       //}
 
@@ -15515,20 +15515,20 @@ if(get_parent())
    }
 
 
-   ::f64_size interaction::get_fitting_size(::draw2d::graphics_pointer & pgraphics)
+   ::f64_size interaction::get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
       ::write_text::text_metric metric;
 
-      pgraphics->get_text_metrics(&metric);
+      pdraw2dgraphics->get_text_metrics(&metric);
 
       ::f64_size setFittingFontHeight;
 
       string strWindowText = get_window_text();
 
-      ::f64_size size = pgraphics->get_text_extent(strWindowText);
+      ::f64_size size = pdraw2dgraphics->get_text_extent(strWindowText);
 
       setFittingFontHeight.cx = size.cx;
 
@@ -15539,14 +15539,14 @@ if(get_parent())
    }
 
 
-   ::f64_size interaction::get_adjusted_fitting_size(::draw2d::graphics_pointer & pgraphics)
+   ::f64_size interaction::get_adjusted_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       ::f64_rectangle rectanglePadding = get_padding(pstyle);
 
-      auto sizeFitting = get_fitting_size(pgraphics);
+      auto sizeFitting = get_fitting_size(pdraw2dgraphics);
 
       ::f64_size sizePaddedFitting;
 
@@ -15559,7 +15559,7 @@ if(get_parent())
    }
 
 
-   ::f64_size interaction::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
+   ::f64_size interaction::get_preferred_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       return const_layout().sketch().size();
@@ -15567,10 +15567,10 @@ if(get_parent())
    }
 
 
-   void interaction::resize_to_fit(::draw2d::graphics_pointer & pgraphics)
+   void interaction::resize_to_fit(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto size = get_preferred_size(pgraphics);
+      auto size = get_preferred_size(pdraw2dgraphics);
 
       set_size(size);
 
@@ -15642,7 +15642,7 @@ if(get_parent())
    }
 
 
-   void interaction::_extend_on_parent(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_extend_on_parent(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //if (::string(typeid(*this).name()).contains("impact"))
@@ -15661,7 +15661,7 @@ if(get_parent())
       if (sizeThis != sizeParent)
       {
 
-         set_size(sizeParent, ::user::e_layout_layout, pgraphics);
+         set_size(sizeParent, ::user::e_layout_layout, pdraw2dgraphics);
 
       }
 
@@ -15670,14 +15670,14 @@ if(get_parent())
       if (positionThis.is_set())
       {
 
-         set_position({}, ::user::e_layout_layout, pgraphics);
+         set_position({}, ::user::e_layout_layout, pdraw2dgraphics);
 
       }
 
    }
 
 
-   void interaction::_extend_on_parent_hosting_area(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_extend_on_parent_hosting_area(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pparent = get_parent();
@@ -15691,7 +15691,7 @@ if(get_parent())
       if (sizeThis != sizeParentClientArea)
       {
 
-         set_size(sizeParentClientArea, ::user::e_layout_layout, pgraphics);
+         set_size(sizeParentClientArea, ::user::e_layout_layout, pdraw2dgraphics);
 
       }
 
@@ -15702,7 +15702,7 @@ if(get_parent())
       if (positionThis != positionParentClientArea)
       {
 
-         set_position(positionParentClientArea, ::user::e_layout_layout, pgraphics);
+         set_position(positionParentClientArea, ::user::e_layout_layout, pdraw2dgraphics);
 
       }
 
@@ -15738,20 +15738,20 @@ if(get_parent())
    }
 
 
-   bool interaction::should_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   bool interaction::should_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
       return m_bNeedPerformLayout;
 
    }
 
 
-   bool interaction::need_on_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   bool interaction::need_on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
       bool bNeedOnPerformLayout = false;
 
@@ -15767,7 +15767,7 @@ if(get_parent())
    }
 
 
-   bool interaction::perform_layout(::draw2d::graphics_pointer & pgraphics)
+   bool interaction::perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_bLockGraphicalUpdate)
@@ -15810,7 +15810,7 @@ if(get_parent())
          try
          {
 
-            on_perform_top_down_layout(pgraphics);
+            on_perform_top_down_layout(pdraw2dgraphics);
 
          }
          catch (...)
@@ -15822,7 +15822,7 @@ if(get_parent())
 
       }
 
-      bNeedPerformLayoutHere |= need_on_perform_layout(pgraphics);
+      bNeedPerformLayoutHere |= need_on_perform_layout(pdraw2dgraphics);
 
       //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -15847,7 +15847,7 @@ if(get_parent())
 
                }
 
-               if (puserinteraction->perform_layout(pgraphics))
+               if (puserinteraction->perform_layout(pdraw2dgraphics))
                {
 
                   bNeedPerformLayoutHere = true;
@@ -15874,7 +15874,7 @@ if(get_parent())
          try
          {
 
-            bParentMayNeedToPerformLayout = on_perform_layout(pgraphics);
+            bParentMayNeedToPerformLayout = on_perform_layout(pdraw2dgraphics);
 
          }
          catch (...)
@@ -15891,7 +15891,7 @@ if(get_parent())
    }
 
 
-   void interaction::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void interaction::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::string strType = ::platform::type(this).name();
@@ -15912,14 +15912,14 @@ if(get_parent())
       if (m_bExtendOnParent)
       {
 
-         _extend_on_parent(pgraphics);
+         _extend_on_parent(pdraw2dgraphics);
 
       }
 
       if (m_bExtendOnParentHostingArea)
       {
 
-         _extend_on_parent_hosting_area(pgraphics);
+         _extend_on_parent_hosting_area(pdraw2dgraphics);
 
       }
 
@@ -15928,14 +15928,14 @@ if(get_parent())
 
          auto rectangle = this->rectangle(e_layout_lading);
 
-         set_need_redraw({ rectangle }, pgraphics);
+         set_need_redraw({ rectangle }, pdraw2dgraphics);
 
       }
 
    }
 
 
-   bool interaction::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   bool interaction::on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       return false;
@@ -15943,7 +15943,7 @@ if(get_parent())
    }
 
    void
-      interaction::on_items_layout(::draw2d::graphics_pointer & pgraphics, ::collection::index iIdContainer, ::item_array * pitema)
+      interaction::on_items_layout(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iIdContainer, ::item_array * pitema)
    {
 
       if (::is_null(pitema))
@@ -15969,7 +15969,7 @@ if(get_parent())
          if (pitem && pitem->m_item.m_eelement != ::e_element_item)
          {
 
-            puseritem->m_ppath.release();
+            puseritem->m_pdraw2dpath.release();
 
             if (pitem->m_item.m_eelement != e_element_item)
             {
@@ -15987,7 +15987,7 @@ if(get_parent())
    }
 
 
-   void interaction::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void interaction::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -16022,7 +16022,7 @@ if(get_parent())
       for (auto [iIndex, pitemcontainer] : m_itemcontainermap)
       {
 
-         on_items_layout(pgraphics, iIndex, pitemcontainer->m_pitema);
+         on_items_layout(pdraw2dgraphics, iIndex, pitemcontainer->m_pitema);
 
       }
 
@@ -16463,7 +16463,7 @@ if(get_parent())
    }
 
 
-   void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics)
+   void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //if(m_bVerticalDragScroll)
@@ -18200,7 +18200,7 @@ if(get_parent())
 
             m_bLadingToLayout = true;
 
-            //design_layout(pgraphics);
+            //design_layout(pdraw2dgraphics);
 
          }
 
@@ -18540,23 +18540,23 @@ if(get_parent())
    //}
 
 
-   void interaction::_001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //if (window() != nullptr)
       //{
 
-      //   //         window()->_001DeferPaintLayeredWindowBackground(pgraphics);
+      //   //         window()->_001DeferPaintLayeredWindowBackground(pdraw2dgraphics);
 
       //}
 
    }
 
 
-   void interaction::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      _001DeferPaintLayeredWindowBackground(pgraphics);
+      _001DeferPaintLayeredWindowBackground(pdraw2dgraphics);
 
    }
 
@@ -19741,13 +19741,13 @@ if(get_parent())
    }
 
 
-   void interaction::defer_graphics(::draw2d::graphics_pointer &pgraphics)
+   void interaction::defer_graphics(::draw2d::graphics_pointer &pdraw2dgraphics)
    {
 
-      if (!pgraphics)
+      if (!pdraw2dgraphics)
       {
        
-         pgraphics = create_memory_graphics();
+         pdraw2dgraphics = create_memory_graphics();
 
       }
 
@@ -19761,23 +19761,23 @@ if(get_parent())
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
-      return pgraphics;
+      return pdraw2dgraphics;
 
    }
 
 
-   ::f64 interaction::_001GetDefaultFontHeight(::draw2d::graphics_pointer & pgraphics)
+   ::f64 interaction::_001GetDefaultFontHeight(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      defer_graphics(pgraphics);
+      defer_graphics(pdraw2dgraphics);
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
       ::f64_size size;
 
-      size = pgraphics->get_text_extent(unitext("Ap"));
+      size = pdraw2dgraphics->get_text_extent(unitext("Ap"));
 
       return size.cy;
 
@@ -21408,7 +21408,7 @@ if(get_parent())
    //   }
 
 
-   void interaction::place(const ::i32_rectangle & rectangle, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::place(const ::i32_rectangle & rectangle, enum_layout elayout, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       auto sizeNew = rectangle.size();
@@ -21420,7 +21420,7 @@ if(get_parent())
 
          //information() << "interaction::place !bOnSetSize";
 
-         set_position(rectangle.origin(), elayout, pgraphics);
+         set_position(rectangle.origin(), elayout, pdraw2dgraphics);
 
          return;
 
@@ -21435,7 +21435,7 @@ if(get_parent())
 
          //information() << "interaction::place !bOnSetSize";
 
-         set_size(rectangle.size(), elayout, pgraphics);
+         set_size(rectangle.size(), elayout, pdraw2dgraphics);
 
          return;
 
@@ -21513,17 +21513,17 @@ if(get_parent())
       if (get_parent() != nullptr)
       {
 
-         set_need_redraw({}, pgraphics);
+         set_need_redraw({}, pdraw2dgraphics);
 
       }
       else
       {
 
-         place_set_need_redraw(rectangleAfter, rectangleBefore, pgraphics);
+         place_set_need_redraw(rectangleAfter, rectangleBefore, pdraw2dgraphics);
 
       }
 
-      if (::is_null(pgraphics))
+      if (::is_null(pdraw2dgraphics))
       {
 
          post_redraw();
@@ -21533,7 +21533,7 @@ if(get_parent())
    }
 
 
-   void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics)
+   void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pdraw2dgraphics)
    {
       //  if (get_parent() == nullptr)
         //{
@@ -21546,17 +21546,17 @@ if(get_parent())
 
    //auto rectangleaCertainlyDamaged = get_top_left_oriented_damaged_areas_by_resizing(rectangleAfter, rectangleBefore);
 
-      set_need_redraw(rectangleaCertainlyDamaged, pgraphics);
+      set_need_redraw(rectangleaCertainlyDamaged, pdraw2dgraphics);
 
    }
 
 
-   void interaction::place(::i32 x, ::i32 y, ::i32 w, ::i32 h, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::place(::i32 x, ::i32 y, ::i32 w, ::i32 h, enum_layout elayout, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       auto rectangle = ::f32_rectangle_dimension(x, y, w, h);
 
-      place(rectangle, elayout, pgraphics);
+      place(rectangle, elayout, pdraw2dgraphics);
 
    }
 
@@ -21599,10 +21599,10 @@ if(get_parent())
    }
 
 
-   void interaction::display_child(const ::i32_rectangle & rectangle, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::display_child(const ::i32_rectangle & rectangle, enum_layout elayout, ::draw2d::graphics * pdraw2dgraphics)
    {
 
-      place(rectangle, elayout, pgraphics);
+      place(rectangle, elayout, pdraw2dgraphics);
 
       display(e_display_normal);
 
@@ -23326,7 +23326,7 @@ if(get_parent())
    }
 
 
-   //void interaction::offset_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y)
+   //void interaction::offset_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 x, ::i32 y)
    void interaction::offset_context_offset(const ::f64_size & size, ::user::enum_layout elayout)
    {
 
@@ -23339,7 +23339,7 @@ if(get_parent())
    }
 
 
-   //void interaction::offset_context_offset_x(::draw2d::graphics_pointer & pgraphics, ::f64 cx)
+   //void interaction::offset_context_offset_x(::draw2d::graphics_pointer & pdraw2dgraphics, ::f64 cx)
    void interaction::offset_context_offset_x(::f64 cx, ::user::enum_layout elayout)
    {
 
@@ -23352,7 +23352,7 @@ if(get_parent())
    }
 
 
-   //   void interaction::offset_context_offset_y(::draw2d::graphics_pointer & pgraphics, ::i32 y)
+   //   void interaction::offset_context_offset_y(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 y)
    void interaction::offset_context_offset_y(::f64 cy, ::user::enum_layout elayout)
    {
 
@@ -23366,7 +23366,7 @@ if(get_parent())
 
 
 
-   //void interaction::set_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y)
+   //void interaction::set_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 x, ::i32 y)
    void interaction::set_context_offset(const ::f64_point & pointOffset, ::user::enum_layout elayout)
    {
 
@@ -23423,23 +23423,23 @@ if(get_parent())
    }
 
 
-   //void interaction::set_context_offset_x(::draw2d::graphics_pointer & pgraphics, ::i32 x)
+   //void interaction::set_context_offset_x(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 x)
    //{
 
-   //   set_context_offset(pgraphics, x, (::i32)get_context_offset().y);
+   //   set_context_offset(pdraw2dgraphics, x, (::i32)get_context_offset().y);
 
    //}
 
 
-   //void interaction::set_context_offset_y(::draw2d::graphics_pointer & pgraphics, ::i32 y)
+   //void interaction::set_context_offset_y(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 y)
    //{
 
-   //   set_context_offset(pgraphics, (::i32)get_context_offset().x, y);
+   //   set_context_offset(pdraw2dgraphics, (::i32)get_context_offset().x, y);
 
    //}
 
 
-   //void interaction::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
+   //void interaction::on_context_offset_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   ////set_need_redraw();
@@ -23568,7 +23568,7 @@ if(get_parent())
    }
 
 
-   //void interaction::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
+   //void interaction::on_context_offset_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //}
@@ -23672,10 +23672,10 @@ if(get_parent())
    }
 
 
-   //   bool interaction::set(::draw2d::graphics_pointer & pgraphics, e_font efont)
+   //   bool interaction::set(::draw2d::graphics_pointer & pdraw2dgraphics, e_font efont)
    //   {
    //
-   //      return ::user::style::set(pgraphics, efont, this);
+   //      return ::user::style::set(pdraw2dgraphics, efont, this);
    //
    //   }
 
@@ -25324,7 +25324,7 @@ void interaction::on_control_box_zoom(){
    }
 
 
-   //   void interaction::resize_to_fit(::draw2d::graphics_pointer & pgraphics)
+   //   void interaction::resize_to_fit(::draw2d::graphics_pointer & pdraw2dgraphics)
    //   {
    //
    //      // this default implementation doesn't need to be called by derived
@@ -28877,7 +28877,7 @@ __check_refdbg;
             post_redraw();
 
          }
-         else if (puseritem->m_ppath.is_set())
+         else if (puseritem->m_pdraw2dpath.is_set())
          {
 
             // information() << "interaction::on_message_mouse_leave set_need_redraw()";
@@ -29079,10 +29079,10 @@ __check_refdbg;
 
       auto * puseritem = user_item(pitem);
 
-      if (puseritem->m_ppath)
+      if (puseritem->m_pdraw2dpath)
       {
 
-         auto ppath = puseritem->m_ppath;
+         auto pdraw2dpath = puseritem->m_pdraw2dpath;
 
 //         if (1)
 //         {
@@ -29091,10 +29091,10 @@ __check_refdbg;
 //
 //         }
 
-         //auto pgraphics = get_internal_draw2d_graphics();
+         //auto pdraw2dgraphics = get_internal_draw2d_graphics();
 
-         //if (ppath->contains(pgraphics, point))
-         if (ppath->path_contains_point(point))
+         //if (pdraw2dpath->contains(pdraw2dgraphics, point))
+         if (pdraw2dpath->path_contains_point(point))
          {
 
             return true;
@@ -29426,7 +29426,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    
 }
 
-   void interaction::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //   auto pparent = get_parent();
@@ -29444,12 +29444,12 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
 
       //      //rectangle.offset(-rectangle.top_left());
 
-      //      auto pstyle = get_style(pgraphics);
+      //      auto pstyle = get_style(pdraw2dgraphics);
 
-      //      if (pgraphics->m_pimage->is_ok())
+      //      if (pdraw2dgraphics->m_pimage->is_ok())
       //      {
 
-      //         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      //         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       //         if (windowing_window()->is_composite())
       //         {
@@ -29460,17 +29460,17 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
 
       //            //information() << "interaction::_001OnNcDraw set_transparent";
 
-      //            pgraphics->payload("set_transparent") = "set_transparent";
+      //            pdraw2dgraphics->payload("set_transparent") = "set_transparent";
 
       //            auto prectangleitem = create_newø < ::geometry2d::rectangle_item >();
 
-      //            pgraphics->get_clip_box(prectangleitem->m_item);
+      //            pdraw2dgraphics->get_clip_box(prectangleitem->m_item);
 
-      //            pgraphics->payload("set_transparent_clip_box") = "set_transparent";
+      //            pdraw2dgraphics->payload("set_transparent_clip_box") = "set_transparent";
 
-      //            pgraphics->fill_rectangle(rectangle, argb(0, 0, 0, 0));
+      //            pdraw2dgraphics->fill_rectangle(rectangle, argb(0, 0, 0, 0));
 
-      //            // pgraphics->fill_rectangle(rectangle, ::color::white);
+      //            // pdraw2dgraphics->fill_rectangle(rectangle, ::color::white);
 
       //            //information().set_precision(1);
 
@@ -29484,7 +29484,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
       //         else
       //         {
 
-      //            pgraphics->fill_rectangle(rectangle, argb(255, 192, 192, 192));
+      //            pdraw2dgraphics->fill_rectangle(rectangle, argb(255, 192, 192, 192));
 
       //         }
 
@@ -29495,7 +29495,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
       //         if (windowing_window()->is_composite())
       //         {
 
-      //            pgraphics->fill_rectangle(rectangle, argb(0, 0, 0, 0));
+      //            pdraw2dgraphics->fill_rectangle(rectangle, argb(0, 0, 0, 0));
 
       //         }
       //         else
@@ -29504,13 +29504,13 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
       //            if (pstyle && pstyle->is_dark_mode())
       //            {
 
-      //               pgraphics->fill_rectangle(rectangle, argb(255, 25, 25, 25));
+      //               pdraw2dgraphics->fill_rectangle(rectangle, argb(255, 25, 25, 25));
 
       //            }
       //            else
       //            {
 
-      //               pgraphics->fill_rectangle(rectangle, argb(255, 255, 255, 255));
+      //               pdraw2dgraphics->fill_rectangle(rectangle, argb(255, 255, 255, 255));
 
       //            }
 
@@ -29523,14 +29523,14 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
       if (m_enonclient.has(::user::e_non_client_background) && (!top_level() || !top_level()->frame_is_transparent()))
       {
 
-         draw_control_background(pgraphics);
+         draw_control_background(pdraw2dgraphics);
 
       }
 
    }
 
 
-   void interaction::_001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_001OnNcPostDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //return;
@@ -29538,23 +29538,23 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
       if (m_enonclient.has(::user::e_non_client_focus_rect) && keyboard_focus_is_focusable())
       {
 
-         simple_ui_draw_focus_rect(pgraphics);
+         simple_ui_draw_focus_rect(pdraw2dgraphics);
 
       }
       //else
       //{
 
-      //   simple_ui_draw_border(pgraphics);
+      //   simple_ui_draw_border(pdraw2dgraphics);
 
       //}
 
    }
 
 
-   void interaction::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      if (!pgraphics->m_bDraw)
+      if (!pdraw2dgraphics->m_bDraw)
       {
 
          information() << "interaction::_001OnDraw !m_bDraw";
@@ -29568,15 +29568,15 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
       if (::is_set(pappearance))
       {
 
-         pappearance->_001OnDraw(pgraphics);
+         pappearance->_001OnDraw(pdraw2dgraphics);
 
       }
 
-      //::user::interaction::_001OnDraw(pgraphics);
+      //::user::interaction::_001OnDraw(pdraw2dgraphics);
       //if (m_pitema && m_pitema->has_element())
       //{
 
-      _001DrawItems(pgraphics);
+      _001DrawItems(pdraw2dgraphics);
 
       //}
 
@@ -29629,7 +29629,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    //}
 
 
-   void interaction::_001DrawItems(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //return;
@@ -29637,14 +29637,14 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
       for (auto & [iIndex, pitemcontainer] : m_itemcontainermap)
       {
 
-         _001DrawItems(pgraphics, iIndex, pitemcontainer->m_pitema);
+         _001DrawItems(pdraw2dgraphics, iIndex, pitemcontainer->m_pitema);
 
       }
 
    }
 
 
-   void interaction::_001DrawItems(::draw2d::graphics_pointer & pgraphics, ::collection::index iIdContainer, ::item_array * pitema)
+   void interaction::_001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iIdContainer, ::item_array * pitema)
    {
 
       if (::is_null(pitema))
@@ -29670,7 +29670,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
 
          }
 
-         _001DrawItem(pgraphics, *puseritem, estate);
+         _001DrawItem(pdraw2dgraphics, *puseritem, estate);
 
          iCount++;
 
@@ -29686,7 +29686,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    }
 
 
-   void interaction::_001DrawItem(::draw2d::graphics_pointer & pgraphics, ::user::item & useritem, const ::user::e_state & estate)
+   void interaction::_001DrawItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::item & useritem, const ::user::e_state & estate)
    {
 
       if (!::is_item_set(&useritem))
@@ -29696,7 +29696,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
 
       }
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
       
       if(::is_null(pstyle))
       {
@@ -29705,7 +29705,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
          
       }
     
-      pstyle->draw_item(pgraphics, this, useritem, estate);
+      pstyle->draw_item(pdraw2dgraphics, this, useritem, estate);
       
    }
 
@@ -29760,30 +29760,30 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    }
 
 
-   void interaction::simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics)
+   void interaction::simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       if (pstyle)
       {
 
-         pstyle->simple_ui_draw_focus_rect(this, pgraphics);
+         pstyle->simple_ui_draw_focus_rect(this, pdraw2dgraphics);
 
       }
 
    }
 
 
-   void interaction::simple_ui_draw_border(::draw2d::graphics_pointer & pgraphics)
+   void interaction::simple_ui_draw_border(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       if (pstyle)
       {
 
-         pstyle->simple_ui_draw_border(this, pgraphics);
+         pstyle->simple_ui_draw_border(this, pdraw2dgraphics);
 
       }
 
@@ -31238,7 +31238,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
 
       auto puseritem = user_item(pitem);
 
-      return puseritem->m_ppath;
+      return puseritem->m_pdraw2dpath;
 
    }
 

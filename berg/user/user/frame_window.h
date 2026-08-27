@@ -158,8 +158,8 @@ namespace user
       //virtual bool calc_layered();
 
 
-      void _001OnNcDraw(::draw2d::graphics_pointer &pgraphics) override;
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer &pdraw2dgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       bool LoadAccelTable(const ::scoped_string & scopedstrResourceName);
 
@@ -226,7 +226,7 @@ namespace user
       bool IsTracking() const;
 
       
-      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       void ActivateFrame(::e_display edisplay = e_display_undefined) override;
       virtual void prepare_frame(::user::document * pdocument, bool bMakeVisible);
       //bool _001FancyInitialFramePlacement(bool bForceRestore = false) override;
@@ -249,7 +249,7 @@ namespace user
 
       // border space negotiation
       enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
-      virtual bool NegotiateBorderSpace(::draw2d::graphics_pointer & pgraphics, ::u32 nBorderCmd, ::i32_rectangle * pRectBorder);
+      virtual bool NegotiateBorderSpace(::draw2d::graphics_pointer & pdraw2dgraphics, ::u32 nBorderCmd, ::i32_rectangle * pRectBorder);
 
       virtual bool on_create_client(::user::system * pusersystem);
 
@@ -333,7 +333,7 @@ namespace user
       //LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
 
 
-      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;

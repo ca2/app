@@ -172,15 +172,15 @@ namespace user
          m_pbuttonUnderline->add_handler(this);
 
          m_pcomboFamily->create_control(this, "combo_family");
-         //auto pfont = m_pcomboFamily->create_point_font(::user::font_plain_edit, pnode->font_name(e_font_sans_ui), 9.0);
-         //pfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
+         //auto pwritetextfont = m_pcomboFamily->create_point_font(::user::font_plain_edit, pnode->font_name(e_font_sans_ui), 9.0);
+         //pwritetextfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
          //m_pcomboFamily->create_color(::user::color_text, argb(255, 80, 80, 80));
          //m_pcomboFamily->create_color(::user::color_background, argb(255, 255, 255, 255));
          m_pcomboFamily->add_handler(this);
 
          m_pcomboSize->create_control(this, "combo_size");
-         //pfont = m_pcomboSize->create_point_font(::user::font_plain_edit, pnode->font_name(e_font_sans_ui), 9.0);
-         //pfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
+         //pwritetextfont = m_pcomboSize->create_point_font(::user::font_plain_edit, pnode->font_name(e_font_sans_ui), 9.0);
+         //pwritetextfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
          //m_pcomboSize->create_color(::user::color_text, argb(255, 80, 80, 80));
          //m_pcomboSize->create_color(::user::color_background, argb(255, 255, 255, 255));
          //::f64_rectangle r(2, 2, 2, 2);
@@ -264,7 +264,7 @@ namespace user
       }
 
 
-      void format_tool::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+      void format_tool::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
          auto pbrushBk = createø < ::draw2d::brush >();
@@ -274,12 +274,12 @@ namespace user
          pbrushBk->CreateLinearGradientBrush(rectangleX.top_left(), rectangleX.bottom_left(),
                                          argb(255, 230, 230, 230), argb(255, 200, 200, 200));
 
-         pgraphics->fill_rectangle(rectangleX, pbrushBk);
+         pdraw2dgraphics->fill_rectangle(rectangleX, pbrushBk);
 
       }
 
 
-      void format_tool::on_layout(::draw2d::graphics_pointer & pgraphics)
+      void format_tool::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
          //throw "create line layout";

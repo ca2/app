@@ -25,13 +25,13 @@ simple_status_bar::~simple_status_bar()
 
 
 /*
-bool simple_status_bar::OnEraseBkgnd(::draw2d::graphics_pointer & pgraphics)
+bool simple_status_bar::OnEraseBkgnd(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
    return true;
 }
 */
 
-void simple_status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+void simple_status_bar::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
    return;
 //   ::i32_rectangle rectangleX;
@@ -43,7 +43,7 @@ void simple_status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //   class imaging & imaging = psystem->imaging();
 //#ifdef WINDOWS_DESKTOP
 //   imaging.color_blend(
-//      pgraphics,
+//      pdraw2dgraphics,
 //      rectangleX.left,
 //      rectangleX.top,
 //      rectangleX.width(),
@@ -52,7 +52,7 @@ void simple_status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //      208);
 //#else
 //   imaging.color_blend(
-//      pgraphics,
+//      pdraw2dgraphics,
 //      rectangleX.left,
 //      rectangleX.top,
 //      rectangleX.width(),

@@ -29,11 +29,11 @@ namespace draw2d
 
 
       graphics_lease();
-      graphics_lease(::draw2d::draw2d * pdraw2d, ::draw2d::graphics * pgraphics, ::image::image * pimage, bool bOwned = false);
-      //graphics_lease(::draw2d::graphics *pgraphics, ::image::image * pimage, bool bOwned = false);
+      graphics_lease(::draw2d::draw2d * pdraw2d, ::draw2d::graphics * pdraw2dgraphics, ::image::image * pimage, bool bOwned = false);
+      //graphics_lease(::draw2d::graphics *pdraw2dgraphics, ::image::image * pimage, bool bOwned = false);
       //graphics_lease(
       //   ::draw2d::draw2d * pdraw2d,
-      //   ::draw2d::graphics * pgraphics,
+      //   ::draw2d::graphics * pdraw2dgraphics,
       //   ::image::image * pimage,
       //   bool bOwned);
       graphics_lease(const graphics_lease &) = delete;

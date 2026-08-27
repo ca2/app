@@ -28,7 +28,7 @@ namespace filemanager
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       void browse_sync(const ::action_context & action_context) override;
 

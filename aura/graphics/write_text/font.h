@@ -99,6 +99,7 @@ namespace write_text
 
       static ::mutex *s_pmutexFontTextMap;
 
+      bool                          m_bTextMetricCalculated;
       //string                        m_strFontFamilyName;
       font_family_pointer           m_pfontfamily;
       ::file::path                  m_pathFontFile;
@@ -115,7 +116,7 @@ namespace write_text
       ///enum_rendering                m_erendering;
       text_metric                   m_textmetric2;
       bool                          m_bCacheLayout;
-
+      bool                          m_bUpdated;
       //bool                          m_bTextMetric;
       string_map_base < text >           m_mapFontText;
 
@@ -127,7 +128,7 @@ namespace write_text
 
       // void dump(dump_context & dumpcontext) const override;
       
-      virtual void create_text_metrics(::draw2d::graphics * pgraphics);
+      virtual void create_text_metrics(::draw2d::graphics * pdraw2dgraphics);
 
       virtual bool create_font(
       const font_family_pointer & pfontfamily,
@@ -144,10 +145,11 @@ namespace write_text
 
       void on_changed() override;
 
+      virtual bool is_updated() const;
 
-      virtual bool defer_load_internal_font(::draw2d::graphics * pgraphics);
+      virtual bool defer_load_internal_font(::draw2d::graphics * pdraw2dgraphics);
 
-      virtual void on_create_internal_font(::draw2d::graphics * pgraphics, ::write_text::internal_font * pinternalfont);
+      virtual void on_create_internal_font(::draw2d::graphics * pdraw2dgraphics, ::write_text::internal_font * pinternalfont);
       
 
       //virtual bool create_point_font(
@@ -171,9 +173,9 @@ namespace write_text
       virtual void set_underline(bool bUnderline = true);
       virtual void set_strikeout(bool bStrikeout = true);
 
-      virtual enum_character_set calculate_character_set(::draw2d::graphics * pgraphics);
-      virtual enum_character_set get_character_set(::draw2d::graphics * pgraphics);
-      virtual string get_sample_text(::draw2d::graphics * pgraphics);
+      virtual enum_character_set calculate_character_set(::draw2d::graphics * pdraw2dgraphics);
+      virtual enum_character_set get_character_set(::draw2d::graphics * pdraw2dgraphics);
+      virtual string get_sample_text(::draw2d::graphics * pdraw2dgraphics);
       
       
       virtual string get_font_descriptor_face();
@@ -181,25 +183,29 @@ namespace write_text
 
       //string get_sample_text(enum_character_set echarsset);
 
-      virtual ::f64 get_pixel_font_height(::draw2d::graphics * pgraphics);
+      virtual ::f64 get_pixel_font_height(::draw2d::graphics * pdraw2dgraphics);
 
-      virtual void get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm);
+      virtual void get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm);
 
-      virtual void _get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm);
+      virtual void _get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm);
 
-      virtual ::f64 get_ascent(::draw2d::graphics * pgraphics);
+      virtual ::f64 get_ascent(::draw2d::graphics * pdraw2dgraphics);
 
-      virtual ::f64 get_descent(::draw2d::graphics * pgraphics);
+      virtual ::f64 get_descent(::draw2d::graphics * pdraw2dgraphics);
 
-      virtual ::f64 get_leading(::draw2d::graphics * pgraphics);
+      virtual ::f64 get_leading(::draw2d::graphics * pdraw2dgraphics);
 
-      virtual ::f64 get_height(::draw2d::graphics * pgraphics);
+      virtual ::f64 get_height(::draw2d::graphics * pdraw2dgraphics);
 
-      inline text_metric * get_text_metric_struct()  { return (text_metric*) m_osdata[WRITE_TEXT_TEXT_METRIC_INDEX]; }
-      inline const text_metric * get_text_metric_struct() const { return (text_metric*) m_osdata[WRITE_TEXT_TEXT_METRIC_INDEX]; }
-      inline bool has_text_metric() const { return m_baCalculated[WRITE_TEXT_TEXT_METRIC_INDEX];}
-      inline void set_has_text_metric() { m_osdata[WRITE_TEXT_TEXT_METRIC_INDEX] = &m_textmetric2; m_baCalculated[WRITE_TEXT_TEXT_METRIC_INDEX] = true; }
+      //text_metric * get_text_metric_struct()  { return (text_metric*) m_osdata[WRITE_TEXT_TEXT_METRIC_INDEX]; }
+      //const text_metric * get_text_metric_struct() const { return (text_metric*) m_osdata[WRITE_TEXT_TEXT_METRIC_INDEX]; }
+      //bool has_text_metric() const { return m_baCalculated[WRITE_TEXT_TEXT_METRIC_INDEX];}
+      //void set_has_text_metric() { m_osdata[WRITE_TEXT_TEXT_METRIC_INDEX] = &m_textmetric2; m_baCalculated[WRITE_TEXT_TEXT_METRIC_INDEX] = true; }
 
+      text_metric * get_text_metric_struct();
+      const text_metric * get_text_metric_struct() const;
+      bool has_text_metric() const;
+      void set_has_text_metric();
 
    };
 

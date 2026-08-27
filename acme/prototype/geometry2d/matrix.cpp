@@ -129,8 +129,8 @@ namespace geometry2d
 
       f32_sequence2 s;
 
-      s.x = sequence.x * a1 + sequence.y * b1 + c1;
-      s.y = sequence.x * a2 + sequence.y * b2 + c2;
+      s.x = (::f32) (sequence.x * a1 + sequence.y * b1 + c1);
+      s.y = (::f32) (sequence.x * a2 + sequence.y * b2 + c2);
 
       sequence = s;
 

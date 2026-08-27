@@ -29,10 +29,10 @@ namespace draw2d
 //   }
 
 
-//   bool palette::CreateHalftonePalette(::draw2d::graphics_pointer & pgraphics)
+//   bool palette::CreateHalftonePalette(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pgraphics);
+//      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 //
 //      throw ::interface_only();
 //

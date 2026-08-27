@@ -487,7 +487,7 @@ namespace geometry2d
    //}
 
 
-   //void region::expand_bounding_box(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::expand_bounding_box(::i32_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   ::f64_rectangle rectangle;
@@ -500,7 +500,7 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_oval(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_oval(::i32_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   ::f64_rectangle rectangle;
@@ -512,7 +512,7 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_polygon(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_polygon(::i32_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   ::f64_rectangle rectangle;
@@ -524,7 +524,7 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_poly_polygon(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_poly_polygon(::i32_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   ::f64_rectangle rectangle;
@@ -536,7 +536,7 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_combine(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_combine(::i32_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   ::f64_rectangle rectangle;
@@ -561,26 +561,26 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_rect(::f64_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_rect(::f64_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   if (m_pitem)
    //   {
 
-   //      m_pitem->max_bounding_box_rect(prectangle, pgraphics);
+   //      m_pitem->max_bounding_box_rect(prectangle, pdraw2dgraphics);
 
    //   }
 
    //}
 
 
-   //void region::max_bounding_box_oval(::f64_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_oval(::f64_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   if (m_pitem)
    //   {
 
-   //      m_pitem->max_bounding_box_rect(prectangle, pgraphics);
+   //      m_pitem->max_bounding_box_rect(prectangle, pdraw2dgraphics);
 
    //   }
 
@@ -588,7 +588,7 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_polygon(::f64_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_polygon(::f64_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   if(m_nCount <= 0)
@@ -614,7 +614,7 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_poly_polygon(::f64_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_poly_polygon(::f64_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   ::i32 n = 0;
@@ -642,7 +642,7 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_combine(::f64_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_combine(::f64_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   m_pregion1->expand_bounding_box(prectangle);

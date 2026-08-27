@@ -38,13 +38,13 @@ namespace nano
          m_bUnderline = bUnderline;
          //throw ::interface_only();
 
-         //::pointer<::nano::graphics::font>pfont(e_create, pparticle, nullptr);
+         //::pointer<::nano::graphics::font>pwritetextfont(e_create, pparticle, nullptr);
 
-         // pfont->m_iFontSize = iPoint;
-         // pfont->m_strFontName = pparticle->node()->font_name(efont);
-         // pfont->m_bBold = bBold;
+         // pwritetextfont->m_iFontSize = iPoint;
+         // pwritetextfont->m_strFontName = pparticle->node()->font_name(efont);
+         // pwritetextfont->m_bBold = bBold;
 
-         //  return pfont;
+         //  return pwritetextfont;
       }
 
 
@@ -60,13 +60,13 @@ namespace nano
          m_bUnderline = bUnderline;
 //         throw ::interface_only();
 
-         //::pointer<::nano::graphics::font>pfont(e_create, pparticle, nullptr);
+         //::pointer<::nano::graphics::font>pwritetextfont(e_create, pparticle, nullptr);
 
-         // pfont->m_iFontSize = iPoint;
-         // pfont->m_strFontName = pparticle->node()->font_name(efont);
-         // pfont->m_bBold = bBold;
+         // pwritetextfont->m_iFontSize = iPoint;
+         // pwritetextfont->m_strFontName = pparticle->node()->font_name(efont);
+         // pwritetextfont->m_bBold = bBold;
 
-         //  return pfont;
+         //  return pwritetextfont;
       }
 
    } // namespace graphics

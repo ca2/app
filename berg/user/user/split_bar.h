@@ -36,7 +36,7 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       //using ::user::interaction::create_interaction;
@@ -49,7 +49,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       
 
    };

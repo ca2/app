@@ -31,23 +31,23 @@ namespace user
    }
 
 
-   void drawable::_000DrawImpl(::draw2d::graphics_pointer & pgraphics)
+   void drawable::_000DrawImpl(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    }
 
 
-   void drawable::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
+   void drawable::_001OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    }
 
 
-   bool drawable::_000OnBeforeDraw(::draw2d::graphics_pointer& pgraphics)
+   bool drawable::_000OnBeforeDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       return true;
@@ -73,25 +73,25 @@ namespace user
    }
 
 
-   void drawable::_000OnDraw(::draw2d::graphics_pointer& pgraphics)
+   void drawable::_000OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
    }
 
 
-   void drawable::_000CallOnDraw(::draw2d::graphics_pointer& pgraphics)
+   void drawable::_000CallOnDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
-      _000OnDraw(pgraphics);
+      _000OnDraw(pdraw2dgraphics);
 
    }
 
 
-   void drawable::_001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics)
+   void drawable::_001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
    }
 
-   void drawable::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics)
+   void drawable::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
    }
 

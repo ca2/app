@@ -31,17 +31,17 @@ namespace user
 
 
 
-   void control_style::update(::draw2d::graphics_pointer & pgraphics, style * pstyle, ::user::interaction * pinteraction)
+   void control_style::update(::draw2d::graphics_pointer & pdraw2dgraphics, style * pstyle, ::user::interaction * pinteraction)
    {
 
       m_iUpdate = pstyle->m_iUpdate;
 
-      on_update(pgraphics, pstyle, pinteraction);
+      on_update(pdraw2dgraphics, pstyle, pinteraction);
 
    }
 
    
-   void control_style::on_update(::draw2d::graphics_pointer & pgraphics, style * pstyle, ::user::interaction * pinteraction)
+   void control_style::on_update(::draw2d::graphics_pointer & pdraw2dgraphics, style * pstyle, ::user::interaction * pinteraction)
    {
 
 

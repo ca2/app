@@ -12,7 +12,7 @@ namespace write_text
    text_out_array::text_out_array()
    {
 
-      m_pLastOsData = nullptr;
+      //m_pLastOsData = nullptr;
       m_ealignLast = e_align_none;
       m_etextwrapLast = e_text_wrap_none;
       m_bHasLayoutContext = false;
@@ -52,21 +52,22 @@ namespace write_text
    }
 
 
-   bool text_out_array::is_updated(const ::scoped_string & str, void * pOsData) const
+   bool text_out_array::is_updated(const ::scoped_string & str, ::write_text::font * pwritetextfont) const
    {
 
-      return m_strLast == str && m_pLastOsData == pOsData;
+      return m_strLast == str && ::is_set(pwritetextfont)
+         && m_pwritetextfont == pwritetextfont && pwritetextfont->is_updated();
 
    }
 
 
-   bool text_out_array::is_updated(const ::scoped_string & str, void * pOsData,
+   bool text_out_array::is_updated(const ::scoped_string & str, ::write_text::font * pwritetextfont,
       const ::i32_rectangle & rectangle, const ::e_align & ealign,
       const ::enum_text_wrap & etextwrap) const
    {
 
       return m_bHasLayoutContext
-         && is_updated(str, pOsData)
+         && is_updated(str, pwritetextfont)
          && m_rectangleLast == rectangle
          && m_ealignLast == ealign
          && m_etextwrapLast == etextwrap;

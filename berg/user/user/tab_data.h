@@ -24,7 +24,7 @@ namespace user
 
       ::f64_size                          m_sizeSep;
       ::i32                                 m_iHeightAddUp;
-      ::draw2d::pen_pointer               m_ppen;
+      ::draw2d::pen_pointer               m_pdraw2dpen;
       ::draw2d::brush_pointer             m_pbrushTextHover;
       ::draw2d::brush_pointer             m_pbrushTextSel;
       ::draw2d::brush_pointer             m_pbrushText;

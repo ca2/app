@@ -159,7 +159,7 @@ namespace gpu
 
 #ifdef WINDOWS
 
-         iBase = iGpu * 4 + iSwapChain * 2;
+         iBase = (::i32) ( iGpu * 4 + iSwapChain * 2);
 
          iStep = iBase;
 
@@ -187,8 +187,6 @@ namespace gpu
          }
 
 #endif
-
-      ok:
 
          m_iGraphicsModeStep = iStep + 1;
 

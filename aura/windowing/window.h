@@ -231,13 +231,13 @@ namespace windowing
       //virtual void defer_start_frame();
       //virtual void start_frame();
       //virtual void end_frame();
-      //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void do_graphics(::draw2d::graphics_pointer & pdraw2dgraphics);
       //virtual void draw_on_context();
       //virtual void draw_frame(::draw2d::graphics_context * pgraphicscontext);
-      virtual void frame_layout_stage(::draw2d::graphics * pgraphics);
-      virtual void frame_draw_stage(::draw2d::graphics * pgraphics);
+      virtual void frame_layout_stage(::draw2d::graphics * pdraw2dgraphics);
+      virtual void frame_draw_stage(::draw2d::graphics * pdraw2dgraphics);
 
-      virtual void _001OnNcClip(::draw2d::graphics_pointer &pgraphics);
+      virtual void _001OnNcClip(::draw2d::graphics_pointer &pdraw2dgraphics);
 
       virtual class placement_log* placement_log();
 
@@ -383,7 +383,7 @@ namespace windowing
 
       void set_window_text(const ::scoped_string & scopedstr) override;
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual ::u32 ArrangeIconicWindows();
 
@@ -467,7 +467,7 @@ namespace windowing
       void set_tool_window(bool bSet) override;
 
 
-      void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
+      void set_context_org(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       void on_set_parent(::user::interaction * pinteraction);
@@ -923,8 +923,8 @@ namespace windowing
       virtual void MapWindowPoints(::windowing::window * puserinteractionTo, ::i32_rectangle * prectangle);
 
 
-      virtual void Print(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const;
-      virtual void PrintClient(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const;
+      virtual void Print(::draw2d::graphics_pointer & pdraw2dgraphics, ::u32 dwFlags) const;
+      virtual void PrintClient(::draw2d::graphics_pointer & pdraw2dgraphics, ::u32 dwFlags) const;
 
       //void UpdateWindow() override;
       //void SetRedraw(bool bRedraw = true) override;
@@ -981,7 +981,7 @@ namespace windowing
 
       //virtual void set_cursor(enum_cursor ecursor) override;
 
-      //virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const i32_rectangle & prc,::u32 uFlags);
+      //virtual bool DrawCaption(::draw2d::graphics_pointer & pdraw2dgraphics,const i32_rectangle & prc,::u32 uFlags);
 
 
 //#if(WINVER >= 0x0500)
@@ -993,7 +993,7 @@ namespace windowing
 
 //#if(_WIN32_WINNT >= 0x0501)
 //
-//      virtual bool PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const;
+//      virtual bool PrintWindow(::draw2d::graphics_pointer & pdraw2dgraphics,::u32 nFlags) const;
 //
 //#endif
 
@@ -1200,11 +1200,11 @@ namespace windowing
 
       // deprecated schedule window visual
       //virtual void start_window_visual() override;
-      //virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
+      //virtual void sketch_to_design(::draw2d::graphics_pointer& pdraw2dgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
       //virtual void do_graphics();
-      //void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
-      //void defer_do_graphics(::draw2d::graphics_pointer & pgraphics) override;
-      //void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      //void _001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      //void defer_do_graphics(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      //void _000CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       // call window window_update_screen_buffer
       //virtual void _001UpdateScreen();
       //virtual void window_apply_visual(const window_state & windowstate) override;
@@ -1230,7 +1230,7 @@ namespace windowing
 
       //void top_down_prefix() override;
 
-      //virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       //virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;
 
@@ -1278,7 +1278,7 @@ namespace windowing
       //virtual void on_visual_applied();
 
       virtual void set_need_redraw(const ::i32_rectangle_array_base & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
-      //virtual bool needs_to_draw(const ::i32_rectangle& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);
+      //virtual bool needs_to_draw(const ::i32_rectangle& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pdraw2dgraphics);
       void post_redraw(bool bAscendants = true) override;
 
 
@@ -1353,14 +1353,14 @@ namespace windowing
       virtual void create_child(::user::interaction * puserinteraction, ::user::interaction_base * puserprimitiveParent);
 
 
-      //virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void defer_do_graphics(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual void top_down_prefix();
       //virtual bool check_need_layout();
       //virtual void clear_need_layout();
       virtual void set_need_layout();
-      //virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      //virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
       void on_reposition() override;
       virtual void on_layout_reposition();
 
@@ -1588,19 +1588,19 @@ namespace windowing
 
       //virtual void _task_transparent_mouse_event();
 
-      //virtual void _001OnNcClip(::draw2d::graphics_pointer & pgraphics);
-      //virtual void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics);
-      //virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
-      //virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics);
-      //virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics);
-      //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
-      //virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void _000CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void _001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void _001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void draw_control_background(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual ::user::interaction * get_wnd() override;
 
 
-      virtual void set_origin(::draw2d::graphics_pointer & pgraphics);
+      virtual void set_origin(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual void viewport_screen_to_client(::i32_sequence2 & sequence) override;

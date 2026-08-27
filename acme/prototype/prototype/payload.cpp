@@ -421,7 +421,7 @@ payload::payload(::u64 * pull) :
 
 payload::payload(const ::file::path & path) :
    m_etype(e_type_path),
-   m_ppath(__new__prefix(&m_preferer) new ::file::path_object(path))
+   m_pfilepathobject(__new__prefix(&m_preferer) new ::file::path_object(path))
 {
 
 }
@@ -1668,7 +1668,7 @@ void payload::payload_increment_reference_count()
          if (m_pmemory) m_pmemory->increment_reference_count();
          break;
       case e_type_path:
-         if (m_ppath) m_ppath->increment_reference_count();
+         if (m_pfilepathobject) m_pfilepathobject->increment_reference_count();
          break;
       default:
          break;
@@ -1731,7 +1731,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
       if (etypeSource == e_type_path)
       {
 
-         m_ppath = __new__prefix(&m_preferer) new ::file::path_object(*payload.m_ppath);
+         m_pfilepathobject = __new__prefix(&m_preferer) new ::file::path_object(*payload.m_pfilepathobject);
 
       }
       else if (etypeSource == e_type_property_set)
@@ -2611,7 +2611,7 @@ bool payload::is_empty() const
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:
-      return ::is_null(m_ppath) || m_ppath->is_empty();
+      return ::is_null(m_pfilepathobject) || m_pfilepathobject->is_empty();
    //case type_image:
    //   return m_pimage.ok();
 
@@ -2673,7 +2673,7 @@ bool payload::has_character() const
    case e_type_memory:
       return ::is_set(m_pmemory) && !m_pmemory->is_empty();
    case e_type_path:
-      return ::is_set(m_ppath) && m_ppath->has_character();
+      return ::is_set(m_pfilepathobject) && m_pfilepathobject->has_character();
       //case type_image:
       //   return m_pimage.ok();
 
@@ -3493,7 +3493,7 @@ string payload::as_string(const ::scoped_string & scopedstrOnNull) const
    }
    else if (m_etype == e_type_path)
    {
-      return *m_ppath;
+      return *m_pfilepathobject;
    }
    else if(m_etype != e_type_string)
    {
@@ -4891,17 +4891,17 @@ class ::memory & payload::memory_reference()
    else*/ if (m_etype != ::e_type_path)
    {
 
-      auto ppath = __new__prefix(&m_preferer) new ::file::path_object();
+      auto pfilepath = __new__prefix(&m_preferer) new ::file::path_object();
 
-      ppath->assign_range(as_file_path());
+      pfilepath->assign_range(as_file_path());
 
       set_type(e_type_path, false);
 
-      m_ppath = ppath;
+      m_pfilepathobject = pfilepath;
 
    }
 
-   return *m_ppath;
+   return *m_pfilepathobject;
 
 }
 
@@ -9131,7 +9131,7 @@ const ::file::path & payload::file_path_reference() const
    if(m_etype == e_type_path)
    {
 
-      return *m_ppath;
+      return *m_pfilepathobject;
 
    }
    //else if(m_etype == e_type_payload_pointer)
@@ -9475,7 +9475,7 @@ void payload::null()
    else if (m_etype == e_type_path)
    {
 
-      return (::file::path&)* m_ppath;
+      return (::file::path&)* m_pfilepathobject;
 
    }
 
@@ -9534,12 +9534,12 @@ void payload::null()
    else if (m_etype == e_type_path)
    {
 
-      auto ppath = cast < ::file::path_object > ();
+      auto pdraw2dpath = cast < ::file::path_object > ();
 
-      if (ppath)
+      if (pdraw2dpath)
       {
 
-         ppath->flags() |= eflag;
+         pdraw2dpath->flags() |= eflag;
 
       }
 
@@ -9553,9 +9553,9 @@ void payload::null()
 
 #endif
 
-      auto ppath = __new__prefix(&prefererNew) new ::file::path_object(as_file_path());
+      auto pdraw2dpath = __new__prefix(&prefererNew) new ::file::path_object(as_file_path());
 
-      ppath->flags() |= eflag;
+      pdraw2dpath->flags() |= eflag;
 
       set_type(e_type_path, false);
 
@@ -9565,7 +9565,7 @@ void payload::null()
 
 #endif
 
-      m_ppath = ppath;
+      m_pfilepathobject = pdraw2dpath;
 
    }
 
@@ -9687,7 +9687,7 @@ bool payload::is_false() const
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:
-      return ::is_null(m_ppath) || m_ppath->is_empty();
+      return ::is_null(m_pfilepathobject) || m_pfilepathobject->is_empty();
    //case type_image:
    //   return m_pimage.ok();
 
@@ -9878,7 +9878,7 @@ bool payload::is_set_false() const
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:
-      return ::is_null(m_ppath) || m_ppath->is_empty();
+      return ::is_null(m_pfilepathobject) || m_pfilepathobject->is_empty();
    //case type_image:
    //   return m_pimage.ok();
 
@@ -10574,7 +10574,7 @@ case e_type_f64_array:
 case e_type_memory:
 return m_pmemory;
 case e_type_path:
-return m_ppath;
+return m_pfilepathobject;
 default:
    return nullptr;
 break;
@@ -11346,16 +11346,16 @@ payload & payload::operator = (const ::file::path & path)
 
       }
 
-      if (::is_null(m_ppath))
+      if (::is_null(m_pfilepathobject))
       {
 
-         m_ppath = __new__prefix(&m_preferer) new ::file::path_object(path);
+         m_pfilepathobject = __new__prefix(&m_preferer) new ::file::path_object(path);
 
       }
       else
       {
 
-         ((::file::path &) * m_ppath) = path;
+         ((::file::path &) * m_pfilepathobject) = path;
 
       }
 

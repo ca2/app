@@ -533,7 +533,7 @@ namespace draw2d
    }
 
 
-   bool path::add_text_out(const ::f64_point & point, const ::scoped_string & scopedstrText,::write_text::font_pointer pfont)
+   bool path::add_text_out(const ::f64_point & point, const ::scoped_string & scopedstrText,::write_text::font_pointer pwritetextfont)
    {
 
       auto pitem = create_newø < ::geometry2d::text_out_item >();
@@ -543,7 +543,7 @@ namespace draw2d
       //ptextout->m_pholdee = this;
 
       textout.m_strText     = scopedstrText;
-      textout.m_pfont       = pfont;
+      textout.m_pwritetextfont       = pwritetextfont;
       textout.m_point       = point;
 
       //if (!m_pshapea)
@@ -562,7 +562,7 @@ namespace draw2d
    }
 
 
-   bool path::add_draw_text(const ::scoped_string & scopedstrText, const ::f64_rectangle& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext , ::write_text::font_pointer pfont)
+   bool path::add_draw_text(const ::scoped_string & scopedstrText, const ::f64_rectangle& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext , ::write_text::font_pointer pwritetextfont)
    {
 
       auto pitem = create_newø < ::geometry2d::draw_text_item >();
@@ -572,7 +572,7 @@ namespace draw2d
       //pdrawtext->m_pholdee = this;
 
       drawtext.m_strText            = scopedstrText;
-      drawtext.m_pfont              = pfont;
+      drawtext.m_pwritetextfont     = pwritetextfont;
 
 
       drawtext.m_rectangle          = rectangle;
@@ -718,14 +718,14 @@ namespace draw2d
    }
 
 
-   void * path::detach()
-   {
+   //void * path::detach()
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
 
@@ -1199,7 +1199,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set_create(::draw2d::graphics* pgraphics)
+   bool path::_set_create(::draw2d::graphics* pdraw2dgraphics)
    {
 
       //if (!m_pshapea)
@@ -1213,7 +1213,7 @@ namespace draw2d
       for (auto & pitem : m_itema)
       {
 
-         if (!_set(pgraphics, pitem))
+         if (!_set(pdraw2dgraphics, pitem))
          {
 
             return false;
@@ -1227,7 +1227,7 @@ namespace draw2d
    }
 
 
-   //bool path::_set(::draw2d::graphics* pgraphics, ___shape < path > * pshape)
+   //bool path::_set(::draw2d::graphics* pdraw2dgraphics, ___shape < path > * pshape)
    //{
 
    //   auto eshape = pshape->eshape();
@@ -1235,31 +1235,31 @@ namespace draw2d
    //   switch (eshape)
    //   {
    //   case e_shape_begin_figure:
-   //      return _set(pgraphics, e_shape_begin_figure);
+   //      return _set(pdraw2dgraphics, e_shape_begin_figure);
    //   case e_shape_close_figure:
-   //      return _set(pgraphics, e_shape_close_figure);
+   //      return _set(pdraw2dgraphics, e_shape_close_figure);
    //   case e_shape_end_figure:
-   //      return _set(pgraphics, e_shape_end_figure);
+   //      return _set(pdraw2dgraphics, e_shape_end_figure);
    //   case e_shape_arc:
-   //      return _set(pgraphics, pshape->shape < ::f64_arc>());
+   //      return _set(pdraw2dgraphics, pshape->shape < ::f64_arc>());
    //   //case e_shape_line:
-   //   //   return  _set(pgraphics, pshape->shape < ::line>());
+   //   //   return  _set(pdraw2dgraphics, pshape->shape < ::line>());
    //   case e_shape_line:
-   //      return  _set(pgraphics, pshape->shape < ::f64_line>());
+   //      return  _set(pdraw2dgraphics, pshape->shape < ::f64_line>());
    //   case e_shape_lines:
-   //      return _set(pgraphics, pshape->shape < ::f64_lines>());
+   //      return _set(pdraw2dgraphics, pshape->shape < ::f64_lines>());
    //   case e_shape_rectangle:
-   //      return _set(pgraphics, pshape->shape < ::f64_rectangle>());
+   //      return _set(pdraw2dgraphics, pshape->shape < ::f64_rectangle>());
    //   case e_shape_ellipse:
-   //      return _set(pgraphics, pshape->shape < ::f64_ellipse>());
+   //      return _set(pdraw2dgraphics, pshape->shape < ::f64_ellipse>());
    //   case e_shape_polygon:
-   //      return _set(pgraphics, pshape->shape < ::f64_polygon>());
+   //      return _set(pdraw2dgraphics, pshape->shape < ::f64_polygon>());
    //   case e_shape_draw_text:
    //      m_estatus = success;
-   //      return _set(pgraphics, pshape->shape < ::write_text::draw_text>());
+   //      return _set(pdraw2dgraphics, pshape->shape < ::write_text::draw_text>());
    //   case e_shape_text_out:
    //      m_estatus = success;
-   //      return _set(pgraphics, pshape->shape < ::write_text::text_out>());
+   //      return _set(pdraw2dgraphics, pshape->shape < ::write_text::text_out>());
    //   default:
    //      throw "unexpected simple os graphics matter type";
    //   }
@@ -1269,7 +1269,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics * pgraphics, ::geometry2d::item * pitem)
+   bool path::_set(::draw2d::graphics * pdraw2dgraphics, ::geometry2d::item * pitem)
    {
 
       auto eitem = pitem->type();
@@ -1277,33 +1277,33 @@ namespace draw2d
       switch (eitem)
       {
       case e_item_begin_figure:
-         return _set(pgraphics, e_item_begin_figure);
+         return _set(pdraw2dgraphics, e_item_begin_figure);
       case e_item_close_figure:
-         return _set(pgraphics, e_item_close_figure);
+         return _set(pdraw2dgraphics, e_item_close_figure);
       case e_item_end_figure:
-         return _set(pgraphics, e_item_end_figure);
+         return _set(pdraw2dgraphics, e_item_end_figure);
       case e_item_arc:
-         return _set(pgraphics, pitem->cast < ::geometry2d::arc_item >()->m_item);
+         return _set(pdraw2dgraphics, pitem->cast < ::geometry2d::arc_item >()->m_item);
          //case e_shape_line:
-         //   return  _set(pgraphics, pshape->shape < ::line>());
+         //   return  _set(pdraw2dgraphics, pshape->shape < ::line>());
       case e_item_line:
-         return  _set(pgraphics, pitem->cast < ::geometry2d::line_item >()->m_item);
+         return  _set(pdraw2dgraphics, pitem->cast < ::geometry2d::line_item >()->m_item);
       case e_item_lines:
-         return _set(pgraphics, pitem->cast < ::geometry2d::lines_item >()->m_item);
+         return _set(pdraw2dgraphics, pitem->cast < ::geometry2d::lines_item >()->m_item);
       case e_item_rectangle:
-         return _set(pgraphics, pitem->cast < ::geometry2d::rectangle_item >()->m_item);
+         return _set(pdraw2dgraphics, pitem->cast < ::geometry2d::rectangle_item >()->m_item);
       case e_item_ellipse:
-         return _set(pgraphics, pitem->cast < ::geometry2d::ellipse_item >()->m_item);
+         return _set(pdraw2dgraphics, pitem->cast < ::geometry2d::ellipse_item >()->m_item);
       case e_item_polygon:
-         return _set(pgraphics, pitem->cast < ::geometry2d::polygon_item >()->m_polygon);
+         return _set(pdraw2dgraphics, pitem->cast < ::geometry2d::polygon_item >()->m_polygon);
       case e_item_poly_polygon:
-         return _set(pgraphics, pitem->cast < ::geometry2d::poly_polygon_item >()->m_polypolygon);
+         return _set(pdraw2dgraphics, pitem->cast < ::geometry2d::poly_polygon_item >()->m_polypolygon);
       case e_item_draw_text:
          m_estatus = success;
-         return _set(pgraphics, pitem->cast < ::geometry2d::draw_text_item >()->m_item);
+         return _set(pdraw2dgraphics, pitem->cast < ::geometry2d::draw_text_item >()->m_item);
       case e_item_text_out:
          m_estatus = success;
-         return _set(pgraphics, pitem->cast < ::geometry2d::text_out_item >()->m_item);
+         return _set(pdraw2dgraphics, pitem->cast < ::geometry2d::text_out_item >()->m_item);
       default:
          throw "unexpected simple os graphics matter type";
       }
@@ -1313,7 +1313,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const enum_item& eitem)
+   bool path::_set(::draw2d::graphics* pdraw2dgraphics, const enum_item& eitem)
    {
 
       return false;
@@ -1321,7 +1321,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::f64_arc & arc)
+   bool path::_set(::draw2d::graphics* pdraw2dgraphics, const ::f64_arc & arc)
    {
 
       throw ::interface_only();
@@ -1331,7 +1331,7 @@ namespace draw2d
    }
 
 
-   //bool path::_set(::draw2d::graphics* pgraphics, const ::line & line)
+   //bool path::_set(::draw2d::graphics* pdraw2dgraphics, const ::line & line)
    //{
 
    //   throw ::interface_only();
@@ -1341,7 +1341,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::f64_line & line)
+   bool path::_set(::draw2d::graphics* pdraw2dgraphics, const ::f64_line & line)
    {
 
       throw ::interface_only();
@@ -1351,7 +1351,7 @@ namespace draw2d
    }
 
 
-   //bool path::_set(::draw2d::graphics* pgraphics, const::lines& lines)
+   //bool path::_set(::draw2d::graphics* pdraw2dgraphics, const::lines& lines)
    //{
 
    //   throw ::interface_only();
@@ -1361,7 +1361,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const::f64_lines & lines)
+   bool path::_set(::draw2d::graphics* pdraw2dgraphics, const::f64_lines & lines)
    {
 
       throw ::interface_only();
@@ -1371,7 +1371,7 @@ namespace draw2d
    }
 
 
-   //bool path::_set(::draw2d::graphics* pgraphics, const ::i32_rectangle & rectangle)
+   //bool path::_set(::draw2d::graphics* pdraw2dgraphics, const ::i32_rectangle & rectangle)
    //{
 
    //   throw ::interface_only();
@@ -1381,7 +1381,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics * pgraphics, const ::f64_rectangle & rectangle)
+   bool path::_set(::draw2d::graphics * pdraw2dgraphics, const ::f64_rectangle & rectangle)
    {
 
       throw ::interface_only();
@@ -1391,7 +1391,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics * pgraphics, const ::f64_ellipse & ellipse)
+   bool path::_set(::draw2d::graphics * pdraw2dgraphics, const ::f64_ellipse & ellipse)
    {
 
       throw ::interface_only();
@@ -1401,7 +1401,7 @@ namespace draw2d
    }
    
 
-   //bool path::_set(::draw2d::graphics* pgraphics, const ::i32_polygon& i32_polygon)
+   //bool path::_set(::draw2d::graphics* pdraw2dgraphics, const ::i32_polygon& i32_polygon)
    //{
 
    //   throw ::interface_only();
@@ -1411,7 +1411,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::f64_polygon& polygon)
+   bool path::_set(::draw2d::graphics* pdraw2dgraphics, const ::f64_polygon& polygon)
    {
 
       throw ::interface_only();
@@ -1421,7 +1421,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics * pgraphics, const ::f64_poly_polygon & polypolygon)
+   bool path::_set(::draw2d::graphics * pdraw2dgraphics, const ::f64_poly_polygon & polypolygon)
    {
 
       throw ::interface_only();
@@ -1431,7 +1431,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::write_text::text_out & textout)
+   bool path::_set(::draw2d::graphics* pdraw2dgraphics, const ::write_text::text_out & textout)
    {
 
       throw ::interface_only();
@@ -1441,7 +1441,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::write_text::draw_text& drawtext)
+   bool path::_set(::draw2d::graphics* pdraw2dgraphics, const ::write_text::draw_text& drawtext)
    {
 
       throw ::interface_only();
@@ -1803,7 +1803,7 @@ namespace draw2d
    }
 
 
-   //bool path::contains(::draw2d::graphics_pointer & pgraphics, const ::f64_point& point)
+   //bool path::contains(::draw2d::graphics_pointer & pdraw2dgraphics, const ::f64_point& point)
    //{
 
    //   //if (!m_pshapea)
@@ -2181,11 +2181,11 @@ namespace draw2d
       //glVertex2f(0, pnsvgimage->height);
       //glEnd();
 
-      //auto ppen = createø < ::draw2d::pen >();
+      //auto pdraw2dpen = createø < ::draw2d::pen >();
 
-      //ppen->create_solid(1.0, argb(255, 0, 128, 0));
+      //pdraw2dpen->create_solid(1.0, argb(255, 0, 128, 0));
 
-      //set(ppen);
+      //set(pdraw2dpen);
 
       for (pnsvgshape = pnsvgimage->shapes; pnsvgshape != nullptr; pnsvgshape = pnsvgshape->next)
       {
@@ -2195,7 +2195,7 @@ namespace draw2d
 
             nanosvg_drawPath(pnsvgpath->pts, pnsvgpath->npts, pnsvgpath->closed, px / 3.0f, argb(255, 0, 128, 0));
 
-            //            nanosvg_drawControlPts(ppath->pts, ppath->npts);
+            //            nanosvg_drawControlPts(pdraw2dpath->pts, pdraw2dpath->npts);
 
          }
 

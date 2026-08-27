@@ -15,20 +15,20 @@ namespace draw2d_gpu
 
    brush::~brush()
    { 
-      //::acme::del(m_pbrush);
+      //::acme::del(m_pdraw2dbrush);
    }
 
    //bool brush::create_solid(color32_t crColor)
    //{
 
-   //   if(m_pbrush != nullptr)
+   //   if(m_pdraw2dbrush != nullptr)
    //   {
-   //      delete m_pbrush;
+   //      delete m_pdraw2dbrush;
    //   }
 
-   //   m_pbrush = allocateø< plusplus::SolidBrush(plusplus::Color(color32_u8_opacity(crColor), color32_u8_red(crColor), color32_u8_green(crColor), color32_u8_blue >(crColor)));
+   //   m_pdraw2dbrush = allocateø< plusplus::SolidBrush(plusplus::Color(color32_u8_opacity(crColor), color32_u8_red(crColor), color32_u8_green(crColor), color32_u8_blue >(crColor)));
 
-   //   return m_pbrush != nullptr;
+   //   return m_pdraw2dbrush != nullptr;
    //      
    //}
 
@@ -102,7 +102,7 @@ namespace draw2d_gpu
 //   {
 //      ::draw2d::object::dump(dumpcontext);
 //
-//      //if (get_os_data() == nullptr)
+//      //if (nok())
 //        // return;
 //
 ///*      LOGBRUSH lb;
@@ -120,14 +120,14 @@ namespace draw2d_gpu
    //void * brush::get_os_data() const
    //{
    //   
-   //   //if(m_pbrush == nullptr || !m_bUpdated)
+   //   //if(m_pdraw2dbrush == nullptr || !m_bUpdated)
    //   //{
-   //   //   ::acme::del(((brush *) this)->m_pbrush);
+   //   //   ::acme::del(((brush *) this)->m_pdraw2dbrush);
    //   //   if(m_etype == type_solid)
    //   //   {
    //   //      try
    //   //      {
-   //   //         ((brush *) this)->m_pbrush = allocateø< plusplus::SolidBrush(plusplus::Color(color32_u8_opacity(m_color), color32_u8_red(m_color), color32_u8_green(m_color), color32_u8_blue >(m_color)));
+   //   //         ((brush *) this)->m_pdraw2dbrush = allocateø< plusplus::SolidBrush(plusplus::Color(color32_u8_opacity(m_color), color32_u8_red(m_color), color32_u8_green(m_color), color32_u8_blue >(m_color)));
    //   //      }
    //   //      catch(...)
    //   //      {
@@ -137,7 +137,7 @@ namespace draw2d_gpu
    //   //   {
    //   //      try
    //   //      {
-   //   //         ((brush *) this)->m_pbrush = allocateø< plusplus::LinearGradientBrush >(
+   //   //         ((brush *) this)->m_pdraw2dbrush = allocateø< plusplus::LinearGradientBrush >(
    //   //            plusplus::PointF((plusplus::REAL) m_point1.x,(plusplus::REAL) m_point1.y),
    //   //            plusplus::PointF((plusplus::REAL) m_point2.x,(plusplus::REAL) m_point2.y),
    //   //            plusplus::Color(color32_u8_opacity(m_color1), color32_u8_red(m_color1), color32_u8_green(m_color1), color32_u8_blue(m_color1)),
@@ -166,7 +166,7 @@ namespace draw2d_gpu
    //   //         pgb->SetCenterColor(c1);
    //   //         pgb->SetSurroundColors(&c2,&c);
 
-   //   //         ((brush *) this)->m_pbrush = pgb;
+   //   //         ((brush *) this)->m_pdraw2dbrush = pgb;
    //   //      }
    //   //      catch(...)
    //   //      {
@@ -176,7 +176,7 @@ namespace draw2d_gpu
    //   //   {
    //   //      try
    //   //      {
-   //   //         ((brush *) this)->m_pbrush = allocateø< plusplus::SolidBrush(plusplus::Color(color32_u8_opacity(m_color), color32_u8_red(m_color), color32_u8_green(m_color), color32_u8_blue >(m_color)));
+   //   //         ((brush *) this)->m_pdraw2dbrush = allocateø< plusplus::SolidBrush(plusplus::Color(color32_u8_opacity(m_color), color32_u8_red(m_color), color32_u8_green(m_color), color32_u8_blue >(m_color)));
    //   //      }
    //   //      catch(...)
    //   //      {
@@ -184,12 +184,12 @@ namespace draw2d_gpu
    //   //   }
    //   //}
 
-   //   //if(m_pbrush != nullptr)
+   //   //if(m_pdraw2dbrush != nullptr)
    //   //{
    //   //   ((brush *) this)->m_bUpdated = true;
    //   //}
 
-   //   //return (void *) (plusplus::Brush *) m_pbrush;
+   //   //return (void *) (plusplus::Brush *) m_pdraw2dbrush;
 
    //   return nullptr;
 

@@ -49,7 +49,7 @@ void simple_still::pre_subclass_window()
 //}
 
 
-void simple_still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+void simple_still::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
    if (get_still_type() == ::user::e_still_icon)
@@ -72,7 +72,7 @@ void simple_still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
       }
 
@@ -80,17 +80,17 @@ void simple_still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    else if (get_still_type() == ::user::e_still_text)
    {
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
-      pgraphics->set(get_font(pstyle));
+      pdraw2dgraphics->set(get_font(pstyle));
 
-      pgraphics->set_text_color(get_color(pstyle));
+      pdraw2dgraphics->set_text_color(get_color(pstyle));
 
       auto strWindowText = get_window_text();
 
       //get_window_text(str);
 
-      pgraphics->text_out(0, 0, strWindowText);
+      pdraw2dgraphics->text_out(0, 0, strWindowText);
 
    }
 

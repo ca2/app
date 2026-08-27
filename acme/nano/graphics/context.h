@@ -38,9 +38,9 @@ namespace nano
          
          virtual void update_bitmap_context_image(::pointer < ::nano::graphics::image > & pimage);
          
-         virtual void set_pen(::nano::graphics::pen * ppen);
-         virtual void set_brush(::nano::graphics::brush * pbrush);
-         virtual void set_font(::nano::graphics::font * pfont);
+         virtual void set_pen(::nano::graphics::pen * pnanographicspen);
+         virtual void set_brush(::nano::graphics::brush * pnanographicsbrush);
+         virtual void set_font(::nano::graphics::font * pnanographicsfont);
 
          virtual void set_blend_mode(enum_blend_mode eblendmode);
          
@@ -88,9 +88,9 @@ namespace nano
          
          virtual void translate(::f64 x, ::f64 y);
 
-         virtual void do_path(::nano::graphics::path *ppath);
+         virtual void do_path(::nano::graphics::path * pnanographicspath);
 
-//         virtual void draw_path(::nano::graphics::path *ppath, ::nano::graphics::pen *ppen);
+//         virtual void draw_path(::nano::graphics::path *pnanographicspath, ::nano::graphics::pen *pnanographicspen);
          
 
       };

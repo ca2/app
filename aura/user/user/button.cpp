@@ -66,7 +66,7 @@ namespace user
 
       m_estyle = e_style_none;
 
-      m_pbitmap = nullptr;
+      m_pdraw2dbitmap = nullptr;
 
       m_plist = nullptr;
 
@@ -90,10 +90,10 @@ namespace user
    ::write_text::font_pointer button::get_font(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
-      if (m_pfont)
+      if (m_pwritetextfont)
       {
 
-         return m_pfont;
+         return m_pwritetextfont;
 
       }
 
@@ -107,10 +107,10 @@ namespace user
 
          }
 
-         if (pstyle->m_pfont)
+         if (pstyle->m_pwritetextfont)
          {
 
-            return pstyle->m_pfont;
+            return pstyle->m_pwritetextfont;
 
          }
 
@@ -156,72 +156,72 @@ namespace user
    }
 
 
-   void button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void button::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if (m_estyle == e_style_push || m_estyle == e_style_push_group)
       {
 
-         _001OnButtonDrawPush(pgraphics);
+         _001OnButtonDrawPush(pdraw2dgraphics);
 
-         _001OnButtonDrawImageAndText(pgraphics, false);
+         _001OnButtonDrawImageAndText(pdraw2dgraphics, false);
 
       }
       else if (m_estyle == e_style_list)
       {
 
-         _001OnButtonDrawList(pgraphics);
+         _001OnButtonDrawList(pdraw2dgraphics);
 
-         _001OnButtonDrawImageAndText(pgraphics, false);
+         _001OnButtonDrawImageAndText(pdraw2dgraphics, false);
 
       }
       else if (m_estyle == e_style_image)
       {
 
-         _001OnButtonDrawBitmap(pgraphics);
+         _001OnButtonDrawBitmap(pdraw2dgraphics);
 
       }
       else if (m_estyle == e_style_image_and_text)
       {
 
-         _001OnButtonDrawImageAndText(pgraphics, true);
+         _001OnButtonDrawImageAndText(pdraw2dgraphics, true);
 
       }
       else
       {
 
-         _001OnButtonDrawNormal(pgraphics);
+         _001OnButtonDrawNormal(pdraw2dgraphics);
 
       }
 
    }
 
 
-   ::f64_size button::get_fitting_size(::draw2d::graphics_pointer & pgraphics)
+   ::f64_size button::get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      if (pgraphics.is_null())
+      if (pdraw2dgraphics.is_null())
       {
 
          auto psystem = system();
 
          auto pdraw2d = psystem->draw2d();
 
-         pgraphics = pdraw2d->create_memory_graphics({}, this);
+         pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
       }
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
       string strText(get_window_text());
 
-      auto size = pgraphics->get_text_extent(strText);
+      auto size = pdraw2dgraphics->get_text_extent(strText);
 
       ::write_text::text_metric tm;
 
-      pgraphics->get_text_metrics(&tm);
+      pdraw2dgraphics->get_text_metrics(&tm);
 
       ::f64_size sizeTotal;
 
@@ -234,19 +234,19 @@ namespace user
    }
 
 
-   ::f64_size button::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
+   ::f64_size button::get_preferred_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_estyle == e_style_simple)
       {
 
-         return get_adjusted_fitting_size(pgraphics);
+         return get_adjusted_fitting_size(pdraw2dgraphics);
 
       }
       else if (m_estyle == e_style_image)
       {
 
-         ::i32_size sizeTotal = m_pbitmap->m_pimage->size();
+         ::i32_size sizeTotal = m_pdraw2dbitmap->m_pimage->size();
 
          return sizeTotal;
 
@@ -260,7 +260,7 @@ namespace user
       else
       {
 
-         return get_adjusted_fitting_size(pgraphics);
+         return get_adjusted_fitting_size(pdraw2dgraphics);
 
       }
 
@@ -352,7 +352,7 @@ namespace user
    }
 
 
-   bool button::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   bool button::on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -367,7 +367,7 @@ namespace user
          ::i32_size sizeControl;
 
          if (m_sizeFixed.is_empty())
-            sizeControl = get_preferred_size(pgraphics);
+            sizeControl = get_preferred_size(pdraw2dgraphics);
          else
             sizeControl = m_sizeFixed;
 
@@ -380,7 +380,7 @@ namespace user
          //{
          //   m_rectangleText = rectangle;
             
-         set_size(ceil(sizeControl), ::user::e_layout_layout, pgraphics);
+         set_size(ceil(sizeControl), ::user::e_layout_layout, pdraw2dgraphics);
 
          return true;
 
@@ -393,7 +393,7 @@ namespace user
    }
 
 
-   void button::_002OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void button::_002OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -428,20 +428,20 @@ namespace user
 
       }
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       auto psystem = system();
 
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         pgraphics->fill_rectangle(rectangleX, ::color::color(crBk) & 127_opacity);
+         pdraw2dgraphics->fill_rectangle(rectangleX, ::color::color(crBk) & 127_opacity);
 
       }
       else
       {
 
-         pgraphics->fill_rectangle(rectangleX, crBk);
+         pdraw2dgraphics->fill_rectangle(rectangleX, crBk);
 
       }
 
@@ -475,11 +475,11 @@ namespace user
       //if (_001GetFlag(flag_border))
       {
 
-         pgraphics->draw_inset_rectangle(rectangleX, crBorder, 1.0);
+         pdraw2dgraphics->draw_inset_rectangle(rectangleX, crBorder, 1.0);
 
       }
 
-      //      pgraphics->SetBkMode(TRANSPARENT);
+      //      pdraw2dgraphics->SetBkMode(TRANSPARENT);
 
       rectangleX.left += 3;
       rectangleX.top += 3;
@@ -488,9 +488,9 @@ namespace user
 
       string strText(get_window_text());
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
-      auto sizeFitting = get_fitting_size(pgraphics);
+      auto sizeFitting = get_fitting_size(pdraw2dgraphics);
 
       rectangleText.left = (::i32)(rectangleX.left + (rectangleX.width() - sizeFitting.cx) / 2);
 
@@ -502,19 +502,19 @@ namespace user
 
       //::i32_rectangle rectangleText = m_rectangleText;
       //      string str = utf8_to_unicode(str);
-      if (m_pbitmap->m_pimage->is_set())
+      if (m_pdraw2dbitmap->m_pimage->is_set())
       {
-         if (m_pbitmap->m_pimage->width() > 0 && m_pbitmap->m_pimage->height() > 0)
+         if (m_pdraw2dbitmap->m_pimage->width() > 0 && m_pdraw2dbitmap->m_pimage->height() > 0)
          {
             ::i32_rectangle rectangleDib;
             rectangleDib = rectangleText;
-            rectangleDib.bottom = minimum(rectangleText.top + m_pbitmap->m_pimage->width(), rectangleText.bottom);
-            rectangleDib.right = minimum(rectangleText.left + m_pbitmap->m_pimage->height(), rectangleText.right);
-            //m_pimage->to(pgraphics, rectangleDib);
+            rectangleDib.bottom = minimum(rectangleText.top + m_pdraw2dbitmap->m_pimage->width(), rectangleText.bottom);
+            rectangleDib.right = minimum(rectangleText.left + m_pdraw2dbitmap->m_pimage->height(), rectangleText.right);
+            //m_pimage->to(pdraw2dgraphics, rectangleDib);
 
             {
 
-               ::image::image_source imagesource(m_pbitmap->m_pimage);
+               ::image::image_source imagesource(m_pdraw2dbitmap->m_pimage);
 
                auto rectangle = rectangleDib;
 
@@ -522,11 +522,11 @@ namespace user
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
-            rectangleText.left += m_pbitmap->m_pimage->width();
+            rectangleText.left += m_pdraw2dbitmap->m_pimage->width();
 
          }
 
@@ -534,9 +534,9 @@ namespace user
 
       auto pbrushText = createø < ::draw2d::brush > ();
 
-      pgraphics->set(pbrushText);
+      pdraw2dgraphics->set(pbrushText);
 
-      pgraphics->draw_text(strText, rectangleText, e_align_top_left);
+      pdraw2dgraphics->draw_text(strText, rectangleText, e_align_top_left);
 
    }
 
@@ -659,15 +659,15 @@ namespace user
    }
 
 
-   void button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void button::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
-      _001OnButtonDrawBackground(pgraphics);
+      _001OnButtonDrawBackground(pdraw2dgraphics);
 
       auto rectangleX = this->rectangle();
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       auto colorBackground = get_color(pstyle, ::e_element_background, get_state());
 
@@ -708,13 +708,13 @@ namespace user
 
             colorBottomRight = argb(1.0, 0.2, 0.5, 0.8);
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
+            pdraw2dgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
             rectanglePush.deflate(1, 1, 0, 1);
 
-            pgraphics->fill_rectangle(rectanglePush, colorBack);
+            pdraw2dgraphics->fill_rectangle(rectanglePush, colorBack);
 
          }
          
@@ -723,12 +723,12 @@ namespace user
    }
 
 
-   void button::_001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics)
+   void button::_001OnButtonDrawBackground(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       auto colorBackground = get_color(pstyle, ::e_element_background, get_state());
 
@@ -766,21 +766,21 @@ namespace user
 
             colorBottomRight.hls_rate(0.0, 0.75, 0.0);
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
-
-            rectanglePush.deflate(1, 1);
-
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
+            pdraw2dgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
             rectanglePush.deflate(1, 1);
 
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
+            pdraw2dgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
+
+            rectanglePush.deflate(1, 1);
+
+            pdraw2dgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
             rectanglePush.deflate(1, 1, 0, 1);
 
-            pgraphics->fill_rectangle(rectanglePush, colorBack);
+            pdraw2dgraphics->fill_rectangle(rectanglePush, colorBack);
                
          }
 
@@ -791,9 +791,9 @@ namespace user
          if (colorBackground.non_transparent())
          {
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->fill_rectangle(rectangleX, colorBackground);
+            pdraw2dgraphics->fill_rectangle(rectangleX, colorBackground);
 
          }
 
@@ -802,7 +802,7 @@ namespace user
    }
 
 
-   void button::_001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, ::i32_rectangle & rectText)
+   void button::_001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32_rectangle & rectText)
    {
 
       ::i32_rectangle rectangleText(rectText);
@@ -817,13 +817,13 @@ namespace user
          if (strWindowText.has_character())
          {
 
-            auto pstyle = get_style(pgraphics);
+            auto pstyle = get_style(pdraw2dgraphics);
 
             auto estate = get_state();
 
             ::color::color colorText = get_color(pstyle, e_element_text, estate);
 
-            pgraphics->set_text_color(colorText);
+            pdraw2dgraphics->set_text_color(colorText);
 
             ::e_align ealign;
 
@@ -865,9 +865,9 @@ namespace user
 
             edrawtext = e_draw_text_single_line;
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw_text(strWindowText, rectangleText, ealign, edrawtext);
+            pdraw2dgraphics->draw_text(strWindowText, rectangleText, ealign, edrawtext);
 
          }
 
@@ -875,17 +875,17 @@ namespace user
       else
       {
 
-         auto pstyle = get_style(pgraphics);
+         auto pstyle = get_style(pdraw2dgraphics);
 
          ::color::color colorText = get_color(pstyle, e_element_text, get_state());
 
-         pgraphics->set_text_color(colorText);
+         pdraw2dgraphics->set_text_color(colorText);
 
-         auto ppen = createø < ::draw2d::pen > ();
+         auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-         ppen->create_solid(1.0, colorText);
+         pdraw2dpen->create_solid(1.0, colorText);
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
          ::i32_rectangle rectangleIcon(rectangleText);
 
@@ -895,19 +895,19 @@ namespace user
          
          m_pstockicon->m_estockiconNew = m_estockicon;
 
-         pgraphics->draw(rectangleIcon, m_pstockicon);
+         pdraw2dgraphics->draw(rectangleIcon, m_pstockicon);
 
       }
 
    }
 
 
-   void button::_001OnButtonDrawNormal(::draw2d::graphics_pointer & pgraphics)
+   void button::_001OnButtonDrawNormal(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
       ::i32_rectangle rectangleMargin(2, 2, 2, 2);
 
@@ -920,14 +920,14 @@ namespace user
       //if(m_estyle != e_style_stock_icon)
       //{
 
-         //_001OnButtonDrawBackground(pgraphics);
+         //_001OnButtonDrawBackground(pdraw2dgraphics);
 
       //}
 
 //      if(m_pitemHover)
 //      {
 //
-//         pgraphics->fill_rectangle(::i32_rectangle(0, 0, 20, 20), argb(255, 255, 0, 0));
+//         pdraw2dgraphics->fill_rectangle(::i32_rectangle(0, 0, 20, 20), argb(255, 255, 0, 0));
 //
 //      }
 
@@ -935,38 +935,38 @@ namespace user
 
       rectangleX.deflate(rectanglePadding);
 
-      _001OnButtonDrawTextLayer(pgraphics, rectangleX);
+      _001OnButtonDrawTextLayer(pdraw2dgraphics, rectangleX);
 
    }
 
 
-   void button::_001OnButtonDrawBitmap(::draw2d::graphics_pointer & pgraphics)
+   void button::_001OnButtonDrawBitmap(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      _001OnButtonDrawBackground(pgraphics);
+      _001OnButtonDrawBackground(pdraw2dgraphics);
 
-      if (!m_pbitmap->m_pimage)
+      if (!m_pdraw2dbitmap->m_pimage)
       {
 
          return;
 
       }
 
-      ASSERT(m_pbitmap->m_pimage); // required
+      ASSERT(m_pdraw2dbitmap->m_pimage); // required
 
       // use the main bitmap for up, the selected bitmap for down
-      ::image::image_pointer pimage = m_pbitmap->m_pimage;
+      ::image::image_pointer pimage = m_pdraw2dbitmap->m_pimage;
 
       //
 
-      if(echeck() == ::e_check_checked && m_pbitmap->m_pimageSel.ok())
-         pimage = m_pbitmap->m_pimageSel;
-      else if(::is_set(m_pitemHover) && is_window_enabled() && m_pbitmap->m_pimageHover.ok())
-         pimage = m_pbitmap->m_pimageHover;
-      else if(m_pbitmap->m_pimageFocus.ok() && has_keyboard_focus())
-         pimage = m_pbitmap->m_pimageFocus;   // third image for focused
-      else if(!is_window_enabled() && m_pbitmap->m_pimageDisabled.ok())
-         pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
+      if(echeck() == ::e_check_checked && m_pdraw2dbitmap->m_pimageSel.ok())
+         pimage = m_pdraw2dbitmap->m_pimageSel;
+      else if(::is_set(m_pitemHover) && is_window_enabled() && m_pdraw2dbitmap->m_pimageHover.ok())
+         pimage = m_pdraw2dbitmap->m_pimageHover;
+      else if(m_pdraw2dbitmap->m_pimageFocus.ok() && has_keyboard_focus())
+         pimage = m_pdraw2dbitmap->m_pimageFocus;   // third image for focused
+      else if(!is_window_enabled() && m_pdraw2dbitmap->m_pimageDisabled.ok())
+         pimage = m_pdraw2dbitmap->m_pimageDisabled;   // last image for disabled
 
       auto rectangleX = this->rectangle();
 
@@ -1003,9 +1003,9 @@ namespace user
 
          rectangleAspect.Align(e_align_center, rectangleX);
 
-         pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          {
 
@@ -1017,7 +1017,7 @@ namespace user
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pgraphics->draw(imagedrawing);
+            pdraw2dgraphics->draw(imagedrawing);
 
          }
 
@@ -1026,13 +1026,13 @@ namespace user
    }
 
 
-   void button::_001OnButtonDrawImageAndText(::draw2d::graphics_pointer & pgraphics, bool bDecoration)
+   void button::_001OnButtonDrawImageAndText(::draw2d::graphics_pointer & pdraw2dgraphics, bool bDecoration)
    {
 
       if (bDecoration)
       {
 
-         _001OnButtonDrawBackground(pgraphics);
+         _001OnButtonDrawBackground(pdraw2dgraphics);
 
       }
 
@@ -1046,26 +1046,26 @@ namespace user
 
       ::i32_rectangle rectangleAspect(rectanglePadded);
 
-      if (m_pbitmap)
+      if (m_pdraw2dbitmap)
       {
-         if (m_pbitmap->m_pimage)
+         if (m_pdraw2dbitmap->m_pimage)
          {
 
-            ASSERT(m_pbitmap->m_pimage); // required
+            ASSERT(m_pdraw2dbitmap->m_pimage); // required
 
             // use the main bitmap for up, the selected bitmap for down
-            ::image::image_pointer pimage = m_pbitmap->m_pimage;
+            ::image::image_pointer pimage = m_pdraw2dbitmap->m_pimage;
 
             //
 
-            if (echeck() == ::e_check_checked && m_pbitmap->m_pimageSel.ok())
-               pimage = m_pbitmap->m_pimageSel;
-            else if (::is_set(m_pitemHover) && is_window_enabled() && m_pbitmap->m_pimageHover.ok())
-               pimage = m_pbitmap->m_pimageHover;
-            else if (m_pbitmap->m_pimageFocus.ok() && has_keyboard_focus())
-               pimage = m_pbitmap->m_pimageFocus;   // third image for focused
-            else if (!is_window_enabled() && m_pbitmap->m_pimageDisabled.ok())
-               pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
+            if (echeck() == ::e_check_checked && m_pdraw2dbitmap->m_pimageSel.ok())
+               pimage = m_pdraw2dbitmap->m_pimageSel;
+            else if (::is_set(m_pitemHover) && is_window_enabled() && m_pdraw2dbitmap->m_pimageHover.ok())
+               pimage = m_pdraw2dbitmap->m_pimageHover;
+            else if (m_pdraw2dbitmap->m_pimageFocus.ok() && has_keyboard_focus())
+               pimage = m_pdraw2dbitmap->m_pimageFocus;   // third image for focused
+            else if (!is_window_enabled() && m_pdraw2dbitmap->m_pimageDisabled.ok())
+               pimage = m_pdraw2dbitmap->m_pimageDisabled;   // last image for disabled
 
             if (pimage->area() > 0 && rectangleX.area() > 0)
             {
@@ -1086,9 +1086,9 @@ namespace user
 
                rectangleAspect.Align(e_align_bottom_left, rectanglePadded);
 
-               pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+               pdraw2dgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                {
 
@@ -1100,7 +1100,7 @@ namespace user
 
                   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  pgraphics->draw(imagedrawing);
+                  pdraw2dgraphics->draw(imagedrawing);
 
                }
 
@@ -1115,15 +1115,15 @@ namespace user
 
       }
 
-      _001OnButtonDrawTextLayer(pgraphics, rectangleAspect);
+      _001OnButtonDrawTextLayer(pdraw2dgraphics, rectangleAspect);
 
    }
 
 
-   void button::_001OnButtonDrawPush(::draw2d::graphics_pointer & pgraphics)
+   void button::_001OnButtonDrawPush(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       auto rectangleX = this->rectangle();
 
@@ -1179,15 +1179,15 @@ namespace user
       auto psystem = system();
 
       ::i32_rectangle rectangle = rectangleX;
-      pgraphics->color_blend_3dRect(rectangle,colorExt1TL,215,colorExt1BR,215);
+      pdraw2dgraphics->color_blend_3dRect(rectangle,colorExt1TL,215,colorExt1BR,215);
       rectangle.deflate(1,1,1,1);
-      pgraphics->color_blend_3dRect(rectangle,colorExt1TL,210,colorExt1BR,210);
+      pdraw2dgraphics->color_blend_3dRect(rectangle,colorExt1TL,210,colorExt1BR,210);
       rectangle.deflate(1,1,1,1);
-      pgraphics->color_blend_3dRect(rectangle,colorExt2TL,205,colorExt2BR,205);
+      pdraw2dgraphics->color_blend_3dRect(rectangle,colorExt2TL,205,colorExt2BR,205);
       rectangle.deflate(1,1,1,1);
-      pgraphics->color_blend_3dRect(rectangle,colorExt2TL,200,colorExt2BR,200);
+      pdraw2dgraphics->color_blend_3dRect(rectangle,colorExt2TL,200,colorExt2BR,200);
       rectangle.deflate(1,1,1,1);
-      pgraphics->fill_rectangle(rectangle,color32 & ::opacity(200));
+      pdraw2dgraphics->fill_rectangle(rectangle,color32 & ::opacity(200));
       rectangle.deflate(1,1,1,1);
 
       ::i32 x1 = rectangle.left;
@@ -1197,13 +1197,13 @@ namespace user
       rectangle.right = x2;
       rectangle.bottom = rectangle.top + 5;
 
-      auto ppen = createø < ::draw2d::pen > ();
+      auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-      ppen->create_solid(1, colorExt1TL);
+      pdraw2dpen->create_solid(1, colorExt1TL);
 
-      pgraphics->set(ppen);
+      pdraw2dgraphics->set(pdraw2dpen);
 
-      pgraphics->color_blend_3dRect(rectangle,colorExt1TL,220,colorExt1BR,220);
+      pdraw2dgraphics->color_blend_3dRect(rectangle,colorExt1TL,220,colorExt1BR,220);
 
 
    }
@@ -1234,7 +1234,7 @@ namespace user
       if(estyle == e_style_image || estyle == e_style_image_and_text)
       {
 
-         m_pbitmap = ___new bitmap();
+         m_pdraw2dbitmap = ___new bitmap();
 
       }
       else if(estyle == e_style_list)
@@ -1266,7 +1266,7 @@ namespace user
       if(estyle == e_style_image|| estyle == e_style_image_and_text)
       {
 
-         m_pbitmap.release();
+         m_pdraw2dbitmap.release();
 
       }
       else if(estyle == e_style_list)
@@ -1299,14 +1299,14 @@ namespace user
       if(!payload.is_empty())
       {
 
-         m_pbitmap->m_pimage = image()->get_image(payload);
+         m_pdraw2dbitmap->m_pimage = image()->get_image(payload);
 
       }
 
       if(!varSel.is_empty())
       {
 
-         m_pbitmap->m_pimageSel = image()->get_image(varSel);
+         m_pdraw2dbitmap->m_pimageSel = image()->get_image(varSel);
 
       }
 
@@ -1314,7 +1314,7 @@ namespace user
       if(!varFocus.is_empty())
       {
 
-         m_pbitmap->m_pimageFocus = image()->get_image(varFocus);
+         m_pdraw2dbitmap->m_pimageFocus = image()->get_image(varFocus);
 
       }
 
@@ -1322,7 +1322,7 @@ namespace user
       if(!varDisabled.is_empty())
       {
          
-         m_pbitmap->m_pimageDisabled = image()->get_image(varDisabled);
+         m_pdraw2dbitmap->m_pimageDisabled = image()->get_image(varDisabled);
 
       }
 
@@ -1330,11 +1330,11 @@ namespace user
       if(!varHover.is_empty())
       {
 
-         m_pbitmap->m_pimageHover = image()->get_image(varHover);
+         m_pdraw2dbitmap->m_pimageHover = image()->get_image(varHover);
 
       }
 
-      return m_pbitmap->m_pimage->is_set() && m_pbitmap->m_pimage->area() > 0;
+      return m_pdraw2dbitmap->m_pimage->is_set() && m_pdraw2dbitmap->m_pimage->area() > 0;
 
    }
 
@@ -1367,13 +1367,13 @@ namespace user
    }
 
 
-   void button::_001OnButtonDrawList(::draw2d::graphics_pointer & pgraphics)
+   void button::_001OnButtonDrawList(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       ::i32_rectangle rectangleX;
       bool bItemHover;
       bool bSubItemHover;
 
-      ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
+      ::aura::draw_context * pdrawcontext = pdraw2dgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
       if(pdrawcontext != nullptr)
       {
@@ -1407,7 +1407,7 @@ namespace user
 
       if(bSubItemHover)
       {
-         pgraphics->draw_inset_3d_rectangle(
+         pdraw2dgraphics->draw_inset_3d_rectangle(
          rectangleX,
          rgb(255,255,255),
          rgb(155,155,105),
@@ -1416,7 +1416,7 @@ namespace user
          if(m_plist->m_pimagelistSubItemHover != nullptr)
          {
             m_plist->m_pimagelistSubItemHover->draw(
-            pgraphics,
+            pdraw2dgraphics,
             m_plist->m_iImageSubItemHover,
             point,
             0);
@@ -1424,7 +1424,7 @@ namespace user
          else if(m_plist->m_pimagelistItemHover != nullptr)
          {
             m_plist->m_pimagelistItemHover->draw(
-            pgraphics,
+            pdraw2dgraphics,
             m_plist->m_iImageItemHover,
             point,
             0);
@@ -1432,7 +1432,7 @@ namespace user
          else if(m_plist->m_pimagelistNormal != nullptr)
          {
             m_plist->m_pimagelistNormal->draw(
-            pgraphics,
+            pdraw2dgraphics,
             m_plist->m_iImageNormal,
             point,
             0);
@@ -1443,7 +1443,7 @@ namespace user
          if(m_plist->m_pimagelistItemHover != nullptr)
          {
             m_plist->m_pimagelistItemHover->draw(
-            pgraphics,
+            pdraw2dgraphics,
             m_plist->m_iImageItemHover,
             point,
             0);
@@ -1451,7 +1451,7 @@ namespace user
          else if(m_plist->m_pimagelistSubItemHover != nullptr)
          {
             m_plist->m_pimagelistSubItemHover->draw(
-            pgraphics,
+            pdraw2dgraphics,
             m_plist->m_iImageSubItemHover,
             point,
             0);
@@ -1459,7 +1459,7 @@ namespace user
          else if(m_plist->m_pimagelistNormal != nullptr)
          {
             m_plist->m_pimagelistNormal->draw(
-            pgraphics,
+            pdraw2dgraphics,
             m_plist->m_iImageNormal,
             point,
             0);
@@ -1470,7 +1470,7 @@ namespace user
          if(m_plist->m_pimagelistNormal != nullptr)
          {
             m_plist->m_pimagelistNormal->draw(
-            pgraphics,
+            pdraw2dgraphics,
             m_plist->m_iImageNormal,
             point,
             0);
@@ -1479,7 +1479,7 @@ namespace user
          {
             
             m_plist->m_pimagelistItemHover->draw(
-            pgraphics,
+            pdraw2dgraphics,
             
                m_plist->m_iImageItemHover,
             point,
@@ -1490,7 +1490,7 @@ namespace user
          {
             
             m_plist->m_pimagelistSubItemHover->draw(
-            pgraphics,
+            pdraw2dgraphics,
             m_plist->m_iImageSubItemHover,
             point,
             0);

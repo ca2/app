@@ -25,7 +25,7 @@ namespace draw2d
 
 
       void draw_and_fill_beziers(
-      ::draw2d::graphics_pointer &  pgraphics,
+      ::draw2d::graphics_pointer &  pdraw2dgraphics,
       ::f64_point *                    ppoints,
       ::i32                           iCount,
       ::f64                        dRateX,
@@ -33,7 +33,7 @@ namespace draw2d
 
 
       void draw_beziers(
-      ::draw2d::graphics_pointer &  pgraphics,
+      ::draw2d::graphics_pointer &  pdraw2dgraphics,
       ::f64_point *                    ppoints,
       ::i32                           iCount,
       ::f64                        dRateX,
@@ -41,14 +41,14 @@ namespace draw2d
 
 
       void draw_and_fill_beziers(
-      ::draw2d::graphics_pointer &  pgraphics,
+      ::draw2d::graphics_pointer &  pdraw2dgraphics,
       array < f64_point_array, f64_point_array & > * pglyph,
       ::f64                        dRateX,
       ::f64_point *                      ppointOffset);
 
 
       void embossed_text_out(
-      ::draw2d::graphics_pointer &  pgraphics,
+      ::draw2d::graphics_pointer &  pdraw2dgraphics,
       const ::f64_rectangle &                 pcrect,
       ::f64                        dRateX,
       ::f64                        dHeight,
@@ -56,7 +56,7 @@ namespace draw2d
 
 
       void embossed_text_out(
-      ::draw2d::graphics_pointer &  pgraphics,
+      ::draw2d::graphics_pointer &  pdraw2dgraphics,
       const ::f64_rectangle &                 pcrect,
       ::f64                        dRateX,
       ::f64                        dHeight,
@@ -67,7 +67,7 @@ namespace draw2d
 
 
       void embossed_text_out(
-      ::draw2d::graphics_pointer &  pgraphics,
+      ::draw2d::graphics_pointer &  pdraw2dgraphics,
       const_char_pointer pcsz,
       ::i32                           iLeft,
       ::i32                           iTop,
@@ -78,7 +78,7 @@ namespace draw2d
 
 
       void simple_text_out(
-      ::draw2d::graphics_pointer &  pgraphics,
+      ::draw2d::graphics_pointer &  pdraw2dgraphics,
       const ::f64_rectangle &                 pcrect,
       ::f64                        dRateX,
       ::f64                        dHeight,

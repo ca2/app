@@ -45,11 +45,11 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
-      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       
-      bool on_perform_layout(::draw2d::graphics_pointer & pgraphics) override;
+      bool on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

@@ -28,7 +28,7 @@ namespace write_text
    }
 
 
-   void internal_font::on_create_font(::draw2d::graphics * pgraphics, ::write_text::font * pfont)
+   void internal_font::on_create_font(::draw2d::graphics * pdraw2dgraphics, ::write_text::font * pwritetextfont)
    {
 
 

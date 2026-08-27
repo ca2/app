@@ -40,7 +40,7 @@ namespace draw2d_gpu
       // void dump(dump_context & dumpcontext) const override;
 
 
-      void create(::draw2d::graphics* pgraphics, ::i8 iCreate) override;
+      void update(::draw2d::graphics * pdraw2dgraphics) override;
       void destroy() override;
 
 

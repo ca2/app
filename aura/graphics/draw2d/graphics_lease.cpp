@@ -18,20 +18,20 @@ namespace draw2d
 
    //graphics_lease::graphics_lease(
    //   ::draw2d::draw2d * pdraw2d,
-   //   ::draw2d::graphics * pgraphics,
+   //   ::draw2d::graphics * pdraw2dgraphics,
    //   ::image::image * pimage,
    //   bool bOwned) :
    //   m_pdraw2d(pdraw2d),
-   //   m_pgraphics(pgraphics),
+   //   m_pgraphics(pdraw2dgraphics),
    //   m_pimage(pimage),
    //   m_bOwned(bOwned)
    //{
 
    //}
 
-   graphics_lease::graphics_lease(::draw2d::draw2d * pdraw2d,::draw2d::graphics *pgraphics, 
+   graphics_lease::graphics_lease(::draw2d::draw2d * pdraw2d,::draw2d::graphics *pdraw2dgraphics, 
                                   ::image::image * pimage, bool bOwned) :
-       graphics_pointer(pgraphics), m_pdraw2d(pdraw2d), m_pimage(pimage), m_bOwned(bOwned),
+       graphics_pointer(pdraw2dgraphics), m_pdraw2d(pdraw2d), m_pimage(pimage), m_bOwned(bOwned),
       m_bLeaseOn(true)
    {
 
@@ -50,8 +50,8 @@ namespace draw2d
       }
    }
 
-   //   graphics_lease::graphics_lease(::draw2d::graphics *pgraphics, ::image::image * pimage, 
-   //      bool bOwned) : m_pgraphics(pgraphics), m_pimage(pimage), m_bOwned(bOwned)
+   //   graphics_lease::graphics_lease(::draw2d::graphics *pdraw2dgraphics, ::image::image * pimage, 
+   //      bool bOwned) : m_pgraphics(pdraw2dgraphics), m_pimage(pimage), m_bOwned(bOwned)
    //{
    //}
 
@@ -234,12 +234,12 @@ namespace draw2d
       }
 
       auto pdraw2d = ::transfer(m_pdraw2d);
-      auto pgraphics = ::transfer((BASE_POINTER &&) *this);
+      auto pdraw2dgraphics = ::transfer((BASE_POINTER &&) *this);
       auto pimage = ::transfer(m_pimage);
       auto bDamaged = m_bDamaged;
       bool bOwned = m_bOwned
-         || (pimage && pimage->m_pgraphicsOwned == pgraphics)
-         || (pgraphics && pgraphics->m_pimage && pgraphics->m_pimage->m_pgraphicsOwned == pgraphics);
+         || (pimage && pimage->m_pgraphicsOwned == pdraw2dgraphics)
+         || (pdraw2dgraphics && pdraw2dgraphics->m_pimage && pdraw2dgraphics->m_pimage->m_pgraphicsOwned == pdraw2dgraphics);
 
       m_bDamaged = false;
 
@@ -248,10 +248,10 @@ namespace draw2d
       //if (bOwned)
       //{
 
-      //   if (pimage && pgraphics)
+      //   if (pimage && pdraw2dgraphics)
       //   {
 
-      //      pimage->return_memory_graphics(pgraphics);
+      //      pimage->return_memory_graphics(pdraw2dgraphics);
 
       //   }
 
@@ -259,13 +259,13 @@ namespace draw2d
       //else
       //{
          
-         if (pgraphics && bOwned)
+         if (pdraw2dgraphics && bOwned)
          {
 
             try
             {
 
-               pgraphics->on_release_memory_graphics();
+               pdraw2dgraphics->on_release_memory_graphics();
 
             }
             catch (...)
@@ -290,11 +290,11 @@ namespace draw2d
             }
 
          }
-         else if (pdraw2d && pgraphics)
+         else if (pdraw2d && pdraw2dgraphics)
          {
 
             pdraw2d->return_memory_graphics(
-               ::transfer(pgraphics),
+               ::transfer(pdraw2dgraphics),
                ::transfer(pimage),
                bDamaged);
 

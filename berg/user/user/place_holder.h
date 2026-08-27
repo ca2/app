@@ -43,14 +43,14 @@ namespace user
       virtual void on_erase_child(::user::interaction * pinteraction) override;
       virtual void on_hide_child(::user::interaction * pinteraction) override;
 
-      virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
-      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       ::user::interaction * get_hold();
 

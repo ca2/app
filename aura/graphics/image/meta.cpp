@@ -12,7 +12,7 @@ namespace image
    image_meta::~image_meta()
    {
 
-      //::release(m_pbitmap);
+      //::release(m_pdraw2dbitmap);
       //::release(m_pgraphics);
 
    }

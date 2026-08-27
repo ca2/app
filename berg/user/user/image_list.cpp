@@ -389,49 +389,49 @@ namespace user
    }
 
 
-   void image_list::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void image_list::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       auto rectangle = this->raw_rectangle();
 
-      pgraphics->set(get_font(pstyle));
+      pdraw2dgraphics->set(get_font(pstyle));
 
       auto pointContextOffset = get_context_offset();
 
       rectangle.offset(pointContextOffset);
 
-      pgraphics->fill_rectangle(rectangle, get_color(pstyle, e_element_background));
+      pdraw2dgraphics->fill_rectangle(rectangle, get_color(pstyle, e_element_background));
 
-      pgraphics->draw_inset_rectangle(rectangle, argb(255, 192, 192, 192), 1.0);
+      pdraw2dgraphics->draw_inset_rectangle(rectangle, argb(255, 192, 192, 192), 1.0);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
 
    }
 
 
-   void image_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void image_list::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       auto rectangleClient = this->client2_rectangle();
 
-      //pgraphics->set(get_font(pstyle));
+      //pdraw2dgraphics->set(get_font(pstyle));
 
       //rectangleX.offset(m_pointScroll);
 
-      //pgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background));
+      //pdraw2dgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background));
 
-      //pgraphics->draw_inset_rectangle(rectangleX, argb(255, 192, 192, 192), 1.0);
+      //pdraw2dgraphics->draw_inset_rectangle(rectangleX, argb(255, 192, 192, 192), 1.0);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::collection::count cCount = m_pimagea->image_count();
 
@@ -555,7 +555,7 @@ namespace user
 
                      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                     pgraphics->draw(imagedrawing);
+                     pdraw2dgraphics->draw(imagedrawing);
 
                   }
 
@@ -650,7 +650,7 @@ namespace user
                if (bSel || bHover)
                {
 
-                  pgraphics->fill_rectangle(rectangleSel, crSel);
+                  pdraw2dgraphics->fill_rectangle(rectangleSel, crSel);
 
                }
 
@@ -660,7 +660,7 @@ namespace user
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
                if (bSel)
                {
@@ -668,11 +668,11 @@ namespace user
 
                   rectangleImage.inflate(1, 1);
 
-                  pgraphics->draw_inset_rectangle(rectangleSel, crBorder, 1.0);
+                  pdraw2dgraphics->draw_inset_rectangle(rectangleSel, crBorder, 1.0);
 
                   rectangleImage.inflate(1, 1);
 
-                  pgraphics->draw_inset_rectangle(rectangleSel, crBorder, 1.0);
+                  pdraw2dgraphics->draw_inset_rectangle(rectangleSel, crBorder, 1.0);
 
                }
 
@@ -688,9 +688,9 @@ namespace user
             if (_001GetItemText(str, iImage))
             {
 
-               pgraphics->set_text_color(get_color(pstyle, e_element_text));
+               pdraw2dgraphics->set_text_color(get_color(pstyle, e_element_text));
 
-               pgraphics->draw_text(str, rectangleText, e_align_center);
+               pdraw2dgraphics->draw_text(str, rectangleText, e_align_center);
 
             }
 
@@ -709,7 +709,7 @@ namespace user
    }
 
 
-   void image_list::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void image_list::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -808,7 +808,7 @@ namespace user
 
       //m_pscrollstateVertical->m_iPage = rectangleX.height();
 
-      ::user::scroll_base::on_layout(pgraphics);
+      ::user::scroll_base::on_layout(pdraw2dgraphics);
 
       //on_change_scroll_state(::user::e_layout_design);
 
@@ -871,10 +871,10 @@ namespace user
    }
 
 
-   //void image_list_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   //void image_list_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
-   //   ::user::image::image_list::on_layout(pgraphics);
+   //   ::user::image::image_list::on_layout(pdraw2dgraphics);
 
    //   auto rectangleX = this->rectangle();
 
@@ -887,7 +887,7 @@ namespace user
 
    //   m_sizeTotal = m_rectangleTotal.size();
 
-   //   on_change_impact_size(pgraphics);
+   //   on_change_impact_size(pdraw2dgraphics);
 
    //}
 

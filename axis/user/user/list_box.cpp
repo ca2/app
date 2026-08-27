@@ -447,32 +447,32 @@ namespace user
    }
 
    
-   void list_box::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void list_box::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
-      ::user::scroll_base::_001OnNcDraw(pgraphics);
+      ::user::scroll_base::_001OnNcDraw(pdraw2dgraphics);
 
    }
 
-   void list_box::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
+   void list_box::_001OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
       //return;
 
-      //pgraphics->reset_clip();
+      //pdraw2dgraphics->reset_clip();
 
-      //::draw2d::save_context savecontext(pgraphics);
+      //::draw2d::save_context savecontext(pdraw2dgraphics);
 
       //::f64_rectangle rectangleClipBox;
 
-      //pgraphics->get_clip_box(rectangleClipBox);
+      //pdraw2dgraphics->get_clip_box(rectangleClipBox);
 
-      //pgraphics->reset_clip();
+      //pdraw2dgraphics->reset_clip();
 
-      _001OnDrawComboList(pgraphics);
+      _001OnDrawComboList(pdraw2dgraphics);
 
    }
 
 
-   void list_box::_001OnDrawComboList(::draw2d::graphics_pointer& pgraphics)
+   void list_box::_001OnDrawComboList(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       ::collection::count iListItemCount = _001GetListCount();
@@ -485,7 +485,7 @@ namespace user
 
       status < ::color::color > colorText;
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       colorBackground = get_color(pstyle, ::e_element_background);
 
@@ -493,9 +493,9 @@ namespace user
 
       pbrushBk->create_solid(colorBackground);
 
-      pgraphics->set(pbrushBk);
+      pdraw2dgraphics->set(pbrushBk);
 
-      pgraphics->fill_rectangle(rectangleX);
+      pdraw2dgraphics->fill_rectangle(rectangleX);
 
       ::i32_rectangle rectangleItem;
 
@@ -514,13 +514,13 @@ namespace user
 
       //screen_to_client(::user::e_layout_design)(pointCursor);
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
       auto pitemHover = hover_item();
 
       auto pitemCurrent = current_item();
 
-      auto pbrush = createø < ::draw2d::brush >();
+      auto pdraw2dbrush = createø < ::draw2d::brush >();
 
       for (::collection::index iItem = 0; iItem < iListItemCount; iItem++)
       {
@@ -571,15 +571,15 @@ namespace user
 
          pbrushBk->create_solid(colorBackground);
 
-         pbrush->create_solid(colorText);
+         pdraw2dbrush->create_solid(colorText);
 
-         pgraphics->set(pbrushBk);
+         pdraw2dgraphics->set(pbrushBk);
 
-         pgraphics->fill_rectangle(rectangleItem);
+         pdraw2dgraphics->fill_rectangle(rectangleItem);
 
          _001GetListText(iItem, strItem);
 
-         pgraphics->set(pbrush);
+         pdraw2dgraphics->set(pdraw2dbrush);
 
          auto rectangleText = rectangleItem;
 
@@ -594,7 +594,7 @@ namespace user
 
 #endif
 
-         pgraphics->draw_text(strItem, rectangleText);
+         pdraw2dgraphics->draw_text(strItem, rectangleText);
 
       }
 
@@ -602,21 +602,21 @@ namespace user
 
       ::color::color crBorder = argb(255, 0, 0, 0);
 
-      auto ppen = createø < ::draw2d::pen >();
+      auto pdraw2dpen = createø < ::draw2d::pen >();
 
-      ppen->create_solid(1.0, crBorder);
+      pdraw2dpen->create_solid(1.0, crBorder);
 
-      pgraphics->set(ppen);
+      pdraw2dgraphics->set(pdraw2dpen);
 
       ::f64_rectangle rX(rectangleX);
 
       rX.deflate(1, 1, 1, 1);
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-      pgraphics->draw_rectangle(rX);
+      pdraw2dgraphics->draw_rectangle(rX);
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
    }
 
@@ -627,12 +627,12 @@ namespace user
       if (m_pcombo)
       {
 
-         auto pfont = m_pcombo->get_font(pstyle, eelement, estate);
+         auto pwritetextfont = m_pcombo->get_font(pstyle, eelement, estate);
 
-         if (pfont)
+         if (pwritetextfont)
          {
 
-            return pfont;
+            return pwritetextfont;
 
          }
 
@@ -643,14 +643,14 @@ namespace user
    }
 
 
-   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, ::i32_size* psize)
+   void list_box::query_full_size(::draw2d::graphics_pointer& pdraw2dgraphics, ::i32_size* psize)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       string strItem;
 
@@ -667,7 +667,7 @@ namespace user
 
          _001GetListText(i, strItem);
 
-         size = pgraphics->get_text_extent(strItem);
+         size = pdraw2dgraphics->get_text_extent(strItem);
 
          size.cx += m_iPadding * 2;
 
@@ -796,15 +796,15 @@ namespace user
    }
 
 
-   void list_box::on_layout(::draw2d::graphics_pointer& pgraphics)
+   void list_box::on_layout(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
-      query_full_size(pgraphics, &m_sizeFull);
+      query_full_size(pdraw2dgraphics, &m_sizeFull);
 
 
       set_total_size(m_sizeFull, ::user::e_layout_design);
 
-      ::user::scroll_base::on_layout(pgraphics);
+      ::user::scroll_base::on_layout(pdraw2dgraphics);
 
    }
 

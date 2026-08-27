@@ -717,7 +717,7 @@ namespace user
       //if (pedit.is_set())
       //{
 
-      //   pedit->m_pfont = m_pfont;
+      //   pedit->m_pwritetextfont = m_pwritetextfont;
 
       //}
 
@@ -1195,18 +1195,18 @@ namespace user
    //}
 
 
-   void form_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void form_list::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::list::_001OnDraw(pgraphics);
+      ::user::list::_001OnDraw(pdraw2dgraphics);
 
    }
 
 
-   void form_list::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+   void form_list::_001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      form_mesh::_001DrawChildren(pgraphics);
+      form_mesh::_001DrawChildren(pdraw2dgraphics);
 
    }
 
@@ -2280,7 +2280,7 @@ namespace user
    }
 
 
-   void form_list::_001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * pdrawlistsubitem)
+   void form_list::_001DrawSubItem(::draw2d::graphics_pointer & pdraw2dgraphics, draw_list_subitem * pdrawlistsubitem)
    {
 
       //if (psubitem->m_pcolumn->id())
@@ -2371,7 +2371,7 @@ namespace user
 
       //}
 
-      ::user::list::_001DrawSubItem(pgraphics, pdrawlistsubitem);
+      ::user::list::_001DrawSubItem(pdraw2dgraphics, pdrawlistsubitem);
 
       //if (pdrawitem->m_pcolumn->m_bCustomDraw)
       {

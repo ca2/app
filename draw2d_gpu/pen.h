@@ -23,7 +23,7 @@ namespace draw2d_gpu
 
 //      plusplus::PenAlignment m_egl2dalign;
 
-      //::plusplus::Pen *  m_ppen;
+      //::plusplus::Pen *  m_pdraw2dpen;
 
       pen();
       /*virtual void construct(::i32 nPenStyle, ::f64 nWidth, color32_t crColor);

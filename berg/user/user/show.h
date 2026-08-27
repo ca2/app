@@ -195,19 +195,19 @@ namespace user
       }
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override
+      virtual void _001OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics) override
       {
 
-         VIEW::_001OnDraw(pgraphics);
+         VIEW::_001OnDraw(pdraw2dgraphics);
 
       }
 
 
 
-      void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override
+      void _001CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override
       {
 
-         VIEW::_001CallOnDraw(pgraphics);
+         VIEW::_001CallOnDraw(pdraw2dgraphics);
 
       }
 

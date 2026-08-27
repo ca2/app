@@ -20,20 +20,20 @@ namespace draw2d
    }
 
 
-   void graphics_extension::text_out(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y, const ::scoped_string & scopedstr, ::f64_size & s)
+   void graphics_extension::text_out(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 x, ::i32 y, const ::scoped_string & scopedstr, ::f64_size & s)
    {
 
-      s = pgraphics->get_text_extent(scopedstr);
+      s = pdraw2dgraphics->get_text_extent(scopedstr);
 
-      return pgraphics->text_out(x, y, scopedstr);
+      return pdraw2dgraphics->text_out(x, y, scopedstr);
 
-      //return ::TextOutU((HDC)pgraphics->get_os_data(), x, y, pcsz, iCount);
+      //return ::TextOutU((HDC)pdraw2dgraphics->get_os_data(), x, y, pcsz, iCount);
 
 
    }
 
 
-   void graphics_extension::get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::f64_size_array & sizea)
+   void graphics_extension::get_text_extent(::draw2d::graphics_pointer & pdraw2dgraphics, const ::scoped_string & scopedstr, ::f64_size_array & sizea)
    {
 
 
@@ -49,7 +49,7 @@ namespace draw2d
       for(::i32 i = 1; i < iLen; i++)
       {
          ::GetTextExtentPoint32U(
-         (HDC)pgraphics->get_os_data(),
+         (HDC)pdraw2dgraphics->get_os_data(),
          str,
          i,
          &sizea[i]);
@@ -58,38 +58,38 @@ namespace draw2d
    }
 
 
-   //void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & scopedstr, i32_size & size)
+   //void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pdraw2dgraphics, const ::scoped_string & scopedstr, i32_size & size)
    //{
 
    //   //synchronous_lock ml(&user_synchronization());
 
    //   /*string str(pwsz);
 
-   //   if(pgraphics == nullptr)
+   //   if(pdraw2dgraphics == nullptr)
    //      return;
    //   ::GetTextExtentPoint32U(
-   //      (HDC)pgraphics->get_os_data(),
+   //      (HDC)pdraw2dgraphics->get_os_data(),
    //      (const ::string &) str,
    //      str.length(),
    //      &size);*/
 
-   //   size = pgraphics->get_text_extent(scopedstr);
+   //   size = pdraw2dgraphics->get_text_extent(scopedstr);
 
 
    //}
 
 
-   void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & scopedstr, ::f64_size & size)
+   void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pdraw2dgraphics, const ::scoped_string & scopedstr, ::f64_size & size)
    {
 
       /*::GetTextExtentPoint32U(
-         (HDC)pgraphics->get_os_data(),
+         (HDC)pdraw2dgraphics->get_os_data(),
          pcsz,
 
          iCount,
          &size);*/
 
-      size = pgraphics->get_text_extent(scopedstr);
+      size = pdraw2dgraphics->get_text_extent(scopedstr);
 
    }
 

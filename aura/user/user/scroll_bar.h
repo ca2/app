@@ -43,10 +43,10 @@ namespace user
       virtual ::f64_point get_parent_context_offset() override;
       virtual ::f64_point get_ascendant_context_offset() override;
       
-      virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
-      //virtual ::status < ::i32_rectangle > get_track_rectangle(::draw2d::graphics_pointer & pgraphics);
+      //virtual ::status < ::i32_rectangle > get_track_rectangle(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       
       virtual ::status < ::f64_rectangle > get_track_rectangle(::user::enum_layout elayout);

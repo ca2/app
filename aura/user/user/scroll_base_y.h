@@ -48,10 +48,10 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
       virtual void on_change_scroll_state(::user::enum_layout elayout = ::user::e_layout_sketch) override;
-      //virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void on_change_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       virtual ::i32 get_wheel_scroll_delta() override;
       virtual bool create_scroll_bar_y();
-      //virtual void layout_scroll_bar_x(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void layout_scroll_bar_x(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       virtual void layout_scroll_bar_y(::user::enum_layout elayout = ::user::e_layout_sketch);
       virtual void defer_create_scroll_bar_y(::user::enum_layout elayout = ::user::e_layout_sketch);
       //virtual void on_create_scroll_bar_y();

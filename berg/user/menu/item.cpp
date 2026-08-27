@@ -481,7 +481,7 @@ namespace menu
    }
 
 
-   void item::create_buttons(::draw2d::graphics_pointer & pgraphics, ::user::menu * pusermenu)
+   void item::create_buttons(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::menu * pusermenu)
    {
 
       ::user::style_pointer pstyle;
@@ -510,7 +510,7 @@ namespace menu
          if (pinteraction.is_null())
          {
 
-            pinteraction = user()->create_menu_button(m_pmenu, pgraphics, pitem);
+            pinteraction = user()->create_menu_button(m_pmenu, pdraw2dgraphics, pitem);
 
          }
 
@@ -553,7 +553,7 @@ namespace menu
          if (pusermenu->m_bInline)
          {
 
-            pitem->create_buttons(pgraphics, pusermenu);
+            pitem->create_buttons(pdraw2dgraphics, pusermenu);
 
          }
 

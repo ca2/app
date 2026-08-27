@@ -27,7 +27,7 @@ namespace draw2d
 
       m_p->set_target_rectangle(rectangle);
 
-      m_pbitmap->CreateCompatibleBitmap(*this, rectangle.width(), rectangle.height());
+      m_pdraw2dbitmap->CreateCompatibleBitmap(*this, rectangle.width(), rectangle.height());
 
       m_pbitmapBlend->CreateBitmap(
       *this,

@@ -10,16 +10,16 @@ namespace draw2d_gpu
    pen::pen()
    { 
       //m_egl2dalign = (plusplus::PenAlignment) -1;
-      //m_ppen = nullptr;
+      //m_pdraw2dpen = nullptr;
 
    }
 
    pen::~pen()
    { 
-   /*   if(m_ppen != nullptr)
+   /*   if(m_pdraw2dpen != nullptr)
       {
-         delete m_ppen;
-         m_ppen = nullptr;
+         delete m_pdraw2dpen;
+         m_pdraw2dpen = nullptr;
       }*/
    }
 
@@ -46,13 +46,13 @@ namespace draw2d_gpu
    void pen::construct(::i32 nPenStyle, ::f64 dWidth, color32_t crColor)
    {
       
-      if(m_ppen == nullptr)
-         delete m_ppen;
+      if(m_pdraw2dpen == nullptr)
+         delete m_pdraw2dpen;
 
       m_nPenStyle    = nPenStyle;
       m_dWidth       = dWidth;
       m_colorColor      = crColor;
-      m_ppen         = allocateø< plusplus::Pen(plusplus::Color >(crColor), dWidth);
+      m_pdraw2dpen         = allocateø< plusplus::Pen(plusplus::Color >(crColor), dWidth);
 
    }
 
@@ -175,10 +175,10 @@ namespace draw2d_gpu
       }
    }
 
-   void __draw_gray_bitmap(::particle * pparticle, ::draw2d::graphics * pgraphics, ::i32 x, ::i32 y, const ::draw2d::bitmap &rSrc, color32_t crBackground)
+   void __draw_gray_bitmap(::particle * pparticle, ::draw2d::graphics * pdraw2dgraphics, ::i32 x, ::i32 y, const ::draw2d::bitmap &rSrc, color32_t crBackground)
    {
-      ASSERT(pgraphics);
-      ASSERT_KINDOF(::draw2d::graphics_pointer, pgraphics);
+      ASSERT(pdraw2dgraphics);
+      ASSERT_KINDOF(::draw2d::graphics_pointer, pdraw2dgraphics);
 
       BITMAP bm;
       ::draw2d::graphics_pointer graphicsMem, graphicsMask;
@@ -189,8 +189,8 @@ namespace draw2d_gpu
       ::draw2d::brush_pointer pbrushHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
          pbrushShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 
-      if(graphicsMem->create_compatible_graphics(pgraphics) &&
-         graphicsMask->create_compatible_graphics(pgraphics) &&
+      if(graphicsMem->create_compatible_graphics(pdraw2dgraphics) &&
+         graphicsMask->create_compatible_graphics(pdraw2dgraphics) &&
          const_cast<::draw2d::bitmap &>(rSrc).GetBitmap(&bm) &&
          bmpMask->CreateBitmap(bm.bmWidth, bm.bmHeight, 1, 1, nullptr))
       {
@@ -206,19 +206,19 @@ namespace draw2d_gpu
          graphicsMem->SetBkColor(rgb(255, 255, 255));
          graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMem, 0, 0, NOTSRCERASE);
 
-         pgraphics->FillSolidRect(x, y, bm.bmWidth, bm.bmHeight, crBackground);
+         pdraw2dgraphics->FillSolidRect(x, y, bm.bmWidth, bm.bmHeight, crBackground);
 
-         pgraphics->SetBkColor(rgb(255, 255, 255));
+         pdraw2dgraphics->SetBkColor(rgb(255, 255, 255));
 
-         spbr = pgraphics->SelectObject(pbrushHighLight);
-         pgraphics->BitBlt(x + 1, y + 1, bm.bmWidth, bm.bmHeight, graphicsMask, 0, 0, CP_ROP);
+         spbr = pdraw2dgraphics->SelectObject(pbrushHighLight);
+         pdraw2dgraphics->BitBlt(x + 1, y + 1, bm.bmWidth, bm.bmHeight, graphicsMask, 0, 0, CP_ROP);
 
-         pgraphics->SelectObject(pbrushShadow);
-         pgraphics->BitBlt(x, y, bm.bmWidth, bm.bmHeight, graphicsMask, 0, 0, CP_ROP);
+         pdraw2dgraphics->SelectObject(pbrushShadow);
+         pdraw2dgraphics->BitBlt(x, y, bm.bmWidth, bm.bmHeight, graphicsMask, 0, 0, CP_ROP);
 
-         pgraphics->SelectObject(spbr);
+         pdraw2dgraphics->SelectObject(spbr);
 
-         pgraphics->SetBkColor(color32);
+         pdraw2dgraphics->SetBkColor(color32);
          graphicsMask->SelectObject(pOldMask);
       }
    }
@@ -292,10 +292,10 @@ namespace draw2d_gpu
       }
    }
 
-   void __draw_dithered_bitmap(::particle * pparticle, ::draw2d::graphics * pgraphics, ::i32 x, ::i32 y, const ::draw2d::bitmap &rSrc, color32_t cr1, color32_t cr2)
+   void __draw_dithered_bitmap(::particle * pparticle, ::draw2d::graphics * pdraw2dgraphics, ::i32 x, ::i32 y, const ::draw2d::bitmap &rSrc, color32_t cr1, color32_t cr2)
    {
-      ASSERT(pgraphics);
-      ASSERT_KINDOF(::draw2d::graphics_pointer, pgraphics);
+      ASSERT(pdraw2dgraphics);
+      ASSERT_KINDOF(::draw2d::graphics_pointer, pdraw2dgraphics);
 
       BITMAP bm;
       ::draw2d::graphics_pointer graphicsSrc, graphicsMask;
@@ -305,8 +305,8 @@ namespace draw2d_gpu
       ::draw2d::brush pbrushChecker;
       static const ::u16 wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
 
-      if(graphicsSrc->create_compatible_graphics(pgraphics) &&
-         graphicsMask->create_compatible_graphics(pgraphics) &&
+      if(graphicsSrc->create_compatible_graphics(pdraw2dgraphics) &&
+         graphicsMask->create_compatible_graphics(pdraw2dgraphics) &&
          const_cast<::draw2d::bitmap &>(rSrc).GetBitmap(&bm))
       {
          // create checker brush
@@ -333,16 +333,16 @@ namespace draw2d_gpu
          graphicsSrc->SetBkColor(color32);
 
          // Checker the background with white and crBackground
-         cr1 = pgraphics->SetTextColor(cr1);
-         cr2 = pgraphics->SetBkColor(cr2);
-         pgraphics->FillRect(i32_rectangle(x, y, x + bm.bmWidth, y + bm.bmHeight), &pbrushChecker);
-         pgraphics->SetTextColor(cr1);
-         pgraphics->SetBkColor(cr2);
+         cr1 = pdraw2dgraphics->SetTextColor(cr1);
+         cr2 = pdraw2dgraphics->SetBkColor(cr2);
+         pdraw2dgraphics->FillRect(i32_rectangle(x, y, x + bm.bmWidth, y + bm.bmHeight), &pbrushChecker);
+         pdraw2dgraphics->SetTextColor(cr1);
+         pdraw2dgraphics->SetBkColor(cr2);
 
          // Blt it
-         pgraphics->BitBlt(x, y, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0, SRCINVERT);
-         pgraphics->BitBlt(x, y, bm.bmWidth, bm.bmHeight, graphicsMask, 0, 0, SRCAND);
-         pgraphics->BitBlt(x, y, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0, SRCINVERT);
+         pdraw2dgraphics->BitBlt(x, y, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0, SRCINVERT);
+         pdraw2dgraphics->BitBlt(x, y, bm.bmWidth, bm.bmHeight, graphicsMask, 0, 0, SRCAND);
+         pdraw2dgraphics->BitBlt(x, y, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0, SRCINVERT);
 
          graphicsMask->SelectObject(pOldMask);
          graphicsSrc->SelectObject(pOldSrc);
@@ -354,21 +354,21 @@ namespace draw2d_gpu
    void * pen::get_os_data() const
    {
       
-      //if(m_ppen == nullptr || !m_bUpdated)
+      //if(m_pdraw2dpen == nullptr || !m_bUpdated)
       //{
-      //   if(m_ppen != nullptr)
+      //   if(m_pdraw2dpen != nullptr)
       //   {
-      //      delete m_ppen;
+      //      delete m_pdraw2dpen;
       //   }
       //   if (m_epen == ::draw2d::e_pen_brush)
       //   {
       //      
-      //      ((pen *) this)->m_ppen = allocateø< plusplus::Pen((plusplus::Brush *) m_br.cast < brush >()->get_os_data(),  >(plusplus::REAL) m_dWidth);
+      //      ((pen *) this)->m_pdraw2dpen = allocateø< plusplus::Pen((plusplus::Brush *) m_br.cast < brush >()->get_os_data(),  >(plusplus::REAL) m_dWidth);
 
       //   }
       //   else
       //   {
-      //      ((pen *) this)->m_ppen = allocateø< plusplus::Pen(plusplus::Color >(
+      //      ((pen *) this)->m_pdraw2dpen = allocateø< plusplus::Pen(plusplus::Color >(
       //         color32_u8_opacity(m_color),
       //         color32_u8_red(m_color),
       //         color32_u8_green(m_color),
@@ -378,40 +378,40 @@ namespace draw2d_gpu
       //   switch(m_elinejoin)
       //   {
       //   case ::draw2d::e_line_join_miter:
-      //      ((pen *) this)->m_ppen->SetLineJoin(plusplus::LineJoinMiter);
+      //      ((pen *) this)->m_pdraw2dpen->SetLineJoin(plusplus::LineJoinMiter);
       //      break;
       //   case ::draw2d::e_line_join_bevel:
-      //      ((pen *) this)->m_ppen->SetLineJoin(plusplus::LineJoinBevel);
+      //      ((pen *) this)->m_pdraw2dpen->SetLineJoin(plusplus::LineJoinBevel);
       //      break;
       //   case ::draw2d::e_line_join_round:
-      //      ((pen *) this)->m_ppen->SetLineJoin(plusplus::LineJoinRound);
+      //      ((pen *) this)->m_pdraw2dpen->SetLineJoin(plusplus::LineJoinRound);
       //      break;
       //   case ::draw2d::e_line_join_miter_clipped:
-      //      ((pen *) this)->m_ppen->SetLineJoin(plusplus::LineJoinMiterClipped);
+      //      ((pen *) this)->m_pdraw2dpen->SetLineJoin(plusplus::LineJoinMiterClipped);
       //      break;
       //   }
       //   switch(m_elinecapBeg)
       //   {
       //   case ::draw2d::e_line_cap_flat:
-      //      ((pen *) this)->m_ppen->SetStartCap(plusplus::LineCapFlat);
+      //      ((pen *) this)->m_pdraw2dpen->SetStartCap(plusplus::LineCapFlat);
       //      break;
       //   case ::draw2d::e_line_cap_round:
-      //      ((pen *) this)->m_ppen->SetStartCap(plusplus::LineCapRound);
+      //      ((pen *) this)->m_pdraw2dpen->SetStartCap(plusplus::LineCapRound);
       //      break;
       //   case ::draw2d::e_line_cap_square:
-      //      ((pen *) this)->m_ppen->SetStartCap(plusplus::LineCapSquare);
+      //      ((pen *) this)->m_pdraw2dpen->SetStartCap(plusplus::LineCapSquare);
       //      break;
       //   }
       //   switch(m_elinecapEnd)
       //   {
       //   case ::draw2d::e_line_cap_flat:
-      //      ((pen *) this)->m_ppen->SetEndCap(plusplus::LineCapFlat);
+      //      ((pen *) this)->m_pdraw2dpen->SetEndCap(plusplus::LineCapFlat);
       //      break;
       //   case ::draw2d::e_line_cap_round:
-      //      ((pen *) this)->m_ppen->SetEndCap(plusplus::LineCapRound);
+      //      ((pen *) this)->m_pdraw2dpen->SetEndCap(plusplus::LineCapRound);
       //      break;
       //   case ::draw2d::e_line_cap_square:
-      //      ((pen *) this)->m_ppen->SetEndCap(plusplus::LineCapSquare);
+      //      ((pen *) this)->m_pdraw2dpen->SetEndCap(plusplus::LineCapSquare);
       //      break;
       //   }
       //   if(m_epen == ::draw2d::e_pen_dot)
@@ -424,16 +424,16 @@ namespace draw2d_gpu
       //      // Create a Pen object.
 
       //      // Set the dash pattern for the custom dashed line.
-      //      ((pen *) this)->m_ppen->SetDashPattern(dashVals,2);
+      //      ((pen *) this)->m_pdraw2dpen->SetDashPattern(dashVals,2);
       //   }
       //}
 
-      //if(m_ppen != nullptr)
+      //if(m_pdraw2dpen != nullptr)
       //{
       //   ((pen *) this)->m_bUpdated = true;
       //}
 
-      //return (void *) (plusplus::Pen *) m_ppen;
+      //return (void *) (plusplus::Pen *) m_pdraw2dpen;
 
       return nullptr;
 

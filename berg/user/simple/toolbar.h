@@ -58,15 +58,15 @@ public:
    //virtual bool create_toolbar(::user::interaction * puiParent, ::u32 dwCtrlStyle = TBSTYLE_FLAT, ::u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, atom nID = "__IDW_TOOLBAR") override;
 
 
-   virtual ::collection::index WrapToolBar(::draw2d::graphics_pointer& pgraphics, ::collection::index nCount, ::collection::index nWidth);
-   virtual void SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::collection::index nCount, ::collection::index nLength, bool bVert = false);
+   virtual ::collection::index WrapToolBar(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index nCount, ::collection::index nWidth);
+   virtual void SizeToolBar(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index nCount, ::collection::index nLength, bool bVert = false);
 
-   virtual ::i32_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, ::u32 dwMode) override;
-   virtual ::i32_size CalcLayout(::draw2d::graphics_pointer& pgraphics, ::u32 dwMode, ::collection::index nLength = -1) override;
+   virtual ::i32_size CalcDynamicLayout(::draw2d::graphics_pointer& pdraw2dgraphics, ::i32 nLength, ::u32 dwMode) override;
+   virtual ::i32_size CalcLayout(::draw2d::graphics_pointer& pdraw2dgraphics, ::u32 dwMode, ::collection::index nLength = -1) override;
    //bool CalcSize(size & size, bool bHorz);
-   virtual ::i32_size CalcSize(::draw2d::graphics_pointer & pgraphics, ::collection::index nCount);
+   virtual ::i32_size CalcSize(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index nCount);
    virtual void OnBarStyleChange(::u32 dwOldStyle, ::u32 dwNewStyle) override;
-   virtual ::i32_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
+   virtual ::i32_size CalcFixedLayout(::draw2d::graphics_pointer& pdraw2dgraphics, bool bStretch, bool bHorz) override;
 
 
    void RemoveAllTools();
@@ -86,11 +86,11 @@ public:
    //void _001Hover(bool bRedraw = true);
 
 
-   void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+   void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
-   void _001DrawItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem);
-   void _001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem);
+   void _001DrawItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem);
+   void _001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem);
 
    /*
       bool LoadToolBar(const ::scoped_string & scopedstrResourceName);
@@ -115,10 +115,10 @@ public:
 
 
 
-   //void TransparentEraseNonClient(::draw2d::graphics_pointer & pgraphics);
+   //void TransparentEraseNonClient(::draw2d::graphics_pointer & pdraw2dgraphics);
    //void SetTransparentBackground(bool bSet);
-   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-   virtual ::i32_size CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics) override;
+   virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+   virtual ::i32_size CalcSimpleLayout(::draw2d::graphics_pointer& pdraw2dgraphics) override;
 
    void _001OnImageListAttrib();
    DECLARE_MESSAGE_HANDLER(on_message_create);

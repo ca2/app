@@ -81,7 +81,7 @@ namespace micro
       
       pgraphicscontext->set_brush(micro_theme()->m_pbrushText);
       
-      pgraphicscontext->set_font(micro_theme()->m_pfont);
+      pgraphicscontext->set_font(micro_theme()->m_pwritetextfont);
       
       pgraphicscontext->draw_text123(
          m_strText,
@@ -90,7 +90,7 @@ namespace micro
                                      e_align_center);
 //         micro_theme()->m_pbrushWindow,
 //         micro_theme()->m_pbrushText,
-//         micro_theme()->m_pfont);
+//         micro_theme()->m_pwritetextfont);
 
    }
 
@@ -130,7 +130,7 @@ namespace micro
    //
    //   auto pdevice = createø < ::nano::graphics::context >();
    //
-   //   auto size = pdevice->get_text_extents(m_strText, m_pinterchange->m_pfont);
+   //   auto size = pdevice->get_text_extents(m_strText, m_pinterchange->m_pwritetextfont);
    //
    //   m_rectangle.right = m_rectangle.left + size.cx;
    //

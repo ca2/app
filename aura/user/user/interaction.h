@@ -370,14 +370,14 @@ namespace user
       //   interaction* m_puserinteraction;
       //   ::draw2d::graphics* m_pgraphics;
 
-      //   draw_select(interaction* pinteraction, ::draw2d::graphics_pointer & pgraphics) :
+      //   draw_select(interaction* pinteraction, ::draw2d::graphics_pointer & pdraw2dgraphics) :
       //      m_puserinteraction(pinteraction),
-      //      m_pgraphics(pgraphics)
+      //      m_pgraphics(pdraw2dgraphics)
       //   {
 
-      //      m_puserinteraction->select(pgraphics);
+      //      m_puserinteraction->select(pdraw2dgraphics);
 
-      //      pgraphics->m_puserinteraction = pinteraction;
+      //      pdraw2dgraphics->m_puserinteraction = pinteraction;
 
       //   }
 
@@ -517,33 +517,33 @@ namespace user
       /// </summary>
       /// <param name="point"></param>
       /// <param name="elayout"></param>
-      /// <param name="pgraphics"></param>
+      /// <param name="pdraw2dgraphics"></param>
       /// <returns>true if position has changed</returns>
-      virtual bool set_position(const ::i32_point & point, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      virtual bool set_position(const ::i32_point & point, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pdraw2dgraphics = nullptr);
       /// <summary>
    /// 
    /// </summary>
    /// <param name="size"></param>
    /// <param name="elayout"></param>
-   /// <param name="pgraphics"></param>
+   /// <param name="pdraw2dgraphics"></param>
    /// <returns>true if size has changed</returns>
-      virtual bool set_size(const ::i32_size & size, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      virtual bool set_size(const ::i32_size & size, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pdraw2dgraphics = nullptr);
       virtual void _set_size(const ::i32_size & size, enum_layout elayout = e_layout_sketch);
-      virtual void set_width(::i32 width, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
-      virtual void set_height(::i32 height, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void set_width(::i32 width, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pdraw2dgraphics = nullptr);
+      virtual void set_height(::i32 height, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pdraw2dgraphics = nullptr);
       /// @brief shift left position changing size
       /// @param left left position
       /// @param elayout elayout to change
-      virtual void shift_left(::i32 left, enum_layout elayout = e_layout_sketch, ::draw2d::graphics* pgraphics = nullptr);
+      virtual void shift_left(::i32 left, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pdraw2dgraphics = nullptr);
       /// @brief  sets right position maintaining size
       /// @param right right position
       /// @param elayout elayout to change
-      virtual void set_right(::i32 right, enum_layout elayout = e_layout_sketch, ::draw2d::graphics* pgraphics = nullptr);
+      virtual void set_right(::i32 right, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pdraw2dgraphics = nullptr);
 
       /// @brief sets top position maintaining size
       /// @param top top position
       /// @param elayout elayout to change
-      virtual void set_top(::i32 top, enum_layout elayout = e_layout_sketch, ::draw2d::graphics* pgraphics = nullptr);
+      virtual void set_top(::i32 top, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pdraw2dgraphics = nullptr);
       
       virtual bool on_set_position(::i32_point & point, enum_layout elayout);
       virtual bool on_set_size(::i32_size & size, enum_layout elayout);
@@ -568,7 +568,7 @@ namespace user
          //else
          //{
 
-         //fFontSize = pgraphics->m_puserinteraction->get_window()->dpiy((::f32)m_dFontSize);
+         //fFontSize = pdraw2dgraphics->m_puserinteraction->get_window()->dpiy((::f32)m_dFontSize);
 
 
       //inline oswindow get_oswindow() const { return m_pacmewindowingwindow; }
@@ -637,9 +637,9 @@ namespace user
 
       virtual void queue_graphics_call(const ::function<void(::draw2d::graphics_pointer&) > & function);
 
-      void process_graphics_call_queue(::draw2d::graphics_pointer & pgraphics);
+      void process_graphics_call_queue(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      //void process_call(::draw2d::graphics_pointer & pgraphics, const call & call);
+      //void process_call(::draw2d::graphics_pointer & pdraw2dgraphics, const call & call);
 
 
 
@@ -778,7 +778,7 @@ namespace user
 
       virtual ::user::style* get_style();
 
-      virtual ::user::style * get_style(::draw2d::graphics_pointer& pgraphics);
+      virtual ::user::style * get_style(::draw2d::graphics_pointer& pdraw2dgraphics);
 
       inline ::user::style * get_style(::user::style * pstyle)
       {
@@ -893,7 +893,7 @@ namespace user
       virtual void layout_appearance();
       virtual void layout_children_zorder();
       virtual void layout_reposition();
-      virtual bool layout_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual bool layout_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual void display_visible_trying_to_restore_last_visible(const ::user::activation & useractivation);
@@ -918,7 +918,7 @@ namespace user
       virtual void design_window_dock(::e_display edisplay) override;
 
 
-      virtual ::i32_size preferred_size(::draw2d::graphics_pointer & pgraphics);
+      virtual ::i32_size preferred_size(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual bool is_display_like_maximized();
@@ -954,8 +954,8 @@ namespace user
       virtual void set_visibility_change();
       virtual void set_recalculate_clip_rectangle();
       //void set_need_layout() { m_bNeedLayout = true; }
-      void set_need_redraw(const ::i32_rectangle_array_base& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
-      virtual bool needs_to_draw(::draw2d::graphics * pgraphics, const ::i32_rectangle& rectangleNeedsToDraw = {});
+      void set_need_redraw(const ::i32_rectangle_array_base& rectangleNeedRedraw = {}, ::draw2d::graphics * pdraw2dgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
+      virtual bool needs_to_draw(::draw2d::graphics * pdraw2dgraphics, const ::i32_rectangle& rectangleNeedsToDraw = {});
       virtual void set_need_load_form_data() override;
       virtual void set_need_save_form_data() override;
       //virtual bool commit_sketch();
@@ -997,7 +997,7 @@ namespace user
       inline void order_bottom() { order(e_zorder_bottom); }
 
 
-      //virtual void sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
+      //virtual void sketch_to_design(::draw2d::graphics_pointer & pdraw2dgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void sketch_to_lading();
       virtual void lading_to_layout(bool & bUpdateBuffer, bool & bUpdateWindow);
       virtual void layout_to_design();
@@ -1099,12 +1099,12 @@ namespace user
 
 
 
-      virtual void defer_graphics(::draw2d::graphics_pointer &pgraphics);
+      virtual void defer_graphics(::draw2d::graphics_pointer &pdraw2dgraphics);
 
       virtual ::draw2d::graphics_pointer create_memory_graphics();
 
 
-      virtual ::f64 _001GetDefaultFontHeight(::draw2d::graphics_pointer & pgraphics);
+      virtual ::f64 _001GetDefaultFontHeight(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       //virtual void set_cursor(enum_cursor ecursor) override;
 
@@ -1404,37 +1404,37 @@ namespace user
       virtual bool scroll_bar_get_client_rect(::i32_rectangle & rectangle);
 
 
-      virtual ::f64_size get_fitting_size(::draw2d::graphics_pointer & pgraphics);
-      virtual ::f64_size get_adjusted_fitting_size(::draw2d::graphics_pointer & pgraphics);
-      virtual ::f64_size get_preferred_size(::draw2d::graphics_pointer & pgraphics);
-      virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics);
+      virtual ::f64_size get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual ::f64_size get_adjusted_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual ::f64_size get_preferred_size(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void resize_to_fit(::draw2d::graphics_pointer& pdraw2dgraphics);
 
 
-      virtual void _extend_on_parent(::draw2d::graphics_pointer & pgraphics);
-      virtual void _extend_on_parent_hosting_area(::draw2d::graphics_pointer & pgraphics);
+      virtual void _extend_on_parent(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _extend_on_parent_hosting_area(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual void top_down_prefix();
-      virtual bool should_perform_layout(::draw2d::graphics_pointer & pgraphics);
-      virtual bool need_on_perform_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual bool should_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual bool need_on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
       /// returns true if parent may need to perform layout
       /// the parent may need to perform layout if
       ///    - during perform_layout the position and/or size of
       ///      the user::interaction has changed.
-      virtual bool perform_layout(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual bool perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
       /// returns true if parent may need to perform layout
       /// the parent may need to perform layout if
       ///    - during on_perform_layout the position and/or size of
       ///      the user::interaction has changed.
-      virtual bool on_perform_layout(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_items_layout(::draw2d::graphics_pointer & pgraphics, ::collection::index iIdContainer, ::item_array * pitema);
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual bool on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void on_items_layout(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iIdContainer, ::item_array * pitema);
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual void on_reposition() override;
       //virtual void on_show_window() override;
       virtual void _on_show_window();
       
-      virtual void on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_drag_scroll_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       //virtual void _window_show_change_visibility_locked();
       //virtual void _window_show_change_visibility_unlocked();
@@ -1618,34 +1618,34 @@ namespace user
 
       virtual ::user::drawable * get_drawable();
 
-      //virtual void process_queue(::draw2d::graphics_pointer & pgraphics);
+      //virtual void process_queue(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      virtual void do_graphics(::draw2d::graphics_pointer & pdraw2dgraphics);
       
-      //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
-      //virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void do_graphics(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void on_graphics(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
-      //virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
-      //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void defer_do_graphics(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void do_graphics(::draw2d::graphics_pointer & pdraw2dgraphics);
       //virtual void do_graphics();
-      virtual void defer_do_layout(::draw2d::graphics_pointer & pgraphics);
-      void _000TopCallOnLayout(::draw2d::graphics_pointer& pgraphics);
-      void _000TopCallOnDraw(::draw2d::graphics_pointer & pgraphics);
-      void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) ;
-      virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) ;
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics);
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _008CallOnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _008OnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnTopNcClip(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnNcClip(::draw2d::graphics_pointer& pgraphics);
-      virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics);
-      virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics) ;
+      virtual void defer_do_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
+      void _000TopCallOnLayout(::draw2d::graphics_pointer& pdraw2dgraphics);
+      void _000TopCallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      void _000CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics) ;
+      virtual void _001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics) ;
+      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001OnNcPostDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _008CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _008OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001OnTopNcClip(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001OnNcClip(::draw2d::graphics_pointer& pdraw2dgraphics);
+      virtual void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void draw_control_background(::draw2d::graphics_pointer & pdraw2dgraphics) ;
 
 
 
@@ -1771,17 +1771,17 @@ namespace user
 
       //virtual ::draw2d::graphics_pointer get_internal_draw2d_graphics();
 
-      //virtual void _001PrintBuffer(::draw2d::graphics_pointer& pgraphics);
-      //virtual void _001Print(::draw2d::graphics_pointer& pgraphics);
-      //virtual void _001DrawThis(::draw2d::graphics_pointer& pgraphics);
-      //virtual void _001DrawChildren(::draw2d::graphics_pointer& pgraphics);
-      //virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics);
-      //virtual void _008OnDraw(::draw2d::graphics_pointer& pgraphics);
-      //virtual void draw_control_background(::draw2d::graphics_pointer& pgraphics);
-      //virtual void _000OnDraw(::draw2d::graphics_pointer& pgraphics) override;
+      //virtual void _001PrintBuffer(::draw2d::graphics_pointer& pdraw2dgraphics);
+      //virtual void _001Print(::draw2d::graphics_pointer& pdraw2dgraphics);
+      //virtual void _001DrawThis(::draw2d::graphics_pointer& pdraw2dgraphics);
+      //virtual void _001DrawChildren(::draw2d::graphics_pointer& pdraw2dgraphics);
+      //virtual void _001OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics);
+      //virtual void _008OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics);
+      //virtual void draw_control_background(::draw2d::graphics_pointer& pdraw2dgraphics);
+      //virtual void _000OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics) override;
 
-      void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics) override;
-      void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics) override;
+      void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pdraw2dgraphics) override;
+      void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pdraw2dgraphics) override;
 
       
       //virtual ::oswindow _oswindow();
@@ -2006,7 +2006,7 @@ namespace user
       virtual void show_control_bar(::user::control_bar * pcontrolbar);
       virtual void hide_control_bar(::user::control_bar * pcontrolbar);
 
-      void RepositionBars(::draw2d::graphics_pointer & pgraphics, ::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::user::interaction * puserinteractionLeftOver = nullptr, ::u32 nFlag = reposDefault, ::i32_rectangle* prectParam = nullptr, const ::i32_rectangle& rectangleX = {
+      void RepositionBars(::draw2d::graphics_pointer & pdraw2dgraphics, ::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::user::interaction * puserinteractionLeftOver = nullptr, ::u32 nFlag = reposDefault, ::i32_rectangle* prectParam = nullptr, const ::i32_rectangle& rectangleX = {
          }, bool bStretch = true) override;
 
       virtual ::user::interaction* ChildWindowFromPoint(const ::i32_point& point) override;
@@ -2034,9 +2034,9 @@ namespace user
 
       //virtual void GuieProc(::message::message* pmessage) override;
 
-      //virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      //virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
 
@@ -2052,7 +2052,7 @@ namespace user
 
 
       virtual bool window_is_notify_icon_enabled();
-      virtual void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void set_context_org(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       virtual void viewport_screen_to_client(::i32_sequence2 & sequence) override;
@@ -2163,9 +2163,9 @@ namespace user
       //virtual void move_to(::i32 x, ::i32 y);
       //virtual void set_size(::i32 cx, ::i32 cy);
       //virtual void set_dim(const ::i32_point& point, const ::i32_size& size);
-      virtual void place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics);
-      virtual void place(const ::i32_rectangle& rectangle, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
-      virtual void place(::i32 x, ::i32 y, ::i32 w, ::i32 h, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pdraw2dgraphics);
+      virtual void place(const ::i32_rectangle& rectangle, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pdraw2dgraphics = nullptr);
+      virtual void place(::i32 x, ::i32 y, ::i32 w, ::i32 h, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pdraw2dgraphics = nullptr);
       //inline void set_placement(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, enum_layout elayout = e_layout_sketch)
       //{
       //   
@@ -2180,11 +2180,11 @@ namespace user
       virtual void activation(const ::user::activation & useractivation);
 
 
-      virtual void display_child(const ::i32_rectangle & rectangle, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
-      inline void display_child(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr)
+      virtual void display_child(const ::i32_rectangle & rectangle, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pdraw2dgraphics = nullptr);
+      inline void display_child(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pdraw2dgraphics = nullptr)
       {
 
-         display_child(i32_rectangle_dimension(x, y, cx, cy), elayout, pgraphics);
+         display_child(i32_rectangle_dimension(x, y, cx, cy), elayout, pdraw2dgraphics);
 
       }
 
@@ -2232,10 +2232,10 @@ namespace user
 
 
 
-      //virtual void set_context_offset_x(::draw2d::graphics_pointer & pgraphics, ::i32 x);
-      //virtual void set_context_offset_y(::draw2d::graphics_pointer & pgraphics, ::i32 y);
-      //virtual void set_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y);
-      //virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics);
+      //virtual void set_context_offset_x(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 x);
+      //virtual void set_context_offset_y(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 y);
+      //virtual void set_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 x, ::i32 y);
+      //virtual void on_change_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual void on_context_offset(::draw2d::target_scope & targetscope);
       virtual ::f64_size get_total_size(::user::enum_layout elayout = ::user::e_layout_design);
       virtual ::f64_size get_page_size(::user::enum_layout elayout = ::user::e_layout_design);
@@ -2256,8 +2256,8 @@ namespace user
       virtual void offset_context_offset_y(::f64 cy, ::user::enum_layout = ::user::e_layout_sketch);
       virtual void constrain_context_offset(::f64_point & point, ::user::enum_layout elayout = ::user::e_layout_sketch);
       virtual void on_change_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch);
-      virtual void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics);
-      //virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_context_offset_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void on_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual ::f64_point get_parent_accumulated_scroll(enum_layout elayout = e_layout_design);
       virtual ::f64_point get_accumulated_scroll(enum_layout elayout = e_layout_design);
       virtual ::f64_point get_scroll(enum_layout elayout = e_layout_design);
@@ -2271,7 +2271,7 @@ namespace user
 
       virtual void synthesize_scroll_state_x(scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch);
       virtual void synthesize_scroll_state_y(scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch);
-      //virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics);
+      //virtual void layout_scroll_bar(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual void layout_scroll_bar(::user::enum_layout elayout = ::user::e_layout_sketch);
 
       virtual ::user::scroll_bar * get_scroll_bar_x();
@@ -2467,7 +2467,7 @@ namespace user
       virtual ::f64_size get_size(enum_layout elayout = e_layout_design);
       virtual ::f64_size get_client_size(enum_layout elayout = e_layout_design);
 
-      //virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics);
+      //virtual void resize_to_fit(::draw2d::graphics_pointer& pdraw2dgraphics);
 
       virtual void wait_redraw();
 
@@ -2498,8 +2498,8 @@ namespace user
       virtual void edit_on_kill_focus(::user::interaction* pinteraction) override;
 
 
-      virtual void simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics);
-      virtual void simple_ui_draw_border(::draw2d::graphics_pointer & pgraphics);
+      virtual void simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void simple_ui_draw_border(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual bool on_action(const ::scoped_string & scopedstrId);
@@ -2535,7 +2535,7 @@ namespace user
       virtual ::item_pointer update_hover(::message::mouse * pmouse, e_zorder ezorder);
       virtual ::item_pointer update_hover_according_to_last_hover_update(e_zorder ezorder);
       //virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
-      //virtual void defer_update_hover(::draw2d::graphics_pointer & pgraphics);
+      //virtual void defer_update_hover(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual void on_update_hover(::item * pitem);
 
       virtual bool is_mouse_hover() const;
@@ -2550,11 +2550,11 @@ namespace user
 
 //      virtual ::item_pointer add_user_item(::item * pitem);
 
-      virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics, ::collection::index iIdContainer, ::item_array * pitema);
+      virtual void _001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iIdContainer, ::item_array * pitema);
 
-      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item & item, const ::user::e_state & estate);
+      virtual void _001DrawItem(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::item & item, const ::user::e_state & estate);
 
 
       // control member function BEGIN
@@ -2569,13 +2569,13 @@ namespace user
       //virtual elayout get_state() override;
       //bool _003IsCustomMessage();
       //::user::interaction_base* _003GetCustomMessageWnd();
-      //virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override;
+      //virtual void _001OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics) override;
       virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
       //virtual bool has_function(enum_control_function econtrolfunction);
       //virtual enum_control_type get_control_type();
-      //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
+      //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pdraw2dgraphics, ::aura::draw_context* pitem);
       //virtual bool _003CallCustomWindowProc(::pointer<::user::interaction>puserinteraction, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, lresult& lresult);
-      //virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
+      //virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pdraw2dgraphics, ::aura::draw_context* pitem);
       //virtual void _003CustomWindowProc(::message::message* pmessage);
       //virtual form_list * get_form_list();
       //virtual bool _001IsPointInside(::i32_point point) override;
@@ -2631,11 +2631,11 @@ namespace user
 
 
       //using style::select_text_color;
-      //virtual bool select_text_color(::draw2d::graphics_pointer & pgraphics, e_color ecolor = color_text);
+      //virtual bool select_text_color(::draw2d::graphics_pointer & pdraw2dgraphics, e_color ecolor = color_text);
       //using style::select_solid_brush;
-      //virtual bool select_solid_brush(::draw2d::graphics_pointer & pgraphics, e_color ecolor);
+      //virtual bool select_solid_brush(::draw2d::graphics_pointer & pdraw2dgraphics, e_color ecolor);
       //using style::set;
-      //virtual bool set(::draw2d::graphics_pointer & pgraphics, e_font efont = font_default);
+      //virtual bool set(::draw2d::graphics_pointer & pdraw2dgraphics, e_font efont = font_default);
 
 
       //virtual bool select_text_color(e_color ecolor = color_text);

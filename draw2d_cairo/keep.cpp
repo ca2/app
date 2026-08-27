@@ -4,12 +4,12 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 
-cairo_keep::cairo_keep(cairo_t * pgraphics, bool bSave)
+cairo_keep::cairo_keep(cairo_t * pdraw2dgraphics, bool bSave)
 {
 
    m_bSave = false;
 
-   if (pgraphics == nullptr)
+   if (pdraw2dgraphics == nullptr)
    {
 
       m_pdc = nullptr;
@@ -18,7 +18,7 @@ cairo_keep::cairo_keep(cairo_t * pgraphics, bool bSave)
 
    }
 
-   m_pdc = pgraphics;
+   m_pdc = pdraw2dgraphics;
 
    if (bSave)
    {

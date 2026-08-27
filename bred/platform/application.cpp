@@ -653,9 +653,9 @@ namespace bred
 
          auto pstillTitle = create_label<::user::still>(pparent, "GPU API");
 
-         defer_constructø(pstillTitle->m_pfont);
+         defer_constructø(pstillTitle->m_pwritetextfont);
 
-         pstillTitle->m_pfont->create_font(e_font_sans_ui, 24_pt,::e_font_weight_bold);
+         pstillTitle->m_pwritetextfont->create_font(e_font_sans_ui, 24_pt,::e_font_weight_bold);
 
          auto playoutLine = create_line_layout(pparent, e_orientation_horizontal);
 
@@ -704,9 +704,9 @@ namespace bred
 
          auto pstillTitle = create_label<::user::still>(pparent, "draw2d API");
 
-         defer_constructø(pstillTitle->m_pfont);
+         defer_constructø(pstillTitle->m_pwritetextfont);
 
-         pstillTitle->m_pfont->create_font(e_font_sans_ui, 24_pt, ::e_font_weight_bold);
+         pstillTitle->m_pwritetextfont->create_font(e_font_sans_ui, 24_pt, ::e_font_weight_bold);
 
          auto playoutLine = create_line_layout(pparent, e_orientation_horizontal);
 
@@ -774,9 +774,9 @@ namespace bred
 
          auto pstillTitle = create_label<::user::still>(pparent, "graphics3d Output");
 
-         defer_constructø(pstillTitle->m_pfont);
+         defer_constructø(pstillTitle->m_pwritetextfont);
 
-         pstillTitle->m_pfont->create_font(e_font_sans_ui, 24_pt, ::e_font_weight_bold);
+         pstillTitle->m_pwritetextfont->create_font(e_font_sans_ui, 24_pt, ::e_font_weight_bold);
 
          auto playoutLine = create_line_layout(pparent, e_orientation_horizontal);
 

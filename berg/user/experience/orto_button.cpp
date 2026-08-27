@@ -39,7 +39,7 @@ namespace experience
    }
 
 
-   void orto_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void orto_button::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::i32_rectangle rectangleX;
@@ -58,7 +58,7 @@ namespace experience
       if (!is_window_enabled())
       {
 
-         pgraphics->fill_rectangle(rectangleX, argb(255, 90, 90, 80));
+         pdraw2dgraphics->fill_rectangle(rectangleX, argb(255, 90, 90, 80));
 
          crText = argb(255, 49, 50, 23);
 
@@ -66,7 +66,7 @@ namespace experience
       else if (::is_set(m_pitemHover))
       {
 
-         pgraphics->fill_rectangle(rectangleX, argb(190, 49, 50, 23));
+         pdraw2dgraphics->fill_rectangle(rectangleX, argb(190, 49, 50, 23));
 
          crText = argb(255, 255, 255, 255);
 
@@ -74,7 +74,7 @@ namespace experience
       else if (has_keyboard_focus())
       {
 
-         pgraphics->fill_rectangle(rectangleX, argb(255, 255, 250, 184));
+         pdraw2dgraphics->fill_rectangle(rectangleX, argb(255, 255, 250, 184));
 
          crText = argb(255, 255, 255, 255);
 
@@ -93,31 +93,31 @@ namespace experience
 
          //get_window_text(str);
 
-         pgraphics->set_font(this, ::e_element_none);
+         pdraw2dgraphics->set_font(this, ::e_element_none);
 
-         pgraphics->set_text_color(crText);
+         pdraw2dgraphics->set_text_color(crText);
 
-         pgraphics->draw_text(strWindowText, rectangleX, e_align_center, e_draw_text_single_line);
+         pdraw2dgraphics->draw_text(strWindowText, rectangleX, e_align_center, e_draw_text_single_line);
 
       }
       else
       {
 
-         auto pbrush = createø < ::draw2d::brush >();
+         auto pdraw2dbrush = createø < ::draw2d::brush >();
 
-         pbrush->create_solid(crText);
+         pdraw2dbrush->create_solid(crText);
 
-         pgraphics->set(pbrush);
+         pdraw2dgraphics->set(pdraw2dbrush);
 
-         auto ppen = createø < ::draw2d::pen > ();
+         auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-         ppen->m_dWidth = 1.0;
+         pdraw2dpen->m_dWidth = 1.0;
 
-         ppen->m_color = crText;
+         pdraw2dpen->m_color = crText;
 
-         ppen->set_modified();
+         pdraw2dpen->set_modified();
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
          ::i32_rectangle rectangleIcon(rectangleX);
 
@@ -127,7 +127,7 @@ namespace experience
          
          m_pstockicon->m_estockiconNew = m_estockicon;
 
-         pgraphics->draw(rectangleIcon, m_pstockicon);
+         pdraw2dgraphics->draw(rectangleIcon, m_pstockicon);
 
       }
 
@@ -183,7 +183,7 @@ namespace experience
    //   return 0;
    //}
 
-   void orto_button::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void orto_button::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       UpdateWndRgn();

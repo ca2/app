@@ -25,7 +25,7 @@
 //
 //      union
 //      {
-//         ::draw2d::bitmap *            m_pbitmap;
+//         ::draw2d::bitmap *            m_pdraw2dbitmap;
 //         ::image::icon *              m_picon;
 //         ::image::cursor *            m_pcursor;
 //      };
@@ -55,7 +55,7 @@
 ////#endif
 //      void static_set_icon(::image::icon * picon);
 //      ::image::icon * static_get_icon();
-//      void static_set_bitmap(::draw2d::bitmap * pbitmap);
+//      void static_set_bitmap(::draw2d::bitmap * pdraw2dbitmap);
 //      ::draw2d::bitmap * static_get_bitmap();
 //      void static_set_cursor(::image::cursor * pcursor);
 //      ::image::cursor * static_get_cursor();
@@ -64,7 +64,7 @@
 //      enum_type get_type();
 //
 //
-//      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+//      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 //
 //
 ////      virtual bool OnChildNotify(::user::message * pusermessage) override;

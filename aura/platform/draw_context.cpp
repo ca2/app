@@ -40,14 +40,14 @@ namespace aura
    }
 
 
-   void draw_context::_001OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction)
+   void draw_context::_001OnCustomDraw(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::interaction * puserinteraction)
    {
 
-      pgraphics->chain(this);
+      pdraw2dgraphics->chain(this);
 
-      puserinteraction->_000OnDraw(pgraphics);
+      puserinteraction->_000OnDraw(pdraw2dgraphics);
 
-      pgraphics->unchain(this);
+      pdraw2dgraphics->unchain(this);
 
    }
 

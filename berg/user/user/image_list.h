@@ -66,14 +66,14 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual ::image::image *get_current_image();
 
       virtual string get_current_image_link();
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
@@ -126,7 +126,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
 
-      //virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
    };

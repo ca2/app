@@ -71,11 +71,11 @@ namespace draw2d_cairo
 } // namespace draw2d_cairo
 
 
-#define __graphics(pgraphics) ((::draw2d_cairo::graphics *) pgraphics->m_pthis)
-#define __pen(ppen) ((::draw2d_cairo::pen *) ppen->m_pthis)
-#define __brush(pbrush) ((::draw2d_cairo::brush *) pbrush->m_pthis)
-#define __font(pfont) ((::draw2d_cairo::font *) pfont->m_pthis)
-#define __graphics_path(ppath) ((::draw2d_cairo::path *) ppath->m_pthis)
+#define __graphics(pdraw2dgraphics) ((::draw2d_cairo::graphics *) pdraw2dgraphics->m_pthis)
+#define __pen(pdraw2dpen) ((::draw2d_cairo::pen *) pdraw2dpen->m_pthis)
+#define __brush(pdraw2dbrush) ((::draw2d_cairo::brush *) pdraw2dbrush->m_pthis)
+#define __font(pwritetextfont) ((::draw2d_cairo::font *) pwritetextfont->m_pthis)
+#define __graphics_path(pdraw2dpath) ((::draw2d_cairo::path *) pdraw2dpath->m_pthis)
 
 FT_Library __ftlibrary();
 
@@ -125,11 +125,11 @@ namespace draw2d_cairo
 } // namespace draw2d_cairo
 
 
-#define __graphics(pgraphics) ((::draw2d_cairo::graphics *) pgraphics->m_pthis)
-#define __pen(ppen) ((::draw2d_cairo::pen *) ppen->m_pthis)
-#define __brush(pbrush) ((::draw2d_cairo::brush *) pbrush->m_pthis)
-#define __font(pfont) ((::draw2d_cairo::font *) pfont->m_pthis)
-#define __graphics_path(ppath) ((::draw2d_cairo::path *) ppath->m_pthis)
+#define __graphics(pdraw2dgraphics) ((::draw2d_cairo::graphics *) pdraw2dgraphics->m_pthis)
+#define __pen(pdraw2dpen) ((::draw2d_cairo::pen *) pdraw2dpen->m_pthis)
+#define __brush(pdraw2dbrush) ((::draw2d_cairo::brush *) pdraw2dbrush->m_pthis)
+#define __font(pwritetextfont) ((::draw2d_cairo::font *) pwritetextfont->m_pthis)
+#define __graphics_path(pdraw2dpath) ((::draw2d_cairo::path *) pdraw2dpath->m_pthis)
 
 FT_Library __ftlibrary();
 

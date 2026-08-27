@@ -254,7 +254,7 @@ namespace draw2d
    //}
 
 
-   //bool region::combine(const ::draw2d::region * prgn1, const ::draw2d::region * prgn2, enum_combine ecombine, ::draw2d::graphics * pgraphics)
+   //bool region::combine(const ::draw2d::region * prgn1, const ::draw2d::region * prgn2, enum_combine ecombine, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   ::pointer<::draw2d::region>pregion1 = (::draw2d::region *) prgn1;
@@ -346,7 +346,7 @@ namespace draw2d
    }
 
 
-   bool region::get_bounding_box(::i32_rectangle & rectangle, ::draw2d::graphics * pgraphics)
+   bool region::get_bounding_box(::i32_rectangle & rectangle, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       throw ::interface_only();
@@ -356,7 +356,7 @@ namespace draw2d
    }
 
 
-   bool region::contains(const ::f64_point & point, ::draw2d::graphics * pgraphics)
+   bool region::contains(const ::f64_point & point, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       return internal_contains(point);
@@ -364,7 +364,7 @@ namespace draw2d
    }
 
 
-   bool region::translate(const ::i32_point & point, ::draw2d::graphics * pgraphics)
+   bool region::translate(const ::i32_point & point, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       set_modified();
@@ -381,7 +381,7 @@ namespace draw2d
    }
 
 
-   bool region::contains(const ::i32_point & point, ::draw2d::graphics * pgraphics)
+   bool region::contains(const ::i32_point & point, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       return contains(::f64_point(point));
@@ -389,7 +389,7 @@ namespace draw2d
    }
 
 
-   void region::expand_bounding_box(::i32_rectangle & rectangle, ::draw2d::graphics * pgraphics)
+   void region::expand_bounding_box(::i32_rectangle & rectangle, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       ::f64_rectangle rectangleMaxBounding;
@@ -401,7 +401,7 @@ namespace draw2d
    }
 
 
-   //void region::expand_bounding_box(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::expand_bounding_box(::i32_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   ::f64_rectangle rectangle;
@@ -414,7 +414,7 @@ namespace draw2d
    //}
 
 
-   //void region::max_bounding_box_oval(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_oval(::i32_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   ::f64_rectangle rectangle;
@@ -426,7 +426,7 @@ namespace draw2d
    //}
 
 
-   //void region::max_bounding_box_polygon(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_polygon(::i32_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   ::f64_rectangle rectangle;
@@ -438,7 +438,7 @@ namespace draw2d
    //}
 
 
-   //void region::max_bounding_box_poly_polygon(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_poly_polygon(::i32_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   ::f64_rectangle rectangle;
@@ -450,7 +450,7 @@ namespace draw2d
    //}
 
 
-   //void region::max_bounding_box_combine(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_combine(::i32_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   ::f64_rectangle rectangle;
@@ -462,7 +462,7 @@ namespace draw2d
    //}
 
 
-   void region::expand_bounding_box(::f64_rectangle & rectangle, ::draw2d::graphics * pgraphics)
+   void region::expand_bounding_box(::f64_rectangle & rectangle, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       if (m_pitem)
@@ -475,26 +475,26 @@ namespace draw2d
    }
 
 
-   //void region::max_bounding_box_rect(::f64_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_rect(::f64_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   if (m_pitem)
    //   {
 
-   //      m_pitem->max_bounding_box_rect(prectangle, pgraphics);
+   //      m_pitem->max_bounding_box_rect(prectangle, pdraw2dgraphics);
 
    //   }
 
    //}
 
 
-   //void region::max_bounding_box_oval(::f64_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_oval(::f64_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   if (m_pitem)
    //   {
 
-   //      m_pitem->max_bounding_box_rect(prectangle, pgraphics);
+   //      m_pitem->max_bounding_box_rect(prectangle, pdraw2dgraphics);
 
    //   }
 
@@ -502,7 +502,7 @@ namespace draw2d
    //}
 
 
-   //void region::max_bounding_box_polygon(::f64_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_polygon(::f64_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   if(m_nCount <= 0)
@@ -528,7 +528,7 @@ namespace draw2d
    //}
 
 
-   //void region::max_bounding_box_poly_polygon(::f64_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_poly_polygon(::f64_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   ::i32 n = 0;
@@ -556,7 +556,7 @@ namespace draw2d
    //}
 
 
-   //void region::max_bounding_box_combine(::f64_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_combine(::f64_rectangle * prectangle, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
    //   m_pregion1->expand_bounding_box(prectangle);

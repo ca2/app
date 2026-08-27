@@ -253,10 +253,10 @@ namespace user
    }
 
 
-   void scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void scroll_bar::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::interaction::_001OnClip(pgraphics);
+      ::user::interaction::_001OnClip(pdraw2dgraphics);
 
       //try
       //{
@@ -302,7 +302,7 @@ namespace user
 
       //   }
 
-      //   pgraphics->intersect_clip(m_rectangleClip);
+      //   pdraw2dgraphics->intersect_clip(m_rectangleClip);
 
       //}
       //catch (...)

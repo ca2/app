@@ -42,6 +42,8 @@ namespace gpu
 
       m_pgpucontextCompositor2 = pgpucontextCompositor;
 
+      m_pgpucontextCompositor2->m_pgpucompositor = this;
+
       on_set_gpu_context();
 
    }

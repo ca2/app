@@ -98,10 +98,11 @@ namespace gpu
 
             auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontextSwapChain);
 
-            pcommandbufferSwapChain->m_iCommandBufferFrameIndex2 = pgpuwindowattachment->m_iCurrentFrame3;
-
             // pcommandbuffer->begin_command_buffer(false);
             auto iSwapChainFrameIndex = swap_chain_frame_index();
+
+            pcommandbufferSwapChain->m_iCommandBufferFrameIndex2 =
+               pgpuwindowattachment->get_frame_index3();
 
             // if (defer_constructø(pgpucontextSwapChain->m_gpusemaphoreaPresentReady.atø(iSwapChainFrameIndex)))
             //{

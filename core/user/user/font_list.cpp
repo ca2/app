@@ -309,31 +309,31 @@ namespace user
 
 
 
-   void font_list::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   void font_list::_001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::list_box::_001OnNcClip(pgraphics);
+      ::user::list_box::_001OnNcClip(pdraw2dgraphics);
 
    }
 
 
-   void font_list::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void font_list::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::interaction::_001OnNcDraw(pgraphics);
+      ::user::interaction::_001OnNcDraw(pdraw2dgraphics);
 
    }
 
 
-   void font_list::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void font_list::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::list_box::_001OnClip(pgraphics);
+      ::user::list_box::_001OnClip(pdraw2dgraphics);
 
    }
 
 
-   void font_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void font_list::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_pfontlist == nullptr)
@@ -352,14 +352,14 @@ namespace user
 
       }
 
-      //m_pgraphics = pgraphics;
+      //m_pgraphics = pdraw2dgraphics;
 
       if (m_pfontlist->m_strText != m_pfontlist->m_strTextLayout)
       {
 
          m_pfontlist->m_strTextLayout = m_pfontlist->m_strText;
 
-         on_layout(pgraphics);
+         on_layout(pdraw2dgraphics);
 
       }
 
@@ -368,7 +368,7 @@ namespace user
       if (m_pfontlist->get_font_list_type() != ::write_text::e_font_list_wide)
       {
 
-         auto pstyle = get_style(pgraphics);
+         auto pstyle = get_style(pdraw2dgraphics);
 
          ::color::color colorBackground = get_color(pstyle, ::e_element_background);
 
@@ -376,7 +376,7 @@ namespace user
 
          //rectangleBackground += m_pointScroll;
 
-         pgraphics->fill_rectangle(rectangleBackground, colorBackground);
+         pdraw2dgraphics->fill_rectangle(rectangleBackground, colorBackground);
 
       }
 
@@ -386,16 +386,16 @@ namespace user
 
       //auto rectangle = client_rectangle();
 
-      m_pfontlist->_001OnDraw(pgraphics, this);
+      m_pfontlist->_001OnDraw(pdraw2dgraphics, this);
 
-      pgraphics->fill_solid_rectangle({ 100.0, 100.0, 200.0, 200.0 }, color::yellow);
+      pdraw2dgraphics->fill_solid_rectangle({ 100.0, 100.0, 200.0, 200.0 }, color::yellow);
 
       //m_pfontlist->m_puserstyle = pstyle;
 
    }
 
 
-   void font_list::query_full_size(::draw2d::graphics_pointer & pgraphics, ::i32_size * psize)
+   void font_list::query_full_size(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32_size * psize)
    {
 
       *psize = m_pfontlist->m_size;
@@ -445,7 +445,7 @@ namespace user
    }
 
 
-   void font_list::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void font_list::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleFontList = this->rectangle();
@@ -466,7 +466,7 @@ namespace user
 
       _synchronous_lock synchronouslock(m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       ::i32 iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_thickness);
 
@@ -501,7 +501,7 @@ namespace user
 
       //on_change_sketch_scroll_state();
 
-      ::user::scroll_base::on_layout(pgraphics);
+      ::user::scroll_base::on_layout(pdraw2dgraphics);
 
    }
 

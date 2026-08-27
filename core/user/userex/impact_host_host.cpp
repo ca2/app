@@ -208,15 +208,15 @@ namespace userex
    }
 
 
-   void impact_host_host::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact_host_host::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::impact::_001OnDraw(pgraphics);
+      ::user::impact::_001OnDraw(pdraw2dgraphics);
 
    }
 
 
-   void impact_host_host::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact_host_host::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       update_impact_host_placement();

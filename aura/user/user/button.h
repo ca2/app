@@ -62,7 +62,7 @@ namespace user
       //e_rect                            m_erectMargin;
       //e_rect                            m_erectBorder;
       //e_rect                            m_erectPadding;
-      ::write_text::font_pointer m_pfont;
+      ::write_text::font_pointer m_pwritetextfont;
       ::e_align                           m_ealignText;
       ::e_draw_text                       m_edrawtext;
       enum_style                          m_estyle;
@@ -71,7 +71,7 @@ namespace user
       enum_stock_icon                     m_estockicon;
       ::pointer < ::draw2d::stock_icon >  m_pstockicon;
       ::i32_rectangle                     m_rectangleCheckBox;
-      ::pointer < bitmap >                m_pbitmap;
+      ::pointer < bitmap >                m_pdraw2dbitmap;
       ::pointer < list_base >                  m_plist;
       ::i32_size                          m_sizeFixed;
 
@@ -92,25 +92,25 @@ namespace user
       ::write_text::font_pointer get_font(style* pstyle, const ::e_element & eelement = e_element_none, const ::user::e_state & estate = e_state_none) override;
       enum_translucency get_translucency(style * pstyle) override;
 
-      //virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
+      //virtual void resize_to_fit(::draw2d::graphics_pointer& pdraw2dgraphics) override;
 
       void install_message_routing(::channel * pchannel) override;
       
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      virtual void _001OnButtonDrawPush(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnButtonDrawList(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnButtonDrawBitmap(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnButtonDrawImageAndText(::draw2d::graphics_pointer & pgraphics, bool bDecoration);
-      virtual void _001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, ::i32_rectangle & rectText);
+      virtual void _001OnButtonDrawPush(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001OnButtonDrawList(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001OnButtonDrawBitmap(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001OnButtonDrawImageAndText(::draw2d::graphics_pointer & pdraw2dgraphics, bool bDecoration);
+      virtual void _001OnButtonDrawBackground(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32_rectangle & rectText);
 
-      virtual void _001OnButtonDrawNormal(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnButtonDrawNormal(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual ::color::color _001GetButtonBackgroundColor();
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _002OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _002OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual bool is_custom_draw() override;
 
@@ -133,8 +133,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
 
 
-      ::f64_size get_fitting_size(::draw2d::graphics_pointer & pgraphics) override;
-      ::f64_size get_preferred_size(::draw2d::graphics_pointer & pgraphics) override;
+      ::f64_size get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      ::f64_size get_preferred_size(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       bool keyboard_focus_is_focusable() override;
 
@@ -156,7 +156,7 @@ namespace user
 
       void on_set_window_text() override;
 
-      bool on_perform_layout(::draw2d::graphics_pointer& pgraphics) override;
+      bool on_perform_layout(::draw2d::graphics_pointer& pdraw2dgraphics) override;
 
 
       void set_stock_icon(enum_stock_icon eicon) override;

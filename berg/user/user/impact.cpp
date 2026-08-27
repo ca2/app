@@ -762,11 +762,11 @@ namespace user
    ///////////////////////////////////////////////////////////////////////////////
    //// Printing support virtual functions (others in viewpr.cpp)
 
-   //void impact::OnPrepareDC(::draw2d::graphics_pointer & pgraphics, CPrintInfo* pInfo)
+   //void impact::OnPrepareDC(::draw2d::graphics_pointer & pdraw2dgraphics, CPrintInfo* pInfo)
    //{
    //   __UNREFERENCED_PARAMETER(pInfo);
-   //   ASSERT_OK(pgraphics);
-   //   UNUSED(pgraphics); // unused in release builds
+   //   ASSERT_OK(pdraw2dgraphics);
+   //   UNUSED(pdraw2dgraphics); // unused in release builds
 
    //   // Default to one page printing if doc length not known
    //}
@@ -1131,14 +1131,14 @@ namespace user
    //void impact::on_draw_impact_nc(::image::image *pimage)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    //}
 
-   //void impact::on_draw_impact(::draw2d::graphics_pointer & pgraphics, pointer_array < ::data::data > spadata)
+   //void impact::on_draw_impact(::draw2d::graphics_pointer & pdraw2dgraphics, pointer_array < ::data::data > spadata)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(pdraw2dgraphics);
    //   __UNREFERENCED_PARAMETER(spadata);
 
    //}
@@ -1166,7 +1166,7 @@ namespace user
 
    //   try
    //   {
-   //      on_draw_impact(pgraphics, spadata);
+   //      on_draw_impact(pdraw2dgraphics, spadata);
    //   }
    //   catch (...)
    //   {
@@ -1174,10 +1174,10 @@ namespace user
 
    //}
 
-   //void impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //void impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
-   //   on_draw_impact_nc(pgraphics);
+   //   on_draw_impact_nc(pdraw2dgraphics);
 
    //   ::i32 iTry = 0;
 
@@ -1189,7 +1189,7 @@ namespace user
 
    //   try
    //   {
-   //      defer_draw_impact(pgraphics);
+   //      defer_draw_impact(pdraw2dgraphics);
    //   }
    //   catch (...)
    //   {
@@ -1300,11 +1300,11 @@ namespace user
    }
 
 
-   void impact::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_001CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      return ::user::box::_001CallOnDraw(pgraphics);
-      //on_context_offset(pgraphics);
+      return ::user::box::_001CallOnDraw(pdraw2dgraphics);
+      //on_context_offset(pdraw2dgraphics);
 
       //synchronous_lock slImpact(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -1312,9 +1312,9 @@ namespace user
 
       //{
 
-      //   draw_select ds(this, pgraphics);
+      //   draw_select ds(this, pdraw2dgraphics);
 
-      //   _001OnDraw(pgraphics);
+      //   _001OnDraw(pdraw2dgraphics);
 
       //}
 

@@ -168,7 +168,7 @@ namespace graphics
       //   if (pgraphicsBufferItem)
       //   {
 
-      //      //pbufferitem->m_pgraphics = pgraphics;
+      //      //pbufferitem->m_pgraphics = pdraw2dgraphics;
       //      
       //      pgraphicsBufferItem->resize(pbufferitem->m_sizeBufferItem);
 

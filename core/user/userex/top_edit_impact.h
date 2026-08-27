@@ -20,7 +20,7 @@ namespace userex
       class ::time                  m_timeDelayedAfterChange;
       top_impact *              m_ptopimpact;
       bool                    m_bEnterKeyPressed;
-      ::write_text::font_pointer  m_pfont;
+      ::write_text::font_pointer  m_pwritetextfont;
 
 
       top_edit_impact();
@@ -33,7 +33,7 @@ namespace userex
 
       ::write_text::font_pointer get_font(::user::style* pstyle, const ::e_element & eelement, const ::user::e_state & estate = ::user::e_state_none) override;
 
-       void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context& action_context) override;
+       void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pdraw2dgraphics, const ::action_context& action_context) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

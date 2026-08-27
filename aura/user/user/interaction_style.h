@@ -12,7 +12,7 @@ namespace user
 
 
    template < typename CONTROL_STYLE >
-   void style::get(::pointer<CONTROL_STYLE>& pcontrolstyleImpl, ::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction)
+   void style::get(::pointer<CONTROL_STYLE>& pcontrolstyleImpl, ::draw2d::graphics_pointer & pdraw2dgraphics, ::user::interaction * pinteraction)
    {
 
       auto & pcontrolstyle = m_controlstyle[pinteraction->m_econtroltype];
@@ -27,7 +27,7 @@ namespace user
       if (!pcontrolstyle->is_up_to_date(this))
       {
 
-         pcontrolstyle->update(pgraphics, this, pinteraction);
+         pcontrolstyle->update(pdraw2dgraphics, this, pinteraction);
 
       }
 

@@ -1626,7 +1626,7 @@ namespace apex
 
          //      ppane->m_istrTitleEx = pszTitle;
 
-         //      ppaneimpact->on_layout(pgraphics);
+         //      ppaneimpact->on_layout(pdraw2dgraphics);
 
          //   }
 
@@ -1841,17 +1841,17 @@ namespace apex
 //   }
 
 
-   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle& rectangle, ::draw2d::brush_pointer& pbrushText)
+   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle& rectangle, ::draw2d::brush_pointer& pbrushText)
    //{
 
    //   string_array_base& straTitle = pane.m_straTitle;
 
-   //   pgraphics->set(pbrushText);
+   //   pdraw2dgraphics->set(pbrushText);
 
    //   if (straTitle.get_count() <= 1)
    //   {
 
-   //      pgraphics->_DrawText(pane.get_title(), recte_bottom_left, e_draw_text_no_prefix);
+   //      pdraw2dgraphics->_DrawText(pane.get_title(), recte_bottom_left, e_draw_text_no_prefix);
 
    //   }
    //   else
@@ -1860,8 +1860,8 @@ namespace apex
    //      ::i32_rectangle rectangleText(rectangle);
 
 
-   //      ::write_text::font_pointer pfont;
-   //      font = pgraphics->get_current_font();
+   //      ::write_text::font_pointer pwritetextfont;
+   //      font = pdraw2dgraphics->get_current_font();
    //      i32_size sSep = ptab->get_data()->m_sizeSep;
    //      ::i32_rectangle rectangleEmp;
    //      for (::collection::index i = 0; i < straTitle.get_size(); i++)
@@ -1869,31 +1869,31 @@ namespace apex
    //         string str = straTitle[i];
    //         i32_size s = pane.m_sizeaText[i];
    //         rectangleText.right = rectangleText.left + s.cx;
-   //         pgraphics->_DrawText(str, rectangleTexte_bottom_left, e_draw_text_no_prefix);
+   //         pdraw2dgraphics->_DrawText(str, rectangleTexte_bottom_left, e_draw_text_no_prefix);
    //         rectangleText.left += s.cx;
    //         if (i < straTitle.get_upper_bound())
    //         {
    //            rectangleText.right = rectangleText.left + sSep.cx;
    //            rectangleEmp = rectangleText;
    //            rectangleEmp.deflate(1, 1);
-   //            ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
-   //            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //            ::draw2d::enum_alpha_mode emode = pdraw2dgraphics->m_ealphamode;
+   //            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //            if (ptab->m_pitemHoverXXX == (::enum_element)(::e_element_split + i))
    //            {
-   //               pgraphics->fill_rectangle(rectangleEmp, argb(128, 150, 184, 255));
-   //               pgraphics->set(ptab->get_data()->m_pbrushTextHover);
+   //               pdraw2dgraphics->fill_rectangle(rectangleEmp, argb(128, 150, 184, 255));
+   //               pdraw2dgraphics->set(ptab->get_data()->m_pbrushTextHover);
    //            }
    //            else
    //            {
-   //               //pgraphics->fill_rectangle(rectangleEmp,argb(128,208,223,233));
-   //               pgraphics->set(ptab->get_data()->m_pbrushText);
+   //               //pdraw2dgraphics->fill_rectangle(rectangleEmp,argb(128,208,223,233));
+   //               pdraw2dgraphics->set(ptab->get_data()->m_pbrushText);
    //            }
-   //            pgraphics->set(ptab->m_pfontTab);
-   //            pgraphics->set_alpha_mode(emode);
-   //            pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
+   //            pdraw2dgraphics->set(ptab->m_pfontTab);
+   //            pdraw2dgraphics->set_alpha_mode(emode);
+   //            pdraw2dgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
    //            rectangleText.left += sSep.cx;
-   //            pgraphics->set(pfont);
-   //            pgraphics->set(pbrushText);
+   //            pdraw2dgraphics->set(pwritetextfont);
+   //            pdraw2dgraphics->set(pbrushText);
    //         }
    //      }
 

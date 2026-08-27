@@ -306,17 +306,17 @@ namespace user
    }
 
 
-   //void element::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //void element::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //}
 
 
-   //void element::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //void element::_000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
-   //   _001OnDraw(pgraphics);
-   //   _008OnDraw(pgraphics);
+   //   _001OnDraw(pdraw2dgraphics);
+   //   _008OnDraw(pdraw2dgraphics);
 
    //}
 
@@ -381,10 +381,10 @@ namespace user
    //}
 
 
-   //bool element::Redraw(::draw2d::graphics_pointer & pgraphics)
+   //bool element::Redraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    //   if(get_wnd() == nullptr)
    //      return false;
@@ -940,7 +940,7 @@ namespace user
    //}
 
 
-   //void element::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
+   //void element::_001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -948,7 +948,7 @@ namespace user
    //}
 
 
-   //void element::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+   //void element::_001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -956,7 +956,7 @@ namespace user
    //}
 
 
-   //void element::_001PrintBuffer(::draw2d::graphics_pointer & pgraphics)
+   //void element::_001PrintBuffer(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -964,7 +964,7 @@ namespace user
    //}
 
 
-   //void element::_001Print(::draw2d::graphics_pointer & pgraphics)
+   //void element::_001Print(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -972,7 +972,7 @@ namespace user
    //}
 
 
-   //void element::_008OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //void element::_008OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -980,7 +980,7 @@ namespace user
    //}
 
 
-   //void element::draw_control_background(::draw2d::graphics_pointer & pgraphics)
+   //void element::draw_control_background(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -1909,7 +1909,7 @@ namespace user
    //}
 
 
-   void element::RepositionBars(::draw2d::graphics_pointer &pgraphics, ::u32 nIDFirst, ::u32 nIDLast,
+   void element::RepositionBars(::draw2d::graphics_pointer &pdraw2dgraphics, ::u32 nIDFirst, ::u32 nIDLast,
                                 ::user::interaction *puserinteractionLeftOver, ::u32 nFlag,
                                 ::i32_rectangle *prectParam, const ::i32_rectangle &rectangleX, bool bStretch)
    {
@@ -2027,7 +2027,7 @@ namespace user
    }
 
 
-   void element::set_context_org(::draw2d::graphics_pointer & pgraphics)
+   void element::set_context_org(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       throw ::interface_only();
@@ -2309,7 +2309,7 @@ namespace user
    }
 
 
-   //void element::on_layout(::draw2d::graphics_pointer & pgraphics)
+   //void element::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -2640,7 +2640,7 @@ namespace user
    //}
 
 
-   //void element::_001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
+   //void element::_001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -2648,7 +2648,7 @@ namespace user
    //}
 
 
-   //void element::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
+   //void element::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -2859,7 +2859,7 @@ namespace user
    //}
 
 
-   //::f64_size element::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
+   //::f64_size element::_001CalculateFittingSize(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   return { 0.0, 0.0 };
@@ -2867,12 +2867,12 @@ namespace user
    //}
 
 
-   //::f64_size element::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics)
+   //::f64_size element::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   ::f64_rectangle rectanglePadding(2.0, 2.0, 2.0, 2.0);
 
-   //   auto sizeFitting = _001CalculateFittingSize(pgraphics);
+   //   auto sizeFitting = _001CalculateFittingSize(pdraw2dgraphics);
 
    //   ::f64_size sizePaddedFitting;
 
@@ -4775,13 +4775,13 @@ namespace user
 
    void element::set_need_redraw(
       const ::i32_rectangle_array_base & rectangleaNeedRedraw,
-      ::draw2d::graphics * pgraphics,
+      ::draw2d::graphics * pdraw2dgraphics,
       function<void()> function, 
       bool bAscendants)
    {
 
       __UNREFERENCED_PARAMETER(rectangleaNeedRedraw);
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
       __UNREFERENCED_PARAMETER(function);
       __UNREFERENCED_PARAMETER(bAscendants);
 

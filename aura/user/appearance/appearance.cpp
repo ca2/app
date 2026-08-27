@@ -49,7 +49,7 @@ namespace appearance
    }
 
 
-   ::i32_size appearance::preferred_size(::draw2d::graphics_pointer & pgraphics)
+   ::i32_size appearance::preferred_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       return {};
@@ -57,14 +57,14 @@ namespace appearance
    }
 
 
-   void appearance::perform_layout(::draw2d::graphics_pointer & pgraphics)
+   void appearance::perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
    }
 
 
-   void appearance::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void appearance::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 

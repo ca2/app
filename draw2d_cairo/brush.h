@@ -18,7 +18,7 @@ namespace draw2d_cairo
       ~brush() override;
 
 
-      bool create(::draw2d::graphics * pgraphics);
+      void update(::draw2d::graphics * pdraw2dgraphics) override;
       void destroy() override;
 
 

@@ -343,7 +343,7 @@ namespace user
    }
 
 
-   void place_holder::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void place_holder::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -403,7 +403,7 @@ namespace user
 
                //puiChild->set_need_layout();
 
-               //puiChild->set_need_redraw({rectangle}, pgraphics);
+               //puiChild->set_need_redraw({rectangle}, pdraw2dgraphics);
 
             }
 
@@ -485,17 +485,17 @@ namespace user
    }
 
 
-   void place_holder::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
+   void place_holder::_001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
    }
 
 
-   void place_holder::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+   void place_holder::_001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
-      ::user::interaction::_001DrawChildren(pgraphics);
+      ::user::interaction::_001DrawChildren(pdraw2dgraphics);
       //auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
       ////if(puserinteractionpointeraChild->interaction_count() >= 2)
@@ -508,25 +508,25 @@ namespace user
       //if(puserinteractionpointeraChild->has_interaction())
       //{
 
-      //   puserinteractionpointeraChild->first_interaction()->_000CallOnDraw(pgraphics);
+      //   puserinteractionpointeraChild->first_interaction()->_000CallOnDraw(pdraw2dgraphics);
 
       //}
 
    }
 
 
-   void place_holder::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void place_holder::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    }
 
 
-   void place_holder::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void place_holder::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    }
 

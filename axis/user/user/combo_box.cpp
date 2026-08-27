@@ -128,7 +128,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnDrawStaticText(::draw2d::graphics_pointer & pgraphics)
+   void combo_box::_001OnDrawStaticText(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       string strText;
@@ -191,10 +191,10 @@ namespace user
 
       //}
 
-      //if(!select_text_color(pgraphics, colorText))
+      //if(!select_text_color(pdraw2dgraphics, colorText))
       //{
 
-         pgraphics->set_text_color(colorText);
+         pdraw2dgraphics->set_text_color(colorText);
 
       //}
 
@@ -202,11 +202,11 @@ namespace user
 
       get_element_rectangle(rectangleText, e_element_text);
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
       ::e_align ealign = e_align_left_center;
 
-      pgraphics->draw_text(strText, rectangleText, ealign);
+      pdraw2dgraphics->draw_text(strText, rectangleText, ealign);
 
    }
 
@@ -252,29 +252,29 @@ namespace user
    }
 
 
-   void combo_box::_001OnDrawCombo(::draw2d::graphics_pointer & pgraphics)
+   void combo_box::_001OnDrawCombo(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
 
-      auto pbrush = createø < ::draw2d::brush > ();
+      auto pdraw2dbrush = createø < ::draw2d::brush > ();
 
       //if(m_bEdit)
       {
 
-         ::user::plain_edit::_001OnDraw(pgraphics);
+         ::user::plain_edit::_001OnDraw(pdraw2dgraphics);
 
       }
 //      else
 //      {
 //
-//         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+//         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//         _001OnDrawStaticText(pgraphics);
+//         _001OnDrawStaticText(pdraw2dgraphics);
 //
 //      }
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::i32_rectangle rectangleDropDown;
 
@@ -370,25 +370,25 @@ namespace user
 
       color.hls_rate(0.0, 0.5, 0.1);
 
-      pbrush->create_solid(color);
+      pdraw2dbrush->create_solid(color);
 
-      pgraphics->set(pbrush);
+      pdraw2dgraphics->set(pdraw2dbrush);
 
-      pgraphics->fill_rectangle(rectangleDropIn);
+      pdraw2dgraphics->fill_rectangle(rectangleDropIn);
 
-      auto ppath = createø < ::draw2d::path > ();
+      auto pdraw2dpath = createø < ::draw2d::path > ();
 
       f64_point_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 
-      pbrush->create_solid(argb(210, 0, 0, 0));
+      pdraw2dbrush->create_solid(argb(210, 0, 0, 0));
 
-      pgraphics->set(pbrush);
+      pdraw2dgraphics->set(pdraw2dbrush);
 
-      pgraphics->fill_polygon(pointa);
+      pdraw2dgraphics->fill_polygon(pointa);
 
-      //pgraphics->fill_rectangle({0, 0, 200, 100}, color::green);
+      //pdraw2dgraphics->fill_rectangle({0, 0, 200, 100}, color::green);
 
    }
 
@@ -413,10 +413,10 @@ namespace user
       //      return pstyle->m_pfontCombo;
 
       //   }
-      //   else if (pstyle->m_pfont)
+      //   else if (pstyle->m_pwritetextfont)
       //   {
 
-      //      return pstyle->m_pfont;
+      //      return pstyle->m_pwritetextfont;
 
       //   }
 
@@ -427,28 +427,28 @@ namespace user
    }
 
 
-   void combo_box::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void combo_box::_000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::plain_edit::_000OnDraw(pgraphics);
+      ::user::plain_edit::_000OnDraw(pdraw2dgraphics);
 
    }
 
 
-   void combo_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void combo_box::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::interaction::_001OnDraw(pgraphics);
+      ::user::interaction::_001OnDraw(pdraw2dgraphics);
 
-      _001OnDrawCombo(pgraphics);
+      _001OnDrawCombo(pdraw2dgraphics);
 
    }
 
 
-   void combo_box::_001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics)
+   void combo_box::_001OnNcPostDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::plain_edit::_001OnNcPostDraw(pgraphics);
+      ::user::plain_edit::_001OnNcPostDraw(pdraw2dgraphics);
 
    }
 
@@ -514,9 +514,9 @@ namespace user
 ////
 ////         auto pdraw2d = psystem->draw2d();
 ////
-////         auto pgraphics = pdraw2d->create_memory_graphics();
+////         auto pdraw2dgraphics = pdraw2d->create_memory_graphics();
 ////
-////         plain_edit_on_after_change_text(pgraphics, context);
+////         plain_edit_on_after_change_text(pdraw2dgraphics, context);
 ////
 ////      }
 //
@@ -923,11 +923,11 @@ namespace user
 
          auto pdraw2d = psystem->draw2d();
 
-         auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+         auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
          m_plistbox->m_timeShowDropDown.Now();
 
-         m_plistbox->query_full_size(pgraphics, &m_sizeFull);
+         m_plistbox->query_full_size(pdraw2dgraphics, &m_sizeFull);
 
          ::i32_rectangle rectangleWindow;
 
@@ -1041,13 +1041,13 @@ namespace user
    }
 
 
-   void combo_box::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void combo_box::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if(m_bEdit)
       {
 
-         ::user::plain_edit::on_layout(pgraphics);
+         ::user::plain_edit::on_layout(pdraw2dgraphics);
 
       }
 
@@ -1067,7 +1067,7 @@ namespace user
    }
 
 
-   void combo_box::plain_edit_on_after_change_text(::draw2d::graphics_pointer & pgraphics, const ::action_context & actioncontext)
+   void combo_box::plain_edit_on_after_change_text(::draw2d::graphics_pointer & pdraw2dgraphics, const ::action_context & actioncontext)
    {
 
       if(actioncontext.is_user_source())
@@ -1102,7 +1102,7 @@ namespace user
 
             main_content().m_pitemCurrent.release();
 
-            ::user::plain_edit::plain_edit_on_after_change_text(pgraphics, actioncontext);
+            ::user::plain_edit::plain_edit_on_after_change_text(pdraw2dgraphics, actioncontext);
 
          }
 

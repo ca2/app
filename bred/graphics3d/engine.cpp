@@ -226,7 +226,10 @@ namespace graphics3d
 
             pscene->on_before_render(pgpucontext);
 
-            pgpucontext->start_layer();
+            bool bDontKnowIfFirstLayerBut = false;
+
+            pgpucontext->start_layer(bDontKnowIfFirstLayerBut, ::gpu::e_start_layer_none,
+               m_pusergraphics3d);
 
             pscene->on_render(pgpucontext);
 
@@ -1071,7 +1074,7 @@ namespace graphics3d
    }
 
 
-   void engine::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void engine::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto eoutput = get_gpu_context()->m_eoutput;
@@ -1093,7 +1096,7 @@ namespace graphics3d
             if (::is_set(pimagetarget))
             {
 
-               pimagetarget->_001OnDraw(pgraphics);
+               pimagetarget->_001OnDraw(pdraw2dgraphics);
 
             }
 
@@ -1111,7 +1114,7 @@ namespace graphics3d
 
       do_draw_layer();
 
-      on_after_done_frame_step(pgraphics);
+      on_after_done_frame_step(pdraw2dgraphics);
 
       //}
 
@@ -1226,7 +1229,7 @@ namespace graphics3d
    }
 
 
-   void engine::on_after_done_frame_step(::draw2d::graphics_pointer & pgraphics)
+   void engine::on_after_done_frame_step(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1246,18 +1249,18 @@ namespace graphics3d
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
          if (1)
          {
 
-            pgraphics->fill_solid_rectangle({ 0, 0, 100, 100 }, argb(128, 100, 160, 200));
+            pdraw2dgraphics->fill_solid_rectangle({ 0, 0, 100, 100 }, argb(128, 100, 160, 200));
 
-            pgraphics->fill_solid_rectangle({ rectangleOutput.right - 100, 0, rectangleOutput.right, 100 }, argb(128, 100, 160, 200));
+            pdraw2dgraphics->fill_solid_rectangle({ rectangleOutput.right - 100, 0, rectangleOutput.right, 100 }, argb(128, 100, 160, 200));
 
-            pgraphics->fill_solid_rectangle({ 0, rectangleOutput.bottom - 100, 100, rectangleOutput.bottom }, argb(128, 100, 160, 200));
+            pdraw2dgraphics->fill_solid_rectangle({ 0, rectangleOutput.bottom - 100, 100, rectangleOutput.bottom }, argb(128, 100, 160, 200));
 
-            pgraphics->fill_solid_rectangle({ rectangleOutput.right - 100, rectangleOutput.bottom - 100, rectangleOutput.right, rectangleOutput.bottom }, argb(128, 100, 160, 200));
+            pdraw2dgraphics->fill_solid_rectangle({ rectangleOutput.right - 100, rectangleOutput.bottom - 100, rectangleOutput.right, rectangleOutput.bottom }, argb(128, 100, 160, 200));
 
          }
 

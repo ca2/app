@@ -224,23 +224,23 @@ namespace user
    }
 
 
-   void color_combo_box::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void color_combo_box::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
    }
 
 
-   void color_combo_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void color_combo_box::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto pbrush = createø < ::draw2d::brush > ();
+      auto pdraw2dbrush = createø < ::draw2d::brush > ();
 
       //::user::e_::color::color colorDropDown = color_button_background_disabled;
 
       auto estate = get_state();
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       //if (m_pdrawcontext != nullptr)
       //{
@@ -333,7 +333,7 @@ namespace user
 
          color.set_opaque();
 
-         ::draw2d::brush_pointer pbrush(e_create, this);
+         ::draw2d::brush_pointer pdraw2dbrush(e_create, this);
 
          if (!is_window_enabled())
          {
@@ -342,7 +342,7 @@ namespace user
 
          }
 
-         pbrush->create_solid(color);
+         pdraw2dbrush->create_solid(color);
 
          ::i32_rectangle rEdit;
 
@@ -361,7 +361,7 @@ namespace user
 
             colorBackground.hls_rate(0.0, 0.6, -0.3);
 
-            pgraphics->fill_rectangle(rEdit, colorBackground);
+            pdraw2dgraphics->fill_rectangle(rEdit, colorBackground);
 
          }
 
@@ -379,7 +379,7 @@ namespace user
 
             color2.hls_rate(0.0, 0.3, 0.5);
 
-            pgraphics->draw_inset_rectangle(rEdit, color2, 1.0);
+            pdraw2dgraphics->draw_inset_rectangle(rEdit, color2, 1.0);
 
          }
 
@@ -387,7 +387,7 @@ namespace user
 
          rEdit.deflate(rectanglePadding);
 
-         pgraphics->fill_rectangle(rEdit, color);
+         pdraw2dgraphics->fill_rectangle(rEdit, color);
 
       }
 
@@ -408,23 +408,23 @@ namespace user
 
       color.hls_rate(0.0, 0.5, 0.1);
 
-      pbrush->create_solid(color);
+      pdraw2dbrush->create_solid(color);
 
-      pgraphics->set(pbrush);
+      pdraw2dgraphics->set(pdraw2dbrush);
 
-      pgraphics->fill_rectangle(rectangleDropIn);
+      pdraw2dgraphics->fill_rectangle(rectangleDropIn);
 
-      auto ppath = createø < ::draw2d::path > ();
+      auto pdraw2dpath = createø < ::draw2d::path > ();
 
       f64_point_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 
-      pbrush->create_solid(argb(210, 0, 0, 0));
+      pdraw2dbrush->create_solid(argb(210, 0, 0, 0));
 
-      pgraphics->set(pbrush);
+      pdraw2dgraphics->set(pdraw2dbrush);
 
-      pgraphics->fill_polygon(pointa);
+      pdraw2dgraphics->fill_polygon(pointa);
 
    }
 

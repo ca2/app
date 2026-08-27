@@ -51,7 +51,7 @@ namespace user
    void tooltip::on_message_create(::message::message * pmessage)
    {
 
-      constructø(m_pfont);
+      constructø(m_pwritetextfont);
 
       pmessage->previous();
 
@@ -68,7 +68,7 @@ namespace user
 
       //auto strFontName = pnode->font_name(e_font_sans_ex);
 
-      m_pfont->create_font(e_font_sans_ex, 12_pt);
+      m_pwritetextfont->create_font(e_font_sans_ex, 12_pt);
 
    }
 
@@ -93,16 +93,16 @@ namespace user
    //}
 
 
-   void tooltip::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void tooltip::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      pgraphics->reset_clip();
+      pdraw2dgraphics->reset_clip();
 
       auto rectangleX = this->rectangle();
 
-      auto ppath = createø < ::draw2d::path > ();
+      auto pdraw2dpath = createø < ::draw2d::path > ();
 
-      ppath->set_current_point(rectangleX.left, rectangleX.bottom);
+      pdraw2dpath->set_current_point(rectangleX.left, rectangleX.bottom);
 
       ::i32_rectangle rectangleBody;
 
@@ -111,30 +111,30 @@ namespace user
       rectangleBody.left += 16;
       rectangleBody.bottom -= 16;
 
-      ppath->add_line(rectangleBody.left, rectangleBody.top + rectangleBody.height()/2);
-      ppath->add_line(rectangleBody.left,rectangleBody.top);
-      ppath->add_line(rectangleBody.right,rectangleBody.top);
-      ppath->add_line(rectangleBody.right,rectangleBody.bottom);
-      ppath->add_line(rectangleBody.left + rectangleBody.height() / 2,rectangleBody.bottom);
-      ppath->close_figure();
+      pdraw2dpath->add_line(rectangleBody.left, rectangleBody.top + rectangleBody.height()/2);
+      pdraw2dpath->add_line(rectangleBody.left,rectangleBody.top);
+      pdraw2dpath->add_line(rectangleBody.right,rectangleBody.top);
+      pdraw2dpath->add_line(rectangleBody.right,rectangleBody.bottom);
+      pdraw2dpath->add_line(rectangleBody.left + rectangleBody.height() / 2,rectangleBody.bottom);
+      pdraw2dpath->close_figure();
 
       ::draw2d::brush_pointer b(e_create, this);
 
       b->create_solid(argb(190, 255, 255, 123));
 
-      pgraphics->set(b);
+      pdraw2dgraphics->set(b);
 
-      pgraphics->fill(ppath);
+      pdraw2dgraphics->fill(pdraw2dpath);
 
-      auto ppen = createø < ::draw2d::pen > ();
+      auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-      pgraphics->set(ppen);
+      pdraw2dgraphics->set(pdraw2dpen);
 
-      ppen->create_solid(1.0, argb(190, 120, 120, 255));
+      pdraw2dpen->create_solid(1.0, argb(190, 120, 120, 255));
 
-      pgraphics->draw(ppath);
+      pdraw2dgraphics->draw(pdraw2dpath);
 
-      pgraphics->set_text_color(argb(255, 120, 120, 255));
+      pdraw2dgraphics->set_text_color(argb(255, 120, 120, 255));
 
       //::i32_rectangle rectangle;
 
@@ -146,11 +146,11 @@ namespace user
 
       //rectangleText.bottom = m_size.cy;
 
-      pgraphics->set(m_pfont);
+      pdraw2dgraphics->set(m_pwritetextfont);
 
       rectangleBody.offset(4,0);
 
-      pgraphics->draw_text(m_str,rectangleBody,e_align_vertical_center);
+      pdraw2dgraphics->draw_text(m_str,rectangleBody,e_align_vertical_center);
 
    }
 
@@ -169,7 +169,7 @@ namespace user
 
       g->create_memory_graphics({ 256, 256 }, this);
 
-      g->set(m_pfont);
+      g->set(m_pwritetextfont);
 
       for(auto strLine : stra)
       {

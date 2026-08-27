@@ -34,10 +34,10 @@ namespace filemanager
    }
 
 
-   void operation_list_impact::OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void operation_list_impact::OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    }
 

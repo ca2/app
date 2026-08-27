@@ -22,7 +22,7 @@ namespace user
       ~menu_list_window() override;
 
 
-      //void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       void install_message_routing(::channel * pchannel) override;
 
@@ -32,13 +32,13 @@ namespace user
       
       void operator()(::timer * ptimer) override;
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      virtual void calc_size(::menu::item * pitemParent, ::draw2d::graphics_pointer & pgraphics, ::i32 & iMaxWidth, ::i32 & iMaxHeight);
+      virtual void calc_size(::menu::item * pitemParent, ::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 & iMaxWidth, ::i32 & iMaxHeight);
 
       virtual void layout_buttons(::menu::item * pitemParent, ::i32 iMaxWidth, ::i32_rectangle * prectangle, const ::i32_rectangle & lpcrectBound);
 
-      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
    };

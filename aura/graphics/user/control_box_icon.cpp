@@ -15,16 +15,16 @@ namespace user
 {
 
 
-   void draw_close_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate, ::pointer < ::draw2d::stock_icon > & pstockicon)
+   void draw_close_icon(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate, ::pointer < ::draw2d::stock_icon > & pstockicon)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::draw2d::brush_pointer pbrush(e_create, puserinteraction);
+      ::draw2d::brush_pointer pdraw2dbrush(e_create, puserinteraction);
 
-      auto pstyle = puserinteraction->get_style(pgraphics);
+      auto pstyle = puserinteraction->get_style(pdraw2dgraphics);
 
-      if (!useritem.m_ppath)
+      if (!useritem.m_pdraw2dpath)
       {
 
          auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
@@ -47,15 +47,15 @@ namespace user
 
          //::f64 h2 = rectangle.height();
 
-         ::draw2d::path_pointer ppath;
+         ::draw2d::path_pointer pdraw2dpath;
 
-         puserinteraction->constructø(ppath);
+         puserinteraction->constructø(pdraw2dpath);
 
-         ppath->add_rectangle(rectangle, 45_degrees);
+         pdraw2dpath->add_rectangle(rectangle, 45_degrees);
 
-         ppath->add_rectangle(rectangle, -45_degrees);
+         pdraw2dpath->add_rectangle(rectangle, -45_degrees);
 
-         useritem.m_ppath = ppath;
+         useritem.m_pdraw2dpath = pdraw2dpath;
 
       }
 
@@ -74,31 +74,31 @@ namespace user
 
       }
 
-      pbrush->create_solid(color);
+      pdraw2dbrush->create_solid(color);
 
-      pgraphics->set(pbrush);
+      pdraw2dgraphics->set(pdraw2dbrush);
 
-      pgraphics->fill(useritem.m_ppath);
-
-   }
-
-
-   void draw_switch_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::user::item & useritem, const ::user::e_state & estate, ::pointer < ::draw2d::stock_icon > & pstockicon)
-   {
-
-      draw_switch_button(pgraphics, puserinteraction, useritem, estate, pstockicon);
+      pdraw2dgraphics->fill(useritem.m_pdraw2dpath);
 
    }
 
 
-   void draw_maximize_icon(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate, ::pointer < ::draw2d::stock_icon > & pstockicon)
+   void draw_switch_icon(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::interaction* puserinteraction, ::user::item & useritem, const ::user::e_state & estate, ::pointer < ::draw2d::stock_icon > & pstockicon)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      draw_switch_button(pdraw2dgraphics, puserinteraction, useritem, estate, pstockicon);
 
-      auto ppen = puserinteraction->createø < ::draw2d::pen >();
+   }
 
-      auto pstyle = puserinteraction->get_style(pgraphics);
+
+   void draw_maximize_icon(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate, ::pointer < ::draw2d::stock_icon > & pstockicon)
+   {
+
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      auto pdraw2dpen = puserinteraction->createø < ::draw2d::pen >();
+
+      auto pstyle = puserinteraction->get_style(pdraw2dgraphics);
 
       auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
 
@@ -119,35 +119,35 @@ namespace user
 
       }
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
       rectangle.deflate(rectangle.minimum_dimension() * 0.15, rectangle.minimum_dimension() * 0.15, rectangle.minimum_dimension() * 0.15, rectangle.minimum_dimension() * 0.10);
 
-      ppen->create_solid(rectangle.minimum_dimension() / 3.0, colorPen);
+      pdraw2dpen->create_solid(rectangle.minimum_dimension() / 3.0, colorPen);
 
-      pgraphics->set(ppen);
+      pdraw2dgraphics->set(pdraw2dpen);
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
       
       puserinteraction->defer_construct_newø(pstockicon);
       
       pstockicon->m_estockiconNew = e_stock_icon_zoom;
 
-      pgraphics->draw(rectangle, pstockicon);
+      pdraw2dgraphics->draw(rectangle, pstockicon);
 
    }
 
 
-   void draw_minimize_icon(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate, ::pointer < ::draw2d::stock_icon > & pstockicon)
+   void draw_minimize_icon(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate, ::pointer < ::draw2d::stock_icon > & pstockicon)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto ppen = puserinteraction->createø < ::draw2d::pen >();
+      auto pdraw2dpen = puserinteraction->createø < ::draw2d::pen >();
 
-      //::draw2d::brush_pointer pbrush(e_create, puserinteraction);
+      //::draw2d::brush_pointer pdraw2dbrush(e_create, puserinteraction);
 
-      auto pstyle = puserinteraction->get_style(pgraphics);
+      auto pstyle = puserinteraction->get_style(pdraw2dgraphics);
 
       auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
 
@@ -170,19 +170,19 @@ namespace user
 
       rectangle.deflate(rectangle.minimum_dimension() * 0.077, rectangle.minimum_dimension() * 0.11, rectangle.minimum_dimension() * 0.077, rectangle.minimum_dimension() * 0.13);
 
-      ppen->create_solid(rectangle.minimum_dimension() / 3.0, colorPen);
+      pdraw2dpen->create_solid(rectangle.minimum_dimension() / 3.0, colorPen);
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-      pgraphics->set(ppen);
+      pdraw2dgraphics->set(pdraw2dpen);
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
       
       puserinteraction->defer_construct_newø(pstockicon);
 
       pstockicon->m_estockiconNew = e_stock_icon_iconify;
 
-      pgraphics->draw(rectangle, pstockicon);
+      pdraw2dgraphics->draw(rectangle, pstockicon);
 
    }
 

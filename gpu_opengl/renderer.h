@@ -77,7 +77,7 @@ namespace gpu_opengl
 
       //virtual void _swap();
 
-      //void endDraw(::draw2d_gpu::graphics * pgraphics, ::user::interaction * puserinteraction) override;
+      //void endDraw(::draw2d_gpu::graphics * pdraw2dgraphics, ::user::interaction * puserinteraction) override;
 
       //virtual void on_layout(::i32 cx, ::i32 cy);
 

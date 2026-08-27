@@ -22,7 +22,7 @@
 #include "berg/platform/session.h"
 
 
-// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The i32_size is the i32_size of the alien!!
+// pdraw2dgraphics->get_text_extent("->:<-"); // oh no!! omg!! The i32_size is the i32_size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -50,21 +50,21 @@ namespace experience_core
 
       ::berg::style::on_initialize_particle();
 
-      if (::is_null(m_pfont))
+      if (::is_null(m_pwritetextfont))
       {
 
-         constructø(m_pfont);
+         constructø(m_pwritetextfont);
 
          //auto pnode = node();
 
-         m_pfont->create_font(e_font_sans_ui, 12_pt, e_font_weight_normal);
+         m_pwritetextfont->create_font(e_font_sans_ui, 12_pt, e_font_weight_normal);
 
       }
 
    }
 
 
-   bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab)
+   bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::tab * ptab)
    {
 
       enum
@@ -90,28 +90,28 @@ namespace experience_core
 
       //return true;
       
-      ::draw2d::save_context savecontext(pgraphics);
+      ::draw2d::save_context savecontext(pdraw2dgraphics);
       
 //      if (pdata->m_bVertical)
 //      {
 //         
-//         pgraphics->offset_origin(0., -ptab->m_iVerticalDragScroll);
+//         pdraw2dgraphics->offset_origin(0., -ptab->m_iVerticalDragScroll);
 //         
 //      }
 //      else
 //      {
 //         
-//         pgraphics->offset_origin(-ptab->m_iHorizontalDragScroll, 0.);
+//         pdraw2dgraphics->offset_origin(-ptab->m_iHorizontalDragScroll, 0.);
 //         
 //      }
 
       auto pdata = ptab->get_data();
 
-      pdata->m_ppen->create_solid(1, rgb(32, 32, 32));
+      pdata->m_pdraw2dpen->create_solid(1, rgb(32, 32, 32));
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::collection::index iTab = -1;
 
@@ -130,7 +130,7 @@ namespace experience_core
       
       //informationf("style::_001TabOnDrawSchema01\n");
 
-      auto pstyle = ptab->get_style(pgraphics);
+      auto pstyle = ptab->get_style(pdraw2dgraphics);
 
       ::draw2d::brush_pointer pbrushText;
 
@@ -221,7 +221,7 @@ namespace experience_core
 
          bool bPaneSelected = pdata->m_idaSel.contains(ppane->id());
 
-         auto & ppath = pgroupPaneLayout->m_patha.element_at_grow(
+         auto & pdraw2dpath = pgroupPaneLayout->m_patha.element_at_grow(
             bPaneSelected ?
             __e_selected :
             __e_none);
@@ -232,7 +232,7 @@ namespace experience_core
             if (ptab->get_element_rectangle(iTab, rectangleIcon, ::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ::image::image_source imagesource(ppane->m_pimage);
 
@@ -240,29 +240,29 @@ namespace experience_core
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
             if (bPaneSelected)
             {
 
-               if(defer_constructø(ppath)) {
+               if(defer_constructø(pdraw2dpath)) {
 
-                  ppath->begin_figure();
+                  pdraw2dpath->begin_figure();
 
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.bottom,
+                  pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.bottom,
                                   rectangleBorder.left + 1, rectangleBorder.bottom);
 
-                  ppath->add_line(rectangleBorder.left, rectangleBorder.top -
+                  pdraw2dpath->add_line(rectangleBorder.left, rectangleBorder.top -
                                                           (rectangleBorder.left -
                                                            rectangleX.left));
 
-                  ppath->add_line(rectangleX.left, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleX.left, rectangleBorder.top);
 
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.top);
 
-                  ppath->close_figure();
+                  pdraw2dpath->close_figure();
 
                   ppane->m_pbrushFillSel->CreateLinearGradientBrush(rectangleBorder.top_left(),
                                                                     rectangleBorder.bottom_left(),
@@ -271,24 +271,24 @@ namespace experience_core
 
                }
 
-               pgraphics->set(ppane->m_pbrushFillSel);
+               pdraw2dgraphics->set(ppane->m_pbrushFillSel);
 
-               pgraphics->fill(ppath);
+               pdraw2dgraphics->fill(pdraw2dpath);
 
                {
 
-                  auto & ppen = pgroupTabTheme->m_pena.element_at_grow(__e_selected);
+                  auto & pdraw2dpen = pgroupTabTheme->m_pena.element_at_grow(__e_selected);
 
-                  if (defer_constructø(ppen))
+                  if (defer_constructø(pdraw2dpen))
                   {
 
-                     ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
+                     pdraw2dpen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
                   }
 
-                  pgraphics->set(ppen);
+                  pdraw2dgraphics->set(pdraw2dpen);
 
-                  pgraphics->draw(ppath);
+                  pdraw2dgraphics->draw(pdraw2dpath);
 
                }
 
@@ -298,30 +298,30 @@ namespace experience_core
                   && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                {
 
-                  pgraphics->set_font(ptab, ::e_element_none, (::user::e_state_selected | ::user::e_state_hover));
+                  pdraw2dgraphics->set_font(ptab, ::e_element_none, (::user::e_state_selected | ::user::e_state_hover));
 
                }
                else
                {
 
-                  pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
+                  pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
                }
 
                {
 
-                  auto & pbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_selected);
+                  auto & pdraw2dbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_selected);
 
-                  if (defer_constructø(pbrush))
+                  if (defer_constructø(pdraw2dbrush))
                   {
 
                      auto colorText = ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_selected);
 
-                     pbrush->create_solid(colorText);
+                     pdraw2dbrush->create_solid(colorText);
 
                   }
 
-                  pbrushText = pbrush;
+                  pbrushText = pdraw2dbrush;
 
                }
 
@@ -329,19 +329,19 @@ namespace experience_core
             else
             {
 
-               if (defer_constructø(ppath))
+               if (defer_constructø(pdraw2dpath))
                {
 
-                  ppath->begin_figure();
+                  pdraw2dpath->begin_figure();
 
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1,
+                  pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1,
                                   rectangleBorder.bottom);
-                  ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
-                  ppath->add_line(bTextRect ? rectangleText.left : rectangleBorder.left, rectangleBorder.top);
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.top);
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.bottom);
+                  pdraw2dpath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
+                  pdraw2dpath->add_line(bTextRect ? rectangleText.left : rectangleBorder.left, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.bottom);
 
-                  ppath->close_figure();
+                  pdraw2dpath->close_figure();
                 
                }
 
@@ -352,43 +352,43 @@ namespace experience_core
 
                   ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
 
-                  pgraphics->set(ppane->m_pbrushFillHover);
+                  pdraw2dgraphics->set(ppane->m_pbrushFillHover);
 
-                  pgraphics->fill(ppath);
+                  pdraw2dgraphics->fill(pdraw2dpath);
 
                   {
 
-                     auto & ppen = pgroupTabTheme->m_pena.element_at_grow(__e_hover);
+                     auto & pdraw2dpen = pgroupTabTheme->m_pena.element_at_grow(__e_hover);
 
-                     if (defer_constructø(ppen))
+                     if (defer_constructø(pdraw2dpen))
                      {
 
-                        ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
+                        pdraw2dpen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
                      }
 
-                     pgraphics->set(ppen);
+                     pdraw2dgraphics->set(pdraw2dpen);
 
-                     pgraphics->draw(ppath);
+                     pdraw2dgraphics->draw(pdraw2dpath);
 
                   }
 
-                  pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
+                  pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
 
                   {
 
-                     auto& pbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_hover);
+                     auto& pdraw2dbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_hover);
 
-                     if (defer_constructø(pbrush))
+                     if (defer_constructø(pdraw2dbrush))
                      {
 
                         auto colorText = ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover);
 
-                        pbrush->create_solid(colorText);
+                        pdraw2dbrush->create_solid(colorText);
 
                      }
 
-                     pbrushText = pbrush;
+                     pbrushText = pdraw2dbrush;
 
                   }
 
@@ -400,56 +400,56 @@ namespace experience_core
 
                   ppane->m_pbrushFill->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
 
-                  pgraphics->set(ppane->m_pbrushFill);
+                  pdraw2dgraphics->set(ppane->m_pbrushFill);
 
-                  pgraphics->fill(ppath);
+                  pdraw2dgraphics->fill(pdraw2dpath);
 
                   {
 
-                     auto & ppen = pgroupTabTheme->m_pena.element_at_grow(__e_none);
+                     auto & pdraw2dpen = pgroupTabTheme->m_pena.element_at_grow(__e_none);
 
-                     if (defer_constructø(ppen))
+                     if (defer_constructø(pdraw2dpen))
                      {
 
-                        ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
+                        pdraw2dpen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
                      }
 
-                     pgraphics->set(ppen);
+                     pdraw2dgraphics->set(pdraw2dpen);
 
-                     pgraphics->draw(ppath);
+                     pdraw2dgraphics->draw(pdraw2dpath);
 
                   }
 
                   {
 
-                     auto & pfont = pgroupTabTheme->m_fonta.element_at_grow(__e_none);
+                     auto & pwritetextfont = pgroupTabTheme->m_fonta.element_at_grow(__e_none);
 
-                     if (!pfont)
+                     if (!pwritetextfont)
                      {
 
-                        pfont = pstyle->get_font(ptab, e_element_none);
+                        pwritetextfont = pstyle->get_font(ptab, e_element_none);
 
                      }
 
-                     pgraphics->set(pfont);
+                     pdraw2dgraphics->set(pwritetextfont);
 
                   }
 
                   {
 
-                     auto & pbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_none);
+                     auto & pdraw2dbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_none);
 
-                     if (defer_constructø(pbrush))
+                     if (defer_constructø(pdraw2dbrush))
                      {
 
                         auto colorText = ptab->get_color(pstyle, ::e_element_item_text);
 
-                        pbrush->create_solid(colorText);
+                        pdraw2dbrush->create_solid(colorText);
 
                      }
 
-                     pbrushText = pbrush;
+                     pbrushText = pdraw2dbrush;
 
                   }
 
@@ -466,7 +466,7 @@ namespace experience_core
             if (ptab->get_element_rectangle(iTab, rectangleIcon, ::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ::image::image_source imagesource(ppane->m_pimage);
 
@@ -474,7 +474,7 @@ namespace experience_core
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
@@ -488,66 +488,66 @@ namespace experience_core
 
                }
 
-               if (defer_constructø(ppath))
+               if (defer_constructø(pdraw2dpath))
                {
 
-                  ppath->m_pointUserOffset = ptab->m_pointBarDragScroll;
+                  pdraw2dpath->m_pointUserOffset = ptab->m_pointBarDragScroll;
 
-                  ppath->add_line(rectangleBorder.left, rectangleX.bottom, rectangleBorder.left, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleBorder.left, rectangleX.bottom, rectangleBorder.left, rectangleBorder.top);
 
-                  ppath->add_line(rectangleX.right, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleX.right, rectangleBorder.top);
 
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
+                  pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
 
-                  ppath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
+                  pdraw2dpath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
 
                }
 
                {
 
-                  auto & pbrush = pgroupPaneLayout->m_brusha.element_at_grow(__e_selected);
+                  auto & pdraw2dbrush = pgroupPaneLayout->m_brusha.element_at_grow(__e_selected);
 
-                  if (defer_constructø(pbrush))
+                  if (defer_constructø(pdraw2dbrush))
                   {
 
-                     pbrush->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
+                     pdraw2dbrush->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
 
                   }
 
-                  pgraphics->set(pbrush);
+                  pdraw2dgraphics->set(pdraw2dbrush);
 
-                  auto offset = ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
+                  auto offset = ptab->m_pointBarDragScroll.x - pdraw2dpath->m_pointUserOffset.x;
 
-                  auto targetscope = pgraphics->target_scope();
+                  auto targetscope = pdraw2dgraphics->target_scope();
 
                   targetscope += offset;
 
-                  pgraphics->fill(ppath);
+                  pdraw2dgraphics->fill(pdraw2dpath);
 
-                  //pgraphics->x_offset(-offset);
+                  //pdraw2dgraphics->x_offset(-offset);
 
                }
 
                {
 
-                  auto & ppen = pgroupTabTheme->m_pena.element_at_grow(__e_hover);
+                  auto & pdraw2dpen = pgroupTabTheme->m_pena.element_at_grow(__e_hover);
 
-                  if (defer_constructø(ppen))
+                  if (defer_constructø(pdraw2dpen))
                   {
 
-                     ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
+                     pdraw2dpen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
                   }
 
-                  pgraphics->set(ppen);
+                  pdraw2dgraphics->set(pdraw2dpen);
 
-                  auto targetscope = pgraphics->target_scope();
+                  auto targetscope = pdraw2dgraphics->target_scope();
 
-                  //offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
+                  //offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - pdraw2dpath->m_pointUserOffset.x;
 
-                  targetscope.offset_x(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x);
+                  targetscope.offset_x(ptab->m_pointBarDragScroll.x - pdraw2dpath->m_pointUserOffset.x);
 
-                  pgraphics->draw(ppath);
+                  pdraw2dgraphics->draw(pdraw2dpath);
 
                }
 
@@ -556,51 +556,51 @@ namespace experience_core
                   && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                {
 
-                  auto & pfont = pgroupTabTheme->m_fonta.element_at_grow(__e_selected_hover);
+                  auto & pwritetextfont = pgroupTabTheme->m_fonta.element_at_grow(__e_selected_hover);
 
-                  if (!pfont)
+                  if (!pwritetextfont)
                   {
 
-                     pfont = pstyle->get_font(ptab, e_element_tab, ::user::e_state_selected | ::user::e_state_hover);
+                     pwritetextfont = pstyle->get_font(ptab, e_element_tab, ::user::e_state_selected | ::user::e_state_hover);
 
                   }
 
-                  pgraphics->set(pfont);
+                  pdraw2dgraphics->set(pwritetextfont);
 
 
-//                  pgraphics->set_font(ptab, ::e_element_none,);
+//                  pdraw2dgraphics->set_font(ptab, ::e_element_none,);
 
                }
                else
                {
 
-                  auto & pfont = pgroupTabTheme->m_fonta.element_at_grow(__e_selected);
+                  auto & pwritetextfont = pgroupTabTheme->m_fonta.element_at_grow(__e_selected);
 
-                  if (!pfont)
+                  if (!pwritetextfont)
                   {
 
-                     pfont = pstyle->get_font(ptab, e_element_tab, ::user::e_state_selected);
+                     pwritetextfont = pstyle->get_font(ptab, e_element_tab, ::user::e_state_selected);
 
                   }
 
-                  pgraphics->set(pfont);
+                  pdraw2dgraphics->set(pwritetextfont);
 
                }
 
                {
 
-                  auto & pbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_selected);
+                  auto & pdraw2dbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_selected);
 
-                  if (defer_constructø(pbrush))
+                  if (defer_constructø(pdraw2dbrush))
                   {
 
                      auto colorText = ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_selected);
 
-                     pbrush->create_solid(colorText);
+                     pdraw2dbrush->create_solid(colorText);
 
                   }
 
-                  pbrushText = pbrush;
+                  pbrushText = pdraw2dbrush;
 
                }
 
@@ -610,20 +610,20 @@ namespace experience_core
 
                // Normal (NOT Selected)
 
-               if (defer_constructø(ppath))
+               if (defer_constructø(pdraw2dpath))
                {
 
-                  ppath->m_pointUserOffset = ptab->m_pointBarDragScroll;
+                  pdraw2dpath->m_pointUserOffset = ptab->m_pointBarDragScroll;
 
-                  ppath->add_line(rectangleBorder.left, rectangleX.bottom, rectangleBorder.left, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleBorder.left, rectangleX.bottom, rectangleBorder.left, rectangleBorder.top);
 
-                  ppath->add_line(rectangleX.right, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleX.right, rectangleBorder.top);
 
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
+                  pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
 
-                  ppath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
+                  pdraw2dpath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
 
-                  ppath->close_figure();
+                  pdraw2dpath->close_figure();
 
                }
 
@@ -634,56 +634,56 @@ namespace experience_core
 
                   {
 
-                     auto & pbrush = pgroupPaneLayout->m_brusha.element_at_grow(__e_hover);
+                     auto & pdraw2dbrush = pgroupPaneLayout->m_brusha.element_at_grow(__e_hover);
 
-                     if (defer_constructø(pbrush))
+                     if (defer_constructø(pdraw2dbrush))
                      {
 
-                        pbrush->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
+                        pdraw2dbrush->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
 
                      }
 
-                     pgraphics->set(pbrush);
+                     pdraw2dgraphics->set(pdraw2dbrush);
 
-                     auto targetscope = pgraphics->target_scope();
+                     auto targetscope = pdraw2dgraphics->target_scope();
 
-                     targetscope.offset_x(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x);
+                     targetscope.offset_x(ptab->m_pointBarDragScroll.x - pdraw2dpath->m_pointUserOffset.x);
 
-                     pgraphics->fill(ppath);
+                     pdraw2dgraphics->fill(pdraw2dpath);
 
                   }
 
                   {
 
-                     auto & ppen = pgroupTabTheme->m_pena.element_at_grow(__e_hover);
+                     auto & pdraw2dpen = pgroupTabTheme->m_pena.element_at_grow(__e_hover);
 
-                     if (defer_constructø(ppen))
+                     if (defer_constructø(pdraw2dpen))
                      {
 
-                        ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
+                        pdraw2dpen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
                      }
 
-                     pgraphics->set(ppen);
+                     pdraw2dgraphics->set(pdraw2dpen);
 
-                     auto targetscope = pgraphics->target_scope();
+                     auto targetscope = pdraw2dgraphics->target_scope();
 
-                     targetscope.offset_x(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x);
+                     targetscope.offset_x(ptab->m_pointBarDragScroll.x - pdraw2dpath->m_pointUserOffset.x);
 
-                     pgraphics->draw(ppath);
+                     pdraw2dgraphics->draw(pdraw2dpath);
 
                      {
 
-                        auto & pfont = pgroupTabTheme->m_fonta.element_at_grow(__e_hover);
+                        auto & pwritetextfont = pgroupTabTheme->m_fonta.element_at_grow(__e_hover);
 
-                        if (!pfont)
+                        if (!pwritetextfont)
                         {
 
-                           pfont = pstyle->get_font(ptab, e_element_tab, ::user::e_state_hover);
+                           pwritetextfont = pstyle->get_font(ptab, e_element_tab, ::user::e_state_hover);
 
                         }
 
-                        pgraphics->set(pfont);
+                        pdraw2dgraphics->set(pwritetextfont);
 
                      }
 
@@ -691,18 +691,18 @@ namespace experience_core
 
                   {
 
-                     auto & pbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_hover);
+                     auto & pdraw2dbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_hover);
 
-                     if (defer_constructø(pbrush))
+                     if (defer_constructø(pdraw2dbrush))
                      {
 
                         auto colorText = ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover);
 
-                        pbrush->create_solid(colorText);
+                        pdraw2dbrush->create_solid(colorText);
 
                      }
 
-                     pbrushText = pbrush;
+                     pbrushText = pdraw2dbrush;
 
                   }
 
@@ -712,12 +712,12 @@ namespace experience_core
 
                   {
 
-                     auto & pbrush = pgroupPaneLayout->m_brusha.element_at_grow(__e_none);
+                     auto & pdraw2dbrush = pgroupPaneLayout->m_brusha.element_at_grow(__e_none);
 
-                     if (defer_constructø(pbrush))
+                     if (defer_constructø(pdraw2dbrush))
                      {
 
-                        pbrush->CreateLinearGradientBrush(
+                        pdraw2dbrush->CreateLinearGradientBrush(
                            rectangleBorder.top_left(),
                            rectangleBorder.bottom_left(),
                            argb(230, 175, 175, 170),
@@ -727,68 +727,68 @@ namespace experience_core
 
                      // pbrushFill->create_solid(::color::color::white);
 
-                     pgraphics->set(pbrush);
+                     pdraw2dgraphics->set(pdraw2dbrush);
 
-                     auto targetscope = pgraphics->target_scope();
+                     auto targetscope = pdraw2dgraphics->target_scope();
 
-                     targetscope.offset_x(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x);
+                     targetscope.offset_x(ptab->m_pointBarDragScroll.x - pdraw2dpath->m_pointUserOffset.x);
 
-                     pgraphics->fill(ppath);
+                     pdraw2dgraphics->fill(pdraw2dpath);
 
                   }
 
                   {
 
-                     auto & ppen = pgroupTabTheme->m_pena.element_at_grow(__e_none);
+                     auto & pdraw2dpen = pgroupTabTheme->m_pena.element_at_grow(__e_none);
 
-                     if (defer_constructø(ppen))
+                     if (defer_constructø(pdraw2dpen))
                      {
 
-                        ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_item_border));
+                        pdraw2dpen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_item_border));
 
                      }
 
-                     pgraphics->set(ppen);
+                     pdraw2dgraphics->set(pdraw2dpen);
 
-                     auto targetscope = pgraphics->target_scope();
+                     auto targetscope = pdraw2dgraphics->target_scope();
 
-                     targetscope.offset_x(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x);
+                     targetscope.offset_x(ptab->m_pointBarDragScroll.x - pdraw2dpath->m_pointUserOffset.x);
 
-                     pgraphics->draw(ppath);
+                     pdraw2dgraphics->draw(pdraw2dpath);
 
                   }
 
                   {
 
-                     auto & pfont = pgroupTabTheme->m_fonta.element_at_grow(__e_none);
+                     auto & pwritetextfont = pgroupTabTheme->m_fonta.element_at_grow(__e_none);
 
-                     if (!pfont)
+                     if (!pwritetextfont)
                      {
 
-                        pfont = pstyle->get_font(ptab, e_element_none);
+                        pwritetextfont = pstyle->get_font(ptab, e_element_none);
 
                      }
 
-                     pgraphics->set(pfont);
+                     pdraw2dgraphics->set(pwritetextfont);
 
                   }
 
                   {
 
-                     auto & pbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_none);
+                     auto & pdraw2dbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_none);
 
-                     if (!pbrush)
+                     if (!pdraw2dbrush)
                      {
 
-                        defer_constructø(pbrush);
+                        defer_constructø(pdraw2dbrush);
 
                         auto colorText = ptab->get_color(pstyle, ::e_element_item_text);
 
-                        pbrush->create_solid(colorText);
+                        pdraw2dbrush->create_solid(colorText);
 
                      }
 
-                     pbrushText = pbrush;
+                     pbrushText = pdraw2dbrush;
 
                   }
 
@@ -801,14 +801,14 @@ namespace experience_core
          if (bTextRect)
          {
 
-            _001OnTabPaneDrawTitle(*ppane, ptab, pgraphics, rectangleText, pbrushText, estate);
+            _001OnTabPaneDrawTitle(*ppane, ptab, pdraw2dgraphics, rectangleText, pbrushText, estate);
 
          }
 
          if (ptab->get_element_rectangle(iTab, rectangleClose, ::e_element_close_tab_button))
          {
 
-            pgraphics->set_font(ptab, ::e_element_close_tab_button);
+            pdraw2dgraphics->set_font(ptab, ::e_element_close_tab_button);
 
             if (::is_item(ptab->m_pitemHover, iTab)
                && ::is_element(ptab->m_pitemHover, ::e_element_close_tab_button))
@@ -824,9 +824,9 @@ namespace experience_core
 
             }
 
-            pgraphics->set(pbrushText);
+            pdraw2dgraphics->set(pbrushText);
 
-            pgraphics->draw_text("x", rectangleClose, e_align_center);
+            pdraw2dgraphics->draw_text("x", rectangleClose, e_align_center);
 
          }
 
@@ -845,7 +845,7 @@ namespace experience_core
             if (is_dark_mode())
             {
                
-               pgraphics->fill_rectangle(rectangleScroll, argb(127, 255, 255, 255));
+               pdraw2dgraphics->fill_rectangle(rectangleScroll, argb(127, 255, 255, 255));
                
             }
             else
@@ -854,30 +854,30 @@ namespace experience_core
                if(ptab->m_pdata->m_bVertical)
                {
                   
-                  pgraphics->fill_rectangle(rectangleScroll, argb(127, 0, 0, 0));
+                  pdraw2dgraphics->fill_rectangle(rectangleScroll, argb(127, 0, 0, 0));
                   
                }
                else
                {
                 
                   
-                  auto ppath = createø < ::draw2d::path >();
+                  auto pdraw2dpath = createø < ::draw2d::path >();
                   
-                  ppath->begin_figure();
+                  pdraw2dpath->begin_figure();
                   
-                  ppath->set_current_point(rectangleScroll.top_left());
+                  pdraw2dpath->set_current_point(rectangleScroll.top_left());
                   
-                  ppath->add_line(rectangleScroll.bottom_left());
+                  pdraw2dpath->add_line(rectangleScroll.bottom_left());
                   
-                  ppath->add_line({rectangleScroll.right, rectangleScroll.center().y});
+                  pdraw2dpath->add_line({rectangleScroll.right, rectangleScroll.center().y});
                   
-                  ppath->close_figure();
+                  pdraw2dpath->close_figure();
                   
-                  auto pbrush = createø < ::draw2d::brush >();
+                  auto pdraw2dbrush = createø < ::draw2d::brush >();
                   
-                  pbrush->create_solid( argb(127, 0, 0, 0));
+                  pdraw2dbrush->create_solid( argb(127, 0, 0, 0));
                   
-                  pgraphics->fill(ppath, pbrush);
+                  pdraw2dgraphics->fill(pdraw2dpath, pdraw2dbrush);
                   
                }
 
@@ -891,7 +891,7 @@ namespace experience_core
             if (is_dark_mode())
             {
                
-               pgraphics->fill_rectangle(rectangleScroll, argb(127, 255, 255, 255));
+               pdraw2dgraphics->fill_rectangle(rectangleScroll, argb(127, 255, 255, 255));
                
             }
             else
@@ -900,29 +900,29 @@ namespace experience_core
                if(ptab->m_pdata->m_bVertical)
                {
                   
-                  pgraphics->fill_rectangle(rectangleScroll, argb(127, 0, 0, 0));
+                  pdraw2dgraphics->fill_rectangle(rectangleScroll, argb(127, 0, 0, 0));
                   
                }
                else
                {
                   
-                  auto ppath = createø < ::draw2d::path >();
+                  auto pdraw2dpath = createø < ::draw2d::path >();
                   
-                  ppath->begin_figure();
+                  pdraw2dpath->begin_figure();
                   
-                  ppath->set_current_point(rectangleScroll.top_right());
+                  pdraw2dpath->set_current_point(rectangleScroll.top_right());
                   
-                  ppath->add_line(rectangleScroll.bottom_right());
+                  pdraw2dpath->add_line(rectangleScroll.bottom_right());
                   
-                  ppath->add_line({rectangleScroll.left, rectangleScroll.center().y});
+                  pdraw2dpath->add_line({rectangleScroll.left, rectangleScroll.center().y});
                   
-                  ppath->close_figure();
+                  pdraw2dpath->close_figure();
                   
-                  auto pbrush = createø < ::draw2d::brush >();
+                  auto pdraw2dbrush = createø < ::draw2d::brush >();
                   
-                  pbrush->create_solid( argb(127, 0, 0, 0));
+                  pdraw2dbrush->create_solid( argb(127, 0, 0, 0));
                   
-                  pgraphics->fill(ppath, pbrush);
+                  pdraw2dgraphics->fill(pdraw2dpath, pdraw2dbrush);
                   
                }
 
@@ -937,17 +937,17 @@ namespace experience_core
    }
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
    {
 
       string_array_base & straTitle = pane.m_straTitle;
 
-      pgraphics->set(pbrushText);
+      pdraw2dgraphics->set(pbrushText);
 
       if (straTitle.get_count() <= 1)
       {
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          ::string strTitle = pane.get_title();
 
@@ -958,7 +958,7 @@ namespace experience_core
 
          }
 
-         pgraphics->_DrawText(strTitle, rectangle, e_align_bottom_left, e_draw_text_no_prefix);
+         pdraw2dgraphics->_DrawText(strTitle, rectangle, e_align_bottom_left, e_draw_text_no_prefix);
 
       }
       else
@@ -966,9 +966,9 @@ namespace experience_core
 
          ::i32_rectangle rectangleText(rectangle);
 
-         ::write_text::font_pointer pfont;
+         ::write_text::font_pointer pwritetextfont;
 
-         pfont = pgraphics->get_current_font();
+         pwritetextfont = pdraw2dgraphics->get_current_font();
 
          auto pdata = ptab->get_data();
 
@@ -985,7 +985,7 @@ namespace experience_core
 
             rectangleText.right = rectangleText.left + s.cx;
 
-            pgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
+            pdraw2dgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
             rectangleText.left += s.cx;
 
@@ -998,16 +998,16 @@ namespace experience_core
 
                rectangleEmp.deflate(1, 1);
 
-               ::draw2d::enum_alpha_mode emode = pgraphics->alpha_mode();
+               ::draw2d::enum_alpha_mode emode = pdraw2dgraphics->alpha_mode();
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                status < ::color::color > colorText;
 
                if (::is_item(ptab->m_pitemHover, (::collection::index) ::e_element_split + i))
                {
 
-                  pgraphics->fill_rectangle(rectangleEmp, argb(128, 150, 190, 255));
+                  pdraw2dgraphics->fill_rectangle(rectangleEmp, argb(128, 150, 190, 255));
 
                   colorText = ptab->get_color(this, ::e_element_item_text, ::user::e_state_hover);
 
@@ -1019,17 +1019,17 @@ namespace experience_core
 
                }
 
-               auto pbrush = createø < ::draw2d::brush >();
+               auto pdraw2dbrush = createø < ::draw2d::brush >();
 
-               pbrush->create_solid(colorText);
+               pdraw2dbrush->create_solid(colorText);
 
-               pgraphics->set(pbrush);
+               pdraw2dgraphics->set(pdraw2dbrush);
 
-               pgraphics->set_font(ptab, ::e_element_close_tab_button);
+               pdraw2dgraphics->set_font(ptab, ::e_element_close_tab_button);
 
-               pgraphics->set_alpha_mode(emode);
+               pdraw2dgraphics->set_alpha_mode(emode);
 
-               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
+               pdraw2dgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
 
                rectangleText.left += sSep.cx;
 
@@ -1042,7 +1042,7 @@ namespace experience_core
    }
 
 
-   bool style::_001OnTabLayout(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab)
+   bool style::_001OnTabLayout(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::tab * ptab)
    {
 
       auto pdata = ptab->get_data();
@@ -1089,9 +1089,9 @@ namespace experience_core
 
       // ptab->defer_handle_auto_hide_tabs(false);
 
-      pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
+      pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-      ptab->m_pgraphicsextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, pdata->m_sizeSep);
+      ptab->m_pgraphicsextension->get_text_extent(pdraw2dgraphics, MAGIC_PALACE_TAB_SIZE, pdata->m_sizeSep);
 
       if (pdata->m_bVertical)
       {
@@ -1109,11 +1109,11 @@ namespace experience_core
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pgraphicsextension, pdraw2dgraphics);
 
             ::f64_size size;
 
-            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
+            ptab->m_pgraphicsextension->get_text_extent(pdraw2dgraphics, str, size);
 
             if (ppane->m_pimage->is_set())
             {
@@ -1201,7 +1201,7 @@ namespace experience_core
 
          ::i32 cy;
 
-         pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
+         pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
          ::i32_rectangle rectangleX = ptab->rectangle(::user::e_layout_sketch);
          //ptab->rectangle(rectangleX);
@@ -1222,11 +1222,11 @@ namespace experience_core
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pgraphicsextension, pdraw2dgraphics);
 
             ::f64_size size;
 
-            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
+            ptab->m_pgraphicsextension->get_text_extent(pdraw2dgraphics, str, size);
 
             if (ppane->m_pimage.ok())
             {
@@ -1987,7 +1987,7 @@ namespace experience_core
    }
 
 
-   bool style::_001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pscrollbar)
+   bool style::_001DrawSimpleScrollBar(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::scroll_bar * pscrollbar)
    {
 
       ::color::color colorBackground = pscrollbar->get_color(this, ::e_element_scrollbar);
@@ -1997,7 +1997,7 @@ namespace experience_core
       if (colorBackground.m_u8Opacity != 0)
       {
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          
 
@@ -2008,7 +2008,7 @@ namespace experience_core
 
          }
 
-         pgraphics->fill_rectangle(rectangleX, colorBackground);
+         pdraw2dgraphics->fill_rectangle(rectangleX, colorBackground);
 
       }
 
@@ -2032,11 +2032,11 @@ namespace experience_core
 
       pbrushDraw->create_solid(colorTrack);
 
-      pgraphics->set(ppenDraw);
+      pdraw2dgraphics->set(ppenDraw);
 
-      pgraphics->set(pbrushDraw);
+      pdraw2dgraphics->set(pbrushDraw);
 
-      pgraphics->rectangle(statusrectangleTrack);
+      pdraw2dgraphics->rectangle(statusrectangleTrack);
 
       if (pbar->m_bTracking || pbar->is_true("tracking_on"))
       {
@@ -2166,7 +2166,7 @@ namespace experience_core
 
             rectangleMachineThumb.inflate(1 + dSize * (dSize * dSize) * 4 / (iArea * 5), 1 + dSize * (dSize * dSize) * 2 / (iArea * 3));
 
-            pbar->draw_mac_thumb_simple(pgraphics, rectangleMachineThumb, statusrectangleTrack, uchAlpha);
+            pbar->draw_mac_thumb_simple(pdraw2dgraphics, rectangleMachineThumb, statusrectangleTrack, uchAlpha);
 
          }
          else
@@ -2184,7 +2184,7 @@ namespace experience_core
 
             rectangleMachineThumb.deflate(1, 1);
 
-            pbar->draw_mac_thumb_dots(pgraphics, rectangleMachineThumb, statusrectangleTrack, uchAlpha);
+            pbar->draw_mac_thumb_dots(pdraw2dgraphics, rectangleMachineThumb, statusrectangleTrack, uchAlpha);
 
          }
 
@@ -2196,29 +2196,29 @@ namespace experience_core
 
       ppenGrip->create_solid(2.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_trackbar));
 
-      pgraphics->set(ppenGrip);
+      pdraw2dgraphics->set(ppenGrip);
 
       ::i32_point pointCenter = statusrectangleTrack.center();
 
       if (pbar->m_eorientation == e_orientation_horizontal)
       {
 
-         pgraphics->line(pointCenter.x - 5, pointCenter.y - 5,
+         pdraw2dgraphics->line(pointCenter.x - 5, pointCenter.y - 5,
                      pointCenter.x - 5, pointCenter.y + 5);
-         pgraphics->line(pointCenter.x, pointCenter.y - 5,
+         pdraw2dgraphics->line(pointCenter.x, pointCenter.y - 5,
              pointCenter.x, pointCenter.y + 5);
-         pgraphics->line(pointCenter.x + 5, pointCenter.y - 5,
+         pdraw2dgraphics->line(pointCenter.x + 5, pointCenter.y - 5,
          pointCenter.x + 5, pointCenter.y + 5);
 
       }
       else
       {
 
-         pgraphics->line(pointCenter.x - 5, pointCenter.y - 5,
+         pdraw2dgraphics->line(pointCenter.x - 5, pointCenter.y - 5,
          pointCenter.x + 5, pointCenter.y - 5);
-         pgraphics->line(pointCenter.x - 5, pointCenter.y,
+         pdraw2dgraphics->line(pointCenter.x - 5, pointCenter.y,
          pointCenter.x + 5, pointCenter.y);
-         pgraphics->line(pointCenter.x - 5, pointCenter.y + 5,
+         pdraw2dgraphics->line(pointCenter.x - 5, pointCenter.y + 5,
          pointCenter.x + 5, pointCenter.y + 5);
 
       }
@@ -2231,13 +2231,13 @@ namespace experience_core
 
          ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 
-         pgraphics->set(ppenArrow);
+         pdraw2dgraphics->set(ppenArrow);
 
          pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectA));
 
-         pgraphics->set(pbar->m_pbrushDraw);
+         pdraw2dgraphics->set(pbar->m_pbrushDraw);
 
-         pgraphics->rectangle(rectangleA);
+         pdraw2dgraphics->rectangle(rectangleA);
 
       }
 
@@ -2249,13 +2249,13 @@ namespace experience_core
 
          ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
 
-         pgraphics->set(ppenArrow);
+         pdraw2dgraphics->set(ppenArrow);
 
          pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectB));
 
-         pgraphics->set(pbar->m_pbrushDraw);
+         pdraw2dgraphics->set(pbar->m_pbrushDraw);
 
-         pgraphics->rectangle(rectangleB);
+         pdraw2dgraphics->rectangle(rectangleB);
 
       }
 
@@ -2267,9 +2267,9 @@ namespace experience_core
 
          pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageA));
 
-         pgraphics->set(pbar->m_pbrushDraw);
+         pdraw2dgraphics->set(pbar->m_pbrushDraw);
 
-         pgraphics->fill_rectangle(statusrectanglePageA);
+         pdraw2dgraphics->fill_rectangle(statusrectanglePageA);
 
       }
       else if (::is_element(pbar->main_content().m_pitemCurrent, ::e_element_scrollbar_pageB)
@@ -2280,9 +2280,9 @@ namespace experience_core
 
          pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageB));
 
-         pgraphics->set(pbar->m_pbrushDraw);
+         pdraw2dgraphics->set(pbar->m_pbrushDraw);
 
-         pgraphics->fill_rectangle(statusrectanglePageB);
+         pdraw2dgraphics->fill_rectangle(statusrectanglePageB);
 
       }
 
@@ -2300,9 +2300,9 @@ namespace experience_core
 
             ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 
-            pgraphics->set(ppenArrow);
+            pdraw2dgraphics->set(ppenArrow);
 
-            pgraphics->polyline(pointaA);
+            pdraw2dgraphics->polyline(pointaA);
 
          }
 
@@ -2312,9 +2312,9 @@ namespace experience_core
 
             ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
 
-            pgraphics->set(ppenArrow);
+            pdraw2dgraphics->set(ppenArrow);
 
-            pgraphics->polyline(pointaB);
+            pdraw2dgraphics->polyline(pointaB);
 
          }
 
@@ -2325,20 +2325,20 @@ namespace experience_core
    }
 
 
-   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction)
+   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::interaction * pinteraction)
    {
 
-      ::draw2d::save_context savecontext(pgraphics);
+      ::draw2d::save_context savecontext(pdraw2dgraphics);
 
-      pgraphics->m_pacmeuserinteractionAffinity = pinteraction;
+      pdraw2dgraphics->m_pacmeuserinteractionAffinity = pinteraction;
 
       if (pinteraction->is_top_level())
       {
 
-         //      if (!pframe->is_custom_draw() && pgraphics != nullptr && pgraphics->m_pnext == nullptr)
+         //      if (!pframe->is_custom_draw() && pdraw2dgraphics != nullptr && pdraw2dgraphics->m_pnext == nullptr)
          //      {
          //
-         //         pframe->set_context_org(pgraphics);
+         //         pframe->set_context_org(pdraw2dgraphics);
          //
          //      }
 
@@ -2346,9 +2346,9 @@ namespace experience_core
 
          rectangleX = pinteraction->rectangle();
 
-         auto pstyle = pinteraction->get_style(pgraphics);
+         auto pstyle = pinteraction->get_style(pdraw2dgraphics);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          ::string strType =  ::platform::type(pinteraction).name();
 
@@ -2365,11 +2365,11 @@ namespace experience_core
 
          // xxx xxx xxx
          
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
          
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         pgraphics->fill_rectangle(rectangleX, crBackground);
+         pdraw2dgraphics->fill_rectangle(rectangleX, crBackground);
 
       }
 

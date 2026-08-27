@@ -177,8 +177,8 @@ namespace coding
       virtual void install_deb();
       virtual void _snap_uninstall(const ::scoped_string& scopedstrPackageName);
 
-      //bool _cloud_defer_check_file_txt(::file::path & pathTarget, const ::file::path & pathCloudFile, bool bForce = false, ::file::path * ppathSource = nullptr);
-      //::string_array _cloud_get_file_txt_lines(const ::file::path & pathCloudFile, bool bForce = false, ::file::path * ppathTarget = nullptr, ::file::path * ppathSource = nullptr);
+      //bool _cloud_defer_check_file_txt(::file::path & pathTarget, const ::file::path & pathCloudFile, bool bForce = false, ::file::path * pfilepathSource = nullptr);
+      //::string_array _cloud_get_file_txt_lines(const ::file::path & pathCloudFile, bool bForce = false, ::file::path * pfilepathTarget = nullptr, ::file::path * pfilepathSource = nullptr);
       //bool _dropbox_defer_check_index_files(::file::path & pathSource, const ::scoped_string & scopedstrDropboxFolder);
 
       //::file::path _cloud_ensure_file_txt_is_up_to_date_and_present(const ::file::path & pathCloudFile);

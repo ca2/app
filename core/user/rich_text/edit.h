@@ -113,15 +113,15 @@ namespace user
 
          virtual void internal_update_sel_char();
 
-         virtual void do_layout(::draw2d::graphics_pointer & pgraphics);
+         virtual void do_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
 
          virtual void on_selection_change();
 
          void install_message_routing(::channel * psender) override;
 
-         void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+         void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-         void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
+         void draw_impl(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
          virtual ::pointer<format_tool>get_format_tool(bool bCreate);
 
@@ -134,7 +134,7 @@ namespace user
          //virtual void _001GetLayoutText(string & str);
 
 
-         void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+         void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
          DECLARE_MESSAGE_HANDLER(on_message_create);
          DECLARE_MESSAGE_HANDLER(on_message_destroy);
@@ -167,7 +167,7 @@ namespace user
 
          void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-         virtual void draw_text(::draw2d::graphics_pointer & pgraphics, const ::f64_rectangle & rectangle);
+         virtual void draw_text(::draw2d::graphics_pointer & pdraw2dgraphics, const ::f64_rectangle & rectangle);
 
          virtual character_count _001GetLayoutTextLength() const;
 

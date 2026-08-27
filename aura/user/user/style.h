@@ -20,7 +20,7 @@ namespace user
       map_base < ::user::enum_control_type, ::pointer<control_style >>m_controlstyle;
       //::pointer<::user::plain_edit_style>   m_pplaineditstyel;
 
-      ::write_text::font_pointer                 m_pfont;
+      ::write_text::font_pointer                 m_pwritetextfont;
       ::write_text::font_pointer                 m_pfontMenu;
       ::write_text::font_pointer                 m_pfontButton;
       ::write_text::font_pointer                 m_pfontList;
@@ -76,10 +76,10 @@ namespace user
       void default_style_construct();
 
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) override;
-      //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem) override;
-      //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem) override;
+      //virtual bool prepare_menu(::draw2d::graphics_pointer& pdraw2dgraphics, ::menu::item * pitem) override;
+      //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pdraw2dgraphics, ::menu::item * pitem) override;
 
-      virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox);
+      virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::check_box * pcheckbox);
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
@@ -92,38 +92,38 @@ namespace user
       virtual ::color::color get_style_moveable_border_color(enum_style estyle);
 
       template < typename CONTROL_STYLE >
-      void get(::pointer<CONTROL_STYLE>& pcontrolstyleImpl, ::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction);
+      void get(::pointer<CONTROL_STYLE>& pcontrolstyleImpl, ::draw2d::graphics_pointer & pdraw2dgraphics, ::user::interaction * pinteraction);
 
-      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::interaction * pinteraction) override;
+      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pdraw2dgraphics,::user::interaction * pinteraction) override;
 
-      virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics) override;
+      virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      virtual bool draw_item(::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction, ::user::item & useritem, const ::user::e_state & estate);
+      virtual bool draw_item(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::interaction * pinteraction, ::user::item & useritem, const ::user::e_state & estate);
 
       ::i32_rectangle simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction) override;
-      bool simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pgraphics) override;
-      bool simple_ui_draw_border(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics) override;
+      bool simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      bool simple_ui_draw_border(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       //virtual bool on_ui_event(enum_happening ehappening, e_object eobject, ::user::interaction * pinteraction) override;
 
-      //virtual bool _001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pbutton) override;
+      //virtual bool _001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pdraw2dgraphics, menu_interaction * pbutton) override;
 
-      //virtual bool _001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab) override;
+      //virtual bool _001OnTabLayout(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::tab * ptab) override;
 
-      //virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab) override;
+      //virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pdraw2dgraphics, tab * ptab) override;
 
-      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText) override;
+      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText) override;
 
 
       //      virtual bool _001GetMainFrameTranslucency(::user::enum_translucency & etranslucency) override;
 
-      //virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox) override;
+      //virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::check_box * pcheckbox) override;
 
-      virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar) override;
+      virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar) override;
 
-      virtual bool _001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar) override;
+      virtual bool _001DrawSimpleScrollBar(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::scroll_bar * pbar) override;
 
-      virtual bool _001DrawScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar) override;
+      virtual bool _001DrawScrollBar(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::scroll_bar * pbar) override;
 
 
       // these are utility functions
@@ -135,9 +135,9 @@ namespace user
       // to implement the utility functions
       //virtual bool _001GetMainFrameTranslucency(::user::enum_translucency & etranslucency);
 
-      //virtual bool select_text_color(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics, e_color ecolor = color_text);
-      //virtual bool select_solid_brush(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics, e_color ecolor);
-      //virtual bool set(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics, e_font efont = font_default);
+      //virtual bool select_text_color(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pdraw2dgraphics, e_color ecolor = color_text);
+      //virtual bool select_solid_brush(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pdraw2dgraphics, e_color ecolor);
+      //virtual bool set(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pdraw2dgraphics, e_font efont = font_default);
 
 
 
@@ -147,7 +147,7 @@ namespace user
 
 
       //virtual ::color::color           _001GetColor(e_color ecolor, ::color::color crDefault = 0);
-      //virtual ::write_text::font_pointer  _001GetFont(e_font efont, ::write_text::font * pfont = nullptr);
+      //virtual ::write_text::font_pointer  _001GetFont(e_font efont, ::write_text::font * pwritetextfont = nullptr);
       //virtual enum_translucency     _001GetTranslucency(const ::e_element & eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
       //virtual bool               _001GetFlag(::user::enum_flag eflag, bool bDefault = false);
       //virtual ::i32_rectangle             _001GetRect(::user::e_rect erect, ::i32_rectangle rectangleDefault = nullptr);
@@ -173,7 +173,7 @@ namespace user
       //virtual bool get_f64(::f64 & d, e_f64 ef64, style_context * pcontext) override;
 
 
-      virtual void select(::draw2d::graphics_pointer & pgraphics);
+      virtual void select(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual enum_control_type get_control_type() const override;
 

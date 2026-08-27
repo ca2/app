@@ -151,11 +151,11 @@ namespace write_text
    font_pointer write_text::font(const font_family_pointer & pfontfamily, const font_size & fontsize, ::i32 iFontWeight)
    {
 
-      auto pfont = createø < class font >();
+      auto pwritetextfont = createø < class font >();
 
-      pfont->create_font(pfontfamily, fontsize, iFontWeight);
+      pwritetextfont->create_font(pfontfamily, fontsize, iFontWeight);
 
-      return ::transfer(pfont);
+      return ::transfer(pwritetextfont);
 
    }
 

@@ -32,19 +32,19 @@ namespace graphics
 
       auto pitem = get_buffer_item();
 
-      if (m_spgraphics.is_null())
+      if (m_pdraw2dgraphics.is_null())
       {
 
-         constructø(m_spgraphics);
+         constructø(m_pdraw2dgraphics);
 
       }
 
-      if (m_spgraphics->get_os_data() == nullptr)
+      if (m_pdraw2dgraphics.nok())
       {
 
          //bool bOk = 
          
-         m_spgraphics->create_window_graphics(m_pwindow);
+         m_pdraw2dgraphics->create_window_graphics(m_pwindow);
 
          //if (!bOk)
          //{
@@ -57,9 +57,9 @@ namespace graphics
 
       auto puserinteraction = m_pwindow->user_interaction();
 
-      m_spgraphics->on_begin_draw(m_pwindow, puserinteraction->const_layout().design().size());
+      m_pdraw2dgraphics->on_begin_draw(m_pwindow, puserinteraction->const_layout().design().size());
 
-      //return m_spgraphics;
+      //return m_pdraw2dgraphics;
 
       return pitem->acquire_graphics();
 
@@ -72,7 +72,7 @@ namespace graphics
       try
       {
 
-         m_spgraphics->on_end_draw(m_pwindow);
+         m_pdraw2dgraphics->on_end_draw(m_pwindow);
 
       }
       catch (...)

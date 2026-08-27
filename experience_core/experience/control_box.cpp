@@ -25,31 +25,31 @@ namespace experience_core
 
 
 
-   void control_box::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   void control_box::_001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::experience::control_box::_001OnNcClip(pgraphics);
+      ::experience::control_box::_001OnNcClip(pdraw2dgraphics);
 
    }
 
 
-   void control_box::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void control_box::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::experience::control_box::_001OnClip(pgraphics);
+      ::experience::control_box::_001OnClip(pdraw2dgraphics);
 
    }
 
 
-   void control_box::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void control_box::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-//      ::experience::control_box::_001OnNcDraw(pgraphics);
+//      ::experience::control_box::_001OnNcDraw(pdraw2dgraphics);
 
    }
 
 
-   void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void control_box::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //return;
@@ -70,7 +70,7 @@ namespace experience_core
 
       }
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::color::color crBackground;
 
@@ -90,9 +90,9 @@ namespace experience_core
 
       }
 
-      pgraphics->fill_rectangle(rectangleX, crBackground);
+      pdraw2dgraphics->fill_rectangle(rectangleX, crBackground);
 
-      draw_display_normal_label(pgraphics);
+      draw_display_normal_label(pdraw2dgraphics);
 
    }
 
@@ -141,7 +141,7 @@ namespace experience_core
    }
 
 
-   ::i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
+   ::i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       m_sizeButtonDefault={26, 26};

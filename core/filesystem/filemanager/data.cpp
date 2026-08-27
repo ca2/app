@@ -87,9 +87,9 @@ namespace filemanager
       //   return estatus;
       m_typeFileList = ::type<file_list>();
       //}
-      constructø(m_pfont);
+      constructø(m_pwritetextfont);
 
-      m_pfont->create_font("Verdana", 14_px);
+      m_pwritetextfont->create_font("Verdana", 14_px);
 
       m_strLevelUp.empty();
       m_setToolbar[::userfs::e_mode_normal] = "matter://filemanager_toolbar.xml";

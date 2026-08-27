@@ -48,7 +48,7 @@ namespace user
    void list_header::DrawItem(::draw2d::item * pdrawitem)
    {
 
-      ::draw2d::graphics_pointer pgraphics = pdrawitem->m_pgraphics;
+      ::draw2d::graphics_pointer pdraw2dgraphics = pdrawitem->m_pgraphics;
 
       ::i32_rectangle rectangleColumn = pdrawitem->rcItem;
 
@@ -80,7 +80,7 @@ namespace user
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
          rectangleColumn.left = rectangle.right + m_iImageSpacing;
 
@@ -97,17 +97,17 @@ namespace user
 
          auto pstyle = get_style(pdrawitem->m_pgraphics);
 
-         auto pfont = pstyle->get_font(this, e_element_none);
+         auto pwritetextfont = pstyle->get_font(this, e_element_none);
 
-         //pfont->m_strFontFamilyName = "Arial";
+         //pwritetextfont->m_strFontFamilyName = "Arial";
 
-         //pfont->m_bUpdated2 = false;
+         //pwritetextfont->m_bUpdated2 = false;
 
-         pdrawitem->m_pgraphics->set(pfont);
+         pdrawitem->m_pgraphics->set(pwritetextfont);
 
          auto color = get_color(pstyle, ::e_element_text);
 
-         pgraphics->set_text_color(color);
+         pdraw2dgraphics->set_text_color(color);
          
          ::e_align ealign = plist->get_draw_text_align(plist->m_eview);
          
@@ -115,7 +115,7 @@ namespace user
 
          //rectangleColumn.bottom += rectangleColumn.height() * 2;
 
-         pgraphics->draw_text(str, rectangleColumn, ealign, edrawtext);
+         pdraw2dgraphics->draw_text(str, rectangleColumn, ealign, edrawtext);
 
       }
 
@@ -735,10 +735,10 @@ namespace user
    }
 
 
-   void list_header::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void list_header::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::box::_001OnClip(pgraphics);
+      ::user::box::_001OnClip(pdraw2dgraphics);
 
       return;
 
@@ -747,7 +747,7 @@ namespace user
 
       //   ::i32_rectangle rectangleClip;
 
-      //   ::aura::draw_context* pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
+      //   ::aura::draw_context* pdrawcontext = pdraw2dgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
       //   ::i32_rectangle rectangleX;
 
@@ -806,18 +806,18 @@ namespace user
 
       //   }
 
-      //   pgraphics->reset_clip();
+      //   pdraw2dgraphics->reset_clip();
 
-      //   pgraphics->m_pointAddShapeTranslate = m_pointScroll;
+      //   pdraw2dgraphics->m_pointAddShapeTranslate = m_pointScroll;
 
-      //   pgraphics->add_shapes(*m_pshapeaClip);
+      //   pdraw2dgraphics->add_shapes(*m_pshapeaClip);
 
       //   //try
       ////{
 
       ////   ::i32_rectangle rectangleClip;
 
-      ////   ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
+      ////   ::aura::draw_context * pdrawcontext = pdraw2dgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
       ////   ::i32_rectangle rectangleX;
 
@@ -888,7 +888,7 @@ namespace user
       ////      
       ////   }
       ////   
-      ////   pgraphics->add_shapes(*m_pshapeaClip);
+      ////   pdraw2dgraphics->add_shapes(*m_pshapeaClip);
 
 
       //}
@@ -903,7 +903,7 @@ namespace user
    }
 
 
-   void list_header::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void list_header::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
@@ -913,7 +913,7 @@ namespace user
 
       ::f64_rectangle rectangleClipBox;
 
-      pgraphics->get_clip_box(rectangleClipBox);
+      pdraw2dgraphics->get_clip_box(rectangleClipBox);
 
       rectangleClipBox.right--;
 
@@ -926,21 +926,21 @@ namespace user
 
       rectangleUpdate.intersect(rectangleUpdate, rectangleClipBox);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
-      pgraphics->fill_rectangle(rectangleUpdate, get_color(pstyle, ::e_element_background));
+      pdraw2dgraphics->fill_rectangle(rectangleUpdate, get_color(pstyle, ::e_element_background));
 
       ::draw2d::item drawitem;
-      drawitem.m_pgraphics = pgraphics;
+      drawitem.m_pgraphics = pdraw2dgraphics;
       ::user::list * plist = m_plist;
       ::i32_rectangle rectangleDivider;
-      auto ppen = createø < ::draw2d::pen > ();
+      auto pdraw2dpen = createø < ::draw2d::pen > ();
 
       auto color = get_color(pstyle, ::e_element_separator);
 
-      ppen->create_solid(1.0, color);
+      pdraw2dpen->create_solid(1.0, color);
 
       for(::i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
@@ -953,13 +953,13 @@ namespace user
 
          GetItemRect(&rectangleDivider, ::e_element_divider, iItem);
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
-         pgraphics->line(
+         pdraw2dgraphics->line(
             rectangleDivider.left, rectangleDivider.top,
                rectangleDivider.left, rectangleDivider.bottom);
 
-         //pgraphics->draw_inset_3d_rectangle(rectangleDivider, crButtonShadow, psession->get_default_color(COLOR_BTNHIGHLIGHT));
+         //pdraw2dgraphics->draw_inset_3d_rectangle(rectangleDivider, crButtonShadow, psession->get_default_color(COLOR_BTNHIGHLIGHT));
 
       }
 

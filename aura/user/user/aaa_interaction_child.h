@@ -110,10 +110,10 @@ namespace user
 
       //virtual bool post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
 
-      //void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      //void _000CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
-      void set_origin(::draw2d::graphics_pointer & pgraphics) override;
+      void set_origin(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       void RedrawWindow(const ::i32_rectangle& rectangleUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
 

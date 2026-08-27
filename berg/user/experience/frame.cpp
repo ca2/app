@@ -202,10 +202,10 @@ namespace experience
    }
 
 
-   void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void frame::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    }
 
@@ -270,7 +270,7 @@ namespace experience
    }
 
 
-   void frame::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void frame::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pframewindow = m_pframewindow;
@@ -280,13 +280,13 @@ namespace experience
 //      if (m_pcontrolbox.is_set())
 //      {
 //
-//         m_pcontrolbox->reset_layout(pgraphics);
+//         m_pcontrolbox->reset_layout(pdraw2dgraphics);
 //
 //      }
 
-      calculate_caption_height(pgraphics);
+      calculate_caption_height(pdraw2dgraphics);
 
-      title_bar_layout(pgraphics);
+      title_bar_layout(pdraw2dgraphics);
 
       update_window_client_rect();
 
@@ -300,12 +300,12 @@ namespace experience
 
             ::i32_rectangle rectangle(0, 0, 32767, 32767);
 
-            pframewindow->RepositionBars(pgraphics, 0, 0xffff, pframewindow->m_pimpactMain, pframewindow->reposQuery,
+            pframewindow->RepositionBars(pdraw2dgraphics, 0, 0xffff, pframewindow->m_pimpactMain, pframewindow->reposQuery,
                                  &rectangle, rectangle, false);
             rectangle.offset(rectangleHosting.top_left());
             ::i32_rectangle rectangleBorder;
             pframewindow->GetBorderRectangle(&rectangleBorder);
-            pframewindow->RepositionBars(pgraphics, 0, 0xffff, pframewindow->m_pimpactMain, pframewindow->reposExtra,
+            pframewindow->RepositionBars(pdraw2dgraphics, 0, 0xffff, pframewindow->m_pimpactMain, pframewindow->reposExtra,
                                  &rectangleBorder, rectangle, true);
             pframewindow->SetBorderRect(rectangleBorder);
             //pframewindow->CalcWindowRect(&rectangle);
@@ -326,7 +326,7 @@ namespace experience
 
             pframewindow->GetBorderRectangle(&rectangleBorder);
 
-            pframewindow->RepositionBars(pgraphics, 0, 0xffff, pframewindow->m_pimpactMain, pframewindow->reposExtra, &rectangleBorder, rectangleHosting);
+            pframewindow->RepositionBars(pdraw2dgraphics, 0, 0xffff, pframewindow->m_pimpactMain, pframewindow->reposExtra, &rectangleBorder, rectangleHosting);
 
             pframewindow->SetBorderRect(rectangleBorder);
 
@@ -932,12 +932,12 @@ namespace experience
    }
 
 
-   void frame::calculate_caption_height(::draw2d::graphics_pointer & pgraphics)
+   void frame::calculate_caption_height(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleMargin = get_control_box()->get_button_margin(e_button_close);
 
-      auto iButtonSize = get_control_box()->calculate_button_size(pgraphics);
+      auto iButtonSize = get_control_box()->calculate_button_size(pdraw2dgraphics);
 
       auto iCaptionHeight = rectangleMargin.top + iButtonSize + rectangleMargin.bottom;
       
@@ -960,7 +960,7 @@ namespace experience
    }
 
 
-   void frame::title_bar_layout(::draw2d::graphics_pointer & pgraphics)
+   void frame::title_bar_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       bool bVisibleControlBox = false;
@@ -1025,11 +1025,11 @@ namespace experience
 
       i32_rectangle rectangleCaptionTextPadding = get_caption_text_padding();
 
-      ::i32 iControlBoxWidth = m_pcontrolbox->calculate_control_box_width(pgraphics);
+      ::i32 iControlBoxWidth = m_pcontrolbox->calculate_control_box_width(pdraw2dgraphics);
 
       //information() << "experience::frame_window::title_bar_layout iControlBoxWidth: " << iControlBoxWidth;
 
-      //calculate_caption_height(pgraphics);
+      //calculate_caption_height(pdraw2dgraphics);
 
       //::i32 iCaptionHeight = m_iCap;
       
@@ -1083,7 +1083,7 @@ namespace experience
       if (m_pframewindow->const_layout().is_this_screen_visible(::user::e_layout_lading) && !is_iconic(m_pframewindow->const_layout().lading().display()))
       {
 
-         get_control_box()->place(rectangleControlBox, ::user::e_layout_sketch, pgraphics);
+         get_control_box()->place(rectangleControlBox, ::user::e_layout_sketch, pdraw2dgraphics);
 
          //information() << "experience::frame_window::title_bar_layout rectangleControlBox: " << rectangleControlBox;
 
@@ -1238,14 +1238,14 @@ namespace experience
    }
 
 
-   bool frame::calculate_hosting_rectangle(::i32_rectangle * prectangle, ::draw2d::graphics_pointer & pgraphics)
+   bool frame::calculate_hosting_rectangle(::i32_rectangle * prectangle, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::i32_rectangle rectangleHosting(*prectangle);
 
       auto eappearance = m_pframewindow->const_layout().state(::user::e_layout_lading).appearance();
 
-      calculate_caption_height(pgraphics);
+      calculate_caption_height(pdraw2dgraphics);
 
       if (!m_pframewindow->layout().is_full_screen() &&
          !(eappearance & ::e_appearance_transparent_frame))
@@ -1336,9 +1336,9 @@ namespace experience
 
       ::i32_rectangle rectangleHosting(rectangle);
 
-      ::draw2d::graphics_pointer pgraphics;
+      ::draw2d::graphics_pointer pdraw2dgraphics;
 
-      calculate_hosting_rectangle(&rectangleHosting, pgraphics);
+      calculate_hosting_rectangle(&rectangleHosting, pdraw2dgraphics);
 
       auto rectangleaBorders = get_borders(rectangle, rectangleHosting);
 
@@ -1393,7 +1393,7 @@ namespace experience
    }
 
 
-   void frame::_on_style_change(::draw2d::graphics_pointer & pgraphics)
+   void frame::_on_style_change(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto estyle = m_pframewindow->m_estyle;
@@ -1888,10 +1888,10 @@ namespace experience
    //}
 
 
-   void frame::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics)
+   void frame::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pdraw2dgraphics)
    {
 
-      m_pframewindow->::user::frame_window::place_set_need_redraw(rectangleAfter, rectangleBefore, pgraphics);
+      m_pframewindow->::user::frame_window::place_set_need_redraw(rectangleAfter, rectangleBefore, pdraw2dgraphics);
 
    }
 

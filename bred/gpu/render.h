@@ -63,15 +63,15 @@ namespace gpu
       //virtual void defer_update_shader();
       //virtual ::e_status _update_shader();
 
-      //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      //virtual void _001OnDraw1Through3(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _001OnDraw1Through3(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      //virtual void _001OnDrawArcs(::draw2d::graphics_pointer & pgraphics, bool bPath);
+      //virtual void _001OnDrawArcs(::draw2d::graphics_pointer & pdraw2dgraphics, bool bPath);
 
-      //virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, i32_rectangle & r, ::f64 dStart, ::f64 dAngle, bool bPath);
+      //virtual void draw_arc(::draw2d::graphics_pointer & pdraw2dgraphics, i32_rectangle & r, ::f64 dStart, ::f64 dAngle, bool bPath);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
 
   
 
@@ -83,7 +83,7 @@ namespace gpu
 
       virtual void draw();
       virtual void read_to_cpu_buffer2();
-      virtual void to_draw2d_graphics(::draw2d::graphics_pointer & pgraphics);
+      virtual void to_draw2d_graphics(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual void on_start_drawing(::gpu::context * pgpucontext);
       virtual void on_global_transform(::gpu::context * pgpucontext);

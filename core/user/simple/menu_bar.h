@@ -71,12 +71,12 @@ protected:
    //index _001GetHoverItem();
    //void _001Hover(const ::i32_point & point);
    //void _001Hover();
-   //void _001DrawItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem);
+   //void _001DrawItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem);
    //index _001HitTest(const ::i32_point * i32_point);
    //bool _001CheckItem(::collection::index iItem, bool bCheck);
    //bool index_item_rectangle(::collection::index iItem, ::i32_rectangle * prectangle, const ::e_element & eelement);
 
-   //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+   //virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
    bool ReloadMenuBar();
    virtual void OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool bDisableIfNoHndler);
    void RemoveAllButtons();
@@ -85,7 +85,7 @@ protected:
    ::image::image_list_pointer imagelist,
    ::image::image_list_pointer imagelistDisabled,
    ::i32_spreadset * prel,
-   ::write_text::font * pfont);
+   ::write_text::font * pwritetextfont);
 
    //i32_size CalcLayout(::u32 dwMode, ::collection::index nLength);
 

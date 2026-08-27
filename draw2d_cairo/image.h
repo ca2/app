@@ -37,14 +37,14 @@ namespace draw2d_cairo
       //void dc_select(bool bSelect = true) override;
 
       //void create(const ::i32_size & size, ::enum_flag eflagCreate = OK_IMAGE, ::i32 iGoodStride = -1, bool bPreserve = false) override;
-      void create_from_graphics(::draw2d::graphics * pgraphics) override;
+      void create_from_graphics(::draw2d::graphics * pdraw2dgraphics) override;
       void destroy() override;
 
       //bool on_host_read_pixels(::pixmap_t * ppixmap) const override;
       //virtual bool stretch(const ::image::image *pimage) override;
       void _draw_raw(const ::i32_rectangle & rectangle, ::image::image *pimage, const ::i32_point & point = ::i32_point()) override;
 
-      //bool to(::draw2d::graphics * pgraphics, const ::i32_point & point, const ::i32_size & size, const ::i32_point & pointSrc) override;
+      //bool to(::draw2d::graphics * pdraw2dgraphics, const ::i32_point & point, const ::i32_size & size, const ::i32_point & pointSrc) override;
       void set_image_icon(::image::icon * picon, ::i32 cx, ::i32 cy) override;
 
 

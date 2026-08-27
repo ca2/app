@@ -195,16 +195,16 @@ public:
    }
 
 
-   void on_layout(::draw2d::graphics_pointer& pgraphics) override
+   void on_layout(::draw2d::graphics_pointer& pdraw2dgraphics) override
    {
 
-      BASE1::on_layout(pgraphics);
+      BASE1::on_layout(pdraw2dgraphics);
 
-      BASE2::on_layout(pgraphics);
+      BASE2::on_layout(pdraw2dgraphics);
 
-      BASE3::on_layout(pgraphics);
+      BASE3::on_layout(pdraw2dgraphics);
 
-      BASE4::on_layout(pgraphics);
+      BASE4::on_layout(pdraw2dgraphics);
 
    }
 

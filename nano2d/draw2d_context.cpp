@@ -34,21 +34,21 @@ namespace nano2d
    }
 
 
-   void draw2d_context::set_graphics(::draw2d::graphics * pgraphics)
+   void draw2d_context::set_graphics(::draw2d::graphics * pdraw2dgraphics)
    {
 
-      if (m_pgraphics == pgraphics)
+      if (m_pdraw2dgraphics == pdraw2dgraphics)
       {
 
          return;
 
       }
 
-      m_pgraphics = pgraphics;
+      m_pdraw2dgraphics = pdraw2dgraphics;
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
       
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       m_pstate = create_new_state();
 
@@ -58,7 +58,7 @@ namespace nano2d
    ::draw2d::graphics * draw2d_context::get_graphics()
    {
 
-      return m_pgraphics;
+      return m_pdraw2dgraphics;
 
    }
 
@@ -90,17 +90,17 @@ namespace nano2d
    ::pointer < ::nano2d::state > draw2d_context::create_new_state()
    {
 
-      auto pstate = allocateø draw2d_state(m_pgraphics);
+      auto pstate = allocateø draw2d_state(m_pdraw2dgraphics);
 
-      pstate->initialize(m_pgraphics);
+      pstate->initialize(m_pdraw2dgraphics);
 
-      m_pgraphics->constructø(pstate->m_ppen);
-      m_pgraphics->constructø(pstate->m_pbrush);
+      m_pdraw2dgraphics->constructø(pstate->m_pdraw2dpen);
+      m_pdraw2dgraphics->constructø(pstate->m_pdraw2dbrush);
 
-      pstate->m_ppen->m_epen = ::draw2d::e_pen_solid;
-      pstate->m_ppen->m_dWidth = 1.0;
+      pstate->m_pdraw2dpen->m_epen = ::draw2d::e_pen_solid;
+      pstate->m_pdraw2dpen->m_dWidth = 1.0;
 
-      pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
+      pstate->m_pdraw2dbrush->m_ebrush = ::draw2d::e_brush_solid;
 
       pstate->m_bHasCurrentPoint = false;
 
@@ -128,14 +128,14 @@ namespace nano2d
 
       ::pointer < draw2d_state > pstateOld = m_pstate;
 
-      pstateOld->m_matrix = m_pgraphics->m_matrix;
+      pstateOld->m_matrix = m_pdraw2dgraphics->m_matrix;
 
       m_statea.add(pstateOld);
 
       ::pointer < draw2d_state > pstateNew = create_new_state();
 
-      *pstateNew->m_ppen            = *pstateOld->m_ppen;
-      *pstateNew->m_pbrush          = *pstateOld->m_pbrush;
+      *pstateNew->m_pdraw2dpen            = *pstateOld->m_pdraw2dpen;
+      *pstateNew->m_pdraw2dbrush          = *pstateOld->m_pdraw2dbrush;
 
       pstateNew->m_strFontFace      = pstateOld->m_strFontFace;
       pstateNew->m_fFontSize        = pstateOld->m_fFontSize;
@@ -143,14 +143,14 @@ namespace nano2d
       pstateNew->m_pointCurrent     = pstateOld->m_pointCurrent;
       pstateNew->m_bHasCurrentPoint = pstateOld->m_bHasCurrentPoint;
       pstateNew->m_ealignText       = pstateOld->m_ealignText;
-      pstateNew->m_iSavedContext    = m_pgraphics->save_graphics_context();
+      pstateNew->m_iSavedContext    = m_pdraw2dgraphics->save_graphics_context();
 
-      if (pstateOld->m_ppath)
+      if (pstateOld->m_pdraw2dpath)
       {
 
-         m_pgraphics->constructø(pstateNew->m_ppath);
+         m_pdraw2dgraphics->constructø(pstateNew->m_pdraw2dpath);
 
-         *pstateNew->m_ppath = *pstateOld->m_ppath;
+         *pstateNew->m_pdraw2dpath = *pstateOld->m_pdraw2dpath;
 
       }
 
@@ -162,11 +162,11 @@ namespace nano2d
    void draw2d_context::restore1()
    {
 
-      m_pgraphics->restore_graphics_context(m_pstate->m_iSavedContext);
+      m_pdraw2dgraphics->restore_graphics_context(m_pstate->m_iSavedContext);
 
       m_pstate = m_statea.pop();
 
-      m_pgraphics->set(m_pstate->m_matrix);
+      m_pdraw2dgraphics->set(m_pstate->m_matrix);
 
    }
 
@@ -176,9 +176,9 @@ namespace nano2d
       
       ::pointer < draw2d_state > pstate = m_pstate;
 
-      m_pgraphics->constructø(pstate->m_ppath);
+      m_pdraw2dgraphics->constructø(pstate->m_pdraw2dpath);
       
-      pstate->m_ppath->begin_figure();
+      pstate->m_pdraw2dpath->begin_figure();
    
    }
 
@@ -188,10 +188,10 @@ namespace nano2d
       
       ::pointer < draw2d_state > pstate = m_pstate;
 
-      if (pstate->m_ppath)
+      if (pstate->m_pdraw2dpath)
       {
 
-         pstate->m_ppath->set_fill_mode(
+         pstate->m_pdraw2dpath->set_fill_mode(
             dir == ::nano2d::e_solidity_solid ?
             ::draw2d::e_fill_mode_winding
             : ::draw2d::e_fill_mode_alternate);
@@ -200,7 +200,7 @@ namespace nano2d
       else
       {
 
-         m_pgraphics->set_fill_mode(dir == ::nano2d::e_solidity_solid ?
+         m_pdraw2dgraphics->set_fill_mode(dir == ::nano2d::e_solidity_solid ?
             ::draw2d::e_fill_mode_winding
             : ::draw2d::e_fill_mode_alternate);
 
@@ -215,16 +215,16 @@ namespace nano2d
 
       ::pointer < draw2d_state > pstate = m_pstate;
 
-      if (pstate->m_ppath)
+      if (pstate->m_pdraw2dpath)
       {
 
-         pstate->m_ppath->close_figure();
+         pstate->m_pdraw2dpath->close_figure();
 
       }
       else
       {
 
-         m_pgraphics->close_figure();
+         m_pdraw2dgraphics->close_figure();
 
       }
 
@@ -238,7 +238,7 @@ namespace nano2d
 
       matrix.translate(x, y);
 
-      m_pgraphics->prepend(matrix);
+      m_pdraw2dgraphics->prepend(matrix);
 
    }
 
@@ -257,7 +257,7 @@ namespace nano2d
 
       matrix.rotate(angle);
 
-      m_pgraphics->prepend(matrix);
+      m_pdraw2dgraphics->prepend(matrix);
 
    }
    
@@ -283,7 +283,7 @@ namespace nano2d
       ::pointer < draw2d_state > pstate = m_pstate;
 
       
-      pstate->m_ppath->add_round_rectangle({ x, y, x + w, y + h }, r);
+      pstate->m_pdraw2dpath->add_round_rectangle({ x, y, x + w, y + h }, r);
 
    }
 
@@ -296,40 +296,40 @@ namespace nano2d
 
          auto & paintimage = m_mapPaintImage[m_iPaint];
 
-         if (paintimage.m_pbrush)
+         if (paintimage.m_pdraw2dbrush)
          {
 
-            m_pgraphics->set(paintimage.m_pbrush);
+            m_pdraw2dgraphics->set(paintimage.m_pdraw2dbrush);
             
             ::pointer < draw2d_state > pstate = m_pstate;
 
 
-            m_pgraphics->fill(pstate->m_ppath);
+            m_pdraw2dgraphics->fill(pstate->m_pdraw2dpath);
 
 
          }
          else if (paintimage.m_pimage)
          {
 
-            ::draw2d::save_context savecontext(m_pgraphics);
+            ::draw2d::save_context savecontext(m_pdraw2dgraphics);
             
             ::pointer < draw2d_state > pstate = m_pstate;
 
-            m_pgraphics->intersect_clip(pstate->m_ppath);
+            m_pdraw2dgraphics->intersect_clip(pstate->m_pdraw2dpath);
             
             ::f64_rectangle rect;
             
-            m_pgraphics->get_clip_box(rect);
+            m_pdraw2dgraphics->get_clip_box(rect);
 
             ::image::image_source imagesource(paintimage.m_pimage);
 
             ::image::image_drawing imagedrawing(paintimage.m_imagedrawingoptions, imagesource);
 
-            m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            m_pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            m_pgraphics->set_compositing_quality(::draw2d::e_compositing_quality_high_quality);
+            m_pdraw2dgraphics->set_compositing_quality(::draw2d::e_compositing_quality_high_quality);
 
-            m_pgraphics->draw(imagedrawing);
+            m_pdraw2dgraphics->draw(imagedrawing);
 
          }
 
@@ -341,9 +341,9 @@ namespace nano2d
 
          ::pointer < draw2d_state > pstate = m_pstate;
 
-         m_pgraphics->set(pstate->m_pbrush);
+         m_pdraw2dgraphics->set(pstate->m_pdraw2dbrush);
          
-         m_pgraphics->fill(pstate->m_ppath);
+         m_pdraw2dgraphics->fill(pstate->m_pdraw2dpath);
 
       }
 
@@ -355,9 +355,9 @@ namespace nano2d
       
       ::pointer < draw2d_state > pstate = m_pstate;
 
-      m_pgraphics->set(pstate->m_ppen);
+      m_pdraw2dgraphics->set(pstate->m_pdraw2dpen);
 
-      m_pgraphics->draw(pstate->m_ppath);
+      m_pdraw2dgraphics->draw(pstate->m_pdraw2dpath);
 
    }
 
@@ -368,9 +368,9 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->constructø(paintimage.m_pbrush);
+      m_pdraw2dgraphics->constructø(paintimage.m_pdraw2dbrush);
 
-      paintimage.m_pbrush->CreateLinearGradientBrush(
+      paintimage.m_pdraw2dbrush->CreateLinearGradientBrush(
          ::f64_point(sx, sy),
          ::f64_point(ex, ey),
          icol,
@@ -392,9 +392,9 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->constructø(paintimage.m_pbrush);
+      m_pdraw2dgraphics->constructø(paintimage.m_pdraw2dbrush);
 
-      paintimage.m_pbrush->CreateBoxGradientBrush(
+      paintimage.m_pdraw2dbrush->CreateBoxGradientBrush(
          ::f64_point(x, y),
          ::f64_size(w, h),
          r,
@@ -416,9 +416,9 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->constructø(paintimage.m_pbrush);
+      m_pdraw2dgraphics->constructø(paintimage.m_pdraw2dbrush);
 
-      paintimage.m_pbrush->CreateRadialGradientBrush(
+      paintimage.m_pdraw2dbrush->CreateRadialGradientBrush(
          ::f64_point(cx - inr, cy - outr),
          ::f64_size(inr * 2.0f, outr * 2.0f),
          icol,
@@ -444,7 +444,7 @@ namespace nano2d
 
       }
 
-      auto pimage = m_pgraphics->image()->integer_image(iImage);
+      auto pimage = m_pdraw2dgraphics->image()->integer_image(iImage);
 
       return image_pattern_from_image(cx, cy, w, h, angle, alpha, pimage);
 
@@ -498,7 +498,7 @@ namespace nano2d
    }
 
 
-   void __font_face(::write_text::font * pfont, const_char_pointer font)
+   void __font_face(::write_text::font * pwritetextfont, const_char_pointer font)
    {
 
       string strFont(font);
@@ -506,63 +506,63 @@ namespace nano2d
       if (strFont.case_insensitive_order("sans-bold") == 0)
       {
 
-         pfont->m_pathFontFile = "matter://font/truetype/Roboto-Bold.ttf";
+         pwritetextfont->m_pathFontFile = "matter://font/truetype/Roboto-Bold.ttf";
 
-         pfont->m_fontweight = e_font_weight_bold;
+         pwritetextfont->m_fontweight = e_font_weight_bold;
 
-         pfont->set_modified();
+         pwritetextfont->set_modified();
 
       }
       else if (strFont.case_insensitive_order("sans") == 0)
       {
 
-         pfont->m_pathFontFile = "matter://font/truetype/Roboto-Regular.ttf";
+         pwritetextfont->m_pathFontFile = "matter://font/truetype/Roboto-Regular.ttf";
 
-         pfont->m_fontweight = e_font_weight_normal;
+         pwritetextfont->m_fontweight = e_font_weight_normal;
 
-         pfont->set_modified();
+         pwritetextfont->set_modified();
 
       }
       else if (strFont.case_insensitive_order("mono") == 0)
       {
 
-         pfont->m_pathFontFile = "matter://font/truetype/Inconsolata-Regular.ttf";
+         pwritetextfont->m_pathFontFile = "matter://font/truetype/Inconsolata-Regular.ttf";
 
-         pfont->m_fontweight = e_font_weight_normal;
+         pwritetextfont->m_fontweight = e_font_weight_normal;
 
-         pfont->set_modified();
+         pwritetextfont->set_modified();
 
       }
       else if (strFont.case_insensitive_order("icons") == 0)
       {
 
-         pfont->m_pathFontFile = "matter://font/truetype/FontAwesome-Solid.ttf";
+         pwritetextfont->m_pathFontFile = "matter://font/truetype/FontAwesome-Solid.ttf";
 
-         pfont->m_fontweight = e_font_weight_normal;
+         pwritetextfont->m_fontweight = e_font_weight_normal;
 
-         pfont->set_modified();
+         pwritetextfont->set_modified();
 
       }
       else
       {
 
-         pfont->m_pfontfamily = strFont;
+         pwritetextfont->m_pfontfamily = strFont;
 
-         pfont->m_fontweight = e_font_weight_normal;
+         pwritetextfont->m_fontweight = e_font_weight_normal;
 
-         pfont->set_modified();
+         pwritetextfont->set_modified();
 
       }
 
    }
 
 
-   void __font_size(::write_text::font * pfont, ::f32 size)
+   void __font_size(::write_text::font * pwritetextfont, ::f32 size)
    {
 
-      pfont->m_fontsize = size * 0.8_px;
-      //pfont->m_eunitFontSize = ::draw2d::e_unit_pixel;
-      pfont->set_modified();
+      pwritetextfont->m_fontsize = size * 0.8_px;
+      //pwritetextfont->m_eunitFontSize = ::draw2d::e_unit_pixel;
+      pwritetextfont->set_modified();
 
    }
 
@@ -573,11 +573,11 @@ namespace nano2d
       
       ::pointer < draw2d_state > pstate = m_pstate;
 
-pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
+pstate->m_pdraw2dbrush->m_ebrush = ::draw2d::e_brush_solid;
 
-      pstate->m_pbrush->m_color = color;
+      pstate->m_pdraw2dbrush->m_color = color;
 
-      pstate->m_pbrush->set_modified();
+      pstate->m_pdraw2dbrush->set_modified();
       
       m_iPaint = -1;
 
@@ -609,31 +609,31 @@ pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
 
       auto & paintimage = m_mapPaintImage[paint.image];
 
-      if (paintimage.m_pbrush)
+      if (paintimage.m_pdraw2dbrush)
       {
 
          ::pointer < draw2d_state > pstate = m_pstate;
 
-         pstate->m_ppen->m_pbrush = paintimage.m_pbrush;
+         pstate->m_pdraw2dpen->m_pdraw2dbrush = paintimage.m_pdraw2dbrush;
 
-         pstate->m_ppen->set_modified();
+         pstate->m_pdraw2dpen->set_modified();
 
-         m_pgraphics->draw(pstate->m_ppath, pstate->m_ppen);
+         m_pdraw2dgraphics->draw(pstate->m_pdraw2dpath, pstate->m_pdraw2dpen);
 
 
       }
       //else if (paintimage.m_pimage)
       //{
 
-      //   ::draw2d::save_context savecontext(m_pgraphics);
+      //   ::draw2d::save_context savecontext(m_pdraw2dgraphics);
 
-      //   m_pgraphics->intersect_clip(m_pstate->m_ppath);
+      //   m_pdraw2dgraphics->intersect_clip(m_pstate->m_pdraw2dpath);
 
       //   ::image::image_source imagesource(paintimage.m_pimage);
 
       //   ::image::image_drawing imagedrawing(paintimage.m_imagedrawingoptions, imagesource);
 
-      //   m_pgraphics->draw(imagedrawing);
+      //   m_pdraw2dgraphics->draw(imagedrawing);
 
       //}
 
@@ -644,9 +644,9 @@ pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
 
       auto r = f64_rectangle_dimension(x, y, w, h);
 
-      m_pgraphics->reset_clip();
+      m_pdraw2dgraphics->reset_clip();
 
-      m_pgraphics->intersect_clip(r);
+      m_pdraw2dgraphics->intersect_clip(r);
 
    }
 
@@ -656,7 +656,7 @@ pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
 
       auto r = f64_rectangle_dimension(x, y, w, h);
 
-      m_pgraphics->intersect_clip(r);
+      m_pdraw2dgraphics->intersect_clip(r);
 
    }
 
@@ -664,7 +664,7 @@ pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
    void draw2d_context::reset_scissor()
    {
 
-      m_pgraphics->reset_clip();
+      m_pdraw2dgraphics->reset_clip();
 
    }
 
@@ -675,9 +675,9 @@ pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
       
       ::pointer < draw2d_state > pstate = m_pstate;
 
-pstate->m_ppen->m_color = color;
+pstate->m_pdraw2dpen->m_color = color;
 
-      pstate->m_ppen->set_modified();
+      pstate->m_pdraw2dpen->set_modified();
 
    }
 
@@ -687,9 +687,9 @@ pstate->m_ppen->m_color = color;
       ::pointer < draw2d_state > pstate = m_pstate;
 
 
-      pstate->m_ppen->m_dWidth = width;
+      pstate->m_pdraw2dpen->m_dWidth = width;
 
-      pstate->m_ppen->set_modified();
+      pstate->m_pdraw2dpen->set_modified();
 
 
    }
@@ -752,13 +752,13 @@ pstate->m_ppen->m_color = color;
       
       ::pointer < draw2d_state > pstate = m_pstate;
 
-      m_pgraphics->set(pstate->m_pbrush);
+      m_pdraw2dgraphics->set(pstate->m_pdraw2dbrush);
 
       ::f64 offsetx = 0.0;
 
       ::f64 offsety = 0.0;
 
-      auto size = m_pgraphics->get_text_extent(scopedstr);
+      auto size = m_pdraw2dgraphics->get_text_extent(scopedstr);
 
       size.cx *= 1.01;
       size.cy *= 1.01;
@@ -797,7 +797,7 @@ pstate->m_ppen->m_color = color;
 
       auto ealignForDrawText = m_pstate->m_ealignText;
       
-      m_pgraphics->draw_text(scopedstr, r, ealignForDrawText);
+      m_pdraw2dgraphics->draw_text(scopedstr, r, ealignForDrawText);
 
       return r; // it used to return r.right
 
@@ -812,7 +812,7 @@ pstate->m_ppen->m_color = color;
 
       __set_current_font();
 
-      auto size = m_pgraphics->get_text_extent(scopedstr);
+      auto size = m_pdraw2dgraphics->get_text_extent(scopedstr);
 
       ::f64 offsetx = 0.0;
 
@@ -901,12 +901,12 @@ pstate->m_ppen->m_color = color;
       
       __set_current_font();
 
-      auto size = m_pgraphics->get_text_extent(scopedstr);
+      auto size = m_pdraw2dgraphics->get_text_extent(scopedstr);
 
       //if (!m_pstate->m_bDiacritics)
       //{
 
-      //   auto tm = m_pgraphics->get_text_metrics();
+      //   auto tm = m_pdraw2dgraphics->get_text_metrics();
 
       //   size.cy = tm.m_dAscent;
 
@@ -961,7 +961,7 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
    
    __set_current_font();
    
-   auto textmetrics = m_pgraphics->get_text_metrics();
+   auto textmetrics = m_pdraw2dgraphics->get_text_metrics();
    
    if(pfAscender)
    {
@@ -993,10 +993,10 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
       ::pointer < draw2d_state > pstate = m_pstate;
 
 
-      if (pstate->m_ppath)
+      if (pstate->m_pdraw2dpath)
       {
 
-         pstate->m_ppath->set_current_point(::f64_point(x, y));
+         pstate->m_pdraw2dpath->set_current_point(::f64_point(x, y));
 
       }
       else
@@ -1019,10 +1019,10 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
       ::pointer < draw2d_state > pstate = m_pstate;
 
       
-      if (pstate->m_ppath)
+      if (pstate->m_pdraw2dpath)
       {
 
-         pstate->m_ppath->add_line(::f64_point(x, y));
+         pstate->m_pdraw2dpath->add_line(::f64_point(x, y));
 
       }
       else
@@ -1035,7 +1035,7 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
 
          }
 
-         m_pgraphics->line(m_point.x, m_point.y, x, y);
+         m_pdraw2dgraphics->line(m_point.x, m_point.y, x, y);
 
          m_point.x = x;
 
@@ -1052,16 +1052,16 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
       ::pointer < draw2d_state > pstate = m_pstate;
 
 
-      if (pstate->m_ppath)
+      if (pstate->m_pdraw2dpath)
       {
 
-         pstate->m_ppath->add_rectangle(f64_rectangle_dimension(x, y, w, h));
+         pstate->m_pdraw2dpath->add_rectangle(f64_rectangle_dimension(x, y, w, h));
 
       }
       else
       {
 
-         m_pgraphics->rectangle(f64_rectangle_dimension(x, y, w, h));
+         m_pdraw2dgraphics->rectangle(f64_rectangle_dimension(x, y, w, h));
 
       }
 
@@ -1082,16 +1082,16 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
       ::pointer < draw2d_state > pstate = m_pstate;
 
 
-      if (pstate->m_ppath)
+      if (pstate->m_pdraw2dpath)
       {
 
-         pstate->m_ppath->add_ellipse(ellipse);
+         pstate->m_pdraw2dpath->add_ellipse(ellipse);
 
       }
       else
       {
 
-         m_pgraphics->ellipse(ellipse);
+         m_pdraw2dgraphics->ellipse(ellipse);
 
       }
 
@@ -1106,16 +1106,16 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
       ::pointer < draw2d_state > pstate = m_pstate;
 
       
-      if (pstate->m_ppath)
+      if (pstate->m_pdraw2dpath)
       {
 
-         pstate->m_ppath->add_arc(rectangle, a0, dir ? a1 - a0 : a0 - a1);
+         pstate->m_pdraw2dpath->add_arc(rectangle, a0, dir ? a1 - a0 : a0 - a1);
 
       }
       else
       {
 
-         m_pgraphics->arc(rectangle, a0, dir ? a1 - a0 : a0 - a1);
+         m_pdraw2dgraphics->arc(rectangle, a0, dir ? a1 - a0 : a0 - a1);
 
       }
 
@@ -1125,7 +1125,7 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
    void draw2d_context::frame_pixel_perfect_rectangle(::i32 x, ::i32 y, ::i32 w, ::i32 h, const ::color::color& color, ::i32 width)
    {
 
-      m_pgraphics->frame_pixel_perfect_rectangle(x, y, w, h, color, width);
+      m_pdraw2dgraphics->frame_pixel_perfect_rectangle(x, y, w, h, color, width);
 
    }
 
@@ -1133,7 +1133,7 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
    ::i32 draw2d_context::create_image(const ::scoped_string& scopedstrFilename, ::i32 imageFlags)
    {
 
-      return m_pgraphics->image()->image_integer(scopedstrFilename);
+      return m_pdraw2dgraphics->image()->image_integer(scopedstrFilename);
 
    }
 
@@ -1141,7 +1141,7 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
    ::i32 draw2d_context::create_image_rgba(::i32 w, ::i32 h, ::i32 imageFlags, const void * data, ::i32 iScan)
    {
 
-      return m_pgraphics->m_papplication->image()->create_image_integer(w, h, (const ::image32_t *)data, iScan);
+      return m_pdraw2dgraphics->m_papplication->image()->create_image_integer(w, h, (const ::image32_t *)data, iScan);
 
    }
 
@@ -1160,7 +1160,7 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
 
       }
       
-      auto pimage = m_pgraphics->image()->integer_image(image);
+      auto pimage = m_pdraw2dgraphics->image()->integer_image(image);
 
       if (::is_null(pimage))
       {
@@ -1189,7 +1189,7 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
 
       }
 
-      auto pgraphics = m_pgraphics;
+      auto pdraw2dgraphics = m_pdraw2dgraphics;
 
       auto pimage = ::particle::image()->integer_image(image);
 
@@ -1211,9 +1211,9 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      m_pgraphics->set_compositing_quality(::draw2d::e_compositing_quality_high_quality);
+      m_pdraw2dgraphics->set_compositing_quality(::draw2d::e_compositing_quality_high_quality);
 
-      m_pgraphics->draw(imagedrawing);
+      m_pdraw2dgraphics->draw(imagedrawing);
 
 
    }
@@ -1224,7 +1224,7 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
 
       __set_current_font();
 
-      auto c = m_pgraphics->get_character_extent(daLeft, daRight, scopedstr, iStart, iEnd);
+      auto c = m_pdraw2dgraphics->get_character_extent(daLeft, daRight, scopedstr, iStart, iEnd);
 
       return c;
 
@@ -1234,9 +1234,9 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
    void draw2d_context::__set_current_font()
    {
 
-      m_pgraphics->set(_get_current_font());
+      m_pdraw2dgraphics->set(_get_current_font());
 
-      //auto textmetric = m_pgraphics->get_text_metrics();
+      //auto textmetric = m_pdraw2dgraphics->get_text_metrics();
 
       m_pstate->lineHeight = 1.0f;
 

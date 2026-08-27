@@ -15,7 +15,7 @@ namespace draw2d
 {
 
 
-   path_simple_optimization::path_simple_optimization(::draw2d::path * ppath)
+   path_simple_optimization::path_simple_optimization(::draw2d::path * pdraw2dpath)
    {
       
       m_iTopic = 0;
@@ -23,7 +23,7 @@ namespace draw2d
       m_iClose = 0;
 
 
-      for (auto & pitem : ppath->m_itema)
+      for (auto & pitem : pdraw2dpath->m_itema)
       {
 
          auto eitem = pitem->type();
@@ -100,7 +100,7 @@ namespace draw2d
 
    }
 
-   bool path_simple_optimization::draw(::draw2d::graphics * pgraphics, ::draw2d::pen * ppen)
+   bool path_simple_optimization::draw(::draw2d::graphics * pdraw2dgraphics, ::draw2d::pen * pdraw2dpen)
    {
 
    if (m_iTopic == 1 && m_iTopicLines == 0 && ::is_set(m_pitemTopic))
@@ -117,18 +117,18 @@ namespace draw2d
       case e_item_lines:
          break;
       case e_item_rectangle:
-         if (::is_set(ppen))
+         if (::is_set(pdraw2dpen))
          {
-            pgraphics->set(ppen);
+            pdraw2dgraphics->set(pdraw2dpen);
          }
-         pgraphics->draw_rectangle(m_pitemTopic->cast < ::geometry2d::rectangle_item>()->m_item);
+         pdraw2dgraphics->draw_rectangle(m_pitemTopic->cast < ::geometry2d::rectangle_item>()->m_item);
          return true;
       case e_item_ellipse:
-         if (::is_set(ppen))
+         if (::is_set(pdraw2dpen))
          {
-            pgraphics->set(ppen);
+            pdraw2dgraphics->set(pdraw2dpen);
          }
-         pgraphics->draw_ellipse(m_pitemTopic->cast < ::geometry2d::ellipse_item>()->m_item);
+         pdraw2dgraphics->draw_ellipse(m_pitemTopic->cast < ::geometry2d::ellipse_item>()->m_item);
          return true;
       case e_item_polygon:
          break;
@@ -146,12 +146,12 @@ namespace draw2d
    //
    //      if(m_iClose == 1 && m_pointa.size() >= 3)
    //      {
-   //         if(::is_set(ppen))
+   //         if(::is_set(pdraw2dpen))
    //         {
-   //            pgraphics->set(ppen);
+   //            pdraw2dgraphics->set(pdraw2dpen);
    //         }
    //
-   //         pgraphics->draw_polygon(m_pointa.get_data(), m_pointa.get_size());
+   //         pdraw2dgraphics->draw_polygon(m_pointa.get_data(), m_pointa.get_size());
    //
    //         return true;
    //
@@ -161,17 +161,17 @@ namespace draw2d
    //
    //         if(m_pointa.size() >= 2)
    //         {
-   //            if(::is_set(ppen))
+   //            if(::is_set(pdraw2dpen))
    //            {
-   //               pgraphics->set(ppen);
+   //               pdraw2dgraphics->set(pdraw2dpen);
    //            }
    //
-   //            pgraphics->set_current_point(m_pointa.first());
+   //            pdraw2dgraphics->set_current_point(m_pointa.first());
    //
    //            for(::collection::index i = 1; i < m_pointa.get_size(); i++)
    //            {
    //
-   //               pgraphics->line_to(m_pointa[i]);
+   //               pdraw2dgraphics->line_to(m_pointa[i]);
    //
    //            }
    //
@@ -188,7 +188,7 @@ namespace draw2d
    }
 
 
-   bool path_simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::brush * pbrush)
+   bool path_simple_optimization::fill(::draw2d::graphics * pdraw2dgraphics, ::draw2d::brush * pdraw2dbrush)
    {
 
       if (m_iTopic == 1 && m_iTopicLines == 0 && ::is_set(m_pitemTopic))
@@ -205,18 +205,18 @@ namespace draw2d
          case e_item_lines:
             break;
          case e_item_rectangle:
-            if (::is_set(pbrush))
+            if (::is_set(pdraw2dbrush))
             {
-               pgraphics->set(pbrush);
+               pdraw2dgraphics->set(pdraw2dbrush);
             }
-            pgraphics->fill_rectangle(m_pitemTopic->cast < ::geometry2d::rectangle_item>()->m_item);
+            pdraw2dgraphics->fill_rectangle(m_pitemTopic->cast < ::geometry2d::rectangle_item>()->m_item);
             return true;
          case e_item_ellipse:
-            if (::is_set(pbrush))
+            if (::is_set(pdraw2dbrush))
             {
-               pgraphics->set(pbrush);
+               pdraw2dgraphics->set(pdraw2dbrush);
             }
-            pgraphics->fill_ellipse(m_pitemTopic->cast < ::geometry2d::ellipse_item>()->m_item);
+            pdraw2dgraphics->fill_ellipse(m_pitemTopic->cast < ::geometry2d::ellipse_item>()->m_item);
             return true;
          case e_item_polygon:
             break;
@@ -235,12 +235,12 @@ namespace draw2d
    //      if(m_iClose == 1 && m_pointa.size() >= 3)
    //      {
    //
-   //         if(::is_set(pbrush))
+   //         if(::is_set(pdraw2dbrush))
    //         {
-   //            pgraphics->set(pbrush);
+   //            pdraw2dgraphics->set(pdraw2dbrush);
    //         }
    //
-   //         pgraphics->fill_polygon(m_pointa.get_data(), m_pointa.get_size());
+   //         pdraw2dgraphics->fill_polygon(m_pointa.get_data(), m_pointa.get_size());
    //
    //         return true;
    //
@@ -252,17 +252,17 @@ namespace draw2d
    //
    ////         if(m_pointa.size() >= 2)
    ////         {
-   ////            if(::is_set(ppen))
+   ////            if(::is_set(pdraw2dpen))
    ////            {
-   ////               pgraphics->set(ppen);
+   ////               pdraw2dgraphics->set(pdraw2dpen);
    ////            }
    ////
-   ////            pgraphics->set_current_point(m_pointa.first());
+   ////            pdraw2dgraphics->set_current_point(m_pointa.first());
    ////
    ////            for(::collection::index i = 1; i < pointa.get_size(); i++)
    ////            {
    ////
-   ////               pgraphics->line_to(m_pointa[i]);
+   ////               pdraw2dgraphics->line_to(m_pointa[i]);
    ////
    ////            }
    ////
@@ -279,7 +279,7 @@ namespace draw2d
    }
 
 
-   bool path_simple_optimization::intersect_clip(::draw2d::graphics * pgraphics)
+   bool path_simple_optimization::intersect_clip(::draw2d::graphics * pdraw2dgraphics)
    {
 
       if (m_iTopic == 1 && m_iTopicLines == 0 && ::is_set(m_pitemTopic))
@@ -296,10 +296,10 @@ namespace draw2d
             case e_item_lines:
                break;
             case e_item_rectangle:
-               pgraphics->intersect_clip(m_pitemTopic->cast < ::geometry2d::rectangle_item>()->m_item);
+               pdraw2dgraphics->intersect_clip(m_pitemTopic->cast < ::geometry2d::rectangle_item>()->m_item);
                return true;
             case e_item_ellipse:
-               pgraphics->intersect_clip(m_pitemTopic->cast < ::geometry2d::ellipse_item>()->m_item);
+               pdraw2dgraphics->intersect_clip(m_pitemTopic->cast < ::geometry2d::ellipse_item>()->m_item);
                return true;
             case e_item_polygon:
                break;
@@ -318,10 +318,10 @@ namespace draw2d
    }
 
 
-   ::pointer < ::draw2d::path_optimization > create_path_simple_optimization(::draw2d::path * ppath)
+   ::pointer < ::draw2d::path_optimization > create_path_simple_optimization(::draw2d::path * pdraw2dpath)
    {
 
-      return allocateø path_simple_optimization(ppath);
+      return allocateø path_simple_optimization(pdraw2dpath);
 
    }
 

@@ -212,7 +212,7 @@ namespace html
 
          }
 
-         ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
+         ::draw2d::graphics_pointer & pdraw2dgraphics = pdata->m_pcoredata->m_pgraphics;
 
          //::i32_rectangle rectangleWindow;
 
@@ -220,11 +220,11 @@ namespace html
 
          //m_pcombo->screen_to_client(rectangleWindow);
 
-         //::draw2d::save_context savecontext(pgraphics);
+         //::draw2d::save_context savecontext(pdraw2dgraphics);
 
-         //pgraphics->set_origin(rectangleWindow.top_left());
+         //pdraw2dgraphics->set_origin(rectangleWindow.top_left());
 
-         m_pcombo->_000CallOnDraw(pgraphics);
+         m_pcombo->_000CallOnDraw(pdraw2dgraphics);
 
       }
 

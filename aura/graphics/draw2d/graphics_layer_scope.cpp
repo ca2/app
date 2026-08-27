@@ -105,7 +105,7 @@ namespace draw2d
       }
 
       auto pgraphicslease = m_pgraphicslease;
-      auto pgraphics = ::transfer(m_pgraphics);
+      auto pdraw2dgraphics = ::transfer(m_pgraphics);
 
       m_pgraphicslease = nullptr;
       m_bOpen = false;
@@ -113,7 +113,7 @@ namespace draw2d
       try
       {
 
-         pgraphics->on_end_layer_scope();
+         pdraw2dgraphics->on_end_layer_scope();
          pgraphicslease->_end_layer_scope();
 
       }

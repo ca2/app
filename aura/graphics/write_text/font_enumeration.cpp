@@ -197,7 +197,7 @@ namespace write_text
 
       //m_bUpdating = true;
 
-      //auto pgraphics = ::draw2d::create_memory_graphics();
+      //auto pdraw2dgraphics = ::draw2d::create_memory_graphics();
 
       // ::pointer<::write_text::font_enumeration_item_array>pitema;
       //

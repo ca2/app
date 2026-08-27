@@ -50,13 +50,13 @@ public:
    void soft_reload() override;
 
 
-   void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+   void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
    
 
    void on_form_implemented() override;
 
 
-   void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+   void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
    void set_need_load_form_data() override;

@@ -47,10 +47,10 @@ namespace userex
    ::write_text::font_pointer top_edit_impact::get_font(::user::style* pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
-      if (m_pfont)
+      if (m_pwritetextfont)
       {
 
-         return m_pfont;
+         return m_pwritetextfont;
 
       }
 
@@ -156,7 +156,7 @@ namespace userex
    }
 
 
-   void top_edit_impact::plain_edit_on_after_change_text(::draw2d::graphics_pointer & pgraphics, const ::action_context & context)
+   void top_edit_impact::plain_edit_on_after_change_text(::draw2d::graphics_pointer & pdraw2dgraphics, const ::action_context & context)
    {
 
       if (context.is_user_source())

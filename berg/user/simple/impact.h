@@ -17,7 +17,7 @@ public:
 
 
       string               m_strText;
-      ::write_text::font_pointer    m_pfont;
+      ::write_text::font_pointer    m_pwritetextfont;
       i32_point                m_point;
       ::color::color              m_color;
 
@@ -39,7 +39,7 @@ public:
 
    void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+   virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
 };

@@ -269,12 +269,12 @@ return g_pdraw2dcairo;
 //
 //
 //   bool draw2d::embossed_text_out(
-//   ::draw2d::graphics_pointer & pgraphics,
+//   ::draw2d::graphics_pointer & pdraw2dgraphics,
 //   const ::i32_rectangle & rectangle,
 //   string strText,
 //   ::image::fastblur & blur,
 //   ::image::image_pointer & pimageBlur,
-//   ::write_text::font * pfont,
+//   ::write_text::font * pwritetextfont,
 //   const ::e_align & ealign,
 //   const ::e_draw_text & edrawtext,
 //   color32_t crText,
@@ -293,16 +293,16 @@ return g_pdraw2dcairo;
 //
 //      }
 //
-//      auto pred = [&](::draw2d::graphics * pgraphics)
+//      auto pred = [&](::draw2d::graphics * pdraw2dgraphics)
 //      {
 //
-//         pgraphics->set(pfont);
-//         pgraphics->_DrawText(strText, *rectangle, ealign, edrawtext);
+//         pdraw2dgraphics->set(pwritetextfont);
+//         pdraw2dgraphics->_DrawText(strText, *rectangle, ealign, edrawtext);
 //
 //      };
 //
 //      emboss_predicate(
-//      pgraphics,
+//      pdraw2dgraphics,
 //      rectangle,
 //      pred,
 //      blur,
@@ -318,9 +318,9 @@ return g_pdraw2dcairo;
 //
 //      auto pbrushText = createø < ::draw2d::brush > ();
 //      pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
-//      pgraphics->set(pbrushText);
-//      pgraphics->set(pfont);
-//      pgraphics->_DrawText(strText, *rectangle, ealign, edrawtext);
+//      pdraw2dgraphics->set(pbrushText);
+//      pdraw2dgraphics->set(pwritetextfont);
+//      pdraw2dgraphics->_DrawText(strText, *rectangle, ealign, edrawtext);
 //
 //      return true;
 //

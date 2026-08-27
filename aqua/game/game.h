@@ -25,7 +25,7 @@ namespace aqua
       ~game() override;
 
       
-      //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       void destroy() override;
 

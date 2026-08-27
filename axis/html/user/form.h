@@ -30,11 +30,11 @@ public:
    virtual bool browse(const ::scoped_string & scopedstrUrl);
 
 
-   void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-   void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
+   void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+   void _001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
    //virtual void on_layout(::html_data * phtmldata);
-   void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+   void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
    void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

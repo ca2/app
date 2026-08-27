@@ -97,11 +97,11 @@ namespace userex
 
       //m_pimageBeam->fill(0);
 
-      //auto ppen = createø < ::draw2d::pen > ();
+      //auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-      //ppen->create_solid(1.0, argb(255, 255, 255, 255));
+      //pdraw2dpen->create_solid(1.0, argb(255, 255, 255, 255));
 
-      //m_pgraphicsImageBeam->set(ppen);
+      //m_pgraphicsImageBeam->set(pdraw2dpen);
 
       //m_pgraphicsImageBeam->DrawEllipse(i32_rectangle_dimension(0, 0, 32, 32));
 
@@ -174,7 +174,7 @@ namespace userex
 
 
 
-   void home_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void home_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
@@ -235,10 +235,10 @@ namespace userex
    }
 
 
-   void home_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void home_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::impact::on_layout(pgraphics);
+      ::user::impact::on_layout(pdraw2dgraphics);
 
       auto rectangleX = this->rectangle();
 

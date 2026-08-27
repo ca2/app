@@ -23,7 +23,7 @@ drawing::~drawing()
    
 }
 
-void drawing::on_draw(::draw2d::graphics * pgraphics, const ::f64_rectangle & rectangle)
+void drawing::on_draw(::draw2d::graphics * pdraw2dgraphics, const ::f64_rectangle & rectangle)
 {
     
     

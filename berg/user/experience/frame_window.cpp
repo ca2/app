@@ -556,12 +556,12 @@ namespace experience
    }
 
 
-   void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void frame_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::frame_window::_001OnDraw(pgraphics);
+      ::user::frame_window::_001OnDraw(pdraw2dgraphics);
 
-      pgraphics->payload("log_fill_rectangle") = 0;
+      pdraw2dgraphics->payload("log_fill_rectangle") = 0;
 
       if (is_frame_experience_enabled() && m_pframe != nullptr && !layout().is_full_screen())
       {
@@ -574,11 +574,11 @@ namespace experience
 
                m_pframe->m_bPendingStyleChange = false;
 
-               m_pframe->_on_style_change(pgraphics);
+               m_pframe->_on_style_change(pdraw2dgraphics);
 
             }
 
-            m_pframe->_001OnDraw(pgraphics);
+            m_pframe->_001OnDraw(pdraw2dgraphics);
 
          }
          catch (...)
@@ -588,7 +588,7 @@ namespace experience
 
       }
 
-      pgraphics->payload("log_fill_rectangle") = 1;
+      pdraw2dgraphics->payload("log_fill_rectangle") = 1;
 
 
    }
@@ -1286,21 +1286,21 @@ namespace experience
    }
 
 
-   void frame_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void frame_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      //::user::frame_window::on_perform_top_down_layout(pgraphics);
+      //::user::frame_window::on_perform_top_down_layout(pdraw2dgraphics);
 
       if (!is_frame_experience_enabled())
       {
 
-         ::user::frame_window::on_perform_top_down_layout(pgraphics);
+         ::user::frame_window::on_perform_top_down_layout(pdraw2dgraphics);
 
          return;
 
       }
 
-      ::user::main_window::on_perform_top_down_layout(pgraphics);
+      ::user::main_window::on_perform_top_down_layout(pdraw2dgraphics);
 
       //::i32_rectangle frame_window::rectangle(::user::enum_layout elayout)
       //{
@@ -1314,7 +1314,7 @@ namespace experience
 
             auto rectangleHosting = this->rectangle(::user::e_layout_lading);
 
-            m_pframe->calculate_hosting_rectangle(&rectangleHosting, pgraphics);
+            m_pframe->calculate_hosting_rectangle(&rectangleHosting, pdraw2dgraphics);
 
             m_rectangleHosting = rectangleHosting;
 
@@ -1329,7 +1329,7 @@ namespace experience
       if (m_pframe != nullptr)
       {
 
-         m_pframe->on_perform_top_down_layout(pgraphics);
+         m_pframe->on_perform_top_down_layout(pdraw2dgraphics);
 
       }
 
@@ -2983,17 +2983,17 @@ namespace experience
    }
 
 
-   void frame_window::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics)
+   void frame_window::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       if (::is_null(m_pframe))
       {
 
-         ::user::frame_window::place_set_need_redraw(rectangleAfter, rectangleBefore, pgraphics);
+         ::user::frame_window::place_set_need_redraw(rectangleAfter, rectangleBefore, pdraw2dgraphics);
 
          return;
       }
-      m_pframe->place_set_need_redraw(rectangleAfter, rectangleBefore, pgraphics);
+      m_pframe->place_set_need_redraw(rectangleAfter, rectangleBefore, pdraw2dgraphics);
    }
 
 

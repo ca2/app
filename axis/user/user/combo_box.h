@@ -65,12 +65,12 @@ namespace user
       ::write_text::font_pointer get_font(style* pstyle, const ::e_element & eelement = e_element_none, const ::user::e_state & estate = e_state_none) override;
 
 
-      void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnDrawCombo(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnDrawStaticText(::draw2d::graphics_pointer & pgraphics);
+      void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _001OnDrawCombo(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001OnDrawStaticText(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      void _001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcPostDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual enum_input_type preferred_input_type() override;
 
@@ -131,9 +131,9 @@ namespace user
       bool should_show_keyboard_focus() override;
 
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & action_context) override;
+      virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pdraw2dgraphics, const ::action_context & action_context) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

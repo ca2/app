@@ -671,10 +671,10 @@ namespace user
    }
 
 
-   bool frame_interaction::should_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   bool frame_interaction::should_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
       if(m_bNeedPerformLayout)
       {

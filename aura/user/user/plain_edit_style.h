@@ -27,7 +27,7 @@ namespace user
       ~plain_edit_style() override;
 
 
-      virtual void on_update(::draw2d::graphics_pointer & pgraphics, style * ppstyle, ::user::interaction * pinteraction) override;
+      virtual void on_update(::draw2d::graphics_pointer & pdraw2dgraphics, style * ppstyle, ::user::interaction * pinteraction) override;
 
 
    };

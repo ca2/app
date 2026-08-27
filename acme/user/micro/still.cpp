@@ -93,7 +93,7 @@ namespace micro
 
          pbrushText = micro_theme()->m_pbrushText;
 
-         pfontText = micro_theme()->m_pfont;
+         pfontText = micro_theme()->m_pwritetextfont;
 
       }
 
@@ -279,7 +279,7 @@ namespace micro
       //
       //   auto pdevice = createø < ::nano::graphics::context >();
       //
-      //   auto size = pdevice->get_text_extents(m_strText, acme_windowing_window()->m_pfont);
+      //   auto size = pdevice->get_text_extents(m_strText, acme_windowing_window()->m_pwritetextfont);
       //
       //   m_rectangle.right = m_rectangle.left + size.cx;
       //

@@ -1953,9 +1953,9 @@ namespace html
    ::write_text::font_pointer element::get_font()
    {
 
-      //font = m_pdata->get_font(this)->m_pfont;
+      //font = m_pdata->get_font(this)->m_pwritetextfont;
 
-      return m_pdata->get_font(this)->m_pfont;
+      return m_pdata->get_font(this)->m_pwritetextfont;
 
       //if (font.is_null())
       //{

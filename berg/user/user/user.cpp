@@ -823,7 +823,7 @@ namespace berg
 //         //      pframe->display(e_display_normal);
 //         //      if(pframe->get_typed_parent < ::plugin::host_interaction > () != nullptr)
 //         //      {
-//         //         pframe->get_typed_parent < ::plugin::host_interaction > ()->on_layout(pgraphics);
+//         //         pframe->get_typed_parent < ::plugin::host_interaction > ()->on_layout(pdraw2dgraphics);
 //         //      }
 //         //      else
 //         //      {
@@ -1867,7 +1867,7 @@ namespace berg
    }
 
 
-   ::pointer < ::user::interaction > user::create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem)
+   ::pointer < ::user::interaction > user::create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pdraw2dgraphics, ::menu::item * pmenuitem)
    {
 
       auto pmenubutton = allocateø::user::menu_button();

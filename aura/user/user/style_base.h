@@ -43,36 +43,36 @@ namespace user
 
 
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) = 0;
-      //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem) = 0;
-      //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem) = 0;
+      //virtual bool prepare_menu(::draw2d::graphics_pointer& pdraw2dgraphics, ::menu::item * pitem) = 0;
+      //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pdraw2dgraphics, ::menu::item * pitem) = 0;
       //virtual void set_style(enum_style estyle);
 
       //virtual void set_style(const ::scoped_string & scopedstrStyle);
 
-      //virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void _on_style_change(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual void on_user_color();
 
       virtual bool is_dark_mode() const;
 
 
-      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::interaction * pframe);
-      virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics);
+      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pdraw2dgraphics,::user::interaction * pframe);
+      virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual ::i32_rectangle simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction);
-      virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pgraphics);
-      virtual bool simple_ui_draw_border(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics);
+      virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual bool simple_ui_draw_border(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pdraw2dgraphics);
       //virtual bool on_ui_event(enum_happening ehappening, e_object eobject, ::user::interaction * pinteraction) = 0;
-      //virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,tab * ptab) = 0;
-      //virtual bool _001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * ptab) = 0;
-      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle,::draw2d::brush_pointer & pbrushText) = 0;
+      //virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pdraw2dgraphics,tab * ptab) = 0;
+      //virtual bool _001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pdraw2dgraphics, menu_interaction * ptab) = 0;
+      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangle,::draw2d::brush_pointer & pbrushText) = 0;
 
-      //virtual bool _001OnTabLayout(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab) = 0;
-      //virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox) = 0;
-      virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar);
-      virtual bool _001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar);
-      virtual bool _001DrawScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar);
-      virtual bool _001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout);
+      //virtual bool _001OnTabLayout(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::tab * ptab) = 0;
+      //virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::check_box * pcheckbox) = 0;
+      virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar);
+      virtual bool _001DrawSimpleScrollBar(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::scroll_bar * pbar);
+      virtual bool _001DrawScrollBar(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::scroll_bar * pbar);
+      virtual bool _001OnDrawSplitLayout(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::split_layout * psplitlayout);
 
 
 

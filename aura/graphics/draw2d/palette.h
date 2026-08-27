@@ -20,7 +20,7 @@ namespace draw2d
 
       //virtual bool CreatePalette(LPLOGPALETTE pLogPalette);
 
-      //virtual bool CreateHalftonePalette(::draw2d::graphics_pointer & pgraphics);
+      //virtual bool CreateHalftonePalette(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual ::i32 GetEntryCount();

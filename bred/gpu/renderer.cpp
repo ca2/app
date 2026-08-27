@@ -93,6 +93,15 @@ namespace gpu
 
       m_pgpucontext = pgpucontext;
 
+      auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontext);
+
+      if (pgpuwindowattachment && pgpuwindowattachment->get_frame_count() > 0)
+      {
+
+         m_iDefaultFrameCount = pgpuwindowattachment->get_frame_count();
+
+      }
+
       //defer_construct_newø(m_prenderstate);
 //
       //m_pgpucontext->m_prenderer = this;
@@ -778,11 +787,11 @@ namespace gpu
 
                //#if !defined(__APPLE__)
                //         ::geometry2d::matrix matrixOriginal;
-               //         pgraphics->get(matrixOriginal);
+               //         pdraw2dgraphics->get(matrixOriginal);
                //         ::geometry2d::matrix matrix(matrixOriginal);
                //         matrix.scale(1.0, -1.0);
                //         matrix.translate(0, m_rectangle.height());
-               //         pgraphics->set(matrix);
+               //         pdraw2dgraphics->set(matrix);
                //#endif
 
                         //auto & pixmap = m_pgpucontext->m_pbuffer->m_pixmap;
@@ -805,20 +814,20 @@ namespace gpu
 
                         //::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                        //pgraphics->draw(imagedrawing);
+                        //pdraw2dgraphics->draw(imagedrawing);
 
-               //         pgraphics->draw(pixmap, m_rectangleTarget);
+               //         pdraw2dgraphics->draw(pixmap, m_rectangleTarget);
                //
                //#if !defined(__APPLE__)
                //
-               //         pgraphics->set(matrixOriginal);
+               //         pdraw2dgraphics->set(matrixOriginal);
                //
                //#endif
             };
 
       }
 
-      //_001OnDraw1Through3(pgraphics);
+      //_001OnDraw1Through3(pdraw2dgraphics);
       //return {};
       //return {};
 
@@ -923,11 +932,11 @@ namespace gpu
 
          //#if !defined(__APPLE__)
          //         ::geometry2d::matrix matrixOriginal;
-         //         pgraphics->get(matrixOriginal);
+         //         pdraw2dgraphics->get(matrixOriginal);
          //         ::geometry2d::matrix matrix(matrixOriginal);
          //         matrix.scale(1.0, -1.0);
          //         matrix.translate(0, m_rectangle.height());
-         //         pgraphics->set(matrix);
+         //         pdraw2dgraphics->set(matrix);
          //#endif
 
          //auto & pixmap = m_pgpucontext->m_pbuffer->m_pixmap;
@@ -950,19 +959,19 @@ namespace gpu
 
          //::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         //pgraphics->draw(imagedrawing);
+         //pdraw2dgraphics->draw(imagedrawing);
 
-//         pgraphics->draw(pixmap, m_rectangleTarget);
+//         pdraw2dgraphics->draw(pixmap, m_rectangleTarget);
 //
 //#if !defined(__APPLE__)
 //
-//         pgraphics->set(matrixOriginal);
+//         pdraw2dgraphics->set(matrixOriginal);
 //
 //#endif
 
       }
 
-      //_001OnDraw1Through3(pgraphics);
+      //_001OnDraw1Through3(pdraw2dgraphics);
       //return {};
 
 
@@ -1196,7 +1205,7 @@ namespace gpu
    }
 
 
-   //   void renderer::to_draw2d_graphics(::draw2d::graphics_pointer & pgraphics)
+   //   void renderer::to_draw2d_graphics(::draw2d::graphics_pointer & pdraw2dgraphics)
    //   {
    //
    //      
@@ -1212,7 +1221,7 @@ namespace gpu
    //
    //   ::geometry2d::matrix matrixOriginal;
    //
-   //   pgraphics->get(matrixOriginal);
+   //   pdraw2dgraphics->get(matrixOriginal);
    //
    //   ::geometry2d::matrix matrix(matrixOriginal);
    //
@@ -1220,7 +1229,7 @@ namespace gpu
    //
    //   matrix.translate(0, m_rectangle.height());
    //
-   //   pgraphics->set(matrix);
+   //   pdraw2dgraphics->set(matrix);
    //
    //#endif
    //
@@ -1241,11 +1250,11 @@ namespace gpu
    //
    //   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
    //
-   //   pgraphics->draw(imagedrawing);
+   //   pdraw2dgraphics->draw(imagedrawing);
    //
    //#if !defined(__APPLE__)
    //
-   //   pgraphics->set(matrixOriginal);
+   //   pdraw2dgraphics->set(matrixOriginal);
    //
    //#endif
    //
@@ -1274,7 +1283,7 @@ namespace gpu
    }
 
 
-   void renderer::on_layout(::draw2d::graphics_pointer& pgraphics)
+   void renderer::on_layout(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
 
@@ -1561,7 +1570,7 @@ namespace gpu
    }
 
 
-   void renderer::endDraw(::gpu::graphics* pgraphics, ::user::interaction* puserinteraction)
+   void renderer::endDraw(::gpu::graphics* pdraw2dgraphics, ::user::interaction* puserinteraction)
    {
 
 
@@ -2032,7 +2041,7 @@ namespace gpu
       // m_pgpucontext->frame_suffix();
       // m_pgpucontext->end_layer(pgraphicscontext);
 
-      //auto pgraphics = pgraphicscontext->draw2d_graphics();
+      //auto pdraw2dgraphics = pgraphicscontext->draw2d_graphics();
 
 
       //if (bClosingLayer)

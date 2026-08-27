@@ -48,13 +48,13 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      virtual void _001OnDrawComboList(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDrawComboList(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::i32_size * psize);
+      virtual void query_full_size(::draw2d::graphics_pointer& pdraw2dgraphics, ::i32_size * psize);
 
       ::write_text::font_pointer get_font(style* pstyle, const ::e_element & eelement = e_element_none, const ::user::e_state & estate = e_state_none) override;
 
@@ -68,7 +68,7 @@ namespace user
 
       void operator()(::timer * ptimer) override;
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);

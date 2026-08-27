@@ -41,8 +41,8 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       void operator()(::timer * ptimer) override;
 
       ::data::data * _get_data(const ::atom & atom) override;
@@ -51,7 +51,7 @@ namespace user
       void on_command(::message::command* pcommand) override;
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      //void set_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32, ::i32) override;
+      //void set_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32, ::i32) override;
       void set_context_offset(const ::f64_point & point, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
       ::f64_point get_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch) override;
       ::f64_size get_total_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
@@ -62,7 +62,7 @@ namespace user
 
       virtual ::collection::index _001GetCurItem() override;
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
    };

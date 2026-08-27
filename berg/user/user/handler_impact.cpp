@@ -82,26 +82,26 @@ namespace user
    }
 
 
-   void handler_impact::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void handler_impact::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::interaction::on_perform_top_down_layout(pgraphics);
+      ::user::interaction::on_perform_top_down_layout(pdraw2dgraphics);
 
    }
 
 
-   bool handler_impact::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   bool handler_impact::on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      return ::user::impact::on_perform_layout(pgraphics);
+      return ::user::impact::on_perform_layout(pdraw2dgraphics);
 
    }
 
 
-   void handler_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void handler_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::impact::on_layout(pgraphics);
+      ::user::impact::on_layout(pdraw2dgraphics);
 
    }
 

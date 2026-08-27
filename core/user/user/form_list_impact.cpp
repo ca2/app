@@ -211,18 +211,18 @@ namespace user
    }
 
 
-   void form_list_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void form_list_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::list_impact::_001OnDraw(pgraphics);
+      ::user::list_impact::_001OnDraw(pdraw2dgraphics);
 
    }
 
 
-   void form_list_impact::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+   void form_list_impact::_001CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::list_impact::_001CallOnDraw(pgraphics);
+      ::user::list_impact::_001CallOnDraw(pdraw2dgraphics);
 
    }
 
@@ -261,10 +261,10 @@ namespace user
    }
 
 
-   //void form_list_impact::set_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y)
+   //void form_list_impact::set_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 x, ::i32 y)
    //{
 
-   //   ::user::list_impact::set_context_offset(pgraphics, x, y);
+   //   ::user::list_impact::set_context_offset(pdraw2dgraphics, x, y);
 
    //}
 
@@ -335,10 +335,10 @@ namespace user
    }
 
 
-   void form_list_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void form_list_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::form_list::on_layout(pgraphics);
+      ::user::form_list::on_layout(pdraw2dgraphics);
 
    }
 

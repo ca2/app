@@ -34,16 +34,16 @@ namespace draw2d
    public:
 
 
-      bool                                   m_bPersistent;
-      //pointer< shape_array < path > >      m_pshapea;
-      ::pointer_array < ::geometry2d::item > m_itema;
-      bool                                   m_bHasPoint;
-      ::f64_point                              m_pointBegin;
-      ::f64_point                              m_pointEnd;
-      ::draw2d::enum_fill_mode               m_efillmode;
-      ::f64_point                              m_pointOffset;
-      ::pointer < ::draw2d::path_optimization > m_ppathoptimization;
-      bool                                      m_bUseGeometryRealization;
+      bool                                         m_bPersistent;
+      //pointer< shape_array < path > >            m_pshapea;
+      ::pointer_array < ::geometry2d::item >       m_itema;
+      bool                                         m_bHasPoint;
+      ::f64_point                                  m_pointBegin;
+      ::f64_point                                  m_pointEnd;
+      ::draw2d::enum_fill_mode                     m_efillmode;
+      ::f64_point                                  m_pointOffset;
+      ::pointer < ::draw2d::path_optimization >    m_ppathoptimization;
+      bool                                         m_bUseGeometryRealization;
 
 
       path();
@@ -76,7 +76,7 @@ namespace draw2d
       virtual bool add_arc_label(const ::f64_rectangle & rectangle);
 
 
-      //virtual bool contains(::draw2d::graphics_pointer & pgraphics, const ::f64_point & point);
+      //virtual bool contains(::draw2d::graphics_pointer & pdraw2dgraphics, const ::f64_point & point);
 
       virtual bool path_contains_point(const ::f64_point &point);
 
@@ -111,10 +111,10 @@ namespace draw2d
 
 
       virtual bool add_text_out(const ::f64_point & point, const ::scoped_string & scopedstrText, ::write_text::font_pointer spfont);
-      virtual bool add_draw_text(const ::scoped_string & scopedstrText, const ::f64_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font_pointer pfont);
+      virtual bool add_draw_text(const ::scoped_string & scopedstrText, const ::f64_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font_pointer pwritetextfont);
 
 
-      virtual void * detach();
+      //virtual void * detach();
 
 
       virtual bool get_bounding_box(::f64_rectangle & rectangle) const;
@@ -153,39 +153,39 @@ namespace draw2d
       bool clock_corner(const ::f64_rectangle & rectangleCorner, ::f64 dRadius, const ::e_border & eborder);
 
 
-      virtual bool _set_create(::draw2d::graphics * pgraphics);
+      virtual bool _set_create(::draw2d::graphics * pdraw2dgraphics);
 
-      //virtual bool _set(::draw2d::graphics * pgraphics, ::___shape<path> * pshape);
+      //virtual bool _set(::draw2d::graphics * pdraw2dgraphics, ::___shape<path> * pshape);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, ::geometry2d::item * pitem);
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, ::geometry2d::item * pitem);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const enum_item & eitem);
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const enum_item & eitem);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::f64_arc & arc);
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::f64_arc & arc);
 
-      //virtual bool _set(::draw2d::graphics * pgraphics, const ::line & pline);
+      //virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::line & pline);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::f64_line & line);
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::f64_line & line);
 
-      //virtual bool _set(::draw2d::graphics * pgraphics, const ::lines & pline);
+      //virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::lines & pline);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::f64_lines & lines);
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::f64_lines & lines);
 
-      //virtual bool _set(::draw2d::graphics * pgraphics, const ::f64_rectangle & prectangle);
+      //virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::f64_rectangle & prectangle);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::f64_rectangle & rectangle);
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::f64_rectangle & rectangle);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::f64_ellipse & ellipse);
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::f64_ellipse & ellipse);
 
-      //virtual bool _set(::draw2d::graphics * pgraphics, const ::i32_polygon & ppolygon);
+      //virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::i32_polygon & ppolygon);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::f64_polygon & polygon);
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::f64_polygon & polygon);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::f64_poly_polygon & polygon);
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::f64_poly_polygon & polygon);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::write_text::text_out & textout);
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::write_text::text_out & textout);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::write_text::draw_text & drawtext);
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::write_text::draw_text & drawtext);
 
       path & operator = (const path & path);
 
@@ -203,7 +203,7 @@ namespace draw2d
    };
 
 
-   ::pointer<::draw2d::path_optimization>create_path_simple_optimization(::draw2d::path * ppath);
+   ::pointer<::draw2d::path_optimization>create_path_simple_optimization(::draw2d::path * pdraw2dpath);
 
 
 } // namespace draw2d

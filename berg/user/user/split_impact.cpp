@@ -132,7 +132,7 @@ namespace user
    {
       ::pointer<::message::size>psize(pmessage);
       psize->previous();
-      //on_layout(pgraphics);
+      //on_layout(pdraw2dgraphics);
    }
 
 
@@ -160,17 +160,17 @@ namespace user
    }
 
 
-   void split_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void split_impact::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    }
 
-   void split_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void split_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::split_layout::_001OnDraw(pgraphics);
+      ::user::split_layout::_001OnDraw(pdraw2dgraphics);
 
 
 //      ::i32 i;
@@ -185,7 +185,7 @@ namespace user
       //   CalcPaneRect(i, &rectangle);
 
       //   // Top
-      //   pgraphics->fill_rectangle(
+      //   pdraw2dgraphics->fill_rectangle(
       //      rectangle.left,
       //      rectangle.top,
       //      rectangle.width(),
@@ -193,7 +193,7 @@ namespace user
       //      color32);
 
       //   // Right
-      //   pgraphics->fill_rectangle(
+      //   pdraw2dgraphics->fill_rectangle(
       //      rectangle.right - m_cxBorder,
       //      rectangle.top,
       //      m_cxBorder,
@@ -201,7 +201,7 @@ namespace user
       //      color32);
 
       //   // Bottom
-      //   pgraphics->fill_rectangle(
+      //   pdraw2dgraphics->fill_rectangle(
       //      rectangle.left,
       //      rectangle.bottom - m_cyBorder,
       //      rectangle.width(),
@@ -209,7 +209,7 @@ namespace user
       //      color32);
 
       //   // Left
-      //   pgraphics->fill_rectangle(
+      //   pdraw2dgraphics->fill_rectangle(
       //      rectangle.left,
       //      rectangle.top,
       //      m_cxBorder,
@@ -225,7 +225,7 @@ namespace user
    {
       ::pointer<::message::show_window>pshowwindow(pmessage);
       pshowwindow->previous();
-      //on_layout(pgraphics);
+      //on_layout(pdraw2dgraphics);
    }
 
 

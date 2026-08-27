@@ -511,7 +511,7 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
       if (m_bCloseButton)
       {
@@ -527,7 +527,7 @@ namespace user
 
             ::pointer<::user::interaction>pinteraction = m_pitemClose->m_puserinteraction;
 
-            pinteraction = create_menu_button(pgraphics, m_pitemClose);
+            pinteraction = create_menu_button(pdraw2dgraphics, m_pitemClose);
 
             m_pitemClose->m_puserinteraction = pinteraction;
 
@@ -559,7 +559,7 @@ namespace user
 
       }
 
-      m_pmenuitem->create_buttons(pgraphics, this);
+      m_pmenuitem->create_buttons(pdraw2dgraphics, this);
       //{
 
       //   ASSERT(false);
@@ -747,7 +747,7 @@ namespace user
 
       //      create_buttons(m_pmenuitem);
 
-      //on_layout(pgraphics);
+      //on_layout(pdraw2dgraphics);
 
       //auto rectangleX = puiParent->rectangle();
 
@@ -824,7 +824,7 @@ namespace user
    }
 
 
-   //void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
+   //void menu::layout_menu(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   ::i32_point point = m_pointTrack;
@@ -836,11 +836,11 @@ namespace user
 
    //   }
 
-   //   auto pstyle = get_style(pgraphics);
+   //   auto pstyle = get_style(pdraw2dgraphics);
 
-   //   pgraphics->set(get_font(pstyle));
+   //   pdraw2dgraphics->set(get_font(pstyle));
 
-   //   auto metrics = pgraphics->get_text_metrics();
+   //   auto metrics = pdraw2dgraphics->get_text_metrics();
 
    //   auto dMaxHeight = metrics.get_line_height();
 
@@ -868,7 +868,7 @@ namespace user
 
    //   class calc_size calcsize;
 
-   //   calcsize.m_pgraphics = pgraphics;
+   //   calcsize.m_pgraphics = pdraw2dgraphics;
 
    //   if (m_bCloseButton)
    //   {
@@ -964,7 +964,7 @@ namespace user
 
    //      pmenuitema->element_at(i)->m_rectangleUi.right = x + m_iaColumnWidth[pitem->m_iColumn];
 
-   //      pbergstyle->prepare_menu(pgraphics, pitem);
+   //      pbergstyle->prepare_menu(pdraw2dgraphics, pitem);
 
    //      pitem->m_rectangleUi.right = maximum(pitem->m_rectangleUi.right, pitem->m_rectangleUi.left + m_sizeMinimum.cx);
 
@@ -977,7 +977,7 @@ namespace user
    //   if (pbergstyle && m_bCloseButton)
    //   {
 
-   //      pbergstyle->prepare_menu(pgraphics, m_pitemClose);
+   //      pbergstyle->prepare_menu(pdraw2dgraphics, m_pitemClose);
 
    //      m_pitemClose->m_puserinteraction->place(m_pitemClose->m_rectangleUi);
 
@@ -1048,15 +1048,15 @@ namespace user
    //}
 
 
-   void menu::_001OnNcDraw(::draw2d::graphics_pointer& pgraphics)
+   void menu::_001OnNcDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       if (this == top_level())
       {
 
-         auto pstyle = get_style(pgraphics);
+         auto pstyle = get_style(pdraw2dgraphics);
 
-         //information() << "user::frame_window::_001OnNcDraw graphics offset (2) : " << pgraphics->get_origin();
+         //information() << "user::frame_window::_001OnNcDraw graphics offset (2) : " << pdraw2dgraphics->get_origin();
 
    //      ::i32_rectangle rectangleX;
    //
@@ -1065,14 +1065,14 @@ namespace user
          if (pstyle)
          {
 
-            if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
+            if (pstyle->_001OnDrawMainFrameBackground(pdraw2dgraphics, this))
             {
 
-               //_001DrawThis(pgraphics);
+               //_001DrawThis(pdraw2dgraphics);
 
-               //_001DrawChildren(pgraphics);
+               //_001DrawChildren(pdraw2dgraphics);
 
-               //_008CallOnDraw(pgraphics);
+               //_008CallOnDraw(pdraw2dgraphics);
 
                return;
 
@@ -1082,17 +1082,17 @@ namespace user
 
       }
 
-      ::user::interaction::_001OnNcDraw(pgraphics);
+      ::user::interaction::_001OnNcDraw(pdraw2dgraphics);
 
    }
 
 
-   void menu::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
+   void menu::_001OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
-      //auto pstyle = m_puserinteractionOwner->get_style(pgraphics);
+      //auto pstyle = m_puserinteractionOwner->get_style(pdraw2dgraphics);
 
-      ::pointer<::berg::style>pstyle = get_style(pgraphics);
+      ::pointer<::berg::style>pstyle = get_style(pdraw2dgraphics);
 
       //auto crBackground = get_color(pstyle, e_element_background);
 
@@ -1101,21 +1101,21 @@ namespace user
 
       //   ::f64_rectangle rectangleClip;
 
-      //   pgraphics->get_clip_box(rectangleClip);
+      //   pdraw2dgraphics->get_clip_box(rectangleClip);
 
       //   auto rectangleX = this->rectangle();
 
-      //   //pgraphics->reset_clip();
+      //   //pdraw2dgraphics->reset_clip();
 
-      //   //auto pointOffset = pgraphics->get_origin();
+      //   //auto pointOffset = pdraw2dgraphics->get_origin();
 
-      //   //::memory_set(pgraphics->m_pimage->m_pimage32, 80, pgraphics->m_pimage->scan_area_in_bytes());
+      //   //::memory_set(pdraw2dgraphics->m_pimage->m_pimage32, 80, pdraw2dgraphics->m_pimage->scan_area_in_bytes());
 
-      //   //pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
+      //   //pdraw2dgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 
       //}
 
-      ::user::interaction::_001OnDraw(pgraphics);
+      ::user::interaction::_001OnDraw(pdraw2dgraphics);
 
    }
 
@@ -2031,17 +2031,17 @@ namespace user
    }
 
 
-   ::pointer<::user::menu_interaction>menu::create_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item* pitem)
+   ::pointer<::user::menu_interaction>menu::create_menu_button(::draw2d::graphics_pointer& pdraw2dgraphics, ::menu::item* pitem)
    {
 
       //auto pstyle =
-      //get->get_style(pgraphics);
+      //get->get_style(pdraw2dgraphics);
 
       ::pointer<::berg::session>psession = session();
 
       auto puser = user();
 
-      auto pinteraction = puser->create_menu_button(pitem->m_pmenu, pgraphics, pitem);
+      auto pinteraction = puser->create_menu_button(pitem->m_pmenu, pdraw2dgraphics, pitem);
 
       if (!pinteraction)
       {
@@ -2122,7 +2122,7 @@ namespace user
    }
 
 
-   void menu::on_perform_top_down_layout(::draw2d::graphics_pointer& pgraphics)
+   void menu::on_perform_top_down_layout(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       ::pointer<::menu::item>pitem = get_menu_item();
@@ -2209,13 +2209,13 @@ namespace user
 
       auto ptopowner = top_owner();
 
-      auto pstyle = ptopowner->get_style(pgraphics);
+      auto pstyle = ptopowner->get_style(pdraw2dgraphics);
 
-      auto pfont = pstyle->get_font(this, e_element_text);
+      auto pwritetextfont = pstyle->get_font(this, e_element_text);
 
-      pgraphics->set(pfont);
+      pdraw2dgraphics->set(pwritetextfont);
 
-      auto metrics = pgraphics->get_text_metrics();
+      auto metrics = pdraw2dgraphics->get_text_metrics();
 
       auto dMaxHeight = metrics.get_line_height();
 
@@ -2241,14 +2241,14 @@ namespace user
 
       //class calc_size calcsize;
 
-      //calcsize.m_pgraphics = pgraphics;
+      //calcsize.m_pgraphics = pdraw2dgraphics;
 
       ::i32_size size;
 
       if (m_bCloseButton)
       {
 
-         size = m_pitemClose->m_puserinteraction->get_preferred_size(pgraphics);
+         size = m_pitemClose->m_puserinteraction->get_preferred_size(pdraw2dgraphics);
 
          information() << "close_button size : " << size;
 
@@ -2298,7 +2298,7 @@ namespace user
          if (puserinteraction)
          {
 
-            size = puserinteraction->get_preferred_size(pgraphics);
+            size = puserinteraction->get_preferred_size(pdraw2dgraphics);
 
             information() << "button text and size : \"" << strButtonText << "\", " << size;
 
@@ -2400,7 +2400,7 @@ namespace user
       //   if (puserinteraction)
       //   {
 
-      //      size = pmenuitema->element_at(i)->m_puserinteraction->get_preferred_size(pgraphics);
+      //      size = pmenuitema->element_at(i)->m_puserinteraction->get_preferred_size(pdraw2dgraphics);
 
       //      information() << "button text and size : \"" << strButtonText << "\", " << size;
 
@@ -2488,7 +2488,7 @@ namespace user
 
          }
 
-         pbergstyle->prepare_menu(pgraphics, pitem);
+         pbergstyle->prepare_menu(pdraw2dgraphics, pitem);
 
          //pitem->m_rectangleUi.right = maximum(pitem->m_rectangleUi.right, pitem->m_rectangleUi.left + m_sizeMinimum.cx);
 
@@ -2504,7 +2504,7 @@ namespace user
          if (pbergstyle)
          {
 
-            pbergstyle->prepare_menu(pgraphics, m_pitemClose);
+            pbergstyle->prepare_menu(pdraw2dgraphics, m_pitemClose);
 
          }
 
@@ -2639,7 +2639,7 @@ namespace user
 
          information() << "::user::menu::layout_menu place : " << rectangleWindow;
 
-         place(rectangleWindow, ::user::e_layout_layout, pgraphics);
+         place(rectangleWindow, ::user::e_layout_layout, pdraw2dgraphics);
 
          //display(e_display_normal, ::user::e_activation_no_activate);
 
@@ -2648,7 +2648,7 @@ namespace user
       else
       {
 
-         set_size(m_size, ::user::e_layout_layout, pgraphics);
+         set_size(m_size, ::user::e_layout_layout, pdraw2dgraphics);
 
       }
 
@@ -2657,7 +2657,7 @@ namespace user
    }
 
 
-   //   bool menu::create_buttons(::draw2d::graphics_pointer & pgraphics)
+   //   bool menu::create_buttons(::draw2d::graphics_pointer & pdraw2dgraphics)
    //   {
    //
    //      ::user::style_pointer pstyle;
@@ -2686,7 +2686,7 @@ namespace user
    //         if (pinteraction.is_null())
    //         {
    //
-   //            pinteraction = create_menu_button(pgraphics, pitem);
+   //            pinteraction = create_menu_button(pdraw2dgraphics, pitem);
    //
    //         }
    //
@@ -2731,7 +2731,7 @@ namespace user
    //
    //            if(pitem->m_pmenu)
    //            
-   //            create_buttons(pgraphics);
+   //            create_buttons(pdraw2dgraphics);
    //
    //         }
    //

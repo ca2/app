@@ -78,8 +78,8 @@ namespace fs_folder_sync_dropbox
       void wait_up_and_running(const ::function < void(const ::scoped_string&) >& callbackStatus = {}) override;
 
 
-      bool _cloud_defer_check_file_txt(::file::path & pathTarget, const ::file::path & pathCloudFile, bool bForce = false, ::file::path * ppathSource = nullptr, const ::function < void(const ::scoped_string&) >& callbackStatus ={}) override;
-      ::string_array_base _cloud_get_file_txt_lines(const ::file::path & pathCloudFile, bool bForce = false, ::file::path * ppathTarget = nullptr, ::file::path * ppathSource = nullptr, const ::function < void(const ::scoped_string&) >& callbackStatus ={}) override;
+      bool _cloud_defer_check_file_txt(::file::path & pathTarget, const ::file::path & pathCloudFile, bool bForce = false, ::file::path * pfilepathSource = nullptr, const ::function < void(const ::scoped_string&) >& callbackStatus ={}) override;
+      ::string_array_base _cloud_get_file_txt_lines(const ::file::path & pathCloudFile, bool bForce = false, ::file::path * pfilepathTarget = nullptr, ::file::path * pfilepathSource = nullptr, const ::function < void(const ::scoped_string&) >& callbackStatus ={}) override;
 
 
       ::file::path _cloud_ensure_file_txt_is_up_to_date_and_present(const ::file::path & pathCloudFile, const ::function < void(const ::scoped_string&) >& callbackStatus) override;

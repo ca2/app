@@ -513,9 +513,17 @@ namespace gpu
 
          ///         pgpuwindowattachment->m_iCurrentFrame3 = (pgpuwindowattachment->m_iCurrentFrame3 + 1) % iFrameCount;
 
-         auto iCurrentFrame3 = get_swap_chain()->m_iCurrentSwapChainFrame;
+         auto iCurrentFrame3 = pswapchain->m_iCurrentSwapChainFrame;
 
          pgpuwindowattachment->m_iCurrentFrame3 = iCurrentFrame3;
+         //         auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pgpurenderer->m_pgpucontext);
+
+         auto iSwapChainIndex = pswapchain->m_iSwapChainIndex;
+
+         pgpuwindowattachment->m_iCurrentImage = iSwapChainIndex;
+
+         //pgpuwindowattachment->m_iCurrentFrame3 = m_iCurrentSwapChainFrame;
+
 
 
       }
@@ -3267,7 +3275,7 @@ namespace gpu
 
 
 
-   bool context::create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics* pgraphics, const ::i32_size& size)
+   bool context::create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics* pdraw2dgraphics, const ::i32_size& size)
    {
 
       return false;
@@ -4713,7 +4721,7 @@ float4 main(PS_INPUT input) : SV_TARGET
 
    // aaaxyz
    // void context::frame_prefix()
-   void context::start_layer(bool bFirstLayer, enum_start_layer estartlayer)
+   void context::start_layer(bool bFirstLayer, enum_start_layer estartlayer, ::user::interaction * puserinteractionContext)
    {
 
       auto pgpurenderer = this->get_gpu_renderer();
@@ -4739,6 +4747,24 @@ float4 main(PS_INPUT input) : SV_TARGET
 
       //}
 
+      if (::is_set(puserinteractionContext))
+      {
+
+         auto pgputexturesite = m_pgpurenderer->m_pgpurendertarget2->current_texture(::gpu::current_layer(), true);
+
+         //auto sizeRaw = raw_size();
+
+         ::i32_rectangle rectangleScreen;
+
+         //if (puserinteractionContext)
+         //{
+            puserinteractionContext->client_to_screen()(rectangleScreen);
+            //puserinteractionContext->m_pointOutput = rectangleScreen.origin();
+            pgputexturesite->m_pointOutput = rectangleScreen.origin();
+         //}
+
+      }
+
    }
 
 
@@ -4747,7 +4773,7 @@ float4 main(PS_INPUT input) : SV_TARGET
    void context::end_layer(bool bClosingLayer)
    {
 
-            // auto pgraphics = pgraphicscontext->draw2d_graphics();
+            // auto pdraw2dgraphics = pgraphicscontext->draw2d_graphics();
 
       // end_gpu_layer();
       //if (m_egraphics == e_graphics_draw)

@@ -43,9 +43,9 @@ namespace user
          virtual ::f64 get_rotate() override;
 
 
-         void draw_control_background(::draw2d::graphics_pointer & pgraphics) override;
+         void draw_control_background(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-         void _001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics) override;
+         void _001OnNcPostDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
          //virtual void do_layout() override;
 
@@ -96,15 +96,15 @@ namespace user
 
          void install_message_routing(::channel * psender) override;
 
-         void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
+         void _001CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
          ::f64_point get_point_transform() override;
 
-         void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+         void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-         void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
+         void draw_impl(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-         void _000DrawImpl(::draw2d::graphics_pointer & pgraphics) override;
+         void _000DrawImpl(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
          ::pointer<format_tool>get_format_tool(bool bCreate) override;
 
@@ -119,7 +119,7 @@ namespace user
          //void get_text(string & str) override;
          void _001GetLayoutText(string & str) const override;
 
-         void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+         void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
          ::user::rich_text::data * get_rich_text_data() override;

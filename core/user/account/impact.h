@@ -46,7 +46,7 @@ namespace account
 
       void install_message_routing(::channel * pchannel) override;
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       bool on_action(const ::scoped_string & scopedstrId) override;
 
@@ -54,13 +54,13 @@ namespace account
 
       void defer_translate(const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrOpen);
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
+      void _001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       void interactive_credentials(::account::credentials * pcredentials);
 

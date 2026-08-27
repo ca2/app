@@ -7,7 +7,7 @@
 //public:
 //
 //
-//   pixmap * m_pbitmap;
+//   pixmap * m_pdraw2dbitmap;
 //   ::i32_rectangle      m_rectanglePrevious;
 //   bool        m_bMapped;
 //
@@ -16,7 +16,7 @@
 //
 //
 //   pixmap_lock(pixmap * pmap, i32_rectangle rectangle) :
-//      m_pbitmap(pmap)
+//      m_pdraw2dbitmap(pmap)
 //   {
 //
 //      map_base(rectangle);
@@ -25,7 +25,7 @@
 //
 //
 //   pixmap_lock(pixmap * pmap) :
-//      m_pbitmap(pmap)
+//      m_pdraw2dbitmap(pmap)
 //   {
 //
 //   }
@@ -48,9 +48,9 @@
 //
 //      }
 //
-//      m_rectanglePrevious = m_pbitmap->rectangle();
+//      m_rectanglePrevious = m_pdraw2dbitmap->rectangle();
 //
-//      m_pbitmap->pixmap_map(rectangleMap);
+//      m_pdraw2dbitmap->pixmap_map(rectangleMap);
 //
 //      m_bMapped = true;
 //
@@ -69,7 +69,7 @@
 //
 //      }
 //
-//      m_pbitmap->pixmap_map(m_rectanglePrevious);
+//      m_pdraw2dbitmap->pixmap_map(m_rectanglePrevious);
 //
 //      m_bMapped = false;
 //

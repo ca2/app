@@ -74,7 +74,7 @@ enum_type set_element(::payload & payload, ::subparticle * pelement)
          payload.m_pmemory = dynamic_cast <::memory*>(pelement);
          break;
       case ::e_type_path:
-         payload.m_ppath = dynamic_cast <::file::path_object*>(pelement);
+         payload.m_pfilepathobject = dynamic_cast <::file::path_object*>(pelement);
          break;
       default:
          payload.m_p = pelement;
@@ -305,7 +305,7 @@ void payload::_set_element(::subparticle * pelement)
                m_preferer = nullptr;
                ::allocator::add_releaser(prefererOld);
 #endif
-               iRelease = ::release(m_ppath);
+               iRelease = ::release(m_pfilepathobject);
             }
             break;
             default:

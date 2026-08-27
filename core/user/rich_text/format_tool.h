@@ -58,11 +58,11 @@ namespace user
 
          virtual void set_font_size(::f64 d);
 
-         void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+         void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
          virtual bool is_showing_for_ui(::user::interaction * pinteraction);
 
-         void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+         void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
          virtual void show_for_ui(::user::interaction * puserinteraction, ::user::rich_text::selection * pselection);
 

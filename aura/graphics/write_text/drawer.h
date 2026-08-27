@@ -21,8 +21,8 @@ namespace write_text
    public:
 
 
-      ::write_text::font_pointer                 m_pfont;
-      ::write_text::font_pointer                 m_pfontDevice;
+      ::write_text::font_pointer                 m_pwritetextfont;
+      ::write_text::font_pointer                 m_pwritetextfontDevice;
 
 
       drawer();
@@ -30,7 +30,7 @@ namespace write_text
 
 
       virtual ::write_text::font* get_current_font();
-      virtual void set(::write_text::font* pfont);
+      virtual void set(::write_text::font* pwritetextfont);
 
 
       virtual void draw(const ::write_text::text_out* ptextout);
@@ -47,7 +47,7 @@ namespace write_text
       virtual void TextOutRaw(::f64 x, ::f64 y, const ::scoped_string & scopedstr);
 
 
-      virtual void create_simple_multiline_layout(::write_text::text_out_array& textouta, const ::scoped_string & scopedstr, const ::i32_rectangle& rectangle, ::write_text::font* pfont, const ::e_align& ealign, enum_text_wrap etextwrap);
+      virtual void create_simple_multiline_layout(::write_text::text_out_array& textouta, const ::scoped_string & scopedstr, const ::i32_rectangle& rectangle, ::write_text::font* pwritetextfont, const ::e_align& ealign, enum_text_wrap etextwrap);
       virtual void split_text(string_array_base & stra, ::f64 w, enum_text_wrap etextwrap);
       virtual ::collection::count _split_text(string_array_base & stra, ::collection::index i, ::f64 w, enum_text_wrap etextwrap);
       virtual ::collection::count _split_text_word(string_array_base & stra, ::collection::index i, ::f64 w);

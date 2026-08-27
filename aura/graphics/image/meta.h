@@ -49,13 +49,13 @@ namespace image
       ::i32                                     m_iScan;
       ::image_pixmap_lease *                    m_pimagepixmaplease;
       ::draw2d::graphics_lease *                m_pgraphicslease;
-      ::pointer<::draw2d::bitmap>               m_pbitmap;
+      ::pointer<::draw2d::bitmap>               m_pdraw2dbitmap;
       ::pixmap_pointer                          m_ppixmapOwned;
       ::draw2d::graphics_pointer                m_pgraphicsOwned;
       //::draw2d::graphics_pointer              m_pgraphics2;
-      ::f64                                    m_dSpeed;
-      ::f64                                    m_dIsotropicRate;
-      //::i32_size                                m_sizeAlloc;
+      ::f64                                     m_dSpeed;
+      ::f64                                     m_dIsotropicRate;
+      //::i32_size                              m_sizeAlloc;
       //i32_point                                 m_point;
       ::f64                                    m_dSizeScaler;
       //::draw2d::enum_alpha_mode               m_ealphamode;
@@ -87,7 +87,7 @@ namespace image
          m_emipmap = ::image::e_mipmap_none;
          m_iFrame = 0;
          m_bCreateHelperMaps = false;
-         m_pbitmap = nullptr;
+         m_pdraw2dbitmap = nullptr;
          m_iExifOrientation = 0;
          //m_pgraphics = nullptr;
 
@@ -102,7 +102,7 @@ namespace image
          m_iScan(imagemeta.m_iScan),
          m_pimagepixmaplease(nullptr),
          m_pgraphicslease(nullptr),
-         m_pbitmap(::transfer(imagemeta.m_pbitmap)),
+         m_pdraw2dbitmap(::transfer(imagemeta.m_pdraw2dbitmap)),
          m_ppixmapOwned(::transfer(imagemeta.m_ppixmapOwned)),
          m_pgraphicsOwned(::transfer(imagemeta.m_pgraphicsOwned)),
          m_dSpeed(::transfer(imagemeta.m_dSpeed)),

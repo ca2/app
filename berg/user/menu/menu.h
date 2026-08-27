@@ -89,7 +89,7 @@ namespace user
       
       virtual void set_minimum_width(::i32 iWidth);
 
-      //virtual void layout_menu(::draw2d::graphics_pointer& pgraphics);
+      //virtual void layout_menu(::draw2d::graphics_pointer& pdraw2dgraphics);
 
       virtual bool contains_menu_item(::menu::item * pitem, bool bRecursive = true) const;
 
@@ -105,8 +105,8 @@ namespace user
 
       void operator()(::timer * ptimer) override;
 
-      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       virtual void show_sub_menu(::menu::item * pmenuitem);
@@ -159,14 +159,14 @@ namespace user
 
       virtual void update_command(::menu::item * pitemParent);
 
-      void calc_size(::menu::item * pitem, ::draw2d::graphics_pointer & pgraphics, ::i32 & iMaxWidth, ::i32 & iMaxHeight);
+      void calc_size(::menu::item * pitem, ::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 & iMaxWidth, ::i32 & iMaxHeight);
       void layout_buttons(::menu::item * pitem, ::i32 iMaxWidth, ::i32_rectangle * prectangle, const ::i32_rectangle & lpcrectBound);
 
 
 
       virtual void defer_close();
 
-      virtual ::pointer<::user::menu_interaction>create_menu_button(::draw2d::graphics_pointer & pgraphics, ::menu::item * pitem);
+      virtual ::pointer<::user::menu_interaction>create_menu_button(::draw2d::graphics_pointer & pdraw2dgraphics, ::menu::item * pitem);
 
       void route_command(::message::command* pcommand, bool bRouteToKeyDescendant) override;
 
@@ -174,9 +174,9 @@ namespace user
       void handle_command(const ::atom& atom) override;
 
 
-      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-//      virtual bool create_buttons(::draw2d::graphics_pointer & pgraphics);
+//      virtual bool create_buttons(::draw2d::graphics_pointer & pdraw2dgraphics);
 
    };
 

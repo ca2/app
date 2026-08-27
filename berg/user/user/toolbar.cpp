@@ -570,7 +570,7 @@ namespace user
    //
    //      // handle any delayed on_layout
    //      //if (m_bDelayedButtonLayout)
-   //      //   ((toolbar*)this)->set_need_layout(pgraphics);
+   //      //   ((toolbar*)this)->set_need_layout(pdraw2dgraphics);
    //
    ////      // now it is safe to get the item i32_rectangle
    ////#ifdef WINDOWS_DESKTOP
@@ -584,7 +584,7 @@ namespace user
    ////#endif
    //   }
 
-   void toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void toolbar::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       //ASSERT(m_bDelayedButtonLayout);
 
@@ -809,7 +809,7 @@ namespace user
    //
    //   //   ASSERT(pData != nullptr && nCount > 0);
    //
-   //   //   auto pgraphics = create_memory_graphics();
+   //   //   auto pdraw2dgraphics = create_memory_graphics();
    //
    //   //   index nResult = 0;
    //   //   index x = 0;
@@ -835,7 +835,7 @@ namespace user
    //   //         //         str = (const wide_character * ) pData[i].iString;
    //   //         ::i32_size size;
    //   //         ::GetTextExtentPoint32U(
-   //   //         (HDC)pgraphics->get_os_data(),
+   //   //         (HDC)pdraw2dgraphics->get_os_data(),
    //   //         str,
    //   //         (index) str.length(),
    //   //         &size);
@@ -980,7 +980,7 @@ namespace user
    };
 
 
-   i32_size toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u32 dwMode, ::collection::index nLength)
+   i32_size toolbar::CalcLayout(::draw2d::graphics_pointer & pdraw2dgraphics, ::u32 dwMode, ::collection::index nLength)
    {
       //#ifdef WINDOWS_DESKTOP
       //      ASSERT_OK(this);
@@ -1213,30 +1213,30 @@ namespace user
    }
 
 
-   i32_size toolbar::CalcFixedLayout(::draw2d::graphics_pointer & pgraphics, bool bStretch, bool bHorz)
+   i32_size toolbar::CalcFixedLayout(::draw2d::graphics_pointer & pdraw2dgraphics, bool bStretch, bool bHorz)
    {
 
       ::u32 dwMode = bStretch ? LM_STRETCH : 0;
 
       dwMode |= bHorz ? LM_HORZ : 0;
 
-      return CalcLayout(pgraphics, dwMode);
+      return CalcLayout(pdraw2dgraphics, dwMode);
 
    }
 
 
-   i32_size toolbar::CalcDynamicLayout(::draw2d::graphics_pointer & pgraphics, ::i32 nLength, ::u32 dwMode)
+   i32_size toolbar::CalcDynamicLayout(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 nLength, ::u32 dwMode)
    {
 
       if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
          ((dwMode & LM_HORZDOCK) || (dwMode & LM_VERTDOCK)))
       {
 
-         return CalcFixedLayout(pgraphics, (dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZDOCK) != 0);
+         return CalcFixedLayout(pdraw2dgraphics, (dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZDOCK) != 0);
 
       }
 
-      return CalcLayout(pgraphics, dwMode, nLength);
+      return CalcLayout(pdraw2dgraphics, dwMode, nLength);
 
    }
 
@@ -1459,9 +1459,9 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
-      ::user::control_bar::CalcInsideRect(pgraphics, rectangle, bHorz);
+      ::user::control_bar::CalcInsideRect(pdraw2dgraphics, rectangle, bHorz);
 
       NCCALCSIZE_PARAMS * pparams = (NCCALCSIZE_PARAMS *)pnccalcsize->m_pNCCALCSIZE_PARAMS;
       // adjust non-client area for border space
@@ -1540,22 +1540,22 @@ namespace user
    void toolbar::OnPaint()
    {
       if (m_bDelayedButtonLayout)
-         on_layout(pgraphics);
+         on_layout(pdraw2dgraphics);
 
       default_window_procedure();
    }
    */
 
 
-   void toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void toolbar::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
       //if (m_bDelayedButtonLayout)
       //{
 
-      //   on_layout(pgraphics);
+      //   on_layout(pdraw2dgraphics);
 
       //}
 
@@ -1779,7 +1779,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
 
 
-   i32_size toolbar::CalcSimpleLayout(::draw2d::graphics_pointer & pgraphics)
+   i32_size toolbar::CalcSimpleLayout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ASSERT_OK(this);
@@ -1850,10 +1850,10 @@ namespace user
    }
 
 
-   i32_size toolbar::SimpleLayout(::draw2d::graphics_pointer & pgraphics)
+   i32_size toolbar::SimpleLayout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      const ::i32_size & size = CalcSimpleLayout(pgraphics);
+      const ::i32_size & size = CalcSimpleLayout(pdraw2dgraphics);
 
       /*set_window_position(
       e_zorder_top,

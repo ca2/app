@@ -36,24 +36,24 @@ public:
 
    void install_message_routing(::channel * pchannel) override;
 
-   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-   virtual void _001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraphics);
+   virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+   virtual void _001OnVerisimpleDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
    //void update_drawing_objects() override;
 
-   virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
+   virtual void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-   //::i32_rectangle get_buttonA_rectangle(const ::i32_rectangle & rectangleX, ::draw2d::graphics_pointer & pgraphics);
+   //::i32_rectangle get_buttonA_rectangle(const ::i32_rectangle & rectangleX, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
-   //::i32_rectangle get_buttonB_rectangle(const ::i32_rectangle & rectangleX, ::draw2d::graphics_pointer & pgraphics);
+   //::i32_rectangle get_buttonB_rectangle(const ::i32_rectangle & rectangleX, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
-   //::f64_point_array get_arrowA(const ::i32_rectangle & rectangleX, ::draw2d::graphics_pointer & pgraphics);
+   //::f64_point_array get_arrowA(const ::i32_rectangle & rectangleX, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
-   //::f64_point_array get_arrowB(const ::i32_rectangle & rectangleX, ::draw2d::graphics_pointer & pgraphics);
+   //::f64_point_array get_arrowB(const ::i32_rectangle & rectangleX, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
-   //::status < ::i32_rectangle > get_pageA_rectangle(const ::i32_rectangle & rectangleX, const ::i32_rectangle & rectangleTrack, ::draw2d::graphics_pointer & pgraphics);
+   //::status < ::i32_rectangle > get_pageA_rectangle(const ::i32_rectangle & rectangleX, const ::i32_rectangle & rectangleTrack, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
-   //::status < ::i32_rectangle > get_pageB_rectangle(const ::i32_rectangle & rectangleX, const ::i32_rectangle & rectangleTrack, ::draw2d::graphics_pointer & pgraphics);
+   //::status < ::i32_rectangle > get_pageB_rectangle(const ::i32_rectangle & rectangleX, const ::i32_rectangle & rectangleTrack, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
    ::f64_rectangle get_buttonA_rectangle(const ::f64_rectangle & rectangle);
 
@@ -71,7 +71,7 @@ public:
    ::f64_rectangle _user_item_rectangle(::user::item * puseritem, ::user::enum_layout elayout) override;
 
 
-   //virtual void update_rectangles(::draw2d::graphics_pointer & pgraphics);
+   //virtual void update_rectangles(::draw2d::graphics_pointer & pdraw2dgraphics);
    virtual void update_rectangles(::user::enum_layout elayout);
    void UpdateBitmaps();
    //void OnDisplayChange(::i32 iBitsPerPixel, ::i32_size sizeScreen);
@@ -85,11 +85,11 @@ public:
    bool on_drag_start(::i32_point & point, ::user::mouse * pmouse, ::item * pitem) override;
    //virtual bool create_interaction(enum_orientation eorientation, ::u32 uStyle, ::user::interaction * puiParent, ::atom atom) override;
 
-   //::i32 SetTrackingPos(const ::i32_point & point, ::draw2d::graphics_pointer & pgraphics);
-   //::i32 GetTrackSize(::i32_size & size, ::draw2d::graphics_pointer & pgraphics);
-   //bool GetTrackClientRect(::i32_rectangle * prectangle, ::draw2d::graphics_pointer & pgraphics);
+   //::i32 SetTrackingPos(const ::i32_point & point, ::draw2d::graphics_pointer & pdraw2dgraphics);
+   //::i32 GetTrackSize(::i32_size & size, ::draw2d::graphics_pointer & pdraw2dgraphics);
+   //bool GetTrackClientRect(::i32_rectangle * prectangle, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
-   //::status < ::i32_rectangle > get_track_rectangle(::draw2d::graphics_pointer & pgraphics) override;
+   //::status < ::i32_rectangle > get_track_rectangle(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
    void set_scroll_tracking_position(const ::f64_point & point, ::user::enum_layout elayout = ::user::e_layout_sketch);
    ::f64_size get_track_size(::user::enum_layout elayout = ::user::e_layout_sketch);
@@ -107,18 +107,18 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_destroy);
    //LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
 
-   void draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleDraw,const ::i32_rectangle & lpcrectClip,::u8 uchAlpha);
+   void draw_mac_thumb_simple(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangleDraw,const ::i32_rectangle & lpcrectClip,::u8 uchAlpha);
 
-   void draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleDraw,const ::i32_rectangle & lpcrectClip,::u8 uchAlpha);
+   void draw_mac_thumb_dots(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangleDraw,const ::i32_rectangle & lpcrectClip,::u8 uchAlpha);
 
 
 
-   virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+   virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
    virtual ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
    //virtual ::enum_element _001HitTest(const ::i32_point & point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem) override;
 
-   //virtual bool scrollbar_action(const ::item * pitem, ::draw2d::graphics_pointer & pgraphics);
+   //virtual bool scrollbar_action(const ::item * pitem, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
    virtual bool scrollbar_action(const ::item * pitem, ::user::enum_layout elayout);
 
@@ -127,10 +127,10 @@ public:
    virtual bool scrollbar_pageB(const ::i32_point & point, ::user::enum_layout elayout);
    virtual bool scrollbar_pageA(const ::i32_point & point, ::user::enum_layout elayout);
 
-   //virtual bool scrollbar_lineA(::draw2d::graphics_pointer & pgraphics);
-   //virtual bool scrollbar_lineB(::draw2d::graphics_pointer & pgraphics);
-   //virtual bool scrollbar_pageB(const ::i32_point & point, ::draw2d::graphics_pointer & pgraphics);
-   //virtual bool scrollbar_pageA(const ::i32_point & point, ::draw2d::graphics_pointer & pgraphics);
+   //virtual bool scrollbar_lineA(::draw2d::graphics_pointer & pdraw2dgraphics);
+   //virtual bool scrollbar_lineB(::draw2d::graphics_pointer & pdraw2dgraphics);
+   //virtual bool scrollbar_pageB(const ::i32_point & point, ::draw2d::graphics_pointer & pdraw2dgraphics);
+   //virtual bool scrollbar_pageA(const ::i32_point & point, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
    virtual ::color::color scrollbar_color_strong(::user::style * pstyle, const ::e_element & eelement) override;
    virtual ::color::color scrollbar_color(::user::style* pstyle, const ::e_element & eelement)override;

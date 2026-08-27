@@ -60,6 +60,8 @@ namespace write_text
       m_fontsize(12_pt)
    {
 
+      m_bUpdated = false;
+      m_bTextMetricCalculated = false;
       m_bCacheLayout = true;
       m_dFontWidth = 1.0;
       m_fontweight = e_font_weight_normal;
@@ -96,7 +98,7 @@ namespace write_text
 //   }
 
 
-   void font::create_text_metrics(::draw2d::graphics * pgraphics)
+   void font::create_text_metrics(::draw2d::graphics * pdraw2dgraphics)
    {
 
 
@@ -294,13 +296,13 @@ namespace write_text
    }
 
 
-   ::enum_character_set font::get_character_set(::draw2d::graphics * pgraphics)
+   ::enum_character_set font::get_character_set(::draw2d::graphics * pdraw2dgraphics)
    {
 
       if (m_echaracterset == e_character_set_none)
       {
 
-         m_echaracterset = calculate_character_set(pgraphics);
+         m_echaracterset = calculate_character_set(pdraw2dgraphics);
 
       }
 
@@ -309,7 +311,7 @@ namespace write_text
    }
 
 
-   ::enum_character_set font::calculate_character_set(::draw2d::graphics * pgraphics)
+   ::enum_character_set font::calculate_character_set(::draw2d::graphics * pdraw2dgraphics)
    {
 
       if (m_echaracterseta.get_count() == 1)
@@ -324,10 +326,10 @@ namespace write_text
    }
 
 
-   string font::get_sample_text(::draw2d::graphics * pgraphics)
+   string font::get_sample_text(::draw2d::graphics * pdraw2dgraphics)
    {
 
-      auto echaracterset = get_character_set(pgraphics);
+      auto echaracterset = get_character_set(pdraw2dgraphics);
 
       string strSampleText = node()->get_character_set_default_sample_text(echaracterset);
 
@@ -338,7 +340,7 @@ namespace write_text
 
       }
 
-      return m_pfontfamily->family_name(pgraphics);
+      return m_pfontfamily->family_name(pdraw2dgraphics);
 
    }
 
@@ -366,13 +368,13 @@ namespace write_text
 
 
 
-   ::f64 font::get_pixel_font_height(::draw2d::graphics * pgraphics)
+   ::f64 font::get_pixel_font_height(::draw2d::graphics * pdraw2dgraphics)
    {
 
       if (m_fontsize.eunit() == ::e_unit_point)
       {
 
-         return m_fontsize.as_f64() * pgraphics->get_dpiy() / 72.0;
+         return m_fontsize.as_f64() * pdraw2dgraphics->get_dpiy() / 72.0;
 
       }
       else if (m_fontsize.eunit() == ::e_unit_pixel)
@@ -402,22 +404,22 @@ namespace write_text
 //   ::draw2d::font * font::GetFont()
 //   {
 //
-//      return m_pfont;
+//      return m_pwritetextfont;
 //
 //   }
 //
 //
-//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::f64_rectangle & rectangle, ::f64 dRateX, ::f64 dHeight, string & str)
+//   void font::embossed_text_out(::draw2d::graphics * pdraw2dgraphics, const ::f64_rectangle & rectangle, ::f64 dRateX, ::f64 dHeight, string & str)
 //   {
 //
 //
-//      psystem->draw2d().api().embossed_text_out(pgraphics, rectangle, dRateX, dHeight, str);
+//      psystem->draw2d().api().embossed_text_out(pdraw2dgraphics, rectangle, dRateX, dHeight, str);
 //
 //      return;
 //
 //
 //
-//      //      SetDC(pgraphics);
+//      //      SetDC(pdraw2dgraphics);
 //      //      SelectFont();
 //      //
 //      //      ::f64_rectangle rectangleOffset(rectangle);
@@ -433,10 +435,10 @@ namespace write_text
 //      //         if(pglyph != nullptr)
 
 //      //         {
-//      //            pointOffset.x = ::i32(pgraphics->get_text_extent(str.left(i)).cx);
+//      //            pointOffset.x = ::i32(pdraw2dgraphics->get_text_extent(str.left(i)).cx);
 //      //            pglyph->DrawGlyph(
 
-//      //               pgraphics,
+//      //               pdraw2dgraphics,
 //      //               true,
 //      //               (::f32) dRateX,
 //      //               &pointOffset);
@@ -448,32 +450,32 @@ namespace write_text
 //      //      UnselectFont();
 //      //      ClearDC();
 //
-//      /*   SetDC(pgraphics);
+//      /*   SetDC(pdraw2dgraphics);
 //         SelectFont();
 //
-//         pgraphics->text_out(x, y, str);
-//         pgraphics->BeginPath();
-//         pgraphics->text_out(x, y, str);
-//         pgraphics->EndPath();
-//         pgraphics->StrokePath();
+//         pdraw2dgraphics->text_out(x, y, str);
+//         pdraw2dgraphics->BeginPath();
+//         pdraw2dgraphics->text_out(x, y, str);
+//         pdraw2dgraphics->EndPath();
+//         pdraw2dgraphics->StrokePath();
 //
 //         UnselectFont();
 //         ClearDC();*/
 //
 //   }
 //
-//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::f64_rectangle & rectangle, ::f64 dRateX, ::f64 dHeight, string & str, LPINT piCharsPositions, ::i32 iCharsPositions, ::i32 iOffset)
+//   void font::embossed_text_out(::draw2d::graphics * pdraw2dgraphics, const ::f64_rectangle & rectangle, ::f64 dRateX, ::f64 dHeight, string & str, LPINT piCharsPositions, ::i32 iCharsPositions, ::i32 iOffset)
 
 //   {
 //
-//      psystem->draw2d().api().embossed_text_out(pgraphics, rectangle, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
+//      psystem->draw2d().api().embossed_text_out(pdraw2dgraphics, rectangle, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
 
 //
 //      return;
 //
 //
 //
-//      //      SetDC(pgraphics);
+//      //      SetDC(pdraw2dgraphics);
 //      //      SelectFont();
 //      //
 //      //      const ::f64_rectangle rectangleOffset(rectangle);
@@ -495,7 +497,7 @@ namespace write_text
 
 //      //            pglyph->DrawGlyph(
 
-//      //               pgraphics,
+//      //               pdraw2dgraphics,
 //      //               true,
 //      //               (::f32) dRateX,
 //      //               &pointOffset);
@@ -504,7 +506,7 @@ namespace write_text
 //
 //
 //      /*   draw2d::api::embossed_text_out(
-//            pgraphics,
+//            pdraw2dgraphics,
 //            pcrect,
 
 //            f32RateX,
@@ -517,25 +519,25 @@ namespace write_text
 //
 //      //      UnselectFont();
 //      //      ClearDC();
-//      /*   SetDC(pgraphics);
+//      /*   SetDC(pdraw2dgraphics);
 //         SelectFont();
 //
 //         rectangle clipRect;
 //
-//         ::i32 iOldMapMode = pgraphics->GetMapMode();
-//         pgraphics->SetMapMode(MM_TEXT);
-//         pgraphics->text_out(x, y, str);
-//         pgraphics->BeginPath();
-//         pgraphics->text_out(x, y, str);
-//         pgraphics->EndPath();
-//         pgraphics->StrokePath();
+//         ::i32 iOldMapMode = pdraw2dgraphics->GetMapMode();
+//         pdraw2dgraphics->SetMapMode(MM_TEXT);
+//         pdraw2dgraphics->text_out(x, y, str);
+//         pdraw2dgraphics->BeginPath();
+//         pdraw2dgraphics->text_out(x, y, str);
+//         pdraw2dgraphics->EndPath();
+//         pdraw2dgraphics->StrokePath();
 //
-//         pgraphics->SetMapMode(iOldMapMode);
+//         pdraw2dgraphics->SetMapMode(iOldMapMode);
 //         UnselectFont();
 //         ClearDC();*/
 //   }
 //
-//   void font::simple_text_out(::draw2d::graphics * pgraphics, ::i32 x, ::i32 y, string & str, LPINT piCharsPositions, ::i32 iCharsPositions)
+//   void font::simple_text_out(::draw2d::graphics * pdraw2dgraphics, ::i32 x, ::i32 y, string & str, LPINT piCharsPositions, ::i32 iCharsPositions)
 
 //
 //   {
@@ -544,12 +546,12 @@ namespace write_text
 //      __UNREFERENCED_PARAMETER(piCharsPositions);
 
 //      __UNREFERENCED_PARAMETER(iCharsPositions);
-//      SetDC(pgraphics);
+//      SetDC(pdraw2dgraphics);
 //      SelectFont();
 //
 //      rectangle clipRect;
 //
-//      pgraphics->text_out(x, y, str);
+//      pdraw2dgraphics->text_out(x, y, str);
 //
 //      UnselectFont();
 //
@@ -639,16 +641,16 @@ namespace write_text
 //
 //   }
 //
-//   void font::SetDC(::draw2d::graphics * pgraphics)
+//   void font::SetDC(::draw2d::graphics * pdraw2dgraphics)
 //   {
 //      ASSERT(m_pDC == nullptr);
-//      ASSERT(pgraphics != nullptr);
-//      m_pDC = pgraphics;
+//      ASSERT(pdraw2dgraphics != nullptr);
+//      m_pDC = pdraw2dgraphics;
 //   }
 //
 //   void font::SelectFont()
 //   {
-//      m_pfontOld = m_pDC->set(m_pfont);
+//      m_pfontOld = m_pDC->set(m_pwritetextfont);
 //   }
 //
 //   void font::ClearDC()
@@ -747,7 +749,7 @@ namespace write_text
 //   }
 //
 //   void font::TextOutEx(
-//   ::draw2d::graphics * pgraphics,
+//   ::draw2d::graphics * pdraw2dgraphics,
 //   const rectangle &               rectangle,
 //   ::f64               dRateX,
 //   ::f64               dHeight,
@@ -762,12 +764,12 @@ namespace write_text
 //      switch (iEffect)
 //      {
 //      case EffectSimple:
-//         simple_text_out(pgraphics, rectangle.left, rectangle.top, str, piCharsPositions, iCharsPositions);
+//         simple_text_out(pdraw2dgraphics, rectangle.left, rectangle.top, str, piCharsPositions, iCharsPositions);
 
 //         break;
 //      case EffectEmbossed:
 //         embossed_text_out(
-//         pgraphics,
+//         pdraw2dgraphics,
 //         rectangle,
 //         dRateX,
 //         dHeight,
@@ -808,7 +810,7 @@ namespace write_text
 //
 //      spgraphics->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
 //
-//      ::draw2d::font * pFontOld = spgraphics->set(m_pfont);
+//      ::draw2d::font * pFontOld = spgraphics->set(m_pwritetextfont);
 //
 //      spgraphics->get_text_metrics(&m_tm);
 //
@@ -845,7 +847,15 @@ namespace write_text
    }
 
 
-   bool font::defer_load_internal_font(::draw2d::graphics * pgraphics)
+   bool font::is_updated() const
+   {
+
+      return m_bUpdated;
+
+   }
+
+
+   bool font::defer_load_internal_font(::draw2d::graphics * pdraw2dgraphics)
    {
 
       if (m_pathFontFile.has_character())
@@ -858,12 +868,12 @@ namespace write_text
 
          }
 
-         auto pinternalfont = write_text()->internal_font_from_file(pgraphics->m_papplication, m_pathFontFile);
+         auto pinternalfont = write_text()->internal_font_from_file(pdraw2dgraphics->m_papplication, m_pathFontFile);
 
          if (pinternalfont)
          {
 
-            on_create_internal_font(pgraphics, pinternalfont);
+            on_create_internal_font(pdraw2dgraphics, pinternalfont);
 
          }
 
@@ -876,10 +886,10 @@ namespace write_text
    }
 
 
-   void font::on_create_internal_font(::draw2d::graphics * pgraphics, ::write_text::internal_font * pinternalfont)
+   void font::on_create_internal_font(::draw2d::graphics * pdraw2dgraphics, ::write_text::internal_font * pinternalfont)
    {
 
-      pinternalfont->on_create_font(pgraphics, this);
+      pinternalfont->on_create_font(pdraw2dgraphics, this);
 
    }
 
@@ -890,13 +900,13 @@ namespace write_text
    }
 
 
-   void font::get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm)
+   void font::get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm)
    {
 
       if (!has_text_metric())
       {
 
-         _get_text_metric(pgraphics, m_textmetric2);
+         _get_text_metric(pdraw2dgraphics, m_textmetric2);
 
          set_has_text_metric();
 
@@ -907,67 +917,90 @@ namespace write_text
    }
 
 
-   ::f64 font::get_ascent(::draw2d::graphics * pgraphics)
+   ::f64 font::get_ascent(::draw2d::graphics * pdraw2dgraphics)
    {
 
       text_metric tm;
 
-      get_text_metric(pgraphics, tm);
+      get_text_metric(pdraw2dgraphics, tm);
 
       return tm.m_dAscent;
 
    }
 
 
-   ::f64 font::get_height(::draw2d::graphics * pgraphics)
+   ::f64 font::get_height(::draw2d::graphics * pdraw2dgraphics)
    {
 
       text_metric tm;
 
-      get_text_metric(pgraphics, tm);
+      get_text_metric(pdraw2dgraphics, tm);
 
       return tm.m_dHeight;
 
    }
 
 
-   ::f64 font::get_leading(::draw2d::graphics * pgraphics)
+   ::f64 font::get_leading(::draw2d::graphics * pdraw2dgraphics)
    {
 
       text_metric tm;
 
-      get_text_metric(pgraphics, tm);
+      get_text_metric(pdraw2dgraphics, tm);
 
       return tm.m_dInternalLeading + tm.m_dExternalLeading;
 
    }
 
 
-   ::f64 font::get_descent(::draw2d::graphics * pgraphics)
+   ::f64 font::get_descent(::draw2d::graphics * pdraw2dgraphics)
    {
 
       text_metric tm;
 
-      get_text_metric(pgraphics, tm);
+      get_text_metric(pdraw2dgraphics, tm);
 
       return tm.m_dDescent;
 
    }
 
 
-   void font::_get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm)
+   void font::_get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm)
    {
 
-      if (::is_null(pgraphics))
+      if (::is_null(pdraw2dgraphics))
       {
 
          throw ::exception(error_null_pointer);
 
       }
 
-      pgraphics->set(this);
+      pdraw2dgraphics->set(this);
 
-      pgraphics->get_text_metrics(&tm);
+      pdraw2dgraphics->get_text_metrics(&tm);
+
+   }
+
+   text_metric * font::get_text_metric_struct()
+   {
+
+      return &m_textmetric2;
+
+   }
+   const text_metric * font::get_text_metric_struct() const
+   {
+      return &m_textmetric2;
+
+   }
+   bool font::has_text_metric() const
+   {
+      return m_bTextMetricCalculated;
+
+   }
+   void font::set_has_text_metric()
+   {
+
+      m_bTextMetricCalculated = true;
 
    }
 

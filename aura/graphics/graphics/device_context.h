@@ -14,11 +14,11 @@ namespace graphics
    public:
 
 
-      ::draw2d::graphics_pointer         m_spgraphics;
+      ::draw2d::graphics_pointer         m_pdraw2dgraphics;
 
 
       device_context();
-      virtual ~device_context();
+      ~device_context() override;
 
 
       virtual bool update_window();

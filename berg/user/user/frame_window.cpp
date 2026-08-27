@@ -564,9 +564,9 @@ namespace user
 
                   //auto rectangleTarget = ::f64_rectangle(rectangle.size());
 
-                  //auto pgraphics = pbufferitem->acquire_graphics();
+                  //auto pdraw2dgraphics = pbufferitem->acquire_graphics();
 
-                  //::image::image_source imagesource(pgraphics);
+                  //::image::image_source imagesource(pdraw2dgraphics);
 
                   //::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -1608,7 +1608,7 @@ namespace user
       //      && !is_true("should_not_be_automatically_holded_on_initial_update_frame"))
       //{
       //   get_parent()->place_hold(this);
-      //   //get_parent()->on_layout(pgraphics);
+      //   //get_parent()->on_layout(pdraw2dgraphics);
       //}
 
    }
@@ -2547,7 +2547,7 @@ namespace user
             __set_dialog_control_id_(oswindow, FIRST_PANE);
             }
 
-            on_layout(pgraphics);
+            on_layout(pdraw2dgraphics);
 
 
             // show any modeless dialogs, popup windows, ::f32 tools, etc
@@ -2580,10 +2580,10 @@ namespace user
    }
 
 
-   void frame_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void frame_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::main_window::on_perform_top_down_layout(pgraphics);
+      ::user::main_window::on_perform_top_down_layout(pdraw2dgraphics);
 
       m_rectangleHosting = this->raw_rectangle(e_layout_layout);
 
@@ -2610,9 +2610,9 @@ namespace user
 
          ::i32_rectangle rectangle(0, 0, 32767, 32767);
 
-         RepositionBars(pgraphics, 0, 0xffff, m_pimpactMain, reposQuery, &rectangle, rectangle, false);
+         RepositionBars(pdraw2dgraphics, 0, 0xffff, m_pimpactMain, reposQuery, &rectangle, rectangle, false);
 
-         RepositionBars(pgraphics, 0, 0xffff, m_pimpactMain, reposExtra, &m_rectangleBorder, rectangle, true);
+         RepositionBars(pdraw2dgraphics, 0, 0xffff, m_pimpactMain, reposExtra, &m_rectangleBorder, rectangle, true);
 
          //CalcWindowRect(&rectangle);
 
@@ -2624,7 +2624,7 @@ namespace user
       else
       {
 
-         RepositionBars(pgraphics, 0, 0xffff, m_pimpactMain, reposExtra, &m_rectangleBorder);
+         RepositionBars(pdraw2dgraphics, 0, 0xffff, m_pimpactMain, reposExtra, &m_rectangleBorder);
 
       }
 
@@ -2632,7 +2632,7 @@ namespace user
 
 
    // frame_window implementation of OLE border space negotiation
-   bool frame_window::NegotiateBorderSpace(::draw2d::graphics_pointer & pgraphics, ::u32 nBorderCmd, ::i32_rectangle * pRectBorder)
+   bool frame_window::NegotiateBorderSpace(::draw2d::graphics_pointer & pdraw2dgraphics, ::u32 nBorderCmd, ::i32_rectangle * pRectBorder)
    {
 
       ::i32_rectangle border, request;
@@ -2642,7 +2642,7 @@ namespace user
       case borderGet:
          ASSERT(pRectBorder != nullptr);
 
-         RepositionBars(pgraphics, 0, 0xffff, m_pimpactMain, reposQuery,
+         RepositionBars(pdraw2dgraphics, 0, 0xffff, m_pimpactMain, reposQuery,
                         pRectBorder);
 
          break;
@@ -2707,7 +2707,7 @@ namespace user
 
       // for ::user::impact-less frame just use the default background fill
       return true;
-      //   return user::frame_window::OnEraseBkgnd(pgraphics);
+      //   return user::frame_window::OnEraseBkgnd(pdraw2dgraphics);
 
    }
 
@@ -2960,7 +2960,7 @@ namespace user
    }
 
 
-   void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void frame_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_bWindowFrame && !session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
@@ -2995,7 +2995,7 @@ namespace user
    }
 
 
-   void frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void frame_window::_000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pimpactsystem = m_pimpactsystem;
@@ -3016,7 +3016,7 @@ namespace user
 
       }
 
-      ::user::main_window::_000OnDraw(pgraphics);
+      ::user::main_window::_000OnDraw(pdraw2dgraphics);
 
 //      bool bUpdateBuffer;
 //
@@ -3051,11 +3051,11 @@ namespace user
 //
 //         m_bSketchToDesignLayout = false;
 //
-//         design_layout(pgraphics);
+//         design_layout(pdraw2dgraphics);
 //
 //      }
 
-//      auto pstyle = get_style(pgraphics);
+//      auto pstyle = get_style(pdraw2dgraphics);
 //
 //      bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
 //
@@ -3064,11 +3064,11 @@ namespace user
 //      if (bBlurBackground)
 //      {
 //
-//         _001DrawThis(pgraphics);
+//         _001DrawThis(pdraw2dgraphics);
 //
-//         _001DrawChildren(pgraphics);
+//         _001DrawChildren(pdraw2dgraphics);
 //
-//         _008CallOnDraw(pgraphics);
+//         _008CallOnDraw(pdraw2dgraphics);
 //
 //      }
 //      else if (!session()->savings()->is_trying_to_save(::e_resource_processing)
@@ -3078,28 +3078,28 @@ namespace user
 //
 //#if TEST
 //
-//         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+//         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//         pgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
+//         pdraw2dgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
 //
 //#endif
 //
 //         //return;
 //
-//         _001DrawThis(pgraphics);
+//         _001DrawThis(pdraw2dgraphics);
 //
-//         _001DrawChildren(pgraphics);
+//         _001DrawChildren(pdraw2dgraphics);
 //
 //         if(m_bOverdraw)
 //         {
 //
-//            _008CallOnDraw(pgraphics);
+//            _008CallOnDraw(pdraw2dgraphics);
 //
 //         }
 //
 //#if TEST
 //
-//         pgraphics->fill_solid_rect_dim(0, 100, 100, 100, argb(128, 0, 0, 255));
+//         pdraw2dgraphics->fill_solid_rect_dim(0, 100, 100, 100, argb(128, 0, 0, 255));
 //
 //#endif
 //
@@ -3109,24 +3109,24 @@ namespace user
 //
 //#if TEST
 //
-//         pgraphics->fill_rectangle(60, 10, 50, 50, argb(128, 190, 180, 90));
+//         pdraw2dgraphics->fill_rectangle(60, 10, 50, 50, argb(128, 190, 180, 90));
 //
 //#endif
 
-//         _001DrawThis(pgraphics);
+//         _001DrawThis(pdraw2dgraphics);
 //
-//         _001DrawChildren(pgraphics);
+//         _001DrawChildren(pdraw2dgraphics);
 //
 //         if(m_bOverdraw)
 //         {
 //
-//            _008CallOnDraw(pgraphics);
+//            _008CallOnDraw(pdraw2dgraphics);
 //
 //         }
 
 //#if TEST
 //
-//         pgraphics->fill_rectangle(10, 60, 50, 50, argb(128, 190, 180, 90));
+//         pdraw2dgraphics->fill_rectangle(10, 60, 50, 50, argb(128, 190, 180, 90));
 //
 //#endif
 //
@@ -3136,16 +3136,16 @@ namespace user
    }
 
 
-   void frame_window::_001OnNcDraw(::draw2d::graphics_pointer &pgraphics)
+   void frame_window::_001OnNcDraw(::draw2d::graphics_pointer &pdraw2dgraphics)
    {
 
       //return;
 
-      //information() << "user::frame_window::_001OnNcDraw graphics offset : " << pgraphics->get_origin();
+      //information() << "user::frame_window::_001OnNcDraw graphics offset : " << pdraw2dgraphics->get_origin();
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
-      //information() << "user::frame_window::_001OnNcDraw graphics offset (2) : " << pgraphics->get_origin();
+      //information() << "user::frame_window::_001OnNcDraw graphics offset (2) : " << pdraw2dgraphics->get_origin();
 
 //      ::i32_rectangle rectangleX;
 //
@@ -3156,14 +3156,14 @@ namespace user
 
          //::get_task()->payload("debug") = 123;
 
-         if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
+         if (pstyle->_001OnDrawMainFrameBackground(pdraw2dgraphics, this))
          {
 
-            //_001DrawThis(pgraphics);
+            //_001DrawThis(pdraw2dgraphics);
 
-            //_001DrawChildren(pgraphics);
+            //_001DrawChildren(pdraw2dgraphics);
 
-            //_008CallOnDraw(pgraphics);
+            //_008CallOnDraw(pdraw2dgraphics);
 
             return;
 
@@ -3171,7 +3171,7 @@ namespace user
 
       }
 
-      ::user::main_window::_001OnNcDraw(pgraphics);
+      ::user::main_window::_001OnNcDraw(pdraw2dgraphics);
 
    }
 

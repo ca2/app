@@ -66,10 +66,10 @@ namespace experience_core
    }
 
 
-   void frame::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void frame::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::experience::frame::on_perform_top_down_layout(pgraphics);
+      ::experience::frame::on_perform_top_down_layout(pdraw2dgraphics);
 
       auto pointBottomRight = m_pframewindow->const_layout().layout().raw_rectangle().bottom_right();
 
@@ -91,7 +91,7 @@ namespace experience_core
          rectangleLeft.top = 0;
          rectangleLeft.bottom = 7;
 
-         pgraphics->user_redraw()->set_need_redraw(rectangleLeft);
+         pdraw2dgraphics->user_redraw()->set_need_redraw(rectangleLeft);
 
          ::i32_rectangle rectangleTop;
 
@@ -100,7 +100,7 @@ namespace experience_core
          rectangleTop.top = 0;
          rectangleTop.bottom = pointBottomRight.y;
 
-         pgraphics->user_redraw()->set_need_redraw(rectangleTop);
+         pdraw2dgraphics->user_redraw()->set_need_redraw(rectangleTop);
 
          ::i32_rectangle rectangleRight;
 
@@ -111,7 +111,7 @@ namespace experience_core
 
          rectangleRight.normalize();
 
-         pgraphics->user_redraw()->set_need_redraw(rectangleRight);
+         pdraw2dgraphics->user_redraw()->set_need_redraw(rectangleRight);
 
          ::i32_rectangle rectangleBottom;
 
@@ -122,7 +122,7 @@ namespace experience_core
 
          rectangleBottom.normalize();
 
-         pgraphics->user_redraw()->set_need_redraw(rectangleBottom);
+         pdraw2dgraphics->user_redraw()->set_need_redraw(rectangleBottom);
 
       }
 
@@ -136,7 +136,7 @@ namespace experience_core
    }
 
 
-   void frame::Glass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleParam)
+   void frame::Glass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleParam)
    {
 
       auto pframewindow = m_pframewindow;
@@ -191,7 +191,7 @@ namespace experience_core
 
          ::f64_rectangle rectangleSource(point, pimage1->get_size());
 
-         ::image::image_source imagesource(pgraphics, rectangleSource);
+         ::image::image_source imagesource(pdraw2dgraphics, rectangleSource);
 
          ::f64_rectangle rectangleTarget(pimage1->get_size());
 
@@ -225,7 +225,7 @@ namespace experience_core
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
       }
 
@@ -240,10 +240,10 @@ namespace experience_core
    }
 
 
-   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color & color32, ::u8 bAlpha)
+   void frame::ColorGlass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, const ::color::color & color32, ::u8 bAlpha)
    {
 
-      pgraphics->fill_rectangle(rectangle, color32 & ::opacity(bAlpha));
+      pdraw2dgraphics->fill_rectangle(rectangle, color32 & ::opacity(bAlpha));
 
    }
 
@@ -507,7 +507,7 @@ namespace experience_core
 
       //auto pdraw2d = psystem->draw2d();
 
-      //auto pgraphics = pdraw2d->create_memory_graphics(m_pframewindow);
+      //auto pdraw2dgraphics = pdraw2d->create_memory_graphics(m_pframewindow);
 
       auto pstyle = pframewindow->get_style();
 
@@ -522,7 +522,7 @@ namespace experience_core
    }
 
 
-   void frame::on_style_change_001_and_002(::draw2d::graphics_pointer & pgraphics)
+   void frame::on_style_change_001_and_002(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pcontrolbox = get_control_box();
@@ -613,7 +613,7 @@ namespace experience_core
    //}
 
 
-   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleParam, enum_border eborder, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight)
+   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleParam, enum_border eborder, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight)
    {
 
       ::i32_rectangle rectangle(rectangleParam);
@@ -623,25 +623,25 @@ namespace experience_core
       ::i32 cx = rectangle.width();
       ::i32 cy = rectangle.height();
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::draw2d::pen_pointer ppen;
+      ::draw2d::pen_pointer pdraw2dpen;
 
       if (eborder & e_border_top || eborder & e_border_left)
       {
 
-         constructø(ppen);
+         constructø(pdraw2dpen);
 
-         ppen->create_solid(1.0, colorTopLeft);
+         pdraw2dpen->create_solid(1.0, colorTopLeft);
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
       }
 
       if (eborder & e_border_top)
       {
 
-         pgraphics->line(
+         pdraw2dgraphics->line(
             x, y,
          x + cx, y);
 
@@ -650,27 +650,27 @@ namespace experience_core
       if (eborder & e_border_left)
       {
 
-         pgraphics->line(
+         pdraw2dgraphics->line(
             x, y,
 x, y + cy);
 
       }
 
-      if ((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != colorBottomRight))
+      if ((eborder & e_border_right || eborder & e_border_bottom) && (!pdraw2dpen || pdraw2dpen->m_color != colorBottomRight))
       {
 
-         constructø(ppen);
+         constructø(pdraw2dpen);
 
-         ppen->create_solid(1.0, colorBottomRight);
+         pdraw2dpen->create_solid(1.0, colorBottomRight);
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
       }
 
       if (eborder & e_border_right)
       {
 
-         pgraphics->line(
+         pdraw2dgraphics->line(
             x + cx, y,
             x + cx, y + cy);
 
@@ -679,7 +679,7 @@ x, y + cy);
       if (eborder & e_border_bottom)
       {
 
-         pgraphics->line(x, y + cy,
+         pdraw2dgraphics->line(x, y + cy,
 x + cx, y + cy);
 
       }
@@ -687,14 +687,14 @@ x + cx, y + cy);
    }
 
 
-   void frame::_on_style_change(::draw2d::graphics_pointer & pgraphics)
+   void frame::_on_style_change(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
    }
 
 
-   void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void frame::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //return; // abcxxx
@@ -709,7 +709,7 @@ x + cx, y + cy);
 
       //
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       auto pframewindow = m_pframewindow;
 
@@ -718,7 +718,7 @@ x + cx, y + cy);
          
          informationf("experience_core::frame::_001OnDraw        on_draw_frame");
 
-         on_draw_frame(pgraphics);
+         on_draw_frame(pdraw2dgraphics);
 
       }
 
@@ -743,7 +743,7 @@ x + cx, y + cy);
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
@@ -761,7 +761,7 @@ x + cx, y + cy);
 
                ::f64_rectangle rectangle(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
 
-               pgraphics->draw_inset_3d_rectangle(rectangle, argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
+               pdraw2dgraphics->draw_inset_3d_rectangle(rectangle, argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
                i += 5;
 
@@ -775,22 +775,22 @@ x + cx, y + cy);
 
          //informationf("experience_core::frame::_001OnDraw        DrawCaptionBar");
          
-         //informationf("experience_core::frame::_001OnDraw        translation %s", pgraphics->translation_friendly_text().c_str());
+         //informationf("experience_core::frame::_001OnDraw        translation %s", pdraw2dgraphics->translation_friendly_text().c_str());
          
-         //informationf("experience_core::frame::_001OnDraw        clipbox %s", pgraphics->clip_box_friendly_text().c_str());
+         //informationf("experience_core::frame::_001OnDraw        clipbox %s", pdraw2dgraphics->clip_box_friendly_text().c_str());
 
-         _001DrawCaptionBar(pgraphics);
+         _001DrawCaptionBar(pdraw2dgraphics);
 
       }
 
    }
 
 
-   void frame::_001DrawCaptionBar(::draw2d::graphics_pointer& pgraphics)
+   void frame::_001DrawCaptionBar(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
-      //pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
-      pgraphics->fill_rectangle(m_rectangleCaption, m_colorCaptionTextBk);
+      //pdraw2dgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
+      pdraw2dgraphics->fill_rectangle(m_rectangleCaption, m_colorCaptionTextBk);
 
       ::i32_rectangle rectangleIcon;
 
@@ -819,7 +819,7 @@ x + cx, y + cy);
       else
       {
 
-         auto pstyle = pframewindow->get_style(pgraphics);
+         auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
          crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
@@ -845,7 +845,7 @@ x + cx, y + cy);
          if (::is_set(pdrawicon) && pdrawicon->is_ok())
          {
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             ::image::image_source imagesource(pdrawicon);
 
@@ -853,7 +853,7 @@ x + cx, y + cy);
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pgraphics->draw(imagedrawing);
+            pdraw2dgraphics->draw(imagedrawing);
 
          }
 
@@ -861,23 +861,23 @@ x + cx, y + cy);
 
       auto wstrWindowText = pframewindow->get_window_text();
 
-      pgraphics->set_text_color(m_colorCaptionText);
+      pdraw2dgraphics->set_text_color(m_colorCaptionText);
 
-      pgraphics->set_font(pframewindow, ::e_element_window_title);
+      pdraw2dgraphics->set_font(pframewindow, ::e_element_window_title);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->_DrawText(wstrWindowText, m_rectangleWindowText, { e_align_left, e_align_vertical_center }, e_draw_text_no_prefix);
+      pdraw2dgraphics->_DrawText(wstrWindowText, m_rectangleWindowText, { e_align_left, e_align_vertical_center }, e_draw_text_no_prefix);
 
 #endif
 
    }
 
 
-   void frame::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
+   void frame::on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    }
 
@@ -1205,12 +1205,12 @@ x + cx, y + cy);
    //}
 
    
-   void frame::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics)
+   void frame::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       auto rectangle = rectangleAfter.get_union(rectangleBefore);
    
-      m_pframewindow->set_need_redraw({ rectangle }, pgraphics);
+      m_pframewindow->set_need_redraw({ rectangle }, pdraw2dgraphics);
 
    }
 

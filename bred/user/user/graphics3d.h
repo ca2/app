@@ -66,25 +66,25 @@ namespace user
        ::key::e_state get_key_state(const ::user::e_key & ekey) {
            return m_psession->_key_state(ekey);
        }
-      void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
-      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics) override;
-      //void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnNcPostDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      //void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       //::user::document * get_document();
 
-      virtual void draw_gpu_statistics(::draw2d::graphics_pointer &pgraphics);
+      virtual void draw_gpu_statistics(::draw2d::graphics_pointer &pdraw2dgraphics);
 
       //virtual ::pointer < ::graphics3d::application > start_graphics3d_application();
 
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);

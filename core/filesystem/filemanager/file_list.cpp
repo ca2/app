@@ -1300,12 +1300,12 @@ namespace filemanager
 
       clear_selection();
 
-      //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+      //queue_graphics_call([this](::draw2d::graphics_pointer & pdraw2dgraphics)
         // {
 
-           // set_context_offset(pgraphics, 0, 0);
+           // set_context_offset(pdraw2dgraphics, 0, 0);
 
-      //set_context_offset(pgraphics, 0, 0);
+      //set_context_offset(pdraw2dgraphics, 0, 0);
 
       set_context_offset({});
 
@@ -1559,10 +1559,10 @@ namespace filemanager
    //}
 
 
-   void file_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void file_list::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::form_list::_001OnDraw(pgraphics);
+      ::user::form_list::_001OnDraw(pdraw2dgraphics);
 
    }
 

@@ -52,9 +52,9 @@ namespace user
       //virtual void GetScrollRect(::i32_rectangle * prectangle);
 
       void on_change_scroll_state(::user::enum_layout elayout = ::user::e_layout_sketch) override;
-      //virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void on_change_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       virtual bool create_scroll_bar_x();
-      //void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
+      //void layout_scroll_bar(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       virtual void layout_scroll_bar_x(::user::enum_layout elayout = ::user::e_layout_sketch);
       virtual void defer_create_scroll_bar_x(::user::enum_layout elayout = ::user::e_layout_sketch);
       //virtual void on_create_scroll_bar_x();

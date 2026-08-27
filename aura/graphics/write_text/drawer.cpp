@@ -29,15 +29,15 @@ namespace write_text
    ::write_text::font * drawer::get_current_font()
    {
 
-      return m_pfont;
+      return m_pwritetextfont;
 
    }
 
 
-   void drawer::set(::write_text::font * pfont)
+   void drawer::set(::write_text::font * pwritetextfont)
    {
 
-      if (::is_null(pfont))
+      if (::is_null(pwritetextfont))
       {
 
          throw ::exception(error_null_pointer);
@@ -50,7 +50,7 @@ namespace write_text
       // OASOWO - otherwise a stack overflow will occur
       // BTAIOM - because these are interface only methods
 
-      m_pfont = pfont;
+      m_pwritetextfont = pwritetextfont;
 
       //return ::success;
 
@@ -60,10 +60,10 @@ namespace write_text
    void drawer::draw(const ::write_text::text_out * ptextout)
    {
 
-      if (ptextout->m_pfont && m_pfont != ptextout->m_pfont)
+      if (ptextout->m_pwritetextfont && m_pwritetextfont != ptextout->m_pwritetextfont)
       {
 
-         set(ptextout->m_pfont);
+         set(ptextout->m_pwritetextfont);
 
       }
 
@@ -395,14 +395,14 @@ namespace write_text
 
 
 
-   void drawer::create_simple_multiline_layout(::write_text::text_out_array & textouta, const ::scoped_string & scopedstr, const ::i32_rectangle & rectangle, ::write_text::font * pfont, const ::e_align & ealign, enum_text_wrap etextwrap)
+   void drawer::create_simple_multiline_layout(::write_text::text_out_array & textouta, const ::scoped_string & scopedstr, const ::i32_rectangle & rectangle, ::write_text::font * pwritetextfont, const ::e_align & ealign, enum_text_wrap etextwrap)
    {
 
       string_array_base stra;
 
       stra.add_lines(scopedstr, true);
 
-      set(pfont);
+      set(pwritetextfont);
 
       auto textmetric = get_text_metrics();
 
@@ -436,7 +436,7 @@ namespace write_text
 
             ptextout->m_point.y = y;
 
-            ptextout->m_pfont = pfont;
+            ptextout->m_pwritetextfont = pwritetextfont;
 
             textouta.add_text_out(ptextout);
 

@@ -47,19 +47,19 @@ void simple_impact::handle(::topic * ptopic, ::handler_context * phandlercontext
 }
 
 
-void simple_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+void simple_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
    for (auto & text : m_texta)
    {
 
-      pgraphics->set(text.m_pfont);
+      pdraw2dgraphics->set(text.m_pwritetextfont);
 
-      pgraphics->set_text_color(text.m_color);
+      pdraw2dgraphics->set_text_color(text.m_color);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->text_out(text.m_point.x, text.m_point.y, text.m_strText);
+      pdraw2dgraphics->text_out(text.m_point.x, text.m_point.y, text.m_strText);
 
    }
 

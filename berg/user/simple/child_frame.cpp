@@ -75,10 +75,10 @@ void simple_child_frame::route_command(::message::command * pcommand, bool bRout
 }
 
 
-void simple_child_frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+void simple_child_frame::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
-   __UNREFERENCED_PARAMETER(pgraphics);
+   __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
 
 }

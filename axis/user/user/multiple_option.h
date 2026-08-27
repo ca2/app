@@ -43,7 +43,7 @@ namespace user
       ::write_text::font_pointer get_font(style* pstyle, const ::e_element & eelement = e_element_none, const ::user::e_state & estate = e_state_none) override;
 
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       virtual bool has_action_hover();
@@ -83,7 +83,7 @@ namespace user
       bool should_show_keyboard_focus() override;
 
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;

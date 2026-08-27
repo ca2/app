@@ -62,10 +62,10 @@ namespace filemanager
 
 
 
-   void main_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void main_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      //auto pstyle = get_style(pgraphics);
+      //auto pstyle = get_style(pdraw2dgraphics);
 
       //::color::color crBackground = get_color(pstyle, ::e_element_background);
 
@@ -76,7 +76,7 @@ namespace filemanager
 
       //   this->rectangle(rectangleX);
 
-      //   pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
+      //   pdraw2dgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 
       //}
 

@@ -52,7 +52,7 @@ namespace draw2d_gpu
 
       void initialize(::particle * pparticle) override;
 
-      //face* get_face(::write_text::font * pfont);
+      //face* get_face(::write_text::font * pwritetextfont);
 
       //bool graphics_context_supports_single_buffer_mode() override;
       bool graphics_context_does_full_redraw() override;

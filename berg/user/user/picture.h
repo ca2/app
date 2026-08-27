@@ -191,7 +191,7 @@ namespace user
       virtual ::f64_size get_request_size();
 
       virtual ::image::image_pointer defer_draw_drop_shadow_phase1(i32_rectangle & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & imageDropShadow, ::image::image_pointer pimage);
-      virtual void defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const i32_rectangle & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & imageDropShadow);
+      virtual void defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pdraw2dgraphics, const i32_rectangle & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & imageDropShadow);
 
       virtual bool set_text_editable(bool bEditable = true);
 
@@ -203,8 +203,8 @@ namespace user
       virtual ::f64_rectangle get_rect_for_picture2();
 
 
-      virtual void draw(::draw2d::graphics_pointer & pgraphics);
-      virtual void draw_impl(::draw2d::graphics_pointer & pgraphics);
+      virtual void draw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void draw_impl(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual void move_to(::f64_point point, ::f64_size sizePage, ::f64_size sizeClient, const ::f64_rectangle & rectangleMargin);

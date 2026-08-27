@@ -27,7 +27,7 @@ namespace draw3d
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto ppen = createø < ::draw2d::pen > ();
+      auto pdraw2dpen = createø < ::draw2d::pen > ();
 
       ::f64 zmin = locationa[0].z;
       ::f64 zmax = locationa[0].z;
@@ -171,17 +171,17 @@ namespace draw3d
 
             }
 
-            ppen->create_solid((1.05 - r) * 10.0,argb((::i32)(dA * (255.0 - r * 200.0)),colorA.u8_red(), colorA.u8_green(), colorA.u8_blue()));
+            pdraw2dpen->create_solid((1.05 - r) * 10.0,argb((::i32)(dA * (255.0 - r * 200.0)),colorA.u8_red(), colorA.u8_green(), colorA.u8_blue()));
             if(i < 6)
             {
-               ppen->m_epen = ::draw2d::e_pen_dot;
+               pdraw2dpen->m_epen = ::draw2d::e_pen_dot;
             }
             else
             {
-               ppen->m_epen = ::draw2d::e_pen_solid;
+               pdraw2dpen->m_epen = ::draw2d::e_pen_solid;
             }
 
-            m_pdc->set(ppen);
+            m_pdc->set(pdraw2dpen);
 
             m_pdc->line(::f64_point(locationa[point1[iMax]].cxy()), ::f64_point(locationa[point2[iMax]].cxy()));
 
@@ -194,7 +194,7 @@ namespace draw3d
       }
 
 
-      //ppen->create_solid(1.0,argb(255,((::i32)(clr)),((::i32)(clr)),((::i32)(clr)))); m_pdc->set(ppen)
+      //pdraw2dpen->create_solid(1.0,argb(255,((::i32)(clr)),((::i32)(clr)),((::i32)(clr)))); m_pdc->set(pdraw2dpen)
 
       //SET_PCOLOR((p02.z + p03.z) / (2.0 * z));
       //m_pdc->draw_line((::f32)p02.x,(::f32)p02.y,(::f32)p03.x,(::f32)p03.y);
@@ -242,7 +242,7 @@ namespace draw3d
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto ppen = createø < ::draw2d::pen > ();
+      auto pdraw2dpen = createø < ::draw2d::pen > ();
 
       ::f64 zmin = 1000000.0;
       ::f64 zmax = -1000000.0;
@@ -338,16 +338,16 @@ namespace draw3d
 //            //::color::color clr = colorA.get_rgb();
 //
 //
-//            /*ppen->create_solid((1.05 - r) * 10.0,argb((::i32)(dA * (255.0 - r * 200.0)),colorA.m_iR,colorA.m_iG,colorA.m_iB));
+//            /*pdraw2dpen->create_solid((1.05 - r) * 10.0,argb((::i32)(dA * (255.0 - r * 200.0)),colorA.m_iR,colorA.m_iG,colorA.m_iB));
 //            if(i < 6)
 //            {
-//            ppen->m_etype = ::draw2d::e_pen_dot;
+//            pdraw2dpen->m_etype = ::draw2d::e_pen_dot;
 //            }
 //            else
 //            {
-//            ppen->m_etype = ::draw2d::e_pen_solid;
+//            pdraw2dpen->m_etype = ::draw2d::e_pen_solid;
 //            }
-//            m_pdc->set(ppen);*/
+//            m_pdc->set(pdraw2dpen);*/
 //
 //            pimage->fill((::i32)(dA * (184.0 - r * 128.0)),colorA.red,colorA.green,colorA.blue);
 //
@@ -368,7 +368,7 @@ namespace draw3d
       }
 
 
-      //ppen->create_solid(1.0,argb(255,((::i32)(clr)),((::i32)(clr)),((::i32)(clr)))); m_pdc->set(ppen)
+      //pdraw2dpen->create_solid(1.0,argb(255,((::i32)(clr)),((::i32)(clr)),((::i32)(clr)))); m_pdc->set(pdraw2dpen)
 
       //SET_PCOLOR((p02.z + p03.z) / (2.0 * z));
       //m_pdc->draw_line((::f32)p02.x,(::f32)p02.y,(::f32)p03.x,(::f32)p03.y);

@@ -1444,7 +1444,7 @@ bool simple_frame_window::pre_create_window(::user::system * pusersystem)
 }
 
 
-void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
+void simple_frame_window::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
    if (::platform::type(this).name().case_insensitive_contains("child_frame"))
@@ -1468,13 +1468,13 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    if (is_frame_experience_enabled())
    {
 
-      ::experience::frame_window::on_layout(pgraphics);
+      ::experience::frame_window::on_layout(pdraw2dgraphics);
 
    }
    else
    {
 
-      ::user::frame_window::on_layout(pgraphics);
+      ::user::frame_window::on_layout(pdraw2dgraphics);
 
    }
 
@@ -1490,7 +1490,7 @@ void simple_frame_window::on_reposition()
    //if (m_bWindowFrame)
    //{
 
-   //   on_layout(pgraphics);
+   //   on_layout(pdraw2dgraphics);
 
    //}
 
@@ -2624,7 +2624,7 @@ void simple_frame_window::on_after_graphical_update()
 }
 
 
-void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
+void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
    
@@ -2644,45 +2644,45 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 
       auto rectangleX = this->rectangle();
 
-      pgraphics->fill_rectangle(rectangleX, rgb(0, 0, 0));
+      pdraw2dgraphics->fill_rectangle(rectangleX, rgb(0, 0, 0));
 
    }
    else
    {
 
-      ::user::frame_window::_001OnDeferPaintLayeredWindowBackground(pgraphics);
+      ::user::frame_window::_001OnDeferPaintLayeredWindowBackground(pdraw2dgraphics);
 
    }
 
 }
 
 
-void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam)
+void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
    //if (!is_frame_experience_enabled())
    //{
 
-   //auto pointOffset = pgraphicsParam->origin();
+   //auto pointOffset = pdraw2dgraphics->origin();
 
-   ::user::frame_window::_000OnDraw(pgraphicsParam);
+   ::user::frame_window::_000OnDraw(pdraw2dgraphics);
 
    return;
 
    //}
 
-//   ::draw2d::save_context savecontext(pgraphicsParam);
+//   ::draw2d::save_context savecontext(pdraw2dgraphics);
 //
 //   i32_point pointScroll = m_pointScroll;
 //
 //   if (!pointScroll.is_null())
 //   {
 //
-//      pgraphicsParam->offset_origin(-pointScroll.x, -pointScroll.y);
+//      pdraw2dgraphics->offset_origin(-pointScroll.x, -pointScroll.y);
 //
 //   }
 //
-//   pgraphicsParam->m_dFontFactor = 1.0;
+//   pdraw2dgraphics->m_dFontFactor = 1.0;
 //
 //   try
 //   {
@@ -2690,7 +2690,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //      auto type = ::platform::type(this);
 //
 //
-//      //if (pgraphics->m_bDraw)
+//      //if (pdraw2dgraphics->m_bDraw)
 //      //{
 //
 //#ifdef _DEBUG
@@ -2710,11 +2710,11 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //      //}
 //
-//      _001OnNcClip(pgraphicsParam);
+//      _001OnNcClip(pdraw2dgraphics);
 //
-//      //auto pstyle = get_style(pgraphics);
+//      //auto pstyle = get_style(pdraw2dgraphics);
 //
-//      _001OnNcDraw(pgraphicsParam);
+//      _001OnNcDraw(pdraw2dgraphics);
 //
 //
 //   }
@@ -2736,7 +2736,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //   //   }
 //
-//   //   //if (!_000OnBeforeDraw(pgraphicsParam))
+//   //   //if (!_000OnBeforeDraw(pdraw2dgraphics))
 //   //   //{
 //
 //   //     // return;
@@ -2745,7 +2745,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //   //}
 //
-//   //auto pstyle = get_style(pgraphicsParam);
+//   //auto pstyle = get_style(pdraw2dgraphics);
 //
 //   windowing_output_debug_string("\nsimple_frame_window::_001OnDraw B");
 //
@@ -2757,7 +2757,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //   ::f64 dAlpha = get_alpha();
 //
-//   ::draw2d::graphics_pointer& pgraphics = pgraphicsParam;
+//   ::draw2d::graphics_pointer& pdraw2dgraphics = pdraw2dgraphics;
 //
 //   if (dAlpha == 0.0)
 //   {
@@ -2783,9 +2783,9 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //         m_pimageAlpha->clear(color::transparent);
 //
-//         pgraphics = m_pimageAlpha->get_graphics();
+//         pdraw2dgraphics = m_pimageAlpha->get_graphics();
 //
-//         pgraphics->set_origin(pgraphics->get_origin());
+//         pdraw2dgraphics->set_origin(pdraw2dgraphics->get_origin());
 //
 //         bDib = true;
 //
@@ -2805,7 +2805,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //#endif
 //
-//      //pinteraction->_001OnDraw(pgraphics);
+//      //pinteraction->_001OnDraw(pdraw2dgraphics);
 //      if (dAlpha > 0.0)
 //      {
 //
@@ -2821,9 +2821,9 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //         //   if (pstyle)
 //         //   {
 //
-//         //      pstyle->_001OnDrawMainFrameBackground(pgraphics, this);
+//         //      pstyle->_001OnDrawMainFrameBackground(pdraw2dgraphics, this);
 //
-//         //      //if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
+//         //      //if (pstyle->_001OnDrawMainFrameBackground(pdraw2dgraphics, this))
 //         //      //{
 //
 //         //      //   break;
@@ -2838,7 +2838,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 ////
 ////#if TEST
 ////
-////         pgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
+////         pdraw2dgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
 ////
 ////#endif
 //
@@ -2860,9 +2860,9 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //         if (iDrawingOrder == DRAWING_ORDER_CLIENT_OVER)
 //         {
 //
-//            _001DrawThis(pgraphics);
+//            _001DrawThis(pdraw2dgraphics);
 //
-//            _001DrawChildren(pgraphics);
+//            _001DrawChildren(pdraw2dgraphics);
 //
 //         }
 //         else
@@ -2874,7 +2874,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //#endif
 //
-//            draw_frame_and_control_box_over(pgraphics);
+//            draw_frame_and_control_box_over(pdraw2dgraphics);
 //
 //#ifdef VERBOSE_LOG
 //
@@ -2896,13 +2896,13 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //      if (m_bOverdraw)
 //      {
 //
-//         _008CallOnDraw(pgraphics);
+//         _008CallOnDraw(pdraw2dgraphics);
 //
 //      }
 //
 //#if TEST
 //
-//      pgraphics->fill_solid_rect_dim(0, 100, 100, 100, argb(128, 0, 0, 255));
+//      pdraw2dgraphics->fill_solid_rect_dim(0, 100, 100, 100, argb(128, 0, 0, 255));
 //
 //#endif
 //
@@ -2911,9 +2911,9 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //   if (bDib)
 //   {
 //
-//      pgraphicsParam->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+//      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//      ::image::image_source imagesource(pgraphics);
+//      ::image::image_source imagesource(pdraw2dgraphics);
 //
 //      ::image::image_drawing_options imagedrawingoptions(rectangleX.size());
 //
@@ -2921,14 +2921,14 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //      imagedrawing.opacity(dAlpha);
 //
-//      pgraphicsParam->draw(imagedrawing);
+//      pdraw2dgraphics->draw(imagedrawing);
 //
 //   }
 
 }
 
 
-bool simple_frame_window::_000OnBeforeDraw(::draw2d::graphics_pointer & pgraphicsParam)
+bool simple_frame_window::_000OnBeforeDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
 
@@ -2937,7 +2937,7 @@ bool simple_frame_window::_000OnBeforeDraw(::draw2d::graphics_pointer & pgraphic
 }
 
 
-void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
    // glxxx
@@ -2946,15 +2946,15 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //return;
 
-   pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+   pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   //pgraphics->fill_solid_rectangle(::f64_rectangle_dimension(10, 10, 200, 200), ::argb(127, 0, 0, 255));
+   //pdraw2dgraphics->fill_solid_rectangle(::f64_rectangle_dimension(10, 10, 200, 200), ::argb(127, 0, 0, 255));
 
    //return;
 
-   auto pstyle = get_style(pgraphics);
+   auto pstyle = get_style(pdraw2dgraphics);
 
    bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
 
@@ -2976,14 +2976,14 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       if (session()->savings()->is_trying_to_save(::e_resource_translucent_background))
       {
 
-         //pgraphics->fill_rectangle(rectangleX, rgb(150, 220, 140));
+         //pdraw2dgraphics->fill_rectangle(rectangleX, rgb(150, 220, 140));
 
       }
       else if (session()->savings()->is_trying_to_save(::e_resource_processing)
          || session()->savings()->is_trying_to_save(::e_resource_blur_background))
       {
 
-         pgraphics->fill_rectangle(rectangleX, argb(150, 150, 180, 140));
+         pdraw2dgraphics->fill_rectangle(rectangleX, argb(150, 150, 180, 140));
 
       }
       else
@@ -3017,7 +3017,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
             {
 
-               ::image::image_source imagesource(pgraphics);
+               ::image::image_source imagesource(pdraw2dgraphics);
 
                ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -3061,7 +3061,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
@@ -3075,19 +3075,19 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //printf("simplefrmwnd : " + ::platform::type(this).name() + " : draw_frame");
 
-//   pgraphics->fill_solid_rectangle(::f64_rectangle_dimension(100, 100, 200, 200), ::argb(127, 0, 255, 0));
+//   pdraw2dgraphics->fill_solid_rectangle(::f64_rectangle_dimension(100, 100, 200, 200), ::argb(127, 0, 255, 0));
 
    //return;
 
-   draw_frame(pgraphics);
+   draw_frame(pdraw2dgraphics);
 
 }
 
 
-void simple_frame_window::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+void simple_frame_window::_001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
-   ::experience::frame_window::_001DrawChildren(pgraphics);
+   ::experience::frame_window::_001DrawChildren(pdraw2dgraphics);
 
 }
 
@@ -3803,15 +3803,15 @@ string simple_frame_window::get_window_default_matter()
 //}
 
 
-void simple_frame_window::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+void simple_frame_window::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
-   ::user::interaction::_001OnClip(pgraphics);
+   ::user::interaction::_001OnClip(pdraw2dgraphics);
 
 }
 
 
-void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_pointer & pgraphics)
+void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
    if (!is_this_visible())
@@ -3838,9 +3838,9 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    //if (children.has_element())
    {
 
-      ::draw2d::save_context savecontext(pgraphics);
+      ::draw2d::save_context savecontext(pdraw2dgraphics);
 
-      //on_context_offset(pgraphics);
+      //on_context_offset(pdraw2dgraphics);
       //if (0)
       {
 
@@ -3861,7 +3861,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                      auto timeStart = ::time::now();
 
-                     puserinteraction->_000CallOnDraw(pgraphics);
+                     puserinteraction->_000CallOnDraw(pdraw2dgraphics);
 
                      auto timeEllapsed = timeStart.elapsed();
 
@@ -3911,7 +3911,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
 #endif
 
-      _001DrawThis(pgraphics);
+      _001DrawThis(pdraw2dgraphics);
 
       //return; // abcxxx
 
@@ -3937,9 +3937,9 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    if (m_bWindowFrame && (!bTransparentFrame || bActive))
    {
 
-      ::draw2d::save_context savecontext(pgraphics);
+      ::draw2d::save_context savecontext(pdraw2dgraphics);
 
-      //on_context_offset(pgraphics);
+      //on_context_offset(pdraw2dgraphics);
 
       try
       {
@@ -3979,7 +3979,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
 #endif
 
-                        puserinteraction->_000CallOnDraw(pgraphics);
+                        puserinteraction->_000CallOnDraw(pdraw2dgraphics);
 
 #ifdef VERBOSE_LOG
 
@@ -4021,7 +4021,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
 #endif
 
-      _008CallOnDraw(pgraphics);
+      _008CallOnDraw(pdraw2dgraphics);
 
 #ifdef VERBOSE_LOG
 
@@ -4039,18 +4039,18 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
       }
 
 
-   //pgraphics->fill_solid_rect_dim(200, 200, 1600, 800, argb(128, 200, 240, 150));
+   //pdraw2dgraphics->fill_solid_rect_dim(200, 200, 1600, 800, argb(128, 200, 240, 150));
 
 }
 
 
-void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
+void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
    if (m_bWindowFrame && !session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
    {
 
-      ::experience::frame_window::_001OnDraw(pgraphics);
+      ::experience::frame_window::_001OnDraw(pdraw2dgraphics);
 
    }
 
@@ -4180,9 +4180,9 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //bool simple_frame_window::calc_layered()
 //{
 //
-//   ::draw2d::graphics_pointer pgraphics = ::draw2d::create_memory_graphics();
+//   ::draw2d::graphics_pointer pdraw2dgraphics = ::draw2d::create_memory_graphics();
 //
-//   auto pstyle = get_style(pgraphics);
+//   auto pstyle = get_style(pdraw2dgraphics);
 //
 //   
 //

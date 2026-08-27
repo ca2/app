@@ -56,10 +56,10 @@
 //
 //         }
 //
-//         if (pstyle->m_pfont)
+//         if (pstyle->m_pwritetextfont)
 //         {
 //
-//            return pstyle->m_pfont;
+//            return pstyle->m_pwritetextfont;
 //
 //         }
 //
@@ -147,7 +147,7 @@
 //
 //   }
 //
-//   void static_control::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+//   void static_control::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   {
 //
 //
@@ -184,11 +184,11 @@
 //
 //      }
 //
-//      pgraphics->set_text_color(crText);
+//      pdraw2dgraphics->set_text_color(crText);
 //
-//      pgraphics->set_font(this, ::e_element_none);
+//      pdraw2dgraphics->set_font(this, ::e_element_none);
 //
-//      pgraphics->text_out(0, 0, get_window_text());
+//      pdraw2dgraphics->text_out(0, 0, get_window_text());
 //
 //   }
 //
@@ -265,16 +265,16 @@
 ////#endif
 //
 //
-//   void static_control::static_set_bitmap(::draw2d::bitmap * pbitmap)
+//   void static_control::static_set_bitmap(::draw2d::bitmap * pdraw2dbitmap)
 //   {
 //
 //
-//      if(pbitmap == nullptr)
+//      if(pdraw2dbitmap == nullptr)
 //         return;
 //
 //      m_etype = type_icon;
 //
-//      m_pbitmap = pbitmap;
+//      m_pdraw2dbitmap = pdraw2dbitmap;
 //
 //
 //   }
@@ -283,7 +283,7 @@
 //   ::draw2d::bitmap * static_control::static_get_bitmap()
 //   {
 //
-//      return m_etype == type_bitmap ? m_pbitmap : nullptr;
+//      return m_etype == type_bitmap ? m_pdraw2dbitmap : nullptr;
 //
 //   }
 //

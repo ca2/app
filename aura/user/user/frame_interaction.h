@@ -132,7 +132,7 @@ void on_before_create_window(acme::windowing::window* pacmewindowingwindow) over
       virtual void on_create_bars();
 
       
-      bool should_perform_layout(::draw2d::graphics_pointer & pgraphics) override;
+      bool should_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
 

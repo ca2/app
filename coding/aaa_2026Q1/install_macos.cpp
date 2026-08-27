@@ -1374,7 +1374,7 @@ void install::install_visual_studio_code()
 //}
 
 
-//bool install::_dropbox_defer_check_index(::file::path & pathTarget, const ::scoped_string & scopedstrDropboxFolder, bool bForce, ::file::path * ppathSource)
+//bool install::_dropbox_defer_check_index(::file::path & pathTarget, const ::scoped_string & scopedstrDropboxFolder, bool bForce, ::file::path * pfilepathSource)
 //{
 //   
 //   ::string strDropboxFolder = scopedstrDropboxFolder;
@@ -1406,7 +1406,7 @@ void install::install_visual_studio_code()
 //}
 
 
-//::string_array install::_dropbox_defer_check_index_lines(const ::scoped_string & scopedstrDropboxFolder, bool bForce, ::file::path * ppathTarget, ::file::path * ppathSource)
+//::string_array install::_dropbox_defer_check_index_lines(const ::scoped_string & scopedstrDropboxFolder, bool bForce, ::file::path * pfilepathTarget, ::file::path * pfilepathSource)
 //{
 //   
 //   ::file::path pathTarget;

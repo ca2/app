@@ -101,21 +101,21 @@ namespace write_text
 
       {
 
-         auto pgraphics = m_pimage->acquire_graphics(::draw2d::e_acquire_dont_load, pacmeuserinteractionAffinity);
+         auto pdraw2dgraphics = m_pimage->acquire_graphics(::draw2d::e_acquire_dont_load, pacmeuserinteractionAffinity);
 
-         //auto layerscope = pgraphics.begin_layer_scope();
+         //auto layerscope = pdraw2dgraphics.begin_layer_scope();
 
          auto uBackgroundColor = plist->m_uaBackgroundColor[iColorIndex][iBox];
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          auto rectangleItem = ::i32_rectangle(m_size);
 
-         pgraphics->fill_rectangle(rectangleItem, uBackgroundColor);
+         pdraw2dgraphics->fill_rectangle(rectangleItem, uBackgroundColor);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->set(m_pfont);
+         pdraw2dgraphics->set(m_pwritetextfont);
 
          auto uForegroundColor = plist->m_uaForegroundColor[iColorIndex][iBox];
 
@@ -126,18 +126,18 @@ namespace write_text
 
          }
 
-         pgraphics->set_text_color(uForegroundColor);
+         pdraw2dgraphics->set_text_color(uForegroundColor);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+         pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-         pgraphics->text_out(plist->m_rectangleMargin.left, plist->m_rectangleMargin.top, scopedstrText);
+         pdraw2dgraphics->text_out(plist->m_rectangleMargin.left, plist->m_rectangleMargin.top, scopedstrText);
 
 #if 0
 
-         pgraphics->fill_solid_rectangle(rectangleItem, ::argb(128, 100, 160, 200));
-         pgraphics->fill_solid_rectangle({ rectangleItem.origin(), rectangleItem.size() / 2 }, color::blue);
+         pdraw2dgraphics->fill_solid_rectangle(rectangleItem, ::argb(128, 100, 160, 200));
+         pdraw2dgraphics->fill_solid_rectangle({ rectangleItem.origin(), rectangleItem.size() / 2 }, color::blue);
 
 #endif
 

@@ -126,18 +126,18 @@ namespace berg
    //document *about_the_operating_system_impact::get_document() { return dynamic_cast<document *>(::user::impact::get_document()); }
 
 
-   //void about_the_operating_system_impact::_001OnClip(::draw2d::graphics_pointer &pgraphics) {}
+   //void about_the_operating_system_impact::_001OnClip(::draw2d::graphics_pointer &pdraw2dgraphics) {}
 
 
    ::write_text::font * about_the_operating_system_impact::get_font(::simple_dialog_box_line * psimpledialogboxline)
    {
 
-      auto & pfont = m_mapFontThomasBS_[psimpledialogboxline->m_esimpledialogstyle];
+      auto & pwritetextfont = m_mapFontThomasBS_[psimpledialogboxline->m_esimpledialogstyle];
 
-      if (pfont)
+      if (pwritetextfont)
       {
 
-         return pfont;
+         return pwritetextfont;
 
       }
 
@@ -166,14 +166,14 @@ namespace berg
 
 //      m_pfontThomasBSHeading1 =
 
-      pfont = pwritetext->font(e_font_sans_ui, fontsize, iFontWeight);
+      pwritetextfont = pwritetext->font(e_font_sans_ui, fontsize, iFontWeight);
 
-      return pfont;
+      return pwritetextfont;
 
    }
 
 
-   void about_the_operating_system_impact::_001OnDraw(::draw2d::graphics_pointer &pgraphics)
+   void about_the_operating_system_impact::_001OnDraw(::draw2d::graphics_pointer &pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -184,7 +184,7 @@ namespace berg
          return;
       }
 
-      //      if (pgraphics->payload("set_transparent") == "set_transparent")
+      //      if (pdraw2dgraphics->payload("set_transparent") == "set_transparent")
       //      {
       //
       //         information() << "set_transparent called";
@@ -199,19 +199,19 @@ namespace berg
 
       ::f64_rectangle rectangleClipBox;
 
-      // pgraphics->reset_clip();
+      // pdraw2dgraphics->reset_clip();
 
-      // pgraphics->get_clip_box(rectangleClipBox);
+      // pdraw2dgraphics->get_clip_box(rectangleClipBox);
 
-      auto matrix = pgraphics->m_matrix;
+      auto matrix = pdraw2dgraphics->m_matrix;
 
-      // auto origin = pgraphics->origin();
+      // auto origin = pdraw2dgraphics->origin();
 
       auto opacity = ::opacity(48);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->fill_rectangle(rectangleX, argb(208, 0, 0, 0));
+      pdraw2dgraphics->fill_rectangle(rectangleX, argb(208, 0, 0, 0));
 
       ::color::color color_dk(dk_red());
 
@@ -219,11 +219,11 @@ namespace berg
 
       ::i32_rectangle rectangleDryProWithLove_Work(5, 5, 1915, 1075);
 
-      pgraphics->fill_rectangle(rectangleDryProWithLove_Work, argb(255, 150, 200, 255));
+      pdraw2dgraphics->fill_rectangle(rectangleDryProWithLove_Work, argb(255, 150, 200, 255));
 
 #endif
 
-      pgraphics->set_text_color(color_dk);
+      pdraw2dgraphics->set_text_color(color_dk);
 
 
       // if (!m_pfontThomasBSHeading1)
@@ -286,9 +286,9 @@ namespace berg
 
       m_iSequence++;
 
-      strText.formatf("psimpleapplication->m_pimpact->_001OnDraw(pgraphics); %d", m_iSequence);
+      strText.formatf("psimpleapplication->m_pimpact->_001OnDraw(pdraw2dgraphics); %d", m_iSequence);
 
-      auto size = pgraphics->get_text_extent(strText);
+      auto size = pdraw2dgraphics->get_text_extent(strText);
 
       bool bFixedPosition = true;
 
@@ -315,7 +315,7 @@ namespace berg
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
 
       }
@@ -331,7 +331,7 @@ namespace berg
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
 
       }
@@ -342,9 +342,9 @@ namespace berg
 
       //::i32 iFont = -1024;
 
-             pgraphics->set_text_rendering_hint(write_text::e_rendering_anti_alias);
+             pdraw2dgraphics->set_text_rendering_hint(write_text::e_rendering_anti_alias);
       //
-             pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
+             pdraw2dgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 
 
       for (auto &strItem: stra)
@@ -354,7 +354,7 @@ namespace berg
 
          psimpledialogboxline->_001Parse(strItem);
 
-         auto pfont = get_font(psimpledialogboxline);
+         auto pwritetextfont = get_font(psimpledialogboxline);
 
 //         ::string strLine = strItem;
 
@@ -369,17 +369,17 @@ namespace berg
          //
          //       iFont = 1;
          //
-         //       pgraphics->set(m_pfontThomasBSHeading1);
+         //       pdraw2dgraphics->set(m_pfontThomasBSHeading1);
          //
-         //       pgraphics->set_text_rendering_hint(write_text::e_rendering_anti_alias);
+         //       pdraw2dgraphics->set_text_rendering_hint(write_text::e_rendering_anti_alias);
          //
-         //       pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
+         //       pdraw2dgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
          //       opacity = ::opacity(218);
          //       color = color::white;
          //
          //       color &= opacity;
          //
-         //       pgraphics->set_text_color(color);
+         //       pdraw2dgraphics->set_text_color(color);
          //    }
          // }
          // else if (strLine.begins_eat("-#"))
@@ -392,17 +392,17 @@ namespace berg
          //
          //       iFont = -1;
          //
-         //       pgraphics->set(m_pfontThomasBSDetail);
+         //       pdraw2dgraphics->set(m_pfontThomasBSDetail);
          //
-         //       pgraphics->set_text_rendering_hint(write_text::e_rendering_anti_alias);
+         //       pdraw2dgraphics->set_text_rendering_hint(write_text::e_rendering_anti_alias);
          //
-         //       pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
+         //       pdraw2dgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
          //       opacity = ::opacity(160);
          //       color = color::white;
          //
          //       color &= opacity;
          //
-         //       pgraphics->set_text_color(color);
+         //       pdraw2dgraphics->set_text_color(color);
          //    }
          // }
          // else
@@ -411,20 +411,20 @@ namespace berg
          //    {
          //
          //       iFont = 10;
-         //       pgraphics->set(m_pfontThomasBS_);
+         //       pdraw2dgraphics->set(m_pfontThomasBS_);
          //
-         //       pgraphics->set_text_rendering_hint(write_text::e_rendering_anti_alias);
+         //       pdraw2dgraphics->set_text_rendering_hint(write_text::e_rendering_anti_alias);
          //
-         //       pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
+         //       pdraw2dgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
          //       color = color::white;
          //       opacity = ::opacity(160);
          //       color &= opacity;
          //
-         //       pgraphics->set_text_color(color);
+         //       pdraw2dgraphics->set_text_color(color);
          //    }
          // }
 
-         pgraphics->set(pfont);
+         pdraw2dgraphics->set(pwritetextfont);
 
          color = color::white;
 
@@ -432,27 +432,27 @@ namespace berg
 
          color &= opacity;
 
-         pgraphics->set_text_color(color);
+         pdraw2dgraphics->set_text_color(color);
 
          if (psimpledialogboxline->m_str.has_character())
          {
          
-            pgraphics->text_out(point.x, point.y + y, psimpledialogboxline->m_str);
+            pdraw2dgraphics->text_out(point.x, point.y + y, psimpledialogboxline->m_str);
 
          }
 
-         auto s = pgraphics->get_text_extent(psimpledialogboxline->get_line_height_text());
+         auto s = pdraw2dgraphics->get_text_extent(psimpledialogboxline->get_line_height_text());
 
          y += s.cy;
 
       }
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
    }
 
 
-   void about_the_operating_system_impact::on_layout(::draw2d::graphics_pointer &pgraphics)
+   void about_the_operating_system_impact::on_layout(::draw2d::graphics_pointer &pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -463,7 +463,7 @@ namespace berg
          return;
       }
 
-      ::user::impact::on_layout(pgraphics);
+      ::user::impact::on_layout(pdraw2dgraphics);
 
       setup_default_client_area_user_item();
    }

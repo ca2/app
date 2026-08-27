@@ -420,14 +420,14 @@ namespace user
       //}
 
 
-      void edit::do_layout(::draw2d::graphics_pointer & pgraphics)
+      void edit::do_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
          //m_rectangle = rectangle;
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+         pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          auto prichtextdata = get_rich_text_data();
 
@@ -561,7 +561,7 @@ namespace user
 
                //index iSpan = find_char_span(m_spana, iCharLayout);
 
-               //::i32 iHeight = pspan->format()->m_pfont->get_height();
+               //::i32 iHeight = pspan->format()->m_pwritetextfont->get_height();
 
                //pbox->m_rectangle.set(x, 0, x, 0);
 
@@ -601,13 +601,13 @@ namespace user
 
             auto pformat = pspan->format();
 
-            pgraphics->set(pformat->get_font(pgraphics));
+            pdraw2dgraphics->set(pformat->get_font(pdraw2dgraphics));
 
             {
 
                auto iLenSpan = pspan->m_str.length();
 
-               auto iLenMeasure = pgraphics->get_character_extent(pspan->m_daPositionLeft, pspan->m_daPositionRight, pspan->m_str);
+               auto iLenMeasure = pdraw2dgraphics->get_character_extent(pspan->m_daPositionLeft, pspan->m_daPositionRight, pspan->m_str);
 
                if (iLenSpan != iLenMeasure)
                {
@@ -620,7 +620,7 @@ namespace user
 
             }
 
-            pspan->m_sizeSpan = pgraphics->get_text_extent(pspan->m_str);
+            pspan->m_sizeSpan = pdraw2dgraphics->get_text_extent(pspan->m_str);
 
             ::f64 dPositionLeft = 0.;
 
@@ -662,7 +662,7 @@ namespace user
                      //if (pbox->m_size.cy <= 0)
                      {
 
-                        pbox->m_sizeBox.cy = pformat->get_font(pgraphics)->get_height(pgraphics);
+                        pbox->m_sizeBox.cy = pformat->get_font(pdraw2dgraphics)->get_height(pdraw2dgraphics);
 
                      }
 
@@ -887,23 +887,23 @@ namespace user
       }
 
 
-      void edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+      void edit::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         if (pgraphics->m_bPrinting)
+         if (pdraw2dgraphics->m_bPrinting)
          {
 
-            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+            pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          }
          else
          {
 
-            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+            pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          }
 
@@ -911,7 +911,7 @@ namespace user
 
          auto rectangle = get_drawing_rect();
 
-         //pgraphics->draw_inset_3d_rectangle(rectangle, argb(255, 0, 127, 0));
+         //pdraw2dgraphics->draw_inset_3d_rectangle(rectangle, argb(255, 0, 127, 0));
 
          bool bHasFocus = false;
 
@@ -1118,7 +1118,7 @@ namespace user
                               r = pboxEnd->get_pos_left(iBoxPosEnd);
                            }
 
-                           pgraphics->fill_rectangle(
+                           pdraw2dgraphics->fill_rectangle(
                               ::f64_rectangle(l,
                                  pboxBeg->m_rectangleBox.top,
                                  r,
@@ -1181,11 +1181,11 @@ namespace user
 
             defer_draw_drop_shadow_phase1(rDropShadow, blurDropShadow, imageDropShadow, pimage);
 
-            defer_draw_drop_shadow_phase2(pgraphics, rDropShadow, blurDropShadow, imageDropShadow);
+            defer_draw_drop_shadow_phase2(pdraw2dgraphics, rDropShadow, blurDropShadow, imageDropShadow);
 
          }
 
-         draw_text(pgraphics, rectangle);
+         draw_text(pdraw2dgraphics, rectangle);
 
          // Draw Caret
 
@@ -1224,9 +1224,9 @@ namespace user
 
                }
 
-               auto dDescent = pbox->m_pspan->m_pformat->m_pfont->get_descent(pgraphics);
+               auto dDescent = pbox->m_pspan->m_pformat->m_pwritetextfont->get_descent(pdraw2dgraphics);
 
-               pgraphics->fill_rectangle(::f64_rectangle(r,
+               pdraw2dgraphics->fill_rectangle(::f64_rectangle(r,
                   pbox->m_rectangleBox.top + 1,
                   r + 0.5,
                   pbox->m_rectangleBox.bottom - dDescent),
@@ -1238,7 +1238,7 @@ namespace user
 
          ::geometry2d::matrix m;
 
-         m.scaling(pgraphics->get_scaling());
+         m.scaling(pdraw2dgraphics->get_scaling());
 
          //m.invert();
 
@@ -1287,7 +1287,7 @@ namespace user
       }
 
 
-      void edit::draw_impl(::draw2d::graphics_pointer & pgraphics)
+      void edit::draw_impl(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
       }
@@ -1393,7 +1393,7 @@ namespace user
       }
 
 
-      void edit::on_layout(::draw2d::graphics_pointer & pgraphics)
+      void edit::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
          auto rectangleX = this->rectangle();
@@ -2369,10 +2369,10 @@ namespace user
       }
 
 
-      void edit::draw_text(::draw2d::graphics_pointer & pgraphics, const ::f64_rectangle & rectangleBox)
+      void edit::draw_text(::draw2d::graphics_pointer & pdraw2dgraphics, const ::f64_rectangle & rectangleBox)
       {
 
-         _synchronous_lock synchronouslock(pgraphics->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         _synchronous_lock synchronouslock(pdraw2dgraphics->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          _synchronous_lock sl1(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -2380,7 +2380,7 @@ namespace user
 
          //_synchronous_lock sl3(m_pformathost->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          auto plinea = m_plinea;
 
@@ -2425,24 +2425,24 @@ namespace user
                if (m_ppictureimpl != nullptr && m_ppictureimpl->m_bOutline)
                {
 
-                  auto ppath = createø < ::draw2d::path >();
+                  auto pdraw2dpath = createø < ::draw2d::path >();
 
-                  //ppath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
-                  ppath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
+                  //pdraw2dpath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pdraw2dgraphics), pformat->m_colorForeground);
+                  pdraw2dpath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pdraw2dgraphics));
 
-                  auto ppen = createø < ::draw2d::pen >();
+                  auto pdraw2dpen = createø < ::draw2d::pen >();
 
-                  auto pbrush = createø < ::draw2d::brush >();
+                  auto pdraw2dbrush = createø < ::draw2d::brush >();
 
-                  ppen->create_solid(m_ppictureimpl->m_iOutlineWidth, ::color::color(m_ppictureimpl->m_hlsOutline));
+                  pdraw2dpen->create_solid(m_ppictureimpl->m_iOutlineWidth, ::color::color(m_ppictureimpl->m_hlsOutline));
 
-                  pbrush->create_solid(pformat->m_colorForeground);
+                  pdraw2dbrush->create_solid(pformat->m_colorForeground);
 
-                  pgraphics->set(ppen);
+                  pdraw2dgraphics->set(pdraw2dpen);
 
-                  pgraphics->set(pbrush);
+                  pdraw2dgraphics->set(pdraw2dbrush);
 
-                  pgraphics->path(ppath);
+                  pdraw2dgraphics->path(pdraw2dpath);
 
                }
                else
@@ -2453,11 +2453,11 @@ namespace user
                   if (strText.has_character())
                   {
 
-                     pgraphics->set(pformat->get_font(pgraphics));
+                     pdraw2dgraphics->set(pformat->get_font(pdraw2dgraphics));
 
-                     pgraphics->set_text_color(pformat->m_colorForeground);
+                     pdraw2dgraphics->set_text_color(pformat->m_colorForeground);
 
-                     pgraphics->draw_text(strText, rectangle, e_align_bottom_left, e_draw_text_single_line);
+                     pdraw2dgraphics->draw_text(strText, rectangle, e_align_bottom_left, e_draw_text_single_line);
 
                   }
 

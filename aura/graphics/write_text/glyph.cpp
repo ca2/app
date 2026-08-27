@@ -561,17 +561,17 @@ namespace write_text
    }
 
 
-   void glyph::DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, ::f64 dRateX, ::i32_point * ppointOffset)
+   void glyph::DrawGlyph(::draw2d::graphics_pointer & pdraw2dgraphics, bool bFill, ::f64 dRateX, ::i32_point * ppointOffset)
 
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
       __UNREFERENCED_PARAMETER(bFill);
       __UNREFERENCED_PARAMETER(dRateX);
       __UNREFERENCED_PARAMETER(ppointOffset);
 
 
-      //pdraw2d->api().draw_and_fill_beziers(pgraphics, &m_pointsets, dRateX, ppointOffset);
+      //pdraw2d->api().draw_and_fill_beziers(pdraw2dgraphics, &m_pointsets, dRateX, ppointOffset);
 
 
    }

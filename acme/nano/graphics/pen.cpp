@@ -54,13 +54,13 @@ void pen::set_start_cap(enum_line_cap elinecap) {
    //::pointer<::nano::graphics::pen> create_pen(::particle * pparticle, ::i32 iWidth, color32_t color)
    //{
 
-   //   ::pointer<::nano::graphics::pen> ppen(e_create, pparticle, nullptr);
+   //   ::pointer<::nano::graphics::pen> pdraw2dpen(e_create, pparticle, nullptr);
 
-   //   ppen->m_iWidth = iWidth;
+   //   pdraw2dpen->m_iWidth = iWidth;
 
-   //   ppen->m_color = color;
+   //   pdraw2dpen->m_color = color;
 
-   //   return ppen;
+   //   return pdraw2dpen;
 
    //}
 

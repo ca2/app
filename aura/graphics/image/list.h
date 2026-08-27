@@ -46,7 +46,7 @@ namespace image
       virtual bool create(::i32 cx, ::i32 cy, ::u32 nFlags, ::i32 nInitial, ::i32 nGrow);
       virtual void create_color_blend(image_list *pimagelistSource, const ::color::color &color,
                                const class ::opacity &opacity);
-      virtual void realize(::draw2d::graphics * pgraphics) const;
+      virtual void realize(::draw2d::graphics * pdraw2dgraphics) const;
 
 
       virtual ::i32 reserve_image(::i32 iItem = -1);
@@ -100,10 +100,10 @@ namespace image
 
 
 
-      virtual void draw(::draw2d::graphics * pgraphics, ::i32 iImage, const ::f64_point & point, ::i32 iFlag);
-      virtual void draw(::draw2d::graphics * pgraphics, ::i32 iImage, const ::f64_point & point, ::i32 iFlag, const class ::opacity& opacity);
-      virtual void draw(::draw2d::graphics * pgraphics, ::i32 iImage, const ::f64_point & point, ::f64_size sz, const ::f64_point & pointOffset, ::i32 iFlag);
-      virtual void _draw(::draw2d::graphics * pgraphics, ::i32 iImage, const ::f64_point & point, ::f64_size sz, const ::f64_point & pointOffset, ::i32 iFlag);
+      virtual void draw(::draw2d::graphics * pdraw2dgraphics, ::i32 iImage, const ::f64_point & point, ::i32 iFlag);
+      virtual void draw(::draw2d::graphics * pdraw2dgraphics, ::i32 iImage, const ::f64_point & point, ::i32 iFlag, const class ::opacity& opacity);
+      virtual void draw(::draw2d::graphics * pdraw2dgraphics, ::i32 iImage, const ::f64_point & point, ::f64_size sz, const ::f64_point & pointOffset, ::i32 iFlag);
+      virtual void _draw(::draw2d::graphics * pdraw2dgraphics, ::i32 iImage, const ::f64_point & point, ::f64_size sz, const ::f64_point & pointOffset, ::i32 iFlag);
       virtual ::i32 get_image_count() const;
 
       virtual void copy_from(const image_list * plist);

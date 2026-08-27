@@ -49,10 +49,10 @@ namespace graphics
 
       //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::i32_point & point);
-      virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleW, ::i32 y);
+      virtual void draw_beam(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_point & point);
+      virtual void draw_level(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleW, ::i32 y);
 
 
       //DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -61,7 +61,7 @@ namespace graphics
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual void on_mouse(const ::i32_point & point);
       virtual void rebuild_luminance();
@@ -81,7 +81,7 @@ namespace app_core_flag
 {
 
 
-   CLASS_DECL_CORE void dk(::draw2d::graphics_pointer & pgraphics, ::f64 x, ::f64 y, ::f64 w, ::f64 h);
+   CLASS_DECL_CORE void dk(::draw2d::graphics_pointer & pdraw2dgraphics, ::f64 x, ::f64 y, ::f64 w, ::f64 h);
 
 
 } // namespace flag

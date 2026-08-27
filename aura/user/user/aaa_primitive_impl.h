@@ -88,14 +88,14 @@ namespace user
       virtual void create_child(::user::interaction * puserinteraction, ::user::interaction_base * puserprimitiveParent);
 
 
-      virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
+      virtual void defer_do_graphics(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual void top_down_prefix();
       //virtual bool check_need_layout();
       //virtual void clear_need_layout();
       virtual void set_need_layout();
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual void on_reposition();
       virtual void on_show_window();
 
@@ -319,19 +319,19 @@ namespace user
 
       virtual void _task_transparent_mouse_event();
 
-      virtual void _001OnNcClip(::draw2d::graphics_pointer & pgraphics);
-      //virtual void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics);
-      //virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
-      //virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics);
-      //virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics);
-      //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
-      //virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void _000CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void _001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void _001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void draw_control_background(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual ::user::interaction * get_wnd();
 
 
-      virtual void set_origin(::draw2d::graphics_pointer & pgraphics);
+      virtual void set_origin(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual void viewport_screen_to_client(::i32_sequence2 & sequence);

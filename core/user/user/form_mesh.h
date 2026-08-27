@@ -52,7 +52,7 @@ namespace user
       ~form_mesh() override;
 
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       void _001DrawSubItem(draw_mesh_subitem * pdrawitem) override;
 
@@ -73,7 +73,7 @@ namespace user
 
       void _001HideEditingControls();
       void _001HideControl(::user::interaction * pinteraction);
-      //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
       //virtual LRESULT _001BaseWndGetProperty(EProperty eprop,lparam lparam) override;
 
       // void _001UpdateColumns();

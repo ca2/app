@@ -12,7 +12,7 @@ namespace draw2d
 {
 
 
-   bool path_optimization::draw(::draw2d::graphics * pgraphics, ::draw2d::pen * ppen)
+   bool path_optimization::draw(::draw2d::graphics * pdraw2dgraphics, ::draw2d::pen * pdraw2dpen)
    {
       
       return false;
@@ -20,7 +20,7 @@ namespace draw2d
    }
 
 
-   bool path_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::brush * pbrush)
+   bool path_optimization::fill(::draw2d::graphics * pdraw2dgraphics, ::draw2d::brush * pdraw2dbrush)
    {
       
       return false;
@@ -28,7 +28,7 @@ namespace draw2d
    }
 
 
-   bool path_optimization::intersect_clip(::draw2d::graphics * pgraphics)
+   bool path_optimization::intersect_clip(::draw2d::graphics * pdraw2dgraphics)
    {
       
       return false;

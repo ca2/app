@@ -107,11 +107,11 @@ namespace user
 
       //m_pimageBeam->fill(0);
 
-      //auto ppen = createø < ::draw2d::pen > ();
+      //auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-      //ppen->create_solid(1.0, argb(255, 255, 255, 255));
+      //pdraw2dpen->create_solid(1.0, argb(255, 255, 255, 255));
 
-      //m_pgraphicsImageBeam->set(ppen);
+      //m_pgraphicsImageBeam->set(pdraw2dpen);
 
       //m_pgraphicsImageBeam->DrawEllipse(i32_rectangle_dimension(0, 0, 32, 32));
 
@@ -284,7 +284,7 @@ namespace user
    //}
 
 
-   //void color_selector_impact::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::i32_point & pointParam)
+   //void color_selector_impact::draw_beam(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_point & pointParam)
    //{
 
    //   ::f64_point point(pointParam);
@@ -299,11 +299,11 @@ namespace user
 
    //   rectangleInner.deflate(sizeBeam.cx / 4.0, sizeBeam.cy / 4.0);
 
-   //   auto pbrush = createø < ::draw2d::brush > ();
+   //   auto pdraw2dbrush = createø < ::draw2d::brush > ();
 
-   //   pbrush->create_solid(argb(255, 0, 0, 0));
+   //   pdraw2dbrush->create_solid(argb(255, 0, 0, 0));
 
-   //   pgraphics->set(pbrush);
+   //   pdraw2dgraphics->set(pdraw2dbrush);
 
    //   ::f64 dHalfTriBase = dSize / 8.0;
 
@@ -315,7 +315,7 @@ namespace user
    //      pointa.add(::f64_point(rectangleInner.left, point.y));
    //      pointa.add(::f64_point(rectangleOuter.left, point.y + dHalfTriBase));
 
-   //      pgraphics->fill_polygon(pointa);
+   //      pdraw2dgraphics->fill_polygon(pointa);
 
    //   }
 
@@ -327,7 +327,7 @@ namespace user
    //      pointa.add(::f64_point(point.x, rectangleInner.top));
    //      pointa.add(::f64_point(point.x + dHalfTriBase, rectangleOuter.top));
 
-   //      pgraphics->fill_polygon(pointa);
+   //      pdraw2dgraphics->fill_polygon(pointa);
 
    //   }
 
@@ -339,7 +339,7 @@ namespace user
    //      pointa.add(::f64_point(rectangleInner.right, point.y));
    //      pointa.add(::f64_point(rectangleOuter.right, point.y + dHalfTriBase));
 
-   //      pgraphics->fill_polygon(pointa);
+   //      pdraw2dgraphics->fill_polygon(pointa);
 
    //   }
 
@@ -351,14 +351,14 @@ namespace user
    //      pointa.add(::f64_point(point.x, rectangleInner.bottom));
    //      pointa.add(::f64_point(point.x + dHalfTriBase, rectangleOuter.bottom));
 
-   //      pgraphics->fill_polygon(pointa);
+   //      pdraw2dgraphics->fill_polygon(pointa);
 
    //   }
 
    //}
 
 
-   //void color_selector_impact::draw_level(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleW, ::i32 yParam)
+   //void color_selector_impact::draw_level(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleW, ::i32 yParam)
    //{
 
    //   ::f64 y = yParam;
@@ -371,11 +371,11 @@ namespace user
 
    //   rectangleOuter.inflate(dSize / 2.0, dSize / 2.0);
 
-   //   auto pbrush = createø < ::draw2d::brush > ();
+   //   auto pdraw2dbrush = createø < ::draw2d::brush > ();
 
-   //   pbrush->create_solid(argb(255, 0, 0, 0));
+   //   pdraw2dbrush->create_solid(argb(255, 0, 0, 0));
 
-   //   pgraphics->set(pbrush);
+   //   pdraw2dgraphics->set(pdraw2dbrush);
 
    //   ::f64 dHalfTriBase = dSize / 8.0;
 
@@ -387,7 +387,7 @@ namespace user
    //      pointa.add(::f64_point(rectangleInner.left, y));
    //      pointa.add(::f64_point(rectangleOuter.left, y + dHalfTriBase));
 
-   //      pgraphics->fill_polygon(pointa);
+   //      pdraw2dgraphics->fill_polygon(pointa);
 
    //   }
 
@@ -399,21 +399,21 @@ namespace user
    //      pointa.add(::f64_point(rectangleInner.right, y));
    //      pointa.add(::f64_point(rectangleOuter.right, y + dHalfTriBase));
 
-   //      pgraphics->fill_polygon(pointa);
+   //      pdraw2dgraphics->fill_polygon(pointa);
 
    //   }
 
    //}
 
 
-   //void color_selector_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //void color_selector_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   ::i32_rectangle rC;
 
    //   rC = this->rectangle();
 
-   //   pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+   //   pdraw2dgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
    //   ::i32_rectangle rTarget;
 
@@ -440,7 +440,7 @@ namespace user
 
    //      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-   //      pgraphics->draw(imagedrawing);
+   //      pdraw2dgraphics->draw(imagedrawing);
 
    //   }
 
@@ -461,7 +461,7 @@ namespace user
 
    //   }
 
-   //   draw_beam(pgraphics, point);
+   //   draw_beam(pdraw2dgraphics, point);
 
    //   ::i32_rectangle rectangleLum1;
 
@@ -471,7 +471,7 @@ namespace user
 
    //   rSource = m_pimageLuminance->rectangle();
 
-   //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //   {
 
@@ -481,7 +481,7 @@ namespace user
 
    //      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-   //      pgraphics->draw(imagedrawing);
+   //      pdraw2dgraphics->draw(imagedrawing);
 
    //   }
 
@@ -489,11 +489,11 @@ namespace user
 
    //   rTarget.set_size(m_rectangleColors.right - rTarget.left, m_pimage->height());
 
-   //   pgraphics->fill_rectangle(rTarget, get_color());
+   //   pdraw2dgraphics->fill_rectangle(rTarget, get_color());
 
    //   ::i32 y = (::i32) (rectangleLum1.top + (1.0 - m_hls.m_dL)  * rectangleLum1.height());
 
-   //   draw_level(pgraphics, rectangleLum1, y);
+   //   draw_level(pdraw2dgraphics, rectangleLum1, y);
 
    //}
 
@@ -572,10 +572,10 @@ namespace user
    //}
 
 
-   //void color_selector_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   //void color_selector_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
-   //   ::user::impact::on_layout(pgraphics);
+   //   ::user::impact::on_layout(pdraw2dgraphics);
 
    //   auto rectangleX = this->rectangle();
 

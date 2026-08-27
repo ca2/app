@@ -199,18 +199,18 @@ namespace user
 
    //}
 
-   void font_list_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void font_list_impact::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::show < font_list >::_001OnNcDraw(pgraphics);
+      ::user::show < font_list >::_001OnNcDraw(pdraw2dgraphics);
 
    }
 
 
-   void font_list_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void font_list_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::show < font_list >::_001OnDraw(pgraphics);
+      ::user::show < font_list >::_001OnDraw(pdraw2dgraphics);
 
    }
 
@@ -241,10 +241,10 @@ namespace user
    }
 
 
-   //void font_list_impact::set_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y)
+   //void font_list_impact::set_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 x, ::i32 y)
    //{
 
-   //   ::user::list_impact::set_context_offset(pgraphics, x, y);
+   //   ::user::list_impact::set_context_offset(pdraw2dgraphics, x, y);
 
    //}
 
@@ -308,10 +308,10 @@ namespace user
    //}
 
 
-   void font_list_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void font_list_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::show < font_list >::on_layout(pgraphics);
+      ::user::show < font_list >::on_layout(pdraw2dgraphics);
 
    }
 

@@ -16,9 +16,9 @@ namespace gpu
 
       enum_gpu_layer_state m_egpulayerstate = e_gpu_layer_state_initial;
       enum_start_layer m_estartlayer = e_start_layer_none;
-      ::i32 m_iFrameIndex = -1;
-      ::i32 m_iFrameIndexReady = -1;
-      ::i32 m_iLayerIndex = -1;
+      ::i32 m_iGpuLayerFrameIndex = -1;
+      //::i32 m_iFrameIndexReady = -1;
+      ::i32 m_iGpuLayerIndex = -1;
       bool m_bFirstLayer;
       bool m_bClosingLayer;
       bool m_bIncludeInFrameComposition = true;

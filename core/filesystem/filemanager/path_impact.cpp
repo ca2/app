@@ -159,7 +159,7 @@ namespace filemanager
    //}
 
 
-   void path_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void path_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //::color::color crBackground = 0;
@@ -173,9 +173,9 @@ namespace filemanager
 
       //   this->rectangle(rectangleX);
 
-      //   pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
+      //   pdraw2dgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 
-      ::user::plain_edit::_001OnDraw(pgraphics);
+      ::user::plain_edit::_001OnDraw(pdraw2dgraphics);
 
       //}
 

@@ -127,15 +127,15 @@ namespace html
       void input_button::_001OnDraw(html_data * pdata)
       {
 
-         ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
+         ::draw2d::graphics_pointer & pdraw2dgraphics = pdata->m_pcoredata->m_pgraphics;
 
          //::i32_rectangle rectangleWindow;
          //m_pbutton->window_rectangle(rectangleWindow);
          //m_pbutton->GetWindow()->screen_to_client(rectangleWindow);
-         //auto pointPreviousContextOrg = pgraphics->get_origin();
-         //pgraphics->offset_origin((::i32) m_box.left, (::i32) m_box.top);
-         m_pbutton->_000CallOnDraw(pgraphics);
-         //pgraphics->set_origin(pointPreviousContextOrg);
+         //auto pointPreviousContextOrg = pdraw2dgraphics->get_origin();
+         //pdraw2dgraphics->offset_origin((::i32) m_box.left, (::i32) m_box.top);
+         m_pbutton->_000CallOnDraw(pdraw2dgraphics);
+         //pdraw2dgraphics->set_origin(pointPreviousContextOrg);
 
       }
 

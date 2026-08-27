@@ -43,11 +43,11 @@ void brush::create_solid_brush(const ::color::color& color)
    //::pointer<brush> create_solid_brush(::particle * pparticle, color32_t color)
    //{
 
-   //   ::pointer<brush> pbrush(e_create, pparticle, nullptr);
+   //   ::pointer<brush> pdraw2dbrush(e_create, pparticle, nullptr);
 
-   //   pbrush->m_color = color;
+   //   pdraw2dbrush->m_color = color;
 
-   //   return pbrush;
+   //   return pdraw2dbrush;
 
    //}
 

@@ -166,7 +166,7 @@ namespace micro
          e_draw_text_word_break,
          m_pbrushWindow,
          m_pbrushText,
-         m_pfont);*/
+         m_pwritetextfont);*/
 
    }
 

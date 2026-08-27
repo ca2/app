@@ -399,22 +399,22 @@ namespace user
 
       void constrain_context_offset(::f64_point & point, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
-      virtual void _001OnNcClip(::draw2d::graphics_pointer& pgraphics) override;
-      virtual void _001OnClip(::draw2d::graphics_pointer& pgraphics) override;
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnNcClip(::draw2d::graphics_pointer& pdraw2dgraphics) override;
+      virtual void _001OnClip(::draw2d::graphics_pointer& pdraw2dgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      //virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void on_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       virtual void _001EditCut(const ::action_context & actioncontext);
 
       virtual void _001DeleteSel(bool bBackIfSelectionEmpty, const ::action_context & actioncontext);
-      ///virtual bool plain_edit_delete_sel(::draw2d::graphics_pointer& pgraphics, bool & bFullUpdate, ::collection::index & iLineUpdate);
+      ///virtual bool plain_edit_delete_sel(::draw2d::graphics_pointer& pdraw2dgraphics, bool & bFullUpdate, ::collection::index & iLineUpdate);
 
       virtual void _001ReplaceSel(const ::scoped_string & scopedstrText);
       virtual bool _001ReplaceSel(const ::scoped_string & scopedstrText, bool & bFullUpdate, ::collection::index & iLineUpdate);
 
-      virtual void plain_edit_on_end_update(::draw2d::graphics_pointer & pgraphics);
+      virtual void plain_edit_on_end_update(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual bool plain_edit_is_enabled();
 
@@ -511,16 +511,16 @@ namespace user
 
       void _001OnKeyboardFocusTimer(const ::e_timer & etimer);
 
-      string plain_edit_get_expanded_line(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, array < character_count * > intptra = array < character_count * >());
+      string plain_edit_get_expanded_line(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iLine, array < character_count * > intptra = array < character_count * >());
 
-      string plain_edit_get_line(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine);
-      ::f64 plain_edit_get_line_extent(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, character_count iChar);
+      string plain_edit_get_line(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iLine);
+      ::f64 plain_edit_get_line_extent(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iLine, character_count iChar);
 
       virtual void _update_line_start_array(::collection::index iLineStart = 0, ::collection::index iAccumul = -1);
-      virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & actioncontext);
+      virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pdraw2dgraphics, const ::action_context & actioncontext);
 
-      virtual void plain_edit_on_update(::draw2d::graphics_pointer & pgraphics, const ::action_context & actioncontext);
-      virtual void plain_edit_on_set_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & actioncontext);
+      virtual void plain_edit_on_update(::draw2d::graphics_pointer & pdraw2dgraphics, const ::action_context & actioncontext);
+      virtual void plain_edit_on_set_text(::draw2d::graphics_pointer& pdraw2dgraphics, const ::action_context & actioncontext);
 
       virtual bool has_text_input() override;
 
@@ -531,8 +531,8 @@ namespace user
       //virtual bool create_interaction(::user::interaction * pinteraction) override;
 
 
-      virtual character_count plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, const ::i32_point & point);
-      virtual character_count plain_edit_line_char_hit_test(::draw2d::graphics_pointer& pgraphics, ::i32 x, ::collection::index iLine);
+      virtual character_count plain_edit_char_hit_test(::draw2d::graphics_pointer& pdraw2dgraphics, const ::i32_point & point);
+      virtual character_count plain_edit_line_char_hit_test(::draw2d::graphics_pointer& pdraw2dgraphics, ::i32 x, ::collection::index iLine);
 
       //colorertake5::file_type * colorer_select_type();
 
@@ -564,8 +564,8 @@ namespace user
       void set_selection_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
       //void _001SetSelEnd(character_count iSelEnd, const ::action_context & actioncontext) override;
       void set_selection_end(character_count iSelEnd, const ::action_context & actioncontext);
-      void _set_sel_end(::draw2d::graphics_pointer& pgraphics, character_count iSelEnd, const ::action_context & actioncontext);
-      void _ensure_selection_visible_x(::draw2d::graphics_pointer & pgraphics);
+      void _set_sel_end(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSelEnd, const ::action_context & actioncontext);
+      void _ensure_selection_visible_x(::draw2d::graphics_pointer & pdraw2dgraphics);
       //void set_text_selection(character_count iSelStart, character_count iSelEnd, const ::action_context & actioncontext = ::e_source_user) override;
       void plain_edit_set_text_selection_begin(character_count iSelStart, const ::action_context & actioncontext);
       void plain_edit_set_text_selection_end(character_count iSelEnd, const ::action_context & actioncontext);
@@ -574,40 +574,40 @@ namespace user
       void get_text_selection(character_count & iSelStart, character_count & iSelEnd) const override;
       void get_text_selection(character_count& iSelStart, character_count& iSelEnd, character_count & iComposingStart, character_count & iComposingEnd) const override;
 
-      void _001EnsureVisibleChar(::draw2d::graphics_pointer & pgraphics, character_count iChar);
-      void _001EnsureVisibleLine(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine);
+      void _001EnsureVisibleChar(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iChar);
+      void _001EnsureVisibleLine(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iLine);
 
-      void plain_edit_ensure_visible_char(::draw2d::graphics_pointer & pgraphics, character_count iChar);
-      void plain_edit_ensure_visible_line(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine);
+      void plain_edit_ensure_visible_char(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iChar);
+      void plain_edit_ensure_visible_line(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iLine);
 
       bool should_load_full_file();
 
-      void plain_edit_on_context_offset_layout(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate = -1);
-      void plain_edit_on_calc_layout(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineToUpdate = -1);
-      void _plain_edit_update_extents(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineStart = -1, ::collection::index iOnlyLineEnd = -1);
-      //void _plain_edit_update_lines(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineToUpdate = -1);
-      //void _plain_edit_update_extents(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineToUpdate = -1);
+      void plain_edit_on_context_offset_layout(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iOnlyLineToUpdate = -1);
+      void plain_edit_on_calc_layout(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iOnlyLineToUpdate = -1);
+      void _plain_edit_update_extents(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iOnlyLineStart = -1, ::collection::index iOnlyLineEnd = -1);
+      //void _plain_edit_update_lines(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iOnlyLineToUpdate = -1);
+      //void _plain_edit_update_extents(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iOnlyLineToUpdate = -1);
       //void _001OnCalcLayoutProc(::user::interaction_base * pimpact);
 
       void FileSave();
-      void plain_edit_on_file_update(::draw2d::graphics_pointer& pgraphics);
-      void plain_edit_create_line_index(::draw2d::graphics_pointer& pgraphics);
-      void plain_edit_on_line_update(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, const ::action_context & actioncontext);
-      void plain_edit_update_line_index(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine);
+      void plain_edit_on_file_update(::draw2d::graphics_pointer& pdraw2dgraphics);
+      void plain_edit_create_line_index(::draw2d::graphics_pointer& pdraw2dgraphics);
+      void plain_edit_on_line_update(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iLine, const ::action_context & actioncontext);
+      void plain_edit_update_line_index(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iLine);
 
-      ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
-      ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32 & x) override;
-      ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
-      ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32 & x) override;
-      character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn) override;
-      character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::i32 x) override;
-      virtual character_count _plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::i32 x);
-      ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
-      bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle * lprect, character_count iSel);
-      bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle * lprect, character_count iSel);
-      bool plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle * lprect, ::collection::index iLine);
+      ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSel) override;
+      ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSel, ::i32 & x) override;
+      ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSel) override;
+      ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSel, ::i32 & x) override;
+      character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iLine, ::collection::index iColumn) override;
+      character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iLine, ::i32 x) override;
+      virtual character_count _plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iLine, ::i32 x);
+      ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSel) override;
+      bool plain_edit_caret_rect(::draw2d::graphics_pointer& pdraw2dgraphics, ::i32_rectangle * lprect, character_count iSel);
+      bool plain_edit_index_range(::draw2d::graphics_pointer& pdraw2dgraphics, ::i32_rectangle * lprect, character_count iSel);
+      bool plain_edit_line_range(::draw2d::graphics_pointer& pdraw2dgraphics, ::i32_rectangle * lprect, ::collection::index iLine);
 
-      void plain_edit_one_line_up(::draw2d::graphics_pointer& pgraphics);
+      void plain_edit_one_line_up(::draw2d::graphics_pointer& pdraw2dgraphics);
 
       void IndexRegisterDelete(character_count iSel, character_count iCount);
       void IndexRegisterInsert(character_count iSel, const ::scoped_string & scopedstrWhat);
@@ -627,7 +627,7 @@ namespace user
       bool CanRedo();
       ::collection::count GetRedoBranchCount();
 
-      void VirtualOnSize(::draw2d::graphics_pointer & pgraphics);
+      void VirtualOnSize(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
 
@@ -635,11 +635,11 @@ namespace user
 
       void set_root(plain_text_tree * pdata, bool bOwnData);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       //virtual bool display(::e_display edisplay) override;
 
-      void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_context_offset_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       //virtual ::f64_size get_total_size(::user::enum_layout = ::user::e_layout_sketch) override;
 
@@ -650,21 +650,21 @@ namespace user
 
       void insert_text(const ::scoped_string & str, bool bForceNewStep, const ::action_context & context) override;
 
-      virtual void insert_text(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & str, bool bForceNewStep);
+      virtual void insert_text(::draw2d::graphics_pointer& pdraw2dgraphics, const ::scoped_string & str, bool bForceNewStep);
 
-      virtual void plain_edit_update(::draw2d::graphics_pointer& pgraphics, bool bFullUpdate, ::collection::index iLineUpdate);
+      virtual void plain_edit_update(::draw2d::graphics_pointer& pdraw2dgraphics, bool bFullUpdate, ::collection::index iLineUpdate);
 
-      virtual void plain_edit_on_delete_surrounding_text(::draw2d::graphics_pointer& pgraphics, character_count beforeLength, character_count afterLength);
+      virtual void plain_edit_on_delete_surrounding_text(::draw2d::graphics_pointer& pdraw2dgraphics, character_count beforeLength, character_count afterLength);
 
-      virtual void plain_edit_on_delete(::draw2d::graphics_pointer& pgraphics, bool bBackIfSelectionEmtpy);
+      virtual void plain_edit_on_delete(::draw2d::graphics_pointer& pdraw2dgraphics, bool bBackIfSelectionEmtpy);
 
-      virtual bool _plain_edit_on_delete(::draw2d::graphics_pointer & pgraphics, ::collection::index & iLineUpdate, ::character_count & i1, ::character_count & i2, bool bBackIfSelectionEmtpy);
-      virtual void _plain_edit_update_for_delete(::draw2d::graphics_pointer &pgraphics, const ::block &block,
+      virtual bool _plain_edit_on_delete(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index & iLineUpdate, ::character_count & i1, ::character_count & i2, bool bBackIfSelectionEmtpy);
+      virtual void _plain_edit_update_for_delete(::draw2d::graphics_pointer &pdraw2dgraphics, const ::block &block,
                                                  ::character_count i1,
                                                  ::collection::index &iLine1,
                                                  ::collection::index &iLine2);
-      virtual void _plain_edit_update_for_insert(::draw2d::graphics_pointer & pgraphics, const ::block & block, ::character_count i1, ::collection::index & iLine1, ::collection::index & iLine2);
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _plain_edit_update_for_insert(::draw2d::graphics_pointer & pdraw2dgraphics, const ::block & block, ::character_count i1, ::collection::index & iLine1, ::collection::index & iLine2);
+      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       string get_ime_composition() const override;
 

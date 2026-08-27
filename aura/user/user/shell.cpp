@@ -2135,9 +2135,9 @@ namespace user
 
    //         pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   //         ::draw2d::graphics_pointer pgraphics = pgraphicsImage;
+   //         ::draw2d::graphics_pointer pdraw2dgraphics = pgraphicsImage;
 
-   //         m_pimagelistHover[iSize]->draw(pgraphics, iImage, nullptr, 0);
+   //         m_pimagelistHover[iSize]->draw(pdraw2dgraphics, iImage, nullptr, 0);
 
    //         m_pimagelistHover[iSize]->m_pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_set);
 

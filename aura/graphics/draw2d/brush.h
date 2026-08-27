@@ -75,8 +75,8 @@ namespace draw2d
    //   {
    //   }
 
-   //   brush_pointer(brush * pbrush) :
-   //      ::pointer<brush>(pbrush)
+   //   brush_pointer(brush * pdraw2dbrush) :
+   //      ::pointer<brush>(pdraw2dbrush)
    //   {
    //   }
 
@@ -105,18 +105,18 @@ namespace draw2d
    //            m_p->construct(nIndex, crColor);
    //         }
    //         // CreatePatternBrush
-   //         brush_pointer(::particle * pparticle, bitmap * pbitmap) :
+   //         brush_pointer(::particle * pparticle, bitmap * pdraw2dbitmap) :
    //            ::pointer<brush>(pparticle)
    //         {
-   //            m_p->construct(pbitmap);
+   //            m_p->construct(pdraw2dbitmap);
    //         }
    //   */
 
 
-   //   brush_pointer & operator = (::draw2d::brush * pbrush)
+   //   brush_pointer & operator = (::draw2d::brush * pdraw2dbrush)
    //   {
 
-   //      ::pointer<brush>:operator = (pbrush);
+   //      ::pointer<brush>:operator = (pdraw2dbrush);
 
    //      return *this;
 

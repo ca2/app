@@ -46,7 +46,7 @@ namespace experience_core
 
       status < ::color::color > get_border_main_body_color() override;
 
-      virtual void _001DrawCaptionBar(::draw2d::graphics_pointer& pgraphics);
+      virtual void _001DrawCaptionBar(::draw2d::graphics_pointer& pdraw2dgraphics);
 
       void set_moveable_border_color(const ::color::color& colorMoveableBorder) override;
 
@@ -54,9 +54,9 @@ namespace experience_core
 
       virtual void set_frame_color_system_default_001();
 
-      virtual void on_style_change_001_and_002(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_style_change_001_and_002(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       //virtual ::color::color get_style_moveable_border_color(::user::enum_style estyle);
 
@@ -66,13 +66,13 @@ namespace experience_core
 
       //virtual enum_style translate_style(const ::scoped_string & scopedstrStyle);
 
-      virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _on_style_change(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       //virtual void _001OnBeforeMove(const ::i32_rectangle &lpcrectWindow);
 
       //virtual void _001OnBeforeSize(const ::i32_rectangle &lpcrectWindow);
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       bool get_element_rectangle(::i32_rectangle & lprect, const ::e_element & eelement) override;
 
@@ -82,15 +82,15 @@ namespace experience_core
 
       //::item_pointer experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
-      virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+      virtual void Glass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle);
 
-      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color& color, ::u8 bAlpha);
+      virtual void ColorGlass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, const ::color::color& color, ::u8 bAlpha);
 
 //               virtual ::user::front_end_schema * get_user_front_end_schema();
 
-      virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, enum_border eborder, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight);
+      virtual void Draw3dRectSide(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, enum_border eborder, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight);
 
-      virtual void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual void GetBorderRectangle(const ::i32_rectangle & rectangleOuter, ::i32_rectangle * lprect, enum_border eside);
@@ -99,7 +99,7 @@ namespace experience_core
       ::i32_rectangle outer_frame() override;
 
       ::experience::enum_frame experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
-      void place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics) override;
+      void place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pdraw2dgraphics) override;
 
    };
 

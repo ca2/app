@@ -42,7 +42,7 @@ namespace user
 
       //}
 
-      constructø(m_ppen);
+      constructø(m_pdraw2dpen);
       constructø(m_pbrushCloseHover);
       constructø(m_pbrushCloseSel);
       constructø(m_pbrushClose);

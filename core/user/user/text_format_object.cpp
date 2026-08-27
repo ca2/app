@@ -26,15 +26,15 @@ namespace user
    }
 
 
-   void text_format_object::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void text_format_object::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      pgraphics->fill_rectangle(m_rectangle, argb(127, 255, 255, 180));
-      pgraphics->draw_text(m_str, m_rectangle, e_align_center);
+      pdraw2dgraphics->fill_rectangle(m_rectangle, argb(127, 255, 255, 180));
+      pdraw2dgraphics->draw_text(m_str, m_rectangle, e_align_center);
       ::i32_rectangle rectangle(m_rectangle);
-      pgraphics->draw_inset_rectangle(rectangle, argb(127, 255, 255, 255), 1.0);
+      pdraw2dgraphics->draw_inset_rectangle(rectangle, argb(127, 255, 255, 255), 1.0);
       rectangle.deflate(1, 1);
-      pgraphics->draw_inset_rectangle(rectangle, argb(127, 255, 255, 255), 1.0);
+      pdraw2dgraphics->draw_inset_rectangle(rectangle, argb(127, 255, 255, 255), 1.0);
 
    }
 

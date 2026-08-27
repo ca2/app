@@ -75,7 +75,7 @@ namespace user
    }
 
 
-   void menu_interaction::_001OnDrawDefault(::draw2d::graphics_pointer & pgraphics)
+   void menu_interaction::_001OnDrawDefault(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -83,13 +83,13 @@ namespace user
       if (id() == "separator")
       {
 
-         auto ppen = createø < ::draw2d::pen > ();
+         auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-         ppen->create_solid(2.0, argb(127, 80, 80, 80));
+         pdraw2dpen->create_solid(2.0, argb(127, 80, 80, 80));
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
-         pgraphics->line(
+         pdraw2dgraphics->line(
             rectangleX.left, (rectangleX.top + rectangleX.bottom) / 2,
             rectangleX.right, (rectangleX.top + rectangleX.bottom) / 2);
 
@@ -97,20 +97,20 @@ namespace user
 
       }
 
-      interaction::_001OnDraw(pgraphics);
+      interaction::_001OnDraw(pdraw2dgraphics);
 
       if (m_pmenuitem.is_set() && m_pmenuitem->m_bPopup)
       {
 
-         auto pbrush = createø < ::draw2d::brush > ();
+         auto pdraw2dbrush = createø < ::draw2d::brush > ();
 
-         pbrush->create_solid(rgb(0, 0, 0));
+         pdraw2dbrush->create_solid(rgb(0, 0, 0));
 
-         auto ppen = createø < ::draw2d::pen > ();
+         auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-         ppen->create_solid(1, rgb(0, 0, 0));
-         pgraphics->set(ppen);
-         pgraphics->set(pbrush);
+         pdraw2dpen->create_solid(1, rgb(0, 0, 0));
+         pdraw2dgraphics->set(pdraw2dpen);
+         pdraw2dgraphics->set(pdraw2dbrush);
          ::i32_rectangle rectanglePopupArrow;
          rectanglePopupArrow.left = rectangleX.right - 9;
          rectanglePopupArrow.right = rectangleX.right - 4;
@@ -127,52 +127,52 @@ namespace user
 
 
          pointa.add(i32_point(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
-         pgraphics->polygon(pointa);
+         pdraw2dgraphics->polygon(pointa);
 
       }
 
-      _001DrawCheck(pgraphics);
+      _001DrawCheck(pdraw2dgraphics);
 
    }
 
 
-   void menu_interaction::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void menu_interaction::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::pointer<::berg::style>pstyle = get_style(pgraphics);
+      ::pointer<::berg::style>pstyle = get_style(pdraw2dgraphics);
 
       if (pstyle)
       {
 
-         pstyle->_001OnDrawMenuInteraction(pgraphics, this);
+         pstyle->_001OnDrawMenuInteraction(pdraw2dgraphics, this);
 
       }
 
-      _001OnDrawDefault(pgraphics);
+      _001OnDrawDefault(pdraw2dgraphics);
 
    }
 
 
-   void menu_interaction::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void menu_interaction::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
    }
 
 
-   void menu_interaction::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void menu_interaction::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (id() != "separator")
       {
 
-         ::user::interaction::_001OnNcDraw(pgraphics);
+         ::user::interaction::_001OnNcDraw(pdraw2dgraphics);
 
       }
 
    }
 
 
-   void menu_interaction::_001DrawCheck(::draw2d::graphics_pointer & pgraphics)
+   void menu_interaction::_001DrawCheck(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
    }
@@ -198,18 +198,18 @@ namespace user
    }
 
 
-   ::f64_size menu_interaction::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
+   ::f64_size menu_interaction::get_preferred_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto strWindowText = get_window_text();
 
       //get_window_text(strText);
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
-      auto size = pgraphics->get_text_extent(strWindowText);
+      auto size = pdraw2dgraphics->get_text_extent(strWindowText);
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       auto rectangleMargin = get_margin(pstyle);
 

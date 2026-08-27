@@ -196,7 +196,7 @@ namespace user
    }
 
 
-   void plus_minus::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void plus_minus::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::i32 wPadding = 10;

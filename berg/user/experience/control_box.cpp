@@ -631,7 +631,7 @@ namespace experience
    }
 
 
-   void control_box::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void control_box::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto_hide_calculate_control_visibility();
@@ -647,7 +647,7 @@ namespace experience
 //
 //      m_pframewindow->screen_to_client(::user::e_layout_lading)(rectangle);
 
-//      reset_layout(pgraphics);
+//      reset_layout(pdraw2dgraphics);
 
       layout_control_box_buttons();
 
@@ -1039,10 +1039,10 @@ namespace experience
    }
 
 
-//   void control_box::reset_layout(::draw2d::graphics_pointer & pgraphics)
+//   void control_box::reset_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   {
 //
-//      ::i32 iDefaultButtonSize = calculate_button_size(pgraphics);
+//      ::i32 iDefaultButtonSize = calculate_button_size(pdraw2dgraphics);
 //
 //      m_sizeButtonDefault = ::i32_size(iDefaultButtonSize, iDefaultButtonSize);
 //
@@ -1072,10 +1072,10 @@ namespace experience
    }
 
 
-   ::i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
+   ::i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto dFontHeight = m_pfontMarlett->get_height(pgraphics);
+      auto dFontHeight = m_pfontMarlett->get_height(pdraw2dgraphics);
 
       ::i32 iButtonSize = (::i32) (dFontHeight + m_iDefaultButtonMargin * 3);
 
@@ -1110,10 +1110,10 @@ namespace experience
    }
 
 
-   ::i32 control_box::calculate_control_box_width(::draw2d::graphics_pointer & pgraphics)
+   ::i32 control_box::calculate_control_box_width(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      m_iDefaultButtonSize = calculate_button_size(pgraphics);
+      m_iDefaultButtonSize = calculate_button_size(pdraw2dgraphics);
 
       ::i32 iWidth = 0;
 
@@ -1240,10 +1240,10 @@ namespace experience
    }
 
 
-   void control_box::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void control_box::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      //return ::user::box::_001OnClip(pgraphics);
+      //return ::user::box::_001OnClip(pdraw2dgraphics);
 
 //#ifdef MACOS
 //
@@ -1257,7 +1257,7 @@ namespace experience
 //
 //         ::i32_rectangle rectangleClip;
 //
-//         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
+//         ::aura::draw_context * pdrawcontext = pdraw2dgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 //
 //         ::i32_rectangle rectangleX;
 //
@@ -1305,9 +1305,9 @@ namespace experience
 //
 //         }
 //
-//         pgraphics->reset_clip();
+//         pdraw2dgraphics->reset_clip();
 //
-//         pgraphics->add_shapes(*m_pshapeaClip);
+//         pdraw2dgraphics->add_shapes(*m_pshapeaClip);
 //
 //      }
 //      catch (...)
@@ -1320,17 +1320,17 @@ namespace experience
    }
 
 
-   void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void control_box::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::box::_001OnDraw(pgraphics);
+      ::user::box::_001OnDraw(pdraw2dgraphics);
 
-      draw_display_normal_label(pgraphics);
+      draw_display_normal_label(pdraw2dgraphics);
 
    }
 
 
-   void control_box::draw_display_normal_label(::draw2d::graphics_pointer & pgraphics)
+   void control_box::draw_display_normal_label(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pframewindow = m_pframewindow;
@@ -1350,19 +1350,19 @@ namespace experience
          if (edisplay == e_display_normal)
          {
 
-            pgraphics->text_out(0, 0, "Normal");
+            pdraw2dgraphics->text_out(0, 0, "Normal");
 
          }
          else if (edisplay == e_display_compact)
          {
 
-            pgraphics->text_out(0, 0, "Compact");
+            pdraw2dgraphics->text_out(0, 0, "Compact");
 
          }
          else if (edisplay == e_display_broad)
          {
 
-            pgraphics->text_out(0, 0, "Broad");
+            pdraw2dgraphics->text_out(0, 0, "Broad");
 
          }
 

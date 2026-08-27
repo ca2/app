@@ -992,11 +992,11 @@ namespace userex
    }
 
 
-//   void pane_tab_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+//   void pane_tab_impact::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   {
 //
 //
-//      ::user::tab_impact::_001OnNcDraw(pgraphics);
+//      ::user::tab_impact::_001OnNcDraw(pdraw2dgraphics);
 //
 //
 //   }

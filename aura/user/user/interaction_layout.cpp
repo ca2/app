@@ -93,7 +93,7 @@ namespace user
 
 
 
-   //void interaction_layout::on_layout(::draw2d::graphics_pointer & pgraphics)
+   //void interaction_layout::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
 

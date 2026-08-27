@@ -129,7 +129,7 @@ namespace account
    }
 
 
-   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
@@ -227,7 +227,7 @@ namespace account
    }
 
 
-   void impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
@@ -238,7 +238,7 @@ namespace account
 
       ::i32_rectangle r = this->rectangle();
 
-      //draw.simple_ui_draw_frame_window_rect(r, pgraphics);
+      //draw.simple_ui_draw_frame_window_rect(r, pdraw2dgraphics);
 
 
 
@@ -341,17 +341,17 @@ namespace account
 
          f->create_font(e_font_sans_ex, ::write_text::font_size(fHeight, e_unit_point));
 
-         pgraphics->set(f);
+         pdraw2dgraphics->set(f);
 
-         pgraphics->set_text_color(colorBorderOut);
+         pdraw2dgraphics->set_text_color(colorBorderOut);
 
-         pgraphics->text_out((::i32)(49 * rx), (::i32)(49 * ry), m_strCred);
+         pdraw2dgraphics->text_out((::i32)(49 * rx), (::i32)(49 * ry), m_strCred);
 
       }
       else if (m_picon95)
       {
 
-         pgraphics->draw_ca2_border2((::i32)(49 * rx), (::i32)(49 * ry) - 11, (::i32)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
+         pdraw2dgraphics->draw_ca2_border2((::i32)(49 * rx), (::i32)(49 * ry) - 11, (::i32)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
 
          ::image::image_source imagesource(m_picon95);
 
@@ -361,13 +361,13 @@ namespace account
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
       }
       else
       {
 
-         pgraphics->draw_ca2_with_border2((::i32)(49 * rx), (::i32)(49 * ry) - 23, (::i32)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
+         pdraw2dgraphics->draw_ca2_with_border2((::i32)(49 * rx), (::i32)(49 * ry) - 23, (::i32)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
 
       }
 
@@ -493,21 +493,21 @@ namespace account
    //}
 
 
-   void impact::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      //user::interaction::_000OnDraw(pgraphics);
+      //user::interaction::_000OnDraw(pdraw2dgraphics);
 
 
       if (!is_this_visible())
          return;
 
-      _001DrawThis(pgraphics);
+      _001DrawThis(pdraw2dgraphics);
 
       try
       {
 
-         _001DrawChildren(pgraphics);
+         _001DrawChildren(pdraw2dgraphics);
 
       }
       catch (...)
@@ -520,7 +520,7 @@ namespace account
    }
 
 
-   void impact::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+   void impact::_001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //single_lock synchronouslock(mutex(), true);
@@ -541,7 +541,7 @@ namespace account
             if (puserinteraction->is_this_visible() && !puserinteraction->is_custom_draw())
             {
 
-               puserinteraction->_000CallOnDraw(pgraphics);
+               puserinteraction->_000CallOnDraw(pdraw2dgraphics);
 
             }
 

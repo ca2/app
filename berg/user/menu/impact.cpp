@@ -186,13 +186,13 @@ namespace user
       constructø(m_pbrushBkSel);
       constructø(m_pbrushBkHoverSel);
       constructø(m_ppenBkSel);
-      constructø(m_ppen);
+      constructø(m_pdraw2dpen);
 
 
       m_pbrushBkHoverSel->create_solid(argb(255, 230, 230, 230));
       m_pbrushBkSel->create_solid(argb(255, 240, 240, 240));
       m_ppenBkSel->create_solid(3.0, argb(255, 0, 148, 202));
-      m_ppen->create_solid(1.0, argb(255, 210, 210, 210));
+      m_pdraw2dpen->create_solid(1.0, argb(255, 210, 210, 210));
 
 
       ::pointer<::message::create>pcreate(pmessage);
@@ -233,9 +233,9 @@ namespace user
 
       m_pfontTitle->create_font(e_font_sans_ui, 14_pt, 800);
 
-      constructø(m_pfont);
+      constructø(m_pwritetextfont);
 
-      m_pfont->create_font(e_font_sans_ui, 14_pt, 400);
+      m_pwritetextfont->create_font(e_font_sans_ui, 14_pt, 400);
 
       if (get_typed_parent<::user::split_impact>() != nullptr)
       {
@@ -414,7 +414,7 @@ namespace user
    }
 
 
-   void menu_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphicsParam)
+   void menu_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::image::image_pointer pimage1;
@@ -434,22 +434,22 @@ namespace user
 
       pimage1->create_as_descriptor(rectangleX.size());
 
-      auto pgraphics = pimage1->acquire_graphics();
+      auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
       if (is_window_enabled())
       {
 
-         pgraphics->clear(::color::white);
+         pdraw2dgraphics->clear(::color::white);
 
       }
       else
       {
 
-         pgraphics->clear(::argb(255, 200, 200, 200));
+         pdraw2dgraphics->clear(::argb(255, 200, 200, 200));
 
       }
 
-      pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+      pdraw2dgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
       ::image::image_source imagesource(m_pimageLogo);
 
@@ -457,7 +457,7 @@ namespace user
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      pgraphics->draw(imagedrawing);
+      pdraw2dgraphics->draw(imagedrawing);
 
       //construct_newø(m_pitema);
 
@@ -487,17 +487,17 @@ namespace user
          
          strTitle = pmenuitemPopup->m_strTitle;
 
-         pgraphics->set(m_pfontTitle);
+         pdraw2dgraphics->set(m_pfontTitle);
 
          auto puseritemPopup = layout_user_item_by_index(iPos);
 
-         pgraphics->set(m_ppen);
+         pdraw2dgraphics->set(m_pdraw2dpen);
 
-         draw_header_rectangle(pgraphics, puseritemPopup->m_rectangle2);
+         draw_header_rectangle(pdraw2dgraphics, puseritemPopup->m_rectangle2);
 
-         pgraphics->set_text_color(argb(255, 0, 0, 0));
+         pdraw2dgraphics->set_text_color(argb(255, 0, 0, 0));
 
-         pgraphics->text_out(puseritemPopup->m_rectangle2.left + 10, puseritemPopup->m_rectangle2.top + 5, strTitle);
+         pdraw2dgraphics->text_out(puseritemPopup->m_rectangle2.left + 10, puseritemPopup->m_rectangle2.top + 5, strTitle);
 
          iPos++;
 
@@ -516,7 +516,7 @@ namespace user
 
             rectanglePopupTotal.unite(rectanglePopupTotal, puseritem->m_rectangle2);
 
-            pgraphics->set(m_ppen);
+            pdraw2dgraphics->set(m_pdraw2dpen);
 
             ::item item(::e_element_item, iPos, i, j);
 
@@ -539,17 +539,17 @@ namespace user
                if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
                {
 
-                  pgraphics->set(m_pbrushBkHoverSel);
+                  pdraw2dgraphics->set(m_pbrushBkHoverSel);
 
-                  draw_item_rectangle_hover_sel001(pgraphics, puseritem->m_rectangle2);
+                  draw_item_rectangle_hover_sel001(pdraw2dgraphics, puseritem->m_rectangle2);
 
                }
                else
                {
 
-                  pgraphics->set(m_pbrushBkSel);
+                  pdraw2dgraphics->set(m_pbrushBkSel);
 
-                  draw_item_rectangle_hover001(pgraphics, puseritem->m_rectangle2);
+                  draw_item_rectangle_hover001(pdraw2dgraphics, puseritem->m_rectangle2);
 
                }
 
@@ -557,45 +557,45 @@ namespace user
             else if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
             {
 
-               pgraphics->set(m_pbrushBkSel);
+               pdraw2dgraphics->set(m_pbrushBkSel);
 
-               draw_item_rectangle_sel001(pgraphics, puseritem->m_rectangle2);
+               draw_item_rectangle_sel001(pdraw2dgraphics, puseritem->m_rectangle2);
 
             }
             else
             {
 
-               draw_item_rectangle(pgraphics, puseritem->m_rectangle2);
+               draw_item_rectangle(pdraw2dgraphics, puseritem->m_rectangle2);
 
             }
 
-            pgraphics->set(m_pfont);
+            pdraw2dgraphics->set(m_pwritetextfont);
 
             if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
             {
 
-               pgraphics->set_text_color(argb(255, 0, 148, 202));
+               pdraw2dgraphics->set_text_color(argb(255, 0, 148, 202));
 
             }
             else
             {
 
-               pgraphics->set_text_color(argb(255, 60, 60, 60));
+               pdraw2dgraphics->set_text_color(argb(255, 60, 60, 60));
 
             }
 
-            pgraphics->text_out(puseritem->m_rectangle2.left + 10, puseritem->m_rectangle2.top + 5, strItemTitle);
+            pdraw2dgraphics->text_out(puseritem->m_rectangle2.left + 10, puseritem->m_rectangle2.top + 5, strItemTitle);
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             ::image::image_pointer pimage1;
 
             if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
             {
 
-               pgraphics->set(m_ppenBkSel);
+               pdraw2dgraphics->set(m_ppenBkSel);
 
-               pgraphics->line(
+               pdraw2dgraphics->line(
                   puseritem->m_rectangle2.left + 1, puseritem->m_rectangle2.top,
                   puseritem->m_rectangle2.left + 1, puseritem->m_rectangle2.bottom - 1);
 
@@ -624,7 +624,7 @@ namespace user
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
@@ -645,9 +645,9 @@ namespace user
 
          auto puseritem = layout_user_item_by_index(iPos);
 
-         pgraphics->set(m_ppen);
+         pdraw2dgraphics->set(m_pdraw2dpen);
 
-         draw_header_separator(pgraphics, puseritem->m_rectangle2.bottom_left(), puseritem->m_rectangle2.bottom_right());
+         draw_header_separator(pdraw2dgraphics, puseritem->m_rectangle2.bottom_left(), puseritem->m_rectangle2.bottom_right());
 
          iPos++;
 
@@ -662,7 +662,7 @@ namespace user
 
             auto puseritem = layout_user_item_by_index(iPos);
 
-            draw_item_separator(pgraphics, puseritem->m_rectangle2.bottom_left(), puseritem->m_rectangle2.bottom_right());
+            draw_item_separator(pdraw2dgraphics, puseritem->m_rectangle2.bottom_left(), puseritem->m_rectangle2.bottom_right());
 
             iPos++;
 
@@ -675,7 +675,7 @@ namespace user
       for (::i32 i = 0; i < m_pmenuitem->m_pmenuitema->get_count(); i++)
       {
 
-         draw_border_rectangle(pgraphics, raMenu[i]);
+         draw_border_rectangle(pdraw2dgraphics, raMenu[i]);
 
       }
 
@@ -696,7 +696,7 @@ namespace user
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphicsParam->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
       }
 
@@ -711,7 +711,7 @@ namespace user
    }
 
 
-   void menu_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void menu_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -849,40 +849,40 @@ namespace user
    }
 
 
-   void menu_impact::draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
+   void menu_impact::draw_border_rectangle(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle)
    {
 
-      pgraphics->line(
+      pdraw2dgraphics->line(
          rectangle.left, rectangle.top,
          rectangle.right, rectangle.top);
 
-      pgraphics->line(
+      pdraw2dgraphics->line(
          rectangle.left, rectangle.bottom,
          rectangle.right, rectangle.bottom);
 
    }
 
 
-   void menu_impact::draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::i32_point& point1, const ::i32_point& point2)
+   void menu_impact::draw_header_separator(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_point& point1, const ::i32_point& point2)
    {
 
-      pgraphics->line(
+      pdraw2dgraphics->line(
          point1,
          point2);
 
    }
 
 
-   void menu_impact::draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
+   void menu_impact::draw_header_rectangle(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle)
    {
 
-      pgraphics->fill_rectangle(rectangle, argb(255, 240, 240, 240));
+      pdraw2dgraphics->fill_rectangle(rectangle, argb(255, 240, 240, 240));
 
-      pgraphics->line(
+      pdraw2dgraphics->line(
          rectangle.left, rectangle.top,
          rectangle.left, rectangle.bottom);
 
-      pgraphics->line(
+      pdraw2dgraphics->line(
          rectangle.right, rectangle.top,
          rectangle.right, rectangle.bottom);
 
@@ -892,48 +892,48 @@ namespace user
    }
 
 
-   void menu_impact::draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
+   void menu_impact::draw_item_rectangle(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle)
    {
 
-      pgraphics->line(
+      pdraw2dgraphics->line(
          rectangle.left, rectangle.top,
          rectangle.left, rectangle.bottom);
 
-      pgraphics->line(
+      pdraw2dgraphics->line(
          rectangle.right, rectangle.top,
          rectangle.right, rectangle.bottom);
 
    }
 
 
-   void menu_impact::draw_item_rectangle_hover001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
+   void menu_impact::draw_item_rectangle_hover001(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle)
    {
 
-      pgraphics->fill_rectangle(rectangle);
+      pdraw2dgraphics->fill_rectangle(rectangle);
 
-      pgraphics->line(
+      pdraw2dgraphics->line(
          rectangle.left, rectangle.top,
          rectangle.left, rectangle.bottom);
 
-      pgraphics->line(
+      pdraw2dgraphics->line(
          rectangle.right, rectangle.top,
          rectangle.right, rectangle.bottom);
 
    }
 
 
-   void menu_impact::draw_item_rectangle_sel001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
+   void menu_impact::draw_item_rectangle_sel001(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle)
    {
 
-      pgraphics->fill_rectangle(rectangle);
+      pdraw2dgraphics->fill_rectangle(rectangle);
 
-      pgraphics->line(
+      pdraw2dgraphics->line(
          rectangle.left, rectangle.top,  
          rectangle.left, rectangle.bottom);
 
       ::i32 h = ::height(rectangle);
 
-      pgraphics->line(
+      pdraw2dgraphics->line(
          rectangle.right, rectangle.bottom - 1,
          rectangle.right, rectangle.bottom - h / 3 - 2);
 
@@ -945,37 +945,37 @@ namespace user
 
       pta.add(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 
-      pgraphics->fill_polygon(pta);
+      pdraw2dgraphics->fill_polygon(pta);
 
-      auto ppath = createø<::draw2d::path>();
+      auto pdraw2dpath = createø<::draw2d::path>();
 
-      ppath->set_current_point(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
+      pdraw2dpath->set_current_point(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
       
-      ppath->add_line(rectangle.right, rectangle.bottom - h / 3 - 2);
+      pdraw2dpath->add_line(rectangle.right, rectangle.bottom - h / 3 - 2);
 
-      ppath->add_line(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
+      pdraw2dpath->add_line(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
 
-      ppath->add_line(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
+      pdraw2dpath->add_line(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 
-      ppath->add_line(rectangle.right, rectangle.top);
+      pdraw2dpath->add_line(rectangle.right, rectangle.top);
 
-      pgraphics->draw(ppath);
+      pdraw2dgraphics->draw(pdraw2dpath);
 
    }
 
 
-   void menu_impact::draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
+   void menu_impact::draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle)
    {
 
-      pgraphics->fill_rectangle(rectangle);
+      pdraw2dgraphics->fill_rectangle(rectangle);
 
-      pgraphics->line(
+      pdraw2dgraphics->line(
          rectangle.left, rectangle.top,
             rectangle.left, rectangle.bottom);
 
       ::i32 h = ::height(rectangle);
 
-      pgraphics->line(
+      pdraw2dgraphics->line(
          rectangle.right, rectangle.bottom - 1,
          rectangle.right, rectangle.bottom - h / 3 - 2);
 
@@ -987,29 +987,29 @@ namespace user
 
       pta.add(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 
-      pgraphics->fill_polygon(pta);
+      pdraw2dgraphics->fill_polygon(pta);
 
-      auto ppath = createø<::draw2d::path>();
+      auto pdraw2dpath = createø<::draw2d::path>();
 
-      ppath->set_current_point(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
+      pdraw2dpath->set_current_point(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 
-      ppath->add_line(rectangle.right, rectangle.bottom - h / 3 - 2);
+      pdraw2dpath->add_line(rectangle.right, rectangle.bottom - h / 3 - 2);
 
-      ppath->add_line(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
+      pdraw2dpath->add_line(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
 
-      ppath->add_line(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
+      pdraw2dpath->add_line(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 
-      ppath->add_line(rectangle.right, rectangle.top);
+      pdraw2dpath->add_line(rectangle.right, rectangle.top);
 
-      pgraphics->draw(ppath);
+      pdraw2dgraphics->draw(pdraw2dpath);
 
    }
 
 
-   void menu_impact::draw_item_separator(::draw2d::graphics_pointer& pgraphics, const ::i32_point& point1, const ::i32_point& point2)
+   void menu_impact::draw_item_separator(::draw2d::graphics_pointer& pdraw2dgraphics, const ::i32_point& point1, const ::i32_point& point2)
    {
 
-      pgraphics->line(point1, point2);
+      pdraw2dgraphics->line(point1, point2);
 
    }
 

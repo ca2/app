@@ -26,7 +26,7 @@ namespace simple_ui
 
 
 
-   void draw::simple_ui_draw_frame_window_rect(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
+   void draw::simple_ui_draw_frame_window_rect(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       ::i32_rectangle rectangleDraw;
@@ -39,20 +39,20 @@ namespace simple_ui
 
       b->create_solid(argb(255, 255, 255, 255));
 
-      pgraphics->set(b);
+      pdraw2dgraphics->set(b);
 
-      auto ppen = createø < ::draw2d::pen > ();
+      auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-      ppen->create_solid(1.0, argb(255, 0, 0, 0));
+      pdraw2dpen->create_solid(1.0, argb(255, 0, 0, 0));
 
-      pgraphics->set(ppen);
+      pdraw2dgraphics->set(pdraw2dpen);
 
-      pgraphics->rectangle(rectangleDraw);
+      pdraw2dgraphics->rectangle(rectangleDraw);
 
    }
 
 
-   void draw::simple_ui_draw_fuzzy_color_spread(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
+   void draw::simple_ui_draw_fuzzy_color_spread(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pdraw2dgraphics)
    {
       /*
       ::i32_rectangle rectangleDraw;
@@ -133,30 +133,30 @@ namespace simple_ui
    }
 
 
-   void draw::simple_ui_draw_dark_glass(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
+   void draw::simple_ui_draw_dark_glass(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       ::i32_rectangle rectangleDraw;
 
       rectangleDraw = rectangle;
 
-      pgraphics->fill_rectangle(rectangleDraw, argb(90, 127, 127, 127));
+      pdraw2dgraphics->fill_rectangle(rectangleDraw, argb(90, 127, 127, 127));
 
    }
 
 
 
-   void draw::simple_ui_draw_pestana(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
+   void draw::simple_ui_draw_pestana(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       ::i32_rectangle rectangleDraw;
 
       rectangleDraw = rectangle;
 
-      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 
       ::i32 iCount = rectangleDraw.height();
-      auto ppen = createø < ::draw2d::pen > ();
+      auto pdraw2dpen = createø < ::draw2d::pen > ();
       for (::i32 i = 0; i < iCount; i += 2)
       {
          ::f64 dRate = (::f64)i / (::f64)iCount;
@@ -165,9 +165,9 @@ namespace simple_ui
          ::u8 r1 = __byte_rate(dRate, 23, 127);
          ::u8 g1 = __byte_rate(dRate, 23, 127);
          ::u8 b1 = __byte_rate(dRate, 23, 127);
-         ppen->create_solid(1.0, argb(a1, r1, g1, b1));
-         pgraphics->set(ppen);
-         pgraphics->line(rectangleDraw.left, i, rectangleDraw.right, i);
+         pdraw2dpen->create_solid(1.0, argb(a1, r1, g1, b1));
+         pdraw2dgraphics->set(pdraw2dpen);
+         pdraw2dgraphics->line(rectangleDraw.left, i, rectangleDraw.right, i);
 
       }
 
@@ -176,12 +176,12 @@ namespace simple_ui
 
 
 
-   void draw::simple_ui_draw_auth_box(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
+   void draw::simple_ui_draw_auth_box(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       ::i32_rectangle rectangleDraw = rectangle;
 
-      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 
       // front
       ::f64_point pa[4];
@@ -223,17 +223,17 @@ namespace simple_ui
 
          b->create_solid(argb(192, 220, 220, 220));
 
-         pgraphics->set(b);
+         pdraw2dgraphics->set(b);
 
-         pgraphics->fill_polygon(pb, 4);
+         pdraw2dgraphics->fill_polygon(pb, 4);
 
-         auto ppen = createø < ::draw2d::pen > ();
+         auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-         ppen->create_solid(1.0, argb(192, 192, 192, 192));
+         pdraw2dpen->create_solid(1.0, argb(192, 192, 192, 192));
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
-         pgraphics->draw_polygon(pb, 4);
+         pdraw2dgraphics->draw_polygon(pb, 4);
 
 
       }
@@ -263,17 +263,17 @@ namespace simple_ui
 
          b->create_solid(argb(180, 210, 210, 210));
 
-         pgraphics->set(b);
+         pdraw2dgraphics->set(b);
 
-         pgraphics->fill_polygon(pc, 4);
+         pdraw2dgraphics->fill_polygon(pc, 4);
 
-         auto ppen = createø < ::draw2d::pen > ();
+         auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-         ppen->create_solid(1.0, argb(180, 180, 177, 177));
+         pdraw2dpen->create_solid(1.0, argb(180, 180, 177, 177));
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
-         pgraphics->draw_polygon(pc, 4);
+         pdraw2dgraphics->draw_polygon(pc, 4);
 
 
       }
@@ -289,17 +289,17 @@ namespace simple_ui
 
          b->create_solid(argb(123, 120, 120, 123));
 
-         pgraphics->set(b);
+         pdraw2dgraphics->set(b);
 
-         pgraphics->fill_polygon(pc, 4);
+         pdraw2dgraphics->fill_polygon(pc, 4);
 
-         auto ppen = createø < ::draw2d::pen > ();
+         auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-         ppen->create_solid(1.0, argb(123, 90, 90, 90));
+         pdraw2dpen->create_solid(1.0, argb(123, 90, 90, 90));
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
-         pgraphics->draw_polygon(pc, 4);
+         pdraw2dgraphics->draw_polygon(pc, 4);
 
 
       }
@@ -315,17 +315,17 @@ namespace simple_ui
 
          b->create_solid(argb(149, 192, 192, 192));
 
-         pgraphics->set(b);
+         pdraw2dgraphics->set(b);
 
-         pgraphics->fill_polygon(pc, 4);
+         pdraw2dgraphics->fill_polygon(pc, 4);
 
-         auto ppen = createø < ::draw2d::pen > ();
+         auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-         ppen->create_solid(1.0, argb(149, 176, 176, 176));
+         pdraw2dpen->create_solid(1.0, argb(149, 176, 176, 176));
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
-         pgraphics->draw_polygon(pc, 4);
+         pdraw2dgraphics->draw_polygon(pc, 4);
 
 
       }
@@ -341,17 +341,17 @@ namespace simple_ui
 
          b->create_solid(argb(90, 150, 149, 149));
 
-         pgraphics->set(b);
+         pdraw2dgraphics->set(b);
 
-         pgraphics->fill_polygon(pc, 4);
+         pdraw2dgraphics->fill_polygon(pc, 4);
 
-         auto ppen = createø < ::draw2d::pen > ();
+         auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-         ppen->create_solid(1.0, argb(90, 120, 120, 123));
+         pdraw2dpen->create_solid(1.0, argb(90, 120, 120, 123));
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
-         pgraphics->draw_polygon(pc, 4);
+         pdraw2dgraphics->draw_polygon(pc, 4);
 
 
       }
@@ -362,23 +362,23 @@ namespace simple_ui
 
       {
 
-         auto ppen = createø < ::draw2d::pen > ();
+         auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-         ppen->create_solid(1.0, argb(190, 90, 90, 90));
+         pdraw2dpen->create_solid(1.0, argb(190, 90, 90, 90));
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
-         pgraphics->draw_polygon(pa, 4);
+         pdraw2dgraphics->draw_polygon(pa, 4);
 
       }
 
 
    }
 
-   void draw::simple_ui_draw_back_01_old(const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer& pgraphics)
+   void draw::simple_ui_draw_back_01_old(const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::color::color crOut;
 
@@ -403,24 +403,24 @@ namespace simple_ui
 
       ::i32 iBorderH = minimum(rectangle.height() / 2, 49);
 
-      auto pbrush = createø < ::draw2d::brush > ();
+      auto pdraw2dbrush = createø < ::draw2d::brush > ();
 
-      pbrush->CreateLinearGradientBrush(rectangle.top_left(), i32_point(rectangle.left, rectangle.top + iBorderH), crOut, crIn);
+      pdraw2dbrush->CreateLinearGradientBrush(rectangle.top_left(), i32_point(rectangle.left, rectangle.top + iBorderH), crOut, crIn);
 
-      pgraphics->fill_rectangle(::i32_rectangle(rectangle.left, rectangle.top, (::i32)rectangle.width(), iBorderH), pbrush);
+      pdraw2dgraphics->fill_rectangle(::i32_rectangle(rectangle.left, rectangle.top, (::i32)rectangle.width(), iBorderH), pdraw2dbrush);
 
-      pbrush->create_solid(crIn);
+      pdraw2dbrush->create_solid(crIn);
 
-      pgraphics->fill_rectangle(::i32_rectangle(rectangle.left, rectangle.top + iBorderH, (::i32)rectangle.width(), (::i32)rectangle.height() - (iBorderH * 2)), pbrush);
+      pdraw2dgraphics->fill_rectangle(::i32_rectangle(rectangle.left, rectangle.top + iBorderH, (::i32)rectangle.width(), (::i32)rectangle.height() - (iBorderH * 2)), pdraw2dbrush);
 
-      pbrush->CreateLinearGradientBrush(i32_point(rectangle.left, rectangle.bottom - iBorderH), rectangle.bottom_left(), crIn, crOut);
+      pdraw2dbrush->CreateLinearGradientBrush(i32_point(rectangle.left, rectangle.bottom - iBorderH), rectangle.bottom_left(), crIn, crOut);
 
-      pgraphics->fill_rectangle(::i32_rectangle(rectangle.left, rectangle.bottom - iBorderH, (::i32)rectangle.width(), iBorderH), pbrush);
+      pdraw2dgraphics->fill_rectangle(::i32_rectangle(rectangle.left, rectangle.bottom - iBorderH, (::i32)rectangle.width(), iBorderH), pdraw2dbrush);
 
    }
 
 
-   void draw::simple_ui_draw_back_01_new(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
+   void draw::simple_ui_draw_back_01_new(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       /*simple_solid_brush br(g, argb(255, 255, 255, 255));
@@ -429,17 +429,17 @@ namespace simple_ui
 
       pen.create_solid(argb(255, 0, 0, 0));
 
-      pgraphics->select(br);
+      pdraw2dgraphics->select(br);
 
-      pgraphics->select(pen);
+      pdraw2dgraphics->select(pen);
 
       m_rectangle.deflate(0, 0, 1, 1);
 
-      pgraphics->rectangle(m_rectangle);*/
+      pdraw2dgraphics->rectangle(m_rectangle);*/
 
-      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      //pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      //pgraphics->fill_rectangle(rectangle,argb(0,0,0,0));
+      //pdraw2dgraphics->fill_rectangle(rectangle,argb(0,0,0,0));
 
    }
 

@@ -23,12 +23,12 @@ namespace draw2d_cairo
    }
 
 
-   bool path::create(::draw2d::graphics * pgraphics)
+   void path::update(::draw2d::graphics * pdraw2dgraphics)
    {
 
-      m_osdata[0] = this;
+      //m_osdata[0] = this;
 
-      return true;
+      //return true;
 
    }
 
@@ -52,25 +52,25 @@ namespace draw2d_cairo
    }
 
 
-   //bool path::contains(::draw2d::graphics_pointer & pgraphics, const ::f64_point& point)
+   //bool path::contains(::draw2d::graphics_pointer & pdraw2dgraphics, const ::f64_point& point)
    bool path::path_contains_point(const ::f64_point& point)
    {
 
       ::cast < ::draw2d_cairo::draw2d > pdraw2d = draw2d();
 
-      ::cast < ::draw2d_cairo::graphics > pgraphics = pdraw2d->get_thread_graphics();
-//      auto pcairographics = pgraphics.cast < graphics >();
+      ::cast < ::draw2d_cairo::graphics > pdraw2dgraphics = pdraw2d->get_thread_graphics();
+//      auto pcairographics = pdraw2dgraphics.cast < graphics >();
 
-      if(::is_null(pgraphics))
+      if(::is_null(pdraw2dgraphics))
       {
 
          return ::draw2d::path::path_contains_point(point);
 
       }
 
-      pgraphics->_set(this);
+      pdraw2dgraphics->_set(this);
 
-      if(pgraphics->fill_contains(point))
+      if(pdraw2dgraphics->fill_contains(point))
       {
 
          informationf("cairo in fill");

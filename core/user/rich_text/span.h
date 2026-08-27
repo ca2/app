@@ -81,7 +81,7 @@ namespace user
 
          span & operator=(const span & span);
 
-         void calculate_position(::draw2d::graphics_pointer & pgraphics);
+         void calculate_position(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       };

@@ -100,10 +100,10 @@ bool html_form::browse(const ::scoped_string & scopedstrUrl)
 
 
 
-void html_form::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+void html_form::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
-   //pgraphics->fill_solid_rect_dim(5, 5, 100, 100, argb(255, 255, 255, 0));
+   //pdraw2dgraphics->fill_solid_rect_dim(5, 5, 100, 100, argb(255, 255, 255, 0));
 
    ::html_data * phtmldata = nullptr;
 
@@ -121,14 +121,14 @@ void html_form::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    if(phtmldata != nullptr)
    {
 
-      phtmldata->_001OnDraw(pgraphics);
+      phtmldata->_001OnDraw(pdraw2dgraphics);
 
    }
 
 }
 
 
-void html_form::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+void html_form::_001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
    ::pointer<::user::interaction>pinteraction = first_child();
@@ -142,7 +142,7 @@ void html_form::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
          if(pinteraction->is_this_visible() && (get_html_data() == nullptr || !get_html_data()->contains(pinteraction)))
          {
 
-            pinteraction->_000CallOnDraw(pgraphics);
+            pinteraction->_000CallOnDraw(pdraw2dgraphics);
 
          }
 
@@ -229,7 +229,7 @@ void html_form::GetClientBox(::f32_rectangle & box)
 }
 
 
-void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
+void html_form::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
    auto rectangleX = this->rectangle();

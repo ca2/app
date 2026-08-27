@@ -87,7 +87,7 @@ namespace user
       // };
 
       ::i32                           m_iImageSpacing;
-      //::write_text::font_pointer                 m_pfont;
+      //::write_text::font_pointer                 m_pwritetextfont;
       string                        m_strBuffer;
       ::pointer<draw2d::graphics_extension>   m_pgraphicsextension;
 
@@ -108,8 +108,8 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
       void SetBaseListCtrlInterface(::user::list * pinterface);
 
-      virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       virtual void DrawItem(::draw2d::item * pdrawitem);
 
 

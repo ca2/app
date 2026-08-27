@@ -120,11 +120,11 @@ namespace gpu
 
       m_pgpurenderer = pgpurenderer;
 
-      m_iFrameIndex = iFrameIndex;
+      m_iGpuLayerFrameIndex = iFrameIndex;
 
       //m_ptextureDrawing.release();
 
-      m_iLayerIndex = iLayerIndex;
+      m_iGpuLayerIndex = iLayerIndex;
 
       m_bIncludeInFrameComposition = true;
       m_bExternalRendering = false;
@@ -254,13 +254,13 @@ namespace gpu
 
       //}
 
-      m_iFrameIndexReady = m_iFrameIndex;
+      //m_iFrameIndexReady = m_iFrameIndex;
 
       m_timeEnd.Now();
 
       m_timeDuration = m_timeEnd - m_timeStart;
 
-      information("Layer {} duration : {} ms", m_iLayerIndex, m_timeDuration.floating_millisecond());
+      information("Layer {} duration : {} ms", m_iGpuLayerIndex, m_timeDuration.floating_millisecond());
 
       finished_manual_reset_happening()->set_happening();
 
@@ -270,9 +270,9 @@ namespace gpu
    ::pointer < ::gpu::texture_site > & layer::texture(bool bRenderTarget)
    {
 
-      auto iFrameIndex = m_iFrameIndex;
+      auto iGpuLayerFrameIndex = m_iGpuLayerFrameIndex;
 
-      auto & ptexturesite = m_texturesitea.atø(iFrameIndex);
+      auto & ptexturesite = m_texturesitea.atø(iGpuLayerFrameIndex);
 
       auto size = m_pgpurenderer->m_pgpucontext->size();
 

@@ -38,20 +38,20 @@
 namespace gpu
 {
 
-//
-//#define __TRANSFORM(p) \
-//   m_m1.transform(p); \
-//p.y = iContextHeight - p.y
-//
-//#define __USES_TRANSFORM(pcontext) \
-//auto iContextHeight = pcontext->height()
-//
-//
-//
-   void thread_graphics(graphics* pgraphics)
+   //
+   //#define __TRANSFORM(p) \
+   //   m_m1.transform(p); \
+   //p.y = iContextHeight - p.y
+   //
+   //#define __USES_TRANSFORM(pcontext) \
+   //auto iContextHeight = pcontext->height()
+   //
+   //
+   //
+   void thread_graphics(graphics * pdraw2dgraphics)
    {
 
-      ::get_task()->payload("gpu::graphics") = pgraphics;
+      ::get_task()->payload("gpu::graphics") = pdraw2dgraphics;
 
    }
 
@@ -90,7 +90,7 @@ namespace gpu
    }
 
 
-   void graphics::initialize(::particle* pparticle)
+   void graphics::initialize(::particle * pparticle)
    {
 
       ::draw2d::graphics::initialize(pparticle);
@@ -193,7 +193,7 @@ namespace gpu
    bool graphics::_is_ok() const
    {
 
-      auto pcontext = ((graphics*)this)->gpu_context();
+      auto pcontext = ((graphics *)this)->gpu_context();
 
       return ::is_set(this) & (::is_set(pcontext) || ::is_set(m_pgpucontextOwned));
 
@@ -239,7 +239,7 @@ namespace gpu
 
       m_ppoolgroupFrame = ppoolgroupFrame;
 
-      for (auto& pool : m_mapModelBufferPool.payloads())
+      for (auto & pool : m_mapModelBufferPool.payloads())
       {
 
          pool.m_ppoolgroup = m_ppoolgroupFrame;
@@ -289,7 +289,7 @@ namespace gpu
 
    void graphics::start_frame()
    {
-      
+
       auto pcontext = gpu_context();
 
       if (pcontext)
@@ -310,7 +310,7 @@ namespace gpu
          pgpuwindowattachment->start_frame();
 
       }
-         //pcontext->start_frame();
+      //pcontext->start_frame();
    }
 
 
@@ -385,6 +385,79 @@ namespace gpu
 
    }
 
+   void graphics::on_acquire_memory_graphics(
+      ::image::image * pimage,
+      const ::i32_size & size,
+      ::acme::user::interaction * pacmeuserinteractionAffinity)
+   {
+   {
+      {
+
+         if (::is_set(pimage))
+         {
+
+            pimage->update_bitmap_as_render_target(pacmeuserinteractionAffinity);
+
+            auto pdraw2dbitmap = pimage->m_pdraw2dbitmap;
+
+            if (!pdraw2dbitmap)
+            {
+
+               throw ::exception(error_wrong_state, "image bitmap is unavailable for graphics acquisition");
+
+            }
+
+            auto sizeRawBitmap = pimage->raw_size();
+
+            if (pdraw2dbitmap->size() != sizeRawBitmap)
+            {
+
+               pdraw2dbitmap->set_size(sizeRawBitmap);
+
+            }
+
+            if (pimage->m_eacquire == ::draw2d::e_acquire_load)
+            {
+
+               if (pimage->m_bWasMappedAfterLastGraphicsAcquisition)
+               {
+
+                  if (pimage->m_ppixmapOwned)
+                  {
+
+                     pdraw2dbitmap->defer_write_pixels(
+                        pimage->m_ppixmapOwned->size(),
+                        pimage->m_ppixmapOwned->m_point,
+                        pimage->m_ppixmapOwned->image32(),
+                        pimage->m_ppixmapOwned->scan_size());
+
+                  }
+
+                  pimage->m_bWasMappedAfterLastGraphicsAcquisition = false;
+
+               }
+
+            }
+
+         }
+
+         //auto pdraw2d = system()->draw2d();
+
+         //if (!pdraw2d)
+         //{
+
+         //   throw ::exception(error_wrong_state, "draw2d service is unavailable");
+
+         //}
+
+         /////create_bitmap(pacmeuserinteractionAffinity);
+
+
+
+      }
+   }
+   ::draw2d::graphics::on_acquire_memory_graphics(pimage, size, pacmeuserinteractionAffinity);
+}
 
 
 
@@ -456,7 +529,7 @@ namespace gpu
 
       auto prendertarget = prenderer->render_target();
 
-      //auto pgraphics = pgraphicscontext->draw2d_graphics();
+      //auto pdraw2dgraphics = pgraphicscontext->draw2d_graphics();
 
       if (m_egraphics == e_graphics_draw)
       {
@@ -510,10 +583,14 @@ namespace gpu
 
       ::cast < ::user::interaction > puserinteractionAffinity = m_pacmeuserinteractionAffinity;
 
+      ::i32_rectangle rScreen;
+
       if (puserinteractionAffinity && !puserinteractionAffinity->host_rectangle().size().is_empty())
       {
 
          rectangle = puserinteractionAffinity->host_rectangle();
+
+         
 
       }
       else
@@ -523,15 +600,23 @@ namespace gpu
 
       }
 
+
       // auto pcontext = gpu_context();
 
       pcontext->on_begin_draw_attach(this);
 
-      pcontext->start_layer(bFirstLayer, m_estartlayer);
+      pcontext->start_layer(bFirstLayer, m_estartlayer, puserinteractionContext);
 
       auto pgputexturesite = pcontext->m_pgpurenderer->m_pgpurendertarget2->current_texture(::gpu::current_layer(), true);
 
       auto sizeRaw = pcontext->raw_size();
+
+      //if (puserinteractionContext)
+      //{
+      //   puserinteractionContext->client_to_screen()(rScreen);
+      //   pcontext->m_pointOutput = rScreen.origin();
+      //   pgputexturesite->m_pointOutput = rScreen.origin();
+      //}
 
       if (m_pgraphicsbufferitem->m_pimageBufferItem->m_sizeRaw != sizeRaw)
       {
@@ -545,6 +630,10 @@ namespace gpu
       //m_pimage = m_pgraphicsbufferitem->m_pimageBufferItem;
 
       //::gpu::context_lock lock(pcontext);
+
+      m_pointTarget = puserinteraction->host_origin();
+
+      update_matrix();
 
       //set_target_image(m_pgraphicsbufferitem->m_pimageBufferItem);
 
@@ -610,7 +699,7 @@ namespace gpu
 
       auto radius = rectangleParam.minimum_dimension() / 2.0;
 
-      auto thickness = m_ppen->m_dWidth;
+      auto thickness = m_pdraw2dpen->m_dWidth;
 
       auto extent = radius + thickness / 2.0f + 2.0f;
 
@@ -704,13 +793,13 @@ namespace gpu
       //   seq2aCenter[0].x,
       //   seq2aCenter[0].y,
       //   rectangleParam.minimum_dimension() / 2.0,
-      //   m_ppen->m_dWidth,
+      //   m_pdraw2dpen->m_dWidth,
 //         numSegments);
 
 
       pmodelbuffer->set_vertexes(vertexa);
 
-      auto color = m_ppen->m_color;
+      auto color = m_pdraw2dpen->m_color;
 
       //::array<::graphics3d::sequence2_color> quadVertices;
       //for (auto & point : pointa)
@@ -888,15 +977,15 @@ namespace gpu
 
 
    //}
-   void graphics::draw_rectangle(const ::f64_rectangle &rectangle, ::draw2d::pen *ppen)
+   void graphics::draw_rectangle(const ::f64_rectangle &rectangle, ::draw2d::pen *pdraw2dpen)
    {
 
-      line(rectangle.top_left(), rectangle.top_right(), ppen);
-      line(rectangle.top_right(), rectangle.bottom_right(), ppen);
-      line(rectangle.bottom_right(), rectangle.bottom_left(), ppen);
-      line(rectangle.bottom_left(), rectangle.top_left(), ppen);
+      line(rectangle.top_left(), rectangle.top_right(), pdraw2dpen);
+      line(rectangle.top_right(), rectangle.bottom_right(), pdraw2dpen);
+      line(rectangle.bottom_right(), rectangle.bottom_left(), pdraw2dpen);
+      line(rectangle.bottom_left(), rectangle.top_left(), pdraw2dpen);
 
-      //::draw2d::graphics::draw_rectangle(rectangle, ppen);
+      //::draw2d::graphics::draw_rectangle(rectangle, pdraw2dpen);
      
    }
 
@@ -1064,7 +1153,7 @@ namespace gpu
 
       pcontext->end_layer(bClosingLayer);
 
-      ////auto pgraphics = pgraphicscontext->draw2d_graphics();
+      ////auto pdraw2dgraphics = pgraphicscontext->draw2d_graphics();
 
       //// end_gpu_layer();
       //if (m_egraphics == e_graphics_draw)
@@ -1744,7 +1833,7 @@ namespace gpu
    }
 
 
-   void graphics::line(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::draw2d::pen* ppen)
+   void graphics::line(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::draw2d::pen* pdraw2dpen)
    {
 
       if (m_bTargetRectangleModified)
@@ -1785,7 +1874,7 @@ namespace gpu
 
       ::f64_point_array pointa;
 
-      ::f64_point pointPen(ppen->m_dWidth, ppen->m_dWidth);
+      ::f64_point pointPen(pdraw2dpen->m_dWidth, pdraw2dpen->m_dWidth);
 
       ::draw2d::make_line_triangles_cap_butt_square(
          pointa,
@@ -1795,7 +1884,7 @@ namespace gpu
 
       context_matrix(e_transform_context_geometry).transform(pointa);
 
-      auto color = m_ppen->m_color;
+      auto color = m_pdraw2dpen->m_color;
 
       ::f32 fA = color.f32_opacity();
       ::f32 fR = color.f32_red() * fA;
@@ -1865,13 +1954,13 @@ namespace gpu
 
       //if(lpszString.is_empty())
       //   return i32_size(0, 0);
-      set(m_pfont);
+      set(m_pwritetextfont);
 
-      ::pointer<::write_text::font>pfont = m_pfont;
+      ::pointer<::write_text::font>pwritetextfont = m_pwritetextfont;
 
-      ::pointer <::typeface::face> pface = get_face(pfont);
+      ::pointer <::typeface::face> pface = get_face(pwritetextfont);
 
-      //glBindVertexArray(pfont->m_VAO);
+      //glBindVertexArray(pwritetextfont->m_VAO);
 
    // iterate through all characters
       ::string strChar;
@@ -1934,7 +2023,7 @@ namespace gpu
 
              //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
           //// update content of VBO memory
-          //glBindBuffer(GL_ARRAY_BUFFER, pfont->m_VBO);
+          //glBindBuffer(GL_ARRAY_BUFFER, pwritetextfont->m_VBO);
           //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
 
           //auto pcommandbuffer = gpu_context()->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
@@ -1976,13 +2065,13 @@ namespace gpu
       //      break;
       //}
 
-      //set(m_pfont);
+      //set(m_pwritetextfont);
 
-      //::pointer<font>pfont = m_pfont;
+      //::pointer<font>pwritetextfont = m_pwritetextfont;
 
       //::i32_size s = { 0 };
 
-      //::GetTextExtentPointW(pfont->m_hdcFont, wstr, wstr.get_length(), &s);
+      //::GetTextExtentPointW(pwritetextfont->m_hdcFont, wstr, wstr.get_length(), &s);
 
       //return s;
 
@@ -1992,24 +2081,24 @@ namespace gpu
    void graphics::get_text_metrics(::write_text::text_metric* pmetrics)
    {
 
-      set(m_pfont);
+      set(m_pwritetextfont);
 
-      ::pointer<::write_text::font>pfont = m_pfont;
+      ::pointer<::write_text::font>pwritetextfont = m_pwritetextfont;
 
-      ::pointer <::typeface::face> pface = get_face(pfont);
+      ::pointer <::typeface::face> pface = get_face(pwritetextfont);
 
       pface->get_text_metric(pmetrics);
 
    }
 
 
-   ::typeface::face* graphics::get_face(::write_text::font* pfont)
+   ::typeface::face* graphics::get_face(::write_text::font* pwritetextfont)
    {
 
 
       ::cast < gpu::draw2d>pdraw2d = draw2d();
 
-      auto pface = pdraw2d->_get_face(pfont);
+      auto pface = pdraw2d->_get_face(pwritetextfont);
 
       // if (!pface->m_pgpurenderer)
       // {
@@ -2105,7 +2194,7 @@ namespace gpu
       ::gpu::debug_scope debugscopeBoundTextOutShader(::gpu::current_command_buffer(), strMessage);
       //pcontext->gpu_debug_message(strMessage);
 
-      auto color = m_pbrush->m_color;
+      auto color = m_pdraw2dbrush->m_color;
       //shader.use();
       ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
       ::floating_sequence4 vec4TextColor{ __expand_f32_pre_rgba(color) };
@@ -2120,11 +2209,11 @@ namespace gpu
       //    static_cast<::f32>(size.height()),
       //    0.0f);
       //pshader->push_properties();
-      set(m_pfont);
+      set(m_pwritetextfont);
 
-      ::pointer<::write_text::font>pfont = m_pfont;
+      ::pointer<::write_text::font>pwritetextfont = m_pwritetextfont;
 
-      auto pgpuface = get_face(pfont);
+      auto pgpuface = get_face(pwritetextfont);
       ::cast < ::typeface::face>pface = pgpuface;
 
       //pcontext->set_topic_texture(0);
@@ -2170,13 +2259,13 @@ namespace gpu
 
       //}
       //::f32 scale;
-      //if (pfont->m_fontsize.eunit() == e_unit_point)
+      //if (pwritetextfont->m_fontsize.eunit() == e_unit_point)
       //{
-      //   scale = pfont->m_fontsize.as_f32() / FONT_POINT_DENOMINATOR;
+      //   scale = pwritetextfont->m_fontsize.as_f32() / FONT_POINT_DENOMINATOR;
       //}
       //else
       //{
-      //   scale = pfont->m_fontsize.as_f32() / FONT_PIXEL_DENOMINATOR;
+      //   scale = pwritetextfont->m_fontsize.as_f32() / FONT_PIXEL_DENOMINATOR;
       //}
       //auto y = m_pgpucontextCompositor->m_rectangle.height() - yParam - pface->m_iPixelSize;
       auto y = yParam;

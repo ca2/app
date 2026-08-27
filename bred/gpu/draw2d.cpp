@@ -39,23 +39,23 @@ namespace gpu
    }
 
 
-   ::typeface::face* draw2d::_get_face(::write_text::font* pfont)
+   ::typeface::face* draw2d::_get_face(::write_text::font* pwritetextfont)
    {
 
       ::i32 iPixelSize = 0;
 
-      if (pfont->m_fontsize.eunit() == e_unit_point)
+      if (pwritetextfont->m_fontsize.eunit() == e_unit_point)
       {
-         iPixelSize = (::i32) system()->acme_windowing()->default_screen_points_to_pixels(pfont->m_fontsize.as_f32());
+         iPixelSize = (::i32) system()->acme_windowing()->default_screen_points_to_pixels(pwritetextfont->m_fontsize.as_f32());
       }
       else
       {
-         iPixelSize = pfont->m_fontsize.as_i32();
+         iPixelSize = pwritetextfont->m_fontsize.as_i32();
       }
 
-      ::i32 iFontWeight = pfont->m_fontweight.as_i32();
+      ::i32 iFontWeight = pwritetextfont->m_fontweight.as_i32();
 
-      ::string strFontFamilyName = pfont->m_pfontfamily->family_name(this);
+      ::string strFontFamilyName = pwritetextfont->m_pfontfamily->family_name(this);
 
       auto& pface = m_mapFaceSizeWeight[strFontFamilyName][iPixelSize][iFontWeight];
 

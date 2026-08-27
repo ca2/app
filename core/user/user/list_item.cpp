@@ -118,10 +118,10 @@ namespace user
    }
 
 
-   void draw_list_item::update_item_color(::draw2d::graphics_pointer & pgraphics)
+   void draw_list_item::update_item_color(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto pstyle = m_pmesh->m_plist->get_style(pgraphics);
+      auto pstyle = m_pmesh->m_plist->get_style(pdraw2dgraphics);
 
       auto estate = get_user_state();
 
@@ -149,7 +149,7 @@ namespace user
    }
 
 
-   void draw_list_subitem::draw_image(::draw2d::graphics_pointer & pgraphics)
+   void draw_list_subitem::draw_image(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_pcolumn->m_bIcon)
@@ -160,7 +160,7 @@ namespace user
          if (m_pcolumn->m_mapIcon.find((::i32)m_iImage, picon))
          {
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             ::image::image_source imagesource(picon);
 
@@ -170,7 +170,7 @@ namespace user
 
             //m_pgraphics->draw(imagedrawing) != false;
 
-            pgraphics->draw(imagedrawing);
+            pdraw2dgraphics->draw(imagedrawing);
 
          }
 
@@ -407,7 +407,7 @@ namespace user
    }
 
 
-   void draw_list_group::draw_group_image(::draw2d::graphics_pointer & pgraphics)
+   void draw_list_group::draw_group_image(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //return 
@@ -417,17 +417,17 @@ namespace user
    }
 
 
-   ::color::color draw_list_subitem::calculate_text_color(::draw2d::graphics_pointer & pgraphics, const ::user::e_state & estate)
+   ::color::color draw_list_subitem::calculate_text_color(::draw2d::graphics_pointer & pdraw2dgraphics, const ::user::e_state & estate)
    {
 
-      auto pstyle = m_pitem->m_pmesh->m_plist->get_style(pgraphics);
+      auto pstyle = m_pitem->m_pmesh->m_plist->get_style(pdraw2dgraphics);
 
       return m_pitem->m_pmesh->m_plist->get_color(pstyle, ::e_element_item_text, estate);
 
    }
 
 
-   void draw_list_subitem::update_color(::draw2d::graphics_pointer & pgraphics)
+   void draw_list_subitem::update_color(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto estate = m_pitem->m_pdrawlistitem->get_user_state();
@@ -442,7 +442,7 @@ namespace user
          if (!color.is_ok())
          {
 
-            color = calculate_text_color(pgraphics, estate);
+            color = calculate_text_color(pdraw2dgraphics, estate);
 
             color = ::success;
 
@@ -454,7 +454,7 @@ namespace user
       else
       {
 
-         m_colorText = calculate_text_color(pgraphics, estate);
+         m_colorText = calculate_text_color(pdraw2dgraphics, estate);
 
       }
 
@@ -468,7 +468,7 @@ namespace user
    }
 
 
-   void draw_list_subitem::set_text_color(::draw2d::graphics_pointer & pgraphics)
+   void draw_list_subitem::set_text_color(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto estate = m_pitem->m_pdrawlistitem->get_user_state();
@@ -530,7 +530,7 @@ namespace user
    }
 
 
-   void draw_list_subitem::draw_text(::draw2d::graphics_pointer & pgraphics)
+   void draw_list_subitem::draw_text(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_bOk)
@@ -573,7 +573,7 @@ namespace user
                   pdraw2d->embossed_text_out(
                      m_pitem->m_pdrawlistitem->m_pgraphics, m_rectangleText, m_strText,
                      *m_pitem->m_pmesh->m_plist->m_pfastblurIconText, pimage2,
-                     m_pitem->m_pdrawlistitem->m_pgraphics->m_pfont, m_pcolumn->m_pdrawlistcolumn->m_ealign,
+                     m_pitem->m_pdrawlistitem->m_pgraphics->m_pwritetextfont, m_pcolumn->m_pdrawlistcolumn->m_ealign,
                      m_pcolumn->m_pdrawlistcolumn->m_edrawtext, m_pitem->m_pmesh->m_plist->m_colorEmbossedText,
                      m_pitem->m_pmesh->m_plist->m_colorEmbossedTextBackground,
                      m_pitem->m_pmesh->m_plist->m_iTextSpreadRadius, m_pitem->m_pmesh->m_plist->m_iTextBlurRadius,
@@ -599,7 +599,7 @@ namespace user
 
             //auto pbrushText = createø < ::draw2d::brush > ();
 
-            update_color(pgraphics);
+            update_color(pdraw2dgraphics);
 
             //pbrushText->create_solid(m_colorText);
 
@@ -613,7 +613,7 @@ namespace user
 
             auto edrawtext = (::enum_draw_text)m_pitem->m_pmesh->m_plist->get_int(pstyle, e_int_list_item_draw_text_flags);
 
-            set_text_color(pgraphics);
+            set_text_color(pdraw2dgraphics);
 
             ::i32_rectangle rectangleMargin(2, 0, 2, 0);
 

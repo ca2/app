@@ -74,7 +74,7 @@ namespace user
       //m_pitema->add(puser);
 
 
-      //plabelTitle->set_font(pfont);
+      //plabelTitle->set_font(pwritetextfont);
 
       //construct_newø(m_pstill);
 
@@ -925,7 +925,7 @@ namespace user
    // }
 
 
-   void list2::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void list2::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::i32 x = 5;
@@ -933,17 +933,17 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
-      auto pfont = createø < ::write_text::font >();
+      auto pwritetextfont = createø < ::write_text::font >();
 
-      pfont->create_font(e_font_sans_ui, 12_pt);
+      pwritetextfont->create_font(e_font_sans_ui, 12_pt);
 
-      pgraphics->set(pfont);
+      pdraw2dgraphics->set(pwritetextfont);
 
-      pfont->defer_update(pgraphics, 0);
+      pwritetextfont->defer_update(pdraw2dgraphics);
 
-      auto iLineHeight = pfont->get_height(pgraphics);
+      auto iLineHeight = pwritetextfont->get_height(pdraw2dgraphics);
 
       iLineHeight *= 1.25;
 
@@ -972,9 +972,9 @@ namespace user
 
          auto color = get_color(pstyle, ::e_element_item_text, estate);
 
-         pgraphics->set_text_color(color);
+         pdraw2dgraphics->set_text_color(color);
 
-         pgraphics->text_out(x, (::i32) y, pitem->get_item_text(puseritembase));
+         pdraw2dgraphics->text_out(x, (::i32) y, pitem->get_item_text(puseritembase));
 
          y = (::i32) (y + iLineHeight);
 

@@ -284,13 +284,13 @@ namespace user
       }
 
 
-      ::write_text::font * format::get_font(::draw2d::graphics_pointer & pgraphics) const
+      ::write_text::font * format::get_font(::draw2d::graphics_pointer & pdraw2dgraphics) const
       {
 
-         if (!m_bUpdated || m_pfont.is_null())
+         if (!m_bUpdated || m_pwritetextfont.is_null())
          {
 
-            pgraphics->defer_constructø(((format*)this)->m_pfont);
+            pdraw2dgraphics->defer_constructø(((format*)this)->m_pwritetextfont);
 
             if (m_dFontSize < 6.0)
             {
@@ -308,7 +308,7 @@ namespace user
 
             }
 
-            m_pfont->create_font(
+            m_pwritetextfont->create_font(
                m_strFontFamily, 
                write_text::font_size(dFontSize, e_unit_point),
                m_bBold ? e_font_weight_bold : e_font_weight_normal,
@@ -319,7 +319,7 @@ namespace user
 
          }
 
-         return m_pfont;
+         return m_pwritetextfont;
 
       }
 

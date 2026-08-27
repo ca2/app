@@ -15,7 +15,7 @@ namespace draw2d
    public:
 
 
-      ::draw2d::bitmap_pointer   m_pbitmap;
+      ::draw2d::bitmap_pointer   m_pdraw2dbitmap;
       ::draw2d::bitmap_pointer   m_pbitmapBlend;
 
 

@@ -134,7 +134,7 @@ namespace account
    }
 
 
-   void login::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void login::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -207,14 +207,14 @@ namespace account
    }
 
 
-   void login::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void login::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::simple_ui::draw draw;
 
       ::i32_rectangle r = this->rectangle();
 
-      draw.simple_ui_draw_frame_window_rect(r, pgraphics);
+      draw.simple_ui_draw_frame_window_rect(r, pdraw2dgraphics);
 
       ::color::color colorOut, colorIn, colorBorderOut, colorBorderIn, color, colorBackground;
 
@@ -314,7 +314,7 @@ namespace account
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
       }
       else if (m_bCred && m_strCred.has_character())
@@ -335,16 +335,16 @@ namespace account
          f->create_font(e_font_sans_ex, ::write_text::font_size(fHeight, e_unit_point));
 
 
-         pgraphics->set(f);
+         pdraw2dgraphics->set(f);
 
-         pgraphics->set_text_color(colorBorderOut);
-         pgraphics->text_out((::i32)(49 * rx), (::i32)(49 * ry), m_strCred);
+         pdraw2dgraphics->set_text_color(colorBorderOut);
+         pdraw2dgraphics->text_out((::i32)(49 * rx), (::i32)(49 * ry), m_strCred);
       }
 
       else if (m_picon95)
       {
 
-         pgraphics->draw_ca2_border2((::i32)(49 * rx), (::i32)(49 * ry) - 11, (::i32)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
+         pdraw2dgraphics->draw_ca2_border2((::i32)(49 * rx), (::i32)(49 * ry) - 11, (::i32)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
 
          ::image::image_source imagesource(m_picon95);
 
@@ -354,13 +354,13 @@ namespace account
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
       }
       else
       {
 
-         pgraphics->draw_ca2_with_border2((::i32)(49 * rx), (::i32)(49 * ry) - 23, (::i32)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
+         pdraw2dgraphics->draw_ca2_with_border2((::i32)(49 * rx), (::i32)(49 * ry) - 23, (::i32)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
 
       }
 
@@ -529,18 +529,18 @@ namespace account
    }
 
 
-   void login::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void login::_000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      return ::user::interaction::_000OnDraw(pgraphics);
+      return ::user::interaction::_000OnDraw(pdraw2dgraphics);
 
    }
 
 
-   void login::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+   void login::_001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      return ::user::interaction::_001DrawChildren(pgraphics);
+      return ::user::interaction::_001DrawChildren(pdraw2dgraphics);
 
    }
 

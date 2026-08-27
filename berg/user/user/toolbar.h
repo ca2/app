@@ -124,9 +124,9 @@ namespace user
       // for direct access to the underlying common control
       //inline toolbar_control& GetToolBarCtrl() const;
 
-      virtual ::i32_size CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics);
-      ::i32_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
-      virtual ::i32_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, ::u32 nMode) override;
+      virtual ::i32_size CalcSimpleLayout(::draw2d::graphics_pointer& pdraw2dgraphics);
+      ::i32_size CalcFixedLayout(::draw2d::graphics_pointer& pdraw2dgraphics, bool bStretch, bool bHorz) override;
+      virtual ::i32_size CalcDynamicLayout(::draw2d::graphics_pointer& pdraw2dgraphics, ::i32 nLength, ::u32 nMode) override;
       //virtual void OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool bDisableIfNoHndler);
       void set_owner(::user::interaction * pinteractionOwner);
 
@@ -148,7 +148,7 @@ namespace user
       virtual ::collection::count tool_item_count();
 
 
-      virtual ::i32_size SimpleLayout(::draw2d::graphics_pointer& pgraphics);
+      virtual ::i32_size SimpleLayout(::draw2d::graphics_pointer& pdraw2dgraphics);
 
 
       // implementation helpers
@@ -156,15 +156,15 @@ namespace user
 //      virtual void _GetButton(::collection::index nIndex, TBBUTTON* pButton) const;
 //      virtual void _SetButton(::collection::index nIndex, TBBUTTON* pButton);
 //#endif
-      virtual ::i32_size CalcLayout(::draw2d::graphics_pointer& pgraphics, ::u32 nMode, ::collection::index nLength = -1);
+      virtual ::i32_size CalcLayout(::draw2d::graphics_pointer& pdraw2dgraphics, ::u32 nMode, ::collection::index nLength = -1);
 //#ifdef WINDOWS_DESKTOP
 //      virtual ::i32_size CalcSize(TBBUTTON* pData, ::collection::index nCount);
 //      virtual ::collection::index WrapToolBar(TBBUTTON* pData, ::collection::index nCount, ::collection::index nWidth);
 //      virtual void SizeToolBar(TBBUTTON* pData, ::collection::index nCount, ::collection::index nLength, bool bVert = false);
 //#endif
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override; // called for for delayed button on_layout
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override; // called for for delayed button on_layout
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);

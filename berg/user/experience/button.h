@@ -34,7 +34,7 @@ namespace experience
 
       virtual void UpdateWndRgn();
 
-      void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 

@@ -150,7 +150,7 @@ namespace aura
       //virtual ::user::style* get_user_style();
 
 
-      //bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer& pgraphics) override;
+      //bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer& pdraw2dgraphics) override;
 
 
       //virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
@@ -268,7 +268,7 @@ namespace aura
       //::pointer<::user::theme>get_user_theme(const ::scoped_string & scopedstrExperienceLibrary, ::aura::application * papp = nullptr);
 
 
-      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText);
+      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText);
 
 
       virtual void set_bound_ui(::atom idImpact, ::user::interaction * pinteraction) override;

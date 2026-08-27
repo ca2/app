@@ -415,11 +415,11 @@ namespace userex
    }
 
 
-   void image_list_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void image_list_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
-      ::user::image_list_impact::on_layout(pgraphics);
+      ::user::image_list_impact::on_layout(pdraw2dgraphics);
 
    }
 

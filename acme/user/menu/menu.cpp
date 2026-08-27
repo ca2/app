@@ -358,7 +358,7 @@ menu::~menu()
 //
 //      auto pdraw2d = psystem->draw2d();
 //
-//      auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+//      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 //
 //      if (m_bCloseButton)
 //      {
@@ -374,7 +374,7 @@ menu::~menu()
 //
 //            ::pointer<::user::interaction>pinteraction = m_pitemClose->m_puserinteraction;
 //
-//            pinteraction = create_menu_button(pgraphics, m_pitemClose);
+//            pinteraction = create_menu_button(pdraw2dgraphics, m_pitemClose);
 //
 //            m_pitemClose->m_puserinteraction = pinteraction;
 //
@@ -406,7 +406,7 @@ menu::~menu()
 //
 //      }
 //
-//      if (!m_pmenuitem->create_buttons(pgraphics, this))
+//      if (!m_pmenuitem->create_buttons(pdraw2dgraphics, this))
 //      {
 //
 //         ASSERT(false);
@@ -561,7 +561,7 @@ menu::~menu()
 //
 //      //      create_buttons(m_pmenuitem);
 //
-//      //on_layout(pgraphics);
+//      //on_layout(pdraw2dgraphics);
 //
 //      //auto rectangleX = puiParent->rectangle();
 //
@@ -606,11 +606,11 @@ menu::~menu()
 //
 //               //   auto pdraw2d = psystem->draw2d();
 //
-//               //   auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+//               //   auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 //
 //               //   m_pointTrack = m_pointPositionHint;
 //
-//               //   layout_menu(pgraphics);
+//               //   layout_menu(pdraw2dgraphics);
 //
 //               //   m_bMenuOk = true;
 //
@@ -661,7 +661,7 @@ menu::~menu()
 //   }
 //
 //
-//   //void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
+//   //void menu::layout_menu(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   //{
 //
 //   //   ::i32_point point = m_pointTrack;
@@ -673,11 +673,11 @@ menu::~menu()
 //
 //   //   }
 //
-//   //   auto pstyle = get_style(pgraphics);
+//   //   auto pstyle = get_style(pdraw2dgraphics);
 //
-//   //   pgraphics->set(get_font(pstyle));
+//   //   pdraw2dgraphics->set(get_font(pstyle));
 //
-//   //   auto metrics = pgraphics->get_text_metrics();
+//   //   auto metrics = pdraw2dgraphics->get_text_metrics();
 //
 //   //   auto dMaxHeight = metrics.get_line_height();
 //
@@ -705,7 +705,7 @@ menu::~menu()
 //
 //   //   class calc_size calcsize;
 //
-//   //   calcsize.m_pgraphics = pgraphics;
+//   //   calcsize.m_pgraphics = pdraw2dgraphics;
 //
 //   //   if (m_bCloseButton)
 //   //   {
@@ -801,7 +801,7 @@ menu::~menu()
 //
 //   //      pmenuitema->element_at(i)->m_rectangleUi.right = x + m_iaColumnWidth[pitem->m_iColumn];
 //
-//   //      pbergstyle->prepare_menu(pgraphics, pitem);
+//   //      pbergstyle->prepare_menu(pdraw2dgraphics, pitem);
 //
 //   //      pitem->m_rectangleUi.right = maximum(pitem->m_rectangleUi.right, pitem->m_rectangleUi.left + m_sizeMinimum.cx);
 //
@@ -814,7 +814,7 @@ menu::~menu()
 //   //   if (pbergstyle && m_bCloseButton)
 //   //   {
 //
-//   //      pbergstyle->prepare_menu(pgraphics, m_pitemClose);
+//   //      pbergstyle->prepare_menu(pdraw2dgraphics, m_pitemClose);
 //
 //   //      m_pitemClose->m_puserinteraction->place(m_pitemClose->m_rectangleUi);
 //
@@ -885,10 +885,10 @@ menu::~menu()
 //   //}
 //
 //
-//   void menu::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+//   void menu::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   {
 //
-//      auto pstyle = m_puserinteractionOwner->get_style(pgraphics);
+//      auto pstyle = m_puserinteractionOwner->get_style(pdraw2dgraphics);
 //
 //      auto crBackground = get_color(pstyle, e_element_background);
 //
@@ -897,21 +897,21 @@ menu::~menu()
 //
 //         ::f64_rectangle rectangleClip;
 //
-//         pgraphics->get_clip_box(rectangleClip);
+//         pdraw2dgraphics->get_clip_box(rectangleClip);
 //
 //         auto rectangleX = this->rectangle();
 //
-//         //pgraphics->reset_clip();
+//         //pdraw2dgraphics->reset_clip();
 //
-//         //auto pointOffset = pgraphics->get_origin();
+//         //auto pointOffset = pdraw2dgraphics->get_origin();
 //
-//         //::memory_set(pgraphics->m_pimage->m_pimage32, 80, pgraphics->m_pimage->scan_area_in_bytes());
+//         //::memory_set(pdraw2dgraphics->m_pimage->m_pimage32, 80, pdraw2dgraphics->m_pimage->scan_area_in_bytes());
 //
-//         pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
+//         pdraw2dgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 //
 //      }
 //
-//      ::user::interaction::_001OnDraw(pgraphics);
+//      ::user::interaction::_001OnDraw(pdraw2dgraphics);
 //
 //   }
 //   void menu::on_message_left_button_down(::message::message * pmessage)
@@ -1782,10 +1782,10 @@ menu::~menu()
 //      }
 //
 //
-//      ::pointer<::user::menu_interaction>menu::create_menu_button(::draw2d::graphics_pointer & pgraphics, ::menu::item * pitem)
+//      ::pointer<::user::menu_interaction>menu::create_menu_button(::draw2d::graphics_pointer & pdraw2dgraphics, ::menu::item * pitem)
 //      {
 //
-//         auto pstyle = m_puserinteractionOwner->get_style(pgraphics);
+//         auto pstyle = m_puserinteractionOwner->get_style(pdraw2dgraphics);
 //
 //         ::pointer<::berg::session>psession = get_session();
 //
@@ -1872,7 +1872,7 @@ menu::~menu()
 //      }
 //
 //
-//      void menu::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+//      void menu::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
 //      {
 //
 //         ::pointer<::menu::item>pitem = get_menu_item();
@@ -1900,11 +1900,11 @@ menu::~menu()
 //
 //            }
 //
-//            //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+//            //auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 //
 //            m_pointTrack = m_pointPositionHint;
 //
-//            //void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
+//            //void menu::layout_menu(::draw2d::graphics_pointer & pdraw2dgraphics)
 //            //{
 //
 //            point = m_pointTrack;
@@ -1928,11 +1928,11 @@ menu::~menu()
 //
 //         //auto pdraw2d = psystem->draw2d();
 //
-//         auto pstyle = m_puserinteractionOwner->get_style(pgraphics);
+//         auto pstyle = m_puserinteractionOwner->get_style(pdraw2dgraphics);
 //
-//         pgraphics->set(get_font(pstyle));
+//         pdraw2dgraphics->set(get_font(pstyle));
 //
-//         auto metrics = pgraphics->get_text_metrics();
+//         auto metrics = pdraw2dgraphics->get_text_metrics();
 //
 //         auto dMaxHeight = metrics.get_line_height();
 //
@@ -1958,14 +1958,14 @@ menu::~menu()
 //
 //         //class calc_size calcsize;
 //
-//         //calcsize.m_pgraphics = pgraphics;
+//         //calcsize.m_pgraphics = pdraw2dgraphics;
 //
 //         ::i32_size size;
 //
 //         if (m_bCloseButton)
 //         {
 //
-//            size = m_pitemClose->m_puserinteraction->get_preferred_size(pgraphics);
+//            size = m_pitemClose->m_puserinteraction->get_preferred_size(pdraw2dgraphics);
 //
 //            information() << "close_button size : " << size;
 //
@@ -2015,7 +2015,7 @@ menu::~menu()
 //            if (puserinteraction)
 //            {
 //
-//               size = puserinteraction->get_preferred_size(pgraphics);
+//               size = puserinteraction->get_preferred_size(pdraw2dgraphics);
 //
 //               information() << "button text and size : \"" << strButtonText << "\", " << size;
 //
@@ -2117,7 +2117,7 @@ menu::~menu()
 //         //   if (puserinteraction)
 //         //   {
 //
-//         //      size = pmenuitema->element_at(i)->m_puserinteraction->get_preferred_size(pgraphics);
+//         //      size = pmenuitema->element_at(i)->m_puserinteraction->get_preferred_size(pdraw2dgraphics);
 //
 //         //      information() << "button text and size : \"" << strButtonText << "\", " << size;
 //
@@ -2205,7 +2205,7 @@ menu::~menu()
 //
 //            }
 //
-//               pbergstyle->prepare_menu(pgraphics, pitem);
+//               pbergstyle->prepare_menu(pdraw2dgraphics, pitem);
 //
 //            //pitem->m_rectangleUi.right = maximum(pitem->m_rectangleUi.right, pitem->m_rectangleUi.left + m_sizeMinimum.cx);
 //
@@ -2221,7 +2221,7 @@ menu::~menu()
 //            if (pbergstyle)
 //            {
 //
-//               pbergstyle->prepare_menu(pgraphics, m_pitemClose);
+//               pbergstyle->prepare_menu(pdraw2dgraphics, m_pitemClose);
 //
 //            }
 //
@@ -2282,7 +2282,7 @@ menu::~menu()
 //
 //            information() << "::user::menu::layout_menu place : " << rectangleWindow;
 //
-//            place(rectangleWindow, ::user::e_layout_layout, pgraphics);
+//            place(rectangleWindow, ::user::e_layout_layout, pdraw2dgraphics);
 //
 //            //display(e_display_normal, ::user::e_activation_no_activate);
 //
@@ -2291,7 +2291,7 @@ menu::~menu()
 //         else
 //         {
 //
-//            set_size(m_size, ::user::e_layout_layout, pgraphics);
+//            set_size(m_size, ::user::e_layout_layout, pdraw2dgraphics);
 //
 //         }
 //

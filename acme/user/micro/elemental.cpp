@@ -326,7 +326,7 @@ namespace micro
 
       pcontext->create({400, 300});
       
-      pcontext->set_font(micro_theme()->m_pfont);
+      pcontext->set_font(micro_theme()->m_pwritetextfont);
 
       auto size = pcontext->get_text_extents(m_strText);
 
@@ -2312,7 +2312,7 @@ namespace micro
    //}
 
 
-   //::collection::index elemental::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, character_count iSel)
+   //::collection::index elemental::plain_edit_sel_to_column(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel)
    //{
 
    //   return -1;
@@ -2320,7 +2320,7 @@ namespace micro
    //}
 
 
-   //::collection::index elemental::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x)
+   //::collection::index elemental::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel, ::i32 & x)
    //{
 
    //   return -1;
@@ -2328,7 +2328,7 @@ namespace micro
    //}
 
 
-   //::collection::index elemental::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel)
+   //::collection::index elemental::plain_edit_sel_to_line(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel)
    //{
 
    //   return -1;
@@ -2336,7 +2336,7 @@ namespace micro
    //}
 
 
-   //::collection::index elemental::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x)
+   //::collection::index elemental::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel, ::i32 & x)
    //{
 
    //   return -1;
@@ -2344,7 +2344,7 @@ namespace micro
    //}
 
 
-   //character_count elemental::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn)
+   //character_count elemental::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iLine, ::collection::index iColumn)
    //{
 
    //   return -1;
@@ -2352,7 +2352,7 @@ namespace micro
    //}
 
 
-   //character_count elemental::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::i32 x)
+   //character_count elemental::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iLine, ::i32 x)
    //{
 
    //   return -1;
@@ -2360,7 +2360,7 @@ namespace micro
    //}
 
 
-   //::collection::index elemental::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel)
+   //::collection::index elemental::plain_edit_char_to_line(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel)
    //{
 
    //   return -1;

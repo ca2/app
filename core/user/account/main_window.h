@@ -48,12 +48,12 @@ namespace account
       void operator()(::timer * ptimer) override;
 
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
-      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       //bool has_pending_graphical_update() override;
 

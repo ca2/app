@@ -131,7 +131,7 @@ namespace data
       void fill_children() override;
 
 
-      //virtual void tree_layout(::draw2d::graphics_pointer & pgraphics);
+      //virtual void tree_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
    };
@@ -1054,9 +1054,9 @@ return;
       try
       {
 
-         //auto pgraphics = ::draw2d::create_memory_graphics();
+         //auto pdraw2dgraphics = ::draw2d::create_memory_graphics();
 
-         //tree_layout(pgraphics);
+         //tree_layout(pdraw2dgraphics);
 
          on_tree_layout();
 
@@ -1071,7 +1071,7 @@ return;
    }
 
 
-   //void tree <  ITEM >::tree_layout(::draw2d::graphics_pointer & pgraphics)
+   //void tree <  ITEM >::tree_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //}

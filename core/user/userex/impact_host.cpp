@@ -553,7 +553,7 @@ namespace userex
    }
 
 
-   void impact_host::on_layout(::draw2d::graphics_pointer &pgraphics) { ::user::impact::on_layout(pgraphics); }
+   void impact_host::on_layout(::draw2d::graphics_pointer &pdraw2dgraphics) { ::user::impact::on_layout(pdraw2dgraphics); }
 
 
    ::pointer<::user::document> impact_host::impact_item_document(const ::atom &atomImpactId)
@@ -637,10 +637,10 @@ namespace userex
    }
 
 
-   void impact_host::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact_host::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
    
-      ::user::place_holder::_001OnDraw(pgraphics);
+      ::user::place_holder::_001OnDraw(pdraw2dgraphics);
 
    }
 

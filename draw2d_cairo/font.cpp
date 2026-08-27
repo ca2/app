@@ -50,16 +50,16 @@ namespace draw2d_cairo
 
 #if defined(USE_PANGO)
 
-      m_pdesc = nullptr;
+      m_ppangofontdescription = nullptr;
 
 #else
 
       m_bToyQuotedFontSelection = false;
 
-      m_pfont = nullptr;
-      m_ft = nullptr;
-      m_pfontface = nullptr;
-      zero(m_keyDone);
+      m_pcairoscaledfont = nullptr;
+      m_ftface = nullptr;
+      m_pcairofontface = nullptr;
+      zero(m_cairouserdatakeyDone);
 
 #endif
 
@@ -74,40 +74,40 @@ namespace draw2d_cairo
    }
 
 
-   void font::destroy_os_data()
+   void font::destroy()
    {
 
 //#if defined(USE_PANGO)
 //
 //      // this structure stores a description of the style of font you'd most like
-//      PangoFontDescription* m_pdesc;
+//      PangoFontDescription* m_ppangofontdescription;
 //
 //#else
 //
-//      FT_Face                    m_ft;
-//      cairo_user_data_key_t      m_keyDone;
-//      cairo_scaled_font_t* m_pfont;
+//      FT_Face                    m_ftface;
+//      cairo_user_data_key_t      m_cairouserdatakeyDone;
+//      cairo_scaled_font_t* m_pcairoscaledfont;
 //
 //#endif
 //
-//      cairo_font_face_t* m_pfontface;
+//      cairo_font_face_t* m_pcairofontface;
 //      bool                       m_bToyQuotedFontSelection;
 
 #if defined(USE_PANGO)
 
-      if (m_pdesc == nullptr)
+      if (m_ppangofontdescription == nullptr)
       {
 
-         pango_font_description_free(m_pdesc);
+         pango_font_description_free(m_ppangofontdescription);
 
       }
 
 #else
 
-      if (::is_set(m_pfontface))
+      if (::is_set(m_pcairofontface))
       {
 
-         cairo_font_face_destroy(m_pfontface);
+         cairo_font_face_destroy(m_pcairofontface);
 
       }
 
@@ -117,45 +117,45 @@ namespace draw2d_cairo
 
    }
 
-
-   void font::destroy()
-   {
-
-      _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-//      if(m_pdesc != nullptr)
-//      {
-// // the fonts are stored and managed by "font cache"
-//         cairo_scaled_font_destroy(m_pdesc);
 //
-//         m_pdesc = nullptr;
+//   void font::destroy()
+//   {
+//
+//      _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+////      if(m_ppangofontdescription != nullptr)
+////      {
+//// // the fonts are stored and managed by "font cache"
+////         cairo_scaled_font_destroy(m_ppangofontdescription);
+////
+////         m_ppangofontdescription = nullptr;
+////
+////      }
+//
+////      if(m_pface != nullptr)
+////      {
+//// // the fonts are stored and managed by "font cache"
+////         cairo_font_face_destroy(m_pface);
+////
+////         m_pface = nullptr;
+////
+////      }
+//
+////      if(m_ftface != nullptr)
+//      {
+//
+//         //FT_Done_Face (m_ftface);
+//
+//         //       m_ftface = nullptr;
 //
 //      }
-
-//      if(m_pface != nullptr)
-//      {
-// // the fonts are stored and managed by "font cache"
-//         cairo_font_face_destroy(m_pface);
 //
-//         m_pface = nullptr;
+//      destroy_os_data();
 //
-//      }
-
-//      if(m_ft != nullptr)
-      {
-
-         //FT_Done_Face (m_ft);
-
-         //       m_ft = nullptr;
-
-      }
-
-      destroy_os_data();
-
-      ::write_text::font::destroy();
-
-      //return ::success;
-
-   }
+//      ::write_text::font::destroy();
+//
+//      //return ::success;
+//
+//   }
 
 
 //   void font::dump(dump_context & dumpcontext) const
@@ -166,7 +166,7 @@ namespace draw2d_cairo
 //   }
 
 
-   void font::create(::draw2d::graphics * pgraphics, ::i8 iCreate)
+   void font::update(::draw2d::graphics * pdraw2dgraphics)
    {
 
       bool bFont = false;
@@ -176,13 +176,13 @@ namespace draw2d_cairo
 
          ::pointer<::draw2d_cairo::draw2d>pdraw2d = system()->draw2d();
 
-         auto pfontface = pdraw2d->private_ftface_from_file(pgraphics->m_papplication, m_pathFontFile);
+         auto pfontface = pdraw2d->private_ftface_from_file(pdraw2dgraphics->m_papplication, m_pathFontFile);
 
-         m_pfontface = pfontface;
+         m_pcairofontface = pfontface;
 
-         m_osdata[1] = m_pfontface;
+         //m_osdata[1] = m_pcairofontface;
 
-         m_osdata[0] = nullptr;
+         //m_osdata[0] = nullptr;
 
          return ;
 
@@ -205,14 +205,14 @@ namespace draw2d_cairo
 
       m_mapPangoLayout.erase_all();
 
-      m_pdesc = pango_font_description_new();
+      m_ppangofontdescription = pango_font_description_new();
 
       ::f64 dFontScaler = 1.0;
 
-      if(::is_set(pgraphics->m_pdraw2dhost))
+      if(::is_set(pdraw2dgraphics->m_pdraw2dhost))
       {
 
-         dFontScaler = pgraphics->m_pdraw2dhost->font_scaler();
+         dFontScaler = pdraw2dgraphics->m_pdraw2dhost->font_scaler();
 
       }
       else
@@ -222,26 +222,26 @@ namespace draw2d_cairo
 
       }
 
-      pango_font_description_set_family(m_pdesc, family_name());
+      pango_font_description_set_family(m_ppangofontdescription, family_name());
 
-      pango_font_description_set_style(m_pdesc, m_bItalic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL);
+      pango_font_description_set_style(m_ppangofontdescription, m_bItalic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL);
 
-      pango_font_description_set_weight(m_pdesc, (PangoWeight)m_fontweight.as_i32());
+      pango_font_description_set_weight(m_ppangofontdescription, (PangoWeight)m_fontweight.as_i32());
 
       if (m_fontsize.eunit() == ::e_unit_pixel)
       {
 
-         pango_font_description_set_absolute_size(m_pdesc, m_fontsize.as_f64() * PANGO_SCALE);
+         pango_font_description_set_absolute_size(m_ppangofontdescription, m_fontsize.as_f64() * PANGO_SCALE);
 
       }
       else
       {
 
-         pango_font_description_set_size(m_pdesc, m_fontsize.as_f64() * PANGO_SCALE);
+         pango_font_description_set_size(m_ppangofontdescription, m_fontsize.as_f64() * PANGO_SCALE);
 
       }
 
-      m_osdata[0] = m_pdesc;
+      m_osdata[0] = m_ppangofontdescription;
 
 #elif TOY_FONT_SELECTION
 
@@ -251,10 +251,10 @@ namespace draw2d_cairo
 
 #else
 
-      auto pcairographics = __graphics(pgraphics);
+      auto pcairographics = __graphics(pdraw2dgraphics);
 
       FT_Face ftface = pcairographics->ftface(
-         m_pfontfamily->family_name(pgraphics),
+         m_pfontfamily->family_name(pdraw2dgraphics),
          m_fontweight.as_i32(), m_bItalic);
 
       if (!ftface)
@@ -270,9 +270,9 @@ namespace draw2d_cairo
 
          cairo_status_t status = cairo_font_face_status(pfontface);
 
-         m_pfontface = pfontface;
+         m_pcairofontface = pfontface;
 
-         m_osdata[1] = m_pfontface;
+         //m_osdata[1] = m_pcairofontface;
 
       }
 
@@ -298,9 +298,9 @@ namespace draw2d_cairo
 
       cairo_status_t status = cairo_font_face_status(pfontface);
 
-      m_pfontface = pfontface;
+      m_pcairofontface = pfontface;
 
-      m_osdata[1] = m_pfontface;
+      //m_osdata[1] = m_pcairofontface;
 
       if (pfontface)
       {
@@ -351,10 +351,10 @@ namespace draw2d_cairo
 
 
 
-   ::enum_character_set font::calculate_character_set(::draw2d::graphics * pgraphics)
+   ::enum_character_set font::calculate_character_set(::draw2d::graphics * pdraw2dgraphics)
    {
 
-      return ::write_text::font::calculate_character_set(pgraphics);
+      return ::write_text::font::calculate_character_set(pdraw2dgraphics);
 
    }
 

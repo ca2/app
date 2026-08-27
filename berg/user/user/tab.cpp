@@ -29,7 +29,7 @@
 
 //extern CLASS_DECL_BERG thread_int_ptr < DWORD_PTR > t_time1;
 
-// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The i32_size is the i32_size of the alien!!
+// pdraw2dgraphics->get_text_extent("->:<-"); // oh no!! omg!! The i32_size is the i32_size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -1465,10 +1465,10 @@ namespace user
    }
 
 
-   void tab::on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics)
+   void tab::on_drag_scroll_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       
-      ::user::interaction::on_drag_scroll_layout(pgraphics);
+      ::user::interaction::on_drag_scroll_layout(pdraw2dgraphics);
       
       if(m_pointBarDragScrollMax.x > 0)
       {
@@ -1565,7 +1565,7 @@ namespace user
          uId))
          return false;
       m_bCreated = true;
-      on_layout(pgraphics);
+      on_layout(pdraw2dgraphics);
       return true;
    }
    */
@@ -1624,7 +1624,7 @@ namespace user
 
       //auto pdraw2d = psystem->draw2d();
 
-      //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      //auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
       get_data()->m_bCreated = true;
 
@@ -2383,7 +2383,7 @@ namespace user
 //      // get_tab_holder(get_current_tab_index())->display(e_display_normal);
 //      // }
 //
-//      //on_layout(pgraphics);
+//      //on_layout(pdraw2dgraphics);
 //
 //   }
 

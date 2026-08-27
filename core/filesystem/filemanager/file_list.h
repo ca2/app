@@ -128,7 +128,7 @@ namespace filemanager
       virtual void _017OpenContextMenuSelected(const ::action_context & action_context) override;
       void _017PreSynchronize(const ::action_context & action_context);
       //void TakeAnimationSnapshot();
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       ::file::item & GetFileManagerItem();
       //DECLARE_MESSAGE_HANDLER(_001OnMainPostMessage);
       void _017UpdateList(const ::action_context & action_context);

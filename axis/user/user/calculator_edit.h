@@ -31,7 +31,7 @@ namespace calculator
       virtual void set_callback(callback* pcallback) override;
 
 
-      virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context& action_context) override;
+      virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pdraw2dgraphics, const ::action_context& action_context) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

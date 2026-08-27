@@ -31,7 +31,7 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
    };

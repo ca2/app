@@ -205,7 +205,7 @@ namespace experience_core
 
 
 
-   void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, enum_border eside)
+   void frame_008::draw_border_side(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX, enum_border eside)
    {
 
       auto pframewindow = m_pframewindow;
@@ -232,7 +232,7 @@ namespace experience_core
       else
       {
 
-         auto pstyle = pframewindow->get_style(pgraphics);
+         auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
          crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
@@ -248,7 +248,7 @@ namespace experience_core
 
       ::i32_rectangle rectangleA(rectangleX);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if(m_bHollow)
       {
@@ -259,7 +259,7 @@ namespace experience_core
 
          //rectangleA.right--;
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          if(eside & e_border_left)
          {
@@ -320,7 +320,7 @@ namespace experience_core
 
          GetBorderRectangle(rectangleA, 1, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle, m_ppenHollow0->m_color);
+         pdraw2dgraphics->fill_rectangle(rectangle, m_ppenHollow0->m_color);
 
          rectangleA.deflate(
             edisplay & e_display_left ? 0 : 1,
@@ -332,7 +332,7 @@ namespace experience_core
 
          GetBorderRectangle(rectangleA, 1, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle, m_ppenHollow1->m_color);
+         pdraw2dgraphics->fill_rectangle(rectangle, m_ppenHollow1->m_color);
 
          rectangleA.deflate(
             edisplay & e_display_left ? 0 : 1,
@@ -344,7 +344,7 @@ namespace experience_core
 
          GetBorderRectangle(rectangleA, 1, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle, m_ppenHollow2->m_color);
+         pdraw2dgraphics->fill_rectangle(rectangle, m_ppenHollow2->m_color);
 
          rectangleA.deflate(
             edisplay & e_display_left ? 0 : 1,
@@ -356,7 +356,7 @@ namespace experience_core
 
          information() << "rA : " << rectangleA;
 
-         pgraphics->fill_rectangle(rectangle, m_ppenHollow3->m_color);
+         pdraw2dgraphics->fill_rectangle(rectangle, m_ppenHollow3->m_color);
 
          rectangleA.deflate(
             edisplay & e_display_left ? 0 : 1,
@@ -367,37 +367,37 @@ namespace experience_core
          GetBorderRectangle(rectangleA, 1, &rectangle, eside);
 
          information() << "rA : " << rectangleA;
-         information() << "graphics origin : " << pgraphics->origin();
+         information() << "graphics origin : " << pdraw2dgraphics->origin();
          information() << "r : " << rectangle;
 
-         pgraphics->fill_rectangle(rectangle, m_ppenHollow5->m_color);
+         pdraw2dgraphics->fill_rectangle(rectangle, m_ppenHollow5->m_color);
 
       }
       else if(m_pframewindow->m_estyle == ::user::StyleLightBlue || m_pframewindow->m_estyle == ::user::StyleRedOrange)
       {
          rectangleA.deflate(1,1,1,1);
-         Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,::color::transparent);//m_colorMoveableBorderDkShadow);
+         Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,crMoveableBorder,::color::transparent);//m_colorMoveableBorderDkShadow);
 
          if(!m_bHollow)
          {
 
             rectangleA.deflate(1,1,1,1);
                      
-            Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorderHilight,crMoveableBorderShadow);
+            Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,crMoveableBorderHilight,crMoveableBorderShadow);
 
             rectangleA.deflate(1,1,1,1);
                      
-            Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
+            Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
 
             rectangleA.deflate(1,1,1,1);
                      
-            Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
+            Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
 
             ::i32_rectangle rectangle;
                      
             GetBorderRectangle(rectangleX, &rectangle, eside);
                      
-            pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
+            pdraw2dgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
 
          }
 
@@ -411,7 +411,7 @@ namespace experience_core
                   
          GetBorderRectangle(rectangleX, &rectangle, eside);
                   
-         pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
+         pdraw2dgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
                   
       }
       else
@@ -421,7 +421,7 @@ namespace experience_core
                   
          GetBorderRectangle(rectangleX, &rectangle, eside);
                   
-         pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
+         pdraw2dgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
 
          ::i32_rectangle rectangleXB = rectangleA;
 
@@ -434,14 +434,14 @@ namespace experience_core
          rectangleA.right--;
          if(edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+            Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
          }
 
          rectangleA.top++;
          rectangleA.bottom--;
          rectangleA.left++;
          rectangleA.right--;
-         Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+         Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
 
          rectangleA.top++;
          rectangleA.bottom--;
@@ -449,13 +449,13 @@ namespace experience_core
          rectangleA.right--;
          if(edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+            Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
          }
       }
 
    }
 
-   void frame_008::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
+   void frame_008::on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pframewindow = m_pframewindow;
@@ -496,7 +496,7 @@ namespace experience_core
       if(!pframewindow->layout().is_full_screen())
       {
 
-         DrawBorder(pgraphics, rectangleNClient);
+         DrawBorder(pdraw2dgraphics, rectangleNClient);
 
       }
 
@@ -511,16 +511,16 @@ namespace experience_core
 
       if(!bZoomed && !pframewindow->layout().is_full_screen())
       {
-         DrawGripSet(pgraphics, rectangleNClient);
+         DrawGripSet(pdraw2dgraphics, rectangleNClient);
       }
 
-      //            pgraphics->SetBkMode(iOriginalBkMode);
-      //          pgraphics->set_text_color(crOriginalTextColor);
+      //            pdraw2dgraphics->SetBkMode(iOriginalBkMode);
+      //          pdraw2dgraphics->set_text_color(crOriginalTextColor);
 
    }
 
 
-   void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
+   void frame_008::DrawBorder(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX)
    {
 
       // glxxx
@@ -547,48 +547,48 @@ namespace experience_core
          //rectangleA.bottom--;
          //rectangleA.right--;
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->set(m_ppenHollow0);
+         pdraw2dgraphics->set(m_ppenHollow0);
 
-         pgraphics->draw_rectangle(rectangleA);
+         pdraw2dgraphics->draw_rectangle(rectangleA);
 
-         //Draw3dRectSide(pgraphics,rectangleA,eside,argb(8,50,100,200),argb(8,50,100,200));
+         //Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,argb(8,50,100,200),argb(8,50,100,200));
          rectangleA.deflate(1,1,1,1);
 
-         pgraphics->set(m_ppenHollow1);
+         pdraw2dgraphics->set(m_ppenHollow1);
 
-         pgraphics->draw_rectangle(rectangleA);
+         pdraw2dgraphics->draw_rectangle(rectangleA);
 
-         //Draw3dRectSide(pgraphics,rectangleA,eside,argb(11,50,100,200),argb(11,50,100,200));
+         //Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,argb(11,50,100,200),argb(11,50,100,200));
          rectangleA.deflate(1,1,1,1);
 
-         pgraphics->set(m_ppenHollow2);
+         pdraw2dgraphics->set(m_ppenHollow2);
 
-         pgraphics->draw_rectangle(rectangleA);
+         pdraw2dgraphics->draw_rectangle(rectangleA);
 
-         //Draw3dRectSide(pgraphics,rectangleA,eside,argb(23,50,100,200),argb(23,50,100,200));
+         //Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,argb(23,50,100,200),argb(23,50,100,200));
          rectangleA.deflate(1,1,1,1);
 
-         pgraphics->set(m_ppenHollow3);
+         pdraw2dgraphics->set(m_ppenHollow3);
 
-         pgraphics->draw_rectangle(rectangleA);
+         pdraw2dgraphics->draw_rectangle(rectangleA);
 
-         //Draw3dRectSide(pgraphics,rectangleA,eside,argb(49,50,100,200),argb(49,50,100,200));
+         //Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,argb(49,50,100,200),argb(49,50,100,200));
          rectangleA.deflate(1,1,1,1);
 
-         pgraphics->set(m_ppenHollow4);
+         pdraw2dgraphics->set(m_ppenHollow4);
 
-         pgraphics->draw_rectangle(rectangleA);
+         pdraw2dgraphics->draw_rectangle(rectangleA);
 
-         //Draw3dRectSide(pgraphics,rectangleA,eside,argb(49 +23,50,100,200),argb(49+23,50,100,200));
+         //Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,argb(49 +23,50,100,200),argb(49+23,50,100,200));
          rectangleA.deflate(1,1,1,1);
 
-         pgraphics->set(m_ppenHollow5);
+         pdraw2dgraphics->set(m_ppenHollow5);
 
-         pgraphics->draw_rectangle(rectangleA);
+         pdraw2dgraphics->draw_rectangle(rectangleA);
 
-         //Draw3dRectSide(pgraphics,rectangleA,eside,m_colorMoveableBorderDkShadow,m_colorMoveableBorderDkShadow);
+         //Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,m_colorMoveableBorderDkShadow,m_colorMoveableBorderDkShadow);
 
       }
       else
@@ -596,19 +596,19 @@ namespace experience_core
 
          if(eborder & e_border_top)
          {
-            draw_border_side(pgraphics,rectangleX,e_border_top);
+            draw_border_side(pdraw2dgraphics,rectangleX,e_border_top);
          }
          if(eborder & e_border_right)
          {
-            draw_border_side(pgraphics,rectangleX,e_border_right);
+            draw_border_side(pdraw2dgraphics,rectangleX,e_border_right);
          }
          if(eborder & e_border_bottom)
          {
-            draw_border_side(pgraphics,rectangleX,e_border_bottom);
+            draw_border_side(pdraw2dgraphics,rectangleX,e_border_bottom);
          }
          if(eborder & e_border_left)
          {
-            draw_border_side(pgraphics,rectangleX,e_border_left);
+            draw_border_side(pdraw2dgraphics,rectangleX,e_border_left);
          }
 
       }
@@ -659,10 +659,10 @@ namespace experience_core
    //}
 
 
-   void frame_008::_on_style_change(::draw2d::graphics_pointer & pgraphics)
+   void frame_008::_on_style_change(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      on_style_change_001_and_002(pgraphics);
+      on_style_change_001_and_002(pdraw2dgraphics);
 
       ::color::color color = m_colorMoveableBorderDkShadow;
 
@@ -706,7 +706,7 @@ namespace experience_core
 #define GRIP_LARGE 30
 
 
-   void frame_008::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleXParam, enum_grip egrip)
+   void frame_008::DrawGrip(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleXParam, enum_grip egrip)
    {
 
       // glxxx
@@ -732,12 +732,12 @@ namespace experience_core
          rectangleA.right = 4;
          rectangleA.bottom = size;
 
-         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+         pdraw2dgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
 
          rectangleA.right = size;
          rectangleA.bottom = 4;
 
-         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+         pdraw2dgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
 
       }
       break;
@@ -748,12 +748,12 @@ namespace experience_core
          rectangleA.left = rectangleA.right - 4;
          rectangleA.bottom = size;
 
-         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+         pdraw2dgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
 
          rectangleA.left = rectangleA.right - size;
          rectangleA.bottom = 4;
 
-         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+         pdraw2dgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
       }
       break;
       case e_grip_bottom_left:
@@ -763,12 +763,12 @@ namespace experience_core
          rectangleA.right = 4;
          rectangleA.top = rectangleA.bottom - size;
 
-         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+         pdraw2dgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
 
          rectangleA.right = size;
          rectangleA.top = rectangleA.bottom - 4;
 
-         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+         pdraw2dgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
       }
       break;
       case e_grip_bottom_right:
@@ -778,12 +778,12 @@ namespace experience_core
          rectangleA.left = rectangleA.right - 4;
          rectangleA.top = rectangleA.bottom - size;
 
-         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+         pdraw2dgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
 
          rectangleA.left = rectangleA.right - size;
          rectangleA.top = rectangleA.bottom - 4;
 
-         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+         pdraw2dgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
       }
       break;
       case e_grip_top:
@@ -794,7 +794,7 @@ namespace experience_core
          rectangleA.right = rectangleA.left + size;
          rectangleA.bottom = 4;
 
-         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+         pdraw2dgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
 
       }
       break;
@@ -806,7 +806,7 @@ namespace experience_core
          rectangleA.right = rectangleA.left + size;
          rectangleA.top = rectangleA.bottom - 4;
 
-         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+         pdraw2dgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
       }
       break;
       case e_grip_left:
@@ -817,7 +817,7 @@ namespace experience_core
          rectangleA.top = rectangleA.top + rectangleA.height() / 2 - size / 2;
          rectangleA.bottom = rectangleA.top + size;
 
-         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+         pdraw2dgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
       }
       break;
       case e_grip_right:
@@ -828,7 +828,7 @@ namespace experience_core
          rectangleA.top = rectangleA.top + rectangleA.height() / 2 - size / 2;
          rectangleA.bottom = rectangleA.top + size;
 
-         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+         pdraw2dgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
       }
       break;
       default:
@@ -839,7 +839,7 @@ namespace experience_core
    }
 
 
-   void frame_008::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam)
+   void frame_008::DrawRectGrip(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangleParam)
    {
 
       //
@@ -848,7 +848,7 @@ namespace experience_core
 
       auto pframewindow = m_pframewindow;
 
-      auto pstyle = pframewindow->get_style(pgraphics);
+      auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
       auto crButtonHilite = pframewindow->get_color(pstyle, ::e_element_button_hilite);
 
@@ -858,26 +858,26 @@ namespace experience_core
 
       auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonDarkShadow, 1.0);
+      pdraw2dgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonDarkShadow, 1.0);
 
       rectangle.top++;
       rectangle.bottom--;
       rectangle.left++;
       rectangle.right--;
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonShadow, 1.0);
+      pdraw2dgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonShadow, 1.0);
 
       rectangle.top++;
       rectangle.bottom--;
       rectangle.left++;
       rectangle.right--;
 
-      pgraphics->fill_rectangle(rectangle, crButtonFace);
+      pdraw2dgraphics->fill_rectangle(rectangle, crButtonFace);
 
    }
 
 
-   void frame_008::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
+   void frame_008::DrawGripSet(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX)
    {
 
       auto psizenager = m_pframewindow->size_manager();
@@ -886,35 +886,35 @@ namespace experience_core
 
       if(egrip & e_grip_top)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_top);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_top);
       }
       if((egrip & e_grip_top_right) == e_grip_top_right)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_top_right);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_top_right);
       }
       if(egrip & e_grip_right)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_right);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_right);
       }
       if((egrip & e_grip_bottom_right) == e_grip_bottom_right)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_bottom_right);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_bottom_right);
       }
       if(egrip & e_grip_bottom)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_bottom);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_bottom);
       }
       if((egrip & e_grip_bottom_left) == e_grip_bottom_left)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_bottom_left);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_bottom_left);
       }
       if(egrip & e_grip_left)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_left);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_left);
       }
       if((egrip & e_grip_top_left) == e_grip_top_left)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_top_left);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_top_left);
       }
 
    }

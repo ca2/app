@@ -20,7 +20,7 @@ namespace draw2d_cairo
       ~pen() override;
 
 
-      virtual bool create(::draw2d::graphics * pgraphics);
+      void update(::draw2d::graphics * pdraw2dgraphics) override;
       void destroy() override;
 
 

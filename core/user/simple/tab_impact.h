@@ -14,7 +14,7 @@ public:
    simple_tab_impact();
    ~simple_tab_impact() override;
 
-   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+   virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
    // void assert_ok() const override;
    // void dump(dump_context & dumpcontext) const override;
@@ -24,7 +24,7 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_create);
    DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
-   void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+   void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
    i32_rectangle rectangle(::user::enum_layout elayout = ::user::e_layout_sketch) override;

@@ -330,7 +330,7 @@ namespace graphics
          if (egraphics == e_graphics_draw)
          {
 
-
+            return ::transfer(pbufferitem->acquire_graphics());
 
          }
          else
@@ -343,12 +343,12 @@ namespace graphics
          //}
 
 
-         /// auto pgraphics = pgraphicscontext->draw2d_graphics();
+         /// auto pdraw2dgraphics = pgraphicscontext->draw2d_graphics();
 
          //if (egraphics == e_graphics_layout)
          //{
 
-            //  pgraphics->start_layer(true, user_interaction());
+            //  pdraw2dgraphics->start_layer(true, user_interaction());
 
             m_pdraw2dgraphics->start_layer(true, m_pwindow->user_interaction());
 

@@ -18,11 +18,11 @@ namespace user
       //::pointer<::xml::document>          m_pxmldoc;
       ::image::image_pointer                     m_pimageLogo;
       ::write_text::font_pointer          m_pfontTitle;
-      ::write_text::font_pointer          m_pfont;
+      ::write_text::font_pointer          m_pwritetextfont;
       ::draw2d::brush_pointer             m_pbrushBkSel;
       ::draw2d::brush_pointer             m_pbrushBkHoverSel;
       ::draw2d::pen_pointer               m_ppenBkSel;
-      ::draw2d::pen_pointer               m_ppen;
+      ::draw2d::pen_pointer               m_pdraw2dpen;
       string_map_base < ::image::image_pointer >      m_pimageMap;
       string_map_base < ::image::image_pointer >      m_pimageMapGray;
       //::i32_array_base                         m_iaPopup;
@@ -52,7 +52,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
@@ -60,7 +60,7 @@ namespace user
 
       bool load_xml(::payload payloadFile);
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
@@ -77,14 +77,14 @@ namespace user
       bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 
 
-      virtual void draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
-      virtual void draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::i32_point & point1, const ::i32_point& point2);
-      virtual void draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
-      virtual void draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
-      virtual void draw_item_rectangle_hover001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
-      virtual void draw_item_rectangle_sel001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
-      virtual void draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
-      virtual void draw_item_separator(::draw2d::graphics_pointer & pgraphics, const ::i32_point& point1, const ::i32_point& point2);
+      virtual void draw_border_rectangle(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle);
+      virtual void draw_header_separator(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_point & point1, const ::i32_point& point2);
+      virtual void draw_header_rectangle(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle);
+      virtual void draw_item_rectangle(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle);
+      virtual void draw_item_rectangle_hover001(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle);
+      virtual void draw_item_rectangle_sel001(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle);
+      virtual void draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle);
+      virtual void draw_item_separator(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_point& point1, const ::i32_point& point2);
 
 
    };

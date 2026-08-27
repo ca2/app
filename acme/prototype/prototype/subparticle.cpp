@@ -388,11 +388,11 @@ void subparticle::destroy_impl_data()
 }
 
 
-void subparticle::destroy_os_data()
-{
-
-
-}
+//void subparticle::destroy_os_data()
+//{
+//
+//
+//}
 
 
 //void subparticle::on_sequence()

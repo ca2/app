@@ -37,11 +37,11 @@ public:
    //void install_message_routing(::channel* pchannel) override;
    
    
-//   void _001DrawThis(::draw2d::graphics_pointer & pgraphics) override;
-//   void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
-//   void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-//   void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-//   void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+//   void _001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+//   void _001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+//   void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+//   void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+//   void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
    
    
    //DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -53,7 +53,7 @@ public:
    //void this->rectangle(::i32_rectangle* lprect) override;
    
    
-   //void on_layout(::draw2d::graphics_pointer& pgraphics) override;
+   //void on_layout(::draw2d::graphics_pointer& pdraw2dgraphics) override;
    //void create_window() override;
    void on_click(const ::payload & payload, ::user::mouse * pmouse) override;
    

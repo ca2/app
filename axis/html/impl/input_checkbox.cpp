@@ -35,7 +35,7 @@ namespace html
             check_box(){}
             virtual ~check_box() {}
 
-            virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) {}
+            virtual void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) {}
 
 
          };
@@ -181,17 +181,17 @@ namespace html
       void input_checkbox::_001OnDraw(html_data * pdata)
       {
 
-//         ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
+//         ::draw2d::graphics_pointer & pdraw2dgraphics = pdata->m_pcoredata->m_pgraphics;
 
          //::i32_rectangle rectangleWindow;
          //m_pcheckbox->window_rectangle(rectangleWindow);
-  //       ::i32_point pointPreviousContextOrg = pgraphics->get_origin();
+  //       ::i32_point pointPreviousContextOrg = pdraw2dgraphics->get_origin();
 
-    //     pgraphics->offset_origin((::i32) m_box.left, (::i32) m_box.top);
+    //     pdraw2dgraphics->offset_origin((::i32) m_box.left, (::i32) m_box.top);
 
          m_pcheckbox->_000CallOnDraw(pdata->m_pcoredata->m_pgraphics);
 
-      //   pgraphics->set_origin(pointPreviousContextOrg);
+      //   pdraw2dgraphics->set_origin(pointPreviousContextOrg);
 
       }
 

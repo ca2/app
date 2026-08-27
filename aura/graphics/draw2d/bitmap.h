@@ -46,54 +46,55 @@ namespace draw2d
       ::subparticle_pointer clone() override;
 
 
-      virtual bool copy_from(::draw2d::bitmap * pbitmap);
-      virtual bool copy_from(::draw2d::bitmap * pbitmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
+      virtual bool copy_from(::draw2d::bitmap * pdraw2dbitmap);
+      virtual bool copy_from(::draw2d::bitmap * pdraw2dbitmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
 
       virtual bool copy_from(::pixmap * ppixmap);
       virtual bool copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
 
-      template < typename POINTER >
-      inline POINTER get_os_data(::i8 i = 0) const
-      {
+      //template < typename POINTER >
+      //inline POINTER get_os_data(::i8 i = 0) const
+      //{
 
-         return (POINTER)m_osdata[i];
+      //   return (POINTER)m_osdata[i];
 
-      }
-
-
-      inline void* get_os_data(::i8 i = 0) const
-      {
-
-         return get_os_data < void * >(i);
-
-      }
+      //}
 
 
-      virtual void create_gpu_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, ::pixmap * ppixmap = nullptr);
-      virtual void CreateBitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, ::u32 nPlanes, ::u32 nBitcount, const void * pBits, ::i32 stride);
+      //inline void* get_os_data(::i8 i = 0) const
+      //{
 
-      //virtual bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP pBitmap);
+      //   return get_os_data < void * >(i);
 
-      virtual void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight);
-      virtual void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight);
+      //}
+
+
+      virtual void create_gpu_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size, ::pixmap * ppixmap = nullptr);
+      virtual void CreateBitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size, ::u32 nPlanes, ::u32 nBitcount, const void * pBits, ::i32 stride);
+
+      //virtual bool CreateBitmapIndirect(::draw2d::graphics * pdraw2dgraphics, LPBITMAP pBitmap);
+
+      virtual void CreateCompatibleBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight);
+      virtual void CreateDiscardableBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight);
 
       
+      virtual void update_bitmap_as_backed_by_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2graphics);
       virtual void update_bitmap_as_image_render_target(
          ::image::image * pimage,
          ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr,
-         ::draw2d::graphics * pgraphics = nullptr);
+         ::draw2d::graphics * pdraw2dgraphics = nullptr);
       virtual void update_bitmap_as_source(
          ::image::image * pimage,
          ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr,
-         ::draw2d::graphics * pgraphics = nullptr);
+         ::draw2d::graphics * pdraw2dgraphics = nullptr);
       virtual void preserve_image(const ::i32_size & size, ::image::image* pimage);
-      //virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, ::memory & memory, ::i32* piScan);
-      virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, ::pixmap * ppixmapOwned);
-      virtual bool host_bitmap(::draw2d::graphics* pgraphics, pixmap_t* ppximap);
-      virtual void CreateDIBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void *pjBits, ::u32 iUsage);
+      //virtual void create_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size& size, ::memory & memory, ::i32* piScan);
+      virtual void create_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size& size, ::pixmap * ppixmapOwned);
+      virtual bool host_bitmap(::draw2d::graphics * pdraw2dgraphics, pixmap_t* ppximap);
+      virtual void CreateDIBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void *pjBits, ::u32 iUsage);
 
-      //virtual void read_pixels(::draw2d::graphics * pgraphics, ::i32_size & size, ::i32_point & point, void * pdata);
-      //virtual void write_pixels(::draw2d::graphics * pgraphics, ::i32_size & size, ::i32_point & point, const void * pdata);
+      //virtual void read_pixels(::draw2d::graphics * pdraw2dgraphics, ::i32_size & size, ::i32_point & point, void * pdata);
+      //virtual void write_pixels(::draw2d::graphics * pdraw2dgraphics, ::i32_size & size, ::i32_point & point, const void * pdata);
       virtual void read_pixels(const ::i32_size & size, const ::i32_point & point, ::image32_t * pimage32, ::i32 iScan);
       virtual void defer_read_pixels(const ::i32_size & size, const ::i32_point & point, ::image32_t * pimage32, ::i32 iScan);
       virtual bool is_cpu_backed_by(const ::pixmap_t * ppixmap) const;

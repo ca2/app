@@ -71,7 +71,7 @@ namespace gpu
       virtual void dummy_model_buffer();
       virtual void present_shader();
 
-      //virtual void endDraw(::gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* prendererSrc);
+      //virtual void endDraw(::gpu::graphics* pdraw2dgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* prendererSrc);
       //virtual void present(::gpu::texture * pgputexture);
       virtual void present(::gpu::texture_site * pgputexturesite, ::gpu::command_buffer * pgpucommandbuffer);
       virtual void _present(::gpu::texture_site * pgputexturesiteSwapChain, ::gpu::texture_site * pgputexturesite, ::gpu::command_buffer * pgpucommandbuffer);

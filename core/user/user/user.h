@@ -501,7 +501,7 @@ namespace core
 
 
       // virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab,
-      // ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer &
+      // ::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer &
       // pbrushText);
 
 
@@ -657,7 +657,7 @@ namespace core
 
 
       ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab,
-      ///::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle& rectangle, ::draw2d::brush_pointer&
+      ///::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle& rectangle, ::draw2d::brush_pointer&
       /// pbrushText) override;
 
 
@@ -699,7 +699,7 @@ namespace core
 
 
       ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab,
-      ///::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle& rectangle, ::draw2d::brush_pointer&
+      ///::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle& rectangle, ::draw2d::brush_pointer&
       /// pbrushText) override;
 
 

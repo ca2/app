@@ -43,7 +43,7 @@ namespace axis
 
    void user::term() {}
    ::pointer<::user::interaction>
-   user::create_menu_button(::user::menu *pusermenu, ::draw2d::graphics_pointer &pgraphics, ::menu::item *pmenuitem)
+   user::create_menu_button(::user::menu *pusermenu, ::draw2d::graphics_pointer &pdraw2dgraphics, ::menu::item *pmenuitem)
    {
 
 

@@ -24,7 +24,7 @@ public:
    ::pointer < ::draw2d::pen > m_ppenBase;
    ::pointer < ::draw2d::pen > m_ppen1;
    f64_point_array m_pointa;
-   ::pointer<::draw2d::path> m_ppath;
+   ::draw2d::path_pointer m_pdraw2dpath;
    
    stock_icon();
    ~stock_icon();

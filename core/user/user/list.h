@@ -69,8 +69,8 @@ namespace user
 
 
 
-      ::i32 _001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem) override;
-      virtual ::i32 _001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, ::collection::index iItem, ::collection::index iSubItem);
+      ::i32 _001CalcSubItemWidth(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::collection::index iSubItem) override;
+      virtual ::i32 _001CalcSubItemWidth(::draw2d::graphics_pointer & pdraw2dgraphics, ::write_text::font * pwritetextfont, ::collection::index iItem, ::collection::index iSubItem);
       virtual ::i32 _001CalcItemHeight(::user::style * pstyle, ::i32 iBaseHeight);
       virtual ::e_align get_draw_text_align(EImpact eview);
       virtual ::e_draw_text get_draw_text_flags(EImpact eview);
@@ -105,11 +105,11 @@ namespace user
       //::draw2d::pen * _001GetPenFocused();
       //::draw2d::pen * _001GetPenHighlight();
       void PreSubClassWindow() override;
-      void _OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void _001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn) override;
-      //virtual ::i32 _001CalcItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem) override;
-      ::i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn) override;
-      virtual ::i32 _001CalcListWidth(::draw2d::graphics_pointer& pgraphics);
+      void _OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001MaximizeColumnWidth(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iColumn) override;
+      //virtual ::i32 _001CalcItemWidth(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iItem, ::collection::index iSubItem) override;
+      ::i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iColumn) override;
+      virtual ::i32 _001CalcListWidth(::draw2d::graphics_pointer& pdraw2dgraphics);
       void _001OnSort() override;
 
 
@@ -178,7 +178,7 @@ namespace user
       //void SetCacheInterface(mesh_cache_interface * pinterface);
       //void AddMessageHandling(::channel * pchannel);
       void _001ShowTopText(bool bShow = true) override;
-      void _001LayoutTopText(::draw2d::graphics_pointer& pgraphics) override;
+      void _001LayoutTopText(::draw2d::graphics_pointer& pdraw2dgraphics) override;
       void _001SetTopText(const ::wide_character * pcwsz) override;
 
       bool DIDDXHeaderLayout(bool bSave) override;
@@ -198,23 +198,23 @@ namespace user
 
       virtual bool CreateHeaderCtrl();
 
-      void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      //virtual void _001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast, ::collection::index iItemFirst, ::collection::index iItemLast);
+      //virtual void _001DrawGroups(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast, ::collection::index iItemFirst, ::collection::index iItemLast);
 
-      void _001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast) override;
+      void _001DrawGroups(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast) override;
 
-      virtual void _001DrawGroup(::draw2d::graphics_pointer & pgraphics, draw_list_group * pdrawgroup);
+      virtual void _001DrawGroup(::draw2d::graphics_pointer & pdraw2dgraphics, draw_list_group * pdrawgroup);
 
-      void _001DrawItems(::draw2d::graphics_pointer & pgraphics, ::collection::index iItemFirst, ::collection::index iItemLast) override;
+      void _001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItemFirst, ::collection::index iItemLast) override;
 
-      virtual void _001DrawItem(::draw2d::graphics_pointer & pgraphics, draw_list_item * pdrawitem);
+      virtual void _001DrawItem(::draw2d::graphics_pointer & pdraw2dgraphics, draw_list_item * pdrawitem);
 
-      virtual void _001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * psubitem);
+      virtual void _001DrawSubItem(::draw2d::graphics_pointer & pdraw2dgraphics, draw_list_subitem * psubitem);
 
       //virtual void _001GetItemImage(list_item * pitem);
 
@@ -240,7 +240,7 @@ namespace user
       virtual ::pointer<::user::list_header>create_list_header();
       ::pointer<::user::mesh_data>create_mesh_data() override;
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       void on_insert_columns() override;
       bool on_impact_update() override;
@@ -399,7 +399,7 @@ namespace user
 
       ::i32 get_wheel_scroll_delta() override;
 
-      //void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_context_offset_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       void on_change_context_offset(::user::enum_layout elayout) override;
 
@@ -412,9 +412,9 @@ namespace user
 
       void defer_create_mesh_data() override;
 
-      //void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       //virtual bool this->rectangle(::i32_rectangle * prectangle) override;
 

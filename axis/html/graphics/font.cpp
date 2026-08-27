@@ -28,7 +28,7 @@ namespace html
 
       initialize(pparticle);
 
-      constructø(m_pfont);
+      constructø(m_pwritetextfont);
 
       ::i32 iWeight;
 
@@ -100,7 +100,7 @@ namespace html
 
       bool bUnderline = ::str::case_insensitive_find("underline", m_strTextDecoration) >= 0;
 
-      m_pfont->create_font(strName, unit(dSize, e_unit_point), iWeight, false, bUnderline);
+      m_pwritetextfont->create_font(strName, unit(dSize, e_unit_point), iWeight, false, bUnderline);
 
       return true;
 

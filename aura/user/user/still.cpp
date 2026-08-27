@@ -76,13 +76,13 @@ namespace user
    }
 
 
-   void still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void still::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //if (m_pstillappearance)
       //{
 
-      //   m_pstillappearance->_001OnDraw(pgraphics);
+      //   m_pstillappearance->_001OnDraw(pdraw2dgraphics);
 
       //   return;
 
@@ -95,16 +95,16 @@ namespace user
 
       }
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       if (m_estill == e_still_image)
       {
 
-         _001OnDrawImage(pgraphics);
+         _001OnDrawImage(pdraw2dgraphics);
 
       }
       else
@@ -115,7 +115,7 @@ namespace user
 
             auto r = client2_rectangle();
 
-            pgraphics->fill_solid_rectangle(r, m_statuscolorBackground);
+            pdraw2dgraphics->fill_solid_rectangle(r, m_statuscolorBackground);
 
          }
 
@@ -146,7 +146,7 @@ namespace user
 
          auto color = get_color(pstyle, ::e_element_text, estate);
 
-         pgraphics->set_text_color(color);
+         pdraw2dgraphics->set_text_color(color);
 
          auto rectanglePadding = get_padding(pstyle);
 
@@ -155,13 +155,13 @@ namespace user
          if (m_estockicon != e_stock_icon_none)
          {
 
-            auto ppen = createø < ::draw2d::pen > ();
+            auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-            ppen->m_color = pgraphics->get_current_brush()->m_color;
+            pdraw2dpen->m_color = pdraw2dgraphics->get_current_brush()->m_color;
 
-            ppen->m_dWidth = 1.0;
+            pdraw2dpen->m_dWidth = 1.0;
 
-            pgraphics->set(ppen);
+            pdraw2dgraphics->set(pdraw2dpen);
 
             ::i32_rectangle rectangleIcon(rectangleX);
 
@@ -171,7 +171,7 @@ namespace user
             
             m_pstockicon->m_estockiconNew = m_estockicon;
 
-            pgraphics->draw(rectangleIcon, m_pstockicon);
+            pdraw2dgraphics->draw(rectangleIcon, m_pstockicon);
 
          }
          else
@@ -184,47 +184,47 @@ namespace user
             //if (!is_window_enabled())
             //{
 
-            //   //         pgraphics->set_text_color(pstyle->m_colorTextDisabled);
+            //   //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextDisabled);
             //   pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_disabled));
 
             //}
             //else if (is_left_button_pressed())
             //{
-            //   //         pgraphics->set_text_color(pstyle->m_colorTextPress);
+            //   //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextPress);
             //   pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_pressed));
             //}
             //else if (m_pitemHover && m_pitemHover->is_set())
             //{
-            //   //         pgraphics->set_text_color(pstyle->m_colorTextHover);
+            //   //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextHover);
             //   pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_hover));
             //}
             //else
             //{
-            //   //         pgraphics->set_text_color(pstyle->m_colorTextNormal);
+            //   //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextNormal);
             //   pbrushText->create_solid(get_color(pstyle, e_element_text));
             //}
 
-            //pgraphics->set(pbrushText);
+            //pdraw2dgraphics->set(pbrushText);
 
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            defer_update_text_out_array(pgraphics);
+            defer_update_text_out_array(pdraw2dgraphics);
 
             if(m_ptextouta)
             {
 
-               pgraphics->draw(*m_ptextouta);
+               pdraw2dgraphics->draw(*m_ptextouta);
 
             }
 
-            //pgraphics->draw_text(strText, rectangleX, ealign, edrawtext);
+            //pdraw2dgraphics->draw_text(strText, rectangleX, ealign, edrawtext);
 
             //m_rectangleTextBoundingBox.left = 0;
 
             //m_rectangleTextBoundingBox.top = 0;
 
-            //m_rectangleTextBoundingBox.set_size(pgraphics->get_text_extent(strText));
+            //m_rectangleTextBoundingBox.set_size(pdraw2dgraphics->get_text_extent(strText));
 
             //m_rectangleTextBoundingBox.Align(ealign, rectangleX);
 
@@ -481,29 +481,29 @@ namespace user
    //}
 
 
-   ::f64_size still::get_fitting_size(::draw2d::graphics_pointer & pgraphics)
+   ::f64_size still::get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      if (pgraphics.is_null())
+      if (pdraw2dgraphics.is_null())
       {
 
          auto psystem = system();
 
          auto pdraw2d = psystem->draw2d();
 
-         pgraphics = pdraw2d->create_memory_graphics({}, this);
+         pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
       }
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
       auto strWindowText = get_window_text();
 
-      auto size = pgraphics->get_text_extent(strWindowText);
+      auto size = pdraw2dgraphics->get_text_extent(strWindowText);
 
       ::write_text::text_metric tm;
 
-      pgraphics->get_text_metrics(&tm);
+      pdraw2dgraphics->get_text_metrics(&tm);
 
       ::f64_size sizeTotal;
 
@@ -516,19 +516,19 @@ namespace user
    }
 
    
-   void still::resize_to_fit(::draw2d::graphics_pointer& pgraphics)
+   void still::resize_to_fit(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       if (m_estill == e_still_text)
       {
 
-         pgraphics->set_font(this, ::e_element_none);
+         pdraw2dgraphics->set_font(this, ::e_element_none);
 
          auto strWindowText = get_window_text();
 
          //get_window_text(str);
 
-         auto size = pgraphics->get_text_extent(strWindowText);
+         auto size = pdraw2dgraphics->get_text_extent(strWindowText);
 
          ::i32_rectangle rectangle(0, 0, 0, 0);
 
@@ -549,7 +549,7 @@ namespace user
       else
       {
 
-         auto sizeTotal = get_adjusted_fitting_size(pgraphics);
+         auto sizeTotal = get_adjusted_fitting_size(pdraw2dgraphics);
 
          set_size(sizeTotal);
 
@@ -642,25 +642,25 @@ namespace user
    }
 
 
-   void still::defer_update_text_out_array(::draw2d::graphics_pointer & pgraphics)
+   void still::defer_update_text_out_array(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::pointer<::write_text::font>pfont;
+      ::pointer<::write_text::font>pwritetextfont;
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
-      if (m_pfont)
+      if (m_pwritetextfont)
       {
 
-         pfont = m_pfont;
+         pwritetextfont = m_pwritetextfont;
 
       }
       else
       {
 
-         pfont = get_font(pstyle, ::e_element_none);
+         pwritetextfont = get_font(pstyle, ::e_element_none);
 
       }
 
@@ -680,16 +680,18 @@ namespace user
 
       }
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
-      auto pOsData = pgraphics->get_current_font()->get_os_data(pgraphics, 0);
+      //auto pOsData = pdraw2dgraphics->get_current_font()->get_os_data(pdraw2dgraphics, 0);
 
-      if (!pOsData)
-      {
+      //if (!pOsData)
+      //{
 
-         pOsData = pgraphics->get_current_font();
+      //   pOsData = pdraw2dgraphics->get_current_font();
 
-      }
+      //}
+
+      auto pfontCurrent = pdraw2dgraphics->get_current_font();
 
       auto rectangleX = this->rectangle();
 
@@ -699,14 +701,14 @@ namespace user
 
       ::enum_text_wrap etextwrap = m_etextwrap;
 
-      if(m_ptextouta && m_ptextouta->is_updated(strWindowText, pOsData, rectangleX, ealign, etextwrap))
+      if(m_ptextouta && m_ptextouta->is_updated(strWindowText, pfontCurrent, rectangleX, ealign, etextwrap))
       {
 
          return;
 
       }
 
-      //auto pstyle = get_style(pgraphics);
+      //auto pstyle = get_style(pdraw2dgraphics);
 
       if(::is_null(m_ptextouta))
       {
@@ -724,11 +726,11 @@ namespace user
 
       }
 
-      pgraphics->create_simple_multiline_layout(*m_ptextouta, strWindowText, rectangleX, pgraphics->get_current_font(), ealign, etextwrap);
+      pdraw2dgraphics->create_simple_multiline_layout(*m_ptextouta, strWindowText, rectangleX, pdraw2dgraphics->get_current_font(), ealign, etextwrap);
 
       m_ptextouta->m_strLast = strWindowText;
 
-      m_ptextouta->m_pLastOsData = pOsData;
+      m_ptextouta->m_pwritetextfont = pwritetextfont;
 
       m_ptextouta->m_rectangleLast = rectangleX;
 
@@ -767,7 +769,7 @@ namespace user
    }
 
 
-   bool still::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   bool still::on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_bNeedAutoResizePerformLayout)
@@ -775,20 +777,20 @@ namespace user
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         //::pointer<::write_text::font>pfont;
+         //::pointer<::write_text::font>pwritetextfont;
 
-         //auto pstyle = get_style(pgraphics);
+         //auto pstyle = get_style(pdraw2dgraphics);
 
-         //if (m_pfont)
+         //if (m_pwritetextfont)
          //{
 
-         //   pfont = m_pfont;
+         //   pwritetextfont = m_pwritetextfont;
 
          //}
          //else
          //{
 
-         //   pfont = get_font(pstyle, ::e_element_none);
+         //   pwritetextfont = get_font(pstyle, ::e_element_none);
 
          //}
 
@@ -808,16 +810,9 @@ namespace user
 
          }
 
-         pgraphics->set_font(this, ::e_element_none);
+         pdraw2dgraphics->set_font(this, ::e_element_none);
 
-         auto pOsData = pgraphics->get_current_font()->get_os_data(pgraphics, 0);
-
-         if (!pOsData)
-         {
-
-            pOsData = pgraphics->get_current_font();
-
-         }
+         auto pwritetextfont = pdraw2dgraphics->get_current_font();
 
          if (strWindowText == "GPU API")
          {
@@ -826,7 +821,7 @@ namespace user
 
          }
 
-         if (m_ptextouta && m_ptextouta->is_updated(strWindowText, pOsData))
+         if (m_ptextouta && m_ptextouta->is_updated(strWindowText, pwritetextfont))
          {
 
             return false;
@@ -840,7 +835,7 @@ namespace user
          if (m_sizeFixed.is_empty())
          {
 
-            sizeText = get_fitting_size(pgraphics);
+            sizeText = get_fitting_size(pdraw2dgraphics);
          }
          else
          {
@@ -861,7 +856,7 @@ namespace user
 
          //m_rectangleText = rectangle;
 
-         set_size(::ceil(sizeText), ::user::e_layout_layout, pgraphics);
+         set_size(::ceil(sizeText), ::user::e_layout_layout, pdraw2dgraphics);
 
          return true;
 
@@ -872,10 +867,10 @@ namespace user
    }
 
 
-   void still::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void still::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      defer_update_text_out_array(pgraphics);
+      defer_update_text_out_array(pdraw2dgraphics);
 
    }
 
@@ -891,10 +886,10 @@ namespace user
    ::write_text::font_pointer still::get_font(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
-      if(m_pfont)
+      if(m_pwritetextfont)
       {
 
-         return m_pfont;
+         return m_pwritetextfont;
 
       }
 
@@ -903,7 +898,7 @@ namespace user
    }
 
 
-   void still::_002OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void still::_002OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -939,20 +934,20 @@ namespace user
 
       }
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       auto psystem = system();
 
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         pgraphics->fill_rectangle(rectangleX, colorBackground & 0.5_opacity);
+         pdraw2dgraphics->fill_rectangle(rectangleX, colorBackground & 0.5_opacity);
 
       }
       else
       {
 
-         pgraphics->fill_rectangle(rectangleX, colorBackground);
+         pdraw2dgraphics->fill_rectangle(rectangleX, colorBackground);
 
       }
 
@@ -988,7 +983,7 @@ namespace user
       if (rectangle.is_ok())
       {
 
-         pgraphics->draw_inset_rectangle(rectangleX, colorBorder, 1.0);
+         pdraw2dgraphics->draw_inset_rectangle(rectangleX, colorBorder, 1.0);
 
       }
 
@@ -1010,7 +1005,7 @@ namespace user
          rectangleDib = rectangleText;
          rectangleDib.bottom = minimum(rectangleText.top + m_pimage->height(), rectangleText.bottom);
          rectangleDib.right = minimum(rectangleText.left + m_pimage->width(), rectangleText.right);
-         //m_pimage->to(pgraphics, rectangleDib);
+         //m_pimage->to(pdraw2dgraphics, rectangleDib);
 
          {
 
@@ -1022,7 +1017,7 @@ namespace user
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pgraphics->draw(imagedrawing);
+            pdraw2dgraphics->draw(imagedrawing);
 
          }
 
@@ -1037,44 +1032,44 @@ namespace user
       if (!is_window_enabled())
       {
 
-         //         pgraphics->set_text_color(pstyle->m_colorTextDisabled);
+         //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextDisabled);
          pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_disabled));
 
       }
       else if (is_left_button_pressed())
       {
-         //         pgraphics->set_text_color(pstyle->m_colorTextPress);
+         //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextPress);
          pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_pressed));
       }
       else if (m_pitemHover && m_pitemHover->is_set())
       {
-         //         pgraphics->set_text_color(pstyle->m_colorTextHover);
+         //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextHover);
          pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_hover));
       }
       else
       {
-         //         pgraphics->set_text_color(pstyle->m_colorTextNormal);
+         //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextNormal);
          pbrushText->create_solid(get_color(pstyle, e_element_text));
       }
 
-      pgraphics->set(pbrushText);   
+      pdraw2dgraphics->set(pbrushText);   
 
       string strText(get_window_text());
 
-      if (m_pfont)
+      if (m_pwritetextfont)
       {
 
-         pgraphics->set(m_pfont);
+         pdraw2dgraphics->set(m_pwritetextfont);
 
       }
       else
       {
 
-         pgraphics->set_font(this, ::e_element_none);
+         pdraw2dgraphics->set_font(this, ::e_element_none);
 
       }
 
-      pgraphics->draw_text(strText, rectangleText, e_align_top_left);
+      pdraw2dgraphics->draw_text(strText, rectangleText, e_align_top_left);
 
    }
 
@@ -1122,7 +1117,7 @@ namespace user
    }
 
 
-   void still::_001OnDrawImage(::draw2d::graphics_pointer & pgraphics)
+   void still::_001OnDrawImage(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto strWindowText = get_window_text();
@@ -1136,42 +1131,42 @@ namespace user
       //   if (m_iHover == 0 || psession->m_puiLastLButtonDown == this)
       //   {
 
-      //      pgraphics->fill_rectangle(rectangleX, argb(255, 127, 127, 127));
+      //      pdraw2dgraphics->fill_rectangle(rectangleX, argb(255, 127, 127, 127));
 
       //   }
       //   else
       //   {
 
-      //      pgraphics->fill_rectangle(rectangleX, argb(255, 127, 127, 127));
+      //      pdraw2dgraphics->fill_rectangle(rectangleX, argb(255, 127, 127, 127));
 
       //   }
 
       //}
       //else
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       {
          if (!is_window_enabled())
          {
 
-            pgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background, e_state_disabled));
+            pdraw2dgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background, e_state_disabled));
 
          }
          else if ((m_pitemHover && m_pitemHover->is_set()) || is_left_button_pressed())
          {
 
-            //pgraphics->draw_inset_3d_rectangle(rectangleX,pstyle->_001GetColor(color_border_hover),pstyle->_001GetColor(color_border_hover));
+            //pdraw2dgraphics->draw_inset_3d_rectangle(rectangleX,pstyle->_001GetColor(color_border_hover),pstyle->_001GetColor(color_border_hover));
 
             //rectangleX.deflate(1,1);
 
-            pgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background, e_state_pressed));
+            pdraw2dgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background, e_state_pressed));
 
          }
          else
          {
 
-            pgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background));
+            pdraw2dgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background));
 
          }
 
@@ -1217,7 +1212,7 @@ namespace user
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pgraphics->draw(imagedrawing);
+            pdraw2dgraphics->draw(imagedrawing);
 
          }
 
@@ -1292,9 +1287,9 @@ namespace user
       //if (!varSel.is_empty())
       //{
 
-      //   m_pbitmap->m_pimageSel->create_as_descriptor(this);
+      //   m_pdraw2dbitmap->m_pimageSel->create_as_descriptor(this);
 
-      //   m_pbitmap->m_pimageSel->load_image(varSel);
+      //   m_pdraw2dbitmap->m_pimageSel->load_image(varSel);
 
       //}
 
@@ -1302,9 +1297,9 @@ namespace user
       //if (!varFocus.is_empty())
       //{
 
-      //   m_pbitmap->m_pimageFocus->create_as_descriptor(this);
+      //   m_pdraw2dbitmap->m_pimageFocus->create_as_descriptor(this);
 
-      //   m_pbitmap->m_pimageFocus->load_image(varFocus);
+      //   m_pdraw2dbitmap->m_pimageFocus->load_image(varFocus);
 
       //}
 
@@ -1312,9 +1307,9 @@ namespace user
       //if (!varDisabled.is_empty())
       //{
 
-      //   m_pbitmap->m_pimageDisabled->create_as_descriptor(this);
+      //   m_pdraw2dbitmap->m_pimageDisabled->create_as_descriptor(this);
 
-      //   m_pbitmap->m_pimageDisabled->load_image(varDisabled);
+      //   m_pdraw2dbitmap->m_pimageDisabled->load_image(varDisabled);
 
       //}
 
@@ -1322,9 +1317,9 @@ namespace user
       //if (!varHover.is_empty())
       //{
 
-      //   m_pbitmap->m_pimageHover->create_as_descriptor(this);
+      //   m_pdraw2dbitmap->m_pimageHover->create_as_descriptor(this);
 
-      //   m_pbitmap->m_pimageHover->load_image(varHover);
+      //   m_pdraw2dbitmap->m_pimageHover->load_image(varHover);
 
       //}
 

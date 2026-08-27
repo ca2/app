@@ -118,10 +118,10 @@ namespace user
    }
 
 
-   void prototype_impl::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
+   void prototype_impl::defer_do_graphics(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      m_puserinteraction->_000CallOnDraw(pgraphics);
+      m_puserinteraction->_000CallOnDraw(pdraw2dgraphics);
 
    }
 
@@ -149,7 +149,7 @@ namespace user
    }
 
 
-   void prototype_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void prototype_impl::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //m_puserinteraction->message_call(::user::e_message_size, 0, process_state().m_size.lparam());
@@ -393,21 +393,21 @@ namespace user
    //}
 
 
-   void prototype_impl::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   void prototype_impl::_001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      m_puserinteraction->_001OnTopNcClip(pgraphics);
+      m_puserinteraction->_001OnTopNcClip(pdraw2dgraphics);
 
    }
 
 
-//   void prototype_impl::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+//   void prototype_impl::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   {
 //
 //   }
 //
 //
-//   void prototype_impl::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+//   void prototype_impl::_000CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   {
 //
 //      if (!m_puserinteraction)
@@ -428,64 +428,64 @@ namespace user
 //
 //      windowing_output_debug_string("\ninteraction_impl_base::_001Print");
 //
-//      m_puserinteraction->_000CallOnDraw(pgraphics);
+//      m_puserinteraction->_000CallOnDraw(pdraw2dgraphics);
 //
 //   }
 //
 //
-//   void prototype_impl::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+//   void prototype_impl::_000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   {
 //
 //      if (m_puserinteraction)
 //      {
 //
-//         m_puserinteraction->_000CallOnDraw(pgraphics);
+//         m_puserinteraction->_000CallOnDraw(pdraw2dgraphics);
 //
 //      }
 //
 //   }
 //
 //
-//   void prototype_impl::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
+//   void prototype_impl::_001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   {
 //
 //      if (m_puserinteraction)
 //      {
 //
-//         m_puserinteraction->_001DrawThis(pgraphics);
+//         m_puserinteraction->_001DrawThis(pdraw2dgraphics);
 //
 //      }
 //
 //   }
 //
 //
-//   void prototype_impl::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+//   void prototype_impl::_001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   {
 //
 //      if (m_puserinteraction)
 //      {
 //
-//         m_puserinteraction->_001DrawChildren(pgraphics);
+//         m_puserinteraction->_001DrawChildren(pdraw2dgraphics);
 //
 //      }
 //
 //   }
 //
 //
-//   void prototype_impl::draw_control_background(::draw2d::graphics_pointer & pgraphics)
+//   void prototype_impl::draw_control_background(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   {
 //
 //      if (m_puserinteraction)
 //      {
 //
-//         m_puserinteraction->draw_control_background(pgraphics);
+//         m_puserinteraction->draw_control_background(pdraw2dgraphics);
 //
 //      }
 //
 //   }
 
 
-   void prototype_impl::set_origin(::draw2d::graphics_pointer & pgraphics)
+   void prototype_impl::set_origin(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
    }

@@ -28,7 +28,7 @@ namespace user
       // ::core::system* get_system();
 
 
-      void _001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * psubitem) override;
+      void _001DrawSubItem(::draw2d::graphics_pointer & pdraw2dgraphics, draw_list_subitem * psubitem) override;
 
       using ::user::list::_001HitTest_;
       bool _001HitTest_(const ::i32_point & point, ::collection::index&iItem, ::collection::index&iSubItem) override;
@@ -53,7 +53,7 @@ namespace user
 
       virtual void _001HideEditingControls();
       virtual void _001HideControl(::user::interaction * pinteraction);
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       //void _001UpdateColumns() override;
       ::user::interaction * _001GetEditControl();
@@ -93,7 +93,7 @@ namespace user
       void on_column_update() override;
 
 
-      void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
+      void _001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       virtual bool _001UpperEditableControl(::collection::index & iItem, ::collection::index & iSubItem);

@@ -36,15 +36,15 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       void operator()(::timer * ptimer) override;
 
       //void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
       //virtual void on_command(::message::command * pcommand) override;
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      //virtual void set_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32, ::i32) override;
+      //virtual void set_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32, ::i32) override;
       //virtual ::i32_point get_context_offset() override;
       //::f64_size get_total_size() override;
 
@@ -54,7 +54,7 @@ namespace user
 
       //virtual ::collection::index _001GetCurItem() override;
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
    };
 

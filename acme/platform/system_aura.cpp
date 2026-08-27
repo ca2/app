@@ -102,7 +102,7 @@ namespace platform
    //virtual ::i32 install_progress_app_add_up(::i32 iAddUp = 1) override{}
 
    //virtual ::install::canvas * install_create_canvas(){}
-   //void aura_system_layer::install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle){}
+   //void aura_system_layer::install_canvas_on_paint(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle){}
    //virtual ::i32 install_canvas_increment_mode(){}
 
    //::string aura_system_layer::install_get_platform() override{}
@@ -794,7 +794,7 @@ namespace platform
 
 
    //virtual ::install::canvas * install_create_canvas() override{}
-   //void aura_system_layer::install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle){}
+   //void aura_system_layer::install_canvas_on_paint(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle){}
    //virtual ::i32 install_canvas_increment_mode() override{}
 
 

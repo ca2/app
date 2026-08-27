@@ -28,12 +28,12 @@ namespace draw2d_cairo
 //   }
 
 
-   bool pen::create(::draw2d::graphics * pgraphics)
+   void pen::update(::draw2d::graphics * pdraw2dgraphics)
    {
 
-      m_osdata[0] = this;
+      //m_osdata[0] = this;
 
-      return true;
+      //return true;
 
    }
 

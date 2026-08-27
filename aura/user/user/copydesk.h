@@ -32,7 +32,7 @@ namespace user
       };
 
 
-      ::write_text::font_pointer          m_pfont;
+      ::write_text::font_pointer          m_pwritetextfont;
       ::windowing::window *               m_pwindow;
 
 

@@ -60,13 +60,13 @@ namespace user
 //   }
 
 
-   void split_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void split_bar::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
    }
 
 
-   void split_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void split_bar::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pframeTopLevel = top_level_frame();
@@ -85,7 +85,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      pgraphics->fill_rectangle(rectangleX, argb(255, 180, 180, 180));
+      pdraw2dgraphics->fill_rectangle(rectangleX, argb(255, 180, 180, 180));
 
    }
 

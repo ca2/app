@@ -18,7 +18,7 @@ public:
    virtual bool pre_create_window(::user::system * pusersystem) override;
 
 
-   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+   virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
 };

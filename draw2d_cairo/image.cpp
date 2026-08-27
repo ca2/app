@@ -14,7 +14,7 @@ namespace draw2d_cairo
 
 
    image::image::image() //:
-//      m_pbitmap(e_create),
+//      m_pdraw2dbitmap(e_create),
   //    m_spgraphics(e_create)
    {
 
@@ -29,16 +29,16 @@ namespace draw2d_cairo
 //   }
    ::draw2d::bitmap_pointer image::get_bitmap_as_source(::draw2d::graphics * pdraw2dgraphics) const
    {
-      return m_pbitmap;
+      return m_pdraw2dbitmap;
    }
    ::draw2d::bitmap_pointer image::get_bitmap_as_target(::draw2d::graphics * pdraw2dgraphics) const
    {
-      return m_pbitmap;
+      return m_pdraw2dbitmap;
    }
    ::draw2d::bitmap_pointer image::detach_bitmap()
    {
 
-      return m_pbitmap.detach();
+      return m_pdraw2dbitmap.detach();
 
    }
 
@@ -50,7 +50,7 @@ namespace draw2d_cairo
 
    //   ::image::image::read(stream);
 
-   //   cairo_surface_t * surface = dynamic_cast <::draw2d_cairo::bitmap *> (m_pbitmap.m_p)->m_psurface;
+   //   cairo_surface_t * surface = dynamic_cast <::draw2d_cairo::bitmap *> (m_pdraw2dbitmap.m_p)->m_pcairosurface;
 
    //   if (surface != nullptr)
    //   {
@@ -105,8 +105,8 @@ namespace draw2d_cairo
 //
 //      debug() << "draw2d_cairo::image::image::create : " << size;
 //
-//      if (m_pbitmap.is_set()
-//            && m_pbitmap->get_os_data() != nullptr
+//      if (m_pdraw2dbitmap.is_set()
+//            && m_pdraw2dbitmap->get_os_data() != nullptr
 //            //&& m_pgraphics.is_set()
 //            //&& m_pgraphics->get_os_data() != nullptr
 //            && size == m_sizeRaw)
@@ -129,11 +129,11 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      auto pbitmap = createø < ::draw2d::bitmap >();
+//      auto pdraw2dbitmap = createø < ::draw2d::bitmap >();
 //
-//      auto pgraphics = createø < ::draw2d::graphics >();
+//      auto pdraw2dgraphics = createø < ::draw2d::graphics >();
 //
-//      //if(pbitmap.is_null() || pgraphics.is_null())
+//      //if(pdraw2dbitmap.is_null() || pdraw2dgraphics.is_null())
 //      //{
 //
 //      //   return false;
@@ -157,10 +157,10 @@ namespace draw2d_cairo
 //
 //#endif
 //
-//      pbitmap->create_bitmap(nullptr, size, &pimage32Raw, nullptr, &iScan);
-//      //pbitmap->create_bitmap(nullptr, size, nullptr, &iScan);
+//      pdraw2dbitmap->create_bitmap(nullptr, size, &pimage32Raw, nullptr, &iScan);
+//      //pdraw2dbitmap->create_bitmap(nullptr, size, nullptr, &iScan);
 //
-//      //if(!pbitmap->create_bitmap(nullptr, size, (void **) &pimage32Raw, &iScan))
+//      //if(!pdraw2dbitmap->create_bitmap(nullptr, size, (void **) &pimage32Raw, &iScan))
 //      //{
 //
 //      //   return false;
@@ -187,10 +187,10 @@ namespace draw2d_cairo
 //
 //      destroy();
 //
-//      m_pbitmap = pbitmap;
-//      //m_pgraphics = pgraphics;
+//      m_pdraw2dbitmap = pdraw2dbitmap;
+//      //m_pgraphics = pdraw2dgraphics;
 //
-//      //m_pgraphics->set(m_pbitmap);
+//      //m_pgraphics->set(m_pdraw2dbitmap);
 //      //m_pgraphics->reset_impact_area();
 //      //m_pgraphics->m_pimage = this;
 //
@@ -217,7 +217,7 @@ namespace draw2d_cairo
    // {
    //    /*      if(bSelect)
    //          {
-   //             return m_spgraphics->SelectObject(m_pbitmap) != nullptr;
+   //             return m_spgraphics->SelectObject(m_pdraw2dbitmap) != nullptr;
    //          }
    //          else
    //          {
@@ -229,19 +229,21 @@ namespace draw2d_cairo
    // }
 
 
-   void image::create_from_graphics(::draw2d::graphics * pgraphics)
+   void image::create_from_graphics(::draw2d::graphics * pdraw2dgraphics)
    {
 
-      ::draw2d::bitmap * pbitmap = (dynamic_cast < ::draw2d_cairo::graphics * > (pgraphics))->get_current_bitmap();
+      //::cast < ::draw2d_cairo::graphics > pdraw2dcairographics = pdraw2dgraphics;
 
-      //if(pbitmap == nullptr)
+      ::draw2d::bitmap * pdraw2dbitmap = pdraw2dgraphics->get_current_bitmap();
+
+      //if(pdraw2dbitmap == nullptr)
       //{
 
       //   return false;
 
       //}
 
-      ::i32_size size = pbitmap->size();
+      ::i32_size size = pdraw2dbitmap->size();
 
       create_as_descriptor(size);
 
@@ -252,7 +254,7 @@ namespace draw2d_cairo
 
       //}
 
-      //::image::image_source imagesource(pgraphics);
+      //::image::image_source imagesource(pdraw2dgraphics);
 
       //::f64_rectangle rectangle(size);
 
@@ -272,7 +274,7 @@ namespace draw2d_cairo
 
       ::image::image::destroy();
 
-      m_pbitmap.release();
+      m_pdraw2dbitmap.release();
 
       //m_pgraphics.release();
 
@@ -281,13 +283,13 @@ namespace draw2d_cairo
    }
 
 
-//   bool image::to(::draw2d::graphics * pgraphics, const ::i32_point & point, const ::i32_size & size, const ::i32_point & ptSrc)
+//   bool image::to(::draw2d::graphics * pdraw2dgraphics, const ::i32_point & point, const ::i32_size & size, const ::i32_point & ptSrc)
 //   {
 //
-//      return pgraphics->BitBlt(point, size.cx, size.cy, get_graphics(), ptSrc.x, ptSrc.y) != false;
+//      return pdraw2dgraphics->BitBlt(point, size.cx, size.cy, get_graphics(), ptSrc.x, ptSrc.y) != false;
 //
 //      /*  return SetDIBitsToDevice(
-//           (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1(),
+//           (dynamic_cast<::win::graphics * >(pdraw2dgraphics))->get_handle1(),
 //           point.x, point.y,
 //           size.cx, size.cy,
 //           ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y,
@@ -300,7 +302,7 @@ namespace draw2d_cairo
    void image::_draw_raw(const ::i32_rectangle & rectangleTarget, ::image::image *pimage, const ::i32_point & pointSrc)
    {
 
-      auto pgraphics = acquire_graphics();
+      auto pdraw2dgraphics = acquire_graphics();
 
       ::f64_rectangle rectangle(rectangleTarget);
 
@@ -310,29 +312,29 @@ namespace draw2d_cairo
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      pgraphics->draw(imagedrawing);
+      pdraw2dgraphics->draw(imagedrawing);
 //      ::draw2d::bitmap_pointer bitmap;
-//      bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
-//      auto estatus = pgraphics->set(bitmap);
+//      bitmap->CreateCompatibleBitmap(pdraw2dgraphics, 1, 1);
+//      auto estatus = pdraw2dgraphics->set(bitmap);
 //      if(!estatus)
 //         return false;
 //      ::i32_size size = bitmap->get_size();
 //      if(!create(size))
 //      {
-//         pgraphics->set(bitmap);
+//         pdraw2dgraphics->set(bitmap);
 //         return false;
 //      }
 //      throw ::exception(todo);
-//      // xxx bool bOk = GetDIBits(LNX_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorrefMap, &(m_info), DIB_RGB_COLORS) != false;
-//      // xxx pgraphics->SelectObject(pbitmap);
+//      // xxx bool bOk = GetDIBits(LNX_HDC(pdraw2dgraphics), (HBITMAP) pdraw2dbitmap->get_os_data(), 0, cy, m_pcolorrefMap, &(m_info), DIB_RGB_COLORS) != false;
+//      // xxx pdraw2dgraphics->SelectObject(pdraw2dbitmap);
 //      // xxx return bOk;
    }
 
 
-//   bool image::from(const ::i32_point & pointDest, ::draw2d::graphics * pgraphics, const ::i32_point & point, const ::i32_size & size)
+//   bool image::from(const ::i32_point & pointDest, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & point, const ::i32_size & size)
 //   {
 //
-//      return m_spgraphics->BitBlt(pointDest.x, pointDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y);
+//      return m_spgraphics->BitBlt(pointDest.x, pointDest.y, sz.cx, sz.cy, pdraw2dgraphics, point.x, point.y);
 //
 //   }
 
@@ -513,14 +515,14 @@ namespace draw2d_cairo
 //
 //      }
 //
-      if (m_pbitmap.is_null())
+      if (m_pdraw2dbitmap.is_null())
       {
 
          return {};
 
       }
 
-      cairo_surface_t * surface = m_pbitmap.cast < ::draw2d_cairo::bitmap>()->m_psurface;
+      cairo_surface_t * surface = m_pdraw2dbitmap.cast < ::draw2d_cairo::bitmap>()->m_pcairosurface;
 
       if (surface == nullptr)
       {
@@ -624,14 +626,14 @@ namespace draw2d_cairo
       //
       // }
       //
-      if (m_pbitmap.is_null())
+      if (m_pdraw2dbitmap.is_null())
       {
 
          return;
 
       }
 
-      cairo_surface_t * surface = m_pbitmap.cast < ::draw2d_cairo::bitmap> ()->m_psurface;
+      cairo_surface_t * surface = m_pdraw2dbitmap.cast < ::draw2d_cairo::bitmap> ()->m_pcairosurface;
 
       if (surface == nullptr)
       {
@@ -658,7 +660,7 @@ namespace draw2d_cairo
 //      if(m_pgraphics.is_set())
 //      {
 //
-//         m_pgraphics->set(m_pbitmap);
+//         m_pgraphics->set(m_pdraw2dbitmap);
 //
 //      }
 
@@ -825,12 +827,12 @@ namespace draw2d_cairo
 //
 //      ::i32_rectangle rectx;
 //
-//      ::draw2d::bitmap * pbitmap = m_spgraphics->get_current_bitmap();
+//      ::draw2d::bitmap * pdraw2dbitmap = m_spgraphics->get_current_bitmap();
 //
 //      ::GetCurrentObject((HDC) pusermessage->m_wparam, OBJ_BITMAP);
 //
 //      //      ::u32 dw = ::get_last_error();
-//      ::i32_size size = pbitmap->get_size();
+//      ::i32_size size = pdraw2dbitmap->get_size();
 //
 //      rectx.left = 0;
 //      rectx.top = 0;
@@ -853,9 +855,9 @@ namespace draw2d_cairo
 //
 //         }
 //
-//         ::draw2d::graphics * pgraphics = pgraphicsImage1;
+//         ::draw2d::graphics * pdraw2dgraphics = pgraphicsImage1;
 //
-//         if (pgraphics->get_os_data() == nullptr)
+//         if (pdraw2dgraphics->nok())
 //         {
 //
 //            return false;
@@ -873,14 +875,14 @@ namespace draw2d_cairo
 //         m_spgraphics-> set_origin(::i32_point());
 //         puserinteraction->_000OnDraw(pgraphicsImage1);
 //         m_spgraphics->set_origin(::i32_point());
-//         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
+//         //(dynamic_cast<::win::graphics * >(pdraw2dgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         m_spgraphics->set_origin(::i32_point());
 //
 //         m_spgraphics->SelectClipRgn( nullptr);
 //         m_spgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,
 //                              rectanglePaint.width(), rectanglePaint.height(),
-//                              pgraphics, rectangleUpdate.left, rectangleUpdate.top,
+//                              pdraw2dgraphics, rectangleUpdate.left, rectangleUpdate.top,
 //                              SRCCOPY);
 //
 //      }

@@ -59,7 +59,7 @@ namespace user
       
       auto pwritetext = pdraw2d->write_text();
 
-      m_pfont = pwritetext->font(e_font_sans, 14_pt);
+      m_pwritetextfont = pwritetext->font(e_font_sans, 14_pt);
 
       //return true;
 
@@ -454,11 +454,11 @@ namespace user
                   //if (is_status_ok())
                   //{
 
-                     auto pfont = m_pfont;
+                     auto pwritetextfont = m_pwritetextfont;
 
                      auto pgraphicsImage = pimage->acquire_graphics();
 
-                     pgraphicsImage->set(pfont);
+                     pgraphicsImage->set(pwritetextfont);
 
                      ::f64_size s = pgraphicsImage->get_text_extent(str);
 
@@ -479,7 +479,7 @@ namespace user
 
                               pgraphicsImage->clear(::color::transparent);
 
-                              pgraphicsImage->set(pfont);
+                              pgraphicsImage->set(pwritetextfont);
 
                               pgraphicsImage->set_text_color(argb(255, 0, 0, 0));
 

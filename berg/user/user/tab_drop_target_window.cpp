@@ -66,7 +66,7 @@ namespace user
    }
 
 
-   void tab_drop_target_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void tab_drop_target_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::color::color crBorderNormal = argb(80, 127, 127, 80);
@@ -111,9 +111,9 @@ namespace user
 
          }
 
-         pgraphics->fill_rectangle(rectangle, crBk);
+         pdraw2dgraphics->fill_rectangle(rectangle, crBk);
 
-         pgraphics->draw_inset_rectangle(rectangle, crBorder, 1.0);
+         pdraw2dgraphics->draw_inset_rectangle(rectangle, crBorder, 1.0);
 
       }
 

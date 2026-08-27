@@ -89,7 +89,7 @@ namespace user
    }
 
 
-   void menu_list_window::calc_size(::menu::item * pitemParent, ::draw2d::graphics_pointer & pgraphics, ::i32 & iMaxWidth, ::i32 & iMaxHeight)
+   void menu_list_window::calc_size(::menu::item * pitemParent, ::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 & iMaxWidth, ::i32 & iMaxHeight)
    {
 
       if (!m_bMenuOk)
@@ -125,13 +125,13 @@ namespace user
 
          }
 
-         pgraphics->set_font(pitem->m_puserinteraction, ::e_element_none);
+         pdraw2dgraphics->set_font(pitem->m_puserinteraction, ::e_element_none);
 
          string strWindowText = pitem->m_puserinteraction->get_window_text();
 
          //const ::scoped_string & scopedstrWindowText = strWindowText.c_str();
 
-         auto size = pgraphics->get_text_extent(strWindowText);
+         auto size = pdraw2dgraphics->get_text_extent(strWindowText);
 
          size.cy = size.cy * 5 / 4;
 
@@ -148,7 +148,7 @@ namespace user
          if(size.cx > iMaxWidth)
             iMaxWidth = (::i32)size.cx;
 
-         calc_size(pitem, pgraphics, iMaxWidth, iMaxHeight);
+         calc_size(pitem, pdraw2dgraphics, iMaxWidth, iMaxHeight);
 
       }
 
@@ -214,18 +214,18 @@ namespace user
    }
 
 
-   void menu_list_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void menu_list_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::interaction::_001OnDraw(pgraphics);
+      ::user::interaction::_001OnDraw(pdraw2dgraphics);
 
    }
 
 
-   void menu_list_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void menu_list_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       
-      ::user::interaction::on_perform_top_down_layout(pgraphics);
+      ::user::interaction::on_perform_top_down_layout(pdraw2dgraphics);
 
       if (!m_bMenuOk)
       {
@@ -257,9 +257,9 @@ namespace user
 //      auto rectangleParentX = get_parent()->rectangle(e_layout_layout);
       rectangleX = this->rectangle(e_layout_layout);
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
-      const ::i32_size & size = pgraphics->get_text_extent("XXXMMMgggppp");
+      const ::i32_size & size = pdraw2dgraphics->get_text_extent("XXXMMMgggppp");
 
       ::i32 iMaxHeight = size.cy;
 
@@ -267,7 +267,7 @@ namespace user
 
       m_dHeaderHeight = size.cy;
 
-      calc_size(m_pmenuitem, pgraphics, iMaxWidth, iMaxHeight);
+      calc_size(m_pmenuitem, pdraw2dgraphics, iMaxWidth, iMaxHeight);
 
       m_dItemHeight = iMaxHeight * 3 / 2;
 
@@ -289,7 +289,7 @@ namespace user
          if (puiClose->is_window())
          {
 
-            puiClose->resize_to_fit(pgraphics);
+            puiClose->resize_to_fit(pdraw2dgraphics);
 
             puiClose->set_position({ m_size.cx - puiClose->width() - 2, 2 });
 

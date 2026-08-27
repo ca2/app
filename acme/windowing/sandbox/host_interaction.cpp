@@ -163,40 +163,40 @@ void host_interaction::on_click(const ::payload & payload, ::user::mouse * pmous
 //}
 //
 //
-//void host_interaction::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
+//void host_interaction::_001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics)
 //{
 //   
 //   
 //}
 //
 //
-//void host_interaction::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+//void host_interaction::_001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics)
 //{
 //   
-//   ::user::interaction::_001DrawChildren(pgraphics);
+//   ::user::interaction::_001DrawChildren(pdraw2dgraphics);
 //   
 //}
 //
 //
-//void host_interaction::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+//void host_interaction::_000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 //{
 //   
-//   ::user::interaction::_000OnDraw(pgraphics);
+//   ::user::interaction::_000OnDraw(pdraw2dgraphics);
 //   
 //}
 //
 //
-//void host_interaction::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+//void host_interaction::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 //{
 //   
 //   
 //}
 //
 //
-//void host_interaction::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+//void host_interaction::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 //{
 //   
-//   ::user::interaction::_001OnDraw(pgraphics);
+//   ::user::interaction::_001OnDraw(pdraw2dgraphics);
 //   
 //}
 
@@ -225,7 +225,7 @@ void host_interaction::post_redraw(bool bAscendants)
 //}
 //
 //
-//void host_interaction::on_layout(::draw2d::graphics_pointer& pgraphics)
+//void host_interaction::on_layout(::draw2d::graphics_pointer& pdraw2dgraphics)
 //{
 //   
 //   ::i32_rectangle r;

@@ -81,10 +81,10 @@ namespace user
       }
 
 
-      //void set_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32 x,::i32 y) override
+      //void set_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 x,::i32 y) override
       //{
 
-      //   BASE::set_context_offset(pgraphics, x - m_rectangleMargin.left, y - m_rectangleMargin.top);
+      //   BASE::set_context_offset(pdraw2dgraphics, x - m_rectangleMargin.left, y - m_rectangleMargin.top);
 
       //}
 

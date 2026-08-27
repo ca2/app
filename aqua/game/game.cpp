@@ -23,7 +23,7 @@ namespace aqua
    }
 
 
-   //void game::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //void game::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
 

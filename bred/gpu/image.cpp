@@ -162,7 +162,7 @@ namespace gpu
    ::gpu::texture * image::gpu_texture() const
    {
 
-      ::cast<::gpu::bitmap> pgpubitmap = m_pbitmap;
+      ::cast<::gpu::bitmap> pgpubitmap = m_pdraw2dbitmap;
 
       if (!pgpubitmap)
       {
@@ -182,25 +182,25 @@ namespace gpu
 
       auto ptexture = pgputexture;
 
-      ::cast < ::gpu::bitmap > pbitmap = m_pbitmap;
+      ::cast < ::gpu::bitmap > pdraw2dbitmap = m_pdraw2dbitmap;
 
-      if (!pbitmap)
+      if (!pdraw2dbitmap)
       {
 
-         defer_constructø(m_pbitmap);
+         defer_constructø(m_pdraw2dbitmap);
 
-         pbitmap = m_pbitmap;
+         pdraw2dbitmap = m_pdraw2dbitmap;
 
       }
 
-      if (pbitmap->m_pgputexture != ptexture)
+      if (pdraw2dbitmap->m_pgputexture != ptexture)
       {
 
          m_size = ptexture->m_textureattributes.m_size;
 
          m_sizeRaw = ptexture->m_textureattributes.m_sizeRaw;
 
-         pbitmap->update_bitmap_as_backed_by_gpu_texture(ptexture, pdraw2dgraphics);
+         pdraw2dbitmap->update_bitmap_as_backed_by_gpu_texture(ptexture, pdraw2dgraphics);
 
       }
 
@@ -232,9 +232,9 @@ namespace gpu
 
       create_as_descriptor(sizeRaw, eflagCreate, iGoodStride);
 
-      auto pbitmap = createø<::draw2d::bitmap>();
+      auto pdraw2dbitmap = createø<::draw2d::bitmap>();
 
-      ::cast<::gpu::bitmap> pgpubitmap = pbitmap;
+      ::cast<::gpu::bitmap> pgpubitmap = pdraw2dbitmap;
 
       //auto pacmewindowingwindow = m_pacmeuserinteractionMain->m_pacmewindowingwindow;
 
@@ -274,29 +274,29 @@ namespace gpu
 
          pgpubitmap->initialize_gpu_bitmap(pgpucontextlease, sizeRaw, {});
 
-         m_pbitmap = pgpubitmap;
+         m_pdraw2dbitmap = pgpubitmap;
 
       }
 
-      //auto pgraphics = system()->draw2d()->allocate_graphics(m_pacmeuserinteractionAffinity);
+      //auto pdraw2dgraphics = system()->draw2d()->allocate_graphics(m_pacmeuserinteractionAffinity);
 
       //if (bTopDraw2d)
       //{
 
-      //   pgraphics->create_for_window_draw2d(puserinteraction, sizeRaw);
+      //   pdraw2dgraphics->create_for_window_draw2d(puserinteraction, sizeRaw);
 
       //}
       //else
       //{
 
-      //   pgraphics->create_for_image(this);
+      //   pdraw2dgraphics->create_for_image(this);
 
       //}
 
 
-      //m_pgraphicsOwned = pgraphics;
+      //m_pgraphicsOwned = pdraw2dgraphics;
 
-      //pgraphics->m_pimage = this;
+      //pdraw2dgraphics->m_pimage = this;
 
       //auto pgpucontext = pgpudevice->acquire_gpu_context(::gpu::e_output_none, size);
 
@@ -388,14 +388,14 @@ namespace gpu
    ::gpu::texture * image::get_gpu_texture()
    {
 
-      if (m_pbitmap.is_null())
+      if (m_pdraw2dbitmap.is_null())
       {
 
          return nullptr;
 
       }
 
-      ::cast<::gpu::bitmap> pgpubitmap = m_pbitmap;
+      ::cast<::gpu::bitmap> pgpubitmap = m_pdraw2dbitmap;
 
       if (pgpubitmap.is_null())
       {
@@ -441,12 +441,12 @@ namespace gpu
 
       ::gpu::texture * pgputexture = nullptr;
 
-      ::cast < ::gpu::bitmap > pbitmap = m_pbitmap;
+      ::cast < ::gpu::bitmap > pdraw2dbitmap = m_pdraw2dbitmap;
 
-      if (pbitmap)
+      if (pdraw2dbitmap)
       {
 
-         pgputexture = pbitmap->m_pgputexture;
+         pgputexture = pdraw2dbitmap->m_pgputexture;
 
       }
 

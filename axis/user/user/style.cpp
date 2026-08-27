@@ -33,7 +33,7 @@ namespace axis
       ::user::style::default_style_construct();
 
 
-      //m_pfont = ::write_text::point_font(pnode->font_name(e_font_sans_ex), 14.0);
+      //m_pwritetextfont = ::write_text::point_font(pnode->font_name(e_font_sans_ex), 14.0);
       //m_pfontMenu;
       //m_pfontButton;
       //m_pfontList;
@@ -53,17 +53,17 @@ namespace axis
    }
 
 
-   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction)
+   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::interaction * pinteraction)
    {
 
-      ::draw2d::save_context savecontext(pgraphics);
+      ::draw2d::save_context savecontext(pdraw2dgraphics);
 
-      pgraphics->m_pacmeuserinteractionAffinity = pinteraction;
+      pdraw2dgraphics->m_pacmeuserinteractionAffinity = pinteraction;
 
-      //      if (!pframe->is_custom_draw() && pgraphics != nullptr && pgraphics->m_pnext == nullptr)
+      //      if (!pframe->is_custom_draw() && pdraw2dgraphics != nullptr && pdraw2dgraphics->m_pnext == nullptr)
       //      {
       //
-      //         pframe->set_context_org(pgraphics);
+      //         pframe->set_context_org(pdraw2dgraphics);
       //
       //      }
 
@@ -71,20 +71,20 @@ namespace axis
 
       rectangleX = pinteraction->rectangle();
 
-      auto pstyle = pinteraction->get_style(pgraphics);
+      auto pstyle = pinteraction->get_style(pdraw2dgraphics);
 
       status < ::color::color > crBackground = pinteraction->get_color(pstyle, ::e_element_background);
 
       //crBackground = argb(255, 200, 180, 180);
 
-      pgraphics->fill_rectangle(rectangleX, crBackground);
+      pdraw2dgraphics->fill_rectangle(rectangleX, crBackground);
 
       return true;
 
    }
 
 
-   bool style::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics)
+   bool style::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (echeck == ::e_check_tristate || echeck == ::e_check_checked)
@@ -94,22 +94,22 @@ namespace axis
 
          ::i32 h = rectangle.height();
 
-         auto ppen = createø < ::draw2d::pen >();
+         auto pdraw2dpen = createø < ::draw2d::pen >();
 
-         bool bHover = pgraphics->m_pdrawcontext != nullptr && pgraphics->m_pdrawcontext->is_control_hover();
+         bool bHover = pdraw2dgraphics->m_pdrawcontext != nullptr && pdraw2dgraphics->m_pdrawcontext->is_control_hover();
 
          //if (is_dark_mode())
          //{
          //   if (bHover)
          //   {
 
-         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 150, 180, 240) : argb(255, 180, 220, 240));
+         //      pdraw2dpen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 150, 180, 240) : argb(255, 180, 220, 240));
 
          //   }
          //   else
          //   {
 
-         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 255, 255, 255) : argb(255, 196, 196, 196));
+         //      pdraw2dpen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 255, 255, 255) : argb(255, 196, 196, 196));
 
          //   }
          //}
@@ -118,13 +118,13 @@ namespace axis
          //   if (bHover)
          //   {
 
-         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200));
+         //      pdraw2dpen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200));
 
          //   }
          //   else
          //   {
 
-         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
+         //      pdraw2dpen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
 
          //   }
 
@@ -156,15 +156,15 @@ namespace axis
          //else
          //{
 
-         //   ppen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
+         //   pdraw2dpen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
 
          //}pinteraction->get ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200)
 
          auto colorCheck = pinteraction->get_color(this, estate);
 
-         ppen->create_solid(1 * (w + h) / 30, colorCheck);
+         pdraw2dpen->create_solid(1 * (w + h) / 30, colorCheck);
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
          auto ppath1 = createø < ::draw2d::path>();
 
@@ -178,8 +178,8 @@ namespace axis
          ppath2->add_line(6 * w / 15, 13 * h / 15);
          ppath2->add_line(13 * w / 15, 6 * h / 15);
 
-         pgraphics->draw(ppath1);
-         pgraphics->draw(ppath2);
+         pdraw2dgraphics->draw(ppath1);
+         pdraw2dgraphics->draw(ppath2);
 
       }
 
@@ -198,14 +198,14 @@ namespace axis
    //}
 
 
-   bool style::simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics)
+   bool style::simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      return ::user::style::simple_ui_draw_focus_rect(pinteraction, pgraphics);
+      return ::user::style::simple_ui_draw_focus_rect(pinteraction, pdraw2dgraphics);
 
       //bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(::user::e_layout_sketch);
 
-      //::draw2d::save_context savecontext(pgraphics);
+      //::draw2d::save_context savecontext(pdraw2dgraphics);
 
       //::i32_rectangle rectangleX = pinteraction->rectangle();
 
@@ -218,7 +218,7 @@ namespace axis
 
       //   mRot.append(::geometry2d::matrix::rotation(dRotate));
 
-      //   pgraphics->prepend(mRot);
+      //   pdraw2dgraphics->prepend(mRot);
 
       //   ::geometry2d::matrix mTrans;
 
@@ -226,13 +226,13 @@ namespace axis
 
       //   mTrans.append(::geometry2d::matrix::translation(offset.x, offset.y));
 
-      //   pgraphics->append(mTrans);
+      //   pdraw2dgraphics->append(mTrans);
 
       //   rectangleX -= offset;
 
       //}
 
-      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      //pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       //::i32 iStyle = 1;
 
@@ -246,20 +246,20 @@ namespace axis
       //   if (!pinteraction->m_enonclient.has(::user::e_non_client_hover_rect) && pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
       //   {
 
-      //      auto & pbrush = m_pbrush001;
+      //      auto & pdraw2dbrush = m_pbrush001;
 
-      //      if (!pbrush)
+      //      if (!pdraw2dbrush)
       //      {
 
-      //         pbrush = createø < ::draw2d::brush >();
+      //         pdraw2dbrush = createø < ::draw2d::brush >();
 
-      //         pbrush->create_solid(pinteraction->get_color(this, ::e_element_background, ::user::e_state_hover));
+      //         pdraw2dbrush->create_solid(pinteraction->get_color(this, ::e_element_background, ::user::e_state_hover));
 
       //      }
 
-      //      pgraphics->set(pbrush);
+      //      pdraw2dgraphics->set(pdraw2dbrush);
 
-      //      pgraphics->fill_rectangle(rectangleX);
+      //      pdraw2dgraphics->fill_rectangle(rectangleX);
 
       //   }
 
@@ -271,35 +271,35 @@ namespace axis
       //      if (bHover)
       //      {
 
-      //         ::draw2d::pen_pointer & ppen = m_ppenFocusRect0;
+      //         ::draw2d::pen_pointer & pdraw2dpen = m_ppenFocusRect0;
 
-      //         if (!ppen)
+      //         if (!pdraw2dpen)
       //         {
 
-      //            ppen.create(this);
+      //            pdraw2dpen.create(this);
 
-      //            ppen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border, ::user::e_state_hover));
+      //            pdraw2dpen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border, ::user::e_state_hover));
 
       //         }
 
-      //         pgraphics->draw_rectangle(rectangleX, ppen);
+      //         pdraw2dgraphics->draw_rectangle(rectangleX, pdraw2dpen);
 
       //      }
       //      else
       //      {
 
-      //         ::draw2d::pen_pointer & ppen = m_ppenFocusRect1;
+      //         ::draw2d::pen_pointer & pdraw2dpen = m_ppenFocusRect1;
 
-      //         if (!ppen)
+      //         if (!pdraw2dpen)
       //         {
 
-      //            ppen.create(this);
+      //            pdraw2dpen.create(this);
 
-      //            ppen->create_solid(1.0, argb(190, 90, 90, 80));
+      //            pdraw2dpen->create_solid(1.0, argb(190, 90, 90, 80));
 
       //         }
 
-      //         pgraphics->draw_rectangle(rectangleX, ppen);
+      //         pdraw2dgraphics->draw_rectangle(rectangleX, pdraw2dpen);
 
       //      }
 
@@ -319,18 +319,18 @@ namespace axis
 
       //         {
 
-      //            ::draw2d::pen_pointer & ppen = m_ppenFocusRect2;
+      //            ::draw2d::pen_pointer & pdraw2dpen = m_ppenFocusRect2;
 
-      //            if (!ppen)
+      //            if (!pdraw2dpen)
       //            {
 
-      //               ppen.create(this);
+      //               pdraw2dpen.create(this);
 
-      //               ppen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
+      //               pdraw2dpen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
 
       //            }
 
-      //            pgraphics->draw_rectangle(rectangleX, ppen);
+      //            pdraw2dgraphics->draw_rectangle(rectangleX, pdraw2dpen);
 
       //         }
 
@@ -341,20 +341,20 @@ namespace axis
 
       //         {
 
-      //            ::draw2d::pen_pointer & ppen = m_ppenFocusRect3;
+      //            ::draw2d::pen_pointer & pdraw2dpen = m_ppenFocusRect3;
 
-      //            if (!ppen)
+      //            if (!pdraw2dpen)
       //            {
 
-      //               ppen.create(this);
+      //               pdraw2dpen.create(this);
 
-      //               ppen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
+      //               pdraw2dpen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
 
       //            }
 
-      //            pgraphics->set(ppen);
+      //            pdraw2dgraphics->set(pdraw2dpen);
 
-      //            pgraphics->draw_rectangle(rectangleX, ppen);
+      //            pdraw2dgraphics->draw_rectangle(rectangleX, pdraw2dpen);
 
       //         }
 
@@ -380,20 +380,20 @@ namespace axis
 
       //            //}
 
-      //            ::draw2d::pen_pointer & ppen = m_ppenFocusRect4;
+      //            ::draw2d::pen_pointer & pdraw2dpen = m_ppenFocusRect4;
 
-      //            if (!ppen)
+      //            if (!pdraw2dpen)
       //            {
 
-      //               ppen.create(this);
+      //               pdraw2dpen.create(this);
 
-      //               ppen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
+      //               pdraw2dpen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
 
       //            }
 
-      //            pgraphics->set(ppen);
+      //            pdraw2dgraphics->set(pdraw2dpen);
 
-      //            pgraphics->draw_rectangle(rectangleX, ppen);
+      //            pdraw2dgraphics->draw_rectangle(rectangleX, pdraw2dpen);
 
       //         }
 
@@ -412,21 +412,21 @@ namespace axis
 
       //            //ppathRound->end_figure(true);
 
-      //            //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(60, 108, 149, 255));
-      //            ::draw2d::pen_pointer & ppen = m_ppenFocusRect5;
+      //            //::draw2d::pen_pointer pen(pdraw2dgraphics, 1.0, argb(60, 108, 149, 255));
+      //            ::draw2d::pen_pointer & pdraw2dpen = m_ppenFocusRect5;
 
-      //            if (!ppen)
+      //            if (!pdraw2dpen)
       //            {
 
-      //               ppen.create(this);
+      //               pdraw2dpen.create(this);
 
-      //               ppen->create_solid(1.0, bError ? argb(105, 255, 190, 180) : bHover ? argb(120, 180, 220, 255) : argb(120, 200, 230, 235));
+      //               pdraw2dpen->create_solid(1.0, bError ? argb(105, 255, 190, 180) : bHover ? argb(120, 180, 220, 255) : argb(120, 200, 230, 235));
 
       //            }
 
-      //            pgraphics->set(ppen);
+      //            pdraw2dgraphics->set(pdraw2dpen);
 
-      //            pgraphics->draw_rectangle(rectangleX, ppen);
+      //            pdraw2dgraphics->draw_rectangle(rectangleX, pdraw2dpen);
 
       //         }
 
@@ -446,21 +446,21 @@ namespace axis
 
       //            //ppathRound->end_figure(true);
 
-      //            //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(48, 108, 149, 255));
-      //            ::draw2d::pen_pointer & ppen = m_ppenFocusRect6;
+      //            //::draw2d::pen_pointer pen(pdraw2dgraphics, 1.0, argb(48, 108, 149, 255));
+      //            ::draw2d::pen_pointer & pdraw2dpen = m_ppenFocusRect6;
 
-      //            if (!ppen)
+      //            if (!pdraw2dpen)
       //            {
 
-      //               ppen.create(this);
+      //               pdraw2dpen.create(this);
 
-      //               ppen->create_solid(1.0, bError ? argb(75, 255, 210, 200) : bHover ? argb(80, 200, 230, 255) : argb(80, 220, 231, 235));
+      //               pdraw2dpen->create_solid(1.0, bError ? argb(75, 255, 210, 200) : bHover ? argb(80, 200, 230, 255) : argb(80, 220, 231, 235));
 
       //            }
 
-      //            pgraphics->set(ppen);
+      //            pdraw2dgraphics->set(pdraw2dpen);
 
-      //            pgraphics->draw_rectangle(rectangleX, ppen);
+      //            pdraw2dgraphics->draw_rectangle(rectangleX, pdraw2dpen);
 
       //         }
 
@@ -481,21 +481,21 @@ namespace axis
 
       //            //ppathRound->end_figure(true);
 
-      //            //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(36, 108, 149, 255));
-      //            ::draw2d::pen_pointer & ppen = m_ppenFocusRect7;
+      //            //::draw2d::pen_pointer pen(pdraw2dgraphics, 1.0, argb(36, 108, 149, 255));
+      //            ::draw2d::pen_pointer & pdraw2dpen = m_ppenFocusRect7;
 
-      //            if (!ppen)
+      //            if (!pdraw2dpen)
       //            {
 
-      //               ppen.create(this);
+      //               pdraw2dpen.create(this);
 
-      //               ppen->create_solid(1.0, bError ? argb(45, 255, 230, 220) : bHover ? argb(40, 220, 240, 255) : argb(40, 230, 235, 240));
+      //               pdraw2dpen->create_solid(1.0, bError ? argb(45, 255, 230, 220) : bHover ? argb(40, 220, 240, 255) : argb(40, 230, 235, 240));
 
       //            }
 
-      //            pgraphics->set(ppen);
+      //            pdraw2dgraphics->set(pdraw2dpen);
 
-      //            pgraphics->draw_rectangle(rectangleX, ppen);
+      //            pdraw2dgraphics->draw_rectangle(rectangleX, pdraw2dpen);
 
       //         }
 
@@ -508,18 +508,18 @@ namespace axis
       //   else
       //   {
 
-      //      ::draw2d::pen_pointer & ppen = m_ppenFocusRect8;
+      //      ::draw2d::pen_pointer & pdraw2dpen = m_ppenFocusRect8;
 
-      //      if (!ppen)
+      //      if (!pdraw2dpen)
       //      {
 
-      //         ppen.create(this);
+      //         pdraw2dpen.create(this);
 
-      //         ppen->create_solid(3.0, argb(255, 90, 80, 255));
+      //         pdraw2dpen->create_solid(3.0, argb(255, 90, 80, 255));
 
       //      }
 
-      //      pgraphics->draw_rectangle(rectangleX, ppen);
+      //      pdraw2dgraphics->draw_rectangle(rectangleX, pdraw2dpen);
 
       //   }
 
@@ -527,18 +527,18 @@ namespace axis
       //else
       //{
 
-      //   ::draw2d::pen_pointer & ppen = m_ppenFocusRect;
+      //   ::draw2d::pen_pointer & pdraw2dpen = m_ppenFocusRect;
 
-      //   if (!ppen)
+      //   if (!pdraw2dpen)
       //   {
 
-      //      ppen = createø < ::draw2d::pen >();
+      //      pdraw2dpen = createø < ::draw2d::pen >();
 
-      //      ppen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border));
+      //      pdraw2dpen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border));
 
       //   }
 
-      //   pgraphics->draw_rectangle(rectangleX, ppen);
+      //   pdraw2dgraphics->draw_rectangle(rectangleX, pdraw2dpen);
 
       //}
 
@@ -547,7 +547,7 @@ namespace axis
    }
 
 
-   //bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab)
+   //bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pdraw2dgraphics, tab * ptab)
    //{
 
    //   return false;
@@ -555,7 +555,7 @@ namespace axis
    //}
 
 
-   //bool style::_001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pinteraction)
+   //bool style::_001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pdraw2dgraphics, menu_interaction * pinteraction)
    //{
 
    //   return false;
@@ -563,15 +563,15 @@ namespace axis
    //}
 
 
-   //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText)
+   //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText)
    //{
 
-   //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle, pbrushText);
+   //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pdraw2dgraphics, rectangle, pbrushText);
 
    //}
 
 
-   //bool style::_001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab)
+   //bool style::_001OnTabLayout(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::tab * ptab)
    //{
 
    //   return false;
@@ -587,7 +587,7 @@ namespace axis
    //   }
 
 
-   //   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_window * pframe)
+   //   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::frame_window * pframe)
    //   {
    //
    //      return false;
@@ -595,7 +595,7 @@ namespace axis
    //   }
 
 
-   //bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox)
+   //bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::check_box * pcheckbox)
    //{
 
    //   return false;
@@ -603,7 +603,7 @@ namespace axis
    //}
 
 
-   bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
+   bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
    {
 
       return false;
@@ -611,7 +611,7 @@ namespace axis
    }
 
 
-   bool style::_001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar)
+   bool style::_001DrawSimpleScrollBar(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::scroll_bar * pbar)
    {
 
       return false;
@@ -619,7 +619,7 @@ namespace axis
    }
 
 
-   bool style::_001DrawScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar)
+   bool style::_001DrawScrollBar(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::scroll_bar * pbar)
    {
 
       return false;
@@ -635,10 +635,10 @@ namespace axis
    //}
 
 
-   //bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem)
+   //bool style::prepare_menu(::draw2d::graphics_pointer& pdraw2dgraphics, ::menu::item * pitem)
    //{
 
-   //   if (!prepare_menu_button(pgraphics,pitem))
+   //   if (!prepare_menu_button(pdraw2dgraphics,pitem))
    //   {
 
    //      return false;
@@ -650,12 +650,12 @@ namespace axis
    //}
 
 
-   //bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem)
+   //bool style::prepare_menu_button(::draw2d::graphics_pointer& pdraw2dgraphics, ::menu::item * pitem)
    //{
 
-   //   pgraphics->m_puserstyle = this;
+   //   pdraw2dgraphics->m_puserstyle = this;
 
-   //   psession->prepare_menu_button(pgraphics, pitem);
+   //   psession->prepare_menu_button(pdraw2dgraphics, pitem);
 
    //   return true;
 
@@ -698,7 +698,7 @@ namespace axis
 
   //  //  }
 
-  //    pfont->create_point_font(scopedstrFamilyName, dFontSize, iFontWeight);
+  //    pwritetextfont->create_point_font(scopedstrFamilyName, dFontSize, iFontWeight);
 
   //    return font;
 
@@ -1083,10 +1083,10 @@ namespace axis
       //}
 
 
-   void style::select(::draw2d::graphics_pointer & pgraphics)
+   void style::select(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      m_pgraphics = pgraphics;
+      m_pgraphics = pdraw2dgraphics;
 
    }
 
@@ -1182,7 +1182,7 @@ namespace axis
 
 
 
-   //bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab)
+   //bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pdraw2dgraphics, tab * ptab)
    //{
 
    //   return false;
@@ -1190,7 +1190,7 @@ namespace axis
    //}
 
 
-   //bool style::_001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pinteraction)
+   //bool style::_001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pdraw2dgraphics, menu_interaction * pinteraction)
    //{
 
    //   return false;
@@ -1198,15 +1198,15 @@ namespace axis
    //}
 
 
-   //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText)
+   //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText)
    //{
 
-   //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle, pbrushText);
+   //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pdraw2dgraphics, rectangle, pbrushText);
 
    //}
 
 
-   //bool style::_001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab)
+   //bool style::_001OnTabLayout(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::tab * ptab)
    //{
 
    //   return false;
@@ -1222,7 +1222,7 @@ namespace axis
    //   }
 
 
-   //   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_window * pframe)
+   //   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::frame_window * pframe)
    //   {
    //
    //      return false;
@@ -1230,7 +1230,7 @@ namespace axis
    //   }
 
 
-   //bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox)
+   //bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::check_box * pcheckbox)
    //{
 
    //   return false;
@@ -1246,10 +1246,10 @@ namespace axis
    //}
 
 
-   //bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem)
+   //bool style::prepare_menu(::draw2d::graphics_pointer& pdraw2dgraphics, ::menu::item * pitem)
    //{
 
-   //   if (!prepare_menu_button(pgraphics,pitem))
+   //   if (!prepare_menu_button(pdraw2dgraphics,pitem))
    //   {
 
    //      return false;
@@ -1261,12 +1261,12 @@ namespace axis
    //}
 
 
-   //bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem)
+   //bool style::prepare_menu_button(::draw2d::graphics_pointer& pdraw2dgraphics, ::menu::item * pitem)
    //{
 
-   //   pgraphics->m_puserstyle = this;
+   //   pdraw2dgraphics->m_puserstyle = this;
 
-   //   psession->prepare_menu_button(pgraphics, pitem);
+   //   psession->prepare_menu_button(pdraw2dgraphics, pitem);
 
    //   return true;
 
@@ -1309,7 +1309,7 @@ namespace axis
 
   //  //  }
 
-  //    pfont->create_point_font(scopedstrFamilyName, dFontSize, iFontWeight);
+  //    pwritetextfont->create_point_font(scopedstrFamilyName, dFontSize, iFontWeight);
 
   //    return font;
 

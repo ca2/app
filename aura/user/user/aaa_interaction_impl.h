@@ -496,8 +496,8 @@ namespace user
       virtual void MapWindowPoints(::windowing::window* puserinteractionTo,::i32_rectangle * prectangle);
 
 
-      virtual void Print(::draw2d::graphics_pointer & pgraphics,::u32 dwFlags) const;
-      virtual void PrintClient(::draw2d::graphics_pointer & pgraphics,::u32 dwFlags) const;
+      virtual void Print(::draw2d::graphics_pointer & pdraw2dgraphics,::u32 dwFlags) const;
+      virtual void PrintClient(::draw2d::graphics_pointer & pdraw2dgraphics,::u32 dwFlags) const;
 
       //void UpdateWindow() override;
       //void SetRedraw(bool bRedraw = true) override;
@@ -554,7 +554,7 @@ namespace user
 
       //virtual void set_cursor(enum_cursor ecursor) override;
 
-      //virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const i32_rectangle & prc,::u32 uFlags);
+      //virtual bool DrawCaption(::draw2d::graphics_pointer & pdraw2dgraphics,const i32_rectangle & prc,::u32 uFlags);
 
 
 //#if(WINVER >= 0x0500)
@@ -566,7 +566,7 @@ namespace user
 
 //#if(_WIN32_WINNT >= 0x0501)
 //
-//      virtual bool PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const;
+//      virtual bool PrintWindow(::draw2d::graphics_pointer & pdraw2dgraphics,::u32 nFlags) const;
 //
 //#endif
 
@@ -774,11 +774,11 @@ namespace user
 
       // deprecated schedule window visual
       //virtual void start_window_visual() override;
-      //virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
+      //virtual void sketch_to_design(::draw2d::graphics_pointer& pdraw2dgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void do_graphics();
-      void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
-      void defer_do_graphics(::draw2d::graphics_pointer & pgraphics) override;
-      //void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void defer_do_graphics(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      //void _000CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       // call window window_update_screen_buffer
       //virtual void _001UpdateScreen();
       //virtual void window_apply_visual(const window_state & windowstate) override;
@@ -804,7 +804,7 @@ namespace user
 
       void top_down_prefix() override;
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;
 
@@ -852,7 +852,7 @@ namespace user
       //virtual void on_visual_applied();
 
       void set_need_redraw(const ::i32_rectangle_array & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr,  bool bAscendants = true) override;
-      //virtual bool needs_to_draw(const ::i32_rectangle& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);
+      //virtual bool needs_to_draw(const ::i32_rectangle& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pdraw2dgraphics);
       void post_redraw(bool bAscendants = true) override;
 
 

@@ -180,7 +180,7 @@ namespace user
       //index                               m_iListItemRectSubItem;
       //index                               m_iListItemRectListItem;
 
-      ::write_text::font *                m_pfont;
+      ::write_text::font *                m_pwritetextfont;
       ::e_align                           m_ealign;
       ::e_draw_text                       m_edrawtext;
 
@@ -260,7 +260,7 @@ namespace user
       ::i32_rectangle                     m_rectangleText;
       i32_rectangle * m_prectClient;
 
-      ::write_text::font * m_pfont;
+      ::write_text::font * m_pwritetextfont;
       ::e_align                           m_ealign;
       ::e_draw_text                       m_edrawtext;
 

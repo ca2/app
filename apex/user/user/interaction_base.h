@@ -212,7 +212,7 @@ namespace user
       virtual void on_configuration_change(::user::interaction_base * pprimitiveSource);
 
 
-      //void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       void on_reposition() override;
       //void on_show_window() override;
 
@@ -398,7 +398,7 @@ namespace user
       //virtual bool is_descendant(const ::user::interaction_base * pinteraction,bool bIncludeSelf = false) const;
        ::user::interaction * get_focusable_descendant() override;
 
-      void RepositionBars(::draw2d::graphics_pointer &pgraphics, ::u32 nIDFirst, ::u32 nIDLast,
+      void RepositionBars(::draw2d::graphics_pointer &pdraw2dgraphics, ::u32 nIDFirst, ::u32 nIDLast,
                            ::user::interaction *puserinteractionLeftOver = nullptr, ::u32 nFlag = reposDefault,
                            ::i32_rectangle *prectParam = nullptr, const ::i32_rectangle &rectangleX = {
          }, bool bStretch = true) override;
@@ -450,8 +450,8 @@ namespace user
 
       ::windowing::window * window() override;
       
-      //virtual ::f64_size _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
-      //virtual ::f64_size _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
+      //virtual ::f64_size _001CalculateFittingSize(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual ::f64_size _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       //virtual bool can_merge(::user::interaction * pinteraction);
@@ -467,7 +467,7 @@ namespace user
       //#endif
 
 
-      void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
+      void set_context_org(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       void viewport_screen_to_client(::i32_sequence2 & sequence) override;
       void viewport_client_to_screen(::i32_sequence2 & sequence) override;
@@ -692,13 +692,13 @@ namespace user
 
       // Text Edit
       //void get_text_selection(character_count & iBeg, character_count & iEnd) const override;
-      ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
-      ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32 & x) override;
-      ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
-      ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32 & x) override;
-      character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn) override;
-      character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::i32 x) override;
-      ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
+      ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSel) override;
+      ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSel, ::i32 & x) override;
+      ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSel) override;
+      ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSel, ::i32 & x) override;
+      character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iLine, ::collection::index iColumn) override;
+      character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iLine, ::i32 x) override;
+      ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSel) override;
 
 
       //void on_check_changed() override;

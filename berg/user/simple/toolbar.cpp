@@ -191,19 +191,19 @@ void simple_toolbar::on_message_left_button_double_click(::message::message * pm
 
 }
 
-i32_size simple_toolbar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
+i32_size simple_toolbar::CalcFixedLayout(::draw2d::graphics_pointer& pdraw2dgraphics, bool bStretch, bool bHorz)
 {
 
    ::u32 dwMode = bStretch ? LM_STRETCH : 0;
 
    dwMode |= bHorz ? LM_HORZ : 0;
 
-   return CalcLayout(pgraphics, dwMode);
+   return CalcLayout(pdraw2dgraphics, dwMode);
 
 }
 
 
-i32_size simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
+i32_size simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pdraw2dgraphics)
 {
 
    ASSERT_OK(this);
@@ -257,14 +257,14 @@ i32_size simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
 }
 
 
-void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
    
    //return;
 
-   pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+   pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    ::pointer<::user::tab>ptab = get_typed_parent < ::user::tab >();
 
@@ -276,7 +276,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    //if (m_bDelayedButtonLayout)
    //{
 
-   //   on_layout(pgraphics);
+   //   on_layout(pdraw2dgraphics);
 
    //}
 
@@ -289,17 +289,17 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       rectangleX.width(),
       rectangleX.height());
 
-   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   auto pstyle = get_style(pgraphics);
+   auto pstyle = get_style(pdraw2dgraphics);
 
-   pgraphics->fill_rectangle(rectangleX, get_color(pstyle, ::e_element_background));
+   pdraw2dgraphics->fill_rectangle(rectangleX, get_color(pstyle, ::e_element_background));
 
-   //::user::interaction::_001OnDraw(pgraphics);
+   //::user::interaction::_001OnDraw(pdraw2dgraphics);
 
-   pgraphics->set(pstyle->get_font(this, e_element_none));
+   pdraw2dgraphics->set(pstyle->get_font(this, e_element_none));
 
-   m_fontsize = pgraphics->m_pfont->m_fontsize;
+   m_fontsize = pdraw2dgraphics->m_pwritetextfont->m_fontsize;
 
    //auto iHover = _001GetHoverItem();
 
@@ -315,7 +315,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       
       
 
-         _001DrawItem(pgraphics, iItem);
+         _001DrawItem(pdraw2dgraphics, iItem);
 
       //}
 
@@ -324,7 +324,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    //if (m_ptoolitemHover->m_eelement == ::e_element_item)
    //{
 
-   //   _001DrawItem(pgraphics, m_ptoolitemHover);
+   //   _001DrawItem(pdraw2dgraphics, m_ptoolitemHover);
 
    //}
 
@@ -340,12 +340,12 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //}
 
 
-//void simple_toolbar::TransparentEraseNonClient(::draw2d::graphics_pointer & pgraphics)
+//void simple_toolbar::TransparentEraseNonClient(::draw2d::graphics_pointer & pdraw2dgraphics)
 //{
 //
 //
 //
-//   m_pimageDraft->get_graphics()->BitBlt(0, 0, 7, 7, pgraphics, 0, 0);
+//   m_pimageDraft->get_graphics()->BitBlt(0, 0, 7, 7, pdraw2dgraphics, 0, 0);
 //
 //   ::i32_rectangle rectangleWindow;
 //   window_rectangle(rectangleWindow);
@@ -356,7 +356,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //      if (m_ptoolitemHover)
 //      {
 //         imaging.color_blend(
-//         pgraphics,
+//         pdraw2dgraphics,
 //         rectangleWindow.left,
 //         rectangleWindow.top,
 //         rectangleWindow.width(),
@@ -367,7 +367,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //      else
 //      {
 //         imaging.color_blend(
-//         pgraphics,
+//         pdraw2dgraphics,
 //         rectangleWindow.left,
 //         rectangleWindow.top,
 //         rectangleWindow.width(),
@@ -379,63 +379,63 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //   else
 //   {
 //#ifdef WINDOWS_DESKTOP
-//      pgraphics->fill_rectangle(rectangleWindow, psession->get_default_color(COLOR_3DFACE));
+//      pdraw2dgraphics->fill_rectangle(rectangleWindow, psession->get_default_color(COLOR_3DFACE));
 //#else
-//      pgraphics->fill_rectangle(rectangleWindow, argb(255, 190, 184, 177));
+//      pdraw2dgraphics->fill_rectangle(rectangleWindow, argb(255, 190, 184, 177));
 //#endif
 //   }
 //
 //   // Desenha chanfro
 //   ::color32_t color32 = m_pimageDraft->GetPixel(0, 0);
-//   pgraphics->SetPixel(0, 0, color32);
-//   pgraphics->SetPixel(0, 1, m_pimageDraft->GetPixel(0, 1));
-//   pgraphics->SetPixel(0, 2, m_pimageDraft->GetPixel(0, 2));
-//   pgraphics->SetPixel(0, 3, m_pimageDraft->GetPixel(0, 3));
-//   pgraphics->SetPixel(0, 4, m_pimageDraft->GetPixel(0, 4));
-//   pgraphics->SetPixel(0, 5, m_pimageDraft->GetPixel(0, 5));
-//   pgraphics->SetPixel(0, 6, m_pimageDraft->GetPixel(0, 6));
-//   pgraphics->SetPixel(1, 0, m_pimageDraft->GetPixel(1, 0));
-//   pgraphics->SetPixel(1, 1, m_pimageDraft->GetPixel(1, 1));
-//   pgraphics->SetPixel(1, 2, m_pimageDraft->GetPixel(1, 2));
-//   pgraphics->SetPixel(1, 3, m_pimageDraft->GetPixel(1, 3));
-//   pgraphics->SetPixel(1, 4, m_pimageDraft->GetPixel(1, 4));
-//   pgraphics->SetPixel(1, 5, m_pimageDraft->GetPixel(1, 5));
-//   pgraphics->SetPixel(2, 0, m_pimageDraft->GetPixel(2, 0));
-//   pgraphics->SetPixel(2, 1, m_pimageDraft->GetPixel(2, 1));
-//   pgraphics->SetPixel(2, 2, m_pimageDraft->GetPixel(2, 2));
-//   pgraphics->SetPixel(2, 3, m_pimageDraft->GetPixel(2, 3));
-//   pgraphics->SetPixel(2, 4, m_pimageDraft->GetPixel(2, 4));
-//   pgraphics->SetPixel(3, 0, m_pimageDraft->GetPixel(3, 0));
-//   pgraphics->SetPixel(3, 1, m_pimageDraft->GetPixel(3, 1));
-//   pgraphics->SetPixel(3, 2, m_pimageDraft->GetPixel(3, 2));
-//   pgraphics->SetPixel(3, 3, m_pimageDraft->GetPixel(3, 3));
-//   pgraphics->SetPixel(4, 0, m_pimageDraft->GetPixel(4, 0));
-//   pgraphics->SetPixel(4, 1, m_pimageDraft->GetPixel(4, 1));
-//   pgraphics->SetPixel(4, 2, m_pimageDraft->GetPixel(4, 2));
-//   pgraphics->SetPixel(5, 0, m_pimageDraft->GetPixel(5, 0));
-//   pgraphics->SetPixel(5, 1, m_pimageDraft->GetPixel(5, 1));
-//   pgraphics->SetPixel(6, 0, m_pimageDraft->GetPixel(6, 0));
+//   pdraw2dgraphics->SetPixel(0, 0, color32);
+//   pdraw2dgraphics->SetPixel(0, 1, m_pimageDraft->GetPixel(0, 1));
+//   pdraw2dgraphics->SetPixel(0, 2, m_pimageDraft->GetPixel(0, 2));
+//   pdraw2dgraphics->SetPixel(0, 3, m_pimageDraft->GetPixel(0, 3));
+//   pdraw2dgraphics->SetPixel(0, 4, m_pimageDraft->GetPixel(0, 4));
+//   pdraw2dgraphics->SetPixel(0, 5, m_pimageDraft->GetPixel(0, 5));
+//   pdraw2dgraphics->SetPixel(0, 6, m_pimageDraft->GetPixel(0, 6));
+//   pdraw2dgraphics->SetPixel(1, 0, m_pimageDraft->GetPixel(1, 0));
+//   pdraw2dgraphics->SetPixel(1, 1, m_pimageDraft->GetPixel(1, 1));
+//   pdraw2dgraphics->SetPixel(1, 2, m_pimageDraft->GetPixel(1, 2));
+//   pdraw2dgraphics->SetPixel(1, 3, m_pimageDraft->GetPixel(1, 3));
+//   pdraw2dgraphics->SetPixel(1, 4, m_pimageDraft->GetPixel(1, 4));
+//   pdraw2dgraphics->SetPixel(1, 5, m_pimageDraft->GetPixel(1, 5));
+//   pdraw2dgraphics->SetPixel(2, 0, m_pimageDraft->GetPixel(2, 0));
+//   pdraw2dgraphics->SetPixel(2, 1, m_pimageDraft->GetPixel(2, 1));
+//   pdraw2dgraphics->SetPixel(2, 2, m_pimageDraft->GetPixel(2, 2));
+//   pdraw2dgraphics->SetPixel(2, 3, m_pimageDraft->GetPixel(2, 3));
+//   pdraw2dgraphics->SetPixel(2, 4, m_pimageDraft->GetPixel(2, 4));
+//   pdraw2dgraphics->SetPixel(3, 0, m_pimageDraft->GetPixel(3, 0));
+//   pdraw2dgraphics->SetPixel(3, 1, m_pimageDraft->GetPixel(3, 1));
+//   pdraw2dgraphics->SetPixel(3, 2, m_pimageDraft->GetPixel(3, 2));
+//   pdraw2dgraphics->SetPixel(3, 3, m_pimageDraft->GetPixel(3, 3));
+//   pdraw2dgraphics->SetPixel(4, 0, m_pimageDraft->GetPixel(4, 0));
+//   pdraw2dgraphics->SetPixel(4, 1, m_pimageDraft->GetPixel(4, 1));
+//   pdraw2dgraphics->SetPixel(4, 2, m_pimageDraft->GetPixel(4, 2));
+//   pdraw2dgraphics->SetPixel(5, 0, m_pimageDraft->GetPixel(5, 0));
+//   pdraw2dgraphics->SetPixel(5, 1, m_pimageDraft->GetPixel(5, 1));
+//   pdraw2dgraphics->SetPixel(6, 0, m_pimageDraft->GetPixel(6, 0));
 //
 //
-//   //pgraphics->BitBlt(0, 0, 7, 7, &m_dcDraft, 0, 0);
+//   //pdraw2dgraphics->BitBlt(0, 0, 7, 7, &m_dcDraft, 0, 0);
 //
 //   //
 //
 //   // draw borders in non-client area
-//   DrawBorders(pgraphics, rectangleWindow);
-//   /*   pgraphics->fill_rectangle(
+//   DrawBorders(pdraw2dgraphics, rectangleWindow);
+//   /*   pdraw2dgraphics->fill_rectangle(
 //   rectangleWindow.left + 7, rectangleWindow.top,
 //   rectangleWindow.right, rectangleWindow.top + 1,
 //   rgb(128, 128, 123));*/
 //
 //   // erase parts not drawn
-//   //pgraphics->IntersectClipRect(rectangleWindow);
-//   //SendMessage(::user::e_message_erase_background, (WPARAM)pgraphics->get_handle1());
+//   //pdraw2dgraphics->IntersectClipRect(rectangleWindow);
+//   //SendMessage(::user::e_message_erase_background, (WPARAM)pdraw2dgraphics->get_handle1());
 //
 //   // draw gripper in non-client area
-//   DrawGripper(pgraphics, rectangleWindow);
+//   DrawGripper(pdraw2dgraphics, rectangleWindow);
 //
-//   //pgraphics->set_origin(pointContext);
+//   //pdraw2dgraphics->set_origin(pointContext);
 //}
 
 
@@ -524,14 +524,14 @@ void simple_toolbar::on_message_create(::message::message * pmessage)
 #define CX_OVERLAP 0
 
 
-i32_size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, ::collection::index nCount)
+i32_size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index nCount)
 {
 
    ASSERT(nCount > 0);
 
-   pgraphics->set_font(this, ::e_element_none);
+   pdraw2dgraphics->set_font(this, ::e_element_none);
 
-   m_fontsize = pgraphics->m_pfont->m_fontsize;
+   m_fontsize = pdraw2dgraphics->m_pwritetextfont->m_fontsize;
 
    ::i32 iImageSpacing = get_image_spacing();
 
@@ -616,7 +616,7 @@ i32_size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, ::coll
 
          str = tool_item_text(i);
 
-         size = pgraphics->get_text_extent(str);
+         size = pdraw2dgraphics->get_text_extent(str);
 
          buttonx += (::collection::index) (size.cx + EXTRA_TEXT_CX);
 
@@ -709,7 +709,7 @@ i32_size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, ::coll
 }
 
 
-void simple_toolbar::_001DrawItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem)
+void simple_toolbar::_001DrawItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem)
 {
    
    auto ptoolitem = tool_item_at(iItem);
@@ -723,12 +723,12 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics_pointer & pgraphics, ::coll
 
    }
 
-   auto pstyle = get_style(pgraphics);
+   auto pstyle = get_style(pdraw2dgraphics);
 
    if(pstyle)
    {
    
-      if (pstyle->_001DrawToolbarItem(pgraphics, iItem, this))
+      if (pstyle->_001DrawToolbarItem(pdraw2dgraphics, iItem, this))
       {
 
          return;
@@ -737,12 +737,12 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics_pointer & pgraphics, ::coll
 
    }
 
-   return _001DrawSimpleToolbarItem(pgraphics, iItem);
+   return _001DrawSimpleToolbarItem(pdraw2dgraphics, iItem);
 
 }
 
 
-void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem)
+void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem)
 {
 
    auto ptoolitem = tool_item_at(iItem);
@@ -756,15 +756,15 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    }
 
-   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //::i32_rectangle statusrectangleItem;
 
    //::i32_rectangle rectangleImage;
 
-   pgraphics->set_font(this, ::e_element_none);
+   pdraw2dgraphics->set_font(this, ::e_element_none);
 
-   m_fontsize = pgraphics->m_pfont->m_fontsize;
+   m_fontsize = pdraw2dgraphics->m_pwritetextfont->m_fontsize;
 
    auto estyle = tool_item_style(iItem);
 
@@ -795,7 +795,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
       rectangleSeparator.bottom = statusrectangleImage.bottom;
 
-      pgraphics->draw_inset_3d_rectangle(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255), 1.0);
+      pdraw2dgraphics->draw_inset_3d_rectangle(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255), 1.0);
 
    }
    else
@@ -814,9 +814,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
             if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               pgraphics->fill_rectangle(statusrectangleItem, argb(208, 255, 255, 250));
+               pdraw2dgraphics->fill_rectangle(statusrectangleItem, argb(208, 255, 255, 250));
 
-               pgraphics->draw_inset_3d_rectangle(statusrectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255), 1.0);
+               pdraw2dgraphics->draw_inset_3d_rectangle(statusrectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255), 1.0);
 
             }
 
@@ -827,14 +827,14 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
                {
 
                   // button is enabled
-                  pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, statusrectangleImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListBlend()->draw(pdraw2dgraphics, uImage, statusrectangleImage.top_left(), 0);
 
                }
                else
                {
 
                   // button is disabled
-                  pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, statusrectangleImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListHueLight()->draw(pdraw2dgraphics, uImage, statusrectangleImage.top_left(), 0);
 
                }
 
@@ -849,19 +849,19 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
             if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               auto ppen = createø < ::draw2d::pen > ();
+               auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-               ppen->create_solid(1, argb(190, 92, 184, 92));
+               pdraw2dpen->create_solid(1, argb(190, 92, 184, 92));
 
-               auto pbrush = createø < ::draw2d::brush >();
+               auto pdraw2dbrush = createø < ::draw2d::brush >();
 
-               pbrush->create_solid(argb(123, 180, 184, 255));
+               pdraw2dbrush->create_solid(argb(123, 180, 184, 255));
 
-               pgraphics->set(ppen);
+               pdraw2dgraphics->set(pdraw2dpen);
 
-               pgraphics->set(pbrush);
+               pdraw2dgraphics->set(pdraw2dbrush);
 
-               pgraphics->rectangle(statusrectangleItem);
+               pdraw2dgraphics->rectangle(statusrectangleItem);
 
             }
 
@@ -878,7 +878,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
             else if (uImage != 0xffffffffu)
@@ -886,9 +886,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                auto statusrectangle = index_element_rectangle(iItem, ::e_element_image, estate);
 
-               pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, statusrectangle.top_left(), 0);
+               pmenucentral->MenuV033GetImageListHue()->draw(pdraw2dgraphics, uImage, statusrectangle.top_left(), 0);
 
-               pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, statusrectangleImage.top_left(), 0);
+               pmenucentral->MenuV033GetImageList()->draw(pdraw2dgraphics, uImage, statusrectangleImage.top_left(), 0);
 
             }
 
@@ -901,19 +901,19 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
          if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
          {
 
-            auto ppen = createø < ::draw2d::pen > ();
+            auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-            ppen->create_solid(1, argb(255, 92, 92, 92));
+            pdraw2dpen->create_solid(1, argb(255, 92, 92, 92));
 
-            auto pbrush = createø < ::draw2d::brush >();
+            auto pdraw2dbrush = createø < ::draw2d::brush >();
 
-            pbrush->create_solid(argb(255, 255, 255, 255));
+            pdraw2dbrush->create_solid(argb(255, 255, 255, 255));
 
-            pgraphics->set(ppen);
+            pdraw2dgraphics->set(pdraw2dpen);
 
-            pgraphics->set(pbrush);
+            pdraw2dgraphics->set(pdraw2dbrush);
 
-            pgraphics->rectangle(statusrectangleItem);
+            pdraw2dgraphics->rectangle(statusrectangleItem);
 
          }
 
@@ -928,13 +928,13 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pgraphics->draw(imagedrawing);
+            pdraw2dgraphics->draw(imagedrawing);
 
          }
          else if (uImage != 0xffffffff)
          {
 
-            pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, statusrectangleImage.top_left(), 0);
+            pmenucentral->MenuV033GetImageList()->draw(pdraw2dgraphics, uImage, statusrectangleImage.top_left(), 0);
 
          }
 
@@ -947,14 +947,14 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             statusrectangleItem = index_element_rectangle(iItem, ::e_element_item, estate);
 
-            pgraphics->fill_rectangle(statusrectangleItem, argb(190, 255, 255, 255));
+            pdraw2dgraphics->fill_rectangle(statusrectangleItem, argb(190, 255, 255, 255));
 
          }
 
          if (estate & ::user::e_state_checked)
          {
 
-            pgraphics->draw_inset_3d_rectangle(statusrectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255), 1.0);
+            pdraw2dgraphics->draw_inset_3d_rectangle(statusrectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255), 1.0);
 
          }
 
@@ -983,7 +983,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
@@ -994,13 +994,13 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
             if (!(estate & ::user::e_state_disabled))
             {
 
-               pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, statusrectangleImage.top_left(), 0);
+               pmenucentral->MenuV033GetImageListBlend()->draw(pdraw2dgraphics, uImage, statusrectangleImage.top_left(), 0);
 
             }
             else
             {
 
-               pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, statusrectangleImage.top_left(), 0);
+               pmenucentral->MenuV033GetImageListHueLight()->draw(pdraw2dgraphics, uImage, statusrectangleImage.top_left(), 0);
 
             }
 
@@ -1013,9 +1013,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
    if (ptoolitem->m_str.has_character())
    {
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
-      m_fontsize = pgraphics->m_pfont->m_fontsize;
+      m_fontsize = pdraw2dgraphics->m_pwritetextfont->m_fontsize;
 
       auto pbrushText = createø < ::draw2d::brush > ();
 
@@ -1032,14 +1032,14 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
       }
 
-      pgraphics->set(pbrushText);
+      pdraw2dgraphics->set(pbrushText);
 
       auto statusrectangleText = index_element_rectangle(iItem, ::e_element_text, estate);
 
       if (statusrectangleText.ok() && statusrectangleText.right > 0)
       {
 
-         pgraphics->_DrawText(ptoolitem->m_str, statusrectangleText, e_align_bottom_left, e_draw_text_no_prefix);
+         pdraw2dgraphics->_DrawText(ptoolitem->m_str, statusrectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
       }
 
@@ -1208,8 +1208,8 @@ return false;
 // load the bitmap
 HBITMAP hbmImageWell;
 //   hbmImageWell = ::aura::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
-::draw2d::memory_graphics pgraphics(this);;
-hbmImageWell = imaging::LoadSysColorBitmap(pgraphics, hInstImageWell, hRsrcImageWell);
+::draw2d::memory_graphics pdraw2dgraphics(this);;
+hbmImageWell = imaging::LoadSysColorBitmap(pdraw2dgraphics, hInstImageWell, hRsrcImageWell);
 
 
 // tell common control toolbar about the ___new bitmap
@@ -1242,7 +1242,7 @@ return true;
 }
 */
 
-void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
+void simple_toolbar::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
    auto rectangleX = this->rectangle();
@@ -1254,7 +1254,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   auto pstyle = get_style(pgraphics);
+   auto pstyle = get_style(pdraw2dgraphics);
 
    m_sizePress.cx = get_int(pstyle, ::user::e_int_button_press_shift_cx, ::user::e_state_none, 2);
 
@@ -1267,19 +1267,19 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
    if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
    {
 
-      CalcDynamicLayout(pgraphics, 0, LM_HORZ | LM_MRUWIDTH | LM_COMMIT);
+      CalcDynamicLayout(pdraw2dgraphics, 0, LM_HORZ | LM_MRUWIDTH | LM_COMMIT);
 
    }
    else if (bHorz)
    {
 
-      CalcDynamicLayout(pgraphics, 0, LM_HORZ | LM_HORZDOCK | LM_COMMIT);
+      CalcDynamicLayout(pdraw2dgraphics, 0, LM_HORZ | LM_HORZDOCK | LM_COMMIT);
 
    }
    else
    {
 
-      CalcDynamicLayout(pgraphics, 0, LM_VERTDOCK | LM_COMMIT);
+      CalcDynamicLayout(pdraw2dgraphics, 0, LM_VERTDOCK | LM_COMMIT);
 
    }
 
@@ -1291,7 +1291,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
       if (main_content().m_pitema->has_elements())
       {
 
-         CalcSize(pgraphics, (::collection::index)(main_content().m_pitema->get_count()));
+         CalcSize(pdraw2dgraphics, (::collection::index)(main_content().m_pitema->get_count()));
 
          for (::collection::index iItem = 0; iItem < main_content().m_pitema->get_count(); iItem++)
          {
@@ -1856,9 +1856,9 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 
    auto pdraw2d = psystem->draw2d();
 
-   auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+   auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
-   ::user::control_bar::CalcInsideRect(pgraphics, rectangle, bHorz);
+   ::user::control_bar::CalcInsideRect(pdraw2dgraphics, rectangle, bHorz);
 
    throw ::exception(todo);
 
@@ -1895,7 +1895,7 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 #define CX_OVERLAP  0
 
 
-::collection::index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, ::collection::index nCount, ::collection::index nWidth)
+::collection::index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index nCount, ::collection::index nWidth)
 {
 
    synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1904,9 +1904,9 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 
    ASSERT(nCount > 0);
 
-   pgraphics->set_font(this, ::e_element_none);
+   pdraw2dgraphics->set_font(this, ::e_element_none);
 
-   m_fontsize = pgraphics->m_pfont->m_fontsize;
+   m_fontsize = pdraw2dgraphics->m_pwritetextfont->m_fontsize;
 
    ::i32 iImageSpacing = get_image_spacing();
 
@@ -1976,7 +1976,7 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
          if (str.has_character())
          {
 
-            ::f64_size size = pgraphics->get_text_extent(str);
+            ::f64_size size = pdraw2dgraphics->get_text_extent(str);
 
             Δx = (::collection::index)  (size.cx + EXTRA_TEXT_CX);
 
@@ -2110,7 +2110,7 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 }
 
 
-void  simple_toolbar::SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::collection::index nCount, ::collection::index nLength, bool bVert)
+void  simple_toolbar::SizeToolBar(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index nCount, ::collection::index nLength, bool bVert)
 {
 
    ASSERT(nCount > 0);
@@ -2123,12 +2123,12 @@ void  simple_toolbar::SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::colle
       // Wrap ToolBar as specified
       nMax = nLength;
 
-      nTarget = WrapToolBar(pgraphics, nCount, nMax);
+      nTarget = WrapToolBar(pdraw2dgraphics, nCount, nMax);
 
       // Wrap ToolBar vertically
       nMin = 0;
 
-      nCurrent = WrapToolBar(pgraphics, nCount, nMin);
+      nCurrent = WrapToolBar(pdraw2dgraphics, nCount, nMin);
 
       if (nCurrent != nTarget)
       {
@@ -2137,7 +2137,7 @@ void  simple_toolbar::SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::colle
 
             nMid = (nMin + nMax) / 2;
 
-            nCurrent = WrapToolBar(pgraphics, nCount, nMid);
+            nCurrent = WrapToolBar(pdraw2dgraphics, nCount, nMid);
 
             if (nCurrent == nTarget)
             {
@@ -2150,7 +2150,7 @@ void  simple_toolbar::SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::colle
                if (nMin == nMid)
                {
 
-                  WrapToolBar(pgraphics, nCount, nMax);
+                  WrapToolBar(pdraw2dgraphics, nCount, nMax);
 
                   break;
 
@@ -2164,11 +2164,11 @@ void  simple_toolbar::SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::colle
 
       }
 
-      const ::i32_size & size = CalcSize(pgraphics, nCount);
+      const ::i32_size & size = CalcSize(pdraw2dgraphics, nCount);
 
-      WrapToolBar(pgraphics, nCount, size.cx);
+      WrapToolBar(pdraw2dgraphics, nCount, size.cx);
 
-      CalcSize(pgraphics, nCount);
+      CalcSize(pdraw2dgraphics, nCount);
 
    }
    else
@@ -2177,23 +2177,23 @@ void  simple_toolbar::SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::colle
       ::i32_size sizeMax, sizeMin, sizeMid;
 
       // Wrap ToolBar vertically
-      WrapToolBar(pgraphics, nCount, 0);
+      WrapToolBar(pdraw2dgraphics, nCount, 0);
 
-      sizeMin = CalcSize(pgraphics, nCount);
+      sizeMin = CalcSize(pdraw2dgraphics, nCount);
 
       // Wrap ToolBar horizontally
-      WrapToolBar(pgraphics, nCount, 32767);
+      WrapToolBar(pdraw2dgraphics, nCount, 32767);
 
-      sizeMax = CalcSize(pgraphics, nCount);
+      sizeMax = CalcSize(pdraw2dgraphics, nCount);
 
       while (sizeMin.cx < sizeMax.cx)
       {
 
          sizeMid.cx = (sizeMin.cx + sizeMax.cx) / 2;
 
-         WrapToolBar(pgraphics, nCount, sizeMid.cx);
+         WrapToolBar(pdraw2dgraphics, nCount, sizeMid.cx);
 
-         sizeMid = CalcSize(pgraphics, nCount);
+         sizeMid = CalcSize(pdraw2dgraphics, nCount);
 
          if (nLength < sizeMid.cy)
          {
@@ -2201,7 +2201,7 @@ void  simple_toolbar::SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::colle
             if (sizeMin == sizeMid)
             {
 
-               WrapToolBar(pgraphics, nCount, sizeMax.cx);
+               WrapToolBar(pdraw2dgraphics, nCount, sizeMax.cx);
 
                return;
 
@@ -2238,7 +2238,7 @@ struct ___CONTROLPOS
 };
 
 
-i32_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u32 dwMode, ::collection::index nLength)
+i32_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pdraw2dgraphics, ::u32 dwMode, ::collection::index nLength)
 {
 
    //::pointer<::user::tab>ptab = get_typed_parent < ::user::tab >();
@@ -2286,19 +2286,19 @@ i32_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u3
          if (bDynamic && (dwMode & LM_MRUWIDTH))
          {
 
-            SizeToolBar(pgraphics, count, m_nMRUWidth);
+            SizeToolBar(pdraw2dgraphics, count, m_nMRUWidth);
 
          }
          else if (bDynamic && (dwMode & LM_HORZDOCK))
          {
 
-            SizeToolBar(pgraphics, count, 32767);
+            SizeToolBar(pdraw2dgraphics, count, 32767);
 
          }
          else if (bDynamic && (dwMode & LM_VERTDOCK))
          {
 
-            SizeToolBar(pgraphics, count, 0);
+            SizeToolBar(pdraw2dgraphics, count, 0);
 
          }
          else if (bDynamic && (nLength != -1))
@@ -2306,31 +2306,31 @@ i32_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u3
 
             ::i32_rectangle rectangle;
 
-            CalcInsideRect(pgraphics, rectangle, (dwMode & LM_HORZ) != 0);
+            CalcInsideRect(pdraw2dgraphics, rectangle, (dwMode & LM_HORZ) != 0);
 
             bool bVert = (dwMode & LM_LENGTHY) != 0;
 
             ::collection::index nLen = nLength + (bVert ? rectangle.height() : rectangle.width());
 
-            SizeToolBar(pgraphics, count, nLen, bVert);
+            SizeToolBar(pdraw2dgraphics, count, nLen, bVert);
 
          }
          else if (bDynamic && (m_dwStyle & CBRS_FLOATING))
          {
 
-            SizeToolBar(pgraphics, count, m_nMRUWidth);
+            SizeToolBar(pdraw2dgraphics, count, m_nMRUWidth);
 
          }
          else
          {
 
-            SizeToolBar(pgraphics, count, (dwMode & LM_HORZ) ? 32767 : 0);
+            SizeToolBar(pdraw2dgraphics, count, (dwMode & LM_HORZ) ? 32767 : 0);
 
          }
 
       }
 
-      sizeResult = CalcSize(pgraphics, count);
+      sizeResult = CalcSize(pdraw2dgraphics, count);
 
       if (dwMode & LM_COMMIT)
       {
@@ -2428,7 +2428,7 @@ i32_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u3
             // {
             //
             //    ::GetTextExtentPointW(
-            //       (HDC)pgraphics->get_os_data(),
+            //       (HDC)pdraw2dgraphics->get_os_data(),
             //       str,
             //       str.length(),
             //       &size);
@@ -2521,13 +2521,13 @@ i32_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u3
 
       ::i32_rectangle rectangle;
 
-      CalcInsideRect(pgraphics, rectangle, (dwMode & LM_HORZ) != 0);
+      CalcInsideRect(pdraw2dgraphics, rectangle, (dwMode & LM_HORZ) != 0);
 
       sizeResult.cy -= rectangle.height();
 
       sizeResult.cx -= rectangle.width();
 
-      const ::i32_size & size = ::user::control_bar::CalcFixedLayout(pgraphics, (dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
+      const ::i32_size & size = ::user::control_bar::CalcFixedLayout(pdraw2dgraphics, (dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
 
       sizeResult.cx = maximum(sizeResult.cx, size.cx);
 
@@ -2584,18 +2584,18 @@ void simple_toolbar::OnBarStyleChange(::u32 dwOldStyle, ::u32 dwNewStyle)
 }
 
 
-i32_size simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, ::u32 dwMode)
+i32_size simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pdraw2dgraphics, ::i32 nLength, ::u32 dwMode)
 {
 
    if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
          ((dwMode & LM_HORZDOCK) || (dwMode & LM_VERTDOCK)))
    {
 
-      return CalcFixedLayout(pgraphics, (dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZDOCK) != 0);
+      return CalcFixedLayout(pdraw2dgraphics, (dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZDOCK) != 0);
 
    }
 
-   return CalcLayout(pgraphics, dwMode, nLength);
+   return CalcLayout(pdraw2dgraphics, dwMode, nLength);
 
 }
 

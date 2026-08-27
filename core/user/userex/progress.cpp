@@ -322,7 +322,7 @@ namespace userex
    }
 
 
-   void progress_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void progress_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_pprogress == nullptr)
@@ -332,16 +332,16 @@ namespace userex
 
       }
 
-      pgraphics->set_text_color(argb(255, 80, 80, 80));
+      pdraw2dgraphics->set_text_color(argb(255, 80, 80, 80));
 
-      pgraphics->set_font(this);
+      pdraw2dgraphics->set_font(this);
 
-      pgraphics->draw_text(m_pprogressreal->m_strStatus, m_rectangleStatus, e_align_center);
+      pdraw2dgraphics->draw_text(m_pprogressreal->m_strStatus, m_rectangleStatus, e_align_center);
 
    }
 
 
-   void progress_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void progress_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();

@@ -39,7 +39,7 @@ namespace html
 
 
          virtual void _001OnDraw(html_data * pdocument);
-         virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+         virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
          void implement_phase1(html_data * pdocument, ::html::element* pelemental);
          void layout_phase0(html_data * pdata);
          bool layout_phase1(html_data * pdata);
@@ -53,7 +53,7 @@ namespace html
 
          virtual ::i32 hit_test(html_data * pdocument, const ::f32_point & point);
 
-         virtual character_count char_hit_test(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y);
+         virtual character_count char_hit_test(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 x, ::i32 y);
 
          virtual ::f32 get_first_line_height();
          virtual ::f32 get_last_line_height();

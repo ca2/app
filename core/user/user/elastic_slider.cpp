@@ -226,28 +226,28 @@ namespace user
    }
 
 
-   void elastic_slider::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void elastic_slider::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
 
       ::u8 bAlpha = (::u8) (128.0 * get_alpha());
 
-      pgraphics->fill_rectangle(rectangleX, argb(bAlpha, 250, 255, 255));
+      pdraw2dgraphics->fill_rectangle(rectangleX, argb(bAlpha, 250, 255, 255));
 
       ::i32_rectangle rectangle;
       
       GetSliderRect(rectangle);
 
-      pgraphics->draw_inset_rectangle(rectangle,argb(bAlpha,255,255,255), 1.0);
+      pdraw2dgraphics->draw_inset_rectangle(rectangle,argb(bAlpha,255,255,255), 1.0);
       
       rectangle.deflate(1, 1);
       
-      pgraphics->draw_inset_rectangle(rectangle,argb(bAlpha,255,255,0), 1.0);
+      pdraw2dgraphics->draw_inset_rectangle(rectangle,argb(bAlpha,255,255,0), 1.0);
       
       rectangle.deflate(1, 1);
       
-      pgraphics->draw_inset_rectangle(rectangle,argb(bAlpha,255,255,255), 1.0);
+      pdraw2dgraphics->draw_inset_rectangle(rectangle,argb(bAlpha,255,255,255), 1.0);
 
       if(m_bSlide)
       {
@@ -256,7 +256,7 @@ namespace user
 
          host_to_client()(pointCursor);
 
-         pgraphics->line(rectangle.center(),  pointCursor);
+         pdraw2dgraphics->line(rectangle.center(),  pointCursor);
 
       }
 

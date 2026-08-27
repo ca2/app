@@ -103,7 +103,7 @@ namespace draw2d
       //::pointer< ::mutex > get_graphics_context_list_mutex();
       virtual ::draw2d::graphics_pointer
       do_allocation_strategy(::acme::user::interaction * pacmeuserinteractionAffinity, ::image::image *pimage, const ::i32_size &size);
-      virtual void do_release_to_pool_strategy(::draw2d::graphics_pointer &pgraphics, ::image::image *pimage);
+      virtual void do_release_to_pool_strategy(::draw2d::graphics_pointer &pdraw2dgraphics, ::image::image *pimage);
    public:
       virtual ::image::image_pointer image_from_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics);
       //virtual void on_before_create_window(::windowing::window* pwindow);
@@ -141,12 +141,12 @@ namespace draw2d
          ::image::image * pimage,
          ::acme::user::interaction * pacmeuserinteractionAffinity);
       virtual ::draw2d::graphics_lease acquire_owned_graphics(
-         ::draw2d::graphics * pgraphics,
+         ::draw2d::graphics * pdraw2dgraphics,
          ::image::image * pimage,
          const ::i32_size & size,
          ::acme::user::interaction * pacmeuserinteractionAffinity);
       virtual void return_memory_graphics(
-         ::draw2d::graphics_pointer pgraphics,
+         ::draw2d::graphics_pointer pdraw2dgraphics,
          ::image::image_pointer pimage,
          bool bDamaged);
       virtual void shutdown_memory_graphics_pool();
@@ -179,12 +179,12 @@ namespace draw2d
       virtual string write_text_get_default_implementation_name();
 
       virtual void embossed_text_out(
-         ::draw2d::graphics_pointer & pgraphics,
+         ::draw2d::graphics_pointer & pdraw2dgraphics,
          const ::i32_rectangle & rectangle,
          const ::scoped_string & scopedstrText,
          ::image::fastblur & blur,
          ::image::image_pointer & pimage,
-         ::write_text::font * pfont,
+         ::write_text::font * pwritetextfont,
          const ::e_align & ealign,
          const ::e_draw_text & edrawtext,
          const ::color::color & colorText,
@@ -197,7 +197,7 @@ namespace draw2d
 
 
       void emboss_predicate(
-         ::draw2d::graphics_pointer & pgraphics,
+         ::draw2d::graphics_pointer & pdraw2dgraphics,
          const ::i32_rectangle & rectangle,
          const ::function < void(::draw2d::graphics *) > & functionDraw,
          ::image::fastblur & blur,

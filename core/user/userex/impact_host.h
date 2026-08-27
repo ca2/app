@@ -94,7 +94,7 @@ namespace userex
 
       virtual bool _001IsCompactMode();
 
-      void _001OnDraw(::draw2d::graphics_pointer &pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer &pdraw2dgraphics) override;
 
       virtual void _001OnImpact(const ::atom & atomImpactId);
       virtual void show_impact(const ::atom & atomImpactId);
@@ -118,7 +118,7 @@ namespace userex
       virtual bool OnUpDownTargetDetach(::user::interaction * pupdown) override;
       virtual bool tabfy(::user::interaction * pupdown);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

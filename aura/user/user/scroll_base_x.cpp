@@ -214,43 +214,43 @@ namespace user
 
       //::pointer<::message::scroll>pscroll(pmessage);
 
-      //queue_graphics_call([this, pscroll](::draw2d::graphics_pointer & pgraphics)
+      //queue_graphics_call([this, pscroll](::draw2d::graphics_pointer & pdraw2dgraphics)
       //   {
 
       //      if (pscroll->m_ecommand == e_scroll_command_line_left)
       //      {
 
-      //         set_context_offset_x(pgraphics, (::i32)(get_context_offset().x - m_pscrollstateHorizontal->m_iLine));
+      //         set_context_offset_x(pdraw2dgraphics, (::i32)(get_context_offset().x - m_pscrollstateHorizontal->m_iLine));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_page_left)
       //      {
 
-      //         set_context_offset_x(pgraphics, (::i32)(get_context_offset().x - m_pscrollstateHorizontal->m_iPage));
+      //         set_context_offset_x(pdraw2dgraphics, (::i32)(get_context_offset().x - m_pscrollstateHorizontal->m_iPage));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_page_right)
       //      {
 
-      //         set_context_offset_x(pgraphics, (::i32)(get_context_offset().x + m_pscrollstateHorizontal->m_iPage));
+      //         set_context_offset_x(pdraw2dgraphics, (::i32)(get_context_offset().x + m_pscrollstateHorizontal->m_iPage));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_line_right)
       //      {
 
-      //         set_context_offset_x(pgraphics, (::i32)(get_context_offset().x + m_pscrollstateHorizontal->m_iLine));
+      //         set_context_offset_x(pdraw2dgraphics, (::i32)(get_context_offset().x + m_pscrollstateHorizontal->m_iLine));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_thumb_track)
       //      {
 
-      //         set_context_offset_x(pgraphics, pscroll->m_nPos);
+      //         set_context_offset_x(pdraw2dgraphics, pscroll->m_nPos);
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_thumb_position)
       //      {
 
-      //         set_context_offset_x(pgraphics, pscroll->m_nPos);
+      //         set_context_offset_x(pdraw2dgraphics, pscroll->m_nPos);
 
       //      }
 
@@ -263,7 +263,7 @@ namespace user
    }
 
 
-   //void scroll_base_x::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //void scroll_base_x::on_change_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -416,9 +416,9 @@ namespace user
       //if (validate_context_offset(m_pointScroll))
       //{
 
-      //   layout_scroll_bar(pgraphics);
+      //   layout_scroll_bar(pdraw2dgraphics);
 
-      //   on_change_context_offset(pgraphics);
+      //   on_change_context_offset(pdraw2dgraphics);
 
       //}
 
@@ -533,10 +533,10 @@ namespace user
    {
 
       send_scroll_x_message(e_scroll_command_thumb_position, nPos);
-      //queue_graphics_call([this, nPos](::draw2d::graphics_pointer & pgraphics)
+      //queue_graphics_call([this, nPos](::draw2d::graphics_pointer & pdraw2dgraphics)
       //   {
 
-      //      set_context_offset_x(pgraphics, nPos);
+      //      set_context_offset_x(pdraw2dgraphics, nPos);
 
       //   });
 

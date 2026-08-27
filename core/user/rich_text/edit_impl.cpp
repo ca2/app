@@ -737,12 +737,12 @@ namespace user
       }
 
 
-      void edit_impl::draw_control_background(::draw2d::graphics_pointer & pgraphics)
+      void edit_impl::draw_control_background(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
          //return;
 
-         //::aura::draw_context* pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
+         //::aura::draw_context* pdrawcontext = pdraw2dgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
          //::i32_rectangle rectangleX;
 
@@ -766,7 +766,7 @@ namespace user
          //else if (_001IsTranslucent())
          //{
 
-         //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         //   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          //   ::color::color crBackground = _001GetColor(::user::color_background, argb(128, 255, 255, 255));
 
@@ -782,7 +782,7 @@ namespace user
          //   if (crBackground != 0)
          //   {
 
-         //      pgraphics->fill_rectangle(rectangleX, crBackground);
+         //      pdraw2dgraphics->fill_rectangle(rectangleX, crBackground);
 
          //   }
 
@@ -790,7 +790,7 @@ namespace user
          //else
          //{
 
-         //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         //   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          //   ::color::color crBackground = _001GetColor(m_ecolorBackground, argb(200, 255, 255, 255));
 
@@ -803,27 +803,27 @@ namespace user
 
          //   //crBackground = argb(255, 255, 200, 100);
 
-         //   pgraphics->fill_rectangle(rectangleX, crBackground);
+         //   pdraw2dgraphics->fill_rectangle(rectangleX, crBackground);
 
          //}
 
-         //::user::rich_text::edit::draw_control_background(pgraphics);
+         //::user::rich_text::edit::draw_control_background(pdraw2dgraphics);
 
       }
 
 
-      void edit_impl::_001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics)
+      void edit_impl::_001OnNcPostDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
-         ::user::rich_text::edit::_001OnNcPostDraw(pgraphics);
+         ::user::rich_text::edit::_001OnNcPostDraw(pdraw2dgraphics);
 
       }
 
 
-      void edit_impl::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+      void edit_impl::_001CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
-         ::user::rich_text::edit::_001CallOnDraw(pgraphics);
+         ::user::rich_text::edit::_001CallOnDraw(pdraw2dgraphics);
 
       }
 
@@ -840,7 +840,7 @@ namespace user
       }
 
 
-      void edit_impl::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+      void edit_impl::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
          //return;
@@ -850,7 +850,7 @@ namespace user
        //  if (!is_picture_enabled())
        //  {
 
-       /////     picture::_001OnDraw(pgraphics);
+       /////     picture::_001OnDraw(pdraw2dgraphics);
 
        //  }
        //  else
@@ -858,10 +858,10 @@ namespace user
 
          //auto rectangleX = this->rectangle();
 
-         //pgraphics->fill_rectangle(rectangleX, argb(40, 255, 255, 255));
+         //pdraw2dgraphics->fill_rectangle(rectangleX, argb(40, 255, 255, 255));
 
-         //draw_impl(pgraphics);
-         ::user::rich_text::edit::_001OnDraw(pgraphics);
+         //draw_impl(pdraw2dgraphics);
+         ::user::rich_text::edit::_001OnDraw(pdraw2dgraphics);
          // 
          //
            //       }
@@ -869,16 +869,16 @@ namespace user
       }
 
 
-      void edit_impl::draw_impl(::draw2d::graphics_pointer & pgraphics)
+      void edit_impl::draw_impl(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         //pgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
+         //pdraw2dgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
 
          //::i32_rectangle r(25, 25, 150, 150);
 
-         //pgraphics->fill_solid_rectangle(r, ::color::red);
+         //pdraw2dgraphics->fill_solid_rectangle(r, ::color::red);
 
          at_end_of_scope
          {
@@ -889,12 +889,12 @@ namespace user
 
          m_bShouldDrawOverride = true;
 
-         _000OnDraw(pgraphics);
+         _000OnDraw(pdraw2dgraphics);
 
       }
 
 
-      void edit_impl::_000DrawImpl(::draw2d::graphics_pointer & pgraphics)
+      void edit_impl::_000DrawImpl(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
          if (m_ppictureimpl)
@@ -904,15 +904,15 @@ namespace user
 
          }
 
-         return _000OnDraw(pgraphics);
+         return _000OnDraw(pdraw2dgraphics);
 
          //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         ////pgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
+         ////pdraw2dgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
 
          //::i32_rectangle r(25, 25, 150, 150);
 
-         //pgraphics->fill_solid_rectangle(r, ::color::red);
+         //pdraw2dgraphics->fill_solid_rectangle(r, ::color::red);
 
          //at_end_of_scope
          //{
@@ -923,7 +923,7 @@ namespace user
 
          //m_bShouldDrawOverride = true;
 
-         //_000OnDraw(pgraphics);
+         //_000OnDraw(pdraw2dgraphics);
 
       }
 
@@ -1061,10 +1061,10 @@ namespace user
       }
 
 
-      void edit_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
+      void edit_impl::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
       {
 
-         do_layout(pgraphics);
+         do_layout(pdraw2dgraphics);
 
       }
 

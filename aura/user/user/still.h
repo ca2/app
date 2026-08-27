@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      ::write_text::font_pointer          m_pfont;
+      ::write_text::font_pointer          m_pwritetextfont;
       ::image::image_pointer                     m_pimage;          // not pressed default bitmap
       //::i32_rectangle                   m_rectangleMargin;
       //::i32_rectangle                   m_rectangleBorder;
@@ -48,16 +48,16 @@ namespace user
 
       ::write_text::font_pointer get_font(style * pstyle, const ::e_element & eelement = e_element_none, const ::user::e_state & estate = e_state_none) override;
 
-      void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
+      void resize_to_fit(::draw2d::graphics_pointer& pdraw2dgraphics) override;
 
       virtual void set_text_align(::e_align ealignText);
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void _001OnDrawImage(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDrawImage(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _002OnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _002OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       //void set_check(const ::e_check & check, const ::action_context & action_context) override;
       //virtual ::enum_check get_check() override;
@@ -72,7 +72,7 @@ namespace user
 
       //virtual ::write_text::font_pointer get_font(style * pstyle, const ::e_element & eelement, estate estate = e_state_none) const;
 
-      virtual void defer_update_text_out_array(::draw2d::graphics_pointer & pgraphics);
+      virtual void defer_update_text_out_array(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       //virtual ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
@@ -86,7 +86,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
-      ::f64_size get_fitting_size(::draw2d::graphics_pointer & pgraphics) override;
+      ::f64_size get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       bool keyboard_focus_is_focusable() override;
@@ -118,8 +118,8 @@ namespace user
       ::item_pointer on_hit_test(const ::i32_point & point, e_zorder ezorder) override;
 
       void on_set_window_text() override;
-      bool on_perform_layout(::draw2d::graphics_pointer & pgraphics) override;
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      bool on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       void set_stock_icon(enum_stock_icon eicon) override;

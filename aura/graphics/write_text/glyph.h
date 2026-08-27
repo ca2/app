@@ -30,7 +30,7 @@ namespace write_text
       ~glyph() override;
 
 
-      void DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, ::f64 dRateX, ::i32_point * ppointoffset);
+      void DrawGlyph(::draw2d::graphics_pointer & pdraw2dgraphics, bool bFill, ::f64 dRateX, ::i32_point * ppointoffset);
 
 
 //#ifdef WINDOWS_DESKTOP

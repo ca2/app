@@ -451,9 +451,9 @@ namespace user
    //   return false;
    //}
 
-   //void interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const
+   //void interaction_impl::PrintWindow(::draw2d::graphics_pointer & pdraw2dgraphics,::u32 nFlags) const
    //{
-   //   __UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(pdraw2dgraphics);
    //   __UNREFERENCED_PARAMETER(nFlags);
    //   throw ::interface_only();
 
@@ -4523,7 +4523,7 @@ namespace user
    }
 
 
-   //bool interaction_impl::needs_to_draw(const ::i32_rectangle & rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics)
+   //bool interaction_impl::needs_to_draw(const ::i32_rectangle & rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -4535,14 +4535,14 @@ namespace user
 
    //   }
 
-   //   if (pgraphics->m_rectangleaNeedRedraw.is_empty())
+   //   if (pdraw2dgraphics->m_rectangleaNeedRedraw.is_empty())
    //   {
 
    //      return true;
 
    //   }
 
-   //   for (auto & rectangleRedraw : pgraphics->m_rectangleaNeedRedraw)
+   //   for (auto & rectangleRedraw : pdraw2dgraphics->m_rectangleaNeedRedraw)
    //   {
 
    //      if (rectangleRedraw.intersects(rectangleHostNeedsToDraw))
@@ -4685,10 +4685,10 @@ namespace user
    //}
 
 
-   //void interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const i32_rectangle & prc,::u32 uFlags)
+   //void interaction_impl::DrawCaption(::draw2d::graphics_pointer & pdraw2dgraphics,const i32_rectangle & prc,::u32 uFlags)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(pdraw2dgraphics);
    //   __UNREFERENCED_PARAMETER(prc);
    //   __UNREFERENCED_PARAMETER(uFlags);
 
@@ -5102,10 +5102,10 @@ namespace user
    //}
 
 
-   void interaction_impl::Print(::draw2d::graphics_pointer &pgraphics, ::u32 dwFlags) const
+   void interaction_impl::Print(::draw2d::graphics_pointer &pdraw2dgraphics, ::u32 dwFlags) const
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
       __UNREFERENCED_PARAMETER(dwFlags);
 
       throw ::interface_only();
@@ -5113,10 +5113,10 @@ namespace user
    }
 
 
-   void interaction_impl::PrintClient(::draw2d::graphics_pointer &pgraphics, ::u32 dwFlags) const
+   void interaction_impl::PrintClient(::draw2d::graphics_pointer &pdraw2dgraphics, ::u32 dwFlags) const
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
       __UNREFERENCED_PARAMETER(dwFlags);
 
       throw ::interface_only();
@@ -5667,10 +5667,10 @@ namespace user
 
       //   m_puserinteraction->sketch_to_layout();
 
-      //   if (m_puserinteraction->should_perform_layout(pgraphics))
+      //   if (m_puserinteraction->should_perform_layout(pdraw2dgraphics))
       //   {
 
-      //      m_puserinteraction->perform_layout(pgraphics);
+      //      m_puserinteraction->perform_layout(pdraw2dgraphics);
 
       //   }
 
@@ -5907,16 +5907,16 @@ namespace user
 #endif
 
 
-      ::draw2d::graphics_pointer pgraphics;
+      ::draw2d::graphics_pointer pdraw2dgraphics;
 
-      m_puserinteraction->defer_do_graphics(pgraphics);
+      m_puserinteraction->defer_do_graphics(pdraw2dgraphics);
 
 
 
-      //if (pgraphics)
+      //if (pdraw2dgraphics)
       //{
 
-      //   for (::collection::index i = 0; i < pgraphics->m_rectangleaNeedRedraw.size();)
+      //   for (::collection::index i = 0; i < pdraw2dgraphics->m_rectangleaNeedRedraw.size();)
       //   {
 
       //      bool bErasedAny = false;
@@ -5924,7 +5924,7 @@ namespace user
       //      for (::collection::index j = 0; j < m_rectangleaNeedRedraw.size();)
       //      {
 
-      //         if (pgraphics->m_rectangleaNeedRedraw[i] == m_rectangleaNeedRedraw[j])
+      //         if (pdraw2dgraphics->m_rectangleaNeedRedraw[i] == m_rectangleaNeedRedraw[j])
       //         {
 
       //            m_rectangleaNeedRedraw.erase_at(j);
@@ -5944,7 +5944,7 @@ namespace user
       //      if (bErasedAny)
       //      {
 
-      //         pgraphics->m_rectangleaNeedRedraw.erase_at(i);
+      //         pdraw2dgraphics->m_rectangleaNeedRedraw.erase_at(i);
 
       //      }
       //      else
@@ -5989,15 +5989,15 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnNcClip(::draw2d::graphics_pointer &pgraphics)
+   void interaction_impl::_001OnNcClip(::draw2d::graphics_pointer &pdraw2dgraphics)
    {
 
-      ::user::prototype_impl::_001OnNcClip(pgraphics);
+      ::user::prototype_impl::_001OnNcClip(pdraw2dgraphics);
 
    }
 
 
-   void interaction_impl::defer_do_graphics(::draw2d::graphics_pointer &pgraphics)
+   void interaction_impl::defer_do_graphics(::draw2d::graphics_pointer &pdraw2dgraphics)
    {
 
       debug() << "user::interaction_impl::defer_do_graphics";
@@ -6071,9 +6071,9 @@ namespace user
 
          }
 
-         //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+         //::pointer < ::draw2d::graphics > pdraw2dgraphics = pbufferitem->g();
 
-         pgraphics = pbufferitem->g();
+         pdraw2dgraphics = pbufferitem->g();
 
 #ifdef MORE_LOG
 
@@ -6082,7 +6082,7 @@ namespace user
 #endif
 
          //#ifdef UNIVERSAL_WINDOWS
-         if (::is_null(pgraphics) || pgraphics->nok())
+         if (::is_null(pdraw2dgraphics) || pdraw2dgraphics->nok())
          {
 
             //#define SEVERITY_HIGH 5
@@ -6101,43 +6101,43 @@ namespace user
          }
 
 
-         pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
+         pdraw2dgraphics->do_on_context([this, &pdraw2dgraphics, &pbufferitem]()
             {
 
          {
 
-            //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
-            //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+            //ASSERT(!(pdraw2dgraphics->m_egraphics & e_graphics_from_context));
+            //ASSERT(pdraw2dgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
             //#endif
 
-            pgraphics->payload("set_transparent") = "";
+            pdraw2dgraphics->payload("set_transparent") = "";
 
-            pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
+            pdraw2dgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
 
-            pgraphics->m_pgraphicsbufferitem = pbufferitem;
+            pdraw2dgraphics->m_pgraphicsbufferitem = pbufferitem;
 
 #ifdef MORE_LOG
 
-            debug() << "intrimpl::defer_do_graphics Going to call pgraphics->on_begin_draw";
+            debug() << "intrimpl::defer_do_graphics Going to call pdraw2dgraphics->on_begin_draw";
 
 #endif
 
 
-            pgraphics->on_begin_draw();
+            pdraw2dgraphics->on_begin_draw();
 
-            pgraphics->reset_clip();
+            pdraw2dgraphics->reset_clip();
 
-            pgraphics->set_origin(0., 0.);
+            pdraw2dgraphics->set_origin(0., 0.);
 
             //{
 
             //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            //   pgraphics->construct_newø(pgraphics->m_puserredraw);
+            //   pdraw2dgraphics->construct_newø(pdraw2dgraphics->m_puserredraw);
 
-            //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+            //   pdraw2dgraphics->user_redraw()->m_pgraphics = pdraw2dgraphics;
 
-            //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+            //   pdraw2dgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
 
             //   if (m_redrawitema.has_element())
             //   {
@@ -6150,47 +6150,47 @@ namespace user
 
 
 
-            //pgraphics->m_egraphics = e_graphics_layout;
+            //pdraw2dgraphics->m_egraphics = e_graphics_layout;
 
-            //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
-            //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+            //ASSERT(!(pdraw2dgraphics->m_egraphics & e_graphics_from_context));
+            //ASSERT(pdraw2dgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
             //#endif
 
-            //pgraphics->payload("set_transparent") = "";
+            //pdraw2dgraphics->payload("set_transparent") = "";
 
-            //pgraphics->m_pgraphicsgraphics = m_pgraphics;
+            //pdraw2dgraphics->m_pgraphicsgraphics = m_pgraphics;
 
-            //pgraphics->m_pgraphicsbufferitem = pbufferitem;
+            //pdraw2dgraphics->m_pgraphicsbufferitem = pbufferitem;
 
-            //pgraphics->on_begin_draw();
+            //pdraw2dgraphics->on_begin_draw();
 
-            //pgraphics->reset_clip();
+            //pdraw2dgraphics->reset_clip();
 
-            //pgraphics->set_origin(0., 0.);
+            //pdraw2dgraphics->set_origin(0., 0.);
 
 
             {
 
                synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-               if (pgraphics->defer_construct_newø(pgraphics->m_puserredraw))
+               if (pdraw2dgraphics->defer_construct_newø(pdraw2dgraphics->m_puserredraw))
                {
 
                   if (system()->draw2d()->graphics_context_does_full_redraw())
                   {
 
-                     pgraphics->m_puserredraw->m_bEnabled = false;
+                     pdraw2dgraphics->m_puserredraw->m_bEnabled = false;
 
                   }
 
                }
 
-               if (pgraphics->m_puserredraw->m_bEnabled)
+               if (pdraw2dgraphics->m_puserredraw->m_bEnabled)
                {
 
-                  pgraphics->user_redraw()->m_pgraphics = pgraphics;
+                  pdraw2dgraphics->user_redraw()->m_pgraphics = pdraw2dgraphics;
 
-                  pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+                  pdraw2dgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
 
                   if (m_redrawitema.has_element())
                   {
@@ -6214,7 +6214,7 @@ namespace user
             //if (!bDraw)
             //{
 
-            //   if (pgraphics->m_rectangleaNeedRedraw.has_element())
+            //   if (pdraw2dgraphics->m_rectangleaNeedRedraw.has_element())
             //   {
 
             //      bDraw = true;
@@ -6223,16 +6223,16 @@ namespace user
 
             //}
 
-            pgraphics->m_pdraw2dhost = m_puserinteraction;
+            pdraw2dgraphics->m_pdraw2dhost = m_puserinteraction;
 
-            pgraphics->m_puserstyle.release();
+            pdraw2dgraphics->m_puserstyle.release();
 
-            if (pgraphics->m_pimage)
+            if (pdraw2dgraphics->m_pimage)
             {
 
-               pgraphics->m_pimage->m_rectangleTag.Null();
+               pdraw2dgraphics->m_pimage->m_rectangleTag.Null();
 
-               //sizeDrawn = pgraphics->m_pimage->m_size;
+               //sizeDrawn = pdraw2dgraphics->m_pimage->m_size;
 
                ///sizeDrawn = m_puserinteraction->const_layout().design().size();
 
@@ -6243,7 +6243,7 @@ namespace user
             if (strBitmapSource.has_character())
             {
 
-               //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+               //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pdraw2dgraphics;
                //
                //            if(pbitmapsourcebuffer)
                //            {
@@ -6268,19 +6268,19 @@ namespace user
                } else
                {
 
-                  //pgraphics->m_bDraw = bDraw;
+                  //pdraw2dgraphics->m_bDraw = bDraw;
 
-                  pgraphics->m_bDraw = false;
+                  pdraw2dgraphics->m_bDraw = false;
 
-                  pgraphics->m_bInheritDraw = false;
+                  pdraw2dgraphics->m_bInheritDraw = false;
 
-                  //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
+                  //            pdraw2dgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
 #ifdef MORE_LOG
                   debug() << "defer_do_graphics _000TopCallOnLayout";
 #endif
-                  m_puserinteraction->_000TopCallOnLayout(pgraphics);
+                  m_puserinteraction->_000TopCallOnLayout(pdraw2dgraphics);
 
-                  //m_puserinteraction->_000CallOnDraw(pgraphics);
+                  //m_puserinteraction->_000CallOnDraw(pdraw2dgraphics);
 
                   //                  if (!bDraw && m_redrawa.has_element())
                   //                  {
@@ -6289,9 +6289,9 @@ namespace user
                   //
                   //                     bDraw = true;
                   //
-                  //                     pgraphics->m_bDraw = bDraw;
+                  //                     pdraw2dgraphics->m_bDraw = bDraw;
                   //
-                  //                     m_puserinteraction->_000CallOnDraw(pgraphics);
+                  //                     m_puserinteraction->_000CallOnDraw(pdraw2dgraphics);
                   //
                   //                  }
 
@@ -6312,14 +6312,14 @@ namespace user
 
             }
 
-            ////if (pgraphics->m_pimage.ok())
+            ////if (pdraw2dgraphics->m_pimage.ok())
             ////{
 
-            ////   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+            ////   //pdraw2dgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
 
             ////   //m_sizeDrawn = sizeDrawn;
 
-            ////   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
+            ////   pdraw2dgraphics->m_sizeDrawnAnnotation = sizeDrawn;
 
             ////}
 
@@ -6381,14 +6381,14 @@ namespace user
 
          }
 
-         //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+         //::pointer < ::draw2d::graphics > pdraw2dgraphics = pbufferitem->g();
 
-         pgraphics = pbufferitem->g();
+         pdraw2dgraphics = pbufferitem->g();
 
 
 
          //#ifdef UNIVERSAL_WINDOWS
-         if (::is_null(pgraphics) || pgraphics->nok())
+         if (::is_null(pdraw2dgraphics) || pdraw2dgraphics->nok())
          {
 
             //#define SEVERITY_HIGH 5
@@ -6406,39 +6406,39 @@ namespace user
 
          }
 
-         pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
+         pdraw2dgraphics->do_on_context([this, &pdraw2dgraphics, &pbufferitem]()
    {
 
 
       {
 
-         //pgraphics->m_egraphics = e_graphics_draw;
+         //pdraw2dgraphics->m_egraphics = e_graphics_draw;
 
-         //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
-         //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+         //ASSERT(!(pdraw2dgraphics->m_egraphics & e_graphics_from_context));
+         //ASSERT(pdraw2dgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
          //#endif
 
-         pgraphics->payload("set_transparent") = "";
+         pdraw2dgraphics->payload("set_transparent") = "";
 
-         pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
+         pdraw2dgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
 
-         pgraphics->m_pgraphicsbufferitem = pbufferitem;
+         pdraw2dgraphics->m_pgraphicsbufferitem = pbufferitem;
 
-         pgraphics->on_begin_draw();
+         pdraw2dgraphics->on_begin_draw();
 
-         pgraphics->reset_clip();
+         pdraw2dgraphics->reset_clip();
 
-         pgraphics->set_origin(0., 0.);
+         pdraw2dgraphics->set_origin(0., 0.);
 
          //{
 
          //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         //   pgraphics->construct_newø(pgraphics->m_puserredraw);
+         //   pdraw2dgraphics->construct_newø(pdraw2dgraphics->m_puserredraw);
 
-         //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+         //   pdraw2dgraphics->user_redraw()->m_pgraphics = pdraw2dgraphics;
 
-         //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+         //   pdraw2dgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
 
          //   if (m_redrawitema.has_element())
          //   {
@@ -6451,33 +6451,33 @@ namespace user
 
 
 
-         //pgraphics->m_egraphics = e_graphics_layout;
+         //pdraw2dgraphics->m_egraphics = e_graphics_layout;
 
-         //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
-         //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+         //ASSERT(!(pdraw2dgraphics->m_egraphics & e_graphics_from_context));
+         //ASSERT(pdraw2dgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
          ////#endif
 
-         //pgraphics->payload("set_transparent") = "";
+         //pdraw2dgraphics->payload("set_transparent") = "";
 
-         //pgraphics->m_pgraphicsgraphics = m_pgraphics;
+         //pdraw2dgraphics->m_pgraphicsgraphics = m_pgraphics;
 
-         //pgraphics->m_pgraphicsbufferitem = pbufferitem;
+         //pdraw2dgraphics->m_pgraphicsbufferitem = pbufferitem;
 
-         //pgraphics->on_begin_draw();
+         //pdraw2dgraphics->on_begin_draw();
 
-         //pgraphics->reset_clip();
+         //pdraw2dgraphics->reset_clip();
 
-         //pgraphics->set_origin(0., 0.);
+         //pdraw2dgraphics->set_origin(0., 0.);
 
          //{
 
          //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         //   pgraphics->construct_newø(pgraphics->m_puserredraw);
+         //   pdraw2dgraphics->construct_newø(pdraw2dgraphics->m_puserredraw);
 
-         //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+         //   pdraw2dgraphics->user_redraw()->m_pgraphics = pdraw2dgraphics;
 
-         //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+         //   pdraw2dgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
 
          //   if (m_redrawitema.has_element())
          //   {
@@ -6493,7 +6493,7 @@ namespace user
          //if (!bDraw)
          //{
 
-         //   if (pgraphics->m_rectangleaNeedRedraw.has_element())
+         //   if (pdraw2dgraphics->m_rectangleaNeedRedraw.has_element())
          //   {
 
          //      bDraw = true;
@@ -6502,16 +6502,16 @@ namespace user
 
          //}
 
-         //pgraphics->m_pdraw2dhost = m_puserinteraction;
+         //pdraw2dgraphics->m_pdraw2dhost = m_puserinteraction;
 
-         //pgraphics->m_puserstyle.release();
+         //pdraw2dgraphics->m_puserstyle.release();
 
-         //if (pgraphics->m_pimage)
+         //if (pdraw2dgraphics->m_pimage)
          //{
 
-         //   pgraphics->m_pimage->m_rectangleTag.Null();
+         //   pdraw2dgraphics->m_pimage->m_rectangleTag.Null();
 
-         //   //sizeDrawn = pgraphics->m_pimage->m_size;
+         //   //sizeDrawn = pdraw2dgraphics->m_pimage->m_size;
 
          //   ///sizeDrawn = m_puserinteraction->const_layout().design().size();
 
@@ -6522,7 +6522,7 @@ namespace user
          //if (strBitmapSource.has_character())
          //{
 
-         //   //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+         //   //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pdraw2dgraphics;
          //   //
          //   //            if(pbitmapsourcebuffer)
          //   //            {
@@ -6548,21 +6548,21 @@ namespace user
             else
             {
 
-               //pgraphics->m_bDraw = bDraw;
+               //pdraw2dgraphics->m_bDraw = bDraw;
 
-               pgraphics->m_bDraw = true;
+               pdraw2dgraphics->m_bDraw = true;
 
-               pgraphics->m_bInheritDraw = true;
+               pdraw2dgraphics->m_bInheritDraw = true;
 
-               //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
+               //            pdraw2dgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
 
 
 #ifdef MORE_LOG
                debug() << "defer_do_graphics _000TopCallOnDraw";
 #endif
-               m_puserinteraction->_000TopCallOnDraw(pgraphics);
+               m_puserinteraction->_000TopCallOnDraw(pdraw2dgraphics);
 
-               //m_puserinteraction->_000CallOnDraw(pgraphics);
+               //m_puserinteraction->_000CallOnDraw(pdraw2dgraphics);
 
                //                  if (!bDraw && m_redrawa.has_element())
                //                  {
@@ -6571,9 +6571,9 @@ namespace user
                //
                //                     bDraw = true;
                //
-               //                     pgraphics->m_bDraw = bDraw;
+               //                     pdraw2dgraphics->m_bDraw = bDraw;
                //
-               //                     m_puserinteraction->_000CallOnDraw(pgraphics);
+               //                     m_puserinteraction->_000CallOnDraw(pdraw2dgraphics);
                //
                //                  }
 
@@ -6601,14 +6601,14 @@ namespace user
 
          }
 
-         //if (pgraphics->m_pimage.ok())
+         //if (pdraw2dgraphics->m_pimage.ok())
          //{
 
-         //   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+         //   //pdraw2dgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
 
          //   //m_sizeDrawn = sizeDrawn;
 
-         //   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
+         //   pdraw2dgraphics->m_sizeDrawnAnnotation = sizeDrawn;
 
          //}
 
@@ -6634,17 +6634,17 @@ namespace user
    }
 
 
-   //void interaction_impl::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+   //void interaction_impl::_000CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   m_bUpdateBuffer = false;
 
    //   m_bUpdateWindow = false;
 
-   //   if (m_puserinteraction->should_perform_layout(pgraphics))
+   //   if (m_puserinteraction->should_perform_layout(pdraw2dgraphics))
    //   {
 
-   //      m_puserinteraction->perform_layout(pgraphics);
+   //      m_puserinteraction->perform_layout(pdraw2dgraphics);
 
    //   }
 
@@ -8528,7 +8528,7 @@ namespace user
    }
 
 
-   void interaction_impl::on_layout(::draw2d::graphics_pointer &pgraphics)
+   void interaction_impl::on_layout(::draw2d::graphics_pointer &pdraw2dgraphics)
    {
 
 

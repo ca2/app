@@ -79,7 +79,7 @@ namespace graphics
       void get_cursor_position(::i32 & x, ::i32 & y, filesize & iPointer);
 
       virtual void update_image();
-      virtual void draw_write(::draw2d::graphics_pointer & pgraphics, ::i8 ch, ::i32 x, ::i32 y, enum_dos_color edoscolor);
+      virtual void draw_write(::draw2d::graphics_pointer & pdraw2dgraphics, ::i8 ch, ::i32 x, ::i32 y, enum_dos_color edoscolor);
 
       string right_string(::memsize iReadAtMostByteCount) override;
 

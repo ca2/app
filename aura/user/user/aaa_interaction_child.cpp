@@ -812,15 +812,15 @@ namespace user
    }
 
 
-   //void interaction_child::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+   //void interaction_child::_000CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
-   //   ::user::prototype_impl::_000CallOnDraw(pgraphics);
+   //   ::user::prototype_impl::_000CallOnDraw(pdraw2dgraphics);
 
    //}
 
 
-   void interaction_child::set_origin(::draw2d::graphics_pointer & pgraphics)
+   void interaction_child::set_origin(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       try
@@ -844,7 +844,7 @@ namespace user
 
             puserinteraction->viewport_screen_to_client(rectangleWindow);
 
-            pgraphics->set_origin(rectangleWindow.top_left());
+            pdraw2dgraphics->set_origin(rectangleWindow.top_left());
 
          }
 

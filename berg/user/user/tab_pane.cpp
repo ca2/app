@@ -122,7 +122,7 @@ namespace user
    }
 
 
-   void tab_pane::do_split_layout(::draw2d::graphics_extension * pgraphicsextension, ::draw2d::graphics_pointer & pgraphics)
+   void tab_pane::do_split_layout(::draw2d::graphics_extension * pgraphicsextension, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto straTitle = m_straTitle.c_stra();
@@ -134,7 +134,7 @@ namespace user
       for (::i32 iTitle = 0; iTitle < straTitle.get_count(); iTitle++)
       {
 
-         pgraphicsextension->get_text_extent(pgraphics, straTitle[iTitle], m_sizeaText[iTitle]);
+         pgraphicsextension->get_text_extent(pdraw2dgraphics, straTitle[iTitle], m_sizeaText[iTitle]);
 
       }
 

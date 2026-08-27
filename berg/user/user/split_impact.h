@@ -30,8 +30,8 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
       bool pre_create_window(::user::system * pusersystem) override;
 
-      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       virtual bool create_split_impact();

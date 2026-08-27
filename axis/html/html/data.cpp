@@ -115,10 +115,10 @@ void html_data::load(const ::scoped_string & scopedstr)
 }
 
 
-void html_data::implement(::draw2d::graphics_pointer & pgraphics)
+void html_data::implement(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
-   m_pcoredata->implement(pgraphics);
+   m_pcoredata->implement(pdraw2dgraphics);
 
 }
 
@@ -156,15 +156,15 @@ void html_data::on_message_key_down(::message::message * pmessage)
 }
 
 
-void html_data::on_layout(::draw2d::graphics_pointer & pgraphics)
+void html_data::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
-   m_pcoredata->on_layout(pgraphics);
+   m_pcoredata->on_layout(pdraw2dgraphics);
 
 }
 
 
-void html_data::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+void html_data::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
    
    if(::is_null(m_pcoredata))
@@ -174,7 +174,7 @@ void html_data::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       
    }
 
-   m_pcoredata->_001OnDraw(pgraphics);
+   m_pcoredata->_001OnDraw(pdraw2dgraphics);
 
 }
 

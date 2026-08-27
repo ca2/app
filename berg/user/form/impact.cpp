@@ -296,10 +296,10 @@ namespace user
    }
 
 
-   void form_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void form_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      BASE_VIEW::on_layout(pgraphics);
+      BASE_VIEW::on_layout(pdraw2dgraphics);
 
       if (m_pform && m_pform != this)
       {

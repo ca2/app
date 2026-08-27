@@ -48,7 +48,7 @@ namespace user
 
       ::pointer<still>                               m_pstill;
 
-      //XftFont *                                     m_pfont;
+      //XftFont *                                     m_pwritetextfont;
       //XftDraw *                                     m_pdraw;
       //XFontSet                                      m_fs;
       //char_pointer *                                       m_listMissingCharset;
@@ -136,7 +136,7 @@ namespace user
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      //virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual void do_layout();
 
@@ -159,7 +159,7 @@ namespace user
       virtual void close_window();
 
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
 

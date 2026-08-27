@@ -48,6 +48,35 @@ public:
 
    }
 
+   template < typename TYPE2 >
+      requires (!::std::is_same_v<TYPE, TYPE2 >)
+   comptr(const comptr<TYPE2 > & ptr)
+   {
+
+      if constexpr (::std::is_convertible_v < TYPE2 *, TYPE * >)
+      {
+
+         m_p = static_cast < TYPE * >(ptr.m_p);
+
+         if (m_p != nullptr)
+         {
+
+            m_p->AddRef();
+
+         }
+
+      }
+      else
+      {
+
+         m_p = nullptr;
+
+         ptr.as(*this);
+
+      }
+
+   }
+
    comptr(comptr && ptr) :
       m_p(ptr.m_p)
    {
@@ -210,6 +239,59 @@ public:
 
    }
 
+   template < typename TYPE2 >
+   requires (!::std::is_same_v<TYPE, TYPE2 >)
+   comptr & operator = (TYPE2 * p)
+   {
+
+      if constexpr (::std::is_convertible_v < TYPE2 *, TYPE * >)
+      {
+
+         return operator = (static_cast < TYPE * >(p));
+
+      }
+      else
+      {
+
+         comptr < TYPE > ptr;
+
+         if (p != nullptr)
+         {
+
+            p->QueryInterface(__uuidof(TYPE), (void **) &ptr);
+
+         }
+
+         return operator = (::std::move(ptr));
+
+      }
+
+   }
+
+
+   template < typename TYPE2 >
+   requires (!::std::is_same_v<TYPE, TYPE2 >)
+   comptr & operator = (const comptr < TYPE2 > & ptr)
+   {
+
+      if constexpr (::std::is_convertible_v < TYPE2 *, TYPE * >)
+      {
+
+         return operator = (static_cast < TYPE * >(ptr.m_p));
+
+      }
+      else
+      {
+
+         comptr < TYPE > ptrQuery;
+
+         ptr.as(ptrQuery);
+
+         return operator = (::std::move(ptrQuery));
+
+      }
+
+   }
 
    comptr & operator = (const comptr & ptr)
    {

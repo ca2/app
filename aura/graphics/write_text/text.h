@@ -15,7 +15,7 @@ namespace write_text
 
 
       string                        m_strText;
-      ::write_text::font_pointer    m_pfont;
+      ::write_text::font_pointer    m_pwritetextfont;
 
 
    };

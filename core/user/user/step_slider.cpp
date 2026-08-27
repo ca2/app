@@ -110,7 +110,7 @@ namespace user
    }
 
 
-   void step_slider::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void step_slider::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       
@@ -122,7 +122,7 @@ namespace user
 
       ::u8 bAlpha = (::u8) (128.0 * get_alpha());
 
-      pgraphics->fill_rectangle(rectangleX, argb(bAlpha, 150, 200, 255));
+      pdraw2dgraphics->fill_rectangle(rectangleX, argb(bAlpha, 150, 200, 255));
 
       ::i64 iMin = m_scalar.minimum().get_i64();
       ::i64 iMax = m_scalar.maximum().get_i64();
@@ -138,13 +138,13 @@ namespace user
             if(m_pitemHover->m_item.m_iItem == i)
             {
 
-               pgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 255, 240));
+               pdraw2dgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 255, 240));
 
             }
             else
             {
                
-               pgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 255, 150));
+               pdraw2dgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 255, 150));
                
             }
             
@@ -155,13 +155,13 @@ namespace user
             if(::is_item(m_pitemHover, i))
             {
                
-               pgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 180, 180));
+               pdraw2dgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 180, 180));
                
             }
             else
             {
                
-               pgraphics->fill_rectangle(rectangle, argb(bAlpha, 100, 100, 255));
+               pdraw2dgraphics->fill_rectangle(rectangle, argb(bAlpha, 100, 100, 255));
                
             }
             

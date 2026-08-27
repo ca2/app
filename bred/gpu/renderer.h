@@ -137,15 +137,15 @@ namespace gpu
       //virtual void defer_update_shader();
       //virtual ::e_status _update_shader();
 
-      //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      //virtual void _001OnDraw1Through3(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _001OnDraw1Through3(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      //virtual void _001OnDrawArcs(::draw2d::graphics_pointer & pgraphics, bool bPath);
+      //virtual void _001OnDrawArcs(::draw2d::graphics_pointer & pdraw2dgraphics, bool bPath);
 
-      //virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, i32_rectangle & r, ::f64 dStart, ::f64 dAngle, bool bPath);
+      //virtual void draw_arc(::draw2d::graphics_pointer & pdraw2dgraphics, i32_rectangle & r, ::f64 dStart, ::f64 dAngle, bool bPath);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual void on_new_frame();
@@ -204,7 +204,7 @@ namespace gpu
       virtual void read_to_cpu_buffer21();
       virtual void on_end_frame();
       virtual void sample_to_cpu_buffer21();
-      //virtual void to_draw2d_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void to_draw2d_graphics(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual void on_start_drawing();
       virtual void on_global_transform();
@@ -217,7 +217,7 @@ namespace gpu
       //virtual ::i32 __default_get_frame_index();
 
 
-      virtual void endDraw(::gpu::graphics* pgraphics, ::user::interaction* puserinteraction);
+      virtual void endDraw(::gpu::graphics* pdraw2dgraphics, ::user::interaction* puserinteraction);
 
 
       virtual void defer_update_renderer();

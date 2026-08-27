@@ -35,13 +35,13 @@
 //   }
 //
 //
-//   void target::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+//   void target::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   {
 //
 //      if (::is_ok(m_pimage))
 //      {
 //
-//         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+//         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
 //         _synchronous_lock synchronouslock(m_pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
@@ -51,7 +51,7 @@
 //
 //         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 //
-//         pgraphics->draw(imagedrawing);
+//         pdraw2dgraphics->draw(imagedrawing);
 //
 //      }
 //

@@ -42,16 +42,16 @@ namespace micro
       void theme::create_drawing_objects()
       {
 
-         if (!m_pfont)
+         if (!m_pwritetextfont)
          {
 
-            m_pfont = nano()->graphics()->create_point_font(m_efont, m_iFontSize);
+            m_pwritetextfont = nano()->graphics()->create_point_font(m_efont, m_iFontSize);
 
-            //m_pfont->create_point_font(m_efont, m_iFontSize);
+            //m_pwritetextfont->create_point_font(m_efont, m_iFontSize);
 
-            //m_pfont->m_iFontSize = m_iFontSize;
+            //m_pwritetextfont->m_iFontSize = m_iFontSize;
 
-            //m_pfont->m_strFontName = node()->font_name(m_efont);
+            //m_pwritetextfont->m_strFontName = node()->font_name(m_efont);
 
          }
 

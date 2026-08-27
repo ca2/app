@@ -136,7 +136,7 @@ namespace platform
       //virtual ::i32 install_progress_app_add_up(::i32 iAddUp = 1) override;
 
       //virtual ::install::canvas * install_create_canvas();
-      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle);
       //virtual ::i32 install_canvas_increment_mode();
 
       //virtual string install_get_platform() override;
@@ -788,7 +788,7 @@ virtual ::apex::session * session(::collection::index iEdge = 0) override;*/
 
 
       //virtual ::install::canvas * install_create_canvas() override;
-      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle);
       //virtual ::i32 install_canvas_increment_mode() override;
 
 

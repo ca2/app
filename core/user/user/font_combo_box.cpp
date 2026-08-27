@@ -77,7 +77,7 @@ namespace user
    }
 
 
-   void font_combo_box::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void font_combo_box::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
    }

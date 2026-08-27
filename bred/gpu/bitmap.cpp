@@ -76,7 +76,7 @@ namespace gpu
 
       m_pgputexture = pgputexture;
 
-      ///::cast < ::gpu::graphics > pgraphics = pdraw2dgraphics;
+      ///::cast < ::gpu::graphics > pdraw2dgraphics = pdraw2dgraphics;
 
    }
 

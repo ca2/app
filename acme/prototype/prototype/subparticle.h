@@ -303,7 +303,7 @@ public:
 
    virtual void destroy();
    virtual void destroy_impl_data();
-   virtual void destroy_os_data();
+   //virtual void destroy_os_data();
 
    template < typename TYPE >
    ::cast < TYPE > cast() { return this; }

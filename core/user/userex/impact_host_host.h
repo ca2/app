@@ -68,10 +68,10 @@ namespace userex
       void route_command(::message::command *pcommand, bool bRouteToKeyDescendant) override;
 
 
-      void _001OnDraw(::draw2d::graphics_pointer &pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer &pdraw2dgraphics) override;
 
 
-      void on_layout(::draw2d::graphics_pointer &pgraphics);
+      void on_layout(::draw2d::graphics_pointer &pdraw2dgraphics);
 
       void update_impact_host_placement();
 

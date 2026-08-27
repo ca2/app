@@ -42,27 +42,27 @@ namespace draw2d_gpu
 
       virtual void destroy() override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::f64_arc& parc) override;
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::f64_arc& parc) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::f64_line& pline) override;
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::f64_line& pline) override;
 
-      //virtual bool _set(::draw2d::graphics* pgraphics, const ::lined& pline) override;
+      //virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::lined& pline) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::f64_lines& pline) override;
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::f64_lines& pline) override;
 
-      //virtual bool _set(::draw2d::graphics* pgraphics, const ::linesd& pline) override;
+      //virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::linesd& pline) override;
 
-      //virtual bool _set(::draw2d::graphics* pgraphics, const ::i32_rectangle& prectangle) override;
+      //virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::i32_rectangle& prectangle) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::f64_rectangle& prectangle) override;
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::f64_rectangle& prectangle) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::f64_polygon& ppolygon) override;
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::f64_polygon& ppolygon) override;
 
-      //virtual bool _set(::draw2d::graphics* pgraphics, const ::f64_polygon& ppolygond) override;
+      //virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::f64_polygon& ppolygond) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::write_text::text_out& ptextout) override;
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::write_text::text_out& ptextout) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::write_text::draw_text& pdrawtext) override;
+      virtual bool _set(::draw2d::graphics * pdraw2dgraphics, const ::write_text::draw_text& pdrawtext) override;
 
 
    };

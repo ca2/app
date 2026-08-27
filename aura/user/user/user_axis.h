@@ -20,7 +20,7 @@ namespace user
    public:
 
 
-      virtual ::pointer < ::user::interaction > create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem);
+      virtual ::pointer < ::user::interaction > create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pdraw2dgraphics, ::menu::item * pmenuitem);
 
 
    };

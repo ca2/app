@@ -330,17 +330,17 @@ namespace user
    }
 
 
-   //void interaction_base::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //void interaction_base::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //}
 
 
-   //void interaction_base::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //void interaction_base::_000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
-   //   _001OnDraw(pgraphics);
-   //   _008OnDraw(pgraphics);
+   //   _001OnDraw(pdraw2dgraphics);
+   //   _008OnDraw(pdraw2dgraphics);
 
    //}
 
@@ -405,10 +405,10 @@ namespace user
    //}
 
 
-   //bool interaction_base::Redraw(::draw2d::graphics_pointer & pgraphics)
+   //bool interaction_base::Redraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    //   if(get_wnd() == nullptr)
    //      return false;
@@ -991,7 +991,7 @@ namespace user
    //}
 
 
-   //void interaction_base::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
+   //void interaction_base::_001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -999,7 +999,7 @@ namespace user
    //}
 
 
-   //void interaction_base::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+   //void interaction_base::_001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -1007,7 +1007,7 @@ namespace user
    //}
 
 
-   //void interaction_base::_001PrintBuffer(::draw2d::graphics_pointer & pgraphics)
+   //void interaction_base::_001PrintBuffer(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -1015,7 +1015,7 @@ namespace user
    //}
 
 
-   //void interaction_base::_001Print(::draw2d::graphics_pointer & pgraphics)
+   //void interaction_base::_001Print(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -1023,7 +1023,7 @@ namespace user
    //}
 
 
-   //void interaction_base::_008OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //void interaction_base::_008OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -1031,7 +1031,7 @@ namespace user
    //}
 
 
-   //void interaction_base::draw_control_background(::draw2d::graphics_pointer & pgraphics)
+   //void interaction_base::draw_control_background(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -1952,7 +1952,7 @@ namespace user
    //}
 
 
-   void interaction_base::RepositionBars(::draw2d::graphics_pointer &pgraphics, ::u32 nIDFirst, ::u32 nIDLast,
+   void interaction_base::RepositionBars(::draw2d::graphics_pointer &pdraw2dgraphics, ::u32 nIDFirst, ::u32 nIDLast,
                                          ::user::interaction *puserinteractionLeftOver, ::u32 nFlag,
                                          ::i32_rectangle *prectParam, const ::i32_rectangle &rectangleX, bool bStretch)
    {
@@ -2097,7 +2097,7 @@ namespace user
    }
 
 
-   void interaction_base::set_context_org(::draw2d::graphics_pointer & pgraphics)
+   void interaction_base::set_context_org(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       throw ::interface_only();
@@ -2381,7 +2381,7 @@ namespace user
    }
 
 
-   //void interaction_base::on_layout(::draw2d::graphics_pointer & pgraphics)
+   //void interaction_base::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -2690,7 +2690,7 @@ namespace user
    //}
 
 
-   //void interaction_base::_001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
+   //void interaction_base::_001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -2698,7 +2698,7 @@ namespace user
    //}
 
 
-   //void interaction_base::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
+   //void interaction_base::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   throw ::interface_only();
@@ -2828,7 +2828,7 @@ namespace user
    //}
 
    
-   //::f64_size interaction_base::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
+   //::f64_size interaction_base::_001CalculateFittingSize(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   return { 0.0, 0.0 };
@@ -2836,12 +2836,12 @@ namespace user
    //}
 
 
-   //::f64_size interaction_base::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics)
+   //::f64_size interaction_base::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   ::f64_rectangle rectanglePadding(2.0, 2.0, 2.0, 2.0);
 
-   //   auto sizeFitting = _001CalculateFittingSize(pgraphics);
+   //   auto sizeFitting = _001CalculateFittingSize(pdraw2dgraphics);
 
    //   ::f64_size sizePaddedFitting;
 
@@ -4060,7 +4060,7 @@ namespace user
    //}
 
 
-   ::collection::index interaction_base::plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, character_count iSel)
+   ::collection::index interaction_base::plain_edit_sel_to_column(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSel)
    {
 
       return -1;
@@ -4068,7 +4068,7 @@ namespace user
    }
 
 
-   ::collection::index interaction_base::plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32 & x)
+   ::collection::index interaction_base::plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSel, ::i32 & x)
    {
 
       return -1;
@@ -4076,7 +4076,7 @@ namespace user
    }
 
 
-   ::collection::index interaction_base::plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel)
+   ::collection::index interaction_base::plain_edit_sel_to_line(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSel)
    {
 
       return -1;
@@ -4084,7 +4084,7 @@ namespace user
    }
 
 
-   ::collection::index interaction_base::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x)
+   ::collection::index interaction_base::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel, ::i32 & x)
    {
 
       return -1;
@@ -4092,7 +4092,7 @@ namespace user
    }
 
 
-   character_count interaction_base::plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn)
+   character_count interaction_base::plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iLine, ::collection::index iColumn)
    {
 
       return -1;
@@ -4100,7 +4100,7 @@ namespace user
    }
 
 
-   character_count interaction_base::plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::i32 x)
+   character_count interaction_base::plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iLine, ::i32 x)
    {
 
       return -1;
@@ -4108,7 +4108,7 @@ namespace user
    }
 
 
-   ::collection::index interaction_base::plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel)
+   ::collection::index interaction_base::plain_edit_char_to_line(::draw2d::graphics_pointer& pdraw2dgraphics, character_count iSel)
    {
 
       return -1;

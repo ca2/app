@@ -655,7 +655,7 @@ message_box_implementation::~message_box_implementation()
    //
    //    //::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
    //    pgraphicscontext->set_brush(micro_theme()->m_pbrushText);
-   //    pgraphicscontext->set_font(micro_theme()->m_pfont);
+   //    pgraphicscontext->set_font(micro_theme()->m_pwritetextfont);
    //
    //    pgraphicscontext->draw_text123(
    //       m_strMessage,
@@ -666,7 +666,7 @@ message_box_implementation::~message_box_implementation()
    //    //,
    //      // micro_theme()->m_pbrushWindow,
    //       //micro_theme()->m_pbrushText,
-   //       //micro_theme()->m_pfont);
+   //       //micro_theme()->m_pwritetextfont);
    //
    // }
 

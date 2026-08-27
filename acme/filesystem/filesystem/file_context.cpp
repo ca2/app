@@ -4668,7 +4668,7 @@ void set_bypass_cache(::payload & payloadFile)
    if (payloadFile.m_etype == e_type_path)
    {
 
-      payloadFile.m_ppath->m_flags += ::file::e_flag_bypass_cache;
+      payloadFile.m_pfilepathobject->m_flags += ::file::e_flag_bypass_cache;
 
    }
    else
@@ -4696,7 +4696,7 @@ void set_bypass_cache(::payload & payloadFile)
    if (payloadFile.m_etype == e_type_path)
    {
 
-      return payloadFile.m_ppath->m_flags & ::file::e_flag_bypass_cache;
+      return payloadFile.m_pfilepathobject->m_flags & ::file::e_flag_bypass_cache;
 
    }
    else if (payloadFile.m_etype == e_type_property_set)

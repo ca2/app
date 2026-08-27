@@ -51,8 +51,8 @@ namespace draw2d_cairo
       ::i32_bool palette::CreateHalftonePalette(::image::image *pimage)
       {
 
-         //ASSERT(pgraphics != nullptr && (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1() != nullptr);
-         //return Attach(::CreateHalftonePalette((dynamic_cast<::win::graphics * >(pgraphics))->get_handle1()));
+         //ASSERT(pdraw2dgraphics != nullptr && (dynamic_cast<::win::graphics * >(pdraw2dgraphics))->get_handle1() != nullptr);
+         //return Attach(::CreateHalftonePalette((dynamic_cast<::win::graphics * >(pdraw2dgraphics))->get_handle1()));
 
          return false;
 

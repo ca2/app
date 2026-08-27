@@ -913,9 +913,9 @@ namespace data
       try
       {
 
-         //auto pgraphics = ::draw2d::create_memory_graphics();
+         //auto pdraw2dgraphics = ::draw2d::create_memory_graphics();
 
-         //tree_layout(pgraphics);
+         //tree_layout(pdraw2dgraphics);
 
          on_tree_layout();
 
@@ -930,7 +930,7 @@ namespace data
    }
 
 
-   //void tree_base::tree_layout(::draw2d::graphics_pointer & pgraphics)
+   //void tree_base::tree_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //}

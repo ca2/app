@@ -108,34 +108,34 @@ namespace graphics
       
       // if (g_iColorWheelExit > 0 && g_iColorWheelExit <= 400) return;
 
-         auto pgraphics = p->m_pgraphics;
+         auto pdraw2dgraphics = p->m_pdraw2dgraphics;
       
       
       // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=500) return;
 
-         pgraphics->set_compositing_quality(::draw2d::e_compositing_quality_high_quality);
+         pdraw2dgraphics->set_compositing_quality(::draw2d::e_compositing_quality_high_quality);
       
       // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=600) return;
 
-         pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
       
       // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=700) return;
 
-         pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+         pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
       
       
       // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=800) return;
 
-         //::draw2d::path_pointer ppath;
+         //::draw2d::path_pointer pdraw2dpath;
 
-         //constructø(ppath);
+         //constructø(pdraw2dpath);
 
-         //ppath->set_fill_mode(::draw2d::e_fill_mode_alternate);
+         //pdraw2dpath->set_fill_mode(::draw2d::e_fill_mode_alternate);
 
-         //ppath->add_ellipse(ellipse1);
-         //ppath->add_ellipse(ellipse0);
+         //pdraw2dpath->add_ellipse(ellipse1);
+         //pdraw2dpath->add_ellipse(ellipse0);
 
-         //pgraphics->set_clip(ppath);
+         //pdraw2dgraphics->set_clip(pdraw2dpath);
          //pcontext->clip();
 
          if (!m_pimageCircle || diamRound != m_pimageCircle->width())
@@ -227,7 +227,7 @@ namespace graphics
          }
 
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
          {
 
             ::image::image_source imagesource(m_pimageCircle);
@@ -236,7 +236,7 @@ namespace graphics
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pgraphics->draw(imagedrawing);
+            pdraw2dgraphics->draw(imagedrawing);
 
          }
          //      pcontext->save();
@@ -449,12 +449,12 @@ namespace graphics
 
 
 
-   void color_wheel::on_draw(::draw2d::graphics * pgraphics)
+   void color_wheel::on_draw(::draw2d::graphics * pdraw2dgraphics)
    {
 
       ::nano2d::draw2d_context context(this);
 
-      context.set_graphics(pgraphics);
+      context.set_graphics(pdraw2dgraphics);
 
       //defer_construct_newø(m_pfontsink);
 

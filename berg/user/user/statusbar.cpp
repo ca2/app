@@ -196,7 +196,7 @@ namespace user
    }
    */
 
-   void status_bar::CalcInsideRect(::draw2d::graphics_pointer & pgraphics, ::i32_rectangle& rectangle, bool bHorz)
+   void status_bar::CalcInsideRect(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32_rectangle& rectangle, bool bHorz)
    {
 
 //      ASSERT_OK(this);
@@ -490,7 +490,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // status_bar implementation
 
-   i32_size status_bar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool, bool bHorz)
+   i32_size status_bar::CalcFixedLayout(::draw2d::graphics_pointer& pdraw2dgraphics, bool, bool bHorz)
    {
       ASSERT_OK(this);
       ASSERT(is_window());
@@ -513,7 +513,7 @@ namespace user
 //      // get border information
 //      ::i32_rectangle rectangle;
 //
-//      CalcInsideRect(pgraphics, rectangle, bHorz);
+//      CalcInsideRect(pdraw2dgraphics, rectangle, bHorz);
 //      ::i32_size size;
 //      size.cx =0;
 //      size.cy =0;
@@ -638,10 +638,10 @@ namespace user
    }
    */
 
-   void status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void status_bar::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
       UpdateAllPanes(false, true);
 

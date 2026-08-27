@@ -191,7 +191,7 @@ namespace user
             //           1023) != 0;
             //if (bOk)
             //{
-            //   m_plistheader->m_pfont = m_pfont;
+            //   m_plistheader->m_pwritetextfont = m_pwritetextfont;
             //}
             return true;
          }
@@ -203,28 +203,28 @@ namespace user
    }
 
 
-   void list::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   void list::_001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 //      return;
 
-      ::user::mesh::_001OnNcClip(pgraphics);
+      ::user::mesh::_001OnNcClip(pdraw2dgraphics);
 
    }
 
 
-   void list::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void list::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::mesh::_001OnNcDraw(pgraphics);
+      ::user::mesh::_001OnNcDraw(pdraw2dgraphics);
 
       //throw ::exception(todo("scroll"));
-      //defer_draw_scroll_gap(pgraphics);
+      //defer_draw_scroll_gap(pdraw2dgraphics);
 
    }
 
 
-   void list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void list::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       m_ppenFocused->create_solid(2, argb(255, 0, 255, 255));
@@ -242,7 +242,7 @@ namespace user
 
       }
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
       if (m_bLockImpactUpdate)
       {
@@ -251,7 +251,7 @@ namespace user
 
       }
 
-      ::user::interaction::_001OnDraw(pgraphics);
+      ::user::interaction::_001OnDraw(pdraw2dgraphics);
 
       if (!m_pmeshdata)
       {
@@ -266,24 +266,24 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if (m_bTopText)
       {
 
          auto pbrushText = createø < ::draw2d::brush > ();
 
-         auto pstyle = get_style(pgraphics);
+         auto pstyle = get_style(pdraw2dgraphics);
 
          pbrushText->create_solid(get_color(pstyle,::e_element_text));
 
-         auto targetscope = pgraphics->target_scope();
+         auto targetscope = pdraw2dgraphics->target_scope();
 
-         pgraphics->set(pbrushText);
+         pdraw2dgraphics->set(pbrushText);
 
          ::f64_size_array sizea;
 
-         m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
+         m_pgraphicsextension->get_text_extent(pdraw2dgraphics, m_strTopText, sizea);
 
          ::collection::index x = 0;
 
@@ -327,12 +327,12 @@ namespace user
                rectangle.right = rectangleX.right;
                rectangle.bottom = ::i32(y - pointOffset.y);
 
-               pgraphics->_DrawText(m_strTopText.substr(iStart, i - iStart), rectangle, e_align_left);
+               pdraw2dgraphics->_DrawText(m_strTopText.substr(iStart, i - iStart), rectangle, e_align_left);
                iStart = iNewStart;
             }
          }
 
-         //pgraphics->set_origin(pointContextOrg);
+         //pdraw2dgraphics->set_origin(pointContextOrg);
 
       }
 
@@ -404,7 +404,7 @@ namespace user
 
          }
 
-         _001DrawItems(pgraphics, (::collection::index)iItemFirst, (::collection::index)iItemLast);
+         _001DrawItems(pdraw2dgraphics, (::collection::index)iItemFirst, (::collection::index)iItemLast);
 
       }
 
@@ -427,8 +427,8 @@ namespace user
          }
 
          //_001DrawGroups(m_pdrawlistitem, (::collection::index) iGroupFirst, (::collection::index) iGroupLast, (::collection::index) iItemFirst, (::collection::index) iItemLast);
-         //_001DrawGroups(pgraphics, (::collection::index)iGroupFirst, (::collection::index)iGroupLast, (::collection::index)iItemFirst, (::collection::index)iItemLast);
-         _001DrawGroups(pgraphics, (::collection::index)iGroupFirst, (::collection::index)iGroupLast);
+         //_001DrawGroups(pdraw2dgraphics, (::collection::index)iGroupFirst, (::collection::index)iGroupLast, (::collection::index)iItemFirst, (::collection::index)iItemLast);
+         _001DrawGroups(pdraw2dgraphics, (::collection::index)iGroupFirst, (::collection::index)iGroupLast);
 
       }
 
@@ -450,11 +450,11 @@ namespace user
 
             __sort(y1, y2);
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
             
-            pgraphics->fill_rectangle(::f64_rectangle(x1, y1, x2, y2), argb(90, 250, 250, 255));
+            pdraw2dgraphics->fill_rectangle(::f64_rectangle(x1, y1, x2, y2), argb(90, 250, 250, 255));
 
-            pgraphics->draw_inset_rectangle(::f64_rectangle(x1, y1, x2, y2), argb(192, 192, 192, 208), 1.0);
+            pdraw2dgraphics->draw_inset_rectangle(::f64_rectangle(x1, y1, x2, y2), argb(192, 192, 192, 208), 1.0);
 
          }
 
@@ -481,7 +481,7 @@ namespace user
 
 
    //void list::_001DrawGroups(draw_list_item * pdrawitem, ::collection::index iGroupFirst, ::collection::index iGroupLast, ::collection::index iItemFirst, ::collection::index iItemLast)
-      void list::_001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast)
+      void list::_001DrawGroups(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast)
    {
 
       //__UNREFERENCED_PARAMETER(iItemFirst);
@@ -515,12 +515,12 @@ namespace user
 
          }
 
-         pgroup->m_pdrawlistgroup->m_pgraphics = pgraphics;
+         pgroup->m_pdrawlistgroup->m_pgraphics = pdraw2dgraphics;
 
          pgroup->m_pdrawlistgroup->m_pgraphics->set_font(this, ::e_element_none);
-         //pdrawitem->m_pgraphics->set(pfont);
+         //pdrawitem->m_pgraphics->set(pwritetextfont);
 
-         pgroup->m_pdrawlistgroup->m_pfont = pgroup->m_pdrawlistgroup->m_pgraphics->m_pfont;
+         pgroup->m_pdrawlistgroup->m_pwritetextfont = pgroup->m_pdrawlistgroup->m_pgraphics->m_pwritetextfont;
 
          _001GetGroupRect(*pgroup);
 
@@ -553,14 +553,14 @@ namespace user
 
          }
 
-         _001DrawGroup(pgraphics, *pgroup);
+         _001DrawGroup(pdraw2dgraphics, *pgroup);
 
       }
 
    }
 
 
-   void list::_001DrawGroup(::draw2d::graphics_pointer & pgraphics, draw_list_group * pdrawgroup)
+   void list::_001DrawGroup(::draw2d::graphics_pointer & pdraw2dgraphics, draw_list_group * pdrawgroup)
    {
 
       /*if(m_bGroupCustomDraw)
@@ -575,7 +575,7 @@ namespace user
       if (pdrawgroup->m_bOk)
       {
 
-         pdrawgroup->draw_group_image(pgraphics);
+         pdrawgroup->draw_group_image(pdraw2dgraphics);
 
       }
 
@@ -600,7 +600,7 @@ namespace user
    }
 
 
-   void list::_001DrawItems(::draw2d::graphics_pointer & pgraphics, ::collection::index iItemFirst, ::collection::index iItemLast)
+   void list::_001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItemFirst, ::collection::index iItemLast)
    {
 
       auto rectangleX = this->rectangle();
@@ -622,11 +622,11 @@ namespace user
 
          auto & pitem = get_item(iItem);
 
-         pitem->m_pdrawlistitem->m_pgraphics = pgraphics;
+         pitem->m_pdrawlistitem->m_pgraphics = pdraw2dgraphics;
 
          pitem->m_pdrawlistitem->m_pgraphics->set_font(this, ::e_element_none);
 
-         pitem->m_pdrawlistitem->m_pfont = pitem->m_pdrawlistitem->m_pgraphics->m_pfont;
+         pitem->m_pdrawlistitem->m_pwritetextfont = pitem->m_pdrawlistitem->m_pgraphics->m_pwritetextfont;
 
          pitem->m_iDisplayItem = iDisplayItem;
 
@@ -707,7 +707,7 @@ namespace user
 
 #endif
 
-            _001DrawItem(pgraphics, *pitem);
+            _001DrawItem(pdraw2dgraphics, *pitem);
 
 #ifdef _DEBUG
 
@@ -736,7 +736,7 @@ namespace user
    }
 
 
-   void list::_001DrawItem(::draw2d::graphics_pointer & pgraphics, draw_list_item * pdrawitem)
+   void list::_001DrawItem(::draw2d::graphics_pointer & pdraw2dgraphics, draw_list_item * pdrawitem)
    {
 
       pdrawitem->m_iState = 0;
@@ -797,7 +797,7 @@ namespace user
 
       pdrawitem->m_colorItemBackground = ::color::transparent;
 
-      pdrawitem->update_item_color(pgraphics);
+      pdrawitem->update_item_color(pdraw2dgraphics);
 
       if (pdrawitem->m_bListItemSelected)
       {
@@ -885,7 +885,7 @@ namespace user
 
          }
 
-         _001DrawSubItem(pgraphics, *psubitem);
+         _001DrawSubItem(pdraw2dgraphics, *psubitem);
 
       }
 
@@ -932,7 +932,7 @@ namespace user
    }
 
 
-   void list::_001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * pdrawlistsubitem)
+   void list::_001DrawSubItem(::draw2d::graphics_pointer & pdraw2dgraphics, draw_list_subitem * pdrawlistsubitem)
    {
 
       if (pdrawlistsubitem->m_pcolumn->m_bCustomDraw)
@@ -981,7 +981,7 @@ namespace user
 
          }
 
-         pdrawlistsubitem->draw_image(pgraphics);
+         pdrawlistsubitem->draw_image(pdraw2dgraphics);
 
       }
 
@@ -1008,7 +1008,7 @@ namespace user
          if (pdrawlistsubitem->m_bOk)
          {
 
-            pdrawlistsubitem->draw_text(pgraphics);
+            pdrawlistsubitem->draw_text(pdraw2dgraphics);
 
          }
 
@@ -1033,14 +1033,14 @@ namespace user
    }
 
 
-   void list::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void list::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //m_dItemHeight = m_sizeMaximumItem.cy + 1;
 
-      _001CalculateItemHeight(pgraphics);
+      _001CalculateItemHeight(pdraw2dgraphics);
 
       auto rect1 = this->rectangle();
 
@@ -1068,7 +1068,7 @@ namespace user
       if (m_bTopText)
       {
 
-         _001LayoutTopText(pgraphics);
+         _001LayoutTopText(pdraw2dgraphics);
 
       }
 
@@ -1106,7 +1106,7 @@ namespace user
          for (::collection::index i = 0; i < iCount; i++)
          {
 
-            iWidth = _001CalcSubItemWidth(pgraphics, i, 0);
+            iWidth = _001CalcSubItemWidth(pdraw2dgraphics, i, 0);
 
             if (iWidth > iMaxWidth)
             {
@@ -1237,19 +1237,19 @@ namespace user
 
       //set_need_layout();
 
-      //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
+      //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pdraw2dgraphics)
       //   {
 
-      //      set_context_offset(pgraphics, pointOffset.x, pointOffset.y);
+      //      set_context_offset(pdraw2dgraphics, pointOffset.x, pointOffset.y);
 
       //   });
 
-      //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+      //queue_graphics_call([this](::draw2d::graphics_pointer & pdraw2dgraphics)
       //   {
 
-      //      on_change_impact_size(pgraphics);
+      //      on_change_impact_size(pdraw2dgraphics);
 
-            //set_context_offset(pgraphics, 0, 0);
+            //set_context_offset(pdraw2dgraphics, 0, 0);
 
       //   });
 
@@ -1691,17 +1691,17 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      //auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
-      auto pgraphics = pdraw2d->acquire_memory_graphics({256, 256}, this);
+      auto pdraw2dgraphics = pdraw2d->acquire_memory_graphics({256, 256}, this);
 
-      //draw_select ds(this, pgraphics);
+      //draw_select ds(this, pdraw2dgraphics);
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
-      auto pfont = pgraphics->get_current_font();
+      auto pwritetextfont = pdraw2dgraphics->get_current_font();
 
-      auto iFontHeight = pfont->get_height(pgraphics);
+      auto iFontHeight = pwritetextfont->get_height(pdraw2dgraphics);
 
       iItemHeight = 1;
 
@@ -1721,7 +1721,7 @@ namespace user
       if (m_bSingleColumnMode)
       {
 
-         m_iItemWidth = _001CalcColumnWidth(pgraphics, 0);
+         m_iItemWidth = _001CalcColumnWidth(pdraw2dgraphics, 0);
 
       }
 
@@ -5781,21 +5781,21 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
-      _001LayoutTopText(pgraphics);
+      _001LayoutTopText(pdraw2dgraphics);
 
    }
 
 
-   void list::_001LayoutTopText(::draw2d::graphics_pointer& pgraphics)
+   void list::_001LayoutTopText(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
       ::f64_size_array sizea;
 
-      m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
+      m_pgraphicsextension->get_text_extent(pdraw2dgraphics, m_strTopText, sizea);
       auto rectangleX = this->rectangle();
       ::collection::index x = 0;
       ::collection::index right = rectangleX.right;
@@ -5900,29 +5900,29 @@ namespace user
    }
 
 
-   //::i32 list::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem)
+   //::i32 list::_001CalcItemWidth(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::collection::index iSubItem)
    //{
 
-   //   pgraphics->set_font(this, ::e_element_none);
+   //   pdraw2dgraphics->set_font(this, ::e_element_none);
 
-   //   index cx = _001CalcItemWidth(pgraphics, iItem, iSubItem);
+   //   index cx = _001CalcItemWidth(pdraw2dgraphics, iItem, iSubItem);
 
    //   return (::i32)cx;
 
    //}
 
 
-   ::i32 list::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, ::collection::index iItem, ::collection::index iSubItem)
+   ::i32 list::_001CalcSubItemWidth(::draw2d::graphics_pointer & pdraw2dgraphics, ::write_text::font * pwritetextfont, ::collection::index iItem, ::collection::index iSubItem)
    {
 
-      pgraphics->set(pfont);
+      pdraw2dgraphics->set(pwritetextfont);
 
-      return _001CalcSubItemWidth(pgraphics, iItem, iSubItem);
+      return _001CalcSubItemWidth(pdraw2dgraphics, iItem, iSubItem);
 
    }
 
 
-   ::i32 list::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem)
+   ::i32 list::_001CalcSubItemWidth(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::collection::index iSubItem)
    {
 
       ::image::image_list::info ii;
@@ -5966,15 +5966,15 @@ namespace user
       if (psubitem->m_bOk)
       {
 
-         pgraphics->set_font(this, ::e_element_none);
+         pdraw2dgraphics->set_font(this, ::e_element_none);
 
-         m_pgraphicsextension->get_text_extent(pgraphics, psubitem->m_strText, size);
+         m_pgraphicsextension->get_text_extent(pdraw2dgraphics, psubitem->m_strText, size);
 
          cx += (::collection::index) (size.cx);
 
       }
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       return (::i32)(cx * get_f64(pstyle, ::user::e_f64_width_rate, ::user::e_state_none, 1.2));
 
@@ -6147,12 +6147,12 @@ namespace user
 
          pointOffset.y = iItem * m_dItemHeight;
 
-         //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
+         //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pdraw2dgraphics)
            // {
 
                set_context_offset_y(pointOffset.y);
 
-              // on_change_context_offset(pgraphics);
+              // on_change_context_offset(pdraw2dgraphics);
 
             //});
 
@@ -6178,13 +6178,13 @@ namespace user
 
          pointOffset.y = iItem * m_dItemHeight;
 
-         //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
+         //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pdraw2dgraphics)
            // {
 
          set_context_offset_y(pointOffset.y);
-               //set_context_offset_y(pgraphics, pointOffset.y);
+               //set_context_offset_y(pdraw2dgraphics, pointOffset.y);
 
-              // on_change_context_offset(pgraphics);
+              // on_change_context_offset(pdraw2dgraphics);
 
             //});
 
@@ -6227,10 +6227,10 @@ namespace user
 
          pointOffset.y = (::i32)(iyScroll * m_dItemHeight);
 
-         //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+         //queue_graphics_call([this](::draw2d::graphics_pointer & pdraw2dgraphics)
            // {
 
-               //on_change_context_offset(pgraphics);
+               //on_change_context_offset(pdraw2dgraphics);
 
             //});
 
@@ -6420,10 +6420,10 @@ namespace user
 
       set_timer(e_timer_update_filter_step, 50_ms, nullptr);
 
-      //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+      //queue_graphics_call([this](::draw2d::graphics_pointer & pdraw2dgraphics)
         // {
 
-            //set_context_offset(pgraphics, 0, 0);
+            //set_context_offset(pdraw2dgraphics, 0, 0);
 
       set_context_offset({});
 
@@ -6601,10 +6601,10 @@ namespace user
       //   m_pmeshlayout->m_iaDisplayToStrict = (*m_piaFilterMesh);
       //}
 
-      //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+      //queue_graphics_call([this](::draw2d::graphics_pointer & pdraw2dgraphics)
       //   {
 
-      //      set_context_offset(pgraphics, 0, 0);
+      //      set_context_offset(pdraw2dgraphics, 0, 0);
 
       //   });
 
@@ -6684,9 +6684,9 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
-      _001MaximizeColumnWidth(pgraphics, iHeaderItem);
+      _001MaximizeColumnWidth(pdraw2dgraphics, iHeaderItem);
 
    }
 
@@ -6830,7 +6830,7 @@ namespace user
    }
 
 
-   ::i32 list::_001CalcListWidth(::draw2d::graphics_pointer & pgraphics)
+   ::i32 list::_001CalcListWidth(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ASSERT(false);
@@ -6840,12 +6840,12 @@ namespace user
    }
 
 
-   ::i32 list::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn)
+   ::i32 list::_001CalcColumnWidth(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iColumn)
    {
 
       __UNREFERENCED_PARAMETER(iColumn);
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
       ::i32 iMaxWidth = 0;
 
@@ -6856,7 +6856,7 @@ namespace user
       for (::collection::index i = 0; i < iCount; i++)
       {
 
-         iWidth = _001CalcSubItemWidth(pgraphics, i, 0);
+         iWidth = _001CalcSubItemWidth(pdraw2dgraphics, i, 0);
 
          if (iWidth > iMaxWidth)
          {
@@ -6872,18 +6872,18 @@ namespace user
    }
 
 
-   void list::_001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn)
+   void list::_001MaximizeColumnWidth(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iColumn)
    {
 
-      _001SetColumnWidth(iColumn, _001CalcColumnWidth(pgraphics, iColumn));
+      _001SetColumnWidth(iColumn, _001CalcColumnWidth(pdraw2dgraphics, iColumn));
 
    }
 
 
-   void list::_OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void list::_OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    }
 
@@ -6896,7 +6896,7 @@ namespace user
    }
 
 
-   //void list::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //void list::on_change_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics)
    //void list::on_change_context_offset()
    void list::on_change_context_offset(::user::enum_layout elayout)
    {
@@ -6993,7 +6993,7 @@ namespace user
 
    //::write_text::font * list::_001GetFont()
    //{
-   //   return m_pfont;
+   //   return m_pwritetextfont;
    //}
 
    //::write_text::font * list::_001GetFontHover()
@@ -7785,18 +7785,18 @@ namespace user
    //}
 
 
-   //void list::on_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //void list::on_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //}
 
 
-   void list::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void list::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //return;
 
-      mesh::_001OnClip(pgraphics);
+      mesh::_001OnClip(pdraw2dgraphics);
 
       return;
 //      if (m_bHeaderCtrl && m_plistheader != nullptr)
@@ -7819,7 +7819,7 @@ namespace user
 //
 //            rectangleX.top = rectangleXHeader.bottom;
 //
-//            pgraphics->IntersectClipRect(rectangleX);
+//            pdraw2dgraphics->IntersectClipRect(rectangleX);
 //
 //         }
 //         catch (...)

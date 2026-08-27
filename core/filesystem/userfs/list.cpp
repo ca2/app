@@ -413,10 +413,10 @@ namespace userfs
    }
 
 
-   void list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void list::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::form_list_impact::_001OnDraw(pgraphics);
+      ::user::form_list_impact::_001OnDraw(pdraw2dgraphics);
 
    }
 

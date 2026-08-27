@@ -92,7 +92,7 @@ namespace write_text
       //virtual void sync_enumerate_fonts(::topic * ptopic);
 
       virtual void update_extents();
-      virtual void update_extents(font_list_data * plistdata, font_list_item * pitem, ::draw2d::graphics * pgraphics, ::collection::index iBox);
+      virtual void update_extents(font_list_data * plistdata, font_list_item * pitem, ::draw2d::graphics * pdraw2dgraphics, ::collection::index iBox);
       
       virtual void layout();
       virtual ::i32_size layout_wide();
@@ -100,9 +100,9 @@ namespace write_text
 
       virtual bool is_updating() const;
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction);
-      virtual void _001OnDrawWide(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnDrawSingleColumn(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::interaction * puserinteraction);
+      virtual void _001OnDrawWide(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001OnDrawSingleColumn(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::interaction * puserinteraction);
 
       bool begin_font_list_performance_diagnostics();
       void record_font_item_examined();

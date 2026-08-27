@@ -100,10 +100,10 @@ namespace experience
    }
 
 
-   void button::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void button::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       
-      //return ::user::button::_001OnClip(pgraphics);
+      //return ::user::button::_001OnClip(pdraw2dgraphics);
 //
 //
 //#ifdef MACOS
@@ -127,7 +127,7 @@ namespace experience
 //
 //         ::i32_rectangle rectangleClip;
 //
-//         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
+//         ::aura::draw_context * pdrawcontext = pdraw2dgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 //
 //         ::i32_rectangle rectangleX;
 //
@@ -181,9 +181,9 @@ namespace experience
 //
 //         }
 //
-//         pgraphics->reset_clip();
+//         pdraw2dgraphics->reset_clip();
 //
-//         pgraphics->add_shapes(*m_pshapeaClip);
+//         pdraw2dgraphics->add_shapes(*m_pshapeaClip);
 //
 //      }
 //      catch (...)

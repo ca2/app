@@ -58,10 +58,10 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
 
@@ -104,7 +104,7 @@ namespace user
 
       void on_update_hover(::item * pitem) override;
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       bool set_sel_by_name(const ::scoped_string & scopedstrName) override;
 
@@ -112,7 +112,7 @@ namespace user
 
       virtual void __on_draw_ensure_sel_visible();
 
-      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::i32_size * psize) override;
+      virtual void query_full_size(::draw2d::graphics_pointer& pdraw2dgraphics, ::i32_size * psize) override;
 
 
       virtual void update_data(bool bSaveAndValidate) override;

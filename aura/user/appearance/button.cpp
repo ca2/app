@@ -22,7 +22,7 @@ namespace appearance
    }
 
 
-   //void still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //void still::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
 

@@ -335,7 +335,7 @@ namespace gpu
       //virtual void top_post_to_context(::gpu::context * pcontextInnerStart, const ::procedure& procedure);
 
       
-      virtual bool create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics * pgraphics, const ::i32_size& size = {});
+      virtual bool create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics * pdraw2dgraphics, const ::i32_size& size = {});
 
 
       virtual ::gpu::renderer* get_gpu_renderer();
@@ -458,7 +458,7 @@ namespace gpu
       //virtual void end_frame();
 
 
-      virtual void start_layer(bool bFirstLayer = false, enum_start_layer estartlayer = e_start_layer_none);
+      virtual void start_layer(bool bFirstLayer = false, enum_start_layer estartlayer = e_start_layer_none, ::user::interaction * puserinteractionContext = nullptr);
       virtual void end_layer(bool bClosingLayer = false);
 
       //virtual void on_begin_draw_attach(::gpu::graphics* pgpugraphics, const ::i32_rectangle& rectangle);

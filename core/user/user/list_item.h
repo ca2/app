@@ -40,13 +40,13 @@ namespace user
 
 
       ::image::image_list * get_image_list();
-      void draw_image(::draw2d::graphics_pointer & pgraphics);
-      void draw_group_image(::draw2d::graphics_pointer & pgraphics);
-      void update_color(::draw2d::graphics_pointer & pgraphics);
-      void set_text_color(::draw2d::graphics_pointer & pgraphics);
-      void draw_text(::draw2d::graphics_pointer & pgraphics);
+      void draw_image(::draw2d::graphics_pointer & pdraw2dgraphics);
+      void draw_group_image(::draw2d::graphics_pointer & pdraw2dgraphics);
+      void update_color(::draw2d::graphics_pointer & pdraw2dgraphics);
+      void set_text_color(::draw2d::graphics_pointer & pdraw2dgraphics);
+      void draw_text(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      ::color::color calculate_text_color(::draw2d::graphics_pointer & pgraphics, const ::user::e_state & estate);
+      ::color::color calculate_text_color(::draw2d::graphics_pointer & pdraw2dgraphics, const ::user::e_state & estate);
 
    };
 
@@ -83,7 +83,7 @@ namespace user
       void initialize_draw_list_item(list * plist);
 
 
-      void update_item_color(::draw2d::graphics_pointer & pgraphics);
+      void update_item_color(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       
@@ -123,8 +123,8 @@ namespace user
 
       //::image::image_list_pointer get_image_list();
       //void draw_image();
-      void draw_group_image(::draw2d::graphics_pointer & pgraphics);
-      void update_item_color(::draw2d::graphics_pointer & pgraphics);
+      void draw_group_image(::draw2d::graphics_pointer & pdraw2dgraphics);
+      void update_item_color(::draw2d::graphics_pointer & pdraw2dgraphics);
       //void set_text_color();
       //void draw_text();
 

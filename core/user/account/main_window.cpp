@@ -303,7 +303,7 @@ namespace account
 
       m_plogin->m_peditUser->set_keyboard_focus();
 
-      //m_plogin->on_layout(pgraphics);
+      //m_plogin->on_layout(pdraw2dgraphics);
 
       m_plogin->display();
 
@@ -370,7 +370,7 @@ namespace account
    }
 
 
-   void main_window::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void main_window::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       /*
@@ -475,7 +475,7 @@ namespace account
 
       m_plogin->place(rectangleX);
 
-      //m_plogin->on_layout(pgraphics);
+      //m_plogin->on_layout(pdraw2dgraphics);
 
    }
 
@@ -585,22 +585,22 @@ namespace account
 
 
 
-   void main_window::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void main_window::_000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      //pgraphics->FillSolidRect(0, 0, 100, 100, argb(255, 255, 0, 0));
+      //pdraw2dgraphics->FillSolidRect(0, 0, 100, 100, argb(255, 255, 0, 0));
 
-      ::user::interaction::_000OnDraw(pgraphics);
+      ::user::interaction::_000OnDraw(pdraw2dgraphics);
 
-      //pgraphics->FillSolidRect(100, 100, 100, 100, argb(255, 0, 255, 0));
+      //pdraw2dgraphics->FillSolidRect(100, 100, 100, 100, argb(255, 0, 255, 0));
 
    }
 
 
-   void main_window::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+   void main_window::_001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::interaction::_001DrawChildren(pgraphics);
+      ::user::interaction::_001DrawChildren(pdraw2dgraphics);
 
    }
 

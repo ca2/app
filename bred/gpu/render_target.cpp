@@ -90,10 +90,17 @@ namespace gpu
          if (pgpulayera2)
          {
 
-            for (auto pgpulayer : *pgpulayera2)
+            auto iLayerCount = minimum(
+               (::collection::count) pgpuwindowattachment->m_iLayerCount,
+               pgpulayera2->get_count());
+
+            for (::collection::index iLayer = 0; iLayer < iLayerCount; iLayer++)
             {
 
+               auto pgpulayer = pgpulayera2->element_at(iLayer);
+
                if (pgpulayer
+                  && pgpulayer->m_iGpuLayerFrameIndex == iFrameIndex
                   && pgpulayer->m_bIncludeInFrameComposition)
                {
 
@@ -789,14 +796,14 @@ namespace gpu
    }
 
 
-   void render_target::on_before_begin_draw_frame(::gpu::graphics* pgraphics)
+   void render_target::on_before_begin_draw_frame(::gpu::graphics* pdraw2dgraphics)
    {
 
 
    }
 
 
-   void render_target::on_after_end_draw_frame(::gpu::graphics* pgraphics)
+   void render_target::on_after_end_draw_frame(::gpu::graphics* pdraw2dgraphics)
    {
 
 

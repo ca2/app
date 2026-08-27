@@ -402,13 +402,13 @@ namespace micro
       //// Text Edit
       //void get_text_selection(character_count & iBeg, character_count & iEnd) const override;
       //virtual void get_text_selection(character_count & iBeg, character_count & iEnd, character_count & iComposingStart, character_count & iComposingEnd) const;
-      //virtual ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, character_count iSel);
-      //virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x);
-      //virtual ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel);
-      //virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x);
-      //virtual character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn);
-      //virtual character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::i32 x);
-      //virtual ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel);
+      //virtual ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel);
+      //virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel, ::i32 & x);
+      //virtual ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel);
+      //virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel, ::i32 & x);
+      //virtual character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iLine, ::collection::index iColumn);
+      //virtual character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iLine, ::i32 x);
+      //virtual ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel);
 
 
       ::trace_statement & raw_trace_statement_prefix(::trace_statement & statement) const override;

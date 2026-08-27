@@ -221,7 +221,7 @@ namespace user
       string                                       m_strTopText;
       ::i32_rectangle                              m_rectangleTopText;
       ::pointer<mesh_data>                        m_pmeshdata;
-//      ::write_text::font_pointer                 m_pfont;
+//      ::write_text::font_pointer                 m_pwritetextfont;
       //    ::write_text::font_pointer             m_pfontHover;
       ::draw2d::pen_pointer                        m_ppenFocused;
       ::draw2d::pen_pointer                        m_ppenHighlight;
@@ -284,8 +284,8 @@ namespace user
 
 
 
-      //virtual ::i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem);
-      //::i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont, ::collection::index iItem, ::collection::index iSubItem);
+      //virtual ::i32 _001CalcItemWidth(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::collection::index iSubItem);
+      //::i32 _001CalcItemWidth(::draw2d::graphics_pointer & pdraw2dgraphics,::write_text::font * pwritetextfont, ::collection::index iItem, ::collection::index iSubItem);
 
 
       // ::core::application* get_app();
@@ -307,12 +307,12 @@ namespace user
       virtual ::draw2d::pen * _001GetPenFocused();
       virtual ::draw2d::pen * _001GetPenHighlight();
       virtual void PreSubClassWindow() override;
-      virtual void _OnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn);
-      virtual void _001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics);
-      virtual ::i32 _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem);
-      virtual ::i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn);
-      virtual ::i32 _001CalcMeshWidth(::draw2d::graphics_pointer& pgraphics);
+      virtual void _OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001MaximizeColumnWidth(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iColumn);
+      virtual void _001CalculateItemHeight(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual ::i32 _001CalcSubItemWidth(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iItem, ::collection::index iSubItem);
+      virtual ::i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iColumn);
+      virtual ::i32 _001CalcMeshWidth(::draw2d::graphics_pointer& pdraw2dgraphics);
       virtual void _001OnSort();
 
 
@@ -378,7 +378,7 @@ namespace user
       virtual void cache_hint();
       virtual void set_cache_interface(mesh_cache_interface * pinterface);
       virtual void _001ShowTopText(bool bShow = true);
-      virtual void _001LayoutTopText(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001LayoutTopText(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual void _001SetTopText(const ::wide_character * pcwsz);
 
       virtual bool DIDDXHeaderLayout(bool bSave);
@@ -396,14 +396,14 @@ namespace user
 
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      //virtual void  _001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast, ::collection::index iItemFirst, ::collection::index iItemLast);
-      virtual void  _001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast);
+      //virtual void  _001DrawGroups(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast, ::collection::index iItemFirst, ::collection::index iItemLast);
+      virtual void  _001DrawGroups(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast);
 
       virtual void  _001DrawGroup(draw_mesh_group * pdrawgroup);
 
-      virtual void  _001DrawItems(::draw2d::graphics_pointer & pgraphics, ::collection::index iItemFirst, ::collection::index iItemLast);
+      virtual void  _001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItemFirst, ::collection::index iItemLast);
 
       virtual void  _001DrawItem(draw_mesh_item * pdrawitem);
 
@@ -436,11 +436,11 @@ namespace user
 
       virtual ::collection::count  _001GetColumnCount();
 
-      virtual void  draw_framing(::draw2d::graphics_pointer & pgraphics);
+      virtual void  draw_framing(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual ::pointer<::user::mesh_data> create_mesh_data();
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       virtual void erase_columns();
@@ -590,7 +590,7 @@ namespace user
 
       virtual ::i32 get_wheel_scroll_delta() override;
 
-      //virtual void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void on_context_offset_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       void on_change_context_offset(::user::enum_layout elayout) override;
 
       bool keyboard_focus_is_focusable() override;

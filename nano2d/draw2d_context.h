@@ -13,8 +13,8 @@ namespace nano2d
 {
 
 
-   void __font_face(::write_text::font * pfont, const_char_pointer font);
-   void __font_size(::write_text::font * pfont, ::f32 size);
+   void __font_face(::write_text::font * pwritetextfont, const_char_pointer font);
+   void __font_size(::write_text::font * pwritetextfont, ::f32 size);
 
 
    class CLASS_DECL_NANO2D draw2d_context :
@@ -23,11 +23,11 @@ namespace nano2d
    public:
 
       
-      ::draw2d::graphics_pointer          m_pgraphics;
+      ::draw2d::graphics_pointer          m_pdraw2dgraphics;
       ::pointer<::nano2d::font_sink>      m_pfontsink;
-      ::i32                                 m_iPaint = -1;
+      ::i32                               m_iPaint = -1;
       bool                                m_bHasCurrentPoint;
-      ::f32_point                       m_point;
+      ::f32_point                         m_point;
 
 
       class draw2d_state :
@@ -35,13 +35,13 @@ namespace nano2d
       {
       public:
 
-         ::draw2d::pen_pointer         m_ppen;
+         ::draw2d::pen_pointer         m_pdraw2dpen;
 
-         ::draw2d::brush_pointer       m_pbrush;
+         ::draw2d::brush_pointer       m_pdraw2dbrush;
 
-         ::draw2d::path_pointer        m_ppath;
+         ::draw2d::path_pointer        m_pdraw2dpath;
 
-         draw2d_state(::draw2d::graphics * pgraphics)
+         draw2d_state(::draw2d::graphics * pdraw2dgraphics)
          {
 
             
@@ -56,7 +56,7 @@ namespace nano2d
       public:
 
          ::i32                           m_iImage;
-         ::draw2d::brush_pointer       m_pbrush;
+         ::draw2d::brush_pointer       m_pdraw2dbrush;
          ::image::image_pointer               m_pimage;
          ::image::image_drawing_options       m_imagedrawingoptions;
 
@@ -71,7 +71,7 @@ namespace nano2d
       ~draw2d_context() override;
 
 
-      void set_graphics(::draw2d::graphics * pgraphics);
+      void set_graphics(::draw2d::graphics * pdraw2dgraphics);
       ::draw2d::graphics * get_graphics();
 
 

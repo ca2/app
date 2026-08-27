@@ -367,7 +367,7 @@ namespace user
    }
 
 
-   void graphics3d::draw_gpu_statistics(::draw2d::graphics_pointer& pgraphics)
+   void graphics3d::draw_gpu_statistics(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -387,11 +387,11 @@ namespace user
 
          ::i32_rectangle rectangleDryProWithLove_Work(5, 5, 1915, 1075);
 
-         pgraphics->fill_rectangle(rectangleDryProWithLove_Work, argb(255, 150, 200, 255));
+         pdraw2dgraphics->fill_rectangle(rectangleDryProWithLove_Work, argb(255, 150, 200, 255));
 
 #endif
 
-         pgraphics->set_text_color(::color::white);
+         pdraw2dgraphics->set_text_color(::color::white);
 
          auto psystem = system();
 
@@ -408,11 +408,11 @@ namespace user
             
          }
 
-         pgraphics->set(m_pfontThomasBS_);
+         pdraw2dgraphics->set(m_pfontThomasBS_);
 
-         pgraphics->set_text_rendering_hint(write_text::e_rendering_anti_alias);
+         pdraw2dgraphics->set_text_rendering_hint(write_text::e_rendering_anti_alias);
 
-         pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 
          string_array &stra = m_straLineStats;
 
@@ -447,7 +447,7 @@ namespace user
 
          stra.atø(0) = strText;
 
-         auto size = pgraphics->get_text_extent(strText);
+         auto size = pdraw2dgraphics->get_text_extent(strText);
 
          m_fpscounter.update();
 
@@ -487,43 +487,43 @@ namespace user
 
             y += size.cy;
 
-            pgraphics->text_out(point.x, point.y + y, strItem);
+            pdraw2dgraphics->text_out(point.x, point.y + y, strItem);
             
          }
 
-         pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+         pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
       }
 
    }
 
 
-   void graphics3d::_001OnNcClip(::draw2d::graphics_pointer& pgraphics)
+   void graphics3d::_001OnNcClip(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
-      ::user::box::_001OnNcClip(pgraphics);
+      ::user::box::_001OnNcClip(pdraw2dgraphics);
 
    }
 
 
-   void graphics3d::_001OnClip(::draw2d::graphics_pointer& pgraphics)
+   void graphics3d::_001OnClip(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
-      ::user::box::_001OnClip(pgraphics);
+      ::user::box::_001OnClip(pdraw2dgraphics);
 
    }
 
 
-   void graphics3d::_001OnNcDraw(::draw2d::graphics_pointer& pgraphics)
+   void graphics3d::_001OnNcDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
-      ::user::box::_001OnNcDraw(pgraphics);
+      ::user::box::_001OnNcDraw(pdraw2dgraphics);
 
    }
 
 
-   void graphics3d::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
-   //void graphics3d::_000OnDraw(::draw2d::graphics_pointer& pgraphics)
+   void graphics3d::_001OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
+   //void graphics3d::_000OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       if (!m_pengine)
@@ -542,14 +542,14 @@ namespace user
 
       //return;
 
-      //::cast < ::gpu::compositor > pcompositor = pgraphics;
+      //::cast < ::gpu::compositor > pcompositor = pdraw2dgraphics;
 
       //::gpu::layer* pgpulayer = nullptr;
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         pgraphics->end_layer();
+         pdraw2dgraphics->end_layer();
 
          //if(pcompositor)
          //{
@@ -564,7 +564,7 @@ namespace user
          //   //r.top = 200.0;
          //   //r.set_size(50.0, 50.0);
 
-         //   //pgraphics->fill_solid_rectangle(r, argb(1.0, 0.5, 0.75, 0.95));
+         //   //pdraw2dgraphics->fill_solid_rectangle(r, argb(1.0, 0.5, 0.75, 0.95));
          //   //
          //   //pgpulayer = pcompositor->end_gpu_layer(::gpu::current_layer());
 
@@ -575,14 +575,14 @@ namespace user
       if (1)
       {
 
-         m_pengine->_001OnDraw(pgraphics);
+         m_pengine->_001OnDraw(pdraw2dgraphics);
 
       }
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         pgraphics->start_layer(false, this);
+         pdraw2dgraphics->start_layer(false, this);
 
          //if (pcompositor)
          //{
@@ -599,7 +599,7 @@ namespace user
    }
 
 
-   void graphics3d::_001OnNcPostDraw(::draw2d::graphics_pointer& pgraphics)
+   void graphics3d::_001OnNcPostDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
 
@@ -621,7 +621,7 @@ namespace user
    //}
 
 
-   void graphics3d::on_layout(::draw2d::graphics_pointer& pgraphics)
+   void graphics3d::on_layout(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();

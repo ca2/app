@@ -26,17 +26,17 @@ namespace html
       void image::_001OnDraw(html_data * pdata)
       {
 
-         ::draw2d::graphics_pointer pgraphics = pdata->m_pcoredata->m_pgraphics;
+         ::draw2d::graphics_pointer pdraw2dgraphics = pdata->m_pcoredata->m_pgraphics;
 
          if (m_pelemental->m_phtmlbase->get_type() == ::html::base::type_tag)
          {
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
             
             if (m_pimage)
             {
 
-               m_pimage->defer_realize(pgraphics);
+               m_pimage->defer_realize(pdraw2dgraphics);
 
                auto pointDst = ::f64_point((::i32)left(), (::i32)top());
 
@@ -50,7 +50,7 @@ namespace html
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
                
             }
 

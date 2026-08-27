@@ -346,7 +346,7 @@ namespace user
       virtual void on_configuration_change(::user::element * pprimitiveSource);
 
 
-      //virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      //virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual void on_reposition();
       virtual void on_size();
       //virtual void on_show_window();
@@ -561,7 +561,7 @@ namespace user
       //virtual bool is_descendant(const ::user::element * pinteraction,bool bIncludeSelf = false) const;
       virtual ::user::interaction * get_focusable_descendant();
 
-      virtual void RepositionBars(::draw2d::graphics_pointer &pgraphics, ::u32 nIDFirst, ::u32 nIDLast,
+      virtual void RepositionBars(::draw2d::graphics_pointer &pdraw2dgraphics, ::u32 nIDFirst, ::u32 nIDLast,
                                   ::user::interaction *puserinteractionLeftOver = nullptr, ::u32 nFlag = reposDefault,
                                   ::i32_rectangle *prectParam = nullptr, const ::i32_rectangle &rectangleX = {},
                                   bool bStretch = true);
@@ -613,8 +613,8 @@ namespace user
 
       virtual ::windowing::window * window();
 
-      //virtual ::f64_size _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
-      //virtual ::f64_size _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
+      //virtual ::f64_size _001CalculateFittingSize(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual ::f64_size _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       //virtual bool can_merge(::user::interaction * pinteraction);
@@ -630,7 +630,7 @@ namespace user
       //#endif
 
 
-      virtual void set_context_org(::draw2d::graphics_pointer & pgraphics);
+      virtual void set_context_org(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual void viewport_screen_to_client(::i32_sequence2 & sequence);
       virtual void viewport_client_to_screen(::i32_sequence2 & sequence);
@@ -758,7 +758,7 @@ namespace user
 
 
 
-      virtual void set_need_redraw(const ::i32_rectangle_array_base & rectangleaScreenNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function = nullptr, bool bAscendants = true);
+      virtual void set_need_redraw(const ::i32_rectangle_array_base & rectangleaScreenNeedRedraw = {}, ::draw2d::graphics * pdraw2dgraphics = nullptr, ::function < void() > function = nullptr, bool bAscendants = true);
       virtual void set_need_load_form_data();
       virtual void set_need_save_form_data();
       virtual void post_redraw(bool bAscendants = true);

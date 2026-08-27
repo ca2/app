@@ -82,7 +82,7 @@ namespace user
       void set_position(::collection::index iIndex, ::i32 nPos);
       void set_position_rate(::collection::index iIndex, ::f64 dRate, ::f64 dMinimumRate = 0.1, ::f64 dMaximumRate = 0.9);
       
-      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       ::i32 GetMaxPos(enum_layout elayout = e_layout_design);
@@ -100,13 +100,13 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
-      void draw_control_background(::draw2d::graphics_pointer & pgraphics) override;
+      void draw_control_background(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      void _001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics);
+      void _001OnDrawSplitLayout(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       //::i32_rectangle hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;

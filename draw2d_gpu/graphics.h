@@ -67,7 +67,7 @@ namespace draw2d_gpu
 
       ::gpu::context* gpu_context();
 
-      //void attach(void * pgraphics) override;   // attach/detach affects only the Output DC
+      //void attach(void * pdraw2dgraphics) override;   // attach/detach affects only the Output DC
       void * detach() override;
 
 
@@ -121,7 +121,7 @@ namespace draw2d_gpu
       //void create_memory_graphics(const ::i32_size & size = {}) override;
       void create_memory_graphics(const ::i32_size & sizeParameter, ::acme::user::interaction * pacmeuserinteractionAffinity) override;
       //void create_window_graphics(::windowing::window * pwindow) override;
-      //void create_compatible_graphics(::draw2d::graphics * pgraphics) override;
+      //void create_compatible_graphics(::draw2d::graphics * pdraw2dgraphics) override;
 
       //void set_hint_window_output() override;
 
@@ -303,7 +303,7 @@ namespace draw2d_gpu
       void fill_rectangle(const ::f64_rectangle &  rectangle, ::draw2d::brush* pBrush) override;
       virtual void fill_rectangle_2025_06(const ::f64_rectangle& rectangle, ::draw2d::brush* pBrush);
       void frame_rectangle(const ::f64_rectangle & rectangle, ::draw2d::brush* pBrush) override;
-      //bool DrawRect(const ::i32_rectangle & rectangle, ::draw2d::pen * ppen);
+      //bool DrawRect(const ::i32_rectangle & rectangle, ::draw2d::pen * pdraw2dpen);
       void invert_rectangle(const ::f64_rectangle & i32_rectangle) override;
       //void draw_icon(::f64 x, ::f64 y, ::image::icon * picon) override;
       //void draw_icon(const ::i32_point & point, ::image::icon * picon);
@@ -354,7 +354,7 @@ namespace draw2d_gpu
       void rectangle(const ::f64_rectangle & rectangle) override;
       //virtual bool drw(::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2);
       void draw_rectangle(const ::f64_rectangle & rectangle) override;
-      void draw_rectangle(const ::f64_rectangle& rectangle, ::draw2d::pen * ppen) override;
+      void draw_rectangle(const ::f64_rectangle& rectangle, ::draw2d::pen * pdraw2dpen) override;
       //virtual bool FillRectangle(::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2);
       void fill_rectangle(const ::f64_rectangle & rectangle);
       //void round_rectangle(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::f64 x3, ::f64 y3) override;
@@ -520,10 +520,10 @@ namespace draw2d_gpu
       ::f32 GetMiterLimit() override;
       void SetMiterLimit(::f32 fMiterLimit) override;
 
-      void draw(::draw2d::path * ppath);
-      void draw(::draw2d::path * ppath, ::draw2d::pen * ppen);
-      void fill(::draw2d::path * ppath);
-      void fill(::draw2d::path * ppath, ::draw2d::brush * pbrush);
+      void draw(::draw2d::path * pdraw2dpath);
+      void draw(::draw2d::path * pdraw2dpath, ::draw2d::pen * pdraw2dpen);
+      void fill(::draw2d::path * pdraw2dpath);
+      void fill(::draw2d::path * pdraw2dpath, ::draw2d::brush * pdraw2dbrush);
 
 
       //::f32 GetMiterLimit() const;
@@ -583,11 +583,11 @@ namespace draw2d_gpu
       void flush() override;
       void sync_flush() override;
 
-      //virtual bool DrawLine(::f32 x1, ::f32 y1, ::f32 x2, ::f32 y2, ::draw2d::pen * ppen);
-      //virtual bool DrawLine(::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2, ::draw2d::pen * ppen);
+      //virtual bool DrawLine(::f32 x1, ::f32 y1, ::f32 x2, ::f32 y2, ::draw2d::pen * pdraw2dpen);
+      //virtual bool DrawLine(::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2, ::draw2d::pen * pdraw2dpen);
 
       
-      void draw_line(const i32_point& point1, const i32_point& point2, ::draw2d::pen* ppen);
+      void draw_line(const i32_point& point1, const i32_point& point2, ::draw2d::pen* pdraw2dpen);
 
 
       //virtual void enum_fonts(::write_text::font_enumeration_item_array& itema) override;
@@ -595,10 +595,10 @@ namespace draw2d_gpu
       //void prefer_mapped_image_on_mix() override;
 
       virtual void set(::draw2d::region* pregion) override;
-      virtual void set(::draw2d::pen* ppen) override;
-      virtual void set(::write_text::font* pfont) override;
-      virtual void set(::draw2d::brush* pbrush) override;
-      virtual void set(::draw2d::bitmap* pbitmap) override;
+      virtual void set(::draw2d::pen* pdraw2dpen) override;
+      virtual void set(::write_text::font* pwritetextfont) override;
+      virtual void set(::draw2d::brush* pdraw2dbrush) override;
+      virtual void set(::draw2d::bitmap* pdraw2dbitmap) override;
       virtual ::draw2d::object* set_stock_object(::i32 nIndex) override;
 
       //void create_window_graphics(const ::operating_system::window & operatingsystemwindow) override;

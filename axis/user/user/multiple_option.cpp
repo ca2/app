@@ -121,20 +121,20 @@ namespace user
 
 
 
-   void multiple_option::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void multiple_option::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::interaction::_001OnDraw(pgraphics);
+      ::user::interaction::_001OnDraw(pdraw2dgraphics);
 
       ::i32_rectangle r = client2_rectangle();
 
-      pgraphics->draw_rectangle(r);
+      pdraw2dgraphics->draw_rectangle(r);
 
       auto iIndex = selected_index();
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
       for (::collection::index i = 0; i < main_content().item_count(); i++)
       {
@@ -148,18 +148,18 @@ namespace user
          if (i == iIndex)
          {
 
-            pgraphics->fill_rectangle(rItem, ::argb(255, 10, 77, 189));
+            pdraw2dgraphics->fill_rectangle(rItem, ::argb(255, 10, 77, 189));
 
-            pgraphics->set_text_color(::color::white);
+            pdraw2dgraphics->set_text_color(::color::white);
 
 
          }
          else
          {
 
-            pgraphics->fill_rectangle(rItem, ::argb(80, 127, 127, 127));
+            pdraw2dgraphics->fill_rectangle(rItem, ::argb(80, 127, 127, 127));
 
-            pgraphics->set_text_color(::argb(255, 189, 189, 189));
+            pdraw2dgraphics->set_text_color(::argb(255, 189, 189, 189));
 
          }
 
@@ -176,7 +176,7 @@ namespace user
          if (strName.has_character())
          {
 
-            pgraphics->draw_text(strName, rItem, e_align_center);
+            pdraw2dgraphics->draw_text(strName, rItem, e_align_center);
 
          }
 
@@ -537,13 +537,13 @@ namespace user
    }
 
 
-   void multiple_option::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void multiple_option::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //if(m_bEdit)
       //{
 
-      //   ::user::interaction::on_layout(pgraphics);
+      //   ::user::interaction::on_layout(pdraw2dgraphics);
 
       //}
 
@@ -560,7 +560,7 @@ namespace user
 
       ::i32_rectangle r = client2_rectangle();
 
-      pgraphics->draw_rectangle(r);
+      pdraw2dgraphics->draw_rectangle(r);
 
       ::i32 iPad = 5;
 
@@ -585,13 +585,13 @@ namespace user
          if (i == iIndex)
          {
 
-            pgraphics->fill_rectangle(rItem, ::argb(255, 10, 77, 189));
+            pdraw2dgraphics->fill_rectangle(rItem, ::argb(255, 10, 77, 189));
 
          }
          else
          {
 
-            pgraphics->fill_rectangle(rItem, ::argb(127, 127, 127, 127));
+            pdraw2dgraphics->fill_rectangle(rItem, ::argb(127, 127, 127, 127));
 
          }
          
@@ -621,7 +621,7 @@ namespace user
    }
 
 
-   //void multiple_option::plain_edit_on_after_change_text(::draw2d::graphics_pointer & pgraphics, const ::action_context & actioncontext)
+   //void multiple_option::plain_edit_on_after_change_text(::draw2d::graphics_pointer & pdraw2dgraphics, const ::action_context & actioncontext)
    //{
 
    //   if(actioncontext.is_user_source())

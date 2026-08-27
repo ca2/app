@@ -106,7 +106,7 @@ namespace user
       DROPEFFECT dropDefault, DROPEFFECT dropList, const ::i32_point & point);
       virtual DROPEFFECT OnDragScroll(::u32 dwKeyState, const ::i32_point & point);*/
 
-      //virtual void OnPrepareDC(::draw2d::graphics_pointer & pgraphics, CPrintInfo* pInfo = nullptr);
+      //virtual void OnPrepareDC(::draw2d::graphics_pointer & pdraw2dgraphics, CPrintInfo* pInfo = nullptr);
 
       virtual void OnActivateImpact(bool bActivate, ::pointer<impact>pActivateImpact, ::pointer<impact>DeactiveImpact);
       virtual void OnActivateFrame(enum_activate eactivate,  ::pointer<::user::frame_window>pFrameWnd);
@@ -184,7 +184,7 @@ namespace user
 
       //virtual void on_simple_impact_update_hint(::pointer<::user::impact>pviewSender, e_hint ehint, object * pupdate);
 
-      virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual void on_select() override;
 

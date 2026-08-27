@@ -26,7 +26,7 @@ namespace gpu
 
       void initialize(::particle* pparticle) override;
 
-      virtual ::typeface::face* _get_face(::write_text::font* pfont);
+      virtual ::typeface::face* _get_face(::write_text::font* pwritetextfont);
 
       ::image::image_pointer image_from_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics) override;
 

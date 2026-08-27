@@ -307,10 +307,10 @@ namespace user
    //}
 
 
-   void form_mesh::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void form_mesh::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      mesh::_001OnDraw(pgraphics);
+      mesh::_001OnDraw(pdraw2dgraphics);
 
    }
 

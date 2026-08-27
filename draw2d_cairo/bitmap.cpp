@@ -16,7 +16,7 @@ namespace draw2d_cairo
 
       //m_pthis = this;
 
-      m_psurface = nullptr;
+      m_pcairosurface = nullptr;
 
    }
 
@@ -29,7 +29,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy, ::u32 nPlanes, ::u32 nBitcount, const void * pdata, ::i32 iStrideParam)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 cx, ::i32 cy, ::u32 nPlanes, ::u32 nBitcount, const void * pdata, ::i32 iStrideParam)
    {
 
       informationf("draw2d_cairo::bitmap::CreateBitmap : (%d, %d)", cx, cy);
@@ -94,9 +94,9 @@ namespace draw2d_cairo
 
       informationf("draw2d_cairo::bitmap::CreateBitmap cairo_image_surface_create_for_data");
 
-      m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, cx, cy, iStride);
+      m_pcairosurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, cx, cy, iStride);
 
-      if(m_psurface == nullptr)
+      if(m_pcairosurface == nullptr)
       {
 
          informationf("draw2d_cairo::bitmap::CreateBitmap Cairo Surface NOT Created");
@@ -105,7 +105,7 @@ namespace draw2d_cairo
 
       }
 
-      m_osdata[0] = m_psurface;
+      //m_osdata[0] = m_pcairosurface;
 
       m_size.cx = cx;
 
@@ -121,7 +121,7 @@ namespace draw2d_cairo
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap)
+//   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pdraw2dgraphics, LPBITMAP lpBitmap)
 //   {
 //
 //      return false;
@@ -134,7 +134,7 @@ namespace draw2d_cairo
 //
 
 
-   void bitmap::create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, ::pixmap * ppixmap)
+   void bitmap::create_bitmap(::draw2d::graphics *pdraw2dgraphics, const ::i32_size &size, ::pixmap * ppixmap)
    {
 
       //try
@@ -202,34 +202,34 @@ namespace draw2d_cairo
 
          }
 
-         m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, size.cx, size.cy, iStride);
+         m_pcairosurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, size.cx, size.cy, iStride);
 
-         ::i32 iSurfaceStatus = cairo_surface_status(m_psurface);
+         ::i32 iSurfaceStatus = cairo_surface_status(m_pcairosurface);
 
          if(iSurfaceStatus != CAIRO_STATUS_SUCCESS)
          {
 
             informationf("draw2d_cairo::bitmap::create_bitmap cairo create image Failed %d", iSurfaceStatus);
 
-            cairo_surface_destroy(m_psurface);
+            cairo_surface_destroy(m_pcairosurface);
 
-            m_psurface = nullptr;
+            m_pcairosurface = nullptr;
 
             if(iSurfaceStatus == CAIRO_STATUS_INVALID_STRIDE)
             {
 
                iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, size.cx);
 
-               m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, size.cx, size.cy, iStride);
+               m_pcairosurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, size.cx, size.cy, iStride);
 
-               iSurfaceStatus = cairo_surface_status(m_psurface);
+               iSurfaceStatus = cairo_surface_status(m_pcairosurface);
 
                if(iSurfaceStatus != CAIRO_STATUS_SUCCESS)
                {
 
-                  cairo_surface_destroy(m_psurface);
+                  cairo_surface_destroy(m_pcairosurface);
 
-                  m_psurface = nullptr;
+                  m_pcairosurface = nullptr;
 
                   throw ::exception(error_failed);
 
@@ -266,7 +266,7 @@ namespace draw2d_cairo
 
          }
 
-         m_osdata[0] = m_psurface;
+         //m_osdata[0] = m_pcairosurface;
 
          m_size = size;
 
@@ -290,7 +290,7 @@ namespace draw2d_cairo
    }
 
 
-   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void *pjBits, ::u32 iUsage)
+   void bitmap::CreateDIBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void *pjBits, ::u32 iUsage)
    {
 
       //return false;
@@ -298,7 +298,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::host_bitmap(::draw2d::graphics * pgraphics, ::pixmap_t * ppixmap)
+   bool bitmap::host_bitmap(::draw2d::graphics * pdraw2dgraphics, ::pixmap_t * ppixmap)
    {
 
 
@@ -364,32 +364,32 @@ namespace draw2d_cairo
 //
 //      }
 
-      m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx, ppixmap->m_sizeRaw.cy, ppixmap->m_iScan);
+      m_pcairosurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx, ppixmap->m_sizeRaw.cy, ppixmap->m_iScan);
 
-      ::i32 iSurfaceStatus = cairo_surface_status(m_psurface);
+      ::i32 iSurfaceStatus = cairo_surface_status(m_pcairosurface);
 
       if(iSurfaceStatus != CAIRO_STATUS_SUCCESS)
       {
 
-         cairo_surface_destroy(m_psurface);
+         cairo_surface_destroy(m_pcairosurface);
 
-         m_psurface = nullptr;
+         m_pcairosurface = nullptr;
 
          if(iSurfaceStatus == CAIRO_STATUS_INVALID_STRIDE)
          {
 
             ppixmap->m_iScan = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx);
 
-            m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx, ppixmap->m_sizeRaw.cy, ppixmap->m_iScan);
+            m_pcairosurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx, ppixmap->m_sizeRaw.cy, ppixmap->m_iScan);
 
-            iSurfaceStatus = cairo_surface_status(m_psurface);
+            iSurfaceStatus = cairo_surface_status(m_pcairosurface);
 
             if(iSurfaceStatus != CAIRO_STATUS_SUCCESS)
             {
 
-               cairo_surface_destroy(m_psurface);
+               cairo_surface_destroy(m_pcairosurface);
 
-               m_psurface = nullptr;
+               m_pcairosurface = nullptr;
 
                throw ::exception(error_failed);
 
@@ -419,7 +419,7 @@ namespace draw2d_cairo
 //
 //      }
 
-      m_osdata[0] = m_psurface;
+      //m_osdata[0] = m_pcairosurface;
 
       m_size = ppixmap->m_size;
 
@@ -485,7 +485,7 @@ namespace draw2d_cairo
    i32_size bitmap::size() const
    {
 
-      if(m_psurface == nullptr)
+      if(m_pcairosurface == nullptr)
       {
 
          return ::i32_size(0, 0);
@@ -513,10 +513,10 @@ namespace draw2d_cairo
    }
 
 
-   void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy)
+   void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 cx, ::i32 cy)
    {
 
-      if(!CreateBitmap(pgraphics, cx, cy, 1, 32, nullptr, cx * sizeof(color32_t)))
+      if(!CreateBitmap(pdraw2dgraphics, cx, cy, 1, 32, nullptr, cx * sizeof(color32_t)))
       {
 
          throw ::exception(error_failed);
@@ -528,12 +528,12 @@ namespace draw2d_cairo
    }
 
 
-   void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight)
+   void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight)
    {
 
-      //return CreateCompatibleBitmap(pgraphics, nWidth, nHeight);
+      //return CreateCompatibleBitmap(pdraw2dgraphics, nWidth, nHeight);
 
-      CreateCompatibleBitmap(pgraphics, nWidth, nHeight);
+      CreateCompatibleBitmap(pdraw2dgraphics, nWidth, nHeight);
 
    }
 
@@ -591,23 +591,23 @@ namespace draw2d_cairo
 
       destroy();
 
-      m_psurface = (cairo_surface_t *) psurface;
+      m_pcairosurface = (cairo_surface_t *) psurface;
 
       get_surface_size((cairo_surface_t *) psurface, (::i32 *) &m_size.cx, (::i32 *)&m_size.cy);
 
-      m_osdata[0] = m_psurface;
+      //m_osdata[0] = m_pcairosurface;
 
       //return true;
 
    }
 
 
-   void bitmap::destroy_os_data()
+   void bitmap::destroy()
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (m_psurface == nullptr)
+      if (m_pcairosurface == nullptr)
       {
 
          //return ::success_none;
@@ -616,25 +616,25 @@ namespace draw2d_cairo
 
       }
 
-      cairo_surface_destroy(m_psurface);
+      cairo_surface_destroy(m_pcairosurface);
 
-      m_psurface = nullptr;
-
-      //return ::success;
-
-   }
-
-
-   void bitmap::destroy()
-   {
-
-      destroy_os_data();
-
-      ::draw2d::bitmap::destroy();
+      m_pcairosurface = nullptr;
 
       //return ::success;
 
    }
+
+
+   //void bitmap::destroy()
+   //{
+
+   //   destroy_os_data();
+
+   //   ::draw2d::bitmap::destroy();
+
+   //   //return ::success;
+
+   //}
 
 
 } // namespace draw2d_cairo

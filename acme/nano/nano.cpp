@@ -66,9 +66,9 @@ namespace nano
 
       auto pfactory = psystem->system_factory();
 
-      auto pgraphics = pfactory->__factory(m_pgraphics);
+      auto pdraw2dgraphics = pfactory->__factory(m_pgraphics);
 
-      return pgraphics;
+      return pdraw2dgraphics;
 
    }
 

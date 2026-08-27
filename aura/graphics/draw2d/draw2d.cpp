@@ -150,22 +150,22 @@ namespace draw2d
    }
 
 
-   void draw2d::add_graphics(graphics* pgraphics)
+   void draw2d::add_graphics(graphics* pdraw2dgraphics)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionGraphicsContextList);
 
-      m_graphicsa.add(pgraphics);
+      m_graphicsa.add(pdraw2dgraphics);
 
    }
 
 
-   void draw2d::erase_graphics(graphics* pgraphics)
+   void draw2d::erase_graphics(graphics* pdraw2dgraphics)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionGraphicsContextList);
 
-      m_graphicsa.erase(pgraphics);
+      m_graphicsa.erase(pdraw2dgraphics);
 
    }
 
@@ -305,7 +305,7 @@ namespace draw2d
       for (auto& pparticle: m_objecta)
       {
 
-         pparticle->destroy_os_data();
+         pparticle->destroy();
 
       }
 
@@ -320,7 +320,7 @@ namespace draw2d
       for (auto& pimage: m_pimagea->imagea())
       {
 
-         pimage->destroy_os_data();
+         pimage->destroy();
 
       }
 
@@ -332,10 +332,10 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionGraphicsContextList);
 
-      for (auto& pgraphics: m_graphicsa)
+      for (auto& pdraw2dgraphics: m_graphicsa)
       {
 
-         pgraphics->destroy_os_data();
+         pdraw2dgraphics->destroy();
 
       }
 
@@ -349,18 +349,18 @@ namespace draw2d
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto& pgraphics = m_mapThreadPathGraphics[taskindex].atø(iSlot);
+      auto& pdraw2dgraphics = m_mapThreadPathGraphics[taskindex].atø(iSlot);
 
       synchronouslock.unlock();
 
-      if (defer_constructø(pgraphics))
+      if (defer_constructø(pdraw2dgraphics))
       {
 
-         pgraphics->create_memory_graphics({256, 256}, ::get_task()->main_acme_user_interaction());
+         pdraw2dgraphics->create_memory_graphics({256, 256}, ::get_task()->main_acme_user_interaction());
 
       }
 
-      return pgraphics;
+      return pdraw2dgraphics;
 
    }
 
@@ -614,11 +614,11 @@ namespace draw2d
    ::draw2d::graphics_pointer draw2d::allocate_graphics(::acme::user::interaction* pacmeuserinteractionAffinity)
    {
 
-      auto pgraphics = pacmeuserinteractionAffinity->createø<::draw2d::graphics>();
+      auto pdraw2dgraphics = pacmeuserinteractionAffinity->createø<::draw2d::graphics>();
 
-      pgraphics->m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
+      pdraw2dgraphics->m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
 
-      return ::transfer(pgraphics);
+      return ::transfer(pdraw2dgraphics);
 
    }
 
@@ -627,7 +627,7 @@ namespace draw2d
                                                              ::acme::user::interaction* pacmeuserinteractionAffinity)
    {
 
-      auto pgraphics = allocate_graphics(pacmeuserinteractionAffinity);
+      auto pdraw2dgraphics = allocate_graphics(pacmeuserinteractionAffinity);
 
       auto sizeCreate = size;
 
@@ -640,9 +640,9 @@ namespace draw2d
 
       }
 
-      pgraphics->create_memory_graphics(sizeCreate, pacmeuserinteractionAffinity);
+      pdraw2dgraphics->create_memory_graphics(sizeCreate, pacmeuserinteractionAffinity);
 
-      return pgraphics;
+      return pdraw2dgraphics;
 
    }
 
@@ -710,17 +710,17 @@ namespace draw2d
 
       }
 
-      auto pgraphics = allocate_graphics(pacmeuserinteractionAffinity);
+      auto pdraw2dgraphics = allocate_graphics(pacmeuserinteractionAffinity);
 
       if (::is_set(pimage))
       {
 
-         auto pbitmap = pimage->get_bitmap_as_target();
+         auto pdraw2dbitmap = pimage->get_bitmap_as_target();
 
-         if (::is_set(pbitmap))
+         if (::is_set(pdraw2dbitmap))
          {
 
-            pgraphics->create_bitmap_graphics(pbitmap);
+            pdraw2dgraphics->create_bitmap_graphics(pdraw2dbitmap);
 
          }
          else
@@ -734,11 +734,11 @@ namespace draw2d
       else
       {
 
-         pgraphics->create_memory_graphics(size, pacmeuserinteractionAffinity);
+         pdraw2dgraphics->create_memory_graphics(size, pacmeuserinteractionAffinity);
 
       }
 
-      return pgraphics;
+      return pdraw2dgraphics;
 
    }
 
@@ -802,16 +802,16 @@ namespace draw2d
 
       }
 
-      ::draw2d::graphics_pointer pgraphics;
+      ::draw2d::graphics_pointer pdraw2dgraphics;
 
       bool bGotOwned = false;
 
       if (::is_set(pimage))
       {
 
-         pgraphics = pimage->m_pgraphicsOwned;
+         pdraw2dgraphics = pimage->m_pgraphicsOwned;
 
-         if (::is_set(pgraphics))
+         if (::is_set(pdraw2dgraphics))
          {
 
             bGotOwned = true;
@@ -820,7 +820,7 @@ namespace draw2d
 
       }
 
-      if (!pgraphics)
+      if (!pdraw2dgraphics)
       {
 
          _synchronous_lock synchronouslock(
@@ -842,7 +842,7 @@ namespace draw2d
             if (pgraphicsCandidate->is_memory_graphics_pool_compatible(pacmeuserinteractionAffinity))
             {
 
-               pgraphics = pgraphicsCandidate;
+               pdraw2dgraphics = pgraphicsCandidate;
                m_graphicsaMemoryPoolIdle.erase_at(i);
                break;
 
@@ -851,7 +851,7 @@ namespace draw2d
          }
 
       }
-      auto bReused = pgraphics.is_set();
+      auto bReused = pdraw2dgraphics.is_set();
 
       if (!bReused)
       {
@@ -863,7 +863,7 @@ namespace draw2d
 
          }
 
-         pgraphics = do_allocation_strategy(pacmeuserinteractionAffinity, pimage, size);
+         pdraw2dgraphics = do_allocation_strategy(pacmeuserinteractionAffinity, pimage, size);
 
       }
 
@@ -874,7 +874,7 @@ namespace draw2d
 
       }
 
-      pgraphics->on_acquire_memory_graphics(pimage, size, pacmeuserinteractionAffinity);
+      pdraw2dgraphics->on_acquire_memory_graphics(pimage, size, pacmeuserinteractionAffinity);
 
       auto uActive = m_uMemoryGraphicsPoolActive.fetch_add(
                         1,
@@ -908,7 +908,7 @@ namespace draw2d
 
       }
 
-      return {this, pgraphics, pimage, false};
+      return {this, pdraw2dgraphics, pimage, false};
 
    }
 
@@ -945,13 +945,13 @@ namespace draw2d
 
 
    ::draw2d::graphics_lease draw2d::acquire_owned_graphics(
-      ::draw2d::graphics * pgraphics,
+      ::draw2d::graphics * pdraw2dgraphics,
       ::image::image * pimage,
       const ::i32_size & size,
       ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
-      if (!pgraphics
+      if (!pdraw2dgraphics
          || !pimage
          || size.is_empty()
          || !pacmeuserinteractionAffinity)
@@ -975,14 +975,14 @@ namespace draw2d
       try
       {
 
-         pgraphics->on_acquire_memory_graphics(
+         pdraw2dgraphics->on_acquire_memory_graphics(
             pimage,
             size,
             pacmeuserinteractionAffinity);
 
          bGraphicsAcquired = true;
 
-         return { this, pgraphics, pimage, true };
+         return { this, pdraw2dgraphics, pimage, true };
 
       }
       catch (...)
@@ -994,7 +994,7 @@ namespace draw2d
             try
             {
 
-               pgraphics->on_release_memory_graphics();
+               pdraw2dgraphics->on_release_memory_graphics();
 
             }
             catch (...)
@@ -1013,7 +1013,7 @@ namespace draw2d
    }
 
 
-   void draw2d::do_release_to_pool_strategy(::draw2d::graphics_pointer& pgraphics, ::image::image* pimage)
+   void draw2d::do_release_to_pool_strategy(::draw2d::graphics_pointer& pdraw2dgraphics, ::image::image* pimage)
    {
 
       if (::is_set(pimage))
@@ -1021,7 +1021,7 @@ namespace draw2d
 
          auto pgraphicsOwned = pimage->m_pgraphicsOwned;
 
-         if (pgraphicsOwned && pgraphicsOwned == pgraphics)
+         if (pgraphicsOwned && pgraphicsOwned == pdraw2dgraphics)
          {
 
             return;
@@ -1030,20 +1030,20 @@ namespace draw2d
 
       }
 
-      m_graphicsaMemoryPoolIdle.add(pgraphics);
+      m_graphicsaMemoryPoolIdle.add(pdraw2dgraphics);
 
-      pgraphics.release();
+      pdraw2dgraphics.release();
 
    }
 
 
    void draw2d::return_memory_graphics(
-      ::draw2d::graphics_pointer pgraphics,
+      ::draw2d::graphics_pointer pdraw2dgraphics,
       ::image::image_pointer pimage,
       bool bDamaged)
    {
 
-      if (!pgraphics)
+      if (!pdraw2dgraphics)
       {
 
          return;
@@ -1059,7 +1059,7 @@ namespace draw2d
       //      if (pimage->m_pgraphicsOwned)
       //      {
 
-      //         if (pimage->m_pgraphicsOwned != pgraphics)
+      //         if (pimage->m_pgraphicsOwned != pdraw2dgraphics)
       //         {
 
       //            throw ::exception(error_wrong_state);
@@ -1077,10 +1077,10 @@ namespace draw2d
       try
       {
 
-         //if (::is_null(pimage) || pimage->m_pgraphicsOwned != pgraphics)
+         //if (::is_null(pimage) || pimage->m_pgraphicsOwned != pdraw2dgraphics)
          {
 
-            pgraphics->on_release_memory_graphics();
+            pdraw2dgraphics->on_release_memory_graphics();
 
          }
 
@@ -1139,7 +1139,7 @@ namespace draw2d
          if (!m_bMemoryGraphicsPoolShuttingDown.load(::std::memory_order_relaxed))
          {
 
-            do_release_to_pool_strategy(pgraphics, pimage);
+            do_release_to_pool_strategy(pdraw2dgraphics, pimage);
 
          }
 
@@ -1294,13 +1294,13 @@ namespace draw2d
    ::draw2d::brush_pointer draw2d::create_solid_brush(const ::color::color& color)
    {
 
-      ::draw2d::brush_pointer pbrush;
+      ::draw2d::brush_pointer pdraw2dbrush;
 
-      constructø(pbrush);
+      constructø(pdraw2dbrush);
 
-      pbrush->create_solid(color);
+      pdraw2dbrush->create_solid(color);
 
-      return pbrush;
+      return pdraw2dbrush;
 
    }
 
@@ -1328,12 +1328,12 @@ namespace draw2d
 
 
    void draw2d::embossed_text_out(
-      ::draw2d::graphics_pointer& pgraphics,
+      ::draw2d::graphics_pointer& pdraw2dgraphics,
       const ::i32_rectangle& rectangle,
       const ::scoped_string& scopedstrText,
       ::image::fastblur& blur,
       ::image::image_pointer& pimageBlur,
-      ::write_text::font* pfont,
+      ::write_text::font* pwritetextfont,
       const ::e_align& ealign,
       const ::e_draw_text& edrawtext,
       const ::color::color& colorText,
@@ -1352,11 +1352,11 @@ namespace draw2d
 
       }
 
-      auto pred = [&](::draw2d::graphics* pgraphicsParam)
+      auto pred = [&](::draw2d::graphics * pdraw2dgraphics)
       {
 
-         pgraphicsParam->set(pfont);
-         pgraphicsParam->_DrawText(scopedstrText, rectangle, ealign, edrawtext);
+         pdraw2dgraphics->set(pwritetextfont);
+         pdraw2dgraphics->_DrawText(scopedstrText, rectangle, ealign, edrawtext);
 
       };
 
@@ -1365,7 +1365,7 @@ namespace draw2d
       //if (!bRaspiBilbo)
       {
 
-         emboss_predicate(pgraphics, rectangle, pred, blur, pimageBlur, colorGlow, iSpreadRadius, iBlurRadius, iBlur,
+         emboss_predicate(pdraw2dgraphics, rectangle, pred, blur, pimageBlur, colorGlow, iSpreadRadius, iBlurRadius, iBlur,
                           bUpdate, colorfilter);
       }
 
@@ -1375,9 +1375,9 @@ namespace draw2d
 
       pbrushText->create_solid(colorText & opacity);
 
-      pgraphics->set(pbrushText);
-      pgraphics->set(pfont);
-      pgraphics->_DrawText(scopedstrText, rectangle, ealign, edrawtext);
+      pdraw2dgraphics->set(pbrushText);
+      pdraw2dgraphics->set(pwritetextfont);
+      pdraw2dgraphics->_DrawText(scopedstrText, rectangle, ealign, edrawtext);
 
       //return true;
 
@@ -1386,7 +1386,7 @@ namespace draw2d
 
 
    void draw2d::emboss_predicate(
-      ::draw2d::graphics_pointer& pgraphics,
+      ::draw2d::graphics_pointer& pdraw2dgraphics,
       const ::i32_rectangle& rectangle,
       const ::function<void(::draw2d::graphics*)>& functionDraw,
       ::image::fastblur& blur,
@@ -1459,7 +1459,7 @@ namespace draw2d
 
          {
 
-            auto pgraphicsImage = pimage->acquire_graphics(::draw2d::e_acquire_dont_load, pgraphics->m_pacmeuserinteractionAffinity);
+            auto pgraphicsImage = pimage->acquire_graphics(::draw2d::e_acquire_dont_load, pdraw2dgraphics->m_pacmeuserinteractionAffinity);
 
             pgraphicsImage->clear(::color::transparent);
 
@@ -1491,7 +1491,7 @@ namespace draw2d
 
             auto ppixmapImageBlur = pimageBlur->map();
 
-            //auto pgraphicsBlur = pimageBlur->acquire_graphics(pgraphics->m_pacmeuserinteractionAffinity);
+            //auto pgraphicsBlur = pimageBlur->acquire_graphics(pdraw2dgraphics->m_pacmeuserinteractionAffinity);
 
             imaging()->spread(ppixmapImageBlur, ppixmapImage, iEffectiveSpreadRadius, ::color::white);
 
@@ -1512,7 +1512,7 @@ namespace draw2d
 
       }
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::image::image_source imagesource(pimageBlur);
 
@@ -1522,7 +1522,7 @@ namespace draw2d
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      pgraphics->draw(imagedrawing);
+      pdraw2dgraphics->draw(imagedrawing);
 
       //return true;
 

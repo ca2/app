@@ -31,36 +31,36 @@ namespace experience_core
    }
 
 
-   void control_box_button::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::experience::button::_001OnNcClip(pgraphics);
+      ::experience::button::_001OnNcClip(pdraw2dgraphics);
 
    }
 
 
-   void control_box_button::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::experience::button::_001OnClip(pgraphics);
+      ::experience::button::_001OnClip(pdraw2dgraphics);
 
    }
 
 
-   void control_box_button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::experience::button::_001OnNcDraw(pgraphics);
+      ::experience::button::_001OnNcDraw(pdraw2dgraphics);
 
    }
 
 
-   void control_box_button::_001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnButtonDrawBackground(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       auto estate = get_state();
 
@@ -103,21 +103,21 @@ namespace experience_core
 
                   colorBottomRight.hls_rate(0.0, 0.75, 0.0);
 
-                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+                  pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-                  pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
-
-                  rectanglePush.deflate(1, 1);
-
-                  pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
+                  pdraw2dgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
                   rectanglePush.deflate(1, 1);
 
-                  pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
+                  pdraw2dgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
+
+                  rectanglePush.deflate(1, 1);
+
+                  pdraw2dgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
                   rectanglePush.deflate(1, 1, 0, 1);
 
-                  pgraphics->fill_rectangle(rectanglePush, colorBack);
+                  pdraw2dgraphics->fill_rectangle(rectanglePush, colorBack);
 
                }
 
@@ -128,13 +128,13 @@ namespace experience_core
                if (colorBackground.non_transparent())
                {
 
-                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+                  pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                   auto pbrushBackground = draw2d()->create_solid_brush(colorBackground);
 
-                  pgraphics->set(pbrushBackground);
+                  pdraw2dgraphics->set(pbrushBackground);
 
-                  pgraphics->fill_ellipse(rectangleX);
+                  pdraw2dgraphics->fill_ellipse(rectangleX);
 
                }
 
@@ -145,7 +145,7 @@ namespace experience_core
    }
 
 
-   void control_box_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //return;
@@ -187,7 +187,7 @@ namespace experience_core
 
       ::color::color crText = argb(255, 255, 255, 255);
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_anti_alias_8x4);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_anti_alias_8x4);
 
       if (m_pcontrolbox)
       {
@@ -195,9 +195,9 @@ namespace experience_core
          if (!is_window_enabled())
          {
 
-            pgraphics->set(m_pcontrolbox->m_pbrushButtonBackDisabled);
+            pdraw2dgraphics->set(m_pcontrolbox->m_pbrushButtonBackDisabled);
 
-            pgraphics->set(m_pcontrolbox->m_ppenButtonBackDisabled);
+            pdraw2dgraphics->set(m_pcontrolbox->m_ppenButtonBackDisabled);
 
             crText = m_pcontrolbox->m_colorButtonForeDisabled;
 
@@ -205,9 +205,9 @@ namespace experience_core
          else if (is_mouse_hover())
          {
 
-            pgraphics->set(m_pcontrolbox->m_pbrushButtonBackSel);
+            pdraw2dgraphics->set(m_pcontrolbox->m_pbrushButtonBackSel);
 
-            pgraphics->set(m_pcontrolbox->m_ppenButtonBackSel);
+            pdraw2dgraphics->set(m_pcontrolbox->m_ppenButtonBackSel);
 
             crText = m_pcontrolbox->m_colorButtonForeSel;
 
@@ -215,9 +215,9 @@ namespace experience_core
          else if (has_keyboard_focus())
          {
 
-            pgraphics->set(m_pcontrolbox->m_pbrushButtonBackFocus);
+            pdraw2dgraphics->set(m_pcontrolbox->m_pbrushButtonBackFocus);
 
-            pgraphics->set(m_pcontrolbox->m_ppenButtonBackFocus);
+            pdraw2dgraphics->set(m_pcontrolbox->m_ppenButtonBackFocus);
 
             crText = m_pcontrolbox->m_colorButtonForeFocus;
 
@@ -225,9 +225,9 @@ namespace experience_core
          else
          {
 
-            pgraphics->set(m_pcontrolbox->m_pbrushButtonBack);
+            pdraw2dgraphics->set(m_pcontrolbox->m_pbrushButtonBack);
 
-            pgraphics->set(m_pcontrolbox->m_ppenButtonBack);
+            pdraw2dgraphics->set(m_pcontrolbox->m_ppenButtonBack);
 
             crText = m_pcontrolbox->m_colorButtonFore;
 
@@ -239,11 +239,11 @@ namespace experience_core
 
       rectangleEllipse.deflate(0, 0, 2, 2);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->fill_ellipse(rectangleEllipse);
+      pdraw2dgraphics->fill_ellipse(rectangleEllipse);
 
-      pgraphics->draw_ellipse(rectangleEllipse);
+      pdraw2dgraphics->draw_ellipse(rectangleEllipse);
 
       if (m_estockicon == e_stock_icon_none)
       {
@@ -252,32 +252,32 @@ namespace experience_core
 
          //get_window_text(str);
 
-         pgraphics->set_font(this, ::e_element_none);
+         pdraw2dgraphics->set_font(this, ::e_element_none);
 
-         pgraphics->set_text_color(crText);
+         pdraw2dgraphics->set_text_color(crText);
 
-         pgraphics->draw_text(strWindowText, rectangleX, e_align_center, e_draw_text_single_line);
+         pdraw2dgraphics->draw_text(strWindowText, rectangleX, e_align_center, e_draw_text_single_line);
 
       }
       else
       {
 
-         auto pbrush = createø < ::draw2d::brush >();
+         auto pdraw2dbrush = createø < ::draw2d::brush >();
 
-         if (pbrush && pgraphics->get_current_pen())
+         if (pdraw2dbrush && pdraw2dgraphics->get_current_pen())
          {
 
-            pbrush->create_solid(pgraphics->get_current_pen()->m_color);
+            pdraw2dbrush->create_solid(pdraw2dgraphics->get_current_pen()->m_color);
 
          }
 
-         pgraphics->set(pbrush);
+         pdraw2dgraphics->set(pdraw2dbrush);
 
-         auto ppen = createø < ::draw2d::pen > ();
+         auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-         ppen->create_solid(1.0f, ::color::white);
+         pdraw2dpen->create_solid(1.0f, ::color::white);
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
          ::i32_rectangle rectangleIcon(rectangleEllipse);
 
@@ -287,7 +287,7 @@ namespace experience_core
          
          m_pstockicon->m_estockiconNew = m_estockicon;
 
-         pgraphics->draw(rectangleIcon, m_pstockicon);
+         pdraw2dgraphics->draw(rectangleIcon, m_pstockicon);
 
       }
 
@@ -315,7 +315,7 @@ namespace experience_core
    }
 
 
-   void control_box_button::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle(::user::e_layout_layout);
@@ -339,11 +339,11 @@ namespace experience_core
 
       auto puseritem = user_item(pitemClient);
 
-      constructø(puseritem->m_ppath);
+      constructø(puseritem->m_pdraw2dpath);
 
       //m_pitemClient->m_item.m_eelement = e_element_client;
 
-      puseritem->m_ppath->add_ellipse(ellipse);
+      puseritem->m_pdraw2dpath->add_ellipse(ellipse);
 
    }
 

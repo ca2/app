@@ -293,7 +293,7 @@ namespace user
    }
 
 //
-//   void message_box::on_layout(::draw2d::graphics_pointer & pgraphics)
+//   void message_box::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
 //   {
 //
 //      ::i32 iMaxWidth = 100;
@@ -301,7 +301,7 @@ namespace user
 //      for (auto& pbutton : m_buttona)
 //      {
 //
-//         pbutton->resize_to_fit(pgraphics);
+//         pbutton->resize_to_fit(pdraw2dgraphics);
 //
 //         if (pbutton->width() > iMaxWidth)
 //         {
@@ -375,15 +375,15 @@ namespace user
    void message_box::do_layout()
    {
 
-      ::draw2d::graphics_pointer pgraphics;
+      ::draw2d::graphics_pointer pdraw2dgraphics;
 
-      constructø(pgraphics);
+      constructø(pdraw2dgraphics);
 
       auto sizeModernOnePixel = ::i32_size{ 1920, 1080 };
 
-      pgraphics->create_memory_graphics(sizeModernOnePixel, this);
+      pdraw2dgraphics->create_memory_graphics(sizeModernOnePixel, this);
 
-      //pgraphics->m_pdraw2dhost = this;
+      //pdraw2dgraphics->m_pdraw2dhost = this;
 
       m_pinteractionScaler = allocateø ::user::interaction_scaler();
 
@@ -394,7 +394,7 @@ namespace user
       for (auto& pbutton : m_buttona)
       {
 
-         pbutton->resize_to_fit(pgraphics);
+         pbutton->resize_to_fit(pdraw2dgraphics);
 
          if (pbutton->width() > iMaxWidth)
          {
@@ -505,20 +505,20 @@ namespace user
    }
 
 
-   void message_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void message_box::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::interaction::_001OnDraw(pgraphics);
+      ::user::interaction::_001OnDraw(pdraw2dgraphics);
 
       auto rectangleX = this->rectangle();
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       auto colorBorder = pstyle->get_color(this, e_element_border);
 
       colorBorder.m_u8Opacity = 100;
 
-      pgraphics->draw_inset_rectangle(rectangleX, colorBorder, 1.0);
+      pdraw2dgraphics->draw_inset_rectangle(rectangleX, colorBorder, 1.0);
 
    }
 

@@ -35,7 +35,7 @@ namespace user
 
          // cache or transport (not serialized)
          mutable bool                                    m_bUpdated;
-         mutable ::write_text::font_pointer              m_pfont;
+         mutable ::write_text::font_pointer              m_pwritetextfont;
          mutable ::e_align                               m_ealign;
 
 
@@ -53,7 +53,7 @@ namespace user
 
          void apply(const format * pformat, const e_attribute & eattribute);
 
-         ::write_text::font * get_font(::draw2d::graphics_pointer & pgraphics) const;
+         ::write_text::font * get_font(::draw2d::graphics_pointer & pdraw2dgraphics) const;
 
          bool operator == (const format & format) const;
          format & operator = (const format & format);

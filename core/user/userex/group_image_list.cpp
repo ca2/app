@@ -344,18 +344,18 @@ namespace userex
    }
 
 
-   void group_image_list_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void group_image_list_impact::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::impact::_001OnNcDraw(pgraphics);
+      ::user::impact::_001OnNcDraw(pdraw2dgraphics);
 
    }
 
 
-   void group_image_list_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void group_image_list_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::impact::_001OnDraw(pgraphics);
+      ::user::impact::_001OnDraw(pdraw2dgraphics);
 
    }
 
@@ -456,7 +456,7 @@ namespace userex
 
          ::image::image_pointer pimage;
          
-         pimage= pbutton->m_pbitmap->m_pimage->clone();
+         pimage= pbutton->m_pdraw2dbitmap->m_pimage->clone();
 
          {
 
@@ -466,7 +466,7 @@ namespace userex
 
          }
 
-         pbutton->m_pbitmap->m_pimage = pimage;
+         pbutton->m_pdraw2dbitmap->m_pimage = pimage;
 
          if (::is_item(pitemCurrent, i))
          {
@@ -520,7 +520,7 @@ namespace userex
    }
 
 
-   void group_image_list_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void group_image_list_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();

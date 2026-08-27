@@ -10,7 +10,7 @@ namespace hotplugin
 {
 
 
-   CLASS_DECL_BERG void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText)
+   CLASS_DECL_BERG void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText)
    {
 
       ::i32 h = 33;
@@ -57,7 +57,7 @@ namespace hotplugin
 
       ::i32_rectangle rectangleDraw;
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       string str(scopedstrEntryHallText);
 
@@ -79,23 +79,23 @@ namespace hotplugin
 
       }
 
-      auto pbrush = pgraphics->createø < ::draw2d::brush >();
+      auto pdraw2dbrush = pdraw2dgraphics->createø < ::draw2d::brush >();
 
-      pbrush->create_solid(argb(190, 49, 50, 49));
+      pdraw2dbrush->create_solid(argb(190, 49, 50, 49));
 
-      pgraphics->fill_rectangle(rectangleBar, pbrush);
+      pdraw2dgraphics->fill_rectangle(rectangleBar, pdraw2dbrush);
 
       if (!bStatic)
       {
 
-         auto pbrushGreen = pgraphics->createø < ::draw2d::brush > ();
+         auto pbrushGreen = pdraw2dgraphics->createø < ::draw2d::brush > ();
 
          pbrushGreen->create_solid(argb(190, 80, 190, 123));
 
          if (rectangleDraw.intersect(rectangleBar, rectangleBrick))
          {
 
-            pgraphics->fill_rectangle(rectangleDraw, pbrushGreen);
+            pdraw2dgraphics->fill_rectangle(rectangleDraw, pbrushGreen);
 
          }
 
@@ -104,7 +104,7 @@ namespace hotplugin
          if (rectangleDraw.intersect(rectangleBar, rectangleBrick))
          {
 
-            pgraphics->fill_rectangle(rectangleDraw, pbrushGreen);
+            pdraw2dgraphics->fill_rectangle(rectangleDraw, pbrushGreen);
 
          }
 
@@ -113,19 +113,19 @@ namespace hotplugin
          if (rectangleDraw.intersect(rectangleBar, rectangleBrick))
          {
 
-            pgraphics->fill_rectangle(rectangleDraw, pbrushGreen);
+            pdraw2dgraphics->fill_rectangle(rectangleDraw, pbrushGreen);
 
          }
 
       }
 
-      auto ppen = pgraphics->createø < ::draw2d::pen > ();
+      auto pdraw2dpen = pdraw2dgraphics->createø < ::draw2d::pen > ();
 
-      ppen->create_solid(1.0f, argb(149, 150, 149, 142));
+      pdraw2dpen->create_solid(1.0f, argb(149, 150, 149, 142));
 
-      pgraphics->draw_rectangle(rectangleBar, ppen);
+      pdraw2dgraphics->draw_rectangle(rectangleBar, pdraw2dpen);
 
-      ::write_text::font_pointer f(e_create, pgraphics.m_p);
+      ::write_text::font_pointer f(e_create, pdraw2dgraphics.m_p);
 
       f->create_font("Calibri", 18_px);
 
@@ -133,9 +133,9 @@ namespace hotplugin
 
       rectangleBar.top += 5;
 
-      pgraphics->set_text_color(argb(190, 255, 255, 255));
+      pdraw2dgraphics->set_text_color(argb(190, 255, 255, 255));
 
-      pgraphics->text_out(rectangleBar.left, rectangleBar.top, str);
+      pdraw2dgraphics->text_out(rectangleBar.left, rectangleBar.top, str);
 
    }
 

@@ -48,9 +48,9 @@ namespace user
 
       void on_change_scroll_state(::user::enum_layout elayout = ::user::e_layout_sketch) override;
       ::f64_point get_context_offset(::user::enum_layout elayout = ::user::e_layout_design) override;
-      //void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_change_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       void constrain_context_offset(::f64_point & point, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
-      //void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
+      //void layout_scroll_bar(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       void layout_scroll_bar(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
 
@@ -70,7 +70,7 @@ namespace user
       void set_page_size(const ::f64_size& size, ::user::enum_layout = ::user::e_layout_sketch) override;
 
 
-      virtual void defer_draw_scroll_gap(::draw2d::graphics_pointer & pgraphics);
+      virtual void defer_draw_scroll_gap(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       bool scroll_bar_x_visible(enum_layout elayout = e_layout_design) override;

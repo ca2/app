@@ -45,7 +45,7 @@ namespace user
 
       virtual bool Navigate(const ::scoped_string & scopedstrUrl);
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       template < typename FORM >
       void create_child_form()

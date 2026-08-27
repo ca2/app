@@ -439,7 +439,7 @@ namespace acme
 
       //   auto pdevice = createø < ::nano::graphics::context >();
 
-      //   auto size = pdevice->get_text_extents(m_strText, nano_user_theme()->m_pfont);
+      //   auto size = pdevice->get_text_extents(m_strText, nano_user_theme()->m_pwritetextfont);
 
       //   m_rectangle.right = m_rectangle.left + size.cx;
 
@@ -2366,7 +2366,7 @@ namespace acme
          }
 
 
-         ::collection::index interaction::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, character_count iSel)
+         ::collection::index interaction::plain_edit_sel_to_column(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel)
          {
 
             return -1;
@@ -2374,7 +2374,7 @@ namespace acme
          }
 
 
-         ::collection::index interaction::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x)
+         ::collection::index interaction::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel, ::i32 & x)
          {
 
             return -1;
@@ -2382,7 +2382,7 @@ namespace acme
          }
 
 
-         ::collection::index interaction::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel)
+         ::collection::index interaction::plain_edit_sel_to_line(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel)
          {
 
             return -1;
@@ -2390,7 +2390,7 @@ namespace acme
          }
 
 
-         ::collection::index interaction::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x)
+         ::collection::index interaction::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel, ::i32 & x)
          {
 
             return -1;
@@ -2398,7 +2398,7 @@ namespace acme
          }
 
 
-         character_count interaction::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn)
+         character_count interaction::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iLine, ::collection::index iColumn)
          {
 
             return -1;
@@ -2406,7 +2406,7 @@ namespace acme
          }
 
 
-         character_count interaction::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::i32 x)
+         character_count interaction::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iLine, ::i32 x)
          {
 
             return -1;
@@ -2414,7 +2414,7 @@ namespace acme
          }
 
 
-         ::collection::index interaction::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel)
+         ::collection::index interaction::plain_edit_char_to_line(::draw2d::graphics_pointer & pdraw2dgraphics, character_count iSel)
          {
 
             return -1;

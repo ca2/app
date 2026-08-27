@@ -147,7 +147,7 @@ public:
       ::f32_array * m_pf32a;
       ::f64_array * m_pf64a;
       ::memory * m_pmemory;
-      ::file::path_object * m_ppath;
+      ::file::path_object * m_pfilepathobject;
       payload_all_t                          m_payloadall;
       ::string                               m_str;
       ::range < const ::ansi_character * >   m_ansirange;

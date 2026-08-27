@@ -795,10 +795,10 @@ namespace filemanager
 //
 //      }
 //
-//      //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
+//      //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pdraw2dgraphics)
 //        // {
 //
-////            set_context_offset(pgraphics, pointOffset.x, pointOffset.y);
+////            set_context_offset(pdraw2dgraphics, pointOffset.x, pointOffset.y);
 //
 //         //});
 //

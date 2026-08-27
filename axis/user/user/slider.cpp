@@ -184,7 +184,7 @@ namespace user
    }
 
 
-   void slider::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void slider::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
@@ -206,7 +206,7 @@ namespace user
 
       ::u8 bAlpha1 = (::u8) (128.0* get_alpha());
 
-      pgraphics->fill_rectangle(rectangleX, argb(bAlpha1, 250,255,255));
+      pdraw2dgraphics->fill_rectangle(rectangleX, argb(bAlpha1, 250,255,255));
 
       ::i32_rectangle rectangle;
 
@@ -214,19 +214,19 @@ namespace user
 
       ::u8 bAlpha = (::u8) (220.0* get_alpha());
 
-      pgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180), 1.0);
+      pdraw2dgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180), 1.0);
       rectangle.deflate(1,1);
-      pgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,150,120,150),argb(bAlpha,60,80,150), 1.0);
+      pdraw2dgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,150,120,150),argb(bAlpha,60,80,150), 1.0);
       rectangle.deflate(1,1);
-      pgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180), 1.0);
+      pdraw2dgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180), 1.0);
       rectangle.deflate(1,1);
-      pgraphics->fill_rectangle(rectangle,argb(bAlpha1,140,108,120));
+      pdraw2dgraphics->fill_rectangle(rectangle,argb(bAlpha1,140,108,120));
       //if(m_bSlide)
       //{
-      //   pgraphics->set_current_point(rectangle.center());
+      //   pdraw2dgraphics->set_current_point(rectangle.center());
       //   auto point = psession->get_cursor_position();
       //   screen_to_client()(point);
-      //   pgraphics->line_to(point);
+      //   pdraw2dgraphics->line_to(point);
       //}
    }
 

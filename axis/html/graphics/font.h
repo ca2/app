@@ -21,7 +21,7 @@ namespace html
       string                        m_strWeight;
       string                        m_strSize;
       string                        m_strTextDecoration;
-      ::write_text::font_pointer    m_pfont;
+      ::write_text::font_pointer    m_pwritetextfont;
 
 
       font();

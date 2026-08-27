@@ -53,7 +53,7 @@
 //      void on_initialize_particle() override;
 //
 //
-//      virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics);
+//      virtual void _001OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics);
 //
 //      virtual void set_size(const ::i32_size & size);
 //      

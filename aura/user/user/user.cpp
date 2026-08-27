@@ -1206,7 +1206,7 @@ namespace aura
 //         //      pframe->display(e_display_normal);
 //         //      if(pframe->get_typed_parent < ::plugin::host_interaction > () != nullptr)
 //         //      {
-//         //         pframe->get_typed_parent < ::plugin::host_interaction > ()->on_layout(pgraphics);
+//         //         pframe->get_typed_parent < ::plugin::host_interaction > ()->on_layout(pdraw2dgraphics);
 //         //      }
 //         //      else
 //         //      {

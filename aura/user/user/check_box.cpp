@@ -113,32 +113,32 @@ namespace user
    }
 
 
-   void check_box::_001OnNcDraw(::draw2d::graphics_pointer& pgraphics)
+   void check_box::_001OnNcDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
 
    }
 
 
-   void check_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void check_box::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_estyle == style_toggle_switch)
       {
 
-         _001OnDrawToggleSwitch(pgraphics);
+         _001OnDrawToggleSwitch(pdraw2dgraphics);
 
       }
       else if (m_estyle == style_red_green_circle)
       {
 
-         _001OnDrawRedGreenCircle(pgraphics);
+         _001OnDrawRedGreenCircle(pdraw2dgraphics);
 
       }
       else
       {
 
-         _001OnDrawNormal(pgraphics);
+         _001OnDrawNormal(pdraw2dgraphics);
 
       }
 
@@ -153,15 +153,15 @@ namespace user
    }
 
 
-   void check_box::_001OnDrawNormal(::draw2d::graphics_pointer & pgraphics)
+   void check_box::_001OnDrawNormal(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::pointer<::user::style>pstyle = get_style(pgraphics);
+      ::pointer<::user::style>pstyle = get_style(pdraw2dgraphics);
 
       if(pstyle)
       {
 
-         if (pstyle->_001DrawCheckBox(pgraphics, this))
+         if (pstyle->_001DrawCheckBox(pdraw2dgraphics, this))
          {
 
             return;
@@ -176,7 +176,7 @@ namespace user
 
       drawcontext.m_bListItemHover = hover_item().is_set();
 
-      KEEP(pgraphics->m_pdrawcontext, &drawcontext);
+      KEEP(pdraw2dgraphics->m_pdrawcontext, &drawcontext);
 
       //::i32_rectangle rectangleX;
 
@@ -195,11 +195,11 @@ namespace user
 
       auto echeck = this->echeck();
 
-      ::draw2d::save_context savecontext(pgraphics);
+      ::draw2d::save_context savecontext(pdraw2dgraphics);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto targetscope = pgraphics->target_scope();
+      auto targetscope = pdraw2dgraphics->target_scope();
 
       targetscope += rectangleX.origin();
 
@@ -224,12 +224,12 @@ namespace user
 
          auto colorBackground = get_color(pstyle, e_element_background, estate);
 
-         pgraphics->fill_rectangle(rectangleCheckBox, colorBackground);
+         pdraw2dgraphics->fill_rectangle(rectangleCheckBox, colorBackground);
 
          if (echeck == ::e_check_tristate)
          {
 
-            pgraphics->fill_rectangle(rectangleCheckBox, argb(120, 120, 120, 120));
+            pdraw2dgraphics->fill_rectangle(rectangleCheckBox, argb(120, 120, 120, 120));
 
          }
 
@@ -239,20 +239,20 @@ namespace user
 
          auto colorText = get_color(pstyle, e_element_text, estate);
 
-         pgraphics->set_text_color(colorText);
+         pdraw2dgraphics->set_text_color(colorText);
 
-         pgraphics->draw_inset_rectangle(rectangleBorder, colorText, 1.0);
+         pdraw2dgraphics->draw_inset_rectangle(rectangleBorder, colorText, 1.0);
 
          //if (drawcontext.m_bListItemHover)
          //{
 
-         //   pgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 60, 120, 200), 1.0);
+         //   pdraw2dgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 60, 120, 200), 1.0);
 
          //}
          //else
          //{
 
-         //   pgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 128, 128, 128), 1.0);
+         //   pdraw2dgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 128, 128, 128), 1.0);
 
          //}
 
@@ -262,7 +262,7 @@ namespace user
             if (pstyle)
             {
 
-               pstyle->draw_check(this, echeck, rectangleCheckBox, pgraphics);
+               pstyle->draw_check(this, echeck, rectangleCheckBox, pdraw2dgraphics);
 
             }
 
@@ -283,7 +283,7 @@ namespace user
 
             ::e_draw_text edrawtext = e_draw_text_single_line;
 
-            pgraphics->set_font(this, ::e_element_none);
+            pdraw2dgraphics->set_font(this, ::e_element_none);
 
    /*         ::color::color crText;
 
@@ -307,9 +307,9 @@ namespace user
 
             color = get_color(pstyle, e_element_text, estate);
 
-            pgraphics->set_text_color(color);
+            pdraw2dgraphics->set_text_color(color);
 
-            pgraphics->draw_text(strWindowText, rectangleText, ealign, edrawtext);
+            pdraw2dgraphics->draw_text(strWindowText, rectangleText, ealign, edrawtext);
 
          }
 
@@ -318,15 +318,15 @@ namespace user
    }
 
 
-   void check_box::_001OnDrawToggleSwitch(::draw2d::graphics_pointer & pgraphics)
+   void check_box::_001OnDrawToggleSwitch(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::pointer<::user::style>pstyle = get_style(pgraphics);
+      ::pointer<::user::style>pstyle = get_style(pdraw2dgraphics);
 
       if(pstyle)
       {
 
-         if (pstyle->_001DrawCheckBox(pgraphics, this))
+         if (pstyle->_001DrawCheckBox(pdraw2dgraphics, this))
          {
 
             return;
@@ -339,7 +339,7 @@ namespace user
 
       drawcontext.m_bListItemHover = hover_item().is_set();
 
-      KEEP(pgraphics->m_pdrawcontext, &drawcontext);
+      KEEP(pdraw2dgraphics->m_pdrawcontext, &drawcontext);
 
       auto rectangleX = this->rectangle();
 
@@ -374,7 +374,7 @@ namespace user
 
       //::enum_check echeck = get_check();
 
-      ::draw2d::save_context savecontext(pgraphics);
+      ::draw2d::save_context savecontext(pdraw2dgraphics);
 
       if (w > h * 2)
       {
@@ -395,41 +395,41 @@ namespace user
 
       //::f64 dNow = ::get_millis();
 
-      ::draw2d::path_pointer ppath(e_create, this);
+      ::draw2d::path_pointer pdraw2dpath(e_create, this);
 
       ::i32_rectangle rectangleL(1, 1, h-2, h-2);
 
       auto rectangleR = i32_rectangle_dimension(h-2, 1, h-2, h-2);
 
-      ppath->add_arc(rectangleL, -90_degree, -180_degree);
+      pdraw2dpath->add_arc(rectangleL, -90_degree, -180_degree);
 
-      ppath->add_line((rectangleL.left + rectangleL.right) / 2, rectangleL.bottom);
+      pdraw2dpath->add_line((rectangleL.left + rectangleL.right) / 2, rectangleL.bottom);
 
-      ppath->add_line((rectangleR.left + rectangleR.right) / 2, rectangleR.bottom);
+      pdraw2dpath->add_line((rectangleR.left + rectangleR.right) / 2, rectangleR.bottom);
 
-      ppath->add_arc(rectangleR, 90_degree, -180_degree);
+      pdraw2dpath->add_arc(rectangleR, 90_degree, -180_degree);
 
-      ppath->add_line((rectangleR.left + rectangleR.right) / 2, rectangleR.top);
+      pdraw2dpath->add_line((rectangleR.left + rectangleR.right) / 2, rectangleR.top);
 
-      ppath->add_line((rectangleL.left + rectangleL.right) / 2, rectangleL.top);
+      pdraw2dpath->add_line((rectangleL.left + rectangleL.right) / 2, rectangleL.top);
 
-      ppath->close_figure();
+      pdraw2dpath->close_figure();
 
-      auto ppen = createø < ::draw2d::pen > ();
+      auto pdraw2dpen = createø < ::draw2d::pen > ();
 
       ::draw2d::pen_pointer p0(e_create, this);
 
       ::draw2d::brush_pointer pbrush1(e_create, this);
 
-      ppen->create_solid(2.0, argb(255, 0, 0, 0));
+      pdraw2dpen->create_solid(2.0, argb(255, 0, 0, 0));
 
       p0->create_solid(2.0, argb(255, 90, 150, 255));
 
-      ppen->m_epenalign = ::draw2d::e_pen_align_center;
+      pdraw2dpen->m_epenalign = ::draw2d::e_pen_align_center;
 
       pbrush1->create_solid(argb(255, 90, 150, 255));
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       auto dRate = m_timeAnimationStart.period_rate(m_timeAnimationPeriod);
 
@@ -453,7 +453,7 @@ namespace user
 
          auto color = argb(255, 255, 255, 255);
 
-         auto pbrush = createø < ::draw2d::brush > ();
+         auto pdraw2dbrush = createø < ::draw2d::brush > ();
 
          auto pmathematics = mathematics();
 
@@ -476,34 +476,34 @@ namespace user
 
          p0->set_modified();
 
-         pgraphics->set(pbrush1);
-         pgraphics->set(p0);
+         pdraw2dgraphics->set(pbrush1);
+         pdraw2dgraphics->set(p0);
 
-         pgraphics->path(ppath);
+         pdraw2dgraphics->path(pdraw2dpath);
 
-         pbrush->create_solid(color.rate_rgb_set_opacity(255, dRate));
+         pdraw2dbrush->create_solid(color.rate_rgb_set_opacity(255, dRate));
 
          ::scroll_x(rectangleEllipse, dRate, rectangle);
 
          rectangleEllipse.rate(0.6);
 
-         pgraphics->set(pbrush);
+         pdraw2dgraphics->set(pdraw2dbrush);
 
-         pgraphics->fill_ellipse(rectangleEllipse);
+         pdraw2dgraphics->fill_ellipse(rectangleEllipse);
 
          ::u8 bAlphaP1 = (::u8) (255.0 * (1.0 - dRate));
 
          ::color::color crP1 = argb(bAlphaP1, 0, 0, 0);
 
-         ppen->create_solid(2.0, crP1);
+         pdraw2dpen->create_solid(2.0, crP1);
 
-         ppen->set_modified();
+         pdraw2dpen->set_modified();
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(pdraw2dpen);
 
-         pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+         pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-         pgraphics->draw(ppath);
+         pdraw2dgraphics->draw(pdraw2dpath);
 
       }
       else
@@ -516,43 +516,43 @@ namespace user
 
             rectangleEllipse.rate(0.6);
 
-            auto pbrush = createø < ::draw2d::brush > ();
+            auto pdraw2dbrush = createø < ::draw2d::brush > ();
 
-            pbrush->create_solid(argb(255, 0, 0, 0));
+            pdraw2dbrush->create_solid(argb(255, 0, 0, 0));
 
-            pgraphics->set(pbrush);
+            pdraw2dgraphics->set(pdraw2dbrush);
 
-            pgraphics->fill_ellipse(rectangleEllipse);
+            pdraw2dgraphics->fill_ellipse(rectangleEllipse);
 
-            ppen->create_solid(2.0, argb(255, 0, 0, 0));
+            pdraw2dpen->create_solid(2.0, argb(255, 0, 0, 0));
 
-            pgraphics->set(ppen);
+            pdraw2dgraphics->set(pdraw2dpen);
 
-            pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+            pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(pdraw2dpath);
 
          }
          else
          {
 
-            pgraphics->set(pbrush1);
+            pdraw2dgraphics->set(pbrush1);
 
-            pgraphics->set(p0);
+            pdraw2dgraphics->set(p0);
 
-            pgraphics->path(ppath);
+            pdraw2dgraphics->path(pdraw2dpath);
 
             rectangleEllipse.Align(e_align_right | e_align_vertical_center, rectangle);
 
             rectangleEllipse.rate(0.6);
 
-            auto pbrush = createø < ::draw2d::brush > ();
+            auto pdraw2dbrush = createø < ::draw2d::brush > ();
 
-            pbrush->create_solid(argb(255, 255, 255, 255));
+            pdraw2dbrush->create_solid(argb(255, 255, 255, 255));
 
-            pgraphics->set(pbrush);
+            pdraw2dgraphics->set(pdraw2dbrush);
 
-            pgraphics->fill_ellipse(rectangleEllipse);
+            pdraw2dgraphics->fill_ellipse(rectangleEllipse);
 
          }
 
@@ -561,7 +561,7 @@ namespace user
    }
 
 
-   void check_box::_001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pgraphics)
+   void check_box::_001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -596,35 +596,35 @@ namespace user
 
       }
 
-      auto ppen = createø < ::draw2d::pen > ();
+      auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-      ppen->create_solid(1.0, crPen);
+      pdraw2dpen->create_solid(1.0, crPen);
 
-      pgraphics->set(ppen);
+      pdraw2dgraphics->set(pdraw2dpen);
 
-      auto pbrush = createø < ::draw2d::brush >();
+      auto pdraw2dbrush = createø < ::draw2d::brush >();
 
-      pbrush->create_solid(crBrush);
+      pdraw2dbrush->create_solid(crBrush);
 
-      pgraphics->set(pbrush);
+      pdraw2dgraphics->set(pdraw2dbrush);
 
-      pgraphics->ellipse(rectangleCheckBox);
-      //   pgraphics->draw_inset_3d_rectangle(rectangleCheckBox, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
+      pdraw2dgraphics->ellipse(rectangleCheckBox);
+      //   pdraw2dgraphics->draw_inset_3d_rectangle(rectangleCheckBox, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
       //   if (m_echeck == e_check_tristate
       //      || m_echeck == e_check_checked)
       //   {
-      //      auto ppen = createø < ::draw2d::pen > ();
-      //      ppen->create_solid(1, m_echeck == e_check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
-      //      pgraphics->set(ppen);
-      //      pgraphics->set_current_point(2, 8);
-      //      pgraphics->line_to(6, 12);
-      //      pgraphics->line_to(13, 5);
-      //      pgraphics->set_current_point(2, 9);
-      //      pgraphics->line_to(6, 13);
-      //      pgraphics->line_to(13, 6);
+      //      auto pdraw2dpen = createø < ::draw2d::pen > ();
+      //      pdraw2dpen->create_solid(1, m_echeck == e_check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
+      //      pdraw2dgraphics->set(pdraw2dpen);
+      //      pdraw2dgraphics->set_current_point(2, 8);
+      //      pdraw2dgraphics->line_to(6, 12);
+      //      pdraw2dgraphics->line_to(13, 5);
+      //      pdraw2dgraphics->set_current_point(2, 9);
+      //      pdraw2dgraphics->line_to(6, 13);
+      //      pdraw2dgraphics->line_to(13, 6);
       //   }
       //}
-      //pgraphics->offset_origin(-rectangleX.left, -rectangleX.top);
+      //pdraw2dgraphics->offset_origin(-rectangleX.left, -rectangleX.top);
 
    }
 

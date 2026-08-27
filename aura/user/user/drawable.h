@@ -25,19 +25,19 @@ namespace user
       void destroy() override;
 
 
-      virtual void _000DrawImpl(::draw2d::graphics_pointer & pgraphics);
+      virtual void _000DrawImpl(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual bool _000OnBeforeDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual bool _000OnBeforeDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _000CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual ::graphics::graphics * get_window_graphics();
 
       

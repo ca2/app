@@ -23,7 +23,7 @@ namespace draw2d_cairo
 #if defined(USE_PANGO)
 
       // this structure stores a description of the style of font you'd most like
-      PangoFontDescription *        m_pdesc;
+      PangoFontDescription *        m_ppangofontdescription;
 
       class pango_layout
          {
@@ -79,13 +79,13 @@ namespace draw2d_cairo
 
 #else
 
-      FT_Face                    m_ft;
-      cairo_user_data_key_t      m_keyDone;
-      cairo_scaled_font_t *      m_pfont;
+      FT_Face                    m_ftface;
+      cairo_user_data_key_t      m_cairouserdatakeyDone;
+      cairo_scaled_font_t *      m_pcairoscaledfont;
 
 #endif
 
-      cairo_font_face_t *        m_pfontface;
+      cairo_font_face_t *        m_pcairofontface;
       bool                       m_bToyQuotedFontSelection;
 
 
@@ -93,14 +93,14 @@ namespace draw2d_cairo
       ~font() override;
 
 
-      void create(::draw2d::graphics * pgraphics, ::i8 iCreate) override;
+      void update(::draw2d::graphics * pdraw2dgraphics) override;
       void destroy() override;
-      void destroy_os_data() override;
+      // void destroy_os_data() override;
 
 
       // void dump(dump_context & dumpcontext) const override;
 
-      ::enum_character_set calculate_character_set(::draw2d::graphics * pgraphics) override;
+      ::enum_character_set calculate_character_set(::draw2d::graphics * pdraw2dgraphics) override;
 
       virtual cairo_font_slant_t get_cairo_font_slant();
       virtual cairo_font_weight_t get_cairo_font_weight();

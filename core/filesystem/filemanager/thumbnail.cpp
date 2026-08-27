@@ -31,13 +31,13 @@ namespace filemanager
 
 
 
-   void thumbnail::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void thumbnail::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
 
       auto rectangleX = this->rectangle();
-      pgraphics->fill_rectangle(rectangleX, rgb(200, 200, 190));
+      pdraw2dgraphics->fill_rectangle(rectangleX, rgb(200, 200, 190));
 
       if(filemanager_document() == nullptr)
          return;
@@ -47,12 +47,12 @@ namespace filemanager
       }
       else if (m_iCurFile == 0 && filemanager_data()->m_listingUser2.get_size() == 0)
       {
-         pgraphics->text_out(10, 10, "No files in this directory");
+         pdraw2dgraphics->text_out(10, 10, "No files in this directory");
       }
       else if(m_iCurFile < filemanager_data()->m_listingUser2.get_size())
       {
 
-         pgraphics->text_out(10,10,filemanager_data()->m_listingUser2.title(m_iCurFile));
+         pdraw2dgraphics->text_out(10,10,filemanager_data()->m_listingUser2.title(m_iCurFile));
 
       }
 

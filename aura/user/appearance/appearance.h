@@ -37,7 +37,7 @@ namespace appearance
 
       virtual void perform_layout(::draw2d::graphics_pointer & pointer);
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual void on_mouse_enter(const ::i32_point & point, bool bEnter);
       virtual void on_mouse_leave();

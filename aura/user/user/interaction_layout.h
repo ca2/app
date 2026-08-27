@@ -77,11 +77,11 @@ namespace user
       //virtual ~draw_interface();
 
 
-      //virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      //virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      //virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       //virtual bool _get_client_rect(::i32_rectangle * prectangle) = 0;
@@ -121,25 +121,25 @@ namespace user
       void destroy_state();
 
 
-      //virtual void _001PrintBuffer(::draw2d::graphics_pointer& pgraphics);
-      //virtual void _001Print(::draw2d::graphics_pointer& pgraphics);
-      //virtual void _001DrawThis(::draw2d::graphics_pointer& pgraphics);
-      //virtual void _001DrawChildren(::draw2d::graphics_pointer& pgraphics);
-      //virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override;
-      //virtual void _008OnDraw(::draw2d::graphics_pointer& pgraphics);
-      //virtual void draw_control_background(::draw2d::graphics_pointer& pgraphics);
+      //virtual void _001PrintBuffer(::draw2d::graphics_pointer& pdraw2dgraphics);
+      //virtual void _001Print(::draw2d::graphics_pointer& pdraw2dgraphics);
+      //virtual void _001DrawThis(::draw2d::graphics_pointer& pdraw2dgraphics);
+      //virtual void _001DrawChildren(::draw2d::graphics_pointer& pdraw2dgraphics);
+      //virtual void _001OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics) override;
+      //virtual void _008OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics);
+      //virtual void draw_control_background(::draw2d::graphics_pointer& pdraw2dgraphics);
 
-      //virtual void _000OnDraw(::draw2d::graphics_pointer& pgraphics) override;
-      //virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics) override;
+      //virtual void _000OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics) override;
+      //virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pdraw2dgraphics) override;
 
-      //virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics) override;
+      //virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pdraw2dgraphics) override;
 
       //virtual oswindow get_handle() const override;
       //virtual bool attach(::windowing::window * pwindow_New);
       //virtual oswindow detach();
 
 
-      //virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       //virtual bool window_rectangle(::i32_rectangle * prectangle);
 

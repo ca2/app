@@ -16,10 +16,10 @@ simple_tab_control::~simple_tab_control()
 }
 
 
-void simple_tab_control::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+void simple_tab_control::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
-   ::user::tab::_001OnDraw(pgraphics);
+   ::user::tab::_001OnDraw(pdraw2dgraphics);
 
 }
 

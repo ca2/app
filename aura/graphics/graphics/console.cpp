@@ -197,9 +197,9 @@ namespace graphics
       
       pgraphicsImage->m_pacmeuserinteractionAffinity = m_puserinteraction;
 
-      m_papplication->constructø(pgraphicsImage->m_pfont);
+      m_papplication->constructø(pgraphicsImage->m_pwritetextfont);
 
-      pgraphicsImage->m_pfont->create_font(e_font_monospace, ::write_text::font_size(m_sizeTile.cy * 0.92, e_unit_pixel));
+      pgraphicsImage->m_pwritetextfont->create_font(e_font_monospace, ::write_text::font_size(m_sizeTile.cy * 0.92, e_unit_pixel));
 
       SetScreenColor(e_dos_color_background_black);
 

@@ -22,8 +22,8 @@ namespace write_text
    public:
 
 
-      ::image::image_pointer               m_pimage;
-      ::write_text::font_pointer    m_pfont;
+      ::image::image_pointer        m_pimage;
+      ::write_text::font_pointer    m_pwritetextfont;
       ::i32_rectangle               m_rectangle;
       i32_size                      m_size;
       bool                          m_bDarkMode;

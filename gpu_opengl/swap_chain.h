@@ -46,7 +46,7 @@ namespace gpu_opengl
 ///      void initialize_render_target(::gpu::renderer* prenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous) override;
 
 
-   //   void endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* pgpurendererSrc) override;
+   //   void endDraw(::draw2d_gpu::graphics* pdraw2dgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* pgpurendererSrc) override;
 
 
       virtual ::gpu::model_buffer * sequence2_uv_fullscreen_quad_model_buffer();

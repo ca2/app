@@ -176,7 +176,7 @@ namespace user
    }
 
 
-   bool style_base::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)
+   bool style_base::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::split_layout * psplitlayout)
    {
 
       return false;
@@ -184,7 +184,7 @@ namespace user
    }
 
 
-   bool style_base::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::interaction * pframe)
+   bool style_base::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pdraw2dgraphics,::user::interaction * pframe)
    {
 
       return false;
@@ -192,7 +192,7 @@ namespace user
    }
 
 
-   bool style_base::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics)
+   bool style_base::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       return false;
@@ -208,7 +208,7 @@ namespace user
    }
 
 
-   bool style_base::simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pgraphics)
+   bool style_base::simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       return false;
@@ -216,7 +216,7 @@ namespace user
    }
 
 
-   bool style_base::simple_ui_draw_border(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics)
+   bool style_base::simple_ui_draw_border(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       return false;
@@ -224,7 +224,7 @@ namespace user
    }
 
 
-   bool style_base::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
+   bool style_base::_001DrawToolbarItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
    {
 
       return false;
@@ -232,7 +232,7 @@ namespace user
    }
 
 
-   bool style_base::_001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar)
+   bool style_base::_001DrawSimpleScrollBar(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::scroll_bar * pbar)
    {
 
       return false;
@@ -240,7 +240,7 @@ namespace user
    }
 
 
-   bool style_base::_001DrawScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar)
+   bool style_base::_001DrawScrollBar(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::scroll_bar * pbar)
    {
 
       return false;

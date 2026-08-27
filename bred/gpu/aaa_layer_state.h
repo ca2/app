@@ -60,8 +60,8 @@ namespace gpu
       //virtual texture* current_texture();
 
 
-      //virtual void on_before_begin_draw_frame(::gpu::graphics* pgraphics);
-      //virtual void on_after_end_draw_frame(::gpu::graphics* pgraphics);
+      //virtual void on_before_begin_draw_frame(::gpu::graphics* pdraw2dgraphics);
+      //virtual void on_after_end_draw_frame(::gpu::graphics* pdraw2dgraphics);
 
 
       //      virtual void on_end_render(::gpu::layer* pgpulayer);

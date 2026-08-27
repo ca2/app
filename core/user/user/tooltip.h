@@ -15,7 +15,7 @@ namespace user
 
 
       string               m_str;
-      ::write_text::font_pointer    m_pfont;
+      ::write_text::font_pointer    m_pwritetextfont;
       ::i32_size               m_size;
       bool                 m_bError;
 
@@ -34,7 +34,7 @@ namespace user
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       void operator()(::timer * ptimer) override;
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
 //      virtual bool get_translucency(::user::enum_translucency & etranslucency, const ::e_element & eelement, style_context * pcontext) override;

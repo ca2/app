@@ -77,6 +77,10 @@ namespace gpu
 
       void on_end_draw(::acme::windowing::window * pacmewindowingwindow) override;
 
+      void on_acquire_memory_graphics(
+   ::image::image * pimage,
+   const ::i32_size & size,
+   ::acme::user::interaction * pacmeuserinteractionAffinity) override;
 
       void on_set_target_rectangle(::image::image * pimage);
 
@@ -236,7 +240,7 @@ namespace gpu
       virtual void defer_soft_unbind_draw2d_compositor(::gpu::layer * pgpulayer);
 
 
-      void draw_rectangle(const ::f64_rectangle &rectangle, ::draw2d::pen *ppen) override;
+      void draw_rectangle(const ::f64_rectangle &rectangle, ::draw2d::pen *pdraw2dpen) override;
 
       virtual void _fill_quad(const ::f64_point points[4], const ::color::color& color);
 
@@ -246,7 +250,7 @@ namespace gpu
       void draw_ellipse(const ::f64_rectangle & rectangleParam) override;
 
       using ::draw2d::graphics::line;
-      void line(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::draw2d::pen* ppen) override;
+      void line(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::draw2d::pen* pdraw2dpen) override;
 
       //using ::draw2d::graphics::get_text_extent;
       ::f64_size _get_text_extent(const ::scoped_string& scopedstr) override;
@@ -259,7 +263,7 @@ namespace gpu
       void text_out(::f64 x, ::f64 yParam, const ::scoped_string& scopedstr) override;
 
 
-      virtual ::typeface::face* get_face(::write_text::font* pfont);
+      virtual ::typeface::face* get_face(::write_text::font* pwritetextfont);
       void defer_set_size(const ::i32_size &size) override;
 
    };

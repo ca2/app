@@ -28,7 +28,7 @@ namespace user
       e_tool_item_style             m_estyle;
       string                        m_str;
       bool                          m_bEnableIfHasCommandHandler;
-      ::write_text::font_pointer    m_pfont;
+      ::write_text::font_pointer    m_pwritetextfont;
       
       
       tool_item();

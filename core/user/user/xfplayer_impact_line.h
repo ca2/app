@@ -56,7 +56,7 @@ public:
    // 08, May 2004 attributes
    ::draw2d::graphics_pointer                m_dc1;
    ::draw2d::bitmap_pointer                  m_bmp1;
-   ::write_text::font_pointer                    m_pfont;
+   ::write_text::font_pointer                    m_pwritetextfont;
    ::write_text::font_pointer                    m_pfontPrefix;
    ::write_text::font_pointer                    m_pfontLink;
    ::color::color                         m_cr;
@@ -112,7 +112,7 @@ public:
    bool is_hover();
    void update_hover(i32_point & pointCursor);
    void PrepareURLLinks();
-   void SetFont(::write_text::font * pfont);
+   void SetFont(::write_text::font * pwritetextfont);
 
 //#ifdef WINDOWS_DESKTOP
 //   void GetLogFont(LOGFONTW & lf);
@@ -120,13 +120,13 @@ public:
 
    user::enum_line_hit hit_test(const i32_point &pointCursorParam, character_count &iChar);
 
-   void CalcCharsPositions(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+   void CalcCharsPositions(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle);
 
 
    void SetColors(::color32_t color32, ::color::color crOutline);
 
    void embossed_text_out(
-   ::draw2d::graphics_pointer & pgraphics,
+   ::draw2d::graphics_pointer & pdraw2dgraphics,
    const ::scoped_string & scopedstr,
 
    ::i32 left,
@@ -138,7 +138,7 @@ public:
    ::f64 dBlend);
 
    void embossed_text_out(
-   ::draw2d::graphics_pointer & pgraphics,
+   ::draw2d::graphics_pointer & pdraw2dgraphics,
    ::image::image *pimageCache,
    const ::scoped_string & scopedstr,
    ::i32 iLeft,
@@ -151,14 +151,14 @@ public:
 
 
    virtual void CacheEmboss(
-   ::draw2d::graphics_pointer & pgraphics,
+   ::draw2d::graphics_pointer & pdraw2dgraphics,
    const ::scoped_string & scopedstr,
    ::image::image_pointer & pimageCache);
 
    bool IsVisible();
    void Validate(const ::i32_rectangle & rectangle = {});
    void Invalidate(const ::i32_rectangle & rectangle = {});
-   //void AddVmsFont(::write_text::font * pfont);
+   //void AddVmsFont(::write_text::font * pwritetextfont);
    //::i32 GetVmsFontCount();
    void SetPlacement(const ::i32_rectangle & rectangle);
    ::i32 SetLyricColors(::color::color colorLeft, ::color::color colorRight);
@@ -175,7 +175,7 @@ public:
 
    void SetAnimateType(::i32 iAnimateType);
 
-   void OnTimerAnimate(::draw2d::graphics_pointer & pgraphics, i32_rectangle_array_base &   rectaModified);
+   void OnTimerAnimate(::draw2d::graphics_pointer & pdraw2dgraphics, i32_rectangle_array_base &   rectaModified);
 
    void Show(bool bShow = true);
    virtual xfplayer_impact_line & operator = (const xfplayer_impact_line & src);
@@ -190,16 +190,16 @@ public:
 
 
 
-   bool PrepareLine(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::i32 flags, const ::i32_rectangle & rectangle);
+   bool PrepareLine(::draw2d::graphics_pointer & pdraw2dgraphics, const ::scoped_string & scopedstr, ::i32 flags, const ::i32_rectangle & rectangle);
 
 
    void add_char(::wide_character wch, character_count &index);
 
    void add_char(::wide_character wch, character_count &index, ::write_text::font * pFont);
 
-   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::i32_rectangle & rectangle, i32_rectangle_array_base & rectaModified, bool bRecalcLayout);
+   bool _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics, bool bDraw, const ::i32_rectangle & rectangle, i32_rectangle_array_base & rectaModified, bool bRecalcLayout);
 
-   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::i32_rectangle & rectangle, i32_rectangle_array_base & rectaModified, character_count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen);
+   bool _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics, bool bDraw, const ::i32_rectangle & rectangle, i32_rectangle_array_base & rectaModified, character_count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen);
 
 
    DECLARE_MESSAGE_HANDLER(OnMouseMove);

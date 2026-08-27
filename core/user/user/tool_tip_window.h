@@ -64,7 +64,7 @@ namespace user
       string                     m_strTip;         // tip string
       ::i32                        m_iEventTool;     // item selected
       ::i32                        m_iTool;          // item where the tip will be showed
-      ::write_text::font_pointer          m_pfont;           // tip string font
+      ::write_text::font_pointer          m_pwritetextfont;           // tip string font
       i32_point                      m_pointOffset;       // tip i32_point offset
       ::i32_size                     m_sizeArrow;      // arrow i32_size
       bool                       m_bTipEnable;     // set if the tip is enabled
@@ -91,7 +91,7 @@ namespace user
       void EnableTip(bool bEnable = true);
       bool HideTip();
       //virtual bool create(::user::interaction * puserinteraction, const atom & atom);
-      bool CalcRect(::draw2d::graphics_pointer & pgraphics, ::i32_rectangle * prectangle, const ::i32_rectangle & lprectToolScreen, const ::scoped_string & scopedstr);
+      bool CalcRect(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32_rectangle * prectangle, const ::i32_rectangle & lprectToolScreen, const ::scoped_string & scopedstr);
 
       void ShowTip(::i32 iTool, bool bForce = false);
       void SetPositionHint(::user::interaction * puserinteraction, enum_position eposition);

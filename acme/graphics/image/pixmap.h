@@ -135,7 +135,7 @@ public:
    virtual void blend2(const ::i32_point & pointDst, ::pixmap * ppixmapSrc, const ::i32_point & pointSrc, const ::i32_size & size, ::u8 bA);
    virtual void fork_blend(const ::i32_point & pointDst, ::pixmap * ppixmapAlf, const ::i32_point & pointAlf, const ::i32_size & size);
    virtual void fork_blend(const ::i32_point & pointDst, ::pixmap * ppixmapAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA);
-   //virtual void bitmap_blend(::draw2d::graphics* pgraphics, const ::i32_rectangle & rectangle);
+   //virtual void bitmap_blend(::draw2d::graphics * pdraw2dgraphics, const ::i32_rectangle & rectangle);
 
    virtual void color_blend(::color::color color, ::u8 bAlpha);
    virtual void BitBlt(::pixmap * ppixmap, ::i32 op);

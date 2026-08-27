@@ -199,11 +199,11 @@ namespace html
          if (*m_fonta[i] == font)
             return i;
       }
-      auto pfont = allocateø class font (font);
-      pfont->create(this);
-      m_fonta.add(pfont);
-      pfont->m_iIndex = (::i32)m_fonta.get_upper_bound();
-      return (::i32)pfont->m_iIndex;
+      auto pwritetextfont = allocateø class font (font);
+      pwritetextfont->create(this);
+      m_fonta.add(pwritetextfont);
+      pwritetextfont->m_iIndex = (::i32)m_fonta.get_upper_bound();
+      return (::i32)pwritetextfont->m_iIndex;
    }
 
 
@@ -312,7 +312,7 @@ namespace html
    }
 
 
-   void core_data::implement(::draw2d::graphics_pointer & pgraphics)
+   void core_data::implement(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       
       if(::is_null(m_pelement))
@@ -328,7 +328,7 @@ namespace html
 
       __guard_wait(m_bImplement);
 
-      m_pgraphics = pgraphics;
+      m_pgraphics = pdraw2dgraphics;
 
       m_focusptra.erase_all();
 
@@ -399,7 +399,7 @@ namespace html
    }
 
 
-   void core_data::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void core_data::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -407,14 +407,14 @@ namespace html
       if (!m_bImplemented)
       {
 
-         implement(pgraphics);
+         implement(pdraw2dgraphics);
 
       }
 
       if (m_pelement)
       {
 
-         m_pgraphics = pgraphics;
+         m_pgraphics = pdraw2dgraphics;
 
          m_layoutstate1.reset();
 
@@ -442,7 +442,7 @@ namespace html
    }
 
 
-   void core_data::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void core_data::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (!m_bImplemented || !m_bLaidout)
@@ -454,16 +454,16 @@ namespace html
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      m_pgraphics = pgraphics;
+      m_pgraphics = pdraw2dgraphics;
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       //if(m_strPathName.case_insensitive_find("alarms_index") >= 0)
       //{
 
-      //   pgraphics->fill_rectangle(100,100,100,100,argb(190, 255, 0, 0));
+      //   pdraw2dgraphics->fill_rectangle(100,100,100,100,argb(190, 255, 0, 0));
 
       //}
 
@@ -474,7 +474,7 @@ namespace html
       //if(m_strPathName.case_insensitive_find("alarms_index") >= 0)
       //{
 
-      //   pgraphics->fill_rectangle(200,200,100,100,argb(190, 0, 255, 0));
+      //   pdraw2dgraphics->fill_rectangle(200,200,100,100,argb(190, 0, 255, 0));
 
       //}
 

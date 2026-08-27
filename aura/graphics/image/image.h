@@ -54,7 +54,7 @@ namespace image
    {
    public:
 
-
+      ::draw2d::enum_acquire                    m_eacquire = ::draw2d::e_acquire_load;
       ::i32_rectangle                           m_rectangleTag;
       mutable ::std::atomic_bool                m_bDestinationGraphicsLeaseActive{false};
       ::pointer < ::acme::user::interaction >   m_pacmeuserinteractionAffinity;
@@ -78,10 +78,10 @@ namespace image
                           ::i32 iGoodStride = -1);
 
       virtual void update_bitmap_as_render_target(
-         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr, ::draw2d::graphics * pgraphics = nullptr);
+         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr, ::draw2d::graphics * pdraw2dgraphics = nullptr);
 
       virtual void update_bitmap_as_source(
-         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr, ::draw2d::graphics * pgraphics = nullptr);
+         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr, ::draw2d::graphics * pdraw2dgraphics = nullptr);
 
       virtual void change_raw_size(const ::i32_size & sizeRaw, ::i32 iScan = 0);
 
@@ -220,7 +220,7 @@ namespace image
       // virtual void blend2(const ::i32_point & pointDst, ::image::image *imageSrc, const ::i32_point & pointSrc, const ::i32_size & size, ::u8 bA);
       // virtual void fork_blend(const ::i32_point & pointDst, ::image::image *imageAlf, const ::i32_point & pointAlf, const ::i32_size & size);
       // virtual void fork_blend(const ::i32_point & pointDst, ::image::image *imageAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA);
-      // //virtual void bitmap_blend(::draw2d::graphics* pgraphics, const ::i32_rectangle & rectangle);
+      // //virtual void bitmap_blend(::draw2d::graphics * pdraw2dgraphics, const ::i32_rectangle & rectangle);
       //
       // virtual void color_blend(::color::color color, ::u8 bAlpha);
       // virtual void BitBlt(::image::image *pimage, ::i32 op);
@@ -249,7 +249,7 @@ namespace image
       virtual void create_from_data(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan,
                                     ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, 
                                     bool bPreserve = false);
-      virtual void create_from_graphics(::draw2d::graphics* pgraphics);
+      virtual void create_from_graphics(::draw2d::graphics * pdraw2dgraphics);
       virtual void create_as_top_draw2d_target(const ::i32_size & size, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
       virtual void update_as_backed_by_gpu_texture(const ::i32_size & size, ::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics);
       virtual void update_as_gpu_render_target(const ::i32_size & size, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphicsOwning = nullptr, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false, bool bTopDraw2dTarget = false);
@@ -264,17 +264,17 @@ namespace image
       //virtual bool host(::windowing::window_buffer * pwindowbuffer, ::windowing::window *pwindow, const ::i32_size & sizeRaw);
       //virtual bool on_host_read_pixels(::pixmap_t * ppixmapHost) const;
       void destroy() override;
-      void destroy_os_data() override;
+      // void destroy_os_data() override;
       //virtual void detach(::image::image *pimage);
 
       // realization is semantically const
       // image keeps an image and image will be the same,
       // besides the way the Device Context associated with the image (m_spgraphics)
       // interprets or deals with it, may machine
-      virtual void realize(::draw2d::graphics* pgraphics) const;
+      virtual void realize(::draw2d::graphics * pdraw2dgraphics) const;
       virtual void unrealize() const;
       virtual bool is_realized() const;
-      virtual void defer_realize(::draw2d::graphics* pgraphics) const;
+      virtual void defer_realize(::draw2d::graphics * pdraw2dgraphics) const;
 
 
 
@@ -282,26 +282,26 @@ namespace image
       // virtual void stretch_image(::image::image *pimage, ::draw2d::enum_interpolation_mode einterpolationmode = draw2d::e_interpolation_mode_none);
 
 
-      //virtual void stretch(::draw2d::graphics * pgraphics);
+      //virtual void stretch(::draw2d::graphics * pdraw2dgraphics);
       //virtual void to(::image::image *piml) const;
       //virtual void copy(const ::image::image *pimage, enum_flag eflagCreate = e_flag_success);
       //virtual void stretch(const ::image::image *pimage);
-      //virtual void draw_image(::draw2d::graphics* pgraphics);
-      //virtual void draw_image(::draw2d::graphics* pgraphics, const ::i32_size & size);
-      //virtual void from(const ::i32_point & pointDst, ::draw2d::graphics* pgraphics, const ::i32_point & pointSrc, const ::i32_size & size);
+      //virtual void draw_image(::draw2d::graphics * pdraw2dgraphics);
+      //virtual void draw_image(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size);
+      //virtual void from(const ::i32_point & pointDst, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointSrc, const ::i32_size & size);
       //using image_drawer::draw;
       // virtual void _draw_raw(const ::i32_rectangle & rectangleTarget, ::image::image *pimage, const ::i32_point & pointSrc = ::i32_point());
       // virtual void blend(const ::i32_rectangle & rectangleTarget, ::image::image *pimage, const ::i32_point & pointSrc, ::u8 bA);
       // //virtual void blend(const ::i32_point & pointDst, ::image::image *piml, const ::i32_point & pointSrc, const ::i32_size & size);
       // virtual void draw_ignore_alpha(const ::i32_point & pointDst, ::image::image *pimage, const ::i32_rectangle & rectangleSource);
 
-      //virtual void to(::draw2d::graphics* pgraphics);
-      //virtual void to(::draw2d::graphics* pgraphics, const ::i32_point & point);
-      //virtual void to(::draw2d::graphics* pgraphics, const ::i32_size & size);
-      //virtual void to(::draw2d::graphics* pgraphics, const ::i32_point & point, const ::i32_size & size);
-      //virtual void to(::draw2d::graphics* pgraphics, const ::i32_rectangle & rectangle);
+      //virtual void to(::draw2d::graphics * pdraw2dgraphics);
+      //virtual void to(::draw2d::graphics * pdraw2dgraphics, const ::i32_point & point);
+      //virtual void to(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size);
+      //virtual void to(::draw2d::graphics * pdraw2dgraphics, const ::i32_point & point, const ::i32_size & size);
+      //virtual void to(::draw2d::graphics * pdraw2dgraphics, const ::i32_rectangle & rectangle);
 
-      //virtual void to(::draw2d::graphics* pgraphics, const ::i32_point & point, const ::i32_size & size, const ::i32_point & pointSrc);
+      //virtual void to(::draw2d::graphics * pdraw2dgraphics, const ::i32_point & point, const ::i32_size & size, const ::i32_point & pointSrc);
 
       
 

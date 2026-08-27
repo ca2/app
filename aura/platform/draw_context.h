@@ -47,7 +47,7 @@ namespace aura
       virtual ::draw2d::graphics *draw2d_graphics();
 
 
-      virtual void _001OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction);
+      virtual void _001OnCustomDraw(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::interaction* puserinteraction);
 
 
    };

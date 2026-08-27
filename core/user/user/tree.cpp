@@ -243,25 +243,25 @@ namespace user
    }
 
 
-   void tree::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void tree::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_bPendingDrawingObjectsUpdate)
       {
 
-         update_drawing_objects(pgraphics);
+         update_drawing_objects(pdraw2dgraphics);
 
       }
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       {
 
          auto timeStart = ::time::now();
 
-         ::user::interaction::_001OnDraw(pgraphics);
+         ::user::interaction::_001OnDraw(pdraw2dgraphics);
 
          auto tickElapsed = timeStart.elapsed();
 
@@ -318,9 +318,9 @@ namespace user
 
          auto rectangleX = this->rectangle();
 
-         //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         //pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         //pgraphics->fill_rectangle(rectangleX, m_colorTreeBackground);
+         //pdraw2dgraphics->fill_rectangle(rectangleX, m_colorTreeBackground);
 
          //auto pointCursor = get_cursor_position();
 
@@ -390,7 +390,7 @@ namespace user
 
          ::user::tree_draw_item drawitemdata;
 
-         drawitemdata.m_pdc = pgraphics;
+         drawitemdata.m_pdc = pdraw2dgraphics;
 
          drawitemdata.m_iIndentation = _001GetIndentation();
 
@@ -1042,7 +1042,7 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
    }
 
    
-   void tree::update_drawing_objects(::draw2d::graphics_pointer &pgraphics)
+   void tree::update_drawing_objects(::draw2d::graphics_pointer &pdraw2dgraphics)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1053,9 +1053,9 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
 
       auto pdraw2d = psystem->draw2d();
 
-      //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      //auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       m_colorTreeBackground = get_color(pstyle, ::e_element_background);
 
@@ -1241,7 +1241,7 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
 
                }
 
-               //queue_graphics_call([this, iNewScroll](::draw2d::graphics_pointer & pgraphics)
+               //queue_graphics_call([this, iNewScroll](::draw2d::graphics_pointer & pdraw2dgraphics)
                  // {
 
 
@@ -1373,13 +1373,13 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
    }
 
 
-   //void tree::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
+   //void tree::on_context_offset_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    void tree::on_change_context_offset(::user::enum_layout elayout)
    {
 
       m_ptreeitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
-      //::user::scroll_base::on_context_offset_layout(pgraphics);
+      //::user::scroll_base::on_context_offset_layout(pdraw2dgraphics);
 
       ::user::scroll_base::on_change_context_offset(elayout);
 
@@ -1404,10 +1404,10 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
    }
 
 
-   void tree::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void tree::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::interaction::on_layout(pgraphics);
+      ::user::interaction::on_layout(pdraw2dgraphics);
 
       auto rectangleX = this->rectangle();
 
@@ -1436,9 +1436,9 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
 
             //}
 
-      _001CalculateItemHeight(pgraphics);
+      _001CalculateItemHeight(pdraw2dgraphics);
 
-      m_iCurrentImpactWidth = _001CalcTotalImpactWidth(pgraphics);
+      m_iCurrentImpactWidth = _001CalcTotalImpactWidth(pdraw2dgraphics);
 
       m_ptreeitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
@@ -1456,7 +1456,7 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
 
       on_change_scroll_state(::user::e_layout_design);
 
-      //on_change_context_offset(pgraphics);
+      //on_change_context_offset(pdraw2dgraphics);
 
    }
 
@@ -1725,19 +1725,19 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
    }
 
 
-   void tree::_001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics)
+   void tree::_001CalculateItemHeight(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto dFontHeight = _001GetDefaultFontHeight(pgraphics);
+      auto dFontHeight = _001GetDefaultFontHeight(pdraw2dgraphics);
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       m_dItemHeight = dFontHeight * get_f64(pstyle, ::user::e_f64_tree_item_height_rate, ::user::e_state_none, 1.0);
 
    }
 
 
-   ::i32 tree::_001CalcTotalImpactWidth(::draw2d::graphics_pointer & pgraphics)
+   ::i32 tree::_001CalcTotalImpactWidth(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::collection::index nOffset;
@@ -1756,7 +1756,7 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
 
       }
 
-      defer_graphics(pgraphics);
+      defer_graphics(pdraw2dgraphics);
 
       auto pointOffset = get_context_offset();
 
@@ -1778,13 +1778,13 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
 
       //auto pdraw2d = psystem->draw2d();
 
-      //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      //auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
-      //pgraphics->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
+      //pdraw2dgraphics->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
 
-      //auto pfont = createø < ::write_text::font > ();
-      //pfont->operator=(*pdraw2d->fonts().GetListCtrlFont());
-      //pfont->set_bold();
+      //auto pwritetextfont = createø < ::write_text::font > ();
+      //pwritetextfont->operator=(*pdraw2d->fonts().GetListCtrlFont());
+      //pwritetextfont->set_bold();
       //g->set_font(font);
 
 
@@ -1830,7 +1830,7 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
 
          string strText = pitem->get_user_item_text();
 
-         ::f64_size s = pgraphics->get_text_extent(strText);
+         ::f64_size s = pdraw2dgraphics->get_text_extent(strText);
 
          iWidth = (::i32)(48 + s.cx + iIndent * (iLevel + 1));
 
@@ -2441,7 +2441,7 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
 
          auto dy = maximum(iNewScrollIndex, 0) * m_dItemHeight;
 
-         //queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
+         //queue_graphics_call([this, iy](::draw2d::graphics_pointer & pdraw2dgraphics)
          //   {
 
                set_context_offset_y(dy);
@@ -2478,7 +2478,7 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
    }
 
 
-   //void tree::on_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //void tree::on_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //}

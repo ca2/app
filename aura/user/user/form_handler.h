@@ -151,7 +151,7 @@ namespace user
 
          auto plabel = create_label<LABEL>(puserinteractionParent, scopedstrTitle1);
 
-         plabel->m_pfont = get_title1_font();
+         plabel->m_pwritetextfont = get_title1_font();
 
          return plabel;
 
@@ -165,7 +165,7 @@ namespace user
 
          auto plabel = create_label<LABEL>(puserinteractionParent, propertyTitle);
 
-         plabel->m_pfont = get_title2_font();
+         plabel->m_pwritetextfont = get_title2_font();
 
          return plabel;
 

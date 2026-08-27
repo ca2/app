@@ -170,9 +170,9 @@ namespace user
 
       virtual void get_title(::i32 iPane,string_array_base & stra);
 
-      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      //void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual void layout_pane(::collection::index iPane, bool bDisplay = false);
 
@@ -255,27 +255,27 @@ namespace user
       virtual void on_create_tabs();
 
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
-      virtual void _001OnDrawStandard(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnDrawSchema01(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDrawStandard(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001OnDrawSchema01(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       void operator()(::timer * ptimer) override;
 
       ::i32_rectangle hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 
-//     void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
+//     void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
-      virtual void _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnTabLayout(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001TabOnDrawSchema01(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001OnTabLayout(::draw2d::graphics_pointer & pdraw2dgraphics);
       
       
       bool on_drag_start(::i32_point & pointDrag, ::user::mouse * pmouse, ::item * pitem) override;
 
 
-      void on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_drag_scroll_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       
       bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;

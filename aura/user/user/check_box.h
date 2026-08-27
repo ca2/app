@@ -51,11 +51,11 @@ namespace user
       enum_element get_default_element() override;
 
 
-      void _001OnNcDraw(::draw2d::graphics_pointer& pgraphics) override;
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnDrawNormal(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnDrawToggleSwitch(::draw2d::graphics_pointer & pgraphics);
+      void _001OnNcDraw(::draw2d::graphics_pointer& pdraw2dgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _001OnDrawNormal(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001OnDrawToggleSwitch(::draw2d::graphics_pointer & pdraw2dgraphics);
 //      virtual ::enum_check get_check() override;
       //using ::user::interaction::set_check;
       //using check::set_check;

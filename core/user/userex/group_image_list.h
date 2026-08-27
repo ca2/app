@@ -58,8 +58,8 @@ namespace userex
 
       virtual string get_group_title(group * pgroup);
 
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual void on_command(::message::command * pcommand) override;
 
@@ -79,7 +79,7 @@ namespace userex
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
    };

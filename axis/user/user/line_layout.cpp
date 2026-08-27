@@ -102,48 +102,48 @@ namespace user
    }
 
 
-   void line_layout::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   void line_layout::_001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
    }
 
 
-   void line_layout::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void line_layout::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
    }
 
 
-   void line_layout::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void line_layout::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
    }
 
 
-   void line_layout::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void line_layout::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
    }
 
 
-   void line_layout::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void line_layout::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       // if (m_bExtendOnParent || get_parent()->is_frame_window() || get_parent()->is_impact())
       // {
       //
-      //    _extend_on_parent(pgraphics);
+      //    _extend_on_parent(pdraw2dgraphics);
       //
       // }
 
    }
 
 
-   bool line_layout::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   bool line_layout::on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (id() == "RedDotLogicsInternal_license_manager::user_form::line_layout")
@@ -178,7 +178,7 @@ namespace user
 
             ::f64 dMaximumAscent = 0.;
 
-            auto pstyle = get_style(pgraphics);
+            auto pstyle = get_style(pdraw2dgraphics);
 
             for_user_interaction_children(puserinteraction, this)
             {
@@ -230,7 +230,7 @@ namespace user
 
                iMaximumNormal = ::maximum(iMaximumNormal, iNormalDimension);
 
-               auto dAscent = pstyle->get_font(puserinteraction, puserinteraction->m_eelementMain)->get_ascent(pgraphics);
+               auto dAscent = pstyle->get_font(puserinteraction, puserinteraction->m_eelementMain)->get_ascent(pdraw2dgraphics);
 
                dMaximumAscent = ::maximum(dMaximumAscent, dAscent);
 
@@ -285,10 +285,10 @@ namespace user
                if (m_ealignrelativeOrthogonal == e_align_relative_base_bottom_line)
                {
 
-                  auto pfont = pstyle->get_font(puserinteraction,
+                  auto pwritetextfont = pstyle->get_font(puserinteraction,
                      puserinteraction->m_eelementMain);
 
-                  auto dAscent = pfont->get_ascent(pgraphics);
+                  auto dAscent = pwritetextfont->get_ascent(pdraw2dgraphics);
 
                   point.set_orthogonal_dimension(m_eorientation,
                      (::i32) (dMaximumAscent - dAscent));
@@ -330,7 +330,7 @@ namespace user
 
                }
 
-               if (puserinteraction->set_position(pointItem, e_layout_layout, pgraphics))
+               if (puserinteraction->set_position(pointItem, e_layout_layout, pdraw2dgraphics))
                {
 
                   bChanged = true;
@@ -370,7 +370,7 @@ namespace user
 
             size.set_dimension(m_eorientation, point.get_dimension(m_eorientation));
 
-            if (set_size(size, ::user::e_layout_layout, pgraphics))
+            if (set_size(size, ::user::e_layout_layout, pdraw2dgraphics))
             {
 
                bChanged = true;

@@ -131,7 +131,7 @@ public:
 
    virtual bool LoadFrame(const ::scoped_string & scopedstrMatter, ::u32 dwDefaultStyle = FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
 
-   void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
+   void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
    //virtual bool LoadToolBar(::platform::type sptype,atom idToolBar, const ::scoped_string & scopedstrToolBar,::u32 dwCtrlStyle = TBSTYLE_FLAT,::u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 
@@ -141,7 +141,7 @@ public:
    virtual void on_frame_position();
 
    ::pointer<::user::interaction>WindowDataGetWnd();
-   void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+   void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
    void on_reposition() override;
    void ActivateFrame(::e_display edisplay = e_display_undefined) override;
    bool on_create_client(::user::system * pusersystem) override;
@@ -149,16 +149,16 @@ public:
    bool pre_create_window(::user::system * pusersystem) override;
    void pre_translate_message(::message::message * pmessage) override;
 
-   void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-   bool _000OnBeforeDraw(::draw2d::graphics_pointer & pgraphics) override;
-   virtual void draw_frame_and_control_box_over(::draw2d::graphics_pointer & pgraphics);
+   void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+   bool _000OnBeforeDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+   virtual void draw_frame_and_control_box_over(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-   void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-   void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
-   virtual void draw_frame(::draw2d::graphics_pointer & pgraphics);
+   void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+   void _001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+   virtual void draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
-   void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
+   void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
    //void command_handler(const ::atom & atom) override;

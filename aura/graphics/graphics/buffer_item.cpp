@@ -41,17 +41,17 @@ namespace graphics
 
       }
 
-      //if (pgraphics)
+      //if (pdraw2dgraphics)
       //{
 
-      //   pgraphics->m_egraphics = m_egraphics;
+      //   pdraw2dgraphics->m_egraphics = m_egraphics;
 
       //}
 
-      //if (!pgraphics->m_callbackImage32CpuBuffer)
+      //if (!pdraw2dgraphics->m_callbackImage32CpuBuffer)
       //{
 
-      //   pgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, ::i32 cx, ::i32 cy, ::i32 scan)
+      //   pdraw2dgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, ::i32 cx, ::i32 cy, ::i32 scan)
       //      {
 
       //         //_synchronous_lock synchronouslock(this->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -62,7 +62,7 @@ namespace graphics
 
       //}
 
-      //return ::transfer(pgraphics);
+      //return ::transfer(pdraw2dgraphics);
 
    }
 

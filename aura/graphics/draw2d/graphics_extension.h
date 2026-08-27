@@ -19,14 +19,14 @@ namespace draw2d
       ~graphics_extension() override;
 
 
-      void get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::f64_size_array & sizea);
+      void get_text_extent(::draw2d::graphics_pointer & pdraw2dgraphics, const ::scoped_string & scopedstr, ::f64_size_array & sizea);
 
-      void get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::f64_size & size);
+      void get_text_extent(::draw2d::graphics_pointer & pdraw2dgraphics, const ::scoped_string & scopedstr, ::f64_size & size);
 
-      //void get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstrcwsz, character_count iCount, i32_size & size);
+      //void get_text_extent(::draw2d::graphics_pointer & pdraw2dgraphics, const ::scoped_string & scopedstrcwsz, character_count iCount, i32_size & size);
 
 
-      void text_out(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y, const ::scoped_string & scopedstr, ::f64_size & s);
+      void text_out(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32 x, ::i32 y, const ::scoped_string & scopedstr, ::f64_size & s);
 
 
       //void FillSolidRect(HDC hdc, const ::i64_rectangle * prectangle, ::color::color clr);

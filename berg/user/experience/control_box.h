@@ -81,11 +81,11 @@ namespace experience
 
       void install_message_routing(::channel *pframewindow) override;
 
-      void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
-      virtual void draw_display_normal_label(::draw2d::graphics_pointer & pgraphics);
+      virtual void draw_display_normal_label(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       void drag(const ::i32_point & point);
@@ -104,7 +104,7 @@ namespace experience
 
       void operator()(::timer * ptimer) override;
 
-      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual void layout_control_box_buttons();
 
@@ -112,11 +112,11 @@ namespace experience
 
       virtual ::i32_rectangle get_button_margin(enum_button ebutton);
 
-      virtual ::i32 calculate_button_size(::draw2d::graphics_pointer & pgraphics);
+      virtual ::i32 calculate_button_size(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual ::i32 calculate_control_box_width(::draw2d::graphics_pointer & pgraphics);
+      virtual ::i32 calculate_control_box_width(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      //virtual void reset_layout(::draw2d::graphics_pointer & pgraphics);
+      //virtual void reset_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       ::i32 auto_hide_threshold_height() override;
 

@@ -34,22 +34,22 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      virtual void _001DrawCheck(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001DrawCheck(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      virtual void _001OnDrawDefault(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDrawDefault(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
 
-      ::f64_size get_preferred_size(::draw2d::graphics_pointer & pgraphics) override;
+      ::f64_size get_preferred_size(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
    };

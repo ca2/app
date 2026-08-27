@@ -128,12 +128,12 @@ namespace image
    }
 
 
-   void image_list::realize(::draw2d::graphics * pgraphics) const
+   void image_list::realize(::draw2d::graphics * pdraw2dgraphics) const
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      m_pimage->realize(pgraphics);
+      m_pimage->realize(pdraw2dgraphics);
 
    }
 
@@ -163,7 +163,7 @@ namespace image
    }
 
 
-   void image_list::draw(::draw2d::graphics * pgraphics, ::i32 iImage, const ::f64_point & point, ::i32 iFlag)
+   void image_list::draw(::draw2d::graphics * pdraw2dgraphics, ::i32 iImage, const ::f64_point & point, ::i32 iFlag)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -182,12 +182,12 @@ namespace image
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      pgraphics->draw(imagedrawing);
+      pdraw2dgraphics->draw(imagedrawing);
 
    }
 
 
-   void image_list::draw(::draw2d::graphics * pgraphics, ::i32 iImage, const ::f64_point & point, ::i32 iFlag, const class ::opacity & opacity)
+   void image_list::draw(::draw2d::graphics * pdraw2dgraphics, ::i32 iImage, const ::f64_point & point, ::i32 iFlag, const class ::opacity & opacity)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -204,7 +204,7 @@ namespace image
       if (opacity.is_opaque())
       {
 
-         return draw(pgraphics, iImage, point, iFlag);
+         return draw(pdraw2dgraphics, iImage, point, iFlag);
 
       }
 
@@ -222,12 +222,12 @@ namespace image
 
       imagedrawing.opacity(opacity);
 
-      pgraphics->draw(imagedrawing);
+      pdraw2dgraphics->draw(imagedrawing);
 
    }
 
 
-   void image_list::draw(::draw2d::graphics * pgraphics, ::i32 iImage, const ::f64_point & point, ::f64_size sz, const ::f64_point & pointOffsetParam, ::i32 iFlag)
+   void image_list::draw(::draw2d::graphics * pdraw2dgraphics, ::i32 iImage, const ::f64_point & point, ::f64_size sz, const ::f64_point & pointOffsetParam, ::i32 iFlag)
    {
 
       if (iImage < 0)
@@ -246,12 +246,12 @@ namespace image
 
       }
 
-      _draw(pgraphics, iImage, point, sz, pointOffsetParam, iFlag);
+      _draw(pdraw2dgraphics, iImage, point, sz, pointOffsetParam, iFlag);
 
    }
 
 
-   void image_list::_draw(::draw2d::graphics * pgraphics, ::i32 iImage, const ::f64_point & point, ::f64_size sz, const ::f64_point & pointOffsetParam, ::i32 iFlag)
+   void image_list::_draw(::draw2d::graphics * pdraw2dgraphics, ::i32 iImage, const ::f64_point & point, ::f64_size sz, const ::f64_point & pointOffsetParam, ::i32 iFlag)
    {
 
       ::f64_point pointOffset(pointOffsetParam);
@@ -275,7 +275,7 @@ namespace image
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      pgraphics->draw(imagedrawing);
+      pdraw2dgraphics->draw(imagedrawing);
 
    }
 
@@ -522,17 +522,17 @@ namespace image
       try
       {
 
-         auto pgraphics = m_pimage->acquire_graphics();
+         auto pdraw2dgraphics = m_pimage->acquire_graphics();
 
-         //::draw2d::draw_scope drawscope(pgraphics);
+         //::draw2d::draw_scope drawscope(pdraw2dgraphics);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          ::image::image_drawing imagedrawingTarget(imagedrawing);
 
          imagedrawingTarget.m_rectangleTarget.set(::f64_point(iItem * m_size.cx, 0), m_size);
 
-         pgraphics->draw(imagedrawingTarget);
+         pdraw2dgraphics->draw(imagedrawingTarget);
 
       }
       catch (...)

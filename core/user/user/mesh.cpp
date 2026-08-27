@@ -215,21 +215,21 @@ namespace user
    }
 
 
-   void mesh::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void mesh::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       m_ppenFocused->create_solid(2,argb(255,0,255,255));
 
       m_ppenHighlight->create_solid(2,argb(255,0,255,255));
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
       if(m_bLockImpactUpdate)
          return;
 
-      ::user::interaction::_001OnDraw(pgraphics);
+      ::user::interaction::_001OnDraw(pdraw2dgraphics);
 
-      draw_framing(pgraphics);
+      draw_framing(pdraw2dgraphics);
 
       auto rectangleX = this->rectangle();
 
@@ -237,22 +237,22 @@ namespace user
       auto pointScroll = get_context_offset();
 
 
-      //      pgraphics->SetBkMode(TRANSPARENT);
+      //      pdraw2dgraphics->SetBkMode(TRANSPARENT);
 
       if(m_bTopText)
       {
 
-         auto pstyle = get_style(pgraphics);
+         auto pstyle = get_style(pdraw2dgraphics);
 
          auto pbrushText = createø < ::draw2d::brush > ();
 
          pbrushText->create_solid(get_color(pstyle, ::e_element_text));
 
-         auto targetscope = pgraphics->target_scope();
+         auto targetscope = pdraw2dgraphics->target_scope();
 
-         pgraphics->set(pbrushText);
+         pdraw2dgraphics->set(pbrushText);
          ::f64_size_array sizea;
-         m_pgraphicsextension->get_text_extent(pgraphics,m_strTopText,sizea);
+         m_pgraphicsextension->get_text_extent(pdraw2dgraphics,m_strTopText,sizea);
          ::collection::index x = 0;
          ::collection::index right = (::collection::index)rectangleX.right;
          ::f64 y = m_dItemHeight;
@@ -286,11 +286,11 @@ namespace user
                rectangle.right = rectangleX.right;
                rectangle.bottom = ::i32(y - pointScroll.y);
 
-               pgraphics->_DrawText(m_strTopText.substr(iStart,i - iStart),rectangle,e_align_left);
+               pdraw2dgraphics->_DrawText(m_strTopText.substr(iStart,i - iStart),rectangle,e_align_left);
                iStart = iNewStart;
             }
          }
-         //pgraphics->set_origin(pointContextOrg);
+         //pdraw2dgraphics->set_origin(pointContextOrg);
       }
 
 
@@ -305,7 +305,7 @@ namespace user
 
 
 
-//      m_pdrawmeshitem->m_pgraphics              = pgraphics;
+//      m_pdrawmeshitem->m_pgraphics              = pdraw2dgraphics;
 //      m_pdrawmeshitem->m_iItemRectItem          = -1;
 //      m_pdrawmeshitem->m_iSubItemRectOrder      = -1;
 //      m_pdrawmeshitem->m_iSubItemRectSubItem    = -1;
@@ -335,7 +335,7 @@ namespace user
 
       }
 
-      _001DrawItems(pgraphics, (::collection::index) iItemFirst, (::collection::index) iItemLast);
+      _001DrawItems(pdraw2dgraphics, (::collection::index) iItemFirst, (::collection::index) iItemLast);
 
       if(m_bGroup && m_bLateralGroup)
       {
@@ -355,16 +355,16 @@ namespace user
                break;
          }
 
-         //_001DrawGroups(pgraphics, (::collection::index) iGroupFirst, (::collection::index) iGroupLast, (::collection::index) iItemFirst, (::collection::index) iItemLast);
-         _001DrawGroups(pgraphics, (::collection::index)iGroupFirst, (::collection::index)iGroupLast);
+         //_001DrawGroups(pdraw2dgraphics, (::collection::index) iGroupFirst, (::collection::index) iGroupLast, (::collection::index) iItemFirst, (::collection::index) iItemLast);
+         _001DrawGroups(pdraw2dgraphics, (::collection::index)iGroupFirst, (::collection::index)iGroupLast);
 
       }
 
    }
 
 
-   //void mesh::_001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast, ::collection::index iItemFirst, ::collection::index iItemLast)
-   void mesh::_001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast)
+   //void mesh::_001DrawGroups(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast, ::collection::index iItemFirst, ::collection::index iItemLast)
+   void mesh::_001DrawGroups(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast)
    {
 
       //__UNREFERENCED_PARAMETER(iItemFirst);
@@ -398,12 +398,12 @@ namespace user
 
          }
 
-         pgroup->m_pdrawmeshgroup->m_pgraphics = pgraphics;
+         pgroup->m_pdrawmeshgroup->m_pgraphics = pdraw2dgraphics;
 
          pgroup->m_pdrawmeshgroup->m_pgraphics->set_font(this, ::e_element_none);
-         //pdrawitem->m_pgraphics->set(pfont);
+         //pdrawitem->m_pgraphics->set(pwritetextfont);
 
-         pgroup->m_pdrawmeshgroup->m_pfont = pgroup->m_pdrawmeshgroup->m_pgraphics->m_pfont;
+         pgroup->m_pdrawmeshgroup->m_pwritetextfont = pgroup->m_pdrawmeshgroup->m_pgraphics->m_pwritetextfont;
 
          pgroup->m_iGroup          = iGroup;
 
@@ -485,7 +485,7 @@ namespace user
    }
 
 
-   void mesh::_001DrawItems(::draw2d::graphics_pointer & pgraphics, ::collection::index iItemFirst, ::collection::index iItemLast)
+   void mesh::_001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItemFirst, ::collection::index iItemLast)
    {
 
       auto rectangleX = this->rectangle();
@@ -524,11 +524,11 @@ namespace user
 
          }
 
-         pitem->m_pdrawmeshitem->m_pgraphics = pgraphics;
+         pitem->m_pdrawmeshitem->m_pgraphics = pdraw2dgraphics;
 
          pitem->m_pdrawmeshitem->m_pgraphics->set_font(this, ::e_element_none);
 
-         pitem->m_pdrawmeshitem->m_pfont = pitem->m_pdrawmeshitem->m_pgraphics->m_pfont;
+         pitem->m_pdrawmeshitem->m_pwritetextfont = pitem->m_pdrawmeshitem->m_pgraphics->m_pwritetextfont;
 
          pitem->m_iDisplayItem = iDisplayItem;
 
@@ -635,7 +635,7 @@ namespace user
       {
          pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
       }
-//      pdrawitem->m_pgraphics->set_font(pfont);
+//      pdrawitem->m_pgraphics->set_font(pwritetextfont);
 
       pdrawitem->m_bListItemSelected = (m_eview != impact_icon || is_valid_display_item((::collection::index) pdrawitem->m_iItem)) && rangeSelection.has_item((::collection::index) pdrawitem->m_iDisplayItem);
 
@@ -746,7 +746,7 @@ namespace user
    }
 
 
-   void mesh::draw_framing(::draw2d::graphics_pointer & pgraphics)
+   void mesh::draw_framing(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
    }
@@ -974,19 +974,19 @@ namespace user
    }
 
 
-   void mesh::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void mesh::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      _001CalculateItemHeight(pgraphics);
+      _001CalculateItemHeight(pdraw2dgraphics);
 
       //m_dItemHeight = m_sizeMaximumItem.cy + 1;
 
       if(m_bTopText)
       {
 
-         _001LayoutTopText(pgraphics);
+         _001LayoutTopText(pdraw2dgraphics);
 
       }
 
@@ -1217,9 +1217,9 @@ namespace user
 
       //auto pdraw2d = psystem->draw2d();
 
-      //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      //auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
-      //on_change_impact_size(pgraphics);
+      //on_change_impact_size(pdraw2dgraphics);
 
       //informationf("mesh::_001OnUpdateItemCount ItemCount %d\n",m_nItemCount);
       //if(m_bGroup)
@@ -3702,7 +3702,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
       //}
 
 
-      //m_pfont->operator=(*pdraw2d->fonts().GetMeshCtrlFont());
+      //m_pwritetextfont->operator=(*pdraw2d->fonts().GetMeshCtrlFont());
 
       //m_pfontHover->operator=(*pdraw2d->fonts().GetMeshCtrlFont());
 
@@ -4274,21 +4274,21 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
-      _001LayoutTopText(pgraphics);
+      _001LayoutTopText(pdraw2dgraphics);
 
    }
 
 
-   void mesh::_001LayoutTopText(::draw2d::graphics_pointer& pgraphics)
+   void mesh::_001LayoutTopText(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
       ::f64_size_array sizea;
 
-      m_pgraphicsextension->get_text_extent(pgraphics,m_strTopText,sizea);
+      m_pgraphicsextension->get_text_extent(pdraw2dgraphics,m_strTopText,sizea);
 
       auto rectangleX = this->rectangle();
 
@@ -4393,31 +4393,31 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
    //}
 
 
-   //::i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem)
+   //::i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iItem, ::collection::index iSubItem)
    //{
 
-   //   pgraphics->set_font(this, ::e_element_none);
+   //   pdraw2dgraphics->set_font(this, ::e_element_none);
 
-   //   index cx = _001CalcItemWidth(pgraphics,iItem,iSubItem);
+   //   index cx = _001CalcItemWidth(pdraw2dgraphics,iItem,iSubItem);
 
    //   return (::i32)cx;
 
    //}
 
 
-   //::i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont, ::collection::index iItem, ::collection::index iSubItem)
+   //::i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer & pdraw2dgraphics,::write_text::font * pwritetextfont, ::collection::index iItem, ::collection::index iSubItem)
    //{
-   //   pgraphics->set(pfont);
-   //   return _001CalcItemWidth(pgraphics,iItem,iSubItem);
+   //   pdraw2dgraphics->set(pwritetextfont);
+   //   return _001CalcItemWidth(pdraw2dgraphics,iItem,iSubItem);
    //}
 
 
-   void mesh::_001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics)
+   void mesh::_001CalculateItemHeight(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto dFontHeight = _001GetDefaultFontHeight(pgraphics);
+      auto dFontHeight = _001GetDefaultFontHeight(pdraw2dgraphics);
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       ::f64 dItemHeight = maximum(m_sizeMaximumImage.cy, dFontHeight);
 
@@ -4443,10 +4443,10 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
    }
 
 
-   ::i32 mesh::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem)
+   ::i32 mesh::_001CalcSubItemWidth(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::collection::index iSubItem)
    {
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
       //::image::image_list::info ii;
       //::i32_rectangle rectangle;
@@ -4476,7 +4476,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
          ::f64_size size{};
          
-         m_pgraphicsextension->get_text_extent(pgraphics, psubitem->m_strText, size);
+         m_pgraphicsextension->get_text_extent(pdraw2dgraphics, psubitem->m_strText, size);
 
          cx += (::i32) (size.cx);
 
@@ -4547,10 +4547,10 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
          auto dy = iItem * m_dItemHeight;
 
-         //queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
+         //queue_graphics_call([this, iy](::draw2d::graphics_pointer & pdraw2dgraphics)
            // {
 
-               //set_context_offset_y(pgraphics, iy);
+               //set_context_offset_y(pdraw2dgraphics, iy);
          set_context_offset_y(dy);
 
             //});
@@ -4577,10 +4577,10 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
          auto dy = iItem * m_dItemHeight;
 
-         //queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
+         //queue_graphics_call([this, iy](::draw2d::graphics_pointer & pdraw2dgraphics)
            // {
 
-              // set_context_offset_y(pgraphics, iy);
+              // set_context_offset_y(pdraw2dgraphics, iy);
          set_context_offset_y(dy);
 
             //});
@@ -4617,13 +4617,13 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
          auto dy = iyScroll * m_dItemHeight;
 
-         //queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
+         //queue_graphics_call([this, iy](::draw2d::graphics_pointer & pdraw2dgraphics)
            // {
 
          set_context_offset_y(dy);
-              // set_context_offset_y(pgraphics, iy);
+              // set_context_offset_y(pdraw2dgraphics, iy);
 
-             //  on_change_context_offset(pgraphics);
+             //  on_change_context_offset(pdraw2dgraphics);
 
             //});
 
@@ -4830,10 +4830,10 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
       set_timer(e_timer_update_filter_step,50_ms);
 
-      //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+      //queue_graphics_call([this](::draw2d::graphics_pointer & pdraw2dgraphics)
       //   {
 
-      //      set_context_offset(pgraphics, 0, 0);
+      //      set_context_offset(pdraw2dgraphics, 0, 0);
 
       //   });
 
@@ -4843,7 +4843,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
       //on_change_sketch_scroll_state();
 
@@ -4900,7 +4900,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
       //on_change_scroll_state();
 
@@ -5037,10 +5037,10 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
       }
 
-      //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+      //queue_graphics_call([this](::draw2d::graphics_pointer & pdraw2dgraphics)
         // {
 
-            //set_context_offset(pgraphics, 0, 0);
+            //set_context_offset(pdraw2dgraphics, 0, 0);
 
       set_context_offset({});
 
@@ -5052,7 +5052,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
       //
       // 
@@ -5127,9 +5127,9 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
-      _001MaximizeColumnWidth(pgraphics, iHeaderItem);
+      _001MaximizeColumnWidth(pdraw2dgraphics, iHeaderItem);
 
    }
 
@@ -5267,7 +5267,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
    }
 
 
-   ::i32 mesh::_001CalcMeshWidth(::draw2d::graphics_pointer& pgraphics)
+   ::i32 mesh::_001CalcMeshWidth(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       ASSERT(false);
@@ -5277,12 +5277,12 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
    }
 
 
-   ::i32 mesh::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn)
+   ::i32 mesh::_001CalcColumnWidth(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iColumn)
    {
 
       __UNREFERENCED_PARAMETER(iColumn);
 
-      pgraphics->set_font(this, ::e_element_none);
+      pdraw2dgraphics->set_font(this, ::e_element_none);
 
       ::i32 iMaxWidth = 0;
 
@@ -5293,7 +5293,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
       for(::collection::index i = 0; i < iCount; i++)
       {
 
-         iWidth = _001CalcSubItemWidth(pgraphics,i,0);
+         iWidth = _001CalcSubItemWidth(pdraw2dgraphics,i,0);
 
          if(iWidth > iMaxWidth)
          {
@@ -5320,18 +5320,18 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
 
 
-   void mesh::_001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn)
+   void mesh::_001MaximizeColumnWidth(::draw2d::graphics_pointer& pdraw2dgraphics, ::collection::index iColumn)
    {
       
-      _001SetColumnWidth(iColumn,_001CalcColumnWidth(pgraphics, iColumn));
+      _001SetColumnWidth(iColumn,_001CalcColumnWidth(pdraw2dgraphics, iColumn));
 
    }
 
 
-   void mesh::_OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void mesh::_OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    }
 
@@ -5420,7 +5420,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
    //::write_text::font * mesh::_001GetFont()
    //{
-   //   return m_pfont;
+   //   return m_pwritetextfont;
    //}
 
    //::write_text::font * mesh::_001GetFontHover()
@@ -5713,7 +5713,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
                //auto pdraw2d = psystem->draw2d();
 
-               //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+               //auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
                //on_change_sketch_scroll_state();
 
@@ -5755,9 +5755,9 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
                //auto pdraw2d = psystem->draw2d();
 
-               //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+               //auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
-               //on_change_impact_size(pgraphics);
+               //on_change_impact_size(pdraw2dgraphics);
 
             }
 
@@ -6256,7 +6256,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
                rectangleCache.top = 2;
                rectangleCache.right = rectangleCache.left + (::i32)m_rectangleText.width();
                rectangleCache.bottom = rectangleCache.top + (::i32)m_rectangleText.height();
-               pgraphicsImage1->set(m_pcolumn->m_pdrawlistcolumn->m_pfont);
+               pgraphicsImage1->set(m_pcolumn->m_pdrawlistcolumn->m_pwritetextfont);
                pgraphicsImage1->_DrawText(m_strText, rectangleCache, m_pcolumn->m_pdrawlistcolumn->m_ealign,
                                           m_pcolumn->m_pdrawlistcolumn->m_edrawtext);
             }
@@ -6290,7 +6290,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
             m_pitem->m_pdrawlistitem->m_pgraphics->set(pbrushText);
 
-            m_pitem->m_pdrawlistitem->m_pgraphics->set(m_pcolumn->m_pdrawlistcolumn->m_pfont);
+            m_pitem->m_pdrawlistitem->m_pgraphics->set(m_pcolumn->m_pdrawlistcolumn->m_pwritetextfont);
 
             m_pitem->m_pdrawlistitem->m_pgraphics->_DrawText(m_strText,m_rectangleText, m_pcolumn->m_pdrawlistcolumn->m_ealign, m_pcolumn->m_pdrawlistcolumn->m_edrawtext);
 

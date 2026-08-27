@@ -18,7 +18,7 @@ public:
 
    void install_message_routing(::channel * pchannel) override;
 
-   void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+   void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
 };

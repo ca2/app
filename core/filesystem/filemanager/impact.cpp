@@ -279,7 +279,7 @@ namespace filemanager
             {
                //RemovePaneAt(0);
                //set_position(0, 49);
-               //on_layout(pgraphics);
+               //on_layout(pdraw2dgraphics);
             }
 
          }

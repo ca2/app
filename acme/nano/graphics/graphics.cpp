@@ -174,51 +174,53 @@ namespace nano
       ::pointer<brush> graphics::create_solid_brush(const ::color::color &color)
       {
 
-         auto pbrush = createø<brush>();
+         auto pnanographicsbrush = createø<brush>();
 
-         pbrush->create_solid_brush(color);
+         pnanographicsbrush->create_solid_brush(color);
 
-         return pbrush;
+         return pnanographicsbrush;
       }
 
 
       ::pointer<pen> graphics::create_pen(::nano::graphics::enum_pen epen, ::f64 fWidth, const ::color::color &color)
       {
 
-         auto ppen = createø<pen>();
+         auto pnanographicspen = createø<pen>();
 
-         ppen->create_pen(epen, fWidth, color);
+         pnanographicspen->create_pen(epen, fWidth, color);
 
-         return ppen;
+         return pnanographicspen;
       }
 
 
       ::pointer<font> graphics::create_point_font(enum_font efont, ::f64 fPointSize, bool bBold, bool bItalic, bool bUnderline)
       {
 
-         auto pfont = createø<font>();
+         auto pnanographicsfont = createø<font>();
          
-         auto pfontfamily = createø<font_family>();
+         auto pnanographicsfontfamily = createø<font_family>();
          
-         pfontfamily->create_font_family(efont);
+         pnanographicsfontfamily->create_font_family(efont);
 
-         pfont->create_point_font(pfontfamily, fPointSize, bBold, bItalic, bUnderline);
+         pnanographicsfont->create_point_font(pnanographicsfontfamily, fPointSize, bBold, bItalic, bUnderline);
 
-         return pfont;
+         return pnanographicsfont;
+
       }
+
 
       ::pointer<font> graphics::create_pixel_font(enum_font efont, ::f64 fPixelSize, bool bBold, bool bItalic, bool bUnderline)
       {
 
-         auto pfont = createø<font>();
+         auto pnanographicsfont = createø<font>();
          
-         auto pfontfamily = createø<font_family>();
+         auto pnanographicsfontfamily = createø<font_family>();
          
-         pfontfamily->create_font_family(efont);
+         pnanographicsfontfamily->create_font_family(efont);
 
-         pfont->create_pixel_font(pfontfamily, fPixelSize, bBold, bItalic, bUnderline);
+         pnanographicsfont->create_pixel_font(pnanographicsfontfamily, fPixelSize, bBold, bItalic, bUnderline);
 
-         return pfont;
+         return pnanographicsfont;
 
       }
 

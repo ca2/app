@@ -14,7 +14,7 @@ namespace user
    //   public:
    //
    //
-   //      //virtual ::pointer < ::user::interaction > create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem){}
+   //      //virtual ::pointer < ::user::interaction > create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pdraw2dgraphics, ::menu::item * pmenuitem){}
    //
 
 
@@ -285,7 +285,7 @@ return {};
 
    //::pointer<::user::impact_system> impact_system(const ::atom & atom) override{}
 
-   //::pointer < ::user::interaction > create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem) override{}
+   //::pointer < ::user::interaction > create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pdraw2dgraphics, ::menu::item * pmenuitem) override{}
 
 
    //   }{}

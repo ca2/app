@@ -1521,7 +1521,7 @@ namespace user
    }
 
 
-   void tab_impact::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void tab_impact::_000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //bool bUpdateBuffer = false;
@@ -1542,11 +1542,11 @@ namespace user
 
          m_bLadingToLayout = false;
 
-         layout_layout(pgraphics);
+         layout_layout(pdraw2dgraphics);
 
       }
 
-      //on_context_offset(pgraphics);
+      //on_context_offset(pdraw2dgraphics);
 
       {
          ::i32_point pointOffset;
@@ -1565,7 +1565,7 @@ namespace user
 
          }
 
-         auto targetscope = pgraphics->target_scope();
+         auto targetscope = pdraw2dgraphics->target_scope();
 
          targetscope.offset_and_set_size({ pointOffset, const_layout().layout().size()});
 
@@ -1573,21 +1573,21 @@ namespace user
          if (m_bDrawTabAtBackground)
          {
 
-            _001DrawThis(pgraphics);
+            _001DrawThis(pdraw2dgraphics);
 
-            _001DrawChildren(pgraphics);
+            _001DrawChildren(pdraw2dgraphics);
 
          }
          else
          {
 
-            _001DrawChildren(pgraphics);
+            _001DrawChildren(pdraw2dgraphics);
 
             {
 
                auto timeStart = ::time::now();
 
-               _001DrawThis(pgraphics);
+               _001DrawThis(pdraw2dgraphics);
 
                auto timeEllapsed = timeStart.elapsed();
 
@@ -1739,10 +1739,10 @@ namespace user
    }
 
 
-   void tab_impact::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void tab_impact::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::tab::on_perform_top_down_layout(pgraphics);
+      ::user::tab::on_perform_top_down_layout(pdraw2dgraphics);
 
       auto ptabdata = get_data();
 

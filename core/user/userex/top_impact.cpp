@@ -84,22 +84,22 @@ namespace userex
    }
 
 
-   void top_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void top_impact::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::split_impact::_001OnNcDraw(pgraphics);
+      ::user::split_impact::_001OnNcDraw(pdraw2dgraphics);
 
    }
 
 
-   void top_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void top_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       string strType = "top_impact";
 
       auto timeStart = ::time::now();
 
-      ::user::split_impact::_001OnDraw(pgraphics);
+      ::user::split_impact::_001OnDraw(pdraw2dgraphics);
 
       auto timeEllapsed = timeStart.elapsed();
 

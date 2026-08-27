@@ -496,7 +496,7 @@ namespace account
    }
 
 
-   void dialog::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void dialog::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -510,7 +510,7 @@ namespace account
 
       rectangleX = this->rectangle();
 
-      ::user::interaction::on_layout(pgraphics);
+      ::user::interaction::on_layout(pdraw2dgraphics);
 
       m_plogin->place(rectangleX);
 
@@ -652,18 +652,18 @@ auto pwindowing = windowing();
    }
 
 
-   void dialog::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void dialog::_000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::interaction::_000OnDraw(pgraphics);
+      ::user::interaction::_000OnDraw(pdraw2dgraphics);
 
    }
 
 
-   void dialog::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+   void dialog::_001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::interaction::_001DrawChildren(pgraphics);
+      ::user::interaction::_001DrawChildren(pdraw2dgraphics);
 
    }
 

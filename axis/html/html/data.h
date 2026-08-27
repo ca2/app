@@ -41,9 +41,9 @@ public:
    //virtual bool is_locked();
 
    void load(const ::scoped_string & scopedstr);
-   void implement(::draw2d::graphics_pointer & pgraphics);
-   void on_layout(::draw2d::graphics_pointer & pgraphics);
-   void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+   void implement(::draw2d::graphics_pointer & pdraw2dgraphics);
+   void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
+   void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
    void implement(::html_form * pform);
    void layout(::html_form * pform);

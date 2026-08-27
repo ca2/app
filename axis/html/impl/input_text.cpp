@@ -167,7 +167,7 @@ namespace html
       void input_text::_001OnDraw(html_data * pdata)
       {
 
-         //::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
+         //::draw2d::graphics_pointer & pdraw2dgraphics = pdata->m_pcoredata->m_pgraphics;
 
          //::i32_rectangle rectangleWindow;
 
@@ -175,9 +175,9 @@ namespace html
 
          //m_pedit->get_wnd()->screen_to_client(rectangleWindow);
 
-         //::draw2d::save_context savecontext(pgraphics);
+         //::draw2d::save_context savecontext(pdraw2dgraphics);
 
-         //pgraphics->set_origin(rectangleWindow.top_left());
+         //pdraw2dgraphics->set_origin(rectangleWindow.top_left());
 
          m_pedit->_000CallOnDraw(pdata->m_pcoredata->m_pgraphics);
 

@@ -1117,14 +1117,14 @@ namespace gpu_opengl
 //   }
 
 
-//   void renderer::endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction)
+//   void renderer::endDraw(::draw2d_gpu::graphics* pdraw2dgraphics, ::user::interaction* puserinteraction)
 //   {
 //
 //      ::cast < ::gpu_opengl::renderer > prenderer = this;
 //
 //      ::cast < ::gpu_opengl::swap_chain > pswapchain = m_pgpucontext->m_pgpudevice->get_swap_chain();
 //
-//      pswapchain->endDraw(pgraphics, puserinteraction, this);
+//      pswapchain->endDraw(pdraw2dgraphics, puserinteraction, this);
 //
 //      //auto rectangle = prenderer->m_pgpucontext->rectangle();
 //

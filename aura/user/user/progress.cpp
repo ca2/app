@@ -45,22 +45,22 @@ namespace user
 
 
 
-   void progress::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void progress::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       m_dRate = m_scalar.get_rate();
 
       auto rectangle = this->rectangle();
 
-      pgraphics->fill_rectangle(rectangle, argb(255, 235, 235, 235));
+      pdraw2dgraphics->fill_rectangle(rectangle, argb(255, 235, 235, 235));
 
-      pgraphics->draw_inset_rectangle(rectangle, argb(255, 128, 128, 128), 1.0);
+      pdraw2dgraphics->draw_inset_rectangle(rectangle, argb(255, 128, 128, 128), 1.0);
 
       rectangle.deflate(1, 1);
 
       rectangle.right = (::i32) (rectangle.width() * m_dRate + rectangle.left);
 
-      pgraphics->fill_rectangle(rectangle, argb(255, 100, 220,180));
+      pdraw2dgraphics->fill_rectangle(rectangle, argb(255, 100, 220,180));
 
    }
 

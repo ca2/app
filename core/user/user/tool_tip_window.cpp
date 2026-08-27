@@ -120,7 +120,7 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
       GetToolRect(iTool, &rectangle);
 
@@ -164,7 +164,7 @@ namespace user
          
          ptool->BaseToolTipGetWnd()->client_to_screen()(rectangleToolScreen);
          
-         CalcRect(pgraphics, &rectangle, rectangleToolScreen, m_strTip);
+         CalcRect(pdraw2dgraphics, &rectangle, rectangleToolScreen, m_strTip);
 
          ::i32_rectangle rectangleScreen;
 
@@ -225,12 +225,12 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   bool tool_tip_window::CalcRect(::draw2d::graphics_pointer & pgraphics, ::i32_rectangle * prectangle, const ::i32_rectangle & rectangleTool, const ::scoped_string & scopedstr)
+   bool tool_tip_window::CalcRect(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32_rectangle * prectangle, const ::i32_rectangle & rectangleTool, const ::scoped_string & scopedstr)
    {
       
-      pgraphics->set(m_pfont);
+      pdraw2dgraphics->set(m_pwritetextfont);
       
-      auto size = pgraphics->get_text_extent(scopedstr);
+      auto size = pdraw2dgraphics->get_text_extent(scopedstr);
 
       if(((m_ealign & AlignLeft) == AlignLeft) &&
             ((m_ealign & AlignTop) == AlignTop))
@@ -286,24 +286,24 @@ namespace user
    {
       throw ::interface_only();
       /*CPaintDC spgraphics(this);
-      ::draw2d::graphics_pointer & pgraphics = &spgraphics;
-      pgraphics->set(m_pfont);
+      ::draw2d::graphics_pointer & pdraw2dgraphics = &spgraphics;
+      pdraw2dgraphics->set(m_pwritetextfont);
       auto rectangleX = this->rectangle();
       ::i32_rectangle rectangleText;
-      pgraphics->SetBkMode(TRANSPARENT);
+      pdraw2dgraphics->SetBkMode(TRANSPARENT);
       if(((m_ealign & AlignLeft) == AlignLeft) &&
         ((m_ealign & AlignTop) == AlignTop))
       {
         ::i32_rectangle rectangleArrow(rectangleX.right - m_sizeArrow.cx * 2, rectangleX.bottom - m_sizeArrow.cy * 2, rectangleX.right, rectangleX.bottom);
         rectangleX.right -= m_sizeArrow.cx;
         rectangleX.bottom -= m_sizeArrow.cy;
-        pgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
-        pgraphics->fill_rectangle(rectangleX, rgb(220, 240, 250));
-        pgraphics->draw_inset_3d_rectangle(rectangleX, rgb(0, 120, 180), rgb(0, 120, 180));
-        pgraphics->set_text_color(rgb(0, 60, 90));
+        pdraw2dgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
+        pdraw2dgraphics->fill_rectangle(rectangleX, rgb(220, 240, 250));
+        pdraw2dgraphics->draw_inset_3d_rectangle(rectangleX, rgb(0, 120, 180), rgb(0, 120, 180));
+        pdraw2dgraphics->set_text_color(rgb(0, 60, 90));
         rectangleText = rectangleX;
         rectangleText.deflate(2, 2, 2, 2);
-        pgraphics->draw_text(m_strTip, rectangleText, e_align_bottom_left, e_draw_text_end_ellipsis);
+        pdraw2dgraphics->draw_text(m_strTip, rectangleText, e_align_bottom_left, e_draw_text_end_ellipsis);
       }
       else if(((m_ealign & AlignRight) == AlignRight) &&
         ((m_ealign & AlignTop) == AlignTop))
@@ -311,26 +311,26 @@ namespace user
         ::i32_rectangle rectangleArrow(0, rectangleX.bottom - m_sizeArrow.cy * 2, m_sizeArrow.cx * 2, rectangleX.bottom);
         rectangleX.left = m_sizeArrow.cx;
         rectangleX.bottom -= m_sizeArrow.cy;
-        pgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
-        pgraphics->fill_rectangle(rectangleX, rgb(220, 240, 250));
-        pgraphics->draw_inset_3d_rectangle(rectangleX, rgb(0, 120, 180), rgb(0, 120, 180));
-        pgraphics->set_text_color(rgb(0, 60, 90));
+        pdraw2dgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
+        pdraw2dgraphics->fill_rectangle(rectangleX, rgb(220, 240, 250));
+        pdraw2dgraphics->draw_inset_3d_rectangle(rectangleX, rgb(0, 120, 180), rgb(0, 120, 180));
+        pdraw2dgraphics->set_text_color(rgb(0, 60, 90));
         rectangleText = rectangleX;
         rectangleText.deflate(2, 2, 2, 2);
-        pgraphics->draw_text(m_strTip, rectangleText, e_align_bottom_left, e_draw_text_end_ellipsis);
+        pdraw2dgraphics->draw_text(m_strTip, rectangleText, e_align_bottom_left, e_draw_text_end_ellipsis);
       }
       else
       {
         ::i32_rectangle rectangleArrow(0, 0, m_sizeArrow.cx * 2, m_sizeArrow.cy * 2);
         rectangleX.left = m_sizeArrow.cx;
         rectangleX.top = m_sizeArrow.cy;
-        pgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
-        pgraphics->fill_rectangle(rectangleX, rgb(220, 240, 250));
-        pgraphics->draw_inset_3d_rectangle(rectangleX, rgb(0, 120, 180), rgb(0, 120, 180));
-        pgraphics->set_text_color(rgb(0, 60, 90));
+        pdraw2dgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
+        pdraw2dgraphics->fill_rectangle(rectangleX, rgb(220, 240, 250));
+        pdraw2dgraphics->draw_inset_3d_rectangle(rectangleX, rgb(0, 120, 180), rgb(0, 120, 180));
+        pdraw2dgraphics->set_text_color(rgb(0, 60, 90));
         rectangleText = rectangleX;
         rectangleText.deflate(2, 2, 2, 2);
-        pgraphics->draw_text(m_strTip, rectangleText, e_align_bottom_left, e_draw_text_end_ellipsis);
+        pdraw2dgraphics->draw_text(m_strTip, rectangleText, e_align_bottom_left, e_draw_text_end_ellipsis);
       }*/
    }
 
@@ -377,7 +377,7 @@ namespace user
    //   
    //   m_puserinteraction = puserinteraction;
 
-   //   m_pfont->create_point_font(pnode->font_name(e_font_sans), 10.0);
+   //   m_pwritetextfont->create_point_font(pnode->font_name(e_font_sans), 10.0);
 
    //   auto pusersystem = allocateø ::user::system();
 
@@ -514,7 +514,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::update_drawing_objects()
    {
-      constructø(m_pfont);
+      constructø(m_pwritetextfont);
 
       /*::draw2d::region rgn;
       auto rectangleX = this->rectangle();

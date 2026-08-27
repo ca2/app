@@ -148,7 +148,7 @@ namespace image
 //   virtual bool blend2(const ::i32_point & pointDst, ::image::image *pimageSrc, const ::i32_point & pointSrc, const ::i32_size & size, ::u8 bA)= 0;
 //   virtual bool fork_blend(const ::i32_point & pointDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size)= 0;
 //   virtual bool fork_blend(const ::i32_point & pointDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA)= 0;
-//   virtual bool bitmap_blend(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)= 0;
+//   virtual bool bitmap_blend(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle)= 0;
 //
 //   virtual bool color_blend(::color32_t color32, ::u8 bAlpha)= 0;
 //   virtual bool BitBlt(::image::image *pimage, ::i32 op)= 0;
@@ -246,7 +246,7 @@ namespace image
 //   virtual bool create(::i32 iWidth, ::i32 iHeight, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, ::i32 iGoodStride = -1)= 0;
 //   virtual bool host(const pixmap* ppixmap)= 0;
 //   virtual bool on_host_read_pixels(const pixmap* ppixmap) = 0;
-//   virtual bool create(::draw2d::graphics_pointer & pgraphics)= 0;
+//   virtual bool create(::draw2d::graphics_pointer & pdraw2dgraphics)= 0;
 //   virtual bool destroy()= 0;
 //   // virtual bool detach(::image::image *pimage) = 0;
 //
@@ -254,10 +254,10 @@ namespace image
 //   // image keeps an image and image will be the same,
 //   // besides the way the Device Context associated with the image (m_spgraphics)
 //   // interprets or deals with it, may machine
-//   virtual bool realize(::draw2d::graphics_pointer & pgraphics) const= 0;
+//   virtual bool realize(::draw2d::graphics_pointer & pdraw2dgraphics) const= 0;
 //   virtual bool unrealize() const= 0;
 //   virtual bool is_realized() const= 0;
-//   virtual bool defer_realize(::draw2d::graphics_pointer & pgraphics) const= 0;
+//   virtual bool defer_realize(::draw2d::graphics_pointer & pdraw2dgraphics) const= 0;
 //
 //   virtual bool DivideRGB(::i32 iDivide)= 0;
 //   virtual bool DivideARGB(::i32 iDivide)= 0;
@@ -269,20 +269,20 @@ namespace image
 //
 //   virtual bool to(::image::image *pimage) const= 0;
 //   virtual bool from(const ::image::image *pimage)= 0;
-//   virtual bool from(::draw2d::graphics_pointer & pgraphics)= 0;
-//   virtual bool from(const ::i32_point & pointDst, ::draw2d::graphics_pointer & pgraphics, const ::i32_point & pointSrc, const ::i32_size & size)= 0;
+//   virtual bool from(::draw2d::graphics_pointer & pdraw2dgraphics)= 0;
+//   virtual bool from(const ::i32_point & pointDst, ::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_point & pointSrc, const ::i32_size & size)= 0;
 //   virtual bool from(const ::i32_point & pointDst, ::image::image *pimage, const ::i32_point & pointSrc, const ::i32_size & size)= 0;
 //   virtual bool from(const ::i32_point & pointDst, ::image::image *pimage, const ::i32_point & pointSrc, const ::i32_size & size, ::u8 bA)= 0;
 //   //virtual bool blend(const ::i32_point & pointDst, ::image::image *pimage, const ::i32_point & pointSrc, const ::i32_size & size)= 0;
 //   virtual bool from_ignore_alpha(const ::i32_point & pointDst, ::image::image *pimage, const ::i32_point & pointSrc, const ::i32_size & size)= 0;
 //
-//   virtual bool to(::draw2d::graphics_pointer & pgraphics)= 0;
-//   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::i32_point & point)= 0;
-//   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::i32_size & size)= 0;
-//   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::i32_point & point, const ::i32_size & size)= 0;
-//   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)= 0;
+//   virtual bool to(::draw2d::graphics_pointer & pdraw2dgraphics)= 0;
+//   virtual bool to(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_point & point)= 0;
+//   virtual bool to(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_size & size)= 0;
+//   virtual bool to(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_point & point, const ::i32_size & size)= 0;
+//   virtual bool to(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle)= 0;
 //
-//   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::i32_point & point, const ::i32_size & size, const ::i32_point & pointSrc)= 0;
+//   virtual bool to(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_point & point, const ::i32_size & size, const ::i32_point & pointSrc)= 0;
 //
 //
 //   virtual bool pixelate(::i32 iSize)= 0;

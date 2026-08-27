@@ -105,7 +105,7 @@ namespace graphics3d
 		void run() override;
 
 		
-      virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics);
 
       virtual ::graphics3d::scene_base * current_scene();
 
@@ -121,7 +121,7 @@ namespace graphics3d
 		virtual void _engine_on_frame_context_initialization();
 
 		virtual void draw_layer();
-		virtual void on_after_done_frame_step(::draw2d::graphics_pointer& pgraphics);
+		virtual void on_after_done_frame_step(::draw2d::graphics_pointer& pdraw2dgraphics);
       virtual void defer_update_engine(const ::i32_rectangle &rectangle);
 
 		virtual void on_layout(const ::i32_rectangle & rectanglePlacement);

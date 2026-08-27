@@ -22,17 +22,17 @@ namespace experience_core
 
       //virtual ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
-      void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       void install_message_routing(::channel * pchannel) override;
 
 
-      void _001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnButtonDrawBackground(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       virtual bool keyboard_focus_is_focusable() override;

@@ -30,7 +30,7 @@ namespace user
 {
 
 
-   void tab::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void tab::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (!should_draw())
@@ -40,9 +40,9 @@ namespace user
 
       }
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       //if (top_level()->frame_is_transparent())
       //{
@@ -51,26 +51,26 @@ namespace user
 
       //}
 
-      //i32_point pointContextOffset = pgraphics->get_origin();
+      //i32_point pointContextOffset = pdraw2dgraphics->get_origin();
 
       ::f64_rectangle rClip;
 
-      pgraphics->get_clip_box(rClip);
+      pdraw2dgraphics->get_clip_box(rClip);
 
-      _001TabOnDrawSchema01(pgraphics);
+      _001TabOnDrawSchema01(pdraw2dgraphics);
 
    }
 
 
-   void tab::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics)
+   void tab::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::pointer<::berg::style>pstyle = get_style(pgraphics);
+      ::pointer<::berg::style>pstyle = get_style(pdraw2dgraphics);
 
       if (pstyle)
       {
 
-         if (pstyle->_001TabOnDrawSchema01(pgraphics, this))
+         if (pstyle->_001TabOnDrawSchema01(pdraw2dgraphics, this))
          {
 
             return;
@@ -82,24 +82,24 @@ namespace user
       if (pstyle == nullptr)
       {
 
-         _001OnDrawStandard(pgraphics);
+         _001OnDrawStandard(pdraw2dgraphics);
 
          return;
 
       }
 
 
-      if (!pstyle->_001TabOnDrawSchema01(pgraphics, this))
+      if (!pstyle->_001TabOnDrawSchema01(pdraw2dgraphics, this))
       {
 
-         _001OnDrawSchema01(pgraphics);
+         _001OnDrawSchema01(pdraw2dgraphics);
 
       }
 
    }
 
 
-   void tab::_001OnDrawSchema01(::draw2d::graphics_pointer & pgraphics)
+   void tab::_001OnDrawSchema01(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::i32_rectangle rectangle;
@@ -109,13 +109,13 @@ namespace user
       ::i32_rectangle rectangleIcon;
       ::i32_rectangle rectangleClose;
 
-      get_data()->m_ppen->create_solid(1, rgb(32, 32, 32));
+      get_data()->m_pdraw2dpen->create_solid(1, rgb(32, 32, 32));
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       ::collection::index iIndex = 0;
 
@@ -181,7 +181,7 @@ namespace user
             if (get_element_rectangle(iIndex, rectangleIcon, ::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ::image::image_source imagesource(ppane->m_pimage);
 
@@ -189,11 +189,11 @@ namespace user
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
-            auto ppath = createø < ::draw2d::path >();
+            auto pdraw2dpath = createø < ::draw2d::path >();
 
             if (true)
             {
@@ -201,25 +201,25 @@ namespace user
                if (get_data()->m_idaSel.contains(ppane->id()))
                {
 
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1, rectangleBorder.bottom);
+                  pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1, rectangleBorder.bottom);
 
-                  ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
-                  ppath->add_line(rectangleX.left, rectangleBorder.top);
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
+                  pdraw2dpath->add_line(rectangleX.left, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.top);
 
-                  ppath->close_figure();
+                  pdraw2dpath->close_figure();
 
                   ppane->m_pbrushFillSel->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
 
-                  pgraphics->set(ppane->m_pbrushFillSel);
+                  pdraw2dgraphics->set(ppane->m_pbrushFillSel);
 
-                  pgraphics->fill(ppath);
+                  pdraw2dgraphics->fill(pdraw2dpath);
 
                   ppenBorder->create_solid(1.0, get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
-                  pgraphics->draw(ppath);
+                  pdraw2dgraphics->draw(pdraw2dpath);
 
-                  pgraphics->set(get_font(pstyle));
+                  pdraw2dgraphics->set(get_font(pstyle));
 
                   pbrushText->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
 
@@ -227,13 +227,13 @@ namespace user
                else
                {
 
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1, rectangleBorder.bottom);
-                  ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
-                  ppath->add_line(rectangleText.left, rectangleBorder.top);
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.top);
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.bottom);
+                  pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1, rectangleBorder.bottom);
+                  pdraw2dpath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
+                  pdraw2dpath->add_line(rectangleText.left, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.bottom);
 
-                  ppath->close_figure();
+                  pdraw2dpath->close_figure();
 
                   if (::is_item(m_pitemHover, iIndex)
                      && !::is_element(m_pitemHover, ::e_element_close_tab_button)
@@ -242,17 +242,17 @@ namespace user
 
                      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
 
-                     pgraphics->set(ppane->m_pbrushFillHover);
+                     pdraw2dgraphics->set(ppane->m_pbrushFillHover);
 
-                     pgraphics->fill(ppath);
+                     pdraw2dgraphics->fill(pdraw2dpath);
 
                      ppenBorder->create_solid(1.0, get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
-                     pgraphics->set(ppenBorder);
+                     pdraw2dgraphics->set(ppenBorder);
 
-                     pgraphics->draw(ppath);
+                     pdraw2dgraphics->draw(pdraw2dpath);
 
-                     pgraphics->set(get_font(pstyle, e_state_hover));
+                     pdraw2dgraphics->set(get_font(pstyle, e_state_hover));
 
                      pbrushText->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 
@@ -262,17 +262,17 @@ namespace user
 
                      ppane->m_pbrushFill->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
 
-                     pgraphics->set(ppane->m_pbrushFill);
+                     pdraw2dgraphics->set(ppane->m_pbrushFill);
 
-                     pgraphics->fill(ppath);
+                     pdraw2dgraphics->fill(pdraw2dpath);
 
                      ppenBorder->create_solid(1.0, get_color(pstyle, ::e_element_border));
 
-                     pgraphics->set(ppenBorder);
+                     pdraw2dgraphics->set(ppenBorder);
 
-                     pgraphics->draw(ppath);
+                     pdraw2dgraphics->draw(pdraw2dpath);
 
-                     pgraphics->set(get_font(pstyle));
+                     pdraw2dgraphics->set(get_font(pstyle));
 
                      pbrushText->create_solid(get_color(pstyle, ::e_element_item_text));
 
@@ -289,7 +289,7 @@ namespace user
             if (get_element_rectangle(iIndex, rectangleIcon, ::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ::image::image_source imagesource(ppane->m_pimage);
 
@@ -297,41 +297,41 @@ namespace user
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
             if (true)
             {
 
-               auto ppath = createø < ::draw2d::path >();
+               auto pdraw2dpath = createø < ::draw2d::path >();
 
                if (get_data()->m_idaSel.contains(ppane->id()))
                {
 
-                  ppath->add_line(rectangleBorder.left, rectangleX.bottom, rectangleBorder.left, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleBorder.left, rectangleX.bottom, rectangleBorder.left, rectangleBorder.top);
 
-                  ppath->add_line(rectangleX.right, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleX.right, rectangleBorder.top);
 
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
+                  pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
 
-                  ppath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
+                  pdraw2dpath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
 
-                  ppath->close_figure();
+                  pdraw2dpath->close_figure();
 
                   ppane->m_pbrushFillSel->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
 
-                  pgraphics->set(ppane->m_pbrushFillSel);
+                  pdraw2dgraphics->set(ppane->m_pbrushFillSel);
 
-                  pgraphics->fill(ppath);
+                  pdraw2dgraphics->fill(pdraw2dpath);
 
                   ppenBorder->create_solid(1.0, get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
-                  pgraphics->set(ppenBorder);
+                  pdraw2dgraphics->set(ppenBorder);
 
-                  pgraphics->draw(ppath);
+                  pdraw2dgraphics->draw(pdraw2dpath);
 
-                  pgraphics->set(get_font(pstyle));
+                  pdraw2dgraphics->set(get_font(pstyle));
 
                   pbrushText->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
 
@@ -339,15 +339,15 @@ namespace user
                else
                {
 
-                  ppath->add_line(rectangleBorder.left, rectangleX.bottom, rectangleBorder.left, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleBorder.left, rectangleX.bottom, rectangleBorder.left, rectangleBorder.top);
 
-                  ppath->add_line(rectangleX.right, rectangleBorder.top);
+                  pdraw2dpath->add_line(rectangleX.right, rectangleBorder.top);
 
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
+                  pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
 
-                  ppath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
+                  pdraw2dpath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
 
-                  ppath->close_figure();
+                  pdraw2dpath->close_figure();
 
                   if (::is_item(m_pitemHover, iIndex)
                      && !::is_element(m_pitemHover, ::e_element_close_tab_button)
@@ -356,15 +356,15 @@ namespace user
 
                      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
 
-                     pgraphics->set(ppane->m_pbrushFillHover);
+                     pdraw2dgraphics->set(ppane->m_pbrushFillHover);
 
-                     pgraphics->fill(ppath);
+                     pdraw2dgraphics->fill(pdraw2dpath);
 
-                     pgraphics->set(ppenBorder);
+                     pdraw2dgraphics->set(ppenBorder);
 
-                     pgraphics->draw(ppath);
+                     pdraw2dgraphics->draw(pdraw2dpath);
 
-                     pgraphics->set(get_font(pstyle, e_state_hover));
+                     pdraw2dgraphics->set(get_font(pstyle, e_state_hover));
 
                      pbrushText->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 
@@ -374,17 +374,17 @@ namespace user
 
                      ppane->m_pbrushFill->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
 
-                     pgraphics->set(ppane->m_pbrushFill);
+                     pdraw2dgraphics->set(ppane->m_pbrushFill);
 
-                     pgraphics->fill(ppath);
+                     pdraw2dgraphics->fill(pdraw2dpath);
 
                      ppenBorder->create_solid(1.0, get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
-                     pgraphics->set(ppenBorder);
+                     pdraw2dgraphics->set(ppenBorder);
 
-                     pgraphics->draw(ppath);
+                     pdraw2dgraphics->draw(pdraw2dpath);
 
-                     pgraphics->set(get_font(pstyle));
+                     pdraw2dgraphics->set(get_font(pstyle));
 
                      pbrushText->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
 
@@ -404,7 +404,7 @@ namespace user
             if (pbergstyle && get_element_rectangle(iIndex, rectangleText, ::e_element_text))
             {
 
-               pbergstyle->_001OnTabPaneDrawTitle(*ppane, this, pgraphics, rectangleText, pbrushText, estate);
+               pbergstyle->_001OnTabPaneDrawTitle(*ppane, this, pdraw2dgraphics, rectangleText, pbrushText, estate);
 
             }
 
@@ -416,7 +416,7 @@ namespace user
             if (get_element_rectangle(iIndex, rectangleClose, ::e_element_close_tab_button))
             {
 
-               pgraphics->set(get_font(pstyle, e_element_close_tab_button));
+               pdraw2dgraphics->set(get_font(pstyle, e_element_close_tab_button));
 
                if (::is_item(m_pitemHover, iIndex) && ::is_element(m_pitemHover, ::e_element_close_tab_button))
                {
@@ -431,9 +431,9 @@ namespace user
 
                }
 
-               pgraphics->set(pbrushText);
+               pdraw2dgraphics->set(pbrushText);
 
-               pgraphics->draw_text("x", rectangleClose, e_align_center);
+               pdraw2dgraphics->draw_text("x", rectangleClose, e_align_center);
 
             }
 
@@ -444,7 +444,7 @@ namespace user
    }
 
 
-   void tab::_001OnDrawStandard(::draw2d::graphics_pointer & pgraphics)
+   void tab::_001OnDrawStandard(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::i32_rectangle rectangle;
@@ -454,17 +454,17 @@ namespace user
       ::i32_rectangle rectangleIcon;
       ::i32_rectangle rectangleClose;
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
-      get_data()->m_ppen->create_solid(1, rgb(32, 32, 32));
+      get_data()->m_pdraw2dpen->create_solid(1, rgb(32, 32, 32));
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->fill_rectangle(get_data()->m_rectangleTab, argb(0xc0, 250, 255, 255));
+      pdraw2dgraphics->fill_rectangle(get_data()->m_rectangleTab, argb(0xc0, 250, 255, 255));
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       ::collection::index iVisiblePane = 0;
 
@@ -505,7 +505,7 @@ namespace user
             if (get_element_rectangle(iVisiblePane, rectangleIcon, e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ::image::image_source imagesource(ppane->m_pimage);
 
@@ -513,32 +513,32 @@ namespace user
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
             if (get_data()->m_idaSel.contains(iIndex))
             {
 
-               auto ppen = createø < ::draw2d::pen >();
+               auto pdraw2dpen = createø < ::draw2d::pen >();
 
-               ppen->create_solid(1.0, argb(255, 0, 0, 0));
+               pdraw2dpen->create_solid(1.0, argb(255, 0, 0, 0));
 
-               pgraphics->set(ppen);
+               pdraw2dgraphics->set(pdraw2dpen);
 
-               auto ppath = createø<::draw2d::path>();
+               auto pdraw2dpath = createø<::draw2d::path>();
 
-               ppath->set_current_point(rectangleBorder.right, rectangleBorder.bottom);
-               ppath->add_line(rectangleBorder.left + 1, rectangleBorder.bottom);
-               ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
-               ppath->add_line(rectangleX.left, rectangleBorder.top);
-               ppath->add_line(rectangleBorder.right, rectangleBorder.top);
+               pdraw2dpath->set_current_point(rectangleBorder.right, rectangleBorder.bottom);
+               pdraw2dpath->add_line(rectangleBorder.left + 1, rectangleBorder.bottom);
+               pdraw2dpath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
+               pdraw2dpath->add_line(rectangleX.left, rectangleBorder.top);
+               pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.top);
 
-               pgraphics->draw(ppath);
+               pdraw2dgraphics->draw(pdraw2dpath);
 
-               auto pstyle = get_style(pgraphics);
+               auto pstyle = get_style(pdraw2dgraphics);
 
-               pgraphics->set(get_font(pstyle, e_state_selected));
+               pdraw2dgraphics->set(get_font(pstyle, e_state_selected));
 
                pbrushText->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
 
@@ -546,29 +546,29 @@ namespace user
             else
             {
 
-               auto ppen = createø < ::draw2d::pen >();
+               auto pdraw2dpen = createø < ::draw2d::pen >();
 
-               ppen->create_solid(1.0, argb(255, 0, 0, 0));
+               pdraw2dpen->create_solid(1.0, argb(255, 0, 0, 0));
 
-               pgraphics->set(ppen);
+               pdraw2dgraphics->set(pdraw2dpen);
 
-               auto ppath = createø<::draw2d::path>();
+               auto pdraw2dpath = createø<::draw2d::path>();
 
-               ppath->set_current_point(rectangleBorder.right, rectangleBorder.bottom);
-               ppath->add_line(rectangleBorder.left + 1, rectangleBorder.bottom);
-               ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
-               ppath->add_line(rectangleText.left, rectangleBorder.top);
-               ppath->add_line(rectangleBorder.right, rectangleBorder.top);
-               ppath->add_line(rectangleBorder.right, rectangleBorder.bottom);
+               pdraw2dpath->set_current_point(rectangleBorder.right, rectangleBorder.bottom);
+               pdraw2dpath->add_line(rectangleBorder.left + 1, rectangleBorder.bottom);
+               pdraw2dpath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
+               pdraw2dpath->add_line(rectangleText.left, rectangleBorder.top);
+               pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.top);
+               pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.bottom);
 
-               pgraphics->draw(ppath);
+               pdraw2dgraphics->draw(pdraw2dpath);
 
                if (::is_item(m_pitemHover, iVisiblePane) && !::is_element(m_pitemHover, e_element_close_tab_button))
                {
 
-                  auto pstyle = get_style(pgraphics);
+                  auto pstyle = get_style(pdraw2dgraphics);
 
-                  pgraphics->set(get_font(pstyle, e_state_hover));
+                  pdraw2dgraphics->set(get_font(pstyle, e_state_hover));
 
                   pbrushText = get_data()->m_pbrushClose;
 
@@ -576,11 +576,11 @@ namespace user
                else
                {
 
-                  auto pstyle = get_style(pgraphics);
+                  auto pstyle = get_style(pdraw2dgraphics);
 
-                  auto pfont = get_font(pstyle, e_state_hover);
+                  auto pwritetextfont = get_font(pstyle, e_state_hover);
 
-                  pgraphics->set(pfont);
+                  pdraw2dgraphics->set(pwritetextfont);
 
                   pbrushText->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 
@@ -596,7 +596,7 @@ namespace user
             if (get_element_rectangle(iVisiblePane, rectangleIcon, e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ::image::image_source imagesource(ppane->m_pimage);
 
@@ -604,32 +604,32 @@ namespace user
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
             if (get_data()->m_idaSel.contains(ppane->id()))
             {
 
-               auto ppen = createø < ::draw2d::pen >();
+               auto pdraw2dpen = createø < ::draw2d::pen >();
 
-               ppen->create_solid(1.0, argb(255, 0, 0, 0));
+               pdraw2dpen->create_solid(1.0, argb(255, 0, 0, 0));
 
-               pgraphics->set(ppen);
+               pdraw2dgraphics->set(pdraw2dpen);
 
-               auto ppath = createø<::draw2d::path >();
+               auto pdraw2dpath = createø<::draw2d::path >();
 
-               ppath->set_current_point(rectangleBorder.left, rectangleX.bottom);
-               ppath->add_line(rectangleBorder.left, rectangleBorder.top);
-               ppath->add_line(rectangleX.right, rectangleBorder.top);
-               ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
-               ppath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
+               pdraw2dpath->set_current_point(rectangleBorder.left, rectangleX.bottom);
+               pdraw2dpath->add_line(rectangleBorder.left, rectangleBorder.top);
+               pdraw2dpath->add_line(rectangleX.right, rectangleBorder.top);
+               pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
+               pdraw2dpath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
 
-               pgraphics->draw(ppath);
+               pdraw2dgraphics->draw(pdraw2dpath);
 
-               auto pstyle = get_style(pgraphics);
+               auto pstyle = get_style(pdraw2dgraphics);
 
-               pgraphics->set(get_font(pstyle, e_state_selected));
+               pdraw2dgraphics->set(get_font(pstyle, e_state_selected));
 
                pbrushText->create_solid(argb(255, 0, 0, 0));
 
@@ -637,27 +637,27 @@ namespace user
             else
             {
 
-               auto ppen = createø < ::draw2d::pen >();
+               auto pdraw2dpen = createø < ::draw2d::pen >();
 
-               ppen->create_solid(1.0, argb(255, 0, 0, 0));
+               pdraw2dpen->create_solid(1.0, argb(255, 0, 0, 0));
 
-               pgraphics->set(ppen);
+               pdraw2dgraphics->set(pdraw2dpen);
 
-               auto ppath = createø<::draw2d::path >();
+               auto pdraw2dpath = createø<::draw2d::path >();
 
-               ppath->set_current_point(rectangleBorder.left, rectangleX.bottom);
-               ppath->add_line(rectangleBorder.left, rectangleBorder.top);
-               ppath->add_line(rectangleX.right, rectangleBorder.top);
-               ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
-               ppath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
-               ppath->add_line(rectangleBorder.left, rectangleX.bottom);
+               pdraw2dpath->set_current_point(rectangleBorder.left, rectangleX.bottom);
+               pdraw2dpath->add_line(rectangleBorder.left, rectangleBorder.top);
+               pdraw2dpath->add_line(rectangleX.right, rectangleBorder.top);
+               pdraw2dpath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
+               pdraw2dpath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
+               pdraw2dpath->add_line(rectangleBorder.left, rectangleX.bottom);
 
-               pgraphics->draw(ppath);
+               pdraw2dgraphics->draw(pdraw2dpath);
 
                if (::is_item(m_pitemHover, iVisiblePane) && !::is_element(m_pitemHover, e_element_close_tab_button))
                {
 
-                  pgraphics->set(get_font(pstyle, e_state_hover));
+                  pdraw2dgraphics->set(get_font(pstyle, e_state_hover));
 
                   pbrushText->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 
@@ -665,7 +665,7 @@ namespace user
                else
                {
 
-                  pgraphics->set(get_font(pstyle));
+                  pdraw2dgraphics->set(get_font(pstyle));
 
                   pbrushText->create_solid(get_color(pstyle, ::e_element_item_text));
 
@@ -678,16 +678,16 @@ namespace user
          if (get_element_rectangle(iVisiblePane, rectangleText, e_element_text))
          {
 
-            pgraphics->set(pbrushText);
+            pdraw2dgraphics->set(pbrushText);
 
-            pgraphics->_DrawText(ppane->get_title(), rectangleText, e_align_bottom_left);
+            pdraw2dgraphics->_DrawText(ppane->get_title(), rectangleText, e_align_bottom_left);
 
          }
 
          if (get_element_rectangle(iVisiblePane, rectangleClose, e_element_close_tab_button))
          {
 
-            pgraphics->set(get_font(pstyle, e_element_close_tab_button));
+            pdraw2dgraphics->set(get_font(pstyle, e_element_close_tab_button));
 
             if (::is_item(m_pitemHover, iVisiblePane) && ::is_element(m_pitemHover, e_element_close_tab_button))
             {
@@ -704,9 +704,9 @@ namespace user
 
             }
 
-            pgraphics->set(pbrushText);
+            pdraw2dgraphics->set(pbrushText);
 
-            pgraphics->draw_text("x", rectangleClose, e_align_center);
+            pdraw2dgraphics->draw_text("x", rectangleClose, e_align_center);
 
          }
 
@@ -717,7 +717,7 @@ namespace user
    }
 
 
-   void tab::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void tab::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle(e_layout_sketch);
@@ -738,12 +738,12 @@ namespace user
 
       auto_hide_calculate_control_visibility();
 
-      _001OnTabLayout(pgraphics);
+      _001OnTabLayout(pdraw2dgraphics);
 
    }
 
 
-   void tab::_001OnTabLayout(::draw2d::graphics_pointer & pgraphics)
+   void tab::_001OnTabLayout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
        auto rectangleX = this->rectangle(e_layout_sketch);
@@ -755,12 +755,12 @@ namespace user
 
       }
 
-      ::pointer<::berg::style>pstyle = get_style(pgraphics);
+      ::pointer<::berg::style>pstyle = get_style(pdraw2dgraphics);
 
       if (pstyle)
       {
 
-         if (pstyle->_001OnTabLayout(pgraphics, this))
+         if (pstyle->_001OnTabLayout(pdraw2dgraphics, this))
          {
 
             return;
@@ -811,9 +811,9 @@ namespace user
 
       //defer_handle_auto_hide_tabs(false);
 
-      pgraphics->set(get_font(pstyle, e_element_close_tab_button));
+      pdraw2dgraphics->set(get_font(pstyle, e_element_close_tab_button));
 
-      m_pgraphicsextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, get_data()->m_sizeSep);
+      m_pgraphicsextension->get_text_extent(pdraw2dgraphics, MAGIC_PALACE_TAB_SIZE, get_data()->m_sizeSep);
 
       if (get_data()->m_bVertical)
       {
@@ -840,11 +840,11 @@ namespace user
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(m_pgraphicsextension, pgraphics);
+            ppane->do_split_layout(m_pgraphicsextension, pdraw2dgraphics);
 
             ::f64_size size;
 
-            m_pgraphicsextension->get_text_extent(pgraphics, str, size);
+            m_pgraphicsextension->get_text_extent(pdraw2dgraphics, str, size);
 
             if (ppane->m_pimage->is_set())
             {
@@ -925,7 +925,7 @@ namespace user
 
          ::i32 cy;
 
-         pgraphics->set(get_font(pstyle, e_state_selected));
+         pdraw2dgraphics->set(get_font(pstyle, e_state_selected));
 
          //         ::i32_rectangle rectangleX;
 
@@ -949,11 +949,11 @@ namespace user
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(m_pgraphicsextension, pgraphics);
+            ppane->do_split_layout(m_pgraphicsextension, pdraw2dgraphics);
 
             ::f64_size size;
 
-            m_pgraphicsextension->get_text_extent(pgraphics, str, size);
+            m_pgraphicsextension->get_text_extent(pdraw2dgraphics, str, size);
 
             if (ppane->m_pimage->is_ok())
             {

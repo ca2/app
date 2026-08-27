@@ -27,18 +27,18 @@ namespace experience
       ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       bool pre_create_window(::user::system * pusersystem) override;
 
       void install_message_routing(::channel * pchannel) override;
       void UpdateWndRgn() override;
       //void SetEllipsePens(
-      //     ::draw2d::pen * ppen,
+      //     ::draw2d::pen * pdraw2dpen,
       //     ::draw2d::pen * ppenSel = nullptr,
       //     ::draw2d::pen * ppenFocus = nullptr,
       //     ::draw2d::pen * ppenDisabled = nullptr);
       //void SetEllipseBrushs(
-      //     ::draw2d::brush * pbrush,
+      //     ::draw2d::brush * pdraw2dbrush,
       //     ::draw2d::brush * pbrushSel = nullptr,
       //     ::draw2d::brush * pbrushFocus = nullptr,
       //     ::draw2d::brush * pbrushDisabled = nullptr);
@@ -49,7 +49,7 @@ namespace experience
       //     ::color::color crDisabled);
 
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_show_window);

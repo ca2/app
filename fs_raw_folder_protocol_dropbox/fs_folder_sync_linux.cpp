@@ -755,7 +755,7 @@ namespace fs_raw_folder_protocol_dropbox
 
 
    bool folder_sync::_cloud_defer_check_file_txt(::file::path& pathTarget, const ::file::path& pathCloudFile,
-                                                 bool bForce, ::file::path* ppathSource,
+                                                 bool bForce, ::file::path * pfilepathSource,
                                                  const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
@@ -796,7 +796,7 @@ namespace fs_raw_folder_protocol_dropbox
 
 
    ::string_array_base folder_sync::_cloud_get_file_txt_lines(const ::file::path& pathCloudFile, bool bForce,
-                                                         ::file::path* ppathTarget, ::file::path* ppathSource,
+                                                         ::file::path * pfilepathTarget, ::file::path * pfilepathSource,
                                                          const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 

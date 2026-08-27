@@ -428,10 +428,10 @@ namespace user
    }
 
 
-   void split_layout::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void split_layout::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::place_holder_container::on_perform_top_down_layout(pgraphics);
+      ::user::place_holder_container::on_perform_top_down_layout(pdraw2dgraphics);
 
       bool bIsWindowVisible = is_this_visible();
 
@@ -595,7 +595,7 @@ namespace user
          //if(rectangleClient != pplaceholder->parent_client_rectangle())
          //{
 
-            pplaceholder->place(rectangleClient, ::user::e_layout_layout, pgraphics);
+            pplaceholder->place(rectangleClient, ::user::e_layout_layout, pdraw2dgraphics);
 
             pplaceholder->order(e_zorder_top);
 
@@ -1362,12 +1362,12 @@ namespace user
    }
 
 
-   void split_layout::draw_control_background(::draw2d::graphics_pointer & pgraphics)
+   void split_layout::draw_control_background(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //return;
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       auto colorBackground = get_color(pstyle, e_element_background);
 
@@ -1376,39 +1376,39 @@ namespace user
 
          auto rectangleX = this->rectangle();
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->fill_rectangle(rectangleX, colorBackground);
+         pdraw2dgraphics->fill_rectangle(rectangleX, colorBackground);
 
       }
 
    }
 
 
-   void split_layout::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void split_layout::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ///return;
 
-      ::user::place_holder_container::_001OnNcDraw(pgraphics);
+      ::user::place_holder_container::_001OnNcDraw(pdraw2dgraphics);
 
    }
 
 
-   void split_layout::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void split_layout::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //return;
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       if (pstyle)
       {
 
-         if (!pstyle->_001OnDrawSplitLayout(pgraphics, this))
+         if (!pstyle->_001OnDrawSplitLayout(pdraw2dgraphics, this))
          {
 
-            _001OnDrawSplitLayout(pgraphics);
+            _001OnDrawSplitLayout(pdraw2dgraphics);
 
          }
 
@@ -1417,7 +1417,7 @@ namespace user
    }
 
 
-   void split_layout::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics)
+   void split_layout::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 

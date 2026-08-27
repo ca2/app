@@ -133,7 +133,7 @@ namespace experience
       
       //virtual bool calculate_hosting_rectangle(::i32_rectangle * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
 
-      virtual bool calculate_hosting_rectangle(::i32_rectangle * prectangle, ::draw2d::graphics_pointer & pgraphics);
+      virtual bool calculate_hosting_rectangle(::i32_rectangle * prectangle, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual ::i32_rectangle hosting_rectangle();
 
@@ -153,11 +153,11 @@ namespace experience
       virtual i32_rectangle get_margin_rectangle();
       virtual i32_rectangle get_caption_text_padding();
       virtual ::i32 get_caption_height();
-      virtual void calculate_caption_height(::draw2d::graphics_pointer & pgraphics);
+      virtual void calculate_caption_height(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void title_bar_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void title_bar_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual void on_reposition();
 
       virtual ::pointer<control_box>get_control_box();
@@ -170,11 +170,11 @@ namespace experience
 
       virtual void on_style_change();
 
-      virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics);
+      virtual void _on_style_change(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual i32_size GetMinSize();
 
@@ -219,7 +219,7 @@ namespace experience
 
 
       //virtual void nextstyle(::user::style_context * pcontext) override;
-      virtual void place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics);
+      virtual void place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pdraw2dgraphics);
 
    };
 

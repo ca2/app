@@ -19,7 +19,7 @@ namespace user
 
       ::draw2d::brush_pointer          m_brushaText[16];
       ::status < ::color::color >      m_coloraText[16];
-      ::write_text::font *             m_pfont;
+      ::write_text::font *             m_pwritetextfont;
       ::e_align                        m_ealign;
       ::e_draw_text                    m_edrawtext;
 

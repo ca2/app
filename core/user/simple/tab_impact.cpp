@@ -29,10 +29,10 @@ simple_tab_impact::~simple_tab_impact()
 //}
 
 
-void simple_tab_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+void simple_tab_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
-   ::user::tab::on_layout(pgraphics);
+   ::user::tab::on_layout(pdraw2dgraphics);
 
 }
 
@@ -64,10 +64,10 @@ void simple_tab_impact::on_message_create(::message::message * pmessage)
 }
 
 
-void simple_tab_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+void simple_tab_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
-   ::user::tab::_001OnDraw(pgraphics);
+   ::user::tab::_001OnDraw(pdraw2dgraphics);
 
 }
 

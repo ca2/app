@@ -133,7 +133,7 @@ namespace micro
 
       ///::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
       pgraphicscontext->set_brush(micro_theme()->m_pbrushText);
-      pgraphicscontext->set_font(micro_theme()->m_pfont);
+      pgraphicscontext->set_font(micro_theme()->m_pwritetextfont);
 
       ::string strMessage = get_message();
       pgraphicscontext->draw_text123(
@@ -145,7 +145,7 @@ namespace micro
       //,
       // micro_theme()->m_pbrushWindow,
       //micro_theme()->m_pbrushText,
-      //micro_theme()->m_pfont);
+      //micro_theme()->m_pwritetextfont);
 
    }
 

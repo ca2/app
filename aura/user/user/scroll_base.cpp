@@ -267,14 +267,14 @@ namespace user
 
 
 
-   //void scroll_base::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //void scroll_base::on_change_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
-   //   scroll_base_x::on_change_context_offset(pgraphics);
+   //   scroll_base_x::on_change_context_offset(pdraw2dgraphics);
 
-   //   scroll_base_y::on_change_context_offset(pgraphics);
+   //   scroll_base_y::on_change_context_offset(pdraw2dgraphics);
 
-   //   ::user::interaction::on_change_context_offset(pgraphics);
+   //   ::user::interaction::on_change_context_offset(pdraw2dgraphics);
 
    //}
 
@@ -313,7 +313,7 @@ namespace user
    }
 
 
-   //void scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
+   //void scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pdraw2dgraphics)
    void scroll_base::layout_scroll_bar(::user::enum_layout elayout)
    {
 
@@ -420,15 +420,15 @@ namespace user
       //if (validate_context_offset(m_pointScroll))
       //{
 
-      //   layout_scroll_bar(pgraphics);
+      //   layout_scroll_bar(pdraw2dgraphics);
 
-      //   on_change_context_offset(pgraphics);
+      //   on_change_context_offset(pdraw2dgraphics);
 
       //}
       //else
       //{
 
-      //   layout_scroll_bar(pgraphics);
+      //   layout_scroll_bar(pdraw2dgraphics);
 
       //}
 
@@ -533,7 +533,7 @@ namespace user
    }
 
 
-   void scroll_base::defer_draw_scroll_gap(::draw2d::graphics_pointer & pgraphics)
+   void scroll_base::defer_draw_scroll_gap(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_pscrolllayoutX->m_scrollstatea[::user::e_layout_design].m_bScrollEnable
@@ -553,7 +553,7 @@ namespace user
          rectangle.right = (::i32)(rectangle.left + m_pscrollbarY->const_layout().design().size().cx);
          rectangle.bottom = (::i32)(rectangle.top + m_pscrollbarX->const_layout().design().size().cy);
 
-         pgraphics->fill_rectangle(rectangle, argb(127, 127, 127, 127));
+         pdraw2dgraphics->fill_rectangle(rectangle, argb(127, 127, 127, 127));
 
       }
 

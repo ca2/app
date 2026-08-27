@@ -37,8 +37,8 @@ namespace draw2d
 
 
    object::object(object&& object) :
-      m_osdata(object.m_osdata),
-      m_baCalculated(object.m_baCalculated),
+      //m_osdata(object.m_osdata),
+      //m_baCalculated(object.m_baCalculated),
       m_pointUserOffset(object.m_pointUserOffset)
    {
 
@@ -107,6 +107,30 @@ namespace draw2d
    }
 
 
+   void object::set_modified()
+   {
+
+      m_bUpToDate = false;
+
+   }
+
+
+   bool object::is_up_to_date() const
+   {
+
+      return m_bUpToDate;
+
+   }
+
+
+   bool object::is_modified() const
+   {
+
+      return !is_up_to_date();
+
+   }
+
+
 //   bool object::CreateStockObject(::i32 nIndex)
 //   {
 //
@@ -127,20 +151,20 @@ namespace draw2d
 //   }
 
 
- /*  void* object::get_os_data(::draw2d::graphcis* pgraphics, ::collection::index i)
+ /*  void* object::get_os_data(::draw2d::graphcis* pdraw2dgraphics, ::collection::index i)
    {
 
       if (!m_bUpdated2 || !m_osdata[0])
       {
 
-         defer_update(pgraphics);
+         defer_update(pdraw2dgraphics);
 
       }
 
 
    }
 
-   return (POINTER)get_os_data(pgraphics, i);
+   return (POINTER)get_os_data(pdraw2dgraphics, i);
 
 }*/
 
@@ -179,58 +203,63 @@ namespace draw2d
 //   }
 
 
-   void object::defer_update(::draw2d::graphics* pgraphics, ::i8 i) const
+   void object::defer_update(::draw2d::graphics * pdraw2dgraphics)
    {
 
-      if(!is_up_to_date(i))
+      if(!is_up_to_date())
       {
 
-         ::draw2d::object* pthis = (::draw2d::object*) this;
+         //::draw2d::object* pthis = (::draw2d::object*) this;
 
-         //::draw2d::lock draw2dlock;
+         ////::draw2d::lock draw2dlock;
 
-         ::draw2d::device_lock devicelock(pthis);
+         ::draw2d::device_lock devicelock(this);
 
-         if (this->m_osdata[0])
-         {
+         //if (this->m_osdata[0])
+         //{
 
-            pthis->destroy_os_data();
+         //   pthis->destroy_os_data();
 
-            pthis->clear_os_data();
+         //   pthis->clear_os_data();
 
-         }
+         //}
 
-         pthis->create(pgraphics, i);
+         destroy();
 
-         pthis->m_baCalculated[i] = true;
+         m_bUpToDate = true;
+
+
+         update(pdraw2dgraphics);
+
+         //pthis->m_baCalculated[i] = true;
 
       }
 
    }
 
 
-   void object::destroy_os_data()
-   {
+   //void object::destroy_os_data()
+   //{
 
-      clear_os_data();
+   //   clear_os_data();
+
+   //}
+
+
+   void object::update(::draw2d::graphics * pdraw2dgraphics)
+   {
 
    }
 
 
-   void object::create(::draw2d::graphics * pgraphics, ::i8 iCreate)
-   {
+   //void object::destroy()
+   //{
 
-   }
+   //   destroy_os_data();
 
+   //   //return ::success;
 
-   void object::destroy()
-   {
-
-      destroy_os_data();
-
-      //return ::success;
-
-   }
+   //}
 
 
    void object::on_changed()
@@ -240,43 +269,43 @@ namespace draw2d
    }
 
 
-   void object::set_modified()
-   {
-      m_baCalculated[0] = false;
-      m_baCalculated[1] = false;
-      m_baCalculated[2] = false;
-      m_baCalculated[3] = false;
-      m_baCalculated[4] = false;
-      m_baCalculated[5] = false;
-      m_baCalculated[6] = false;
-      m_baCalculated[7] = false;
+   //void object::set_modified()
+   //{
+   //   m_baCalculated[0] = false;
+   //   m_baCalculated[1] = false;
+   //   m_baCalculated[2] = false;
+   //   m_baCalculated[3] = false;
+   //   m_baCalculated[4] = false;
+   //   m_baCalculated[5] = false;
+   //   m_baCalculated[6] = false;
+   //   m_baCalculated[7] = false;
 
-      on_changed();
+   //   on_changed();
 
-   }
+   //}
 
 
-   void object::clear_os_data()
-   {
+   //void object::clear_os_data()
+   //{
 
-      m_osdata[0] = nullptr;
-      m_osdata[1] = nullptr;
-      m_osdata[2] = nullptr;
-      m_osdata[3] = nullptr;
-      m_osdata[4] = nullptr;
-      m_osdata[5] = nullptr;
-      m_osdata[6] = nullptr;
-      m_osdata[7] = nullptr;
-      m_baCalculated[0] = false;
-      m_baCalculated[1] = false;
-      m_baCalculated[2] = false;
-      m_baCalculated[3] = false;
-      m_baCalculated[4] = false;
-      m_baCalculated[5] = false;
-      m_baCalculated[6] = false;
-      m_baCalculated[7] = false;
+   //   m_osdata[0] = nullptr;
+   //   m_osdata[1] = nullptr;
+   //   m_osdata[2] = nullptr;
+   //   m_osdata[3] = nullptr;
+   //   m_osdata[4] = nullptr;
+   //   m_osdata[5] = nullptr;
+   //   m_osdata[6] = nullptr;
+   //   m_osdata[7] = nullptr;
+   //   m_baCalculated[0] = false;
+   //   m_baCalculated[1] = false;
+   //   m_baCalculated[2] = false;
+   //   m_baCalculated[3] = false;
+   //   m_baCalculated[4] = false;
+   //   m_baCalculated[5] = false;
+   //   m_baCalculated[6] = false;
+   //   m_baCalculated[7] = false;
 
-   }
+   //}
 
 
 } // namespace draw2d

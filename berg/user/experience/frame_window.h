@@ -70,7 +70,7 @@ namespace experience
 
 
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       void defer_save_window_placement() override;
@@ -183,7 +183,7 @@ namespace experience
       bool IsHoverActive();
       void set_dock_mask(e_dock emask);
 
-      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       void on_reposition() override;
       void ChildWnd(::user::interaction * pframewindow, ::user::interaction * puserinteractionParent);
       void FrameWnd(::user::interaction * pframewindow);
@@ -231,7 +231,7 @@ namespace experience
 
       //virtual void on_visual_applied() override;
 
-      void place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics) override;
+      void place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pdraw2dgraphics) override;
 
 
       void _001OnAfterEnterZoomed() override;

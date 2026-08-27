@@ -32,7 +32,7 @@ namespace windowing
       ::i32 m_iButtonHeight;
       ::i32 m_iButtonWidth;
 
-      //XftFont *                        m_pfont;
+      //XftFont *                        m_pwritetextfont;
       //XftDraw *                        m_pdraw;
       //XFontSet                         m_fs;
       //char_pointer *                          m_listMissingCharset;

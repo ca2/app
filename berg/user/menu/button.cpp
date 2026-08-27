@@ -115,7 +115,7 @@ namespace user
    //}
 
 
-   void menu_button::_001OnDrawDefault(::draw2d::graphics_pointer & pgraphics)
+   void menu_button::_001OnDrawDefault(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -130,40 +130,40 @@ namespace user
       if (id() == "separator")
       {
 
-         _001OnButtonDrawBackground(pgraphics);
+         _001OnButtonDrawBackground(pdraw2dgraphics);
 
-         //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         //pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         //pgraphics->fill_rectangle(rectangleX, _001GetButtonBackgroundColor());
+         //pdraw2dgraphics->fill_rectangle(rectangleX, _001GetButtonBackgroundColor());
 
-         //auto ppen = createø < ::draw2d::pen > ();
+         //auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-         //ppen->create_solid(1.0, _001GetColor(color_button_text));
+         //pdraw2dpen->create_solid(1.0, _001GetColor(color_button_text));
 
-         //pgraphics->set(ppen);
+         //pdraw2dgraphics->set(pdraw2dpen);
 
-         //pgraphics->set_current_point(rectangleX.left + rectangleX.width() / 8, (rectangleX.top + rectangleX.bottom) / 2);
+         //pdraw2dgraphics->set_current_point(rectangleX.left + rectangleX.width() / 8, (rectangleX.top + rectangleX.bottom) / 2);
 
-         ///pgraphics->line_to(rectangleX.right - rectangleX.width() / 8, (rectangleX.top + rectangleX.bottom) / 2);
+         ///pdraw2dgraphics->line_to(rectangleX.right - rectangleX.width() / 8, (rectangleX.top + rectangleX.bottom) / 2);
 
          return;
 
       }
 
-      button::_001OnDraw(pgraphics);
+      button::_001OnDraw(pdraw2dgraphics);
 
       if (m_pmenuitem != nullptr && m_pmenuitem->m_bPopup)
       {
 
-         auto pbrush = createø < ::draw2d::brush > ();
+         auto pdraw2dbrush = createø < ::draw2d::brush > ();
 
-         pbrush->create_solid(argb(255, 0, 0, 0));
+         pdraw2dbrush->create_solid(argb(255, 0, 0, 0));
 
-         auto ppen = createø < ::draw2d::pen > ();
+         auto pdraw2dpen = createø < ::draw2d::pen > ();
 
-         ppen->create_solid(1, rgb(0, 0, 0));
-         pgraphics->set(ppen);
-         pgraphics->set(pbrush);
+         pdraw2dpen->create_solid(1, rgb(0, 0, 0));
+         pdraw2dgraphics->set(pdraw2dpen);
+         pdraw2dgraphics->set(pdraw2dbrush);
          ::i32_rectangle rectanglePopupArrow;
          rectanglePopupArrow.left = rectangleX.right - 9;
          rectanglePopupArrow.right = rectangleX.right - 4;
@@ -174,10 +174,10 @@ namespace user
          pointa.add(i32_point(rectanglePopupArrow.right, (rectanglePopupArrow.bottom + rectanglePopupArrow.top) / 2));
          pointa.add(i32_point(rectanglePopupArrow.left, rectanglePopupArrow.top));
          pointa.add(i32_point(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
-         pgraphics->polygon(pointa);
+         pdraw2dgraphics->polygon(pointa);
       }
 
-      _001DrawCheck(pgraphics);
+      _001DrawCheck(pdraw2dgraphics);
 
    }
 
@@ -194,15 +194,15 @@ namespace user
    }
 
 
-   void menu_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void menu_button::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::pointer<::berg::style>pbergstyle = get_style(pgraphics);
+      ::pointer<::berg::style>pbergstyle = get_style(pdraw2dgraphics);
 
       if (pbergstyle)
       {
 
-         if (pbergstyle->_001OnDrawMenuInteraction(pgraphics, this))
+         if (pbergstyle->_001OnDrawMenuInteraction(pdraw2dgraphics, this))
          {
 
             return;
@@ -211,15 +211,15 @@ namespace user
 
       }
 
-      _001OnDrawDefault(pgraphics);
+      _001OnDrawDefault(pdraw2dgraphics);
 
    }
 
 
-   void menu_button::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void menu_button::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       
-      ::user::button::on_layout(pgraphics);
+      ::user::button::on_layout(pdraw2dgraphics);
 
 //      if (m_puserstyle == nullptr)
 //      {
@@ -242,20 +242,20 @@ namespace user
 
    }
 
-   void menu_button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void menu_button::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //if (id() != "separator")
       {
 
-         ::user::button::_001OnNcDraw(pgraphics);
+         ::user::button::_001OnNcDraw(pdraw2dgraphics);
 
       }
 
    }
 
 
-   void menu_button::_001DrawCheck(::draw2d::graphics_pointer & pgraphics)
+   void menu_button::_001DrawCheck(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::u32 uImage = 0xffffffffu;
@@ -332,21 +332,21 @@ namespace user
             if (echeck() == ::e_check_checked)
             {
 
-               pgraphics->fill_rectangle(rectangleImageBorder, rgb(127, 127, 127));
+               pdraw2dgraphics->fill_rectangle(rectangleImageBorder, rgb(127, 127, 127));
 
                //
 
-               auto pstyle = get_style(pgraphics);
+               auto pstyle = get_style(pdraw2dgraphics);
 
                auto colorDarkShadow = pstyle->get_color(this, ::e_element_dark_shadow);
 
                auto colorHilite = pstyle->get_color(this, ::e_element_hilite);
 
-               pgraphics->draw_inset_3d_rectangle(rectangleImageBorder, colorDarkShadow, colorHilite, 1.0);
+               pdraw2dgraphics->draw_inset_3d_rectangle(rectangleImageBorder, colorDarkShadow, colorHilite, 1.0);
 
             }
 
-            pimagelist->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+            pimagelist->draw(pdraw2dgraphics, uImage, rectangleImage.top_left(), 0);
 
          }
 
@@ -354,12 +354,12 @@ namespace user
       else
       {
 
-         auto pstyle = get_style(pgraphics);
+         auto pstyle = get_style(pdraw2dgraphics);
 
          if (pstyle)
          {
 
-            pstyle->draw_check(this, echeck(), m_rectangleCheckBox, pgraphics);
+            pstyle->draw_check(this, echeck(), m_rectangleCheckBox, pdraw2dgraphics);
 
          }
 
@@ -441,10 +441,10 @@ namespace user
    }
 
 
-   ::f64_size menu_button::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
+   ::f64_size menu_button::get_preferred_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto size = button::get_preferred_size(pgraphics);
+      auto size = button::get_preferred_size(pdraw2dgraphics);
 
 //      if (m_estockicon != e_stock_icon_none)
 //      {
@@ -503,7 +503,7 @@ namespace user
       if (m_pmenuitem->is_popup())
       {
 
-         auto pstyle = get_style(pgraphics);
+         auto pstyle = get_style(pdraw2dgraphics);
 
          auto rectanglePadding = get_padding(pstyle);
 

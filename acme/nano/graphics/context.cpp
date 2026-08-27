@@ -212,7 +212,7 @@ namespace nano
    }
    
    
-      void context::set_pen(::nano::graphics::pen * ppen)
+      void context::set_pen(::nano::graphics::pen * pdraw2dpen)
       {
       
          throw ::interface_only();
@@ -220,7 +220,7 @@ namespace nano
       }
    
    
-      void context::set_brush(::nano::graphics::brush * pbrush)
+      void context::set_brush(::nano::graphics::brush * pnanographicsbrush)
       {
          
          throw ::interface_only();
@@ -228,7 +228,7 @@ namespace nano
       }
    
    
-      void context::set_font(::nano::graphics::font * pfont)
+      void context::set_font(::nano::graphics::font * pnanographicsfont)
       {
       
          throw ::interface_only();
@@ -295,7 +295,7 @@ namespace nano
       }
 
 
-      void context::do_path(::nano::graphics::path *ppath)
+      void context::do_path(::nano::graphics::path *pnanographicspath)
       {
 
          throw ::interface_only();
@@ -303,7 +303,7 @@ namespace nano
       }
 
 
-      //void context::draw_path(::nano::graphics::path* ppath, ::nano::graphics::pen* ppen)
+      //void context::draw_path(::nano::graphics::path* pnanographicspath, ::nano::graphics::pen* pnanographicspen)
       //{
 
       //   throw ::interface_only();

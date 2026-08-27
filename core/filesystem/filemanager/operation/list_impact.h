@@ -29,7 +29,7 @@ namespace filemanager
 
       void on_insert_columns() override;
 
-      virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       void operator()(::timer * ptimer) override;

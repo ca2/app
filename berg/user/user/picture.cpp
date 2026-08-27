@@ -908,7 +908,7 @@ namespace user
    }
 
 
-   void picture::defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const i32_rectangle & rectangle, ::image::fastblur & pblurDropShadow, ::image::image_pointer & pimageDropShadow)
+   void picture::defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pdraw2dgraphics, const i32_rectangle & rectangle, ::image::fastblur & pblurDropShadow, ::image::image_pointer & pimageDropShadow)
    {
 
       if (m_ppictureimpl->m_bGlowDropShadow)
@@ -924,14 +924,14 @@ namespace user
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
       }
 
    }
 
 
-   void picture::draw_impl(::draw2d::graphics_pointer & pgraphics)
+   void picture::draw_impl(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
@@ -990,17 +990,17 @@ namespace user
    }
 
 
-   void picture::draw(::draw2d::graphics_pointer & pgraphics)
+   void picture::draw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      if (!_000OnBeforeDraw(pgraphics))
+      if (!_000OnBeforeDraw(pdraw2dgraphics))
       {
 
          return;
 
       }
 
-      ::draw2d::save_context savecontext(pgraphics);
+      ::draw2d::save_context savecontext(pdraw2dgraphics);
 
       ::geometry2d::matrix mRot;
 
@@ -1015,25 +1015,25 @@ namespace user
       i32_polygon[2] = _transform_drawing(rectangleClip.bottom_right());
       i32_polygon[3] = _transform_drawing(rectangleClip.bottom_left());
 
-      //pgraphics->intersect_clip(i32_polygon);
+      //pdraw2dgraphics->intersect_clip(i32_polygon);
 
       mRot.append(::geometry2d::matrix::rotation(m_ppictureimpl->m_dRotate));
 
       ::geometry2d::matrix mG;
 
-      mG.scaling(pgraphics->get_scaling());
+      mG.scaling(pdraw2dgraphics->get_scaling());
 
-      pgraphics->prepend(mRot);
+      pdraw2dgraphics->prepend(mRot);
 
-      pgraphics->prepend(::geometry2d::matrix::scaling(m_ppictureimpl->m_dZoom, m_ppictureimpl->m_dZoom));
+      pdraw2dgraphics->prepend(::geometry2d::matrix::scaling(m_ppictureimpl->m_dZoom, m_ppictureimpl->m_dZoom));
 
-      pgraphics->prepend(::geometry2d::matrix::translation(
+      pdraw2dgraphics->prepend(::geometry2d::matrix::translation(
          -m_ppictureimpl->m_rectangle.width() / 2,
          -m_ppictureimpl->m_rectangle.height() / 2));
 
       auto pointDrag = get_drag_point();
 
-      pgraphics->prepend(::geometry2d::matrix::translation(
+      pdraw2dgraphics->prepend(::geometry2d::matrix::translation(
          pointDrag.x,
          pointDrag.y));
 
@@ -1045,9 +1045,9 @@ namespace user
 
       mTrans.append(::geometry2d::matrix::translation(pointD));
 
-      pgraphics->append(mTrans);
+      pdraw2dgraphics->append(mTrans);
 
-      draw_impl(pgraphics);
+      draw_impl(pdraw2dgraphics);
 
 
    }

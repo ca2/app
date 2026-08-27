@@ -188,7 +188,7 @@ namespace experience_core
    //}
 
 
-   void frame_001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleXParam, enum_border eside)
+   void frame_001::draw_border_side(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleXParam, enum_border eside)
    {
                
       auto rectangleX(rectangleXParam);
@@ -216,7 +216,7 @@ namespace experience_core
 
          //
 
-         auto pstyle = pframewindow->get_style(pgraphics);
+         auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
          crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
@@ -241,7 +241,7 @@ namespace experience_core
 
          //auto psystem = system();
 
-         pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
+         pdraw2dgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
 
       }
       /*else if(m_pframewindow->m_estyle == StyleLightBlue)
@@ -253,18 +253,18 @@ namespace experience_core
 
 
 
-         pgraphics->color_blend( rectangle, crMoveableBorder, 127);
+         pdraw2dgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
 
 
          rectangleA.deflate(2, 2, 2, 2);
-         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorderHilight, crMoveableBorderShadow);
+         Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, crMoveableBorderHilight, crMoveableBorderShadow);
 
          rectangleA.deflate(1, 1, 1, 1);
-         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
+         Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
 
          rectangleA.deflate(1, 1, 1, 1);
-         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
+         Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
 
 
       }*/
@@ -279,14 +279,14 @@ namespace experience_core
 
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
+         pdraw2dgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
 
       }
 
    }
 
 
-   void frame_001::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
+   void frame_001::on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pframewindow = m_pframewindow;
@@ -318,21 +318,21 @@ namespace experience_core
       if(!pframewindow->layout().is_full_screen())
       {
 
-         DrawBorder(pgraphics, rectangleWindow);
+         DrawBorder(pdraw2dgraphics, rectangleWindow);
 
       }
 
       if(!bZoomed && !pframewindow->layout().is_full_screen())
       {
 
-         DrawGripSet(pgraphics, rectangleWindow);
+         DrawGripSet(pdraw2dgraphics, rectangleWindow);
 
       }
 
    }
 
 
-   void frame_001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
+   void frame_001::DrawBorder(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX)
    {
 
 
@@ -353,28 +353,28 @@ namespace experience_core
       if(eborder & e_border_top)
       {
 
-         draw_border_side(pgraphics, rectangleX, e_border_top);
+         draw_border_side(pdraw2dgraphics, rectangleX, e_border_top);
 
       }
 
       if(eborder & e_border_right)
       {
 
-         draw_border_side(pgraphics, rectangleX, e_border_right);
+         draw_border_side(pdraw2dgraphics, rectangleX, e_border_right);
 
       }
 
       if(eborder & e_border_bottom)
       {
 
-         draw_border_side(pgraphics, rectangleX, e_border_bottom);
+         draw_border_side(pdraw2dgraphics, rectangleX, e_border_bottom);
 
       }
 
       if(eborder & e_border_left)
       {
 
-         draw_border_side(pgraphics, rectangleX, e_border_left);
+         draw_border_side(pdraw2dgraphics, rectangleX, e_border_left);
 
       }
 
@@ -423,15 +423,15 @@ namespace experience_core
    //}
 
 
-   void frame_001::_on_style_change(::draw2d::graphics_pointer & pgraphics)
+   void frame_001::_on_style_change(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      on_style_change_001_and_002(pgraphics);
+      on_style_change_001_and_002(pdraw2dgraphics);
 
    }
 
 
-   void frame_001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleXParam, enum_grip egrip)
+   void frame_001::DrawGrip(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleXParam, enum_grip egrip)
    {
 
       ::i32_rectangle rectangleC(rectangleXParam);
@@ -460,7 +460,7 @@ namespace experience_core
       {
       case e_grip_top_left:
          {
-            pgraphics->set(m_ppenHilight1);
+            pdraw2dgraphics->set(m_ppenHilight1);
 
             rectangleA = rectangleX;
 
@@ -477,16 +477,16 @@ namespace experience_core
 
          {
 
-            auto ppath = createø  <::draw2d::path>();
+            auto pdraw2dpath = createø  <::draw2d::path>();
 
-            ppath->set_current_point(pointA);
-            ppath->add_line(pointB);
-            ppath->add_line(pointC);
+            pdraw2dpath->set_current_point(pointA);
+            pdraw2dpath->add_line(pointB);
+            pdraw2dpath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(pdraw2dpath);
          }
 
-         pgraphics->set(m_ppenFace1);
+         pdraw2dgraphics->set(m_ppenFace1);
 
          // Most external i32_rectangle
 
@@ -499,13 +499,13 @@ namespace experience_core
          pointC.x += 16;
 
             {
-               auto ppath = createø  <::draw2d::path>();
+               auto pdraw2dpath = createø  <::draw2d::path>();
 
-            ppath->set_current_point(pointA);
-            ppath->add_line(pointB);
-            ppath->add_line(pointC);
+            pdraw2dpath->set_current_point(pointA);
+            pdraw2dpath->add_line(pointB);
+            pdraw2dpath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(pdraw2dpath);
             }
 
          // Midle i32_rectangle
@@ -524,15 +524,15 @@ namespace experience_core
          pointC.x += 14;
             {
 
-               auto ppath = createø  <::draw2d::path>();
+               auto pdraw2dpath = createø  <::draw2d::path>();
 
-               ppath->set_current_point(pointA);
-               ppath->add_line(pointB);
-               ppath->add_line(pointC);
+               pdraw2dpath->set_current_point(pointA);
+               pdraw2dpath->add_line(pointB);
+               pdraw2dpath->add_line(pointC);
 
-               pgraphics->draw(ppath);
+               pdraw2dgraphics->draw(pdraw2dpath);
             }
-            pgraphics->set(m_ppenShadow1);
+            pdraw2dgraphics->set(m_ppenShadow1);
 
          rectangleA = rectangleX;
 
@@ -554,16 +554,16 @@ namespace experience_core
          pointC.x += 13;
             {
 
-               auto ppath = createø  <::draw2d::path>();
+               auto pdraw2dpath = createø  <::draw2d::path>();
 
-               ppath->set_current_point(pointA);
-               ppath->add_line(pointB);
-               ppath->add_line(pointC);
+               pdraw2dpath->set_current_point(pointA);
+               pdraw2dpath->add_line(pointB);
+               pdraw2dpath->add_line(pointC);
 
-               pgraphics->draw(ppath);
+               pdraw2dgraphics->draw(pdraw2dpath);
             }
 
-         pgraphics->set(m_ppenDkShadow1);
+         pdraw2dgraphics->set(m_ppenDkShadow1);
 
          rectangleA = rectangleX;
 
@@ -579,16 +579,16 @@ namespace experience_core
          pointC.x += 12;
             {
 
-               auto ppath = createø  <::draw2d::path>();
+               auto pdraw2dpath = createø  <::draw2d::path>();
 
-               ppath->set_current_point(pointA);
-               ppath->add_line(pointB);
-               ppath->add_line(pointC);
+               pdraw2dpath->set_current_point(pointA);
+               pdraw2dpath->add_line(pointB);
+               pdraw2dpath->add_line(pointC);
 
-               pgraphics->draw(ppath);
+               pdraw2dgraphics->draw(pdraw2dpath);
             }
 
-         pgraphics->set(m_ppenShadow1);
+         pdraw2dgraphics->set(m_ppenShadow1);
 
          // Details
 
@@ -596,7 +596,7 @@ namespace experience_core
          pointA.y = rectangleXB.top + 1;
          pointB.x = rectangleXB.left + 14;
          pointB.y = rectangleXB.top + 3;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
 
          // Details
@@ -605,9 +605,9 @@ namespace experience_core
          pointA.y = rectangleXB.top + 14;
          pointB.x = rectangleXB.left + 3;
          pointB.y = rectangleXB.top + 14;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
-         pgraphics->set(m_ppenDkShadow1);
+         pdraw2dgraphics->set(m_ppenDkShadow1);
 
          // Details
 
@@ -615,7 +615,7 @@ namespace experience_core
          pointA.y = rectangleXB.top + 1;
          pointB.x = rectangleXB.left + 15;
          pointB.y = rectangleXB.top + 5;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          // Details
 
@@ -623,12 +623,12 @@ namespace experience_core
          pointA.y = rectangleXB.top + 15;
          pointB.x = rectangleXB.left + 5;
          pointB.y = rectangleXB.top + 15;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
       }
       break;
       case e_grip_top_right:
       {
-         pgraphics->set(m_ppenHilight1);
+         pdraw2dgraphics->set(m_ppenHilight1);
 
          rectangleA = rectangleX;
 
@@ -640,7 +640,7 @@ namespace experience_core
          pointA = rectangleA.top_right();
          pointA.x -= 15;
          pointB = rectangleA.top_right();
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          rectangleA.top += 2;
          rectangleA.left += 2;
@@ -650,9 +650,9 @@ namespace experience_core
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
          pointC.y += 13;
-         pgraphics->line(pointB, pointC);
+         pdraw2dgraphics->line(pointB, pointC);
 
-         pgraphics->set(m_ppenFace1);
+         pdraw2dgraphics->set(m_ppenFace1);
 
          // Most external i32_rectangle
 
@@ -661,7 +661,7 @@ namespace experience_core
          pointA = rectangleA.top_right();
          pointA.x -= 16;
          pointB = rectangleA.top_right();
-         pgraphics->line(pointA,pointB);
+         pdraw2dgraphics->line(pointA,pointB);
 
 
          // Most internal i32_rectangle
@@ -674,7 +674,7 @@ namespace experience_core
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
          pointC.y += 12;
-         pgraphics->line(pointB,pointC);
+         pdraw2dgraphics->line(pointB,pointC);
 
          // Midle i32_rectangle
 
@@ -692,16 +692,16 @@ namespace experience_core
          pointC.y += 14;
             {
 
-            auto ppath = createø  <::draw2d::path>();
+            auto pdraw2dpath = createø  <::draw2d::path>();
 
-            ppath->set_current_point(pointA);
-            ppath->add_line(pointB);
-            ppath->add_line(pointC);
+            pdraw2dpath->set_current_point(pointA);
+            pdraw2dpath->add_line(pointB);
+            pdraw2dpath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(pdraw2dpath);
             }
 
-         pgraphics->set(m_ppenShadow1);
+         pdraw2dgraphics->set(m_ppenShadow1);
 
          rectangleA = rectangleX;
 
@@ -713,7 +713,7 @@ namespace experience_core
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
          pointC.y += 15;
-         pgraphics->line(pointB,pointC);
+         pdraw2dgraphics->line(pointB,pointC);
 
          rectangleA.top += 2;
          rectangleA.left += 2;
@@ -723,16 +723,16 @@ namespace experience_core
          pointA = rectangleA.top_right();
          pointA.x -= 12;
          pointB = rectangleA.top_right();
-         pgraphics->line(pointA,pointB);
+         pdraw2dgraphics->line(pointA,pointB);
 
-         pgraphics->set(m_ppenDkShadow1);
+         pdraw2dgraphics->set(m_ppenDkShadow1);
 
          rectangleA = rectangleX;
 
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
          pointC.y += 16;
-         pgraphics->line(pointB,pointC);
+         pdraw2dgraphics->line(pointB,pointC);
 
          rectangleA.top += 4;
          rectangleA.left += 4;
@@ -742,17 +742,17 @@ namespace experience_core
          pointA = rectangleA.top_right();
          pointA.x -= 11;
          pointB = rectangleA.top_right();
-         pgraphics->line(pointA,pointB);
+         pdraw2dgraphics->line(pointA,pointB);
 
-         pgraphics->set(m_ppenHilight1);
+         pdraw2dgraphics->set(m_ppenHilight1);
 
          pointA.x = rectangleXB.right - 14;
          pointA.y = rectangleXB.top + 1;
          pointB.x = rectangleXB.right - 14;
          pointB.y = rectangleXB.top + 4;
-         pgraphics->line(pointA,pointB);
+         pdraw2dgraphics->line(pointA,pointB);
 
-         pgraphics->set(m_ppenFace1);
+         pdraw2dgraphics->set(m_ppenFace1);
 
          // Details
 
@@ -760,9 +760,9 @@ namespace experience_core
          pointA.y = rectangleXB.top;
          pointB.x = rectangleXB.right - 15;
          pointB.y = rectangleXB.top + 5;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
-         pgraphics->set(m_ppenShadow1);
+         pdraw2dgraphics->set(m_ppenShadow1);
 
          // Details
 
@@ -770,9 +770,9 @@ namespace experience_core
          pointA.y = rectangleXB.top + 14;
          pointB.x = rectangleXB.right - 1;
          pointB.y = rectangleXB.top + 14;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
-         pgraphics->set(m_ppenDkShadow1);
+         pdraw2dgraphics->set(m_ppenDkShadow1);
 
          // Details
 
@@ -780,13 +780,13 @@ namespace experience_core
          pointA.y = rectangleXB.top + 15;
          pointB.x = rectangleXB.right;
          pointB.y = rectangleXB.top + 15;
-         pgraphics->line(pointB, pointA);
+         pdraw2dgraphics->line(pointB, pointA);
       }
       break;
       case e_grip_bottom_left:
       {
 
-         pgraphics->set(m_ppenHilight1);
+         pdraw2dgraphics->set(m_ppenHilight1);
 
          rectangleA = rectangleX;
 
@@ -797,7 +797,7 @@ namespace experience_core
          pointA = rectangleA.bottom_left();
          pointA.y -= 16;
          pointB = rectangleA.bottom_left();
-         pgraphics->line(pointB, pointA);
+         pdraw2dgraphics->line(pointB, pointA);
 
          rectangleA = rectangleX;
 
@@ -808,9 +808,9 @@ namespace experience_core
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
          pointC.x += 12;
-         pgraphics->line(pointC, pointB);
+         pdraw2dgraphics->line(pointC, pointB);
 
-         pgraphics->set(m_ppenFace1);
+         pdraw2dgraphics->set(m_ppenFace1);
 
          // Most external i32_rectangle 0
 
@@ -819,7 +819,7 @@ namespace experience_core
          pointA = rectangleA.bottom_left();
          pointA.y -= 15;
          pointB = rectangleA.bottom_left();
-         pgraphics->line(pointB, pointA);
+         pdraw2dgraphics->line(pointB, pointA);
 
          // Most internal i32_rectangle 4
 
@@ -831,7 +831,7 @@ namespace experience_core
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
          pointC.x += 12;
-         pgraphics->line(pointB, pointC);
+         pdraw2dgraphics->line(pointB, pointC);
 
          // Midle i32_rectangle 2
 
@@ -849,16 +849,16 @@ namespace experience_core
          pointC.x += 14;
             {
 
-            auto ppath = createø  <::draw2d::path>();
+            auto pdraw2dpath = createø  <::draw2d::path>();
 
-            ppath->set_current_point(pointA);
-            ppath->add_line(pointB);
-            ppath->add_line(pointC);
+            pdraw2dpath->set_current_point(pointA);
+            pdraw2dpath->add_line(pointB);
+            pdraw2dpath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(pdraw2dpath);
             }
 
-         pgraphics->set(m_ppenShadow1);
+         pdraw2dgraphics->set(m_ppenShadow1);
 
          rectangleA = rectangleX;
 
@@ -868,7 +868,7 @@ namespace experience_core
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
          pointC.x += 14;
-         pgraphics->line(pointB,pointC);
+         pdraw2dgraphics->line(pointB,pointC);
 
          rectangleA = rectangleX;
 
@@ -878,9 +878,9 @@ namespace experience_core
          pointA = rectangleA.bottom_left();
          pointA.y -= 12;
          pointB = rectangleA.bottom_left();
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
-         pgraphics->set(m_ppenDkShadow1);
+         pdraw2dgraphics->set(m_ppenDkShadow1);
 
          rectangleA = rectangleX;
 
@@ -888,7 +888,7 @@ namespace experience_core
          pointB.x++;
          pointC = rectangleA.bottom_left();
          pointC.x += 16;
-         pgraphics->line(pointB, pointC);
+         pdraw2dgraphics->line(pointB, pointC);
 
          rectangleA.left += 4;
          rectangleA.bottom -= 3;
@@ -896,29 +896,29 @@ namespace experience_core
          pointA = rectangleA.bottom_left();
          pointA.y -= 11;
          pointB = rectangleA.bottom_left();
-         pgraphics->line(pointA,pointB);
+         pdraw2dgraphics->line(pointA,pointB);
 
          // Details - top most
 
-         pgraphics->set(m_ppenHilight1);
+         pdraw2dgraphics->set(m_ppenHilight1);
 
          pointA.x = rectangleXB.left + 1;
          pointA.y = rectangleXB.bottom - 15;
          pointB.x = rectangleXB.left + 4;
          pointB.y = rectangleXB.bottom - 15;
-         pgraphics->line(pointA,pointB);
+         pdraw2dgraphics->line(pointA,pointB);
 
          // Details - top most
 
-         pgraphics->set(m_ppenFace1);
+         pdraw2dgraphics->set(m_ppenFace1);
 
          pointA.x = rectangleXB.left;
          pointA.y = rectangleXB.bottom - 15;
          pointB.x = rectangleXB.left + 5;
          pointB.y = rectangleXB.bottom - 15;
-         pgraphics->line(pointA,pointB);
+         pdraw2dgraphics->line(pointA,pointB);
 
-         pgraphics->set(m_ppenShadow1);
+         pdraw2dgraphics->set(m_ppenShadow1);
 
          // Details - right most
 
@@ -926,9 +926,9 @@ namespace experience_core
          pointA.y = rectangleXB.bottom - 4;
          pointB.x = rectangleXB.left + 14;
          pointB.y = rectangleXB.bottom - 1;
-         pgraphics->line(pointB,pointA);
+         pdraw2dgraphics->line(pointB,pointA);
 
-         pgraphics->set(m_ppenDkShadow1);
+         pdraw2dgraphics->set(m_ppenDkShadow1);
 
          // Details - right most
 
@@ -936,12 +936,12 @@ namespace experience_core
          pointA.y = rectangleXB.bottom - 4;
          pointB.x = rectangleXB.left + 15;
          pointB.y = rectangleXB.bottom;
-         pgraphics->line(pointB, pointA);
+         pdraw2dgraphics->line(pointB, pointA);
       }
       break;
       case e_grip_bottom_right:
       {
-         pgraphics->set(m_ppenHilight1);
+         pdraw2dgraphics->set(m_ppenHilight1);
 
          rectangleA = rectangleX;
 
@@ -962,16 +962,16 @@ namespace experience_core
          pointC.x -= 13;
             {
 
-            auto ppath = createø  <::draw2d::path>();
+            auto pdraw2dpath = createø  <::draw2d::path>();
 
-            ppath->set_current_point(pointA);
-            ppath->add_line(pointB);
-            ppath->add_line(pointC);
+            pdraw2dpath->set_current_point(pointA);
+            pdraw2dpath->add_line(pointB);
+            pdraw2dpath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(pdraw2dpath);
             }
 
-         pgraphics->set(m_ppenFace1);
+         pdraw2dgraphics->set(m_ppenFace1);
 
          rectangleA = rectangleX;
 
@@ -989,13 +989,13 @@ namespace experience_core
          pointC.x -= 12;
             {
 
-            auto ppath = createø  <::draw2d::path>();
+            auto pdraw2dpath = createø  <::draw2d::path>();
 
-            ppath->set_current_point(pointA);
-            ppath->add_line(pointB);
-            ppath->add_line(pointC);
+            pdraw2dpath->set_current_point(pointA);
+            pdraw2dpath->add_line(pointB);
+            pdraw2dpath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(pdraw2dpath);
             }
 
          // Midle i32_rectangle
@@ -1014,15 +1014,15 @@ namespace experience_core
          pointC.x -= 14;
             {
 
-            auto ppath = createø  <::draw2d::path>();
+            auto pdraw2dpath = createø  <::draw2d::path>();
 
-            ppath->set_current_point(pointA);
-            ppath->add_line(pointB);
-            ppath->add_line(pointC);
+            pdraw2dpath->set_current_point(pointA);
+            pdraw2dpath->add_line(pointB);
+            pdraw2dpath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(pdraw2dpath);
             }
-            pgraphics->set(m_ppenShadow1);
+            pdraw2dgraphics->set(m_ppenShadow1);
 
          rectangleA = rectangleX;
 
@@ -1038,15 +1038,15 @@ namespace experience_core
          pointC.x -= 15;
             {
 
-            auto ppath = createø  <::draw2d::path>();
+            auto pdraw2dpath = createø  <::draw2d::path>();
 
-            ppath->set_current_point(pointA);
-            ppath->add_line(pointB);
-            ppath->add_line(pointC);
+            pdraw2dpath->set_current_point(pointA);
+            pdraw2dpath->add_line(pointB);
+            pdraw2dpath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(pdraw2dpath);
             }
-            pgraphics->set(m_ppenDkShadow1);
+            pdraw2dgraphics->set(m_ppenDkShadow1);
 
          rectangleA = rectangleX;
 
@@ -1057,30 +1057,30 @@ namespace experience_core
          pointC.x -= 15;
             {
 
-            auto ppath = createø  <::draw2d::path>();
+            auto pdraw2dpath = createø  <::draw2d::path>();
 
-            ppath->set_current_point(pointA);
-            ppath->add_line(pointB);
-            ppath->add_line(pointC);
+            pdraw2dpath->set_current_point(pointA);
+            pdraw2dpath->add_line(pointB);
+            pdraw2dpath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(pdraw2dpath);
             }
 
-         pgraphics->set(m_ppenHilight1);
+         pdraw2dgraphics->set(m_ppenHilight1);
 
          pointA.x = rectangleXB.right - 3;
          pointA.y = rectangleXB.bottom - 14;
          pointB.x = rectangleXB.right - 1;
          pointB.y = rectangleXB.bottom - 14;
-         pgraphics->line(pointB,pointA);
+         pdraw2dgraphics->line(pointB,pointA);
 
          pointA.x = rectangleXB.right - 14;
          pointA.y = rectangleXB.bottom - 3;
          pointB.x = rectangleXB.right - 14;
          pointB.y = rectangleXB.bottom - 1;
-         pgraphics->line(pointB,pointA);
+         pdraw2dgraphics->line(pointB,pointA);
 
-         pgraphics->set(m_ppenFace1);
+         pdraw2dgraphics->set(m_ppenFace1);
 
          // Details
 
@@ -1088,13 +1088,13 @@ namespace experience_core
          pointA.y = rectangleXB.bottom - 15;
          pointB.x = rectangleXB.right;
          pointB.y = rectangleXB.bottom - 15;
-         pgraphics->line(pointB, pointA);
+         pdraw2dgraphics->line(pointB, pointA);
 
          pointA.x = rectangleXB.right - 15;
          pointA.y = rectangleXB.bottom - 5;
          pointB.x = rectangleXB.right - 15;
          pointB.y = rectangleXB.bottom;
-         pgraphics->line(pointB,pointA);
+         pdraw2dgraphics->line(pointB,pointA);
       }
       break;
       case e_grip_top:
@@ -1114,7 +1114,7 @@ namespace experience_core
          rectangleB.right = pointCenter.x + GRIP_CENTER_LARGE_CX / 2 + iMod;
          rectangleB.bottom = rectangleC.top + GRIP_CENTER_SMALL_CY;
 
-         DrawRectGrip(pgraphics, rectangleB);
+         DrawRectGrip(pdraw2dgraphics, rectangleB);
       }
       break;
       case e_grip_bottom:
@@ -1134,7 +1134,7 @@ namespace experience_core
          rectangleB.right = pointCenter.x + GRIP_CENTER_LARGE_CX / 2 + iMod;
          rectangleB.top = rectangleC.bottom - GRIP_CENTER_SMALL_CY;
 
-         DrawRectGrip(pgraphics, rectangleB);
+         DrawRectGrip(pdraw2dgraphics, rectangleB);
       }
       break;
       case e_grip_left:
@@ -1155,7 +1155,7 @@ namespace experience_core
          rectangleB.right = rectangleC.left + GRIP_CENTER_SMALL_CX;
          rectangleB.bottom = pointCenter.y + GRIP_CENTER_LARGE_CY / 2 + iMod;
 
-         DrawRectGrip(pgraphics, rectangleB);
+         DrawRectGrip(pdraw2dgraphics, rectangleB);
       }
       break;
       case e_grip_right:
@@ -1176,7 +1176,7 @@ namespace experience_core
          rectangleB.left = rectangleC.right - GRIP_CENTER_SMALL_CX;
          rectangleB.bottom = pointCenter.y + GRIP_CENTER_LARGE_CY / 2 + iMod;
 
-         DrawRectGrip(pgraphics, rectangleB);
+         DrawRectGrip(pdraw2dgraphics, rectangleB);
       }
       break;
       default:
@@ -1186,7 +1186,7 @@ namespace experience_core
 
    }
 
-   void frame_001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam)
+   void frame_001::DrawRectGrip(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangleParam)
    {
 
 
@@ -1201,7 +1201,7 @@ namespace experience_core
 
       auto pframewindow = m_pframewindow;
 
-      auto pstyle = pframewindow->get_style(pgraphics);
+      auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
       auto crButtonHilite = pframewindow->get_color(pstyle, ::e_element_button_hilite);
 
@@ -1211,11 +1211,11 @@ namespace experience_core
 
       auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace.opaque(), crButtonDarkShadow.opaque(), 1.0);
+      pdraw2dgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace.opaque(), crButtonDarkShadow.opaque(), 1.0);
 
       rectangle.deflate(1, 1);
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite.opaque(), crButtonShadow.opaque(), 1.0);
+      pdraw2dgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite.opaque(), crButtonShadow.opaque(), 1.0);
 
       rectangle.deflate(1, 1);
 
@@ -1223,12 +1223,12 @@ namespace experience_core
 
       //rectangle.bottom--;
 
-      pgraphics->fill_rectangle(rectangle, crButtonFace.opaque());
+      pdraw2dgraphics->fill_rectangle(rectangle, crButtonFace.opaque());
 
    }
 
 
-   void frame_001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
+   void frame_001::DrawGripSet(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX)
    {
       auto psizenager = m_pframewindow->size_manager();
 
@@ -1236,35 +1236,35 @@ namespace experience_core
 
       if(egrip & e_grip_top)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_top);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_top);
       }
       if(egrip & e_grip_top_right)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_top_right);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_top_right);
       }
       if(egrip & e_grip_right)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_right);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_right);
       }
       if(egrip & e_grip_bottom_right)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_bottom_right);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_bottom_right);
       }
       if(egrip & e_grip_bottom)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_bottom);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_bottom);
       }
       if(egrip & e_grip_bottom_left)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_bottom_left);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_bottom_left);
       }
       if(egrip & e_grip_left)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_left);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_left);
       }
       if(egrip & e_grip_top_left)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_top_left);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_top_left);
       }
 
    }

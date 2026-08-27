@@ -83,7 +83,7 @@ namespace write_text
 
 
    static ::f64_size font_enumeration_get_text_extent(
-      ::draw2d::graphics * pgraphics,
+      ::draw2d::graphics * pdraw2dgraphics,
       const ::scoped_string & scopedstr)
    {
 
@@ -92,12 +92,12 @@ namespace write_text
       if (!pperformance)
       {
 
-         return pgraphics->get_text_extent(scopedstr);
+         return pdraw2dgraphics->get_text_extent(scopedstr);
 
       }
 
       auto timeStart = ::std::chrono::steady_clock::now();
-      auto size = pgraphics->get_text_extent(scopedstr);
+      auto size = pdraw2dgraphics->get_text_extent(scopedstr);
       auto uMicroseconds = (::u64)::std::chrono::duration_cast<
          ::std::chrono::microseconds>(
             ::std::chrono::steady_clock::now() - timeStart).count();
@@ -394,16 +394,16 @@ namespace write_text
    }
 
 
-   void font_list::_001OnDrawWide(::draw2d::graphics_pointer & pgraphics)
+   void font_list::_001OnDrawWide(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto bPerformanceDiagnostics = begin_font_list_performance_diagnostics();
 
-      //pgraphics->reset_clip();
+      //pdraw2dgraphics->reset_clip();
 
       ::f64_rectangle rectangleClipBox;
       
-      pgraphics->get_clip_box(rectangleClipBox);
+      pdraw2dgraphics->get_clip_box(rectangleClipBox);
 
       //return;
 
@@ -413,7 +413,7 @@ namespace write_text
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       auto rectangleWindow = m_puserinteraction->rectangle();
 
@@ -460,16 +460,16 @@ namespace write_text
          if (pstyle->is_dark_mode())
          {
 
-            pgraphics->set_text_color(::color::white);
+            pdraw2dgraphics->set_text_color(::color::white);
 
          }
          else
          {
 
-            pgraphics->set_text_color(::color::black);
+            pdraw2dgraphics->set_text_color(::color::black);
          }
 
-         pgraphics->set_text_color(::color::white);
+         pdraw2dgraphics->set_text_color(::color::white);
 
          if (m_pfontenumeration->m_pathaLoading.get_count())
          {
@@ -479,9 +479,9 @@ namespace write_text
             for (::collection::index i = 0; i < m_pfontenumeration->m_pathaLoading.get_count(); i++)
             {
 
-               pgraphics->text_out(point, "Loading " + m_pfontenumeration->m_pathaLoading[i].title());
+               pdraw2dgraphics->text_out(point, "Loading " + m_pfontenumeration->m_pathaLoading[i].title());
 
-               point.y += (::i32)pgraphics->m_pfont->get_height(pgraphics);
+               point.y += (::i32)pdraw2dgraphics->m_pwritetextfont->get_height(pdraw2dgraphics);
 
             }
 
@@ -596,7 +596,7 @@ namespace write_text
 
          }
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          ::image::image_source imagesource(pbox->m_pimage);
 
@@ -617,7 +617,7 @@ namespace write_text
 
          }
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
          if (bPerformanceDiagnostics && bCachedPreview)
          {
@@ -644,7 +644,7 @@ namespace write_text
             if (!pbox->is_layout_ok(this))
             {
 
-               update_extents(pfontlistdata, pitem, pgraphics, BOX_SEL);
+               update_extents(pfontlistdata, pitem, pdraw2dgraphics, BOX_SEL);
 
             }
 
@@ -655,7 +655,7 @@ namespace write_text
 
             }
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             ::image::image_source imagesource(pbox->m_pimage);
 
@@ -665,7 +665,7 @@ namespace write_text
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pgraphics->draw(imagedrawing);
+            pdraw2dgraphics->draw(imagedrawing);
 
          }
 
@@ -685,7 +685,7 @@ namespace write_text
             if (!pbox->is_layout_ok(this))
             {
 
-               update_extents(pfontlistdata, pitem, pgraphics, BOX_HOVER);
+               update_extents(pfontlistdata, pitem, pdraw2dgraphics, BOX_HOVER);
 
             }
 
@@ -696,7 +696,7 @@ namespace write_text
 
             }
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             ::image::image_source imagesource(pbox->m_pimage);
 
@@ -706,7 +706,7 @@ namespace write_text
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pgraphics->draw(imagedrawing);
+            pdraw2dgraphics->draw(imagedrawing);
 
          }
 
@@ -722,14 +722,14 @@ namespace write_text
    }
 
 
-   void font_list::_001OnDrawSingleColumn(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction)
+   void font_list::_001OnDrawSingleColumn(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::interaction * puserinteraction)
    {
 
       auto bPerformanceDiagnostics = begin_font_list_performance_diagnostics();
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       auto pfontlistdata = m_pfontlistdata;
 
@@ -850,13 +850,13 @@ namespace write_text
             if (pfontlistitem == puserinteraction->m_pitemHover)
             {
 
-               pgraphics->fill_rectangle(rectangle, puserinteraction->get_color(pgraphics->m_puserstyleGraphics, ::e_element_background, ::user::e_state_selected | ::user::e_state_hover));
+               pdraw2dgraphics->fill_rectangle(rectangle, puserinteraction->get_color(pdraw2dgraphics->m_puserstyleGraphics, ::e_element_background, ::user::e_state_selected | ::user::e_state_hover));
 
             }
             else
             {
 
-               pgraphics->fill_rectangle(rectangle, puserinteraction->get_color(pgraphics->m_puserstyleGraphics, ::e_element_background, ::user::e_state_selected));
+               pdraw2dgraphics->fill_rectangle(rectangle, puserinteraction->get_color(pdraw2dgraphics->m_puserstyleGraphics, ::e_element_background, ::user::e_state_selected));
 
             }
 
@@ -864,17 +864,17 @@ namespace write_text
          else if (pfontlistitem == puserinteraction->m_pitemHover)
          {
 
-            auto color = puserinteraction->get_color(pgraphics->m_puserstyleGraphics, ::e_element_background, ::user::e_state_hover);
+            auto color = puserinteraction->get_color(pdraw2dgraphics->m_puserstyleGraphics, ::e_element_background, ::user::e_state_hover);
 
             //auto u8Opacity = color.m_u8Opacity;
 
-            pgraphics->fill_rectangle(rectangle, color);
+            pdraw2dgraphics->fill_rectangle(rectangle, color);
 
          }
 
          {
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             ::image::image_source imagesource(pbox->m_pimage);
 
@@ -893,7 +893,7 @@ namespace write_text
 
             }
 
-            pgraphics->draw(imagedrawing);
+            pdraw2dgraphics->draw(imagedrawing);
 
             if (bPerformanceDiagnostics && bCachedPreview)
             {
@@ -919,7 +919,7 @@ namespace write_text
    }
 
 
-   void font_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction)
+   void font_list::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::interaction * puserinteraction)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -927,20 +927,20 @@ namespace write_text
       if (m_efontlist == e_font_list_wide)
       {
 
-         _001OnDrawWide(pgraphics);
+         _001OnDrawWide(pdraw2dgraphics);
 
       }
       else
       {
 
-         _001OnDrawSingleColumn(pgraphics, puserinteraction);
+         _001OnDrawSingleColumn(pdraw2dgraphics, puserinteraction);
 
       }
 
    }
 
 
-   void font_list::update_extents(font_list_data * pfontlistdata, font_list_item * pitem, ::draw2d::graphics * pgraphics, ::collection::index iBox)
+   void font_list::update_extents(font_list_data * pfontlistdata, font_list_item * pitem, ::draw2d::graphics * pdraw2dgraphics, ::collection::index iBox)
    {
 
       text_box* pbox = &pitem->m_box[iBox];
@@ -965,7 +965,7 @@ namespace write_text
 
          string str = pitem->m_strName;
 
-         constructø(pbox->m_pfont);
+         constructø(pbox->m_pwritetextfont);
 
          if (str.case_insensitive_order("GOUDY STOUT") == 0)
          {
@@ -979,7 +979,7 @@ namespace write_text
             ? ::std::chrono::steady_clock::now()
             : ::std::chrono::steady_clock::time_point{};
 
-         pbox->m_pfont->create_font({ str, pitem->m_strBranch }, font_size(pfontlistdata->m_iaSize[iBox], e_unit_pixel));
+         pbox->m_pwritetextfont->create_font({ str, pitem->m_strBranch }, font_size(pfontlistdata->m_iaSize[iBox], e_unit_pixel));
 
          if (pperformance)
          {
@@ -993,20 +993,20 @@ namespace write_text
 
          }
 
-         pbox->m_pfont->m_pathFontFile = pitem->m_pathFontFile;
+         pbox->m_pwritetextfont->m_pathFontFile = pitem->m_pathFontFile;
 
          //::draw2d::lock draw2dlock(this);
 
-         if (!pgraphics)
+         if (!pdraw2dgraphics)
          {
 
             throw ::exception(error_wrong_state, "font extent measurement requires a graphics lease");
 
          }
 
-         pgraphics->set(pbox->m_pfont);
+         pdraw2dgraphics->set(pbox->m_pwritetextfont);
 
-         pbox->m_pfont->m_echaracterseta = pitem->m_echaracterseta;
+         pbox->m_pwritetextfont->m_echaracterseta = pitem->m_echaracterseta;
 
          if (iBox == 0)
          {
@@ -1014,11 +1014,11 @@ namespace write_text
             strText = m_strTextLayout;
 
             if (strText.is_empty() ||
-               (pbox->m_pfont->get_character_set(pgraphics) != ::e_character_set_ansi
-                  && pbox->m_pfont->get_character_set(pgraphics) != ::e_character_set_default))
+               (pbox->m_pwritetextfont->get_character_set(pdraw2dgraphics) != ::e_character_set_ansi
+                  && pbox->m_pwritetextfont->get_character_set(pdraw2dgraphics) != ::e_character_set_default))
             {
 
-               strText = node()->get_character_set_default_sample_text(pbox->m_pfont->m_echaracterset);
+               strText = node()->get_character_set_default_sample_text(pbox->m_pwritetextfont->m_echaracterset);
 
                if (strText.is_empty())
                {
@@ -1032,7 +1032,7 @@ namespace write_text
             if (strText.has_character())
             {
 
-               s = font_enumeration_get_text_extent(pgraphics, strText);
+               s = font_enumeration_get_text_extent(pdraw2dgraphics, strText);
 
             }
 
@@ -1043,7 +1043,7 @@ namespace write_text
 
                ::i32 maxarea = 0;
 
-               ::enum_character_set echarsetFound = pbox->m_pfont->get_character_set(pgraphics);
+               ::enum_character_set echarsetFound = pbox->m_pwritetextfont->get_character_set(pdraw2dgraphics);
 
                i32_size sSample;
 
@@ -1055,7 +1055,7 @@ namespace write_text
                   if (strSample.has_character())
                   {
 
-                     sSample = font_enumeration_get_text_extent(pgraphics, strSample);
+                     sSample = font_enumeration_get_text_extent(pdraw2dgraphics, strSample);
 
                      if (sSample.area() > maxarea)
                      {
@@ -1080,7 +1080,7 @@ namespace write_text
                   if (strSample.has_character())
                   {
 
-                     sSample = font_enumeration_get_text_extent(pgraphics, strSample);
+                     sSample = font_enumeration_get_text_extent(pdraw2dgraphics, strSample);
 
                      if (sSample.area() > maxarea)
                      {
@@ -1097,7 +1097,7 @@ namespace write_text
 
                }
 
-               pbox->m_pfont->m_echaracterset = echarsetFound;
+               pbox->m_pwritetextfont->m_echaracterset = echarsetFound;
 
             }
 
@@ -1107,9 +1107,9 @@ namespace write_text
          else
          {
 
-            pbox->m_pfont->m_echaracterset = pitem->m_box[0].m_pfont->m_echaracterset;
+            pbox->m_pwritetextfont->m_echaracterset = pitem->m_box[0].m_pwritetextfont->m_echaracterset;
 
-            s = font_enumeration_get_text_extent(pgraphics, pitem->m_strSample);
+            s = font_enumeration_get_text_extent(pdraw2dgraphics, pitem->m_strSample);
 
          }
 
@@ -1536,7 +1536,7 @@ namespace write_text
             : (::acme::user::interaction *) m_puserinteraction.m_p;
          auto graphicslease = pdraw2d->acquire_memory_graphics(
             {256, 256}, pacmeuserinteractionAffinity);
-         auto pgraphics = graphicslease.get();
+         auto pdraw2dgraphics = graphicslease.get();
          ::u64 uGraphicsAcquireMicroseconds = 0;
 
          if (bPerformanceDiagnostics)
@@ -1625,7 +1625,7 @@ namespace write_text
                if (bNew || !bSameSize)
                {
 
-                  update_extents(pfontlistdata, plistitem, pgraphics, 0);
+                  update_extents(pfontlistdata, plistitem, pdraw2dgraphics, 0);
 
                }
 
@@ -1687,7 +1687,7 @@ namespace write_text
 
                }
 
-               update_extents(pfontlistdata, plistitem, pgraphics, iBox);
+               update_extents(pfontlistdata, plistitem, pdraw2dgraphics, iBox);
 
             }
 
@@ -1908,7 +1908,7 @@ namespace write_text
 
          }
 
-         //pgraphics->text_out(x + m_rectangleMargin.left,y + m_rectangleMargin.top,strText);
+         //pdraw2dgraphics->text_out(x + m_rectangleMargin.left,y + m_rectangleMargin.top,strText);
 
          rectangle.left = x;
 

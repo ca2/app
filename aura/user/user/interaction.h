@@ -1414,7 +1414,7 @@ namespace user
       virtual void _extend_on_parent_hosting_area(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
-      virtual void top_sketch_to_lading();
+      //virtual void top_sketch_to_lading();
       virtual void top_down_prefix();
       virtual bool should_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual bool need_on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics);

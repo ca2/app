@@ -15698,28 +15698,28 @@ if(get_parent())
    }
 
 
-   void interaction::top_sketch_to_lading()
-   {
+   //void interaction::top_sketch_to_lading()
+   //{
 
-      sketch_to_lading();
+   //   sketch_to_lading();
 
-      for_user_interaction_children(puserinteraction, this)
-      {
+   //   for_user_interaction_children(puserinteraction, this)
+   //   {
 
-         try
-         {
+   //      try
+   //      {
 
-            puserinteraction->top_sketch_to_lading();
+   //         puserinteraction->top_sketch_to_lading();
 
-         }
-         catch (...)
-         {
+   //      }
+   //      catch (...)
+   //      {
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void interaction::top_down_prefix()
@@ -15728,6 +15728,12 @@ if(get_parent())
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::string strType = ::platform::type(this).name();
+
+      if (get_parent() != nullptr)
+      {
+         sketch_to_lading();
+      }
+
 
       //      if (strType == "user::still")
       //      {
@@ -17698,6 +17704,12 @@ if(get_parent())
       {
 
          information() << "interaction sketch_to_lading app_core_desk::list_impact";
+
+      }
+      else if (strType == "app_core_hello_multiverse::main_impact")
+      {
+
+         information() << "interaction sketch_to_lading app_core_hello_multiverse::main_impact";
 
       }
       // else if(strType.contains("main_frame"))
@@ -21511,7 +21523,9 @@ if(get_parent())
 
          auto iLayout = (::i32)elayout;
 
-         while (iLayout > 0)
+         int iLayoutBottom = get_parent() == nullptr ? 1 : 0;
+
+         while (iLayout >= iLayoutBottom)
          {
 
             if (bOnSetSize)

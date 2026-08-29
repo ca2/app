@@ -433,7 +433,7 @@ namespace user
 
       ::user::place_holder_container::on_perform_top_down_layout(pdraw2dgraphics);
 
-      bool bIsWindowVisible = is_this_visible();
+      bool bIsWindowVisible = is_this_visible(e_layout_layout);
 
       auto rectangle = this->rectangle(e_layout_layout);
 

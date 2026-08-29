@@ -166,7 +166,8 @@ namespace graphics
 
       auto puserinteraction = m_pwindow->user_interaction();
 
-      puserinteraction->top_sketch_to_lading();
+      //puserinteraction->top_sketch_to_lading();
+      puserinteraction->sketch_to_lading();
 
       auto &y5 = puserinteraction->const_layout().lading().m_point2.y;
 

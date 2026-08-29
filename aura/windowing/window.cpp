@@ -153,9 +153,9 @@ namespace windowing
 
 #else
 
-      //set_per_second(60.0);
+      set_per_second(60.0);
 
-      set_per_second(0.2);
+      //set_per_second(0.2);
 
 #endif
 

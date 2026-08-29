@@ -228,7 +228,20 @@ namespace draw2d
 
          m_bUpToDate = true;
 
-         update(pdraw2dgraphics);
+         try
+         {
+
+            update(pdraw2dgraphics);
+
+         }
+         catch (...)
+         {
+
+            m_bUpToDate = false;
+
+            throw;
+
+         }
 
          //pthis->m_baCalculated[i] = true;
 

@@ -57,6 +57,7 @@ namespace acme
          //::pointer < ::acme::windowing::window >                m_pwindowOwner;
 
          //::pointer<::micro::window_implementation>     m_pnanouserwindowimplementation;
+         ::pointer < ::mutex >                     m_pmutexBufferSizeAndPosition;
 
          class ::time                              m_timeHoverNoiseSuppression;
 

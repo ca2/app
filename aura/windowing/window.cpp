@@ -82,7 +82,7 @@ namespace windowing
 
       m_bKeyboardFocus = false;
 
-
+      m_bOnRender = false;
 
       user_common_construct();
 
@@ -153,9 +153,9 @@ namespace windowing
 
 #else
 
-      set_per_second(60.0);
+      //set_per_second(60.0);
 
-      //set_per_second(0.2);
+      set_per_second(0.2);
 
 #endif
 
@@ -8201,6 +8201,23 @@ namespace windowing
 
       bool bFullRedraw = false;
 
+      // A null rectangle is the full-redraw marker. Detect it independently
+      // of the current queue contents; the first redraw request commonly
+      // arrives before the interaction has acquired its initial rectangle.
+      for (auto & rectangle : rectangleaHostNeedRedraw)
+      {
+
+         if (rectangle.is_null())
+         {
+
+            bFullRedraw = true;
+
+            break;
+
+         }
+
+      }
+
       for (auto & predraw : m_redrawitema)
       {
 
@@ -9296,7 +9313,7 @@ namespace windowing
 
          }
 
-         m_pcsDisplay = øraw_new critical_section();
+         m_pcsDisplay = ::as_pointer(new critical_section());
 
          information() << "interaction_impl m_pgraphics alloc : " << strType;
 
@@ -12033,6 +12050,21 @@ namespace windowing
             try
             {
 
+               auto pgraphicsgraphics = m_pgraphicsgraphics;
+
+
+               {
+
+                  m_bOnRender = true;
+
+                  at_end_of_scope
+                  {
+
+                     m_bOnRender = false;
+
+                  };
+
+
                debug() << "windowing::window::do_graphics";
 
                ::pointer<::graphics::buffer_item> pbufferitem;
@@ -12054,7 +12086,6 @@ namespace windowing
 
                      // information() << "not main_frame";
                   }
-                  auto pgraphicsgraphics = m_pgraphicsgraphics;
 
                   {
 
@@ -12137,7 +12168,7 @@ namespace windowing
                         }
 
 #if 1
-                        auto pbufferitem = m_pgraphicsgraphics->get_buffer_item();
+                        pbufferitem = m_pgraphicsgraphics->get_buffer_item();
                         auto pimageBuffer = pbufferitem->m_pimageBufferItem;
                         auto pdraw2dbitmap = pimageBuffer->m_pdraw2dbitmap;
                         auto sizeBitmap = pdraw2dbitmap->size();
@@ -12277,7 +12308,21 @@ namespace windowing
 
                               //_synchronous_lock synchronouslockDraw(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-                              pdraw2dgraphics->on_begin_draw(this, m_sizeWindowBuffer);
+                              auto rectangleFrame = ::f64_rectangle(
+                                 pbufferitem->m_pointBufferItem,
+                                 pbufferitem->m_sizeBufferItem);
+
+                              // Layout and drawing use the same graphics object. Restore
+                              // the acquired frame target and clip before drawing so no
+                              // layout-time state, or newer window-wide geometry, can
+                              // affect the pixels belonging to this buffer item.
+                              pdraw2dgraphics->set_target_rectangle(rectangleFrame);
+
+                              pdraw2dgraphics->defer_on_target_rectangle_update();
+
+                              pdraw2dgraphics->reset_clip();
+
+                              pdraw2dgraphics->on_begin_draw(this, rectangleFrame.size());
 
                               auto elapsed41 = time4.elapsed();
                               // informationf("draw_frame elapsed4.1 %0.2f", elapsed41.floating_millisecond());
@@ -12286,8 +12331,10 @@ namespace windowing
                               frame_draw_stage(pdraw2dgraphics);
 
                               // pdraw2dgraphics->fill_solid_rectangle({ 100., 100., 500., 500. }, argb(127, 100, 180, 220));
-
                               pdraw2dgraphics->on_end_draw(this);
+
+
+                              pdraw2dgraphics->flush();
 
                               auto elapsed42 = time42.elapsed();
                               // informationf("draw_frame elapsed4.2 %0.2f", elapsed42.floating_millisecond());
@@ -12319,9 +12366,66 @@ namespace windowing
 
                   pgraphicsgraphics->on_end_draw();
 
+               }
+
+               }
+
+               auto puserinteractionPresent = user_interaction();
+
+               bool bPresentFrame;
+
+               {
+
+                  synchronous_lock synchronouslockBufferSizeAndPosition(
+                     m_pmutexBufferSizeAndPosition, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+                  auto pitemScreen = pgraphicsgraphics->get_screen_item();
+
+                  auto rectangleFrame = ::i32_rectangle(
+                     pitemScreen->m_pointBufferItemWindow,
+                     pitemScreen->m_sizeBufferItemWindow);
+
+                  auto rectangleLading = ::i32_rectangle(
+                     puserinteractionPresent->const_layout().lading().origin(),
+                     puserinteractionPresent->const_layout().lading().size());
+
+                  auto rectangleDesign = ::i32_rectangle(
+                     puserinteractionPresent->const_layout().design().origin(),
+                     puserinteractionPresent->const_layout().design().size());
+
+                  auto pimageFrame = pitemScreen->m_pimageBufferItem;
+
+                  auto bImageMatchesFrame = pimageFrame
+                     && pimageFrame->m_point == rectangleFrame.origin()
+                     && pimageFrame->m_size == rectangleFrame.size();
+
+                  // Sketch may already contain the next resize step. This frame is
+                  // valid as long as the bitmap and the design state actually drawn
+                  // both match the lading state captured for this buffer item.
+                  bPresentFrame = bImageMatchesFrame
+                     && rectangleFrame == rectangleLading
+                     && rectangleFrame == rectangleDesign;
+
+               }
+
+               // Native presentation may synchronously re-enter the window thread.
+               // Never hold the resize/layout mutex while presenting.
+               if (bPresentFrame)
+               {
+
                   pgraphicsgraphics->update_screen();
 
                }
+
+               if (!bPresentFrame)
+               {
+
+                  puserinteractionPresent->set_need_redraw();
+
+                  puserinteractionPresent->post_redraw();
+
+               }
+
 
             }
             catch (const ::exception & exception)
@@ -16141,7 +16245,29 @@ namespace windowing
 
       ::pointer<::message::reposition> preposition(pmessage);
 
-      m_pointWindow = preposition->m_point;
+      // WM_MOVE and WM_SIZE are separate notifications, but the native window
+      // rectangle is one state. Refresh both components together so a drawing
+      // thread cannot observe the position from one commit with the size from
+      // another commit during a left-edge resize.
+      auto rectangleWindowCurrent = get_window_rectangle();
+
+      if (m_pmutexBufferSizeAndPosition)
+      {
+
+         synchronous_lock synchronouslockBufferSizeAndPosition(
+            m_pmutexBufferSizeAndPosition, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         m_pointWindow = rectangleWindowCurrent.origin();
+         m_sizeWindow = rectangleWindowCurrent.size();
+
+      }
+      else
+      {
+
+         m_pointWindow = rectangleWindowCurrent.origin();
+         m_sizeWindow = rectangleWindowCurrent.size();
+
+      }
 
       //      if(user_interaction()->m_ewindowflag & e_window_flag_postpone_visual_update)
       //      {
@@ -16272,7 +16398,28 @@ namespace windowing
 
       ::pointer<::message::size> psize(pmessage);
 
-      m_sizeWindow = psize->m_size;
+      // Keep the cached native position and size from the same HWND snapshot.
+      // Updating only m_sizeWindow here can otherwise tear the rectangle paired
+      // with the WM_MOVE notification handled on another scheduling boundary.
+      auto rectangleWindowCurrent = get_window_rectangle();
+
+      if (m_pmutexBufferSizeAndPosition)
+      {
+
+         synchronous_lock synchronouslockBufferSizeAndPosition(
+            m_pmutexBufferSizeAndPosition, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         m_pointWindow = rectangleWindowCurrent.origin();
+         m_sizeWindow = rectangleWindowCurrent.size();
+
+      }
+      else
+      {
+
+         m_pointWindow = rectangleWindowCurrent.origin();
+         m_sizeWindow = rectangleWindowCurrent.size();
+
+      }
 
       information("windowing::window::on_message_size w={}, h={}", m_sizeWindow.cx, m_sizeWindow.cy);
 

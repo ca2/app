@@ -3,7 +3,8 @@
 
 
 #include "list_node.h"
-#include "acme/platform/auto_pointer.h"
+#include "acme/prototype/prototype/auto_pointer.h"
+
 
 template < prototype_container CONTAINER, typename TYPE >
 bool contains(const CONTAINER & container, const TYPE & t)
@@ -949,7 +950,7 @@ template<class TYPE, class ARG_TYPE>
 
       }
 
-      return ::transfer(pnodeBegin);
+      return ::auto_pointer < ::list_node < TYPE > >(pnodeBegin);
 
    }
    else
@@ -1001,7 +1002,7 @@ template<class TYPE, class ARG_TYPE>
 
       }
 
-      return ::transfer(pnodeEnd);
+      return ::auto_pointer < ::list_node < TYPE > >(pnodeEnd);
 
    }
    else

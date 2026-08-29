@@ -224,10 +224,9 @@ namespace draw2d
 
          //}
 
-         destroy();
+         clear_node_data();
 
          m_bUpToDate = true;
-
 
          update(pdraw2dgraphics);
 
@@ -306,6 +305,13 @@ namespace draw2d
    //   m_baCalculated[7] = false;
 
    //}
+
+
+   void object::clear_node_data()
+   {
+
+
+   }
 
 
 } // namespace draw2d

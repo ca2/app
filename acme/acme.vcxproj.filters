@@ -4497,6 +4497,9 @@
     <ClInclude Include="graphics\image\frame_array.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\prototype\auto_pointer.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

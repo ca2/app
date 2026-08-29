@@ -29,6 +29,8 @@ namespace draw2d
 
       m_sizeTarget = rectangle.size();
 
+      m_bTargetRectangleModified = true;
+
    }
 
 

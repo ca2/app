@@ -16,7 +16,7 @@
 #include "acme/prototype/string/scoped_string_base.h"
 //#include "acme/prototype/prototype/signal.h"
 //#include "acme/prototype/prototype/post_procedure_continuation.h"
-#include "acme/platform/auto_pointer.h"
+#include "acme/prototype/prototype/auto_pointer.h"
 
 
 class user_interaction_sink;
@@ -898,7 +898,7 @@ public:
    inline void __call__emplace_new(::auto_pointer < T > &p, Args &&... args)
    {
 
-      p = new T(::std::forward<Args>(args)...);
+      p.reset(new T(::std::forward<Args>(args)...));
 
    }
 

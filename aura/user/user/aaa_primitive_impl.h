@@ -55,7 +55,7 @@ namespace user
       ~prototype_impl() override;
 
 
-      inline critical_section * cs_display() { return m_pcsDisplay; }
+      inline critical_section * cs_display() { return m_pcsDisplay.get(); }
       virtual ::windowing::window * get_user_interaction_impl();
       virtual ::user::interaction_child * get_user_interaction_child();
 

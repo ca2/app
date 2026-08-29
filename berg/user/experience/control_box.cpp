@@ -607,6 +607,8 @@ namespace experience
 
             pbutton->place(rectangle);
 
+            pbutton->place(rectangle, ::user::e_layout_layout);
+
             pbutton->display();
 
             pbutton->UpdateWndRgn();
@@ -659,7 +661,7 @@ namespace experience
    void control_box::layout_control_box_buttons()
    {
 
-      auto rectangle = this->rectangle(::user::e_layout_lading);
+      auto rectangle = this->rectangle(::user::e_layout_layout);
 
 //      ::i32 iWidth = rectangleX.width();
 //

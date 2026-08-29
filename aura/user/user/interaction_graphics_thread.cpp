@@ -1301,15 +1301,15 @@ namespace user
 
 #endif
 
-         if (!m_puserinteraction->has_fps_output_purpose())
+         if(!wait_to_present())
          {
 
-            if(!wait_to_present())
-            {
+            return false;
 
-               return false;
+         }
 
-            }
+         if (!m_puserinteraction->has_fps_output_purpose())
+         {
 
             if (is_equivalent(m_puserinteraction->window()->is_window_visible(),
                               m_puserinteraction->const_layout().sketch().is_screen_visible()))
@@ -1389,53 +1389,6 @@ namespace user
       {
 
          return false;
-
-      }
-
-      if (m_puserinteraction->has_fps_output_purpose())
-      {
-
-         if(!wait_to_present())
-         {
-
-            return false;
-
-         }
-
-         if (has_finishing_flag())
-         {
-
-            return false;
-
-         }
-
-      }
-
-      if(::is_set(puserinteraction))
-      {
-
-         if (puserinteraction->has_screen_output_purpose())
-         {
-
-            auto pwindow = puserinteraction->windowing_window();
-
-            if (::is_set(pwindow))
-            {
-
-
-#ifdef MORE_LOG
-                  
-                  debug() << "graphics_thread_iteration has_screen_output_purpose before window_update_screen";
-
-#endif
-
-                  //information() << "pwindow->window_update_screen();";
-
-                  pwindow->window_update_screen();
-
-            }
-
-         }
 
       }
 

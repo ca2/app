@@ -5355,7 +5355,7 @@ namespace user
             if (!m_puserinteraction->m_bMessageWindow)
             {
 
-               m_pcsDisplay = ___new critical_section();
+               m_pcsDisplay.reset(___new critical_section());
 
                information() << "interaction_impl m_pgraphics alloc : " << strType;
 

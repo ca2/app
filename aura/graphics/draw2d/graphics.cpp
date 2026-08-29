@@ -82,7 +82,7 @@ namespace draw2d
    graphics::graphics()
    {
 
-      m_bCreated = false;
+      //m_bCreated = false;
       m_iYFlipHeight = 0;
       //m_bHasCurrentPoint = false;
       //_m_bYFlip = false;
@@ -175,7 +175,7 @@ namespace draw2d
    bool graphics::is_set()
    {
 
-      return m_bCreated;
+      return ::is_set(this);
 
    }
 
@@ -183,7 +183,7 @@ namespace draw2d
    bool graphics::_is_ok() const
    {
 
-      return ::is_set(this) && m_bCreated;
+      return ::is_set(this) && this->has_ok_flag();
 
    }
 
@@ -637,6 +637,7 @@ namespace draw2d
 
       if (::is_set(pimage))
       {
+         
          m_dSizeScaler = pimage->m_dSizeScaler;
          m_pdraw2dbitmap = pimage->m_pdraw2dbitmap;
          on_set_target_rectangle(pimage);

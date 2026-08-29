@@ -43,7 +43,7 @@ namespace draw2d
 
 
       void on_initialize_particle() override;
-      
+      void clear_node_data() override;
       
       //inline ::aura::system* system();
 

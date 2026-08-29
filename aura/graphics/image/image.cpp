@@ -851,6 +851,131 @@ namespace image
 
    //}
 
+   //bool image::host(::pixmap_t * ppixmapHost, ::windowing::window * pwindow)
+   //{
+   //   //// callers should be able to deal with graphics backend that doesn't support "hosting" portions of RAM
+   //   //return false;
+
+   //   if (!::is_set(pwindowbuffer->m_ppixmapWindowBuffer))
+   //   {
+
+   //      return false;
+
+   //      //throw ::exception(error_failed);
+
+   //   }
+
+   //   auto ppixmapWindowBuffer = pwindowbuffer->m_ppixmapWindowBuffer;
+
+   //   if (m_pdraw2dbitmap.is_set()
+   //       && m_pdraw2dbitmap->get_os_data() != nullptr
+   //       && m_ppixmapOwned
+   //       && ppixmapWindowBuffer->m_sizeRaw == sizeRaw && ppixmapWindowBuffer->image32() == m_ppixmapOwned->image32()
+   //       && ppixmapWindowBuffer->scan_size() == m_ppixmapOwned->scan_size())
+   //   {
+
+   //      //if (ppixmapWindowBuffer->size() != pwindow->m_sizeWindow
+   //        //  || ppixmapWindowBuffer->m_point != pwindow->m_pointWindow)
+   //      {
+
+   //         //m_ppixmapOwned->m_point = pwindow->m_pointWindow;
+
+   //         //m_ppixmapOwned->m_size = ppixmapWindowBuffer->size();
+
+   //         m_ppixmapOwned->m_point = ppixmapWindowBuffer->m_point;
+
+   //         m_ppixmapOwned->m_size = ppixmapWindowBuffer->m_size;
+
+   //      }
+
+   //      return true;
+
+   //      //return;
+
+   //   }
+
+   //   //destroy();
+
+   //   //defer_constructø(m_pdraw2dbitmap);
+
+   //   ////defer_constructø(m_pgraphics);
+
+   //   ////if (m_pdraw2dbitmap.is_null())
+   //   ////{
+
+   //   ////   m_sizeRaw.cx = 0;
+
+   //   ////   m_sizeRaw.cy = 0;
+
+   //   ////   m_sizeAlloc.cx = 0;
+
+   //   ////   m_sizeAlloc.cy = 0;
+
+   //   ////   m_iScan = 0;
+
+   //   ////   return false;
+
+   //   ////}
+
+
+   //   //if(!m_pdraw2dbitmap->host_bitmap(nullptr, pwindowbuffer->m_ppixmapWindowBuffer))
+   //   //{
+
+   //   //   return false;
+   //   //   //m_pdraw2dbitmap->create_bitmap(pdraw2dgraphics, size, )
+
+   //   //}
+   //   //if (!)
+   //   //{
+
+   //   //   m_sizeRaw.cx = 0;
+
+   //   //   m_sizeRaw.cy = 0;
+
+   //   //   m_sizeAlloc.cx = 0;
+
+   //   //   m_sizeAlloc.cy = 0;
+
+   //   //   m_iScan = 0;
+
+   //   //   return false;
+
+   //   //}
+   //   //throw ::exception(error_failed);
+   //   //if (m_pdraw2dbitmap->nok())
+   //   //{
+
+   //   //   destroy();
+
+   //   //   return false;
+
+   //   //}
+
+   //   m_ppixmapOwned = ppixmapWindowBuffer;
+
+   //   //initialize_pixmap(ppixmapWindowBuffer->size(), ppixmapWindowBuffer->image32(), ppixmapWindowBuffer->m_iScan);
+
+   //   m_sizeRaw = ppixmapWindowBuffer->m_sizeRaw;
+
+   //   m_size = ppixmapWindowBuffer->m_size;
+
+   //   //m_pimage32Raw = ppixmapWindowBuffer->m_pimage32Raw;
+
+   //   //m_pimage32 = ppixmapWindowBuffer->m_pimage32;
+
+   //   //pdraw2dgraphics->set(m_pdraw2dbitmap);
+
+   //   //pdraw2dgraphics->m_pimage = this;
+
+   //   //pdraw2dgraphics->place_impact_area(0., 0., m_size.cx, m_size.cy);
+
+   //   set_ok_flag();
+
+   //   return true;
+
+
+   //}
+
 
    //bool image::on_host_read_pixels(::pixmap_t* ppixmapHost) const
    //{
@@ -11411,15 +11536,18 @@ namespace image
 
          m_ppixmapOwned->change_size_and_stride_preserving_data(sizeRawThis, m_iScan);
 
-         m_ppixmapOwned->m_point = m_point;
-
-         m_ppixmapOwned->m_size = m_size;
-
-         m_ppixmapOwned->pixmap_map();
-
          m_iScan = m_ppixmapOwned->m_iScan;
 
       }
+
+      // A window move changes the mapped rectangle without changing the raw
+      // allocation or stride. Remap before readback so GDI+ writes the current
+      // rectangle into the matching location in the owned CPU buffer.
+      m_ppixmapOwned->m_point = m_point;
+
+      m_ppixmapOwned->m_size = m_size;
+
+      m_ppixmapOwned->pixmap_map();
 
       if (m_bGraphicsWasAcquiredAfterLastMap)
       {

@@ -57,7 +57,6 @@ namespace windowing
       };
 
       bool                                      m_bMessageOnlyWindow : 1;
-
       ::sandbox_windowing::window *             m_psandboxwindowingwindow;
       ::task_pointer                            m_ptaskUpdateScreen;
       string                                    m_strDebug;
@@ -80,7 +79,7 @@ namespace windowing
       ::particle_pointer                        m_pparticleChildrenSynchronization;
          ::pointer < ::particle >               m_pmutexGraphics;
          class ::time m_time017LastConfigureUnlocked;
-
+         bool m_bOnRender;
       //::pointer < ::draw2d::graphics_context >  m_pgraphicscontextDrawFrame;
 
 #if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)

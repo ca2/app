@@ -1671,7 +1671,7 @@ namespace user
    void shell::init_task()
    {
 
-      m_pgetfileimage = new_get_file_image();
+      m_pgetfileimage = ::as_pointer(new_get_file_image());
 
       do_initialize();
 

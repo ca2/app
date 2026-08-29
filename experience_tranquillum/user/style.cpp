@@ -1151,7 +1151,7 @@ namespace experience_tranquillum
 
       //}
 
-      ptab->get_data()->m_ppen->create_solid(1, rgb(32, 32, 32));
+      ptab->get_data()->m_pdraw2dpen->create_solid(1, rgb(32, 32, 32));
 
       //pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 

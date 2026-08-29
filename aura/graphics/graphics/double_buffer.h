@@ -20,7 +20,7 @@ namespace graphics
       //bool                          m_bSingleBufferMode;
 
 
-      bool                          m_bDibIsHostingBuffer;
+      //bool                          m_bDibIsHostingBuffer;
 
 
       ::i32                           m_iCurrentBuffer;

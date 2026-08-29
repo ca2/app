@@ -151,6 +151,8 @@ namespace graphics
    void graphics::buffer_size_and_position(buffer_item * pbufferitem)
    {
 
+      synchronous_lock synchronouslock(m_pwindow->m_pmutexBufferSizeAndPosition);
+
       debug() << "::graphics::graphics::buffer_size_and_position (1)";
 
       if (::is_null(m_pwindow) || ::is_null(m_pwindow->user_interaction()))
@@ -164,16 +166,18 @@ namespace graphics
 
       auto puserinteraction = m_pwindow->user_interaction();
 
-      auto &y5 = puserinteraction->const_layout().sketch().m_point2.y;
+      puserinteraction->top_sketch_to_lading();
 
-      auto rectangleDesign = ::i32_rectangle(puserinteraction->const_layout().sketch().origin(),
-         puserinteraction->const_layout().sketch().size());
+      auto &y5 = puserinteraction->const_layout().lading().m_point2.y;
+
+      auto rectangleDesign = ::i32_rectangle(puserinteraction->const_layout().lading().origin(),
+         puserinteraction->const_layout().lading().size());
 
       auto rectangleRaw = ::i32_rectangle(m_pwindow->m_sizeRaw);
 
       auto rectangleFixed = rectangleDesign.intersection(rectangleRaw);
 
-      auto pointDesign = puserinteraction->const_layout().sketch().origin();
+      auto pointDesign = puserinteraction->const_layout().lading().origin();
 
       if (pbufferitem->m_pointBufferItem != pointDesign)
       {
@@ -186,7 +190,7 @@ namespace graphics
 
       }
 
-      auto sizeDesign = puserinteraction->const_layout().sketch().size();
+      auto sizeDesign = puserinteraction->const_layout().lading().size();
 
       if (pbufferitem->m_sizeBufferItem != sizeDesign)
       {
@@ -206,18 +210,13 @@ namespace graphics
 
       }
 
-
       m_pwindow->m_pointWindowBuffer = pbufferitem->m_pointBufferItem;
 
       m_pwindow->m_sizeWindowBuffer = pbufferitem->m_sizeBufferItem;
 
-
-
       //pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().layout().origin();
 
       //pbufferitem->m_size = m_pimpl->m_puserinteraction->const_layout().layout().size();
-
-
 
    }
 
@@ -268,9 +267,6 @@ namespace graphics
       debug() << "::graphics::graphics::going to call buffer_size_and_position";
 
       auto pacmeuserinteractionAffinity = m_pwindow->m_pacmeuserinteraction;
-
-
-
 
       // A move can be followed directly by a draw acquisition, without a layout
       // acquisition in between. Keep the buffer rectangle current for both cases;

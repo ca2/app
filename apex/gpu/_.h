@@ -10,6 +10,7 @@ namespace gpu
    class device;
 	class context;
    class texture;
+   class pixmap;
 
 
    enum enum_start_layer

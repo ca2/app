@@ -689,6 +689,29 @@ namespace experience
       //   bSize = false;
       //}
 
+#if defined(_DEBUG)
+
+      if (eframe == ::experience::e_frame_sizing_left
+          || eframe == ::experience::e_frame_sizing_top_left
+          || eframe == ::experience::e_frame_sizing_bottom_left)
+      {
+
+         informationf(
+            "LEFT_RESIZE_REQUEST origin=(%d,%d)-(%d,%d) request=(%d,%d)-(%d,%d) rightDelta=%d",
+            m_rectangleWindowOrigin.left,
+            m_rectangleWindowOrigin.top,
+            m_rectangleWindowOrigin.right,
+            m_rectangleWindowOrigin.bottom,
+            rectangleWindow.left,
+            rectangleWindow.top,
+            rectangleWindow.right,
+            rectangleWindow.bottom,
+            rectangleWindow.right - m_rectangleWindowOrigin.right);
+
+      }
+
+#endif
+
       auto p = __get_top_right();
 
       if (p.is_set())

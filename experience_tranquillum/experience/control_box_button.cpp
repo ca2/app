@@ -113,7 +113,7 @@ namespace experience_tranquillum
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->fill_rectangle(rectangleX, pgraphics->m_pbrush->m_color);
+      pgraphics->fill_rectangle(rectangleX, pgraphics->m_pdraw2dbrush->m_color);
 
       //pgraphics->FillEllipse(rectangleEllipse);
 

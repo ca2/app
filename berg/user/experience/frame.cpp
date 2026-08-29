@@ -1085,6 +1085,8 @@ namespace experience
 
          get_control_box()->place(rectangleControlBox, ::user::e_layout_sketch, pdraw2dgraphics);
 
+         get_control_box()->place(rectangleControlBox, ::user::e_layout_layout, pdraw2dgraphics);
+
          //information() << "experience::frame_window::title_bar_layout rectangleControlBox: " << rectangleControlBox;
 
       }

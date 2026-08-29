@@ -38,4 +38,32 @@ const non_reference < TYPE > * && transfer(TYPE * const & t)
 
 
 
+template < typename TYPE >
+class transfer_pointer
+{
+public:
+
+   TYPE * m_p;
+
+   transfer_pointer(TYPE * p)
+   {
+
+      m_p = p;
+
+   }
+
+
+};
+
+
+template <typename TYPE>
+requires (not prototype_subparticle<TYPE>)
+[[nodiscard]] constexpr transfer_pointer<TYPE> as_pointer(TYPE * p) noexcept
+{
+
+   return transfer_pointer<TYPE>(p);
+
+}
+
+
 

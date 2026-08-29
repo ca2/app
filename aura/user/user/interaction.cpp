@@ -833,24 +833,13 @@ namespace user
 
       set_need_layout();
 
-      if (get_parent() == nullptr)
-      {
+      // Resizing can reflow descendants (for example, a right-aligned control
+      // box). Redrawing only the newly exposed right/bottom strips clips those
+      // descendants at their former positions. Cover both the old and new
+      // client extents whenever geometry changes.
+      auto sizeRedraw = rectangleAfter.size().maximum(rectangleBefore.size());
 
-         auto rectangleaCertainlyDamaged = get_top_left_oriented_damaged_areas_by_resizing(rectangleAfter,
-                                                                                           rectangleBefore, false);
-
-         set_need_redraw(rectangleaCertainlyDamaged, pdraw2dgraphics);
-
-      }
-      else
-      {
-
-         auto rectangleaCertainlyDamaged = get_top_left_oriented_damaged_areas_by_resizing(rectangleAfter,
-            rectangleBefore, false);
-
-         set_need_redraw(rectangleaCertainlyDamaged, pdraw2dgraphics);
-
-      }
+      set_need_redraw({ { 0, 0, sizeRedraw.cx, sizeRedraw.cy } }, pdraw2dgraphics);
 
       if (::is_null(pdraw2dgraphics))
       {
@@ -15709,6 +15698,30 @@ if(get_parent())
    }
 
 
+   void interaction::top_sketch_to_lading()
+   {
+
+      sketch_to_lading();
+
+      for_user_interaction_children(puserinteraction, this)
+      {
+
+         try
+         {
+
+            puserinteraction->top_sketch_to_lading();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+   }
+
+
    void interaction::top_down_prefix()
    {
 
@@ -15726,8 +15739,6 @@ if(get_parent())
       //         information() << "user::still top_down_prefix text " << psz2;
       //
       //      }
-
-      sketch_to_lading();
 
       m_bUpdateBuffer = false;
 
@@ -18389,6 +18400,8 @@ if(get_parent())
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+      bool bRecalculateClipRectangle = false;
+
 
             ::string strType = ::platform::type(this).name();
 
@@ -18411,6 +18424,8 @@ if(get_parent())
          layout().design().visual_state::operator=(layout().layout());
 
          m_bClipRectangle = false;
+
+         bRecalculateClipRectangle = true;
 
       }
 
@@ -18458,6 +18473,17 @@ if(get_parent())
       }
 
       //information() << "layout().design().m_edisplay : " << layout().design().m_edisplay;
+
+      synchronouslock.unlock();
+
+      if (bRecalculateClipRectangle)
+      {
+
+         // A descendant's local rectangle may remain unchanged while an ancestor
+         // moves or resizes. Its cached host-space clip is nevertheless stale.
+         set_recalculate_clip_rectangle();
+
+      }
 
    }
 
@@ -21411,31 +21437,22 @@ if(get_parent())
    void interaction::place(const ::i32_rectangle & rectangle, enum_layout elayout, ::draw2d::graphics * pdraw2dgraphics)
    {
 
+      synchronous_lock synchronouslockGeometry(
+         elayout == ::user::e_layout_sketch
+         && acme_windowing_window() ?
+         (::particle *) acme_windowing_window()->m_pmutexBufferSizeAndPosition :
+         this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
       auto sizeNew = rectangle.size();
 
       bool bOnSetSize = on_set_size(sizeNew, elayout);
-
-      if (!bOnSetSize)
-      {
-
-         //information() << "interaction::place !bOnSetSize";
-
-         set_position(rectangle.origin(), elayout, pdraw2dgraphics);
-
-         return;
-
-      }
 
       auto pointNew = rectangle.origin();
 
       bool bOnSetPosition = on_set_position(pointNew, elayout);
 
-      if (!bOnSetPosition)
+      if (!bOnSetSize && !bOnSetPosition)
       {
-
-         //information() << "interaction::place !bOnSetSize";
-
-         set_size(rectangle.size(), elayout, pdraw2dgraphics);
 
          return;
 
@@ -21449,15 +21466,23 @@ if(get_parent())
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
          auto & layoutstate = layout().m_statea[elayout];
 
          rectangleBefore = layoutstate.raw_rectangle();
 
-         layoutstate.set_visual_state_origin(pointNew);
+         if (bOnSetPosition)
+         {
 
-         layoutstate.m_size = sizeNew;
+            layoutstate.set_visual_state_origin(pointNew);
+
+         }
+
+         if (bOnSetSize)
+         {
+
+            layoutstate.m_size = sizeNew;
+
+         }
 
          auto r = layout().m_statea[elayout].parent_raw_rectangle();
 
@@ -21484,20 +21509,32 @@ if(get_parent())
 
          }
 
+         auto iLayout = (::i32)elayout;
+
+         while (iLayout > 0)
+         {
+
+            if (bOnSetSize)
+            {
+
+               layout().m_statea[iLayout].m_size = sizeNew;
+
+            }
+
+            if (bOnSetPosition)
+            {
+
+               layout().m_statea[iLayout].m_point2 = pointNew;
+
+            }
+
+            iLayout--;
+
+         }
+
       }
 
-      auto iLayout = (::i32)elayout;
-
-      while (iLayout >= 0)
-      {
-
-         layout().m_statea[iLayout].m_size = sizeNew;
-
-         layout().m_statea[iLayout].m_point2 = pointNew;
-
-         iLayout--;
-
-      }
+      synchronouslockGeometry.unlock();
 
       if (is_top_level() && windowing_window() && elayout == e_layout_sketch)
       {
@@ -21538,15 +21575,11 @@ if(get_parent())
       //  if (get_parent() == nullptr)
         //{
 
-      auto rectangleaCertainlyDamaged = get_top_left_oriented_damaged_areas_by_resizing(rectangleAfter,
-                                                                                         rectangleBefore);
+      // A placement change can reflow descendants across the client area.
+      // Strip-only resize damage is therefore insufficient for a layout frame.
+      auto sizeRedraw = rectangleAfter.size().maximum(rectangleBefore.size());
 
-      //}
-
-
-   //auto rectangleaCertainlyDamaged = get_top_left_oriented_damaged_areas_by_resizing(rectangleAfter, rectangleBefore);
-
-      set_need_redraw(rectangleaCertainlyDamaged, pdraw2dgraphics);
+      set_need_redraw({ { 0, 0, sizeRedraw.cx, sizeRedraw.cy } }, pdraw2dgraphics);
 
    }
 

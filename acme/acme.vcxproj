@@ -2937,6 +2937,7 @@
     <ClInclude Include="prototype\prototype\aaa_c_memory.h" />
     <ClInclude Include="prototype\prototype\aaa_u32hash.h" />
     <ClInclude Include="prototype\prototype\address_object.h" />
+    <ClInclude Include="prototype\prototype\auto_pointer.h" />
     <ClInclude Include="prototype\prototype\call.h" />
     <ClInclude Include="compress\compress.h" />
     <ClInclude Include="compress\uncompress.h" />

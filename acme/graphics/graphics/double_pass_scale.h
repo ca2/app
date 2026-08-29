@@ -4,7 +4,7 @@
 #include <math.h>
 
 #include "filters.h"
-#include "acme/platform/auto_pointer.h"
+#include "acme/prototype/prototype/auto_pointer.h"
 //#include "aura/graphics/image/_image.h"
 
 typedef struct
@@ -154,13 +154,13 @@ CalcContributions (::u32 uLineSize, ::u32 uSrcSize, ::f64 dScale)
    if (m_dFilterWidth < 0.0)
    {
 
-      pCurFilter = øraw_new FilterClass(m_dFilterWidth);
+      pCurFilter = ::as_pointer(new FilterClass(m_dFilterWidth));
 
    }
    else
    {
 
-      pCurFilter = øraw_new FilterClass();
+      pCurFilter = ::as_pointer(new FilterClass());
 
    }
 

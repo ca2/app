@@ -77,10 +77,19 @@ namespace gpu
 
       void on_end_draw(::acme::windowing::window * pacmewindowingwindow) override;
 
+      bool is_memory_graphics_pool_compatible(
+         ::acme::user::interaction * pacmeuserinteractionAffinity) const override;
+
       void on_acquire_memory_graphics(
    ::image::image * pimage,
    const ::i32_size & size,
    ::acme::user::interaction * pacmeuserinteractionAffinity) override;
+
+      void on_release_memory_graphics() override;
+
+      void set_gpu_shader(
+         ::gpu::command_buffer * pgpucommandbuffer,
+         ::gpu::shader * pgpushader);
 
       void on_set_target_rectangle(::image::image * pimage);
 

@@ -509,7 +509,7 @@ namespace user
 
       sizeTotal.cx = size.cx;
 
-      sizeTotal.cy = tm.get_line_height();
+      sizeTotal.cy = maximum(size.cy, tm.get_line_height());
 
       return sizeTotal;
 
@@ -647,22 +647,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::pointer<::write_text::font>pwritetextfont;
-
       auto pstyle = get_style(pdraw2dgraphics);
-
-      if (m_pwritetextfont)
-      {
-
-         pwritetextfont = m_pwritetextfont;
-
-      }
-      else
-      {
-
-         pwritetextfont = get_font(pstyle, ::e_element_none);
-
-      }
 
       ::string strWindowText = get_window_text();
 
@@ -693,7 +678,7 @@ namespace user
 
       auto pfontCurrent = pdraw2dgraphics->get_current_font();
 
-      auto rectangleX = this->rectangle();
+      ::f64_rectangle rectangleX(this->size());
 
       ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::user::e_state_none,(::i32) m_ealignText);
 
@@ -730,7 +715,7 @@ namespace user
 
       m_ptextouta->m_strLast = strWindowText;
 
-      m_ptextouta->m_pwritetextfont = pwritetextfont;
+      m_ptextouta->m_pwritetextfont = pfontCurrent;
 
       m_ptextouta->m_rectangleLast = rectangleX;
 
@@ -777,6 +762,8 @@ namespace user
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+         m_bNeedAutoResizePerformLayout = false;
+
          //::pointer<::write_text::font>pwritetextfont;
 
          //auto pstyle = get_style(pdraw2dgraphics);
@@ -810,25 +797,12 @@ namespace user
 
          }
 
-         pdraw2dgraphics->set_font(this, ::e_element_none);
-
-         auto pwritetextfont = pdraw2dgraphics->get_current_font();
-
          if (strWindowText == "GPU API")
          {
 
             warningf("GPU API");
 
          }
-
-         if (m_ptextouta && m_ptextouta->is_updated(strWindowText, pwritetextfont))
-         {
-
-            return false;
-
-         }
-
-         auto rectangleX = this->rectangle();
 
          ::f64_size sizeText;
 

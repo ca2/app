@@ -837,6 +837,20 @@ namespace write_text
    }
 
 
+   void font::set_modified()
+   {
+
+      m_bUpdated = false;
+
+      m_bTextMetricCalculated = false;
+
+      ::draw2d::object::set_modified();
+
+      on_changed();
+
+   }
+
+
    void font::on_changed()
    {
 
@@ -850,7 +864,9 @@ namespace write_text
    bool font::is_updated() const
    {
 
-      return m_bUpdated;
+      // The native OS-data pointer used to provide this state implicitly.
+      // draw2d::object now owns the authoritative realization state.
+      return is_up_to_date();
 
    }
 

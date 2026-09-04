@@ -778,6 +778,20 @@ namespace write_text
 
          rectangle.right = rectangle.left + m_size.cx;
 
+         if (!rectangleClient.intersects(rectangle))
+         {
+
+            if (bIntersected)
+            {
+
+               break;
+
+            }
+
+            continue;
+
+         }
+
          auto bCachedPreview = pbox->is_drawing_ok(this);
 
          if (!bCachedPreview)
@@ -803,20 +817,6 @@ namespace write_text
                record_font_preview_update(uMicroseconds);
 
             }
-
-         }
-
-         if (!rectangleClient.intersects(rectangle))
-         {
-
-            if (bIntersected)
-            {
-
-               break;
-
-            }
-
-            continue;
 
          }
 

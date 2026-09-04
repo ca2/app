@@ -18,6 +18,8 @@ namespace user
 
       m_bOnDraw = false;
 
+      m_ealignrelativeOrthogonal = e_align_relative_near;
+
       m_enonclient.erase(::user::e_non_client_background);
 
       m_enonclient.erase(::user::e_non_client_focus_rect);
@@ -35,6 +37,10 @@ namespace user
    {
 
       m_eorientation = eorientation;
+
+      m_ealignrelativeOrthogonal = eorientation == e_orientation_horizontal
+         ? e_align_relative_middle
+         : e_align_relative_near;
 
       create_child(puserinteractionParent);
 
@@ -282,6 +288,8 @@ namespace user
 
                }
 
+               point.set_orthogonal_dimension(m_eorientation, 0);
+
                if (m_ealignrelativeOrthogonal == e_align_relative_base_bottom_line)
                {
 
@@ -292,6 +300,13 @@ namespace user
 
                   point.set_orthogonal_dimension(m_eorientation,
                      (::i32) (dMaximumAscent - dAscent));
+
+               }
+               else if (m_ealignrelativeOrthogonal == e_align_relative_middle)
+               {
+
+                  point.set_orthogonal_dimension(m_eorientation,
+                     (iMaximumNormal - sizeItem.get_normal_dimension(m_eorientation)) / 2);
 
                }
                else if (m_ealignrelativeOrthogonal == e_align_relative_far)

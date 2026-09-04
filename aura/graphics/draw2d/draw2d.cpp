@@ -518,6 +518,10 @@ namespace draw2d
    void draw2d::term()
    {
 
+      shutdown_memory_graphics_pool();
+
+      clear_all_objects_os_data();
+
       {
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -573,6 +577,8 @@ namespace draw2d
 
    void draw2d::destroy()
    {
+
+      clear_all_objects_os_data();
 
       shutdown_memory_graphics_pool();
 

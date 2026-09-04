@@ -264,14 +264,14 @@ namespace draw2d
    }
 
 
-   //void object::destroy()
-   //{
+   void object::destroy()
+   {
 
-   //   destroy_os_data();
+      clear_node_data();
 
-   //   //return ::success;
+      ::matter::destroy();
 
-   //}
+   }
 
 
    void object::on_changed()

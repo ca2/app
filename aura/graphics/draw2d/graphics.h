@@ -1034,6 +1034,19 @@ namespace draw2d
       virtual void _001DrawText(const ::scoped_string & scopedstr, ::f64_rectangle& prectd, const ::e_align& ealign = e_align_top_left, const ::e_draw_text& edrawtext = e_draw_text_none, bool bMeasure = false);
 
 
+      /**
+       * Draws text using (x, y) as the top-left corner of the first font line box.
+       *
+       * A backend-native text layout determines each baseline and the clear space
+       * above and below the font's maximum printable ink bounds. Additional lines
+       * advance by the selected font's full line height. The generic fallback uses
+       * internal leading plus ascent for the baseline and includes external leading
+       * in that advance. The line box establishes placement only; glyph overhang is
+       * not clipped to it.
+       */
+      virtual void _005DrawText(const ::scoped_string & scopedstr, ::f64 x, ::f64 y);
+
+
       virtual void draw_text(const ::scoped_string & scopedstr, const ::f64_rectangle& prectd, const ::e_align& ealign = e_align_top_left, const ::e_draw_text& edrawtext = e_draw_text_none);
 
       //virtual void draw_text(const ::scoped_string & scopedstr, const ::f64_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);

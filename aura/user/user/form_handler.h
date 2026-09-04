@@ -40,6 +40,8 @@ namespace user
 
          plabel->m_bDefaultClickHandling = bClickable;
 
+         plabel->set_text_align(e_align_left_center);
+
          plabel->create_child(puserinteractionParent);
 
          plabel->display();

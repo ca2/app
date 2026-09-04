@@ -1409,8 +1409,6 @@ namespace user
 
          {
 
-            _synchronous_lock sl1(m_pimagelistUserShell[16]->synchronization());
-
             ::image::image_source imagesource(pimage1, pimage1->rectangle());
 
             ::f64_rectangle rectangle(::i32_size(16, 16));
@@ -1425,8 +1423,6 @@ namespace user
 
          {
 
-            _synchronous_lock sl2(m_pimagelistUserShell[48]->synchronization());
-
             ::image::image_source imagesource(pimage48, pimage48->rectangle());
 
             ::f64_rectangle rectangle(::i32_size(48, 48));
@@ -1440,8 +1436,6 @@ namespace user
          }
 
          {
-
-            _synchronous_lock sl1(m_pimagelistUserShellHover[16]->synchronization());
 
             ::image::image_source imagesource(pimage16, pimage16->rectangle());
 
@@ -1458,8 +1452,6 @@ namespace user
          }
 
          {
-
-            _synchronous_lock sl1(m_pimagelistUserShellHover[48]->synchronization());
 
             ::image::image_source imagesource(pimage48, pimage48->rectangle());
 
@@ -1852,10 +1844,8 @@ namespace user
 
       synchronouslock.unlock();
 
-      _synchronous_lock sl(pimagelist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      _synchronous_lock slHover(pimagelistHover->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
+      // image_list operations synchronize themselves after acquiring draw2d.
+      // Holding either list here would invert that order against reserve_image().
       pimagelist->set(iImage, imagedrawing);
 
       auto pimageHover = pimagelist->get_image(iImage);

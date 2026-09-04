@@ -409,12 +409,8 @@ namespace write_text
       ::f64 y = 0.;
 
       ::f64 w = rectangle.width();
-      
-      w++;
 
       ::f64 h = rectangle.height();
-      
-      h++;
 
       ::f64 cx = 0.;
 
@@ -422,6 +418,8 @@ namespace write_text
 
       for (auto & strLine : stra)
       {
+
+         auto dLineHeight = textmetric.get_line_height();
 
          if (strLine.has_character())
          {
@@ -442,9 +440,11 @@ namespace write_text
 
             cx = maximum(cx, ptextout->m_size.cx);
 
+            dLineHeight = maximum(dLineHeight, ptextout->m_size.cy);
+
          }
 
-         y += textmetric.get_line_height();
+         y += dLineHeight;
 
       }
 

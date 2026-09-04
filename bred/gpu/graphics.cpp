@@ -1,6 +1,7 @@
 // Created by camilo on 2025-05-31 15:32 <3ThomasBorregaardSørensen!!
 #include "platform.h"
 #include "binding.h"
+#include "bitmap.h"
 #include "command_buffer.h"
 #include "draw2d.h"
 #include "frame.h"
@@ -385,79 +386,166 @@ namespace gpu
 
    }
 
+   bool graphics::is_memory_graphics_pool_compatible(
+      ::acme::user::interaction * pacmeuserinteractionAffinity) const
+   {
+
+      if (!pacmeuserinteractionAffinity
+         || m_pimage
+         || m_pdraw2dbitmap)
+      {
+
+         return false;
+
+      }
+
+      auto pgpucontext = m_pgpucontextCompositor2;
+
+      if (!pgpucontext || !pgpucontext->m_pacmeuserinteractionAffinity)
+      {
+
+         return false;
+
+      }
+
+      auto pacmewindowingwindowRequested =
+         pacmeuserinteractionAffinity->acme_windowing_window();
+
+      auto pacmewindowingwindowContext =
+         pgpucontext->m_pacmeuserinteractionAffinity->acme_windowing_window();
+
+      return pacmewindowingwindowRequested
+         && pacmewindowingwindowRequested == pacmewindowingwindowContext;
+
+   }
+
+
    void graphics::on_acquire_memory_graphics(
       ::image::image * pimage,
       const ::i32_size & size,
       ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
-   {
+
+      if (::is_set(pimage))
       {
 
-         if (::is_set(pimage))
+         pimage->update_bitmap_as_render_target(pacmeuserinteractionAffinity, this);
+
+         auto pdraw2dbitmap = pimage->m_pdraw2dbitmap;
+
+         if (!pdraw2dbitmap)
          {
 
-            pimage->update_bitmap_as_render_target(pacmeuserinteractionAffinity);
+            throw ::exception(error_wrong_state, "image bitmap is unavailable for graphics acquisition");
 
-            auto pdraw2dbitmap = pimage->m_pdraw2dbitmap;
+         }
 
-            if (!pdraw2dbitmap)
+         auto sizeRawBitmap = pimage->raw_size();
+
+         if (pdraw2dbitmap->size() != sizeRawBitmap)
+         {
+
+            pdraw2dbitmap->set_size(sizeRawBitmap);
+
+         }
+
+         if (pimage->m_eacquire == ::draw2d::e_acquire_load)
+         {
+
+            if (pimage->m_bWasMappedAfterLastGraphicsAcquisition)
             {
 
-               throw ::exception(error_wrong_state, "image bitmap is unavailable for graphics acquisition");
-
-            }
-
-            auto sizeRawBitmap = pimage->raw_size();
-
-            if (pdraw2dbitmap->size() != sizeRawBitmap)
-            {
-
-               pdraw2dbitmap->set_size(sizeRawBitmap);
-
-            }
-
-            if (pimage->m_eacquire == ::draw2d::e_acquire_load)
-            {
-
-               if (pimage->m_bWasMappedAfterLastGraphicsAcquisition)
+               if (pimage->m_ppixmapOwned)
                {
 
-                  if (pimage->m_ppixmapOwned)
-                  {
-
-                     pdraw2dbitmap->defer_write_pixels(
-                        pimage->m_ppixmapOwned->size(),
-                        pimage->m_ppixmapOwned->m_point,
-                        pimage->m_ppixmapOwned->image32(),
-                        pimage->m_ppixmapOwned->scan_size());
-
-                  }
-
-                  pimage->m_bWasMappedAfterLastGraphicsAcquisition = false;
+                  pdraw2dbitmap->defer_write_pixels(
+                     pimage->m_ppixmapOwned->size(),
+                     pimage->m_ppixmapOwned->m_point,
+                     pimage->m_ppixmapOwned->image32(),
+                     pimage->m_ppixmapOwned->scan_size());
 
                }
+
+               pimage->m_bWasMappedAfterLastGraphicsAcquisition = false;
 
             }
 
          }
 
-         //auto pdraw2d = system()->draw2d();
+         ::cast < ::gpu::bitmap > pgpubitmap = pdraw2dbitmap;
 
-         //if (!pdraw2d)
-         //{
+         if (!pgpubitmap || !pgpubitmap->gpu_texture())
+         {
 
-         //   throw ::exception(error_wrong_state, "draw2d service is unavailable");
+            throw ::exception(error_wrong_state, "image bitmap has no GPU texture");
 
-         //}
+         }
 
-         /////create_bitmap(pacmeuserinteractionAffinity);
-
-
+         defer_constructø(m_pgputexturesiteTarget);
+         m_pgputexturesiteTarget->m_pgputextureSite = pgpubitmap->gpu_texture();
 
       }
+
+      ::draw2d::graphics::on_acquire_memory_graphics(
+         pimage,
+         size,
+         pacmeuserinteractionAffinity);
+
+      if (::is_set(pimage))
+      {
+
+         ::gpu::context_lock contextlock(gpu_context());
+
+         set_target_image(pimage);
+
+      }
+
    }
-   ::draw2d::graphics::on_acquire_memory_graphics(pimage, size, pacmeuserinteractionAffinity);
-}
+
+
+   void graphics::on_release_memory_graphics()
+   {
+
+      if (m_pgputexturesiteTarget)
+      {
+
+         auto pgpucontext = gpu_context();
+
+         if (pgpucontext)
+         {
+
+            pgpucontext->defer_unbind_shader();
+
+         }
+
+         m_pgputexturesiteTarget.release();
+
+      }
+
+      ::draw2d::graphics::on_release_memory_graphics();
+
+   }
+
+
+   void graphics::set_gpu_shader(
+      ::gpu::command_buffer * pgpucommandbuffer,
+      ::gpu::shader * pgpushader)
+   {
+
+      if (m_pgputexturesiteTarget)
+      {
+
+         pgpucommandbuffer->begin_render(pgpushader, m_pgputexturesiteTarget);
+
+      }
+      else
+      {
+
+         pgpucommandbuffer->set_shader(pgpushader);
+
+      }
+
+   }
 
 
 
@@ -663,7 +751,7 @@ namespace gpu
       auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 
 
-      pcommandbuffer->set_shader(pshader);
+      set_gpu_shader(pcommandbuffer, pshader);
 
 
       // 1. Calculate optimal number of segments based on radius
@@ -1806,7 +1894,7 @@ namespace gpu
 
       auto pcommandbuffer = ::gpu::current_command_buffer();
 
-      pcommandbuffer->set_shader(pshader);
+      set_gpu_shader(pcommandbuffer, pshader);
 
       pcommandbuffer->draw(pmodelbufferRectangle);
 
@@ -1927,7 +2015,7 @@ namespace gpu
       //;
       //auto ptextureTarget = prenderer->m_pgpurendertarget->current_texture(::gpu::current_layer());
 
-      pcommandbuffer->set_shader(pshader);
+      set_gpu_shader(pcommandbuffer, pshader);
 
       //pcommandbuffer->set_model(pmodelbuffer);
 
@@ -2183,7 +2271,7 @@ namespace gpu
 
       //auto ptextureTarget = pcontext->m_pgpurenderer->m_pgpurendertarget->current_texture(::gpu::current_layer());
 
-      pcommandbuffer->set_shader(m_pgpushaderTextOut);
+      set_gpu_shader(pcommandbuffer, m_pgpushaderTextOut);
 
 
       ::string strMessage;
@@ -2314,6 +2402,12 @@ namespace gpu
             && ppixmapFetch->m_pgputexturesite->gpu_texture()
             && ppixmapFetch->m_pgputexturesite->gpu_texture()->is_in_shader_sampling_state())
             {
+               // A cache miss above may allocate or upload an atlas texture.
+               // Reassert the image destination afterwards: texture upload is
+               // allowed to alter backend binding state, while this graphics
+               // can be drawing into a nested image render target.
+               set_gpu_shader(pcommandbuffer, m_pgpushaderTextOut);
+
                //if (pmodelbuffer->is_new())
                //{
 

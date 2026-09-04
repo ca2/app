@@ -648,7 +648,18 @@ namespace user
       else if(m_pengine->has_ok_flag())
       {
 
-         m_pengine->on_layout(this->host_rectangle());
+         auto rectanglePlacement = this->host_rectangle();
+
+         rectanglePlacement.offset(-rectanglePlacement.top_left());
+
+         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         {
+
+            client_to_screen()(rectanglePlacement);
+
+         }
+
+         m_pengine->on_layout(rectanglePlacement);
 
       }
 

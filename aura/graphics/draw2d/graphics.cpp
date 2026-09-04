@@ -4718,6 +4718,45 @@ namespace draw2d
    }
 
 
+   void graphics::_005DrawText(const ::scoped_string & scopedstr, ::f64 x, ::f64 y)
+   {
+
+      if (scopedstr.is_empty())
+      {
+
+         return;
+
+      }
+
+      auto textmetric = get_text_metrics();
+
+      auto dLineHeight = textmetric.get_line_height();
+
+      auto dBaselineDistance = textmetric.m_dInternalLeading + textmetric.m_dAscent;
+
+      string_array_base straLine;
+
+      straLine.add_lines(scopedstr, true);
+
+      for (auto & strLine : straLine)
+      {
+
+         auto dBaseline = y + dBaselineDistance;
+
+         if (strLine.has_character())
+         {
+
+            text_out(x, dBaseline - textmetric.m_dAscent, strLine);
+
+         }
+
+         y += dLineHeight;
+
+      }
+
+   }
+
+
    //void graphics::draw_text(const ::scoped_string & scopedstrParam, const ::f64_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    //{
 

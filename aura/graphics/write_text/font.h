@@ -143,6 +143,7 @@ namespace write_text
       virtual ::string family_name();
 
 
+      void set_modified() override;
       void on_changed() override;
 
       virtual bool is_updated() const;

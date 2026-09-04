@@ -219,15 +219,11 @@ namespace user
 
       auto size = pdraw2dgraphics->get_text_extent(strText);
 
-      ::write_text::text_metric tm;
-
-      pdraw2dgraphics->get_text_metrics(&tm);
-
       ::f64_size sizeTotal;
 
       sizeTotal.cx = size.cx;
 
-      sizeTotal.cy = tm.get_line_height();
+      sizeTotal.cy = size.cy;
 
       return sizeTotal;
 
@@ -260,7 +256,15 @@ namespace user
       else
       {
 
-         return get_adjusted_fitting_size(pdraw2dgraphics);
+         auto size = get_fitting_size(pdraw2dgraphics);
+
+         size.cx += 32.;
+
+         constexpr double dVerticalPaddingRate = 2.;
+
+         size.cy += size.cy * dVerticalPaddingRate;
+
+         return size;
 
       }
 
@@ -354,8 +358,6 @@ namespace user
 
    bool button::on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
-
-      auto rectangleX = this->rectangle();
 
       if (m_bNeedAutoResizePerformLayout)
       {
@@ -665,7 +667,7 @@ namespace user
 
       _001OnButtonDrawBackground(pdraw2dgraphics);
 
-      auto rectangleX = this->rectangle();
+      ::i32_rectangle rectangleX(this->size());
 
       auto pstyle = get_style(pdraw2dgraphics);
 
@@ -726,7 +728,7 @@ namespace user
    void button::_001OnButtonDrawBackground(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto rectangleX = this->rectangle();
+      ::i32_rectangle rectangleX(this->size());
 
       auto pstyle = get_style(pdraw2dgraphics);
 
@@ -827,8 +829,6 @@ namespace user
 
             ::e_align ealign;
 
-            ::e_draw_text edrawtext;
-
             if (m_estyle == e_style_image_and_text)
             {
 
@@ -863,11 +863,63 @@ namespace user
                }
             }
 
-            edrawtext = e_draw_text_single_line;
-
             pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pdraw2dgraphics->draw_text(strWindowText, rectangleText, ealign, edrawtext);
+            string strText(strWindowText);
+
+            strText.replace_with("", "\r");
+
+            strText.replace_with("", "\n");
+
+            auto sizeText = pdraw2dgraphics->get_text_extent(strText);
+
+            auto textmetric = pdraw2dgraphics->get_text_metrics();
+
+            auto dLineHeight = textmetric.get_line_height();
+
+            ::f64 x;
+
+            if (ealign & e_align_right)
+            {
+
+               x = rectangleText.right - sizeText.cx;
+
+            }
+            else if (ealign & e_align_horizontal_center)
+            {
+
+               x = rectangleText.left + (rectangleText.width() - sizeText.cx) / 2.;
+
+            }
+            else
+            {
+
+               x = rectangleText.left;
+
+            }
+
+            ::f64 y;
+
+            if (ealign & e_align_bottom)
+            {
+
+               y = rectangleText.bottom - dLineHeight;
+
+            }
+            else if (ealign & e_align_vertical_center)
+            {
+
+               y = rectangleText.top + (rectangleText.height() - dLineHeight) / 2.;
+
+            }
+            else
+            {
+
+               y = rectangleText.top;
+
+            }
+
+            pdraw2dgraphics->_005DrawText(strText, x, y);
 
          }
 
@@ -905,7 +957,7 @@ namespace user
    void button::_001OnButtonDrawNormal(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto rectangleX = this->rectangle();
+      ::i32_rectangle rectangleX(this->size());
 
       pdraw2dgraphics->set_font(this, ::e_element_none);
 

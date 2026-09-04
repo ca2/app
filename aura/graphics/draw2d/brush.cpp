@@ -54,7 +54,7 @@ namespace draw2d
 
       }
 
-      //return ::success;
+      ::draw2d::object::destroy();
 
    }
 

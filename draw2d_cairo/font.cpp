@@ -279,6 +279,112 @@ namespace draw2d_cairo
 #endif
 
 
+#if defined(USE_PANGO)
+
+      PangoFontDescription * pdesc = (PangoFontDescription *)m_pwritetextfont->get_os_data(this);
+
+      if (::is_set(pdesc))
+      {
+
+
+         PangoFontMap * pfontmap = pango_cairo_font_map_get_default();
+
+         PangoContext * pcontext = pango_font_map_create_context(pfontmap);
+
+         PangoFont * ppangofont = pango_font_map_load_font(pfontmap, pcontext, pdesc);
+
+         ::i32 iHeight = 0;
+
+         PangoLayout * playout;                            // layout for a paragraph of text
+
+         playout = pango_cairo_create_layout(m_pcairo);                 // init pango layout ready for use
+
+         pango_layout_set_text(playout, unitext("IAUMGpqg"),
+                               -1);          // sets the text to be associated with the layout (final arg is length, -1
+         // to calculate automatically when passing a nul-terminated string)
+         pango_layout_set_font_description(playout,
+                                           pdesc);            // assign the previous font description to the layout
+
+         pango_cairo_update_layout(m_pcairo,
+                                   playout);                  // if the target surface or transformation properties of the cairo instance
+         // have changed, update the pango layout to reflect this
+         ::i32 width = 0;
+
+         PangoRectangle pos;
+
+         pango_layout_get_pixel_size(playout, &width, &iHeight);
+
+         //      iHeight = pango_font_description_get_size(pdesc);
+         //
+         //      if(pango_font_description_get_size_is_absolute(pdesc))
+         //      {
+         //
+         //         iHeight /= PANGO_SCALE;
+         //
+         //      }
+         //      else
+         //      {
+         //
+         //         iHeight = iHeight * 1.333333333333333333 / PANGO_SCALE;
+         //
+         //      }
+
+         PangoFontMetrics * pfontmetrics = pango_font_get_metrics(ppangofont, nullptr);
+
+         ::i32 iAscent = pango_font_metrics_get_ascent(pfontmetrics);
+
+         lpMetrics->m_dAscent = iAscent / PANGO_SCALE;
+
+         ::i32 iDescent = pango_font_metrics_get_descent(pfontmetrics);
+
+         lpMetrics->m_dDescent = iDescent / PANGO_SCALE;
+
+         lpMetrics->m_dHeight = (::i32)iHeight;
+
+         lpMetrics->m_dExternalLeading = (lpMetrics->m_dHeight - (lpMetrics->m_dAscent + lpMetrics->m_dDescent));
+
+         lpMetrics->m_dInternalLeading = (::i32)0;
+
+         pango_font_metrics_unref(pfontmetrics);
+
+         g_object_unref(pcontext);
+
+      }
+      else
+
+#endif // USE_PANGO
+
+      {
+
+         // _set(m_pwritetextfont);
+
+         cairo_font_extents_t fontextents;
+
+         ::cast < ::draw2d_cairo::graphics > pdraw2dcairographics = pdraw2dgraphics;
+
+         cairo_font_extents(pdraw2dcairographics->m_pcairo, &fontextents);
+
+         m_textmetric2.m_dAscent = fontextents.ascent;
+
+         m_textmetric2.m_dDescent = fontextents.descent;
+
+         m_textmetric2.m_dHeight = fontextents.height;
+
+         m_textmetric2.m_dInternalLeading = 0.;
+
+         m_textmetric2.m_dExternalLeading = 0.;
+
+         //lpMetrics->m_dInternalLeading = lpMetrics->m_dAscent * 0.2;
+
+         //lpMetrics->m_dExternalLeading = lpMetrics->m_dAscent * 0.2;
+
+      }
+
+      //set_has_text_metric();
+
+      // = *lpMetrics;
+
+
       //return m_osdata[0];
 
    }

@@ -40,7 +40,12 @@ namespace image
 {
 
 
+   enum enum_map
+   {
+      e_map_load,
+      e_map_discard,
 
+   };
 
    /// <summary>
    /// ::image::image *-> ::image::image_source_pointer concept
@@ -89,6 +94,9 @@ namespace image
       virtual ::image::image * get_source_image();
       //   virtual void defer_update_all_frames();
 
+      virtual ::gpu::texture * get_gpu_texture_as_source(::gpu::context * pgpucontext);
+      virtual ::gpu::texture * get_gpu_texture_as_target(::gpu::context * pgpucontext);
+
       virtual ::pixmap * current_pixmap();
       //void defer_create_owned_graphics_lease();
       //void defer_destroy_owned_graphics_lease();
@@ -111,6 +119,9 @@ namespace image
       static ::image::image_pointer from(::pixmap * ppixmap);
 
 
+      virtual void if_or_when_image_ok(::draw2d::graphics * pdraw2dgraphics, const ::procedure & procedure);
+
+
       bool _is_set() const override;
       bool _is_ok() const override;
       inline bool is_ok() const { return ::is_set(this) && _is_ok(); }
@@ -124,8 +135,10 @@ namespace image
       ::draw2d::graphics_lease acquire_graphics(
          ::draw2d::enum_acquire eacquire = ::draw2d::e_acquire_load,
          //::draw2d::host * pdraw2dhost = nullptr,
-         ::acme::user::interaction * pacmeuserinteractionAffinityExplicit = nullptr);
+         ::acme::user::interaction * pacmeuserinteractionAffinityExplicit = nullptr,
+         bool bExternalRendering = true);
       ::draw2d::graphics_lease _acquire_graphics(
+         bool bExternalRendering,
          ::draw2d::enum_acquire eacquire,
          //::draw2d::host * pdraw2dhost,
          ::acme::user::interaction * pacmeuserinteractionAffinity);
@@ -137,7 +150,7 @@ namespace image
       virtual ::draw2d::bitmap_pointer get_bitmap_as_target(::draw2d::graphics * pdraw2dgraphics = nullptr) const; // is semantically const (besides may not be implementationly constant)
       virtual ::draw2d::bitmap_pointer detach_bitmap();
 
-      virtual void create_owned_graphics();
+      virtual void create_owned_graphics(::acme::user::interaction * pacmeuserinteractionAffinity);
 
       virtual ::collection::count get_image_count() const;
       virtual ::image::image_pointer get_image(::collection::index i);
@@ -246,7 +259,7 @@ namespace image
       //virtual void create_thumbnail(const ::scoped_string & scopedstrPath);
 
       //virtual void create_from_data(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
-      virtual void create_from_data(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan,
+      virtual void create_from_data(const ::pixmap_t & pixmap,
                                     ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, 
                                     bool bPreserve = false);
       virtual void create_from_graphics(::draw2d::graphics * pdraw2dgraphics);
@@ -584,7 +597,7 @@ namespace image
 
       virtual ::image::image_pointer get_resized_image(const ::i32_size & size);
 
-      virtual ::image_pixmap_lease map(const ::i32_rectangle & rectangle ={});
+      virtual ::image_pixmap_lease map(enum_map emap = ::image::e_map_load, const ::i32_rectangle & rectangle ={});
 
    protected:
 
@@ -593,7 +606,7 @@ namespace image
       virtual void _tidy_map(const ::i32_rectangle & rectangle);
       virtual void _tidy_unmap(::image_pixmap_lease * pimagepixmaplease);
 
-      virtual ::image_pixmap_lease _map(const ::i32_rectangle & rectangle);
+      virtual ::image_pixmap_lease _map(enum_map emap, const ::i32_rectangle & rectangle);
       virtual void _unmap(::image_pixmap_lease * pimagepixmaplease);
 
    };

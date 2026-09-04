@@ -83,7 +83,7 @@ namespace core
          //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
          //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
          void on_color_change() override;
-         virtual void layout_color_selector(const ::i32_rectangle & rectangle);
+         virtual void layout_color_selector(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
 
          virtual bool on_mouse_down(const ::i32_point & point);
          virtual bool on_mouse_motion(const ::i32_point & point);

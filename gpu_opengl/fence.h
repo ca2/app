@@ -21,14 +21,14 @@ namespace gpu_opengl
    public:
    
       
-      GLsync m_glsyncFence;
+      bool m_bPendingFence;
       
       fence();
       ~fence() override;
       
       
       
-      void initialize_gpu_fence(::gpu::device * pgpudevice, bool bCreateSignaled) override;
+      void initialize_gpu_fence(::gpu::context * pgpucontext, bool bCreateSignaled) override;
       
       void reset_gpu_fence() override;
 

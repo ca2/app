@@ -3,6 +3,7 @@
 #include "command_buffer.h"
 #include "context.h"
 #include "device.h"
+#include "fence.h"
 #include "layer.h"
 #include "renderer.h"
 #include "render_target.h"
@@ -235,12 +236,17 @@ namespace gpu
 
 //      m_pgpurenderer->on_end_layer(this);
 
-      auto pgpufence = m_pgpufence;
-
-      if (::is_set(pgpufence))
+      if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         pgpufence->wait_gpu_fence();
+         auto pgpufence = m_pgpufence;
+
+         if (::is_set(pgpufence))
+         {
+
+            pgpufence->wait_gpu_fence();
+
+         }
 
       }
 
@@ -307,6 +313,7 @@ namespace gpu
          //textureflags.m_bRenderTarget = false;
          textureflags.m_bRenderTarget = bRenderTarget;
          textureflags.m_bTransferTarget = true;
+         textureflags.m_bTransferSource = true;
          textureflags.m_bShaderResource = true;
          textureflags.m_bWithDepth =
             m_pgpurenderer->m_pgpucontext->m_escene == ::gpu::e_scene_3d;

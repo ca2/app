@@ -101,7 +101,7 @@ namespace draw2d
       ///::image32_callback                           m_callbackImage32CpuBuffer;
       ::i32                                          m_iTargetLayer;
       ::i32                                          m_iLayer;
-
+      ::draw2d::graphics_lease * m_pgraphicslease;
       //bool                                   m_bAlphaBlend;
 
       ::pointer<::text::context>             m_ptextcontext;
@@ -111,13 +111,14 @@ namespace draw2d
       ::pointer<::task>                      m_ptask;
       bool                                   m_bDraw;
 
-      ::pointer < ::image::image>            m_pimage;
+      ///::pointer < ::image::image>            m_pimage;
       ::draw2d::bitmap_pointer               m_pdraw2dbitmap;
       ::draw2d::pen_pointer                  m_pdraw2dpen;
       ::draw2d::brush_pointer                m_pdraw2dbrush;
       ::draw2d::region_pointer               m_pdraw2dregion;
       bool                                   m_bStoreThumbnails;
-      ::draw2d::bitmap_pointer               m_pdraw2dbitmapTarget;
+      //::draw2d::bitmap_pointer               m_pdraw2dbitmapTarget;
+      ::image::image_pointer                 m_pimageTarget;
 
    protected:
       //bool                                   _m_bYFlip;
@@ -280,8 +281,8 @@ namespace draw2d
       virtual void defer_add_graphics_render(::graphics::render* pgraphicsrender);
 
 
-      virtual void begin_draw();
-      virtual void end_draw();
+      //virtual void begin_draw(::image::image * pimageTarget, const ::i32_rectangle & rectangleFrame);
+      //virtual void end_draw();
 
 
       virtual ::image::image_pointer get_current_target_image();
@@ -383,7 +384,7 @@ namespace draw2d
       // Constructors
 
 
-      virtual void update_as_image_render_target(::image::image* pimage);
+      virtual void update_as_image_render_target(::image::image* pimage, ::acme::user::interaction * pacmeuserinteractionAffinity);
 
       virtual void create_device_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void* lpInitData);
 
@@ -395,6 +396,7 @@ namespace draw2d
       virtual bool is_memory_graphics_pool_compatible(::acme::user::interaction * pacmeuserinteractionAffinity) const;
       virtual void on_set_target_rectangle(::image::image * pimage);
       virtual void on_acquire_memory_graphics(
+         bool bExternalRendering,
          ::image::image * pimage,
          const ::i32_size & size,
          ::acme::user::interaction * pacmeuserinteractionAffinity);
@@ -405,7 +407,7 @@ namespace draw2d
       //virtual void create_compatible_graphics(::draw2d::graphics * pdraw2dgraphics);
       //virtual void create_window_graphics(const ::operating_system::window & operatingsystemwindow);
 
-      virtual void create_bitmap_graphics(::draw2d::bitmap *pdraw2dbitmap);
+      virtual void create_bitmap_graphics(::draw2d::bitmap *pdraw2dbitmap, ::acme::user::interaction * pacmeuserinteractionAffinity);
 
 
       virtual ::pointer < ::draw2d::path > create_path();
@@ -416,8 +418,10 @@ namespace draw2d
 
       virtual void defer_resize_memory_graphics(const ::i32_size& size);
 
-      virtual void on_begin_draw(::acme::windowing::window * pacmewindowingwindow, const ::f64_size& sz);
-      virtual void on_end_draw(::acme::windowing::window * pacmewindowingwindow);
+      //virtual void on_begin_draw(::acme::windowing::window * pacmewindowingwindow, const ::f64_rectangle & rectangle);
+      //virtual void on_end_draw(::acme::windowing::window * pacmewindowingwindow);
+      virtual void begin_draw(bool bExternalRendering, ::user::interaction * puserinteraction, const ::i32_rectangle & rectangleFrame, ::image::image * pimageTarget = nullptr);
+      virtual void end_draw();
       virtual void on_present();
 
       virtual void DeleteDC();
@@ -446,8 +450,8 @@ namespace draw2d
                               //::i32 (CALLBACK* pfn)(LPVOID, lparam), lparam lpData);
 
 
-
-      virtual void set_text_color(::color::color color);
+      /// set brush to a solid color
+      virtual void set_solid_color(const ::color::color & color);
 
 
       using ::write_text::drawer::set;

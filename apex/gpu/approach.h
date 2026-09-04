@@ -52,14 +52,16 @@ namespace gpu
 //      //::u32                  VAO;
 //      //::u32                  VBO;
 
-      enum_mode                              m_emode;
+      enum_mode                  m_emode;
 
 
       //::pointer < device >       m_pgpudevice;
 
       ::i32_rectangle            m_rectangleOffscreen;
-      int m_iGraphicsModeStep = -1;
-      int m_iGraphicsModeStepCount = -1;
+      int                        m_iGraphicsModeStep = -1;
+      int                        m_iGraphicsModeStepCount = -1;
+      ::particle_pointer         m_pparticle_001OnFrameSynchronization;
+
 
       approach();
       ~approach() override;

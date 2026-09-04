@@ -73,8 +73,8 @@ namespace platform
       bool                                            m_bWindowingFactory;
       class ::time                                    m_timeProcedureTimerMinimumResolution;     
 
-      ::pointer < manual_reset_happening >                m_pmanualresethappeningSystemTaskFinished;
-      //::pointer < manual_reset_happening >                m_pmanualresethappeningMainLoopEnd;
+      ::pointer < manual_reset_happening >                m_pmanualresethappeningPlatformSystemFinished;
+      ::pointer < manual_reset_happening >                m_pmanualresethappeningMainThreadEnd;
 
       ::i32_sz *                                      m_pintstringLanguageResourceMap;
       ::i32                                             m_iMatterFromHttpCache;
@@ -344,7 +344,7 @@ namespace platform
 
       //void set_current_handles() override;
 
-      virtual void TermSystem();
+      virtual void on_system_termination();
 
 
       virtual void erase_from_any_hook(::matter * pmatter);
@@ -447,7 +447,7 @@ namespace platform
 
       virtual void init_system();
 
-      virtual void term_system();
+      //virtual void on_system_termination();
 
 
       virtual void on_start_system();
@@ -481,10 +481,10 @@ namespace platform
       virtual ::pointer<::platform::application> new_app(const ::scoped_string & scopedstrAppId);
 
 
-      virtual void end();
+      //virtual void end();
 
 
-      virtual void on_end();
+      virtual void on_system_end();
 
 
       virtual void report_system_instance();

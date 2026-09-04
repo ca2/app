@@ -408,7 +408,7 @@ namespace platform
       {
          if (m_pdirectorycontext)
          {
-            m_pdirectorycontext->term_system();
+            m_pdirectorycontext->on_system_termination();
 
          }
       }
@@ -420,7 +420,7 @@ namespace platform
       {
          if (m_pfilecontext)
          {
-            m_pfilecontext->term_system();
+            m_pfilecontext->on_system_termination();
          }
       }
       catch (...)

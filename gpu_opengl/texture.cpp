@@ -562,6 +562,41 @@ namespace gpu_opengl
       glDrawBuffer(GL_COLOR_ATTACHMENT0);
       ::opengl::check_error("");
 
+      GLboolean bScissorTestEnabled = glIsEnabled(GL_SCISSOR_TEST);
+      GLboolean baColorWriteMask[4]{};
+      glGetBooleanv(GL_COLOR_WRITEMASK, baColorWriteMask);
+      ::opengl::check_error("");
+
+      if (bScissorTestEnabled)
+      {
+
+         glDisable(GL_SCISSOR_TEST);
+         ::opengl::check_error("");
+
+      }
+
+      glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+      ::opengl::check_error("");
+
+      const GLfloat faTransparent[4]{};
+      glClearBufferfv(GL_COLOR, 0, faTransparent);
+      ::opengl::check_error("");
+
+      glColorMask(
+         baColorWriteMask[0],
+         baColorWriteMask[1],
+         baColorWriteMask[2],
+         baColorWriteMask[3]);
+      ::opengl::check_error("");
+
+      if (bScissorTestEnabled)
+      {
+
+         glEnable(GL_SCISSOR_TEST);
+         ::opengl::check_error("");
+
+      }
+
       glBlitFramebuffer(0, 0, sourceWidth, sourceHeight, 0, 0, destinationWidth, destinationHeight, GL_COLOR_BUFFER_BIT,
                         GL_LINEAR);
       ::opengl::check_error("");
@@ -908,6 +943,7 @@ namespace gpu_opengl
             {
 
                throw ::exception(error_wrong_state);
+
             }
 
             auto pimage32 = (image32_t *)memory.data();
@@ -915,6 +951,7 @@ namespace gpu_opengl
             pimage32->copy(data.pixmapa().first());
 
             pdata = pimage32;
+
          }
          else if (data.is_raw_scoped_pixmap())
          {
@@ -926,7 +963,23 @@ namespace gpu_opengl
             hSrc = data.raw_scoped_pixmap().m_size.cy;
 
             iRedLower = data.raw_scoped_pixmap().m_iRedLower;
-         }
+
+            if (data.raw_scoped_pixmap().m_bTopLeft)
+            {
+
+               auto scan_area = data.raw_scoped_pixmap().m_size.area() * 4;
+
+               memory.set_size(scan_area);
+
+               auto pimage32 = (image32_t *)memory.data();
+
+               pimage32->y_swap_copy(data.raw_scoped_pixmap());
+
+               pdata = pimage32;
+
+            }
+
+        }
 
          ::i32 w = m_textureattributes.m_sizeRaw.cx;
 
@@ -1001,14 +1054,20 @@ namespace gpu_opengl
          }
 
 
-         ::i32 samples = 0;
-         glGetIntegerv(GL_SAMPLES, &samples);
-         ::opengl::check_error("");
-         printf("MSAA samples: %d\n", samples);
-
          if (data.is_gpu_texture())
          {
             ::cast<::gpu_opengl::texture> popengltexture = data.gpu_texture();
+
+            if (!popengltexture)
+            {
+
+               throw ::exception(
+                  error_wrong_state,
+                  "OpenGL texture copy requires an OpenGL source texture");
+
+            }
+
+            popengltexture->wait_fence();
 
             auto sourceWidth = minimum(popengltexture->width(), w);
             auto sourceHeight = minimum(popengltexture->height(), h);
@@ -1016,6 +1075,8 @@ namespace gpu_opengl
             auto y = 0;
             blit_texture_scaled(popengltexture->m_gluTextureID, sourceWidth, sourceHeight, m_gluTextureID, sourceWidth,
                                 sourceHeight, m_gluType);
+            glFinish();
+            ::opengl::check_error("");
             //glBlitFramebuffer(0, 0, sourceWidth, sourceHeight, x, y, x + sourceWidth, y + sourceHeight,
                               //GL_COLOR_BUFFER_BIT, GL_NEAREST);
             //::opengl::check_error("");
@@ -1108,7 +1169,7 @@ namespace gpu_opengl
 
                auto pimage32Source = data.pixmapa()[iImage]->image32();
 
-               pimage32->vertical_swap_copy(sizeRaw.cx, sizeRaw.cy, scan,
+               pimage32->y_swap_copy(sizeRaw.cx, sizeRaw.cy, scan,
                   pimage32Source, data.pixmapa()[iImage]->m_iScan);
 
 
@@ -1272,47 +1333,6 @@ namespace gpu_opengl
          if (m_textureattributes.m_etexture != ::gpu::e_texture_cube_map)
          {
 
-            bool bIsTexture = glIsTexture(m_gluTextureID);
-
-            informationf("is %d a gl texture? %d", m_gluTextureID, bIsTexture);
-            ::opengl::check_error("");
-
-            if (m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
-            {
-
-               glBindTexture(m_gluType, m_gluTextureID);
-               ::opengl::check_error("");
-
-               //glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_gluTextureID);
-
-               GLint colorSamples = 0;
-               GLint colorWidth = 0;
-               GLint colorHeight = 0;
-               GLint fixedSampleLocations = 0;
-
-               glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_SAMPLES, &colorSamples);
-               ::opengl::check_error("");
-               glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_WIDTH, &colorWidth);
-               ::opengl::check_error("");
-               glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_HEIGHT, &colorHeight);
-               ::opengl::check_error("");
-               glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_FIXED_SAMPLE_LOCATIONS,
-                                        &fixedSampleLocations);
-               ::opengl::check_error("");
-
-               informationf("colorSamples=%d colorWidth=%d colorHeight=%d fixedSampleLocations=%d",
-                  colorSamples,
-                  colorWidth,
-                  colorHeight,
-                  fixedSampleLocations);
-
-               information("");
-
-               glBindTexture(m_gluType, 0);
-               ::opengl::check_error("");
-
-            }
-
             glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_gluType, m_gluTextureID, 0);
             ::opengl::check_error("");
 
@@ -1408,62 +1428,13 @@ namespace gpu_opengl
             if (m_textureattributes.m_etexture != ::gpu::e_texture_cube_map)
             {
 
-               bool bIsTexture = glIsTexture(m_gluTextureID);
-
-               informationf("is %d a gl texture? %d", m_gluTextureID, bIsTexture);
-               ::opengl::check_error("");
-
-
-               GLint framebufferBinding = 0;
-
-               glGetIntegerv(
-                  GL_READ_FRAMEBUFFER_BINDING,
-                  &framebufferBinding);
-
-               informationf(
-                  "Checking FBO %d expected %u",
-                  framebufferBinding,
-                  object.m_handle);
-
-               GLint objectType = 0;
-               GLint objectName = 0;
-
-               glGetFramebufferAttachmentParameteriv(
-                  GL_READ_FRAMEBUFFER,
-                  GL_COLOR_ATTACHMENT0,
-                  GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE,
-                  &objectType);
-
-               glGetFramebufferAttachmentParameteriv(
-                  GL_READ_FRAMEBUFFER,
-                  GL_COLOR_ATTACHMENT0,
-                  GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,
-                  &objectName);
-
-               informationf(
-                  "FBO=%d color0 type=0x%04x object=%d",
-                  framebufferBinding,
-                  objectType,
-                  objectName);
-
                glFramebufferTexture2D(
                   GL_READ_FRAMEBUFFER,
                   GL_COLOR_ATTACHMENT0,
                   GL_TEXTURE_2D,
                   m_gluTextureID,
                   0);
-
-               auto error = glGetError();
-
-               informationf(
-                  "glFramebufferTexture2D texture=%u error=0x%04x",
-                  m_gluTextureID,
-                  error);
-
-               informationf(
-      "framebuffer=%u texture=%u",
-      object.m_handle,
-      m_gluTextureID);
+               ::opengl::check_error("");
                //      glBindTexture(m_gluType, m_gluTextureID);
                  //    ::opengl::check_error("");
 
@@ -1946,14 +1917,10 @@ namespace gpu_opengl
    }
 
 
-   void texture::write_pixels(const ::pixmap_t * ppixmap, const ::i32_point & pointInput)
+   void texture::write_pixels(bool bSync, const ::pixmap_t * ppixmap, const ::i32_point & pointInput)
    {
 
       auto sizePixmap = ppixmap->size();
-
-      auto sizeRawThis = this->raw_size();
-
-      auto iScanPixmap = ppixmap->m_iScan;
 
       auto iRequiredScan = ppixmap->width() * (int)sizeof(::image32_t);
 
@@ -1974,7 +1941,7 @@ namespace gpu_opengl
       pixmapFlipped.create_as_descriptor(ppixmap->size(), DEFAULT_CREATE_IMAGE_FLAG, ppixmap->m_iScan);
       pixmapFlipped.m_colorindexes = ppixmap->m_colorindexes;
       pixmapFlipped.copy(ppixmap);
-      //pixmapFlipped.vertical_swap();
+      pixmapFlipped.vertical_swap();
 
       int cx = ppixmap->width();
       int cy = ppixmap->height();
@@ -1984,36 +1951,10 @@ namespace gpu_opengl
       glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
       ::opengl::check_error("");
 
-      GLint textureWidth = 0;
-      GLint textureHeight = 0;
+      auto textureWidth = raw_width();
+      auto textureHeight = raw_height();
       auto x = pointInput.x;
       auto y = pointInput.y;
-      int iMipLevel = 0;
-
-
-      glGetTexLevelParameteriv(
-         GL_TEXTURE_2D,
-         iMipLevel,
-         GL_TEXTURE_WIDTH,
-         &textureWidth);
-
-      glGetTexLevelParameteriv(
-         GL_TEXTURE_2D,
-         iMipLevel,
-         GL_TEXTURE_HEIGHT,
-         &textureHeight);
-
-      informationf(
-         "glTexSubImage2D level=%d "
-         "texture=%dx%d "
-         "upload=(%d,%d) %dx%d",
-         iMipLevel,
-         textureWidth,
-         textureHeight,
-         x,
-         y,
-         cx,
-         cy);
 
       auto requiredWidth = x + cx;
 
@@ -2042,19 +1983,12 @@ namespace gpu_opengl
          pixmapFlipped.m_iScan / (int)sizeof(::image32_t));
       ::opengl::check_error("");
 
-      auto cxThis = width();
-
-      auto cyThis = height();
-
       auto iPixelFormatFlipped = pixmap_pixel_format(&pixmapFlipped);
-      int i1 = textureHeight - y - cy;
-      int i2 = textureHeight - y;
-      int i3 = y;
       glTexSubImage2D(
          GL_TEXTURE_2D,
          0,
          x, 
-         i3,
+         y,
          cx,
          cy,
          iPixelFormatFlipped,
@@ -2062,46 +1996,46 @@ namespace gpu_opengl
          pixmapFlipped.m_pimage32);
       ::opengl::check_error("");
 
-      if (m_textureattributes.m_size.cx < cx)
+      if (m_textureattributes.m_size.cx < requiredWidth)
       {
 
-         m_textureattributes.m_size.cx = cx;
+         m_textureattributes.m_size.cx = requiredWidth;
 
       }
 
-      if (m_textureattributes.m_size.cy < cy)
+      if (m_textureattributes.m_size.cy < requiredHeight)
       {
 
-         m_textureattributes.m_size.cy = cy;
+         m_textureattributes.m_size.cy = requiredHeight;
 
       }
 
-      if (m_textureattributes.m_sizeRaw.cx < cx)
+      if (m_textureattributes.m_sizeRaw.cx < requiredWidth)
       {
 
-         m_textureattributes.m_sizeRaw.cx = cx;
+         m_textureattributes.m_sizeRaw.cx = requiredWidth;
 
       }
 
-      if (m_textureattributes.m_sizeRaw.cy < cy)
+      if (m_textureattributes.m_sizeRaw.cy < requiredHeight)
       {
 
-         m_textureattributes.m_sizeRaw.cy = cy;
+         m_textureattributes.m_sizeRaw.cy = requiredHeight;
 
       }
 
    }
 
 
-   void texture::write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::pixmap_t * ppixmap, const ::i32_point & pointInput)
-   {
+   //void texture::write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::pixmap_t * ppixmap, const ::i32_point & pointInput)
+   //{
 
-      write_pixels(ppixmap, pointInput);
+   //   write_pixels(ppixmap, pointInput);
 
-   }
+   //}
 
 
-   void texture::set_pixels(const ::i32_rectangle & rectangle, const void * data)
+   void texture::set_pixels(bool bSync, const ::i32_rectangle & rectangle, const void * data)
    {
 
       if (::is_null(data))
@@ -2446,8 +2380,17 @@ namespace gpu_opengl
       }
 
       m_glsyncGpuCommandsCompleteFence = glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE, 0);
+      ::opengl::check_error("glFenceSync");
+
+      if (!m_glsyncGpuCommandsCompleteFence)
+      {
+
+         throw ::exception(error_failed, "OpenGL failed to create a texture completion fence");
+
+      }
 
       glFlush(); // push commands to GPU
+      ::opengl::check_error("glFlush after glFenceSync");
 
    }
 
@@ -2462,11 +2405,32 @@ namespace gpu_opengl
 
       }
 
-      glClientWaitSync(m_glsyncGpuCommandsCompleteFence, 0, GL_TIMEOUT_IGNORED);
-
-      glDeleteSync(m_glsyncGpuCommandsCompleteFence);
+      auto glsync = m_glsyncGpuCommandsCompleteFence;
 
       m_glsyncGpuCommandsCompleteFence = nullptr;
+
+      // The producer flushes immediately after creating this fence.  Queue a
+      // server-side dependency in the consuming context so subsequent texture
+      // use waits for the upload/render without stalling the CPU.  In contrast,
+      // GL_TIMEOUT_IGNORED is not a portable glClientWaitSync timeout and causes
+      // GL_INVALID_VALUE on some Windows OpenGL drivers.
+      try
+      {
+
+         glWaitSync(glsync, 0, GL_TIMEOUT_IGNORED);
+         ::opengl::check_error("glWaitSync for texture completion");
+
+      }
+      catch (...)
+      {
+
+         glDeleteSync(glsync);
+         throw;
+
+      }
+
+      glDeleteSync(glsync);
+      ::opengl::check_error("glDeleteSync for texture completion");
 
    }
 

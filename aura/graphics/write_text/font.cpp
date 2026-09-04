@@ -61,7 +61,7 @@ namespace write_text
    {
 
       m_bUpdated = false;
-      m_bTextMetricCalculated = false;
+      // m_bTextMetricCalculated = false;
       m_bCacheLayout = true;
       m_dFontWidth = 1.0;
       m_fontweight = e_font_weight_normal;
@@ -916,31 +916,29 @@ namespace write_text
    }
 
 
-   void font::get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm)
-   {
+   //void font::get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm)
+   //{
 
-      if (!has_text_metric())
-      {
+   //   if (!has_text_metric())
+   //   {
 
-         _get_text_metric(pdraw2dgraphics, m_textmetric2);
+   //      _get_text_metric(pdraw2dgraphics, m_textmetric2);
 
-         set_has_text_metric();
+   //      set_has_text_metric();
 
-      }
+   //   }
 
-      tm = *get_text_metric_struct();
+   //   tm = *get_text_metric_struct();
 
-   }
+   //}
 
 
    ::f64 font::get_ascent(::draw2d::graphics * pdraw2dgraphics)
    {
 
-      text_metric tm;
+      defer_update(pdraw2dgraphics);
 
-      get_text_metric(pdraw2dgraphics, tm);
-
-      return tm.m_dAscent;
+      return m_textmetric2.m_dAscent;
 
    }
 
@@ -948,11 +946,9 @@ namespace write_text
    ::f64 font::get_height(::draw2d::graphics * pdraw2dgraphics)
    {
 
-      text_metric tm;
+      defer_update(pdraw2dgraphics);
 
-      get_text_metric(pdraw2dgraphics, tm);
-
-      return tm.m_dHeight;
+      return m_textmetric2.m_dHeight;
 
    }
 
@@ -960,11 +956,9 @@ namespace write_text
    ::f64 font::get_leading(::draw2d::graphics * pdraw2dgraphics)
    {
 
-      text_metric tm;
+      defer_update(pdraw2dgraphics);
 
-      get_text_metric(pdraw2dgraphics, tm);
-
-      return tm.m_dInternalLeading + tm.m_dExternalLeading;
+      return m_textmetric2.m_dInternalLeading + m_textmetric2.m_dExternalLeading;
 
    }
 
@@ -972,53 +966,56 @@ namespace write_text
    ::f64 font::get_descent(::draw2d::graphics * pdraw2dgraphics)
    {
 
-      text_metric tm;
+      defer_update(pdraw2dgraphics);
 
-      get_text_metric(pdraw2dgraphics, tm);
-
-      return tm.m_dDescent;
+      return m_textmetric2.m_dDescent;
 
    }
 
 
-   void font::_get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm)
-   {
+   //void font::_get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm)
+   //{
 
-      if (::is_null(pdraw2dgraphics))
-      {
+   //   if (::is_null(pdraw2dgraphics))
+   //   {
 
-         throw ::exception(error_null_pointer);
+   //      throw ::exception(error_null_pointer);
 
-      }
+   //   }
 
-      pdraw2dgraphics->set(this);
+   //   defer_update(pdraw2dgraphics);
 
-      pdraw2dgraphics->get_text_metrics(&tm);
+   //   tm = m_textmetric2;
 
-   }
+   //   //pdraw2dgraphics->set(this);
 
-   text_metric * font::get_text_metric_struct()
-   {
+   //   //pdraw2dgraphics->get_text_metrics(&tm);
 
-      return &m_textmetric2;
+   //}
 
-   }
-   const text_metric * font::get_text_metric_struct() const
-   {
-      return &m_textmetric2;
 
-   }
-   bool font::has_text_metric() const
-   {
-      return m_bTextMetricCalculated;
+   //text_metric * font::get_text_metric_struct()
+   //{
 
-   }
-   void font::set_has_text_metric()
-   {
+   //   return &m_textmetric2;
 
-      m_bTextMetricCalculated = true;
+   //}
+   //const text_metric * font::get_text_metric_struct() const
+   //{
+   //   return &m_textmetric2;
 
-   }
+   //}
+   //bool font::has_text_metric() const
+   //{
+   //   return m_bTextMetricCalculated;
+
+   //}
+   //void font::set_has_text_metric()
+   //{
+
+   //   m_bTextMetricCalculated = true;
+
+   //}
 
 
 } // namespace write_text

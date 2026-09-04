@@ -65,7 +65,7 @@ namespace gpu_gpu
         
       {
 
-         m_pcommandbufferMain = beginSingleTimeCommands(m_pgpudevice->graphics_queue());
+         m_pcommandbufferMain = _beginSingleTimeCommands(m_pgpudevice->graphics_queue());
 
          // Pre-compute IBL stuff
          auto piblequirectangularcubemap = createø<::gpu::ibl::equirectangular_cubemap>();
@@ -91,7 +91,7 @@ namespace gpu_gpu
                         piblequirectangularcubemap->compute_equirectangular_cubemap(m_pcommandbufferMain);
                         end_debug_happening(m_pcommandbufferMain);
                      }
-                     endSingleTimeCommands(m_pcommandbufferMain);
+                     _endSingleTimeCommands(m_pcommandbufferMain);
 
                      m_pcommandbufferMain.release();
                      //}

@@ -337,7 +337,7 @@ namespace account
 
          pdraw2dgraphics->set(f);
 
-         pdraw2dgraphics->set_text_color(colorBorderOut);
+         pdraw2dgraphics->set_solid_color(colorBorderOut);
          pdraw2dgraphics->text_out((::i32)(49 * rx), (::i32)(49 * ry), m_strCred);
       }
 

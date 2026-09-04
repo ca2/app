@@ -1138,12 +1138,12 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
    }
 
 
-   ::i32 draw2d_context::create_image_rgba(::i32 w, ::i32 h, ::i32 imageFlags, const void * data, ::i32 iScan)
-   {
+   //::i32 draw2d_context::create_image_rgba(::i32 w, ::i32 h, ::i32 imageFlags, const void * data, ::i32 iScan)
+   //{
 
-      return m_pdraw2dgraphics->m_papplication->image()->create_image_integer(w, h, (const ::image32_t *)data, iScan);
+   //   return m_pdraw2dgraphics->m_papplication->image()->create_image_integer(w, h, (const ::image32_t *)data, iScan);
 
-   }
+   //}
 
 
    void draw2d_context::image_size(::i32 image, ::i32 * w, ::i32 * h)

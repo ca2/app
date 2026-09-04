@@ -134,7 +134,7 @@ namespace user
 
       pdraw2dgraphics->draw(pdraw2dpath);
 
-      pdraw2dgraphics->set_text_color(argb(255, 120, 120, 255));
+      pdraw2dgraphics->set_solid_color(argb(255, 120, 120, 255));
 
       //::i32_rectangle rectangle;
 

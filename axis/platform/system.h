@@ -47,7 +47,7 @@ namespace axis
       void inline_term() override;
 
       void init_system() override;
-      void term_system() override;
+      void on_system_termination() override;
 
       void term() override;
 
@@ -94,7 +94,7 @@ namespace axis
 
       //virtual void post_pending_requests() override;
 
-      //virtual void term_system();
+      //virtual void on_system_termination();
 
       void term2() override;
 
@@ -102,7 +102,7 @@ namespace axis
 
       //virtual void term();
 
-      void TermSystem() override;
+      //void on_system_termination() override;
 
 
       void process_term() override;

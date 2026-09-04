@@ -152,7 +152,22 @@ namespace gpu
 
    }
 
+   ::draw2d::graphics_pointer draw2d::do_allocation_strategy(::acme::user::interaction * pacmeuserinteractionAffinity, ::image::image * pimage,
+                                                             const ::i32_size & size)
+   {
 
+      auto pdraw2dgraphics = create_memory_graphics(size, pacmeuserinteractionAffinity);
+
+      if (::is_set(pimage))
+      {
+
+         pimage->create_from_graphics(pdraw2dgraphics);
+
+      }
+
+      return pdraw2dgraphics;
+
+   }
 
 
 } // namespace gpu

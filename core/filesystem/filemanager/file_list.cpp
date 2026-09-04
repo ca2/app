@@ -1741,7 +1741,7 @@ namespace filemanager
       if (pcallback != nullptr && pbutton != nullptr)
       {
 
-         pbutton->set_button_style(::user::button::e_style_list);
+         pbutton->set_button_style(::user::e_button_style_list);
 
          pcallback->InitializeActionButton(pinteraction->id().as_i32() - 1000, pbutton);
 

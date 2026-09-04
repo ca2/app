@@ -12,6 +12,7 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/user/user/interaction.h"
 #include "bred/gpu/device.h"
+#include "bred/gpu/graphics.h"
 
 
 CLASS_DECL_ACME::string _001_image32_diagnostics(const ::i32_size &size, const image32_t *pimage32, int iScan);
@@ -171,7 +172,16 @@ namespace gpu
 
       }
 
-      return pgpubitmap->gpu_texture();
+      ::cast < ::gpu::graphics > pgpugraphics = m_pgraphicsOwned;
+
+      if(pgpugraphics && pgpugraphics->m_pgpucontextOwned)
+      {
+
+         return pgpubitmap->gpu_texture(pgpugraphics->m_pgpucontextOwned);
+
+      }
+
+      return pgpubitmap->gpu_texture(nullptr);
 
    }
 
@@ -206,7 +216,7 @@ namespace gpu
 
    }
 
-   
+
    void image::update_as_render_target(const ::i32_size & sizeRaw, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d)
    {
 
@@ -385,13 +395,20 @@ namespace gpu
    }
 
 
-   ::gpu::texture * image::get_gpu_texture()
+   ::gpu::texture * image::get_gpu_texture_as_target(::gpu::context * pgpucontext)
    {
 
       if (m_pdraw2dbitmap.is_null())
       {
 
-         return nullptr;
+         m_pdraw2dbitmap = get_bitmap_as_target();
+
+         if (!m_pdraw2dbitmap)
+         {
+
+            return nullptr;
+
+         }
 
       }
 
@@ -404,21 +421,61 @@ namespace gpu
 
       }
 
-      auto pgputexture = pgpubitmap->get_gpu_texture();
+      ::cast < ::gpu::graphics > pgpugraphics = m_pgraphicsOwned;
 
-      if (::is_null(pgputexture))
+      if (pgpugraphics && pgpugraphics->m_pgpucontextOwned)
+      {
+
+         return pgpubitmap->gpu_texture(pgpugraphics->m_pgpucontextOwned);
+
+      }
+
+      return pgpubitmap->gpu_texture(pgpucontext);
+
+   }
+
+
+   ::gpu::texture * image::get_gpu_texture_as_source(::gpu::context * pgpucontext)
+   {
+
+      if (m_pdraw2dbitmap.is_null())
+      {
+
+         m_pdraw2dbitmap = get_bitmap_as_source();
+
+         if (!m_pdraw2dbitmap)
+         {
+
+            return nullptr;
+
+         }
+
+      }
+
+      ::cast<::gpu::bitmap> pgpubitmap = m_pdraw2dbitmap;
+
+      if (pgpubitmap.is_null())
       {
 
          return nullptr;
 
       }
 
-      return pgputexture;
+      ::cast < ::gpu::graphics > pgpugraphics = m_pgraphicsOwned;
+
+      if (pgpugraphics && pgpugraphics->m_pgpucontextOwned)
+      {
+
+         return pgpubitmap->gpu_texture(pgpugraphics->m_pgpucontextOwned);
+
+      }
+
+      return pgpubitmap->gpu_texture(pgpucontext);
 
    }
 
 
-   ::image_pixmap_lease image::_map(const ::i32_rectangle & rectangle)
+   ::image_pixmap_lease image::_map(::image::enum_map emap, const ::i32_rectangle & rectangle)
    {
 
       _tidy_map(rectangle);
@@ -439,54 +496,81 @@ namespace gpu
       //
       // }
 
-      ::gpu::texture * pgputexture = nullptr;
+      auto pthis = this;
 
-      ::cast < ::gpu::bitmap > pdraw2dbitmap = m_pdraw2dbitmap;
+      auto size = this->m_size;
 
-      if (pdraw2dbitmap)
+      auto sizeRaw = this->m_sizeRaw;
+
+      defer_construct_newø(m_ppixmapOwned);
+
+      pthis->m_ppixmapOwned->m_size = size;
+
+      pthis->m_ppixmapOwned->m_sizeRaw = sizeRaw;
+
+      auto iScanAreaInBytes = pthis->scan_area_in_bytes();
+
+      pthis->m_ppixmapOwned->m_iScan = pthis->m_iScan;
+
+      auto iScanWidth = pthis->m_iScan / 4;
+
+      int iHeightThis = pthis->m_sizeRaw.height();
+
+      pthis->m_ppixmapOwned->m_memoryPixmap.set_size(iHeightThis * pthis->m_ppixmapOwned->m_iScan);
+
+      pthis->m_ppixmapOwned->m_pimage32Raw = (::image32_t *)pthis->m_ppixmapOwned->m_memoryPixmap.data();
+
+      pthis->m_ppixmapOwned->m_pimage32 = pthis->m_ppixmapOwned->m_pimage32Raw;
+
+      if (emap == ::image::e_map_load)
       {
 
-         pgputexture = pdraw2dbitmap->m_pgputexture;
+         ::gpu::texture * pgputexture = nullptr;
 
-      }
+         ::cast < ::gpu::bitmap > pdraw2dbitmap = m_pdraw2dbitmap;
 
-      if (!pgputexture)
-      {
+         if (pdraw2dbitmap)
+         {
 
-         if (m_size.is_empty() && m_sizeRaw.is_empty())
+            pgputexture = pdraw2dbitmap->m_pgputexture;
+
+         }
+
+         if (!pgputexture)
+         {
+
+            if (m_size.is_empty() && m_sizeRaw.is_empty())
+            {
+
+               throw ::exception(error_wrong_state);
+
+            }
+
+            auto ppixmap = ::transfer(::image::image::_map(emap, rectangle));
+
+            return ::transfer(ppixmap);
+
+         }
+
+         auto pgpucontextlease = pgputexture->acquire_context(m_pgraphicsOwned);
+
+         if (!pgpucontextlease)
          {
 
             throw ::exception(error_wrong_state);
 
          }
 
-         auto ppixmap = ::transfer(::image::image::_map(rectangle));
+         auto pthis = const_cast <image *>(this);
 
-         return ::transfer(ppixmap);
+         auto pgpucontext = ::as_pointer(pgpucontextlease.m_p);
 
-      }
+         auto pgpudevice = pgpucontext->m_pgpudevice;
 
-      auto pgpucontextlease = pgputexture->acquire_context(m_pgraphicsOwned);
+         auto pgpuqueueGraphics = pgpudevice->graphics_queue();
 
-      if (!pgpucontextlease)
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      defer_construct_newø(m_ppixmapOwned);
-
-      auto pthis = const_cast < image * >(this);
-
-      auto pgpucontext = ::as_pointer(pgpucontextlease.m_p);
-
-      auto pgpudevice = pgpucontext->m_pgpudevice;
-
-      auto pgpuqueueGraphics = pgpudevice->graphics_queue();
-
-      //pgpucontext->send(
-         //[pthis, pgputexture, pgpucontext, rectangle]()
+         //pgpucontext->send(
+            //[pthis, pgputexture, pgpucontext, rectangle]()
          {
 
             auto bPerformanceDiagnostics = pthis->m_papplication
@@ -513,28 +597,6 @@ namespace gpu
 
             pgputexture->wait_fence();
 
-            auto size = this->m_size;
-
-            auto sizeRaw = this->m_sizeRaw;
-
-            pthis->m_ppixmapOwned->m_size = size;
-
-            pthis->m_ppixmapOwned->m_sizeRaw = sizeRaw;
-
-            auto iScanAreaInBytes = pthis->scan_area_in_bytes();
-
-            pthis->m_ppixmapOwned->m_iScan = pthis->m_iScan;
-
-            auto iScanWidth = pthis->m_iScan / 4;
-
-            int iHeightThis = pthis->m_sizeRaw.height();
-
-            pthis->m_ppixmapOwned->m_memoryPixmap.set_size(iHeightThis * pthis->m_ppixmapOwned->m_iScan);
-
-            pthis->m_ppixmapOwned->m_pimage32Raw = (::image32_t *) pthis->m_ppixmapOwned->m_memoryPixmap.data();
-
-            pthis->m_ppixmapOwned->m_pimage32 = pthis->m_ppixmapOwned->m_pimage32Raw;
-
             ::gpu::context_lock contextlock(pgpucontext);
 
             //pthis->pixmap_t::create(
@@ -551,55 +613,64 @@ namespace gpu
 
             }
 
-            //auto pgpucommandbuffer = ::gpu::current_layer()->getCurrentCommandBuffer4();
-
-            auto pgpucommandbuffer = pgpucontext->beginSingleTimeCommands(pgpuqueueGraphics);
-
-            auto ptexturesite = ::gpu::current_layer()->texture(false);
-
-            pgputexture->read_pixels(pgpucommandbuffer, pthis->m_ppixmapOwned, ptexturesite->m_pointOutput);
-
-            auto uMicroseconds = (::u64)0;
-
-            if (bPerformanceDiagnostics)
+            if (emap == ::image::e_map_load)
             {
 
-               uMicroseconds = (::u64)::std::chrono::duration_cast<
-                  ::std::chrono::microseconds>(
-                     ::std::chrono::steady_clock::now() - timeStart).count();
+               //auto pgpucommandbuffer = ::gpu::current_layer()->getCurrentCommandBuffer4();
+
+               auto pgpucommandbuffer = pgpucontext->beginSingleTimeCommands(pgpuqueueGraphics);
+
+               auto ptexturesite = ::gpu::current_layer()->texture(false);
+
+               pgputexture->read_pixels(pgpucommandbuffer, pthis->m_ppixmapOwned, ptexturesite->m_pointOutput);
+
+               pgpucommandbuffer.commit();
+
+               auto uMicroseconds = (::u64)0;
+
+               if (bPerformanceDiagnostics)
+               {
+
+                  uMicroseconds = (::u64)::std::chrono::duration_cast<
+                     ::std::chrono::microseconds>(
+                        ::std::chrono::steady_clock::now() - timeStart).count();
+
+               }
+
+               // if (rectangle.is_empty())
+               // {
+               //
+               //    pthis->m_ppixmapOwned->pixmap_map(pthis->rectangle());
+               //
+               // }
+               // else
+               // {
+               //
+               //    pthis->m_ppixmapOwned->pixmap_map(rectangle);
+               //
+               // }
+               //
+               //pthis->m_bMapped = true;
+
+               if (bPerformanceDiagnostics)
+               {
+
+                  pthis->record_performance_map_transition(uMicroseconds);
+
+               }
 
             }
 
-            // if (rectangle.is_empty())
-            // {
-            //
-            //    pthis->m_ppixmapOwned->pixmap_map(pthis->rectangle());
-            //
-            // }
-            // else
-            // {
-            //
-            //    pthis->m_ppixmapOwned->pixmap_map(rectangle);
-            //
-            // }
-            //
-            //pthis->m_bMapped = true;
-
-            if (bPerformanceDiagnostics)
-            {
-
-               pthis->record_performance_map_transition(uMicroseconds);
-
-            }
-
-            pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
 
          }
-            //);
+         //);
+
+      }
 
       return {this, m_ppixmapOwned };
 
    }
+
 
    //
    // bool image::_on_unmap(bool bDoUnmap)
@@ -635,7 +706,8 @@ namespace gpu
    void image::_unmap(::image_pixmap_lease * pimagepixmaplease)
    {
 
-      _tidy_unmap(pimagepixmaplease);
+      ::image::image::_unmap(pimagepixmaplease);
+      //_tidy_unmap(pimagepixmaplease);
       // if (!_on_unmap(bDoUnmap))
       // {
       //
@@ -643,32 +715,48 @@ namespace gpu
       //
       // }
 
-      auto pgputexture = get_gpu_texture();
-
-      if (!pgputexture)
+      if (m_pdraw2dbitmap)
       {
 
-         //throw ::exception(error_wrong_state);
-         return;
+         ::cast <::gpu::graphics> pgpugraphics = m_pgraphicsOwned;
 
-      }
+         ::pointer < ::gpu::context > pgpucontext;
 
-      auto pgpucontextlease = pgputexture->acquire_context(m_pgraphicsOwned);
-
-      if (!pgpucontextlease)
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      auto pthis = const_cast < image * >(this);
-
-      auto pgpucontext = ::as_pointer(pgpucontextlease.m_p);
-
-      pgpucontext->send(
-         [pthis, pgputexture]()
+         if (pgpugraphics && pgpugraphics->m_pgpucontextOwned)
          {
+
+            pgpucontext = pgpugraphics->m_pgpucontextOwned;
+
+         }
+
+         auto pgputexture = get_gpu_texture_as_target(pgpucontext);
+
+         if (!pgputexture)
+         {
+
+            //throw ::exception(error_wrong_state);
+            return;
+
+         }
+
+         auto pgpucontextlease = pgputexture->acquire_context(m_pgraphicsOwned);
+
+         if (!pgpucontextlease)
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         auto pthis = const_cast <image *>(this);
+
+         pgpucontext = ::as_pointer(pgpucontextlease.m_p);
+
+         //pgpucontext->send(
+           // [pthis, pgputexture, pgpucontext]()
+         {
+
+            ::gpu::context_lock contextlock(pgpucontext);
 
             auto bPerformanceDiagnostics = pthis->m_papplication
                && pthis->m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
@@ -701,7 +789,7 @@ namespace gpu
 
             }
 
-            pgputexture->write_pixels(pthis->m_ppixmapOwned, {});
+            pgputexture->write_pixels(true, pthis->m_ppixmapOwned, {});
 
             auto uMicroseconds = (::u64)0;
 
@@ -725,7 +813,10 @@ namespace gpu
 
             }
 
-         });
+         }
+            //);
+
+      }
 
    }
 
@@ -814,7 +905,7 @@ namespace gpu
 
                ::gpu::context_lock contextlock(pgpucontext);
 
-               pgputexture->write_pixels(size, pimage32, iScan);
+               pgputexture->write_pixels(true, size, pimage32, iScan);
 
                auto uMicroseconds = (::u64)0;
 
@@ -876,7 +967,7 @@ namespace gpu
       m_estatus = success;
 
       set_ok_flag();
-   
+
    }
 
 

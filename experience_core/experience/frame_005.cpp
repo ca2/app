@@ -403,7 +403,7 @@ namespace experience_core
       }
 
       //          pdraw2dgraphics->SetBkMode(iOriginalBkMode);
-      //            pdraw2dgraphics->set_text_color(crOriginalTextColor);
+      //            pdraw2dgraphics->set_solid_color(crOriginalTextColor);
 
    }
 

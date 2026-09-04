@@ -26,19 +26,16 @@ namespace gpu
    }
 
 
-   void fence::initialize_gpu_fence(::gpu::device * pgpudevice, bool bCreateSignaled)
+   void fence::initialize_gpu_fence(::gpu::context * pgpucontext, bool bCreateSignaled)
    {
 
-      m_pgpudevice = pgpudevice;
-      //::gpu::fence::initialize_gpu_context_object(pgpucontext);
-
+      m_pgpucontextGpuFence = pgpucontext;
 
    }
 
 
    void fence::signal_gpu_fence(::gpu::queue * pgpuqueue)
    {
-
 
 
    }
@@ -65,4 +62,8 @@ namespace gpu
 
    }
 
+
 } // gpu
+
+
+

@@ -816,9 +816,9 @@ namespace graphics
 
             //str = ch;
 
-            pgraphicsImage->set_text_color(console_dos_color(edoscolor));
+            pgraphicsImage->set_solid_color(console_dos_color(edoscolor));
 
-           pgraphicsImage->draw_text(str, i32_rectangle(m_iBorder + x * m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy,
+            pgraphicsImage->draw_text(str, i32_rectangle(m_iBorder + x * m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy), e_align_center);
 
          }

@@ -300,7 +300,7 @@ namespace user
         pdraw2dgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
         pdraw2dgraphics->fill_rectangle(rectangleX, rgb(220, 240, 250));
         pdraw2dgraphics->draw_inset_3d_rectangle(rectangleX, rgb(0, 120, 180), rgb(0, 120, 180));
-        pdraw2dgraphics->set_text_color(rgb(0, 60, 90));
+        pdraw2dgraphics->set_solid_color(rgb(0, 60, 90));
         rectangleText = rectangleX;
         rectangleText.deflate(2, 2, 2, 2);
         pdraw2dgraphics->draw_text(m_strTip, rectangleText, e_align_bottom_left, e_draw_text_end_ellipsis);
@@ -314,7 +314,7 @@ namespace user
         pdraw2dgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
         pdraw2dgraphics->fill_rectangle(rectangleX, rgb(220, 240, 250));
         pdraw2dgraphics->draw_inset_3d_rectangle(rectangleX, rgb(0, 120, 180), rgb(0, 120, 180));
-        pdraw2dgraphics->set_text_color(rgb(0, 60, 90));
+        pdraw2dgraphics->set_solid_color(rgb(0, 60, 90));
         rectangleText = rectangleX;
         rectangleText.deflate(2, 2, 2, 2);
         pdraw2dgraphics->draw_text(m_strTip, rectangleText, e_align_bottom_left, e_draw_text_end_ellipsis);
@@ -327,7 +327,7 @@ namespace user
         pdraw2dgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
         pdraw2dgraphics->fill_rectangle(rectangleX, rgb(220, 240, 250));
         pdraw2dgraphics->draw_inset_3d_rectangle(rectangleX, rgb(0, 120, 180), rgb(0, 120, 180));
-        pdraw2dgraphics->set_text_color(rgb(0, 60, 90));
+        pdraw2dgraphics->set_solid_color(rgb(0, 60, 90));
         rectangleText = rectangleX;
         rectangleText.deflate(2, 2, 2, 2);
         pdraw2dgraphics->draw_text(m_strTip, rectangleText, e_align_bottom_left, e_draw_text_end_ellipsis);

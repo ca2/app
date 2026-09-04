@@ -26,7 +26,7 @@ namespace draw2d
       static ::draw2d::window_attachment * get(::acme::user::interaction * pacmeuserinteraction);
       static ::draw2d::window_attachment * get(::acme::windowing::window * pacmewindowingwindow);
 
-
+      void destroy() override;
 
 
    };

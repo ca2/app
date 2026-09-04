@@ -3,10 +3,11 @@
 #include "font_list.h"
 #include "text_box.h"
 #include "aura/graphics/image/image.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/graphics_lease.h"
-#include "aura/graphics/draw2d/graphics_layer_scope.h"
+#include "aura/user/user/interaction.h"
 //#include "acme/_finish.h"
 
 
@@ -92,6 +93,8 @@ namespace write_text
 
       ::i32 iColorIndex = 0;
 
+      bool bTextOutHasPendingResources = false;
+
       if (bDarkMode)
       {
 
@@ -101,9 +104,15 @@ namespace write_text
 
       {
 
-         auto pdraw2dgraphics = m_pimage->acquire_graphics(::draw2d::e_acquire_dont_load, pacmeuserinteractionAffinity);
+         ::draw2d::debug_flag_scope draw2ddebugflagscope(0);
 
-         //auto layerscope = pdraw2dgraphics.begin_layer_scope();
+         auto graphicslease = m_pimage->acquire_graphics(
+            ::draw2d::e_acquire_dont_load,
+            pacmeuserinteractionAffinity);
+
+         draw2ddebugflagscope.unlock();
+
+         auto pdraw2dgraphics = graphicslease.get();
 
          auto uBackgroundColor = plist->m_uaBackgroundColor[iColorIndex][iBox];
 
@@ -126,13 +135,22 @@ namespace write_text
 
          }
 
-         pdraw2dgraphics->set_text_color(uForegroundColor);
+         pdraw2dgraphics->set_solid_color(uForegroundColor);
 
          pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
+         // Graphics objects are pooled.  A missing GPU glyph sets this flag
+         // for the current text_out operation; clear it before a later cache
+         // render so an old atlas miss does not keep every reused text box
+         // permanently invalid.
+         pdraw2dgraphics->payload("gpu_text_out_has_pending_resources") = false;
+
          pdraw2dgraphics->text_out(plist->m_rectangleMargin.left, plist->m_rectangleMargin.top, scopedstrText);
+
+         bTextOutHasPendingResources =
+            pdraw2dgraphics->payload("gpu_text_out_has_pending_resources").is_true();
 
 #if 0
 
@@ -157,13 +175,25 @@ namespace write_text
 
    #endif
 
+         graphicslease.close();
+
       }
 
-      //layerscope.close();
+      // A GPU glyph atlas can finish uploading at the frame boundary. Keep the
+      // preview invalid until a later pass has actually rendered every glyph.
+      m_bOk = !bTextOutHasPendingResources;
 
-      //graphicslease.close();
+      if (bTextOutHasPendingResources && plist->m_puserinteraction)
+      {
 
-      m_bOk = true;
+         // A hover change may be the only event that caused this frame. Ask for
+         // the one follow-up frame that consumes the completed atlas upload.
+         // Once every glyph is available, m_bOk becomes true and no more retry
+         // is posted.
+         plist->m_puserinteraction->set_need_redraw();
+         plist->m_puserinteraction->post_redraw();
+
+      }
 
       m_bDarkMode = bDarkMode;
 

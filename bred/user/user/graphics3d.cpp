@@ -4,7 +4,9 @@
 #include "acme/exception/interface_only.h"
 #include "apex/gpu/approach.h"
 #include "bred/gpu/block.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/debug_scope.h"
 #include "bred/gpu/window_attachment.h"
 #include "bred/gpu/layer.h"
 #include "bred/graphics3d/asset_manager.h"
@@ -391,7 +393,7 @@ namespace user
 
 #endif
 
-         pdraw2dgraphics->set_text_color(::color::white);
+         pdraw2dgraphics->set_solid_color(::color::white);
 
          auto psystem = system();
 
@@ -548,6 +550,14 @@ namespace user
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
+
+         //auto pcommandbuffer = ::gpu::current_command_buffer();
+
+         //::string strMessage;
+
+         //strMessage.formatf("draw2d::graphics::end_layer(1)");
+
+         //::gpu::debug_scope debugscopeBoundTextOutShader(pcommandbuffer, strMessage);
 
          pdraw2dgraphics->end_layer();
 

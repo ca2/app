@@ -1784,6 +1784,7 @@ pdirectorysystem->create("/ca2core");
    void system::term()
    {
 
+      ::platform::system::term();
 
    }
 
@@ -1824,6 +1825,8 @@ pdirectorysystem->create("/ca2core");
    void system::term1()
    {
 
+      ::platform::system::term1();
+
    }
 
 
@@ -1850,6 +1853,8 @@ pdirectorysystem->create("/ca2core");
 
       }
 
+      ::platform::system::term2();
+
    }
 
 
@@ -1867,7 +1872,7 @@ pdirectorysystem->create("/ca2core");
    //   try
    //   {
 
-   //      term_system();
+   //      on_system_termination();
 
    //   }
    //   catch (...)
@@ -1914,71 +1919,10 @@ pdirectorysystem->create("/ca2core");
 
 
 
-   void system::term_system()
+   void system::on_system_termination()
    {
 
-      try
-      {
-
-         term2();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         term1();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         term();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         process_term();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         TermSystem();
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
-
-
-   void system::TermSystem()
-   {
-
-      ::platform::system::TermSystem();
+      ::platform::system::on_system_termination();
 
    }
 
@@ -4828,16 +4772,6 @@ namespace apex
    void system::main()
    {
 
-      /*auto estatus = */
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      /*estatus =*/
       if (this->is_console())
       {
 
@@ -4851,50 +4785,14 @@ namespace apex
       else
       {
 
-         //__check_refdbg
-
-         //task_osinit();
-
-         //__check_refdbg
-
-         //__task_init();
-
          ::thread::main();
-
-         //run();
-
-         ////         m_phappeningInitialization->set_happening();
-
-         //while (task_get_run())
-         //{
-
-         //   run_posted_procedures();
-
-         //   preempt(100_ms);
-
-         //}
-
-         ////acme_windowing()->windowing_system_application_main_loop();
-
 
       }
 
-
-      //run();
-
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      end();
-
-      //return estatus;
+      on_system_end();
 
    }
+
 
    //pointer_array < ::apex::session > & system::planesessionptra()
    //{

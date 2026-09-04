@@ -31,6 +31,7 @@ struct pixmap_t
    ::i32 m_iRedLower;
    /// Scan/stride in bytes
    ::i32 m_iScan;
+   bool m_bTopLeft;
    ::image32_t *m_pimage32;
    ::i32_point m_point;
    ::image32_t *m_pimage32Raw;
@@ -46,6 +47,7 @@ struct pixmap_t
 
    pixmap_t()
    {
+      m_bTopLeft = true;
       m_iRedLower = g_iRedLowerDefault;
       m_iScan = 0;
       m_pimage32 = nullptr;

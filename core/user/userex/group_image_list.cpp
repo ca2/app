@@ -143,7 +143,7 @@ namespace userex
 
       m_pbuttonMenu->create_control(this, id());
 
-      m_pbuttonMenu->set_button_style(::user::button::e_style_image_and_text);
+      m_pbuttonMenu->set_button_style(::user::e_button_style_image_and_text);
 
       //m_pbuttonMenu->create_color(::user::color_button_text, argb(255, 80, 80, 80));
       //m_pbuttonMenu->create_color(::user::color_button_background, argb(255, 255, 255, 255));

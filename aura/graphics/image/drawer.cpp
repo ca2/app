@@ -51,7 +51,7 @@ namespace image
       if(!pimagesource->is_ok())
       {
 
-         throw ::exception(error_failed);
+         //throw ::exception(error_failed);
 
          return;
 

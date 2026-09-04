@@ -148,7 +148,7 @@ namespace draw2d_gpu
       //::f64 pi();
 
    protected:
-      ::image_pixmap_lease _map(const ::i32_rectangle & rectangle) override; // some implementations may requrire to map_base to m_pcolorref before manipulate it
+      ::image_pixmap_lease _map(::image::enum_map emap, const ::i32_rectangle & rectangle) override; // some implementations may requrire to map_base to m_pcolorref before manipulate it
       void _unmap(::image_pixmap_lease * pimagepixmaplease)  override; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
       //virtual bool update_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage, bool bTransferBuffer = true) override;

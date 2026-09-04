@@ -3116,7 +3116,7 @@ void file_context::term_context()
 }
 
 
-void file_context::term_system()
+void file_context::on_system_termination()
 {
 
    //   auto psystem = system();

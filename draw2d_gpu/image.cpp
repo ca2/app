@@ -262,7 +262,7 @@ namespace draw2d_gpu
 
       //}
 
-      ::i32_size size = pdraw2dgraphics->m_pimage->get_size();
+      ::i32_size size = pdraw2dgraphics->m_pimageTarget->get_size();
 
       //if(!create(size))
       create_as_descriptor(size);
@@ -2753,10 +2753,10 @@ namespace draw2d_gpu
 //
 
 
-   ::image_pixmap_lease image::_map(const ::i32_rectangle & rectangle)
+   ::image_pixmap_lease image::_map(::image::enum_map emap, const ::i32_rectangle & rectangle)
    {
 
-      return ::transfer(::image::image::_map(rectangle));
+      return ::transfer(::image::image::_map(emap, rectangle));
 
       //return;
 

@@ -29,6 +29,9 @@ namespace write_text
       ~drawer() override;
 
 
+      void destroy() override;
+
+
       virtual ::write_text::font* get_current_font();
       virtual void set(::write_text::font* pwritetextfont);
 

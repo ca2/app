@@ -10,6 +10,8 @@
 #include "acme/prototype/geometry2d/matrix.h"
 #include "acme/prototype/prototype/call.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/render_target.h"
+#include "bred/gpu/renderer.h"
 #include "bred/gpu/types.h"
 #include "bred/graphics3d/types.h"
 
@@ -218,7 +220,7 @@ namespace gpu_opengl
 
       GLenum mode = GL_TRIANGLES;
 
-      auto pshaderBound = m_pgpucontext->m_pshaderBound;
+      auto pshaderBound = pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
 
       if (pshaderBound)
       {

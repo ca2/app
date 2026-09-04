@@ -17,7 +17,7 @@
 
 
 
-void image32_t::vertical_swap_copy(::i32 cxParam, ::i32 cyParam, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
+void image32_t::y_swap_copy(::i32 cxParam, ::i32 cyParam, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
 {
 
    ::image32_t * pimage32Dst = this;
@@ -59,7 +59,7 @@ void image32_t::vertical_swap_copy(::i32 cxParam, ::i32 cyParam, ::i32 iStrideDs
 }
 
 
-void image32_t::vertical_swap_copy_swap_red_blue( ::i32 cxParam, ::i32 cyParam, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
+void image32_t::y_swap_copy_swap_red_blue( ::i32 cxParam, ::i32 cyParam, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
 {
 
    ::image32_t * pimage32Dst = this;

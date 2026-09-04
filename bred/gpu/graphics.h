@@ -42,15 +42,21 @@ namespace gpu
       ::pointer < ::gpu::shader >               m_pshaderBlendSequence2WithUniformColor;
       ::pointer < ::gpu::shader >               m_pshaderSourceCircle;
       ::pointer < ::gpu::shader >               m_pshaderBlendCircle;
+      ::pointer < ::gpu::shader >               m_pshaderSourceImage;
+      ::pointer < ::gpu::shader >               m_pshaderBlendImage;
       map_base < ::draw2d::enum_model, ::pool <::gpu::model_buffer > >   m_mapModelBufferPool;
       ::pointer < ::gpu::shader >         m_pgpushaderTextOut;
       ::pointer < ::gpu::model_buffer >         m_pmodelbufferTextOutDummy;
+      ::pointer < ::gpu::model_buffer >         m_pmodelbufferImageDummy;
       //::pointer < ::gpu::shader >                 m_pshaderLine;
       ::collection::index                       m_iGpuContextFrameSerial;
       pool_group *                              m_ppoolgroupFrame;
-      ::gpu::context_pointer                    m_pgpucontextOwned;
+      //::gpu::context_pointer                    m_pgpucontextOwned;
       ::pointer<::gpu::layer>                   m_pgpulayerBeforeLayerScope;
       ::pointer<::gpu::texture_site>            m_pgputexturesiteTarget;
+      ::pointer<::gpu::command_buffer>          m_pgpucommandbufferGpuGraphics;
+      bool                                      m_bTargetRenderPassActive;
+
 
       graphics();
       ~graphics() override;
@@ -61,8 +67,12 @@ namespace gpu
       void set_context_lease(::gpu::context_lease && contextlease);
       //::gpu::context_lease & context_lease();
       
+      /// @brief Can be called more than once per before calling end_draw
+      /// @param pimageTarget 
+      /// @param rectangleFrame 
+      void begin_draw(bool bExternalRendering, ::user::interaction * puserinteraction, const ::i32_rectangle & rectangleFrame, ::image::image * pimageTarget = nullptr) override;
 
-      void begin_draw() override;
+      /// @brief Can be called just once after begin_draw
       void end_draw() override;
       
       void start_frame() override;
@@ -70,17 +80,28 @@ namespace gpu
 
 
       ::gpu::context * gpu_context();
+      virtual ::gpu::texture * _gpu_target_texture();
+
+      virtual ::gpu::command_buffer * get_gpu_command_buffer();
 
 
-      void on_begin_draw(::acme::windowing::window * pacmewindowingwindow, const ::f64_size & sz);
-      
+      ///// @brief Can be called more than once per before calling end_draw
+      ///// @param pacmewindowingwindow 
+      ///// @param rectangleFrame 
+      //void begin_draw(::acme::windowing::window * pacmewindowingwindow, const ::f64_rectangle & rectangleFrame) override;
+      //
+      ///// @brief Can be called just once per begin_draw
+      ///// @param pacmewindowingwindow 
+      //void end_draw(::acme::windowing::window * pacmewindowingwindow) override;
 
-      void on_end_draw(::acme::windowing::window * pacmewindowingwindow) override;
+      bool is_memory_graphics_pool_compatible(
+         ::acme::user::interaction * pacmeuserinteractionAffinity) const override;
 
       bool is_memory_graphics_pool_compatible(
          ::acme::user::interaction * pacmeuserinteractionAffinity) const override;
 
       void on_acquire_memory_graphics(
+         bool bExternalRendering,
    ::image::image * pimage,
    const ::i32_size & size,
    ::acme::user::interaction * pacmeuserinteractionAffinity) override;
@@ -97,7 +118,7 @@ namespace gpu
       //void end_layer(::e_graphics egraphics) override;
       void start_layer(bool bFirstLayer = false, ::user::interaction* puserinteraction = nullptr) override;
       void end_layer(bool bClosingLayer = false) override;
-      void on_start_layer_before_begin_render(::gpu::layer * pgpulayer) override;
+      //void on_start_layer_before_begin_render(::gpu::layer * pgpulayer) override;
       void on_begin_layer_scope() override;
       void on_end_layer_scope() override;
       // void on_begin_layout1() override;
@@ -105,7 +126,7 @@ namespace gpu
       //void on_begin_draw1() override;
       //void on_end_draw1() override;
       virtual void defer_on_new_frame();
-      void gpu_layer_on_before_end_render() override;
+      //void gpu_layer_on_before_end_render() override;
 
 
       ::image::image_pointer get_current_target_image() override;
@@ -113,15 +134,15 @@ namespace gpu
       //void on_end_draw(::acme::windowing::window *pacmewindowingwindow) override;
 
 
-      void on_set_gpu_context() override;
+      //void on_set_gpu_context() override;
 
 
-      void on_gpu_context_placement_change(
-         const ::i32_point & pointTarget,
-         const ::i32_point & pointSource,
-         const ::i32_size & size,
-         ::acme::windowing::window *pacmewindowingwindow,
-         ::draw2d::graphics * pdraw2dgraphics) override;
+      //void on_gpu_context_placement_change(
+      //   const ::i32_point & pointTarget,
+      //   const ::i32_point & pointSource,
+      //   const ::i32_size & size,
+      //   ::acme::windowing::window *pacmewindowingwindow,
+      //   ::draw2d::graphics * pdraw2dgraphics) override;
 
       virtual ::pool <::gpu::model_buffer >& model_buffer_pool(::draw2d::enum_model epool);
       virtual ::gpu::model_buffer * model_buffer(::draw2d::enum_model epool);
@@ -137,7 +158,7 @@ namespace gpu
          
          m_m1.transform(p);
          
-         //p.y = m_pgpucontextCompositor2->m_rectangle.height() - p.y;
+         //p.y = m_pgpucontextOwned->m_rectangle.height() - p.y;
          
          return p;
 
@@ -149,7 +170,7 @@ namespace gpu
 
          m_m1.transform(vertex.position);
 
-         //p.y = m_pgpucontextCompositor2->m_rectangle.height() - p.y;
+         //p.y = m_pgpucontextOwned->m_rectangle.height() - p.y;
 
          return vertex;
 
@@ -211,7 +232,20 @@ namespace gpu
 
       virtual ::gpu::shader * circle_shader();
 
+      virtual ::gpu::shader * _001ImageShader();
+
+      virtual ::gpu::enum_topology image_draw_topology() const;
+
+      virtual ::i32 image_draw_vertex_count() const;
+
+      virtual ::gpu::enum_topology text_draw_topology() const;
+
+      virtual ::i32 text_draw_vertex_count() const;
+
       void thread_select() override;
+
+
+      void _draw_raw(const ::image::image_drawing & imagedrawing);
 
       void _set(const ::geometry2d::matrix& matrix) override;
 
@@ -245,8 +279,8 @@ namespace gpu
       virtual void defer_create_swap_chain(::user::interaction* puserinteraction);
 
 
-      virtual void bind_draw2d_compositor(::gpu::layer * player);
-      virtual void defer_soft_unbind_draw2d_compositor(::gpu::layer * pgpulayer);
+      // virtual void bind_draw2d_compositor(::gpu::layer * player);
+      //virtual void defer_soft_unbind_draw2d_compositor(::gpu::layer * pgpulayer);
 
 
       void draw_rectangle(const ::f64_rectangle &rectangle, ::draw2d::pen *pdraw2dpen) override;

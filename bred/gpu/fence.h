@@ -4,7 +4,7 @@
 #pragma once
 
 
-//#include "bred/gpu/device.h"
+#include "bred/gpu/context_pointer.h"
 
 
 namespace gpu
@@ -19,14 +19,14 @@ namespace gpu
 
 
       ::u64                            m_uFence;
-      ::pointer < ::gpu::device >      m_pgpudevice;
+      ::gpu::context_pointer           m_pgpucontextGpuFence;
 
 
       fence();
       ~fence() override;
 
 
-      virtual void initialize_gpu_fence(::gpu::device * pgpudevice, bool bCreateSignaled);
+      virtual void initialize_gpu_fence(::gpu::context * pgpucontext, bool bCreateSignaled);
       
       virtual void signal_gpu_fence(::gpu::queue * pgpuqueue);
       

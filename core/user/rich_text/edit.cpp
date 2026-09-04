@@ -2455,7 +2455,7 @@ namespace user
 
                      pdraw2dgraphics->set(pformat->get_font(pdraw2dgraphics));
 
-                     pdraw2dgraphics->set_text_color(pformat->m_colorForeground);
+                     pdraw2dgraphics->set_solid_color(pformat->m_colorForeground);
 
                      pdraw2dgraphics->draw_text(strText, rectangle, e_align_bottom_left, e_draw_text_single_line);
 

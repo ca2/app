@@ -639,7 +639,7 @@ namespace html
 
                auto colorText = m_pelemental->get_color(pstyle, ::css::color_text);
 
-               pdraw2dgraphics->set_text_color(colorText);
+               pdraw2dgraphics->set_solid_color(colorText);
 
                auto pwritetextfont = m_pelemental->get_font();
 
@@ -898,12 +898,12 @@ namespace html
                   ::f32_size size2 = pdraw2dgraphics->get_text_extent(strExtent2);
                   pdraw2dgraphics->fill_solid_rect_dim((::i32)(left + size1.cx),(::i32)y,size2.cx,size2.cy,crBkSel);
 
-                  //pdraw2dgraphics->set_text_color(crSel);
+                  //pdraw2dgraphics->set_solid_color(crSel);
                   pbrushText->create_solid(crSel);
                   pdraw2dgraphics->set(pbrushText);
                   pdraw2dgraphics->text_out(left + size1.cx,y,strExtent2);
 
-                  //            pdraw2dgraphics->set_text_color(color32);
+                  //            pdraw2dgraphics->set_solid_color(color32);
                   pbrushText->create_solid(color32);
                   pdraw2dgraphics->set(pbrushText);
                   //pdraw2dgraphics->SetBkColor(rgb(120, 240, 180));

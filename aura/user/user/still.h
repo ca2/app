@@ -86,7 +86,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
-      ::f64_size get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      interaction_metrics get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       bool keyboard_focus_is_focusable() override;

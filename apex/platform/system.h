@@ -150,7 +150,7 @@ namespace apex
 
 
       //void init_system() override;
-      void term_system() override;
+      void on_system_termination() override;
 
 
       virtual void on_system_construct();
@@ -306,7 +306,7 @@ namespace apex
       virtual void term1() override;
 
 
-      virtual void TermSystem() override;
+      //virtual void on_system_termination() override;
 
 
       virtual void process_term() override;

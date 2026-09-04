@@ -23,6 +23,7 @@
 #include "shader.h"
 #include "swap_chain.h"
 #include "texture.h"
+#include "viewport_scissor_restore.h"
 #include "gltf/mesh.h"
 #include "gltf/model.h"
 #include "bred/gpu/layer.h"
@@ -76,6 +77,8 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::frame_buffer >();
 
    pfactory->add_factory_item < ::gpu::layer >();
+
+   pfactory->add_factory_item < ::gpu_opengl::viewport_scissor_restore, ::gpu::viewport_scissor_restore >();
 
    ///pfactory->add_factory_item < ::gpu::frame >();
 

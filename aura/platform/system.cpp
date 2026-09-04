@@ -2184,9 +2184,9 @@ namespace aura
    void system::term()
    {
 
-      ::aqua::system::term();
-
       m_phistory.release();
+
+      ::aqua::system::term();
 
    }
 
@@ -2214,6 +2214,8 @@ namespace aura
 
    void system::term1()
    {
+
+      ::aqua::system::term1();
 
    }
 
@@ -2342,7 +2344,7 @@ namespace aura
    //   //try
    //   //{
 
-   //      term_system();
+   //      on_system_termination();
 
    //   //}
    //   //catch(...)
@@ -2365,7 +2367,7 @@ namespace aura
    //}
 
 
-//   void system::term_system()
+//   void system::on_system_termination()
 //   {
 //
 //      try
@@ -2416,7 +2418,7 @@ namespace aura
 //      try
 //      {
 //
-//         TermSystem();
+//         on_system_termination();
 //
 //      }
 //      catch (...)
@@ -2430,10 +2432,10 @@ namespace aura
 //
 
 
-//   void system::TermSystem()
+//   void system::on_system_termination()
 //   {
 //
-//      ::aqua::system::TermSystem();
+//      ::aqua::system::on_system_termination();
 //
 //      auto pnode = node();
 //
@@ -6170,7 +6172,7 @@ if(!m_pimaging)
 //
 //
 //
-//   void system::term_system()
+//   void system::on_system_termination()
 //   {
 //
 //
@@ -6197,7 +6199,7 @@ if(!m_pimaging)
 //      try
 //      {
 //
-//         ::aura::system::term_system();
+//         ::aura::system::on_system_termination();
 //
 //      }
 //      catch (...)
@@ -6717,11 +6719,11 @@ if(!m_pimaging)
 //   }
 
 
-   //void system::term_system()
+   //void system::on_system_termination()
    //{
 
    //   //aura::application::term_application();
-   //   aura::system::term_system();
+   //   aura::system::on_system_termination();
 
    //}
 
@@ -7196,29 +7198,19 @@ if(!m_pimaging)
    void system::destroy()
    {
 
-      //auto estatus =
-
-      if(m_pdraw2d)
-      {
-         m_pdraw2d->destroy();
-         m_pdraw2d.release();
-      }
-      
       ::aqua::system::destroy();
-
-      //return estatus;
 
    }
 
 
-   void system::TermSystem()
+   void system::on_system_termination()
    {
 
       m_pdraw2d.defer_destroy_and_release();
 
       m_phardwaredevices.defer_destroy_and_release();
 
-      ::aqua::system::TermSystem();
+      ::aqua::system::on_system_termination();
 
       // if (m_pdraw2d)
       // {

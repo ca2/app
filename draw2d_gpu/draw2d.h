@@ -3,7 +3,7 @@
 
 
 #include "bred/gpu/draw2d.h"
-#include "acme/platform/auto_pointer.h"
+//#include "acme/platform/auto_pointer.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "bred/gpu/context.h"
 #include "face.h"

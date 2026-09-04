@@ -14,6 +14,7 @@
 #include "bred/gpu/shader.h"
 #include "acme/graphics/image/image32.h"
 #include "bred/graphics3d/rotation.h"
+#include "bred/gpu/command_buffer_lease.h"
 
 
 //namespace graphics3d
@@ -77,6 +78,18 @@ namespace gpu
    // };
 
 
+   class CLASS_DECL_BRED viewport_scissor_restore :
+      virtual public ::particle
+   {
+   public:
+      viewport_scissor_restore();
+      ~viewport_scissor_restore() override;
+
+      virtual void initialize(::gpu::command_buffer * pgpucommandbuffer);
+   };
+
+
+
    class CLASS_DECL_BRED context :
       virtual public ::thread
    {
@@ -114,7 +127,7 @@ namespace gpu
       ::gpu::enum_scene                            m_escene;
       //enum_output                                m_eoutputContextDraw2d = e_output_gpu_buffer;
       //enum_output                                m_eoutputContextEngine = e_output_gpu_buffer;
-      ::gpu::compositor *                          m_pgpucompositor;
+      ::pointer < ::gpu::compositor >              m_pgpucompositor;
       ::pointer<::gpu::device>                     m_pgpudevice;
       //::i32_rectangle                            m_rectangleNew;
       ::f32                                        m_z;
@@ -201,11 +214,17 @@ namespace gpu
       virtual ::memory _001BlendFragmentShaderMemory();
       virtual void _001InitializeBlendShader(::gpu::shader * pshader);
 
+      virtual ::memory _001ImageVertexShaderMemory();
+      virtual ::memory _001ImageFragmentShaderMemory();
+      virtual void _001InitializeImageShader(::gpu::shader * pshader);
+
       virtual ::pointer < ::gpu::texture_site > create_empty_texture();
       virtual void on_new_frame();
 
       static void __s_lock_context(::gpu::context * pgpuccontext);
       static void __s_unlock_context(::gpu::context * pgpucontext);
+
+      virtual ::pointer < ::gpu::fence > create_gpu_fence(bool bCreateSignaled = false);
 
 
       /// loads different types of image
@@ -232,9 +251,14 @@ namespace gpu
       virtual ::floating_matrix4 defer_clip_remap_projection(const ::floating_matrix4 &m);
       virtual ::floating_matrix4 defer_remap_impact_matrix(const ::floating_matrix4 &m);
 
+      //protected:
+         friend class ::gpu::command_buffer_lease;
+      virtual ::pointer < ::gpu::command_buffer> _beginSingleTimeCommands(::gpu::queue * pgpuqueue = nullptr, ::gpu::enum_command_buffer ecommandbuffer = ::gpu::e_command_buffer_graphics);
+      virtual void _endSingleTimeCommands(::gpu::command_buffer * pcommandbuffer);
+      //public:
 
-      virtual ::pointer < ::gpu::command_buffer > beginSingleTimeCommands(::gpu::queue * pgpuqueue, ::gpu::enum_command_buffer ecommandbuffer = ::gpu::e_command_buffer_graphics);
-      virtual void endSingleTimeCommands(::gpu::command_buffer * pcommandbuffer);
+      virtual ::gpu::command_buffer_lease beginSingleTimeCommands(::gpu::queue * pgpuqueue = nullptr, ::gpu::enum_command_buffer ecommandbuffer = ::gpu::e_command_buffer_graphics);
+      //virtual void endSingleTimeCommands(::gpu::command_buffer * pcommandbuffer);
 
       virtual ::gpu::command_buffer* defer_get_upload_command_buffer();
       virtual void defer_end_upload_command_buffer();
@@ -444,8 +468,8 @@ namespace gpu
       virtual void merge_layers_shader();
       virtual void merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture_site* ptextureTarget, ::pointer_array < ::gpu::layer >* playera);
 
-      virtual void on_start_layer(::gpu::layer * pgpulayer);
-      virtual void on_end_layer(::gpu::layer * pgpulayer);
+      //virtual void on_start_layer(::gpu::layer * pgpulayer);
+      //virtual void on_end_layer(::gpu::layer * pgpulayer);
       virtual void on_end_frame();
 
 
@@ -463,20 +487,25 @@ namespace gpu
 
       //virtual void on_begin_draw_attach(::gpu::graphics* pgpugraphics, const ::i32_rectangle& rectangle);
       //virtual void draw2d_on_begin_draw(::gpu::graphics* pgpugraphics, const ::i32_rectangle & rectangle);
-      virtual void on_begin_draw_attach(::gpu::graphics* pgpugraphics);
-      virtual void draw2d_on_begin_draw(::gpu::graphics* pgpugraphics);
+      //virtual void on_begin_draw_attach(::gpu::graphics* pgpugraphics);
+      //virtual void draw2d_on_begin_draw(::gpu::graphics* pgpugraphics);
 
 
-      virtual void on_end_draw_detach(::gpu::graphics* pgpugraphics);
-      virtual void draw2d_on_end_draw(::gpu::graphics* pgpugraphics);
+      virtual void on_start_layer(::gpu::layer * pgpulayer);
+      virtual void on_end_layer(::gpu::layer * pgpulayer);
+
+
+
+      //virtual void on_end_draw_detach(::gpu::graphics* pgpugraphics);
+      //virtual void draw2d_on_end_draw(::gpu::graphics* pgpugraphics);
       //virtual void start_layer();
       //virtual void end_layer();
 
       //virtual render_target* draw2d_render_target();
       //virtual render_target* graphics3d_render_target();
 
-      virtual void __bind_draw2d_compositor(::gpu::compositor * pgpucompositor, ::gpu::layer * player);
-      virtual void __defer_soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer * player);
+      //virtual void __bind_draw2d_compositor(::gpu::compositor * pgpucompositor, ::gpu::layer * player);
+      //virtual void __defer_soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer * player);
 
 
       virtual ::memory rectangle_shader_vert();
@@ -500,6 +529,8 @@ namespace gpu
       virtual void initialize_sequence2_with_uniform_color_shader(::gpu::shader * pshader);
 
       virtual void initialize_circle_shader(::gpu::shader * pshader);
+
+      virtual void initialize_image_shader(::gpu::shader * pshader);
 
 
       //virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::layer* pgpulayer);

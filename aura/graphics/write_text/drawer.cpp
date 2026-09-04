@@ -26,6 +26,18 @@ namespace write_text
    }
 
 
+
+   void drawer::destroy()
+   {
+
+      m_pwritetextfont.release();
+      m_pwritetextfontDevice.release();
+
+      ::object::destroy();
+
+   }
+      
+
    ::write_text::font * drawer::get_current_font()
    {
 

@@ -5711,8 +5711,8 @@ void graphics::FillSolidRect(::f64 x, ::f64 y, ::f64 cx, ::f64 cy, color32_t clr
          //::f32 xpos = x + ch.Bearing.x * scale;
          //::f32 ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
 
-         ::f32 w = ch.Size.x;
-         ::f32 h = ch.Size.y;
+         ::f32 w = (::f32)ch.Size.x;
+         ::f32 h = (::f32)ch.Size.y;
          y = maximum(h, y);
          //// update VBO for each character
          //::f32 vertexes[6][4] = {
@@ -6218,11 +6218,11 @@ color = vec4(c.r,c.g, c.b, c.a);
 
          auto & ch = pface->get_character(strChar);
 
-         ::f32 xpos = point.x + Δx + ch.Bearing.x;
-         ::f32 ypos = point.y - (ch.Size.y - ch.Bearing.y);
+         ::f32 xpos = (::f32)(point.x + Δx + ch.Bearing.x);
+         ::f32 ypos = (::f32)(point.y - (ch.Size.y - ch.Bearing.y));
 
-         ::f32 w = ch.Size.x;
-         ::f32 h = ch.Size.y;
+         ::f32 w = (::f32) ch.Size.x;
+         ::f32 h = (::f32) ch.Size.y;
          // update VBO for each character
          array< ::graphics3d::sequence2_uv> vertexes = {
              {{ xpos,     ypos + h},{   0.0f, 0.0f} },

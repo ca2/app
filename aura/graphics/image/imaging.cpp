@@ -117,7 +117,7 @@ size_t                  cb,
    /* setup the DC, saving off the old values
    */
    //uMode = pdraw2dgraphics->SetBkMode(OPAQUE);
-   //crOld = pdraw2dgraphics->set_text_color(crShadow);
+   //crOld = pdraw2dgraphics->set_solid_color(crShadow);
 
    /* draw the text at the desired offset using the
    ** shadow color, then again at the normal position
@@ -145,7 +145,7 @@ size_t                  cb,
    pdraw2dgraphics->text_out(x + cx,y + cy,string(pcsz,cb));
 
    //pdraw2dgraphics->SetBkMode(TRANSPARENT);
-   //pdraw2dgraphics->set_text_color(crText);
+   //pdraw2dgraphics->set_solid_color(crText);
    //if(!pdraw2dgraphics->text_out(x,y, string(pcsz, cb)))
    pdraw2dgraphics->text_out(x, y, string(pcsz, cb));
    //{
@@ -154,7 +154,7 @@ size_t                  cb,
 
    /* restore the DC
    */
-   //pdraw2dgraphics->set_text_color(crOld);
+   //pdraw2dgraphics->set_solid_color(crOld);
    //pdraw2dgraphics->SetBkMode(uMode);
 
 

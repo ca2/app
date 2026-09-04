@@ -507,12 +507,13 @@ namespace experience_core
 
                   auto & pdraw2dbrush = pgroupPaneLayout->m_brusha.element_at_grow(__e_selected);
 
-                  if (defer_constructø(pdraw2dbrush))
-                  {
+                  defer_constructø(pdraw2dbrush);
 
-                     pdraw2dbrush->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
-
-                  }
+                  pdraw2dbrush->CreateLinearGradientBrush(
+                     rectangleBorder.top_left(), 
+                     rectangleBorder.bottom_left(), 
+                     argb(230, 235, 235, 230), 
+                     argb(250, 255, 255, 250));
 
                   pdraw2dgraphics->set(pdraw2dbrush);
 
@@ -523,8 +524,6 @@ namespace experience_core
                   targetscope += offset;
 
                   pdraw2dgraphics->fill(pdraw2dpath);
-
-                  //pdraw2dgraphics->x_offset(-offset);
 
                }
 
@@ -541,11 +540,11 @@ namespace experience_core
 
                   pdraw2dgraphics->set(pdraw2dpen);
 
+                  auto offset = ptab->m_pointBarDragScroll.x - pdraw2dpath->m_pointUserOffset.x;
+
                   auto targetscope = pdraw2dgraphics->target_scope();
 
-                  //offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - pdraw2dpath->m_pointUserOffset.x;
-
-                  targetscope.offset_x(ptab->m_pointBarDragScroll.x - pdraw2dpath->m_pointUserOffset.x);
+                  targetscope += offset;
 
                   pdraw2dgraphics->draw(pdraw2dpath);
 

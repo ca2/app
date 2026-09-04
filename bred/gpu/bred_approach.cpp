@@ -8,6 +8,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
+#include "acme/platform/node.h"
 #include "acme/user/user/interaction.h"
 #include "aura/windowing/window.h"
 
@@ -37,6 +38,7 @@ namespace gpu
 
       ::gpu::approach::initialize(pparticle);
 
+      m_pparticle_001OnFrameSynchronization = node()->create_mutex();
 
    }
 

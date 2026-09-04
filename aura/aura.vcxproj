@@ -3056,6 +3056,7 @@
     <ClCompile Include="user\user\form_callback.cpp" />
     <ClCompile Include="user\user\form_handler.cpp" />
     <ClCompile Include="user\user\frame_interaction.cpp" />
+    <ClCompile Include="user\user\interaction_metrics.cpp" />
     <ClCompile Include="user\user\notification_listener.cpp" />
     <ClCompile Include="user\user\scroll_base.cpp" />
     <ClCompile Include="user\user\scroll_base_x.cpp" />
@@ -3155,9 +3156,6 @@
     <ClInclude Include="graphics\draw2d\common.h" />
     <ClInclude Include="graphics\draw2d\device_lock.h" />
     <ClInclude Include="graphics\draw2d\draw2d.h" />
-    <ClInclude Include="graphics\draw2d\fwd.h" />
-    <ClInclude Include="graphics\draw2d\glyph.h" />
-    <ClInclude Include="graphics\draw2d\glyph_set.h" />
     <ClInclude Include="graphics\draw2d\graphics.h" />
     <ClInclude Include="graphics\draw2d\graphics_layer_scope.h" />
     <ClInclude Include="graphics\draw2d\graphics_lease.h" />

@@ -5,6 +5,7 @@
 #include "context.h"
 #include "buffer.h"
 #include "device.h"
+#include "fence.h"
 #include "frame.h"
 #include "layer.h"
 #include "post_frame_context_registry.h"
@@ -1459,17 +1460,17 @@ namespace gpu
    void renderer::on_end_render(::gpu::layer * pgpulayer)
    {
 
-      ///if (m_papplication->m_gpu.m_bUseSwapChainWindow)
-      {
+      /////if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      //{
 
-         if (m_pgpucontext->m_pgpucompositor)
-         {
+      //   if (m_pgpucontext->m_pgpucompositor)
+      //   {
 
-            m_pgpucontext->m_pgpucompositor->gpu_layer_on_before_end_render();
+      //      m_pgpucontext->m_pgpucompositor->gpu_layer_on_before_end_render();
 
-         }
+      //   }
 
-      }
+      //}
 
       bool bLayerPresent = false;
 
@@ -1894,15 +1895,15 @@ namespace gpu
          }
       }
 
-      /// if (m_papplication->m_gpu.m_bUseSwapChainWindow)
-      {
+      ///// if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      //{
 
-         if (m_pgpucontext->m_pgpucompositor)
-         {
+      //   if (m_pgpucontext->m_pgpucompositor)
+      //   {
 
-            m_pgpucontext->m_pgpucompositor->gpu_layer_on_after_begin_render();
-         }
-      }
+      //      m_pgpucontext->m_pgpucompositor->gpu_layer_on_after_begin_render();
+      //   }
+      //}
 
       on_final_begin_render();
 

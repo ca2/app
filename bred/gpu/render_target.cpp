@@ -229,9 +229,11 @@ namespace gpu
 
          }
 
+         pgpucommandbuffer.commit();
+
          //pgpucommandbuffer->m_semaphoreaSignal.append_unique(semaphoreaReady);
 
-         m_pgpurenderer->m_pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
+         //m_pgpurenderer->m_pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
 
          //                 m_pgpucontext->m_pgpurenderer->
 

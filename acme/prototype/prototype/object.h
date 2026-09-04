@@ -61,10 +61,11 @@ public:
    return *m_pparticleaNotify; }
    void on_notify(::particle * pparticle, enum_id eid) override;
 
-
-
    template < typename BASE_TYPE >
    ::pointer<BASE_TYPE>file_as(const ::payload& payloadFile);
+
+
+   virtual ::pointer_array < ::task > get_task_array();
 
 
    virtual void add_procedure(const ::atom& idRoutine, const ::procedure & procedure);

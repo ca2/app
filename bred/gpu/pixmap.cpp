@@ -3,8 +3,10 @@
 #include "layer.h"
 #include "renderer.h"
 #include "pixmap.h"
+#include "frame.h"
 #include "texture.h"
 #include "texture_site.h"
+#include "window_attachment.h"
 #include "acme/exception/interface_only.h"
 
 
@@ -71,7 +73,66 @@ namespace gpu
          
       }
 
-      m_pgputexturesite->gpu_texture()->set_pixels(m_rectangle, pdata);
+      auto pgputexture = m_pgputexturesite->gpu_texture();
+
+      auto bDeferredWrite = pgputexture->m_bWritesPixelsDeferred;
+
+      m_bPixelsReadyForSampling = false;
+
+      try
+      {
+
+         pgputexture->set_pixels(false, m_rectangle, pdata);
+
+      }
+      catch (...)
+      {
+
+         throw;
+
+      }
+
+      if (bDeferredWrite)
+      {
+
+         auto pgpuwindowattachment =
+            ::gpu::window_attachment::get(pgputexture->m_pgpucontext);
+
+         auto pframe = pgpuwindowattachment
+            ? pgpuwindowattachment->current_frame()
+            : nullptr;
+
+         if (pframe)
+         {
+
+            ::pointer<::gpu::pixmap> ppixmap = this;
+
+            // texture::write_pixels registered its upload callback before
+            // returning.  Appending this callback therefore marks this exact
+            // atlas region ready only after the upload submission has waited.
+            pframe->post_on_after_end_frame(
+               [ppixmap]()
+               {
+
+                  ppixmap->m_bPixelsReadyForSampling = true;
+
+               });
+
+         }
+         else
+         {
+
+            m_bPixelsReadyForSampling = true;
+
+         }
+
+      }
+      else
+      {
+
+         m_bPixelsReadyForSampling = true;
+
+      }
 
    }
 

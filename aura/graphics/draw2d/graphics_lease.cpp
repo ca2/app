@@ -48,6 +48,8 @@ namespace draw2d
          m_pimage->m_pgraphicslease = this;
 
       }
+
+      m_p->m_pgraphicslease = this;
    }
 
    //   graphics_lease::graphics_lease(::draw2d::graphics *pdraw2dgraphics, ::image::image * pimage, 
@@ -76,6 +78,13 @@ namespace draw2d
       {
 
          m_pimage->m_pgraphicslease = this;
+
+      }
+
+      if (m_p && m_p->m_pgraphicslease == &lease)
+      {
+
+         m_p->m_pgraphicslease = this;
 
       }
 
@@ -115,6 +124,14 @@ namespace draw2d
          {
 
             m_pimage->m_pgraphicslease = this;
+
+         }
+
+
+         if (m_p && m_p->m_pgraphicslease == &lease)
+         {
+
+            m_p->m_pgraphicslease = this;
 
          }
 
@@ -239,7 +256,9 @@ namespace draw2d
       auto bDamaged = m_bDamaged;
       bool bOwned = m_bOwned
          || (pimage && pimage->m_pgraphicsOwned == pdraw2dgraphics)
-         || (pdraw2dgraphics && pdraw2dgraphics->m_pimage && pdraw2dgraphics->m_pimage->m_pgraphicsOwned == pdraw2dgraphics);
+         || (pdraw2dgraphics 
+            && pdraw2dgraphics->m_pimageTarget 
+            && pdraw2dgraphics->m_pimageTarget->m_pgraphicsOwned == pdraw2dgraphics);
 
       m_bDamaged = false;
 

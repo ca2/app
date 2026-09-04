@@ -12312,17 +12312,7 @@ namespace windowing
                                  pbufferitem->m_pointBufferItem,
                                  pbufferitem->m_sizeBufferItem);
 
-                              // Layout and drawing use the same graphics object. Restore
-                              // the acquired frame target and clip before drawing so no
-                              // layout-time state, or newer window-wide geometry, can
-                              // affect the pixels belonging to this buffer item.
-                              pdraw2dgraphics->set_target_rectangle(rectangleFrame);
-
-                              pdraw2dgraphics->defer_on_target_rectangle_update();
-
-                              pdraw2dgraphics->reset_clip();
-
-                              pdraw2dgraphics->on_begin_draw(this, rectangleFrame.size());
+                              pdraw2dgraphics->begin_draw(false, puserinteraction, rectangleFrame);
 
                               auto elapsed41 = time4.elapsed();
                               // informationf("draw_frame elapsed4.1 %0.2f", elapsed41.floating_millisecond());
@@ -12331,7 +12321,7 @@ namespace windowing
                               frame_draw_stage(pdraw2dgraphics);
 
                               // pdraw2dgraphics->fill_solid_rectangle({ 100., 100., 500., 500. }, argb(127, 100, 180, 220));
-                              pdraw2dgraphics->on_end_draw(this);
+                              //pdraw2dgraphics->on_end_draw(this);
 
 
                               pdraw2dgraphics->flush();
@@ -12681,10 +12671,10 @@ namespace windowing
 
       pdraw2dgraphics->m_puserstyleGraphics.release();
 
-      if (pdraw2dgraphics->m_pimage)
+      if (pdraw2dgraphics->m_pimageTarget)
       {
 
-         pdraw2dgraphics->m_pimage->m_rectangleTag.clear();
+         pdraw2dgraphics->m_pimageTarget->m_rectangleTag.clear();
 
          //sizeDrawn = pdraw2dgraphics->m_pimage->m_size;
 

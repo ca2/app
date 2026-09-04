@@ -99,6 +99,16 @@ namespace draw2d
    }
 
 
+   void window_attachment::destroy()
+   {
+
+      m_pwindow.release();
+
+      ::particle::destroy();
+
+   }
+
+
 } // namespace draw2d
 
 

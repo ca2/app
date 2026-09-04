@@ -18,6 +18,7 @@
 #include "acme/call.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
 #include "acme/prototype/prototype/call.h"
 #include "aura/platform/application.h"
 #include "aura/platform/system.h"
@@ -104,7 +105,7 @@ namespace gpu
 
       }
 
-
+      //m_pparticle_001OnFrameSynchronization = node()->create_mutex();
 
       //branch_synchronously();
 
@@ -386,8 +387,9 @@ namespace gpu
 
             auto pcontextCandidate = m_contextaDraw2dIdle[i];
 
-            if (pcontextCandidate->m_eoutput == eoutput
-               && pcontextCandidate->m_etype == ::gpu::context::e_type_draw2d)
+            //if (pcontextCandidate->m_eoutput == eoutput
+              // && pcontextCandidate->m_etype == ::gpu::context::e_type_draw2d)
+            if(pcontextCandidate->m_etype == ::gpu::context::e_type_draw2d)
             {
 
                pcontext = pcontextCandidate;
@@ -409,7 +411,7 @@ namespace gpu
             [pcontext, size]()
             {
 
-               pcontext->m_pgpucompositor = nullptr;
+               //pcontext->m_pgpucompositor = nullptr;
                pcontext->on_resize(size);
 
             });
@@ -439,7 +441,7 @@ namespace gpu
          pcontext->create_draw2d_gpu_context(this, pacmewindowingwindow, pdraw2dgraphics, {}, {}, size, sizeRaw);
 
 //>>>>>>> origin/main
-         pcontext->m_pgpucompositor = nullptr;
+         //pcontext->m_pgpucompositor = nullptr;
 
       }
 
@@ -509,7 +511,7 @@ namespace gpu
 
             pcontext->defer_unbind_shader();
             pcontext->m_prendertargetBound.release();
-            pcontext->m_pgpucompositor = nullptr;
+            //pcontext->m_pgpucompositor = nullptr;
             pcontext->m_bInNonOwnedLease = false;
 
          });
@@ -1630,30 +1632,6 @@ namespace gpu
 
 
    ::gpu::queue *device::present_queue() { return nullptr; }
-
-
-
-   ::pointer < ::gpu::fence > device::create_gpu_fence(bool bCreateSignaled)
-   {
-
-      auto pgpufence = createø<::gpu::fence>();
-
-      //pgpufence->m_uFence = uFence;
-
-      pgpufence->initialize_gpu_fence(this, bCreateSignaled);
-
-      //::cast < ::gpu_directx12::fence > pfence = pgpufence;
-
-      //HRESULT hrCreateFeence =
-      //   m_pd3d12device->CreateFence(uInitialPayload, D3D12_FENCE_FLAG_NONE,
-      //      __interface_of(pfence->m_pfence));
-
-      //::defer_throw_hresult(hrCreateFeence);
-
-      return pgpufence;
-
-   }
-
 
 
 } // namespace gpu

@@ -223,7 +223,7 @@ namespace berg
 
 #endif
 
-      pdraw2dgraphics->set_text_color(color_dk);
+      pdraw2dgraphics->set_solid_color(color_dk);
 
 
       // if (!m_pfontThomasBSHeading1)
@@ -379,7 +379,7 @@ namespace berg
          //
          //       color &= opacity;
          //
-         //       pdraw2dgraphics->set_text_color(color);
+         //       pdraw2dgraphics->set_solid_color(color);
          //    }
          // }
          // else if (strLine.begins_eat("-#"))
@@ -402,7 +402,7 @@ namespace berg
          //
          //       color &= opacity;
          //
-         //       pdraw2dgraphics->set_text_color(color);
+         //       pdraw2dgraphics->set_solid_color(color);
          //    }
          // }
          // else
@@ -420,7 +420,7 @@ namespace berg
          //       opacity = ::opacity(160);
          //       color &= opacity;
          //
-         //       pdraw2dgraphics->set_text_color(color);
+         //       pdraw2dgraphics->set_solid_color(color);
          //    }
          // }
 
@@ -432,7 +432,7 @@ namespace berg
 
          color &= opacity;
 
-         pdraw2dgraphics->set_text_color(color);
+         pdraw2dgraphics->set_solid_color(color);
 
          if (psimpledialogboxline->m_str.has_character())
          {

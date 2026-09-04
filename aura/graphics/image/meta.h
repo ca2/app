@@ -66,7 +66,7 @@ namespace image
       bool                                      m_bCreateHelperMaps;
       ::pointer<::image::image_extension>       m_pextension;
       image_dynamic                             m_dynamic;
-
+      bool                                      m_bImageGraphics;
 
 
       image_meta()
@@ -82,6 +82,7 @@ namespace image
          m_dSpeed = 1.0;
          m_dIsotropicRate = 1.0;
          m_dSizeScaler = 1.0;
+         m_bImageGraphics = false;
          //m_ealphamode = ::draw2d::e_alpha_mode_blend;
          m_bOwn = true;
          m_emipmap = ::image::e_mipmap_none;

@@ -753,6 +753,9 @@ public:
    }
 
 
+   virtual void if_or_when_ok(const ::procedure & procedure);
+
+
    virtual void app_post(const ::procedure & procedure);
    virtual ::task_pointer app_fork(const ::procedure & procedure);
 

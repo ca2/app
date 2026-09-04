@@ -239,7 +239,7 @@ namespace user
 
          auto colorText = get_color(pstyle, e_element_text, estate);
 
-         pdraw2dgraphics->set_text_color(colorText);
+         pdraw2dgraphics->set_solid_color(colorText);
 
          pdraw2dgraphics->draw_inset_rectangle(rectangleBorder, colorText, 1.0);
 
@@ -307,7 +307,7 @@ namespace user
 
             color = get_color(pstyle, e_element_text, estate);
 
-            pdraw2dgraphics->set_text_color(color);
+            pdraw2dgraphics->set_solid_color(color);
 
             pdraw2dgraphics->draw_text(strWindowText, rectangleText, ealign, edrawtext);
 

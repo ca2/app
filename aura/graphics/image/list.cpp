@@ -296,7 +296,7 @@ namespace image
 
       ::i32_size size;
 
-      {
+      //{
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -311,7 +311,7 @@ namespace image
 
          size = m_size;
 
-      }
+      //}
 
       ::f64_point pointOffset(pointOffsetParam);
 
@@ -364,7 +364,7 @@ namespace image
    ::i32 image_list::reserve_image(::i32 iItem)
    {
 
-      ::draw2d::lock draw2dlock(this);
+      //::draw2d::lock draw2dlock(this);
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 

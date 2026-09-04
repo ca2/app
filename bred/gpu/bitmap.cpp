@@ -1,6 +1,7 @@
 // Created by camilo on 2026-07-27 14:21 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
 #include "platform.h"
 #include "bitmap.h"
+#include "image.h"
 #include "acme/graphics/image/pixmap_t.h"
 #include "apex/gpu/approach.h"
 #include "bred/gpu/context_lock.h"
@@ -13,14 +14,14 @@ namespace gpu
 {
 
 
-   bitmap::bitmap() 
+   bitmap::bitmap()
    {
-   
+
 
    }
 
 
-   bitmap::~bitmap() 
+   bitmap::~bitmap()
    {
 
 
@@ -36,37 +37,165 @@ namespace gpu
    }
 
 
-   void bitmap::create_bitmap(::draw2d::graphics *pdraw2dgraphics, const ::i32_size &size, ::pixmap * ppixmap)
+   void bitmap::create_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size, ::pixmap * ppixmap)
    {
 
-      ::pixmap_t pixmap{};
+      ::draw2d::bitmap::create_bitmap(pdraw2dgraphics, size, ppixmap);
+      //::pixmap_t pixmap{};
 
-      int iScan = size.cx * 4;
+      //int iScan = size.cx * 4;
 
-      if (ppixmap && ppixmap->m_iScan > iScan)
-      {
+      //if (ppixmap && ppixmap->m_iScan > iScan)
+      //{
 
-         iScan = ppixmap->m_iScan;
-      }
+      //   iScan = ppixmap->m_iScan;
+      //}
 
-      pixmap.initialize_pixmap(size, (::image32_t *)ppixmap->m_memoryPixmap.data_if_at_least(size.cy * iScan), iScan);
+      //pixmap.initialize_pixmap(size, (::image32_t *)ppixmap->m_memoryPixmap.data_if_at_least(size.cy * iScan), iScan);
 
-      _create_gpu_bitmap(size, pdraw2dgraphics, &pixmap);
+      //_create_gpu_bitmap(size, pdraw2dgraphics, &pixmap);
 
    }
 
-   
-   ::gpu::texture *bitmap::gpu_texture() const
+
+   //::gpu::texture *bitmap::gpu_texture() const
+   //{
+
+   //   //if (!m_pgputexture)
+   //   //{
+
+   //   //   ((bitmap *)this)->create_gpu_texture();
+
+   //   //}
+
+   //   //return m_pgputexture;
+
+   //   return ::gpu::bitmap::gpu_texture();
+
+   //}
+
+
+   void bitmap::preserve_image(const ::i32_size & size, ::image::image * pimage)
    {
 
-      //if (!m_pgputexture)
-      //{
+      if (!pimage || size.is_empty())
+      {
 
-      //   ((bitmap *)this)->create_gpu_texture();
+         throw ::exception(error_bad_argument);
 
-      //}
+      }
 
-      return m_pgputexture;
+      if (pimage->m_pdraw2dbitmap != this)
+      {
+
+         throw ::exception(
+            error_bad_argument,
+            "The image is not backed by this OpenGL bitmap");
+
+      }
+
+      if (pimage->has_active_destination_graphics_lease()
+         || pimage->m_pimagepixmaplease
+         || (pimage->m_ppixmapOwned
+            && pimage->m_ppixmapOwned->m_interlockedcountMap > 0))
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "Cannot preserve an image while it is mapped or has active destination graphics");
+
+      }
+
+      auto sizeRawOld = pimage->raw_size();
+      auto sizeRawRequired = pimage->m_point + size;
+      auto sizeRawNew = sizeRawOld.maximum(sizeRawRequired);
+
+      if (sizeRawNew == sizeRawOld)
+      {
+
+         pimage->m_size = size;
+         return;
+
+      }
+
+      auto pgputextureOld = ::as_pointer(gpu_texture(nullptr));
+
+      if (!pgputextureOld)
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "OpenGL bitmap has no texture to preserve");
+
+      }
+
+      auto pgpudevice = pgputextureOld->m_pgpucontext->m_pgpudevice;
+
+      auto pgpucontextlease = pgpudevice->acquire_gpu_context(
+         ::gpu::e_output_none,
+         {256, 256},
+         pimage->m_pgraphicsOwned);
+
+      if (!pgpucontextlease)
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "Could not acquire an OpenGL context to preserve the bitmap");
+
+      }
+
+      ::gpu::texture_data texturedata(pgputextureOld);
+
+      initialize_gpu_bitmap(pgpucontextlease, sizeRawNew, texturedata);
+
+      m_size = sizeRawNew;
+      m_iStride = sizeRawNew.cx * (::i32)sizeof(::image32_t);
+
+      pimage->m_size = size;
+      pimage->m_sizeRaw = sizeRawNew;
+      pimage->m_iScan = maximum(pimage->m_iScan, m_iStride);
+
+      // The resized GPU texture is now authoritative. Keeping the former CPU
+      // storage would expose its old dimensions and stale pixels on the next map.
+      pimage->m_ppixmapOwned.release();
+      //m_memOut.set_size(0);
+      //m_memIn.set_size(0);
+      pimage->m_bGraphicsWasAcquiredAfterLastMap = true;
+      pimage->m_bWasMappedAfterLastGraphicsAcquisition = false;
+
+
+   }
+
+
+   void bitmap::write_pixels(
+      const ::i32_size & size,
+      const ::i32_point & point,
+      const ::image32_t * pimage32,
+      ::i32 iScan,
+      bool bTopDown)
+   {
+
+      if (!m_pgputexture
+         || !pimage32
+         || size.is_empty()
+         || iScan < size.cx * (::i32) sizeof(::image32_t))
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      ::pixmap_t pixmap;
+
+      pixmap.m_size = size;
+      pixmap.m_sizeRaw = size;
+      pixmap.m_iScan = iScan;
+      pixmap.m_pimage32 = (::image32_t *) pimage32;
+      pixmap.m_pimage32Raw = (::image32_t *) pimage32;
+      pixmap.m_bTopLeft = bTopDown;
+
+      m_pgputexture->write_pixels(false, &pixmap, point);
 
    }
 
@@ -211,7 +340,23 @@ namespace gpu
 
       auto pgpurenderer = pgpucontext->get_gpu_renderer();
 
-      auto pgputexture = pgpurenderer->create_image_texture(size, false, texturedata);
+      auto pgputexture = createø< texture>();
+
+      ::gpu::texture_attributes textureattributes(size);
+
+      textureattributes.m_sizeRaw = size;
+
+      ::gpu::texture_flags textureflags;
+
+      textureflags.m_bWithDepth = false;
+      textureflags.m_bRenderTarget = true;
+      textureflags.m_bShaderResource = true;
+      textureflags.m_bTransferTarget = true;
+      textureflags.m_bTransferSource = true;
+
+      pgputexture->create_texture(pgpucontext, textureattributes, textureflags, texturedata);
+
+      pgpucontext->on_create_texture(pgputexture);
 
       if (!pgputexture)
       {
@@ -235,7 +380,7 @@ namespace gpu
    }
 
 
-   ::gpu::texture * bitmap::get_gpu_texture()
+   ::gpu::texture * bitmap::gpu_texture(::gpu::context * pgpucontext)
    {
 
       if (!m_pgputexture)
@@ -249,13 +394,26 @@ namespace gpu
 
          auto pacmewindowingwindow = pacmeuserinteractionMain->m_pacmewindowingwindow;
 
-         auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
+         //auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
 
-         _synchronous_lock synchronouslock(pgpudevice->synchronization());
+         //_synchronous_lock synchronouslock(pgpudevice->synchronization());
 
-         auto pgpucontextlease = pgpudevice->acquire_gpu_context(::gpu::e_output_none, m_size, nullptr);
+         //auto pgpucontextlease = pgpudevice->acquire_gpu_context(::gpu::e_output_none, m_size, nullptr);
 
-         initialize_gpu_bitmap(pgpucontextlease, m_size, {});
+         auto pixmap = get_pixmap();
+
+         if (pixmap.is_ok())
+         {
+
+            initialize_gpu_bitmap(pgpucontext, m_size, { pixmap });
+
+         }
+         else
+         {
+
+            initialize_gpu_bitmap(pgpucontext, m_size, {});
+
+         }
 
       }
 
@@ -263,6 +421,13 @@ namespace gpu
 
    }
 
+
+   pixmap_t bitmap::get_pixmap()
+   {
+
+      return ::draw2d::bitmap::get_pixmap();
+
+   }
 
 
 } // namespace gpu

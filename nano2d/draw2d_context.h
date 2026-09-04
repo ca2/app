@@ -156,7 +156,7 @@ namespace nano2d
       void frame_pixel_perfect_rectangle(::i32 x, ::i32 y, ::i32 w, ::i32 h, const ::color::color& color, ::i32 width) override;
 
       ::i32 create_image(const ::scoped_string & scopedstrFilename, ::i32 imageFlags) override;
-      ::i32 create_image_rgba(::i32 w, ::i32 h, ::i32 imageFlags, const void * data, ::i32 iScan) override;
+      //::i32 create_image_rgba(::i32 w, ::i32 h, ::i32 imageFlags, const void * data, ::i32 iScan) override;
       void image_size(::i32 image, ::i32 * w, ::i32 * h) override;
 
 

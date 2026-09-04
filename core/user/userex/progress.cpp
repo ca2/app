@@ -332,7 +332,7 @@ namespace userex
 
       }
 
-      pdraw2dgraphics->set_text_color(argb(255, 80, 80, 80));
+      pdraw2dgraphics->set_solid_color(argb(255, 80, 80, 80));
 
       pdraw2dgraphics->set_font(this);
 

@@ -15504,7 +15504,7 @@ if(get_parent())
    }
 
 
-   ::f64_size interaction::get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics)
+   ::user::interaction_metrics interaction::get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       pdraw2dgraphics->set_font(this, ::e_element_none);
@@ -15519,11 +15519,7 @@ if(get_parent())
 
       ::f64_size size = pdraw2dgraphics->get_text_extent(strWindowText);
 
-      setFittingFontHeight.cx = size.cx;
-
-      setFittingFontHeight.cy = metric.get_line_height();
-
-      return setFittingFontHeight;
+      return {size, metric.get_line_height()};
 
    }
 
@@ -15535,13 +15531,13 @@ if(get_parent())
 
       ::f64_rectangle rectanglePadding = get_padding(pstyle);
 
-      auto sizeFitting = get_fitting_size(pdraw2dgraphics);
+      auto interactionmetrics = get_fitting_size(pdraw2dgraphics);
 
       ::f64_size sizePaddedFitting;
 
-      sizePaddedFitting.cx = rectanglePadding.left + sizeFitting.cx + rectanglePadding.right;
+      sizePaddedFitting.cx = rectanglePadding.left + interactionmetrics.width() + rectanglePadding.right;
 
-      sizePaddedFitting.cy = rectanglePadding.top + sizeFitting.cy + rectanglePadding.bottom;
+      sizePaddedFitting.cy = rectanglePadding.top + interactionmetrics.height() + rectanglePadding.bottom;
 
       return sizePaddedFitting;
 

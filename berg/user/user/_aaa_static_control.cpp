@@ -184,7 +184,7 @@
 //
 //      }
 //
-//      pdraw2dgraphics->set_text_color(crText);
+//      pdraw2dgraphics->set_solid_color(crText);
 //
 //      pdraw2dgraphics->set_font(this, ::e_element_none);
 //

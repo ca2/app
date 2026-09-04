@@ -56,7 +56,8 @@ namespace gpu
 
       void destroy() override;
 
-      virtual ::gpu::texture *get_gpu_texture();
+      ::gpu::texture * get_gpu_texture_as_source(::gpu::context * pgpucontext) override;
+      ::gpu::texture * get_gpu_texture_as_target(::gpu::context * pgpucontext) override;
 
       void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan) override;
 
@@ -68,7 +69,7 @@ namespace gpu
 
    protected:
 
-      ::image_pixmap_lease _map(const ::i32_rectangle & rectangle) override;
+      ::image_pixmap_lease _map(::image::enum_map emap, const ::i32_rectangle & rectangle) override;
       void _unmap(::image_pixmap_lease * pimagepixmaplease) override;
       //virtual bool _on_unmap(bool bDoUnmap);
 

@@ -93,8 +93,9 @@ namespace gpu
 
             //::cast<command_buffer> pcommandbufferSwapChain =
             // pgpurendererSwapChain->getCurrentCommandBuffer2(::gpu::current_layer());
-            ::pointer<command_buffer> pcommandbufferSwapChain =
-               pgpucontextSwapChain->beginSingleTimeCommands(pgpucontextSwapChain->m_pgpudevice->graphics_queue());
+            {
+            //::pointer<command_buffer> pcommandbufferSwapChain = pgpucontextSwapChain->beginSingleTimeCommands();
+               auto pcommandbufferSwapChain = pgpucontextSwapChain->beginSingleTimeCommands();
 
             auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontextSwapChain);
 
@@ -204,11 +205,17 @@ namespace gpu
             // #endif
             //          pcommandbuffer->submit_command_buffer(nullptr);
 
-            pgpucontextSwapChain->endSingleTimeCommands(pcommandbufferSwapChain);
+            framesync.m_pcommandbufferLastSwapChainPresentation = pcommandbufferSwapChain.operator gpu::command_buffer *();
+
+            pcommandbufferSwapChain.commit();
+
+         }
+
+            //pgpucontextSwapChain->endSingleTimeCommands(pcommandbufferSwapChain);
 
             swap_buffers();
 
-            framesync.m_pcommandbufferLastSwapChainPresentation = pcommandbufferSwapChain;
+
 
             // pswapchain->swap_buffers();
 
@@ -865,7 +872,7 @@ void swap_chain::on_gpu_context_render_frame(::i32 w, ::i32 h)
 
    defer_constructø(frame.m_pgpufenceInFlight);
 
-   frame.m_pgpufenceInFlight->initialize_gpu_fence(m_pgpurenderer->m_pgpucontext->m_pgpudevice, true);
+   frame.m_pgpufenceInFlight->initialize_gpu_fence(m_pgpurenderer->m_pgpucontext, true);
 
    // VkFenceCreateInfo fenceInfo{};
    // fenceInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;

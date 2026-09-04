@@ -1676,7 +1676,7 @@ void directory_system::init_system()
 }
 
 
-void directory_system::term_system()
+void directory_system::on_system_termination()
 {
 
    //m_pfilewatcher.release();

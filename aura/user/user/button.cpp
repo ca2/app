@@ -64,7 +64,7 @@ namespace user
 
       m_estockicon = e_stock_icon_none;
 
-      m_estyle = e_style_none;
+      m_ebuttonstyle = e_button_style_none;
 
       m_pdraw2dbitmap = nullptr;
 
@@ -161,7 +161,7 @@ namespace user
 
       pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      if (m_estyle == e_style_push || m_estyle == e_style_push_group)
+      if (m_ebuttonstyle == e_button_style_push || m_ebuttonstyle == e_button_style_push_group)
       {
 
          _001OnButtonDrawPush(pdraw2dgraphics);
@@ -169,7 +169,7 @@ namespace user
          _001OnButtonDrawImageAndText(pdraw2dgraphics, false);
 
       }
-      else if (m_estyle == e_style_list)
+      else if (m_ebuttonstyle == e_button_style_list)
       {
 
          _001OnButtonDrawList(pdraw2dgraphics);
@@ -177,13 +177,13 @@ namespace user
          _001OnButtonDrawImageAndText(pdraw2dgraphics, false);
 
       }
-      else if (m_estyle == e_style_image)
+      else if (m_ebuttonstyle == e_button_style_image)
       {
 
          _001OnButtonDrawBitmap(pdraw2dgraphics);
 
       }
-      else if (m_estyle == e_style_image_and_text)
+      else if (m_ebuttonstyle == e_button_style_image_and_text)
       {
 
          _001OnButtonDrawImageAndText(pdraw2dgraphics, true);
@@ -199,7 +199,7 @@ namespace user
    }
 
 
-   ::f64_size button::get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics)
+   ::user::interaction_metrics button::get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (pdraw2dgraphics.is_null())
@@ -219,13 +219,9 @@ namespace user
 
       auto size = pdraw2dgraphics->get_text_extent(strText);
 
-      ::f64_size sizeTotal;
+      auto textmetric = pdraw2dgraphics->get_text_metrics();
 
-      sizeTotal.cx = size.cx;
-
-      sizeTotal.cy = size.cy;
-
-      return sizeTotal;
+      return { size, textmetric.get_line_height() };
 
    }
 
@@ -233,13 +229,13 @@ namespace user
    ::f64_size button::get_preferred_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      if (m_estyle == e_style_simple)
+      if (m_ebuttonstyle == e_button_style_simple)
       {
 
          return get_adjusted_fitting_size(pdraw2dgraphics);
 
       }
-      else if (m_estyle == e_style_image)
+      else if (m_ebuttonstyle == e_button_style_image)
       {
 
          ::i32_size sizeTotal = m_pdraw2dbitmap->m_pimage->size();
@@ -256,13 +252,13 @@ namespace user
       else
       {
 
-         auto size = get_fitting_size(pdraw2dgraphics);
+         auto interactionmetrics = get_fitting_size(pdraw2dgraphics);
 
-         size.cx += 32.;
+         auto size = interactionmetrics.m_sizeText;
 
-         constexpr double dVerticalPaddingRate = 2.;
+         size.cx += interactionmetrics.line_height() * 2.;
 
-         size.cy += size.cy * dVerticalPaddingRate;
+         size.cy += interactionmetrics.line_height() * 1.25;
 
          return size;
 
@@ -321,10 +317,10 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      if (m_estyle == e_style_none)
+      if (m_ebuttonstyle == e_button_style_none)
       {
 
-         set_button_style(e_style_normal);
+         set_button_style(e_button_style_normal);
 
       }
 
@@ -492,15 +488,15 @@ namespace user
 
       pdraw2dgraphics->set_font(this, ::e_element_none);
 
-      auto sizeFitting = get_fitting_size(pdraw2dgraphics);
+      auto interactionmetrics = get_fitting_size(pdraw2dgraphics);
 
-      rectangleText.left = (::i32)(rectangleX.left + (rectangleX.width() - sizeFitting.cx) / 2);
+      rectangleText.left = (::i32)(rectangleX.left + (rectangleX.width() - interactionmetrics.width()) / 2);
 
-      rectangleText.top = (::i32)(rectangleX.top + (rectangleX.height() - sizeFitting.cy) / 2);
+      rectangleText.top = (::i32)(rectangleX.top + (rectangleX.height() - interactionmetrics.height()) / 2);
 
-      rectangleText.right = (::i32)(rectangleText.left + sizeFitting.cx);
+      rectangleText.right = (::i32)(rectangleText.left + interactionmetrics.width());
 
-      rectangleText.bottom = (::i32)(rectangleText.top + sizeFitting.cy);
+      rectangleText.bottom = (::i32)(rectangleText.top + interactionmetrics.height());
 
       //::i32_rectangle rectangleText = m_rectangleText;
       //      string str = utf8_to_unicode(str);
@@ -588,7 +584,7 @@ namespace user
    void button::on_message_key_up(::message::message * pmessage)
    {
 
-      if (m_estyle == e_style_push)
+      if (m_ebuttonstyle == e_button_style_push)
       {
 
          auto pkey = pmessage->m_union.m_pkey;
@@ -601,7 +597,7 @@ namespace user
          }
 
       }
-      else if (m_estyle == e_style_push_group)
+      else if (m_ebuttonstyle == e_button_style_push_group)
       {
 
          auto pkey = pmessage->m_union.m_pkey;
@@ -825,11 +821,11 @@ namespace user
 
             ::color::color colorText = get_color(pstyle, e_element_text, estate);
 
-            pdraw2dgraphics->set_text_color(colorText);
+            pdraw2dgraphics->set_solid_color(colorText);
 
             ::e_align ealign;
 
-            if (m_estyle == e_style_image_and_text)
+            if (m_ebuttonstyle == e_button_style_image_and_text)
             {
 
                if (m_ealignText)
@@ -931,7 +927,7 @@ namespace user
 
          ::color::color colorText = get_color(pstyle, e_element_text, get_state());
 
-         pdraw2dgraphics->set_text_color(colorText);
+         pdraw2dgraphics->set_solid_color(colorText);
 
          auto pdraw2dpen = createø < ::draw2d::pen > ();
 
@@ -969,7 +965,7 @@ namespace user
 
       rectangleX.deflate(rectangleBorder);
 
-      //if(m_estyle != e_style_stock_icon)
+      //if(m_ebuttonstyle != e_button_style_stock_icon)
       //{
 
          //_001OnButtonDrawBackground(pdraw2dgraphics);
@@ -1261,45 +1257,45 @@ namespace user
    }
 
 
-   void button::set_button_style(enum_style estyle)
+   void button::set_button_style(enum_button_style ebuttonstyle)
    {
 
-      if (m_estyle == estyle)
+      if (m_ebuttonstyle == ebuttonstyle)
       {
 
          return;
 
       }
 
-      on_exit_button_style(m_estyle);
+      on_exit_button_style(m_ebuttonstyle);
 
-      m_estyle = estyle;
+      m_ebuttonstyle = ebuttonstyle;
 
-      on_enter_button_style(estyle);
+      on_enter_button_style(ebuttonstyle);
 
    }
 
 
-   void button::on_enter_button_style(enum_style estyle)
+   void button::on_enter_button_style(enum_button_style ebuttonstyle)
    {
 
-      if(estyle == e_style_image || estyle == e_style_image_and_text)
+      if(ebuttonstyle == e_button_style_image || ebuttonstyle == e_button_style_image_and_text)
       {
 
-         m_pdraw2dbitmap = ___new bitmap();
+         m_pdraw2dbitmap = create_newø < ::user::button::bitmap>();
 
       }
-      else if(estyle == e_style_list)
+      else if(ebuttonstyle == e_button_style_list)
       {
 
-         m_plist = ___new list_base();
+         m_plist = create_newø < ::user::button::list_base>();
 
          //m_plist->m_pimagelistNormal         = nullptr;
          //m_plist->m_pimagelistItemHover      = nullptr;
          //m_plist->m_pimagelistSubItemHover   = nullptr;
 
       }
-      else if(estyle == e_style_push || estyle == e_style_push_group)
+      else if(ebuttonstyle == e_button_style_push || ebuttonstyle == e_button_style_push_group)
       {
 
          //set_timer(16384,100_ms);
@@ -1312,22 +1308,22 @@ namespace user
    }
 
 
-   void button::on_exit_button_style(enum_style estyle)
+   void button::on_exit_button_style(enum_button_style ebuttonstyle)
    {
 
-      if(estyle == e_style_image|| estyle == e_style_image_and_text)
+      if(ebuttonstyle == e_button_style_image|| ebuttonstyle == e_button_style_image_and_text)
       {
 
          m_pdraw2dbitmap.release();
 
       }
-      else if(estyle == e_style_list)
+      else if(ebuttonstyle == e_button_style_list)
       {
 
          m_plist.release();
 
       }
-      else if(estyle == e_style_push || estyle == e_style_push_group)
+      else if(ebuttonstyle == e_button_style_push || ebuttonstyle == e_button_style_push_group)
       {
 
          //kill_timer(16384);
@@ -1340,11 +1336,11 @@ namespace user
    bool button::LoadBitmaps(::payload payload,::payload varSel,::payload varFocus,::payload varDisabled,::payload varHover)
    {
 
-      if (m_estyle != e_style_image &&
-            m_estyle != e_style_image_and_text)
+      if (m_ebuttonstyle != e_button_style_image &&
+            m_ebuttonstyle != e_button_style_image_and_text)
       {
 
-         set_button_style(e_style_image);
+         set_button_style(e_button_style_image);
 
       }
 
@@ -1563,7 +1559,7 @@ namespace user
    bool button::is_custom_draw()
    {
 
-      return m_estyle == e_style_list;
+      return m_ebuttonstyle == e_button_style_list;
 
    }
 
@@ -1587,13 +1583,13 @@ namespace user
    bool button::on_click_generation(::item * pitem, ::user::mouse * pmouse)
    {
 
-      if (m_estyle == e_style_push)
+      if (m_ebuttonstyle == e_button_style_push)
       {
 
          toggle_check(::e_source_user);
 
       }
-      else if (m_estyle == e_style_push_group)
+      else if (m_ebuttonstyle == e_button_style_push_group)
       {
 
          set_check(::e_check_checked, ::e_source_user);

@@ -146,7 +146,7 @@ namespace user
 
          auto color = get_color(pstyle, ::e_element_text, estate);
 
-         pdraw2dgraphics->set_text_color(color);
+         pdraw2dgraphics->set_solid_color(color);
 
          auto rectanglePadding = get_padding(pstyle);
 
@@ -184,23 +184,23 @@ namespace user
             //if (!is_window_enabled())
             //{
 
-            //   //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextDisabled);
+            //   //         pdraw2dgraphics->set_solid_color(pstyle->m_colorTextDisabled);
             //   pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_disabled));
 
             //}
             //else if (is_left_button_pressed())
             //{
-            //   //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextPress);
+            //   //         pdraw2dgraphics->set_solid_color(pstyle->m_colorTextPress);
             //   pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_pressed));
             //}
             //else if (m_pitemHover && m_pitemHover->is_set())
             //{
-            //   //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextHover);
+            //   //         pdraw2dgraphics->set_solid_color(pstyle->m_colorTextHover);
             //   pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_hover));
             //}
             //else
             //{
-            //   //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextNormal);
+            //   //         pdraw2dgraphics->set_solid_color(pstyle->m_colorTextNormal);
             //   pbrushText->create_solid(get_color(pstyle, e_element_text));
             //}
 
@@ -481,7 +481,7 @@ namespace user
    //}
 
 
-   ::f64_size still::get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics)
+   ::user::interaction_metrics still::get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (pdraw2dgraphics.is_null())
@@ -505,13 +505,7 @@ namespace user
 
       pdraw2dgraphics->get_text_metrics(&tm);
 
-      ::f64_size sizeTotal;
-
-      sizeTotal.cx = size.cx;
-
-      sizeTotal.cy = maximum(size.cy, tm.get_line_height());
-
-      return sizeTotal;
+      return { size, tm.get_line_height() };
 
    }
 
@@ -804,17 +798,18 @@ namespace user
 
          }
 
-         ::f64_size sizeText;
+         ::user::interaction_metrics interactionmetrics;
 
          if (m_sizeFixed.is_empty())
          {
 
-            sizeText = get_fitting_size(pdraw2dgraphics);
+            interactionmetrics = get_fitting_size(pdraw2dgraphics);
+
          }
          else
          {
 
-            sizeText = m_sizeFixed;
+            interactionmetrics.m_sizeText = m_sizeFixed;
 
          }
 
@@ -830,7 +825,7 @@ namespace user
 
          //m_rectangleText = rectangle;
 
-         set_size(::ceil(sizeText), ::user::e_layout_layout, pdraw2dgraphics);
+         set_size(interactionmetrics.i32_size(), ::user::e_layout_layout, pdraw2dgraphics);
 
          return true;
 
@@ -1006,23 +1001,23 @@ namespace user
       if (!is_window_enabled())
       {
 
-         //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextDisabled);
+         //         pdraw2dgraphics->set_solid_color(pstyle->m_colorTextDisabled);
          pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_disabled));
 
       }
       else if (is_left_button_pressed())
       {
-         //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextPress);
+         //         pdraw2dgraphics->set_solid_color(pstyle->m_colorTextPress);
          pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_pressed));
       }
       else if (m_pitemHover && m_pitemHover->is_set())
       {
-         //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextHover);
+         //         pdraw2dgraphics->set_solid_color(pstyle->m_colorTextHover);
          pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_hover));
       }
       else
       {
-         //         pdraw2dgraphics->set_text_color(pstyle->m_colorTextNormal);
+         //         pdraw2dgraphics->set_solid_color(pstyle->m_colorTextNormal);
          pbrushText->create_solid(get_color(pstyle, e_element_text));
       }
 

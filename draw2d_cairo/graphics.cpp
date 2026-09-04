@@ -2004,135 +2004,35 @@ namespace draw2d_cairo
    void graphics::get_text_metrics(::write_text::text_metric * lpMetrics)
    {
 
-      _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      ::draw2d::graphics::get_text_metrics(lpMetrics);
 
-      ::cast < ::draw2d_cairo::font > pwritetextfont = m_pwritetextfont;
+      //_synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (::is_null(pwritetextfont))
-      {
+      //::cast < ::draw2d_cairo::font > pwritetextfont = m_pwritetextfont;
 
-         throw ::exception(error_null_pointer);
+      //if (::is_null(pwritetextfont))
+      //{
 
-      }
+      //   throw ::exception(error_null_pointer);
 
-      if (pwritetextfont->m_fontsize.is_null_or_negative() || pwritetextfont->m_dFontWidth <= 0.0)
-      {
+      //}
 
-         throw ::exception(error_null_pointer);
+      //if (pwritetextfont->m_fontsize.is_null_or_negative() || pwritetextfont->m_dFontWidth <= 0.0)
+      //{
 
-      }
+      //   throw ::exception(error_null_pointer);
 
-      if (pwritetextfont->has_text_metric())
-      {
+      //}
 
-         *lpMetrics = *pwritetextfont->get_text_metric_struct();
+      //if (pwritetextfont->has_text_metric())
+      //{
 
-         return;
+      //   *lpMetrics = *pwritetextfont->get_text_metric_struct();
 
-      }
+      //   return;
 
-#if defined(USE_PANGO)
+      //}
 
-      PangoFontDescription * pdesc = (PangoFontDescription *) m_pwritetextfont->get_os_data(this);
-
-      if (::is_set(pdesc))
-      {
-
-
-         PangoFontMap * pfontmap = pango_cairo_font_map_get_default();
-
-         PangoContext * pcontext = pango_font_map_create_context(pfontmap);
-
-         PangoFont * ppangofont = pango_font_map_load_font(pfontmap, pcontext, pdesc);
-
-         ::i32 iHeight = 0;
-
-         PangoLayout * playout;                            // layout for a paragraph of text
-
-         playout = pango_cairo_create_layout(m_pcairo);                 // init pango layout ready for use
-
-         pango_layout_set_text(playout, unitext("IAUMGpqg"),
-                               -1);          // sets the text to be associated with the layout (final arg is length, -1
-         // to calculate automatically when passing a nul-terminated string)
-         pango_layout_set_font_description(playout,
-                                           pdesc);            // assign the previous font description to the layout
-
-         pango_cairo_update_layout(m_pcairo,
-                                   playout);                  // if the target surface or transformation properties of the cairo instance
-         // have changed, update the pango layout to reflect this
-         ::i32 width = 0;
-
-         PangoRectangle pos;
-
-         pango_layout_get_pixel_size(playout, &width, &iHeight);
-
-//      iHeight = pango_font_description_get_size(pdesc);
-//
-//      if(pango_font_description_get_size_is_absolute(pdesc))
-//      {
-//
-//         iHeight /= PANGO_SCALE;
-//
-//      }
-//      else
-//      {
-//
-//         iHeight = iHeight * 1.333333333333333333 / PANGO_SCALE;
-//
-//      }
-
-         PangoFontMetrics * pfontmetrics = pango_font_get_metrics(ppangofont, nullptr);
-
-         ::i32 iAscent = pango_font_metrics_get_ascent(pfontmetrics);
-
-         lpMetrics->m_dAscent = iAscent / PANGO_SCALE;
-
-         ::i32 iDescent = pango_font_metrics_get_descent(pfontmetrics);
-
-         lpMetrics->m_dDescent = iDescent / PANGO_SCALE;
-
-         lpMetrics->m_dHeight = (::i32) iHeight;
-
-         lpMetrics->m_dExternalLeading = (lpMetrics->m_dHeight - (lpMetrics->m_dAscent + lpMetrics->m_dDescent));
-
-         lpMetrics->m_dInternalLeading = (::i32) 0;
-
-         pango_font_metrics_unref(pfontmetrics);
-
-         g_object_unref(pcontext);
-
-      }
-      else
-
-#endif // USE_PANGO
-
-      {
-
-         _set(m_pwritetextfont);
-
-         cairo_font_extents_t fontextents;
-
-         cairo_font_extents(m_pcairo, &fontextents);
-
-         lpMetrics->m_dAscent = fontextents.ascent;
-
-         lpMetrics->m_dDescent = fontextents.descent;
-
-         lpMetrics->m_dHeight = fontextents.height;
-
-         lpMetrics->m_dInternalLeading = 0.;
-
-         lpMetrics->m_dExternalLeading = 0.;
-
-         //lpMetrics->m_dInternalLeading = lpMetrics->m_dAscent * 0.2;
-
-         //lpMetrics->m_dExternalLeading = lpMetrics->m_dAscent * 0.2;
-
-      }
-
-      pwritetextfont->set_has_text_metric();
-
-      pwritetextfont->m_textmetric2 = *lpMetrics;
 
       //return true;
 

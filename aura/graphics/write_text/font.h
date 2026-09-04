@@ -99,7 +99,7 @@ namespace write_text
 
       static ::mutex *s_pmutexFontTextMap;
 
-      bool                          m_bTextMetricCalculated;
+      //bool                          m_bTextMetricCalculated;
       //string                        m_strFontFamilyName;
       font_family_pointer           m_pfontfamily;
       ::file::path                  m_pathFontFile;
@@ -186,9 +186,9 @@ namespace write_text
 
       virtual ::f64 get_pixel_font_height(::draw2d::graphics * pdraw2dgraphics);
 
-      virtual void get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm);
+      //virtual void get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm);
 
-      virtual void _get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm);
+      //virtual void _get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm);
 
       virtual ::f64 get_ascent(::draw2d::graphics * pdraw2dgraphics);
 
@@ -203,10 +203,10 @@ namespace write_text
       //bool has_text_metric() const { return m_baCalculated[WRITE_TEXT_TEXT_METRIC_INDEX];}
       //void set_has_text_metric() { m_osdata[WRITE_TEXT_TEXT_METRIC_INDEX] = &m_textmetric2; m_baCalculated[WRITE_TEXT_TEXT_METRIC_INDEX] = true; }
 
-      text_metric * get_text_metric_struct();
-      const text_metric * get_text_metric_struct() const;
-      bool has_text_metric() const;
-      void set_has_text_metric();
+      //text_metric * get_text_metric_struct();
+      //const text_metric * get_text_metric_struct() const;
+      //bool has_text_metric() const;
+      //void set_has_text_metric();
 
    };
 

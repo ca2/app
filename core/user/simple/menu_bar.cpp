@@ -805,14 +805,14 @@ i32_size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
       ::i32_rectangle rectangle;
       index_item_rectangle(iItem, rectangle, e_element_text);
-      pdraw2dgraphics->set_text_color(rgb(192, 192, 192));
+      pdraw2dgraphics->set_solid_color(rgb(192, 192, 192));
       draw2d::graphics_extension::_DrawText(pdraw2dgraphics,
          button.m_wstr,
          rectangle,
          e_align_left_center);
    }
 
-   pdraw2dgraphics->set_text_color(rgb(0, 0, 0));
+   pdraw2dgraphics->set_solid_color(rgb(0, 0, 0));
    draw2d::graphics_extension::_DrawText(pdraw2dgraphics,
       button.m_wstr,
       rectangleText,

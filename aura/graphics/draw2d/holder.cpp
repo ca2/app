@@ -20,6 +20,14 @@ namespace draw2d
    }
 
 
+   void holder::destroy()
+   {
+
+      m_pholdee.defer_destroy_and_release();
+
+   }
+
+
 } // namespace draw2d
 
 

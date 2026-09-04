@@ -861,7 +861,7 @@ x + cx, y + cy);
 
       auto wstrWindowText = pframewindow->get_window_text();
 
-      pdraw2dgraphics->set_text_color(m_colorCaptionText);
+      pdraw2dgraphics->set_solid_color(m_colorCaptionText);
 
       pdraw2dgraphics->set_font(pframewindow, ::e_element_window_title);
 

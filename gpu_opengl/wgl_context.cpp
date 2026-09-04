@@ -49,6 +49,8 @@ namespace gpu_opengl
       m_bDummy = false;
       m_bOwnWindow = false;
 
+      defer_create_synchronization();
+
    }
 
    wgl_context::~wgl_context() { destroy(); }
@@ -251,6 +253,7 @@ namespace gpu_opengl
       }
 
       m_hglrc = hglrc;
+
 
    }
 
@@ -456,6 +459,18 @@ namespace gpu_opengl
    void wgl_context::select()
    {
 
+      // WGL permits a rendering context to be current on only one thread.
+      // Hold this gate for the complete current-context interval so another
+      // thread waits until unselect() has released the native context.
+      m_criticalsectionContextCurrent.lock();
+
+      try
+      {
+
+      synchronous_lock synchronouslock(
+         this->synchronization(),
+         DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
       if (!m_hwnd || !m_hdc || !m_hglrc)
       {
 
@@ -519,11 +534,24 @@ namespace gpu_opengl
       m_htask = current_htask();
 
       m_bContextSelected = true;
+
+      }
+      catch (...)
+      {
+
+         m_criticalsectionContextCurrent.unlock();
+         throw;
+
+      }
    }
 
 
    void wgl_context::unselect()
    {
+
+      synchronous_lock synchronouslock(
+         this->synchronization(),
+         DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_hwnd || !m_hdc || !m_hglrc)
       {
@@ -594,6 +622,7 @@ namespace gpu_opengl
       m_taskindex = 0;
       m_itask = nullptr;
       m_htask = nullptr;
+      m_criticalsectionContextCurrent.unlock();
    }
 
 

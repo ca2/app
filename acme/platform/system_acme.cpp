@@ -896,7 +896,7 @@ namespace platform
    //    //   }
    //
    //
-   //    void acme_system_layer::system::TermSystem()
+   //    void acme_system_layer::system::on_system_termination()
    //    {
    //
    //       auto pacmewindowing = m_pacmewindowing;
@@ -1109,7 +1109,7 @@ namespace platform
    //    void acme_system_layer::system::term_task()
    //    {
    //
-   //       //term_system();
+   //       //on_system_termination();
    //
    //       task::term_task();
    //
@@ -2340,7 +2340,7 @@ namespace platform
    //    void acme_system_layer::system::on_end()
    //    {
    //
-   //       TermSystem();
+   //       on_system_termination();
    //
    //       //return ::success;
    //
@@ -4213,7 +4213,7 @@ return nullptr;
 
    //void acme_system_layer::set_current_handles() override{}
 
-   void acme_system_layer::TermSystem()
+   void acme_system_layer::on_system_termination()
    {
    }
 
@@ -4387,12 +4387,6 @@ return nullptr;
    }
 
 
-   void acme_system_layer::term_system()
-   {
-
-   }
-
-
    void acme_system_layer::on_start_system()
    {
    }
@@ -4475,15 +4469,18 @@ return nullptr;
    }
 
 
-   void acme_system_layer::end()
+   //void acme_system_layer::end()
+   //{
+   //}
+
+
+   //void acme_system_layer::on_end()
+   //{
+   //}
+
+   void acme_system_layer::on_system_end()
    {
    }
-
-
-   void acme_system_layer::on_end()
-   {
-   }
-
 
    void acme_system_layer::report_system_instance()
    {

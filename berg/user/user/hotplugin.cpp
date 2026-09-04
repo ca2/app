@@ -133,7 +133,7 @@ namespace hotplugin
 
       rectangleBar.top += 5;
 
-      pdraw2dgraphics->set_text_color(argb(190, 255, 255, 255));
+      pdraw2dgraphics->set_solid_color(argb(190, 255, 255, 255));
 
       pdraw2dgraphics->text_out(rectangleBar.left, rectangleBar.top, str);
 

@@ -102,6 +102,8 @@ namespace draw2d
       m_pointTarget.y = 0.;
 
       m_dSizeScaler = 1.0;
+
+      m_pgraphicslease = nullptr;
       
       //m_estatus = success;
       //m_estatusLast = success;
@@ -217,7 +219,7 @@ namespace draw2d
    ::image::image_pointer graphics::image_source_image(const ::i32_size & sizeDst)
    {
 
-      return m_pimage->get_image(sizeDst);
+      return m_pimageTarget->get_image(sizeDst);
 
    }
 
@@ -225,7 +227,7 @@ namespace draw2d
    ::i32_size graphics::image_source_size(const ::f64_size & sizeDst, enum_image_selection eimageselection) const
    {
 
-      return m_pimage->image_source_size(sizeDst, eimageselection);
+      return m_pimageTarget->image_source_size(sizeDst, eimageselection);
 
    }
 
@@ -233,7 +235,7 @@ namespace draw2d
    ::i32_size graphics::image_source_size() const
    {
 
-      return m_pimage->size();
+      return m_pimageTarget->size();
 
    }
 
@@ -269,18 +271,26 @@ namespace draw2d
    }
 
 
-   void graphics::begin_draw()
-   {
+   //void graphics::begin_draw(::image::image * pimageTarget, const ::i32_rectangle & rectangleFrame)
+   //{
 
-   }
+   //   m_pointTarget = rectangleFrame.origin();
+
+   //   m_sizeTarget = rectangleFrame.size();
+
+   //   m_bTargetRectangleModified = false;
+
+   //   update_matrix();
+
+   //}
 
 
-   void graphics::end_draw()
-   {
+   //void graphics::end_draw()
+   //{
 
 
 
-   }
+   //}
 
 
 
@@ -497,12 +507,14 @@ namespace draw2d
    }
 
 
-   void graphics::update_as_image_render_target(::image::image* pimage)
+   void graphics::update_as_image_render_target(::image::image* pimageTarget, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
-      auto pdraw2dbitmap = pimage->get_bitmap_as_target();
+      m_pimageTarget = pimageTarget;
 
-      create_bitmap_graphics(pdraw2dbitmap);
+      auto pdraw2dbitmap = pimageTarget->get_bitmap_as_target();
+
+      create_bitmap_graphics(pdraw2dbitmap, pacmeuserinteractionAffinity);
 
    }
 
@@ -606,7 +618,9 @@ namespace draw2d
 
    }
 
+
    void graphics::on_acquire_memory_graphics(
+      bool bExternalRendering,
       ::image::image * pimage,
       const ::i32_size & size,
       ::acme::user::interaction * pacmeuserinteractionAffinity)
@@ -614,24 +628,39 @@ namespace draw2d
 
       m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
 
-      if (m_pimage)
+      if (::is_set(pimage))
       {
 
-         if (pimage == m_pimage)
+         if (m_pimageTarget)
          {
 
-            return;
+            if (pimage == m_pimageTarget)
+            {
+
+               return;
+
+            }
+
+            throw ::exception(
+               error_wrong_state,
+               "memory graphics is already bound to an image");
 
          }
 
-         throw ::exception(
-            error_wrong_state,
-            "memory graphics is already bound to an image");
+         m_pimageTarget = pimage;
+
+      }
+      else
+      {
+
+         defer_constructø(m_pimageTarget);
+
+         m_pimageTarget->create_as_descriptor(size);
 
       }
 
-      m_pimage = pimage;
       defer_set_size(size);
+
       reset_clip();
       //m_pointOrigin = {};
 
@@ -651,6 +680,7 @@ namespace draw2d
          m_pdraw2dbitmap.release();
 
       }
+
       set_alpha_mode(::draw2d::e_alpha_mode_none);
       m_pimageAlphaBlend.release();
       m_pdraw2dpen.release();
@@ -677,7 +707,7 @@ namespace draw2d
       m_pdraw2dregion.release();
       m_pwritetextfont.release();
       m_pwritetextfontDevice.release();
-      m_pimage = nullptr;
+      m_pimageTarget.release();
       m_pacmeuserinteractionAffinity.release();
 
    }
@@ -732,8 +762,11 @@ namespace draw2d
    //}
 
 
-   void graphics::create_bitmap_graphics(::draw2d::bitmap * pdraw2dbitmap)
+   void graphics::create_bitmap_graphics(::draw2d::bitmap * pdraw2dbitmap, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
+
+      __UNREFERENCED_PARAMETER(pdraw2dbitmap);
+      __UNREFERENCED_PARAMETER(pacmeuserinteractionAffinity);
 
       throw ::interface_only();
 
@@ -796,19 +829,10 @@ namespace draw2d
    }
 
 
-   void graphics::set_text_color(::color::color color)
+   void graphics::set_solid_color(const ::color::color & color)
    {
 
       auto pdraw2dbrush = createø < ::draw2d::brush >();
-
-      //if (!pdraw2dbrush)
-      //{
-
-      //   //return false;
-
-
-
-      //}
 
       pdraw2dbrush->create_solid(color);
 
@@ -1194,10 +1218,10 @@ namespace draw2d
    void graphics::frame_pixel_perfect_rectangle(::i32 x, ::i32 y, ::i32 w, ::i32 h, const ::color::color & color, ::i32 width)
    {
 
-      if (m_pimage)
+      if (m_pimageTarget)
       {
 
-         auto ppixmapImage = m_pimage->map();
+         auto ppixmapImage = m_pimageTarget->map();
 
          ppixmapImage->frame_pixel_perfect_rectangle(x, y, w, h, color, width);
 
@@ -2319,11 +2343,13 @@ namespace draw2d
       if (!m_pwritetextfont)
       {
 
-         return;
+         throw ::exception(error_wrong_state);
 
       }
 
-      m_pwritetextfont->get_text_metric(this, *pMetrics);
+      m_pwritetextfont->defer_update(this);
+
+      *pMetrics = m_pwritetextfont->m_textmetric2;
       //m_pwritetextfont->get_os_data(this);
 
       //memory_copy(pMetrics, &m_pwritetextfont->m_textmetric2, sizeof(*pMetrics));
@@ -3151,10 +3177,15 @@ namespace draw2d
 
       //auto estatusDestroy =
       ::aura::simple_chain < ::aura::draw_context >::destroy();
+      ::image::image_drawer::destroy();
+      ::write_text::drawer::destroy();
+
 
       //return estatusOsData && estatusDestroy;
 
       //m_pdraw2dhost.release();
+
+      m_pgraphicsbufferitem.release();
 
       m_pdraw2dbitmap.release();
 
@@ -3167,6 +3198,18 @@ namespace draw2d
       m_pwritetextfontDevice.release();
 
       m_puserredraw.release();
+
+      m_pgraphicsgraphics.release();
+
+      m_puserstyleGraphics.release();
+
+      m_pimageTarget.release();
+
+      m_ptask.release();
+      
+      m_ptextcontext.release();
+
+      m_pacmeuserinteractionAffinity.release();
 
    }
 
@@ -7003,13 +7046,56 @@ namespace draw2d
    }
 
 
-   void graphics::on_begin_draw(::acme::windowing::window * pacmewindowingwindow, const ::f64_size & sz)
+   //void graphics::begin_draw(::acme::windowing::window * pacmewindowingwindow, const ::f64_rectangle & rectangleFrame)
+   void graphics::begin_draw(bool bExternalRendering, ::user::interaction * puserinteraction, const ::i32_rectangle & rectangleFrame, ::image::image * pimageTarget)
    {
+
+      if (::is_set(pimageTarget))
+      {
+
+         m_pimageTarget = pimageTarget;
+
+      }
+
+      if (bExternalRendering)
+      {
+
+         m_pointTarget = rectangleFrame.origin();
+
+         m_sizeTarget = rectangleFrame.size();
+
+      }
+      else
+      {
+
+         m_pointTarget = puserinteraction->screen_origin();
+
+         m_sizeTarget = puserinteraction->size();
+
+      }
+
+      m_bTargetRectangleModified = false;
+
+      update_matrix();
+
+
+
+      //// Layout and drawing use the same graphics object. Restore
+      //// the acquired frame target and clip before drawing so no
+      //// layout-time state, or newer window-wide geometry, can
+      //// affect the pixels belonging to this buffer item.
+      //set_target_rectangle(rectangleFrame);
+
+      //defer_on_target_rectangle_update();
+
+      //reset_clip();
+
+
 
    }
 
 
-   void graphics::on_end_draw(::acme::windowing::window * pacmewindowingwindow)
+   void graphics::end_draw()
    {
 
 

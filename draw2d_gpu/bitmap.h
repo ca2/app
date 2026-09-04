@@ -16,13 +16,13 @@ namespace draw2d_gpu
    public:
 
 
-      bool                 m_bTexture;
-      //glglgl GLuint               m_texture;
-      memory               m_memIn;
-      memory               m_memOut;
+      //bool                 m_bTexture;
+      ////glglgl GLuint               m_texture;
+      //memory               m_memIn;
+      //memory               m_memOut;
 
-      bool                 m_bFlashed;
-      bool                 m_bPBuffer;
+      //bool                 m_bFlashed;
+      //bool                 m_bPBuffer;
 //#ifdef WINDOWS
 //
 //      HWND  g_hWnd;
@@ -52,8 +52,8 @@ namespace draw2d_gpu
 //#endif
 
 
-      ::i32_size               m_sizeOut;
-      ::i32_size               m_sizeIn;
+      //::i32_size               m_sizeOut;
+      //::i32_size               m_sizeIn;
 
 
       bitmap();
@@ -61,13 +61,13 @@ namespace draw2d_gpu
 
       void destroy_bitmap();
 
-      // Resample Quality
-      // 0 - low
-      // 1 - good
-      // 2 - excelent
-      void create_texture(::i32 iResampleQuality);
-      //bool flash();
-      void defer_reveal();
+      //// Resample Quality
+      //// 0 - low
+      //// 1 - good
+      //// 2 - excelent
+      //void create_texture(::i32 iResampleQuality);
+      ////bool flash();
+      //void defer_reveal();
 
       //bool Init();
       //bool InitGL();
@@ -77,7 +77,7 @@ namespace draw2d_gpu
 
       
 
-      void * get_os_data() const;
+      // void * get_os_data() const;
 
 
       bool LoadBitmap(const ::scoped_string & scopedstrResourceName);

@@ -26,7 +26,7 @@ namespace gpu
 
          constructø(m_pgpufenceInFlight);
 
-         m_pgpufenceInFlight->initialize_gpu_fence(pcontext->m_pgpudevice, true);
+         m_pgpufenceInFlight->initialize_gpu_fence(pcontext, true);
 
          // return m_pgpufenceInFlight;
 

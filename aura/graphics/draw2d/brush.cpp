@@ -214,13 +214,18 @@ namespace draw2d
             && m_point2 == point2
             && m_color1 == color1
             && m_color2 == color2)
+      {
+
          return true;
+
+      }
 
       m_ebrush           = e_brush_linear_gradient_point_color;
       m_point1          = point1;
       m_point2          = point2;
       m_color1          = color1;
       m_color2          = color2;
+
       set_modified();
 
       return true;

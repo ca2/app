@@ -8,6 +8,20 @@
 namespace user
 {
 
+   enum enum_button_style
+   {
+      e_button_style_none,
+      e_button_style_normal,
+      e_button_style_simple,
+      e_button_style_image,
+      e_button_style_image_and_text,
+      e_button_style_push,
+      e_button_style_push_group,
+      e_button_style_list,
+      e_button_style_stock_icon,
+   };
+
+
 
    class CLASS_DECL_AURA button :
       virtual public ::user::interaction,
@@ -15,19 +29,6 @@ namespace user
    {
    public:
 
-
-      enum enum_style
-      {
-         e_style_none,
-         e_style_normal,
-         e_style_simple,
-         e_style_image,
-         e_style_image_and_text,
-         e_style_push,
-         e_style_push_group,
-         e_style_list,
-         e_style_stock_icon,
-      };
 
       class bitmap :
          virtual public ::particle
@@ -65,7 +66,7 @@ namespace user
       ::write_text::font_pointer m_pwritetextfont;
       ::e_align                           m_ealignText;
       ::e_draw_text                       m_edrawtext;
-      enum_style                          m_estyle;
+      enum_button_style                   m_ebuttonstyle;
       //::i32_rectangle                     m_rectangleText;
       ::collection::index                               m_iClick;
       enum_stock_icon                     m_estockicon;
@@ -133,7 +134,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
 
 
-      ::f64_size get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      interaction_metrics get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       ::f64_size get_preferred_size(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       bool keyboard_focus_is_focusable() override;
@@ -143,9 +144,9 @@ namespace user
       bool LoadBitmaps(::payload payload,::payload varSel = ::e_type_null,::payload varFocus = ::e_type_null,::payload varDisabled = ::e_type_null,::payload varHover = ::e_type_null);
 
 
-      virtual void set_button_style(enum_style estyle);
-      virtual void on_enter_button_style(enum_style estyle);
-      virtual void on_exit_button_style(enum_style estyle);
+      virtual void set_button_style(enum_button_style estyle);
+      virtual void on_enter_button_style(enum_button_style estyle);
+      virtual void on_exit_button_style(enum_button_style estyle);
 
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
       virtual void BaseToolTipGetRect(::i32_rectangle & rectangle);

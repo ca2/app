@@ -4,6 +4,7 @@
 #pragma once
 
 
+#include "acme/parallelization/critical_section.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/_operating_system.h"
 #include "gpu_opengl/_gpu_opengl.h"
@@ -34,6 +35,7 @@ namespace gpu_opengl
       task_index m_taskindex = 0;
       itask m_itask;
       htask m_htask;
+      critical_section m_criticalsectionContextCurrent;
 
 
       wgl_context();

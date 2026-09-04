@@ -15,6 +15,7 @@ namespace gpu
       context* m_pgpucontext;
       context_lock* m_plockUpper;
       ::particle_pointer m_pparticleSynchronization;
+      bool m_bContextSwitched;
 
 
       context_lock();

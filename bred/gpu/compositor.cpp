@@ -40,9 +40,9 @@ namespace gpu
    void compositor::set_gpu_context(::gpu::context* pgpucontextCompositor)
    {
 
-      m_pgpucontextCompositor2 = pgpucontextCompositor;
+      m_pgpucontextOwned = pgpucontextCompositor;
 
-      m_pgpucontextCompositor2->m_pgpucompositor = this;
+      m_pgpucontextOwned->m_pgpucompositor = this;
 
       on_set_gpu_context();
 
@@ -64,7 +64,7 @@ namespace gpu
          ::draw2d::graphics * pdraw2dgraphics)
    {
 
-      if (!m_pgpucontextCompositor2)
+      if (!m_pgpucontextOwned)
       {
 
          auto pgpuapproach = application()->get_gpu_approach();
@@ -83,15 +83,15 @@ namespace gpu
 
          set_gpu_context(pgpucontextNew);
 
-         m_pgpucontextCompositor2->m_pgpucompositor = this;
+         m_pgpucontextOwned->m_pgpucompositor = this;
 
       }
       else
       {
 
-         m_pgpucontextCompositor2->set_input_origin(pointSource);
+         m_pgpucontextOwned->set_input_origin(pointSource);
 
-         m_pgpucontextCompositor2->set_output_origin(pointTarget);
+         m_pgpucontextOwned->set_output_origin(pointTarget);
 
       }
 
@@ -116,7 +116,7 @@ namespace gpu
    ::gpu::context* compositor::gpu_context()
    {
 
-      return m_pgpucontextCompositor2;
+      return m_pgpucontextOwned;
 
    }
 
@@ -146,33 +146,47 @@ namespace gpu
 
    //   return player;
 
+   ////}
+
+
+   //void compositor::gpu_layer_on_after_begin_render()
+   //{
+
+
    //}
 
 
-   void compositor::gpu_layer_on_after_begin_render()
+   //void compositor::gpu_layer_on_before_end_render()
+   //{
+
+
+   //}
+
+
+   //void compositor::just_after_new_frame()
+   //{
+
+
+   //}
+
+
+   void compositor::start_layer(bool bFirstLayer, ::user::interaction * puserinteraction)
+   {
+
+
+
+   }
+
+
+   void compositor::end_layer(bool bClosingLayer)
    {
 
 
    }
 
 
-   void compositor::gpu_layer_on_before_end_render()
+   void compositor::on_start_layer(::gpu::layer * pgpulayer)
    {
-
-
-   }
-
-
-   void compositor::just_after_new_frame()
-   {
-
-
-   }
-
-
-   void compositor::on_start_layer(::gpu::layer* pgpulayer)
-   {
-
 
 
    }

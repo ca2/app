@@ -14,6 +14,7 @@ namespace gpu
 
       ::i32_rectangle                        m_rectangle;
       ::pointer < ::gpu::texture_site >      m_pgputexturesite;
+      bool                                   m_bPixelsReadyForSampling = true;
 
 
       pixmap();

@@ -661,6 +661,9 @@ namespace user
 
    void frame_window::destroy()
    {
+
+      m_pimpactMain.defer_destroy_and_release();
+
       ::user::interaction::destroy();
       // default for frame windows is to allocate them on the heap
       //  the default post-cleanup is to 'delete this'.

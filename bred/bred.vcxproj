@@ -640,6 +640,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="const\idpool.h" />
+    <ClInclude Include="gpu\command_buffer_lease.h" />
     <ClInclude Include="gpu\texture_site.h" />
     <ClInclude Include="platform.h" />
     <ClInclude Include="gltf\vertex.h" />
@@ -791,6 +792,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="const\idpool.cpp" />
+    <ClCompile Include="gpu\command_buffer_lease.cpp" />
     <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugAsan|Win32'">Create</PrecompiledHeader>

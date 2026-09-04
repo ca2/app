@@ -36,6 +36,11 @@ int main()
    assert(source.find("::gpu::set_current_layer") != std::string::npos);
    assert(source.find("::draw2d::graphics::on_begin_layer_scope()") != std::string::npos);
    assert(source.find("::draw2d::graphics::on_end_layer_scope()") != std::string::npos);
+   assert(source.find("if (::is_set(puserinteractionContext))") != std::string::npos);
+   assert(source.find("window_attachment::get(puserinteraction)") != std::string::npos);
+   assert(source.find("GPU graphics layer has no window attachment.") != std::string::npos);
+   assert(source.find("m_pointTarget = rectangleFrame.origin();") != std::string::npos);
+   assert(source.find("m_sizeTarget = rectangleFrame.size();") != std::string::npos);
 
    return 0;
 

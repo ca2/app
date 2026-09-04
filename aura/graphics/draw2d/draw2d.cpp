@@ -46,6 +46,68 @@ namespace draw2d
 
    ::f64 draw2d::g_dEmboss = 2.0;
 
+   const int g_iDebugFlagCount = 8;
+
+   bool g_baDebugFlag[g_iDebugFlagCount] = {};
+
+
+   void set_debug_flag(int iFlag, bool bSet)
+   {
+      if (iFlag < 0 || iFlag >= g_iDebugFlagCount)
+      {
+
+         throw ::exception(error_index_out_of_bounds);
+
+      }
+      g_baDebugFlag[iFlag] = bSet;
+   }
+
+
+
+   bool is_debug_flag_set(int iFlag)
+   {
+      if (iFlag < 0 || iFlag >= g_iDebugFlagCount)
+      {
+
+         throw ::exception(error_index_out_of_bounds);
+
+      }
+      return g_baDebugFlag[iFlag];
+   }
+
+   debug_flag_scope::debug_flag_scope(int iFlag) :
+      m_iFlag(iFlag),
+      m_bWasSet(::draw2d::is_debug_flag_set(iFlag)),
+      m_bLocked(false)
+   {
+      lock();
+
+   }
+   debug_flag_scope::~debug_flag_scope()
+   {
+
+      unlock();
+
+   }
+   void debug_flag_scope::lock()
+   {
+      if (!m_bLocked)
+      {
+         m_bLocked = true;
+         set_debug_flag(m_iFlag);
+
+      }
+   }
+   void debug_flag_scope::unlock()
+   {
+      if (m_bLocked)
+      {
+         m_bLocked = false;
+         set_debug_flag(m_iFlag, m_bWasSet);
+
+      }
+
+   }
 
    draw2d::draw2d()
    {
@@ -218,12 +280,9 @@ namespace draw2d
    ::image::image_pointer graphics::get_current_target_image()
    {
 
-      return m_pimage;
+      return m_pimageTarget;
 
    }
-
-
-
 
 
    ::pointer<::draw2d::window_attachment> draw2d::allocate_draw2d_window_attachment(
@@ -518,6 +577,10 @@ namespace draw2d
    void draw2d::term()
    {
 
+      shutdown_memory_graphics_pool();
+
+      clear_all_objects_os_data();
+
       {
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -573,6 +636,8 @@ namespace draw2d
 
    void draw2d::destroy()
    {
+
+      clear_all_objects_os_data();
 
       shutdown_memory_graphics_pool();
 
@@ -683,10 +748,12 @@ namespace draw2d
 
 
    ::draw2d::graphics_lease draw2d::acquire_memory_graphics(
-      const ::i32_size& size, ::acme::user::interaction* pacmeuserinteractionAffinity)
+      const ::i32_size& size, 
+      ::acme::user::interaction* pacmeuserinteractionAffinity,
+      bool bExternalRendering)
    {
 
-      return _acquire_memory_graphics(pacmeuserinteractionAffinity, size, nullptr);
+      return _acquire_memory_graphics(bExternalRendering, pacmeuserinteractionAffinity, size, nullptr);
 
    }
 
@@ -715,12 +782,12 @@ namespace draw2d
       if (::is_set(pimage))
       {
 
-         auto pdraw2dbitmap = pimage->get_bitmap_as_target();
+         auto pdraw2dbitmap = pimage->get_bitmap_as_target(pdraw2dgraphics);
 
          if (::is_set(pdraw2dbitmap))
          {
 
-            pdraw2dgraphics->create_bitmap_graphics(pdraw2dbitmap);
+            pdraw2dgraphics->create_bitmap_graphics(pdraw2dbitmap, pacmeuserinteractionAffinity);
 
          }
          else
@@ -760,6 +827,7 @@ namespace draw2d
 
 
    ::draw2d::graphics_lease draw2d::_acquire_memory_graphics(
+      bool bExternalRendering,
       ::acme::user::interaction* pacmeuserinteractionAffinity,
       const ::i32_size& size,
       ::image::image* pimage)
@@ -863,6 +931,13 @@ namespace draw2d
 
          }
 
+         if (::draw2d::is_debug_flag_set(0))
+         {
+
+            informationf("draw2d::debug_flag(0) about to do_allocation_strategy");
+
+         }
+
          pdraw2dgraphics = do_allocation_strategy(pacmeuserinteractionAffinity, pimage, size);
 
       }
@@ -874,7 +949,14 @@ namespace draw2d
 
       }
 
-      pdraw2dgraphics->on_acquire_memory_graphics(pimage, size, pacmeuserinteractionAffinity);
+      if (::draw2d::is_debug_flag_set(0))
+      {
+
+         informationf("draw2d::debug_flag(0) about to call ::draw2d::graphics::on_acquire_memory_graphics");
+
+      }
+
+      pdraw2dgraphics->on_acquire_memory_graphics(bExternalRendering, pimage, size, pacmeuserinteractionAffinity);
 
       auto uActive = m_uMemoryGraphicsPoolActive.fetch_add(
                         1,
@@ -914,6 +996,7 @@ namespace draw2d
 
 
    ::draw2d::graphics_lease draw2d::acquire_image_graphics(
+      bool bExternalRendering,
       ::image::image* pimage,
       // ::draw2d::host * pdraw2dhost,
       ::acme::user::interaction* pacmeuserinteractionAffinity)
@@ -936,6 +1019,7 @@ namespace draw2d
       }
 
       return _acquire_memory_graphics(
+         bExternalRendering,
          pacmeuserinteractionAffinity,
          size,
          pimage);
@@ -945,6 +1029,7 @@ namespace draw2d
 
 
    ::draw2d::graphics_lease draw2d::acquire_owned_graphics(
+      bool bExternalRendering,
       ::draw2d::graphics * pdraw2dgraphics,
       ::image::image * pimage,
       const ::i32_size & size,
@@ -976,6 +1061,7 @@ namespace draw2d
       {
 
          pdraw2dgraphics->on_acquire_memory_graphics(
+            bExternalRendering,
             pimage,
             size,
             pacmeuserinteractionAffinity);

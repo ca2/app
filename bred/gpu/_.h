@@ -43,6 +43,9 @@ namespace gpu
 
    class semaphore;
 
+   class compositor;
+
+   class layer;
 
    template<typename VERTEX, typename INDEX = ::u32>
    class model_data;
@@ -74,7 +77,7 @@ namespace gpu
 
    class device;
 
-   class compositor;
+   //class compositor;
 
 
    class draw2d;

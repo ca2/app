@@ -297,9 +297,9 @@ namespace gpu_opengl
          
          auto rectanglePlacement = m_pgpucontext->input_placement();
 
-         pcommandbuffer->set_viewport(rectanglePlacement);
+         pcommandbuffer->set_viewport(rectanglePlacement, m_pgpucontext->m_sizeRaw);
 
-         pcommandbuffer->set_scissor(rectanglePlacement);
+         pcommandbuffer->set_scissor(rectanglePlacement, m_pgpucontext->m_sizeRaw);
 
          //}
          //else
@@ -426,8 +426,8 @@ namespace gpu_opengl
 
          auto rectanglePlacement = m_pgpucontext->input_placement();
 
-         pcommandbuffer->set_viewport(rectanglePlacement);
-         pcommandbuffer->set_scissor(rectanglePlacement);
+         pcommandbuffer->set_viewport(rectanglePlacement, m_pgpucontext->m_sizeRaw);
+         pcommandbuffer->set_scissor(rectanglePlacement, m_pgpucontext->m_sizeRaw);
 
          //}
          //else

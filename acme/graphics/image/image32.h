@@ -69,10 +69,10 @@ struct CLASS_DECL_ACME image32_t
 
 
    inline ::color::color get_pixel(color_indexes indexes, ::i32 iScan, ::i32 iHeight, ::i32 x, ::i32 y);
-   void vertical_swap_copy( ::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc);
-   inline void vertical_swap_copy(const ::i32_size & size, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
+   void y_swap_copy( ::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc);
+   inline void y_swap_copy(const ::i32_size & size, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
    {
-      vertical_swap_copy(size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
+      y_swap_copy(size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
    }
    ::image32_t * offset(::i32 x, ::i32 y, ::i32 iStride)
    {
@@ -98,6 +98,10 @@ struct CLASS_DECL_ACME image32_t
    {
       offset(x, y, iStrideDst)->copy(cx, cy, iStrideDst, pimage32Src, iStrideSrc);
    }
+   void y_swap_copy(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
+   {
+      offset(x, y, iStrideDst)->y_swap_copy(cx, cy, iStrideDst, pimage32Src, iStrideSrc);
+   }
    void copy(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::i32 iStrideDst, ::i32 xSrc, ::i32 ySrc, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
    {
       offset(x, y, iStrideDst)->copy(cx, cy, iStrideDst, pimage32Src->offset(xSrc, ySrc, iStrideSrc), iStrideSrc);
@@ -109,10 +113,10 @@ struct CLASS_DECL_ACME image32_t
    }
 
    //void vertical_swap_copy(::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc = -1);
-   void vertical_swap_copy_swap_red_blue(::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc = -1);
-   inline void vertical_swap_copy_swap_red_blue(const ::i32_size & size, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc = -1)
+   void y_swap_copy_swap_red_blue(::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc = -1);
+   inline void y_swap_copy_swap_red_blue(const ::i32_size & size, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc = -1)
    {
-      vertical_swap_copy_swap_red_blue(size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
+      y_swap_copy_swap_red_blue(size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
    }
    //void copy(::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc = -1);
    //void copy(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc = -1);
@@ -125,7 +129,12 @@ struct CLASS_DECL_ACME image32_t
    {
       copy(rectangle.top_left(), rectangle.size(), iStrideDst, pimage32Src, iStrideSrc);
    }
+   inline void y_swap_copy(const ::i32_point & point, const i32_size & size, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc = -1)
+   {
+      y_swap_copy(point.x, point.y, size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
+   }
    inline void copy(const ::pixmap_t *p);
+   inline void y_swap_copy(const ::pixmap_t * p);
    void copy_swap_red_blue(::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc = -1);
    void swap_red_blue(::i32 cx, ::i32 cy, ::i32 iStride = 0);
    void _001ProperCopyColorref(::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc = -1);

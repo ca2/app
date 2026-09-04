@@ -104,6 +104,8 @@ namespace experience
 
       void operator()(::timer * ptimer) override;
 
+      void destroy() override;
+
       void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual void layout_control_box_buttons();

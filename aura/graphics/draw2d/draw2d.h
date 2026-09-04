@@ -94,7 +94,8 @@ namespace draw2d
       void erase_graphics(graphics * pimage);
 
 
-      ::draw2d::graphics_lease _acquire_memory_graphics(
+      virtual ::draw2d::graphics_lease _acquire_memory_graphics(
+         bool bExternalRendering,
          ::acme::user::interaction * pacmeuserinteractionAffinity,
          const ::i32_size & size,
          ::image::image * pimage);
@@ -135,12 +136,16 @@ namespace draw2d
 
       virtual graphics_pointer create_memory_graphics(const ::i32_size &size, ::acme::user::interaction * pacmeuserinteractionAffinity);
 
-      virtual ::draw2d::graphics_lease acquire_memory_graphics(const ::i32_size &size,
-         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr);
+      virtual ::draw2d::graphics_lease acquire_memory_graphics(
+         const ::i32_size &size,
+         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr,
+         bool bExternalRendering = true);
       virtual ::draw2d::graphics_lease acquire_image_graphics(
+         bool bExternalRendering,
          ::image::image * pimage,
          ::acme::user::interaction * pacmeuserinteractionAffinity);
       virtual ::draw2d::graphics_lease acquire_owned_graphics(
+         bool bExternalRendering,
          ::draw2d::graphics * pdraw2dgraphics,
          ::image::image * pimage,
          const ::i32_size & size,
@@ -223,6 +228,26 @@ namespace draw2d
 
       virtual void adjust_composited_window_styles(::u32& nExStyle, ::u32& nStyle);
 
+
+   };
+
+   
+   CLASS_DECL_AURA void set_debug_flag(int iFlag, bool bSet = true);
+   CLASS_DECL_AURA bool is_debug_flag_set(int iFlag);
+
+   class CLASS_DECL_AURA debug_flag_scope
+   {
+   public:
+
+      int m_iFlag;
+      bool m_bWasSet;
+      bool m_bLocked;
+
+      debug_flag_scope(int iFlag);
+      ~debug_flag_scope();
+
+      void lock();
+      void unlock();
 
    };
 

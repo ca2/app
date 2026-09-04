@@ -602,7 +602,7 @@ namespace gpu
 
          this->set_state(pcommandbuffer, ::gpu::e_texture_state_shader_read);
 
-         pgpucontext->endSingleTimeCommands(pcommandbuffer);
+         pcommandbuffer.commit();
 
       }
 
@@ -780,6 +780,24 @@ namespace gpu
 
    }
 
+
+   ::image::image * texture::get_image(::draw2d::graphics * pdraw2dgraphics)
+   {
+
+      defer_constructø(m_pimageGpuTexture);
+
+      if (m_pimageGpuTexture)
+      {
+
+         m_pimageGpuTexture->update_as_backed_by_gpu_texture(this->size(), this, pdraw2dgraphics);
+
+      }
+
+      return m_pimageGpuTexture;
+
+   }
+
+
    ::string texture::texture_type()
    {
 
@@ -804,7 +822,7 @@ namespace gpu
    }
 
 
-   void texture::set_pixels(const ::i32_rectangle & rectangle, const void * data)
+   void texture::set_pixels(bool bSync, const ::i32_rectangle & rectangle, const void * data)
    {
 
       ::pixmap_t pixmap;
@@ -816,12 +834,12 @@ namespace gpu
       pixmap.m_pimage32 = (::image32_t *)data;
       pixmap.m_pimage32Raw = (::image32_t *)data;
 
-      write_pixels(&pixmap, {});
+      write_pixels(bSync, &pixmap, {});
 
    }
 
    
-   void texture::write_pixels(const ::pixmap_t *, const ::i32_point & pointInput)
+   void texture::write_pixels(bool bSync, const ::pixmap_t *, const ::i32_point & pointInput)
    {
 
       throw ::not_implemented();
@@ -829,7 +847,7 @@ namespace gpu
    }
 
 
-   void texture::write_pixels(const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan)
+   void texture::write_pixels(bool bSync, const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan)
    {
 
       ::pixmap pixmap;
@@ -839,47 +857,107 @@ namespace gpu
       pixmap.m_pimage32Raw = (::image32_t *)pimage32;
       pixmap.m_iScan = iScan;
 
-      write_pixels(&pixmap, {});
+      write_pixels(bSync, &pixmap, {});
 
    }
 
 
-   void texture::set_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::i32_rectangle & rectangle, const void * data)
+   //void texture::set_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::i32_rectangle & rectangle, const void * data)
+   //{
+
+   //   ::pixmap_t pixmap;
+
+   //   pixmap.m_point = rectangle.origin();
+   //   pixmap.m_size = rectangle.size();
+   //   pixmap.m_iScan = pixmap.m_size.cx * 4;
+
+   //   pixmap.m_pimage32 = (::image32_t *)data;
+   //   pixmap.m_pimage32Raw = (::image32_t *)data;
+
+   //   write_pixels(pgpucommandbuffer, &pixmap, {});
+
+   //}
+
+
+   //void texture::write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::pixmap_t *, const ::i32_point & pointInput)
+   //{
+
+   //   throw ::not_implemented();
+
+   //}
+
+
+   //void texture::write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan)
+   //{
+
+   //   ::pixmap pixmap;
+
+   //   pixmap.m_size = size;
+   //   pixmap.m_pimage32 = (::image32_t *)pimage32;
+   //   pixmap.m_pimage32Raw = (::image32_t *)pimage32;
+   //   pixmap.m_iScan = iScan;
+
+   //   write_pixels(pgpucommandbuffer, &pixmap, {});
+
+   //}
+
+
+   //void texture::write_pixels(::gpu::command_buffer * pgpucommandbuffer, const void * pData, const ::i32_size & size, ::i32 iScan, ::i32 iBytesPerPixel, const ::i32_point & point)
+   //{
+
+   //   if (iBytesPerPixel == 4)
+   //   {
+
+   //      ::pixmap pixmap;
+
+   //      pixmap.m_size = size;
+   //      pixmap.m_pimage32 = (::image32_t *)pData;
+   //      pixmap.m_pimage32Raw = (::image32_t *)pData;
+   //      pixmap.m_iScan = iScan;
+
+   //      write_pixels(pgpucommandbuffer, &pixmap, {});
+
+   //   }
+   //   else
+   //   {
+
+   //      throw ::exception(error_failed, "write_pixels with iBytesPerPixel != 4 not implemented");
+
+   //   }
+
+   //}
+
+
+   void texture::write_pixels(bool bSync, const void * pData, const ::i32_size & size, ::i32 iScan, ::i32 iBytesPerPixel, const ::i32_point & point)
    {
 
-      ::pixmap_t pixmap;
+      if (iBytesPerPixel == 4)
+      {
 
-      pixmap.m_point = rectangle.origin();
-      pixmap.m_size = rectangle.size();
-      pixmap.m_iScan = pixmap.m_size.cx * 4;
+         ::pixmap pixmap;
 
-      pixmap.m_pimage32 = (::image32_t *)data;
-      pixmap.m_pimage32Raw = (::image32_t *)data;
+         pixmap.m_size = size;
+         pixmap.m_pimage32 = (::image32_t *)pData;
+         pixmap.m_pimage32Raw = (::image32_t *)pData;
+         pixmap.m_iScan = iScan;
 
-      write_pixels(pgpucommandbuffer, &pixmap, {});
+         write_pixels(bSync, &pixmap, {});
+
+      }
+      else
+      {
+
+         throw ::exception(error_failed, "write_pixels with iBytesPerPixel != 4 not implemented");
+
+      }
 
    }
 
 
-   void texture::write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::pixmap_t *, const ::i32_point & pointInput)
+   void texture::copy_from(::gpu::texture * pgputexture)
    {
 
-      throw ::not_implemented();
-
-   }
-
-
-   void texture::write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan)
-   {
-
-      ::pixmap pixmap;
-
-      pixmap.m_size = size;
-      pixmap.m_pimage32 = (::image32_t *)pimage32;
-      pixmap.m_pimage32Raw = (::image32_t *)pimage32;
-      pixmap.m_iScan = iScan;
-
-      write_pixels(pgpucommandbuffer, &pixmap, {});
+      throw ::interface_only();
 
    }
 

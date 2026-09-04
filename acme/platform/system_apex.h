@@ -107,7 +107,7 @@ namespace platform
       //
       //
       // virtual void init_system();
-      // virtual void term_system();
+      // virtual void on_system_termination();
       //
       // virtual void on_system_construct();
       //
@@ -238,7 +238,7 @@ namespace platform
       // virtual void term1();
       //
       //
-      // virtual void TermSystem();
+      // virtual void on_system_termination();
       //
       //
       // virtual void process_term();

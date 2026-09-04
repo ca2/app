@@ -17,7 +17,7 @@ namespace platform
    //void inline_init() override{}
    //void inline_term() override{}
 
-   //void TermSystem() override{}
+   //void on_system_termination() override{}
 
    void aura_system_layer::on_finish_launching()
    {
@@ -32,7 +32,7 @@ namespace platform
 
 
    //      void aura_system_layer::init_system() override{}
-   //      void aura_system_layer::term_system() override{}
+   //      void aura_system_layer::on_system_termination() override{}
 
 
    //void aura_system_layer::system_main() override{}
@@ -439,7 +439,7 @@ namespace platform
 
    //void aura_system_layer::post_creation_requests() override{}
 
-   //void aura_system_layer::term_system(){}
+   //void aura_system_layer::on_system_termination(){}
 
    void aura_system_layer::term2()
    {
@@ -453,7 +453,7 @@ namespace platform
 
    //void aura_system_layer::term(){}
 
-   //void aura_system_layer::TermSystem() override{}
+   //void aura_system_layer::on_system_termination() override{}
 
 
    void aura_system_layer::process_term()
@@ -635,7 +635,7 @@ namespace platform
 
    //void aura_system_layer::term() override{}
 
-   //void aura_system_layer::term_system() override{}
+   //void aura_system_layer::on_system_termination() override{}
 
 
    //virtual ::i32 main(){}
@@ -788,7 +788,7 @@ namespace platform
 
 
    //void aura_system_layer::process_init() override{}
-   //void aura_system_layer::term_system() override{}
+   //void aura_system_layer::on_system_termination() override{}
 
    //virtual ::pointer<::aura::session>on_create_session() override{}
 

@@ -2,6 +2,7 @@
 #include "platform.h"
 #include "command_buffer.h"
 #include "context.h"
+#include "fence.h"
 #include "frame.h"
 #include "layer.h"
 #include "queue.h"
@@ -295,7 +296,7 @@ namespace gpu
        
          constructø(m_pgpufence);
 
-         m_pgpufence->initialize_gpu_fence(m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pgpudevice, bCreateSignaled);
+         m_pgpufence->initialize_gpu_fence(m_pgpurendertarget->m_pgpurenderer->m_pgpucontext, bCreateSignaled);
 
       }
       else

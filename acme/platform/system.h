@@ -77,6 +77,8 @@ namespace platform
       ::pointer<::windows::apartment_thread>m_papartmentthread;
 #endif
 
+      ::map< ::std::type_index, ::particle_pointer >    m_mapSingletons;
+
       system();
       ~system() override;
 
@@ -84,6 +86,26 @@ namespace platform
       void set_zip_file_session_maximum(::collection::count count);
       ::collection::count zip_file_session_maximum() const;
       ::resource_folder_pool * resource_folder_pool();
+
+
+      template < typename TYPE >
+      TYPE * singleton()
+      {
+
+         synchronous_lock synchronouslock(this->synchronization());
+
+         auto & p = m_mapSingletons[::std::type_index(typeid(TYPE))];
+
+         if (!p)
+         {
+
+            p = create_newø<TYPE>();
+
+         }
+
+         return p->cast<TYPE>();
+
+      }
 
 
       virtual ::particle * matter_mutex() override;
@@ -274,25 +296,27 @@ namespace platform
 
       //virtual void defer_post_application_start_file_open_request();
 
-      virtual void defer_audio() override;
+      void defer_audio() override;
 
-      virtual bool has_audio() override;
+      bool has_audio() override;
 
-      virtual void init1() override;
+      void init1() override;
 
-      virtual void init2() override;
+      void init2() override;
 
       //void set_current_handles() override;
 
-      virtual void TermSystem() override;
+      void term() override;
+
+      void on_system_termination() override;
 
 
-      virtual void erase_from_any_hook(::matter * pmatter) override;
+      void erase_from_any_hook(::matter * pmatter) override;
 
 
-      virtual void create_os_node(::platform::application * papplication) override;
+      void create_os_node(::platform::application * papplication) override;
 
-      virtual string os_get_user_theme() override;
+      string os_get_user_theme() override;
 
 
       template < typename BASE_TYPE >
@@ -404,7 +428,7 @@ namespace platform
 
 
       virtual void init_system() override;
-      virtual void term_system() override;
+      //virtual void on_system_termination() override;
 
       //::request *application_start_file_open_request() override;
        //virtual void on_start_system() override;
@@ -442,10 +466,10 @@ namespace platform
       virtual ::pointer<::platform::application> new_app(const ::scoped_string & scopedstrAppId) override;
 
 
-      virtual void end() override;
+      //virtual void end() override;
 
 
-      virtual void on_end() override;
+      virtual void on_system_end() override;
 
 
       virtual void report_system_instance() override;
@@ -785,7 +809,7 @@ namespace platform
 //       //void inline_init() override;
 //       //void inline_term() override;
 //
-//       //void TermSystem() override;
+//       //void on_system_termination() override;
 //
 //       virtual void on_finish_launching();
 //
@@ -798,7 +822,7 @@ namespace platform
 //
 //
 //       //      virtual void init_system() override;
-//       //      virtual void term_system() override;
+//       //      virtual void on_system_termination() override;
 //
 //
 //       //virtual void system_main() override;
@@ -1118,7 +1142,7 @@ namespace platform
 //
 //       //virtual void post_creation_requests() override;
 //
-//       //virtual void term_system();
+//       //virtual void on_system_termination();
 //
 //       virtual void term2();
 //
@@ -1126,7 +1150,7 @@ namespace platform
 //
 //       //virtual void term();
 //
-//       //virtual void TermSystem() override;
+//       //virtual void on_system_termination() override;
 //
 //
 //       virtual void process_term();
@@ -1297,7 +1321,7 @@ namespace platform
 //
 //       //virtual void term() override;
 //
-//       //virtual void term_system() override;
+//       //virtual void on_system_termination() override;
 //
 //
 //       //virtual ::i32 main();
@@ -1436,7 +1460,7 @@ namespace platform
 //
 //
 //       //virtual void process_init() override;
-//       //virtual void term_system() override;
+//       //virtual void on_system_termination() override;
 //
 //       //virtual ::pointer<::aura::session>on_create_session() override;
 //       //virtual ::install::canvas * install_create_canvas() override;

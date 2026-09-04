@@ -395,20 +395,20 @@ namespace axis
 
 
 
-   void system::term_system()
+   void system::on_system_termination()
    {
 
-      ::aura::system::term_system();
+      ::aura::system::on_system_termination();
 
    }
 
 
-   void system::TermSystem()
-   {
+   //void system::on_system_termination()
+   //{
 
-      ::aura::system::TermSystem();
+   //   ::aura::system::on_system_termination();
 
-   }
+   //}
 
 
    void system::process_term()

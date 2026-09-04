@@ -5,6 +5,7 @@
 #include "skybox.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/prototype/geometry2d/angle.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/texture.h"
@@ -875,7 +876,9 @@ namespace graphics3d
       //}
       auto pcommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
       // this->flushCommandBuffer(layoutCmd, m_vkqueueTransfer3, true);
-      m_pgpucontext->m_pcommandbufferMain = pcommandbuffer;
+      m_pgpucontext->m_pcommandbufferMain = pcommandbuffer.operator gpu::command_buffer *();
+
+      bool bCommandBufferRecordingSucceeded = true;
 
       try
       {
@@ -885,33 +888,56 @@ namespace graphics3d
       }
       catch (...)
       {
+
+         bCommandBufferRecordingSucceeded = false;
+
       }
 
-      // Now generate irradiance and prefiltered maps using environmentCube (must be valid)
-      if (!m_pgpucontext->m_pengine->m_pimmersionlayer->m_passetmanager->m_ptextureEnvironmentCube)
+      if (bCommandBufferRecordingSucceeded)
       {
-         
-         error("[scene] environmentCube is null - aborting IBL generation to avoid descriptor errors.");
+
+         // Now generate irradiance and prefiltered maps using environmentCube (must be valid)
+         if (!m_pgpucontext->m_pengine->m_pimmersionlayer->m_passetmanager->m_ptextureEnvironmentCube)
+         {
+
+            error("[scene] environmentCube is null - aborting IBL generation to avoid descriptor errors.");
+
+         }
+         else
+         {
+            try
+            {
+
+               generateIblIrradianceMap();
+               generateIblPrefilteredEnvMap();
+
+               information("[scene] IBL assets generated successfully.");
+            }
+            catch (const ::exception &e)
+            {
+               errorf("[scene] IBL generation failed: %s", e.get_message().c_str());
+
+               bCommandBufferRecordingSucceeded = false;
+
+            }
+
+         }
+
+      }
+
+      if (bCommandBufferRecordingSucceeded)
+      {
+
+         pcommandbuffer.commit();
 
       }
       else
       {
-         try
-         {
 
+         pcommandbuffer.cancel();
 
-            generateIblIrradianceMap();
-            generateIblPrefilteredEnvMap();
-
-            information("[scene] IBL assets generated successfully.");
-         }
-         catch (const ::exception &e)
-         {
-            errorf("[scene] IBL generation failed: %s", e.get_message().c_str());
-         }
       }
 
-                  m_pgpucontext->endSingleTimeCommands(pcommandbuffer);
       m_pgpucontext->m_pcommandbufferMain.release();
 
 

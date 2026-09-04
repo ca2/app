@@ -972,7 +972,7 @@ namespace user
 
          auto color = get_color(pstyle, ::e_element_item_text, estate);
 
-         pdraw2dgraphics->set_text_color(color);
+         pdraw2dgraphics->set_solid_color(color);
 
          pdraw2dgraphics->text_out(x, (::i32) y, pitem->get_item_text(puseritembase));
 

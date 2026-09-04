@@ -191,6 +191,8 @@ namespace graphics
    void colors_with_shades_of_grey(::pixmap *ppixmap)
    {
 
+      ppixmap->m_bTopLeft = true;
+
       //auto ppixmap = pimage->map();
 
       ::collection::count w = ppixmap->width();
@@ -234,6 +236,7 @@ namespace graphics
    void shades_of_luminance(::pixmap *ppixmap, ::f64 dH, ::f64 dS)
    {
 
+      ppixmap->m_bTopLeft = true;
       //pimage->map();
 
       ::collection::count w = ppixmap->width();
@@ -395,6 +398,9 @@ namespace core
          m_bLButtonPressedOnHue = false;
          m_bLButtonPressedOnLuminance = false;
 
+         m_dLastLuminanceH = -1.0;
+         m_dLastLuminanceS = -1.0;
+
          m_strOk = "OK";
 
       }
@@ -452,7 +458,7 @@ namespace core
 
          {
 
-            auto ppixmapImageTemplate = m_pimageTemplate->map();
+            auto ppixmapImageTemplate = m_pimageTemplate->map(::image::e_map_discard);
 
             ::graphics::colors_with_shades_of_grey(ppixmapImageTemplate);
 
@@ -466,6 +472,8 @@ namespace core
             m_pfontOk->create_font(e_font_sans_ui, 16_pt, e_font_weight_light);
 
          }
+
+         m_pimageLuminance->defer_create_synchronization();
 
       }
 
@@ -756,6 +764,8 @@ namespace core
       void color_selector::rebuild_luminance()
       {
 
+         synchronous_lock synchronouslock(m_pimageLuminance->synchronization());
+
          if (m_dLastLuminanceH == m_hls.m_dH
             && m_dLastLuminanceS == m_hls.m_dS)
          {
@@ -764,12 +774,12 @@ namespace core
 
          }
 
-            m_dLastLuminanceH = m_hls.m_dH;
-            m_dLastLuminanceS = m_hls.m_dS;
+         m_dLastLuminanceH = m_hls.m_dH;
+         m_dLastLuminanceS = m_hls.m_dS;
 
-            auto ppixmapImageLuminance = m_pimageLuminance->map();
+         auto ppixmapImageLuminance = m_pimageLuminance->map(::image::e_map_discard);
 
-            ::graphics::shades_of_luminance(ppixmapImageLuminance, m_hls.m_dH, m_hls.m_dS);
+         ::graphics::shades_of_luminance(ppixmapImageLuminance, m_hls.m_dH, m_hls.m_dS);
 
          //}
 
@@ -961,23 +971,29 @@ namespace core
 
          ::i32_rectangle rectangleLum1;
 
-         rectangleLum1.top_left() = m_rectangleColors.top_left() + ::i32_size(m_pimage->width() - 1, 0);
-
-         rectangleLum1.set_size(m_pimageLuminance->get_size());
-
-         rSource = m_pimageLuminance->rectangle();
-
-         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
          {
 
-            ::image::image_source imagesource(m_pimageLuminance);
+            synchronous_lock synchronouslock(m_pimageLuminance->synchronization());
 
-            ::image::image_drawing_options imagedrawingoptions(rectangleLum1);
+            rectangleLum1.top_left() = m_rectangleColors.top_left() + ::i32_size(m_pimage->width() - 1, 0);
 
-            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            rectangleLum1.set_size(m_pimageLuminance->get_size());
 
-            pdraw2dgraphics->draw(imagedrawing);
+            rSource = m_pimageLuminance->rectangle();
+
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+            {
+
+               ::image::image_source imagesource(m_pimageLuminance);
+
+               ::image::image_drawing_options imagedrawingoptions(rectangleLum1);
+
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pdraw2dgraphics->draw(imagedrawing);
+
+            }
 
          }
 
@@ -999,13 +1015,13 @@ namespace core
             if (m_hls.m_dL >= 0.5)
             {
 
-               pdraw2dgraphics->set_text_color(argb(255, 0, 0, 0));
+               pdraw2dgraphics->set_solid_color(argb(255, 0, 0, 0));
 
             }
             else
             {
 
-               pdraw2dgraphics->set_text_color(argb(255, 255, 255, 255));
+               pdraw2dgraphics->set_solid_color(argb(255, 255, 255, 255));
 
             }
 
@@ -1111,7 +1127,7 @@ namespace core
       }
 
 
-      void color_selector::layout_color_selector(const ::i32_rectangle & rectangle)
+      void color_selector::layout_color_selector(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
       {
 
          //   ::user::impact::on_layout(pdraw2dgraphics);
@@ -1156,7 +1172,11 @@ namespace core
 
          }
 
-         m_pimage->create_as_descriptor(sizeImage);
+         // This image is drawn as an offscreen render target and sampled later
+         // by _001OnDraw.  e_flag_none leaves the image status as error_failed,
+         // so GPU graphics rejects it in _draw_raw even though the texture was
+         // successfully rendered.
+         m_pimage->create_as_descriptor(sizeImage, ::e_flag_success);
 
          {
 
@@ -1166,7 +1186,12 @@ namespace core
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            auto pgraphicsImage = m_pimage->acquire_graphics();
+            auto pacmeuserinteractionAffinity =
+               pgraphics ? pgraphics->m_pacmeuserinteractionAffinity : nullptr;
+
+            auto pgraphicsImage = m_pimage->acquire_graphics(
+               ::draw2d::e_acquire_dont_load,
+               pacmeuserinteractionAffinity);
 
             pgraphicsImage->draw(imagedrawing);
 

@@ -19,6 +19,7 @@
 #include "bred/gpu/binding.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/fence.h"
 #include "bred/gpu/window_attachment.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/texture_site.h"
@@ -26,6 +27,8 @@
 #include "gpu/model/model.h"
 #include "shader/_001Blend.frag.h"
 #include "shader/_001Blend.vert.h"
+#include "shader/_001Image.frag.h"
+#include "shader/_001Image.vert.h"
 #include <ktx.h>
 
 #if defined(WINDOWS_DESKTOP)
@@ -120,6 +123,8 @@ namespace
 
 namespace gpu_opengl
 {
+
+
 
    void vertex2f(const ::f64_rectangle &rectangle, ::f32 fZ);
 
@@ -491,8 +496,8 @@ namespace gpu_opengl
 
          auto ppixmapImage = pimage->map();
 
-         //vertical_swap_copy_image32_swap_red_blue(
-         ((image32_t *)m_memorySwap.data())->vertical_swap_copy_swap_red_blue(
+         //y_swap_copy_image32_swap_red_blue(
+         ((image32_t *)m_memorySwap.data())->y_swap_copy_swap_red_blue(
             m_sizeBitmap1.cx,
             m_sizeBitmap1.cy,
             m_sizeBitmap1.cx * 4,
@@ -1306,26 +1311,26 @@ namespace gpu_opengl
    }
 
 
-   void context::draw2d_on_end_draw(::gpu::graphics * pgpugraphics)
-   {
+   //void context::draw2d_on_end_draw(::gpu::graphics * pgpugraphics)
+   //{
 
-      //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
-      //{
+   //   //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   //{
 
-      //   auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
+   //   //   auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
 
-      //   auto pswapchain = pgpuwindowattachment->window_context()->get_swap_chain();
+   //   //   auto pswapchain = pgpuwindowattachment->window_context()->get_swap_chain();
 
-      //   if (pswapchain)
-      //   {
+   //   //   if (pswapchain)
+   //   //   {
 
-      //      pswapchain->swap_buffers();
+   //   //      pswapchain->swap_buffers();
 
-      //   }
+   //   //   }
 
-      //}
+   //   //}
 
-   }
+   //}
 
 
    void context::merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture_site *ptexturesiteOutput, ::pointer_array<::gpu::layer> *playera)
@@ -2314,6 +2319,8 @@ namespace gpu_opengl
 
       }
 
+      pcommandbuffer.commit();
+
    }
 
 
@@ -3040,18 +3047,23 @@ uniform vec4 texcoords;  // l, t, r, b
 uniform vec4 textColor;  // (if needed in fragment shader)
 
 void main() {
-    // 4 vertexes: 0–3
-    vec2 positions[4] = vec2[](
+    // Two explicit triangles. This remains correct for offscreen draws where
+    // the previous primitive topology may have been a triangle list.
+    vec2 positions[6] = vec2[](
         vec2(quad.x, quad.y),
         vec2(quad.z, quad.y),
         vec2(quad.x, quad.w),
+        vec2(quad.x, quad.w),
+        vec2(quad.z, quad.y),
         vec2(quad.z, quad.w)
     );
 
-    vec2 uvs[4] = vec2[](
+    vec2 uvs[6] = vec2[](
         vec2(texcoords.x, texcoords.y),
         vec2(texcoords.z, texcoords.y),
         vec2(texcoords.x, texcoords.w),
+        vec2(texcoords.x, texcoords.w),
+        vec2(texcoords.z, texcoords.y),
         vec2(texcoords.z, texcoords.w)
     );
 
@@ -3107,6 +3119,21 @@ color = vec4(c.r,c.g, c.b, c.a);
 
    }
 
+
+   ::memory context::_001ImageVertexShaderMemory()
+   {
+
+      return ::as_block(g_psz__001Image_vert);
+
+   }
+
+
+   ::memory context::_001ImageFragmentShaderMemory()
+   {
+
+      return ::as_block(g_psz__001Image_frag);
+
+   }
 
    // ::pointer<::graphics3d::renderable> context::_load_gltf_model(const ::gpu::renderable_t &model)
    // {

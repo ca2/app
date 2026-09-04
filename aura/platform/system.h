@@ -64,7 +64,7 @@ namespace aura
       void inline_init() override;
       void inline_term() override;
 
-      void TermSystem() override;
+      void on_system_termination() override;
 
       virtual void on_finish_launching() override;
 
@@ -77,7 +77,7 @@ namespace aura
 
 
 //      virtual void init_system() override;
-//      virtual void term_system() override;
+//      virtual void on_system_termination() override;
 
 
       virtual void system_main() override;
@@ -415,7 +415,7 @@ namespace aura
 
       //virtual void post_creation_requests() override;
 
-      //virtual void term_system();
+      //virtual void on_system_termination();
 
       virtual void term2() override;
 
@@ -423,7 +423,7 @@ namespace aura
 
       //virtual void term();
 
-      //virtual void TermSystem() override;
+      //virtual void on_system_termination() override;
 
 
       virtual void process_term() override;
@@ -610,7 +610,7 @@ namespace aura
 
       //virtual void term() override;
 
-      //virtual void term_system() override;
+      //virtual void on_system_termination() override;
 
 
       //virtual ::i32 main();
@@ -761,7 +761,7 @@ namespace aura
 
 
       //virtual void process_init() override;
-      //virtual void term_system() override;
+      //virtual void on_system_termination() override;
 
       //virtual ::pointer<::aura::session>on_create_session() override;
 

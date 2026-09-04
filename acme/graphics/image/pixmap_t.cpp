@@ -214,7 +214,7 @@ void pixmap_t::copy(const ::i32_size &size, const ::image32_t *pimage32, ::i32 i
 void pixmap_t::y_swap_copy(const ::i32_size &size, const ::pixmap_t *ppixmapSrc)
 {
 
-   m_pimage32->vertical_swap_copy(size, scan_size(), ppixmapSrc->data(), ppixmapSrc->m_iScan);
+   m_pimage32->y_swap_copy(size, scan_size(), ppixmapSrc->data(), ppixmapSrc->m_iScan);
 
 }
 

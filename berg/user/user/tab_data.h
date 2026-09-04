@@ -67,6 +67,9 @@ namespace user
 
       ::collection::count get_visible_tab_count();
 
+
+      void destroy() override;
+
    };
 
 

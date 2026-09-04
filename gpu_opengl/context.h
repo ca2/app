@@ -82,6 +82,8 @@ namespace gpu_opengl
       ::memory _001BlendVertexShaderMemory() override;
       ::memory _001BlendFragmentShaderMemory() override;
 
+      ::memory _001ImageVertexShaderMemory() override;
+      ::memory _001ImageFragmentShaderMemory() override;
 
       //virtual void create_offscreen_buffer(const ::i32_size& size);
       //virtual void _create_offscreen_buffer(const ::i32_size& size);
@@ -137,7 +139,7 @@ namespace gpu_opengl
 
       void on_end_layer(::gpu::layer * pgpulayer) override;
 
-      void draw2d_on_end_draw(::gpu::graphics *pgpugraphics) override;
+      //void draw2d_on_end_draw(::gpu::graphics *pgpugraphics) override;
 
       //virtual void _ensure_layer_framebuffer();
       

@@ -22,6 +22,9 @@ namespace draw2d
      ~holder() override;
 
 
+     void destroy() override;
+
+
   };
 
 

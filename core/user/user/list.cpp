@@ -396,7 +396,7 @@ namespace user
                if (pcolumn->m_pimagelistHover)
                {
 
-                  slaImageList.add(allocateø now_a_particle < _synchronous_lock > (pcolumn->m_pimagelist));
+                  slaImageList.add(allocateø now_a_particle < _synchronous_lock > (pcolumn->m_pimagelistHover));
 
                }
 

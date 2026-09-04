@@ -39,6 +39,9 @@
     <Filter Include="Source Files\shader">
       <UniqueIdentifier>{bf31435c-6f14-4944-9433-d5193901330c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\shader\NewFilter1">
+      <UniqueIdentifier>{6946aff1-3e0e-483a-948e-fec14c17bb4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platform.h">
@@ -217,6 +220,15 @@
     </ClInclude>
     <ClInclude Include="shader\_001Blend.vert.h">
       <Filter>Header Files\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="shader\_001Image.frag.h">
+      <Filter>Header Files\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="shader\_001Image.vert.h">
+      <Filter>Header Files\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="viewport_scissor_restore.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -405,6 +417,12 @@
       <Filter>Source Files\shader</Filter>
     </CustomBuild>
     <CustomBuild Include="shader\_001Blend.vert">
+      <Filter>Source Files\shader</Filter>
+    </CustomBuild>
+    <CustomBuild Include="shader\_001Image.frag">
+      <Filter>Source Files\shader</Filter>
+    </CustomBuild>
+    <CustomBuild Include="shader\_001Image.vert">
       <Filter>Source Files\shader</Filter>
     </CustomBuild>
   </ItemGroup>

@@ -51,7 +51,7 @@ namespace platform
    //
    //
    // void apex_system_layer::init_system(){}
-   // void apex_system_layer::term_system(){}
+   // void apex_system_layer::on_system_termination(){}
    //
    // void apex_system_layer::on_system_construct(){}
    //
@@ -270,7 +270,7 @@ namespace platform
    // }
    //
    //
-   // void apex_system_layer::TermSystem()
+   // void apex_system_layer::on_system_termination()
    // {
    // }
    //

@@ -24,9 +24,11 @@ namespace draw2d
 
       ::i32_size              m_size;
       ::i32                   m_iStride;
+      ::memory                m_memoryDraw2dBitmap;
       /// This flag is an optimization hint.
       /// It is not much literal.
       bool                    m_bHintCpuBackingEnabled;
+      bool                    m_bTopLeft;
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -68,6 +70,8 @@ namespace draw2d
 
       //}
 
+      virtual ::pixmap_t get_pixmap();
+
 
       virtual void create_gpu_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size, ::pixmap * ppixmap = nullptr);
       virtual void CreateBitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size, ::u32 nPlanes, ::u32 nBitcount, const void * pBits, ::i32 stride);
@@ -98,8 +102,10 @@ namespace draw2d
       virtual void read_pixels(const ::i32_size & size, const ::i32_point & point, ::image32_t * pimage32, ::i32 iScan);
       virtual void defer_read_pixels(const ::i32_size & size, const ::i32_point & point, ::image32_t * pimage32, ::i32 iScan);
       virtual bool is_cpu_backed_by(const ::pixmap_t * ppixmap) const;
-      virtual void write_pixels(const ::i32_size & size, const ::i32_point & point, const ::image32_t * pimage32, ::i32 iScan);
-      virtual void defer_write_pixels(const ::i32_size & size, const ::i32_point & point, const ::image32_t * pimage32, ::i32 iScan);
+      virtual void write_pixels(const ::i32_size & size, const ::i32_point & point, const ::image32_t * pimage32, ::i32 iScan, bool bTopDown);
+      virtual void _defer_write_pixels(const ::i32_size & size, const ::i32_point & point, const ::image32_t * pimage32, ::i32 iScan, bool bTopDown);
+      virtual void defer_write_pixels(const ::pixmap_t & pixmap);
+      virtual void defer_write_pixels(const ::i32_point & point, const ::pixmap_t & pixmap);
 
       virtual ::i32 stride_for_width(::i32 iWidth);
 

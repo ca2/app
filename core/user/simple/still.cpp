@@ -84,7 +84,7 @@ void simple_still::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 
       pdraw2dgraphics->set(get_font(pstyle));
 
-      pdraw2dgraphics->set_text_color(get_color(pstyle));
+      pdraw2dgraphics->set_solid_color(get_color(pstyle));
 
       auto strWindowText = get_window_text();
 

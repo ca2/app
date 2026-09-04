@@ -1,6 +1,7 @@
 // Created by camilo on 2025-05-31 15:32 <3ThomasBorregaardSørensen!!
 #include "platform.h"
 #include "binding.h"
+#include "bitmap.h"
 #include "command_buffer.h"
 #include "draw2d.h"
 #include "frame.h"
@@ -17,6 +18,7 @@
 #include "aura/graphics/graphics/buffer_item.h"
 #include "aura/graphics/graphics/context.h"
 #include "aura/graphics/graphics/graphics.h"
+#include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 #include "aura/windowing/window.h"
 #include "bred/gpu/_model.h"
@@ -66,6 +68,8 @@ namespace gpu
 
       m_iGpuContextFrameSerial = -1;
 
+      m_bTargetRenderPassActive = false;
+
       //m_eoutputOnEndDraw = ::gpu::e_output_none;
 
    }
@@ -83,7 +87,7 @@ namespace gpu
 
       }
 
-      m_pgpucontextCompositor2.release();
+      m_pgpucontextOwned.release();
       m_pgpucontextOwned.release();
 
 
@@ -110,7 +114,7 @@ namespace gpu
 
       }
 
-      m_pgpucontextCompositor2.release();
+      m_pgpucontextOwned.release();
       m_pgpucontextOwned = ::transfer(contextlease);
       set_gpu_context(m_pgpucontextOwned.get());
 
@@ -125,20 +129,20 @@ namespace gpu
    //}
 
 
-   void graphics::on_start_layer_before_begin_render(
-      ::gpu::layer * pgpulayer)
-   {
+   //void graphics::on_start_layer_before_begin_render(
+   //   ::gpu::layer * pgpulayer)
+   //{
 
-      ::gpu::compositor::on_start_layer_before_begin_render(pgpulayer);
+   //   ::gpu::compositor::on_start_layer_before_begin_render(pgpulayer);
 
-      if (m_pimage)
-      {
+   //   if (m_pimageTarget)
+   //   {
 
-         //pgpulayer->m_bIncludeInFrameComposition = false;
+   //      //pgpulayer->m_bIncludeInFrameComposition = false;
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void graphics::on_begin_layer_scope()
@@ -249,7 +253,7 @@ namespace gpu
    }
 
 
-   void graphics::begin_draw()
+   void graphics::begin_draw(bool bExternalRendering, ::user::interaction * puserinteraction, const ::i32_rectangle & rectangleFrame, ::image::image * pimageTarget)
    {
 
       //if (m_pgpucontextlock)
@@ -259,14 +263,56 @@ namespace gpu
 
       //}
 
-      if (!m_pgpucontextCompositor2)
+      //if (!m_pgpucontextOwned)
+      //{
+
+      //   throw ::exception(error_wrong_state);
+
+      //}
+
+      if (::is_set(pimageTarget))
       {
 
-         throw ::exception(error_wrong_state);
+         m_pimageTarget = pimageTarget;
 
       }
 
-      //m_pgpucontextlock = new ::gpu::context_lock(m_pgpucontextCompositor2);
+      // rectangleFrame identifies the actual destination. In particular, an
+      // image graphics lease uses a local offscreen rectangle even when it has
+      // a window affinity for choosing the GPU device/context.
+      if (bExternalRendering)
+      {
+
+         m_pointTarget = rectangleFrame.origin();
+
+         m_sizeTarget = rectangleFrame.size();
+
+      }
+      else
+      {
+
+         m_pointTarget = puserinteraction->host_origin();
+
+         m_sizeTarget = puserinteraction->size();
+
+      }
+
+      m_bTargetRectangleModified = true;
+
+      // on_acquire_memory_graphics() updates the target metadata too, so comparing
+      // only m_pointTarget cannot tell whether the native GDI+ transform is stale.
+      // Apply it at the frame boundary before any primitive is issued.
+      defer_on_target_rectangle_update();
+
+      //m_pgpucontextlock = new ::gpu::context_lock(m_pgpucontextOwned);
+
+      //::gpu::context_lock contextlock(m_pgpucontextOwned);
+
+      //auto pcommandbuffer = m_pgpucontextOwned->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
+
+      //pcommandbuffer->set_viewport(rectangleFrame, m_pgpucontextOwned->m_sizeRaw);
+
+      //pcommandbuffer->set_scissor(rectangleFrame, m_pgpucontextOwned->m_sizeRaw);
 
    }
 
@@ -346,118 +392,314 @@ namespace gpu
    }
 
 
-   void graphics::on_begin_draw(::acme::windowing::window * pacmewindowingwindow, const ::f64_size & sz)
+   ::gpu::texture * graphics::_gpu_target_texture()
    {
 
-      ::f64_rectangle r(::f64_point{}, sz);
-
-      auto pgpucontext = gpu_context();
-
-      auto prenderer = pgpucontext->get_gpu_renderer();
-
-      ::gpu::context_lock contextlock(pgpucontext);
-
-      auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_layer());
-
-      pcommandbuffer->set_viewport(r, pacmewindowingwindow->m_sizeRaw);
-
-      pcommandbuffer->set_scissor(r, pacmewindowingwindow->m_sizeRaw);
-
-      pgpucontext->m_size = sz;
-
+      return m_pgputexturesiteTarget->m_pgputextureSite;
 
    }
 
 
-   void graphics::on_end_draw(::acme::windowing::window * pacmewindowingwindow)
+   //void graphics::on_begin_draw(::acme::windowing::window * pacmewindowingwindow, const ::f64_rectangle & rectangleFrame)
+   //{
+
+   //   ::f64_rectangle rectangleDraw(::f64_point(), rectangleFrame.size());
+
+   //   ::draw2d::graphics::on_begin_draw(pacmewindowingwindow, rectangleDraw);
+
+   //   auto pgpucontext = gpu_context();
+
+   //   auto prenderer = pgpucontext->get_gpu_renderer();
+
+   //   ::gpu::context_lock contextlock(pgpucontext);
+
+   //   auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_layer());
+
+   //   pcommandbuffer->set_viewport(rectangleDraw, pacmewindowingwindow->m_sizeRaw);
+
+   //   pcommandbuffer->set_scissor(rectangleDraw, pacmewindowingwindow->m_sizeRaw);
+
+   //   pgpucontext->m_size = rectangleDraw.size();
+
+   //}
+
+
+   //void graphics::on_end_draw(::acme::windowing::window * pacmewindowingwindow)
+   //{
+
+   //   ::draw2d::graphics::on_end_draw(pacmewindowingwindow);
+
+   //   //auto pgpucontext = gpu_context();
+
+   //   //if (pgpucontext)
+   //   //{
+
+   //   //   pgpucontext->draw2d_on_end_draw(this);
+
+   //   //}
+
+   //}
+
+   bool graphics::is_memory_graphics_pool_compatible(
+      ::acme::user::interaction * pacmeuserinteractionAffinity) const
    {
 
-      ::draw2d::graphics::on_end_draw(pacmewindowingwindow);
-
-      auto pgpucontext = gpu_context();
-
-      if (pgpucontext)
+      if (!pacmeuserinteractionAffinity
+         || m_pimageTarget
+         || m_pdraw2dbitmap)
       {
 
-         pgpucontext->draw2d_on_end_draw(this);
+         return false;
 
       }
 
+      auto pgpucontext = m_pgpucontextOwned;
+
+      if (!pgpucontext || !pgpucontext->m_pacmeuserinteractionAffinity)
+      {
+
+         return false;
+
+      }
+
+      auto pacmewindowingwindowRequested =
+         pacmeuserinteractionAffinity->acme_windowing_window();
+
+      auto pacmewindowingwindowContext =
+         pgpucontext->m_pacmeuserinteractionAffinity->acme_windowing_window();
+
+      return pacmewindowingwindowRequested
+         && pacmewindowingwindowRequested == pacmewindowingwindowContext;
+
    }
 
+
    void graphics::on_acquire_memory_graphics(
+      bool bExternalRendering,
       ::image::image * pimage,
       const ::i32_size & size,
       ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
-   {
+
+      m_bTargetRenderPassActive = false;
+
+      payload("gpu_text_out_has_pending_resources") = false;
+
+      if (::is_set(pimage))
       {
 
-         if (::is_set(pimage))
+         pimage->update_bitmap_as_render_target(pacmeuserinteractionAffinity, this);
+
+         auto pdraw2dbitmap = pimage->m_pdraw2dbitmap;
+
+         if (!pdraw2dbitmap)
          {
 
-            pimage->update_bitmap_as_render_target(pacmeuserinteractionAffinity);
+            throw ::exception(error_wrong_state, "image bitmap is unavailable for graphics acquisition");
 
-            auto pdraw2dbitmap = pimage->m_pdraw2dbitmap;
+         }
 
-            if (!pdraw2dbitmap)
+         auto sizeRawBitmap = pimage->raw_size();
+
+         if (pdraw2dbitmap->size() != sizeRawBitmap)
+         {
+
+            pdraw2dbitmap->set_size(sizeRawBitmap);
+
+         }
+
+         if (pimage->m_eacquire == ::draw2d::e_acquire_load)
+         {
+
+            if (pimage->m_bWasMappedAfterLastGraphicsAcquisition)
             {
 
-               throw ::exception(error_wrong_state, "image bitmap is unavailable for graphics acquisition");
-
-            }
-
-            auto sizeRawBitmap = pimage->raw_size();
-
-            if (pdraw2dbitmap->size() != sizeRawBitmap)
-            {
-
-               pdraw2dbitmap->set_size(sizeRawBitmap);
-
-            }
-
-            if (pimage->m_eacquire == ::draw2d::e_acquire_load)
-            {
-
-               if (pimage->m_bWasMappedAfterLastGraphicsAcquisition)
+               if (pimage->m_ppixmapOwned)
                {
 
-                  if (pimage->m_ppixmapOwned)
-                  {
-
-                     pdraw2dbitmap->defer_write_pixels(
-                        pimage->m_ppixmapOwned->size(),
-                        pimage->m_ppixmapOwned->m_point,
-                        pimage->m_ppixmapOwned->image32(),
-                        pimage->m_ppixmapOwned->scan_size());
-
-                  }
-
-                  pimage->m_bWasMappedAfterLastGraphicsAcquisition = false;
+                  pdraw2dbitmap->defer_write_pixels(*pimage->m_ppixmapOwned);
 
                }
+
+               pimage->m_bWasMappedAfterLastGraphicsAcquisition = false;
 
             }
 
          }
 
-         //auto pdraw2d = system()->draw2d();
+         ::cast < ::gpu::bitmap > pgpubitmap = pdraw2dbitmap;
 
-         //if (!pdraw2d)
-         //{
+         if (!pgpubitmap || !pgpubitmap->gpu_texture(m_pgpucontextOwned))
+         {
 
-         //   throw ::exception(error_wrong_state, "draw2d service is unavailable");
+            auto pgputexture2 = pgpubitmap->gpu_texture(m_pgpucontextOwned);
 
-         //}
+            throw ::exception(error_wrong_state, "image bitmap has no GPU texture");
 
-         /////create_bitmap(pacmeuserinteractionAffinity);
+         }
+
+         defer_construct_newø(m_pgputexturesiteTarget);
+
+         m_pgputexturesiteTarget->m_pgputextureSite = pgpubitmap->gpu_texture(m_pgpucontextOwned);
+
+         if (pimage->m_bImageGraphics)
+         {
+
+            m_pgpucontextOwned->m_pointInput.clear();
+
+            m_pgpucontextOwned->m_pointOutput.clear();
+
+            m_pgpucontextOwned->m_size = pimage->size();
+
+            m_pgpucontextOwned->m_sizeRaw = pimage->size();
 
 
+         }
 
       }
+
+      ::draw2d::graphics::on_acquire_memory_graphics(
+         bExternalRendering,
+         pimage,
+         size,
+         pacmeuserinteractionAffinity);
+
+      if (::is_set(pimage))
+      {
+
+         ::gpu::context_lock contextlock(gpu_context());
+
+         set_target_image(pimage);
+
+      }
+
    }
-   ::draw2d::graphics::on_acquire_memory_graphics(pimage, size, pacmeuserinteractionAffinity);
-}
+
+
+   void graphics::on_release_memory_graphics()
+   {
+
+      if (m_pgpucommandbufferGpuGraphics)
+      {
+
+         if (!m_pgraphicslease)
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         auto pgpucontext = gpu_context();
+
+         if (m_bTargetRenderPassActive)
+         {
+
+            m_pgpucommandbufferGpuGraphics->end_render();
+
+            m_bTargetRenderPassActive = false;
+
+         }
+
+         // Finalize an offscreen render target for sampling while its own
+         // no-layer command buffer is still recording and outside a render
+         // pass. Delaying this transition until _draw_raw() would record an
+         // image barrier inside the window render pass.
+         if (m_pgputexturesiteTarget)
+         {
+
+            auto pgputextureTarget = m_pgputexturesiteTarget->gpu_texture();
+
+            if (pgputextureTarget)
+            {
+
+               pgputextureTarget->set_state(
+                  m_pgpucommandbufferGpuGraphics,
+                  ::gpu::e_texture_state_shader_read);
+
+            }
+
+         }
+
+         pgpucontext->_endSingleTimeCommands(m_pgpucommandbufferGpuGraphics);
+
+         m_pgpucommandbufferGpuGraphics = nullptr;
+
+         m_pgraphicslease = nullptr;
+
+      }
+
+      m_bTargetRenderPassActive = false;
+
+      if (m_pgputexturesiteTarget)
+      {
+
+         auto pgpucontext = gpu_context();
+
+         if (pgpucontext)
+         {
+
+            pgpucontext->defer_unbind_shader();
+
+         }
+
+         m_pgputexturesiteTarget.release();
+
+      }
+
+      ::draw2d::graphics::on_release_memory_graphics();
+
+   }
+
+
+   void graphics::set_gpu_shader(
+      ::gpu::command_buffer * pgpucommandbuffer,
+      ::gpu::shader * pgpushader)
+   {
+
+      if (!m_pgraphicsgraphics
+         && m_pgraphicslease
+         && m_pgputexturesiteTarget)
+      {
+
+         if (m_bTargetRenderPassActive)
+         {
+
+            gpu_context()->defer_bind2(
+               pgpucommandbuffer,
+               pgpushader,
+               m_pgputexturesiteTarget);
+
+         }
+         else
+         {
+
+            pgpucommandbuffer->begin_render(pgpushader, m_pgputexturesiteTarget);
+
+            auto sizeTarget = m_pgputexturesiteTarget->size();
+
+            ::i32_rectangle rectangleTarget{::i32_point{}, sizeTarget};
+
+            pgpucommandbuffer->set_viewport(
+               rectangleTarget,
+               m_pgputexturesiteTarget->raw_size());
+
+            pgpucommandbuffer->set_scissor(
+               rectangleTarget,
+               m_pgputexturesiteTarget->raw_size());
+
+            m_bTargetRenderPassActive = true;
+
+         }
+
+      }
+      else
+      {
+
+         pgpucommandbuffer->set_shader(pgpushader);
+
+      }
+
+   }
 
 
 
@@ -473,20 +715,59 @@ namespace gpu
    void graphics::start_layer(bool bFirstLayer, ::user::interaction * puserinteractionContext)
    {
 
+      m_bTargetRenderPassActive = false;
+
       // thread_select();
 
       // m_iLayer = 0;
 
       /// begin of a layout thing
 
-      m_pacmeuserinteractionAffinity = puserinteractionContext;
+      // Layer scopes call start_layer(false) without repeating the interaction.
+      // Keep the affinity established when this graphics lease was acquired.
+      if (::is_set(puserinteractionContext))
+      {
+
+         m_pacmeuserinteractionAffinity = puserinteractionContext;
+
+      }
 
       //auto pgpudevice =
         // m_papplication->get_gpu_approach()->get_gpu_device(m_pacmeuserinteractionAffinity->acme_windowing_window());
 
-      auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pacmeuserinteractionAffinity);
+      ::cast<::user::interaction> puserinteraction =
+         m_pacmeuserinteractionAffinity;
+
+      if (!puserinteraction)
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "GPU graphics layer has no user-interaction affinity.");
+
+      }
+
+      auto pgpuwindowattachment = ::gpu::window_attachment::get(puserinteraction);
+
+      if (!pgpuwindowattachment)
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "GPU graphics layer has no window attachment.");
+
+      }
 
       auto pgpucontextWindow = pgpuwindowattachment->m_pgpucontextWindow;
+
+      if (!pgpucontextWindow)
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "GPU graphics layer window attachment has no GPU context.");
+
+      }
 
       // if (::is_null(pcontextMain) || !pcontextMain->m_bCreated)
       // {
@@ -495,9 +776,16 @@ namespace gpu
       //
       // }
 
-      ::cast<::user::interaction> puserinteraction = m_pacmeuserinteractionAffinity;
-
       auto pwindow = puserinteraction->window();
+
+      if (!pwindow)
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "GPU graphics layer affinity has no window.");
+
+      }
 
       auto rectangleWindow = pwindow->get_window_rectangle();
 
@@ -541,7 +829,7 @@ namespace gpu
          //if (bFirstLayer)
          //{
 
-         //   m_pgpucontextCompositor2->m_pgpudevice->start_frame();
+         //   m_pgpucontextOwned->m_pgpudevice->start_frame();
 
          //}
 
@@ -590,7 +878,6 @@ namespace gpu
 
          rectangle = puserinteractionAffinity->host_rectangle();
 
-         
 
       }
       else
@@ -603,29 +890,46 @@ namespace gpu
 
       // auto pcontext = gpu_context();
 
-      pcontext->on_begin_draw_attach(this);
+      //pcontext->on_begin_draw_attach(this);
 
-      pcontext->start_layer(bFirstLayer, m_estartlayer, puserinteractionContext);
+      pcontext->start_layer(bFirstLayer, m_estartlayer, puserinteraction);
+
 
       auto pgputexturesite = pcontext->m_pgpurenderer->m_pgpurendertarget2->current_texture(::gpu::current_layer(), true);
 
+      m_pgputexturesiteTarget = pgputexturesite;
+
       auto sizeRaw = pcontext->raw_size();
 
-      //if (puserinteractionContext)
+      auto pointTarget = pcontext->m_pointInput;
+
+      auto sizeTarget = pcontext->size();
+
+      ::image::image_pointer pimageTarget = pgputexturesite->m_pgputextureSite->get_image(this);
+
+      //auto pcommandbuffer = ::gpu::current_layer()->getCurrentCommandBuffer4();
+
+      //::gpu::context_lock contextlock(pcontext);
+
+      //pcommandbuffer->set_viewport({ pointTarget, sizeTarget }, sizeRaw);
+
+      //pcommandbuffer->set_scissor({ pointTarget, sizeTarget }, sizeRaw);
+
+         //if (puserinteractionContext)
       //{
       //   puserinteractionContext->client_to_screen()(rScreen);
       //   pcontext->m_pointOutput = rScreen.origin();
       //   pgputexturesite->m_pointOutput = rScreen.origin();
       //}
 
-      if (m_pgraphicsbufferitem->m_pimageBufferItem->m_sizeRaw != sizeRaw)
-      {
+      //if (m_pgraphicsbufferitem->m_pimageBufferItem->m_sizeRaw != sizeRaw)
+      //{
 
-         ::cast <::gpu::image> pgpuimage = m_pgraphicsbufferitem->m_pimageBufferItem;
+      //   ::cast <::gpu::image> pgpuimage = m_pgraphicsbufferitem->m_pimageBufferItem;
 
-         pgpuimage->create_gpu_texture_image(pgputexturesite->gpu_texture(), this);
+      //   pgpuimage->create_gpu_texture_image(pgputexturesite->gpu_texture(), this);
 
-      }
+      //}
 
       //m_pimage = m_pgraphicsbufferitem->m_pimageBufferItem;
 
@@ -633,9 +937,343 @@ namespace gpu
 
       m_pointTarget = puserinteraction->host_origin();
 
-      update_matrix();
+
+      ::i32_rectangle rectangleFrame(
+         puserinteraction->host_origin(),
+         pcontext->size());
+
+
+      //m_pointTarget.clear();
+
+      //update_matrix();
+
+
 
       //set_target_image(m_pgraphicsbufferitem->m_pimageBufferItem);
+
+
+      //::f64_point pointTarget;
+      //::f64_size sizeTarget;
+
+      //if (m_pgraphicsbufferitem)
+      //{
+
+      //   pointTarget = m_pgraphicsbufferitem->m_pointBufferItem;
+      //   sizeTarget = m_pgraphicsbufferitem->m_sizeBufferItem;
+
+      //}
+      //else
+      //{
+
+      //   auto pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
+
+      //   auto pacmewindowingwindow = pacmeuserinteractionAffinity->acme_windowing_window();
+
+      //   pointTarget = pacmewindowingwindow->m_pointWindowBuffer;
+      //   sizeTarget = pacmewindowingwindow->m_sizeWindowBuffer;
+
+      //}
+
+      //m_pointTarget = pointTarget;
+      //m_sizeTarget = sizeTarget;
+      //m_bTargetRectangleModified = true;
+
+      //// on_acquire_memory_graphics() updates the target metadata too, so comparing
+      //// only m_pointTarget cannot tell whether the native GDI+ transform is stale.
+      //// Apply it at the frame boundary before any primitive is issued.
+      //defer_on_target_rectangle_update();
+
+      if (!m_bBeginDraw && !bFirstLayer)
+      {
+
+         //m_bBeginDraw = true;
+
+         //m_pd2d1devicecontext->BeginDraw();
+
+         begin_draw(false, puserinteraction, rectangleFrame, pimageTarget);
+
+      }
+
+
+   }
+
+
+   void graphics::_draw_raw(const ::image::image_drawing & imagedrawing)
+   {
+
+      // A scroll/child target scope updates m_pointTarget lazily.  Images can
+      // be the first primitives drawn after that change, so commit the target
+      // rectangle before using m_m1 below.  Geometry paths already do this in
+      // _fill_quad; without the equivalent step here, cached images use the
+      // preceding target/scroll matrix until some later geometry is drawn.
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
+      auto pimageSrc = imagedrawing.image();
+
+      if (!::is_ok(pimageSrc))
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+      auto pimageSource = pimageSrc->get_source_image();
+
+      if (!::is_ok(pimageSource))
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+      auto pcontext = gpu_context();
+
+      auto prenderer = pcontext->m_pgpurenderer;
+
+      ::gpu::context_lock contextlock(pcontext);
+
+
+      //
+      // This is the one ca2-specific adapter whose exact current
+      // name isn't present in the supplied code.
+      //
+      // It must return the GPU texture_site containing pimageSource.
+      //
+
+      ::cast < ::gpu::image> pgpuimageSource = pimageSource;
+
+      ::cast <::gpu::bitmap > pgpubitmapSource = pgpuimageSource->get_bitmap_as_source(this);
+
+      auto pgputextureSource = pgpubitmapSource->gpu_texture(m_pgpucontextOwned);
+
+      if (!pgputextureSource)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      // An image may have just been rendered by a pooled offscreen context.
+      // Wait for that producer before this context samples its texture.
+      pgputextureSource->wait_fence();
+
+      //bool bSingleTimeCommand = false;
+      auto pgpucommandbuffer = get_gpu_command_buffer();
+      ::pointer <::gpu::command_buffer > pgpucommandbufferSingleTime;
+      if (!pgpucommandbuffer)
+      {
+
+         pgpucommandbufferSingleTime = pcontext->_beginSingleTimeCommands(pcontext->m_pgpudevice->graphics_queue());
+
+         // throw ::exception(error_wrong_state);
+         pgpucommandbuffer = pgpucommandbufferSingleTime;
+
+         if (!pgpucommandbuffer)
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+      }
+
+
+      if (!m_pmodelbufferImageDummy)
+      {
+
+         m_pmodelbufferImageDummy = createø < ::gpu::model_buffer >();
+
+         m_pmodelbufferImageDummy->initialize_dummy_model(
+            pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext,
+            image_draw_vertex_count());
+
+      }
+
+
+      auto ptexturesiteTarget = _gpu_target_texture();
+
+      if (!ptexturesiteTarget)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+
+      auto rectangleSource =
+         imagedrawing.source_rectangle();
+
+      ::f64_rectangle rectangleTarget(imagedrawing.target_rectangle());
+
+      if (rectangleSource.is_empty()
+         || rectangleTarget.is_empty())
+      {
+
+         return;
+
+      }
+
+      // Image destinations participate in the same draw matrix as geometry
+      // and text.  In particular, a scroll view contributes a translation
+      // here.  Applying only m_pointTarget leaves cached images in content
+      // coordinates while every other primitive moves with the viewport.
+      auto pointTargetTopLeft = rectangleTarget.top_left();
+      auto pointTargetBottomRight = rectangleTarget.bottom_right();
+
+      __transform(pointTargetTopLeft);
+      __transform(pointTargetBottomRight);
+
+      rectangleTarget.left = minimum(pointTargetTopLeft.x, pointTargetBottomRight.x);
+      rectangleTarget.top = minimum(pointTargetTopLeft.y, pointTargetBottomRight.y);
+      rectangleTarget.right = maximum(pointTargetTopLeft.x, pointTargetBottomRight.x);
+      rectangleTarget.bottom = maximum(pointTargetTopLeft.y, pointTargetBottomRight.y);
+
+      //
+      // GDI+ integer-placement behavior.
+      //
+      if (imagedrawing.m_bIntegerPlacement)
+      {
+
+         rectangleTarget.left =
+            (::i32)rectangleTarget.left;
+
+         rectangleTarget.top =
+            (::i32)rectangleTarget.top;
+
+         rectangleTarget.right =
+            (::i32)rectangleTarget.right;
+
+         rectangleTarget.bottom =
+            (::i32)rectangleTarget.bottom;
+
+      }
+
+      auto pgpushaderImage = _001ImageShader();
+      ////
+      //// The shader draws a fullscreen triangle, but the viewport
+      //// restricts that triangle to rectangleTarget.
+      ////
+      //pgpucommandbuffer->begin_render(
+      //   m_pshaderImage,
+      //   ptexturesiteTarget);
+
+      {
+
+         auto pgpucommandbufferState = pcontext->beginSingleTimeCommands();
+
+         pgputextureSource->set_state(pgpucommandbufferState, ::gpu::e_texture_state_shader_read);
+
+      }
+
+      set_gpu_shader(pgpucommandbuffer, pgpushaderImage);
+
+         //
+         // Bind image at sampler 0.
+         //
+         auto ptexturesiteSource = create_newø<::gpu::texture_site>();
+
+      ptexturesiteSource->m_pgputextureSite = pgputextureSource;
+         pgpushaderImage->bind_source(
+         pgpucommandbuffer,
+         ptexturesiteSource,
+         0);
+
+      auto pviewportscissorrestore = createø<::gpu::viewport_scissor_restore>();
+
+      pviewportscissorrestore->initialize(pgpucommandbuffer);
+
+      ::i32_rectangle rectangleTargetDevice(rectangleTarget);
+      //
+      // Destination rectangle.
+      //
+      // The second argument is the raw target size because viewport/scissor
+      // coordinates belong to the render target, not the source image.
+      //
+      auto sizeTargetRaw =
+         ptexturesiteTarget->raw_size();
+
+      pgpucommandbuffer->set_viewport(
+         rectangleTargetDevice,
+         sizeTargetRaw);
+
+      ::i32_rectangle rectangleTargetBounds(sizeTargetRaw);
+      ::i32_rectangle rectangleScissor;
+
+      if (!rectangleScissor.intersect(rectangleTargetDevice, rectangleTargetBounds))
+      {
+
+         return;
+
+      }
+
+      pgpucommandbuffer->set_scissor(
+         rectangleScissor,
+         sizeTargetRaw);
+
+
+      //
+      // Source rectangle -> texture coordinates.
+      //
+      // This is exactly what the "quad" used by your current
+      // fullscreen-triangle shader represents.
+      //
+      auto sizeSourceRaw =
+         ptexturesiteSource->raw_size();
+
+      pgpushaderImage->set_impact_quad(
+         rectangleSource,
+         sizeSourceRaw);
+
+
+      ////
+      //// Optional GDI+-style color matrix.
+      ////
+      //color_matrix colormatrix;
+
+      //if (imagedrawing.get_matrix(colormatrix))
+      //{
+
+      //   _set_image_color_matrix(
+      //      m_pshaderImage,
+      //      colormatrix);
+
+      //}
+      //else
+      //{
+
+      //   _set_identity_image_color_matrix(
+      //      m_pshaderImage);
+
+      //}
+
+
+      pgpushaderImage->push_properties(
+         pgpucommandbuffer);
+
+
+      //
+      // 3 vertices:
+      //
+      // (-1,-1)
+      // (-1, 3)
+      // ( 3,-1)
+      //
+      // The viewport maps it onto rectangleTarget.
+      //
+      pgpucommandbuffer->draw(m_pmodelbufferImageDummy);
+
+
+      //if (pgpucommandbufferSingleTime)
+      //{
+
+      //   pcontext->endSingleTimeCommands(pgpucommandbufferSingleTime);
+
+      //}
 
    }
 
@@ -663,7 +1301,7 @@ namespace gpu
       auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 
 
-      pcommandbuffer->set_shader(pshader);
+      set_gpu_shader(pcommandbuffer, pshader);
 
 
       // 1. Calculate optimal number of segments based on radius
@@ -825,6 +1463,7 @@ namespace gpu
       //pmodelbuffer->bind(pcommandbuffer);
 
       pcommandbuffer->draw(pmodelbuffer);
+      pcommandbuffer->m_particleaHold.add(pmodelbuffer);
       //
             //      pmodelbuffer->unbind(pcommandbuffer);
 
@@ -1018,23 +1657,23 @@ namespace gpu
    //}
 
 
-   void graphics::on_set_gpu_context()
-   {
+   //void graphics::on_set_gpu_context()
+   //{
 
 
-   }
+   //}
 
 
-   void graphics::on_gpu_context_placement_change(const ::i32_point & pointTarget,
-      const ::i32_point & pointSource,
-      const ::i32_size & size,
-      ::acme::windowing::window *pacmewindowingwindow,
-      ::draw2d::graphics * pdraw2dgraphics)
-   {
+   //void graphics::on_gpu_context_placement_change(const ::i32_point & pointTarget,
+   //   const ::i32_point & pointSource,
+   //   const ::i32_size & size,
+   //   ::acme::windowing::window *pacmewindowingwindow,
+   //   ::draw2d::graphics * pdraw2dgraphics)
+   //{
 
-      ::gpu::compositor::on_gpu_context_placement_change(pointTarget, pointSource, size, pacmewindowingwindow, pdraw2dgraphics);
+   //   ::gpu::compositor::on_gpu_context_placement_change(pointTarget, pointSource, size, pacmewindowingwindow, pdraw2dgraphics);
 
-   }
+   //}
 
 
    ::geometry2d::matrix graphics::context_matrix(enum_transform_context etransformcontext)
@@ -1067,14 +1706,6 @@ namespace gpu
       contextmatrix.translate(-2.0, -2.0);
 
       return contextmatrix;
-
-   }
-
-
-   void graphics::gpu_layer_on_before_end_render()
-   {
-
-      gpu_context()->defer_unbind_shader();
 
    }
 
@@ -1153,6 +1784,8 @@ namespace gpu
 
       pcontext->end_layer(bClosingLayer);
 
+      m_bTargetRenderPassActive = false;
+
       ////auto pdraw2dgraphics = pgraphicscontext->draw2d_graphics();
 
       //// end_gpu_layer();
@@ -1166,6 +1799,19 @@ namespace gpu
       //   //pcontext->on_end_draw_detach(this);
 
       //}
+      if (m_egraphics == ::e_graphics_draw)
+      {
+
+         if (m_bBeginDraw && !bClosingLayer)
+         {
+
+            end_draw();
+
+         }
+
+      }
+
+      gpu_context()->defer_unbind_shader();
 
    }
 
@@ -1249,7 +1895,7 @@ namespace gpu
    void graphics::send(const ::procedure &procedure)
    {
 
-      auto pgpucontext = m_pgpucontextCompositor2;
+      auto pgpucontext = m_pgpucontextOwned;
 
       pgpucontext->send(procedure);
 
@@ -1339,14 +1985,14 @@ namespace gpu
 
 
 
-   void graphics::bind_draw2d_compositor(::gpu::layer * pgpulayer)
-   {
+   //void graphics::bind_draw2d_compositor(::gpu::layer * pgpulayer)
+   //{
 
-      auto pcontext = gpu_context();
+   //   auto pcontext = gpu_context();
 
-      pcontext->__bind_draw2d_compositor(this, pgpulayer);
+   //   pcontext->__bind_draw2d_compositor(this, pgpulayer);
 
-   }
+   //}
 
 
 
@@ -1380,14 +2026,14 @@ namespace gpu
 
 
 
-   void graphics::defer_soft_unbind_draw2d_compositor(::gpu::layer * pgpulayer)
-   {
+   //void graphics::defer_soft_unbind_draw2d_compositor(::gpu::layer * pgpulayer)
+   //{
 
-      auto pcontext = gpu_context();
+   //   auto pcontext = gpu_context();
 
-      pcontext->__defer_soft_unbind_draw2d_compositor(this, pgpulayer);
+   //   pcontext->__defer_soft_unbind_draw2d_compositor(this, pgpulayer);
 
-   }
+   //}
    //
    //
    // void graphics::context_transform(::f64_point & p, enum_transform_context etransformcontext)
@@ -1752,6 +2398,193 @@ namespace gpu
    }
 
 
+   ::gpu::shader * graphics::_001ImageShader()
+   {
+
+      auto pcontext = gpu_context();
+
+      ::gpu::shader * pshader = nullptr;
+#define _001IMAGE_SHADER_DEBUG 0
+
+#if _001IMAGE_SHADER_DEBUG != 2
+#if _001IMAGE_SHADER_DEBUG != 1
+      if (m_ealphamode == ::draw2d::e_alpha_mode_set)
+#endif
+      {
+
+
+         if (!m_pshaderSourceImage)
+         {
+
+            //auto pshadervertexinput = allocateø::gpu_vulkan::shader_vertex_input();
+
+            //pshadervertexinput->m_bindings.add(
+            //   {
+            //      .binding = 0,
+            //      .stride = sizeof(RectangleVertex),
+            //      .inputRate = VK_VERTEX_INPUT_RATE_VERTEX,
+            //   });
+
+            //pshadervertexinput->m_attribs.add({ .location = 0, .binding = 0, .format = VK_FORMAT_R32G32B32_SFLOAT, .offset = offsetof(RectangleVertex, pos) });
+            //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
+
+            auto pshaderSourceImage = createø<::gpu::shader>();
+
+            m_pshaderSourceImage = pshaderSourceImage;
+            //pshaderImage->m_bDisableDepthTest = true;
+            pshaderSourceImage->m_bDisableDepthTest = true;
+            //pshaderImage->m_iColorAttachmentCount = 2;
+            pshaderSourceImage->m_bEnableBlend = false;
+            pshaderSourceImage->m_etopology = image_draw_topology();
+            pshaderSourceImage->m_ecullmode = ::gpu::e_cull_mode_none;
+            //pshaderImage->m_bAccumulationEnable = true;
+
+            auto pbindingSampler = pshaderSourceImage->binding();
+            pbindingSampler->m_strUniform = "uTexture";
+            pbindingSampler->m_ebinding = ::gpu::e_binding_sampler2d;
+            pbindingSampler->m_iTextureUnit = 0;
+
+
+            pshaderSourceImage->m_propertiesPushShared.set_properties(::gpu_properties<::gpu::quad>());
+
+            pcontext->layout_push_constants(pshaderSourceImage->m_propertiesPushShared, false);
+
+            pcontext->initialize_image_shader(pshaderSourceImage);
+
+         }
+
+         pshader = m_pshaderSourceImage;
+
+      }
+#endif
+#if RECTANGLE_SHADER_DEBUG != 1
+#if RECTANGLE_SHADER_DEBUG != 2
+      else
+#endif
+      {
+
+         if (!m_pshaderBlendImage)
+         {
+
+            //auto pshadervertexinput = allocateø::gpu_vulkan::shader_vertex_input();
+
+            //pshadervertexinput->m_bindings.add(
+            //   {
+            //      .binding = 0,
+            //      .stride = sizeof(RectangleVertex),
+            //      .inputRate = VK_VERTEX_INPUT_RATE_VERTEX,
+            //   });
+
+            //pshadervertexinput->m_attribs.add({ .location = 0, .binding = 0, .format = VK_FORMAT_R32G32B32_SFLOAT, .offset = offsetof(RectangleVertex, pos) });
+            //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
+
+            auto pshaderBlendImage = createø<::gpu::shader>();
+
+            m_pshaderBlendImage = pshaderBlendImage;
+            //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
+            pshaderBlendImage->m_bDisableDepthTest = true;
+            //m_pshaderRectangle->m_iColorAttachmentCount = 2;
+            pshaderBlendImage->m_bEnableBlend = true;
+            //m_pshaderRectangle->m_bAccumulationEnable = true;
+            pshaderBlendImage->m_etopology = image_draw_topology();
+            pshaderBlendImage->m_ecullmode = ::gpu::e_cull_mode_none;
+
+            auto pbindingSampler = pshaderBlendImage->binding();
+            pbindingSampler->m_strUniform = "uTexture";
+            pbindingSampler->m_ebinding = ::gpu::e_binding_sampler2d;
+            pbindingSampler->m_iTextureUnit = 0;
+
+
+            pshaderBlendImage->m_propertiesPushShared.set_properties(::gpu_properties<::gpu::quad>());
+
+            pcontext->layout_push_constants(pshaderBlendImage->m_propertiesPushShared, false);
+
+            pcontext->initialize_image_shader(pshaderBlendImage);
+
+            //::cast < ::gpu_vulkan::device > pgpudevice = pgpucontext->m_pgpudevice;
+            //pshaderRectangle->initialize_shader_with_block(
+            //   pcontext->m_pgpurenderer,
+            //   as_memory_block(g_uaRectangleVertexShader),
+            //   //as_memory_block(g_uaAccumulationFragmentShader),
+            //   as_memory_block(g_uaRectangleFragmentShader),
+            //   { },
+            //   m_psetdescriptorlayoutRectangle,
+            //   {},
+            //   pcontext->input_layout<::graphics3d::sequence2_color>());
+
+         }
+
+         pshader = m_pshaderBlendImage;
+
+      }
+#endif
+
+      return pshader;
+
+   }
+
+
+   ::gpu::enum_topology graphics::image_draw_topology() const
+   {
+
+      return ::gpu::e_topology_triangle_list;
+
+   }
+
+
+   ::i32 graphics::image_draw_vertex_count() const
+   {
+
+      return 3;
+
+   }
+
+
+   ::gpu::enum_topology graphics::text_draw_topology() const
+   {
+
+      return ::gpu::e_topology_triangle_strip;
+
+   }
+
+
+   ::i32 graphics::text_draw_vertex_count() const
+   {
+
+      return 4;
+
+   }
+
+
+   ::gpu::command_buffer * graphics::get_gpu_command_buffer()
+   {
+
+      if (!m_pgraphicsgraphics
+         && m_pgraphicslease
+         && m_pgputexturesiteTarget)
+      {
+
+         if (!m_pgpucommandbufferGpuGraphics)
+         {
+
+            auto pcontext = gpu_context();
+
+            m_pgpucommandbufferGpuGraphics =
+               pcontext->_beginSingleTimeCommands(
+                  pcontext->m_pgpudevice->graphics_queue(),
+                  ::gpu::e_command_buffer_graphics_no_layer);
+
+         }
+
+         return m_pgpucommandbufferGpuGraphics;
+
+      }
+
+      return ::gpu::current_command_buffer();
+
+   }
+
+
    void graphics::_fill_quad(const ::f64_point points[4], const ::color::color& color)
    {
 
@@ -1804,9 +2637,9 @@ namespace gpu
 
       ::gpu::shader * pshader = rectangle_shader();
 
-      auto pcommandbuffer = ::gpu::current_command_buffer();
+      auto pcommandbuffer = get_gpu_command_buffer();
 
-      pcommandbuffer->set_shader(pshader);
+      set_gpu_shader(pcommandbuffer, pshader);
 
       pcommandbuffer->draw(pmodelbufferRectangle);
 
@@ -1922,12 +2755,12 @@ namespace gpu
       }
 
       //auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_layer());
-      auto pcommandbuffer = ::gpu::current_command_buffer();
+      auto pcommandbuffer = get_gpu_command_buffer();
       //;
       //;
       //auto ptextureTarget = prenderer->m_pgpurendertarget->current_texture(::gpu::current_layer());
 
-      pcommandbuffer->set_shader(pshader);
+      set_gpu_shader(pcommandbuffer, pshader);
 
       //pcommandbuffer->set_model(pmodelbuffer);
 
@@ -2150,7 +2983,7 @@ namespace gpu
          m_pgpushaderTextOut->m_bDisableDepthTest = true;
          // m_pgpushaderTextOut->binding(0, 0).set();
          // m_pgpushaderTextOut->m_bindingSampler.m_strUniform = "text";
-         m_pgpushaderTextOut->m_etopology = ::gpu::e_topology_triangle_strip;
+         m_pgpushaderTextOut->m_etopology = text_draw_topology();
          m_pgpushaderTextOut->m_ecullmode = ::gpu::e_cull_mode_none;
          // m_pgpushaderTextOut->m_bindingSampler.set(0);
          m_pgpushaderTextOut->m_iPushConstants = 1;
@@ -2179,11 +3012,11 @@ namespace gpu
 
       //auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 
-      auto pcommandbuffer = ::gpu::current_command_buffer();
+      auto pcommandbuffer = get_gpu_command_buffer();
 
       //auto ptextureTarget = pcontext->m_pgpurenderer->m_pgpurendertarget->current_texture(::gpu::current_layer());
 
-      pcommandbuffer->set_shader(m_pgpushaderTextOut);
+      set_gpu_shader(pcommandbuffer, m_pgpushaderTextOut);
 
 
       ::string strMessage;
@@ -2191,7 +3024,7 @@ namespace gpu
       ::string str(scopedstr);
 
       strMessage.formatf("bound text out shader '%s'", str.c_str());
-      ::gpu::debug_scope debugscopeBoundTextOutShader(::gpu::current_command_buffer(), strMessage);
+      ::gpu::debug_scope debugscopeBoundTextOutShader(pcommandbuffer, strMessage);
       //pcontext->gpu_debug_message(strMessage);
 
       auto color = m_pdraw2dbrush->m_color;
@@ -2234,7 +3067,9 @@ namespace gpu
 
          m_pmodelbufferTextOutDummy = createø < ::gpu::model_buffer >();
 
-         m_pmodelbufferTextOutDummy->initialize_dummy_model(pcontext, 4);
+         m_pmodelbufferTextOutDummy->initialize_dummy_model(
+            pcontext,
+            text_draw_vertex_count());
 
       }
       
@@ -2312,8 +3147,15 @@ namespace gpu
 
             if (ppixmapFetch
             && ppixmapFetch->m_pgputexturesite->gpu_texture()
+            && ppixmapFetch->m_bPixelsReadyForSampling
             && ppixmapFetch->m_pgputexturesite->gpu_texture()->is_in_shader_sampling_state())
             {
+               // A cache miss above may allocate or upload an atlas texture.
+               // Reassert the image destination afterwards: texture upload is
+               // allowed to alter backend binding state, while this graphics
+               // can be drawing into a nested image render target.
+               set_gpu_shader(pcommandbuffer, m_pgpushaderTextOut);
+
                //if (pmodelbuffer->is_new())
                //{
 
@@ -2417,7 +3259,7 @@ namespace gpu
 
                strMessage.formatf("::i8 bound '%s' (%d, %d)%s", strChar.c_str(), w, h, pshader->m_strPushConstantsDebugging.c_str());
 
-               ::gpu::debug_scope debugscope(::gpu::current_command_buffer(), strMessage);
+               ::gpu::debug_scope debugscope(pcommandbuffer, strMessage);
 
                //pcontext->gpu_debug_message(strMessage);
 
@@ -2445,6 +3287,15 @@ namespace gpu
                //glDrawArrays(GL_TRIANGLES, 0, 6);
                //::opengl::check_error("");
                // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
+
+            }
+            else
+            {
+
+               // Vulkan atlas uploads are committed at the frame boundary.
+               // The offscreen text cache must retry after that upload rather
+               // than permanently caching this resource-preparation pass.
+               payload("gpu_text_out_has_pending_resources") = true;
 
             }
 
@@ -2485,7 +3336,7 @@ namespace gpu
    void graphics::defer_set_size(const ::i32_size &size) 
    {
 
-      gpu_context()->set_size(size);
+      //gpu_context()->set_size(size);
    
    }
 

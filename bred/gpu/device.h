@@ -254,7 +254,6 @@ namespace gpu
 
       virtual void set_matrix4(void* p, const ::floating_matrix4& floating_matrix4);
 
-      virtual ::pointer < ::gpu::fence > create_gpu_fence(bool bCreateSignaled = false);
 
 
    };

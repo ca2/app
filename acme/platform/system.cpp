@@ -313,19 +313,6 @@ namespace platform
    system::~system()
    {
 
-      if (m_pmanualresethappeningSystemTaskFinished)
-      {
-
-         printf_line("platform::system waiting system task finished");
-
-         m_pmanualresethappeningSystemTaskFinished->_wait(2.5_min);
-
-         //delete m_pmanualresethappeningReadyToExit;
-
-         //m_pmanualresethappeningReadyToExit = nullptr;
-
-      }
-
       ::task_release();
 
       debug() << "platform::system::~system() (start)";
@@ -350,8 +337,6 @@ namespace platform
 
       //::acme::get()->m_pmanualresethappeningReadyToExit->set_happening();
       //on_system_before_destroy();
-
-
 
    }
 
@@ -925,16 +910,6 @@ namespace platform
    void system::main()
    {
 
-      /*auto estatus = */
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      /*estatus =*/
       if (this->is_console())
       {
 
@@ -948,48 +923,11 @@ namespace platform
       else
       {
 
-         //__check_refdbg
-
-         //task_osinit();
-
-         //__check_refdbg
-
-         //__task_init();
-
          ::task::main();
-
-         //run();
-
-         ////         m_phappeningInitialization->set_happening();
-
-         //while (task_get_run())
-         //{
-
-         //   run_posted_procedures();
-
-         //   preempt(100_ms);
-
-         //}
-
-         ////acme_windowing()->windowing_system_application_main_loop();
-
 
       }
 
-
-      //run();
-
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      end();
-
-      //return estatus;
+      on_system_end();
 
    }
 
@@ -1179,6 +1117,8 @@ namespace platform
 
    void system::process_init()
    {
+
+      construct_newø(m_pmanualresethappeningPlatformSystemFinished);
 
       application()->initialize_application_flags();
 
@@ -1687,9 +1627,26 @@ namespace platform
    //}
 
 
-
-   void system::TermSystem()
+   void system::term()
    {
+
+
+      for (auto & pSingleton : m_mapSingletons.payloads())
+      {
+
+         try
+         {
+
+            pSingleton.defer_destroy_and_release();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
 
       //  auto pacmewindowing = m_pacmewindowing;
       //
@@ -1764,6 +1721,58 @@ namespace platform
 
 
       //m_mapLibrary4.clear();
+
+
+
+   }
+
+
+   void system::on_system_termination()
+   {
+
+      try
+      {
+
+         term2();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         term1();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         term();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         process_term();
+
+      }
+      catch (...)
+      {
+
+      }
 
    }
 
@@ -2101,8 +2110,6 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       }
 
-      term_system();
-
       task::term_task();
 
    }
@@ -2304,16 +2311,6 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    }
 
-
-   void system::term_system()
-   {
-
-
-
-   }
-
-
-   
 
 
    ::nano::nano* system::nano()
@@ -3597,21 +3594,21 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //   }
    //
    //
-   void system::on_end()
-   {
+   //void system::on_end()
+   //{
 
-      TermSystem();
+   //   on_system_termination();
 
-      //return ::success;
+   //   //return ::success;
 
-   }
+   //}
 
 
-   void system::end()
+   void system::on_system_end()
    {
 
       /*auto estatus = */
-      on_end();
+      on_system_termination();
 
       //if (!estatus)
       //{
@@ -3637,6 +3634,8 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       _CrtDumpMemoryLeaks();
 
 #endif
+
+      m_pmanualresethappeningPlatformSystemFinished->set_happening();
 
    }
 

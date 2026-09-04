@@ -123,7 +123,7 @@ void directory_context::term_context()
 
 }
 
-void directory_context::term_system()
+void directory_context::on_system_termination()
 {
 
    //return ::success;

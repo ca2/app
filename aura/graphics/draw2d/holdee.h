@@ -36,6 +36,9 @@ namespace draw2d
       ::pointer_array < ::draw2d::pen >         m_pena;
       ::pointer_array < ::write_text::font >    m_fonta;
 
+
+
+
       holdee_group()
       {
 
@@ -45,6 +48,8 @@ namespace draw2d
       {
 
       }
+
+         void destroy() override;
 
    };
 
@@ -59,6 +64,9 @@ namespace draw2d
 
       holdee();
       ~holdee() override;
+
+
+      void destroy() override;
 
 
    };

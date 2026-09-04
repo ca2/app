@@ -200,8 +200,11 @@ namespace image
    ::draw2d::graphics_lease image::acquire_graphics(
       ::draw2d::enum_acquire eacquire,
       //::draw2d::host * pdraw2dhost,
-      ::acme::user::interaction* pacmeuserinteractionAffinityExplicit)
+      ::acme::user::interaction* pacmeuserinteractionAffinityExplicit,
+      bool bExternalRendering)
    {
+
+      m_bImageGraphics = true;
 
       //if (m_pgraphicsleaseOwned)
       //{
@@ -252,6 +255,7 @@ namespace image
       //}
 
       return ::transfer(_acquire_graphics(
+         bExternalRendering,
          eacquire,
          //pdraw2dhost,
          pacmeuserinteractionAffinity));
@@ -260,6 +264,7 @@ namespace image
 
 
    ::draw2d::graphics_lease image::_acquire_graphics(
+      bool bExternalRendering,
       ::draw2d::enum_acquire eacquire,
       //::draw2d::host * pdraw2dhost,
       ::acme::user::interaction* pacmeuserinteractionAffinity)
@@ -371,6 +376,7 @@ namespace image
          /////create_bitmap(pacmeuserinteractionAffinity);
 
          return pdraw2d->acquire_image_graphics(
+            bExternalRendering,
             this,
             pacmeuserinteractionAffinity); //,
          //pacmeuserinteractionAffinity);
@@ -446,11 +452,7 @@ namespace image
          if (m_ppixmapOwned)
          {
 
-            m_pdraw2dbitmap->defer_write_pixels(
-               m_ppixmapOwned->size(),
-               m_ppixmapOwned->m_point,
-               m_ppixmapOwned->image32(),
-               m_ppixmapOwned->scan_size());
+            m_pdraw2dbitmap->defer_write_pixels(*m_ppixmapOwned);
 
          }
 
@@ -487,11 +489,7 @@ namespace image
          if (m_ppixmapOwned)
          {
 
-            m_pdraw2dbitmap->defer_write_pixels(
-               m_ppixmapOwned->size(),
-               m_ppixmapOwned->m_point,
-               m_ppixmapOwned->image32(),
-               m_ppixmapOwned->scan_size());
+            m_pdraw2dbitmap->defer_write_pixels(*m_ppixmapOwned);
 
          }
 
@@ -551,8 +549,7 @@ namespace image
    }
 
 
-   void image::create_from_data(const ::i32_size& size, const ::image32_t* pimage32, ::i32 iScan,
-                                ::enum_flag eflagCreate, bool bPreserve)
+   void image::create_from_data(const ::pixmap_t& pixmap, ::enum_flag eflagCreate, bool bPreserve)
    {
 
       if (has_active_destination_graphics_lease())
@@ -564,9 +561,9 @@ namespace image
 
       }
 
-      auto iGoodStride = iScan;
+      auto iGoodStride = pixmap.m_iScan;
 
-      create_as_descriptor(size, eflagCreate, iGoodStride);
+      create_as_descriptor(pixmap.m_size, eflagCreate, iGoodStride);
 
       //if (pimageFrame->area() <= 0)
       //{
@@ -575,7 +572,7 @@ namespace image
 
       //}
 
-      if (::is_set(pimage32))
+      if (::is_set(pixmap.m_pimage32))
       {
 
          auto ppixmapImageThis = this->map();
@@ -584,7 +581,7 @@ namespace image
 
          //auto scanSizeTarget = scan_size();
 
-         ppixmapImageThis->copy(size, pimage32, iScan);
+         ppixmapImageThis->copy(pixmap);
 
       }
 
@@ -644,7 +641,8 @@ namespace image
 
       //m_puserinteraction = puserinteraction;
 
-      return create_from_data(sizeRaw, nullptr, iGoodStride, eflagCreate, bPreserve);
+      //return create_from_data(sizeRaw, nullptr, iGoodStride, eflagCreate, bPreserve);
+      create_as_descriptor(sizeRaw, eflagCreate, iGoodStride);
 
    }
 
@@ -1021,12 +1019,12 @@ namespace image
    }
 
 
-   void image::create_owned_graphics()
+   void image::create_owned_graphics(::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
       constructø(m_pgraphicsOwned);
 
-      m_pgraphicsOwned->create_bitmap_graphics(m_pdraw2dbitmap);
+      m_pgraphicsOwned->create_bitmap_graphics(m_pdraw2dbitmap, pacmeuserinteractionAffinity);
 
    }
 
@@ -1205,6 +1203,7 @@ namespace image
       clear_flag(e_flag_success);
       clear_flag(e_flag_failure);
       //m_pgraphics.defer_destroy_and_release();
+      m_pgraphicsOwned.defer_destroy_and_release();
       m_pdraw2dbitmap.defer_destroy_and_release();
       //return ::success;
 
@@ -10670,6 +10669,21 @@ namespace image
    }
 
 
+   ::gpu::texture * image::get_gpu_texture_as_source(::gpu::context * pgpucontext)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::gpu::texture * image::get_gpu_texture_as_target(::gpu::context * pgpucontext)
+   {
+
+      return nullptr;
+
+   }
+
    ::pixmap * image::current_pixmap()
    {
 
@@ -10942,6 +10956,14 @@ namespace image
       pimage->create_with_pixmap(ppixmap);
 
       return pimage;
+
+   }
+
+
+   void image::if_or_when_image_ok(::draw2d::graphics * pdraw2dgraphics, const ::procedure & procedure)
+   {
+
+      procedure();
 
    }
 
@@ -11499,7 +11521,7 @@ namespace image
    }
 
 
-   ::image_pixmap_lease image::_map(const ::i32_rectangle& rectangle)
+   ::image_pixmap_lease image::_map(::image::enum_map emap, const ::i32_rectangle& rectangle)
    {
 
       _tidy_map(rectangle);
@@ -11534,7 +11556,18 @@ namespace image
 
          m_ppixmapOwned->m_point.clear();
 
-         m_ppixmapOwned->change_size_and_stride_preserving_data(sizeRawThis, m_iScan);
+         if (emap == ::image::e_map_load)
+         {
+
+            m_ppixmapOwned->change_size_and_stride_preserving_data(sizeRawThis, m_iScan);
+
+         }
+         else
+         {
+
+            m_ppixmapOwned->create_as_descriptor(sizeRawThis, ::e_flag_success, m_iScan);
+
+         }
 
          m_iScan = m_ppixmapOwned->m_iScan;
 
@@ -11549,7 +11582,7 @@ namespace image
 
       m_ppixmapOwned->pixmap_map();
 
-      if (m_bGraphicsWasAcquiredAfterLastMap)
+      if (emap == ::image::e_map_load && m_bGraphicsWasAcquiredAfterLastMap)
       {
 
          m_bGraphicsWasAcquiredAfterLastMap = false;
@@ -11602,8 +11635,6 @@ namespace image
    {
 
       _tidy_unmap(pimagepixmaplease);
-
-      //pimagepixmaplease->m_p->_unmap({});
 
       m_pimagepixmaplease = nullptr;
 
@@ -11797,10 +11828,10 @@ namespace image
    }
 
 
-   ::image_pixmap_lease image::map(const ::i32_rectangle& rectangle)
+   ::image_pixmap_lease image::map(enum_map emap, const ::i32_rectangle& rectangle)
    {
 
-      auto ppixmap = ::transfer(_map(rectangle));
+      auto ppixmap = ::transfer(_map(emap, rectangle));
 
       return ::transfer(ppixmap);
 

@@ -58,7 +58,7 @@ namespace draw2d
       //// void destroy_os_data() override;
 
       virtual void update(::draw2d::graphics * pdraw2dgraphics);
-      //void destroy() override;
+      void destroy() override;
 
 
       virtual void on_changed();

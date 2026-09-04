@@ -194,7 +194,7 @@ namespace user
       //if(!select_text_color(pdraw2dgraphics, colorText))
       //{
 
-         pdraw2dgraphics->set_text_color(colorText);
+         pdraw2dgraphics->set_solid_color(colorText);
 
       //}
 

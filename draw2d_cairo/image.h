@@ -55,7 +55,7 @@ namespace draw2d_cairo
       //      //void blend(const ::i32_point & ptDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA) override;
       //void blend2(const ::i32_point & ptDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA) override;
    protected:
-      ::image_pixmap_lease _map(const ::i32_rectangle & rectangle) override;
+      ::image_pixmap_lease _map(::image::enum_map emap, const ::i32_rectangle & rectangle) override;
       void _unmap(image_pixmap_lease * pimagepixmaplease) override;
 
    };

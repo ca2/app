@@ -39,6 +39,7 @@ namespace gpu
       bool m_bMultisample = false;
       ::i32 m_iSampleCount = 1;
       bool m_bHdr = false;
+      bool m_bWritesPixelsDeferred = false;
 
       //::pointer < ::gpu::render_target >  m_pgpurendertarget;
       ::i32_size m_sizeMip{-1, -1};
@@ -133,6 +134,8 @@ namespace gpu
 
       virtual texture* get_depth_texture();
 
+      virtual ::image::image * get_image(::draw2d::graphics * pdraw2dgraphics);
+
       virtual ::gpu::texture * resolved_texture(const ::i32_rectangle & rectanglePlacement);
 
       virtual ::string texture_type();
@@ -140,15 +143,16 @@ namespace gpu
       virtual void read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t * ppixmap, const ::i32_point & pointOutput);
 
 
-      virtual void set_pixels(const ::i32_rectangle & rectangle, const void * data);
-      virtual void write_pixels(const ::pixmap_t * ppixmap, const ::i32_point & pointInput);
-      virtual void write_pixels(const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan);
+      virtual void set_pixels(bool bSync, const ::i32_rectangle & rectangle, const void * data);
+      virtual void write_pixels(bool bSync, const ::pixmap_t * ppixmap, const ::i32_point & pointInput);
+      virtual void write_pixels(bool bSync, const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan);
+      virtual void write_pixels(bool bSync, const void * pData, const ::i32_size & size, ::i32 iScan, ::i32 iBytesPerPixel, const ::i32_point & point);
 
-
-      virtual void set_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::i32_rectangle & rectangle, const void * data);
-      virtual void write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::pixmap_t * ppixmap, const ::i32_point & pointInput);
-      virtual void write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan);
-
+      //virtual void set_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::i32_rectangle & rectangle, const void * data);
+      //virtual void write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::pixmap_t * ppixmap, const ::i32_point & pointInput);
+      //virtual void write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan);
+      //virtual void write_pixels(::gpu::command_buffer * pgpucommandbuffer, const void * pData, const ::i32_size & size, ::i32 iScan, ::i32 iBytesPerPixel, const ::i32_point & point);
+      virtual void copy_from(::gpu::texture * pgputexture);
 
       virtual bool is_in_shader_sampling_state();
 

@@ -578,12 +578,12 @@ namespace graphics
       if ((m_ehittestDrag & e_hit_test_outer_circle) || (!m_ehittestDrag && (mr >= r0 && mr <= r1)))
       {
          
-//#if defined(__APPLE__)
-
+////#if defined(__APPLE__)
+//
          ::f64 dAngle = ::atan2(-cy, cx);
-         
-//#else
 //         
+////#else
+////         
 //         ::f64 dAngle = ::atan2(cy, cx);
 //         
 //#endif

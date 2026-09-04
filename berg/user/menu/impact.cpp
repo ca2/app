@@ -495,7 +495,7 @@ namespace user
 
          draw_header_rectangle(pdraw2dgraphics, puseritemPopup->m_rectangle2);
 
-         pdraw2dgraphics->set_text_color(argb(255, 0, 0, 0));
+         pdraw2dgraphics->set_solid_color(argb(255, 0, 0, 0));
 
          pdraw2dgraphics->text_out(puseritemPopup->m_rectangle2.left + 10, puseritemPopup->m_rectangle2.top + 5, strTitle);
 
@@ -574,13 +574,13 @@ namespace user
             if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
             {
 
-               pdraw2dgraphics->set_text_color(argb(255, 0, 148, 202));
+               pdraw2dgraphics->set_solid_color(argb(255, 0, 148, 202));
 
             }
             else
             {
 
-               pdraw2dgraphics->set_text_color(argb(255, 60, 60, 60));
+               pdraw2dgraphics->set_solid_color(argb(255, 60, 60, 60));
 
             }
 

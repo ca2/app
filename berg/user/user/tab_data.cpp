@@ -85,6 +85,28 @@ namespace user
    }
 
 
+   void tab_data::destroy()
+   {
+
+      m_tabpanea.defer_destroy_and_release();
+
+      m_pdraw2dpen.defer_destroy_and_release();
+      m_pbrushTextHover.defer_destroy_and_release();
+      m_pbrushTextSel.defer_destroy_and_release();
+      m_pbrushText.defer_destroy_and_release();
+      m_pbrushCloseHover.defer_destroy_and_release();
+      m_pbrushCloseSel.defer_destroy_and_release();
+      m_pbrushClose.defer_destroy_and_release();
+      m_ppenBorder.defer_destroy_and_release();
+      m_ppenBorderSel.defer_destroy_and_release();
+      m_ppenBorderHover.defer_destroy_and_release();
+
+
+      ::data::data::destroy();
+      ::draw2d::holder::destroy();
+
+   }
+
 } // namespace berg
 
 

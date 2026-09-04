@@ -571,6 +571,25 @@ void object::send_procedures(const ::atom& atom)
 //
 
 
+::pointer_array < ::task > object::get_task_array()
+{
+
+   ::pointer_array < ::task > taska;
+
+   auto pobject = m_pobjectParentTask;
+
+   if (::is_set(pobject))
+   {
+
+      taska.append_unique(pobject->get_task_array());
+
+   }
+
+   return taska;
+
+}
+
+
 void object::add_procedure(const ::atom& atom, const ::procedure & procedure)
 {
 

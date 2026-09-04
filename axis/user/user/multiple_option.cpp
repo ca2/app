@@ -150,7 +150,7 @@ namespace user
 
             pdraw2dgraphics->fill_rectangle(rItem, ::argb(255, 10, 77, 189));
 
-            pdraw2dgraphics->set_text_color(::color::white);
+            pdraw2dgraphics->set_solid_color(::color::white);
 
 
          }
@@ -159,7 +159,7 @@ namespace user
 
             pdraw2dgraphics->fill_rectangle(rItem, ::argb(80, 127, 127, 127));
 
-            pdraw2dgraphics->set_text_color(::argb(255, 189, 189, 189));
+            pdraw2dgraphics->set_solid_color(::argb(255, 189, 189, 189));
 
          }
 

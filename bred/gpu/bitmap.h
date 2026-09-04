@@ -25,15 +25,24 @@ namespace gpu
       void destroy() override;
 
 
-      virtual void update_bitmap_as_backed_by_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2graphics);
-      virtual void _create_gpu_bitmap(const ::i32_size & size, ::draw2d::graphics * pdraw2graphics, pixmap_t * ppixmap = nullptr);
+      void preserve_image(const ::i32_size & size, ::image::image * pimage) override;
+      void write_pixels(
+         const ::i32_size & size,
+         const ::i32_point & point,
+         const ::image32_t * pimage32,
+         ::i32 iScan,
+         bool bTopDown) override;
+      virtual void update_bitmap_as_backed_by_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics);
+      virtual void _create_gpu_bitmap(const ::i32_size & size, ::draw2d::graphics * pdraw2dgraphics, pixmap_t * ppixmap = nullptr);
       void create_bitmap(::draw2d::graphics *pdraw2dgraphics, const ::i32_size &size, ::pixmap * ppixmapOwned) override;
       
-      virtual ::gpu::texture *gpu_texture() const;
+      //virtual ::gpu::texture *gpu_texture() const;
       
       virtual void initialize_gpu_bitmap(::gpu::context *pgpucontext, const ::i32_size &size,
                                         const ::gpu::texture_data &texturedata);
-      virtual ::gpu::texture *get_gpu_texture();
+      virtual ::gpu::texture * gpu_texture(::gpu::context * pgpucontext);
+
+      virtual pixmap_t get_pixmap();
 
    };
 

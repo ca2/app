@@ -68,6 +68,31 @@ namespace user
    puserinteraction = (puserinteractionParent)->previous_sibling(puserinteraction) \
       )
 
+   class CLASS_DECL_AURA interaction_metrics
+   {
+   public:
+
+
+      ::f64_size           m_sizeText;
+      ::f64                m_fLineHeight2;
+
+      
+      interaction_metrics();
+      interaction_metrics(const ::f64_size & size, ::f64 fLineHeight = 0.);
+
+
+      ::f64 width() const;
+      ::f64 height() const;
+      ::f64 line_height() const;
+      ::i32 i32_width() const;
+      ::i32 i32_height() const;
+      ::i32 i32_line_height() const;
+      ::i32_size i32_size() const;
+
+
+   };
+
+
 
    class CLASS_DECL_AURA interaction :
       virtual public ::user::interaction_base,
@@ -1404,7 +1429,7 @@ namespace user
       virtual bool scroll_bar_get_client_rect(::i32_rectangle & rectangle);
 
 
-      virtual ::f64_size get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual interaction_metrics get_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual ::f64_size get_adjusted_fitting_size(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual ::f64_size get_preferred_size(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual void resize_to_fit(::draw2d::graphics_pointer& pdraw2dgraphics);

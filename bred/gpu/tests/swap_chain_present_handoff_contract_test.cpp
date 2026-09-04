@@ -41,7 +41,7 @@ int main()
    const auto source = read(gpu / "swap_chain.cpp");
    const auto output = section(
       source,
-      "void swap_chain::do_output(::gpu::texture * pgputexture)",
+      "void swap_chain::do_output(::gpu::texture_site * pgputexturesite)",
       "void swap_chain::create_images()");
 
    const auto signalFinished = output.find(
@@ -49,7 +49,7 @@ int main()
    const auto presentWait = output.find(
       "m_gpusemaphoreaWait.add_unique(framesync.m_pgpusemaphoreRenderFinished);");
    const auto submit = output.find(
-      "pgpucontextSwapChain->endSingleTimeCommands(pcommandbufferSwapChain);");
+      "pcommandbufferSwapChain.commit();");
    const auto present = output.find("\n            swap_buffers();");
 
    assert(signalFinished != std::string::npos);

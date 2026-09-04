@@ -97,6 +97,15 @@ namespace user
    }
 
 
+   void tab_pane::destroy()
+   {
+
+      ::item::destroy();
+      ::property_object::destroy();
+      ::draw2d::holder::destroy();
+
+   }
+
    void tab_pane::set_title(const ::scoped_string & scopedstrTitle)
    {
 

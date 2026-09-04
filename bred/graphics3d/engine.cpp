@@ -253,7 +253,7 @@ namespace graphics3d
 
                m_pimageOutput->create_as_descriptor(pgpucontext->m_sizeRaw);
 
-               auto ppixmapImageOutput = m_pimageOutput->map(rectangleTarget);
+               auto ppixmapImageOutput = m_pimageOutput->map(::image::e_map_discard, rectangleTarget);
 
                //auto pgputexturesite = pgpurendertarget->current_texture(::gpu::current_layer(), false);
                //auto pgputexturesite = pgpurendertarget->current_texture(nullptr, false);
@@ -266,7 +266,7 @@ namespace graphics3d
 
                pgputexture->read_pixels(pgpucommandbuffer, ppixmapImageOutput, pgputexturesite->m_pointOutput);
 
-               pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
+               pgpucommandbuffer.commit();
 
                m_pimageOutput->set_ok_flag();
 
@@ -306,7 +306,7 @@ namespace graphics3d
 
          //pgraphicscontext->end_frame();
 
-         //m_pgpucontextCompositor2->end_frame();
+         //m_pgpucontextOwned->end_frame();
 
          //prenderer->end_frame(nullptr);
 
@@ -672,7 +672,7 @@ namespace graphics3d
    //                  try
    //                  {
 
-   //                     m_pgpucontextCompositor2->m_pgpudevice->start_frame();
+   //                     m_pgpucontextOwned->m_pgpudevice->start_frame();
 
    //                  }
    //                  catch (...)

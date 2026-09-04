@@ -323,7 +323,9 @@ private:
 
 #endif
 
+   ::pointer_array < ::task > get_task_array() override;
 
+   virtual ::acme::user::interaction * affinity_acme_user_interaction();
    virtual ::acme::user::interaction* main_acme_user_interaction();
    virtual ::acme::user::interaction* active_acme_user_interaction();
    virtual void set_main_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionMain);

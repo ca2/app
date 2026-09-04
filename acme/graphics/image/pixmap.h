@@ -87,6 +87,7 @@ public:
 
    virtual void copy(const pixmap_t * ppixmap);
    virtual void copy(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan);
+   virtual void y_swap_copy(const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan);
 
    virtual ::pixmap_pointer get_resized_pixmap(const ::i32_size &size);
 
@@ -295,7 +296,7 @@ public:
 
 
       virtual ::memory copy_with_no_stride();
-      virtual ::memory vertical_swap_copy_with_no_stride();
+      virtual ::memory y_swap_copy_with_no_stride();
 
       //virtual void from( ::pixmap * ppixmap);
 
@@ -422,5 +423,10 @@ inline void image32_t::copy(const ::pixmap_t* p)
    copy(::i32_point(), p->size(), p->width() * 4, p->image32(), p->m_iScan);
 }
 
+
+inline void image32_t::y_swap_copy(const ::pixmap_t * p)
+{
+   y_swap_copy(::i32_point(), p->size(), p->width() * 4, p->image32(), p->m_iScan);
+}
 
 

@@ -633,6 +633,26 @@ namespace experience
    }
 
 
+   void control_box::destroy()
+   {
+
+      m_pfontMarlett.defer_destroy_and_release();
+
+      m_pbrushButtonBack.defer_destroy_and_release();
+      m_pbrushButtonBackSel.defer_destroy_and_release();
+      m_pbrushButtonBackFocus.defer_destroy_and_release();
+      m_pbrushButtonBackDisabled.defer_destroy_and_release();
+
+      m_ppenButtonBack.defer_destroy_and_release();
+      m_ppenButtonBackSel.defer_destroy_and_release();
+      m_ppenButtonBackFocus.defer_destroy_and_release();
+      m_ppenButtonBackDisabled.defer_destroy_and_release();
+
+      ::user::box::destroy();
+
+   }
+
+
    void control_box::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 

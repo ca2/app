@@ -20,8 +20,9 @@ namespace draw2d
 //      m_hbitmapGet            = nullptr;
 //
 //#endif
-      m_bHintCpuBackingEnabled    = true;
-      m_iStride               = 0;
+      m_bHintCpuBackingEnabled      = true;
+      m_iStride                     = 0;
+      m_bTopLeft                    = true;
 
    }
 
@@ -29,9 +30,13 @@ namespace draw2d
    bitmap::bitmap(bitmap&& bitmap) :
       DRAW2D_OBJECT_TRANSFER(bitmap),
       m_size(bitmap.m_size),
-      m_iStride(bitmap.m_iStride)
+      m_iStride(bitmap.m_iStride),
+      m_memoryDraw2dBitmap(::transfer(bitmap.m_memoryDraw2dBitmap))
    {
 
+      bitmap.m_size.Null();
+
+      bitmap.m_iStride = 0;
 
    }
 
@@ -109,6 +114,29 @@ namespace draw2d
       }
 
       return pbitmapNew;
+
+   }
+
+
+   pixmap_t bitmap::get_pixmap()
+   {
+
+      if (m_memoryDraw2dBitmap.size() < m_size.cx * 4)
+      {
+
+         return {};
+      }
+
+      pixmap_t pixmap;
+
+      pixmap.m_size = m_size;
+      pixmap.m_sizeRaw = m_size;
+      pixmap.m_pimage32 = (::image32_t *)m_memoryDraw2dBitmap.data();
+      pixmap.m_pimage32Raw = (::image32_t *)m_memoryDraw2dBitmap.data();
+      pixmap.m_iScan = m_iStride;
+      pixmap.m_bTopLeft = m_bTopLeft;
+
+      return pixmap;
 
    }
 
@@ -246,20 +274,97 @@ namespace draw2d
 
 
 //   void bitmap::create_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size, ::memory & memory, ::i32 * stride)
-   void bitmap::create_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size, ::pixmap * ppixmapOwned)
+   void bitmap::create_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size, ::pixmap * ppixmap)
    {
 
+      //__UNREFERENCED_PARAMETER(pdraw2dgraphics);
+      //__UNREFERENCED_PARAMETER(size);
+      ////__UNREFERENCED_PARAMETER(ppimage32);
+      ////__UNREFERENCED_PARAMETER(pimage32);
+      ////__UNREFERENCED_PARAMETER(memory);
+      ////__UNREFERENCED_PARAMETER(stride);
+      //__UNREFERENCED_PARAMETER(ppixmapOwned);
+
+      //throw ::interface_only();
+
+      ////return false;
+
       __UNREFERENCED_PARAMETER(pdraw2dgraphics);
-      __UNREFERENCED_PARAMETER(size);
-      //__UNREFERENCED_PARAMETER(ppimage32);
-      //__UNREFERENCED_PARAMETER(pimage32);
-      //__UNREFERENCED_PARAMETER(memory);
-      //__UNREFERENCED_PARAMETER(stride);
-      __UNREFERENCED_PARAMETER(ppixmapOwned);
 
-      throw ::interface_only();
+      m_size = size;
 
-      //return false;
+      m_iStride = 4 * size.cx;
+
+      int iScan = m_iStride;
+
+      if (ppixmap && ppixmap->m_iScan >= iScan)
+      {
+
+         iScan = ppixmap->m_iScan;
+
+      }
+
+      //if (pimage32)
+      //{
+
+      //   pimage32Target->copy(size, m_iStride, pimage32, iScan);
+
+      //}
+
+      if (ppixmap && ppixmap->m_memoryPixmap.size() >= iScan * size.cy)
+      {
+
+         m_memoryDraw2dBitmap = ::transfer(ppixmap->m_memoryPixmap);
+
+         //m_memoryDraw2dBitmap.set_size(abs(m_iStride * size.cy));
+
+         //if (m_memoryDraw2dBitmap.data() == nullptr)
+         //{
+
+         //   return;
+
+         //   //return false;
+
+         //}
+
+         //auto pimage32Target = (::image32_t *)m_memoryDraw2dBitmap.data();
+
+         //if(ppixmap->m_bTopLeft)
+         //{ 
+
+         //   pimage32Target->copy(size, m_iStride, ppixmap->image32(), iScan);
+         //
+         //}
+         //else
+         //{
+
+         //   pimage32Target->y_swap_copy(size, m_iStride, ppixmap->image32(), iScan);
+
+         //}
+
+         ppixmap->m_memoryPixmap.reference_data(m_memoryDraw2dBitmap);
+
+         ppixmap->m_iScan = m_iStride;
+
+         m_bTopLeft = ppixmap->m_bTopLeft;
+
+      }
+
+      //if(ppimage32 != nullptr)
+      //{
+      //   
+      //   *ppimage32 = pimage32Target;
+
+      //}
+
+      //if(::is_set(ppixmap))
+      //{
+
+      //}
+
+      //m_osdata[0] = (void *) 1;
+
+      //return true;
 
    }
 
@@ -397,19 +502,37 @@ namespace draw2d
       const ::i32_size & size,
       const ::i32_point & point,
       const ::image32_t * pimage32,
-      ::i32 iScan)
+      ::i32 iScan,
+      bool bTopDown)
    {
 
       throw ::interface_only();
 
    }
 
+   
+   void bitmap::defer_write_pixels(const ::i32_point & point, const ::pixmap_t & pixmap)
+   {
 
-   void bitmap::defer_write_pixels(
+      _defer_write_pixels(pixmap.size(), point, pixmap.image32(), pixmap.m_iScan, pixmap.m_bTopLeft);
+
+   }
+
+
+   void bitmap::defer_write_pixels(const ::pixmap_t & pixmap)
+   {
+
+      defer_write_pixels({}, pixmap);
+
+   }
+
+
+   void bitmap::_defer_write_pixels(
       const ::i32_size & size,
       const ::i32_point & point,
       const ::image32_t * pimage32,
-      ::i32 iScan)
+      ::i32 iScan,
+      bool bTopDown)
    {
 
       if (size.cx <= 0 || size.cy <= 0)
@@ -467,7 +590,7 @@ namespace draw2d
          ((const ::u8 *) pimage32 + (::memsize) iSourceY * iScan)
          + iSourceX;
 
-      write_pixels(sizeClipped, pointClipped, pimage32Shifted, iScan);
+      write_pixels(sizeClipped, pointClipped, pimage32Shifted, iScan, bTopDown);
 
 
    }

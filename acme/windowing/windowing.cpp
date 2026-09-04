@@ -841,15 +841,20 @@ namespace acme
 
          //}
 
-         // if (::system()->m_pmanualresethappeningMainLoopEnd)
-         //{
+         if (system()->m_pmanualresethappeningPlatformSystemFinished)
+         {
 
-         //   ::system()->m_pmanualresethappeningMainLoopEnd->set_happening();
+            printf_line("acme::windowing::windowing::run waiting for platform::system task to finish");
 
-         //}
+            system()->m_pmanualresethappeningPlatformSystemFinished->_wait(2.5_min);
+
+            //delete m_pmanualresethappeningReadyToExit;
+
+            //m_pmanualresethappeningReadyToExit = nullptr;
+
+         }
 
          information() << "windowing_win32::windowing::windowing::run ending!!";
-
 
       }
 

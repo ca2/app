@@ -107,7 +107,7 @@ namespace user
 
          auto color = get_color(pstyle, ::e_element_text);
 
-         pdraw2dgraphics->set_text_color(color);
+         pdraw2dgraphics->set_solid_color(color);
          
          ::e_align ealign = plist->get_draw_text_align(plist->m_eview);
          

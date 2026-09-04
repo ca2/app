@@ -157,7 +157,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::create_image(const ::i32_size& size, const image32_t* pimage32, ::i32 iScan, ::enum_flag eflagCreate)
+   ::image::image_pointer image_context::create_image(const ::i32_size & size, ::enum_flag eflagCreate)
    {
 
       auto pimage = m_papplication->createø < ::image::image >();
@@ -178,16 +178,65 @@ namespace image
 
       }
 
-      if (::is_set(pimage32))
+      //if (::is_set(pixmap.m_pimage32))
+      //{
+
+      //   pimage->create_from_data(pixmap, eflagCreate);
+
+      //}
+      //else
       {
 
-         pimage->create_from_data(size, pimage32, iScan);
+         pimage->create_as_descriptor(size, eflagCreate);
+
+         // if (::is_set(pcolor))
+         //{
+
+         //   pimage->map();
+
+         //   pimage->data()->copy(size, pimage->m_iScan, pcolor, iScan);
+
+         //}
+
+      }
+
+      return ::transfer(pimage);
+
+   }
+
+
+
+   ::image::image_pointer image_context::create_image_from_data(const ::pixmap_t& pixmap, ::enum_flag eflagCreate)
+   {
+
+      auto pimage = m_papplication->createø < ::image::image >();
+
+      if (!pimage)
+      {
+
+         return nullptr;
+
+      }
+
+      auto puserinteraction = ::user::task_interaction();
+
+      if (puserinteraction)
+      {
+
+         pimage->m_pacmeuserinteractionAffinity = puserinteraction;
+
+      }
+
+      if (::is_set(pixmap.m_pimage32))
+      {
+
+         pimage->create_from_data(pixmap, eflagCreate);
 
       }
       else
       {
 
-         pimage->create_as_descriptor(size, eflagCreate);
+         pimage->create_as_descriptor(pixmap.m_size, eflagCreate);
 
          // if (::is_set(pcolor))
          //{
@@ -282,24 +331,26 @@ namespace image
    }
 
 
-   ::i32 image_context::create_image_integer(::i32 w, ::i32 h, const image32_t* pimage32, ::i32 iScan)
+   ::i32 image_context::create_image_integer(const ::pixmap_t & pixmap)
    {
 
-      if (w <= 0 || h <= 0)
+      if (pixmap.m_size.area()    <= 0)
       {
 
          throw ::exception(::error_bad_argument);
 
       }
 
+      auto iScan = pixmap.m_iScan;
+
       if (iScan < 0)
       {
 
-         iScan = w * sizeof(color32_t);
+         iScan = pixmap.m_sizeRaw.cx * sizeof(color32_t);
 
       }
 
-      auto pimage = create_image({ w, h }, pimage32, iScan);
+      auto pimage = create_image_from_data(pixmap);
 
       string strPath;
 
@@ -1206,7 +1257,7 @@ namespace image
 
          auto ppixmapImage = pimage->map();
 
-         ppixmapImage->vertical_swap_copy_with_no_stride();
+         ppixmapImage->y_swap_copy_with_no_stride();
 
          stbi_write_bmp_to_func(&::stb_memory_write, &memory,
             ppixmapImage->width(), ppixmapImage->height(), 4, (const uint8_t*)ppixmapImage->data());
@@ -1219,7 +1270,7 @@ namespace image
 
          auto ppixmapImage = pimage->map();
 
-         ppixmapImage->vertical_swap_copy_with_no_stride();
+         ppixmapImage->y_swap_copy_with_no_stride();
 
          stbi_write_tga_to_func(&::stb_memory_write, &memory,
          ppixmapImage->width(), ppixmapImage->height(), 4, (const uint8_t*)ppixmapImage->data());

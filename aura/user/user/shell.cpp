@@ -25,6 +25,7 @@
 
 
 #include "acme/prototype/collection/_array.h"
+#include <chrono>
 
 #if defined(RASPBERRYPIOS)
 #define OPERATING_SYSTEM_NAMESPACE linux
@@ -1409,8 +1410,6 @@ namespace user
 
          {
 
-            _synchronous_lock sl1(m_pimagelistUserShell[16]->synchronization());
-
             ::image::image_source imagesource(pimage1, pimage1->rectangle());
 
             ::f64_rectangle rectangle(::i32_size(16, 16));
@@ -1425,8 +1424,6 @@ namespace user
 
          {
 
-            _synchronous_lock sl2(m_pimagelistUserShell[48]->synchronization());
-
             ::image::image_source imagesource(pimage48, pimage48->rectangle());
 
             ::f64_rectangle rectangle(::i32_size(48, 48));
@@ -1440,8 +1437,6 @@ namespace user
          }
 
          {
-
-            _synchronous_lock sl1(m_pimagelistUserShellHover[16]->synchronization());
 
             ::image::image_source imagesource(pimage16, pimage16->rectangle());
 
@@ -1458,8 +1453,6 @@ namespace user
          }
 
          {
-
-            _synchronous_lock sl1(m_pimagelistUserShellHover[48]->synchronization());
 
             ::image::image_source imagesource(pimage48, pimage48->rectangle());
 
@@ -1852,19 +1845,54 @@ namespace user
 
       synchronouslock.unlock();
 
-      _synchronous_lock sl(pimagelist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      _synchronous_lock slHover(pimagelistHover->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      // image_list operations synchronize themselves after acquiring draw2d.
+      // Holding either list here would invert that order against reserve_image().
+      auto timeStart = ::std::chrono::steady_clock::now();
 
       pimagelist->set(iImage, imagedrawing);
 
+      auto timeAfterNormal = ::std::chrono::steady_clock::now();
+
+      // Use the committed normal atlas slot as the hover source. In particular,
+      // freshly decoded thumbnails and icons may change representation during
+      // their first GPU realization; drawing that original source again can
+      // apply its vertical orientation a second time.
       auto pimageHover = pimagelist->get_image(iImage);
 
-      auto pgraphicsImageHover = pimageHover->acquire_graphics();
+      if (::is_ok(pimageHover))
+      {
 
-      pgraphicsImageHover->fill_rectangle(pimageHover->rectangle(), ::rgba(255, 255, 240, 64));
+         ::image::image_source imagesourceHover(pimageHover);
 
-      pimagelistHover->set(iImage, imagedrawing);
+         ::image::image_drawing imagedrawingHover(imagesourceHover);
+
+         pimagelistHover->set(iImage, imagedrawingHover);
+
+      }
+      else
+      {
+
+         pimagelistHover->set(iImage, imagedrawing);
+
+      }
+
+      auto timeAfterHover = ::std::chrono::steady_clock::now();
+      auto iNormalMilliseconds = ::std::chrono::duration_cast<::std::chrono::milliseconds>(
+         timeAfterNormal - timeStart).count();
+      auto iHoverMilliseconds = ::std::chrono::duration_cast<::std::chrono::milliseconds>(
+         timeAfterHover - timeAfterNormal).count();
+
+      if (iNormalMilliseconds + iHoverMilliseconds >= 10)
+      {
+
+         informationf(
+            "[shell.icon.performance] image=%d size=%d normal=%lldms hover=%lldms",
+            iImage,
+            iSize,
+            iNormalMilliseconds,
+            iHoverMilliseconds);
+
+      }
 
    }
 

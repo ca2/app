@@ -84,9 +84,10 @@ namespace image
 
 
       virtual ::image::image_pointer create_image();
+      
+      virtual ::image::image_pointer create_image(const ::i32_size & size, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
 
-
-      virtual ::image::image_pointer create_image(const ::i32_size& size, const image32_t* pcolor = nullptr, ::i32 iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
+      virtual ::image::image_pointer create_image_from_data(const ::pixmap_t & pixmap, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
 
       virtual ::image::pool_image pool_image(const ::i32_size & size);
 
@@ -98,7 +99,8 @@ namespace image
 
 
       virtual ::i32 image_integer(const ::file::path & path);
-      virtual ::i32 create_image_integer(::i32 w, ::i32 h, const image32_t * pcolor, ::i32 iScan = -1);
+      //virtual ::i32 create_image_integer(::i32 w, ::i32 h, const image32_t * pcolor, ::i32 iScan = -1);
+      virtual ::i32 create_image_integer(const ::pixmap_t & pixmap);
       virtual ::image::image_pointer integer_image(::i32 i);
       virtual ::pixmap_pointer path_pixmap(const ::file::path & pathImage);
       virtual ::image::image_pointer path_image(const ::file::path &pathImage);

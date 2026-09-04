@@ -312,7 +312,7 @@ public:
 
    virtual void init_system();
 
-   virtual void term_system();
+   virtual void on_system_termination();
 
    void destroy() override;
 

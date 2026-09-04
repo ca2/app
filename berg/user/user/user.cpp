@@ -542,7 +542,7 @@ namespace berg
       if (pmenuitem->m_pimage->is_set())
       {
 
-         pmenubutton->set_button_style(::user::button::e_style_image_and_text);
+         pmenubutton->set_button_style(::user::e_button_style_image_and_text);
 
          //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").as_i32();
 
@@ -1877,7 +1877,7 @@ namespace berg
       if (pmenuitem->m_pimage->is_set())
       {
 
-         pmenubutton->set_button_style(::user::button::e_style_image_and_text);
+         pmenubutton->set_button_style(::user::e_button_style_image_and_text);
 
          //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").as_i32();
 

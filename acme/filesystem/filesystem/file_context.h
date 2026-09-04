@@ -40,7 +40,7 @@ public:
    virtual void init_system();
    virtual void init_context();
 
-   virtual void term_system();
+   virtual void on_system_termination();
    virtual void term_context();
 
 

@@ -494,16 +494,17 @@ namespace user
       }
 
       pdraw2dgraphics->set(m_pwritetextfont);
+
+      pdraw2dgraphics->set_solid_color(::argb(255, 80, 80, 80));
+      
       {
 
          ::color::hls hls(get_sel_color());
 
          ::string str;
 
-         str.formatf("H=%d, L=%d, S=%d",
-   (::i32)(hls.m_dH * 100),
-   (::i32)(hls.m_dL * 100.),
-   (::i32)(hls.m_dS * 100.));
+         str.formatf("H=%d, L=%d, S=%d", (::i32)(hls.m_dH * 100.), (::i32)(hls.m_dL * 100.), (::i32)(hls.m_dS * 100.));
+
          pdraw2dgraphics->text_out(100, 100, str);
 
       }
@@ -512,19 +513,25 @@ namespace user
 
          ::color::hsv hsv(get_sel_color());
 
-
          ::string str;
 
+         str.formatf("H=%d, S=%d, V=%d", (::i32)(hsv.m_dH * 100.), (::i32)(hsv.m_dS * 100.), (::i32)(hsv.m_dV * 100.));
 
-
-         str.formatf("H=%d, S=%d, V=%d",
-            (::i32)(hsv.m_dH * 100),
-            (::i32)(hsv.m_dS * 100.),
-            (::i32)(hsv.m_dV * 100.));
          pdraw2dgraphics->text_out(100, 150, str);
 
       }
 
+      {
+
+         ::color::color color(get_sel_color());
+
+         ::string str;
+
+         str.formatf("R=%d, G=%d, B=%d", color.u8_red(), color.u8_green(), color.u8_blue());
+
+         pdraw2dgraphics->text_out(100, 200, str);
+
+      }
 
    }
 
@@ -778,7 +785,7 @@ namespace user
 
       //r.top += 20;
 
-      layout_color_selector(r);
+      layout_color_selector(pdraw2dgraphics, r);
 
       auto r2 = m_rectangleColors;
 

@@ -701,6 +701,52 @@ bool task::msg_translator_handlers(MSG* pmsg)
 
 #endif
 
+::pointer_array < ::task > task::get_task_array()
+{
+
+   ::pointer_array < ::task > taska;
+
+   taska.add(this);
+
+   auto pobject = m_pobjectParentTask;
+
+   if (::is_set(pobject))
+   {
+
+      taska.append_unique(pobject->get_task_array());
+
+   }
+
+   return { this };
+
+}
+
+
+::acme::user::interaction * task::affinity_acme_user_interaction()
+{
+
+   auto pacmeuserinteractionAffinity = main_acme_user_interaction();
+
+   auto taska = this->get_task_array();
+
+   for(auto & ptask : taska)
+   {
+
+      pacmeuserinteractionAffinity = ptask->main_acme_user_interaction();
+
+      if(::is_set(pacmeuserinteractionAffinity))
+      {
+
+         break;
+
+      }
+
+   }
+
+   return  pacmeuserinteractionAffinity;
+
+}
+
 
 ::acme::user::interaction* task::main_acme_user_interaction()
 {

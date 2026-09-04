@@ -2641,6 +2641,24 @@ void particle::kick_idle()
 //}
 
 
+void particle::if_or_when_ok(const ::procedure & procedure)
+{
+
+   //try
+   //{
+
+      procedure();
+
+   //}
+   //catch(...)
+   //{
+   
+   
+   //}
+
+}
+
+
 void particle::app_post(const ::procedure& procedure)
 {
 

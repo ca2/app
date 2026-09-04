@@ -415,7 +415,13 @@ namespace write_text
 
       pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto rectangleWindow = m_puserinteraction->rectangle();
+      ::i32_rectangle rectangleWindow(m_puserinteraction->size());
+
+      // Font item rectangles are in scrollable content coordinates. Build the
+      // viewport from the local client size, then translate it exactly once.
+      // interaction::rectangle() already contains accumulated scrolling, so
+      // adding get_context_offset() to it shifts this visibility gate twice.
+      rectangleWindow.offset(m_puserinteraction->get_context_offset());
 
       auto pfontlistdata = m_pfontlistdata;
 
@@ -460,16 +466,16 @@ namespace write_text
          if (pstyle->is_dark_mode())
          {
 
-            pdraw2dgraphics->set_text_color(::color::white);
+            pdraw2dgraphics->set_solid_color(::color::white);
 
          }
          else
          {
 
-            pdraw2dgraphics->set_text_color(::color::black);
+            pdraw2dgraphics->set_solid_color(::color::black);
          }
 
-         pdraw2dgraphics->set_text_color(::color::white);
+         pdraw2dgraphics->set_solid_color(::color::white);
 
          if (m_pfontenumeration->m_pathaLoading.get_count())
          {
@@ -520,14 +526,6 @@ namespace write_text
             continue;
 
          }
-
-         if (pitem == m_puserinteraction->main_content().m_pitemCurrent || pitem == m_puserinteraction->m_pitemHover)
-         {
-
-            continue;
-
-         }
-
 
          text_box * pbox = &pitem->m_box[BOX];
 
@@ -655,17 +653,24 @@ namespace write_text
 
             }
 
-            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            // Keep the regular preview underneath until the larger cache has
+            // completed all of its glyph uploads.
+            if (pbox->is_drawing_ok(this))
+            {
 
-            ::image::image_source imagesource(pbox->m_pimage);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            auto rectangle = pbox->m_rectangle;
+               ::image::image_source imagesource(pbox->m_pimage);
 
-            ::image::image_drawing_options imagedrawingoptions(rectangle);
+               auto rectangle = pbox->m_rectangle;
 
-            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            pdraw2dgraphics->draw(imagedrawing);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pdraw2dgraphics->draw(imagedrawing);
+
+            }
 
          }
 
@@ -696,17 +701,22 @@ namespace write_text
 
             }
 
-            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            if (pbox->is_drawing_ok(this))
+            {
 
-            ::image::image_source imagesource(pbox->m_pimage);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            ::f64_rectangle rectangle(pbox->m_rectangle);
+               ::image::image_source imagesource(pbox->m_pimage);
 
-            ::image::image_drawing_options imagedrawingoptions(rectangle);
+               ::f64_rectangle rectangle(pbox->m_rectangle);
 
-            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            pdraw2dgraphics->draw(imagedrawing);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pdraw2dgraphics->draw(imagedrawing);
+
+            }
 
          }
 
@@ -733,9 +743,9 @@ namespace write_text
 
       auto pfontlistdata = m_pfontlistdata;
 
-      i32_rectangle rectangleClient = puserinteraction->rectangle();
+      i32_rectangle rectangleClient(puserinteraction->size());
 
-      //rectangleX += m_puserinteraction->get_context_offset();
+      rectangleClient.offset(puserinteraction->get_context_offset());
 
       //auto pwindowing = m_puserinteraction->windowing();
 
@@ -778,6 +788,20 @@ namespace write_text
 
          rectangle.right = rectangle.left + m_size.cx;
 
+         if (!rectangleClient.intersects(rectangle))
+         {
+
+            if (bIntersected)
+            {
+
+               break;
+
+            }
+
+            continue;
+
+         }
+
          auto bCachedPreview = pbox->is_drawing_ok(this);
 
          if (!bCachedPreview)
@@ -803,20 +827,6 @@ namespace write_text
                record_font_preview_update(uMicroseconds);
 
             }
-
-         }
-
-         if (!rectangleClient.intersects(rectangle))
-         {
-
-            if (bIntersected)
-            {
-
-               break;
-
-            }
-
-            continue;
 
          }
 
@@ -1534,9 +1544,13 @@ namespace write_text
          auto pacmeuserinteractionAffinity = m_puserinteractionGraphicsContext
             ? (::acme::user::interaction *) m_puserinteractionGraphicsContext.m_p
             : (::acme::user::interaction *) m_puserinteraction.m_p;
+
          auto graphicslease = pdraw2d->acquire_memory_graphics(
-            {256, 256}, pacmeuserinteractionAffinity);
+            {256, 256},
+            pacmeuserinteractionAffinity);
+
          auto pdraw2dgraphics = graphicslease.get();
+
          ::u64 uGraphicsAcquireMicroseconds = 0;
 
          if (bPerformanceDiagnostics)

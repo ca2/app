@@ -95,7 +95,7 @@ namespace experience
 
          pdraw2dgraphics->set_font(this, ::e_element_none);
 
-         pdraw2dgraphics->set_text_color(crText);
+         pdraw2dgraphics->set_solid_color(crText);
 
          pdraw2dgraphics->draw_text(strWindowText, rectangleX, e_align_center, e_draw_text_single_line);
 

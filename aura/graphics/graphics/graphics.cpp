@@ -81,6 +81,8 @@ namespace graphics
    void graphics::destroy()
    {
 
+      m_bufferitema.defer_destroy_and_release();
+
       destroy_buffer();
 
       //auto estatus = 
@@ -319,9 +321,13 @@ namespace graphics
       if (m_pdraw2dgraphics)
       {
 
+         auto & reference_bBeginDraw = m_pdraw2dgraphics->m_bBeginDraw;
+
+         m_pdraw2dgraphics->m_egraphics = egraphics;
+
          auto p = m_pdraw2dgraphics.m_p;
 
-         auto & pimg = p->m_pimage.m_p;
+         auto & pimg = p->m_pimageTarget.m_p;
 
          //if (m_bNewFrame)
          if (egraphics == e_graphics_draw)
@@ -392,6 +398,7 @@ namespace graphics
          }
 
          return draw2d()->acquire_owned_graphics(
+            false,
             m_pdraw2dgraphics,
             pimage,
             pimage->raw_size(),

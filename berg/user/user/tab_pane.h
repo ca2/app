@@ -57,7 +57,7 @@ namespace user
       tab_pane & operator = (const tab_pane & tab_pane);
 
 
-
+      void destroy() override;
 
       string get_title();
       void set_title(const ::scoped_string & scopedstrTitle);

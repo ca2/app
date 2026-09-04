@@ -680,7 +680,16 @@ void pixmap::copy(const pixmap_t * ppixmap)
 
    auto ppixmapThis = this->map();
 
-   copy(ppixmap->size(), ppixmap->m_pimage32, ppixmap->m_iScan);
+
+   if (::is_different(m_bTopLeft, ppixmap->m_bTopLeft))
+   {
+      y_swap_copy(ppixmap->size(), ppixmap->m_pimage32, ppixmap->m_iScan);
+   }
+   else
+   {
+      copy(ppixmap->size(), ppixmap->m_pimage32, ppixmap->m_iScan);
+   }
+
 
 }
 
@@ -695,6 +704,14 @@ void pixmap::copy(const ::i32_size &size, const ::image32_t *ppixmap32, ::i32 iS
 }
 
 
+void pixmap::y_swap_copy(const ::i32_size & size, const ::image32_t * ppixmap32, ::i32 iScan)
+{
+
+   auto ppixmapThis = this->map();
+
+   ppixmapThis->m_pimage32->y_swap_copy(size, m_iScan, ppixmap32, iScan);
+
+}
 
 
 //::pixmap::lock pixmap::lock(::i32 stride, ::pixmap::enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock)
@@ -4002,13 +4019,13 @@ void pixmap::op(const ::scoped_string & scopedstr)
 }
 
 
-::memory pixmap::vertical_swap_copy_with_no_stride()
+::memory pixmap::y_swap_copy_with_no_stride()
 {
    
    memory m;
    m.set_size(area() * 4);
    auto ppixmap32Target = (image32_t *) m.data();
-   ppixmap32Target->vertical_swap_copy(this->width(), this->height(), this->width() * 4, this->data(), this->m_iScan);
+   ppixmap32Target->y_swap_copy(this->width(), this->height(), this->width() * 4, this->data(), this->m_iScan);
    return ::transfer(m);
    
 }

@@ -82,7 +82,7 @@ namespace graphics3d
       // ::graphics3d::model::Builder builderDummy;
 
       m_pmodelDummy->initialize_dummy_model(
-         pengine->m_pgpucontextCompositor2->m_pgpurenderer,
+         pengine->m_pgpucontextOwned->m_pgpurenderer,
          6);
 
 

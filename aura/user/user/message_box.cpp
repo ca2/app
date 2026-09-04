@@ -102,7 +102,7 @@ namespace user
 
       m_pbuttonClose = allocateø ::user::button("", e_dialog_result_close);
 
-      m_pbuttonClose->set_button_style(::user::button::e_style_stock_icon);
+      m_pbuttonClose->set_button_style(::user::e_button_style_stock_icon);
 
       m_pbuttonClose->set_stock_icon(::e_stock_icon_close);
 

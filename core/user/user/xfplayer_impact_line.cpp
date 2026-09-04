@@ -523,7 +523,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphi
 
       pdraw2dgraphics->set(pbrushText);
 
-      //pdraw2dgraphics->set_text_color(crColor);
+      //pdraw2dgraphics->set_solid_color(crColor);
 
       ::i32_rectangle rectangleTextOut;
       

@@ -19,13 +19,13 @@ MetaControlBox::~MetaControlBox()
 }
 
 
-void MetaControlBox::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+void MetaControlBox::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
 
 }
 
-void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 {
 
    if(get_top_level()->frame_is_transparent() && !get_top_level()->is_active())
@@ -40,7 +40,7 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    if (rectangleX.area() <= 0)
       return;
 
-   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    color32_t crBackground;
 
@@ -57,7 +57,7 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   pgraphics->fill_rectangle(rectangleX, m_colorBackground);
+   pdraw2dgraphics->fill_rectangle(rectangleX, m_colorBackground);
 
 }
 

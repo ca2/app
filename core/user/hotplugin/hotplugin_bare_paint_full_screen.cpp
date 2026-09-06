@@ -6,7 +6,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam)
+   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangleParam)
    {
 
       ::f64 dRate = get_progress_rate();
@@ -52,41 +52,41 @@ namespace hotplugin
          pbrush->create_solid(argb(255, uchR, uchG, uchB));
          rectangleDraw = i32_rectangle_dimension(rectangle.left, rectangle.top, cx, cy);
 
-         pgraphics->fill_rectangle(rectangleDraw, br);
+         pdraw2dgraphics->fill_rectangle(rectangleDraw, br);
 
       }
 
       pbrush->create_solid(argb(255, 255, 255, 255));
 
-      pgraphics->SelectObject(br);
+      pdraw2dgraphics->SelectObject(br);
 
       ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font(pnode->font_name(e_font_sans_fx), 50);
 
-      pgraphics->SelectObject(f);
+      pdraw2dgraphics->SelectObject(f);
 
       string strStatus;
 
       strStatus = str;
 
-      //on_paint_progress(pgraphics, m_rectangle);
+      //on_paint_progress(pdraw2dgraphics, m_rectangle);
 
-      pgraphics->text_out(rectangleParam.left + 80, rectangleParam.top + 80, strStatus);
+      pdraw2dgraphics->text_out(rectangleParam.left + 80, rectangleParam.top + 80, strStatus);
 
 
       f->create_pixel_font(pnode->font_name(e_font_sans_fx), 80, true);
 
-      pgraphics->SelectObject(f);
+      pdraw2dgraphics->SelectObject(f);
 
-      pgraphics->text_out(rectangleParam.left + 80, (::i32)(rectangleParam.top + 120 + 50 * 0.2), strProgress);
+      pdraw2dgraphics->text_out(rectangleParam.left + 80, (::i32)(rectangleParam.top + 120 + 50 * 0.2), strProgress);
 
 
       f->create_pixel_font(pnode->font_name(e_font_sans_fx), 30);
 
-      pgraphics->SelectObject(f);
+      pdraw2dgraphics->SelectObject(f);
 
-      pgraphics->text_out(rectangleParam.left + 80, (::i32)(rectangleParam.top + 120 + 50 * 0.2 + 120 * 0.2), m_strStatus2);
+      pdraw2dgraphics->text_out(rectangleParam.left + 80, (::i32)(rectangleParam.top + 120 + 50 * 0.2 + 120 * 0.2), m_strStatus2);
 
 
    }

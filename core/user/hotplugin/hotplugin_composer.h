@@ -81,7 +81,7 @@ namespace hotplugin
       // if composer on paint returns (returns true), it has painted something meaningful : no other painting is needed or even desired (finally when system, and host are ok,
       // if host returns in a fashion-timed way the response for bitmap, it draw this bitmap, and not the default waiting [hall] screen painted by this composer).
 
-      virtual bool windows_on_paint(::draw2d::graphics_pointer & pgraphics);
+      virtual bool windows_on_paint(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual bool      open_link(const ::scoped_string & scopedstrLink,const ::scoped_string & scopedstrTarget);

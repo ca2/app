@@ -79,7 +79,7 @@
 
                virtual void set_frame_color_system_default_001();
 
-               virtual void on_style_change_001_and_002(::draw2d::graphics_pointer & pgraphics);
+               virtual void on_style_change_001_and_002(::draw2d::graphics_pointer & pdraw2dgraphics);
 
                virtual color32_t get_style_moveable_border_color(e_style estyle);
 
@@ -95,21 +95,21 @@
 
                virtual void _001OnBeforeSize(const ::i32_rectangle &lpcrectWindow) override;
 
-               virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+               virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
                virtual bool get_element_rectangle(::i32_rectangle * lprect, const ::e_element & eelement) override;
 
                virtual bool hit_test(const ::i32_point &point, enum_element &eelementParam);
 
-               virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lprect);
+               virtual void Glass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle &lprect);
 
-               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lprect, color32_t color32, ::u8 bAlpha);
+               virtual void ColorGlass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle &lprect, color32_t color32, ::u8 bAlpha);
 
                //virtual ::user::front_end_schema * get_user_front_end_schema();
 
-               virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight);
+               virtual void Draw3dRectSide(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight);
 
-               virtual void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
+               virtual void on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics);
 
                virtual bool is_control_box_moveable() override;
 

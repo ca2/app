@@ -14,7 +14,7 @@ public:
    ~simple_status_bar() override;
 
 
-   void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+   void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
 };

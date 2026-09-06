@@ -222,10 +222,10 @@ namespace hotplugin
    }
 
 
-   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle)
+   void plugin::on_paint(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangle)
    {
 
-      on_bare_paint(pgraphics, rectangle);
+      on_bare_paint(pdraw2dgraphics, rectangle);
 
    }
 
@@ -526,31 +526,31 @@ namespace hotplugin
    }
 
 
-   void plugin::on_bare_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle)
+   void plugin::on_bare_paint(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangle)
 
    {
 
-      if(pgraphics == nullptr)
+      if(pdraw2dgraphics == nullptr)
          return;
 
       if (m_iHealingSurface == 0)
       {
 
-         on_bare_paint_veri_discreet(pgraphics, rectangle);
+         on_bare_paint_veri_discreet(pdraw2dgraphics, rectangle);
 
 
       }
       else if(m_iHealingSurface == 1)
       {
 
-         on_bare_paint_discreet(pgraphics, rectangle);
+         on_bare_paint_discreet(pdraw2dgraphics, rectangle);
 
 
       }
       else
       {
 
-         on_bare_paint_full_screen(pgraphics, rectangle);
+         on_bare_paint_full_screen(pdraw2dgraphics, rectangle);
 
       }
 
@@ -613,7 +613,7 @@ namespace hotplugin
    }
 
 
-   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam)
+   void plugin::on_paint_progress(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangleParam)
 
    {
 
@@ -666,7 +666,7 @@ namespace hotplugin
 
             rectangleP.right    = rectangleWindow.right;
 
-            pgraphics->fill_rectangle(rectangleP, argb(90, 90, 90, 80));
+            pdraw2dgraphics->fill_rectangle(rectangleP, argb(90, 90, 90, 80));
 
          }
 

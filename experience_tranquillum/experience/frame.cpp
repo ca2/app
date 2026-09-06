@@ -53,7 +53,7 @@ namespace experience_tranquillum
    }
 
 
-   void frame::Glass(::draw2d::graphics_pointer & pgraphics, const i32_rectangle & rectangle)
+   void frame::Glass(::draw2d::graphics_pointer & pdraw2dgraphics, const i32_rectangle & rectangle)
    {
 
       //auto pframewindow = m_pframewindow;
@@ -94,7 +94,7 @@ namespace experience_tranquillum
       //::i32_rectangle rectangleWindow = rectangleX;
       //pframewindow->client_to_screen(rectangleWindow);
       ////pimage = create_image({rectangleX.width(),  rectangleX.height()});
-      //bool b = pgraphicsImage2->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
+      //bool b = pgraphicsImage2->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pdraw2dgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
       ////bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left - iInflate, rectangleX.top - iInflate);
       //b = imaging.blur(pgraphicsImage, ::i32_point(),
       //                 i32_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2),
@@ -103,7 +103,7 @@ namespace experience_tranquillum
       ////spgraphics->Draw3dRect(rectangleX, 127 << 24, 127 << 24);
       ////rectangleX.deflate(1, 1);
       ////spgraphics->Draw3dRect(rectangleX, 64 << 24, 64 << 24);
-      ////b = imaging.bitmap_blend(pgraphics, rectangle.left, rectangle.top,
+      ////b = imaging.bitmap_blend(pdraw2dgraphics, rectangle.left, rectangle.top,
 
       //rectangleWindow.width(),
       //rectangleWindow.height(),
@@ -114,7 +114,7 @@ namespace experience_tranquillum
       //bf.BlendOp     = AC_SRC_OVER;
       //bf.BlendFlags = 0;
       //bf.SourceConstantAlpha = 255;
-      //::alpha_blend(pgraphics->get_handle1(),
+      //::alpha_blend(pdraw2dgraphics->get_handle1(),
       //rectangle.left, rectangle.top,
 
       //rectangleWindow.width(),
@@ -125,7 +125,7 @@ namespace experience_tranquillum
       //rectangleWindow.height(),
       //bf);*/
 
-      //pgraphics->BitBlt(rectangleX.left, rectangleX.top, rectangleX.width(), rectangleX.height(), pgraphicsImage, iInflate, iInflate);
+      //pdraw2dgraphics->BitBlt(rectangleX.left, rectangleX.top, rectangleX.width(), rectangleX.height(), pgraphicsImage, iInflate, iInflate);
 
    }
 
@@ -147,16 +147,16 @@ namespace experience_tranquillum
    //}
 
 
-   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color & color, const ::opacity & opacity)
+   void frame::ColorGlass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, const ::color::color & color, const ::opacity & opacity)
    {
 
-      /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
+      /*Gdiplus::Graphics g((HDC) pdraw2dgraphics->get_os_data());
       g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_u8_red(color32), color32_u8_green(color32), color32_u8_blue(color32)));
       g.FillRectangle(&solidBrush, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top);*/
 
 
-      pgraphics->fill_rectangle(rectangle, color & opacity);
+      pdraw2dgraphics->fill_rectangle(rectangle, color & opacity);
 
 
    }
@@ -306,9 +306,9 @@ namespace experience_tranquillum
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics({}, m_pframewindow);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, m_pframewindow);
 
-      auto pstyle = pframewindow->get_style(pgraphics);
+      auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
       auto crButtonHilite = pframewindow->get_color(pstyle, ::e_element_button_hilite);
 
@@ -329,7 +329,7 @@ namespace experience_tranquillum
    }
 
 
-   void frame::on_style_change_001_and_002(::draw2d::graphics_pointer & pgraphics)
+   void frame::on_style_change_001_and_002(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
@@ -415,7 +415,7 @@ namespace experience_tranquillum
    }
 
 
-   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const i32_rectangle & rectangleParam, enum_border eborder, const ::color::color & crTopLeft, const ::color::color & crBottomRight)
+   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pdraw2dgraphics, const i32_rectangle & rectangleParam, enum_border eborder, const ::color::color & crTopLeft, const ::color::color & crBottomRight)
    {
 
       ::i32_rectangle rectangle(rectangleParam);
@@ -425,7 +425,7 @@ namespace experience_tranquillum
       ::i32 cx = rectangle.width() - 1;
       ::i32 cy = rectangle.height() - 1;
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::draw2d::pen_pointer ppen;
 
@@ -436,21 +436,21 @@ namespace experience_tranquillum
 
          ppen->create_solid(1.0, crTopLeft);
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(ppen);
 
       }
 
       if (eborder & e_border_top)
       {
 
-         pgraphics->line(x, y,x + cx, y);
+         pdraw2dgraphics->line(x, y,x + cx, y);
 
       }
 
       if (eborder & e_border_left)
       {
 
-         pgraphics->line(x, y,x, y + cy);
+         pdraw2dgraphics->line(x, y,x, y + cy);
 
       }
 
@@ -461,21 +461,21 @@ namespace experience_tranquillum
 
          ppen->create_solid(1.0, crBottomRight);
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(ppen);
 
       }
 
       if (eborder & e_border_right)
       {
 
-         pgraphics->line(x + cx, y, x + cx, y + cy);
+         pdraw2dgraphics->line(x + cx, y, x + cx, y + cy);
 
       }
 
       if (eborder & e_border_bottom)
       {
 
-         pgraphics->line(x, y + cy,x + cx, y + cy);
+         pdraw2dgraphics->line(x, y + cy,x + cx, y + cy);
 
       }
 
@@ -502,10 +502,10 @@ namespace experience_tranquillum
    //}
 
 
-   void frame::title_bar_layout(::draw2d::graphics_pointer & pgraphics)
+   void frame::title_bar_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::experience::frame::title_bar_layout(pgraphics);
+      ::experience::frame::title_bar_layout(pdraw2dgraphics);
 
       m_rectangleCaptionTextBk = m_rectangleCaption;
 
@@ -513,10 +513,10 @@ namespace experience_tranquillum
 
 
 
-   void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void frame::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      //pgraphics->fill_solid_rectangle(::f64_rectangle_dimension(0, 0, 16, 16), ::color::red);
+      //pdraw2dgraphics->fill_solid_rectangle(::f64_rectangle_dimension(0, 0, 16, 16), ::color::red);
 
       //return;
 
@@ -529,11 +529,11 @@ namespace experience_tranquillum
 
       //
 
-      //pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      //pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       if (!m_pframewindow->layout().is_full_screen()
          && !m_pframewindow->layout().is_zoomed()
@@ -544,13 +544,13 @@ namespace experience_tranquillum
 
          //auto time1 = ::time::now();
 
-         on_draw_frame(pgraphics);
+         on_draw_frame(pdraw2dgraphics);
 
          //printf("A. frame::on_draw_frame %d\n", tick1.elapsed().m_i32);
 
       }
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if (m_pframewindow->layout().is_minimal())
       {
@@ -577,7 +577,7 @@ namespace experience_tranquillum
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
@@ -599,13 +599,13 @@ namespace experience_tranquillum
 
                auto rect3d = ::f64_rectangle_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
 
-               pgraphics->draw_inset_3d_rectangle(rect3d, argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
+               pdraw2dgraphics->draw_inset_3d_rectangle(rect3d, argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
                i += 5;
 
             }
 
-            //pgraphics->Draw3dRect(rectangleGrip.left + 12,rectangleGrip.top,3,rectangleGrip.height(),argb(184,255,255,255),argb(184,84,84,84));
+            //pdraw2dgraphics->Draw3dRect(rectangleGrip.left + 12,rectangleGrip.top,3,rectangleGrip.height(),argb(184,255,255,255),argb(184,84,84,84));
 
          }
 
@@ -675,22 +675,22 @@ namespace experience_tranquillum
                || hwndDraw == hwndActiveWindowParent
                || puiInactiveTopLevel == puiActiveTopLevel)
                && m_colorActiveCaptionTextBk != 0)*/
-         pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+         pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-         pgraphics->set_compositing_quality(::draw2d::e_compositing_quality_none);
+         pdraw2dgraphics->set_compositing_quality(::draw2d::e_compositing_quality_none);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          if (m_pframewindow->is_active_window())
          {
 
-            pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorActiveCaptionTextBk);
+            pdraw2dgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorActiveCaptionTextBk);
 
          }
          else
          {
 
-            pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
+            pdraw2dgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
 
          }
 
@@ -725,7 +725,7 @@ namespace experience_tranquillum
 
             //
 
-            auto pstyle = pframewindow->get_style(pgraphics);
+            auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
             crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
@@ -763,7 +763,7 @@ namespace experience_tranquillum
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
@@ -783,25 +783,25 @@ namespace experience_tranquillum
 
          pbrushText->create_solid(m_colorCaptionText);
 
-         pgraphics->set(pbrushText);
+         pdraw2dgraphics->set(pbrushText);
 
-         pgraphics->set_font(pframewindow, ::e_element_window_title);
+         pdraw2dgraphics->set_font(pframewindow, ::e_element_window_title);
 
-         pgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
+         pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->draw_text(strWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
+         pdraw2dgraphics->draw_text(strWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
 
       }
 
    }
 
 
-   void frame::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
+   void frame::on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    }
 

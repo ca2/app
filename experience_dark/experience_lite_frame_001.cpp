@@ -189,7 +189,7 @@ SizingNone:;
 
 
 
-            void frame_001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lpcrectClient, enum_border eside)
+            void frame_001::draw_border_side(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle &lpcrectClient, enum_border eside)
             {
 
                auto pframewindow = m_pframewindow;
@@ -214,7 +214,7 @@ SizingNone:;
                {
                   
 
-                  auto pstyle = pframewindow->get_style(pgraphics);
+                  auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
                   crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
@@ -239,7 +239,7 @@ SizingNone:;
 
 
 
-                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
+                  pdraw2dgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
                }
                /*else if(m_estyle == StyleLightBlue)
@@ -251,18 +251,18 @@ SizingNone:;
 
 
 
-                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
+                  pdraw2dgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
 
 
                   rectangleA.deflate(2, 2, 2, 2);
-                  Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorderHilight, crMoveableBorderShadow);
+                  Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, crMoveableBorderHilight, crMoveableBorderShadow);
 
                   rectangleA.deflate(1, 1, 1, 1);
-                  Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
+                  Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
 
                   rectangleA.deflate(1, 1, 1, 1);
-                  Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
+                  Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
 
 
                }*/
@@ -279,14 +279,14 @@ SizingNone:;
 
 
 
-                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
+                  pdraw2dgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
                }
 
             }
 
 
-            void frame_001::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
+            void frame_001::on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics)
             {
 
                auto pframewindow = m_pframewindow;
@@ -314,21 +314,21 @@ SizingNone:;
                if(!pframewindow->layout().is_full_screen())
                {
 
-                  DrawBorder(pgraphics, rectangleWindow);
+                  DrawBorder(pdraw2dgraphics, rectangleWindow);
 
                }
 
                if(!bZoomed && !pframewindow->layout().is_full_screen())
                {
 
-                  DrawGripSet(pgraphics, rectangleWindow);
+                  DrawGripSet(pdraw2dgraphics, rectangleWindow);
 
                }
 
             }
 
 
-            void frame_001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lpcrectClient)
+            void frame_001::DrawBorder(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle &lpcrectClient)
             {
 
 
@@ -349,28 +349,28 @@ SizingNone:;
                if(eborder & e_border_top)
                {
 
-                  draw_border_side(pgraphics, lpcrectClient, e_border_top);
+                  draw_border_side(pdraw2dgraphics, lpcrectClient, e_border_top);
 
                }
 
                if(eborder & e_border_right)
                {
 
-                  draw_border_side(pgraphics, lpcrectClient, e_border_right);
+                  draw_border_side(pdraw2dgraphics, lpcrectClient, e_border_right);
 
                }
 
                if(eborder & e_border_bottom)
                {
 
-                  draw_border_side(pgraphics, lpcrectClient, e_border_bottom);
+                  draw_border_side(pdraw2dgraphics, lpcrectClient, e_border_bottom);
 
                }
 
                if(eborder & e_border_left)
                {
 
-                  draw_border_side(pgraphics, lpcrectClient, e_border_left);
+                  draw_border_side(pdraw2dgraphics, lpcrectClient, e_border_left);
 
                }
 
@@ -422,12 +422,12 @@ SizingNone:;
             void frame_001::on_style_change()
             {
 
-               on_style_change_001_and_002(pgraphics);
+               on_style_change_001_and_002(pdraw2dgraphics);
 
             }
 
 
-            void frame_001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lpcrectClient, enum_grip egrip)
+            void frame_001::DrawGrip(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle &lpcrectClient, enum_grip egrip)
             {
 
                ::i32_rectangle rectangleC(lpcrectClient);
@@ -456,7 +456,7 @@ SizingNone:;
                {
                case e_grip_top_left:
                {
-                  pgraphics->SelectObject(m_ppenHilight1);
+                  pdraw2dgraphics->SelectObject(m_ppenHilight1);
 
                   rectangleA = rectangleX;
 
@@ -471,11 +471,11 @@ SizingNone:;
                   ptC = rectangleA.top_left();
                   ptC.x += 15;
 
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
-                  pgraphics->SelectObject(m_ppenFace1);
+                  pdraw2dgraphics->SelectObject(m_ppenFace1);
 
                   // Most external i32_rectangle
 
@@ -486,9 +486,9 @@ SizingNone:;
                   ptB = rectangleA.top_left();
                   ptC = rectangleA.top_left();
                   ptC.x += 16;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
                   // Midle Rectangle
 
@@ -504,11 +504,11 @@ SizingNone:;
                   ptB = rectangleA.top_left();
                   ptC = rectangleA.top_left();
                   ptC.x += 14;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
-                  pgraphics->SelectObject(m_ppenShadow1);
+                  pdraw2dgraphics->SelectObject(m_ppenShadow1);
 
                   rectangleA = rectangleX;
 
@@ -528,11 +528,11 @@ SizingNone:;
                   ptB = rectangleA.top_left();
                   ptC = rectangleA.top_left();
                   ptC.x += 13;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
-                  pgraphics->SelectObject(m_ppenDkShadow1);
+                  pdraw2dgraphics->SelectObject(m_ppenDkShadow1);
 
                   rectangleA = rectangleX;
 
@@ -546,11 +546,11 @@ SizingNone:;
                   ptB = rectangleA.top_left();
                   ptC = rectangleA.top_left();
                   ptC.x += 12;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
-                  pgraphics->SelectObject(m_ppenShadow1);
+                  pdraw2dgraphics->SelectObject(m_ppenShadow1);
 
                   // Details
 
@@ -558,8 +558,8 @@ SizingNone:;
                   ptA.y = rectangleXB.top + 1;
                   ptB.x = rectangleXB.left + 14;
                   ptB.y = rectangleXB.top + 3;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
 
 
                   // Details
@@ -568,10 +568,10 @@ SizingNone:;
                   ptA.y = rectangleXB.top + 14;
                   ptB.x = rectangleXB.left + 3;
                   ptB.y = rectangleXB.top + 14;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
 
-                  pgraphics->SelectObject(m_ppenDkShadow1);
+                  pdraw2dgraphics->SelectObject(m_ppenDkShadow1);
 
                   // Details
 
@@ -579,8 +579,8 @@ SizingNone:;
                   ptA.y = rectangleXB.top + 1;
                   ptB.x = rectangleXB.left + 15;
                   ptB.y = rectangleXB.top + 5;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
 
                   // Details
 
@@ -588,13 +588,13 @@ SizingNone:;
                   ptA.y = rectangleXB.top + 15;
                   ptB.x = rectangleXB.left + 5;
                   ptB.y = rectangleXB.top + 15;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
                }
                break;
                case e_grip_top_right:
                {
-                  pgraphics->SelectObject(m_ppenHilight1);
+                  pdraw2dgraphics->SelectObject(m_ppenHilight1);
 
                   rectangleA = rectangleX;
 
@@ -606,8 +606,8 @@ SizingNone:;
                   ptA = rectangleA.top_right();
                   ptA.x -= 15;
                   ptB = rectangleA.top_right();
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
 
                   rectangleA.top += 2;
                   rectangleA.left += 2;
@@ -617,10 +617,10 @@ SizingNone:;
                   ptB = rectangleA.top_right();
                   ptC = rectangleA.top_right();
                   ptC.y += 13;
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
-                  pgraphics->SelectObject(m_ppenFace1);
+                  pdraw2dgraphics->SelectObject(m_ppenFace1);
 
                   // Most external i32_rectangle
 
@@ -629,8 +629,8 @@ SizingNone:;
                   ptA = rectangleA.top_right();
                   ptA.x -= 16;
                   ptB = rectangleA.top_right();
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
 
 
                   // Most internal i32_rectangle
@@ -643,8 +643,8 @@ SizingNone:;
                   ptB = rectangleA.top_right();
                   ptC = rectangleA.top_right();
                   ptC.y += 12;
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
                   // Midle Rectangle
 
@@ -660,11 +660,11 @@ SizingNone:;
                   ptB = rectangleA.top_right();
                   ptC = rectangleA.top_right();
                   ptC.y += 14;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
-                  pgraphics->SelectObject(m_ppenShadow1);
+                  pdraw2dgraphics->SelectObject(m_ppenShadow1);
 
                   rectangleA = rectangleX;
 
@@ -676,8 +676,8 @@ SizingNone:;
                   ptB = rectangleA.top_right();
                   ptC = rectangleA.top_right();
                   ptC.y += 15;
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
                   rectangleA.top += 2;
                   rectangleA.left += 2;
@@ -687,18 +687,18 @@ SizingNone:;
                   ptA = rectangleA.top_right();
                   ptA.x -= 12;
                   ptB = rectangleA.top_right();
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
 
-                  pgraphics->SelectObject(m_ppenDkShadow1);
+                  pdraw2dgraphics->SelectObject(m_ppenDkShadow1);
 
                   rectangleA = rectangleX;
 
                   ptB = rectangleA.top_right();
                   ptC = rectangleA.top_right();
                   ptC.y += 16;
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
                   rectangleA.top += 4;
                   rectangleA.left += 4;
@@ -708,19 +708,19 @@ SizingNone:;
                   ptA = rectangleA.top_right();
                   ptA.x -= 11;
                   ptB = rectangleA.top_right();
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
 
-                  pgraphics->SelectObject(m_ppenHilight1);
+                  pdraw2dgraphics->SelectObject(m_ppenHilight1);
 
                   ptA.x = rectangleXB.right - 14;
                   ptA.y = rectangleXB.top + 1;
                   ptB.x = rectangleXB.right - 14;
                   ptB.y = rectangleXB.top + 4;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
 
-                  pgraphics->SelectObject(m_ppenFace1);
+                  pdraw2dgraphics->SelectObject(m_ppenFace1);
 
                   // Details
 
@@ -728,10 +728,10 @@ SizingNone:;
                   ptA.y = rectangleXB.top;
                   ptB.x = rectangleXB.right - 15;
                   ptB.y = rectangleXB.top + 5;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
 
-                  pgraphics->SelectObject(m_ppenShadow1);
+                  pdraw2dgraphics->SelectObject(m_ppenShadow1);
 
                   // Details
 
@@ -739,10 +739,10 @@ SizingNone:;
                   ptA.y = rectangleXB.top + 14;
                   ptB.x = rectangleXB.right - 1;
                   ptB.y = rectangleXB.top + 14;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
 
-                  pgraphics->SelectObject(m_ppenDkShadow1);
+                  pdraw2dgraphics->SelectObject(m_ppenDkShadow1);
 
                   // Details
 
@@ -750,14 +750,14 @@ SizingNone:;
                   ptA.y = rectangleXB.top + 15;
                   ptB.x = rectangleXB.right;
                   ptB.y = rectangleXB.top + 15;
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptA);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptA);
                }
                break;
                case e_grip_bottom_left:
                {
 
-                  pgraphics->SelectObject(m_ppenHilight1);
+                  pdraw2dgraphics->SelectObject(m_ppenHilight1);
 
                   rectangleA = rectangleX;
 
@@ -768,8 +768,8 @@ SizingNone:;
                   ptA = rectangleA.bottom_left();
                   ptA.y -= 16;
                   ptB = rectangleA.bottom_left();
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptA);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptA);
 
                   rectangleA = rectangleX;
 
@@ -780,10 +780,10 @@ SizingNone:;
                   ptB = rectangleA.bottom_left();
                   ptC = rectangleA.bottom_left();
                   ptC.x += 12;
-                  pgraphics->set_current_point(ptC);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptC);
+                  pdraw2dgraphics->line_to(ptB);
 
-                  pgraphics->SelectObject(m_ppenFace1);
+                  pdraw2dgraphics->SelectObject(m_ppenFace1);
 
                   // Most external i32_rectangle 0
 
@@ -792,8 +792,8 @@ SizingNone:;
                   ptA = rectangleA.bottom_left();
                   ptA.y -= 15;
                   ptB = rectangleA.bottom_left();
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptA);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptA);
 
                   // Most internal i32_rectangle 4
 
@@ -805,8 +805,8 @@ SizingNone:;
                   ptB = rectangleA.bottom_left();
                   ptC = rectangleA.bottom_left();
                   ptC.x += 12;
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
                   // Midle Rectangle 2
 
@@ -822,11 +822,11 @@ SizingNone:;
                   ptB = rectangleA.bottom_left();
                   ptC = rectangleA.bottom_left();
                   ptC.x += 14;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
-                  pgraphics->SelectObject(m_ppenShadow1);
+                  pdraw2dgraphics->SelectObject(m_ppenShadow1);
 
                   rectangleA = rectangleX;
 
@@ -836,8 +836,8 @@ SizingNone:;
                   ptB = rectangleA.bottom_left();
                   ptC = rectangleA.bottom_left();
                   ptC.x += 14;
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
                   rectangleA = rectangleX;
 
@@ -847,10 +847,10 @@ SizingNone:;
                   ptA = rectangleA.bottom_left();
                   ptA.y -= 12;
                   ptB = rectangleA.bottom_left();
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
 
-                  pgraphics->SelectObject(m_ppenDkShadow1);
+                  pdraw2dgraphics->SelectObject(m_ppenDkShadow1);
 
                   rectangleA = rectangleX;
 
@@ -858,8 +858,8 @@ SizingNone:;
                   ptB.x++;
                   ptC = rectangleA.bottom_left();
                   ptC.x += 16;
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
                   rectangleA.left += 4;
                   rectangleA.bottom -= 3;
@@ -867,32 +867,32 @@ SizingNone:;
                   ptA = rectangleA.bottom_left();
                   ptA.y -= 11;
                   ptB = rectangleA.bottom_left();
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
 
                   // Details - top most
 
-                  pgraphics->SelectObject(m_ppenHilight1);
+                  pdraw2dgraphics->SelectObject(m_ppenHilight1);
 
                   ptA.x = rectangleXB.left + 1;
                   ptA.y = rectangleXB.bottom - 15;
                   ptB.x = rectangleXB.left + 4;
                   ptB.y = rectangleXB.bottom - 15;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
 
                   // Details - top most
 
-                  pgraphics->SelectObject(m_ppenFace1);
+                  pdraw2dgraphics->SelectObject(m_ppenFace1);
 
                   ptA.x = rectangleXB.left;
                   ptA.y = rectangleXB.bottom - 15;
                   ptB.x = rectangleXB.left + 5;
                   ptB.y = rectangleXB.bottom - 15;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
 
-                  pgraphics->SelectObject(m_ppenShadow1);
+                  pdraw2dgraphics->SelectObject(m_ppenShadow1);
 
                   // Details - right most
 
@@ -900,10 +900,10 @@ SizingNone:;
                   ptA.y = rectangleXB.bottom - 4;
                   ptB.x = rectangleXB.left + 14;
                   ptB.y = rectangleXB.bottom - 1;
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptA);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptA);
 
-                  pgraphics->SelectObject(m_ppenDkShadow1);
+                  pdraw2dgraphics->SelectObject(m_ppenDkShadow1);
 
                   // Details - right most
 
@@ -911,13 +911,13 @@ SizingNone:;
                   ptA.y = rectangleXB.bottom - 4;
                   ptB.x = rectangleXB.left + 15;
                   ptB.y = rectangleXB.bottom;
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptA);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptA);
                }
                break;
                case e_grip_bottom_right:
                {
-                  pgraphics->SelectObject(m_ppenHilight1);
+                  pdraw2dgraphics->SelectObject(m_ppenHilight1);
 
                   rectangleA = rectangleX;
 
@@ -936,11 +936,11 @@ SizingNone:;
                   ptB = rectangleA.bottom_right();
                   ptC = rectangleA.bottom_right();
                   ptC.x -= 13;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
-                  pgraphics->SelectObject(m_ppenFace1);
+                  pdraw2dgraphics->SelectObject(m_ppenFace1);
 
                   rectangleA = rectangleX;
 
@@ -956,9 +956,9 @@ SizingNone:;
                   ptB = rectangleA.bottom_right();
                   ptC = rectangleA.bottom_right();
                   ptC.x -= 12;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
                   // Midle Rectangle
 
@@ -974,10 +974,10 @@ SizingNone:;
                   ptB = rectangleA.bottom_right();
                   ptC = rectangleA.bottom_right();
                   ptC.x -= 14;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
-                  pgraphics->line_to(ptC);
-                  pgraphics->SelectObject(m_ppenShadow1);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
+                  pdraw2dgraphics->line_to(ptC);
+                  pdraw2dgraphics->SelectObject(m_ppenShadow1);
 
                   rectangleA = rectangleX;
 
@@ -991,11 +991,11 @@ SizingNone:;
                   ptB = rectangleA.bottom_right();
                   ptC = rectangleA.bottom_right();
                   ptC.x -= 15;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
-                  pgraphics->SelectObject(m_ppenDkShadow1);
+                  pdraw2dgraphics->SelectObject(m_ppenDkShadow1);
 
                   rectangleA = rectangleX;
 
@@ -1004,27 +1004,27 @@ SizingNone:;
                   ptB = rectangleA.bottom_right();
                   ptC = rectangleA.bottom_right();
                   ptC.x -= 15;
-                  pgraphics->set_current_point(ptA);
-                  pgraphics->line_to(ptB);
-                  pgraphics->line_to(ptC);
+                  pdraw2dgraphics->set_current_point(ptA);
+                  pdraw2dgraphics->line_to(ptB);
+                  pdraw2dgraphics->line_to(ptC);
 
-                  pgraphics->SelectObject(m_ppenHilight1);
+                  pdraw2dgraphics->SelectObject(m_ppenHilight1);
 
                   ptA.x = rectangleXB.right - 3;
                   ptA.y = rectangleXB.bottom - 14;
                   ptB.x = rectangleXB.right - 1;
                   ptB.y = rectangleXB.bottom - 14;
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptA);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptA);
 
                   ptA.x = rectangleXB.right - 14;
                   ptA.y = rectangleXB.bottom - 3;
                   ptB.x = rectangleXB.right - 14;
                   ptB.y = rectangleXB.bottom - 1;
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptA);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptA);
 
-                  pgraphics->SelectObject(m_ppenFace1);
+                  pdraw2dgraphics->SelectObject(m_ppenFace1);
 
                   // Details
 
@@ -1032,15 +1032,15 @@ SizingNone:;
                   ptA.y = rectangleXB.bottom - 15;
                   ptB.x = rectangleXB.right;
                   ptB.y = rectangleXB.bottom - 15;
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptA);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptA);
 
                   ptA.x = rectangleXB.right - 15;
                   ptA.y = rectangleXB.bottom - 5;
                   ptB.x = rectangleXB.right - 15;
                   ptB.y = rectangleXB.bottom;
-                  pgraphics->set_current_point(ptB);
-                  pgraphics->line_to(ptA);
+                  pdraw2dgraphics->set_current_point(ptB);
+                  pdraw2dgraphics->line_to(ptA);
                }
                break;
                case e_grip_top:
@@ -1060,7 +1060,7 @@ SizingNone:;
                   rectangleB.right = ptCenter.x + GRIP_CENTER_LARGE_CX / 2 + iMod;
                   rectangleB.bottom = rectangleC.top + GRIP_CENTER_SMALL_CY;
 
-                  DrawRectGrip(pgraphics, rectangleB);
+                  DrawRectGrip(pdraw2dgraphics, rectangleB);
                }
                break;
                case e_grip_bottom:
@@ -1080,7 +1080,7 @@ SizingNone:;
                   rectangleB.right = ptCenter.x + GRIP_CENTER_LARGE_CX / 2 + iMod;
                   rectangleB.top = rectangleC.bottom - GRIP_CENTER_SMALL_CY;
 
-                  DrawRectGrip(pgraphics, rectangleB);
+                  DrawRectGrip(pdraw2dgraphics, rectangleB);
                }
                break;
                case e_grip_left:
@@ -1101,7 +1101,7 @@ SizingNone:;
                   rectangleB.right = rectangleC.left + GRIP_CENTER_SMALL_CX;
                   rectangleB.bottom = ptCenter.y + GRIP_CENTER_LARGE_CY / 2 + iMod;
 
-                  DrawRectGrip(pgraphics, rectangleB);
+                  DrawRectGrip(pdraw2dgraphics, rectangleB);
                }
                break;
                case e_grip_right:
@@ -1122,7 +1122,7 @@ SizingNone:;
                   rectangleB.left = rectangleC.right - GRIP_CENTER_SMALL_CX;
                   rectangleB.bottom = ptCenter.y + GRIP_CENTER_LARGE_CY / 2 + iMod;
 
-                  DrawRectGrip(pgraphics, rectangleB);
+                  DrawRectGrip(pdraw2dgraphics, rectangleB);
                }
                break;
                default:
@@ -1132,7 +1132,7 @@ SizingNone:;
 
             }
 
-            void frame_001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle &rectangleParam)
+            void frame_001::DrawRectGrip(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle &rectangleParam)
             {
 
 
@@ -1143,19 +1143,19 @@ SizingNone:;
 
                //rectangle.bottom++;
 
-               pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace | 0xff000000, crButtonDarkShadow | 0xff000000);
+               pdraw2dgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace | 0xff000000, crButtonDarkShadow | 0xff000000);
 
                rectangle.deflate(1, 1);
 
-               pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite | 0xff000000, crButtonShadow | 0xff000000);
+               pdraw2dgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite | 0xff000000, crButtonShadow | 0xff000000);
 
                rectangle.deflate(1, 1);
 
-               pgraphics->fill_rectangle(rectangle, crButtonFace | 0xff000000);
+               pdraw2dgraphics->fill_rectangle(rectangle, crButtonFace | 0xff000000);
 
             }
 
-            void frame_001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lpcrectClient)
+            void frame_001::DrawGripSet(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle &lpcrectClient)
             {
                size_manager * psizenager = m_pframewindow->size_manager();
 
@@ -1163,35 +1163,35 @@ SizingNone:;
 
                if(egrip & e_grip_top)
                {
-                  DrawGrip(pgraphics, lpcrectClient, e_grip_top);
+                  DrawGrip(pdraw2dgraphics, lpcrectClient, e_grip_top);
                }
                if(egrip & e_grip_top_right)
                {
-                  DrawGrip(pgraphics, lpcrectClient, e_grip_top_right);
+                  DrawGrip(pdraw2dgraphics, lpcrectClient, e_grip_top_right);
                }
                if(egrip & e_grip_right)
                {
-                  DrawGrip(pgraphics, lpcrectClient, e_grip_right);
+                  DrawGrip(pdraw2dgraphics, lpcrectClient, e_grip_right);
                }
                if(egrip & e_grip_bottom_right)
                {
-                  DrawGrip(pgraphics, lpcrectClient, e_grip_bottom_right);
+                  DrawGrip(pdraw2dgraphics, lpcrectClient, e_grip_bottom_right);
                }
                if(egrip & e_grip_bottom)
                {
-                  DrawGrip(pgraphics, lpcrectClient, e_grip_bottom);
+                  DrawGrip(pdraw2dgraphics, lpcrectClient, e_grip_bottom);
                }
                if(egrip & e_grip_bottom_left)
                {
-                  DrawGrip(pgraphics, lpcrectClient, e_grip_bottom_left);
+                  DrawGrip(pdraw2dgraphics, lpcrectClient, e_grip_bottom_left);
                }
                if(egrip & e_grip_left)
                {
-                  DrawGrip(pgraphics, lpcrectClient, e_grip_left);
+                  DrawGrip(pdraw2dgraphics, lpcrectClient, e_grip_left);
                }
                if(egrip & e_grip_top_left)
                {
-                  DrawGrip(pgraphics, lpcrectClient, e_grip_top_left);
+                  DrawGrip(pdraw2dgraphics, lpcrectClient, e_grip_top_left);
                }
 
             }

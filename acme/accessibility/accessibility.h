@@ -30,6 +30,8 @@ namespace accessibility
       application_predicate(const ::function<bool(::accessibility::application *papplication)> &function);
 
 
+      virtual ::pointer_array < main_window > system_get_main_windows();
+
    };
 
 } // namespace accessibility

@@ -345,9 +345,9 @@ namespace tsf
        GetCaretPos(&pt);
        //lPos = ::SendMessage(m_hwndEdit, EM_POSFROMCHAR, m_acpStart, 0);
 
-       ::draw2d::graphics_pointer pgraphics = ::draw2d::create_memory_graphics();
+       ::draw2d::graphics_pointer pdraw2dgraphics = ::draw2d::create_memory_graphics();
 
-       plain_edit_sel_to_line_x(pgraphics, m_acpStart, lPos);
+       plain_edit_sel_to_line_x(pdraw2dgraphics, m_acpStart, lPos);
 
        //if the caret position is the same as the start character, then the selection end is the start of the selection
        m_ActiveSelEnd = ((pt.x == LOWORD(lPos) && pt.y == HIWORD(lPos)) ? TS_AE_START : TS_AE_END);

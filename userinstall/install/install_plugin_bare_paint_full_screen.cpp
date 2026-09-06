@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle &lprect)
+   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle &lprect)
    {
 
       ::f64 dRate = get_progress_rate();
@@ -54,39 +54,39 @@ namespace hotplugin
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          pbrush->create_solid(argb(255, uchR, uchG, uchB));
          r = i32_rectangle_dimension(rectangle.left, rectangle.top, cx, cy);
-         pgraphics->FillRect(r, br);
+         pdraw2dgraphics->FillRect(r, br);
 
       }
 
       pbrush->create_solid(argb(255, 255, 255, 255));
 
-      pgraphics->SelectObject(br);
+      pdraw2dgraphics->SelectObject(br);
 
       ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font(pnode->font_name(e_font_sans_fx), 49);
 
-      pgraphics->SelectObject(f);
+      pdraw2dgraphics->SelectObject(f);
 
       string strStatus;
 
       strStatus = str;
 
-      //on_paint_progress(pgraphics, m_rectangle);
+      //on_paint_progress(pdraw2dgraphics, m_rectangle);
 
-      pgraphics->text_out(rectangle.left + 84, rectangle.top + 84, strStatus);
+      pdraw2dgraphics->text_out(rectangle.left + 84, rectangle.top + 84, strStatus);
 
       f->create_pixel_font(pnode->font_name(e_font_sans_fx), 90, true);
 
-      pgraphics->SelectObject(f);
+      pdraw2dgraphics->SelectObject(f);
 
-      pgraphics->text_out(rectangle.left + 84, (::i32)(rectangle.top + 133 + 49 * 0.2), strProgress);
+      pdraw2dgraphics->text_out(rectangle.left + 84, (::i32)(rectangle.top + 133 + 49 * 0.2), strProgress);
 
       f->create_pixel_font(pnode->font_name(e_font_sans_fx), 23);
 
-      pgraphics->SelectObject(f);
+      pdraw2dgraphics->SelectObject(f);
 
-      pgraphics->text_out(rectangle.left + 84, (::i32)(rectangle.top + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
+      pdraw2dgraphics->text_out(rectangle.left + 84, (::i32)(rectangle.top + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
 
    }
 

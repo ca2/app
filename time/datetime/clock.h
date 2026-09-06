@@ -36,7 +36,7 @@ namespace datetime
          virtual void set_time(const ::earth::time& time);
          virtual void get_time(::earth::time& time);
 
-         virtual void _001OnDraw(::draw2d::graphics* pgraphics);
+         virtual void _001OnDraw(::draw2d::graphics* pdraw2dgraphics);
 
 
          virtual void previous_minute();

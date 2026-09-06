@@ -21,11 +21,11 @@ namespace universal_windows
       virtual ~host_interaction();
 
 
-      virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       virtual bool is_this_visible() override;

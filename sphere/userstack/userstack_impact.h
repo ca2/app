@@ -56,14 +56,14 @@ namespace userstack
 //      // void dump(dump_context & dumpcontext) const override;
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
       void install_message_routing(::channel * pchannel) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
-      virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       ::user::document * get_document();

@@ -30,7 +30,7 @@ public:
    ~stock_icon();
    
    
-   void on_draw(::draw2d::graphics * pgraphics, const ::f64_rectangle & rectangle) override;
+   void on_draw(::draw2d::graphics * pdraw2dgraphics, const ::f64_rectangle & rectangle) override;
    
 };
 

@@ -46,7 +46,7 @@ namespace filehandler
 
       m_plistWorking = nullptr;
 
-      on_layout(pgraphics);
+      on_layout(pdraw2dgraphics);
 
    }
 
@@ -111,7 +111,7 @@ namespace filehandler
 
    }
 
-   void impact::item::draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics, list_base * plist)
+   void impact::item::draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pdraw2dgraphics, list_base * plist)
    {
 
       __UNREFERENCED_PARAMETER(plist);
@@ -129,14 +129,14 @@ namespace filehandler
             && !Sess(papp).savings()->is_trying_to_save(::e_resource_memory))
       {
          class imaging & imaging = App(papp).imaging();
-         imaging.color_blend(pgraphics, m_rectangleItem, color32, 127);
+         imaging.color_blend(pdraw2dgraphics, m_rectangleItem, color32, 127);
       }
       else
       {
-         pgraphics->fill_rectangle(m_rectangleItem, color32);
+         pdraw2dgraphics->fill_rectangle(m_rectangleItem, color32);
       }
       color32 = bHover ? argb(255, 150, 255, 150) : argb(255, 50, 255, 50);
-      pgraphics->fill_rectangle(m_rectangleStatusImage, color32);
+      pdraw2dgraphics->fill_rectangle(m_rectangleStatusImage, color32);
       color32_t cr1;
       color32_t cr2;
       if(bHover)
@@ -151,12 +151,12 @@ namespace filehandler
          cr1 = argb(255, 100, 100, 100);
          cr2 = argb(255, 10, 10, 10);
       }
-      pgraphics->draw_inset_3d_rectangle(m_rectangleItem, cr1, cr2);
+      pdraw2dgraphics->draw_inset_3d_rectangle(m_rectangleItem, cr1, cr2);
       color32 |= 0xff000000;
       auto pbrushText = createø < ::draw2d::brush > ();
       pbrushText->create_solid(color32);
-      //pgraphics->set_color(color32);
-      pgraphics->draw_text(m_strApp, m_rectangleName, e_align_bottom_left);
+      //pdraw2dgraphics->set_color(color32);
+      pdraw2dgraphics->draw_text(m_strApp, m_rectangleName, e_align_bottom_left);
    }
 
 
@@ -187,16 +187,16 @@ namespace filehandler
       }
    }
 
-   void impact::list_base::draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics)
+   void impact::list_base::draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       for(::i32 i = 0; i < get_count(); i++)
       {
-         element_at(i)->draw(pimpact, pgraphics, this);
+         element_at(i)->draw(pimpact, pdraw2dgraphics, this);
       }
    }
 
 
-   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_plist.is_null())
@@ -210,7 +210,7 @@ namespace filehandler
    void impact::layout_list(list_base * plist)
    {
 
-      auto pgraphics = create_memory_graphics();
+      auto pdraw2dgraphics = create_memory_graphics();
 
       auto rectangleX = this->rectangle();
 
@@ -219,7 +219,7 @@ namespace filehandler
    }
 
 
-   void impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_plist.is_null())
@@ -227,7 +227,7 @@ namespace filehandler
 
       //select_font(pgraphicsImage);
 
-      m_plist->draw(this, pgraphics);
+      m_plist->draw(this, pdraw2dgraphics);
 
 
    }

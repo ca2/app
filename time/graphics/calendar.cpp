@@ -35,10 +35,10 @@ namespace datetime
       }
 
 
-      void graphics::_001OnDraw(::draw2d::graphics * pgraphics)
+      void graphics::_001OnDraw(::draw2d::graphics * pdraw2dgraphics)
       {
 
-         pgraphics->set(m_pfont);
+         pdraw2dgraphics->set(m_pfont);
 
          ::earth::time timeNow = ::earth::time::now();
          int32_t iMonth = m_iMonth;
@@ -52,11 +52,11 @@ namespace datetime
          {
             GetRectDay(iDay,0,&rectangleDay);
             //crBorder = rgb(184, 184, 177);
-            //pgraphics->Draw3dRect(rectangleDay, crBorder, crBorder);
+            //pdraw2dgraphics->Draw3dRect(rectangleDay, crBorder, crBorder);
             rectangleDay.deflate(m_iColWidth / 10,m_iLineHeight / 10);
             string strDay;
-            strDay.formatf("%s",GetTinyWeekDay(pgraphics->textcontext(),iDay));
-            pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
+            strDay.formatf("%s",GetTinyWeekDay(pdraw2dgraphics->textcontext(),iDay));
+            pdraw2dgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
          }
          for(iDay = 1; iDay <= 33; iDay++)
          {
@@ -75,11 +75,11 @@ namespace datetime
             }
             GetRectDay(time,&rectangleDay);
             crBorder = rgb(189,189,177);
-            pgraphics->draw_inset_rectangle(rectangleDay,crBorder, 1.0);
+            pdraw2dgraphics->draw_inset_rectangle(rectangleDay,crBorder, 1.0);
             rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.formatf("%d",iDay);
-            pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
+            pdraw2dgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
             time += timespan;
             if(time.month() != iMonth)
                break;
@@ -90,14 +90,14 @@ namespace datetime
             crBorder = rgb(90, 90, 80);
             GetRectDay(timeNow,&rectangleDay);
             rectangleDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
-            pgraphics->fill_rectangle(rectangleDay,rgb(220,220,210));
-            pgraphics->draw_inset_rectangle(rectangleDay,crBorder, 1.0);
+            pdraw2dgraphics->fill_rectangle(rectangleDay,rgb(220,220,210));
+            pdraw2dgraphics->draw_inset_rectangle(rectangleDay,crBorder, 1.0);
             rectangleDay.deflate(1,1);
-            pgraphics->draw_inset_rectangle(rectangleDay,crBorder, 1.0);
+            pdraw2dgraphics->draw_inset_rectangle(rectangleDay,crBorder, 1.0);
             rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.formatf("%d",timeNow.day());
-            pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
+            pdraw2dgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
          }
          ::earth::time timeEmp = m_time;
          for(int32_t iDay = timeEmp.day(); time.year() == iYear
@@ -108,37 +108,37 @@ namespace datetime
             crBorder = rgb(240,120,52);
             GetRectDay(m_time,&rectangleDay);
             rectangleDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
-            pgraphics->draw_inset_rectangle(rectangleDay,crBorder, 1.0);
+            pdraw2dgraphics->draw_inset_rectangle(rectangleDay,crBorder, 1.0);
             rectangleDay.deflate(1,1);
-            pgraphics->draw_inset_rectangle(rectangleDay,crBorder, 1.0);
+            pdraw2dgraphics->draw_inset_rectangle(rectangleDay,crBorder, 1.0);
             rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.formatf("%d",timeEmp.day());
-            pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
+            pdraw2dgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
          }
 
-         pgraphics->set(m_pfontYear);
+         pdraw2dgraphics->set(m_pfontYear);
          ::i32_rectangle rectangle;
          GetRect(&rectangle,e_element_year_title);
          string strYear;
          strYear.formatf("%d",iYear);
-         pgraphics->draw_text(strYear,rectangle,e_align_center);
+         pdraw2dgraphics->draw_text(strYear,rectangle,e_align_center);
 
-         pgraphics->set(m_pfontMonth);
+         pdraw2dgraphics->set(m_pfontMonth);
          GetRect(&rectangle,e_element_month_title);
          string strMonth;
-         strMonth = GetMonth(pgraphics->textcontext(),iMonth);
-         pgraphics->draw_text(strMonth,rectangle,e_align_center);
+         strMonth = GetMonth(pdraw2dgraphics->textcontext(),iMonth);
+         pdraw2dgraphics->draw_text(strMonth,rectangle,e_align_center);
 
-         pgraphics->set(m_pfontSpin);
+         pdraw2dgraphics->set(m_pfontSpin);
          GetRect(&rectangle,e_element_previous_year);
-         pgraphics->draw_text("<<",rectangle,e_align_center);
+         pdraw2dgraphics->draw_text("<<",rectangle,e_align_center);
          GetRect(&rectangle,e_element_next_year);
-         pgraphics->draw_text(">>",rectangle,e_align_center);
+         pdraw2dgraphics->draw_text(">>",rectangle,e_align_center);
          GetRect(&rectangle,e_element_previous_month);
-         pgraphics->draw_text("<",rectangle,e_align_center);
+         pdraw2dgraphics->draw_text("<",rectangle,e_align_center);
          GetRect(&rectangle,e_element_next_month);
-         pgraphics->draw_text(">",rectangle,e_align_center);
+         pdraw2dgraphics->draw_text(">",rectangle,e_align_center);
       }
 
 

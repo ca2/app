@@ -27,14 +27,14 @@ namespace experience_tranquillum
    }
 
 
-   void control_box::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void control_box::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
    }
    
 
-   void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void control_box::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if((top_level()->frame_is_transparent() && !top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
@@ -49,7 +49,7 @@ namespace experience_tranquillum
       if (rectangleX.area() <= 0)
          return;
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::color::color crBackground;
 
@@ -69,7 +69,7 @@ namespace experience_tranquillum
       if (m_colorBackground.non_transparent())
       {
 
-         pgraphics->fill_rectangle(rectangleX, m_colorBackground);
+         pdraw2dgraphics->fill_rectangle(rectangleX, m_colorBackground);
 
       }
 

@@ -232,7 +232,7 @@ namespace app_integration
    }
 
 
-   //void menu::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //void menu::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    //{
 
    //   if (get_app()->application_properties().m_echeckNoClientFrame != ::e_check_checked)
@@ -243,7 +243,7 @@ namespace app_integration
    //      for (::collection::index i = 0; i < 11; i++)
    //      {
 
-   //         pgraphics->draw_inset_rectangle(rectangle, argb(180, 80, 80, 80));
+   //         pdraw2dgraphics->draw_inset_rectangle(rectangle, argb(180, 80, 80, 80));
 
    //         rectangle.deflate(1, 1);
 
@@ -251,12 +251,12 @@ namespace app_integration
 
    //   }
 
-   //   m_prender->_001OnDraw(pgraphics);
+   //   m_prender->_001OnDraw(pdraw2dgraphics);
 
    //}
 
 
-   void menu::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void menu::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();

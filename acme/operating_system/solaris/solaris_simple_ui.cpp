@@ -731,7 +731,7 @@ namespace os
 
       m_xlib.create(m_window, cx, cy);
 
-      on_layout(pgraphics);
+      on_layout(pdraw2dgraphics);
 
       return true;
 

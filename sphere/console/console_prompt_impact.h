@@ -43,7 +43,7 @@ namespace console
       virtual ::i32 ungetch(::i32 c);
       virtual void clear();
 
-      void simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics);
+      void simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual bool keyboard_focus_is_focusable();
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -51,7 +51,7 @@ namespace console
       DECLARE_MESSAGE_HANDLER(on_message_key_up);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       virtual void interpret_command();

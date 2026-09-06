@@ -86,7 +86,7 @@ namespace draw2d_gdiplus
    }
 
 
-   bool font::create(::draw2d::graphics * pgraphics, ::i8 iCreate)
+   bool font::create(::draw2d::graphics * pdraw2dgraphics, ::i8 iCreate)
    {
 
       if (m_pfont != nullptr)
@@ -184,14 +184,14 @@ namespace draw2d_gdiplus
    //void * font::get_os_data() const
    //{
 
-   //   defer_update(pgraphics);
+   //   defer_update(pdraw2dgraphics);
 
    //   return m_pfont;
 
    //}
 
 
-   ::enum_character_set font::calculate_character_set(::draw2d::graphics * pgraphics)
+   ::enum_character_set font::calculate_character_set(::draw2d::graphics * pdraw2dgraphics)
    {
 
       //Gdiplus::Font * pfont = (Gdiplus::Font *) get_os_data();
@@ -200,11 +200,11 @@ namespace draw2d_gdiplus
 
       //zero(lf);
 
-      //pfont->GetLogFontA((::Gdiplus::Graphics *) pgraphics->get_os_data(), &lf);
+      //pfont->GetLogFontA((::Gdiplus::Graphics *) pdraw2dgraphics->get_os_data(), &lf);
 
       //return ::draw2d::wingdi_get_cs(lf.lfCharSet);
 
-      return ::write_text::font::calculate_character_set(pgraphics);
+      return ::write_text::font::calculate_character_set(pdraw2dgraphics);
 
    }
 

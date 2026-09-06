@@ -343,7 +343,7 @@ namespace hotplugin
    // if composer on paint returns (returns true), it has painted something meaningful : no other painting is needed or even desired (finally when system, and host are ok,
    // if host returns in a fashion-timed way the response for bitmap, it draw this bitmap, and not the default waiting [hall] screen painted by this composer).
 
-   bool composer::windows_on_paint(::draw2d::graphics_pointer & pgraphics)
+   bool composer::windows_on_paint(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if((!m_bOk || !m_bResponsive) || m_paxishost == nullptr || !m_paxishost->hotplugin_host_is_initialized() || m_strEntryHallText.has_character())
@@ -361,7 +361,7 @@ namespace hotplugin
          //if(m_timeEntryHallTextStart.elapsed() > ((5000) / 3))
          //{
 
-         //   ::hotplugin::entry_hall_windows_on_paint(pgraphics,m_rectangle,m_strEntryHallText);
+         //   ::hotplugin::entry_hall_windows_on_paint(pdraw2dgraphics,m_rectangle,m_strEntryHallText);
 
          //}
 

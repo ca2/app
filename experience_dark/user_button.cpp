@@ -20,20 +20,20 @@ namespace user
 
    }
 
-   void button::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void button::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::experience::button::_001OnClip(pgraphics);
+      ::experience::button::_001OnClip(pdraw2dgraphics);
 
    }
 
-   void button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void button::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
    }
 
 
-   void button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void button::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (get_top_level()->frame_is_transparent() && !get_top_level()->is_active())
@@ -52,14 +52,14 @@ namespace user
 
       color32_t crText;
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
       if (!is_window_enabled())
       {
 
-         pgraphics->SelectObject(m_pcontrolbox->m_pbrushButtonBackDisabled);
+         pdraw2dgraphics->SelectObject(m_pcontrolbox->m_pbrushButtonBackDisabled);
 
-         pgraphics->SelectObject(m_pcontrolbox->m_ppenButtonBackDisabled);
+         pdraw2dgraphics->SelectObject(m_pcontrolbox->m_ppenButtonBackDisabled);
 
          crText = m_pcontrolbox->m_colorButtonForeDisabled;
 
@@ -67,9 +67,9 @@ namespace user
       else if (m_pitemHover)
       {
 
-         pgraphics->SelectObject(m_pcontrolbox->m_pbrushButtonBackSel);
+         pdraw2dgraphics->SelectObject(m_pcontrolbox->m_pbrushButtonBackSel);
 
-         pgraphics->SelectObject(m_pcontrolbox->m_ppenButtonBackSel);
+         pdraw2dgraphics->SelectObject(m_pcontrolbox->m_ppenButtonBackSel);
 
          crText = m_pcontrolbox->m_colorButtonForeSel;
 
@@ -77,9 +77,9 @@ namespace user
       else if (has_keyboard_focus())
       {
 
-         pgraphics->SelectObject(m_pcontrolbox->m_pbrushButtonBackFocus);
+         pdraw2dgraphics->SelectObject(m_pcontrolbox->m_pbrushButtonBackFocus);
 
-         pgraphics->SelectObject(m_pcontrolbox->m_ppenButtonBackFocus);
+         pdraw2dgraphics->SelectObject(m_pcontrolbox->m_ppenButtonBackFocus);
 
          crText = m_pcontrolbox->m_colorButtonForeFocus;
 
@@ -87,9 +87,9 @@ namespace user
       else
       {
 
-         pgraphics->SelectObject(m_pcontrolbox->m_pbrushButtonBack);
+         pdraw2dgraphics->SelectObject(m_pcontrolbox->m_pbrushButtonBack);
 
-         pgraphics->SelectObject(m_pcontrolbox->m_ppenButtonBack);
+         pdraw2dgraphics->SelectObject(m_pcontrolbox->m_ppenButtonBack);
 
          crText = m_pcontrolbox->m_colorButtonFore;
 
@@ -103,13 +103,13 @@ namespace user
 
       rectangleEllipse.deflate(0, 0, 2, 2);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->fill_rectangle(rectangleX, pgraphics->m_pbrush->m_cr);
+      pdraw2dgraphics->fill_rectangle(rectangleX, pdraw2dgraphics->m_pbrush->m_cr);
 
-      //pgraphics->FillEllipse(rectangleEllipse);
+      //pdraw2dgraphics->FillEllipse(rectangleEllipse);
 
-      //pgraphics->DrawEllipse(rectangleEllipse);
+      //pdraw2dgraphics->DrawEllipse(rectangleEllipse);
 
       if (m_estockicon == stock_icon_none)
       {
@@ -118,33 +118,33 @@ namespace user
 
          get_window_text(str);
 
-         select_font(pgraphics, font_button);
+         select_font(pdraw2dgraphics, font_button);
 
-         pgraphics->set_text_color(crText);
+         pdraw2dgraphics->set_solid_color(crText);
 
-         pgraphics->draw_text(str, rectangleX, e_align_center | DT_SINGLELINE);
+         pdraw2dgraphics->draw_text(str, rectangleX, e_align_center | DT_SINGLELINE);
 
       }
       else
       {
 
-         m_pbrush->create_solid(pgraphics->get_current_pen().is_set()
-                               ? pgraphics->get_current_pen()->m_cr : argb(255, 255, 255, 255));
+         m_pbrush->create_solid(pdraw2dgraphics->get_current_pen().is_set()
+                               ? pdraw2dgraphics->get_current_pen()->m_cr : argb(255, 255, 255, 255));
 
-         pgraphics->SelectObject(m_pbrush);
+         pdraw2dgraphics->SelectObject(m_pbrush);
 
-         m_ppen->create_solid(1.0, pgraphics->get_current_pen().is_set()
-                             ? pgraphics->get_current_pen()->m_cr : argb(255, 255, 255, 255));
+         m_ppen->create_solid(1.0, pdraw2dgraphics->get_current_pen().is_set()
+                             ? pdraw2dgraphics->get_current_pen()->m_cr : argb(255, 255, 255, 255));
 
-         pgraphics->SelectObject(m_ppen);
+         pdraw2dgraphics->SelectObject(m_ppen);
 
          ::i32_rectangle rectangleIcon(rectangleEllipse);
 
          rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
-         pgraphics->draw_stock_icon(rectangleIcon, m_estockicon);
+         pdraw2dgraphics->draw_stock_icon(rectangleIcon, m_estockicon);
 
-         //pgraphics->FillSolidRect(rectangleEllipse, argb(255, 255, 255, 255));
+         //pdraw2dgraphics->FillSolidRect(rectangleEllipse, argb(255, 255, 255, 255));
 
       }
 
@@ -183,7 +183,7 @@ namespace user
    }
 
 
-   void button::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void button::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();

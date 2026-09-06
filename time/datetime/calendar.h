@@ -48,7 +48,7 @@ namespace datetime
 
          virtual int32_t get_week_of_month(::earth::time& time);
 
-         virtual void _001OnDraw(::draw2d::graphics* pgraphics);
+         virtual void _001OnDraw(::draw2d::graphics* pdraw2dgraphics);
 
          void set_pos(i32_point pt, i32_size sz);
 

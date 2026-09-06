@@ -21,7 +21,7 @@ namespace turboc
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual void on_update(::aura::impact * pSender,e_update eupdate,object* pHint);
 

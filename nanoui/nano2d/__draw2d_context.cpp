@@ -29,19 +29,19 @@ namespace nano2d
    }
 
 
-   void draw2d_context::set_graphics(::draw2d::graphics * pgraphics)
+   void draw2d_context::set_graphics(::draw2d::graphics * pdraw2dgraphics)
    {
 
-      if (m_pgraphics == pgraphics)
+      if (m_pgraphics == pdraw2dgraphics)
       {
 
          return;
 
       }
 
-      m_pgraphics = pgraphics;
+      m_pgraphics = pdraw2dgraphics;
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
 
       _create_new_state();
 
@@ -1022,9 +1022,9 @@ namespace nano2d
 
       }
 
-      auto pgraphics = m_pgraphics;
+      auto pdraw2dgraphics = m_pgraphics;
 
-      auto pcontext = pgraphics->m_papplication;
+      auto pcontext = pdraw2dgraphics->m_papplication;
 
       auto pimagecontext = pcontext->image_context();
 

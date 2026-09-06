@@ -205,7 +205,7 @@ namespace app_shader
    }
 
 
-   void main_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void main_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -215,7 +215,7 @@ namespace app_shader
       if(::is_set(prender))
       {
 
-         prender->_001OnDraw(pgraphics);
+         prender->_001OnDraw(pdraw2dgraphics);
 
          if (m_bSaveFrame)
          {
@@ -224,9 +224,9 @@ namespace app_shader
 
             auto pimage = image()->create_image(rectangleX.size());
 
-            ::draw2d::graphics_pointer pgraphics = pgraphicsImage;
+            ::draw2d::graphics_pointer pdraw2dgraphics = pgraphicsImage;
 
-            prender->_001OnDraw(pgraphics);
+            prender->_001OnDraw(pdraw2dgraphics);
 
             fork([this, pimage]()
                  {
@@ -244,12 +244,12 @@ namespace app_shader
          }
       }
 
-      ::user::interaction::_001OnDraw(pgraphics);
+      ::user::interaction::_001OnDraw(pdraw2dgraphics);
 
    }
 
 
-   void main_window::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void main_window::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -268,11 +268,11 @@ namespace app_shader
 
          prender->m_rectangle = rectangleX;
 
-         prender->on_layout(pgraphics);
+         prender->on_layout(pdraw2dgraphics);
 
       }
 
-      ::user::main_window::on_layout(pgraphics);
+      ::user::main_window::on_layout(pdraw2dgraphics);
 
    }
 
@@ -333,10 +333,10 @@ namespace app_shader
    }
 
 
-   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item & useritem, const ::user::e_state & estate)
+   void main_window::_001DrawItem(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::item & useritem, const ::user::e_state & estate)
    {
 
-      ::user::interaction::_001DrawItem(pgraphics, useritem, estate);
+      ::user::interaction::_001DrawItem(pdraw2dgraphics, useritem, estate);
 
    }
 

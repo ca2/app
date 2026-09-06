@@ -78,10 +78,10 @@ namespace turboc
    }
 
 
-   void lite_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void lite_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      impact::_001OnDraw(pgraphics);
+      impact::_001OnDraw(pdraw2dgraphics);
 
    }
 
@@ -89,7 +89,7 @@ namespace turboc
 /*   void lite_impact::turboc_render(::image::image *pimage)
    {
 
-      turboc_render_lite_impact(pgraphics);
+      turboc_render_lite_impact(pdraw2dgraphics);
 
    }
 
@@ -115,9 +115,9 @@ namespace turboc
 
       rectangleX.bottom = m_cy;
 
-      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      //pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      //pgraphics->FillSolidRect(rectangleX,argb(0, 0, 0, 0));
+      //pdraw2dgraphics->FillSolidRect(rectangleX,argb(0, 0, 0, 0));
 
 //      ::i32 iCount = 30;
 
@@ -162,9 +162,9 @@ namespace turboc
       //   iBlur = iCount - i;
       string strHelloMultiverse = get_processed_turboc();
 
-      pgraphics->set_font(m_pfont);
+      pdraw2dgraphics->set_font(m_pfont);
 
-      ::i32_size size = pgraphics->get_text_extent(strHelloMultiverse);
+      ::i32_size size = pdraw2dgraphics->get_text_extent(strHelloMultiverse);
 
 
       if(!m_bFirstDone)
@@ -179,7 +179,7 @@ namespace turboc
 
 /*            m_pimage->initialize(m_cxCache1,m_cyCache1,m_dMaxRadius);
 
-            //m_pimage->defer_realize(pgraphics);
+            //m_pimage->defer_realize(pdraw2dgraphics);
 
 /*            m_pimage->Fill(0,0,0,0);
 
@@ -257,17 +257,17 @@ namespace turboc
 
       }
 
-      pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+      pdraw2dgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pdraw2d->imaging().bitmap_blend(pgraphics,::i32_point(),rectangleX.size(),m_pimageTemplate->get_graphics(),::i32_point(),140 + 220 * r);
+      pdraw2d->imaging().bitmap_blend(pdraw2dgraphics,::i32_point(),rectangleX.size(),m_pimageTemplate->get_graphics(),::i32_point(),140 + 220 * r);
 
-      //pgraphics->BitBlt(rectangleX,m_pimageTemplate->get_graphics());
+      //pdraw2dgraphics->BitBlt(rectangleX,m_pimageTemplate->get_graphics());
 
-      pgraphics->set_font(m_pfont);
+      pdraw2dgraphics->set_font(m_pfont);
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       if(session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
       {
@@ -293,16 +293,16 @@ namespace turboc
 
       }
 
-      pgraphics->SelectObject(pbrushText);
+      pdraw2dgraphics->SelectObject(pbrushText);
 
       //if(!m_bAlternate)
       {
 
-         pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
+         pdraw2dgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
       }
 
-      //pgraphics->FillSolidRect(200,200,100,100,argb(128,128,128,0));
+      //pdraw2dgraphics->FillSolidRect(200,200,100,100,argb(128,128,128,0));
 
 
       if(strHelloMultiverse == get_processed_turboc() && m_cxCache1 == m_cx && m_cyCache1 == m_cy)

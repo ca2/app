@@ -103,10 +103,10 @@ namespace app_message_box
    }
 
 
-   void main_window::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void main_window::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::app_app::main_window::on_layout(pgraphics);
+      ::app_app::main_window::on_layout(pdraw2dgraphics);
 
       m_pbuttonShowMessageBox->display();
 
@@ -128,7 +128,7 @@ namespace app_message_box
       
       rectangleButton.top = (::i32) (rectangleButton.bottom - dBase * 5.0);
 
-      m_pbuttonShowMessageBox->place(rectangleButton, ::user::e_layout_layout, pgraphics);
+      m_pbuttonShowMessageBox->place(rectangleButton, ::user::e_layout_layout, pdraw2dgraphics);
 
    }
 

@@ -12,7 +12,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle &lprect)
+   void plugin::on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle &lprect)
    {
 
       ::f64 dRate = get_progress_rate();
@@ -32,7 +32,7 @@ namespace hotplugin
 
 
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       ::i32 h = 33;
       ::i32 m = 49 * 2;
 
@@ -76,9 +76,9 @@ namespace hotplugin
 
       ::draw2d::brush_pointer brush(e_create_new, this,argb(184,49,49,49));
 
-      pgraphics->SelectObject(pen);
+      pdraw2dgraphics->SelectObject(pen);
 
-      pgraphics->SelectObject(brush);
+      pdraw2dgraphics->SelectObject(brush);
 
       auto rectangleX = this->rectangle();
 
@@ -91,7 +91,7 @@ namespace hotplugin
 
       rectangleProgressComplement.left = rectangleProgress.right;
 
-      pgraphics->Rectangle(rectangleProgressComplement);
+      pdraw2dgraphics->Rectangle(rectangleProgressComplement);
 
       {
 
@@ -99,20 +99,20 @@ namespace hotplugin
          auto pbrush = createø < ::draw2d::brush > ();
          get_progress_color(uchR,uchG,uchB,dRate,0);
          pbrush->create_solid(argb(184,uchR,uchG,uchB));
-         pgraphics->FillRect(rectangleProgress,br);
+         pdraw2dgraphics->FillRect(rectangleProgress,br);
 
       }
 
       ppen->create_solid(1.0,argb(149,149,149,142));
 
-      pgraphics->DrawRect(rectangleBar, ppen);
+      pdraw2dgraphics->DrawRect(rectangleBar, ppen);
 
 
       ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font("Calibri",18);
 
-      pgraphics->SelectObject(f);
+      pdraw2dgraphics->SelectObject(f);
 
       string strProgress;
 
@@ -122,11 +122,11 @@ namespace hotplugin
 
       rectangleBar.top += 5;
 
-      pgraphics->set_text_color(argb(255, 255, 255, 255));
+      pdraw2dgraphics->set_solid_color(argb(255, 255, 255, 255));
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
 
-      pgraphics->text_out(rectangleBar.left, rectangleBar.top, m_strStatus + " : " + strProgress + " : " + m_strStatus2);
+      pdraw2dgraphics->text_out(rectangleBar.left, rectangleBar.top, m_strStatus + " : " + strProgress + " : " + m_strStatus2);
 
    }
 

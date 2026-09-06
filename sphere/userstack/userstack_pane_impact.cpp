@@ -238,7 +238,7 @@ namespace userstack
 
          }
 
-         on_layout(pgraphics);
+         on_layout(pdraw2dgraphics);
 
       }
 
@@ -431,7 +431,7 @@ namespace userstack
    }
 
 
-   void pane_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void pane_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if(m_iNewArea != m_iArea)
@@ -459,19 +459,19 @@ namespace userstack
                }
                FIBITMAP * pfi;
 
-               ::draw2d::memory_graphics pgraphics(this);
+               ::draw2d::memory_graphics pdraw2dgraphics(this);
 
                pfi = psystem->imaging().LoadImageFile(strWallpaper);
 
-/*               m_pimage->From((HDC)pgraphics->get_os_data(), pfi, true);
+/*               m_pimage->From((HDC)pdraw2dgraphics->get_os_data(), pfi, true);
 
                */
          //set_need_redraw();
       }
 
-      //m_pimage->to(pgraphics, 0, 0, rectangleX->right, rectangleX->bottom);
+      //m_pimage->to(pdraw2dgraphics, 0, 0, rectangleX->right, rectangleX->bottom);
 
-      ::userex::pane_tab_impact::_001OnDraw(pgraphics);
+      ::userex::pane_tab_impact::_001OnDraw(pdraw2dgraphics);
 
    }
 

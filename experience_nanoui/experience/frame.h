@@ -52,7 +52,7 @@ namespace experience_nanoui
 
       virtual void set_frame_color_system_default_001();
 
-      virtual void on_style_change_001_and_002(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_style_change_001_and_002(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       //virtual ::color::color get_style_moveable_border_color(::user::enum_style estyle);
 
@@ -62,13 +62,13 @@ namespace experience_nanoui
 
       //virtual enum_style translate_style(const ::scoped_string & scopedstrStyle);
 
-      virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _on_style_change(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       //virtual void _001OnBeforeMove(const ::i32_rectangle &lpcrectWindow);
 
       //virtual void _001OnBeforeSize(const ::i32_rectangle &lpcrectWindow);
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       bool get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement) override;
 
@@ -78,15 +78,15 @@ namespace experience_nanoui
 
       ::experience::enum_frame experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
-      virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+      virtual void Glass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle);
 
-      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color& color, ::u8 bAlpha);
+      virtual void ColorGlass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, const ::color::color& color, ::u8 bAlpha);
 
 //               virtual ::user::front_end_schema * get_user_front_end_schema();
 
-      virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, enum_border eborder, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight);
+      virtual void Draw3dRectSide(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, enum_border eborder, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight);
 
-      virtual void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
    };

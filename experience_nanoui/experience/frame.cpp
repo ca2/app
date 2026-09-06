@@ -71,7 +71,7 @@ namespace experience_nanoui
    }
 
 
-   void frame::Glass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleParam)
+   void frame::Glass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleParam)
    {
 
       auto pframewindow = m_pframewindow;
@@ -126,7 +126,7 @@ namespace experience_nanoui
 
          ::f64_rectangle rectangleSource(point, pimage1->get_size());
 
-         ::image::image_source imagesource(pgraphics, rectangleSource);
+         ::image::image_source imagesource(pdraw2dgraphics, rectangleSource);
 
          ::f64_rectangle rectangleTarget(pimage1->get_size());
 
@@ -156,7 +156,7 @@ namespace experience_nanoui
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
       }
 
@@ -171,10 +171,10 @@ namespace experience_nanoui
    }
 
 
-   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color & color32, ::u8 bAlpha)
+   void frame::ColorGlass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, const ::color::color & color32, ::u8 bAlpha)
    {
 
-      pgraphics->fill_rectangle(rectangle, color32 & ::opacity(bAlpha));
+      pdraw2dgraphics->fill_rectangle(rectangle, color32 & ::opacity(bAlpha));
 
    }
 
@@ -437,9 +437,9 @@ namespace experience_nanoui
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics(m_pframewindow);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics(m_pframewindow);
 
-      auto pstyle = pframewindow->get_style(pgraphics);
+      auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
       m_ppenText1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_text));
       m_ppenFace1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_background));
@@ -452,7 +452,7 @@ namespace experience_nanoui
    }
 
 
-   void frame::on_style_change_001_and_002(::draw2d::graphics_pointer & pgraphics)
+   void frame::on_style_change_001_and_002(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pcontrolbox = get_control_box();
@@ -543,7 +543,7 @@ namespace experience_nanoui
    //}
 
 
-   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam,enum_border eborder, const ::color::color & colorTopLeft, const ::color::color& colorBottomRight)
+   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangleParam,enum_border eborder, const ::color::color & colorTopLeft, const ::color::color& colorBottomRight)
    {
 
       ::i32_rectangle rectangle(rectangleParam);
@@ -553,7 +553,7 @@ namespace experience_nanoui
       ::i32 cx = rectangle.width();
       ::i32 cy = rectangle.height();
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::draw2d::pen_pointer ppen;
 
@@ -564,21 +564,21 @@ namespace experience_nanoui
 
          ppen->create_solid(1.0, colorTopLeft);
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(ppen);
 
       }
 
       if(eborder & e_border_top)
       {
 
-         pgraphics->line(x,y, x + cx,y);
+         pdraw2dgraphics->line(x,y, x + cx,y);
 
       }
 
       if(eborder & e_border_left)
       {
 
-         pgraphics->line(x,y,x,y+cy);
+         pdraw2dgraphics->line(x,y,x,y+cy);
 
       }
 
@@ -589,35 +589,35 @@ namespace experience_nanoui
 
          ppen->create_solid(1.0,colorBottomRight);
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(ppen);
 
       }
 
       if(eborder & e_border_right)
       {
 
-         pgraphics->line(x + cx,y,x + cx,y + cy);
+         pdraw2dgraphics->line(x + cx,y,x + cx,y + cy);
 
       }
 
       if(eborder & e_border_bottom)
       {
 
-         pgraphics->line(x,y + cy,x + cx,y + cy);
+         pdraw2dgraphics->line(x,y + cy,x + cx,y + cy);
 
       }
 
    }
 
 
-   void frame::_on_style_change(::draw2d::graphics_pointer & pgraphics)
+   void frame::_on_style_change(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
    }
 
 
-   void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void frame::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //return; // abcxxx
@@ -632,14 +632,14 @@ namespace experience_nanoui
 
       //
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       auto pframewindow = m_pframewindow;
 
       if(!pframewindow->layout().is_full_screen() && !pframewindow->layout().is_zoomed() && !pframewindow->layout().is_iconic() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
       {
 
-         on_draw_frame(pgraphics);
+         on_draw_frame(pdraw2dgraphics);
 
       }
 
@@ -662,7 +662,7 @@ namespace experience_nanoui
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
@@ -680,7 +680,7 @@ namespace experience_nanoui
 
                ::f64_rectangle rectangle(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
 
-               pgraphics->draw_inset_3d_rectangle(rectangle, argb(110,230,230,230),argb(110,130,130,130), 1.0);
+               pdraw2dgraphics->draw_inset_3d_rectangle(rectangle, argb(110,230,230,230),argb(110,130,130,130), 1.0);
 
                i += 5;
 
@@ -692,8 +692,8 @@ namespace experience_nanoui
       else if(!pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent())
       {
 
-         //pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
-         pgraphics->fill_rectangle(m_rectangleCaption, m_colorCaptionTextBk);
+         //pdraw2dgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
+         pdraw2dgraphics->fill_rectangle(m_rectangleCaption, m_colorCaptionTextBk);
 
          ::i32_rectangle rectangleIcon;
 
@@ -722,7 +722,7 @@ namespace experience_nanoui
          else
          {
 
-            auto pstyle = pframewindow->get_style(pgraphics);
+            auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
             crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
@@ -746,7 +746,7 @@ namespace experience_nanoui
             if(pdrawicon->is_ok())
             {
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ::image::image_source imagesource(pdrawicon);
 
@@ -754,7 +754,7 @@ namespace experience_nanoui
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
@@ -764,11 +764,11 @@ namespace experience_nanoui
 
          wstrWindowText = pframewindow->get_window_text();
 
-         pgraphics->set_text_color(m_colorCaptionText);
+         pdraw2dgraphics->set_solid_color(m_colorCaptionText);
 
-         pgraphics->set_font(pframewindow, ::e_element_window_title);
+         pdraw2dgraphics->set_font(pframewindow, ::e_element_window_title);
 
-         pgraphics->_DrawText(wstrWindowText, m_rectangleWindowText, { e_align_left, e_align_vertical_center}, e_draw_text_no_prefix);
+         pdraw2dgraphics->_DrawText(wstrWindowText, m_rectangleWindowText, { e_align_left, e_align_vertical_center}, e_draw_text_no_prefix);
 
       }
 
@@ -776,10 +776,10 @@ namespace experience_nanoui
    }
 
 
-   void frame::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
+   void frame::on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    }
 

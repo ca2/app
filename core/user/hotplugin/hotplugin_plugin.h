@@ -127,7 +127,7 @@ namespace hotplugin
 
       virtual ::i32  start_ca2_system();
 
-      virtual void on_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & prectangle);
+      virtual void on_paint(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & prectangle);
 
 
       virtual void deferred_prodevian_redraw();
@@ -145,16 +145,16 @@ namespace hotplugin
       virtual void plugin_message_handler(MESSAGE * pmsg,bool bEnsureTx);
 
 
-      virtual void on_bare_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & prectangle);
+      virtual void on_bare_paint(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & prectangle);
 
 
-      virtual void on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & prectangle);
+      virtual void on_bare_paint_full_screen(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & prectangle);
 
 
-      virtual void on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & prectangle);
+      virtual void on_bare_paint_discreet(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & prectangle);
 
 
-      virtual void on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & prectangle);
+      virtual void on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & prectangle);
 
 
       virtual void start_ca2();
@@ -165,7 +165,7 @@ namespace hotplugin
 
       virtual void on_update_progress();
 
-      virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & prectangle);
+      virtual void on_paint_progress(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & prectangle);
 
 
       virtual ::f64 extract_spa_progress_rate();

@@ -475,6 +475,8 @@ namespace user
    void list_box::_001OnDrawComboList(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
       ::collection::count iListItemCount = _001GetListCount();
 
       string strItem;

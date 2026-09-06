@@ -832,7 +832,7 @@ run_install:
 
 
 
-   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle &lprect)
+   void plugin::on_paint(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle &lprect)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -951,7 +951,7 @@ run_install:
             //informationf("focus_update %d",dwTime7 - dwTime5);
 
 
-            m_phost->blend_bitmap(pgraphics, lprect);
+            m_phost->blend_bitmap(pdraw2dgraphics, lprect);
 
             //::u32 dwTime9= ::time::now();
 
@@ -1003,15 +1003,15 @@ run_install:
 
 
 
-      pgraphics->offset_origin(rectangleWindow.left, rectangleWindow.top);
+      pdraw2dgraphics->offset_origin(rectangleWindow.left, rectangleWindow.top);
 
-      //b.create(cx, cy, pgraphics);
+      //b.create(cx, cy, pdraw2dgraphics);
 
-      //simple_graphics pgraphics;
+      //simple_graphics pdraw2dgraphics;
 
-      //pgraphics->create_from_bitmap(b);
+      //pdraw2dgraphics->create_from_bitmap(b);
 
-      //pgraphics->bit_blt(0, 0, cx, cy, pgraphics, ::hotplugin::plugin::m_rectangle.left, ::hotplugin::plugin::m_rectangle.top);
+      //pdraw2dgraphics->bit_blt(0, 0, cx, cy, pdraw2dgraphics, ::hotplugin::plugin::m_rectangle.left, ::hotplugin::plugin::m_rectangle.top);
 
 //      HFONT hfontOld = nullptr;
 //      HFONT hfont = nullptr;
@@ -1021,14 +1021,14 @@ run_install:
       if(m_bLogin)
       {
          //informationf("m_bLogin");
-         //get_login().draw(pgraphics);
+         //get_login().draw(pdraw2dgraphics);
       }
       else if (psystem->install().is_installing_ca2())
       {
 
          bInstallingCa2 = true;
 
-         m_canvas.on_paint(pgraphics, rectangle);
+         m_canvas.on_paint(pdraw2dgraphics, rectangle);
 
          m_bPendingRestartCa2 = true;
 
@@ -1065,9 +1065,9 @@ run_install:
 
 #ifdef WINDOWS
 
-      pgraphics->set_origin(0, 0);
-      //pgraphics.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
-      //     pgraphics         , lprect->left - ::hotplugin::plugin::m_rectangle.left  , lprect.top - ::hotplugin::plugin::m_rectangle.top    );
+      pdraw2dgraphics->set_origin(0, 0);
+      //pdraw2dgraphics.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
+      //     pdraw2dgraphics         , lprect->left - ::hotplugin::plugin::m_rectangle.left  , lprect.top - ::hotplugin::plugin::m_rectangle.top    );
 
       /*string strx = ansi_string_from_i64(lprect->left);
       string stry = ansi_string_from_i64(lprect->top);
@@ -1088,7 +1088,7 @@ run_install:
 
          on_update_progress();
 
-         on_bare_paint(pgraphics, lprect);
+         on_bare_paint(pdraw2dgraphics, lprect);
 
       }
       else
@@ -1170,10 +1170,10 @@ run_install:
    //}
 
 
-   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle &lprect)
+   void plugin::on_paint_progress(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle &lprect)
    {
 
-      ::hotplugin::plugin::on_paint_progress(pgraphics, lprect);
+      ::hotplugin::plugin::on_paint_progress(pdraw2dgraphics, lprect);
 
    }
 

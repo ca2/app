@@ -1,4 +1,6 @@
 #include "platform.h"
+#include "top_level_enum.h"
+#include "window_util.h"
 #include "acme/operating_system/parallelization.h"
 #include "acme/filesystem/filesystem/path.h"
 #include "acme/platform/debug.h"
@@ -1213,7 +1215,9 @@ namespace windows
 
 
 
-} 
+
+} // namespace windows
+
 
 namespace operating_system
 {

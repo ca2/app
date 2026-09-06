@@ -1605,12 +1605,12 @@ namespace nanoui
    }
 
 
-   ::i32_size Screen::preferred_size(::draw2d::graphics_pointer& pgraphics)
+   ::i32_size Screen::preferred_size(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       ::nano2d::draw2d_context context(this);
 
-      context.set_graphics(pgraphics);
+      context.set_graphics(pdraw2dgraphics);
 
       context.set_font_sink(m_pfontsink);
 
@@ -1621,12 +1621,12 @@ namespace nanoui
    }
 
 
-   void Screen::perform_layout(::draw2d::graphics_pointer& pgraphics)
+   void Screen::perform_layout(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       ::nano2d::draw2d_context context(this);
 
-      context.set_graphics(pgraphics);
+      context.set_graphics(pdraw2dgraphics);
 
       context.set_font_sink(m_pfontsink);
 
@@ -1649,22 +1649,22 @@ namespace nanoui
    }
 
 
-   void Screen::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
+   void Screen::_001OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       ::nano2d::draw2d_context context(this);
 
-      context.set_graphics(pgraphics);
+      context.set_graphics(pdraw2dgraphics);
 
       context.set_font_sink(m_pfontsink);
 
-      //pgraphics->offset_origin(-m_pos.x, -m_pos.y);
+      //pdraw2dgraphics->offset_origin(-m_pos.x, -m_pos.y);
 
-      auto targetscope = pgraphics->target_scope();
+      auto targetscope = pdraw2dgraphics->target_scope();
 
       targetscope -=m_pos;
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       draw(&context);
 

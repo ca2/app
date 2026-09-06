@@ -28,8 +28,8 @@ namespace browser
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
    };
 

@@ -47,10 +47,10 @@ namespace userstack
    /////////////////////////////////////////////////////////////////////////////
    // ::impact drawing
 
-   void impact::OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    }
 
@@ -112,7 +112,7 @@ namespace userstack
    }
 
 
-   void impact:: _001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact:: _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
@@ -356,7 +356,7 @@ namespace userstack
       __UNREFERENCED_PARAMETER(iShow);
    }
 
-   /*void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   /*void impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       auto rectangleX = this->rectangle();
       if(m_ppaneimpact != nullptr)
@@ -371,8 +371,8 @@ namespace userstack
             pinteraction->set_window_position(e_zorder_top, rectangleX.top, rectangleX.left, rectangleX.width(), rectangleX.height(), SWP_SHOWWINDOW);
          }
       }
-      ::user::show < ::user::interaction >::on_layout(pgraphics);
-      gcom::backimpact::user::interaction::on_layout(pgraphics);
+      ::user::show < ::user::interaction >::on_layout(pdraw2dgraphics);
+      gcom::backimpact::user::interaction::on_layout(pdraw2dgraphics);
    }*/
 
    void impact::_000OnMouse(::message::mouse * pmouse)

@@ -29,9 +29,13 @@ namespace accessibility
 
       virtual void activate();
 
+      virtual ::string get_title();
+
       virtual ::string get_window_text(const ::iptr_array & idPath);
       virtual ::string indexed_get_window_text(const ::iptr_array & idPath);
 
+
+      virtual void set_size(const ::i32_size & size);
 
    };
 

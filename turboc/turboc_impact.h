@@ -89,7 +89,7 @@ namespace turboc
 /*      virtual void _001OnPostProcess(::image::image *pimage);
 
 /*      virtual void _006OnDraw(::image::image *pimage);
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual void on_update(::aura::impact * pSender, e_update eupdate, object* pHint);
 
@@ -103,7 +103,7 @@ namespace turboc
 
       static ::u32 thread_proc_render(void * pparam);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 

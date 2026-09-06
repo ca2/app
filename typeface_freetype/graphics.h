@@ -75,7 +75,7 @@ namespace typeface_freetype
 
       ::gpu_opengl::context* gpu_context();
 
-      //void attach(void * pgraphics) override;   // attach/detach affects only the Output DC
+      //void attach(void * pdraw2dgraphics) override;   // attach/detach affects only the Output DC
       void * detach() override;
 
 
@@ -128,7 +128,7 @@ namespace typeface_freetype
                     const_char_pointer pszOutput, const void * lpInitData);
       void create_memory_graphics(const ::i32_size & size = {}) override;
       void create_window_graphics(::windowing::window * pwindow) override;
-      void create_compatible_graphics(::draw2d::graphics * pgraphics) override;
+      void create_compatible_graphics(::draw2d::graphics * pdraw2dgraphics) override;
 
       //void set_hint_window_output() override;
 

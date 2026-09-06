@@ -77,6 +77,13 @@ namespace accessibility
 
 
 
+   ::pointer_array < main_window > accessibility::system_get_main_windows()
+   {
+
+      return {};
+
+   }
+
    //::pointer<::accessibility::application> accessibility::module_path_application(const ::scoped_string &scopestr)
    //{
 

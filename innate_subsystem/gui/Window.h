@@ -316,7 +316,7 @@ namespace innate_subsystem
 
    virtual bool on_window_procedure(::lresult & lresult, ::u32 message, ::wparam wparam, ::lparam lparam) = 0;
 
-      virtual void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::i32_rectangle & rectangle) = 0;
+      virtual void onDraw(::innate_subsystem::GraphicsInterface * pdraw2dgraphics, const ::i32_rectangle & rectangle) = 0;
 
       virtual void onBeforeFullScreen(bool bRestore) = 0;
       virtual void onAfterFullScreen(bool bRestore) = 0;
@@ -644,7 +644,7 @@ namespace innate_subsystem
       }
 
 
-      void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::i32_rectangle & rectangle) override {  }
+      void onDraw(::innate_subsystem::GraphicsInterface * pdraw2dgraphics, const ::i32_rectangle & rectangle) override {  }
 
 
       void onBeforeFullScreen(bool bRestore) override {  }

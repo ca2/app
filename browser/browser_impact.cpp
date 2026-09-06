@@ -207,7 +207,7 @@ namespace browser
    }
 
 
-   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -247,7 +247,7 @@ namespace browser
       else
       {
 
-         on_layout(pgraphics);
+         on_layout(pdraw2dgraphics);
 
       }
 
@@ -281,7 +281,7 @@ namespace browser
    }
 
 
-   void impact::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_006OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_pimageBrowser)
@@ -289,11 +289,11 @@ namespace browser
 
          auto rectangleX = this->rectangle();
 
-         pgraphics->draw(::i32_rectangle(m_pimageBrowser->size()), m_pgraphicsImageBrowser->, m_pimageBrowser->rectangle());
+         pdraw2dgraphics->draw(::i32_rectangle(m_pimageBrowser->size()), m_pgraphicsImageBrowser->, m_pimageBrowser->rectangle());
 
       }
 
-      m_prender->_006OnDraw(pgraphics);
+      m_prender->_006OnDraw(pdraw2dgraphics);
 
    }
 
@@ -359,7 +359,7 @@ namespace browser
    }
 
 
-   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -680,7 +680,7 @@ namespace browser
    }
 
 
-   void impact::on_draw_image_layer(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_draw_image_layer(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

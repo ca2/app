@@ -89,7 +89,7 @@ namespace hotplugin
 
       virtual ::i32  start_ca2_system() override;
 
-      virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle) override;
+      virtual void on_paint(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle) override;
 
 
       virtual ::i32 start_app_install(const ::scoped_string & scopedstrCommandLine);

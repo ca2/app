@@ -45,7 +45,7 @@ namespace helloworld
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void _006OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _006OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
@@ -53,7 +53,7 @@ namespace helloworld
 
 
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
@@ -65,7 +65,7 @@ namespace helloworld
 
 
       virtual void defer_check_on_draw_layout();
-      virtual void on_draw_image_layer(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_draw_image_layer(::draw2d::graphics_pointer & pdraw2dgraphics);
 
    };
 

@@ -76,17 +76,17 @@ namespace turboc
    }
 
 
-   void full_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void full_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      impact::_001OnDraw(pgraphics);
+      impact::_001OnDraw(pdraw2dgraphics);
 
    }
 
 /*   void full_impact::turboc_render(::image::image *pimage)
    {
 
-      turboc_render_full_impact(pgraphics);
+      turboc_render_full_impact(pdraw2dgraphics);
 
    }
 
@@ -170,11 +170,11 @@ namespace turboc
 
       }
 
-      pgraphics->set_font(m_pfont);
+      pdraw2dgraphics->set_font(m_pfont);
 
       string strHelloMultiverse = get_processed_turboc();
 
-      ::i32_size size = pgraphics->get_text_extent(strHelloMultiverse);
+      ::i32_size size = pdraw2dgraphics->get_text_extent(strHelloMultiverse);
 
       if(!session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
       {
@@ -192,7 +192,7 @@ namespace turboc
 
          }
 
-/*         m_pimage->defer_realize(pgraphics);
+/*         m_pimage->defer_realize(pdraw2dgraphics);
 
 /*         m_pimage->Fill(0,0,0,0);
 
@@ -235,15 +235,15 @@ namespace turboc
 
          }
 
-         pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-/*         pgraphics->BitBlt(rectangleX,m_pgraphicsImage->);
+/*         pdraw2dgraphics->BitBlt(rectangleX,m_pgraphicsImage->);
 
       }
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       if(session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
       {
@@ -269,9 +269,9 @@ namespace turboc
 
       }
 
-      pgraphics->SelectObject(pbrushText);
+      pdraw2dgraphics->SelectObject(pbrushText);
 
-      pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
+      pdraw2dgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
       ::u8 a,R,g,b;
 
@@ -332,15 +332,15 @@ namespace turboc
 
 /*                     pimage = create_image({face->glyph->bitmap.width, face->glyph->bitmap.rows});
 
-/*                     pimage->realize(pgraphics);
+/*                     pimage->realize(pdraw2dgraphics);
 
 /*                     draw_freetype_bitmap(pimage->m_p,0,0,&face->glyph->bitmap,0,0,a,R,g,b);
 
-                     pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+                     pdraw2dgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-/*                     pgraphics->StretchBlt(0,0,pimage->width() / 40,pimage->height() / 40,pgraphicsImage,0,0,pimage->width(),pimage->height());
+/*                     pdraw2dgraphics->StretchBlt(0,0,pimage->width() / 40,pimage->height() / 40,pgraphicsImage,0,0,pimage->width(),pimage->height());
 
-/*                     pgraphics->StretchBlt(0,m_cy - pimage->height() / 40,pimage->width() / 40,pimage->height() / 40,pgraphicsImage,0,0,pimage->width(),pimage->height());
+/*                     pdraw2dgraphics->StretchBlt(0,m_cy - pimage->height() / 40,pimage->width() / 40,pimage->height() / 40,pgraphicsImage,0,0,pimage->width(),pimage->height());
 
                   }
 
@@ -383,15 +383,15 @@ namespace turboc
 
 /*                     pimage = create_image({face->glyph->bitmap.width, face->glyph->bitmap.rows});
 
-/*                     pimage->realize(pgraphics);
+/*                     pimage->realize(pdraw2dgraphics);
 
 /*                     draw_freetype_bitmap(pimage->m_p,0,0,&face->glyph->bitmap,0,0,a,R,g,b);
 
-                     pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+                     pdraw2dgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32,0,pimage->width() / 32,pimage->height() / 32,pgraphicsImage,0,0,pimage->width(),pimage->height());
+/*                     pdraw2dgraphics->StretchBlt(m_cx - pimage->width() / 32,0,pimage->width() / 32,pimage->height() / 32,pgraphicsImage,0,0,pimage->width(),pimage->height());
 
-/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32,m_cy - pimage->height() / 32,pimage->width() / 32,pimage->height() / 32,pgraphicsImage,0,0,pimage->width(),pimage->height());
+/*                     pdraw2dgraphics->StretchBlt(m_cx - pimage->width() / 32,m_cy - pimage->height() / 32,pimage->width() / 32,pimage->height() / 32,pgraphicsImage,0,0,pimage->width(),pimage->height());
 
                   }
 

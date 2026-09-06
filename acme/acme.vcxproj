@@ -2733,6 +2733,8 @@
     <ClCompile Include="graphics\draw2d\task_tool.cpp" />
     <ClCompile Include="graphics\image\frame.cpp" />
     <ClCompile Include="graphics\image\frame_array.cpp" />
+    <ClCompile Include="operating_system\windows\top_level_enum.cpp" />
+    <ClCompile Include="operating_system\windows\window_util.cpp" />
     <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|Win32'">Create</PrecompiledHeader>
@@ -2898,6 +2900,8 @@
     <ClInclude Include="operating_system\shared_posix\time1.h" />
     <ClInclude Include="operating_system\windows\device_independent_bitmap.h" />
     <ClInclude Include="operating_system\windows\time.h" />
+    <ClInclude Include="operating_system\windows\top_level_enum.h" />
+    <ClInclude Include="operating_system\windows\window_util.h" />
     <ClInclude Include="operating_system\windows_common\com\bstring.h" />
     <ClInclude Include="operating_system\windows_common\com\comptr.h" />
     <ClInclude Include="operating_system\windows_common\com\comptr_array.h" />

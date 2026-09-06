@@ -181,7 +181,7 @@ namespace experience_tranquillum
 
 
 
-         void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, enum_border eside)
+         void frame_008::draw_border_side(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX, enum_border eside)
 
          {
 
@@ -211,7 +211,7 @@ namespace experience_tranquillum
 
                //
 
-               auto pstyle = pframewindow->get_style(pgraphics);
+               auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
                crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
@@ -234,7 +234,7 @@ namespace experience_tranquillum
             else if(estyle == ::user::StyleLightBlue || estyle == ::user::StyleRedOrange)
             {
 
-               Draw3dRectSide(pgraphics, rectangleA, eside, color::black, color::black);
+               Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, color::black, color::black);
 
             }
             else if(estyle == ::user::StyleTranslucidWarmGray
@@ -246,7 +246,7 @@ namespace experience_tranquillum
 
                //class imaging & imaging = psystem->imaging();
                //imaging.color_blend(
-                  pgraphics->fill_rectangle(
+                  pdraw2dgraphics->fill_rectangle(
                                     rectangle,
                                     crMoveableBorder & ::opacity(0.5));
             }
@@ -256,9 +256,9 @@ namespace experience_tranquillum
                GetBorderRectangle(rectangleX, &rectangle, eside);
 
                //class imaging & imaging = psystem->imaging();
-               //imaging.color_blend(pgraphics,
+               //imaging.color_blend(pdraw2dgraphics,
 
-               pgraphics->fill_rectangle(
+               pdraw2dgraphics->fill_rectangle(
                                     rectangle,
                                     crMoveableBorder & ::opacity(127));
 
@@ -273,14 +273,14 @@ namespace experience_tranquillum
                rectangleA.right--;
                if(edock == e_dock_none)
                {
-                  Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+                  Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
                }
 
                rectangleA.top++;
                rectangleA.bottom--;
                rectangleA.left++;
                rectangleA.right--;
-               Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+               Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
 
                rectangleA.top++;
                rectangleA.bottom--;
@@ -288,13 +288,13 @@ namespace experience_tranquillum
                rectangleA.right--;
                if(edock == e_dock_none)
                {
-                  Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+                  Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
                }
             }
 
          }
 
-         void frame_008::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
+         void frame_008::on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics)
          {
 
             auto pframewindow = m_pframewindow;
@@ -329,7 +329,7 @@ namespace experience_tranquillum
             if(!pframewindow->layout().is_full_screen())
             {
 
-               DrawBorder(pgraphics, rectangleNClient);
+               DrawBorder(pdraw2dgraphics, rectangleNClient);
 
             }
 
@@ -338,7 +338,7 @@ namespace experience_tranquillum
          }
 
 
-         void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
+         void frame_008::DrawBorder(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX)
          {
 
             auto pmovemanager = m_pframewindow->move_manager();
@@ -347,24 +347,24 @@ namespace experience_tranquillum
 
             ::i32_rectangle rectangleA(rectangleX);
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-            pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+            pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
             auto pframewindow = m_pframewindow;
 
-            auto pstyle = pframewindow->get_style(pgraphics);
+            auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
             if (pstyle->is_dark_mode())
             {
 
-               pgraphics->draw_inset_rectangle(rectangleA, argb(255, 60, 60, 60), 1.0, eborder);
+               pdraw2dgraphics->draw_inset_rectangle(rectangleA, argb(255, 60, 60, 60), 1.0, eborder);
 
             }
             else
             {
 
-               pgraphics->draw_inset_rectangle(rectangleA, argb(255, 255, 255, 255), 1.0, eborder);
+               pdraw2dgraphics->draw_inset_rectangle(rectangleA, argb(255, 255, 255, 255), 1.0, eborder);
 
             }
 
@@ -422,7 +422,7 @@ namespace experience_tranquillum
          //}
 
 
-         void frame_008::_on_style_change(::draw2d::graphics_pointer & pgraphics)
+         void frame_008::_on_style_change(::draw2d::graphics_pointer & pdraw2dgraphics)
          {
 
             constructø(m_ppenHollow1);
@@ -432,7 +432,7 @@ namespace experience_tranquillum
             constructø(m_ppenHollow5);
 
 
-            on_style_change_001_and_002(pgraphics);
+            on_style_change_001_and_002(pdraw2dgraphics);
                
             auto pframewindow = m_pframewindow;
 

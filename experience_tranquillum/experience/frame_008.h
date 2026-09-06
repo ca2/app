@@ -19,13 +19,13 @@ namespace experience_tranquillum
 
 
       virtual string get_default_user_style() const override;
-      virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _on_style_change(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
-      void on_draw_frame(::draw2d::graphics_pointer & pgraphics) override;
-      void DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX);
+      void on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void DrawBorder(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX);
 
-      void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, enum_border eside);
+      void draw_border_side(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX, enum_border eside);
 
       //void GetBorderRectangle(const ::i32_rectangle & rectangleX, ::i32_rectangle * prectangle, enum_border eside);
 

@@ -60,6 +60,17 @@ namespace accessibility
 
    }
 
+
+   ::string main_window::get_title()
+   {
+
+      throw interface_only();
+
+      return {};
+
+   }
+
+
    ::string main_window::get_window_text(const ::iptr_array & idPath)
    {
 
@@ -76,6 +87,14 @@ namespace accessibility
       throw interface_only();
 
       return {};
+
+   }
+
+
+   void main_window::set_size(const ::i32_size & size)
+   {
+
+      throw interface_only();
 
    }
 

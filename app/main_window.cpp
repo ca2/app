@@ -81,7 +81,7 @@ namespace app_app
    }
 
 
-   void main_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void main_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       m_iCloseButtonDraw = 0;
@@ -97,20 +97,20 @@ namespace app_app
 
       }
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
       if (system()->background_color().get_luminance() < 0.5)
       {
 
-         pgraphics->fill_rectangle(rectangleX, argb(255, 127, 127, 127));
+         pdraw2dgraphics->fill_rectangle(rectangleX, argb(255, 127, 127, 127));
 
       }
       else
       {
 
-         pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
+         pdraw2dgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 
       }
 
@@ -122,11 +122,11 @@ namespace app_app
 
       ::f64 y = dBase * 3;
 
-      pgraphics->fill_rectangle(::f64_rectangle_dimension(x, y, dBase * 5.0, dBase * 5.0), ::argb(127, 40, 150, 235));
+      pdraw2dgraphics->fill_rectangle(::f64_rectangle_dimension(x, y, dBase * 5.0, dBase * 5.0), ::argb(127, 40, 150, 235));
 
-      pgraphics->fill_rectangle(::f64_rectangle_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::argb(127, 40, 150, 235));
+      pdraw2dgraphics->fill_rectangle(::f64_rectangle_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::argb(127, 40, 150, 235));
 
-      pgraphics->fill_rectangle(::f64_rectangle_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::argb(127, 255, 110, 150));
+      pdraw2dgraphics->fill_rectangle(::f64_rectangle_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::argb(127, 255, 110, 150));
 
       if (m_dDrawOnlyMainRectangles)
       {
@@ -152,14 +152,14 @@ namespace app_app
 
       }
 
-      pgraphics->draw_inset_rectangle(rectangleX, colorInset, dBase);
+      pdraw2dgraphics->draw_inset_rectangle(rectangleX, colorInset, dBase);
 
       //m_dDrawControlBox = true;
 
       if (should_show_platform_control_box())
       {
 
-         pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+         pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
          auto pitemClose = user_item(tool().item(::e_element_close_button));
 
@@ -279,12 +279,12 @@ namespace app_app
 
       }
 
-      ::user::interaction::_001OnDraw(pgraphics);
+      ::user::interaction::_001OnDraw(pdraw2dgraphics);
 
    }
 
 
-   void main_window::_001DrawItem(::draw2d::graphics_pointer & pgraphics, ::user::item & useritem, const ::user::e_state & estate)
+   void main_window::_001DrawItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::item & useritem, const ::user::e_state & estate)
    {
 
       auto pitem = useritem.m_pitem;
@@ -299,11 +299,11 @@ namespace app_app
       if (pitem->m_item.m_eelement == ::e_element_close_button)
       {
          
-         auto pstyle = get_style(pgraphics);
+         auto pstyle = get_style(pdraw2dgraphics);
          
-         pstyle->draw_item(pgraphics, this, useritem, estate);
+         pstyle->draw_item(pdraw2dgraphics, this, useritem, estate);
 
-         //::user::draw_close_button(pgraphics, this, useritem, estate);
+         //::user::draw_close_button(pdraw2dgraphics, this, useritem, estate);
 
          m_iCloseButtonDraw++;
 
@@ -318,7 +318,7 @@ namespace app_app
 
       }
 
-      ::user::interaction::_001DrawItem(pgraphics, useritem, estate);
+      ::user::interaction::_001DrawItem(pdraw2dgraphics, useritem, estate);
 
    }
 

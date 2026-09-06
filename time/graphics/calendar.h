@@ -39,7 +39,7 @@ namespace datetime
          virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, ::i32_rectangle * lprect);
          virtual void GetRect(::i32_rectangle * lprect, const e_element & eelement);
 
-         void _001OnDraw(::draw2d::graphics* pgraphics);
+         void _001OnDraw(::draw2d::graphics* pdraw2dgraphics);
 
          void set_pos(i32_point pt, i32_size sz);
 

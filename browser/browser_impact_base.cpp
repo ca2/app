@@ -93,14 +93,14 @@ auto m_timeRoll = ::time::now();
    }
 
 
-   void impact_base::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact_base::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::user::impact::_001OnNcDraw(pgraphicsParam);
 
    }
 
-   void impact_base::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact_base::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       //::u64 startTime = get_nanos();
@@ -203,9 +203,9 @@ auto m_timeRoll = ::time::now();
 
          ::i32_size size = m_pimageTime->get_size();
 
-         ::draw2d::graphics_pointer & pgraphics = m_pimageTime->get_graphics();
+         ::draw2d::graphics_pointer & pdraw2dgraphics = m_pimageTime->get_graphics();
 
-         pdcParam->from(size, pgraphics);
+         pdcParam->from(size, pdraw2dgraphics);
 
       }
 
@@ -278,19 +278,19 @@ pdirectorysystem->system() / "obs.png");
 
    }
 
-   void impact_base::on_draw_image_layer(::draw2d::graphics_pointer & pgraphics)
+   void impact_base::on_draw_image_layer(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
    }
 
-   void impact_base::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact_base::_006OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
    }
 
-   void impact_base::_001OnPostProcess(::draw2d::graphics_pointer & pgraphics)
+   void impact_base::_001OnPostProcess(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_eeffect == effect_crt)
@@ -308,17 +308,17 @@ pdirectorysystem->system() / "obs.png");
 
          m_pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         m_pgraphicsImage1->StretchBlt(0, 0, size2.cx, size2->cy, pgraphics, 0, 0, i32_size->cx, i32_size->cy);
+         m_pgraphicsImage1->StretchBlt(0, 0, size2.cx, size2->cy, pdraw2dgraphics, 0, 0, i32_size->cx, i32_size->cy);
 
          //if (0)
          {
 
-            if (pgraphics->m_pimage->is_set())
+            if (pdraw2dgraphics->m_pimage->is_set())
             {
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-               pgraphics->StretchBlt(0, 0, size.cx, size.cy, m_pgraphicsImage1->, 0, 0, size2->cx, size2->cy);
+               pdraw2dgraphics->StretchBlt(0, 0, size.cx, size.cy, m_pgraphicsImage1->, 0, 0, size2->cx, size2->cy);
 
             }
             else
@@ -337,7 +337,7 @@ pdirectorysystem->system() / "obs.png");
 
             ::u8 a, r, g, b, rm, gm, bm;
 
-/*            ::image::image_pointer pimage = pgraphics->m_pimage;
+/*            ::image::image_pointer pimage = pdraw2dgraphics->m_pimage;
 
 /*            if (pimage->is_null())
             {
@@ -396,10 +396,10 @@ pdirectorysystem->system() / "obs.png");
 
             }
 
-            if (pgraphics->m_pimage->is_null())
+            if (pdraw2dgraphics->m_pimage->is_null())
             {
 
-               pgraphics->BitBlt(0, 0, size.cx, size.cy, m_pgraphicsImage2->, 0, 0);
+               pdraw2dgraphics->BitBlt(0, 0, size.cx, size.cy, m_pgraphicsImage2->, 0, 0);
 
             }
             else
@@ -413,12 +413,12 @@ pdirectorysystem->system() / "obs.png");
 
             ppen->create_solid(0.5, argb(84, 0, 0, 0));
 
-            pgraphics->SelectObject(pen);
+            pdraw2dgraphics->SelectObject(pen);
 
             for (::i32 i = 0; i < size.cy; i += 3)
             {
 
-               pgraphics->line(0, i, size.cx, i);
+               pdraw2dgraphics->line(0, i, size.cx, i);
 
             }
 

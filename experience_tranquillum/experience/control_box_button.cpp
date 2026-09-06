@@ -30,20 +30,20 @@ namespace experience_tranquillum
 
    }
 
-   void control_box_button::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::experience::button::_001OnClip(pgraphics);
+      ::experience::button::_001OnClip(pdraw2dgraphics);
 
    }
 
-   void control_box_button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
    }
 
 
-   void control_box_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if ((top_level()->frame_is_transparent() && !top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
@@ -62,14 +62,14 @@ namespace experience_tranquillum
 
       color32_t crText;
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
       if (!is_window_enabled())
       {
 
-         pgraphics->set(m_pcontrolbox->m_pbrushButtonBackDisabled);
+         pdraw2dgraphics->set(m_pcontrolbox->m_pbrushButtonBackDisabled);
 
-         pgraphics->set(m_pcontrolbox->m_ppenButtonBackDisabled);
+         pdraw2dgraphics->set(m_pcontrolbox->m_ppenButtonBackDisabled);
 
          crText = m_pcontrolbox->m_colorButtonForeDisabled;
 
@@ -77,9 +77,9 @@ namespace experience_tranquillum
       else if (::is_set(m_pitemHover))
       {
 
-         pgraphics->set(m_pcontrolbox->m_pbrushButtonBackSel);
+         pdraw2dgraphics->set(m_pcontrolbox->m_pbrushButtonBackSel);
 
-         pgraphics->set(m_pcontrolbox->m_ppenButtonBackSel);
+         pdraw2dgraphics->set(m_pcontrolbox->m_ppenButtonBackSel);
 
          crText = m_pcontrolbox->m_colorButtonForeSel;
 
@@ -87,9 +87,9 @@ namespace experience_tranquillum
       else if (has_keyboard_focus())
       {
 
-         pgraphics->set(m_pcontrolbox->m_pbrushButtonBackFocus);
+         pdraw2dgraphics->set(m_pcontrolbox->m_pbrushButtonBackFocus);
 
-         pgraphics->set(m_pcontrolbox->m_ppenButtonBackFocus);
+         pdraw2dgraphics->set(m_pcontrolbox->m_ppenButtonBackFocus);
 
          crText = m_pcontrolbox->m_colorButtonForeFocus;
 
@@ -97,9 +97,9 @@ namespace experience_tranquillum
       else
       {
 
-         pgraphics->set(m_pcontrolbox->m_pbrushButtonBack);
+         pdraw2dgraphics->set(m_pcontrolbox->m_pbrushButtonBack);
 
-         pgraphics->set(m_pcontrolbox->m_ppenButtonBack);
+         pdraw2dgraphics->set(m_pcontrolbox->m_ppenButtonBack);
 
          crText = m_pcontrolbox->m_colorButtonFore;
 
@@ -111,13 +111,13 @@ namespace experience_tranquillum
 
       rectangleEllipse.deflate(0, 0, 2, 2);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->fill_rectangle(rectangleX, pgraphics->m_pdraw2dbrush->m_color);
+      pdraw2dgraphics->fill_rectangle(rectangleX, pdraw2dgraphics->m_pdraw2dbrush->m_color);
 
-      //pgraphics->FillEllipse(rectangleEllipse);
+      //pdraw2dgraphics->FillEllipse(rectangleEllipse);
 
-      //pgraphics->DrawEllipse(rectangleEllipse);
+      //pdraw2dgraphics->DrawEllipse(rectangleEllipse);
 
       if (m_estockicon == e_stock_icon_none)
       {
@@ -126,11 +126,11 @@ namespace experience_tranquillum
 
          //get_window_text(str);
 
-         pgraphics->set_font(this, ::e_element_none);
+         pdraw2dgraphics->set_font(this, ::e_element_none);
 
-         pgraphics->set_text_color(crText);
+         pdraw2dgraphics->set_solid_color(crText);
 
-         pgraphics->draw_text(strWindowText, rectangleX, e_align_center, e_draw_text_single_line);
+         pdraw2dgraphics->draw_text(strWindowText, rectangleX, e_align_center, e_draw_text_single_line);
 
       }
       else
@@ -145,24 +145,24 @@ namespace experience_tranquillum
             
          }
 
-         m_pbrush->create_solid(::is_set(pgraphics->get_current_pen())
-                                ? pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
+         m_pbrush->create_solid(::is_set(pdraw2dgraphics->get_current_pen())
+                                ? pdraw2dgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
          
-         pgraphics->set(m_pbrush);
+         pdraw2dgraphics->set(m_pbrush);
          
-         m_ppen->create_solid(1.0, ::is_set(pgraphics->get_current_pen())
-                              ? pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
+         m_ppen->create_solid(1.0, ::is_set(pdraw2dgraphics->get_current_pen())
+                              ? pdraw2dgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
          
-         pgraphics->set(m_ppen);
+         pdraw2dgraphics->set(m_ppen);
          
          ::i32_rectangle rectangleIcon(rectangleEllipse);
          
          rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
-         pgraphics->draw(rectangleIcon, m_pstockicon);
+         pdraw2dgraphics->draw(rectangleIcon, m_pstockicon);
          
 
-         //pgraphics->FillSolidRect(rectangleEllipse, argb(255, 255, 255, 255));
+         //pdraw2dgraphics->FillSolidRect(rectangleEllipse, argb(255, 255, 255, 255));
 
       }
 
@@ -221,10 +221,10 @@ namespace experience_tranquillum
    }
 
 
-   void control_box_button::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::experience::button::on_layout(pgraphics);
+      ::experience::button::on_layout(pdraw2dgraphics);
 
       //constructø(m_spregion);
       //constructø(m_ppen);

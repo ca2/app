@@ -22,7 +22,7 @@ namespace draw2d
 {
 
 
-   bool word_break(::draw2d::graphics * pgraphics, const ::scoped_string & scopedstrSource, const i32_rectangle & rectangleParam, string &str1, string & str2, ::i32 iEll);
+   bool word_break(::draw2d::graphics * pdraw2dgraphics, const ::scoped_string & scopedstrSource, const i32_rectangle & rectangleParam, string &str1, string & str2, ::i32 iEll);
 
 
    character_count _EncodeV033(string & str);
@@ -317,10 +317,10 @@ namespace draw2d
    }
 
 
-   void graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
+   void graphics::CreateCompatibleDC(::draw2d::graphics * pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
 
 
@@ -1220,10 +1220,10 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw_at(const ::f64_point & pointDst, ::draw2d::graphics * pgraphics)
+   //void graphics::draw_at(const ::f64_point & pointDst, ::draw2d::graphics * pdraw2dgraphics)
    //{
 
-   //   return draw_at(pointDst, pgraphics->m_pimage);
+   //   return draw_at(pointDst, pdraw2dgraphics->m_pimage);
 
    //}
 
@@ -4207,7 +4207,7 @@ namespace draw2d
 
       ::f64 dLineSpacing = tm2.get_line_spacing();
 
-      ::draw2d::graphics * pgraphics = this;
+      ::draw2d::graphics * pdraw2dgraphics = this;
 
       wstring wstr = utf8_to_unicode(strParam);
 
@@ -4246,15 +4246,15 @@ namespace draw2d
       if((edrawtext & e_draw_text_word_break) != 0)
       {
 
-         bLastLine = !word_break(pgraphics, str, rectangleClip, str, str2, (edrawtext & e_draw_text_end_ellipsis));
+         bLastLine = !word_break(pdraw2dgraphics, str, rectangleClip, str, str2, (edrawtext & e_draw_text_end_ellipsis));
 
-         sz = pgraphics->get_text_extent(str);
+         sz = pdraw2dgraphics->get_text_extent(str);
 
       }
       else if ((edrawtext & e_draw_text_end_ellipsis) != 0)
       {
 
-         sz = pgraphics->get_text_extent(str, (::i32)iLen);
+         sz = pdraw2dgraphics->get_text_extent(str, (::i32)iLen);
 
          if (sz.cx > rectangleClip.width())
          {
@@ -4274,7 +4274,7 @@ namespace draw2d
 
                strSample = string(pszStart, psz - pszStart) + "...";
 
-               sz = pgraphics->get_text_extent(strSample);
+               sz = pdraw2dgraphics->get_text_extent(strSample);
 
                if (sz.cx > rectangleClip.width())
                {
@@ -4295,7 +4295,7 @@ namespace draw2d
       else
       {
 
-         sz = pgraphics->get_text_extent(str);
+         sz = pdraw2dgraphics->get_text_extent(str);
 
          if (sz.cx > rectangleClip.width())
          {
@@ -4314,7 +4314,7 @@ namespace draw2d
             while (i > 0)
             {
 
-               sz = pgraphics->get_text_extent(str, (::i32)i);
+               sz = pdraw2dgraphics->get_text_extent(str, (::i32)i);
 
                if ((::i32) sz.cx > rectangleClip.width())
                {
@@ -4362,7 +4362,7 @@ namespace draw2d
 
             pfontUnderline.create(this);
 
-            pfontUnderline->operator=(*pgraphics->get_current_font());
+            pfontUnderline->operator=(*pdraw2dgraphics->get_current_font());
 
             pfontUnderline->set_bold();
 
@@ -4422,42 +4422,42 @@ namespace draw2d
       if (iUnderline >= 0 && iUnderline < str.length())
       {
 
-         pgraphics->text_out(rectangle.left, rectangle.top, { str.c_str(), (::i32)minimum(iUnderline, str.length()) });
+         pdraw2dgraphics->text_out(rectangle.left, rectangle.top, { str.c_str(), (::i32)minimum(iUnderline, str.length()) });
          /*::TextOutU(
-         (HDC)pgraphics->get_os_data(),
+         (HDC)pdraw2dgraphics->get_os_data(),
          rectangle.left,
          rectangle.top,
          str,
          minimum(iUnderline, str.length()));*/
          if (iUnderline <= str.length())
          {
-            pgraphics->set(pfontUnderline);
+            pdraw2dgraphics->set(pfontUnderline);
             /*::GetTextExtentPoint32U(
-            (HDC)pgraphics->get_os_data(),
+            (HDC)pdraw2dgraphics->get_os_data(),
             str,
             iUnderline,
             &sz);*/
-            sz = pgraphics->get_text_extent(str, (::i32)iUnderline);
+            sz = pdraw2dgraphics->get_text_extent(str, (::i32)iUnderline);
             ::i8 wch = str[iUnderline];
             /*::TextOutU(
-            (HDC)pgraphics->get_os_data(),
+            (HDC)pdraw2dgraphics->get_os_data(),
             rectangle.left + sz.cx,
             rectangle.top,
             &wch,
             1);*/
-            pgraphics->text_out(rectangle.left + sz.cx, (::f64)rectangle.top, { &wch, 1 });
+            pdraw2dgraphics->text_out(rectangle.left + sz.cx, (::f64)rectangle.top, { &wch, 1 });
             if (iUnderline + 1 <= str.length())
             {
-               sz = pgraphics->get_text_extent(str, (::i32)(iUnderline + 1));
+               sz = pdraw2dgraphics->get_text_extent(str, (::i32)(iUnderline + 1));
                /*::GetTextExtentPoint32U(
-               (HDC)pgraphics->get_os_data(),
+               (HDC)pdraw2dgraphics->get_os_data(),
                str,
                iUnderline + 1,
                &sz);*/
                character_count iCount = str.length() - iUnderline - 1;
-               pgraphics->text_out(rectangle.left + sz.cx, (::f64)rectangle.top, { str.right(iCount).c_str(), (::i32)iCount });
+               pdraw2dgraphics->text_out(rectangle.left + sz.cx, (::f64)rectangle.top, { str.right(iCount).c_str(), (::i32)iCount });
                /*::TextOutU(
-               (HDC)pgraphics->get_os_data(),
+               (HDC)pdraw2dgraphics->get_os_data(),
                rectangle.left + sz.cx,
                rectangle.top,
                str.right(iCount),
@@ -4470,7 +4470,7 @@ namespace draw2d
       else
       {
 
-         pgraphics->text_out(rectangle.left, rectangle.top, str);
+         pdraw2dgraphics->text_out(rectangle.left, rectangle.top, str);
 
       }
 
@@ -4488,7 +4488,7 @@ namespace draw2d
    }
 
 
-   bool word_break(::draw2d::graphics * pgraphics, const ::scoped_string & scopedstrSource, const i32_rectangle & rectangleParam, string &str1, string & str2, ::i32 iEll)
+   bool word_break(::draw2d::graphics * pdraw2dgraphics, const ::scoped_string & scopedstrSource, const i32_rectangle & rectangleParam, string &str1, string & str2, ::i32 iEll)
    {
 
       ::f64_rectangle rectangle(rectangleParam);
@@ -4528,7 +4528,7 @@ namespace draw2d
       while(scopedstr <= pszEnd)
       {
 
-         sz = pgraphics->get_text_extent(scopedstrSource, psz - pszSource);
+         sz = pdraw2dgraphics->get_text_extent(scopedstrSource, psz - pszSource);
 
          dNewY = y + sz.cy;
 
@@ -4542,7 +4542,7 @@ namespace draw2d
 
             character_count iLen = str.length();
 
-            sz = pgraphics->get_text_extent(str,(::i32)iLen);
+            sz = pdraw2dgraphics->get_text_extent(str,(::i32)iLen);
 
 
             if(sz.cx > rectangleClip.width())
@@ -4557,7 +4557,7 @@ namespace draw2d
 
                   str = strSource.left(iSampleLen) + "...";
 
-                  sz = pgraphics->get_text_extent(str);
+                  sz = pdraw2dgraphics->get_text_extent(str);
 
                   if(sz.cx < rectangleClip.width())
                   {
@@ -5629,16 +5629,16 @@ namespace draw2d
 
    }
 
-   savedc::savedc(graphics * pgraphics)
+   savedc::savedc(graphics * pdraw2dgraphics)
    {
-      m_pgraphics = pgraphics;
+      m_pgraphics = pdraw2dgraphics;
       try
       {
          if (m_pgraphics != nullptr)
          {
             m_iSavedDC = m_pgraphics->SaveDC();
-            m_matrixContext = pgraphics->m_matrixContext;
-            m_matrixTransform = pgraphics->m_matrixTransform;
+            m_matrixContext = pdraw2dgraphics->m_matrixContext;
+            m_matrixTransform = pdraw2dgraphics->m_matrixTransform;
          }
       }
       catch (...)

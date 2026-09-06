@@ -58,29 +58,29 @@ namespace app_net
    }
 
 
-   void window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pdraw2dgraphics);
 
       auto colorText = get_color(pstyle, ::e_element_text);
 
-      pgraphics->set_text_color(colorText);
+      pdraw2dgraphics->set_solid_color(colorText);
 
-      pgraphics->set(m_pfont);
+      pdraw2dgraphics->set(m_pfont);
 
       if (!m_bGettingUrl)
       {
 
          string strMessage = "Click at window to start getting url";
 
-         pgraphics->text_out(10, 10, strMessage);
+         pdraw2dgraphics->text_out(10, 10, strMessage);
 
       }
 
       string strUrl = m_strUrl;
 
-      pgraphics->text_out(10, 50, strUrl);
+      pdraw2dgraphics->text_out(10, 50, strUrl);
 
       string strGet;
 
@@ -101,12 +101,12 @@ namespace app_net
 
       }
 
-      pgraphics->text_out(10, 150, strGet);
+      pdraw2dgraphics->text_out(10, 150, strGet);
 
    }
 
 
-   void window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem, const ::user::e_state & estate)
+   void window::_001DrawItem(::draw2d::graphics_pointer& pdraw2dgraphics, ::item* pitem, const ::user::e_state & estate)
    {
 
       if (::is_null(pitem))
@@ -119,7 +119,7 @@ namespace app_net
       if (pitem->m_item.m_eelement == ::e_element_close_button)
       {
 
-         ::user::draw_close_button(pgraphics, this, pitem, estate);
+         ::user::draw_close_button(pdraw2dgraphics, this, pitem, estate);
 
       }
 

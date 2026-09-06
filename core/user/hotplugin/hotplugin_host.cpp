@@ -157,7 +157,7 @@ namespace hotplugin
    }
 
 
-   void host::on_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle)
+   void host::on_paint(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangle)
 
    {
 
@@ -168,7 +168,7 @@ namespace hotplugin
          {
             //::u32 dwTime1= ::time::now();
 
-            m_pplugin->on_paint(pgraphics, rectangle);
+            m_pplugin->on_paint(pdraw2dgraphics, rectangle);
 
             //::u32 dwTime9= ::time::now();
 
@@ -184,17 +184,17 @@ namespace hotplugin
       else
       {
 
-         plugin::on_paint(pgraphics, rectangle);
+         plugin::on_paint(pdraw2dgraphics, rectangle);
 
 
       }
 
-      if(::user::interaction::m_pimpl != nullptr && pgraphics != nullptr)
+      if(::user::interaction::m_pimpl != nullptr && pdraw2dgraphics != nullptr)
       {
          //::u32 dwTime1= ::time::now();
 
 
-         ::user::interaction::m_pimpl->_001Print(pgraphics);
+         ::user::interaction::m_pimpl->_001Print(pdraw2dgraphics);
          //::u32 dwTime9= ::time::now();
 
          //informationf("m_pimpl->_001Print %d",dwTime9 - dwTime1);
@@ -465,7 +465,7 @@ namespace hotplugin
    }
 
 
-   void host::set_bitmap(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle)
+   void host::set_bitmap(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangle)
    {
 
       ensure_bitmap_data(rectangle.size(), false);
@@ -489,13 +489,13 @@ namespace hotplugin
 
          //::draw2d::bitmap_pointer b(e_create);
 
-         //b->create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref, pgraphics);
+         //b->create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref, pdraw2dgraphics);
 
          //::draw2d::graphics_pointer g(e_create);
 
          //g->create_from_bitmap(b);
 
-         //g.bit_blt(0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, pgraphics, prectangle.left, prectangle.top);
+         //g.bit_blt(0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, pdraw2dgraphics, prectangle.left, prectangle.top);
 
 
       }
@@ -509,7 +509,7 @@ namespace hotplugin
    }
 
 
-   void host::paint_bitmap(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle)
+   void host::paint_bitmap(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangle)
    {
 
       ensure_bitmap_data(rectangle, false);
@@ -528,13 +528,13 @@ namespace hotplugin
 
          //simple_bitmap b;
 
-         //b.create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref, pgraphics);
+         //b.create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref, pdraw2dgraphics);
 
          //simple_graphics g;
 
          //g.create_from_bitmap(b);
 
-         //pgraphics.bit_blt(prectangle.left, prectangle.top, m_sizeBitmap.cx, m_sizeBitmap.cy, g, 0, 0);
+         //pdraw2dgraphics.bit_blt(prectangle.left, prectangle.top, m_sizeBitmap.cx, m_sizeBitmap.cy, g, 0, 0);
 
 
       }
@@ -548,7 +548,7 @@ namespace hotplugin
    }
 
 
-   void host::blend_bitmap(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleOut)
+   void host::blend_bitmap(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangleOut)
    {
 
       auto rectangle = window_rectangle();
@@ -575,7 +575,7 @@ namespace hotplugin
 
       ::memory_copy(m_pimage->image32(), m_memorymapBitmap.get_data(), (size_t) (m_pimage->area() * sizeof(color32_t)));
 
-      pgraphics->draw((const ::i32_point *) &rectangleOut, m_sizeBitmap, m_pgraphicsImage->);
+      pdraw2dgraphics->draw((const ::i32_point *) &rectangleOut, m_sizeBitmap, m_pgraphicsImage->);
 
 
    }
@@ -711,7 +711,7 @@ namespace hotplugin
    //   for(::collection::index i = 0; i < m_uiptraChild.get_count(); i++)
    //   {
 
-   //      m_uiptraChild[i]->on_layout(pgraphics);
+   //      m_uiptraChild[i]->on_layout(pdraw2dgraphics);
 
    //   }
 

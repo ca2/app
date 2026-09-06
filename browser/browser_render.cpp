@@ -348,7 +348,7 @@ namespace browser
    }
 
 
-   void render::browser_render(::draw2d::graphics_pointer & pgraphics)
+   void render::browser_render(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
@@ -356,7 +356,7 @@ namespace browser
       //   if(m_bLite)
       {
 
-         browser_render_lite_impact(pgraphics);
+         browser_render_lite_impact(pdraw2dgraphics);
 
       }
       //   else
@@ -409,7 +409,7 @@ namespace browser
 
    }
 
-   void render::browser_render_lite_impact(::draw2d::graphics_pointer & pgraphics)
+   void render::browser_render_lite_impact(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_pimageWork->area() <= 0)
@@ -466,9 +466,9 @@ namespace browser
 
       }
 
-      pgraphics->set_font(m_pfont);
+      pdraw2dgraphics->set_font(m_pfont);
 
-      size = pgraphics->get_text_extent(strHelloBrowser);
+      size = pdraw2dgraphics->get_text_extent(strHelloBrowser);
 
       ::i32 iCx = ::i32(size.cx * 1.2);
       ::i32 iCy = ::i32(size.cy * 1.2);
@@ -605,20 +605,20 @@ namespace browser
 
       }
 
-      pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+      pdraw2dgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      psystem->imaging().bitmap_blend(pgraphics,
+      psystem->imaging().bitmap_blend(pdraw2dgraphics,
                                          i32_point((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
                                          , m_pimageTemplate2->get_size(),
                                          m_pimageTemplate2->get_graphics(), ::i32_point(), ::u8 (128 + (255 - 128) * r));
 
-      //pgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::i32_point(), rectangleX>si);
+      //pdraw2dgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::i32_point(), rectangleX>si);
 
-      pgraphics->set_font(m_pfont);
+      pdraw2dgraphics->set_font(m_pfont);
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       if (session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
       {
@@ -637,17 +637,17 @@ namespace browser
 
       }
 
-      pgraphics->SelectObject(pbrushText);
+      pdraw2dgraphics->SelectObject(pbrushText);
 
       //if(!m_bAlternate)
       {
 
-         pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser);
+         pdraw2dgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser);
 
       }
-      //      pgraphics->FillSolidRect(200,00,100,100,argb(128,128,128,255));
+      //      pdraw2dgraphics->FillSolidRect(200,00,100,100,argb(128,128,128,255));
 
-      //    pgraphics->FillSolidRect(200,200,100,100,argb(128,128,128,0));
+      //    pdraw2dgraphics->FillSolidRect(200,200,100,100,argb(128,128,128,0));
 
       if(!m_bFirstDone)
       {
@@ -674,7 +674,7 @@ namespace browser
    }
 
 
-   void render::browser_render_full_impact(::draw2d::graphics_pointer & pgraphics)
+   void render::browser_render_full_impact(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_pimageWork->area() <= 0)
@@ -756,7 +756,7 @@ namespace browser
 
       }
 
-      pgraphics->set_font(m_pfont);
+      pdraw2dgraphics->set_font(m_pfont);
 
 
       string strGetHelloBrowser;
@@ -771,7 +771,7 @@ namespace browser
 
       string strHelloBrowser = strGetHelloBrowser;
 
-      ::i32_size size = pgraphics->get_text_extent(strHelloBrowser);
+      ::i32_size size = pdraw2dgraphics->get_text_extent(strHelloBrowser);
 
       m_cxTarget = ::i32(size.cx * 1.2);
 
@@ -795,7 +795,7 @@ namespace browser
 
 /*            m_pimage->create_image(this, ::i32_size(m_cx, m_cy));
 
-/*            m_pimage->defer_realize(pgraphics);
+/*            m_pimage->defer_realize(pdraw2dgraphics);
 
 /*            m_pimage->fill(0, 0, 0, 0);
 
@@ -840,15 +840,15 @@ namespace browser
 
          }
 
-         pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->draw(rectangleX, m_pimageTint->get_graphics());
+         pdraw2dgraphics->draw(rectangleX, m_pimageTint->get_graphics());
 
       }
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       if (session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
       {
@@ -867,9 +867,9 @@ namespace browser
 
       }
 
-      pgraphics->SelectObject(pbrushText);
+      pdraw2dgraphics->SelectObject(pbrushText);
 
-      pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser);
+      pdraw2dgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser);
 
       ::u8 a, R, g, b;
 
@@ -930,15 +930,15 @@ namespace browser
 
 /*                     pimage = create_image({face->glyph->bitmap.width,  face->glyph->bitmap.rows});
 
-/*                     pimage->realize(pgraphics);
+/*                     pimage->realize(pdraw2dgraphics);
 
 /*                     draw_freetype_bitmap(pimage->m_p, 0, 0, &face->glyph->bitmap, 0, 0, a, R, g, b);
 
-                     pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+                     pdraw2dgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-/*                     pgraphics->StretchBlt(0, 0, pimage->width() / 40, pimage->height() / 40, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
+/*                     pdraw2dgraphics->StretchBlt(0, 0, pimage->width() / 40, pimage->height() / 40, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
 
-/*                     pgraphics->StretchBlt(0, m_cy - pimage->height() / 40, pimage->width() / 40, pimage->height() / 40, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
+/*                     pdraw2dgraphics->StretchBlt(0, m_cy - pimage->height() / 40, pimage->width() / 40, pimage->height() / 40, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
 
                   }
 
@@ -981,15 +981,15 @@ namespace browser
 
 /*                     pimage = create_image({face->glyph->bitmap.width,  face->glyph->bitmap.rows});
 
-/*                     pimage->realize(pgraphics);
+/*                     pimage->realize(pdraw2dgraphics);
 
 /*                     draw_freetype_bitmap(pimage->m_p, 0, 0, &face->glyph->bitmap, 0, 0, a, R, g, b);
 
-                     pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+                     pdraw2dgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32, 0, pimage->width() / 32, pimage->height() / 32, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
+/*                     pdraw2dgraphics->StretchBlt(m_cx - pimage->width() / 32, 0, pimage->width() / 32, pimage->height() / 32, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
 
-/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32, m_cy - pimage->height() / 32, pimage->width() / 32, pimage->height() / 32, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
+/*                     pdraw2dgraphics->StretchBlt(m_cx - pimage->width() / 32, m_cy - pimage->height() / 32, pimage->width() / 32, pimage->height() / 32, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
 
                   }
 
@@ -1012,7 +1012,7 @@ namespace browser
 
    }
 
-   void render::slide_draw(::draw2d::graphics_pointer & pgraphics, ::gcom::slide * pslide)
+   void render::slide_draw(::draw2d::graphics_pointer & pdraw2dgraphics, ::gcom::slide * pslide)
    {
 
       m_pimageaSlide->set_size(slideshow()->get_size());
@@ -1026,12 +1026,12 @@ namespace browser
 
       }
 
-/*      psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pimage, ::i32_point(), pslide->m_iAlpha);
+/*      psystem->imaging().bitmap_blend(pdraw2dgraphics, ::i32_point(), pimage->get_size(), pimage, ::i32_point(), pslide->m_iAlpha);
 
    }
 
 
-   void render::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void render::_006OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::i32_rectangle rectangleX;
@@ -1041,7 +1041,7 @@ namespace browser
       rectangleX.right = m_cx;
       rectangleX.bottom = m_cy;
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       ::time tickPeriod = m_timeSlidePeriod;
       ::time tickRampUp = tickPeriod / 2;
       ::time tickSlide = 0;
@@ -1049,7 +1049,7 @@ namespace browser
       try
       {
 
-         slideshow().draw(pgraphics);
+         slideshow().draw(pdraw2dgraphics);
 
       }
       catch (...)
@@ -1081,11 +1081,11 @@ namespace browser
 
                pfont->create_pixel_font(pnode->font_name(e_font_sans), fHeight, e_font_weight_bold);
 
-               pgraphics->set_font(font);
+               pdraw2dgraphics->set_font(font);
 
-               pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+               pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-               ::i32_size size = pgraphics->get_text_extent(strHelloBrowser);
+               ::i32_size size = pdraw2dgraphics->get_text_extent(strHelloBrowser);
 
                ::f64 ratey = fHeight * 0.84 / size.cy;
 
@@ -1107,17 +1107,17 @@ namespace browser
 
             pbrush->create_solid(a_rgb(255, ca));
 
-            pgraphics->SelectObject(brush);
+            pdraw2dgraphics->SelectObject(brush);
 
-            pgraphics->set_font(m_pfont);
+            pdraw2dgraphics->set_font(m_pfont);
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+            pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-            ::i32_size size = pgraphics->get_text_extent(strHelloBrowser);
+            ::i32_size size = pdraw2dgraphics->get_text_extent(strHelloBrowser);
 
-            pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser);
+            pdraw2dgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser);
 
             return;
 
@@ -1166,9 +1166,9 @@ namespace browser
          if (m_pimageFast->is_ok())
          {
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw(::i32_point(), i32_size(m_cx, m_cy), m_pimageFast->get_graphics());
+            pdraw2dgraphics->draw(::i32_point(), i32_size(m_cx, m_cy), m_pimageFast->get_graphics());
 
          }
 
@@ -1200,7 +1200,7 @@ namespace browser
 /*      if (pimage->area() <= 0)
          return;
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if (m_timeLastOk.elapsed() < m_timeAnime)
       {
@@ -1209,15 +1209,15 @@ namespace browser
 
          uchAlpha = ::u8(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
-/*         psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), uchAlpha);
+/*         psystem->imaging().bitmap_blend(pdraw2dgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), uchAlpha);
 
-         psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), imageFast.get_size(), imageFast.get_graphics(), ::i32_point(), 255 - uchAlpha);
+         psystem->imaging().bitmap_blend(pdraw2dgraphics, ::i32_point(), imageFast.get_size(), imageFast.get_graphics(), ::i32_point(), 255 - uchAlpha);
 
       }
       else
       {
 
-/*         pgraphics->from(::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point());
+/*         pdraw2dgraphics->from(::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point());
 
       }
 
@@ -1329,7 +1329,7 @@ namespace browser
 
       m_pimageFast->fill(0, 0, 0, 0);
 
-      ::draw2d::graphics_pointer & pgraphics = m_pimageFast->get_graphics();
+      ::draw2d::graphics_pointer & pdraw2dgraphics = m_pimageFast->get_graphics();
 
       ::f32 fHeight = 100.0;
 
@@ -1337,11 +1337,11 @@ namespace browser
 
       pfont->create_pixel_font(m_pimpact->m_prender->m_strFont, fHeight, e_font_weight_bold);
 
-      pgraphics->set_font(font);
+      pdraw2dgraphics->set_font(font);
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      ::i32_size size = pgraphics->get_text_extent(strHelloBrowser);
+      ::i32_size size = pdraw2dgraphics->get_text_extent(strHelloBrowser);
 
       ::f64 ratey = fHeight * 0.84 / size.cy;
 
@@ -1353,9 +1353,9 @@ namespace browser
 
       m_pfont = font;
 
-      pgraphics->set_font(m_pfont);
+      pdraw2dgraphics->set_font(m_pfont);
 
-      size = pgraphics->get_text_extent(strHelloBrowser);
+      size = pdraw2dgraphics->get_text_extent(strHelloBrowser);
 
       auto ppath = createø < ::draw2d::path > ();
 
@@ -1371,13 +1371,13 @@ namespace browser
 
       ppenW->create_solid(3.0, argb(84, 255, 255, 255));
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->draw(path, ppenW);
+      pdraw2dgraphics->draw(path, ppenW);
 
-      pgraphics->draw(ppath, ppen);
+      pdraw2dgraphics->draw(ppath, ppen);
 
    }
 

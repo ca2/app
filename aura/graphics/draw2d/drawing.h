@@ -21,7 +21,7 @@ namespace draw2d
       ~drawing();
       
       
-      virtual void on_draw(::draw2d::graphics * pgraphics, const ::f64_rectangle & rectangle);
+      virtual void on_draw(::draw2d::graphics * pdraw2dgraphics, const ::f64_rectangle & rectangle);
       
    };
 

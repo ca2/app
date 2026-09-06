@@ -33,7 +33,7 @@ namespace filehandler
 
          void parse(const ::scoped_string & scopedstrApp);
 
-         void draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics, list_base * plist);
+         void draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pdraw2dgraphics, list_base * plist);
 
       };
 
@@ -50,7 +50,7 @@ namespace filehandler
          void parse(::filehandler::handler * phandler, const ::scoped_string & scopedstrTopic);
 
          void on_layout(const ::i32_rectangle * lpcrect);
-         void draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics);
+         void draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
       };
 
@@ -66,7 +66,7 @@ namespace filehandler
       virtual ~impact();
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       void install_message_routing(::channel * pchannel) override;
 
@@ -76,7 +76,7 @@ namespace filehandler
       void operator()(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
       void on_hit_test(::item & item);

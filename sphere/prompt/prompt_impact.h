@@ -34,12 +34,12 @@ namespace prompt
 
       void GetDateTime(string & strDateTime);
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       void install_message_routing(::channel * pchannel) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
-      virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);      // overridden to draw this ::impact
+      virtual void OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);      // overridden to draw this ::impact
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);

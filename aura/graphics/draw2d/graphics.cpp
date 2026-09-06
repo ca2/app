@@ -707,7 +707,14 @@ namespace draw2d
       m_pdraw2dregion.release();
       m_pwritetextfont.release();
       m_pwritetextfontDevice.release();
-      m_pimageTarget.release();
+
+      if (m_pimageTarget.is_set() && m_pimageTarget->m_pgraphicsOwned != this)
+      {
+       
+         m_pimageTarget.release();
+
+      }
+
       m_pacmeuserinteractionAffinity.release();
 
    }

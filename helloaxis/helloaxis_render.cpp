@@ -242,10 +242,10 @@ namespace helloaxis
 
 
 
-   void render::helloaura_render_lite_impact(::draw2d::graphics_pointer & pgraphics)
+   void render::helloaura_render_lite_impact(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      return ::helloaura::render::helloaura_render_lite_impact(pgraphics);
+      return ::helloaura::render::helloaura_render_lite_impact(pdraw2dgraphics);
 
 //      if (m_pimageWork->area() <= 0)
 //         return;
@@ -254,9 +254,9 @@ namespace helloaxis
 //
 //      ::i32_rectangle rectangleX = m_rectangleX;
 //
-//      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+//      //pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
-//      //pgraphics->FillSolidRect(rectangleX,argb(0, 0, 0, 0));
+//      //pdraw2dgraphics->FillSolidRect(rectangleX,argb(0, 0, 0, 0));
 //
 //      //      ::i32 iCount = 30;
 //
@@ -302,9 +302,9 @@ namespace helloaxis
 //
 //      }
 //
-//      pgraphics->set_font(m_pfont);
+//      pdraw2dgraphics->set_font(m_pfont);
 //
-//      size = pgraphics->get_text_extent(strHelloAXIS);
+//      size = pdraw2dgraphics->get_text_extent(strHelloAXIS);
 //
 //      m_cxTarget = ::i32 (size.cx * 1.2);
 //      m_cyTarget = ::i32 (size.cy * 1.2);
@@ -332,7 +332,7 @@ namespace helloaxis
 //               if (m_pimage->initialize(m_cxCache1, m_cyCache1, ::i32 (m_dMaxRadius)))
 //               {
 //
-//                  //m_pimage->defer_realize(pgraphics);
+//                  //m_pimage->defer_realize(pdraw2dgraphics);
 //
 //                  m_pimage->Fill(0, 0, 0, 0);
 //
@@ -415,20 +415,20 @@ namespace helloaxis
 //
 //      }
 //
-//      pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+//      pdraw2dgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 //
-//      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+//      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//      psystem->imaging().bitmap_blend(pgraphics,
+//      psystem->imaging().bitmap_blend(pdraw2dgraphics,
 //                                             i32_point((m_rectangleX.width() - m_pimageTemplate2->width()) / 2, (m_rectangleX->height() - m_pimageTemplate2->height()) / 2)
 //                                             , m_pimageTemplate2->m_size,
 //                                             m_pimageTemplate2->get_graphics(), ::i32_point(), ::u8 (128 + (255 - 128) * r));
 //
-//      //pgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::i32_point(), rectangleX>si);
+//      //pdraw2dgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::i32_point(), rectangleX>si);
 //
-//      pgraphics->set_font(m_pfont);
+//      pdraw2dgraphics->set_font(m_pfont);
 //
-//      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+//      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 //
 //      if (session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
 //      {
@@ -454,17 +454,17 @@ namespace helloaxis
 //
 //      }
 //
-//      pgraphics->SelectObject(pbrushText);
+//      pdraw2dgraphics->SelectObject(pbrushText);
 //
 //      //if(!m_bAlternate)
 //      {
 //
-//         pgraphics->text_out((m_rectangleX.width() - size.cx) / 2, (m_rectangleX.height() - size.cy) / 2, strHelloAXIS);
+//         pdraw2dgraphics->text_out((m_rectangleX.width() - size.cx) / 2, (m_rectangleX.height() - size.cy) / 2, strHelloAXIS);
 //
 //      }
-//      //      pgraphics->FillSolidRect(200,00,100,100,argb(128,128,128,255));
+//      //      pdraw2dgraphics->FillSolidRect(200,00,100,100,argb(128,128,128,255));
 //
-//      //    pgraphics->FillSolidRect(200,200,100,100,argb(128,128,128,0));
+//      //    pdraw2dgraphics->FillSolidRect(200,200,100,100,argb(128,128,128,0));
 //
 //      if(!m_bFirstDone)
 //      {
@@ -483,10 +483,10 @@ namespace helloaxis
    }
 
 
-   void render::helloaura_render_full_impact(::draw2d::graphics_pointer & pgraphics)
+   void render::helloaura_render_full_impact(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::helloaura::render::helloaura_render_full_impact(pgraphics);
+      ::helloaura::render::helloaura_render_full_impact(pdraw2dgraphics);
 
 //      if (m_pimageWork->area() <= 0)
 //         return;
@@ -561,11 +561,11 @@ namespace helloaxis
 //
 //
 //
-//      pgraphics->set_font(m_pfont);
+//      pdraw2dgraphics->set_font(m_pfont);
 //
 //      string strHelloAXIS = get_helloaura();
 //
-//      ::i32_size size = pgraphics->get_text_extent(strHelloAXIS);
+//      ::i32_size size = pdraw2dgraphics->get_text_extent(strHelloAXIS);
 //
 //      m_cxTarget = ::i32(size.cx * 1.2);
 //      m_cyTarget = ::i32(size.cy * 1.2);
@@ -590,7 +590,7 @@ namespace helloaxis
 //
 //            }
 //
-//            m_pimage->defer_realize(pgraphics);
+//            m_pimage->defer_realize(pdraw2dgraphics);
 //
 //            m_pimage->Fill(0, 0, 0, 0);
 //
@@ -635,15 +635,15 @@ namespace helloaxis
 //
 //         }
 //
-//         pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+//         pdraw2dgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 //
-//         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+//         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//         pgraphics->BitBlt(rectangleX, m_pimageTint->get_graphics());
+//         pdraw2dgraphics->BitBlt(rectangleX, m_pimageTint->get_graphics());
 //
 //      }
 //
-//      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+//      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 //
 //      if (session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
 //      {
@@ -669,9 +669,9 @@ namespace helloaxis
 //
 //      }
 //
-//      pgraphics->SelectObject(pbrushText);
+//      pdraw2dgraphics->SelectObject(pbrushText);
 //
-//      pgraphics->text_out((m_rectangleX.width() - size.cx) / 2, (m_rectangleX.height() - size.cy) / 2, strHelloAXIS);
+//      pdraw2dgraphics->text_out((m_rectangleX.width() - size.cx) / 2, (m_rectangleX.height() - size.cy) / 2, strHelloAXIS);
 //
 //      ::u8 a, R, g, b;
 //
@@ -732,15 +732,15 @@ namespace helloaxis
 //
 /*                     pimage = create_image({face->glyph->bitmap.width,  face->glyph->bitmap.rows});
 //
-//                     pimage->realize(pgraphics);
+//                     pimage->realize(pdraw2dgraphics);
 //
 //                     draw_freetype_bitmap(pimage->m_p, 0, 0, &face->glyph->bitmap, 0, 0, a, R, g, b);
 //
-//                     pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+//                     pdraw2dgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 //
-/*                     pgraphics->StretchBlt(0, 0, pimage->width() / 40, pimage->height() / 40, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
+/*                     pdraw2dgraphics->StretchBlt(0, 0, pimage->width() / 40, pimage->height() / 40, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
 //
-/*                     pgraphics->StretchBlt(0, m_rectangleX.height() - pimage->height() / 40, pimage->width() / 40, pimage->height() / 40, pgraphicsImage, 0, 0, pimage->width(), pimage.height());
+/*                     pdraw2dgraphics->StretchBlt(0, m_rectangleX.height() - pimage->height() / 40, pimage->width() / 40, pimage->height() / 40, pgraphicsImage, 0, 0, pimage->width(), pimage.height());
 //
 //                  }
 //
@@ -783,15 +783,15 @@ namespace helloaxis
 //
 /*                     pimage = create_image({face->glyph->bitmap.width,  face->glyph->bitmap.rows});
 //
-//                     pimage->realize(pgraphics);
+//                     pimage->realize(pdraw2dgraphics);
 //
 //                     draw_freetype_bitmap(pimage->m_p, 0, 0, &face->glyph->bitmap, 0, 0, a, R, g, b);
 //
-//                     pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+//                     pdraw2dgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 //
-/*                     pgraphics->StretchBlt(m_rectangleX.width() - pimage->width() / 32, 0, pimage->width() / 32, pimage->height() / 32, pgraphicsImage, 0, 0, pimage->width(), pimage.height());
+/*                     pdraw2dgraphics->StretchBlt(m_rectangleX.width() - pimage->width() / 32, 0, pimage->width() / 32, pimage->height() / 32, pgraphicsImage, 0, 0, pimage->width(), pimage.height());
 //
-/*                     pgraphics->StretchBlt(m_rectangleX.width() - pimage->width() / 32, m_rectangleX.height() - pimage->height() / 32, pimage->width() / 32, pimage->height() / 32, pgraphicsImage, 0, 0, pimage->width(), pimage.height());
+/*                     pdraw2dgraphics->StretchBlt(m_rectangleX.width() - pimage->width() / 32, m_rectangleX.height() - pimage->height() / 32, pimage->width() / 32, pimage->height() / 32, pgraphicsImage, 0, 0, pimage->width(), pimage.height());
 //
 //                  }
 //
@@ -815,10 +815,10 @@ namespace helloaxis
    }
 
 
-   void render::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void render::_006OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::helloaura::render::_006OnDraw(pgraphics);
+      ::helloaura::render::_006OnDraw(pdraw2dgraphics);
 
       return;
 
@@ -829,7 +829,7 @@ namespace helloaxis
 //      rectangleX.right = m_rectangleX.width();
 //      rectangleX.bottom = m_rectangleX.height();
 //
-//      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+//      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //      ::i32 period = 5000;
 //      ::i32 border = 2500;
 //      ::i32 t;
@@ -900,7 +900,7 @@ namespace helloaxis
 //
 //                     pimage->defer_update();
 //
-/*                     psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), 255 - uchAlpha);
+/*                     psystem->imaging().bitmap_blend(pdraw2dgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), 255 - uchAlpha);
 //
 //                  }
 //
@@ -918,7 +918,7 @@ namespace helloaxis
 //
 //                     pimage->defer_update();
 //
-/*                     psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), uchAlpha);
+/*                     psystem->imaging().bitmap_blend(pdraw2dgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), uchAlpha);
 //
 //                  }
 //
@@ -937,7 +937,7 @@ namespace helloaxis
 //
 //                  pimage->defer_update();
 //
-/*                  pgraphics->BitBlt(0, 0, pimage->width(), pimage->height(), pgraphicsImage, 0, 0);
+/*                  pdraw2dgraphics->BitBlt(0, 0, pimage->width(), pimage->height(), pgraphicsImage, 0, 0);
 //
 //               }
 //
@@ -977,11 +977,11 @@ namespace helloaxis
 //
 //               pfont->create_pixel_font(pnode->font_name(e_font_sans), fHeight, e_font_weight_bold);
 //
-//               pgraphics->set_font(font);
+//               pdraw2dgraphics->set_font(font);
 //
-//               pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+//               pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 //
-//               ::i32_size size = pgraphics->get_text_extent(strHelloAXIS);
+//               ::i32_size size = pdraw2dgraphics->get_text_extent(strHelloAXIS);
 //
 //               ::f64 ratey = fHeight * 0.84 / size.cy;
 //
@@ -1003,17 +1003,17 @@ namespace helloaxis
 //
 //            pbrush->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
 //
-//            pgraphics->SelectObject(brush);
+//            pdraw2dgraphics->SelectObject(brush);
 //
-//            pgraphics->set_font(m_pfont);
+//            pdraw2dgraphics->set_font(m_pfont);
 //
-//            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+//            pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+//            pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 //
-//            ::i32_size size = pgraphics->get_text_extent(strHelloAXIS);
+//            ::i32_size size = pdraw2dgraphics->get_text_extent(strHelloAXIS);
 //
-//            pgraphics->text_out((m_rectangleX.width() - size.cx) / 2, (m_rectangleX.height() - size.cy) / 2, strHelloAXIS);
+//            pdraw2dgraphics->text_out((m_rectangleX.width() - size.cx) / 2, (m_rectangleX.height() - size.cy) / 2, strHelloAXIS);
 //
 //            return;
 //
@@ -1055,11 +1055,11 @@ namespace helloaxis
 //
 //         }
 //
-//         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+//         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//         pgraphics->BitBlt(::i32_point(), i32_size(m_rectangleX.width(), m_rectangleX.height()), m_pimageFast->get_graphics());
+//         pdraw2dgraphics->BitBlt(::i32_point(), i32_size(m_rectangleX.width(), m_rectangleX.height()), m_pimageFast->get_graphics());
 //
-//         //pgraphics->FillSolidRect(400,400,100,100,argb(128,0,0,128));
+//         //pdraw2dgraphics->FillSolidRect(400,400,100,100,argb(128,0,0,128));
 //
 ////         m_pimpact->m_bOkPending = true;
 //
@@ -1089,7 +1089,7 @@ namespace helloaxis
       //if (pimage->area() <= 0)
       //   return;
 
-      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      //pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       //if (m_timeLastOk.elapsed() < m_timeAnime)
       //{
@@ -1098,15 +1098,15 @@ namespace helloaxis
 
       //   uchAlpha = ::u8(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
-/*      //   psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), uchAlpha);
+/*      //   psystem->imaging().bitmap_blend(pdraw2dgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), uchAlpha);
 
-      //   psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), imageFast.get_size(), imageFast.get_graphics(), ::i32_point(), 255 - uchAlpha);
+      //   psystem->imaging().bitmap_blend(pdraw2dgraphics, ::i32_point(), imageFast.get_size(), imageFast.get_graphics(), ::i32_point(), 255 - uchAlpha);
 
       //}
       //else
       //{
 
-/*      //   pgraphics->from(::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point());
+/*      //   pdraw2dgraphics->from(::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point());
 
       //}
 
@@ -1231,7 +1231,7 @@ namespace helloaxis
 //
 //      m_pimageFast->Fill(0, 0, 0, 0);
 //
-//      ::draw2d::graphics_pointer & pgraphics = m_pimageFast->get_graphics();
+//      ::draw2d::graphics_pointer & pdraw2dgraphics = m_pimageFast->get_graphics();
 //
 //      ::f32 fHeight = 100.0;
 //
@@ -1239,11 +1239,11 @@ namespace helloaxis
 //
 ////      pfont->create_pixel_font(m_pimpact->m_strFont, fHeight, e_font_weight_bold);
 //
-//      pgraphics->set_font(font);
+//      pdraw2dgraphics->set_font(font);
 //
-//      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+//      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 //
-//      ::i32_size size = pgraphics->get_text_extent(strHelloAXIS);
+//      ::i32_size size = pdraw2dgraphics->get_text_extent(strHelloAXIS);
 //
 //      ::f64 ratey = fHeight * 0.84 / size.cy;
 //
@@ -1255,9 +1255,9 @@ namespace helloaxis
 //
 //      m_pfont = font;
 //
-//      pgraphics->set_font(m_pfont);
+//      pdraw2dgraphics->set_font(m_pfont);
 //
-//      size = pgraphics->get_text_extent(strHelloAXIS);
+//      size = pdraw2dgraphics->get_text_extent(strHelloAXIS);
 //
 //      auto ppath = createø < ::draw2d::path > ();
 //
@@ -1273,15 +1273,15 @@ namespace helloaxis
 //
 //      ppenW->create_solid(3.0, argb(84, 255, 255, 255));
 //
-//      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+//      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
-//      //      pgraphics->FillSolidRect((m_rectangleX.width() - size.cx) / 2,(m_rectangleX.height() - size.cy) / 2, 100, 100, argb(255,255,200,240));
+//      //      pdraw2dgraphics->FillSolidRect((m_rectangleX.width() - size.cx) / 2,(m_rectangleX.height() - size.cy) / 2, 100, 100, argb(255,255,200,240));
 //
-//      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+//      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//      pgraphics->draw(path, ppenW);
-//      pgraphics->draw(ppath, ppen);
-//      //pgraphics->FillSolidRect(00,00,100,100,argb(128,128,0,0));
+//      pdraw2dgraphics->draw(path, ppenW);
+//      pdraw2dgraphics->draw(ppath, ppen);
+//      //pdraw2dgraphics->FillSolidRect(00,00,100,100,argb(128,128,0,0));
 
    }
 

@@ -115,7 +115,7 @@ namespace helloworld
             m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;
 
 
-            m_pimpact->on_layout(pgraphics);
+            m_pimpact->on_layout(pdraw2dgraphics);
 
             return true;
 
@@ -127,18 +127,18 @@ namespace helloworld
 
    }
 
-   void switcher_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void switcher_impact::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::split_impact::_001OnNcDraw(pgraphics);
+      ::user::split_impact::_001OnNcDraw(pdraw2dgraphics);
 
    }
 
 
-   void switcher_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void switcher_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::split_impact::_001OnDraw(pgraphics);
+      ::user::split_impact::_001OnDraw(pdraw2dgraphics);
 
    }
 

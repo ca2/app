@@ -24,24 +24,24 @@ namespace experience_tranquillum
 
 
       virtual string get_default_user_style() const override;
-      virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _on_style_change(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual void on_initialize_experience_frame() override;
 
 
-      void on_draw_frame(::draw2d::graphics_pointer & pgraphics) override;
-      void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight);
-      void DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX);
+      void on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void Draw3dRectSide(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight);
+      void DrawBorder(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX);
 
-      void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, enum_border eside);
+      void draw_border_side(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX, enum_border eside);
 
       //void GetBorderRectangle(const ::i32_rectangle & rectangleX, ::i32_rectangle * prectangle, enum_border eside);
 
-      void DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX);
+      void DrawGripSet(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX);
 
-      void DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, enum_grip egrip);
+      void DrawGrip(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX, enum_grip egrip);
 
-      void DrawRectGrip(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+      void DrawRectGrip(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle);
 
       //::experience::enum_frame experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 

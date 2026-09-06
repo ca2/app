@@ -84,15 +84,15 @@ namespace browser
    }
 
 
-   void gcom::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void gcom::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      impact_base::_001OnDraw(pgraphics);
+      impact_base::_001OnDraw(pdraw2dgraphics);
 
    }
 
 
-   void gcom::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void gcom::_006OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
@@ -114,7 +114,7 @@ namespace browser
 
       }
 
-      backimpact::user::impact::backimpact_Render(pgraphics, rectangleX);
+      backimpact::user::impact::backimpact_Render(pdraw2dgraphics, rectangleX);
 
    }
 
@@ -127,10 +127,10 @@ namespace browser
    }
 
 
-   void gcom::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void gcom::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::backimpact::user::impact::on_layout(pgraphics);
+      ::backimpact::user::impact::on_layout(pdraw2dgraphics);
 
    }
 

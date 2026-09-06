@@ -126,7 +126,7 @@ namespace turboc
    }
 
 
-   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if(m_strNewHelloMultiverse.is_empty())
@@ -148,13 +148,13 @@ namespace turboc
       if(m_bHelloLayoutOn001Layout)
       {
 
-         ::turboc::impact::on_layout(pgraphics);
+         ::turboc::impact::on_layout(pdraw2dgraphics);
 
       }
       else
       {
 
-         on_layout(pgraphics);
+         on_layout(pdraw2dgraphics);
 
       }
 
@@ -185,7 +185,7 @@ namespace turboc
 
       GetClientRect(rectangleX);
 
-/*      pgraphics->BitBlt(rectangleX,papp->m_papplication->m_pgraphicsImage->);
+/*      pdraw2dgraphics->BitBlt(rectangleX,papp->m_papplication->m_pgraphicsImage->);
 
 
       if(papp->m_etype == application::type_mili)
@@ -203,11 +203,11 @@ namespace turboc
 
             m_pfont->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
 
-            pgraphics->set_font(m_pfont);
+            pdraw2dgraphics->set_font(m_pfont);
 
-            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+            pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-            ::i32_size size = pgraphics->get_text_extent(strHelloMultiverse);
+            ::i32_size size = pdraw2dgraphics->get_text_extent(strHelloMultiverse);
 
             ::f64 ratey = fHeight * 0.84 / size.cy;
 
@@ -219,9 +219,9 @@ namespace turboc
 
             //m_pimageFast->Fill(0,0,0,0);
 
-            //pgraphics->set_font(m_pfont);
+            //pdraw2dgraphics->set_font(m_pfont);
 
-            //size = pgraphics->get_text_extent(strHelloMultiverse);
+            //size = pdraw2dgraphics->get_text_extent(strHelloMultiverse);
 
             //::draw2d::path_pointer path(this_create);
 
@@ -231,11 +231,11 @@ namespace turboc
 
             //ppen->create_solid(1.0,argb(255,84 / 2,84 / 2,77 / 2));
 
-            //pgraphics->FillSolidRect(0,0,m_cx,m_cy,argb(0,0,0,0));
+            //pdraw2dgraphics->FillSolidRect(0,0,m_cx,m_cy,argb(0,0,0,0));
 
-            //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            //pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            //pgraphics->draw(path,pen);
+            //pdraw2dgraphics->draw(path,pen);
 
             m_bNewLayout = false;
 
@@ -252,17 +252,17 @@ namespace turboc
 
          pbrush->create_solid(argb(255,ca.m_iR,ca.m_iG,ca.m_iB));
 
-         pgraphics->SelectObject(brush);
+         pdraw2dgraphics->SelectObject(brush);
 
-         pgraphics->set_font(m_pfont);
+         pdraw2dgraphics->set_font(m_pfont);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+         pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-         ::i32_size size = pgraphics->get_text_extent(strHelloMultiverse);
+         ::i32_size size = pdraw2dgraphics->get_text_extent(strHelloMultiverse);
 
-         pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
+         pdraw2dgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
          return;
 
@@ -291,9 +291,9 @@ namespace turboc
 
          }
 
-         pgraphics->BitBlt(::i32_point(),i32_size(m_cx,m_cy),m_pimageFast->get_graphics());
+         pdraw2dgraphics->BitBlt(::i32_point(),i32_size(m_cx,m_cy),m_pimageFast->get_graphics());
 
-         //pgraphics->FillSolidRect(400,400,100,100,argb(128,0,0,128));
+         //pdraw2dgraphics->FillSolidRect(400,400,100,100,argb(128,0,0,128));
 
          m_bOkPending = true;
 
@@ -338,7 +338,7 @@ namespace turboc
 /*      if(pimage->area() <= 0)
          return;
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if(m_timeLastOk.elapsed() < m_timeAnime)
       {
@@ -349,28 +349,28 @@ namespace turboc
 
          GetClientRect(rectangleX);
 
-         //pgraphics->FillSolidRect(rectangleX,0);
+         //pdraw2dgraphics->FillSolidRect(rectangleX,0);
 
-/*         pdraw2d->imaging().bitmap_blend(pgraphics,::i32_point(),pimage->get_size(),pgraphicsImage,::i32_point(),uchAlpha);
+/*         pdraw2d->imaging().bitmap_blend(pdraw2dgraphics,::i32_point(),pimage->get_size(),pgraphicsImage,::i32_point(),uchAlpha);
 
-         pdraw2d->imaging().bitmap_blend(pgraphics,::i32_point(),imageFast.m_size,imageFast.get_graphics(),::i32_point(),255 - uchAlpha);
+         pdraw2d->imaging().bitmap_blend(pdraw2dgraphics,::i32_point(),imageFast.m_size,imageFast.get_graphics(),::i32_point(),255 - uchAlpha);
 
       }
       else
       {
 
-/*         pgraphics->from(pimage->get_size(),pgraphicsImage);
+/*         pdraw2dgraphics->from(pimage->get_size(),pgraphicsImage);
 
       }
 
-      //pdraw2d->imaging().bitmap_blend(pgraphics,::i32_point(),imageFast.m_size,imageFast.get_graphics(),::i32_point(),255);
+      //pdraw2d->imaging().bitmap_blend(pdraw2dgraphics,::i32_point(),imageFast.m_size,imageFast.get_graphics(),::i32_point(),255);
 
 
-      //pgraphics->FillSolidRect(100,100,100,100,argb(128,0,128,0));
+      //pdraw2dgraphics->FillSolidRect(100,100,100,100,argb(128,0,128,0));
 
    }
 
-   void impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::i32_rectangle rectangleX;
@@ -384,9 +384,9 @@ namespace turboc
 
       m_pimagePost->Fill(0,0,0,0);
 
-      ::draw2d::graphics_pointer & pgraphics = m_pimagePost->get_graphics();
+      ::draw2d::graphics_pointer & pdraw2dgraphics = m_pimagePost->get_graphics();
 
-      _006OnDraw(pgraphics);
+      _006OnDraw(pdraw2dgraphics);
 
       _001OnPostProcess(m_pimagePost);
 
@@ -421,17 +421,17 @@ namespace turboc
 
       m_pimageFast->Fill(0,0,0,0);
 
-      ::draw2d::graphics_pointer & pgraphics = m_pimageFast->get_graphics();
+      ::draw2d::graphics_pointer & pdraw2dgraphics = m_pimageFast->get_graphics();
 
       ::f32 fHeight = 100.0;
 
       m_pfont->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
 
-      pgraphics->set_font(m_pfont);
+      pdraw2dgraphics->set_font(m_pfont);
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      ::i32_size size = pgraphics->get_text_extent(strHelloMultiverse);
+      ::i32_size size = pdraw2dgraphics->get_text_extent(strHelloMultiverse);
 
       ::f64 ratey = fHeight * 0.84 / size.cy;
 
@@ -443,9 +443,9 @@ namespace turboc
 
 
 
-      pgraphics->set_font(m_pfont);
+      pdraw2dgraphics->set_font(m_pfont);
 
-      size = pgraphics->get_text_extent(strHelloMultiverse);
+      size = pdraw2dgraphics->get_text_extent(strHelloMultiverse);
 
       ::draw2d::path_pointer path(this_create);
 
@@ -457,14 +457,14 @@ namespace turboc
 
       ppen->create_solid(1.0,argb(255,84 / 2,84 / 2,77 / 2));
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      //pgraphics->FillSolidRect(0, 0, m_cx, m_cy, argb(0,0,0,0));
+      //pdraw2dgraphics->FillSolidRect(0, 0, m_cx, m_cy, argb(0,0,0,0));
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->draw(path,pen);
-      //pgraphics->FillSolidRect(00,00,100,100,argb(128,128,0,0));
+      pdraw2dgraphics->draw(path,pen);
+      //pdraw2dgraphics->FillSolidRect(00,00,100,100,argb(128,128,0,0));
 
    }
 
@@ -741,7 +741,7 @@ namespace turboc
    }
 
 
-   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::i32_rectangle rectangleX;

@@ -456,7 +456,7 @@ BOOL xf_register_pointer(rdpGraphics* graphics)
    pointer->SetNull = xf_Pointer_SetNull;
    pointer->SetDefault = xf_Pointer_SetDefault;
    pointer->SetPosition = xf_Pointer_SetPosition;
-   graphics_register_pointer(pgraphics, pointer);
+   graphics_register_pointer(pdraw2dgraphics, pointer);
    free(pointer);
    return TRUE;
 }
@@ -466,24 +466,24 @@ BOOL xf_register_graphics(rdpGraphics* graphics)
    rdpBitmap bitmap;
    rdpGlyph glyph;
 
-   if (!graphics || !pgraphics->Bitmap_Prototype || !pgraphics->Glyph_Prototype)
+   if (!graphics || !pdraw2dgraphics->Bitmap_Prototype || !pdraw2dgraphics->Glyph_Prototype)
       return FALSE;
 
-   bitmap = *pgraphics->Bitmap_Prototype;
-   glyph = *pgraphics->Glyph_Prototype;
+   bitmap = *pdraw2dgraphics->Bitmap_Prototype;
+   glyph = *pdraw2dgraphics->Glyph_Prototype;
    bitmap.size = sizeof(xfBitmap);
    bitmap.New = xf_Bitmap_New;
    bitmap.Free = xf_Bitmap_Free;
    bitmap.Paint = xf_Bitmap_Paint;
    bitmap.SetSurface = xf_Bitmap_SetSurface;
-   graphics_register_bitmap(pgraphics, &bitmap);
+   graphics_register_bitmap(pdraw2dgraphics, &bitmap);
    glyph.size = sizeof(xfGlyph);
    glyph.New = xf_Glyph_New;
    glyph.Free = xf_Glyph_Free;
    glyph.Draw = xf_Glyph_Draw;
    glyph.BeginDraw = xf_Glyph_BeginDraw;
    glyph.EndDraw = xf_Glyph_EndDraw;
-   graphics_register_glyph(pgraphics, &glyph);
+   graphics_register_glyph(pdraw2dgraphics, &glyph);
    return TRUE;
 }
 

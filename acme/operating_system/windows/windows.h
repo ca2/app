@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/operating_system/windows/window_util.h"
+
+
 namespace windows
 {
 
@@ -23,6 +26,7 @@ namespace windows
 
    CLASS_DECL_ACME::enum_dialog_result windows_message_box_result_to_dialog_result(::i32 iResult);
 
+   CLASS_DECL_ACME ::pointer<::windows::hwnd_array>get_top_level_windows(bool bDesktop = true, bool bVisible = true);
 
 
 } // namespace windows

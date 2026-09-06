@@ -147,15 +147,15 @@ namespace helloaxis
 
    }
 
-   void application::paint(HWND hwnd, ::draw2d::graphics_pointer & pgraphics)
+   void application::paint(HWND hwnd, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       ::i32_rectangle rcClient;
       ::this->rectangle(hwnd, rcClient);
       auto pbrush = createø < ::draw2d::brush > ();
 
       pbrush->create_solid(argb(255, 255, 0, 0));
-      pgraphics->SelectObject(br);
-      pgraphics->FillEllipse(rcClient);
+      pdraw2dgraphics->SelectObject(br);
+      pdraw2dgraphics->FillEllipse(rcClient);
    }
 
 } // namespace helloaxis

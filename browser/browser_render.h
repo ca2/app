@@ -120,18 +120,18 @@ namespace browser
       virtual bool initialize_render(const ::scoped_string & scopedstrId);
 
 
-      virtual void slide_draw(::draw2d::graphics_pointer & pgraphics, ::gcom::slide * pslide);
+      virtual void slide_draw(::draw2d::graphics_pointer & pdraw2dgraphics, ::gcom::slide * pslide);
 
       virtual void full_render();
       virtual void browser_render();
       virtual void browser_draw();
-      virtual void browser_render(::draw2d::graphics_pointer & pgraphics);
+      virtual void browser_render(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void browser_render_full_impact(::draw2d::graphics_pointer & pgraphics);
-      virtual void browser_render_lite_impact(::draw2d::graphics_pointer & pgraphics);
+      virtual void browser_render_full_impact(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void browser_render_lite_impact(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
-      virtual void _006OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _006OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual void defer_update_slide_show();
 

@@ -30,13 +30,13 @@ namespace app_shader
 
       void install_message_routing(::channel * psender) override;
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item & useritem, const ::user::e_state & estate) override;
+      void _001DrawItem(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::item & useritem, const ::user::e_state & estate) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);

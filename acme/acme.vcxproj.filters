@@ -4500,6 +4500,12 @@
     <ClInclude Include="prototype\prototype\auto_pointer.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\windows\top_level_enum.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\window_util.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6487,6 +6493,12 @@
     </ClCompile>
     <ClCompile Include="graphics\image\frame_array.cpp">
       <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\top_level_enum.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\window_util.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

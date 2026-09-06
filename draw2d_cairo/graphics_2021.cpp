@@ -265,7 +265,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
+   void graphics::CreateCompatibleDC(::draw2d::graphics * pdraw2dgraphics)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -283,7 +283,7 @@ namespace draw2d_cairo
 
       cairo_surface_holder hsurfaceNew;
 
-      if (pgraphics == nullptr)
+      if (pdraw2dgraphics == nullptr)
       {
 
          hsurfaceNew = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 1, 1);
@@ -292,7 +292,7 @@ namespace draw2d_cairo
       else
       {
 
-         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphics->get_os_data());
+         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pdraw2dgraphics->get_os_data());
 
          if (cairo_surface_status(psurface) != CAIRO_STATUS_SUCCESS)
          {
@@ -6895,12 +6895,12 @@ FT_Library __ftlibrary()
 }
 
 
-//bool path::contains(::draw2d::graphics_pointer & pgraphics, const ::f64_point& point)
+//bool path::contains(::draw2d::graphics_pointer & pdraw2dgraphics, const ::f64_point& point)
 //{
 //
-//   pgraphics->set(this);
+//   pdraw2dgraphics->set(this);
 //
-//   pgraphics->fill_contains(point);
+//   pdraw2dgraphics->fill_contains(point);
 //
 //   ::i32 iFill = 0;
 //

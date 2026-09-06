@@ -80,17 +80,17 @@ namespace user
 
       void user_tree_common_construct();
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       virtual void _001DrawItem(tree_draw_item & data);
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual ::pointer<::data::tree_base>find_data_tree(::data::tree_item_base * ptreeitem) const;
       virtual ::pointer<::data::tree_item_base>find_data_tree_item(::item * pitem, ::collection::index * piIndex = nullptr);
       virtual bool contains(::item * pitem);
       virtual bool contains(::data::tree_item_base * ptreeitem);
 
-      void update_drawing_objects(::draw2d::graphics_pointer &pgraphics);
+      void update_drawing_objects(::draw2d::graphics_pointer &pdraw2dgraphics);
 
 
       void on_would_change_total_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
@@ -98,9 +98,9 @@ namespace user
 
       void _001OnTreeDataChange();
       ::pointer<::data::tree_item_base>CalcFirstVisibleItem(::collection::index & iProperIndex);
-      virtual void _001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001CalculateItemHeight(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual ::i32 _001CalcCurrentImpactWidth();
-      virtual ::i32 _001CalcTotalImpactWidth(::draw2d::graphics_pointer & pgraphics);
+      virtual ::i32 _001CalcTotalImpactWidth(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual ::i32 _001CalcTotalImpactHeight();
       void _001SelectItem(::data::tree_item_base * ptreeitem);
       ::collection::count _001GetProperItemCount();
@@ -136,7 +136,7 @@ namespace user
 
       virtual ::i32 get_wheel_scroll_delta() override;
 
-      //void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_context_offset_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       void on_change_context_offset(::user::enum_layout elayout) override;
 
@@ -202,7 +202,7 @@ namespace user
 
       //virtual ::f64_size get_total_size() override;
 
-      //void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_context_offset(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
    };
@@ -421,9 +421,9 @@ namespace user
 
                auto pdraw2d = psystem->draw2d();
 
-               auto pgraphics = pdraw2d->create_memory_graphics({}, pusertree);
+               auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, pusertree);
 
-               pusertree->on_layout(pgraphics);
+               pusertree->on_layout(pdraw2dgraphics);
 
             }
             catch (...)

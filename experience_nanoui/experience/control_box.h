@@ -18,8 +18,8 @@ namespace experience_nanoui
          ~control_box() override;
 
 
-         void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-         void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+         void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+         void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
          void install_message_routing(::channel *pframewindow) override;
 
@@ -30,7 +30,7 @@ namespace experience_nanoui
          void operator()(::timer * ptimer) override;
 
 
-         ::i32 calculate_button_size(::draw2d::graphics_pointer & pgraphics) override;
+         ::i32 calculate_button_size(::draw2d::graphics_pointer & pdraw2dgraphics) override;
          ::i32_rectangle get_button_margin(::experience::enum_button ebutton) override;
 
 

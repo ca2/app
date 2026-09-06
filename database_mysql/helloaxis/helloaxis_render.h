@@ -121,14 +121,14 @@ namespace helloaxis
       virtual void full_render();
       virtual void helloaxis_render();
       virtual void helloaxis_draw();
-      virtual void helloaxis_render(::draw2d::graphics_pointer & pgraphics);
-      //virtual void helloaxis_render(::draw2d::graphics_pointer & pgraphics);
+      virtual void helloaxis_render(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void helloaxis_render(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void helloaxis_render_full_impact(::draw2d::graphics_pointer & pgraphics);
-      virtual void helloaxis_render_lite_impact(::draw2d::graphics_pointer & pgraphics);
+      virtual void helloaxis_render_full_impact(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void helloaxis_render_lite_impact(::draw2d::graphics_pointer & pdraw2dgraphics);
 
 
-      virtual void _006OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _006OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual void defer_update_bilbo();
 

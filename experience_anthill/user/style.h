@@ -45,14 +45,14 @@ namespace experience_anthill
 
       //      virtual bool on_ui_event(::user::e_happening ehappening, ::user::e_object eobject, ::user::interaction * pframewindow) override;
 
-      bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab) override;
-      void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate) override;
-      bool _001OnTabLayout(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab) override;
+      bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::tab * ptab) override;
+      void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate) override;
+      bool _001OnTabLayout(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::tab * ptab) override;
 
-      virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar) override;
-      virtual void _001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar);
-      virtual void _001DrawAnthillToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar);
-      virtual bool _001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout) override;
+      virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar) override;
+      virtual void _001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar);
+      virtual void _001DrawAnthillToolbarItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar);
+      virtual bool _001OnDrawSplitLayout(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::split_layout * psplitlayout) override;
 
       //      virtual bool get_font(::write_text::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext) override;
       //      virtual bool get_f64(::f64 & d, ::user::e_f64 ef64, ::user::style_context * pcontext) override;

@@ -67,7 +67,7 @@ namespace hotplugin
 
 #endif
 
-      CLASS_DECL_BERG void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText);
+      CLASS_DECL_BERG void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText);
 
 } // namespace ca2plugin_container
 

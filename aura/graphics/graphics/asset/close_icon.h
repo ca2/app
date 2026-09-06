@@ -4,14 +4,14 @@ namespace user
 {
 
 
-   inline void draw_close_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::item* pitem)
+   inline void draw_close_icon(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::interaction * puserinteraction,  ::item* pitem)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::draw2d::brush_pointer pbrush(e_create);
 
-      auto pstyle = puserinteraction->get_style(pgraphics);
+      auto pstyle = puserinteraction->get_style(pdraw2dgraphics);
 
       if (!pitem->m_pdraw2dpath)
       {
@@ -57,9 +57,9 @@ namespace user
 
       pbrush->create_solid(color);
 
-      pgraphics->set(pbrush);
+      pdraw2dgraphics->set(pbrush);
 
-      pgraphics->fill_path(pitem->m_pdraw2dpath);
+      pdraw2dgraphics->fill_path(pitem->m_pdraw2dpath);
 
    }
 

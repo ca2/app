@@ -64,7 +64,7 @@ namespace experience_anthill
    }
 
 
-   void frame::Glass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleParam)
+   void frame::Glass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleParam)
    {
 
       auto pframewindow = m_pframewindow;
@@ -101,13 +101,13 @@ namespace experience_anthill
       ::i32_rectangle rectangleWindow = rectangleX;
       pframewindow->client_to_screen()(rectangleWindow);
       //pimage = create_image({rectangleX.width(),  rectangleX.height()});
-      //bool b = pgraphicsImage2->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
+      //bool b = pgraphicsImage2->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pdraw2dgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
 
       {
          
          auto pgraphicsImage2 = pimage2->acquire_graphics();
 
-         ::image::image_source imagesource(pgraphics,
+         ::image::image_source imagesource(pdraw2dgraphics,
             ::f64_rectangle(::i32_point(rectangleX.left - iInflate, rectangleX.top - iInflate), ::f64_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
 
          auto rectangle = f64_rectangle_dimension(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2);
@@ -135,7 +135,7 @@ namespace experience_anthill
       //spgraphics->Draw3dRect(rectangleX, 127 << 24, 127 << 24);
       //rectangleX.deflate(1, 1);
       //spgraphics->Draw3dRect(rectangleX, 64 << 24, 64 << 24);
-      /*b = imaging.bitmap_blend(pgraphics, rectangle.left, rectangle.top,
+      /*b = imaging.bitmap_blend(pdraw2dgraphics, rectangle.left, rectangle.top,
       rectangleWindow.width(),
       rectangleWindow.height(),
       &spgraphics,
@@ -145,7 +145,7 @@ namespace experience_anthill
       bf.BlendOp     = AC_SRC_OVER;
       bf.BlendFlags = 0;
       bf.SourceConstantAlpha = 255;
-      ::alpha_blend(pgraphics->get_handle1(),
+      ::alpha_blend(pdraw2dgraphics->get_handle1(),
       rectangle.left, rectangle.top,
       rectangleWindow.width(),
       rectangleWindow.height(),
@@ -163,7 +163,7 @@ namespace experience_anthill
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
       }
 
@@ -182,15 +182,15 @@ namespace experience_anthill
    //}
 
 
-   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color & color, const ::opacity & opacity)
+   void frame::ColorGlass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, const ::color::color & color, const ::opacity & opacity)
    {
 
-      /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
+      /*Gdiplus::Graphics g((HDC) pdraw2dgraphics->get_os_data());
       g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_u8_red(color32), color32_u8_green(color32), color32_u8_blue(color32)));
       g.FillRectangle(&solidBrush, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top);*/
 
-      pgraphics->fill_rectangle(rectangle, color & opacity);
+      pdraw2dgraphics->fill_rectangle(rectangle, color & opacity);
 
    }
 
@@ -343,9 +343,9 @@ namespace experience_anthill
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics({}, m_pframewindow);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, m_pframewindow);
 
-      auto pstyle = pframewindow->get_style(pgraphics);
+      auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
       auto crButtonHilite = pframewindow->get_color(pstyle, ::e_element_button_hilite);
 
@@ -367,7 +367,7 @@ namespace experience_anthill
    }
 
 
-   void frame::on_style_change_001_and_002(::draw2d::graphics_pointer & pgraphics)
+   void frame::on_style_change_001_and_002(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pcontrolbox = get_control_box();
@@ -456,7 +456,7 @@ namespace experience_anthill
    //}
 
 
-   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleParam, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight)
+   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleParam, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight)
    {
 
       ::i32_rectangle rectangle(rectangleParam);
@@ -467,7 +467,7 @@ namespace experience_anthill
 
 
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::draw2d::pen_pointer ppen;
 
@@ -478,21 +478,21 @@ namespace experience_anthill
 
          ppen->create_solid(1.0, crTopLeft);
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(ppen);
 
       }
 
       if (eborder & e_border_top)
       {
 
-         pgraphics->line(x, y,x + cx, y);
+         pdraw2dgraphics->line(x, y,x + cx, y);
 
       }
 
       if (eborder & e_border_left)
       {
 
-         pgraphics->line(x, y,x, y + cy);
+         pdraw2dgraphics->line(x, y,x, y + cy);
 
       }
 
@@ -503,21 +503,21 @@ namespace experience_anthill
 
          ppen->create_solid(1.0, crBottomRight);
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(ppen);
 
       }
 
       if (eborder & e_border_right)
       {
 
-         pgraphics->line(x + cx, y,x + cx, y + cy);
+         pdraw2dgraphics->line(x + cx, y,x + cx, y + cy);
 
       }
 
       if (eborder & e_border_bottom)
       {
 
-         pgraphics->line(x, y + cy,x + cx, y + cy);
+         pdraw2dgraphics->line(x, y + cy,x + cx, y + cy);
 
       }
 
@@ -532,7 +532,7 @@ namespace experience_anthill
         }*/
 
 
-   void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void frame::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (!m_pframewindow->is_frame_experience_enabled())
@@ -544,18 +544,18 @@ namespace experience_anthill
 
       // 
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       auto pframewindow = m_pframewindow;
 
       if (!pframewindow->layout().is_full_screen() && !pframewindow->layout().is_zoomed() && !pframewindow->layout().is_iconic() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
       {
 
-         on_draw_frame(pgraphics);
+         on_draw_frame(pdraw2dgraphics);
 
       }
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if (pframewindow->layout().is_minimal())
       {
@@ -576,7 +576,7 @@ namespace experience_anthill
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
@@ -592,13 +592,13 @@ namespace experience_anthill
             while (i < rectangleGrip.width() - 5 + 1)
             {
 
-               pgraphics->draw_inset_3d_rectangle(i32_rectangle_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
+               pdraw2dgraphics->draw_inset_3d_rectangle(i32_rectangle_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
                i += 5;
 
             }
 
-            //pgraphics->Draw3dRect(rectangleGrip.left + 12,rectangleGrip.top,3,rectangleGrip.height(),argb(190, 255, 255, 255),argb(190, 90, 90, 90));
+            //pdraw2dgraphics->Draw3dRect(rectangleGrip.left + 12,rectangleGrip.top,3,rectangleGrip.height(),argb(190, 255, 255, 255),argb(190, 90, 90, 90));
 
          }
 
@@ -609,13 +609,13 @@ namespace experience_anthill
          if (m_pframewindow->is_active_window() && m_colorActiveCaptionTextBk.is_ok())
          {
 
-            pgraphics->fill_rectangle(m_rectangleCaption, m_colorActiveCaptionTextBk);
+            pdraw2dgraphics->fill_rectangle(m_rectangleCaption, m_colorActiveCaptionTextBk);
 
          }
          else
          {
 
-            pgraphics->fill_rectangle(m_rectangleCaption, m_colorCaptionTextBk);
+            pdraw2dgraphics->fill_rectangle(m_rectangleCaption, m_colorCaptionTextBk);
 
          }
 
@@ -645,7 +645,7 @@ namespace experience_anthill
          {
             //    
 
-            auto pstyle = pframewindow->get_style(pgraphics);
+            auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
             crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
@@ -677,7 +677,7 @@ namespace experience_anthill
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
@@ -685,7 +685,7 @@ namespace experience_anthill
 
          //class fonts & fonts = pdraw2d->fonts();
 
-         auto pstyle = pframewindow->get_style(pgraphics);
+         auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
          auto strWindowText = pframewindow->get_window_text();
 
@@ -696,15 +696,15 @@ namespace experience_anthill
 
             pbrushText->create_solid(m_colorCaptionText);
 
-            pgraphics->set(pbrushText);
+            pdraw2dgraphics->set(pbrushText);
             
 //            auto pfont = pframewindow->get_font(pstyle);
 //
-//            pgraphics->set(pfont);
+//            pdraw2dgraphics->set(pfont);
             
-            pgraphics->set_font(pframewindow, ::e_element_window_title);
+            pdraw2dgraphics->set_font(pframewindow, ::e_element_window_title);
 
-            pgraphics->draw_text(strWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
+            pdraw2dgraphics->draw_text(strWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
 
          }
 
@@ -714,10 +714,10 @@ namespace experience_anthill
    }
 
 
-   void frame::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
+   void frame::on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
    }
 

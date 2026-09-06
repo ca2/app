@@ -832,7 +832,7 @@ namespace sphere
 
          //      ppane->set_title(scopedstrTitle);
 
-         //      ppaneimpact->on_layout(pgraphics);
+         //      ppaneimpact->on_layout(pdraw2dgraphics);
 
          //   }
 

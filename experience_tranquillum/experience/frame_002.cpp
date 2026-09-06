@@ -194,7 +194,7 @@ namespace experience_tranquillum
 
 
 
-   void frame_002::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleXParam, enum_border eside)
+   void frame_002::draw_border_side(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleXParam, enum_border eside)
    {
 
       //
@@ -218,7 +218,7 @@ namespace experience_tranquillum
 
          //
 
-         auto pstyle = pframewindow->get_style(pgraphics);
+         auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
          crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
@@ -241,7 +241,7 @@ namespace experience_tranquillum
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
 
-         pgraphics->fill_rectangle(
+         pdraw2dgraphics->fill_rectangle(
                               rectangle,
                               crMoveableBorder &
                               127_opacity);
@@ -249,23 +249,23 @@ namespace experience_tranquillum
       else if(estyle == ::user::StyleLightBlue)
       {
          rectangleA.deflate(1, 1, 1, 1);
-         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, {});//m_colorMoveableBorderDkShadow);
+         Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, crMoveableBorder, {});//m_colorMoveableBorderDkShadow);
 
          rectangleA.deflate(1, 1, 1, 1);
-         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorderHilight, crMoveableBorderShadow);
+         Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, crMoveableBorderHilight, crMoveableBorderShadow);
 
          rectangleA.deflate(1, 1, 1, 1);
-         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
+         Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
 
          rectangleA.deflate(1, 1, 1, 1);
-         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
+         Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
 
          ::i32_rectangle rectangle;
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
          //class imaging & imaging = psystem->imaging();
          //imaging.color_blend(
-            pgraphics->fill_rectangle(
+            pdraw2dgraphics->fill_rectangle(
                               rectangle,
                               crMoveableBorder &
                               127_opacity);
@@ -279,7 +279,7 @@ namespace experience_tranquillum
          GetBorderRectangle(rectangleX, &rectangle, eside);
          //class imaging & imaging = psystem->imaging();
          //imaging.color_blend(
-         pgraphics->fill_rectangle(
+         pdraw2dgraphics->fill_rectangle(
                               rectangle,
                               crMoveableBorder &
                               200_opacity);
@@ -298,14 +298,14 @@ namespace experience_tranquillum
          rectangleA.right--;
          if(edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
+            Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
          }
 
          rectangleA.top++;
          rectangleA.bottom--;
          rectangleA.left++;
          rectangleA.right--;
-         Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
+         Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
 
          rectangleA.top++;
          rectangleA.bottom--;
@@ -313,14 +313,14 @@ namespace experience_tranquillum
          rectangleA.right--;
          if(edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
+            Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
          }
 
       }
 
    }
 
-   void frame_002::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
+   void frame_002::on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pframewindow = m_pframewindow;
@@ -359,7 +359,7 @@ namespace experience_tranquillum
 
       if(!pframewindow->layout().is_full_screen())
       {
-         DrawBorder(pgraphics, rectangleNClient);
+         DrawBorder(pdraw2dgraphics, rectangleNClient);
       }
 
       ///////////////////////
@@ -371,16 +371,16 @@ namespace experience_tranquillum
 
       if(!bZoomed && !pframewindow->layout().is_full_screen())
       {
-         DrawGripSet(pgraphics, rectangleNClient);
+         DrawGripSet(pdraw2dgraphics, rectangleNClient);
       }
 
-      //          pgraphics->SetBkMode(iOriginalBkMode);
-      //            pgraphics->set_text_color(crOriginalTextColor);
+      //          pdraw2dgraphics->SetBkMode(iOriginalBkMode);
+      //            pdraw2dgraphics->set_solid_color(crOriginalTextColor);
 
    }
 
 
-   void frame_002::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
+   void frame_002::DrawBorder(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX)
 
    {
 
@@ -400,22 +400,22 @@ namespace experience_tranquillum
 
       if(eborder & e_border_top)
       {
-         draw_border_side(pgraphics, rectangleX, e_border_top);
+         draw_border_side(pdraw2dgraphics, rectangleX, e_border_top);
 
       }
       if(eborder & e_border_right)
       {
-         draw_border_side(pgraphics, rectangleX, e_border_right);
+         draw_border_side(pdraw2dgraphics, rectangleX, e_border_right);
 
       }
       if(eborder & e_border_bottom)
       {
-         draw_border_side(pgraphics, rectangleX, e_border_bottom);
+         draw_border_side(pdraw2dgraphics, rectangleX, e_border_bottom);
 
       }
       if(eborder & e_border_left)
       {
-         draw_border_side(pgraphics, rectangleX, e_border_left);
+         draw_border_side(pdraw2dgraphics, rectangleX, e_border_left);
 
       }
 
@@ -424,10 +424,10 @@ namespace experience_tranquillum
 
 
 
-   void frame_002::_on_style_change(::draw2d::graphics_pointer & pgraphics)
+   void frame_002::_on_style_change(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      on_style_change_001_and_002(pgraphics);
+      on_style_change_001_and_002(pdraw2dgraphics);
 
    }
 
@@ -437,7 +437,7 @@ namespace experience_tranquillum
 #define GRIP_LARGE 30
 
    void frame_002::DrawGrip(
-   ::draw2d::graphics_pointer & pgraphics,
+   ::draw2d::graphics_pointer & pdraw2dgraphics,
    const ::i32_rectangle & rectangleXParam,
 
    enum_grip egrip)
@@ -466,34 +466,34 @@ namespace experience_tranquillum
 
          rectangleA = rectangleX;
 
-         pgraphics->set(m_ppenHilight1);
+         pdraw2dgraphics->set(m_ppenHilight1);
 
          pointA = rectangleA.top_left();
          pointB = pointA;
          pointB.x += 16;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
 
          pointA = rectangleA.top_left();
          pointB = pointA;
          pointB.y += 16;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
-         pgraphics->set(m_ppenFace1);
+         pdraw2dgraphics->set(m_ppenFace1);
 
          pointA = rectangleA.top_left();
          pointA.x++;
          pointA.y++;
          pointB = pointA;
          pointB.x += 15;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.top_left();
          pointA.x += 2;
          pointA.y += 2;
          pointB = pointA;
          pointB.x += 14;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
 
          pointA = rectangleA.top_left();
@@ -501,23 +501,23 @@ namespace experience_tranquillum
          pointA.y++;
          pointB = pointA;
          pointB.y += 15;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.top_left();
          pointA.x += 2;
          pointA.y += 2;
          pointB = pointA;
          pointB.y += 14;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
-         pgraphics->set(m_ppenShadow1);
+         pdraw2dgraphics->set(m_ppenShadow1);
 
          pointA = rectangleA.top_left();
          pointA.x += 3;
          pointA.y += 3;
          pointB = pointA;
          pointB.x += 13;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
 
          pointA = rectangleA.top_left();
@@ -525,9 +525,9 @@ namespace experience_tranquillum
          pointA.y += 3;
          pointB = pointA;
          pointB.y += 13;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
-         pgraphics->set(m_ppenDkShadow1);
+         pdraw2dgraphics->set(m_ppenDkShadow1);
 
          pointA = rectangleA.top_left();
          pointA.x += 4;
@@ -539,13 +539,13 @@ namespace experience_tranquillum
 
          {
 
-            auto ppath = pgraphics->create_path();
+            auto ppath = pdraw2dgraphics->create_path();
 
             ppath->set_current_point(pointA);
             ppath->add_line(pointB);
             ppath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(ppath);
 
          }
 
@@ -560,13 +560,13 @@ namespace experience_tranquillum
 
          {
 
-            auto ppath = pgraphics->create_path();
+            auto ppath = pdraw2dgraphics->create_path();
 
             ppath->set_current_point(pointA);
             ppath->add_line(pointB);
             ppath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(ppath);
 
          }
 
@@ -580,7 +580,7 @@ namespace experience_tranquillum
 
          rectangleA = rectangleX;
 
-         pgraphics->set(m_ppenHilight1);
+         pdraw2dgraphics->set(m_ppenHilight1);
 
          pointA = rectangleA.top_right();
          pointB = pointA;
@@ -590,13 +590,13 @@ namespace experience_tranquillum
 
          {
 
-            auto ppath = pgraphics->create_path();
+            auto ppath = pdraw2dgraphics->create_path();
 
             ppath->set_current_point(pointA);
             ppath->add_line(pointB);
             ppath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(ppath);
 
          }
 
@@ -606,62 +606,62 @@ namespace experience_tranquillum
          pointB.y += 4;
          pointC = pointB;
          pointC.y += 12;
-         pgraphics->line(pointB, pointC);
+         pdraw2dgraphics->line(pointB, pointC);
 
-         pgraphics->set(m_ppenFace1);
+         pdraw2dgraphics->set(m_ppenFace1);
 
          pointA = rectangleA.top_right();
          pointA.x--;
          pointA.y++;
          pointB = pointA;
          pointB.x -= 14;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.top_right();
          pointA.x -= 2;
          pointA.y += 2;
          pointB = pointA;
          pointB.x -= 13;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.top_right();
          pointA.x -= 2;
          pointA.y += 2;
          pointB = pointA;
          pointB.y += 13;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.top_right();
          pointA.x -= 3;
          pointA.y += 3;
          pointB = pointA;
          pointB.y += 12;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
-         pgraphics->set(m_ppenShadow1);
+         pdraw2dgraphics->set(m_ppenShadow1);
 
          pointA = rectangleA.top_right();
          pointA.x -= 3;
          pointA.y += 3;
          pointB = pointA;
          pointB.x -= 12;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.top_right();
          pointA.x--;
          pointA.y++;
          pointB = pointA;
          pointB.y += 14;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
-         pgraphics->set(m_ppenDkShadow1);
+         pdraw2dgraphics->set(m_ppenDkShadow1);
 
          pointB = rectangleA.top_right();
          pointB.x -= 4;
          pointB.y += 4;
          pointC = pointB;
          pointC.x -= 12;
-         pgraphics->line(pointB, pointC);
+         pdraw2dgraphics->line(pointB, pointC);
 
 
          pointA = rectangleA.top_right();
@@ -672,13 +672,13 @@ namespace experience_tranquillum
 
          {
 
-            auto ppath = pgraphics->create_path();
+            auto ppath = pdraw2dgraphics->create_path();
 
             ppath->set_current_point(pointA);
             ppath->add_line(pointB);
             ppath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(ppath);
 
          }
 
@@ -687,7 +687,7 @@ namespace experience_tranquillum
       break;
       case e_grip_bottom_left:
       {
-         pgraphics->set(m_ppenHilight1);
+         pdraw2dgraphics->set(m_ppenHilight1);
 
          rectangleX.bottom--;
          rectangleX.right--;
@@ -703,13 +703,13 @@ namespace experience_tranquillum
 
          {
 
-            auto ppath = pgraphics->create_path();
+            auto ppath = pdraw2dgraphics->create_path();
 
             ppath->set_current_point(pointA); // vertical left hilite
             ppath->add_line(pointB); // horizontal top hilite
             ppath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(ppath);
 
          }
 
@@ -720,62 +720,62 @@ namespace experience_tranquillum
          pointB.x += 4;
          pointC = pointB;
          pointC.x += 12;
-         pgraphics->line(pointB, pointC);  // horizontal bottom hillite
+         pdraw2dgraphics->line(pointB, pointC);  // horizontal bottom hillite
 
-         pgraphics->set(m_ppenFace1);
+         pdraw2dgraphics->set(m_ppenFace1);
 
          pointA = rectangleA.bottom_left();
          pointA.y--;
          pointA.x++;
          pointB = pointA;
          pointB.y -= 14;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_left();
          pointA.y -= 2;
          pointA.x += 2;
          pointB = pointA;
          pointB.y -= 13;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_left();
          pointA.y -= 2;
          pointA.x += 2;
          pointB = pointA;
          pointB.x += 13;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_left();
          pointA.y -= 3;
          pointA.x += 3;
          pointB = pointA;
          pointB.x += 12;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
-         pgraphics->set(m_ppenShadow1);
+         pdraw2dgraphics->set(m_ppenShadow1);
 
          pointA = rectangleA.bottom_left();
          pointA.y -= 3;
          pointA.x += 3;
          pointB = pointA;
          pointB.y -= 12;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_left();
          pointA.y--;
          pointA.x++;
          pointB = pointA;
          pointB.x += 14;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
-         pgraphics->set(m_ppenDkShadow1);
+         pdraw2dgraphics->set(m_ppenDkShadow1);
 
          pointB = rectangleA.bottom_left();
          pointB.y -= 4;
          pointB.x += 4;
          pointC = pointB;
          pointC.y -= 12;
-         pgraphics->line(pointB, pointC);
+         pdraw2dgraphics->line(pointB, pointC);
 
          pointA = rectangleA.bottom_left();
          pointB = pointA;
@@ -785,13 +785,13 @@ namespace experience_tranquillum
 
          {
 
-            auto ppath = pgraphics->create_path();
+            auto ppath = pdraw2dgraphics->create_path();
 
             ppath->set_current_point(pointA);
             ppath->add_line(pointB);
             ppath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(ppath);
 
          }
 
@@ -806,67 +806,67 @@ namespace experience_tranquillum
          rectangleA = rectangleX;
 
 
-         pgraphics->set(m_ppenDkShadow1);
+         pdraw2dgraphics->set(m_ppenDkShadow1);
 
          pointA = rectangleA.bottom_right();
          pointB = pointA;
          pointB.x -= 16;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_right();
          pointB = pointA;
          pointB.y -= 16;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
-         pgraphics->set(m_ppenShadow1);
+         pdraw2dgraphics->set(m_ppenShadow1);
 
          pointA = rectangleA.bottom_right();
          pointA.y--;
          pointA.x--;
          pointB = pointA;
          pointB.x -= 15;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_right();
          pointA.y--;
          pointA.x--;
          pointB = pointA;
          pointB.y -= 15;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
 
-         pgraphics->set(m_ppenFace1);
+         pdraw2dgraphics->set(m_ppenFace1);
 
          pointA = rectangleA.bottom_right();
          pointA.y -= 3;
          pointA.x -= 3;
          pointB = pointA;
          pointB.x -= 13;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_right();
          pointA.y -= 2;
          pointA.x -= 2;
          pointB = pointA;
          pointB.x -= 14;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_right();
          pointA.y -= 3;
          pointA.x -= 3;
          pointB = pointA;
          pointB.y -= 13;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_right();
          pointA.y -= 2;
          pointA.x -= 2;
          pointB = pointA;
          pointB.y -= 14;
-         pgraphics->line(pointA, pointB);
+         pdraw2dgraphics->line(pointA, pointB);
 
 
-         pgraphics->set(m_ppenHilight1);
+         pdraw2dgraphics->set(m_ppenHilight1);
 
          pointA = rectangleA.bottom_right();
          pointA.x -= 4;
@@ -879,13 +879,13 @@ namespace experience_tranquillum
 
          {
 
-            auto ppath = pgraphics->create_path();
+            auto ppath = pdraw2dgraphics->create_path();
 
             ppath->set_current_point(pointA);
             ppath->add_line(pointB);
             ppath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(ppath);
 
          }
 
@@ -901,13 +901,13 @@ namespace experience_tranquillum
 
          {
 
-            auto ppath = pgraphics->create_path();
+            auto ppath = pdraw2dgraphics->create_path();
 
             ppath->set_current_point(pointA);
             ppath->add_line(pointB);
             ppath->add_line(pointC);
 
-            pgraphics->draw(ppath);
+            pdraw2dgraphics->draw(ppath);
 
          }
 
@@ -925,7 +925,7 @@ namespace experience_tranquillum
          rectangleB.right = pointCenter.x + GRIP_CENTER_LARGE_CX / 2;
          rectangleB.bottom = rectangleB.top + GRIP_CENTER_SMALL_CY;
 
-         DrawRectGrip(pgraphics, rectangleB);
+         DrawRectGrip(pdraw2dgraphics, rectangleB);
       }
       break;
       case e_grip_bottom:
@@ -939,7 +939,7 @@ namespace experience_tranquillum
          rectangleB.right = pointCenter.x + GRIP_CENTER_LARGE_CX / 2;
          rectangleB.top = rectangleB.bottom - GRIP_CENTER_SMALL_CY;
 
-         DrawRectGrip(pgraphics, rectangleB);
+         DrawRectGrip(pdraw2dgraphics, rectangleB);
       }
       break;
       case e_grip_left:
@@ -953,7 +953,7 @@ namespace experience_tranquillum
          rectangleB.right = rectangleX.left + GRIP_CENTER_SMALL_CX;
          rectangleB.bottom = pointCenter.y + GRIP_CENTER_LARGE_CY / 2;
 
-         DrawRectGrip(pgraphics, rectangleB);
+         DrawRectGrip(pdraw2dgraphics, rectangleB);
       }
       break;
       case e_grip_right:
@@ -967,7 +967,7 @@ namespace experience_tranquillum
          rectangleB.left = rectangleX.right - GRIP_CENTER_SMALL_CX;
          rectangleB.bottom = pointCenter.y + GRIP_CENTER_LARGE_CY / 2;
 
-         DrawRectGrip(pgraphics, rectangleB);
+         DrawRectGrip(pdraw2dgraphics, rectangleB);
       }
       break;
       default:
@@ -977,14 +977,14 @@ namespace experience_tranquillum
 
    }
 
-   void frame_002::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const i32_rectangle & rectangleParam)
+   void frame_002::DrawRectGrip(::draw2d::graphics_pointer & pdraw2dgraphics,const i32_rectangle & rectangleParam)
    {
 
       //
 
       auto pframewindow = m_pframewindow;
 
-      auto pstyle = pframewindow->get_style(pgraphics);
+      auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
       auto crButtonHilite = pframewindow->get_color(pstyle, ::e_element_button_hilite);
 
@@ -996,26 +996,26 @@ namespace experience_tranquillum
 
       ::i32_rectangle rectangle(rectangleParam);
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonDarkShadow, 1.0);
+      pdraw2dgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonDarkShadow, 1.0);
 
       rectangle.top++;
       rectangle.bottom--;
       rectangle.left++;
       rectangle.right--;
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonShadow, 1.0);
+      pdraw2dgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonShadow, 1.0);
 
       rectangle.top++;
       rectangle.bottom--;
       rectangle.left++;
       rectangle.right--;
 
-      pgraphics->fill_rectangle(rectangle, crButtonFace);
+      pdraw2dgraphics->fill_rectangle(rectangle, crButtonFace);
 
    }
 
 
-   void frame_002::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
+   void frame_002::DrawGripSet(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX)
    {
 
       ::experience::size_manager * psizenager = m_pframewindow->size_manager();
@@ -1024,49 +1024,49 @@ namespace experience_tranquillum
 
       if(egrip & e_grip_top)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_top);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_top);
 
       }
 
       if(egrip & e_grip_top_right)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_top_right);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_top_right);
 
       }
 
       if(egrip & e_grip_right)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_right);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_right);
 
       }
 
       if(egrip & e_grip_bottom_right)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_bottom_right);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_bottom_right);
 
       }
 
       if(egrip & e_grip_bottom)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_bottom);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_bottom);
 
       }
 
       if(egrip & e_grip_bottom_left)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_bottom_left);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_bottom_left);
 
       }
 
       if(egrip & e_grip_left)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_left);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_left);
 
       }
 
       if(egrip & e_grip_top_left)
       {
-         DrawGrip(pgraphics, rectangleX, e_grip_top_left);
+         DrawGrip(pdraw2dgraphics, rectangleX, e_grip_top_left);
 
       }
 

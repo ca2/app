@@ -258,11 +258,11 @@ namespace console
 
    }
 
-   void prompt_impact::simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics)
+   void prompt_impact::simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       //if(get_typed_parent <prompt_frame>()->get_display() != ::e_display_minimal)
       {
-         ::user::impact::simple_ui_draw_focus_rect(pgraphics);
+         ::user::impact::simple_ui_draw_focus_rect(pdraw2dgraphics);
       }
    }
 
@@ -288,17 +288,17 @@ namespace console
    }
 
 
-   void prompt_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void prompt_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font("Consolas",16.0);
 
-      pgraphics->SelectObject(f);
+      pdraw2dgraphics->SelectObject(f);
 
       ::u32 dwAlpha = 123;
 
@@ -323,13 +323,13 @@ namespace console
 
       auto rectangleX = this->rectangle();
 
-      m_sizeChar = pgraphics.get_text_extent("M");
+      m_sizeChar = pdraw2dgraphics.get_text_extent("M");
       
-      m_sizeChar = m_sizeChar.maximum(pgraphics.get_text_extent("p"));
+      m_sizeChar = m_sizeChar.maximum(pdraw2dgraphics.get_text_extent("p"));
 
-      pgraphics->fill_rectangle(rectangleX,argb(dwAlpha,0,0,0));
+      pdraw2dgraphics->fill_rectangle(rectangleX,argb(dwAlpha,0,0,0));
 
-      pgraphics->set_text_color(crTopic);
+      pdraw2dgraphics->set_solid_color(crTopic);
 
       ::i32 i;
 
@@ -338,7 +338,7 @@ namespace console
       for( i = 0; i < m_strCommand.length(); i++)
       {
 
-         pgraphics->text_out(iLeftMargin +m_sizeChar.cx *i,0,m_strCommand.substr(i,1));
+         pdraw2dgraphics->text_out(iLeftMargin +m_sizeChar.cx *i,0,m_strCommand.substr(i,1));
 
       }
 
@@ -354,7 +354,7 @@ namespace console
 
 
 
-         pgraphics->fill_rectangle(rectangleCaret,crTopic);
+         pdraw2dgraphics->fill_rectangle(rectangleCaret,crTopic);
 
       }
 

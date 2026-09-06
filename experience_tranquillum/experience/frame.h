@@ -57,14 +57,14 @@ namespace experience_tranquillum
 
       virtual void set_frame_color_system_default_001();
 
-      virtual void on_style_change_001_and_002(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_style_change_001_and_002(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       //virtual color32_t get_style_moveable_border_color(e_style estyle);
 
       virtual void OnMove(::pointer<::user::interaction>pframewindow) override;
 
 
-      virtual void title_bar_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void title_bar_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual void _001OnBeforeMove(const ::i32_rectangle & rectangleWindow);
 
@@ -72,23 +72,23 @@ namespace experience_tranquillum
 //               virtual void _001OnBeforeSize(const ::i32_rectangle & rectangleWindow) override;
 
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual bool get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement) override;
 
 
 
-      virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+      virtual void Glass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle);
 
 
-      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color & color, const class ::opacity & opacity);
+      virtual void ColorGlass(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, const ::color::color & color, const class ::opacity & opacity);
 
 
       //virtual ::user::front_end_schema * get_user_front_end_schema();
 
-      virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, enum_border eborder, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight);
+      virtual void Draw3dRectSide(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, enum_border eborder, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight);
 
-      virtual void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual bool is_control_box_moveable() override;
 

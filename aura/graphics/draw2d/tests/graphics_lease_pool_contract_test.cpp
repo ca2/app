@@ -173,7 +173,7 @@ int main()
       memoryGraphicsAcquireOrder);
    memoryGraphicsAcquireOrder = require_after(
       memoryGraphicsAcquire,
-      "if (!pgraphics)",
+      "if (!pdraw2dgraphics)",
       memoryGraphicsAcquireOrder);
    require_after(
       memoryGraphicsAcquire,
@@ -295,7 +295,7 @@ int main()
       != std::string::npos);
 
    assert(helloMultiverseImageSource.find(
-      "pgraphics->m_puserinteractionDraw2dGraphics->post(")
+      "pdraw2dgraphics->m_puserinteractionDraw2dGraphics->post(")
       == std::string::npos);
    assert(helloMultiverseImageSource.find(
       "pacmeuserinteractionAffinity->post(")
@@ -317,18 +317,18 @@ int main()
       "void window::draw_frame()",
       "void window::frame_layout_stage("));
 
-   assert(drawFrame.find("pgraphics->send(") == std::string::npos);
+   assert(drawFrame.find("pdraw2dgraphics->send(") == std::string::npos);
    assert(drawFrame.find("main_sendø()") != std::string::npos);
 
    std::size_t order = 0;
    order = require_after(drawFrame, "on_begin_layout()", order);
    order = require_after(drawFrame, "acquire_graphics()", order);
-   order = require_after(drawFrame, "frame_layout_stage(pgraphics)", order);
+   order = require_after(drawFrame, "frame_layout_stage(pdraw2dgraphics)", order);
    order = require_after(drawFrame, "on_end_layout()", order);
    order = require_after(drawFrame, "on_begin_draw()", order);
    order = require_after(drawFrame, "acquire_graphics()", order);
-   order = require_after(drawFrame, "frame_draw_stage(pgraphics)", order);
-   order = require_after(drawFrame, "pgraphics->on_end_draw(this)", order);
+   order = require_after(drawFrame, "frame_draw_stage(pdraw2dgraphics)", order);
+   order = require_after(drawFrame, "pdraw2dgraphics->on_end_draw(this)", order);
    order = require_after(drawFrame, "on_end_draw()", order);
    order = require_after(drawFrame, "update_screen()", order);
 

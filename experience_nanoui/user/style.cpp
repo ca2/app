@@ -22,7 +22,7 @@
 
 
 
-// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The i32_size is the i32_size of the alien!!
+// pdraw2dgraphics->get_text_extent("->:<-"); // oh no!! omg!! The i32_size is the i32_size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -61,7 +61,7 @@ namespace experience_nanoui
    }
 
 
-   bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab)
+   bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pdraw2dgraphics,::user::tab * ptab)
    {
 
       ::i32_rectangle rectangle;
@@ -75,9 +75,9 @@ namespace experience_nanoui
 
       ptab->get_data()->m_ppen->create_solid(1,rgb(32,32,32));
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::collection::index iTab = -1;
 
@@ -85,7 +85,7 @@ namespace experience_nanoui
 
       rcClient = ptab->rectangle();
 
-      auto pstyle = ptab->get_style(pgraphics);
+      auto pstyle = ptab->get_style(pdraw2dgraphics);
 
       auto pbrushText = createø < ::draw2d::brush > ();
 
@@ -166,7 +166,7 @@ namespace experience_nanoui
             if(ptab->get_element_rectangle(iTab,rectangleIcon, ::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ::image::image_source imagesource(ppane->m_pimage);
 
@@ -174,7 +174,7 @@ namespace experience_nanoui
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
@@ -197,28 +197,28 @@ namespace experience_nanoui
 
                ppane->m_pbrushFillSel->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
-               pgraphics->set(ppane->m_pbrushFillSel);
+               pdraw2dgraphics->set(ppane->m_pbrushFillSel);
 
-               pgraphics->fill(ppath);
+               pdraw2dgraphics->fill(ppath);
 
                ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
-               pgraphics->set(ppenBorder);
+               pdraw2dgraphics->set(ppenBorder);
 
-               pgraphics->draw(ppath);
+               pdraw2dgraphics->draw(ppath);
 
                if (::is_item(ptab->m_pitemHover, iTab)
                   && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
                   && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                {
 
-                  pgraphics->set_font(ptab, ::e_element_none, (::user::e_state_selected | ::user::e_state_hover));
+                  pdraw2dgraphics->set_font(ptab, ::e_element_none, (::user::e_state_selected | ::user::e_state_hover));
 
                }
                else
                {
 
-                  pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
+                  pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
                }
 
@@ -245,17 +245,17 @@ namespace experience_nanoui
 
                   ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
-                  pgraphics->set(ppane->m_pbrushFillHover);
+                  pdraw2dgraphics->set(ppane->m_pbrushFillHover);
 
-                  pgraphics->fill(ppath);
+                  pdraw2dgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
-                  pgraphics->set(ppenBorder);
+                  pdraw2dgraphics->set(ppenBorder);
 
-                  pgraphics->draw(ppath);
+                  pdraw2dgraphics->draw(ppath);
 
-                  pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
+                  pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
 
                   pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 
@@ -265,17 +265,17 @@ namespace experience_nanoui
 
                   ppane->m_pbrushFill->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,175,175,170),argb(250,195,195,190));
 
-                  pgraphics->set(ppane->m_pbrushFill);
+                  pdraw2dgraphics->set(ppane->m_pbrushFill);
 
-                  pgraphics->fill(ppath);
+                  pdraw2dgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
-                  pgraphics->set(ppenBorder);
+                  pdraw2dgraphics->set(ppenBorder);
 
-                  pgraphics->draw(ppath);
+                  pdraw2dgraphics->draw(ppath);
 
-                  pgraphics->set_font(ptab, ::e_element_none);
+                  pdraw2dgraphics->set_font(ptab, ::e_element_none);
 
                   pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text));
 
@@ -290,7 +290,7 @@ namespace experience_nanoui
             if(ptab->get_element_rectangle(iTab,rectangleIcon, ::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ::image::image_source imagesource(ppane->m_pimage);
 
@@ -298,7 +298,7 @@ namespace experience_nanoui
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
@@ -324,28 +324,28 @@ namespace experience_nanoui
 
                ppane->m_pbrushFillSel->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
-               pgraphics->set(ppane->m_pbrushFillSel);
+               pdraw2dgraphics->set(ppane->m_pbrushFillSel);
 
-               pgraphics->fill(ppath);
+               pdraw2dgraphics->fill(ppath);
 
                ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
-               pgraphics->set(ppenBorder);
+               pdraw2dgraphics->set(ppenBorder);
 
-               pgraphics->draw(ppath);
+               pdraw2dgraphics->draw(ppath);
 
                if (::is_item(ptab->m_pitemHover, iTab)
                   && ::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
                   && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                {
 
-                  pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected | ::user::e_state_hover);
+                  pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected | ::user::e_state_hover);
 
                }
                else
                {
 
-                  pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
+                  pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
                }
 
@@ -372,17 +372,17 @@ namespace experience_nanoui
 
                   ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
-                  pgraphics->set(ppane->m_pbrushFillHover);
+                  pdraw2dgraphics->set(ppane->m_pbrushFillHover);
 
-                  pgraphics->fill(ppath);
+                  pdraw2dgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
-                  pgraphics->set(ppenBorder);
+                  pdraw2dgraphics->set(ppenBorder);
 
-                  pgraphics->draw(ppath);
+                  pdraw2dgraphics->draw(ppath);
 
-                  pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
+                  pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
 
                   pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 
@@ -400,17 +400,17 @@ namespace experience_nanoui
 
                      // pbrushFill->create_solid(::color::color::white);
 
-                  pgraphics->set(pbrushFill);
+                  pdraw2dgraphics->set(pbrushFill);
 
-                  pgraphics->fill(ppath);
+                  pdraw2dgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
-                  pgraphics->set(ppenBorder);
+                  pdraw2dgraphics->set(ppenBorder);
 
-                  pgraphics->draw(ppath);
+                  pdraw2dgraphics->draw(ppath);
 
-                  pgraphics->set_font(ptab, ::e_element_none);
+                  pdraw2dgraphics->set_font(ptab, ::e_element_none);
 
                   auto colorText = ptab->get_color(pstyle, ::e_element_item_text);
 
@@ -425,14 +425,14 @@ namespace experience_nanoui
          if(bTextRect)
          {
 
-            _001OnTabPaneDrawTitle(*ppane,ptab,pgraphics,rectangleText, pbrushText, estate);
+            _001OnTabPaneDrawTitle(*ppane,ptab,pdraw2dgraphics,rectangleText, pbrushText, estate);
 
          }
 
          if(ptab->get_element_rectangle(iTab,rectangleClose, ::e_element_close_tab_button))
          {
 
-            pgraphics->set_font(ptab, ::e_element_close_tab_button);
+            pdraw2dgraphics->set_font(ptab, ::e_element_close_tab_button);
 
             if (::is_item(ptab->m_pitemHover, iTab)
                && ::is_element(ptab->m_pitemHover, ::e_element_close_tab_button))
@@ -448,9 +448,9 @@ namespace experience_nanoui
 
             }
 
-            pgraphics->set(pbrushText);
+            pdraw2dgraphics->set(pbrushText);
 
-            pgraphics->draw_text("x",rectangleClose,e_align_center);
+            pdraw2dgraphics->draw_text("x",rectangleClose,e_align_center);
 
          }
 
@@ -466,14 +466,14 @@ namespace experience_nanoui
          if(ptab->get_element_rectangle(-1,rectangleScroll, ::e_element_tab_near_scroll))
          {
 
-            pgraphics->fill_rectangle(rectangleScroll, argb(255, 255, 255, 255));
+            pdraw2dgraphics->fill_rectangle(rectangleScroll, argb(255, 255, 255, 255));
 
          }
 
          if(ptab->get_element_rectangle(-1,rectangleScroll, ::e_element_tab_far_scroll))
          {
 
-            pgraphics->fill_rectangle(rectangleScroll, argb(255, 255, 255, 255));
+            pdraw2dgraphics->fill_rectangle(rectangleScroll, argb(255, 255, 255, 255));
 
          }
 
@@ -484,19 +484,19 @@ namespace experience_nanoui
    }
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle,::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle,::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
    {
 
       string_array_base & straTitle = pane.m_straTitle;
 
-      pgraphics->set(pbrushText);
+      pdraw2dgraphics->set(pbrushText);
 
       if(straTitle.get_count() <= 1)
       {
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->_DrawText(pane.get_title(), rectangle, e_align_bottom_left, e_draw_text_no_prefix);
+         pdraw2dgraphics->_DrawText(pane.get_title(), rectangle, e_align_bottom_left, e_draw_text_no_prefix);
 
       }
       else
@@ -506,7 +506,7 @@ namespace experience_nanoui
 
          ::write_text::font_pointer pfont;
 
-         pfont = pgraphics->get_current_font();
+         pfont = pdraw2dgraphics->get_current_font();
 
          i32_size sSep = ptab->get_data()->m_sizeSep;
 
@@ -521,7 +521,7 @@ namespace experience_nanoui
 
             rectangleText.right =rectangleText.left + s.cx;
 
-            pgraphics->_DrawText(str,rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
+            pdraw2dgraphics->_DrawText(str,rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
             rectangleText.left += s.cx;
 
@@ -534,16 +534,16 @@ namespace experience_nanoui
 
                rectangleEmp.deflate(1, 1);
 
-               ::draw2d::enum_alpha_mode emode = pgraphics->alpha_mode();
+               ::draw2d::enum_alpha_mode emode = pdraw2dgraphics->alpha_mode();
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                status < ::color::color > colorText;
 
                if(::is_item(ptab->m_pitemHover,(::collection::index) ::e_element_split + i))
                {
 
-                  pgraphics->fill_rectangle(rectangleEmp,argb(128, 150, 190, 255));
+                  pdraw2dgraphics->fill_rectangle(rectangleEmp,argb(128, 150, 190, 255));
 
                   colorText = ptab->get_color(this, ::e_element_item_text, ::user::e_state_hover);
 
@@ -559,13 +559,13 @@ namespace experience_nanoui
 
                pbrush->create_solid(colorText);
 
-               pgraphics->set(pbrush);
+               pdraw2dgraphics->set(pbrush);
 
-               pgraphics->set_font(ptab, ::e_element_close_tab_button);
+               pdraw2dgraphics->set_font(ptab, ::e_element_close_tab_button);
 
-               pgraphics->set_alpha_mode(emode);
+               pdraw2dgraphics->set_alpha_mode(emode);
 
-               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectangleText, e_align_center, e_draw_text_no_prefix);
+               pdraw2dgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectangleText, e_align_center, e_draw_text_no_prefix);
 
                rectangleText.left += sSep.cx;
 
@@ -578,7 +578,7 @@ namespace experience_nanoui
    }
 
 
-   bool style::_001OnTabLayout(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab)
+   bool style::_001OnTabLayout(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::tab * ptab)
    {
 
       if (!ptab->get_data()->m_bCreated)
@@ -625,9 +625,9 @@ namespace experience_nanoui
 
       //ptab->defer_handle_auto_hide_tabs(false);
 
-      pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
+      pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-      ptab->m_pgraphicsextension->get_text_extent(pgraphics,MAGIC_PALACE_TAB_SIZE,ptab->get_data()->m_sizeSep);
+      ptab->m_pgraphicsextension->get_text_extent(pdraw2dgraphics,MAGIC_PALACE_TAB_SIZE,ptab->get_data()->m_sizeSep);
 
       if(ptab->get_data()->m_bVertical)
       {
@@ -645,11 +645,11 @@ namespace experience_nanoui
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pgraphicsextension, pdraw2dgraphics);
 
             ::f64_size size;
 
-            ptab->m_pgraphicsextension->get_text_extent(pgraphics,str, size);
+            ptab->m_pgraphicsextension->get_text_extent(pdraw2dgraphics,str, size);
 
             if(ppane->m_pimage->is_set())
             {
@@ -721,7 +721,7 @@ namespace experience_nanoui
 
          ::i32 cy;
 
-         pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
+         pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
          ::i32_rectangle rectangleX = ptab->rectangle();
          //ptab->rectangle(rectangleX);
@@ -742,11 +742,11 @@ namespace experience_nanoui
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pgraphicsextension, pdraw2dgraphics);
 
             ::f64_size size;
 
-            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
+            ptab->m_pgraphicsextension->get_text_extent(pdraw2dgraphics, str, size);
 
             if(ppane->m_pimage.ok())
             {
@@ -1461,7 +1461,7 @@ namespace experience_nanoui
    }
 
 
-   bool style::_001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pscrollbar)
+   bool style::_001DrawSimpleScrollBar(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::scroll_bar * pscrollbar)
    {
 
       ::color::color colorBackground = pscrollbar->get_color(this, ::e_element_scrollbar);
@@ -1471,7 +1471,7 @@ namespace experience_nanoui
       if (colorBackground.has_opacity())
       {
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          
 
@@ -1482,7 +1482,7 @@ namespace experience_nanoui
 
          }
 
-         pgraphics->fill_rectangle(rectangleX, colorBackground);
+         pdraw2dgraphics->fill_rectangle(rectangleX, colorBackground);
 
       }
 
@@ -1506,11 +1506,11 @@ namespace experience_nanoui
 
       pbrushDraw->create_solid(colorTrack);
 
-      pgraphics->set(ppenDraw);
+      pdraw2dgraphics->set(ppenDraw);
 
-      pgraphics->set(pbrushDraw);
+      pdraw2dgraphics->set(pbrushDraw);
 
-      pgraphics->rectangle(rectangleTrack);
+      pdraw2dgraphics->rectangle(rectangleTrack);
 
       if (pbar->m_bTracking || pbar->is_true("tracking_on"))
       {
@@ -1640,7 +1640,7 @@ namespace experience_nanoui
 
             rectangleMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 
-            pbar->draw_mac_thumb_simple(pgraphics, rectangleMachineThumb, rectangleTrack, uchAlpha);
+            pbar->draw_mac_thumb_simple(pdraw2dgraphics, rectangleMachineThumb, rectangleTrack, uchAlpha);
 
          }
          else
@@ -1658,7 +1658,7 @@ namespace experience_nanoui
 
             rectangleMachineThumb.deflate(1, 1);
 
-            pbar->draw_mac_thumb_dots(pgraphics, rectangleMachineThumb, rectangleTrack, uchAlpha);
+            pbar->draw_mac_thumb_dots(pdraw2dgraphics, rectangleMachineThumb, rectangleTrack, uchAlpha);
 
          }
 
@@ -1670,20 +1670,20 @@ namespace experience_nanoui
 
       ppenGrip->create_solid(2.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_trackbar));
 
-      pgraphics->set(ppenGrip);
+      pdraw2dgraphics->set(ppenGrip);
 
       ::i32_point pointCenter = rectangleTrack.center();
 
       if (pbar->m_eorientation == e_orientation_horizontal)
       {
 
-         pgraphics->line(
+         pdraw2dgraphics->line(
                  pointCenter.x - 5, pointCenter.y - 5,
                  pointCenter.x - 5, pointCenter.y + 5);
-         pgraphics->line(
+         pdraw2dgraphics->line(
                  pointCenter.x, pointCenter.y - 5,
                  pointCenter.x, pointCenter.y + 5);
-         pgraphics->line(
+         pdraw2dgraphics->line(
                  pointCenter.x + 5, pointCenter.y - 5,
                  pointCenter.x + 5, pointCenter.y + 5);
 
@@ -1691,13 +1691,13 @@ namespace experience_nanoui
       else
       {
 
-         pgraphics->line(
+         pdraw2dgraphics->line(
                  pointCenter.x - 5, pointCenter.y - 5,
                  pointCenter.x + 5, pointCenter.y - 5);
-         pgraphics->line(
+         pdraw2dgraphics->line(
                  pointCenter.x - 5, pointCenter.y,
                  pointCenter.x + 5, pointCenter.y);
-         pgraphics->line(
+         pdraw2dgraphics->line(
                  pointCenter.x - 5, pointCenter.y + 5,
                  pointCenter.x + 5, pointCenter.y + 5);
 
@@ -1707,27 +1707,27 @@ namespace experience_nanoui
 
       ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 
-      pgraphics->set(ppenArrow);
+      pdraw2dgraphics->set(ppenArrow);
 
       pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectA));
 
-      pgraphics->set(pbar->m_pbrushDraw);
+      pdraw2dgraphics->set(pbar->m_pbrushDraw);
 
       auto rectangleA = pbar->get_buttonA_rectangle(rectangleX);
 
-      pgraphics->rectangle(rectangleA);
+      pdraw2dgraphics->rectangle(rectangleA);
 
       ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
 
-      pgraphics->set(ppenArrow);
+      pdraw2dgraphics->set(ppenArrow);
 
       pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectB));
 
-      pgraphics->set(pbar->m_pbrushDraw);
+      pdraw2dgraphics->set(pbar->m_pbrushDraw);
 
       auto rectangleB = pbar->get_buttonB_rectangle(rectangleX);
 
-      pgraphics->rectangle(rectangleB);
+      pdraw2dgraphics->rectangle(rectangleB);
 
       ::status < ::i32_rectangle > rectangle;
 
@@ -1742,9 +1742,9 @@ namespace experience_nanoui
 
             pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageA));
 
-            pgraphics->set(pbar->m_pbrushDraw);
+            pdraw2dgraphics->set(pbar->m_pbrushDraw);
 
-            pgraphics->fill_rectangle(rectangle);
+            pdraw2dgraphics->fill_rectangle(rectangle);
 
          }
 
@@ -1760,9 +1760,9 @@ namespace experience_nanoui
 
             pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageB));
 
-            pgraphics->set(pbar->m_pbrushDraw);
+            pdraw2dgraphics->set(pbar->m_pbrushDraw);
 
-            pgraphics->fill_rectangle(rectangle);
+            pdraw2dgraphics->fill_rectangle(rectangle);
 
          }
 
@@ -1774,19 +1774,19 @@ namespace experience_nanoui
 
       ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 
-      pgraphics->set(ppenArrow);
+      pdraw2dgraphics->set(ppenArrow);
 
       auto arrowA = pbar->get_arrowA(rectangleX);
 
-      pgraphics->polyline(arrowA);
+      pdraw2dgraphics->polyline(arrowA);
 
       ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
 
-      pgraphics->set(ppenArrow);
+      pdraw2dgraphics->set(ppenArrow);
 
       auto arrowB = pbar->get_arrowA(rectangleX);
 
-      pgraphics->polyline(arrowB);
+      pdraw2dgraphics->polyline(arrowB);
 
       return true;
 

@@ -76,18 +76,18 @@ namespace browser
    }
 
 
-   void pane_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void pane_impact::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::userex::pane_tab_impact::_001OnNcDraw(pgraphics);
+      ::userex::pane_tab_impact::_001OnNcDraw(pdraw2dgraphics);
 
    }
 
 
-   void pane_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void pane_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::userex::pane_tab_impact::_001OnDraw(pgraphics);
+      ::userex::pane_tab_impact::_001OnDraw(pdraw2dgraphics);
 
    }
 

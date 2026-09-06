@@ -1140,7 +1140,7 @@ namespace core
       }
 
 
-      void color_selector::layout_color_selector(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
+      void color_selector::layout_color_selector(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle)
       {
 
          //   ::user::impact::on_layout(pdraw2dgraphics);
@@ -1200,7 +1200,7 @@ namespace core
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             auto pacmeuserinteractionAffinity =
-               pgraphics ? pgraphics->m_pacmeuserinteractionAffinity : nullptr;
+               pdraw2dgraphics ? pdraw2dgraphics->m_pacmeuserinteractionAffinity : nullptr;
 
             auto pgraphicsImage = m_pimage->acquire_graphics(
                ::draw2d::e_acquire_dont_load,

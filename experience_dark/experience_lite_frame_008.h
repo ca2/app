@@ -31,9 +31,9 @@
 
                virtual void on_style_change() override;
 
-               void on_draw_frame(::draw2d::graphics_pointer & pgraphics) override;
-               void DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lpcrectClient);
-               void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lpcrectClient, enum_border eside);
+               void on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+               void DrawBorder(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle &lpcrectClient);
+               void draw_border_side(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle &lpcrectClient, enum_border eside);
                //void GetBorderRectangle(const ::i32_rectangle &lpcrectClient, ::i32_rectangle * lprect, enum_border eside);
 
                virtual e_hittest _001HitTest(const ::i32_point & point) override;

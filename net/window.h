@@ -47,9 +47,9 @@ namespace app_net
 
       virtual void on_create_user_interaction() override;
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item * pitem, const ::user::e_state & estate) override;
+      virtual void _001DrawItem(::draw2d::graphics_pointer& pdraw2dgraphics, ::item * pitem, const ::user::e_state & estate) override;
 
 
       virtual void start_getting_url();

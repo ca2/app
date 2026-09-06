@@ -51,10 +51,10 @@ namespace datetime
       }
 
 
-      void calendar::_001OnDraw(::draw2d::graphics* pgraphics)
+      void calendar::_001OnDraw(::draw2d::graphics* pdraw2dgraphics)
       {
 
-         __UNREFERENCED_PARAMETER(pgraphics);
+         __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
       }
 

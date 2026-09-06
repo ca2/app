@@ -51,7 +51,7 @@ namespace helloaxis
 
          void paint(HWND hwnd, HDC hdc);
 
-         void paint(HWND hwnd, ::draw2d::graphics_pointer & pgraphics);
+         void paint(HWND hwnd, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
    };
 

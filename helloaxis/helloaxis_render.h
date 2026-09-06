@@ -108,14 +108,14 @@ namespace helloaxis
       //virtual void full_render();
       //virtual void helloaura_render();
       //virtual void helloaura_draw();
-      //virtual void helloaura_render(::draw2d::graphics_pointer & pgraphics);
-      //virtual void helloaura_render(::draw2d::graphics_pointer & pgraphics);
+      //virtual void helloaura_render(::draw2d::graphics_pointer & pdraw2dgraphics);
+      //virtual void helloaura_render(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void helloaura_render_full_impact(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void helloaura_render_lite_impact(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void helloaura_render_full_impact(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void helloaura_render_lite_impact(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
-      virtual void _006OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _006OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual void defer_update_bilbo() override;
 

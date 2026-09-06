@@ -57,15 +57,15 @@ namespace app_shader
       virtual void defer_update_shader();
       virtual void _update_shader();
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void _001OnDrawLabel(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDrawLabel(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void _001OnDrawError(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDrawError(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual void _001OnDraw1Through3(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw1Through3(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       virtual void defer_load_fragment(const ::scoped_string & scopedstrPath);
 

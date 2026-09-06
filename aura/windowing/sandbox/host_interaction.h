@@ -37,11 +37,11 @@ namespace sandbox_windowing
 
       //void show() override;
       
-      void _001DrawThis(::draw2d::graphics_pointer & pgraphics) override;
-      void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
-      void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001DrawChildren(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -53,7 +53,7 @@ namespace sandbox_windowing
       //void this->rectangle(::i32_rectangle* lprect) override;
 
 
-      void on_layout(::draw2d::graphics_pointer& pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer& pdraw2dgraphics) override;
       
       void set_mouse_capture() override;
       bool has_mouse_capture() override;

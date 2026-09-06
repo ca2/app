@@ -1822,7 +1822,7 @@ namespace experience_core
                else
                {
 
-                  return argb(255, 255, 255, 255);
+                  return argb(80, 255, 255, 255);
 
                }
 

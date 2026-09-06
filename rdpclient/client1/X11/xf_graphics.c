@@ -492,7 +492,7 @@ BOOL xf_register_graphics(rdpGraphics* graphics)
    bitmap->Decompress = xf_Bitmap_Decompress;
    bitmap->SetSurface = xf_Bitmap_SetSurface;
 
-   graphics_register_bitmap(pgraphics, bitmap);
+   graphics_register_bitmap(pdraw2dgraphics, bitmap);
 
    pointer->size = sizeof(xfPointer);
    pointer->New = xf_Pointer_New;
@@ -502,7 +502,7 @@ BOOL xf_register_graphics(rdpGraphics* graphics)
    pointer->SetDefault = xf_Pointer_SetDefault;
    pointer->SetPosition = xf_Pointer_SetPosition;
 
-   graphics_register_pointer(pgraphics, pointer);
+   graphics_register_pointer(pdraw2dgraphics, pointer);
 
    glyph->size = sizeof(xfGlyph);
    glyph->New = xf_Glyph_New;
@@ -511,7 +511,7 @@ BOOL xf_register_graphics(rdpGraphics* graphics)
    glyph->BeginDraw = xf_Glyph_BeginDraw;
    glyph->EndDraw = xf_Glyph_EndDraw;
 
-   graphics_register_glyph(pgraphics, glyph);
+   graphics_register_glyph(pdraw2dgraphics, glyph);
 
    ret = TRUE;
 

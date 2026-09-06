@@ -108,8 +108,8 @@ namespace user
 
       ::pointer<::user::frame_window>GetDockingFrame();
       bool IsFloating();
-      virtual ::i32_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz);
-      virtual ::i32_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, ::u32 nMode);
+      virtual ::i32_size CalcFixedLayout(::draw2d::graphics_pointer& pdraw2dgraphics, bool bStretch, bool bHorz);
+      virtual ::i32_size CalcDynamicLayout(::draw2d::graphics_pointer& pdraw2dgraphics, ::i32 nLength, ::u32 nMode);
 
       
       void EnableDocking(::u32 dwDockStyle);
@@ -117,7 +117,7 @@ namespace user
       // Overridables
       virtual void on_command_probe(::user::interaction * puserinteraction, bool bDisableIfNoHndler) = 0;
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
       virtual void message_handler(::message::message * pmessage) override;
@@ -137,17 +137,17 @@ namespace user
       bool pre_create_window(::user::system * pusersystem) override;
       void destroy() override;
 
-      virtual void DoPaint(::draw2d::graphics_pointer & pgraphics);
-      void DrawBorders(::draw2d::graphics_pointer & pgraphics, ::i32_rectangle& rectangle);
-      void DrawGripper(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle& rectangle);
+      virtual void DoPaint(::draw2d::graphics_pointer & pdraw2dgraphics);
+      void DrawBorders(::draw2d::graphics_pointer & pdraw2dgraphics, ::i32_rectangle& rectangle);
+      void DrawGripper(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle& rectangle);
 
       // implementation helpers
-      void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle& rectangle, bool bHorz) const; // adjusts borders etc
+      void CalcInsideRect(::draw2d::graphics_pointer& pdraw2dgraphics, ::i32_rectangle& rectangle, bool bHorz) const; // adjusts borders etc
       //bool AllocElements(::i32 nElements, ::i32 cbElement);
       virtual bool SetStatusText(::i32 nHit);
       void ResetTimer(enum_timer etimer, const class time & time);
       void EraseNonClient();
-      void EraseNonClient(::draw2d::graphics_pointer & pgraphics);
+      void EraseNonClient(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       void GetBarInfo(BaseControlBarInfo* pInfo);
       void SetBarInfo(BaseControlBarInfo* pInfo, ::pointer<::user::frame_window>pFrameWnd);
@@ -167,7 +167,7 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(_001OnCancelMode);
 
       //   DECLARE_MESSAGE_HANDLER(_001OnPaint);
-      //   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      //   virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       void install_message_routing(::channel * pchannel) override;
 

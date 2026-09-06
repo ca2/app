@@ -326,7 +326,7 @@ BOOL wf_register_pointer(rdpGraphics* graphics)
 	if (!graphics)
 		return FALSE;
 
-	wfc = (wfContext*) pgraphics->context;
+	wfc = (wfContext*) pdraw2dgraphics->context;
 	ZeroMemory(&pointer, sizeof(rdpPointer));
 	pointer.size = sizeof(wfPointer);
 	pointer.New = wf_Pointer_New;
@@ -334,7 +334,7 @@ BOOL wf_register_pointer(rdpGraphics* graphics)
 	pointer.Set = wf_Pointer_Set;
 	pointer.SetNull = wf_Pointer_SetNull;
 	pointer.SetDefault = wf_Pointer_SetDefault;
-	graphics_register_pointer(pgraphics, &pointer);
+	graphics_register_pointer(pdraw2dgraphics, &pointer);
 	return TRUE;
 }
 
@@ -349,15 +349,15 @@ BOOL wf_register_graphics(rdpGraphics* graphics)
 	if (!graphics)
 		return FALSE;
 
-	wfc = (wfContext*) pgraphics->context;
-	bitmap = *pgraphics->Bitmap_Prototype;
+	wfc = (wfContext*) pdraw2dgraphics->context;
+	bitmap = *pdraw2dgraphics->Bitmap_Prototype;
 	bitmap.size = sizeof(wfBitmap);
 	bitmap.New = wf_Bitmap_New;
 	bitmap.Free = wf_Bitmap_Free;
 	bitmap.Paint = wf_Bitmap_Paint;
 	bitmap.SetSurface = wf_Bitmap_SetSurface;
-	graphics_register_bitmap(pgraphics, &bitmap);
-	glyph = *pgraphics->Glyph_Prototype;
-	graphics_register_glyph(pgraphics, &glyph);
+	graphics_register_bitmap(pdraw2dgraphics, &bitmap);
+	glyph = *pdraw2dgraphics->Glyph_Prototype;
+	graphics_register_glyph(pdraw2dgraphics, &glyph);
 	return TRUE;
 }

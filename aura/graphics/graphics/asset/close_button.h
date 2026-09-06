@@ -5,16 +5,16 @@ namespace user
 {
 
 
-   inline void draw_close_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::item* pitem)
+   inline void draw_close_button(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::interaction * puserinteraction,  ::item* pitem)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       auto ppen = createø < ::draw2d::pen > ();
 
       ::draw2d::brush_pointer pbrush(e_create);
 
-      auto pstyle = puserinteraction->get_style(pgraphics);
+      auto pstyle = puserinteraction->get_style(pdraw2dgraphics);
 
       ::f64_rectangle ::f64_rectangle(pitem->m_rectangle);
 
@@ -24,7 +24,7 @@ namespace user
 
       pbrush->create_solid(color);
 
-      pgraphics->set(pbrush);
+      pdraw2dgraphics->set(pbrush);
 
       if (puserinteraction->m_pitemHover == ::e_element_close_button)
       {
@@ -39,9 +39,9 @@ namespace user
 
       }
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-      pgraphics->fill_rectangle(::f64_rectangle, color);
+      pdraw2dgraphics->fill_rectangle(::f64_rectangle, color);
 
       if (color.get_hls().m_dL <= 0.5)
       {
@@ -56,17 +56,17 @@ namespace user
 
          colorLighter.m_iA = 127;
 
-         pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::i32_size(1, 0), colorLighter);
+         pdraw2dgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::i32_size(1, 0), colorLighter);
 
       }
 
       ::f64_rectangle.deflate(::f64_rectangle.minimum_dimension() / 5.0);
 
-      pgraphics->set(ppen);
+      pdraw2dgraphics->set(ppen);
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-      pgraphics->draw_stock_icon(::f64_rectangle, stock_icon_close);
+      pdraw2dgraphics->draw_stock_icon(::f64_rectangle, stock_icon_close);
 
 
    }

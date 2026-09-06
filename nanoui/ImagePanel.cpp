@@ -172,11 +172,11 @@ namespace nanoui
 
       auto pparticle = get_nano2d_object(pcontext);
 
-      auto pgraphics = dynamic_cast <::draw2d::graphics *>(pparticle);
+      auto pdraw2dgraphics = dynamic_cast <::draw2d::graphics *>(pparticle);
 
-      scoped_restore(pgraphics->m_bUseImageMipMapsOrResizedImages);
+      scoped_restore(pdraw2dgraphics->m_bUseImageMipMapsOrResizedImages);
 
-      pgraphics->m_bUseImageMipMapsOrResizedImages = true;
+      pdraw2dgraphics->m_bUseImageMipMapsOrResizedImages = true;
 
       for (::collection::index iImageIndex = 0; iImageIndex < m_images.size(); ++iImageIndex)
       {

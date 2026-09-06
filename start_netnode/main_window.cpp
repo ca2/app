@@ -57,7 +57,7 @@ namespace app_app
    }
 
 
-   void main_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void main_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       
       m_iCloseButtonDraw = 0;
@@ -71,11 +71,11 @@ namespace app_app
 
       }
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-      pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
+      pdraw2dgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
       
       auto dMinimumDimension = (::f64) rectangleX.minimum_signed_absolute_dimension();
 
@@ -85,11 +85,11 @@ namespace app_app
 
       ::f64 y = dBase * 3;
 
-      pgraphics->fill_rectangle(::f64_rectangle_dimension(x, y, dBase * 5.0, dBase * 5.0), ::rgba(127, 40, 150, 235));
+      pdraw2dgraphics->fill_rectangle(::f64_rectangle_dimension(x, y, dBase * 5.0, dBase * 5.0), ::rgba(127, 40, 150, 235));
 
-      pgraphics->fill_rectangle(::f64_rectangle_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::rgba(127, 40, 150, 235));
+      pdraw2dgraphics->fill_rectangle(::f64_rectangle_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::rgba(127, 40, 150, 235));
 
-      pgraphics->fill_rectangle(::f64_rectangle_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::rgba(127, 255, 110, 150));
+      pdraw2dgraphics->fill_rectangle(::f64_rectangle_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::rgba(127, 255, 110, 150));
       
       rectangleX.deflate((::i32) dBase);
 
@@ -111,13 +111,13 @@ namespace app_app
       for (::i32 i = 0; i < dBase; i++)
       {
 
-         pgraphics->draw_inset_rectangle(rectangleX, colorInset);
+         pdraw2dgraphics->draw_inset_rectangle(rectangleX, colorInset);
 
          rectangleX.deflate(1, 1);
 
       }
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
       auto pitemClose = get_user_item(::e_element_close_button);
       auto pitemZoom = get_user_item(::e_element_maximize_button);
@@ -242,12 +242,12 @@ namespace app_app
       }
 
 
-      ::user::interaction::_001OnDraw(pgraphics);
+      ::user::interaction::_001OnDraw(pdraw2dgraphics);
 
    }
 
 
-   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem, const ::user::e_state & estate)
+   void main_window::_001DrawItem(::draw2d::graphics_pointer& pdraw2dgraphics, ::item* pitem, const ::user::e_state & estate)
    {
 
       if (::is_null(pitem))
@@ -260,7 +260,7 @@ namespace app_app
       if (pitem->m_item.m_eelement == ::e_element_close_button)
       {
 
-         ::user::draw_close_button(pgraphics, this, pitem, estate);
+         ::user::draw_close_button(pdraw2dgraphics, this, pitem, estate);
 
          m_iCloseButtonDraw++;
 
@@ -275,7 +275,7 @@ namespace app_app
 
       }
       
-      ::user::interaction::_001DrawItem(pgraphics, pitem, estate);
+      ::user::interaction::_001DrawItem(pdraw2dgraphics, pitem, estate);
 
    }
 

@@ -34,8 +34,8 @@
 #include "graphics.h"
 
 
-#define GL2D_GRAPHICS(pgraphics) (dynamic_cast < ::typeface_freetype::graphics * > (pgraphics))
-#define GL2D_HDC(pgraphics) (GL2D_GRAPHICS(pgraphics)->m_hdc)
+#define GL2D_GRAPHICS(pdraw2dgraphics) (dynamic_cast < ::typeface_freetype::graphics * > (pdraw2dgraphics))
+#define GL2D_HDC(pdraw2dgraphics) (GL2D_GRAPHICS(pdraw2dgraphics)->m_hdc)
 
 
 namespace opengl

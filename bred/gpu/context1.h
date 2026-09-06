@@ -246,7 +246,7 @@ namespace gpu
       virtual void send_on_context(const ::procedure & procedure);
       virtual void top_send_on_context(::gpu::context * pcontextInnerStart, bool bForDrawing, const ::procedure& procedure);
       
-      virtual bool create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics * pgraphics, const ::i32_size& size = {});
+      virtual bool create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics * pdraw2dgraphics, const ::i32_size& size = {});
 
 
       virtual ::gpu::renderer* get_gpu_renderer();

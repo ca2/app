@@ -52,8 +52,8 @@ namespace nano2d
 
          bool                          m_bHasCurrentPoint;
 
-         state(::draw2d::graphics * pgraphics) :
-            savedc(pgraphics)
+         state(::draw2d::graphics * pdraw2dgraphics) :
+            savedc(pdraw2dgraphics)
          {
 
             m_fFontSize = 0.f;
@@ -85,7 +85,7 @@ namespace nano2d
       ~draw2d_context() override;
 
 
-      void set_graphics(::draw2d::graphics * pgraphics);
+      void set_graphics(::draw2d::graphics * pdraw2dgraphics);
       ::draw2d::graphics * get_graphics();
 
 

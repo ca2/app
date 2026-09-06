@@ -208,7 +208,7 @@ SizingNone:
 
 
 
-            void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lpcrectClient, enum_border eside)
+            void frame_008::draw_border_side(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle &lpcrectClient, enum_border eside)
             {
 
                auto pframewindow = m_pframewindow;
@@ -231,7 +231,7 @@ SizingNone:
 
                   
 
-                  auto pstyle = pframewindow->get_style(pgraphics);
+                  auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
                   crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
@@ -252,24 +252,24 @@ SizingNone:
                else if(m_estyle == StyleLightBlue || m_estyle == StyleRedOrange)
                {
                   //rectangleA.deflate(1,1,1,1);
-                  Draw3dRectSide(pgraphics,rectangleA,eside, crMoveableBorderHilight,0);//m_colorMoveableBorderDkShadow);
+                  Draw3dRectSide(pdraw2dgraphics,rectangleA,eside, crMoveableBorderHilight,0);//m_colorMoveableBorderDkShadow);
 
                   //if(!m_bHollow)
                   //{
 
                   //   rectangleA.deflate(1,1,1,1);
-                  //   Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorderHilight,crMoveableBorderShadow);
+                  //   Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,crMoveableBorderHilight,crMoveableBorderShadow);
 
                   //   rectangleA.deflate(1,1,1,1);
-                  //   Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
+                  //   Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
 
                   //   rectangleA.deflate(1,1,1,1);
-                  //   Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
+                  //   Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
 
                   //   ::i32_rectangle rectangle;
                   //   GetBorderRectangle(lpcrectClient,rectangle,eside);
                   //   class imaging & imaging = psystem->imaging();
-                  //   imaging.color_blend(pgraphics,
+                  //   imaging.color_blend(pdraw2dgraphics,
                   //      rectangle,
                   //      crMoveableBorder,
                   //      127);
@@ -284,7 +284,7 @@ SizingNone:
                   ::i32_rectangle rectangle;
                   GetBorderRectangle(lpcrectClient, rectangle, eside);
 
-                  pgraphics->color_blend(
+                  pdraw2dgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       127);
@@ -294,7 +294,7 @@ SizingNone:
                   ::i32_rectangle rectangle;
                   GetBorderRectangle(lpcrectClient, rectangle, eside);
 
-                  pgraphics->color_blend(
+                  pdraw2dgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       127);
@@ -310,14 +310,14 @@ SizingNone:
                   rectangleA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+                     Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
                   }
 
                   rectangleA.top++;
                   rectangleA.bottom--;
                   rectangleA.left++;
                   rectangleA.right--;
-                  Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+                  Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
 
                   rectangleA.top++;
                   rectangleA.bottom--;
@@ -325,13 +325,13 @@ SizingNone:
                   rectangleA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+                     Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
                   }
                }
 
             }
 
-            void frame_008::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
+            void frame_008::on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics)
             {
 
                auto pframewindow = m_pframewindow;
@@ -371,7 +371,7 @@ SizingNone:
 
                if(!pframewindow->layout().is_full_screen())
                {
-                  DrawBorder(pgraphics, rectangleNClient);
+                  DrawBorder(pdraw2dgraphics, rectangleNClient);
                }
 
 
@@ -379,7 +379,7 @@ SizingNone:
             }
 
 
-            void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lpcrectClient)
+            void frame_008::DrawBorder(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle &lpcrectClient)
             {
 
                auto pmovemanager = m_pframewindow->move_manager();
@@ -402,14 +402,14 @@ SizingNone:
                   //return;
                   ::i32_rectangle rectangleA(lpcrectClient);
 
-                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+                  pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-                  pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+                  pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
                   for (::collection::index i = 0; i < 9; i++)
                   {
 
-                     pgraphics->draw_inset_3d_rectangle(rectangleA, argb(0, 0, 0, 0), argb(0, 0, 0, 0));
+                     pdraw2dgraphics->draw_inset_3d_rectangle(rectangleA, argb(0, 0, 0, 0), argb(0, 0, 0, 0));
 
                      rectangleA.deflate(1, 1, 1, 1);
 
@@ -420,9 +420,9 @@ SizingNone:
 
                      ::i32_rectangle rectangleA(lpcrectClient);
 
-                     pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+                     pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-                     pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+                     pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
                      for (::collection::index i = 0; i < 9; i++)
                      {
@@ -431,7 +431,7 @@ SizingNone:
 
                         ppen->create_solid(1.0, argb((i+1) * 5, 0, 0, 0));
 
-                        pgraphics->draw_round_rect(rectangleA, pen, (::i32) (10 - i));
+                        pdraw2dgraphics->draw_round_rect(rectangleA, pen, (::i32) (10 - i));
 
                         rectangleA.deflate(1, 1, 1, 1);
 
@@ -439,27 +439,27 @@ SizingNone:
 
                      //rectangleA.deflate(9, 9, 9, 9);
 
-                     pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+                     pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-                     pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+                     pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
 
                      if (m_estyle == StyleRedOrange)
                      {
 
-                        pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 255, 170, 136), argb(255, 255, 170, 136));
+                        pdraw2dgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 255, 170, 136), argb(255, 255, 170, 136));
 
                      }
                      else if (m_estyle == StyleLightGreen)
                      {
 
-                        pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 128, 230, 150), argb(255, 128, 230, 150));
+                        pdraw2dgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 128, 230, 150), argb(255, 128, 230, 150));
 
                      }
                      else
                      {
 
-                        pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 0x07, 0x6D, 0x91), argb(255, 0x07, 0x6D, 0x91));
+                        pdraw2dgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 0x07, 0x6D, 0x91), argb(255, 0x07, 0x6D, 0x91));
 
                      }
 
@@ -468,7 +468,7 @@ SizingNone:
                   {
 
                      //rectangleA.deflate(9, 9, 9, 9);
-                     pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
+                     pdraw2dgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
                   }
 
 
@@ -478,19 +478,19 @@ SizingNone:
 
                   if(eborder & e_border_top)
                   {
-                     draw_border_side(pgraphics,lpcrectClient,e_border_top);
+                     draw_border_side(pdraw2dgraphics,lpcrectClient,e_border_top);
                   }
                   if(eborder & e_border_right)
                   {
-                     draw_border_side(pgraphics,lpcrectClient,e_border_right);
+                     draw_border_side(pdraw2dgraphics,lpcrectClient,e_border_right);
                   }
                   if(eborder & e_border_bottom)
                   {
-                     draw_border_side(pgraphics,lpcrectClient,e_border_bottom);
+                     draw_border_side(pdraw2dgraphics,lpcrectClient,e_border_bottom);
                   }
                   if(eborder & e_border_left)
                   {
-                     draw_border_side(pgraphics,lpcrectClient,e_border_left);
+                     draw_border_side(pdraw2dgraphics,lpcrectClient,e_border_left);
                   }
 
                }
@@ -541,7 +541,7 @@ SizingNone:
             void frame_008::on_style_change()
             {
 
-               on_style_change_001_and_002(pgraphics);
+               on_style_change_001_and_002(pdraw2dgraphics);
                m_rectangleMarginNormal.set(10, 10, 10, 10);
 
                if (m_estyle == StyleDarkRed)

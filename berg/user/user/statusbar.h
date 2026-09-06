@@ -94,10 +94,10 @@ namespace user
 //      virtual void DrawItem(LPDRAWITEMSTRUCT);
 //#endif
 
-      virtual ::i32_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
+      virtual ::i32_size CalcFixedLayout(::draw2d::graphics_pointer& pdraw2dgraphics, bool bStretch, bool bHorz) override;
       bool pre_create_window(::user::system * pusersystem) override;
       //bool AllocElements(::i32 nElements, ::i32 cbElement);
-      void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle& rectangle, bool bHorz);
+      void CalcInsideRect(::draw2d::graphics_pointer& pdraw2dgraphics, ::i32_rectangle& rectangle, bool bHorz);
       virtual void OnBarStyleChange(::u32 dwOldStyle, ::u32 dwNewStyle) override;
 
 //      // void assert_ok() const override;
@@ -121,7 +121,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnGetTextLength);
       DECLARE_MESSAGE_HANDLER(_001OnSetMinHeight);
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       void install_message_routing(::channel * pchannel) override;
 
 

@@ -66,7 +66,7 @@ namespace app_shader
 #endif
 
 
-   void render::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void render::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       if (m_rectangle.area() <= 0)
@@ -235,7 +235,7 @@ namespace app_shader
    }
 
 
-   void render::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void render::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       
       if(!m_pgpucontext)
@@ -328,7 +328,7 @@ namespace app_shader
          
          {
             
-            to_draw2d_graphics(pgraphics);
+            to_draw2d_graphics(pdraw2dgraphics);
             
             
          };
@@ -338,34 +338,34 @@ namespace app_shader
       //rectangle.left = rectangle.right - 48;
       //rectangle.top = rectangle.bottom - 48;
 
-      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      //pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      //pgraphics->fill_rectangle(rectangle, argb(128, 128, 128, 128));
+      //pdraw2dgraphics->fill_rectangle(rectangle, argb(128, 128, 128, 128));
 
-      //_001OnDraw1Through3(pgraphics);
+      //_001OnDraw1Through3(pdraw2dgraphics);
 
-      _001OnDrawLabel(pgraphics);
+      _001OnDrawLabel(pdraw2dgraphics);
 
-      _001OnDrawError(pgraphics);
+      _001OnDrawError(pdraw2dgraphics);
 
    }
 
 
-   void render::_001OnDrawLabel(::draw2d::graphics_pointer & pgraphics)
+   void render::_001OnDrawLabel(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pathShader = m_strShaderPath;
 
       auto strLabel = ::file::path(pathShader).name();
 
-      auto pinteraction = pgraphics->m_puserinteraction;
+      auto pinteraction = pdraw2dgraphics->m_puserinteraction;
 
       ::color::color colorBackground = argb(127, 255, 255, 255);
 
       if (::is_set(pinteraction))
       {
 
-         auto pstyle = pinteraction->get_style(pgraphics);
+         auto pstyle = pinteraction->get_style(pdraw2dgraphics);
 
          colorBackground = pinteraction->get_color(pstyle, ::e_element_background);
 
@@ -452,16 +452,16 @@ namespace app_shader
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
       }
 
    }
 
 
-   void render::_001OnDrawError(::draw2d::graphics_pointer & pgraphics)
+   void render::_001OnDrawError(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       
       auto pgpushader = m_pgpushader;
@@ -492,14 +492,14 @@ namespace app_shader
          if(strError.has_character())
          {
 
-            auto pinteraction = pgraphics->m_puserinteraction;
+            auto pinteraction = pdraw2dgraphics->m_puserinteraction;
 
             auto colorBackground = argb(127, 255, 255, 255);
 
             if (::is_set(pinteraction))
             {
 
-               auto pstyle = pinteraction->get_style(pgraphics);
+               auto pstyle = pinteraction->get_style(pdraw2dgraphics);
 
                //            auto color = m_pinteraction->get_color(pstyle, ::e_element_text);
 
@@ -582,14 +582,14 @@ namespace app_shader
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->draw(imagedrawing);
+         pdraw2dgraphics->draw(imagedrawing);
 
       }
 
    }
-   void render::_001OnDraw1Through3(::draw2d::graphics_pointer& pgraphics)
+   void render::_001OnDraw1Through3(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       //string strFontFamily = get_font();
@@ -665,11 +665,11 @@ namespace app_shader
 
       //   pfont->create_pixel_font(strFontFamily, 100.0, 800);
 
-      //   pgraphics->selectFont(font);
+      //   pdraw2dgraphics->selectFont(font);
 
       //   strTitle = papp->get_main_title();
 
-      //   size = pgraphics->get_text_extent(strTitle);
+      //   size = pdraw2dgraphics->get_text_extent(strTitle);
 
       //   if (!size.is_empty())
       //   {
@@ -689,9 +689,9 @@ namespace app_shader
 
       //   }
 
-      //   pgraphics->selectFont(font);
+      //   pdraw2dgraphics->selectFont(font);
 
-      //   size = pgraphics->get_text_extent(strTitle);
+      //   size = pdraw2dgraphics->get_text_extent(strTitle);
       //      
       //}
 
@@ -734,11 +734,11 @@ namespace app_shader
 
       //}
 
-      //pgraphics->SelectObject(pen);
+      //pdraw2dgraphics->SelectObject(pen);
 
-      //pgraphics->SelectObject(brush);
+      //pdraw2dgraphics->SelectObject(brush);
 
-      //pgraphics->ellipse(rectangle);
+      //pdraw2dgraphics->ellipse(rectangle);
 
       //::i32_rectangle rectangleText;
 
@@ -748,7 +748,7 @@ namespace app_shader
 
       //rectangleText.Align(e_align_center, rectangle);
 
-      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      //pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       //if (m_iDrawing == 1)
       //{
@@ -802,12 +802,12 @@ namespace app_shader
 
       //}
 
-      //pgraphics->SelectObject(brush);
+      //pdraw2dgraphics->SelectObject(brush);
 
       //if(bDrawText)
       //{
       //
-      //   pgraphics->draw_text(strTitle, rectangleText, e_align_center);
+      //   pdraw2dgraphics->draw_text(strTitle, rectangleText, e_align_center);
       //   
       //}
 

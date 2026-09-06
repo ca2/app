@@ -293,7 +293,7 @@ void wf_register_pointer(rdpGraphics* graphics)
 	wfContext* wfc;
 	rdpPointer pointer;
 
-	wfc = (wfContext*) pgraphics->context;
+	wfc = (wfContext*) pdraw2dgraphics->context;
 
 	ZeroMemory(&pointer, sizeof(rdpPointer));
 	pointer.size = sizeof(wfPointer);
@@ -303,7 +303,7 @@ void wf_register_pointer(rdpGraphics* graphics)
 	pointer.SetNull = (pPointer_SetNull) wf_Pointer_SetNull;
 	pointer.SetDefault = (pPointer_SetDefault) wf_Pointer_SetDefault;
 
-	graphics_register_pointer(pgraphics, &pointer);
+	graphics_register_pointer(pdraw2dgraphics, &pointer);
 }
 
 /* Graphics Module */
@@ -313,7 +313,7 @@ void wf_register_pointer(rdpGraphics* graphics)
 //	wfContext* wfc;
 //	rdpBitmap bitmap;
 //
-//	wfc = (wfContext*) pgraphics->context;
+//	wfc = (wfContext*) pdraw2dgraphics->context;
 //
 //	ZeroMemory(&bitmap, sizeof(rdpBitmap));
 //	bitmap.size = sizeof(wfBitmap);
@@ -323,5 +323,5 @@ void wf_register_pointer(rdpGraphics* graphics)
 //	bitmap.Decompress = (pBitmap_Decompress) wf_Bitmap_Decompress;
 //	bitmap.SetSurface = (pBitmap_SetSurface) wf_Bitmap_SetSurface;
 //
-//	graphics_register_bitmap(pgraphics, &bitmap);
+//	graphics_register_bitmap(pdraw2dgraphics, &bitmap);
 //}

@@ -25,10 +25,10 @@ namespace datetime
 
 
 
-      void clock::_001OnDraw(::draw2d::graphics * pgraphics)
+      void clock::_001OnDraw(::draw2d::graphics * pdraw2dgraphics)
       {
    
-         __UNREFERENCED_PARAMETER(pgraphics);
+         __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
       }
 

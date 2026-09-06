@@ -20,7 +20,7 @@
 #include "berg/user/user/user.h"
 #include "berg/platform/system.h"
 #include "aura/platform/node.h"
-// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The i32_size is the i32_size of the alien!!
+// pdraw2dgraphics->get_text_extent("->:<-"); // oh no!! omg!! The i32_size is the i32_size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -934,7 +934,7 @@ namespace experience_anthill
    }
 
 
-   bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab)
+   bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::tab * ptab)
    {
 
       ::i32_rectangle rectangle;
@@ -948,23 +948,23 @@ namespace experience_anthill
 
       ::f64_rectangle r2;
 
-      pgraphics->get_clip_box(r2);
+      pdraw2dgraphics->get_clip_box(r2);
 
-      auto pstyle = ptab->get_style(pgraphics);
+      auto pstyle = ptab->get_style(pdraw2dgraphics);
 
       {
 
          ::color::color colorBack = ptab->get_color(pstyle, ::e_element_background);
 
-         pgraphics->fill_rectangle(r1, colorBack);
+         pdraw2dgraphics->fill_rectangle(r1, colorBack);
 
       }
 
       ptab->get_data()->m_ppen->create_solid(1, rgb(32, 32, 32));
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::i32_rectangle rcTab;
 
@@ -989,7 +989,7 @@ namespace experience_anthill
       if (colorBack.is_ok())
       {
 
-         pgraphics->fill_rectangle(rcTabs, colorBack);
+         pdraw2dgraphics->fill_rectangle(rcTabs, colorBack);
 
       }
 
@@ -998,7 +998,7 @@ namespace experience_anthill
       if (colorBack.is_ok())
       {
 
-         pgraphics->fill_rectangle(rcClient, colorBack);
+         pdraw2dgraphics->fill_rectangle(rcClient, colorBack);
 
       }
 
@@ -1059,7 +1059,7 @@ namespace experience_anthill
             if (ptab->get_element_rectangle(iTab, rectangleIcon, ::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ::image::image_source imagesource(ppane->m_pimage);
 
@@ -1067,7 +1067,7 @@ namespace experience_anthill
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
 
@@ -1097,15 +1097,15 @@ namespace experience_anthill
 
                   ppane->m_pbrushFillSel->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), colorSel1, colorSel2);
 
-                  pgraphics->set(ppane->m_pbrushFillSel);
+                  pdraw2dgraphics->set(ppane->m_pbrushFillSel);
 
-                  pgraphics->fill(ppath);
+                  pdraw2dgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
-                  pgraphics->set(ppenBorder);
+                  pdraw2dgraphics->set(ppenBorder);
 
-                  pgraphics->draw(ppath);
+                  pdraw2dgraphics->draw(ppath);
 
                   if (::is_item(ptab->m_pitemHover, iTab)
                      && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
@@ -1114,7 +1114,7 @@ namespace experience_anthill
 
                      auto pfont = pstyle->get_font(ptab, ::e_element_tab, ::user::e_state_selected | ::user::e_state_hover);
 
-                     pgraphics->set(pfont);
+                     pdraw2dgraphics->set(pfont);
 
                   }
                   else
@@ -1122,7 +1122,7 @@ namespace experience_anthill
 
                      auto pfont = pstyle->get_font(ptab, ::e_element_tab, ::user::e_state_selected);
 
-                     pgraphics->set(pfont);
+                     pdraw2dgraphics->set(pfont);
 
                   }
 
@@ -1149,20 +1149,20 @@ namespace experience_anthill
 
                      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
 
-                     pgraphics->set(ppane->m_pbrushFillHover);
+                     pdraw2dgraphics->set(ppane->m_pbrushFillHover);
 
-                     pgraphics->fill(ppath);
+                     pdraw2dgraphics->fill(ppath);
 
                      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
-                     pgraphics->set(ppenBorder);
+                     pdraw2dgraphics->set(ppenBorder);
 
-                     auto pstyle = ptab->get_style(pgraphics);
+                     auto pstyle = ptab->get_style(pdraw2dgraphics);
 
 
                      auto pfont = pstyle->get_font(ptab, ::e_element_tab, ::user::e_state_hover);
 
-                     pgraphics->set(pfont);
+                     pdraw2dgraphics->set(pfont);
 
                      pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
@@ -1172,21 +1172,21 @@ namespace experience_anthill
 
                      ppane->m_pbrushFill->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
 
-                     pgraphics->set(ppane->m_pbrushFill);
+                     pdraw2dgraphics->set(ppane->m_pbrushFill);
 
-                     pgraphics->fill(ppath);
+                     pdraw2dgraphics->fill(ppath);
 
                      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
-                     pgraphics->set(ppenBorder);
+                     pdraw2dgraphics->set(ppenBorder);
 
-                     pgraphics->draw(ppath);
+                     pdraw2dgraphics->draw(ppath);
 
-                     auto pstyle = ptab->get_style(pgraphics);
+                     auto pstyle = ptab->get_style(pdraw2dgraphics);
 
                      auto pfont = pstyle->get_font(ptab, ::e_element_tab);
 
-                     pgraphics->set(pfont);
+                     pdraw2dgraphics->set(pfont);
 
                      pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text));
 
@@ -1203,7 +1203,7 @@ namespace experience_anthill
             if (ptab->get_element_rectangle(iTab, rectangleIcon, ::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ::image::image_source imagesource(ppane->m_pimage);
 
@@ -1211,7 +1211,7 @@ namespace experience_anthill
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
             if (iPane == 0)
@@ -1222,9 +1222,9 @@ namespace experience_anthill
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
-                  pgraphics->set(ppenBorder);
+                  pdraw2dgraphics->set(ppenBorder);
 
-                  pgraphics->line(rcTab.left, rectangleX.bottom, rectangleBorder.left, rectangleX.bottom);
+                  pdraw2dgraphics->line(rcTab.left, rectangleX.bottom, rectangleBorder.left, rectangleX.bottom);
 
                }
 
@@ -1237,43 +1237,43 @@ namespace experience_anthill
 
                ::color::color colorBackground = ptab->get_color(pstyle, ::e_element_item_background, estate);
 
-               pgraphics->fill_rectangle(rectangleBorder, colorBackground);
+               pdraw2dgraphics->fill_rectangle(rectangleBorder, colorBackground);
 
                ::color::color colorBorder = ptab->get_color(pstyle, ::e_element_item_border, estate);
 
                ppenBorder->create_solid(2.0, colorBorder);
 
-               pgraphics->set(ppenBorder);
+               pdraw2dgraphics->set(ppenBorder);
 
                ::i32_size sizeTopOffset(0, 2);
 
-               pgraphics->line(rectangleBorder.bottom_right(),rectangleBorder.top_right() + sizeTopOffset);
+               pdraw2dgraphics->line(rectangleBorder.bottom_right(),rectangleBorder.top_right() + sizeTopOffset);
 
                if (estate & ::user::e_state_selected)
                {
 
-                  pgraphics->line(rectangleBorder.top_right() + sizeTopOffset, rectangleBorder.top_left() + sizeTopOffset);
+                  pdraw2dgraphics->line(rectangleBorder.top_right() + sizeTopOffset, rectangleBorder.top_left() + sizeTopOffset);
 
                }
 
-               //pgraphics->set(ppenBorder);
+               //pdraw2dgraphics->set(ppenBorder);
 
-               //pgraphics->draw(ppath);
+               //pdraw2dgraphics->draw(ppath);
 
-               //auto pstyle = ptab->get_style(pgraphics);
+               //auto pstyle = ptab->get_style(pdraw2dgraphics);
 
                //if (::is_item(ptab->m_pitemHover, iTab)
                //   && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
                //   && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                //{
 
-               //   pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected | ::user::e_state_hover));
+               //   pdraw2dgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected | ::user::e_state_hover));
 
                //}
                //else
                //{
 
-               //   pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
+               //   pdraw2dgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
 
                //}
 
@@ -1311,19 +1311,19 @@ namespace experience_anthill
 
                //      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
-               //      pgraphics->set(ppane->m_pbrushFillHover);
+               //      pdraw2dgraphics->set(ppane->m_pbrushFillHover);
 
-               //      //pgraphics->fill(ppath);
+               //      //pdraw2dgraphics->fill(ppath);
 
                //      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
-               //      pgraphics->set(ppenBorder);
+               //      pdraw2dgraphics->set(ppenBorder);
 
-               //      //pgraphics->draw(ppath);
+               //      //pdraw2dgraphics->draw(ppath);
 
                //      auto pfont = ptab->get_font(pstyle, ::user::e_state_hover);
 
-               //      pgraphics->set(pfont);
+               //      pdraw2dgraphics->set(pfont);
 
                //      pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 
@@ -1333,19 +1333,19 @@ namespace experience_anthill
 
                //      ppane->m_pbrushFill->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(), color1, color2);
 
-               //      pgraphics->set(ppane->m_pbrushFill);
+               //      pdraw2dgraphics->set(ppane->m_pbrushFill);
 
-               //      //pgraphics->fill(ppath);
+               //      //pdraw2dgraphics->fill(ppath);
 
                //      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
-               //      pgraphics->set(ppenBorder);
+               //      pdraw2dgraphics->set(ppenBorder);
 
-               //      //pgraphics->draw(ppath);
+               //      //pdraw2dgraphics->draw(ppath);
 
                //      auto pfont = ptab->get_font(pstyle);
 
-               //      pgraphics->set(pfont);
+               //      pdraw2dgraphics->set(pfont);
 
                //      pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 
@@ -1363,9 +1363,9 @@ namespace experience_anthill
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
-                  pgraphics->set(ppenBorder);
+                  pdraw2dgraphics->set(ppenBorder);
 
-                  pgraphics->line(rectangleBorder.right - 1, rectangleX.bottom, rcTab.right, rectangleX.bottom);
+                  pdraw2dgraphics->line(rectangleBorder.right - 1, rectangleX.bottom, rcTab.right, rectangleX.bottom);
 
                }
 
@@ -1399,9 +1399,9 @@ namespace experience_anthill
 
                auto pfont = pstyle->get_font(ptab, ::e_element_tab, estateTitle);
 
-               pgraphics->set(pfont);
+               pdraw2dgraphics->set(pfont);
 
-               _001OnTabPaneDrawTitle(*ppane, ptab, pgraphics, rectangleText, pbrushText, estate);
+               _001OnTabPaneDrawTitle(*ppane, ptab, pdraw2dgraphics, rectangleText, pbrushText, estate);
 
             }
 
@@ -1415,7 +1415,7 @@ namespace experience_anthill
 
                auto pfont = pstyle->get_font(ptab, ::e_element_close_tab_button);
 
-               pgraphics->set(pfont);
+               pdraw2dgraphics->set(pfont);
 
                if (::is_item(ptab->m_pitemHover, iTab)
                   && ::is_element(ptab->m_pitemHover, ::e_element_close_tab_button))
@@ -1431,9 +1431,9 @@ namespace experience_anthill
 
                }
 
-               pgraphics->set(pbrushText);
+               pdraw2dgraphics->set(pbrushText);
 
-               pgraphics->draw_text("x", rectangleClose, e_align_center);
+               pdraw2dgraphics->draw_text("x", rectangleClose, e_align_center);
 
             }
 
@@ -1446,19 +1446,19 @@ namespace experience_anthill
    }
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
    {
 
-      auto pstyle = ptab->get_style(pgraphics);
+      auto pstyle = ptab->get_style(pdraw2dgraphics);
 
       string_array_base & straTitle = pane.m_straTitle;
 
-      pgraphics->set(pbrushText);
+      pdraw2dgraphics->set(pbrushText);
 
       if (straTitle.get_count() <= 1)
       {
 
-         pgraphics->_DrawText(pane.get_title(), rectangle, e_align_bottom_left, e_draw_text_no_prefix);
+         pdraw2dgraphics->_DrawText(pane.get_title(), rectangle, e_align_bottom_left, e_draw_text_no_prefix);
 
       }
       else
@@ -1467,7 +1467,7 @@ namespace experience_anthill
          ::i32_rectangle rectangleText(rectangle);
 
          ::write_text::font_pointer pfont;
-         pfont = pgraphics->get_current_font();
+         pfont = pdraw2dgraphics->get_current_font();
          i32_size sSep = ptab->get_data()->m_sizeSep;
          ::i32_rectangle rectangleEmp;
          for (::collection::index i = 0; i < straTitle.get_size(); i++)
@@ -1491,23 +1491,23 @@ namespace experience_anthill
 
             pfont->set_modified();
 
-            pgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
+            pdraw2dgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
             rectangleText.left += s.cx;
             if (i < straTitle.get_upper_bound())
             {
                rectangleText.right = rectangleText.left + sSep.cx;
                rectangleEmp = rectangleText;
                rectangleEmp.deflate(1, 1);
-               ::draw2d::enum_alpha_mode emode = pgraphics->alpha_mode();
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               ::draw2d::enum_alpha_mode emode = pdraw2dgraphics->alpha_mode();
+               pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                if (::is_element(ptab->m_pitemHover, ::e_element_split + i))
                {
 
-                  pgraphics->fill_rectangle(rectangleEmp, argb(128, 150, 184, 255));
+                  pdraw2dgraphics->fill_rectangle(rectangleEmp, argb(128, 150, 184, 255));
 
                   pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 
-                  pgraphics->set(pbrushText);
+                  pdraw2dgraphics->set(pbrushText);
 
                }
                else
@@ -1515,17 +1515,17 @@ namespace experience_anthill
 
                   pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text));
 
-                  pgraphics->set(pbrushText);
+                  pdraw2dgraphics->set(pbrushText);
 
                }
 
                auto pfont = pstyle->get_font(ptab, ::e_element_close_tab_button);
 
-               pgraphics->set(pfont);
+               pdraw2dgraphics->set(pfont);
 
-               pgraphics->set_alpha_mode(emode);
+               pdraw2dgraphics->set_alpha_mode(emode);
 
-               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
+               pdraw2dgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
 
                rectangleText.left += sSep.cx;
 
@@ -1538,10 +1538,10 @@ namespace experience_anthill
    }
 
 
-   bool style::_001OnTabLayout(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab)
+   bool style::_001OnTabLayout(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::tab * ptab)
    {
 
-      auto pstyle = ptab->get_style(pgraphics);
+      auto pstyle = ptab->get_style(pdraw2dgraphics);
 
       if (!ptab->get_data()->m_bCreated)
       {
@@ -1558,7 +1558,7 @@ namespace experience_anthill
 
       auto pfontSelected = pstyle->get_font(ptab, ::e_element_tab, ::user::e_state_selected);
 
-      pgraphics->set(pfontSelected);
+      pdraw2dgraphics->set(pfontSelected);
 
       pdata->m_rectangleMargin = ptab->get_margin(pstyle);
 
@@ -1591,7 +1591,7 @@ namespace experience_anthill
 
       }
 
-      ptab->m_pgraphicsextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
+      ptab->m_pgraphicsextension->get_text_extent(pdraw2dgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
 
       if (ptab->get_data()->m_bVertical)
       {
@@ -1615,11 +1615,11 @@ namespace experience_anthill
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pgraphicsextension, pdraw2dgraphics);
 
             ::f64_size size;
 
-            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
+            ptab->m_pgraphicsextension->get_text_extent(pdraw2dgraphics, str, size);
 
             if (ppane->m_pimage->is_set())
             {
@@ -1701,12 +1701,12 @@ namespace experience_anthill
          ::i32 iTabHeight = 16;
          ::i32 cy;
          //         ::draw2d::graphics_pointer graphics(e_create);
-           //       pgraphics->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
-             //     ::draw2d::graphics_pointer & pgraphics = graphics;
+           //       pdraw2dgraphics->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
+             //     ::draw2d::graphics_pointer & pdraw2dgraphics = graphics;
 
              auto pfont = pstyle->get_font(ptab, ::e_element_tab, ::user::e_state_selected);
 
-         pgraphics->set(pfont);
+         pdraw2dgraphics->set(pfont);
 
          ::i32_rectangle rectangleX = ptab->rectangle(::user::e_layout_lading);
 
@@ -1728,11 +1728,11 @@ namespace experience_anthill
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pgraphicsextension, pdraw2dgraphics);
 
             ::f64_size size;
 
-            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
+            ptab->m_pgraphicsextension->get_text_extent(pdraw2dgraphics, str, size);
 
             if (ppane->m_pimage)
             {
@@ -1874,26 +1874,26 @@ namespace experience_anthill
    //   }
 
 
-   bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
+   bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
    {
 
-      _001DrawAnthillToolbarItem(pgraphics, iItem, ptoolbar);
+      _001DrawAnthillToolbarItem(pdraw2dgraphics, iItem, ptoolbar);
 
       return true;
 
    }
 
 
-   void style::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
+   void style::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::i32_rectangle rectangleItem;
 
       ::i32_rectangle rectangleImage;
 
-      pgraphics->set_font(ptoolbar, ::e_element_none);
+      pdraw2dgraphics->set_font(ptoolbar, ::e_element_none);
 
       auto ptoolitem = ptoolbar->tool_item_at(iItem);
 
@@ -1971,7 +1971,7 @@ namespace experience_anthill
          rectangleSeparator.top = rectangleImage.top;
          rectangleSeparator.bottom = rectangleImage.bottom;
 
-         pgraphics->draw_inset_3d_rectangle(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255), 1.0);
+         pdraw2dgraphics->draw_inset_3d_rectangle(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255), 1.0);
 
       }
       else
@@ -1990,9 +1990,9 @@ namespace experience_anthill
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
 
-                  pgraphics->fill_inset_rectangle(rectangleItem, argb(208, 255, 255, 250));
+                  pdraw2dgraphics->fill_inset_rectangle(rectangleItem, argb(208, 255, 255, 250));
 
-                  pgraphics->draw_inset_rectangle(rectangleItem, argb(255, 127, 127, 127), 1.0);
+                  pdraw2dgraphics->draw_inset_rectangle(rectangleItem, argb(255, 127, 127, 127), 1.0);
 
                }
 
@@ -2003,14 +2003,14 @@ namespace experience_anthill
                   {
 
                      // button is enabled
-                     pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                     pmenucentral->MenuV033GetImageListBlend()->draw(pdraw2dgraphics, uImage, rectangleImage.top_left(), 0);
 
                   }
                   else
                   {
 
                      // button is disabled
-                     pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                     pmenucentral->MenuV033GetImageListHueLight()->draw(pdraw2dgraphics, uImage, rectangleImage.top_left(), 0);
 
                   }
 
@@ -2031,9 +2031,9 @@ namespace experience_anthill
                   auto pbrush = createø < ::draw2d::brush >();
 
                   pbrush->create_solid(argb(123, 180, 184, 255));
-                  pgraphics->set(ppen);
-                  pgraphics->set(pbrush);
-                  pgraphics->rectangle(rectangleItem);
+                  pdraw2dgraphics->set(ppen);
+                  pdraw2dgraphics->set(pbrush);
+                  pdraw2dgraphics->rectangle(rectangleItem);
 
                }
 
@@ -2050,7 +2050,7 @@ namespace experience_anthill
 
                   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  pgraphics->draw(imagedrawing);
+                  pdraw2dgraphics->draw(imagedrawing);
 
                }
                else if (uImage != 0xffffffffu)
@@ -2058,9 +2058,9 @@ namespace experience_anthill
 
                   auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_item, ::user::e_state_hover);
 
-                  pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListHue()->draw(pdraw2dgraphics, uImage, rectangle.top_left(), 0);
 
-                  pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageList()->draw(pdraw2dgraphics, uImage, rectangleImage.top_left(), 0);
                }
 
             }
@@ -2078,9 +2078,9 @@ namespace experience_anthill
                auto pbrush = createø < ::draw2d::brush >();
 
                pbrush->create_solid(argb(255, 255, 255, 255));
-               pgraphics->set(ppen);
-               pgraphics->set(pbrush);
-               pgraphics->rectangle(rectangleItem);
+               pdraw2dgraphics->set(ppen);
+               pdraw2dgraphics->set(pbrush);
+               pdraw2dgraphics->rectangle(rectangleItem);
 
             }
 
@@ -2095,13 +2095,13 @@ namespace experience_anthill
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
             else if (uImage != 0xffffffff)
             {
 
-               pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+               pmenucentral->MenuV033GetImageList()->draw(pdraw2dgraphics, uImage, rectangleImage.top_left(), 0);
 
             }
 
@@ -2114,14 +2114,14 @@ namespace experience_anthill
 
                rectangleItem = ptoolbar->index_element_rectangle(iItem, ::e_element_item, ::user::e_state_none);
 
-               pgraphics->fill_rectangle(rectangleItem, argb(190, 255, 255, 255));
+               pdraw2dgraphics->fill_rectangle(rectangleItem, argb(190, 255, 255, 255));
 
             }
 
             if (estate & ::user::e_state_checked)
             {
 
-               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255), 1.0);
+               pdraw2dgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255), 1.0);
 
             }
 
@@ -2138,7 +2138,7 @@ namespace experience_anthill
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
             else if (uImage != 0xffffffff)
@@ -2147,13 +2147,13 @@ namespace experience_anthill
                if (!(estate & ::user::e_state_disabled))
                {
 
-                  pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListBlend()->draw(pdraw2dgraphics, uImage, rectangleImage.top_left(), 0);
 
                }
                else
                {
 
-                  pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListHueLight()->draw(pdraw2dgraphics, uImage, rectangleImage.top_left(), 0);
 
                }
 
@@ -2166,7 +2166,7 @@ namespace experience_anthill
       if (ptoolitem->m_str.has_character())
       {
 
-         pgraphics->set_font(ptoolbar, ::e_element_none);
+         pdraw2dgraphics->set_font(ptoolbar, ::e_element_none);
 
          ::status < ::i32_rectangle > rectangleText;
 
@@ -2185,14 +2185,14 @@ namespace experience_anthill
 
          }
 
-         pgraphics->set(pbrushText);
+         pdraw2dgraphics->set(pbrushText);
 
          rectangleText = ptoolbar->index_element_rectangle(iItem, ::e_element_text, ::user::e_state_none);
 
          if (rectangleText.ok() && rectangleText.right > 0)
          {
 
-            pgraphics->_DrawText(ptoolitem->m_str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
+            pdraw2dgraphics->_DrawText(ptoolitem->m_str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
          }
 
@@ -2200,18 +2200,18 @@ namespace experience_anthill
 
    }
 
-   void style::_001DrawAnthillToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
+   void style::_001DrawAnthillToolbarItem(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
    {
 
-      auto pstyle = ptoolbar->get_style(pgraphics);
+      auto pstyle = ptoolbar->get_style(pdraw2dgraphics);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::i32_rectangle rectangleItem;
 
       ::i32_rectangle rectangleImage;
 
-      pgraphics->set_font(ptoolbar, ::e_element_none);
+      pdraw2dgraphics->set_font(ptoolbar, ::e_element_none);
 
       auto ptoolitem = ptoolbar->tool_item_at(iItem);
 
@@ -2238,7 +2238,7 @@ namespace experience_anthill
          rectangleSeparator.right = rectangleSeparator.left + 2;
          rectangleSeparator.top = rectangleImage.top;
          rectangleSeparator.bottom = rectangleImage.bottom;*/
-         //pgraphics->Draw3dRect(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
+         //pdraw2dgraphics->Draw3dRect(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
       }
       else
       {
@@ -2256,9 +2256,9 @@ namespace experience_anthill
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
 
-                  pgraphics->fill_rectangle(rectangleItem, argb(208, 255, 255, 250));
+                  pdraw2dgraphics->fill_rectangle(rectangleItem, argb(208, 255, 255, 250));
 
-                  pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255), 1.0);
+                  pdraw2dgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255), 1.0);
 
                }
 
@@ -2269,14 +2269,14 @@ namespace experience_anthill
                   {
 
                      // button is enabled
-                     pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                     pmenucentral->MenuV033GetImageListBlend()->draw(pdraw2dgraphics, uImage, rectangleImage.top_left(), 0);
 
                   }
                   else
                   {
 
                      // button is disabled
-                     pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                     pmenucentral->MenuV033GetImageListHueLight()->draw(pdraw2dgraphics, uImage, rectangleImage.top_left(), 0);
 
                   }
 
@@ -2297,9 +2297,9 @@ namespace experience_anthill
                   auto pbrush = createø < ::draw2d::brush >();
 
                   pbrush->create_solid(ptoolbar->get_color(pstyle, ::e_element_face, ::user::e_state_hover));
-                  pgraphics->set(ppen);
-                  pgraphics->set(pbrush);
-                  pgraphics->rectangle(rectangleItem);
+                  pdraw2dgraphics->set(ppen);
+                  pdraw2dgraphics->set(pbrush);
+                  pdraw2dgraphics->rectangle(rectangleItem);
 
                }
 
@@ -2316,7 +2316,7 @@ namespace experience_anthill
 
                   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  pgraphics->draw(imagedrawing);
+                  pdraw2dgraphics->draw(imagedrawing);
 
                }
                else if (uImage != 0xffffffffu)
@@ -2324,9 +2324,9 @@ namespace experience_anthill
 
                   auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_item, ::user::e_state_hover);
 
-                  pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListHue()->draw(pdraw2dgraphics, uImage, rectangle.top_left(), 0);
 
-                  pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageList()->draw(pdraw2dgraphics, uImage, rectangleImage.top_left(), 0);
 
                }
 
@@ -2345,9 +2345,9 @@ namespace experience_anthill
                auto pbrush = createø < ::draw2d::brush >();
 
                pbrush->create_solid(ptoolbar->get_color(pstyle, ::e_element_face, ::user::e_state_pressed));
-               pgraphics->set(ppen);
-               pgraphics->set(pbrush);
-               pgraphics->rectangle(rectangleItem);
+               pdraw2dgraphics->set(ppen);
+               pdraw2dgraphics->set(pbrush);
+               pdraw2dgraphics->rectangle(rectangleItem);
 
             }
 
@@ -2362,13 +2362,13 @@ namespace experience_anthill
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
             else if (uImage != 0xffffffff)
             {
 
-               pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+               pmenucentral->MenuV033GetImageList()->draw(pdraw2dgraphics, uImage, rectangleImage.top_left(), 0);
 
             }
 
@@ -2381,14 +2381,14 @@ namespace experience_anthill
 
             //   ptoolbar->index_element_rectangle(iItem, rectangleItem, ::e_element_item, ::user::e_state_none);
 
-            //   pgraphics->fill_rectangle(rectangleItem, ptoolbar->get_color(pstyle, ::e_element_background));
+            //   pdraw2dgraphics->fill_rectangle(rectangleItem, ptoolbar->get_color(pstyle, ::e_element_background));
 
             //}
 
             if (estate & ::user::e_state_checked)
             {
 
-               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255), 1.0);
+               pdraw2dgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255), 1.0);
 
             }
 
@@ -2401,9 +2401,9 @@ namespace experience_anthill
                auto pbrush = createø < ::draw2d::brush >();
 
                pbrush->create_solid(ptoolbar->get_color(pstyle, ::e_element_face, estate));
-               pgraphics->set(ppen);
-               pgraphics->set(pbrush);
-               pgraphics->rectangle(rectangleItem);
+               pdraw2dgraphics->set(ppen);
+               pdraw2dgraphics->set(pbrush);
+               pdraw2dgraphics->rectangle(rectangleItem);
 
             }
 
@@ -2420,7 +2420,7 @@ namespace experience_anthill
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+               pdraw2dgraphics->draw(imagedrawing);
 
             }
             else if (uImage != 0xffffffff)
@@ -2429,13 +2429,13 @@ namespace experience_anthill
                if (!(estate & ::user::e_state_disabled))
                {
 
-                  pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListBlend()->draw(pdraw2dgraphics, uImage, rectangleImage.top_left(), 0);
 
                }
                else
                {
 
-                  pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListHueLight()->draw(pdraw2dgraphics, uImage, rectangleImage.top_left(), 0);
 
                }
 
@@ -2448,7 +2448,7 @@ namespace experience_anthill
       if (ptoolitem->m_str.has_character())
       {
 
-         pgraphics->set_font(ptoolbar, ::e_element_none);
+         pdraw2dgraphics->set_font(ptoolbar, ::e_element_none);
 
          ::status < ::i32_rectangle > rectangleText;
 
@@ -2459,7 +2459,7 @@ namespace experience_anthill
 
             pbrushText->create_solid(argb(255, 255, 255, 255));
 
-            pgraphics->set_text_color(argb(255, 255, 255, 255));
+            pdraw2dgraphics->set_solid_color(argb(255, 255, 255, 255));
 
          }
          else
@@ -2468,7 +2468,7 @@ namespace experience_anthill
             pbrushText->create_solid(ptoolbar->get_color(pstyle, ::e_element_background,
                ::user::e_state_disabled));
 
-            pgraphics->set_text_color(ptoolbar->get_color(pstyle, ::e_element_text,
+            pdraw2dgraphics->set_solid_color(ptoolbar->get_color(pstyle, ::e_element_text,
                ::user::e_state_disabled));
 
          }
@@ -2478,9 +2478,9 @@ namespace experience_anthill
          if (rectangleText.ok() && rectangleText.right > 0)
          {
 
-            pgraphics->set(pbrushText);
+            pdraw2dgraphics->set(pbrushText);
 
-            pgraphics->draw_text(ptoolitem->m_str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
+            pdraw2dgraphics->draw_text(ptoolitem->m_str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
          }
 
@@ -2489,12 +2489,12 @@ namespace experience_anthill
    }
 
 
-   bool style::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)
+   bool style::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pdraw2dgraphics, ::user::split_layout * psplitlayout)
    {
 
       ::i32_rectangle rectangleX = psplitlayout->rectangle();
 
-      pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
+      pdraw2dgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 
       return true;
 

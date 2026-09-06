@@ -25,21 +25,21 @@ namespace experience_nanoui
    }
 
 
-   void control_box_button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
    }
 
 
-   void control_box_button::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::interaction::_001OnClip(pgraphics);
+      ::user::interaction::_001OnClip(pdraw2dgraphics);
 
    }
 
 
-   void control_box_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       class ::time t1 = ::time::now();
@@ -75,7 +75,7 @@ namespace experience_nanoui
 
       ::color::color crText = argb(255, 255, 255, 255);
 
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_anti_alias_8x4);
+      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_anti_alias_8x4);
 
       if (m_pcontrolbox)
       {
@@ -83,9 +83,9 @@ namespace experience_nanoui
          if (!is_window_enabled())
          {
 
-            pgraphics->set(m_pcontrolbox->m_pbrushButtonBackDisabled);
+            pdraw2dgraphics->set(m_pcontrolbox->m_pbrushButtonBackDisabled);
 
-            pgraphics->set(m_pcontrolbox->m_ppenButtonBackDisabled);
+            pdraw2dgraphics->set(m_pcontrolbox->m_ppenButtonBackDisabled);
 
             crText = m_pcontrolbox->m_colorButtonForeDisabled;
 
@@ -93,9 +93,9 @@ namespace experience_nanoui
          else if (hover_item().is_set())
          {
 
-            pgraphics->set(m_pcontrolbox->m_pbrushButtonBackSel);
+            pdraw2dgraphics->set(m_pcontrolbox->m_pbrushButtonBackSel);
 
-            pgraphics->set(m_pcontrolbox->m_ppenButtonBackSel);
+            pdraw2dgraphics->set(m_pcontrolbox->m_ppenButtonBackSel);
 
             crText = m_pcontrolbox->m_colorButtonForeSel;
 
@@ -103,9 +103,9 @@ namespace experience_nanoui
          else if (has_keyboard_focus())
          {
 
-            pgraphics->set(m_pcontrolbox->m_pbrushButtonBackFocus);
+            pdraw2dgraphics->set(m_pcontrolbox->m_pbrushButtonBackFocus);
 
-            pgraphics->set(m_pcontrolbox->m_ppenButtonBackFocus);
+            pdraw2dgraphics->set(m_pcontrolbox->m_ppenButtonBackFocus);
 
             crText = m_pcontrolbox->m_colorButtonForeFocus;
 
@@ -113,9 +113,9 @@ namespace experience_nanoui
          else
          {
 
-            pgraphics->set(m_pcontrolbox->m_pbrushButtonBack);
+            pdraw2dgraphics->set(m_pcontrolbox->m_pbrushButtonBack);
 
-            pgraphics->set(m_pcontrolbox->m_ppenButtonBack);
+            pdraw2dgraphics->set(m_pcontrolbox->m_ppenButtonBack);
 
             crText = m_pcontrolbox->m_colorButtonFore;
 
@@ -127,11 +127,11 @@ namespace experience_nanoui
 
       rectangleEllipse.deflate(0, 0, 2, 2);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->fill_ellipse(rectangleEllipse);
+      pdraw2dgraphics->fill_ellipse(rectangleEllipse);
 
-      pgraphics->draw_ellipse(rectangleEllipse);
+      pdraw2dgraphics->draw_ellipse(rectangleEllipse);
 
       if (m_estockicon == e_stock_icon_none)
       {
@@ -140,11 +140,11 @@ namespace experience_nanoui
 
          str = get_window_text();
 
-         pgraphics->set_font(this, ::e_element_none);
+         pdraw2dgraphics->set_font(this, ::e_element_none);
 
-         pgraphics->set_text_color(crText);
+         pdraw2dgraphics->set_solid_color(crText);
 
-         pgraphics->draw_text(str, rectangleX, e_align_center, e_draw_text_single_line);
+         pdraw2dgraphics->draw_text(str, rectangleX, e_align_center, e_draw_text_single_line);
 
       }
       else
@@ -152,26 +152,26 @@ namespace experience_nanoui
 
          auto pbrush = createø < ::draw2d::brush >();
 
-         if (pbrush && pgraphics->get_current_pen())
+         if (pbrush && pdraw2dgraphics->get_current_pen())
          {
 
-            pbrush->create_solid(pgraphics->get_current_pen()->m_color);
+            pbrush->create_solid(pdraw2dgraphics->get_current_pen()->m_color);
 
          }
 
-         pgraphics->set(pbrush);
+         pdraw2dgraphics->set(pbrush);
 
          auto ppen = createø < ::draw2d::pen >();
 
          ppen->create_solid(1.0f, ::rgba(255, 255, 255, 255));
 
-         pgraphics->set(ppen);
+         pdraw2dgraphics->set(ppen);
 
          ::i32_rectangle rectangleIcon(rectangleEllipse);
 
          rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
-         pgraphics->draw_stock_icon(rectangleIcon, m_estockicon);
+         pdraw2dgraphics->draw_stock_icon(rectangleIcon, m_estockicon);
 
       }
 
@@ -199,7 +199,7 @@ namespace experience_nanoui
    }
 
 
-   void control_box_button::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();

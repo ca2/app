@@ -33,11 +33,11 @@ namespace draw2d
       
       path_simple_optimization(::draw2d::path * ppath);
 
-      bool draw(::draw2d::graphics * pgraphics, ::draw2d::pen * ppen);
+      bool draw(::draw2d::graphics * pdraw2dgraphics, ::draw2d::pen * ppen);
 
-      bool fill(::draw2d::graphics * pgraphics, ::draw2d::brush * pbrush);
+      bool fill(::draw2d::graphics * pdraw2dgraphics, ::draw2d::brush * pbrush);
 
-      bool intersect_clip(::draw2d::graphics * pgraphics);
+      bool intersect_clip(::draw2d::graphics * pdraw2dgraphics);
 
    };
 

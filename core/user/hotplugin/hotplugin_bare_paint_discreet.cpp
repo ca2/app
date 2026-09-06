@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam)
+   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangleParam)
 
    {
 
@@ -42,13 +42,13 @@ namespace hotplugin
 
 
 
-      pgraphics->SelectObject(pen);
+      pdraw2dgraphics->SelectObject(pen);
 
-      pgraphics->SelectObject(brush);
+      pdraw2dgraphics->SelectObject(brush);
 
       auto rectangleX = this->rectangle();
 
-      pgraphics->rectangle(rectangleX);
+      pdraw2dgraphics->rectangle(rectangleX);
 
 
 
@@ -130,7 +130,7 @@ namespace hotplugin
 
       ppathClip1->end_figure(true);
 
-      //      pgraphics->replace_clip(pathClip1);
+      //      pdraw2dgraphics->replace_clip(pathClip1);
 
 
 
@@ -175,7 +175,7 @@ namespace hotplugin
 
       ppathClip->end_figure(true);
 
-      //pgraphics->exclude_clip(pathClip);
+      //pdraw2dgraphics->exclude_clip(pathClip);
 
 
       ::i32_point pa[4];
@@ -194,7 +194,7 @@ namespace hotplugin
       if (m_iHealingSurface == 1)
       {
 
-         pgraphics->SelectObject(br);
+         pdraw2dgraphics->SelectObject(br);
 
          for (::i32 x = 0; x < (cx + cy); x += 46)
          {
@@ -219,7 +219,7 @@ namespace hotplugin
             pa[3].y = rectangleParam.top + mcy;
 
 
-            pgraphics->fill_polygon(pa, 4);
+            pdraw2dgraphics->fill_polygon(pa, 4);
 
             pa[0].x = rectangleParam.left + x - mcy - iBarHeight;
 
@@ -241,7 +241,7 @@ namespace hotplugin
             pa[3].y = rectangleParam.top + cy;
 
 
-            pgraphics->fill_polygon(pa, 4);
+            pdraw2dgraphics->fill_polygon(pa, 4);
 
 
          }
@@ -261,7 +261,7 @@ namespace hotplugin
       rect1.right = rect1.left + iRowCount + 4;
       rect1.bottom = rect1.top + iBarHeight + 2;
 
-      pgraphics->fill_rectangle(rect1, br);
+      pdraw2dgraphics->fill_rectangle(rect1, br);
 
       /*for(iRow = 0; iRow < iProgressCount; iRow++)
       {
@@ -293,60 +293,60 @@ namespace hotplugin
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
          rect2 = i32_rectangle_dimension(rectangleParam.left + cx / iRate, rectangleParam.top + (cy - iBarHeight) / 2, iProgressCount, 5);
 
-         pgraphics->fill_rectangle(rect2, br);
+         pdraw2dgraphics->fill_rectangle(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 1);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
          rect2 = i32_rectangle_dimension(rectangleParam.left + cx / iRate, rectangleParam.top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
 
-         pgraphics->fill_rectangle(rect2, br);
+         pdraw2dgraphics->fill_rectangle(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 2);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
          rect2 = i32_rectangle_dimension(rectangleParam.left + cx / iRate, rectangleParam.top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
 
-         pgraphics->fill_rectangle(rect2, br);
+         pdraw2dgraphics->fill_rectangle(rect2, br);
       }
 
       ::i32 iOffset = 3;
 
       ppen->create_solid(1.0, argb(220, 180, 180, 180));
-      pgraphics->line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, ppen);
+      pdraw2dgraphics->line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, ppen);
 
-      pgraphics->line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pdraw2dgraphics->line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
 
 
       ppen->create_solid(1.0, argb(220, 80, 80, 80));
-      pgraphics->line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pdraw2dgraphics->line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
 
-      pgraphics->line(rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pdraw2dgraphics->line(rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
 
 
       iOffset = 2;
       ppen->create_solid(1.0, argb(220, 90, 90, 90));
-      pgraphics->line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, ppen);
+      pdraw2dgraphics->line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, ppen);
 
-      pgraphics->line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pdraw2dgraphics->line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
 
 
       ppen->create_solid(1.0, argb(220, 170, 170, 170));
-      pgraphics->line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pdraw2dgraphics->line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
 
-      pgraphics->line(rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pdraw2dgraphics->line(rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
 
 
 
       pbrush->create_solid(argb(127, 255, 255, 255));
 
-      pgraphics->SelectObject(br);
+      pdraw2dgraphics->SelectObject(br);
 
       ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font("Calibri", iBarHeight * 0.7);
 
-      pgraphics->SelectObject(f);
+      pdraw2dgraphics->SelectObject(f);
 
       wstring wstrStatus;
 
@@ -355,7 +355,7 @@ namespace hotplugin
       wstrStatus = wstrStatus + wstrProgress;
 
 
-      pgraphics->text_out(rectangleParam.left + cx / iRate - 1 + 18, rectangleParam.top + (cy - iBarHeight) / 2 - 1 + 1, string(wstrStatus));
+      pdraw2dgraphics->text_out(rectangleParam.left + cx / iRate - 1 + 18, rectangleParam.top + (cy - iBarHeight) / 2 - 1 + 1, string(wstrStatus));
 
 
    }

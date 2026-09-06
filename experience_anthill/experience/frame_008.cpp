@@ -233,7 +233,7 @@ namespace experience_anthill
 
 
 
-   void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, enum_border eside)
+   void frame_008::draw_border_side(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX, enum_border eside)
    {
 
       auto pframewindow = m_pframewindow;
@@ -264,7 +264,7 @@ namespace experience_anthill
 
          // 
 
-         auto pstyle = pframewindow->get_style(pgraphics);
+         auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 
          colorMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
@@ -326,9 +326,9 @@ namespace experience_anthill
 
          ::i32_rectangle rectangleA(rectangleX);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+         pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
          auto rectangle = get_margin_rectangle();
 
@@ -340,9 +340,9 @@ namespace experience_anthill
 
             ppen->create_solid(1.0, argb((::u8)((i + 1) * 10), iR, iG, iB));
 
-            pgraphics->set(ppen);
+            pdraw2dgraphics->set(ppen);
 
-            pgraphics->draw_rect_side(rectangleA, eside);
+            pdraw2dgraphics->draw_rect_side(rectangleA, eside);
 
             rectangleA.deflate(
                rectangle.left > 0 ? 1 : 0,
@@ -357,14 +357,14 @@ namespace experience_anthill
 
          //   ::i32_rectangle rectangleA(rectangleX);
 
-         //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         //   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         //   pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+         //   pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
          //   for (::collection::index i = 0; i < 9; i++)
          //   {
 
-         //      pgraphics->draw_round_rect(rectangleA, pen, (::i32) (10 - i));
+         //      pdraw2dgraphics->draw_round_rect(rectangleA, pen, (::i32) (10 - i));
 
          //      rectangleA.deflate(1, 1, 1, 1);
 
@@ -372,9 +372,9 @@ namespace experience_anthill
 
          //   //rectangleA.deflate(9, 9, 9, 9);
 
-         //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         //   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         //   pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+         //   pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
 
 
@@ -383,24 +383,24 @@ namespace experience_anthill
       else if (estyle == ::user::StyleLightBlue || estyle == ::user::StyleRedOrange)
       {
          //rectangleA.deflate(1,1,1,1);
-         Draw3dRectSide(pgraphics, rectangleA, eside, colorMoveableBorderHilight, ::color::transparent);//m_colorMoveableBorderDkShadow);
+         Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, colorMoveableBorderHilight, ::color::transparent);//m_colorMoveableBorderDkShadow);
 
          //if(!m_bHollow)
          //{
 
          //   rectangleA.deflate(1,1,1,1);
-         //   Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorderHilight,crMoveableBorderShadow);
+         //   Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,crMoveableBorderHilight,crMoveableBorderShadow);
 
          //   rectangleA.deflate(1,1,1,1);
-         //   Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
+         //   Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
 
          //   rectangleA.deflate(1,1,1,1);
-         //   Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
+         //   Draw3dRectSide(pdraw2dgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
 
          //   ::i32_rectangle rectangle;
          //   GetBorderRectangle(rectangleX, &rectangle, eside);
          //   class imaging & imaging = psystem->imaging();
-         //   imaging.fill_rectangle(pgraphics,
+         //   imaging.fill_rectangle(pdraw2dgraphics,
          //      rectangle,
          //      crMoveableBorder,
          //      127);
@@ -415,7 +415,7 @@ namespace experience_anthill
          ::i32_rectangle rectangle;
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
-         pgraphics->fill_rectangle(
+         pdraw2dgraphics->fill_rectangle(
             rectangle,
             colorMoveableBorder &
             127_opacity);
@@ -425,7 +425,7 @@ namespace experience_anthill
          ::i32_rectangle rectangle;
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
-         pgraphics->fill_rectangle(
+         pdraw2dgraphics->fill_rectangle(
             rectangle,
             colorMoveableBorder &
             127_opacity);
@@ -441,14 +441,14 @@ namespace experience_anthill
          rectangleA.right--;
          if (edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+            Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
          }
 
          rectangleA.top++;
          rectangleA.bottom--;
          rectangleA.left++;
          rectangleA.right--;
-         Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+         Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
 
          rectangleA.top++;
          rectangleA.bottom--;
@@ -456,14 +456,14 @@ namespace experience_anthill
          rectangleA.right--;
          if (edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+            Draw3dRectSide(pdraw2dgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
          }
       }
 
    }
 
 
-   void frame_008::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
+   void frame_008::on_draw_frame(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pframewindow = m_pframewindow;
@@ -493,7 +493,7 @@ namespace experience_anthill
 
       if (!pframewindow->layout().is_full_screen())
       {
-         DrawBorder(pgraphics, rectangleNClient);
+         DrawBorder(pdraw2dgraphics, rectangleNClient);
       }
 
 
@@ -501,7 +501,7 @@ namespace experience_anthill
    }
 
 
-   void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
+   void frame_008::DrawBorder(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangleX)
    {
 
       auto pmovemanager = m_pframewindow->move_manager();
@@ -524,14 +524,14 @@ namespace experience_anthill
       //   //return;
       //   ::i32_rectangle rectangleA(rectangleX);
 
-      //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      //   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      //   pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+      //   pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
       //   for (::collection::index i = 0; i < 9; i++)
       //   {
 
-      //      pgraphics->draw_inset_3d_rectangle(rectangleA, argb(0, 0, 0, 0), argb(0, 0, 0, 0));
+      //      pdraw2dgraphics->draw_inset_3d_rectangle(rectangleA, argb(0, 0, 0, 0), argb(0, 0, 0, 0));
 
       //      rectangleA.deflate(1, 1, 1, 1);
 
@@ -542,9 +542,9 @@ namespace experience_anthill
 
       //      ::i32_rectangle rectangleA(rectangleX);
 
-      //      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      //      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      //      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+      //      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
       //      for (::collection::index i = 0; i < 9; i++)
       //      {
@@ -553,7 +553,7 @@ namespace experience_anthill
 
       //         ppen->create_solid(1.0, argb((i+1) * 5, 0, 0, 0));
 
-      //         pgraphics->draw_round_rect(rectangleA, pen, (::i32) (10 - i));
+      //         pdraw2dgraphics->draw_round_rect(rectangleA, pen, (::i32) (10 - i));
 
       //         rectangleA.deflate(1, 1, 1, 1);
 
@@ -561,27 +561,27 @@ namespace experience_anthill
 
       //      //rectangleA.deflate(9, 9, 9, 9);
 
-      //      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      //      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      //      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+      //      pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
 
       //      if (m_estyle == StyleRedOrange)
       //      {
 
-      //         pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 255, 170, 136), argb(255, 255, 170, 136));
+      //         pdraw2dgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 255, 170, 136), argb(255, 255, 170, 136));
 
       //      }
       //      else if (m_estyle == StyleLightGreen)
       //      {
 
-      //         pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 128, 230, 150), argb(255, 128, 230, 150));
+      //         pdraw2dgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 128, 230, 150), argb(255, 128, 230, 150));
 
       //      }
       //      else
       //      {
 
-      //         pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 0x07, 0x6D, 0x91), argb(255, 0x07, 0x6D, 0x91));
+      //         pdraw2dgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 0x07, 0x6D, 0x91), argb(255, 0x07, 0x6D, 0x91));
 
       //      }
 
@@ -590,7 +590,7 @@ namespace experience_anthill
       //   {
 
       //      //rectangleA.deflate(9, 9, 9, 9);
-      //      pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
+      //      pdraw2dgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
       //   }
 
 
@@ -600,19 +600,19 @@ namespace experience_anthill
 
          if (eborder & e_border_top)
          {
-            draw_border_side(pgraphics, rectangleX, e_border_top);
+            draw_border_side(pdraw2dgraphics, rectangleX, e_border_top);
          }
          if (eborder & e_border_right)
          {
-            draw_border_side(pgraphics, rectangleX, e_border_right);
+            draw_border_side(pdraw2dgraphics, rectangleX, e_border_right);
          }
          if (eborder & e_border_bottom)
          {
-            draw_border_side(pgraphics, rectangleX, e_border_bottom);
+            draw_border_side(pdraw2dgraphics, rectangleX, e_border_bottom);
          }
          if (eborder & e_border_left)
          {
-            draw_border_side(pgraphics, rectangleX, e_border_left);
+            draw_border_side(pdraw2dgraphics, rectangleX, e_border_left);
          }
 
       }
@@ -662,12 +662,12 @@ namespace experience_anthill
    //}
 
 
-   void frame_008::_on_style_change(::draw2d::graphics_pointer & pgraphics)
+   void frame_008::_on_style_change(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       frame::on_style_change();
 
-      on_style_change_001_and_002(pgraphics);
+      on_style_change_001_and_002(pdraw2dgraphics);
 
       auto colorMoveableBorder = m_colorMoveableBorder;
 

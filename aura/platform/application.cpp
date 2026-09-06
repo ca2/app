@@ -9662,7 +9662,7 @@ namespace aura
    //void application::run_application()
    //{
 
-   //   m_pengine->run_application();
+   //   m_pgraphics3dengineinstance->run_application();
 
    ////   ::pointer < ::graphics::application> papp = m_papplication;
 

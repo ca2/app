@@ -85,13 +85,13 @@ namespace gpu
 
          //virtual void initialize_specular_map(::graphics3d::scene_base * pscenebase, ::graphics3d::renderable * prenderableSkybox);
          /// it uses current skybox renderable in pscenebase
-         virtual void initialize_specular_map(::graphics3d::scene_base *pscenebase);
+         virtual void initialize_specular_map(::graphics3d::scene_base *pscenebase, ::gpu::context * pgpucontext);
 
 
          /**
           * Render the pre-filtered environment map.
           */
-         virtual void computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer);
+         virtual void computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer, ::graphics3d::scene_base * pscenebase);
 
 
          /**

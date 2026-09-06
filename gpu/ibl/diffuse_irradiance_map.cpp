@@ -5,11 +5,14 @@
 #include "bred/gpu/binding.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/render_target.h"
+#include "bred/gpu/renderer.h"
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
 #include "bred/gpu/texture_site.h"
 #include "bred/platform/timer.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
+#include "bred/graphics3d/immersion_layer.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/shape_factory.h"
 #include "bred/graphics3d/skybox.h"
@@ -55,10 +58,10 @@ namespace gpu
 
 
       void diffuse_irradiance_map::initialize_diffuse_irradiance_map(
-         ::graphics3d::scene_base * pscenebase)
+         ::graphics3d::scene_base * pscenebase, ::gpu::context * pgpucontext)
       {
 
-         initialize_scene_object(pscenebase);
+         initialize_scene_object(pscenebase->m_pimmersionlayer->m_pgraphics3dengineinstance->m_pgraphics3d);
 
          constructø(m_pshaderDiffuseIrradiance);
 
@@ -68,11 +71,11 @@ namespace gpu
 
          auto pgpupropertiesVertex = ::gpu_properties<::graphics3d::shape_factory::Vertex>();
 
-         auto pinputlayoutVertex = m_pgpucontext->input_layout(pgpupropertiesVertex);
+         auto pinputlayoutVertex = pgpucontext->input_layout(pgpupropertiesVertex);
 
          m_pshaderDiffuseIrradiance->m_propertiesPushShared.set_properties(::gpu_properties<push_constants>());
 
-         m_pgpucontext->layout_push_constants(m_pshaderDiffuseIrradiance->m_propertiesPushShared, false);
+         pgpucontext->layout_push_constants(m_pshaderDiffuseIrradiance->m_propertiesPushShared, false);
 
          auto pbindingCubeSampler = m_pshaderDiffuseIrradiance->binding();
          pbindingCubeSampler->m_ebinding = ::gpu::e_binding_cube_sampler;
@@ -80,7 +83,7 @@ namespace gpu
          pbindingCubeSampler->m_iTextureUnit = 0;
 
          m_pshaderDiffuseIrradiance->initialize_shader_with_block(
-            m_pgpucontext->m_pgpurenderer, 
+            pgpucontext->m_pgpurenderer, 
             embedded_diffuse_irradiance_vert(), 
             embedded_diffuse_irradiance_frag(), 
             pinputlayoutVertex);
@@ -101,17 +104,17 @@ namespace gpu
 
          textureflags.m_bRenderTarget = true;
 
-         ptexturesiteDiffuseIrradianceCubemap->create_texture(m_pgpucontext, textureattributes, textureflags);
+         ptexturesiteDiffuseIrradianceCubemap->create_texture(pgpucontext, textureattributes, textureflags);
 
          //m_ptextureDiffuseIrradianceCubemap->initialize_mipmap_cubemap_texture(
            // m_pgpucontext->m_pgpurenderer, ::i32_rectangle{ API_CHANGED_ARGUMENT,m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight});
 
-         m_prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
+         m_prenderableCube = pgpucontext->m_pgraphics3dengineinstance->shape_factory()->create_cube_001(pgpucontext, 2.f);
 
       }
 
 
-      void diffuse_irradiance_map::computeIrradianceMap(::gpu::command_buffer *pgpucommandbuffer)
+      void diffuse_irradiance_map::computeIrradianceMap(::gpu::command_buffer *pgpucommandbuffer, ::graphics3d::scene_base * pscenebase)
       {
 
          ::bred::Timer timer;
@@ -129,12 +132,15 @@ namespace gpu
              lookAt(origin, -unitZ, -unitY) // Z- (back)
           };
 
+
+         auto pgpucontext = pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext;
+
           floating_matrix4 projection =
-             m_pgpucontext->m_pengine->perspective(90_f_degrees, // 90 degrees to cover one face
+             pgpucontext->m_pgraphics3dengineinstance->perspective(90_f_degrees, // 90 degrees to cover one face
                                                    1.0f, // its a square
                                                    0.1f, 2.0f);
          
-          auto pskybox = m_pscene->current_skybox();
+          auto pskybox = pscenebase->current_skybox();
 
           auto ptextureSkybox = pskybox->m_ptexturesite->gpu_texture();
 

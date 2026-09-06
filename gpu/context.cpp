@@ -16,7 +16,7 @@
 #include "bred/gpu/texture.h"
 #include "bred/gpu/texture_site.h"
 #include "bred/gpu/types.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
 #include "bred/graphics3d/immersion_layer.h"
 #include "bred/graphics3d/scene_base.h"
 //#include "ibl/cubemap_framebuffer.h"

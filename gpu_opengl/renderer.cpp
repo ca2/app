@@ -379,7 +379,7 @@ namespace gpu_opengl
 
 
          // Toggle wireframe mode
-         //if (m_pgpucontext->m_pimpact->m_pengine->m_bWireframeMode) {
+         //if (m_pgpucontext->m_pimpact->m_pgraphics3dengineinstance->m_bWireframeMode) {
          //   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // Enable wireframe mode
          //}
          //else {

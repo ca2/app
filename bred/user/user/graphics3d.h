@@ -2,7 +2,7 @@
 
 
 #include "aura/user/user/box.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
 #include "bred/graphics3d/immersion_layer.h"
 #include "bred/graphics3d/key_map.h"
 #include "bred/graphics3d/types.h"
@@ -25,19 +25,21 @@ namespace user
       //memory m_memory;
       //::i32 m_i32;
 
-      ::i32 m_iFrameCounter = 0;
-      ::write_text::font_pointer m_pfontThomasBS_;
-      ::string_array m_straLineStats;
+      ::i32                                           m_iFrameCounter = 0;
+      ::write_text::font_pointer                      m_pfontThomasBS_;
+      ::string_array                                  m_straLineStats;
+      int                                             m_iImpactSerial;
+      ::string                                        m_strGpuStatisticsTitle;
 
-      //::graphics3d::enum_mouse                  m_emouse;
-      //::graphics3d::enum_keyboard               m_ekeyboard;
-      //bool                                      m_bAbsoluteMousePosition;
-      fps_counter                               m_fpscounter;
-      ::pointer < ::graphics3d::engine >			m_pengine;
+      //::graphics3d::enum_mouse                      m_emouse;
+      //::graphics3d::enum_keyboard                   m_ekeyboard;
+      //bool                                          m_bAbsoluteMousePosition;
+      fps_counter                                     m_fpscounter;
+      ::pointer < ::graphics3d::engine_instance >     m_pgraphics3dengineinstance;
 
-      ::pointer < ::graphics3d::key_map >			m_pkeymap;
-      //::task_pointer                            m_ptaskEngine;
-      //::pointer < ::image::target >             m_pimagetarget;
+      ::pointer < ::graphics3d::key_map >			      m_pkeymap;
+      //::task_pointer                                m_ptaskEngine;
+      //::pointer < ::image::target >                 m_pimagetarget;
 
       //bool		m_bShouldClose;
       ::i32		m_iWidth;
@@ -79,7 +81,7 @@ namespace user
 
       //::user::document * get_document();
 
-      virtual void draw_gpu_statistics(::draw2d::graphics_pointer &pdraw2dgraphics);
+      virtual void draw_gpu_statistics(::i32 y, const ::scoped_string & scopedstrTitle, ::draw2d::graphics_pointer &pdraw2dgraphics);
 
       //virtual ::pointer < ::graphics3d::application > start_graphics3d_application();
 
@@ -123,7 +125,7 @@ namespace user
       //virtual void initWindow();
 
 
-      virtual void defer_initialize_engine(const ::i32_rectangle & rectangle);
+      virtual void defer_initialize_graphics3d_engine_instance(const ::i32_rectangle & rectangle);
 
       virtual ::pointer < ::prodevian::immersion > create_immersion();
 

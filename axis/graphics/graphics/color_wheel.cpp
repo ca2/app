@@ -290,21 +290,23 @@ namespace graphics
          {
             // Selector
             ::nano2d::guard guard(pcontext);
-         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5100) return;
 
 
             //pcontext->save();
             pcontext->translate((::f32) cx, (::f32) cy);
-         
+
+
+            // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5100) return;
+            auto fAngle = (::f32)(-hue * ::nano2d::f_pi * 2);
+
+            // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5250) return;
+            pcontext->rotate(fAngle);
+
          
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5200) return;
             
 //#if defined(__APPLE__)
 
-         auto fAngle = (::f32) (-hue * ::nano2d::f_pi * 2);
-
-         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5250) return;
-            pcontext->rotate(fAngle);
 
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5300) return;
 //#else
@@ -314,18 +316,22 @@ namespace graphics
 //#endif
             
 
-            pcontext->stroke_width((::f32)u);
+            pcontext->stroke_width(1.0f);
 
          
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5400) return;
 
             pcontext->begin_path();
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5500) return;
-            pcontext->circle(0, 0, (::f32) (r0 - 0.5));
+            // Keep the border strokes on the colored annulus, not in its hole
+            // or beyond its outer perimeter. This adjusts only circle geometry.
+            pcontext->_geometry_aligned_circle(0, 0, (::f32)r0, (::f32)u,
+               ::nano2d::e_circle_stroke_align_inset);
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5600) return;
-            pcontext->circle(0, 0, (::f32) (r1 + 0.5f));
+            pcontext->_geometry_aligned_circle(0, 0, (::f32)r1, (::f32)u,
+               ::nano2d::e_circle_stroke_align_outset);
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5700) return;
-            pcontext->stroke_color(rgba(0, 0, 0, 64));
+            pcontext->stroke_color(rgba(80, 80, 80, 61));
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5800) return;
             //pcontext->stroke_width(1.0f);
             pcontext->stroke();

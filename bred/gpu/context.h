@@ -155,7 +155,7 @@ namespace gpu
       //::pointer < ::gpu::renderer >              m_pgpurendererBackBuffer;
       //::pointer < ::gpu::renderer >              m_pgpurendererSwap;
       ::pointer_array < ::gpu::renderer >          m_gpurendereraDraw2d;
-      ::pointer < ::graphics3d::engine >           m_pengine;
+      ::pointer < ::graphics3d::engine_instance >  m_pgraphics3dengineinstance;
       ::pointer_array < ::gpu::render >            m_rendera;
       ::pointer < ::gpu::command_buffer >          m_pcommandbufferUpload;
 
@@ -217,6 +217,10 @@ namespace gpu
       virtual ::memory _001ImageVertexShaderMemory();
       virtual ::memory _001ImageFragmentShaderMemory();
       virtual void _001InitializeImageShader(::gpu::shader * pshader);
+
+      virtual ::memory merge_layer_vertex_shader();
+      virtual ::memory merge_layer_fragment_shader();
+
 
       virtual ::pointer < ::gpu::texture_site > create_empty_texture();
       virtual void on_new_frame();

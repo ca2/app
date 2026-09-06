@@ -19,6 +19,8 @@ namespace graphics3d
 {
 
 
+
+
 	class CLASS_DECL_BRED scene_base :
 		virtual public ::gpu::context_object
 	{
@@ -39,7 +41,6 @@ namespace graphics3d
       ::pointer_array_base<::prodevian::actor>				         m_prodevianactora;
 	   ::pointer_array_base<::graphics3d::point_light>				   m_pointlighta;
 		::graphics3d::scene_renderable_map                         	m_mapSceneRenderable;
-      ::graphics3d::skybox_map                                    m_mapSkybox;
       //::graphics3d::skybox_map                                    m_mapSkybox;
       ::string                                                    m_strSkybox;
       ::pointer<::graphics3d::renderable>                         m_prenderableSkyboxModel;
@@ -72,9 +73,11 @@ namespace graphics3d
 	   virtual void initialize_scene(::graphics3d::immersion_layer * pimmersionlayer);
 
 
+      virtual ::graphics3d::graphics3d * graphics3d();
+
 		virtual void on_initialize_scene();                 // load models, spawn entities
 		virtual void update(::f32 dt);        // advance all entities
-      virtual void loadSceneFile(const ::scoped_string &fileName);
+      virtual void loadSceneFile(const ::scoped_string &fileName, ::gpu::context * pgpucontext);
 
 
       virtual void load_scene_renderable(const ::property_set &setObject);
@@ -102,7 +105,7 @@ namespace graphics3d
       //virtual ::pointer<::graphics3d::renderable> get_skybox_cube_model();
       //virtual ::pointer<::gpu::texture> get_skybox_cube_texture();
 
-		virtual void set_skybox(::graphics3d::skybox * pskybox);
+		virtual void set_skybox(::graphics3d::skybox * pskybox, ::gpu::context * pgpucontext);
       virtual ::graphics3d::skybox *current_skybox();
 
 		virtual class camera *camera();
@@ -145,11 +148,11 @@ namespace graphics3d
 	   virtual void on_render(::gpu::context * pgpucontext);
       virtual void on_render_last(::gpu::context *pgpucontext);
 
-      virtual void generateIbl();
+      virtual void generateIbl(::gpu::context * pgpucontext);
 
-      virtual void generateIblBRDFlut();
-      virtual void generateIblIrradianceMap();
-      virtual void generateIblPrefilteredEnvMap();
+      virtual void generateIblBRDFlut(::gpu::context * pgpucontext);
+      virtual void generateIblIrradianceMap(::gpu::context * pgpucontext);
+      virtual void generateIblPrefilteredEnvMap(::gpu::context * pgpucontext);
 
 
 //      /// @brief generatePrefilteredEnvMap

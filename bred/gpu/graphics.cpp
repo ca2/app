@@ -550,11 +550,10 @@ namespace gpu
             m_pgpucontextOwned->m_pointOutput.clear();
 
             m_pgpucontextOwned->m_size = pimage->size();
-         defer_constructø(m_pgputexturesiteTarget);
-         m_pgputexturesiteTarget->m_pgputextureSite = pgpubitmap->gpu_texture();
+         //defer_constructø(m_pgputexturesiteTarget);
+         //m_pgputexturesiteTarget->m_pgputextureSite = pgpubitmap->gpu_texture();
 
          }
->>>>>>> origin/main
 
       }
 

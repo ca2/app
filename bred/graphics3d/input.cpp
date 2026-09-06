@@ -2,7 +2,7 @@
 // by camilo on 2025-05-18 <3ThomasBorregaardSorensen!!
 #include "platform.h"
 #include "input.h"
-#include "engine.h"
+#include "engine_instance.h"
 #include "aura/platform/session.h"
 #include "bred/user/user/graphics3d.h"
 #include "bred/graphics3d/scene_base.h"
@@ -34,11 +34,13 @@ namespace graphics3d
    }
 
 
-
    ::key::e_state input::key_state(::graphics3d::enum_key ekey)
    {
-      return m_pengine->m_pusergraphics3d->m_pkeymap->key_state(ekey);
+      
+      return m_pgraphics3dengineinstance->m_pusergraphics3d->m_pkeymap->key_state(ekey);
+
    }
+
 
    //::user::enum_key_state input::get_key_state(const ::user::e_key & ekey)
    ::key::e_state input::get_key_state(const ::user::e_key & ekey)
@@ -186,10 +188,10 @@ namespace graphics3d
 
       // convert pixels -> degrees
       auto angleΔYaw = -m_sequence2MouseSmoothΔ.x * m_angleCursorPixel;
-      // auto angleΔPitch = m_pengine->m_fYScale * m_sequence2MouseSmoothΔ.y * m_angleCursorPixel; // invert Y for typical FPS
-      auto angleΔPitch = m_pengine->m_fInputPitchFlip * m_sequence2MouseSmoothΔ.y * m_angleCursorPixel; // invert Y for typical FPS
+      // auto angleΔPitch = m_pgraphics3dengineinstance->m_fYScale * m_sequence2MouseSmoothΔ.y * m_angleCursorPixel; // invert Y for typical FPS
+      auto angleΔPitch = m_pgraphics3dengineinstance->m_fInputPitchFlip * m_sequence2MouseSmoothΔ.y * m_angleCursorPixel; // invert Y for typical FPS
       //information("mx={} my={}", m_sequence2MouseSmoothΔ.x, m_sequence2MouseSmoothΔ.y);
-      auto pcamera = m_pengine->m_pimmersionlayer->m_pscene->camera();
+      auto pcamera = m_pgraphics3dengineinstance->m_pimmersionlayer->m_pscene->camera();
 
       // pcamera->m_quaternionRotation.offset_yaw_and_pitch_with_constraints(angleΔYaw, angleΔPitch, -89.0f_degrees,
       //                                                                   89.0f_degrees);
@@ -244,10 +246,10 @@ namespace graphics3d
       ::floating_sequence3 dir{0.f};
       if (IsKeyPressed(::user::e_key_w))
          dir += front;
-      // dir += m_pengine->m_fYScale * front;
+      // dir += m_pgraphics3dengineinstance->m_fYScale * front;
       if (IsKeyPressed(::user::e_key_s))
          dir -= front;
-      // dir -= m_pengine->m_fYScale * front;
+      // dir -= m_pgraphics3dengineinstance->m_fYScale * front;
       if (IsKeyPressed(::user::e_key_a))
          dir -= right;
       if (IsKeyPressed(::user::e_key_d))

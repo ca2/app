@@ -12,7 +12,8 @@ namespace graphics3d
    class container;
 
 
-   class engine;
+   class graphics3d;
+   class engine_instance;
 
    //template<typename TYPE>
    //class model;

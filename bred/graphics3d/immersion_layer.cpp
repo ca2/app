@@ -3,7 +3,7 @@
 //
 #include "platform.h"
 #include "asset_manager.h"
-#include "engine.h"
+#include "engine_instance.h"
 #include "immersion_layer.h"
 #include "scene_base.h"
 
@@ -27,19 +27,19 @@ namespace graphics3d
 
 
 
-   void immersion_layer::initialize_immersion_layer(::graphics3d::engine * pengine)
+   void immersion_layer::initialize_immersion_layer(::graphics3d::engine_instance * pengineinstance)
    {
 
-      m_pengine = pengine;
+      m_pgraphics3dengineinstance = pengineinstance;
 
       construct_newø(m_passetmanager);
 
-      m_passetmanager->initialize_asset_manager(m_pengine);
+      m_passetmanager->initialize_asset_manager(m_pgraphics3dengineinstance);
 
    }
 
 
-   void immersion_layer::on_initialize_immersion_layer()
+   void immersion_layer::on_initialize_immersion_layer(::gpu::context * pgpucontext)
    {
 
 
@@ -127,20 +127,20 @@ namespace graphics3d
 
          // pcameraLoaded->initialize_SandboxCamera(::floating_sequence3(0.f, 0.f, 3.f));
 
-         pcameraLoaded->m_pengine = m_pengine;
+         pcameraLoaded->m_pgraphics3dengineinstance = m_pgraphics3dengineinstance;
 
-         //         // ::floating_sequence3 camera = ::floating_sequence3(0.0f, 1.0f *m_pengine->m_fYScale, 3.0f);
+         //         // ::floating_sequence3 camera = ::floating_sequence3(0.0f, 1.0f *m_pgraphics3dengineinstance->m_fYScale, 3.0f);
          //::floating_sequence3 camera = ::floating_sequence3(0.0f, 1.0f, 3.0f);
          //::floating_sequence3 target = ::floating_sequence3(0.0f, 0.0f, 0.0f); // Look at origin
          //// ::floating_sequence3 direction = glm::normalize(target - cameraPos);
          //// camera camera{ ::floating_sequence3(0.0f, 2.0f, -15.0f), -90.0f, 0.0f };
          // auto pcameraDefault = createø<SandboxCamera>();
-         // pcameraDefault->m_pengine = m_pimmersionlayer->m_pengine;
+         // pcameraDefault->m_pgraphics3dengineinstance = m_pimmersionlayer->m_pgraphics3dengineinstance;
 
          // pcamera->m_pimpact = m_pimpact;
 
 
-         // pcameraDefault->m_pengine = m_pimmersionlayer->m_pengine;
+         // pcameraDefault->m_pgraphics3dengineinstance = m_pimmersionlayer->m_pgraphics3dengineinstance;
 
          // pcameraLoaded->m_position = m_initialCameraPosition;
 

@@ -91,6 +91,8 @@ enum enum_impact : ::i64
    e_impact_update,
    e_impact_store,
    e_impact_blink,
+   e_impact_skybox,
+   e_impact_statistics,
    
    
    e_impact_base = BASE_IMPACT,

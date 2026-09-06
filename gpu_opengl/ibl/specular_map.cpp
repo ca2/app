@@ -4,7 +4,7 @@
 #include "specular_map.h"
 //#include "brdf_convolution_framebuffer.h"
 #include "bred/graphics3d/_functions.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
 #include "bred/graphics3d/render_system.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/skybox.h"
@@ -82,10 +82,10 @@ namespace gpu_opengl
       }
 
 
-      void specular_map::computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer)
+      void specular_map::computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer, ::graphics3d::scene_base * pscenebase)
       {
 
-         ::gpu::ibl::specular_map::computePrefilteredEnvMap(pgpucommandbuffer);
+         ::gpu::ibl::specular_map::computePrefilteredEnvMap(pgpucommandbuffer, pscenebase);
 //
 //          ::bred::Timer timer;
 //
@@ -107,7 +107,7 @@ namespace gpu_opengl
 //             lookAt(origin, -unitZ, -unitY)
 //          };
 //
-//          floating_matrix4 projection = m_pgpucontext->m_pengine->perspective(
+//          floating_matrix4 projection = m_pgpucontext->m_pgraphics3dengineinstance->perspective(
 //             90.0f_degrees, // 90 degrees to cover one face
 //             1.0f, // its a square
 //             0.1f,
@@ -122,7 +122,7 @@ namespace gpu_opengl
 //          //auto pcube = createø < ::gpu::cube >();
 //          //::cast < ::gpu_gpu::context > pcontext = m_pgpucontext;
 //          //auto pcube = createø<::gpu::cube>();
-//          auto prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
+//          auto prenderableCube = m_pgpucontext->m_pgraphics3dengineinstance->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
 //          //pcube->initialize_gpu_cube(m_pgpucontext);
 //          ::cast<::gpu_opengl::texture> ptextureSkybox = ptexture;
 //

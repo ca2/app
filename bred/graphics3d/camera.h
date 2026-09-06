@@ -17,29 +17,29 @@ namespace graphics3d
 	public:
 
 
-		::pointer < ::graphics3d::engine > m_pengine;
-      ::floating_sequence3 m_sequence3Position;
-      //::floating_quaternion m_quaternionRotation;
-      floating_rotation m_rotation;
+		::pointer < ::graphics3d::engine_instance >     m_pgraphics3dengineinstance;
+      ::floating_sequence3                            m_sequence3Position;
+      //::floating_quaternion                         m_quaternionRotation;
+      floating_rotation                               m_rotation;
       //      void calculateMouseOffset(::f32 xoffset, ::f32 yoffset);
       // private:
-      floating_matrix4 m_matrixProjection{1.f};
-      floating_matrix4 m_matrixImpact{1.f};
-      floating_matrix4 m_matrixInversedImpact{1.f};
+      floating_matrix4                                m_matrixProjection{1.f};
+      floating_matrix4                                m_matrixImpact{1.f};
+      floating_matrix4                                m_matrixInversedImpact{1.f};
 
       // ::f32 m_LastX; // Last mouse x position
       // ::f32 m_LastY; // Last mouse y position
-      ::f32 m_angleCursorPixel = 0.1_f_degree; // Sensitivity factor for mouse input
+      ::f32                                           m_angleCursorPixel = 0.1_f_degree; // Sensitivity factor for mouse input
       // Deadzone
-      ::f32 m_MouseDeadZone;
+      ::f32                                           m_MouseDeadZone;
       // Inertia
-      floating_sequence3 m_sequence3Velocity;
+      floating_sequence3                              m_sequence3Velocity;
       // Camera attributes
       //floating_sequence3 m_locationPosition;
-      floating_sequence3 m_sequence3Front{0.0f, 0.0f, -1.0f}; // Camera direction (forward vector)
-      floating_sequence3 m_sequence3Up{0.0f, 1.0f, 0.0f}; // Up vector
-      floating_sequence3 m_sequence3Right{1.0f, 0.0f, 0.0f}; // Right vector (cross product)
-      floating_sequence3 m_sequence3WorldUp;
+      floating_sequence3                              m_sequence3Front{0.0f, 0.0f, -1.0f}; // Camera direction (forward vector)
+      floating_sequence3                              m_sequence3Up{0.0f, 1.0f, 0.0f}; // Up vector
+      floating_sequence3                              m_sequence3Right{1.0f, 0.0f, 0.0f}; // Right vector (cross product)
+      floating_sequence3                              m_sequence3WorldUp;
 
       // Euler angles
       //f32_angle m_angleYaw = 0.0_degree;
@@ -47,12 +47,12 @@ namespace graphics3d
 
       // Camera options
       //::f32 m_fZoom;
-      ::f32                m_fMovementSpeed; // Added movement speed
+      ::f32                                           m_fMovementSpeed; // Added movement speed
       
-      f32_angle          m_angleFovY;
-      ::f32                m_fAspectRatio;
-      ::f32                m_fNearZ;
-      ::f32                m_fFarZ;
+      f32_angle                                       m_angleFovY;
+      ::f32                                           m_fAspectRatio;
+      ::f32                                           m_fNearZ;
+      ::f32                                           m_fFarZ;
 
 
 

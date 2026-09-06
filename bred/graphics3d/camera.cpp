@@ -4,7 +4,7 @@
 #include "camera.h"
 #include "bred/gpu/context.h"
 #include "bred/graphics3d/_functions.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
 
 
 namespace graphics3d
@@ -45,9 +45,9 @@ namespace graphics3d
    void camera::update_vectors() 
    {
 
-      auto pgpucontext = m_pengine->gpu_context();
+      auto pgpucontext = m_pgraphics3dengineinstance->gpu_context();
 
-      //m_sequence3WorldUp = {0.f, m_pengine->m_fYScale, 0.f};
+      //m_sequence3WorldUp = {0.f, m_pgraphics3dengineinstance->m_fYScale, 0.f};
 
       m_sequence3Front = pgpucontext->front(m_rotation);
 
@@ -73,7 +73,7 @@ namespace graphics3d
    void camera::calculate_impact(::floating_matrix4 & matrixImpact)
    {
 
-      m_pengine->calculate_impact(matrixImpact, *this);
+      m_pgraphics3dengineinstance->calculate_impact(matrixImpact, *this);
 
    }
 
@@ -81,11 +81,11 @@ namespace graphics3d
    void camera::calculate_projection(::floating_matrix4 & matrixProjection)
    {
 
-      auto size = m_pengine->gpu_context()->size();
+      auto size = m_pgraphics3dengineinstance->gpu_context()->size();
 
       m_fAspectRatio = size.aspect_ratio<::f32>();
 
-      m_pengine->calculate_projection(matrixProjection, *this);
+      m_pgraphics3dengineinstance->calculate_projection(matrixProjection, *this);
 
    }
 

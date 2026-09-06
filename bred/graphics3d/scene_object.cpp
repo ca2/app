@@ -2,6 +2,7 @@
 // Created by camilo on 2025-08-21 17:59 <3ThomasBorregaardSorensen!!
 //
 #include "platform.h"
+#include "engine_instance.h"
 #include "scene_object.h"
 #include "scene_base.h"
 
@@ -25,12 +26,12 @@ namespace graphics3d
    }
 
 
-   void scene_object::initialize_scene_object(::graphics3d::scene_base *pscene)
+   void scene_object::initialize_scene_object(::graphics3d::graphics3d *pgraphics3)
    {
 
-      initialize_gpu_context_object(pscene->m_pgpucontext);
+      //initialize_gpu_context_object(pgraphics3dengineinstance->m_pgpucontextOwned);
       
-      m_pscene = pscene; 
+      //m_pgraphics3dengineinstance = pgraphics3dengineinstance;
    
    }
 

@@ -38,7 +38,7 @@
 #include "bred/gpu/window_attachment.h"
 #include "bred/gpu/graphics.h"
 #include "bred/platform/timer.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
 #include "bred/graphics3d/immersion_layer.h"
 #include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/scene_base.h"
@@ -512,6 +512,28 @@ namespace gpu
 
 
    }
+
+
+
+   ::memory context::merge_layer_vertex_shader()
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
+   ::memory context::merge_layer_fragment_shader()
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
 
 
    ::pointer<::gpu::texture_site> context::create_empty_texture()
@@ -1262,7 +1284,7 @@ namespace gpu
    //::pointer<::graphics3d::renderable> context::_load_wavefront_obj_renderable(const ::gpu::renderable_t & model)
    //{
 
-   //   auto prenderable = m_pengine->_load_wavefront_obj_renderable(model);
+   //   auto prenderable = m_pgraphics3dengineinstance->_load_wavefront_obj_renderable(model);
 
    //   return prenderable;
 
@@ -3884,7 +3906,7 @@ namespace gpu
    void context::update_current_scene()
    {
 
-      auto pscene = m_pengine->m_pimmersionlayer->m_pscene;
+      auto pscene = m_pgraphics3dengineinstance->m_pimmersionlayer->m_pscene;
 
       if (pscene->global_ubo1(this)->size(true) > 0)
       {
@@ -4143,18 +4165,11 @@ float4 main(PS_INPUT input) : SV_TARGET
             else if (strGpuImplementation.begins("vulkan"))
             {
 
-               unsigned int full_screen_triangle_vertex_shader[] = {
-      #include "app-graphics3d/gpu_vulkan/shader/merge_layer.vert.spv.inl"
-               };
 
-               unsigned int full_screen_triangle_fragment_shader[] = {
-      #include "app-graphics3d/gpu_vulkan/shader/merge_layer.frag.spv.inl"
-               };
+               strVert = merge_layer_vertex_shader();
+               strFrag = merge_layer_fragment_shader();
 
-               strVert = ::as_memory_block(full_screen_triangle_vertex_shader);
-               strFrag = ::as_memory_block(full_screen_triangle_fragment_shader);
-
-}
+            }
             else
             {
 
@@ -5297,7 +5312,7 @@ return {};
    // ::pointer < ::graphics3d::renderable> context::create_tinyobj_renderable(const ::file::path& path)
    // {
    //
-   //    auto pmodel = m_pengine->create_tinyobjloader_model(path);
+   //    auto pmodel = m_pgraphics3dengineinstance->create_tinyobjloader_model(path);
    //
    //    return pmodel;
    //

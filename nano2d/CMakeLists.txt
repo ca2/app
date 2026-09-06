@@ -11,6 +11,7 @@ list(APPEND library_source
         #color.h
         context.cpp
         context.h
+        circle_stroke_alignment.h
         draw2d_context.cpp
         draw2d_context.h
         font_sink.cpp
@@ -93,6 +94,13 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
+option(NANO2D_BUILD_GEOMETRY_TESTS "Build standalone nano2d geometry tests" OFF)
+if(NANO2D_BUILD_GEOMETRY_TESTS)
+    enable_testing()
+    add_executable(nano2d_circle_stroke_alignment_test tests/circle_stroke_alignment_test.cpp)
+    target_compile_features(nano2d_circle_stroke_alignment_test PRIVATE cxx_std_17)
+    add_test(NAME nano2d_circle_stroke_alignment_test COMMAND nano2d_circle_stroke_alignment_test)
+endif()
 
 
 

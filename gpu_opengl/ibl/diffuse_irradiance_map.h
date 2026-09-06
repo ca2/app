@@ -48,7 +48,7 @@ namespace gpu_opengl
          //    ::gpu::renderer * pgpurenderer,
          //    ::u32 uEnvironmentCubemapId) override;
 
-        void computeIrradianceMap(::gpu::command_buffer *pgpucommandbuffer) override;
+        void computeIrradianceMap(::gpu::command_buffer *pgpucommandbuffer, ::graphics3d::scene_base * pscenebase) override;
 
 
 

@@ -16,10 +16,10 @@ namespace graphics3d
 
 
    class CLASS_DECL_BRED skybox :
-   virtual public ::graphics3d::scene_renderable
-   
+      virtual public ::graphics3d::scene_renderable
    {
    public:
+
 
       using Vertex = ::graphics3d::shape_factory::Vertex;
 
@@ -84,7 +84,7 @@ namespace graphics3d
       };
       //::particle* pparticle, const ::string_array_base& faces
 
-      //::pointer < engine >                m_pengine;
+      //::pointer < engine >                m_pgraphics3dengineinstance;
 ///      ::pointer < ::graphics3d::renderable >          m_pmodelCube;
       ::pointer < ::gpu::texture_site >               m_ptexturesite;
       ::i32_size                                      m_sizeSquare;
@@ -103,12 +103,12 @@ namespace graphics3d
       ~skybox();
 
 
-      virtual void initialize_sky_box(::graphics3d::scene_base * pscene, const ::scoped_string & scopedstrName);
+      virtual void initialize_sky_box(::graphics3d::graphics3d * pgraphics3d, ::gpu::context * pgpucontext, const ::scoped_string & scopedstrName);
 
-      virtual void SetupSkybox();
+      virtual void SetupSkybox(::gpu::context * pgpucontext);
 
-      virtual void load_cube_map_pixmaps();
-      virtual void load_cube_map_textures();
+      virtual void load_cube_map_pixmaps(::gpu::context * pgpucontext);
+      virtual void load_cube_map_textures(::gpu::context * pgpucontext);
 
       virtual void bind(::gpu::command_buffer* pgpucommandbuffer);
       virtual void draw(::gpu::command_buffer* pgpucommandbuffer);

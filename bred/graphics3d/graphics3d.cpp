@@ -1,0 +1,1574 @@
+// Created by camilo on 2026-09-04 17:38 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
+#include "platform.h"
+#include "graphics3d.h"
+#include "offscreen_frame_pacer.h"
+#include "immersion_layer.h"
+#include "input.h"
+//#include "tinyobjloader_Builder.h"
+#include "scene_base.h"
+#include "skybox.h"
+#include "types.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/application.h"
+#include "acme/platform/node.h"
+#include "acme/prototype/geometry/matrix.h"
+#include "acme/prototype/geometry2d/angle.h"
+#include "apex/database/client.h"
+#include "apex/database/stream.h"
+#include "aura/graphics/graphics/context.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/source.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/windowing/window.h"
+#include "bred/gpu/binding.h"
+#include "bred/gpu/bred_approach.h"
+#include "bred/gpu/command_buffer.h"
+#include "bred/gpu/context.h"
+#include "bred/gpu/context_lock.h"
+#include "bred/gpu/buffer.h"
+#include "bred/gpu/device.h"
+#include "bred/gpu/window_attachment.h"
+#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
+#include "bred/gpu/renderer.h"
+#include "bred/gpu/render_target.h"
+#include "bred/gpu/texture.h"
+#include "bred/gpu/texture_site.h"
+#include "bred/graphics3d/_functions.h"
+#include "bred/graphics3d/camera.h"
+#include "bred/graphics3d/shape_factory.h"
+#include "bred/user/user/graphics3d.h"
+#include "aura/graphics/image/aaa_target.h"
+#include "aura/platform/application.h"
+#include <chrono>
+#include <thread>
+#include "acme/prototype/geometry/quaternion.h"
+
+
+namespace graphics3d
+{
+
+
+   graphics3d::graphics3d()
+   {
+
+      //m_fYScale = 1.0f;
+      //m_bCreatedGlobalUbo = false;
+      //m_fInputPitchFlip = 1.0f;
+
+   }
+
+
+   graphics3d::~graphics3d()
+   {
+
+      debug() << "graphics3d::~graphics3d()";
+
+   }
+
+
+   void graphics3d::set_gpu_performance_diagnostics(bool bEnabled)
+   {
+
+      if (!m_papplication)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto bPreviouslyEnabled = m_papplication->m_gpu.m_bPerformanceDiagnostics.exchange(
+         bEnabled,
+         ::std::memory_order_relaxed);
+
+      if (bPreviouslyEnabled != bEnabled)
+      {
+
+         m_papplication->m_gpu.m_uPerformanceDiagnosticsGeneration.fetch_add(
+            1,
+            ::std::memory_order_relaxed);
+
+      }
+
+   }
+
+
+   bool graphics3d::gpu_performance_diagnostics_enabled() const
+   {
+
+      return m_papplication
+         && m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
+            ::std::memory_order_relaxed);
+
+   }
+
+
+   void graphics3d::set_gpu_performance_diagnostics_interval(::i32 iMilliseconds)
+   {
+
+      if (!m_papplication)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto iValidatedMilliseconds = maximum(100, minimum(60'000, iMilliseconds));
+
+      m_papplication->m_gpu.m_iPerformanceDiagnosticsIntervalMilliseconds.store(
+         iValidatedMilliseconds,
+         ::std::memory_order_relaxed);
+
+   }
+
+
+   ::i32 graphics3d::gpu_performance_diagnostics_interval() const
+   {
+
+      if (!m_papplication)
+      {
+
+         return 1'000;
+
+      }
+
+      return m_papplication->m_gpu.m_iPerformanceDiagnosticsIntervalMilliseconds.load(
+         ::std::memory_order_relaxed);
+
+   }
+
+
+   void graphics3d::initialize_graphics3d()
+   {
+
+      //m_pgraphics3d = pusergraphics3d;
+
+      //m_pusergraphics3d->m_pgraphics3dengineinstance = this;
+
+      //m_papproach = m_papplication->get_gpu_approach();
+      // set_gpu_performance_diagnostics(true);
+
+      //if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+      //{
+
+      //   //::cast < ::windowing::window > pwindow = pusergraphics3d->acme_windowing_window();
+
+      //   //pwindow->m_papexgpuwindowattachment = m_papplication->get_gpu_approach()->allocate_gpu_window_attachment(pwindow);
+
+      //   constructø(m_pimageOutput);
+
+      //   m_pimageOutput->m_pacmeuserinteractionAffinity = pusergraphics3d;
+
+      //}
+
+   }
+
+
+
+   void graphics3d::defer_load_skyboxes(::gpu::context * pgpucontext)
+   {
+
+      ::cast < ::bred::application > pbredapplication = m_papplication;
+
+      // (m_mapSkybox.get_count() != pbredapplication->m_straSkybox.get_count())
+      //{
+
+         //::string strSkybox = m_papp->m_strSkybox;
+
+         //m_strSkybox = strSkybox;
+
+
+      for (auto & strSkybox : pbredapplication->m_straSkybox)
+      {
+
+         auto & pskybox = m_mapSkybox[strSkybox];
+
+         if (defer_construct_newø(pskybox))
+         {
+
+            pskybox->initialize_sky_box(this, pgpucontext, strSkybox);
+
+         }
+
+      }
+
+   }
+
+   //void graphics3d::on_render_layer()
+   //{
+
+   //   if (m_rectanglePlacementNew.is_empty())
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   _prepare_frame();
+
+   //   auto pgpucontext = this->gpu_context();
+
+   //   auto prenderer = pgpucontext->m_pgpurenderer.m_p;
+
+   //   ::gpu::context_lock contextlock(pgpucontext);
+
+   //   pgpucontext->set_output_placement(m_rectanglePlacementNew);
+
+   //   {
+
+   //      auto pgpurendertarget = prenderer->render_target();
+
+   //      {
+
+   //         auto pscene = m_pimmersionlayer->m_pscene;
+
+   //         _synchronous_lock synchronouslock(pscene->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+   //         pgpucontext->update_current_scene();
+
+   //         auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontext);
+
+   //         bool bFrameStarted = false;
+
+   //         if (pgpuwindowattachment && pgpuwindowattachment->current_frame()->m_egpuframestate != ::gpu::e_gpu_frame_state_began_frame)
+   //         {
+
+   //            pgpuwindowattachment->m_pgraphics3dengineinstance = this;
+
+   //            pgpuwindowattachment->start_frame();
+
+   //            bFrameStarted = true;
+
+   //         }
+
+   //         pscene->on_before_render(pgpucontext);
+
+   //         bool bDontKnowIfFirstLayerBut = false;
+
+   //         pgpucontext->start_layer(bDontKnowIfFirstLayerBut, ::gpu::e_start_layer_none,
+   //            m_pusergraphics3d);
+
+   //         pscene->on_render(pgpucontext);
+
+   //         pscene->on_render_last(pgpucontext);
+
+   //         pgpucontext->end_layer();
+
+   //         _synchronous_lock synchronouslock2(this->synchronization());
+
+   //         if (m_pimageOutput)
+   //         {
+
+   //            auto rectangleTarget = pgpucontext->output_placement();
+
+   //            if (pgpucontext->m_sizeRaw.is_empty())
+   //            {
+
+   //               throw ::exception(error_wrong_state);
+
+   //            }
+
+   //            m_pimageOutput->create_as_descriptor(pgpucontext->m_sizeRaw);
+
+   //            auto ppixmapImageOutput = m_pimageOutput->map(::image::e_map_discard, rectangleTarget);
+
+   //            //auto pgputexturesite = pgpurendertarget->current_texture(::gpu::current_layer(), false);
+   //            //auto pgputexturesite = pgpurendertarget->current_texture(nullptr, false);
+
+   //            auto pgputexturesite = pgpucontext->current_target_texture(::gpu::current_layer());
+
+   //            auto pgpucommandbuffer = pgpucontext->beginSingleTimeCommands(pgpucontext->m_pgpudevice->graphics_queue());
+
+   //            auto pgputexture = pgputexturesite->gpu_texture()->resolved_texture(pgputexturesite->output_placement());
+
+   //            pgputexture->read_pixels(pgpucommandbuffer, ppixmapImageOutput, pgputexturesite->m_pointOutput);
+
+   //            pgpucommandbuffer.commit();
+
+   //            m_pimageOutput->set_ok_flag();
+
+   //            m_pimageOutput->m_estatus = success;
+
+   //            //mapImageOutput.fill_byte(240);
+
+   //         }
+
+   //         if (bFrameStarted)
+   //         {
+
+   //            pgpuwindowattachment->end_frame();
+
+   //         }
+
+   //      }
+
+   //      //prenderer->on_end_render(pframe);
+
+   //      //prenderer->on_end_render(nullptr);
+
+   //      //on_end_frame();
+
+   //      //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //      //{
+
+   //      //   //m_pgpucontextCompositor->m_pgpurenderer->end_layer();
+
+   //      //   end_gpu_layer(pframe);
+
+   //      //}
+
+   //      //prenderer->endFrame();
+   //      //prenderer->end_frame(nullptr);
+
+
+   //      //pgraphicscontext->end_frame();
+
+   //      //m_pgpucontextOwned->end_frame();
+
+   //      //prenderer->end_frame(nullptr);
+
+   //   }
+
+   //}
+
+
+   //void graphics3d::create_global_ubo1(::gpu::context *pgpucontext)
+   //{
+
+   //   pgpucontext->layout_global_ubo(&m_pimmersionlayer->m_pscene->global_ubo());
+
+   //   auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().m_blockWithoutSamplers.size();
+
+   //   if (iGlobalUboSize > 0)
+   //   {
+
+   //      pgpucontext->create_global_ubo((::i32)iGlobalUboSize, pgpucontext->get_gpu_renderer()->m_pgpurendertarget->get_frame_count());
+
+   //   }
+
+   //}
+
+
+   //::file::path graphics3d::shader_path(const ::file::path& pathShader)
+   //{
+
+   //   return pathShader;
+
+   //}
+
+
+   //void graphics3d::on_begin_frame()
+   //{
+
+
+   //}
+
+
+   //void graphics3d::on_end_frame()
+   //{
+
+
+   //}
+
+
+   //void graphics3d::start_gpu_layer(::gpu::layer * pgpulayer)
+   //{
+
+   //   //auto pcontext = gpu_context();
+
+   //   //auto player = pcontext->m_pgpudevice->next_layer(pcontext->m_pgpurenderer);
+
+   //   auto player = pgpulayer;
+
+   //   //player = pframe;
+
+   //   //pgpulayer = player;
+
+   //   player->layer_start();
+
+
+   //}
+
+
+   //::gpu::frame* graphics3d::end_gpu_layer(::gpu::layer * pgpulayer)
+   //{
+
+   //   auto pcontext = gpu_context();
+
+   //   auto player = pcontext->m_pgpudevice->current_layer();
+
+   //   player->layer_end();
+
+   //   return pgpulayer;
+
+   //}
+
+
+   //floating_sequence3 graphics3d::camera_pole_up()
+   //{
+   //   
+   //   return { 0.0f, 1.0f, 0.0f };
+
+   //}
+
+
+   //void graphics3d::on_update_frame()
+   //{
+
+   //   //auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
+
+   //   //if (!pcameraScene)
+   //   //{
+   //   //   pcameraScene = m_pimmersionlayer->m_pscene->get_default_camera();
+   //   //   ::pointer <::database::client> pdatabaseclient = m_papplication;
+
+   //   //   if (pdatabaseclient)
+   //   //   {
+
+   //   //      //pdatabaseclient->datastream()->get_block("camera", m_pcamera->as_block());
+   //   //      //pdatabaseclient->datastream()->get_block("transform", as_memory_block(m_transform));
+   //   //      //pdatabaseclient->datastream()->get_block("input", m_pinput->as_block());
+
+   //   //   }
+
+   //   //}
+
+   //   if (m_pimmersionlayer)
+   //   {
+
+   //      if (m_pimmersionlayer->m_pscene)
+   //      {
+
+   //         if (!m_pimmersionlayer->m_pscene->m_pcameraCurrent)
+   //         {
+
+   //            m_pimmersionlayer->m_pscene->m_pcameraCurrent = m_pimmersionlayer->m_pscene->m_pcameraScene;
+
+   //         }
+
+   //      }
+
+   //   }
+
+
+   //   //m_pimmersionlayer->on_prepare_camera();
+
+   //   //if (pcameraScene)
+   //   //{
+
+   //   //   m_transform.m_sequence3Position = pcameraScene->m_locationPosition;
+
+   //   //   m_transform.m_quaternionRotation.x = pcameraScene->m_anglePitch;
+
+   //   //   m_transform.m_quaternionRotation.y = pcameraScene->m_angleYaw;
+
+   //   //}
+
+   //      //VkcCamera camera(floating_sequence3(0.0f, 2.0f, -10.0f), .0f, 0.0f);
+
+   //      //auto viewerObject = createø <::graphics3d::scene_object>();
+   //      //papp->m_pimpact->m_bLastMouse = true;
+   //      //viewerObject->m_transform.translation.z = -2.5f;
+   //      //m_transform.translation.z = -2.5f;
+
+
+
+   //   //m_fFrameTime = fFrameTime;
+
+   //   m_pinput->prepare_mouse_input();
+
+   //   m_pinput->process_mouse_input();
+
+   //   //m_pinput->updateLook(m_pinput->getX(), m_pinput->getY(), transform);
+
+   //   m_pinput->process_keyboard_input();
+
+   //   //cameraController.moveInPlaneXZ(m_pimpact, frameTime, viewerObject);
+
+   //   //m_pcamera->setViewYXZ(m_transform.translation, m_transform.rotation);
+
+   //   //if (pcameraScene)
+   //   //{
+
+   //   //   ::f32 aspect = m_pusergraphics3d->getAspectRatio();
+
+   //   //   pcameraScene->setPerspectiveProjection(::radians(50.f), aspect, 0.1f, 100.f);
+
+   //   //   pcameraScene->UpdateCameraVectors();
+
+
+   //   //   // if (m_fYScale < 0)
+   //   //   //{
+
+   //   //   //   m_pcamera->m_matrixImpact = glm::lookAtRH(m_pcamera->m_locationPosition,
+   //   //   //      m_pcamera->m_locationPosition + m_pcamera->m_sequence3Front,
+   //   //   //      m_pcamera->m_sequence3WorldUp);
+
+   //   //   //}
+   //   //   // else
+   //   //   //{
+
+   //   //   floating_matrix4 matrixImpact;
+   //   //   if (m_fYScale < 0)
+   //   //   {
+   //   //      matrixImpact =
+   //   //         glm::lookAtRH(pcameraScene->m_locationPosition,
+   //   //                       pcameraScene->m_locationPosition + pcameraScene->m_sequence3Front, pcameraScene->m_sequence3WorldUp);
+   //   //      // matrixImpact[2][0] = -matrixImpact[2][0];
+   //   //      // matrixImpact[2][1] = -matrixImpact[2][1];
+   //   //      // matrixImpact[2][2] = -matrixImpact[2][2];
+   //   //      // matrixImpact[2][3] = -matrixImpact[2][3];
+   //   //   }
+   //   //   else
+   //   //   {
+   //   //      matrixImpact =
+   //   //         glm::lookAtRH(pcameraScene->m_locationPosition,
+   //   //                       pcameraScene->m_locationPosition + pcameraScene->m_sequence3Front, pcameraScene->m_sequence3WorldUp);
+   //   //   }
+   //   //   pcameraScene->m_matrixImpact = matrixImpact;
+   //   //   //}
+
+   //   //   pcameraScene->m_matrixInversedImpact = glm::inverse(pcameraScene->m_matrixImpact);
+
+   //   //}
+
+   //}
+
+
+   //floating_matrix4 graphics3d::model_matrix(::graphics3d::transform & transform)
+   //{
+
+   //   auto translation = transform.m_sequence3Position;
+   //   auto rotation = transform.m_rotation;
+   //   //auto anglePitch = transform.m_anglePitch;
+   //   auto scale = transform.m_sequence3Scale;
+
+   //   ///scale.z = scale.z * m_fYScale;
+   //   //floating_matrix4 makeViewMatrix(floating_sequence3 translation, floating_sequence3 rotationEulerDegrees, )
+   //   //{
+   //      // Convert degrees to radians
+   //      //floating_sequence3 rotation = ::radians(rotationEulerDegrees);
+
+   //      // Scale
+   //   auto S = scale.as_scaling_matrix();
+
+   //   // Rotation (Euler to Quaternion to Matrix)
+   //   //;
+   //   //;
+   //   //auto quaternion = f32_quaternion(rotation);
+   //   auto R = rotation.as_rotation_matrix();
+
+   //   // Translation
+   //   auto T = translation.as_translation_matrix();
+
+   //   // Model matrix (camera transform)
+   //   auto model = T * R * S;
+
+   //   return model;
+
+   //   // View matrix is inverse of camera transform
+   //  // floating_matrix4 view = glm::inverse(model);
+
+   //   //return view;
+   ////}
+   ////const ::f32 c3 = glm::cos(transformcomponent.rotation.z);
+   ////const ::f32 s3 = glm::sin(transformcomponent.rotation.z);
+   ////const ::f32 c2 = glm::cos(transformcomponent.rotation.x);
+   ////const ::f32 s2 = glm::sin(transformcomponent.rotation.x);
+   ////const ::f32 c1 = glm::cos(transformcomponent.rotation.y);
+   ////const ::f32 s1 = glm::sin(transformcomponent.rotation.y);
+   ////::f32 scalex = transformcomponent.scale.x;
+   ////::f32 scaley = transformcomponent.scale.y;
+   ////::f32 scalez = m_fYScale * transformcomponent.scale.z;
+   ////::f32 translationx = transformcomponent.translation.x;
+   ////::f32 translationy = transformcomponent.translation.y;
+   ////::f32 translationz = transformcomponent.translation.z;
+   ////return floating_matrix4{
+   ////   {
+   ////      scalex * (c1 * c3 + s1 * s2 * s3),
+   ////      scalex * (c2 * s3),
+   ////      scalex * (c1 * s2 * s3 - c3 * s1),
+   ////      0.0f,
+   ////   },
+   ////   {
+   ////      scaley * (c3 * s1 * s2 - c1 * s3),
+   ////      scaley * (c2 * c3),
+   ////      scaley * (c1 * c3 * s2 + s1 * s3),
+   ////      0.0f,
+   ////   },
+   ////   {
+   ////      scalez * (c2 * s1),
+   ////      scalez * (-s2),
+   ////      scalez * (c1 * c2),
+   ////      0.0f,
+   ////   },
+   ////   {translationx, translationy, translationz, 1.0f}
+   ////};
+
+   //}
+
+
+   //floating_matrix4 graphics3d::normal_matrix(::graphics3d::transform & transformcomponent)
+   //{
+
+   //   auto m = model_matrix(transformcomponent);
+
+   //   return m.inversed();
+
+   //}
+
+
+   //void graphics3d::run_cpu_buffer()
+   //{
+
+   //   throw todo;
+
+   //   m_stdtimepoint = std::chrono::high_resolution_clock::now();
+
+   //   set_ok_flag();
+
+   //   //auto pgpuapproach = m_papplication->get_gpu_approach();
+
+   //   auto pgpudevice = gpu_context()->m_pgpudevice;
+
+   //   m_papplication->fork([this]()
+   //      {
+
+   //         auto pcontext = gpu_context();
+
+   //         ::gpu::thread_set_gpu_device(pcontext->m_pgpudevice);
+
+   //         ::graphics3d::offscreen_frame_pacer framepacer;
+
+   //         while (task_get_run())
+   //         {
+
+   //            auto fAppliedFps = ::graphics3d::offscreen_frame_pacer::validated_fps(
+   //               m_fDesiredFps.load(::std::memory_order_relaxed));
+   //            auto timeFrameDeadline = framepacer.begin_frame(
+   //               ::graphics3d::offscreen_frame_pacer::clock::now(),
+   //               fAppliedFps);
+
+   //            task_iteration();
+
+   //            if (m_rectanglePlacementNew.has_area() && m_bLoadedEngine)
+   //            {
+
+   //               //::gpu::context_guard guard(m_pgpucontextCompositor);
+
+   //               auto pcontext = gpu_context();
+
+   //               pcontext->set_placement(m_rectanglePlacementNew);
+
+   //               auto prenderer = pcontext->get_gpu_renderer();
+
+   //               prenderer->defer_update_renderer();
+
+   //               auto pcpubuffer = pcontext->get_cpu_buffer();
+
+   //               auto pimagetarget = pcpubuffer->get_image_target();
+
+   //               if (!pimagetarget->m_callbackOnImagePixels)
+   //               {
+
+   //                  pimagetarget->m_callbackOnImagePixels =
+   //                     [this]()
+   //                     {
+
+   //                        m_pusergraphics3d->set_need_redraw();
+
+   //                        m_pusergraphics3d->post_redraw();
+
+   //                     };
+
+   //               }
+
+   //               try
+   //               {
+
+   //                  try
+   //                  {
+
+   //                     m_pgpucontextOwned->m_pgpudevice->start_frame();
+
+   //                  }
+   //                  catch (...)
+   //                  {
+
+
+   //                  }
+
+   //                  draw_layer();
+
+   //               }
+   //               catch (...)
+   //               {
+
+   //               }
+
+   //               auto pdevice = pcontext->m_pgpudevice;
+
+   //               //pdevice->end_offscreen_frame();
+   //               pdevice->end_frame();
+
+   //            }
+
+   //            auto timeAfterFrame = ::graphics3d::offscreen_frame_pacer::clock::now();
+
+   //            if (framepacer.should_wait(timeAfterFrame))
+   //            {
+
+   //               while (task_get_run())
+   //               {
+
+   //                  auto fLatestFps = ::graphics3d::offscreen_frame_pacer::validated_fps(
+   //                     m_fDesiredFps.load(::std::memory_order_relaxed));
+
+   //                  if (fLatestFps != fAppliedFps)
+   //                  {
+
+   //                     break;
+
+   //                  }
+
+   //                  auto timeNow = ::graphics3d::offscreen_frame_pacer::clock::now();
+
+   //                  if (timeNow >= timeFrameDeadline)
+   //                  {
+
+   //                     break;
+
+   //                  }
+
+   //                  ::std::this_thread::sleep_for(
+   //                     framepacer.wait_slice(timeFrameDeadline - timeNow));
+
+   //               }
+
+   //            }
+
+   //         }
+
+   //         ::pointer <::database::client> pdatabaseclient = m_papplication;
+
+   //         if (pdatabaseclient)
+   //         {
+   //            //auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
+   //            pdatabaseclient->datastream()->set("input", m_pinput->as_block());
+   //            pdatabaseclient->datastream()->set("transform", as_memory_block(m_transform));
+   //            //pdatabaseclient->datastream()->set("camera", pcameraScene->as_block());
+
+   //         }
+
+
+   //      });
+
+
+   //   //if (pgpucontext->logicalDevice() != VK_NULL_HANDLE)
+   //   //{
+
+   //   //   vkDeviceWaitIdle(pgpucontext->logicalDevice());
+
+   //   //}
+
+   //}
+
+
+   //::gpu::enum_output graphics3d::get_engine_gpu_eoutput()
+   //{
+
+   //   if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   {
+
+   //      return ::gpu::e_output_gpu_buffer;
+
+   //   }
+   //   else
+   //   {
+
+   //      return ::gpu::e_output_aaa_cpu_buffer;
+
+   //   }
+
+   //}
+
+
+   //void graphics3d::defer_start(::user::graphics3d * pusergraphics3d, const ::i32_rectangle & rectanglePlacement)
+   //{
+
+   //   m_pusergraphics3d = pusergraphics3d;
+
+   //   auto papp = get_app();
+
+   //   auto pgpuapproach = papp->get_gpu_approach();
+
+   //   auto pwindow = m_pusergraphics3d->window();
+
+   //   ::i32_rectangle rectangleWindow = rectanglePlacement;
+
+   //   rectangleWindow.offset(-rectangleWindow.top_left());
+
+   //   if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   {
+
+   //      pusergraphics3d->client_to_screen()(rectangleWindow);
+
+   //   }
+
+   //   pgpuapproach->m_rectangleOffscreen = rectangleWindow;
+
+   //   m_rectanglePlacementNew = rectangleWindow;
+
+   //   ::cast<::gpu::device> pgpudevice = get_gpu_context()->m_pgpudevice;
+
+   //   //auto pgpucontext = pgpudevice->get_main_context();
+
+   //   //::gpu::start_gpu_output_context_t startgpuoutputcontext(
+   //   //   this,
+   //   //   pgpudevice,
+   //   //   ::gpu::e_output_gpu_buffer,
+   //   //   rectanglePlacement
+   //   //);
+
+   //   //m_pgpucontextCompositor = pgpudevice->create_gpu_context(
+   //   //   get_engine_gpu_eoutput(),
+   //   //   ::gpu::e_scene_3d,
+   //   //   rectanglePlacement.size()
+   //   //);
+
+   //   //m_pgpurendererGraphics3D = pgpucontext->graphics3d_renderer();
+
+   //   //if (m_papplication->m_bUseSwapChainWindow)
+   //   //{
+
+   //   //   auto pwindow = m_pimpact->window();
+
+   //   //   pgpucontext = pgpudevice->start_swap_chain_context(this, pwindow);
+
+   //   //}
+   //   //else
+   //   //if (!m_papplication->m_bUseSwapChainWindow){
+
+   //      //auto callbackImage32CpuBuffer = m_callbackImage32CpuBuffer;
+
+   //   //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   //{
+
+   //   //   pgpucontext = pgpudevice->start_gpu_output_context(this, ::gpu::e_output_gpu_buffer, rectanglePlacement);
+
+   //   //}
+   //   //else
+   //   //{
+
+   //   //   pgpucontext = pgpudevice->start_gpu_output_context(this, ::gpu::e_output_cpu_buffer, rectanglePlacement);
+
+   //   //}
+
+   //   //      }
+
+   //   set_ok_flag();
+
+   //   //m_rectanglePlacementNew = rectanglePlacement;
+
+   //   get_gpu_context()->sendø() << [this, rectanglePlacement]()
+   //      {
+
+   //         auto pcontext = gpu_context();
+
+   //         auto pgpurenderer = pcontext->get_gpu_renderer();
+
+   //         pgpurenderer->on_resize(rectanglePlacement.size());
+
+   //         auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
+
+
+   //         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //         {
+
+   //            auto prendererBackBuffer = pgpuwindowattachment->draw2d_context()->get_gpu_renderer();
+
+   //            pgpuwindowattachment->set_render_target(prendererBackBuffer->render_target());
+
+   //         }
+   //         //else
+   //         //{
+
+
+
+   //         //   auto prendererEngine = pcontext->m_pgpurenderer;
+
+   //         //   pgpuwindowattachment->set_render_target(prendererEngine->render_target());
+
+   //         //}
+
+
+   //         m_pusergraphics3d->on_load_engine();
+
+   //         pcontext->m_pgraphics3dengineinstance = this;
+
+   //         m_bLoadedEngine = true;
+   //         //
+   //           //          run_engine();
+
+   //                     //if (pcontext->m_eoutput == ::gpu::e_output_cpu_buffer)
+   //                     //{
+
+   //                     //   run_cpu_buffer();
+
+   //                     //}
+
+   //      };
+
+   //}
+
+
+   ////void graphics3d::update_global_ubo(::gpu::context* pgpucontext)
+   ////{
+
+   ////   auto pscene = m_pimmersionlayer->m_pscene;
+
+   ////   if (pscene->global_ubo().size(true) > 0)
+   ////   {
+
+   ////      pscene->on_update(pgpucontext);
+   ////      
+   ////      auto pcontext = gpu_context();
+
+   ////      pcontext->update_global_ubo(pscene->global_ubo().block_with_samplers());
+
+   ////   }
+
+   ////}
+
+
+   //::graphics3d::shape_factory * graphics3d::shape_factory()
+   //{
+
+   //   if (!m_pshapefactory)
+   //   {
+
+   //      construct_newø(m_pshapefactory);
+
+   //   }
+
+   //   return m_pshapefactory;
+
+   //}
+
+
+   //::gpu::context * graphics3d::get_gpu_context()
+   //{
+
+   //   auto pcontext = gpu_context();
+
+   //   if (!pcontext)
+   //   {
+
+   //      if (m_rectanglePlacementNew.is_empty())
+   //      {
+
+   //         throw ::exception(error_wrong_state);
+
+   //      }
+
+   //      auto pacmewindowingwindow = m_pusergraphics3d->acme_windowing_window();
+
+   //      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
+
+   //      auto sizeRaw = pacmewindowingwindow->get_raw_buffer_size().maximum(m_rectanglePlacementNew.size());
+
+   //      auto pointOutput = m_rectanglePlacementNew.origin();
+
+   //      auto size = m_rectanglePlacementNew.size();
+
+   //      auto pgpucontextNew = pgpudevice->allocate_gpu_context();
+
+   //      pgpucontextNew->create_gpu_context(
+   //         pgpudevice,
+   //         get_engine_gpu_eoutput(),
+   //         ::gpu::e_scene_3d,
+   //         pacmewindowingwindow,
+   //         nullptr,
+   //         {},
+   //         pointOutput,
+   //         size,
+   //         sizeRaw);
+
+   //      pgpucontextNew->m_etype = ::gpu::context::e_type_graphics3d;
+
+   //      pgpucontextNew->m_pgpucompositor = this;
+
+   //      set_gpu_context(pgpucontextNew);
+
+   //      pcontext = pgpucontextNew;
+
+   //   }
+
+   //   return pcontext;
+
+   //}
+
+
+   //void graphics3d::engine_on_after_load_scene(::graphics3d::scene_base * pscene)
+   //{
+
+   //   auto pcontext = gpu_context();
+
+   //   pcontext->m_pgpurenderer->on_after_load_scene(pscene);
+
+   //}
+
+
+   //::graphics3d::scene_base * graphics3d::current_scene()
+   //{
+
+   //   return m_pimmersionlayer->m_pscene;
+
+   //}
+
+
+   ////void graphics3d::do_frame_step(::gpu::context* pcontextParam)
+   //void graphics3d::do_draw_layer()
+   //{
+
+   //   if (m_rectanglePlacementNew.is_empty())
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   //::gpu::rear_guard rear_guard(pcontext);
+
+   //   auto pcontext = gpu_context();
+
+   //   pcontext->sendø() << [this]()
+   //      {
+
+   //         auto pcontext = gpu_context();
+
+   //         //::gpu::context_guard guard(m_pgpucontextCompositor);
+
+   //         pcontext->set_output_placement(m_rectanglePlacementNew);
+
+   //         auto prenderer = pcontext->get_gpu_renderer();
+
+   //         prenderer->defer_update_renderer();
+
+   //         try
+   //         {
+
+   //            draw_layer();
+
+   //         }
+   //         catch (...)
+   //         {
+
+   //         }
+
+   //      };
+
+   //   //      m_pgpurendererGraphics3D->on_new_frame();
+
+   //         //pcontext->make_current();
+
+   //         //auto prendererSource = m_pgpurendererGraphics3D->m_pgpucontextCompositor->m_pgpurendererOutput;
+
+   //         //auto prenderer = pcontext->m_pgpurendererOutput;
+
+   //         //prenderer->blend(prendererSource);
+
+   //         //prenderer->soft_restore_context();
+
+   //}
+
+
+   //void graphics3d::run()
+   //{
+
+   //   throw::exception(error_wrong_state);
+
+   //}
+
+
+   //void graphics3d::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
+   //{
+
+   //   auto eoutput = get_gpu_context()->m_eoutput;
+
+   //   /*if (eoutput == ::gpu::e_output_cpu_buffer)
+   //   {
+
+   //      throw todo;
+
+   //      auto pcontext = gpu_context();
+
+   //      auto pcpubuffer = pcontext->m_pcpubuffer2;
+
+   //      if (pcpubuffer)
+   //      {
+
+   //         auto pimagetarget = pcpubuffer->m_pimagetarget;
+
+   //         if (::is_set(pimagetarget))
+   //         {
+
+   //            pimagetarget->_001OnDraw(pdraw2dgraphics);
+
+   //         }
+
+   //      }
+
+   //   }
+   //   else
+   //   {*/
+
+   //   //auto pcontext = gpu_context();
+
+   //   //auto pgraphicscontext = create_newø<::graphics::context>();
+
+   //   //do_frame_step(pcontext);
+
+   //   do_draw_layer();
+
+   //   on_after_done_frame_step(pdraw2dgraphics);
+
+   //   //}
+
+   //}
+
+
+   //void graphics3d::_engine_on_frame_context_initialization()
+   //{
+
+
+   //}
+
+
+   //void graphics3d::_prepare_frame()
+   //{
+
+   //   if (!m_bEngineOnFrameContextInitialization)
+   //   {
+
+   //      m_bEngineOnFrameContextInitialization = true;
+
+   //      _engine_on_frame_context_initialization();
+
+   //   }
+
+   //   if (!m_rectanglePlacementNew.is_empty())
+   //   {
+
+   //      //auto wNew = m_rectanglePlacementNew.width();
+
+   //      //auto hNew = m_rectanglePlacementNew.height();
+
+   //      if (m_rectanglePlacementNew != m_rectanglePlacement)
+   //      {
+
+   //         m_rectanglePlacement = m_rectanglePlacementNew;
+
+   //         defer_update_engine(m_rectanglePlacement);
+
+   //         //if (pgpucontext->m_pgpurendererGraphics3D)
+   //         //{
+
+   //         //   //pgpucontext->create_offscreen_buffer(m_rectanglePlacement.size());
+
+   //         //   
+   //         //   //m_pimpact->on_load_engine();
+
+   //         //   //run();
+
+   //         //   //m_pimpact->m_ptaskEngine.release();
+
+   //         //   //return;
+
+
+   //         //   //m_pinput = allocateø::graphics3d::input();
+
+   //         //   //m_pinput->m_pimpact = m_pimpact;
+
+   //         //   //m_pcamera = allocateø::graphics3d::camera(floating_sequence3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
+
+   //         //   ////m_pcamera->m_pimpact
+
+   //         //   ////m_pglcapplication = m_pimpact->start_opengl_application();
+   //         //   ////constructø(m_pgpucontextCompositor);
+
+   //         //   //if (!m_papplication->m_bUseSwapChainWindow)
+   //         //   //{
+
+   //         //   //   pgpucontext->m_pgpucontextCompositor->resize_offscreen_buffer({ cx, cy });
+
+   //         //   //}
+
+   //         //   //m_prenderer = allocateø::graphics3d_opengl::renderer();
+
+   //         //   ////return;
+   //         //   //// Initialize the game logic and scene data
+   //         //   ////Init();
+
+   //         //   //pgpucontext->m_pgpucontextCompositor->m_timeSample = 1_s / 60.0;
+
+   //         //   //m_pgpucontextCompositor->m_rendera.add_unique(this);
+
+   //         //}
+
+   //      }
+
+   //   }
+
+   //}
+
+
+   //void graphics3d::draw_layer()
+   //{
+
+   //   auto newTime = std::chrono::high_resolution_clock::now();
+
+   //   ::f32 frameTime = std::chrono::duration<::f32, std::chrono::seconds::period>(newTime - m_stdtimepoint).count();
+
+   //   m_stdtimepoint = newTime;
+
+   //   m_fFrameTime = frameTime;
+
+   //   if (m_rectanglePlacementNew.has_area())
+   //   {
+
+   //      on_update_frame();
+
+   //      on_render_layer();
+
+   //   }
+
+   //}
+
+
+   //void graphics3d::on_after_done_frame_step(::draw2d::graphics_pointer & pdraw2dgraphics)
+   //{
+
+   //   _synchronous_lock synchronouslock(this->synchronization());
+
+   //   if (m_pimageOutput.ok())
+   //   {
+
+   //      auto pgpucontext = gpu_context();
+
+   //      auto rectangleOutput = pgpucontext->output_placement();
+
+   //      ::image::image_source imagesource(m_pimageOutput, rectangleOutput);
+
+   //      rectangleOutput.offset(-rectangleOutput.top_left());
+
+   //      ::image::image_drawing_options imagedrawingoptions(rectangleOutput);
+
+   //      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   //      pdraw2dgraphics->draw(imagedrawing);
+
+   //      if (1)
+   //      {
+
+   //         pdraw2dgraphics->fill_solid_rectangle({ 0, 0, 100, 100 }, argb(128, 100, 160, 200));
+
+   //         pdraw2dgraphics->fill_solid_rectangle({ rectangleOutput.right - 100, 0, rectangleOutput.right, 100 }, argb(128, 100, 160, 200));
+
+   //         pdraw2dgraphics->fill_solid_rectangle({ 0, rectangleOutput.bottom - 100, 100, rectangleOutput.bottom }, argb(128, 100, 160, 200));
+
+   //         pdraw2dgraphics->fill_solid_rectangle({ rectangleOutput.right - 100, rectangleOutput.bottom - 100, rectangleOutput.right, rectangleOutput.bottom }, argb(128, 100, 160, 200));
+
+   //      }
+
+   //   }
+
+   //}
+
+
+   //void graphics3d::defer_process_load_assets_commands()
+   //{
+
+   //   auto pcontext = gpu_context();
+
+   //   auto pcommandbufferLoadAssets = ::transfer(pcontext->m_pgpurenderer->m_pcommandbufferLoadAssets);
+
+   //   if (pcommandbufferLoadAssets)
+   //   {
+
+   //      information("There seems to be a \"Load Assets\" command buffer to be processed...");
+
+   //      pcontext->m_pgpurenderer->m_pcommandbufferLoadAssets2 = pcommandbufferLoadAssets;
+   //      // if (prenderer->m_pcommandbufferLoadAssets)
+   //      //{
+
+   //      //   auto pcommandbufferLoadAssets = ::transfer(prenderer->m_pcommandbufferLoadAssets);
+
+   //      //   m_papplication->fork([pcommandbufferLoadAssets]()
+   //      //      {
+
+   //      pcommandbufferLoadAssets->submit_command_buffer(nullptr);
+
+   //      pcommandbufferLoadAssets->wait_commands_to_execute();
+
+   //      //         });
+
+   //      //   }
+
+   //      //}
+   //   }
+
+   //}
+
+
+   //void graphics3d::defer_update_engine(const ::i32_rectangle & rectanglePlacement)
+   //{
+
+   //   //if (!m_prenderer)
+   //   //{
+
+   //   //   constructø(m_prenderer);
+
+   //   //   //::graphics3d::graphics3d::m_prenderer = m_prenderer;
+
+   //   //   m_prenderer->initialize_renderer(m_pgpucontextCompositor, m_pgpucontextCompositor->m_eoutput);
+
+   //   //}
+
+
+   //   //m_prenderer->on_context_resize();
+   //   //m_pglobalpool->initialize_pool(pgpucontext);
+
+   //   //= allocateø
+   //   //   descriptor_pool::Builder(pgpucontext)
+   //   //   .setMaxSets(swap_chain_render_pass::MAX_FRAMES_IN_FLIGHT)
+   //   //   .addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, swap_chain_render_pass::MAX_FRAMES_IN_FLIGHT)
+   //   //   .build();
+
+   //   //pgpucontext = allocateø context(m_pvulkandevice);
+
+   //   //          m_prenderer->getRenderPass(),
+   //     //        globalSetLayout->getDescriptorSetLayout()
+   //       //  };
+
+   //   auto pgpucontext = gpu_context();
+
+   //   pgpucontext->set_output_placement(rectanglePlacement);
+
+   //   defer_process_load_assets_commands();
+
+   //   auto pscene = m_pimmersionlayer->m_pscene;
+
+   //   auto pcontext = gpu_context();
+
+   //   pscene->defer_load_scene(pcontext);
+
+   //   engine_on_after_load_scene(pscene);
+
+   //   if (!m_bCreatedGlobalUbo)
+   //   {
+
+   //      m_bCreatedGlobalUbo = true;
+
+   //      {
+
+   //         ::gpu::context_lock contextlock(pgpucontext);
+
+   //         auto * pblockGlobalUbo1 = pscene->global_ubo1(pcontext);
+
+   //         ASSERT(::is_set(pblockGlobalUbo1));
+
+   //         //auto iGlobalUboSize = pscene->global_ubo1(pcontext).size(true);
+
+   //         //if (iGlobalUboSize > 0)
+   //         //{
+
+   //         //   create_global_ubo(pcontext);
+
+   //         //}
+
+   //      }
+
+   //   }
+
+   //   defer_process_load_assets_commands();
+
+   //}
+
+
+   //void graphics3d::on_layout(const ::i32_rectangle & rectanglePlacement)
+   //{
+
+   //   m_rectanglePlacementNew = rectanglePlacement;
+
+   //   //      auto pgpucontext = m_pgpucontextCompositor;
+   //   //
+   //   //if (!pgpucontext)
+   //   //{
+   //   //
+   //   //   return;
+   //   //
+   //   //}
+   //   //
+   //   //pgpucontext->post([this, cx, cy]
+   //   //   {
+   //   //
+   //   //      auto pgpucontext = m_pgpucontextCompositor;
+   //   //
+   //   //      if (pgpucontext->m_prenderer)
+   //   //      {
+   //   //
+   //   //         pgpucontext->m_prenderer->set_placement({cx, cy});
+   //   //
+   //   //         //m_pimpact->on_load_engine();
+   //   //
+   //   //         //run();
+   //   //
+   //   //         //m_pimpact->m_ptaskEngine.release();
+   //   //
+   //   //         //return;
+   //   //
+   //   //
+   //   //         //m_pinput = allocateø::graphics3d::input();
+   //   //
+   //   //         //m_pinput->m_pimpact = m_pimpact;
+   //   //
+   //   //         //m_pcamera = allocateø::graphics3d::camera(floating_sequence3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
+   //   //
+   //   //         ////m_pcamera->m_pimpact
+   //   //
+   //   //         ////m_pglcapplication = m_pimpact->start_opengl_application();
+   //   //         ////constructø(m_pgpucontextCompositor);
+   //   //
+   //   //         //if (!m_papplication->m_bUseSwapChainWindow)
+   //   //         //{
+   //   //
+   //   //         //   pgpucontext->m_pgpucontextCompositor->resize_offscreen_buffer({ cx, cy });
+   //   //
+   //   //         //}
+   //   //
+   //   //         //m_prenderer = allocateø::graphics3d_opengl::renderer();
+   //   //
+   //   //         ////return;
+   //   //         //// Initialize the game logic and scene data
+   //   //         ////Init();
+   //   //
+   //   //         //pgpucontext->m_pgpucontextCompositor->m_timeSample = 1_s / 60.0;
+   //   //
+   //   //         //m_pgpucontextCompositor->m_rendera.add_unique(this);
+   //   //
+   //   //      }
+   //   //
+   //   //      //pgpucontext->resize_offscreen_buffer({ cx, cy });
+   //   //
+   //   //      ////on_layout(cx, cy);
+   //   //
+   //   //      //m_pimpact->m_iWidth = cx;
+   //   //      //m_pimpact->m_iHeight = cy;
+   //   //
+   //   //   });
+   //   //
+
+
+   //}
+
+
+   //void graphics3d::on_mouse_move(::f32 x, ::f32 y)
+   //{
+
+
+   //}
+
+
+   // ::pointer<::graphics3d::renderable> graphics3d::_load_wavefront_obj_renderable(const ::gpu::renderable_t &model)
+   // {
+   //
+   //    tinyobjloader_Builder builder{};
+   //
+   //    auto pcontext = gpu_context();
+   //
+   //    builder.loadModel(pcontext, model.m_pathRenderable, model.m_bCounterClockwise);
+   //
+   //    ::pointer < ::gpu::model_buffer > pmodelbuffer;
+   //
+   //    constructø(pmodelbuffer);
+   //
+   //    (*(::gpu::renderable_t *)pmodelbuffer) = model;
+   //
+   //    pmodelbuffer->initialize_gpu_context_object(pcontext);
+   //
+   //    pmodelbuffer->set_data(builder);
+   //
+   //    return pmodelbuffer;
+   //
+   // }
+
+
+
+   //
+   // void graphics3d::add_scene(::graphics3d::scene_base* pscene)
+   // {
+   //
+   //    m_mapScene[pscene->m_strName] = pscene;
+   //
+   // }
+   //
+   //
+   // void graphics3d::set_current_scene(::graphics3d::scene_base* pscene)
+   // {
+   //
+   //    m_pscene = pscene;
+   //
+   // }
+
+
+   //floating_matrix4 graphics3d::ortho(::f32 left, ::f32 right, ::f32 bottom, ::f32 top, ::f32 zNear, ::f32 zFar)
+   //{
+
+   //   throw ::interface_only();
+
+   //   return {1.0f};
+
+   //}
+
+
+   //floating_matrix4 graphics3d::perspective(const f32_angle & angleFovY, ::f32 aspect, ::f32 zNear, ::f32 zFar)
+   //{
+
+   //   throw ::interface_only();
+
+   //   return { 1.0f };
+
+   //}
+
+
+   //void graphics3d::calculate_impact(::floating_matrix4 & matrixImpact, const ::graphics3d::camera & camera)
+   //{
+
+
+   //   auto positionCamera = camera.position();
+
+   //   auto frontDirection = camera.front();
+
+   //   auto positionCenter = positionCamera + frontDirection;
+
+   //   auto worldUp = camera.world_up();
+
+   //   matrixImpact = ::graphics3d::lookAt(positionCamera, positionCenter, worldUp);
+
+   //}
+
+
+   //void graphics3d::calculate_projection(::floating_matrix4 & matrixProjection, const ::graphics3d::camera & camera)
+   //{
+
+   //   matrixProjection = perspective(camera.m_angleFovY, camera.m_fAspectRatio, camera.m_fNearZ, camera.m_fFarZ);
+
+   //}
+
+
+
+} // namespace graphics3d
+
+

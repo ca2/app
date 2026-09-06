@@ -28,48 +28,48 @@ namespace graphics3d
 
 
       //::pointer<::user::graphics3d> m_pusergraphics3d;
-      ::pointer<::graphics3d::engine> m_pengine;
+      ::pointer<::graphics3d::engine_instance>     m_pgraphics3dengineinstance;
       //::pointer<::graphics3d::key_map> m_pkeymap;
       //struct input_t
       //{
          // KeyMappings keys{};
-         bool m_bMouseAbsolute;
+      bool                                         m_bMouseAbsolute;
 
          //::f64 m_dMouseLastY = 0.0;
          //::f64 m_Δx = 0.;
          //::f64 m_Δy = 0.;
 
-         bool m_bWasLeft = false;
-         ::floating_sequence2 m_sequence2MouseLast;
-         //::floating_sequence2 m_sequence2MouseRawΔ{0.f};
-         ::floating_sequence2 m_sequence2MouseSmoothΔ{0.f};
-         ::floating_sequence2 m_sequence2MouseΔ{0.f};
-         ::floating_sequence2 m_sequence2MouseLastDragΔ{0.f};
+      bool                                         m_bWasLeft = false;
+      ::floating_sequence2                         m_sequence2MouseLast;
+      //::floating_sequence2                       m_sequence2MouseRawΔ{0.f};
+      ::floating_sequence2                         m_sequence2MouseSmoothΔ{0.f};
+      ::floating_sequence2                         m_sequence2MouseΔ{0.f};
+      ::floating_sequence2                         m_sequence2MouseLastDragΔ{0.f};
 
 
-         ::f64 m_dCursorX;
-         ::f64 m_dCursorY;
-         bool m_bFirstMouse;
-         bool m_bLastMouse;
+      ::f64                                        m_dCursorX;
+      ::f64                                        m_dCursorY;
+      bool                                         m_bFirstMouse;
+      bool                                         m_bLastMouse;
 
-         ::f32 m_fMoveSpeed{3.f};
-         ::f32 m_fLookSpeed{1.5f};
+      ::f32                                        m_fMoveSpeed{3.f};
+      ::f32                                        m_fLookSpeed{1.5f};
 
-              ::graphics3d::mouse_state m_mousestate;
+      ::graphics3d::mouse_state                    m_mousestate;
 
 
-                    ::f32 m_smoothing = 15.f;
+      ::f32                                        m_smoothing = 15.f;
 
-         bool m_b_001AbsoluteMousePosition;
-         f32_angle m_angleCursorPixel; // Sensitivity factor for mouse movement
-         //f32_angle m_angleYaw; // Camera yaw (horizontal rotation)
-         //f32_angle m_anglePitch; // Camera pitch (vertical rotation)
-         floating_sequence3 _cameraDirection; // Camera direction vector
-         floating_sequence3 _cameraPosition;
+      bool                                         m_b_001AbsoluteMousePosition;
+      f32_angle                                    m_angleCursorPixel; // Sensitivity factor for mouse movement
+      //f32_angle m_angleYaw; // Camera yaw (horizontal rotation)
+      //f32_angle m_anglePitch; // Camera pitch (vertical rotation)
+      floating_sequence3                           m_sequence3CameraDirection; // Camera direction vector
+      floating_sequence3                           m_sequence3CameraPosition;
         // ::block as_block() { return as_memory_block(*this); }
       //};
 
-               bool m_bMouseOut = true;
+      bool                                         m_bMouseOut = true;
 
                //::f32 m_moveSpeed;
 

@@ -72,7 +72,7 @@ namespace graphics3d
       //};
       //::particle* pparticle, const ::string_array_base& faces
 
-      //::pointer < engine >                m_pengine;
+      //::pointer < engine >                m_pgraphics3dengineinstance;
       //::pointer < ::graphics3d::skybox >              m_pskybox;
       //::pointer < ::gpu::model_buffer >               m_pmodelCube;
       //::pointer < ::gpu::texture >                    m_ptextureCubeMap;

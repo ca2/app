@@ -842,7 +842,7 @@ namespace write_text
 
       m_bUpdated = false;
 
-      m_bTextMetricCalculated = false;
+      //m_bTextMetricCalculated = false;
 
       ::draw2d::object::set_modified();
 

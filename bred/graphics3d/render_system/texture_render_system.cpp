@@ -11,7 +11,7 @@
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
 #include "bred/graphics3d/scene_renderable.h"
 #include "graphics3d/scene_base.h"
 #include "texture_render_system.h"
@@ -30,7 +30,7 @@ namespace graphics3d
    texture_render_system::~texture_render_system() {}
 
 
-   void texture_render_system::initialize_render_system(::graphics3d::engine *pengine)
+   void texture_render_system::initialize_render_system(::graphics3d::engine_instance *pengine)
    {
 
       ::graphics3d::render_system::initialize_render_system(pengine);
@@ -41,7 +41,7 @@ namespace graphics3d
 
       ::memory memory;
 
-      m_pengine->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/texture.vert");
+      m_pgraphics3dengineinstance->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/texture.vert");
 
       return memory;
    }
@@ -51,7 +51,7 @@ namespace graphics3d
 
       ::memory memory;
 
-      m_pengine->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/texture.frag");
+      m_pgraphics3dengineinstance->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/texture.frag");
 
       return memory;
    }
@@ -237,7 +237,7 @@ namespace graphics3d
       // m_pshader->bind(
       //       ::gpu::current_command_buffer(), pgpucontext->current_target_texture(::gpu::current_layer()));
 
-      auto pgamelayer = m_pengine->m_pimmersionlayer;
+      auto pgamelayer = m_pgraphics3dengineinstance->m_pimmersionlayer;
 
       for (auto &[strName, pscenerenderable]: pscene->scene_renderables())
       {
@@ -303,7 +303,7 @@ namespace graphics3d
 
             m_pshader->m_propertiesPushShared["modelMatrix"] = matrixModel;
 
-            // auto normalMatrix = m_pengine->normal_matrix(pscenerenderable->m_transform);
+            // auto normalMatrix = m_pgraphics3dengineinstance->normal_matrix(pscenerenderable->m_transform);
 
             // floating_matrix4 normalMatrix = floating_matrix3(modelMatrix).inversed().transposed();
 

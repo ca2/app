@@ -401,6 +401,8 @@ namespace core
          m_dLastLuminanceH = -1.0;
          m_dLastLuminanceS = -1.0;
 
+         m_bPendingLuminanceRebuild = true;
+
          m_strOk = "OK";
 
       }
@@ -712,7 +714,9 @@ namespace core
 
             m_hls.m_dS = hls.m_dS;
 
-            rebuild_luminance();
+            m_bPendingLuminanceRebuild = true;
+
+            //rebuild_luminance();
 
             on_color_change();
 
@@ -930,6 +934,15 @@ namespace core
 
          }
 
+         if (m_bPendingLuminanceRebuild)
+         {
+
+            m_bPendingLuminanceRebuild = false;
+
+            rebuild_luminance();
+
+         }
+
          rTarget.set_size(m_pimage->get_size());
 
          ::i32_rectangle rSource = m_pimage->rectangle();
@@ -1121,7 +1134,7 @@ namespace core
 
          }
 
-         rebuild_luminance();
+         m_bPendingLuminanceRebuild = true;
 
 
       }
@@ -1199,7 +1212,9 @@ namespace core
 
          m_pimageLuminance = image()->create_image({ m_rectangleColors.width() / 8,  m_rectangleColors.height() });
 
-         rebuild_luminance();
+         //rebuild_luminance();
+
+         m_bPendingLuminanceRebuild = true;
 
       }
 

@@ -6,6 +6,8 @@
 //#include "aura/graphics/write_text/_constant.h"
 #include "aura/graphics/write_text/font.h"
 #include "bred/gpu/bred_approach.h"
+#include "bred/graphics3d/graphics3d.h"
+#include "bred/user/user/graphics3d.h"
 #include "acme/platform/node.h"
 
 
@@ -973,6 +975,33 @@ namespace bred
       //}
 
       //return ::success;
+
+   }
+
+   
+   ::graphics3d::graphics3d * application::graphics3d()
+   {
+
+      if (!m_pgraphics3d)
+      {
+
+         constructø(m_pgraphics3d);
+
+         m_pgraphics3d->initialize_graphics3d();
+
+      }
+
+      return m_pgraphics3d;
+
+   }
+
+
+   void application::register_user_graphics3d(::collection::index i, ::user::graphics3d * pusergraphics3d)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      m_usergraphics3da.atø(i) = pusergraphics3d;
 
    }
 

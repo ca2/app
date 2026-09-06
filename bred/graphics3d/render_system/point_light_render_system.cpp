@@ -9,7 +9,7 @@
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/shader.h"
 #include "bred/graphics3d/camera.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
 //#include "bred/graphics3d/frame.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/game_object.h"
@@ -71,7 +71,7 @@ namespace graphics3d
    }
 
 
-   void point_light_render_system::initialize_render_system(graphics3d::engine *pengine)
+   void point_light_render_system::initialize_render_system(::graphics3d::engine_instance *pengine)
    {
 
       ::graphics3d::render_system::initialize_render_system(pengine);
@@ -235,9 +235,9 @@ namespace graphics3d
    void point_light_render_system::on_update(::gpu::context* pgpucontext, ::graphics3d::scene_base * pscene)
    {
 
-      auto dt = m_pengine->dt();
+      auto dt = m_pgraphics3dengineinstance->dt();
 
-      //auto pscene = m_pengine->m_pscene;
+      //auto pscene = m_pgraphics3dengineinstance->m_pscene;
 
       auto pblockGlobalUbo = pscene->global_ubo1(pgpucontext);
 

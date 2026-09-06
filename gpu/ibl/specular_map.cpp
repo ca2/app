@@ -6,13 +6,16 @@
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
+#include "bred/gpu/render_target.h"
+#include "bred/gpu/renderer.h"
 #include "bred/gpu/types.h"
 #include "bred/platform/timer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
 #include "bred/gpu/texture_site.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
+#include "bred/graphics3d/immersion_layer.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/skybox.h"
 #include "gpu/full_screen_quad.h"
@@ -71,10 +74,10 @@ namespace gpu
       }
 
 
-      void specular_map::initialize_specular_map(::graphics3d::scene_base * pscenebase)
+      void specular_map::initialize_specular_map(::graphics3d::scene_base * pscenebase, ::gpu::context * pgpucontext)
       {
 
-         initialize_scene_object(pscenebase);
+         initialize_scene_object(pscenebase->m_pimmersionlayer->m_pgraphics3dengineinstance->m_pgraphics3d);
          
          constructø(m_pshaderPrefilteredEnvMap);
 
@@ -92,14 +95,14 @@ namespace gpu
 
          auto pgpupropertiesVertex = ::gpu_properties<::graphics3d::shape_factory::Vertex>();
 
-         auto pinputlayoutVertex = m_pgpucontext->input_layout(pgpupropertiesVertex);
+         auto pinputlayoutVertex = pgpucontext->input_layout(pgpupropertiesVertex);
 
          m_pshaderPrefilteredEnvMap->m_propertiesPushShared.set_properties(
             ::gpu_properties<prefiltered_env_map_push_constants>());
          
-         m_pgpucontext->layout_push_constants(m_pshaderPrefilteredEnvMap->m_propertiesPushShared, false);
+         pgpucontext->layout_push_constants(m_pshaderPrefilteredEnvMap->m_propertiesPushShared, false);
 
-         m_pshaderPrefilteredEnvMap->initialize_shader_with_block(m_pgpucontext->m_pgpurenderer, blockVert, blockFrag,
+         m_pshaderPrefilteredEnvMap->initialize_shader_with_block(pgpucontext->m_pgpurenderer, blockVert, blockFrag,
                                                                   pinputlayoutVertex);
 
          construct_newø(m_ptexturesitePrefilteredEnvMapCubemap);
@@ -120,11 +123,11 @@ namespace gpu
          textureflagsPrefilteredEnvMap.m_bRenderTarget = true;
 
          m_ptexturesitePrefilteredEnvMapCubemap->gpu_texture()->create_texture(
-            m_pgpucontext, 
+            pgpucontext, 
             textureattributesPrefilteredEnvMap, 
             textureflagsPrefilteredEnvMap);
 
-         m_prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 1.f);
+         m_prenderableCube = pgpucontext->m_pgraphics3dengineinstance->shape_factory()->create_cube_001(pgpucontext, 1.f);
 
          constructø(m_pshaderBrdfConvolution);
 
@@ -133,8 +136,8 @@ namespace gpu
          m_pshaderBrdfConvolution->m_ecullmode = ::gpu::e_cull_mode_none;
 
          m_pshaderBrdfConvolution->initialize_shader_with_block(
-            m_pgpucontext->m_pgpurenderer, brdf_convolution_vert_memory(), brdf_convolution_frag_memory(), 
-            m_pgpucontext->input_layout(::gpu_properties<::gpu::position2_uv>()));
+            pgpucontext->m_pgpurenderer, brdf_convolution_vert_memory(), brdf_convolution_frag_memory(), 
+            pgpucontext->input_layout(::gpu_properties<::gpu::position2_uv>()));
 
          construct_newø(m_ptexturesiteBrdfConvolutionMap);
          constructø(m_ptexturesiteBrdfConvolutionMap->m_pgputextureSite);
@@ -150,19 +153,21 @@ namespace gpu
          textureflagsBrdfConvMap.m_bShaderResource = true;
 
          m_ptexturesiteBrdfConvolutionMap->gpu_texture()->create_texture(
-            m_pgpucontext, 
+            pgpucontext, 
             textureattributesBrdfConvMap,
             textureflagsBrdfConvMap);
 
       }
 
 
-      void specular_map::computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer)
+      void specular_map::computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer, ::graphics3d::scene_base * pscenebase)
       {
 
          ::bred::Timer timer;
 
-         ::gpu::context_lock contextlock(m_pgpucontext);
+         auto pgpucontext = pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext;
+
+         ::gpu::context_lock contextlock(pgpucontext);
 
          using namespace graphics3d;
 
@@ -173,11 +178,11 @@ namespace gpu
                                             lookAt(origin, unitZ, -unitY), lookAt(origin, -unitZ, -unitY)};
 
          floating_matrix4 projection =
-            m_pgpucontext->m_pengine->perspective(90.0_f_degrees, // 90 degrees to cover one face
+            pgpucontext->m_pgraphics3dengineinstance->perspective(90.0_f_degrees, // 90 degrees to cover one face
                                                   1.0f, // its a square
                                                   0.1f, 2.0f);
 
-         auto pskybox = m_pscene->current_skybox();
+         auto pskybox = pscenebase->current_skybox();
 
          auto ptextureSource = pskybox->m_ptexturesite->gpu_texture();
 
@@ -212,7 +217,7 @@ namespace gpu
 
                strMessage.format("prefiltered_env_map mip {} layer {}", iCurrentMip, iLayer);
 
-               m_pgpucontext->start_debug_happening(pgpucommandbuffer, strMessage);
+               pgpucontext->start_debug_happening(pgpucommandbuffer, strMessage);
 
                ptexturePrefilteredEnvMapCubemap->set_current_layer(iLayer);
 
@@ -238,7 +243,7 @@ namespace gpu
 
                pgpucommandbuffer->end_render();
 
-               m_pgpucontext->end_debug_happening(pgpucommandbuffer);
+               pgpucontext->end_debug_happening(pgpucommandbuffer);
 
             }
 
@@ -270,7 +275,9 @@ namespace gpu
 
          m_pfullscreenquadBrdf = createø<::gpu::full_screen_quad>();
 
-         m_pfullscreenquadBrdf->initialize_full_screen_quad(m_pgpucontext);
+         auto pgpucontext = pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext;
+
+         m_pfullscreenquadBrdf->initialize_full_screen_quad(pgpucontext);
          
          pcommandbuffer->begin_render(m_pshaderBrdfConvolution, m_ptexturesiteBrdfConvolutionMap);
 
@@ -282,7 +289,7 @@ namespace gpu
 
          pcommandbuffer->set_scissor(rectangleViewport);
 
-         m_pgpucontext->clear(m_ptexturesiteBrdfConvolutionMap->gpu_texture(), ::color::transparent);
+         pgpucontext->clear(m_ptexturesiteBrdfConvolutionMap->gpu_texture(), ::color::transparent);
 
          pcommandbuffer->draw(m_pfullscreenquadBrdf);
          

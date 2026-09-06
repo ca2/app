@@ -1,12 +1,15 @@
 // create by camilo on 2025-08-21 18:38 <3ThomasBorregaardSorensen!!
 #include "platform.h"
-#include "engine.h"
+#include "engine_instance.h"
 #include "render_system.h"
 #include "bred/graphics3d/scene_renderable.h"
+#include "bred/gpu/command_buffer.h"
 
 
 namespace graphics3d
 {
+
+
    render_system::render_system()
    {
 
@@ -40,10 +43,10 @@ namespace graphics3d
 
 
 
-   void render_system::initialize_render_system(::graphics3d::engine* pengine)
+   void render_system::initialize_render_system(::graphics3d::engine_instance* pengineinstance)
    {
 
-      m_pengine = pengine;
+      m_pgraphics3dengineinstance = pengineinstance;
 
    }
 
@@ -82,6 +85,10 @@ namespace graphics3d
          return;
 
       }
+
+      auto pgpucommandbuffer = ::gpu::current_command_buffer();
+
+      pgpucommandbuffer->m_prendersystem = this;
 
       on_render(pgpucontext, pscene);
 

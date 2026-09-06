@@ -2251,6 +2251,21 @@ void TransformSkewX(::f32* t, ::f32 a)
 	}
 
 
+   bool context::_geometry_aligned_circle(::f32 cx, ::f32 cy, ::f32 radius, ::f32 width,
+                                         enum_circle_stroke_align alignment)
+   {
+      const auto adjusted = geometry_aligned_circle_radius(radius, width, alignment);
+      if (!std::isfinite(cx) || !std::isfinite(cy) || adjusted <= 0.f)
+      {
+         return false;
+      }
+
+      stroke_width(width);
+      circle(cx, cy, adjusted);
+      return true;
+   }
+
+
 	void context::debug_dump_path_cache()
 	{
 		const ::nano2d::path * path;

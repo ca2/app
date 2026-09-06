@@ -17,7 +17,7 @@ namespace graphics3d
 {
 
 
-	class CLASS_DECL_BRED engine :
+	class CLASS_DECL_BRED engine_instance :
 		virtual public ::app_consumer < ::bred::application, ::object, ::gpu::compositor >
 	{
 	public:
@@ -31,6 +31,7 @@ namespace graphics3d
 		//::pointer < ::gpu::approach >					      m_papproach;
 		//::gpu::context_pointer					      m_pgpucontext;
 		//::gpu::context_pointer					      m_pgpucontextGraphics3D;
+      ::pointer < ::graphics3d::graphics3d >             m_pgraphics3d;
 		::pointer < ::user::graphics3d >				         m_pusergraphics3d;
 
 	   ::pointer < ::graphics3d::immersion_layer >        m_pimmersionlayer;
@@ -51,20 +52,20 @@ namespace graphics3d
       ::f32 m_fInputPitchFlip;
 		//::image32_callback                        m_callbackImage32CpuBuffer;
       ::pointer<::graphics3d::shape_factory> m_pshapefactory;
-
+      //::pointer < ::graphics3d::scene >                  m_pgraphics3dsceneMain;
       ///::function<void(::gpu::texture *)>                 m_functionOnFrame;
 
 
-		engine();
-		~engine() override;
+		engine_instance();
+		~engine_instance() override;
 
 
-		virtual void initialize_engine(::user::graphics3d* pimpact);
+		virtual void initialize_graphics3d_engine_instance(::user::graphics3d* pimpact);
 
-      void set_gpu_performance_diagnostics(bool bEnabled);
-      bool gpu_performance_diagnostics_enabled() const;
-      void set_gpu_performance_diagnostics_interval(::i32 iMilliseconds);
-      ::i32 gpu_performance_diagnostics_interval() const;
+      //void set_gpu_performance_diagnostics(bool bEnabled);
+      //bool gpu_performance_diagnostics_enabled() const;
+      //void set_gpu_performance_diagnostics_interval(::i32 iMilliseconds);
+      //::i32 gpu_performance_diagnostics_interval() const;
 
 
       virtual void defer_process_load_assets_commands();
@@ -147,7 +148,7 @@ namespace graphics3d
 
 	};
 
-	//floating_sequence3 camera::pole_up() { return m_pengine->camera_pole_up(); }
+	//floating_sequence3 camera::pole_up() { return m_pgraphics3dengineinstance->camera_pole_up(); }
 } // namespace graphics3d
 
 

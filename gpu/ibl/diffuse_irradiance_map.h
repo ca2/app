@@ -70,14 +70,14 @@ namespace gpu
          //   ::graphics3d::scene_base * pscenebase,
          //   ::graphics3d::renderable * prenderableSkybox);
          /// it uses current skybox renderable in pscenebase
-         virtual void initialize_diffuse_irradiance_map(::graphics3d::scene_base *pscenebase);
+         virtual void initialize_diffuse_irradiance_map(::graphics3d::scene_base *pscenebase, ::gpu::context * pgpucontext);
          
 
          //    ::graphics3d::renderable * prenderableSkybox);
          /**
           * Render the diffuse irradiance map.
           */
-         virtual void computeIrradianceMap(::gpu::command_buffer * pgpucommandbuffer);
+         virtual void computeIrradianceMap(::gpu::command_buffer * pgpucommandbuffer, ::graphics3d::scene_base * pscenebase);
 
 
          /**

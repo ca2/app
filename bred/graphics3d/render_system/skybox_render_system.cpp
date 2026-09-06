@@ -11,7 +11,7 @@
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
 #include "bred/gpu/texture_site.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/shape_factory.h"
 #include "bred/graphics3d/skybox.h"
@@ -51,7 +51,7 @@ namespace graphics3d
 
       ::memory memory;
 
-      m_pengine->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/skybox_ibl.vert");
+      m_pgraphics3dengineinstance->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/skybox_ibl.vert");
 
       return memory;
 
@@ -64,7 +64,7 @@ namespace graphics3d
 
       ::memory memory;
 
-      m_pengine->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/skybox_ibl.frag");
+      m_pgraphics3dengineinstance->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/skybox_ibl.frag");
 
       return memory;
 
@@ -76,7 +76,7 @@ namespace graphics3d
 
       ::memory memory;
 
-      m_pengine->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/hdr_skybox_ibl.frag");
+      m_pgraphics3dengineinstance->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/hdr_skybox_ibl.frag");
 
       return memory;
 
@@ -86,20 +86,20 @@ namespace graphics3d
    void skybox_render_system::on_prepare(gpu::context *pgpucontext)
    {
 
-      //auto modeldataCube = m_pengine->shape_factory()->create_cube(pgpucontext, 32.0f);
+      //auto modeldataCube = m_pgraphics3dengineinstance->shape_factory()->create_cube(pgpucontext, 32.0f);
 
       ::pointer<::graphics3d::renderable> pmodelCube;
 
       //if (pgpucontext->m_eapi == ::gpu::e_api_opengl)
       {
 
-        pmodelCube = m_pengine->shape_factory()->create_cube_002(pgpucontext, 32.0f);
+        pmodelCube = m_pgraphics3dengineinstance->shape_factory()->create_cube_002(pgpucontext, 32.0f);
 
       }
       //else
       {
 
-        // pmodelCube = m_pengine->shape_factory()->create_cube_001(pgpucontext, 32.0f);
+        // pmodelCube = m_pgraphics3dengineinstance->shape_factory()->create_cube_001(pgpucontext, 32.0f);
 
       }
 
@@ -214,7 +214,7 @@ namespace graphics3d
 
 		//if (!m_bHasCubemap) return;
 
-	   auto pengine = m_pengine;
+	   auto pengine = m_pgraphics3dengineinstance;
 
 	   //auto pscene = pengine->current_scene();
 

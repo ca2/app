@@ -6,7 +6,7 @@
 #include "bred/graphics3d/immersion_layer.h"
 //#include "bred/graphics3d/window_input.h"
 //#include "bred/graphics3d/renderer.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
 //#include "SceneFoundry/sandbox_game/player.h"
 //#include "SceneFoundry/sandbox_game/scene.h"
 //#include <iostream>
@@ -32,11 +32,11 @@ namespace prodevian
 
       //void initialize_immersion_layer(::graphics3d::IWindowInput * pinput, ::graphics3d::asset_manager & assets);
 
-      //void initialize_immersion_layer(::graphics3d::engine * pengine, ::graphics3d::asset_manager * passetmanager) override;
+      //void initialize_immersion_layer(::graphics3d::engine_instance * pengine, ::graphics3d::asset_manager * passetmanager) override;
 
-      void initialize_immersion_layer(::graphics3d::engine *pengine) override;
+      void initialize_immersion_layer(::graphics3d::engine_instance *pengine) override;
 
-      void on_initialize_immersion_layer() override;
+      void on_initialize_immersion_layer(::gpu::context * pgpucontext) override;
       //void onInit() override;
       //void onUpdate(::f32 dt) override;
 
@@ -52,11 +52,11 @@ namespace prodevian
 
          pscene->m_strSceneName = scopedstrName;
 
-         //pscene->initialize_scene(m_pengine);
+         //pscene->initialize_scene(m_pgraphics3dengineinstance);
 
          pscene->m_pimmersionlayer = this;
 
-         m_pengine->m_pimmersionlayer->add_scene(pscene);
+         m_pgraphics3dengineinstance->m_pimmersionlayer->add_scene(pscene);
 
          return pscene;
 

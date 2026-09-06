@@ -109,22 +109,22 @@ namespace gpu_opengl
          // glDrawElements(GL_TRIANGLES, m_indexa.size(), GL_UNSIGNED_INT, 0);
          // glBindVertexArray(0);
 
-
-                  auto pgpucontext1 = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext.m_p;
+         auto pgpucontext1 = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext.m_p;
 
          ::cast<::gpu_opengl::shader> pshader = pgpucontext1->m_pshaderBound;
 
          ::gpu::enum_model emodel = ::gpu::e_model_none;
 
-
-      if (m_prenderableParent)
+         if (m_prenderableParent)
          {
 
             if (m_prenderableParent->m_prenderableParent)
             {
 
                emodel = m_prenderableParent->m_prenderableParent->m_egpumodel;
+
             }
+
          }
 
          if (emodel == ::gpu::e_model_wavefront_for_texture)
@@ -194,10 +194,19 @@ namespace gpu_opengl
 
          }
 
+         if (!pcommandbuffer->m_prendersystem)
+         {
+            throw ::exception(error_wrong_state, "OpenGL mesh draw requires an active render system.");
+         }
 
          auto erendersystem = pcommandbuffer->m_prendersystem->m_erendersystem;
 
-         if (erendersystem == ::graphics3d::e_render_system_skybox_ibl)
+         if (erendersystem == ::graphics3d::e_render_system_wavefront_obj)
+         {
+            // The OBJ renderer has already bound its shader, scene uniforms,
+            // and model/normal matrices. Submit this mesh with those bindings.
+         }
+         else if (erendersystem == ::graphics3d::e_render_system_skybox_ibl)
          {
 
             //glActiveTexture(GL_TEXTURE0);

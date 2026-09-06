@@ -38,7 +38,7 @@ namespace graphics3d
       ::string_map < size_t>                                            m_mapTextureIndex; // name → index
       ::pointer_array_base<::gpu::texture>                              m_texturea; // index → texture
 
-      ::pointer < graphics3d::engine >		                              m_pengine;
+      ::pointer < ::graphics3d::engine_instance >		                  m_pgraphics3dengineinstance;
       //VkQueue						m_transferQueue;
 
       // caches
@@ -51,7 +51,7 @@ namespace graphics3d
       ~asset_manager();
 
 
-      virtual void initialize_asset_manager(graphics3d::engine* pengine);
+      virtual void initialize_asset_manager(::graphics3d::engine_instance* pengineinstance);
 
 
       void preloadGlobalAssets();
@@ -106,7 +106,7 @@ namespace graphics3d
       //    return it->element2()->GetDescriptor();
       // }
 
-      graphics3d::renderable * get_renderable(const ::scoped_string& name);
+      ::graphics3d::renderable * get_renderable(const ::scoped_string& name);
       //graphics3d::renderable * getGLTFmodel(const ::scoped_string& name);
       ::gpu::texture * getTexture(const ::scoped_string& name);
       ::gpu::texture * getTexture(size_t index);

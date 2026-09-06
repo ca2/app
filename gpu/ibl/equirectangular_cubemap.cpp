@@ -10,7 +10,7 @@
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
 #include "bred/gpu/texture_site.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
 #include "bred/graphics3d/shape_factory.h"
 #include "bred/platform/timer.h"
 #include "bred/gpu/device.h"
@@ -113,7 +113,7 @@ namespace gpu
             textureattributes,
             textureflags);
 
-         m_prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
+         m_prenderableCube = m_pgpucontext->m_pgraphics3dengineinstance->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
 
       }
 
@@ -162,7 +162,7 @@ namespace gpu
 
          }
 
-         floating_matrix4 projection = m_pgpucontext->m_pengine->perspective(
+         floating_matrix4 projection = m_pgpucontext->m_pgraphics3dengineinstance->perspective(
             90_f_degrees, // 90 degrees to cover one face
             1.0f, // its a square
             0.1f,

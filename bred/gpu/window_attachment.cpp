@@ -14,7 +14,7 @@
 #include "window_attachment.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/windowing/window.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -666,10 +666,10 @@ sizeRaw
                pgpudevice = m_pgpucontextWindow->m_pgpudevice;
 
             }
-            else if (m_pgraphics3dengine)
+            else if (m_pgraphics3dengineinstance)
             {
 
-               pgpudevice = m_pgraphics3dengine->gpu_context()->m_pgpudevice;
+               pgpudevice = m_pgraphics3dengineinstance->gpu_context()->m_pgpudevice;
 
             }
 

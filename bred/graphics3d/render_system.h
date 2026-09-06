@@ -12,13 +12,11 @@ namespace graphics3d
    public:
 
 
-      ::graphics3d::enum_render_system m_erendersystem;
+      ::graphics3d::enum_render_system                m_erendersystem;
 
-      ::pointer<::graphics3d::engine> m_pengine;
+      ::pointer<::graphics3d::engine_instance>        m_pgraphics3dengineinstance;
 
-
-
-      bool m_bPrepared = false;
+      bool                                            m_bPrepared = false;
 
 
       render_system();
@@ -26,7 +24,7 @@ namespace graphics3d
 
       ~render_system() override;
 
-      virtual void initialize_render_system(::graphics3d::engine* pengine);
+      virtual void initialize_render_system(::graphics3d::engine_instance* pengineinstance);
 
 
       virtual ::graphics3d::scene_renderable *current_scene_renderable();

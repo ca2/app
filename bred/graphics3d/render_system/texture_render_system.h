@@ -59,7 +59,7 @@ namespace graphics3d
       // 	size_t frameCount)override;
 
 
-      void initialize_render_system(::graphics3d::engine *pengine) override;
+      void initialize_render_system(::graphics3d::engine_instance *pengine) override;
 
 
       virtual ::floating_matrix4 model_matrix2(::graphics3d::scene_renderable *pscenerenderable);

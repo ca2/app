@@ -10,7 +10,8 @@
 #include "bred/gpu/device.h"
 #include "bred/gpu/texture.h"
 #include "bred/gpu/texture_site.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
+#include "bred/graphics3d/graphics3d.h"
 #include "bred/graphics3d/global_ubo1.h"
 #include "bred/graphics3d/immersion_layer.h"
 #include "bred/prodevian/actor.h"
@@ -41,7 +42,7 @@ namespace graphics3d
    void scene_base::initialize_scene(::graphics3d::immersion_layer *pimmersionlayer)
    {
 
-      initialize_gpu_context_object(pimmersionlayer->m_pengine->get_gpu_context());
+      initialize_gpu_context_object(pimmersionlayer->m_pgraphics3dengineinstance->get_gpu_context());
 
       m_pimmersionlayer = pimmersionlayer;
 
@@ -52,10 +53,20 @@ namespace graphics3d
    }
 
 
+   ::graphics3d::graphics3d * scene_base::graphics3d()
+   {
+
+      ::cast < ::bred::application > pbredapplication = m_papplication;
+
+      return pbredapplication->graphics3d();
+
+   }
+
+
    void scene_base::on_initialize_scene() {}
 
 
-   void scene_base::set_skybox(::graphics3d::skybox *pskybox)
+   void scene_base::set_skybox(::graphics3d::skybox *pskybox, ::gpu::context * pgpucontext)
    {
       // m_iSkyboxId = pobject->getId();
       // m_pskyboxCurrent = pskybox ;
@@ -65,7 +76,7 @@ namespace graphics3d
          
          m_pskyboxCurrent2 = pskybox;
 
-         generateIbl();
+         generateIbl(pgpucontext);
 
       }
 
@@ -232,7 +243,9 @@ namespace graphics3d
             m_strSkybox = strName;
          }
 
-         m_mapSkybox[strName] = pskybox;
+         auto pgraphics3d = graphics3d();
+
+         pgraphics3d->m_mapSkybox[strName] = pskybox;
          //// Store or fallback cubemap texture name on scene_base-wide variable
          ////if (isSkybox) {
          // if (pskybox->m_strCubemapTextureName.has_character())
@@ -327,7 +340,7 @@ namespace graphics3d
    }
 
 
-   void scene_base::loadSceneFile(const ::scoped_string &fileName)
+   void scene_base::loadSceneFile(const ::scoped_string &fileName, ::gpu::context * pgpucontext)
    {
 
       ::file::path path = "matter://scenes/" + fileName + ".json";
@@ -398,12 +411,16 @@ namespace graphics3d
                if (m_strSkybox.has_character())
       {
 
-         auto pskybox = m_mapSkybox[m_strSkybox];
+                  //::cast < ::bred::application > pbredapplication = m_papplication;
+
+                  auto pgraphics3d = graphics3d();
+
+         auto pskybox = pgraphics3d->m_mapSkybox[m_strSkybox];
 
          if (pskybox)
          {
 
-            set_skybox(pskybox);
+            set_skybox(pskybox, pgpucontext);
          }
       }
 
@@ -492,9 +509,9 @@ namespace graphics3d
       if (m_pcameraDefault)
       {
 
-         m_pimmersionlayer->m_pengine->m_transform.m_sequence3Position = m_pcameraDefault->position();
-         m_pimmersionlayer->m_pengine->m_transform.m_rotation = m_pcameraDefault->m_rotation;
-         //m_pimmersionlayer->m_pengine->m_transform.m_anglePitch = m_pcameraDefault->pitch();
+         m_pimmersionlayer->m_pgraphics3dengineinstance->m_transform.m_sequence3Position = m_pcameraDefault->position();
+         m_pimmersionlayer->m_pgraphics3dengineinstance->m_transform.m_rotation = m_pcameraDefault->m_rotation;
+         //m_pimmersionlayer->m_pgraphics3dengineinstance->m_transform.m_anglePitch = m_pcameraDefault->pitch();
 
       }
 
@@ -638,7 +655,7 @@ namespace graphics3d
                                                                            const ::file::path &path)
    {
 
-      auto pgpucontext = m_pimmersionlayer->m_pengine->gpu_context();
+      auto pgpucontext = m_pimmersionlayer->m_pgraphics3dengineinstance->gpu_context();
 
       ::gpu::renderable_t model;
 
@@ -770,7 +787,7 @@ namespace graphics3d
    // ::pointer < ::graphics3d::renderable> scene_base::create_tinyobj_renderable(const ::file::path& path)
    // {
    //
-   //    auto pmodel = m_pengine->create_tinyobjloader_model(path);
+   //    auto pmodel = m_pgraphics3dengineinstance->create_tinyobjloader_model(path);
    //
    //    return pmodel;
    //
@@ -800,7 +817,7 @@ namespace graphics3d
    // ::pointer < ::graphics3d::renderable> scene_base::create_tinyobj_scene_object(const ::file::path& path)
    // {
    //
-   //    auto pengine = m_pengine;
+   //    auto pengine = m_pgraphics3dengineinstance;
    //
    //    auto pgpucontext = pengine->gpu_context();
    //
@@ -821,7 +838,7 @@ namespace graphics3d
    // }
 
 
-   void scene_base::generateIbl()
+   void scene_base::generateIbl(::gpu::context * pgpucontext)
    {
 
       // void scene::generateIbl()
@@ -874,9 +891,9 @@ namespace graphics3d
       //      }
       //   }
       //}
-      auto pcommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
+      auto pcommandbuffer = pgpucontext->beginSingleTimeCommands(pgpucontext->m_pgpudevice->graphics_queue());
       // this->flushCommandBuffer(layoutCmd, m_vkqueueTransfer3, true);
-      m_pgpucontext->m_pcommandbufferMain = pcommandbuffer.operator gpu::command_buffer *();
+      pgpucontext->m_pcommandbufferMain = pcommandbuffer.operator gpu::command_buffer *();
 
       bool bCommandBufferRecordingSucceeded = true;
 
@@ -884,7 +901,7 @@ namespace graphics3d
       {
 
          // Generate BRDF LUT first (your existing function)
-         generateIblBRDFlut();
+         generateIblBRDFlut(pgpucontext);
       }
       catch (...)
       {
@@ -897,7 +914,7 @@ namespace graphics3d
       {
 
          // Now generate irradiance and prefiltered maps using environmentCube (must be valid)
-         if (!m_pgpucontext->m_pengine->m_pimmersionlayer->m_passetmanager->m_ptextureEnvironmentCube)
+         if (!m_pgpucontext->m_pgraphics3dengineinstance->m_pimmersionlayer->m_passetmanager->m_ptextureEnvironmentCube)
          {
 
             error("[scene] environmentCube is null - aborting IBL generation to avoid descriptor errors.");
@@ -908,8 +925,8 @@ namespace graphics3d
             try
             {
 
-               generateIblIrradianceMap();
-               generateIblPrefilteredEnvMap();
+               generateIblIrradianceMap(pgpucontext);
+               generateIblPrefilteredEnvMap(pgpucontext);
 
                information("[scene] IBL assets generated successfully.");
             }
@@ -938,23 +955,23 @@ namespace graphics3d
 
       }
 
-      m_pgpucontext->m_pcommandbufferMain.release();
+      pgpucontext->m_pcommandbufferMain.release();
 
 
       //}
    }
 
 
-   void scene_base::generateIblBRDFlut()
+   void scene_base::generateIblBRDFlut(::gpu::context * pgpucontext)
    {
 
       // return {};
    }
 
-   void scene_base::generateIblPrefilteredEnvMap() {}
+   void scene_base::generateIblPrefilteredEnvMap(::gpu::context * pgpucontext) {}
 
 
-   void scene_base::generateIblIrradianceMap() {}
+   void scene_base::generateIblIrradianceMap(::gpu::context * pgpucontext) {}
 
 
    //::pointer<::gpu::texture> scene_base::generatePrefilteredEnvMap(::gpu::texture *environmentCubeExisting,

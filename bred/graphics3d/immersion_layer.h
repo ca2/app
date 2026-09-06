@@ -15,25 +15,25 @@ namespace graphics3d
 	{
 	public:
 
-      ::floating_sequence3 m_initialCameraPosition{0.f};
-      ::graphics3d::floating_rotation m_rotationInitialCamera;
+      ::floating_sequence3                                              m_initialCameraPosition{0.f};
+      ::graphics3d::floating_rotation                                   m_rotationInitialCamera;
 
-	   ::pointer < ::graphics3d::engine >                          m_pengine;
+	   ::pointer < ::graphics3d::engine_instance >                       m_pgraphics3dengineinstance;
 	   ::string_map_base < ::pointer < ::graphics3d::scene_base > >		m_mapScene;
-	   ::pointer < ::graphics3d::scene_base >								   m_pscene;
-	   ::pointer < ::graphics3d::camera >			                  m_pcamera;
-	   ::pointer < ::graphics3d::asset_manager >			            m_passetmanager;
+	   ::pointer < ::graphics3d::scene_base >								      m_pscene;
+	   ::pointer < ::graphics3d::camera >			                        m_pcamera;
+	   ::pointer < ::graphics3d::asset_manager >			                  m_passetmanager;
 
 
 	   immersion_layer();
 	   ~immersion_layer() override;
 
 
-	   //virtual void initialize_immersion_layer(::graphics3d::engine * pengine, ::graphics3d::asset_manager * passetmanager);
+	   //virtual void initialize_immersion_layer(::graphics3d::engine_instance * pengine, ::graphics3d::asset_manager * passetmanager);
 
-      virtual void initialize_immersion_layer(::graphics3d::engine *pengine);
+      virtual void initialize_immersion_layer(::graphics3d::engine_instance *pengineinstance);
 
-	   virtual void on_initialize_immersion_layer();
+	   virtual void on_initialize_immersion_layer(::gpu::context * pgpucontext);
 
 	   virtual void add_scene(::graphics3d::scene_base* pscene);
 

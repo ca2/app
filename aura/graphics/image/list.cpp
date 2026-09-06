@@ -6,8 +6,9 @@
 #include "acme/parallelization/synchronous_lock.h"
 //#include "aura/graphics/draw2d/draw_scope.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
-#include "aura/graphics/draw2d/lock.h"
+//#include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/drawing.h"
 
 /*
@@ -114,7 +115,7 @@ namespace image
                                        const class ::opacity &opacity)
    {
 
-      ::draw2d::lock draw2dlock(this);
+      //::draw2d::lock draw2dlock(this);
 
       _synchronous_lock synchronouslockSource(
          pimagelistSource->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -141,13 +142,13 @@ namespace image
 
       ::image::image_pointer pimage;
 
-      {
+      //{
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          pimage = m_pimage;
 
-      }
+      //}
 
       pimage->realize(pdraw2dgraphics);
 
@@ -186,7 +187,7 @@ namespace image
 
       ::i32_size size;
 
-      {
+//      {
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -201,7 +202,7 @@ namespace image
 
          size = m_size;
 
-      }
+  //    }
 
       __UNREFERENCED_PARAMETER(iFlag);
 
@@ -236,7 +237,7 @@ namespace image
 
       ::i32_size size;
 
-      {
+      //{
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -251,7 +252,7 @@ namespace image
 
          size = m_size;
 
-      }
+      //}
 
       __UNREFERENCED_PARAMETER(iFlag);
 
@@ -565,7 +566,7 @@ namespace image
    ::i32 image_list::set(::i32 iItemParam, const ::image::image_drawing & imagedrawing)
    {
 
-      ::draw2d::lock draw2dlock(this);
+      //::draw2d::lock draw2dlock(this);
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 

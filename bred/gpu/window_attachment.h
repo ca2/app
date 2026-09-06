@@ -52,7 +52,7 @@ namespace gpu
          ::gpu::post_frame_context_registry<
          ::pointer<::gpu::context>,
          ::pointer<::gpu::layer>>;
-      ::pointer < ::graphics3d::engine >                 m_pgraphics3dengine;
+      ::pointer < ::graphics3d::engine_instance >        m_pgraphics3dengineinstance;
       post_frame_context_registry_t                      m_postframecontextregistry;
 
 

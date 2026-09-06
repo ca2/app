@@ -72,7 +72,7 @@ namespace graphics3d
       //
       // void on_render(::gpu::frame *pframe) override;
 
-      void initialize_render_system(::graphics3d::engine * pengine) override;
+      void initialize_render_system(::graphics3d::engine_instance * pengineinstance) override;
 
       void on_prepare(::gpu::context* pgpucontext) override;
       void on_update(::gpu::context* pgpucontext, ::graphics3d::scene_base * pscene) override;

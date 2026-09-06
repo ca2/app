@@ -642,6 +642,7 @@
     <ClInclude Include="const\idpool.h" />
     <ClInclude Include="gpu\command_buffer_lease.h" />
     <ClInclude Include="gpu\texture_site.h" />
+    <ClInclude Include="graphics3d\graphics3d.h" />
     <ClInclude Include="platform.h" />
     <ClInclude Include="gltf\vertex.h" />
     <ClInclude Include="gpu\aaaa_gpu.h" />
@@ -707,7 +708,7 @@
     <ClInclude Include="graphics3d\class_set.h" />
     <ClInclude Include="graphics3d\class_set1.h" />
     <ClInclude Include="graphics3d\cube_map.h" />
-    <ClInclude Include="graphics3d\engine.h" />
+    <ClInclude Include="graphics3d\engine_instance.h" />
     <ClInclude Include="graphics3d\offscreen_frame_pacer.h" />
     <ClInclude Include="graphics3d\entity.h" />
     <ClInclude Include="graphics3d\aaa_frame.h" />
@@ -767,7 +768,10 @@
     <ClInclude Include="typeface\allocator.h" />
     <ClInclude Include="typeface\_.h" />
     <ClInclude Include="user\user\graphics3d.h" />
+    <ClInclude Include="user\user\gpu_statistics_impact.h" />
     <ClInclude Include="user\user\user.h" />
+    <ClInclude Include="user\user\_.h" />
+    <ClInclude Include="user\_.h" />
     <ClInclude Include="_.h" />
   </ItemGroup>
   <ItemGroup>
@@ -793,6 +797,7 @@
   <ItemGroup>
     <ClCompile Include="const\idpool.cpp" />
     <ClCompile Include="gpu\command_buffer_lease.cpp" />
+    <ClCompile Include="graphics3d\graphics3d.cpp" />
     <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugAsan|Win32'">Create</PrecompiledHeader>
@@ -861,7 +866,7 @@
     <ClCompile Include="gpu\_.cpp" />
     <ClCompile Include="graphics3d\asset_manager.cpp" />
     <ClCompile Include="graphics3d\camera.cpp" />
-    <ClCompile Include="graphics3d\engine.cpp" />
+    <ClCompile Include="graphics3d\engine_instance.cpp" />
     <ClCompile Include="graphics3d\frame.cpp" />
     <ClCompile Include="graphics3d\aaa_global_ubo.cpp" />
     <ClCompile Include="graphics3d\global_ubo1.cpp" />
@@ -898,6 +903,7 @@
     <ClCompile Include="typeface\typeface.cpp" />
     <ClCompile Include="typeface\allocator.cpp" />
     <ClCompile Include="user\user\graphics3d.cpp" />
+    <ClCompile Include="user\user\gpu_statistics_impact.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>

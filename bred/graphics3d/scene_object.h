@@ -22,12 +22,14 @@ namespace graphics3d
 
 
    class CLASS_DECL_BRED scene_object :
-      virtual public ::gpu::context_object
+      //virtual public ::gpu::context_object
+      virtual public ::particle
    {
    public:
 
 
-      ::pointer < ::graphics3d::scene_base >      m_pscene;
+      ::pointer < ::graphics3d::graphics3d >          m_pgraphics3d;
+      //::pointer < ::graphics3d::engine_instance >        m_pgraphics3dengineinstance;
       //::graphics3d::transform                m_transform;
       //::i64                              m_llId;
       //enum_render_system m_erendersystem;
@@ -48,7 +50,7 @@ namespace graphics3d
       ~scene_object() override;
 
 
-      virtual void initialize_scene_object(::graphics3d::scene_base * pscene);
+      virtual void initialize_scene_object(::graphics3d::graphics3d * pgraphics3d);
 
 
       //virtual ::graphics3d::transform &transform();

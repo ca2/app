@@ -10,7 +10,7 @@
 #include "bred/gpu/window_attachment.h"
 #include "bred/gpu/layer.h"
 #include "bred/graphics3d/asset_manager.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
 #include "bred/graphics3d/input.h"
 #include "bred/graphics3d/scene_base.h"
 #include "acme/constant/user_message.h"
@@ -109,7 +109,7 @@ namespace user
 
       pmessage->m_bRet = true;
 
-      if (m_pengine)
+      if (m_pgraphics3dengineinstance)
       {
 
          auto point = pmouse->m_pointHost;
@@ -128,7 +128,7 @@ namespace user
    void graphics3d::on_mouse_move(const i32_point & point)
    {
 
-      auto pengine = m_pengine;
+      auto pengine = m_pgraphics3dengineinstance;
 
       if (pengine)
       {
@@ -147,10 +147,10 @@ namespace user
    }
 
 
-   void graphics3d::defer_initialize_engine(const ::i32_rectangle& rectanglePlacement)
+   void graphics3d::defer_initialize_graphics3d_engine_instance(const ::i32_rectangle& rectanglePlacement)
    {
 
-      if (!m_pengine)
+      if (!m_pgraphics3dengineinstance)
       {
 
          ::string strImplementation = get_app()->graphics3d_get_implementation_name();
@@ -167,11 +167,11 @@ namespace user
 
          m_pkeymap->m_pimpact = this;
 
-         constructø(m_pengine);
+         constructø(m_pgraphics3dengineinstance);
 
-         m_pengine->initialize_engine(this);
+         m_pgraphics3dengineinstance->initialize_graphics3d_engine_instance(this);
 
-         m_pengine->defer_start(this, rectanglePlacement);
+         m_pgraphics3dengineinstance->defer_start(this, rectanglePlacement);
 
       }
 
@@ -191,23 +191,23 @@ namespace user
    void graphics3d::on_load_engine()
    {
 
-      auto pgpucontextEngine = m_pengine->gpu_context();
+      auto pgpucontextEngine = m_pgraphics3dengineinstance->gpu_context();
 
-      pgpucontextEngine->m_pengine = m_pengine;
+      pgpucontextEngine->m_pgraphics3dengineinstance = m_pgraphics3dengineinstance;
 
       auto pimmersion = create_immersion();
 
-      pimmersion->initialize_immersion_layer(m_pengine);
+      pimmersion->initialize_immersion_layer(m_pgraphics3dengineinstance);
 
-      m_pengine->m_pimmersionlayer = pimmersion;
+      m_pgraphics3dengineinstance->m_pimmersionlayer = pimmersion;
 
-      m_pengine->m_pimmersionlayer->m_pengine = m_pengine;
+      m_pgraphics3dengineinstance->m_pimmersionlayer->m_pgraphics3dengineinstance = m_pgraphics3dengineinstance;
 
-      m_pengine->m_pimmersionlayer->m_passetmanager->preloadGlobalAssets();
+      m_pgraphics3dengineinstance->m_pimmersionlayer->m_passetmanager->preloadGlobalAssets();
 
-      auto psceneMain = m_pengine->m_pimmersionlayer->create_main_scene();
+      auto psceneMain = m_pgraphics3dengineinstance->m_pimmersionlayer->create_main_scene();
 
-      m_pengine->m_pimmersionlayer->m_pscene = psceneMain;
+      m_pgraphics3dengineinstance->m_pimmersionlayer->m_pscene = psceneMain;
 
       psceneMain->m_pgpucontext = pgpucontextEngine;
 
@@ -221,7 +221,7 @@ namespace user
 
       // auto psceneMain = create_main_scene();
       //
-      // m_pengine->m_pimmersionlayer->set_current_scene(psceneMain);
+      // m_pgraphics3dengineinstance->m_pimmersionlayer->set_current_scene(psceneMain);
 
 
 
@@ -239,13 +239,13 @@ namespace user
    void graphics3d::on_mouse_out()
    {
 
-      if (m_pengine)
+      if (m_pgraphics3dengineinstance)
       {
 
-         if (m_pengine->m_pinput)
+         if (m_pgraphics3dengineinstance->m_pinput)
          {
 
-            m_pengine->m_pinput->_001OnMouseOut();
+            m_pgraphics3dengineinstance->m_pinput->_001OnMouseOut();
 
          }
 
@@ -257,7 +257,7 @@ namespace user
    void graphics3d::on_message_left_button_down(::message::message* pmessage)
    {
 
-      auto pengine = m_pengine;
+      auto pengine = m_pgraphics3dengineinstance;
 
       if (::is_null(pengine))
       {
@@ -306,9 +306,9 @@ namespace user
 
       host_to_client()(point);
 
-      m_pengine->m_pinput->m_mousestate.m_position.x = (::f32) point.x;
-      m_pengine->m_pinput->m_mousestate.m_position.y = (::f32) point.y;
-      m_pengine->m_pinput->m_mousestate.m_buttons.left = false;
+      m_pgraphics3dengineinstance->m_pinput->m_mousestate.m_position.x = (::f32) point.x;
+      m_pgraphics3dengineinstance->m_pinput->m_mousestate.m_position.y = (::f32) point.y;
+      m_pgraphics3dengineinstance->m_pinput->m_mousestate.m_buttons.left = false;
 
       
 
@@ -369,7 +369,7 @@ namespace user
    }
 
 
-   void graphics3d::draw_gpu_statistics(::draw2d::graphics_pointer& pdraw2dgraphics)
+   void graphics3d::draw_gpu_statistics(::i32 yParam, const ::scoped_string & scopedstrTitle, ::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -422,7 +422,9 @@ namespace user
 
          //::f64 x = 0.;
 
-         ::f64 y = 0.;
+         ::f64 y = (::f64) yParam;
+
+        
 
          ::i32_point point;
 
@@ -447,7 +449,7 @@ namespace user
 
          strText.formatf("øçåJErDgTBS__!!; %lld", (::i64)iFrameSerial);
 
-         stra.atø(0) = strText;
+         stra.atø(0) = scopedstrTitle;
 
          auto size = pdraw2dgraphics->get_text_extent(strText);
 
@@ -465,16 +467,16 @@ namespace user
 
          stra.atø(2) = strFrameTime;
 
-         ::string strGraphicsModeCompletion;
+         //::string strGraphicsModeCompletion;
 
-         strGraphicsModeCompletion.format("Graphics Mode Completion: {}/{} {:.3f}%", 
-            m_papplication->gpu_approach()->graphics3d_modes_step(),
-            m_papplication->gpu_approach()->graphics3d_modes_step_count(),
-            ((::f64)m_papplication->gpu_approach()->graphics3d_modes_step()/
-            (::f64)m_papplication->gpu_approach()->graphics3d_modes_step_count()) * 100.0
-            );
+         //strGraphicsModeCompletion.format("Graphics Mode Completion: {}/{} {:.3f}%", 
+         //   m_papplication->gpu_approach()->graphics3d_modes_step(),
+         //   m_papplication->gpu_approach()->graphics3d_modes_step_count(),
+         //   ((::f64)m_papplication->gpu_approach()->graphics3d_modes_step()/
+         //   (::f64)m_papplication->gpu_approach()->graphics3d_modes_step_count()) * 100.0
+         //   );
 
-         stra.atø(3) = strGraphicsModeCompletion;
+         //stra.atø(3) = strGraphicsModeCompletion;
 
          //bool bFixedPosition = true;
 
@@ -528,14 +530,14 @@ namespace user
    //void graphics3d::_000OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
-      if (!m_pengine)
+      if (!m_pgraphics3dengineinstance)
       {
 
          return;
 
       }
 
-      if (!m_pengine->m_bLoadedEngine)
+      if (!m_pgraphics3dengineinstance->m_bLoadedEngine)
       {
 
          return;
@@ -585,7 +587,7 @@ namespace user
       if (1)
       {
 
-         m_pengine->_001OnDraw(pdraw2dgraphics);
+         m_pgraphics3dengineinstance->_001OnDraw(pdraw2dgraphics);
 
       }
 
@@ -649,13 +651,13 @@ namespace user
 
       m_iHeight = size.height();
 
-      if (!m_pengine)
+      if (!m_pgraphics3dengineinstance)
       {
 
-         defer_initialize_engine(this->host_rectangle());
+         defer_initialize_graphics3d_engine_instance(this->host_rectangle());
 
       }
-      else if(m_pengine->has_ok_flag())
+      else if(m_pgraphics3dengineinstance->has_ok_flag())
       {
 
          auto rectanglePlacement = this->host_rectangle();
@@ -669,7 +671,7 @@ namespace user
 
          }
 
-         m_pengine->on_layout(rectanglePlacement);
+         m_pgraphics3dengineinstance->on_layout(rectanglePlacement);
 
       }
 
@@ -738,7 +740,7 @@ namespace user
    //void graphics3d::prepare_mouse_input()
    //{
 
-   //   m_pengine->m_pinput->prepare_mouse_input();
+   //   m_pgraphics3dengineinstance->m_pinput->prepare_mouse_input();
 
    //}
 
@@ -746,7 +748,7 @@ namespace user
    //void graphics3d::process_mouse_input()
    //{
 
-   //   m_pengine->m_pinput->process_mouse_input();
+   //   m_pgraphics3dengineinstance->m_pinput->process_mouse_input();
 
    //}
 
@@ -755,7 +757,7 @@ namespace user
    //void graphics3d::process_keyboard_input()
    //{
 
-   //   m_pengine->m_pinput->process_keyboard_input();
+   //   m_pgraphics3dengineinstance->m_pinput->process_keyboard_input();
 
    //}
 

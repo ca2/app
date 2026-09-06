@@ -19,6 +19,7 @@
 
 
 #include "_constant.h"
+#include "circle_stroke_alignment.h"
 #include "text_box.h"
 #include "types.h"
 #include "acme/prototype/geometry2d/angle.h"
@@ -388,6 +389,16 @@ namespace nano2d
 
 		// Creates ___new circle shaped sub-path.
 		virtual void circle(::f32 cx, ::f32 cy, ::f32 r);
+
+      // Circle-only geometry emulation of a centered pen's alignment.
+      // Sets stroke_width(width) and appends an adjusted circle to the current
+      // path; does not begin or stroke the path. Keep that width until stroke().
+      // Radius/width are in the same coordinate space. Nonuniform transforms
+      // and backends with unscaled pen widths need caller-side compensation.
+      // Filling this path also fills the adjusted geometry. Invalid values or
+      // an inset radius <= width/2 return false without changing state/path.
+      bool _geometry_aligned_circle(::f32 cx, ::f32 cy, ::f32 radius, ::f32 width,
+                                    enum_circle_stroke_align alignment);
 
 		// Fills the current path with current fill style.
 		virtual void fill();

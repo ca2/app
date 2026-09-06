@@ -1,6 +1,6 @@
 #include "platform.h"
 #include "wavefront_obj_render_system.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/engine_instance.h"
 #include "bred/gpu/binding.h"
 #include "bred/gpu/block.h"
 #include "bred/gpu/command_buffer.h"
@@ -20,7 +20,7 @@ namespace graphics3d
 
    wavefront_obj_render_system::wavefront_obj_render_system()
 	{
-
+      m_erendersystem = ::graphics3d::e_render_system_wavefront_obj;
 
 	}
 
@@ -32,19 +32,20 @@ namespace graphics3d
    }
 
 
-	void wavefront_obj_render_system::initialize_render_system(::graphics3d::engine* pengine)
+	void wavefront_obj_render_system::initialize_render_system(::graphics3d::engine_instance* pengineinstance)
 	{
 
-		::graphics3d::render_system::initialize_render_system(pengine);
+		::graphics3d::render_system::initialize_render_system(pengineinstance);
 
 	}
+
 
    ::memory wavefront_obj_render_system::vert_shader_memory() 
    {
       
       ::memory memory;
 
-      m_pengine->gpu_context()->m_pgpudevice->defer_shader_memory(
+      m_pgraphics3dengineinstance->gpu_context()->m_pgpudevice->defer_shader_memory(
          memory, "matter://shaders/texture.vert");
 
       return memory;
@@ -56,7 +57,7 @@ namespace graphics3d
 
       ::memory memory;
 
-      m_pengine->gpu_context()->m_pgpudevice->defer_shader_memory(
+      m_pgraphics3dengineinstance->gpu_context()->m_pgpudevice->defer_shader_memory(
          memory, "matter://shaders/wavefront.frag");
 
       return memory;
@@ -150,7 +151,7 @@ namespace graphics3d
 		//m_pshader->bind(
   //       ::gpu::current_command_buffer(), pgpucontext->current_target_texture(::gpu::current_layer()));
 
-	   auto pgamelayer = m_pengine->m_pimmersionlayer;
+	   auto pgamelayer = m_pgraphics3dengineinstance->m_pimmersionlayer;
 
 		for (auto &[strName, pscenerenderable]: pscene->scene_renderables())
 		{
@@ -189,7 +190,7 @@ namespace graphics3d
 
 				m_pshader->m_propertiesPushShared["modelMatrix"] = matrixModel;
 
-				//auto normalMatrix = m_pengine->normal_matrix(pscenerenderable->m_transform);
+				//auto normalMatrix = m_pgraphics3dengineinstance->normal_matrix(pscenerenderable->m_transform);
 
             //floating_matrix4 normalMatrix = floating_matrix3(modelMatrix).inversed().transposed();
 

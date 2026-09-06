@@ -1,5 +1,5 @@
 #include "platform.h"
-#include "engine.h"
+#include "engine_instance.h"
 #include "renderable.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "asset_manager.h"
@@ -24,10 +24,10 @@ namespace graphics3d
 
    asset_manager::~asset_manager() {}
 
-   void asset_manager::initialize_asset_manager(graphics3d::engine *pengine)
+   void asset_manager::initialize_asset_manager(::graphics3d::engine_instance *pengineinstance)
    {
       
-      m_pengine = pengine; 
+      m_pgraphics3dengineinstance = pengineinstance; 
    
    }
 
@@ -47,7 +47,7 @@ namespace graphics3d
    //
    //       }
    //
-   //       auto pgpucontext = m_pengine->gpu_context();
+   //       auto pgpucontext = m_pgraphics3dengineinstance->gpu_context();
    //
    //       // 2) load
    //       auto model = pgpucontext->loadObjModel(name, filepath, isSkybox);
@@ -74,14 +74,14 @@ namespace graphics3d
    // filepath, bool isSkybox)
    // {
    //
-   //    auto pgpucontext = m_pengine->gpu_context();
+   //    auto pgpucontext = m_pgraphics3dengineinstance->gpu_context();
    //
    //    return pgpucontext->load_model(name, filepath, isSkybox);
    //
    // }
 
 
-   graphics3d::renderable *asset_manager::get_renderable(const ::scoped_string &name)
+   ::graphics3d::renderable *asset_manager::get_renderable(const ::scoped_string &name)
    {
       auto p = m_mapRenderable.find(name);
       if (!p)
@@ -177,7 +177,7 @@ namespace graphics3d
       //     throw std::runtime_error("Failed to open model list JSON.");
       // }
 
-      auto pgpucontext = m_pengine->gpu_context();
+      auto pgpucontext = m_pgraphics3dengineinstance->gpu_context();
 
       pgpucontext->onBeforePreloadGlobalAssets();
 

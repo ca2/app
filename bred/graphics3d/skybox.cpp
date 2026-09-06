@@ -2,7 +2,7 @@
 #include "immersion_layer.h"
 #include "scene_base.h"
 #include "skybox.h"
-#include "engine.h"
+#include "engine_instance.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/layer.h"
@@ -38,10 +38,12 @@ namespace graphics3d
    }
 
 
-   void skybox::initialize_sky_box(::graphics3d::scene_base * pscene, const ::scoped_string & scopedstrName)
+   void skybox::initialize_sky_box(::graphics3d::graphics3d * pgraphics3d, ::gpu::context * pgpucontext, const ::scoped_string & scopedstrName)
    {
 
-      ::graphics3d::scene_object::initialize_scene_object(pscene);
+      //::graphics3d::scene_object::initialize_scene_object(pgraphics3d->m_);
+
+      ::graphics3d::scene_object::initialize_scene_object(pgraphics3d);
 
       cube cube;
 
@@ -54,7 +56,7 @@ namespace graphics3d
 
       m_cube = cube;
 
-      //m_pengine = pengine;
+      //m_pgraphics3dengineinstance = pengine;
 
 
       //auto modeldataCube = ::graphics3d::shape_factory::create_cube(32.0f);
@@ -63,7 +65,7 @@ namespace graphics3d
 
       //auto pmodelCube = createø<::gpu::model_buffer>();
 
-      //pmodelCube->initialize_model(pscene->m_pimmersionlayer->m_pengine->
+      //pmodelCube->initialize_model(pscene->m_pimmersionlayer->m_pgraphics3dengineinstance->
       //   gpu_context(), modeldataCube);
 
       ////m_pmodelCube = pmodelCube;
@@ -74,14 +76,15 @@ namespace graphics3d
 
       //m_pmodelCube->initialize_model();
       
-      initialize(pscene->m_pimmersionlayer->m_pengine->gpu_context());
+      //initialize(pengineinstance->gpu_context());
       
-      SetupSkybox();
+      SetupSkybox(pgpucontext);
 
    }
 
+   
    // Setup the skybox (VAO, VBO, EBO, and cubemap textures)
-   void skybox::SetupSkybox() 
+   void skybox::SetupSkybox(::gpu::context * pgpucontext) 
    {
       //// Generate buffers
       //glGenVertexArrays(1, &skyboxVAO);
@@ -97,16 +100,16 @@ namespace graphics3d
       //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(::f32), (void*)0);
 
 
-      load_cube_map_pixmaps();
+      load_cube_map_pixmaps(pgpucontext);
 
       // Load cubemap textures
-      load_cube_map_textures();
+      load_cube_map_textures(pgpucontext);
 
       //glBindVertexArray(0);  // Unbind VAO
    }
 
 
-   void skybox::load_cube_map_pixmaps()
+   void skybox::load_cube_map_pixmaps(::gpu::context * pgpucontext)
    {
 
       m_sizeSquare.cx = 0;
@@ -165,7 +168,7 @@ namespace graphics3d
 
          }
 
-         m_pgpucontext->on_cube_map_face_pixmap(ppixmap);
+         pgpucontext->on_cube_map_face_pixmap(ppixmap);
 
          pcubeface->m_ppixmap = ppixmap;
 
@@ -177,7 +180,7 @@ namespace graphics3d
 
 
    // Load cubemap textures
-   void skybox::load_cube_map_textures()
+   void skybox::load_cube_map_textures(::gpu::context * pgpucontext)
    {
       //glGenTextures(1, &cubemapTexture);
       //glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
@@ -226,9 +229,7 @@ namespace graphics3d
 
       ::gpu::texture_data texturedata(pixmapa);
 
-      auto prenderer = m_pscene->m_pimmersionlayer->m_pengine->gpu_context()->m_pgpurenderer;
-
-      m_ptexturesite->gpu_texture()->create_texture(prenderer->m_pgpucontext, textureattributes, textureflags, texturedata);
+      m_ptexturesite->gpu_texture()->create_texture(pgpucontext, textureattributes, textureflags, texturedata);
 
    }
 

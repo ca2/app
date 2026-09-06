@@ -71,7 +71,7 @@ namespace gpu_opengl
          /**
           * Render the pre-filtered environment map.
           */
-         void computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer) override;
+         void computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer, ::graphics3d::scene_base * pscenebase) override;
 
 
          /**

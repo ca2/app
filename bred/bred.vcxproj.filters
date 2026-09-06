@@ -189,7 +189,7 @@
     <ClInclude Include="graphics3d\camera.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\engine.h">
+    <ClInclude Include="graphics3d\engine_instance.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\offscreen_frame_pacer.h">
@@ -474,6 +474,18 @@
     <ClInclude Include="gpu\command_buffer_lease.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="graphics3d\graphics3d.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\gpu_statistics_impact.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -500,7 +512,7 @@
     <ClCompile Include="graphics3d\camera.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\engine.cpp">
+    <ClCompile Include="graphics3d\engine_instance.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\frame.cpp">
@@ -751,6 +763,12 @@
     </ClCompile>
     <ClCompile Include="gpu\command_buffer_lease.cpp">
       <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\graphics3d.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\gpu_statistics_impact.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

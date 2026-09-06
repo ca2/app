@@ -2,8 +2,8 @@
 // Created by camilo on 2025-09-29 10:41 <3ThomasBorregaardSorensen!!
 //
 #include "platform.h"
+#include "immersion_layer.h"
 #include "scene_renderable.h"
-///#include "model.h"
 #include "scene_base.h"
 
 
@@ -35,7 +35,7 @@ namespace graphics3d
    void scene_renderable::initialize_scene_renderable(::graphics3d::scene_base *pscene)
    {
       
-      m_pscene = pscene; 
+      //m_pgraphics3dengineinstance = pscene->m_pimmersionlayer->m_pgraphics3dengineinstance;
    
    }
 

@@ -99,11 +99,18 @@ namespace bred
       //};
 
 
-      ::pointer_map< _001Option >            m_optionaGpuApi;
-      ::pointer_map< _001Option >            m_optionaDraw2dApi;
-      ::pointer_map< _001Option >            m_optionaGraphics3dOutput;
+      ::pointer_map< _001Option >                        m_optionaGpuApi;
+      ::pointer_map< _001Option >                        m_optionaDraw2dApi;
+      ::pointer_map< _001Option >                        m_optionaGraphics3dOutput;
 
-      ::pointer<::user::line_layout>         m_plinelayoutDraw2dApiSelection;
+      ::pointer<::user::line_layout>                     m_plinelayoutDraw2dApiSelection;
+      ::pointer < ::graphics3d::graphics3d >             m_pgraphics3d;
+      ::pointer_array < ::user::graphics3d >             m_usergraphics3da;
+
+      ::string_array                                     m_straSkybox;
+      ::string                                           m_strSkybox;
+      ::pointer < ::user::gpu_statistics_impact >        m_pusergpustatisticsimpact;
+
 
 
       application();
@@ -129,6 +136,8 @@ namespace bred
       ::gpu::approach* gpu_approach() override;
       void create_gpu_approach() override;
 
+      virtual ::graphics3d::graphics3d * graphics3d();
+
       ::string draw2d_get_default_implementation_name() override;
 
 
@@ -151,6 +160,8 @@ namespace bred
       virtual void on_change_gpu_api();
       virtual void on_change_draw2d_api();
       virtual void on_change_graphics3d_output();
+
+      virtual void register_user_graphics3d(::collection::index i, ::user::graphics3d * pusergraphics3d);
 
       
    };

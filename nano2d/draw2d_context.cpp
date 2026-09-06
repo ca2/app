@@ -672,24 +672,35 @@ pstate->m_pdraw2dbrush->m_ebrush = ::draw2d::e_brush_solid;
    void draw2d_context::stroke_color(::color::color color)
    {
 
-      
       ::pointer < draw2d_state > pstate = m_pstate;
 
-pstate->m_pdraw2dpen->m_color = color;
+      if (pstate->m_pdraw2dpen->m_color != color)
+      {
 
-      pstate->m_pdraw2dpen->set_modified();
+         pstate->m_pdraw2dpen->m_color = color;
+
+         pstate->m_pdraw2dpen->set_modified();
+
+      }
 
    }
 
 
    void draw2d_context::stroke_width(::f32 width)
    {
+      
       ::pointer < draw2d_state > pstate = m_pstate;
 
+      ::f64 dWidth = width;
 
-      pstate->m_pdraw2dpen->m_dWidth = width;
+      if (dWidth != pstate->m_pdraw2dpen->m_dWidth)
+      {
 
-      pstate->m_pdraw2dpen->set_modified();
+         pstate->m_pdraw2dpen->m_dWidth = width;
+
+         pstate->m_pdraw2dpen->set_modified();
+
+      }
 
 
    }

@@ -30,7 +30,7 @@ namespace core
          //::user::plain_edit               m_editGreen;
          //::user::plain_edit               m_editBlue;
          //::user::plain_edit               m_editHex;
-
+         bool                             m_bPendingLuminanceRebuild;
          ::i32_rectangle                  m_rectangleTarget;
 
          ::image::image_pointer                  m_pimageTemplate;

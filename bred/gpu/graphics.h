@@ -97,8 +97,8 @@ namespace gpu
       bool is_memory_graphics_pool_compatible(
          ::acme::user::interaction * pacmeuserinteractionAffinity) const override;
 
-      bool is_memory_graphics_pool_compatible(
-         ::acme::user::interaction * pacmeuserinteractionAffinity) const override;
+      //bool is_memory_graphics_pool_compatible(
+        // ::acme::user::interaction * pacmeuserinteractionAffinity) const override;
 
       void on_acquire_memory_graphics(
          bool bExternalRendering,

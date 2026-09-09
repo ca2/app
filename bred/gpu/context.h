@@ -286,8 +286,8 @@ namespace gpu
 
       virtual bool defer_bind2(::gpu::command_buffer * pgpucommandbuffer, ::gpu::shader * pgpushader, ::gpu::texture_site * pgputexturesite);
       virtual bool defer_bind3(::gpu::command_buffer * pgpucommandbuffer, ::gpu::shader * pgpushader);
-      virtual void defer_unbind(::gpu::shader* pgpushader);
-      virtual void defer_unbind_shader();
+      virtual void defer_unbind(::gpu::command_buffer * pgpucommandbuffer, ::gpu::shader* pgpushader);
+      virtual void defer_unbind_shader(::gpu::command_buffer * pgpucommandbuffer);
       //virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size, memory_buffer::enum_type etype);
       //virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, const ::block& block, memory_buffer::enum_type etype);
 
@@ -466,7 +466,7 @@ namespace gpu
 
       //virtual void copy(::gpu::texture* ptexture);
       virtual void copy(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture_site * ptexturesiteOutput, ::gpu::texture_site * ptexturesiteInput, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady);
-      virtual void copy(::gpu::texture_site* ptexturesiteOutput, ::gpu::texture_site* ptexturesiteInput, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady);
+      //virtual void copy(::gpu::texture_site* ptexturesiteOutput, ::gpu::texture_site* ptexturesiteInput, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady);
 
       virtual void merge_layers_dummy_model_buffer();
       virtual void merge_layers_shader();

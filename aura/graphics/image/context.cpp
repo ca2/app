@@ -20,6 +20,11 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb/stb_image_write.h"
 
+// Successful reads are opt-in; loader failures are always reported by load_image.
+#ifndef AURA_IMAGE_LOAD_TRACE_LEVEL
+#define AURA_IMAGE_LOAD_TRACE_LEVEL 0
+#endif
+
 
 void stb_memory_write(void* context, void* data, ::i32 size)
 {
@@ -627,11 +632,24 @@ namespace image
 
       auto &ppixmap = m_mapPathPixmap[path];
 
+      const bool bCacheHit = ppixmap.is_set();
+
       if (::is_null(ppixmap))
       {
 
          ppixmap = get_pixmap(path);
 
+      }
+
+      if (ppixmap.nok())
+      {
+         errorf("[image.pixmap] invalid path-cache return path=%s cache_hit=%d object=%p raw=%p pixels=%p size=%dx%d raw_size=%dx%d stride=%d ok_flag=%d",
+            path.c_str(), (int)bCacheHit, (void *)ppixmap.m_p,
+            ppixmap ? (void *)ppixmap->m_pimage32Raw : nullptr,
+            ppixmap ? (void *)ppixmap->m_pimage32 : nullptr,
+            ppixmap ? ppixmap->m_size.cx : 0, ppixmap ? ppixmap->m_size.cy : 0,
+            ppixmap ? ppixmap->m_sizeRaw.cx : 0, ppixmap ? ppixmap->m_sizeRaw.cy : 0,
+            ppixmap ? ppixmap->m_iScan : 0, ppixmap ? (int)ppixmap->has_ok_flag() : 0);
       }
 
       return ppixmap;
@@ -997,6 +1015,16 @@ namespace image
       ploadimage->initialize_load_image(this, ppixmap);
 
       _load_image(ploadimage, payloadFile, loadoptions);
+
+      if (loadoptions.sync && !ppixmap->is_ok())
+      {
+         errorf("[image.pixmap] synchronous load returned invalid destination path=%s loader_ok=%d callback=%d object=%p size=%dx%d stride=%d raw=%p pixels=%p ok_flag=%d",
+            payloadFile.as_file_path().c_str(), (int)ploadimage->is_ok(),
+            (int)(bool)ploadimage->m_loadoptions.functionLoaded, (void *)ppixmap,
+            ppixmap->m_size.cx, ppixmap->m_size.cy, ppixmap->m_iScan,
+            (void *)ppixmap->m_pimage32Raw, (void *)ppixmap->m_pimage32,
+            (int)ppixmap->has_ok_flag());
+      }
 
    }
 
@@ -1555,27 +1583,27 @@ namespace image
 
       auto dt = t2 - t1;
 
-      information("file_as_memory time " + ::as_string(dt.floating_millisecond()) + "ms");
+#if AURA_IMAGE_LOAD_TRACE_LEVEL >= 1
+      informationf("[image.load] read path=%s bytes=%llu elapsed_ms=%.3f cache=%d",
+         path.c_str(), (unsigned long long)memory.size(), dt.floating_millisecond(), (int)bCache);
+#endif
 
       const ::ansi_character* psz = (const_char_pointer )memory.data();
 
       auto size = memory.size();
 
-      if (::is_null(psz))
+      if (::is_null(psz) || size <= 0)
       {
-
-         ploadimage->set_nok();
-
-         ploadimage->m_estatus = ::error_failed;
-
-         return;
+         throw ::exception(error_failed, "image load: file read returned no bytes: " + path);
 
       }
 
       {
 
-         ::draw2d::lock draw2dlock(this);
-
+         // Decoding and format probing produce CPU pixmaps, not device resources.
+         // A synchronous caller may hold the GPU/D2D lock while loading a scene;
+         // taking that same lock on this worker deadlocks until its send times out.
+         // GPU upload/drawing must remain synchronized at the consuming backend.
          image()->load_svg(ploadimage, memory);
 
          if (ploadimage->m_estatus.succeeded())

@@ -37,7 +37,8 @@ namespace apex
          virtual void restart_frame_counter();
          virtual bool is_starting_frame()const;
 
-
+         virtual void start_frame();
+         virtual void end_frame();
 
       };
 

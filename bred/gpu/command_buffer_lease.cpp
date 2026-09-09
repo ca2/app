@@ -15,6 +15,13 @@ namespace gpu
       m_pgpucommandbuffer(::transfer(pgpucommandbuffer))
    {
 
+      if (m_pgpucommandbuffer)
+      {
+         if (m_pgpucommandbuffer->m_pgpucommandbufferlease)
+            throw ::exception(error_wrong_state, "command buffer already has an active lease");
+
+         m_pgpucommandbuffer->m_pgpucommandbufferlease = this;
+      }
 
    }
 
@@ -23,6 +30,8 @@ namespace gpu
       m_pgpucommandbuffer(::transfer(commandbufferlease.m_pgpucommandbuffer))
    {
 
+      if (m_pgpucommandbuffer)
+         m_pgpucommandbuffer->m_pgpucommandbufferlease = this;
 
    }
    
@@ -46,6 +55,9 @@ namespace gpu
 
       }
 
+      // Clear before submission, including when submission throws.
+      pgpucommandbuffer->m_pgpucommandbufferlease = nullptr;
+
       pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->_endSingleTimeCommands(pgpucommandbuffer);
 
    }
@@ -53,6 +65,9 @@ namespace gpu
 
    void command_buffer_lease::cancel() noexcept
    {
+
+      if (m_pgpucommandbuffer)
+         m_pgpucommandbuffer->m_pgpucommandbufferlease = nullptr;
 
       m_pgpucommandbuffer.release();
 

@@ -369,7 +369,7 @@
     <ClInclude Include="gpu\_types.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="gpu\mesh.h">
+    <ClInclude Include="gpu\aaa_mesh.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\scene_renderable.h">
@@ -485,6 +485,18 @@
     </ClInclude>
     <ClInclude Include="user\_.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\context1.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\context2.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\renderer_layer_cache.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\scoped_texture_state.h">
+      <Filter>Header Files\gpu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -769,6 +781,9 @@
     </ClCompile>
     <ClCompile Include="user\user\gpu_statistics_impact.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\scoped_texture_state.cpp">
+      <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

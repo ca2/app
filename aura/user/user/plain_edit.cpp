@@ -3736,6 +3736,13 @@ namespace user
 
       m_dLineHeight = metric.get_line_height();
 
+      if (m_dLineHeight == 0.0)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
       auto pointOffset = get_context_offset();
 
       m_iCurrentPagePotentialLineCount = (::collection::count)ceil((::f64)rectangleX.height() / m_dLineHeight);

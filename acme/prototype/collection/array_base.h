@@ -744,5 +744,22 @@ inline TYPE & array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::a
 //}
 
 
+template < class TYPE, class ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+inline ::hash32 as_hash32(const array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
+{
+   
+   ::hash32 h;
+
+   for (auto & element : a)
+   {
+
+      h = h + (::hash32)element;
+
+   }
+
+   return h; 
+
+}
+
 
 

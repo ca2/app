@@ -608,3 +608,53 @@ image32_t *image32_t::create_copy_of(::memory &memoryAllocation, const i32_size 
 
 
 
+CLASS_DECL_ACME::string _001_image32_diagnostics(::image32_t * pixelPtr, int width, int height, int stride)
+{
+
+
+   int totalPixels = width * height;
+   int transparentCount = 0;
+   int translucentCount = 0;
+   int opaqueCount = 0;
+
+   {
+
+      // Iterate through pixel data
+      UINT * pixels = (UINT *)pixelPtr;
+      for (UINT y = 0; y < height; ++y)
+      {
+         for (UINT x = 0; x < width; ++x)
+         {
+            // Get the ARGB color of the pixel
+            UINT color = pixels[y * (stride / 4) + x];
+            BYTE alpha = (color >> 24) & 0xFF; // Shift and mask for Alpha
+
+            if (alpha == 0)
+            {
+               transparentCount++;
+            }
+            else if (alpha > 0 && alpha < 255)
+            {
+               translucentCount++;
+            }
+            else
+            {
+               opaqueCount++;
+            }
+         }
+      }
+
+
+   }
+
+
+   ::string str;
+
+
+   str.append_formatf("\n   pixel=%d opaque=%d transp=%d transl=%d\n", totalPixels, opaqueCount,
+                             transparentCount, translucentCount);
+
+
+   return str;
+
+}

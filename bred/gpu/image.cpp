@@ -624,8 +624,6 @@ namespace gpu
 
                pgputexture->read_pixels(pgpucommandbuffer, pthis->m_ppixmapOwned, ptexturesite->m_pointOutput);
 
-               pgpucommandbuffer.commit();
-
                auto uMicroseconds = (::u64)0;
 
                if (bPerformanceDiagnostics)

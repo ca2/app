@@ -348,7 +348,7 @@ FragColor = texture(uTexture, TexCoord);
 
          pcommandbuffer->end_render();
 
-         m_pgpurenderer->m_pgpucontext->defer_unbind_shader();
+         m_pgpurenderer->m_pgpucontext->defer_unbind_shader(pcommandbuffer);
 
 //#endif
 #if defined(__APPLE__)

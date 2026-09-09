@@ -6,11 +6,14 @@
 #include "apex/gpu/window_attachment.h"
 #include "bred/gpu/context_pointer.h"
 #include "bred/gpu/post_frame_context_registry.h"
+#include "bred/gpu/renderer_layer_cache.h"
 
 
 
 namespace gpu
 {
+
+
 
 
    class CLASS_DECL_BRED window_attachment :
@@ -58,6 +61,10 @@ namespace gpu
 
       class ::time                                       m_timeLast5s;
 
+      // Retain each renderer's layers across tab switches, including in-flight
+      // frame resources. Occurrences are local to the renderer, not global slots.
+      ::gpu::renderer_layer_cache<::gpu::renderer *, ::pointer<::gpu::layer>> m_rendererlayercache;
+
 
 
       window_attachment();
@@ -81,8 +88,8 @@ namespace gpu
 
 
 
-      virtual void start_frame();
-      virtual void end_frame();
+      void start_frame() override;
+      void end_frame() override;
       virtual void register_frame_context(::gpu::context * pcontext, ::gpu::layer * player);
       virtual void dispatch_post_frame_contexts();
 

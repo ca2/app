@@ -28,6 +28,11 @@
 #define BOX_SEL 1
 #define BOX_HOVER 2
 
+// Summaries per extent-loading job, not per font or per draw.
+#ifndef FONT_LIST_LOAD_DIAGNOSTICS
+#define FONT_LIST_LOAD_DIAGNOSTICS 1
+#endif
+
 //template < prototype_rectangle RECTANGLE >
 //::platform::tracer & operator << (::platform::tracer&  tracer, const RECTANGLE& r)
 //{
@@ -87,25 +92,46 @@ namespace write_text
       const ::scoped_string & scopedstr)
    {
 
-      auto pperformance = t_pfontenumerationperformance;
-
-      if (!pperformance)
+      try
       {
+         auto pperformance = t_pfontenumerationperformance;
 
-         return pdraw2dgraphics->get_text_extent(scopedstr);
+         if (!pperformance)
+         {
+
+            return pdraw2dgraphics->get_text_extent(scopedstr);
+
+         }
+
+         auto timeStart = ::std::chrono::steady_clock::now();
+         auto size = pdraw2dgraphics->get_text_extent(scopedstr);
+         auto uMicroseconds = (::u64)::std::chrono::duration_cast<
+            ::std::chrono::microseconds>(
+               ::std::chrono::steady_clock::now() - timeStart).count();
+
+         pperformance->m_uExtentQueries++;
+         pperformance->m_uExtentMicroseconds += uMicroseconds;
+
+         return size;
 
       }
+      catch (const ::exception & exception)
+      {
 
-      auto timeStart = ::std::chrono::steady_clock::now();
-      auto size = pdraw2dgraphics->get_text_extent(scopedstr);
-      auto uMicroseconds = (::u64)::std::chrono::duration_cast<
-         ::std::chrono::microseconds>(
-            ::std::chrono::steady_clock::now() - timeStart).count();
+         error() << "[font.extent] failed family="
+            << (pdraw2dgraphics->m_pwritetextfont
+               ? pdraw2dgraphics->m_pwritetextfont->family_name() : ::string("<null>"))
+            << " text=" << scopedstr << " message=" << exception.get_message();
+         throw;
 
-      pperformance->m_uExtentQueries++;
-      pperformance->m_uExtentMicroseconds += uMicroseconds;
+      }
+      catch (...)
+      {
 
-      return size;
+         error() << "[font.extent] unknown failure while measuring text=" << scopedstr;
+         throw;
+
+      }
 
    }
 
@@ -1525,6 +1551,16 @@ namespace write_text
       m_papplication->fork([this, pfontlistdata, bSameSize]()
       {
 
+#if FONT_LIST_LOAD_DIAGNOSTICS
+         {
+            _synchronous_lock diagnosticlock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            information() << "[font.list.load] begin enumerated="
+               << (m_pfontenumerationitema ? m_pfontenumerationitema->get_count() : 0)
+               << " slots=" << pfontlistdata->item_count()
+               << " serial=" << pfontlistdata->m_iSerial;
+         }
+#endif
+
          auto bPerformanceDiagnostics = m_papplication
             && m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
                ::std::memory_order_relaxed);
@@ -1709,6 +1745,25 @@ namespace write_text
 
          graphicslease.close();
 
+#if FONT_LIST_LOAD_DIAGNOSTICS
+         {
+            _synchronous_lock diagnosticlock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            ::collection::count populated = 0;
+            ::collection::index firstMissing = -1;
+            for (::collection::index i = 0; i < pfontlistdata->item_count(); ++i)
+            {
+               if (pfontlistdata->item_at(i))
+                  ++populated;
+               else if (firstMissing < 0)
+                  firstMissing = i;
+            }
+            information() << "[font.list.load] measured slots=" << pfontlistdata->item_count()
+               << " populated=" << populated << " first_missing=" << firstMissing
+               << " task_run=" << ::task_get_run()
+               << " serial=" << pfontlistdata->m_iSerial;
+         }
+#endif
+
          if (bPerformanceDiagnostics)
          {
 
@@ -1728,6 +1783,16 @@ namespace write_text
          }
 
          layout();
+
+#if FONT_LIST_LOAD_DIAGNOSTICS
+         {
+            _synchronous_lock diagnosticlock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            information() << "[font.list.load] layout_finished total_width=" << m_size.cx
+               << " total_height=" << m_size.cy
+               << " viewport_width=" << m_rectangleX.width()
+               << " viewport_height=" << m_rectangleX.height();
+         }
+#endif
 
       });
 

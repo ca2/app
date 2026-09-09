@@ -8,7 +8,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
-//#include "aura/graphics/draw2d/lock.h"
+#include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/drawing.h"
 
 /*
@@ -566,8 +566,6 @@ namespace image
    ::i32 image_list::set(::i32 iItemParam, const ::image::image_drawing & imagedrawing)
    {
 
-      //::draw2d::lock draw2dlock(this);
-
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto iItem = reserve_image(iItemParam);
@@ -581,6 +579,8 @@ namespace image
 
       try
       {
+
+         //::draw2d::lock draw2dlock(this);
 
          auto pdraw2dgraphics = m_pimage->acquire_graphics();
 

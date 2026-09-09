@@ -26,7 +26,7 @@ namespace gpu
       ::string                            m_strTextureName;
       texture_attributes                  m_textureattributes;
       texture_flags                       m_textureflags;
-      enum_texture_state                  m_etexturestate;
+      enum_texture_state                  m_egputexturestate;
       ::i32                                 m_iAtlasX;
       ::i32                                 m_iAtlasY;
       ::i32                                 m_iAtlasCurrentRowHeight;
@@ -140,7 +140,9 @@ namespace gpu
 
       virtual ::string texture_type();
       virtual void read_to_buffer(::gpu::command_buffer * pgpucommandbuffer, ::gpu::buffer * pgpubuffer, const ::i32_point & pointOutput);
-      virtual void read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t * ppixmap, const ::i32_point & pointOutput);
+      // Synchronous readback: requires an actively leased command buffer, consumes
+      // its lease and waits for GPU work before reading CPU pixels. Do not commit again.
+      virtual void read_pixels(::gpu::command_buffer * commands, ::pixmap_t * ppixmap, const ::i32_point & pointOutput);
 
 
       virtual void set_pixels(bool bSync, const ::i32_rectangle & rectangle, const void * data);
@@ -181,6 +183,8 @@ namespace gpu
 
 
    };
+
+
 
 
 } // namespace gpu

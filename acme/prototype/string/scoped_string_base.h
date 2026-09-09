@@ -909,20 +909,8 @@ template<prototype_character CHARACTER>
 inline ::hash32 _scoped_string_u32_hash(const ::scoped_string_base<const CHARACTER *> & scopedstr) 
 {
 
-   if (scopedstr.is_empty()) 
-   {
-
-      return {0};
-
-   }
-
-   ::u32 uHash = 0;
-
-   auto p = scopedstr.m_begin;
-
-   while (p < scopedstr.m_end) uHash = (uHash << 5) + *(p++);
-
-   return {uHash};
+   return ::character_array_as_hash32(scopedstr.m_begin,
+      scopedstr.m_begin == scopedstr.m_end ? 0 : scopedstr.length());
 
 }
 

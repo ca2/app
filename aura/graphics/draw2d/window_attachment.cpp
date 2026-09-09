@@ -28,7 +28,7 @@ namespace draw2d
    void window_attachment::initialize_window_attachment(::windowing::window * pwindow)
    {
 
-      pwindow = pwindow;
+      m_pwindow = pwindow;
 
    }
 

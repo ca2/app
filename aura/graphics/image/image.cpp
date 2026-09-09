@@ -22,7 +22,7 @@
 #include "aura/windowing/window_buffer.h"
 #include "aura/windowing/window.h"
 
-
+CLASS_DECL_ACME::string _001_image32_diagnostics(::image32_t * pixelPtr, int width, int height, int stride);
 //#include "acme/_operating_system.h"
 
 
@@ -453,6 +453,15 @@ namespace image
          {
 
             m_pdraw2dbitmap->defer_write_pixels(*m_ppixmapOwned);
+
+            ::string str = _001_image32_diagnostics(m_ppixmapOwned->m_pimage32,
+               m_ppixmapOwned->m_size.cx,
+               m_ppixmapOwned->m_size.cy,
+               m_ppixmapOwned->m_iScan);
+            auto psz = str.c_str();
+
+            informationf("diag001 : %s", psz);
+
 
          }
 

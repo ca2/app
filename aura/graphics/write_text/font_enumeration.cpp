@@ -10,6 +10,11 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/write_text/fonts.h"
 
+// One summary per enumeration, never per font or per frame. Disable after diagnosis.
+#ifndef FONT_ENUMERATION_LOAD_DIAGNOSTICS
+#define FONT_ENUMERATION_LOAD_DIAGNOSTICS 1
+#endif
+
 
 namespace write_text
 {
@@ -328,12 +333,26 @@ namespace write_text
          sort_fonts();
 
       }
+      catch (const ::exception & exception)
+      {
+
+         error() << "[font.enumeration] failed; partial_count="
+            << (m_pfontenumerationitema ? m_pfontenumerationitema->get_count() : 0)
+            << " message=" << exception.get_message();
+
+      }
       catch (...)
       {
 
+         error() << "[font.enumeration] failed with unknown exception; partial_count="
+            << (m_pfontenumerationitema ? m_pfontenumerationitema->get_count() : 0);
 
       }
 
+#if FONT_ENUMERATION_LOAD_DIAGNOSTICS
+      information() << "[font.enumeration] finished count="
+         << (m_pfontenumerationitema ? m_pfontenumerationitema->get_count() : 0);
+#endif
 
       synchronouslock._lock();
 

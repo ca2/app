@@ -40,6 +40,8 @@ struct hash32
 };
 
 
+
+
 template < typename T >
 ::hash32 as_hash32(const T & t) { return (::hash32)t; }
 

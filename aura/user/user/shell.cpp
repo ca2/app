@@ -218,8 +218,6 @@ namespace user
    bool shell::reserve_image(_get_file_image_ & getfileimage)
    {
 
-      ::draw2d::lock lock(this);
-
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (contains_image(getfileimage.m_imagekey, getfileimage.m_iImage))

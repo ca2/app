@@ -484,7 +484,20 @@ sizeRaw
 
       auto & player = m_pgpulayera->element_at_grow(m_iLayer);
 
-      defer_constructø(player);
+      int occurrence = 0;
+      for (int i = 0; i < m_iLayer; ++i)
+      {
+         const auto & previous = (*m_pgpulayera)[i];
+         if (previous && previous->m_pgpurenderer == pgpurenderer)
+            ++occurrence;
+      }
+
+      player = m_rendererlayercache.acquire(pgpurenderer, occurrence, [this]()
+      {
+         ::pointer<::gpu::layer> playerNew;
+         constructø(playerNew);
+         return playerNew;
+      });
 
       auto iFrameIndex = get_frame_index3();
 

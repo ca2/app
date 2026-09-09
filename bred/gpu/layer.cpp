@@ -93,6 +93,10 @@ namespace gpu
 
       auto pcommandbufferLayer = m_commandbufferaLayer[iImageIndex];
 
+      if (!pcommandbufferLayer->m_pgpurendertarget ||
+          pcommandbufferLayer->m_pgpurendertarget->m_pgpurenderer != m_pgpurenderer)
+         throw ::exception(error_wrong_state, "GPU layer command buffer belongs to a different renderer");
+
       pcommandbufferLayer->m_iCommandBufferFrameIndex2 = iFrameIndex;
       pcommandbufferLayer->m_iCommandBufferImageIndex = iImageIndex;
 
@@ -118,6 +122,9 @@ namespace gpu
 
    void layer::initialize_gpu_layer(::gpu::renderer * pgpurenderer, ::i32 iFrameIndex, ::i32 iLayerIndex)
    {
+
+      if (m_pgpurenderer && m_pgpurenderer != pgpurenderer)
+         throw ::exception(error_wrong_state, "GPU layer cannot be reassigned to a different renderer");
 
       m_pgpurenderer = pgpurenderer;
 

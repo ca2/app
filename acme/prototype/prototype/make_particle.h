@@ -26,8 +26,6 @@ public:
 };
 
 
-
-
 template < typename TYPE >
 class array_particle :
    virtual public ::particle,
@@ -129,3 +127,26 @@ auto create_particle_from(const T & t)
 
 }
 
+
+#include "acme/prototype/prototype/hash32.h"
+
+
+template < typename TYPE >
+requires requires { typename TYPE::RAW_BASE_ARRAY; }
+inline ::hash32 as_hash32(const ::array_particle < TYPE > & a)
+{
+
+   return ::as_hash32((const typename ::array_particle < TYPE >::BASE_ARRAY &) a);
+
+}
+
+
+
+template < typename TYPE >
+   requires requires { typename TYPE::RAW_BASE_ARRAY; }
+inline ::hash32 as_hash32(const ::comparable_eq_array_particle < TYPE > & a)
+{
+
+   return ::as_hash32((const typename ::array_particle < TYPE >::BASE_ARRAY &) a);
+
+}

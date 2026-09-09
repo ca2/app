@@ -83,10 +83,7 @@ namespace gpu
       ::std::atomic<::u64> m_uGpuContextPoolDiagnosticsGenerationLast{0};
 
 
-            ::pointer_array<::gpu::shader> m_shaderaRetire;
-
-
-
+      ::pointer_array<::gpu::shader> m_shaderaRetire;
 
 
       device();
@@ -95,7 +92,7 @@ namespace gpu
 
       ///virtual ::gpu::context* current_context();
 
-            virtual void manage_retired_objects();
+      virtual void manage_retired_objects();
 
 
 

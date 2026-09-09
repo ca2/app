@@ -227,7 +227,7 @@ namespace graphics3d
          //m_pmodelDummy->draw(pgpulayer->getCurrentCommandBuffer4());
       }
 
-      pgpucontext->defer_unbind(m_pshader);
+      pgpucontext->defer_unbind(pgpulayer->getCurrentCommandBuffer4(), m_pshader);
 
    }
 

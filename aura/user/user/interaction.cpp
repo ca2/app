@@ -5609,16 +5609,16 @@ namespace user
    void interaction::_001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      scoped_restore(pdraw2dgraphics->m_pacmeuserinteractionAffinity);
+      //scoped_restore(pdraw2dgraphics->m_pacmeuserinteractionAffinity);
 
-      pdraw2dgraphics->m_pacmeuserinteractionAffinity = this;
+      //pdraw2dgraphics->m_pacmeuserinteractionAffinity = this;
 
-      if (pdraw2dgraphics == nullptr)
-      {
+      //if (pdraw2dgraphics == nullptr)
+      //{
 
-         throw ::exception(error_bad_argument);
+      //   throw ::exception(error_bad_argument);
 
-      }
+      //}
 
       //scoped_restore(pdraw2dgraphics->m_puserinteraction);
 
@@ -5808,9 +5808,9 @@ namespace user
 
       }
 
-      scoped_restore(pdraw2dgraphics->m_pacmeuserinteractionAffinity);
+      //scoped_restore(pdraw2dgraphics->m_pacmeuserinteractionAffinity);
 
-      pdraw2dgraphics->m_pacmeuserinteractionAffinity = this;
+      //pdraw2dgraphics->m_pacmeuserinteractionAffinity = this;
 
       //i32_point pointScroll = m_pointScroll;
 

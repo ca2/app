@@ -211,18 +211,20 @@ namespace graphics3d
 
             auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontext);
 
-            bool bFrameStarted = false;
+            //bool bFrameStarted = false;
 
-            if (pgpuwindowattachment && pgpuwindowattachment->current_frame()->m_egpuframestate != ::gpu::e_gpu_frame_state_began_frame)
-            {
+            //if (pgpuwindowattachment && pgpuwindowattachment->current_frame()->m_egpuframestate != ::gpu::e_gpu_frame_state_began_frame)
+            //{
 
-               pgpuwindowattachment->m_pgraphics3dengineinstance = this;
+            //   auto & egpuframestate = pgpuwindowattachment->current_frame()->m_egpuframestate;
 
-               pgpuwindowattachment->start_frame();
+            //   pgpuwindowattachment->m_pgraphics3dengineinstance = this;
 
-               bFrameStarted = true;
+            //   pgpuwindowattachment->start_frame();
 
-            }
+            //   bFrameStarted = true;
+
+            //}
 
             pscene->on_before_render(pgpucontext);
 
@@ -235,16 +237,18 @@ namespace graphics3d
 
             pscene->on_render_last(pgpucontext);
 
-            pgpucontext->end_layer();
-
             auto pgputexturesiteTarget = pgpucontext->current_target_texture(::gpu::current_layer());
 
-            if (bFrameStarted)
-            {
+            pgpucontext->end_layer();
 
-               pgpuwindowattachment->end_frame();
 
-            }
+
+            //if (bFrameStarted)
+            //{
+
+            //   pgpuwindowattachment->end_frame();
+
+            //}
 
             _synchronous_lock synchronouslock2(this->synchronization());
 
@@ -272,8 +276,6 @@ namespace graphics3d
                auto pgputexture = pgputexturesiteTarget->gpu_texture()->resolved_texture(pgputexturesiteTarget->output_placement());
 
                pgputexture->read_pixels(pgpucommandbuffer, ppixmapImageOutput, pgputexturesiteTarget->m_pointOutput);
-
-               pgpucommandbuffer.commit();
 
                m_pimageOutput->set_ok_flag();
 
@@ -1039,15 +1041,35 @@ namespace graphics3d
 
             prenderer->defer_update_renderer();
 
+            auto reportFailure = [this](const ::string & message)
+            {
+               const ::string detail = message.is_empty() ? ::string("Rendering exception without a message") : message;
+               auto & lastError = payload("graphics3d_last_draw_layer_error");
+               if (detail != lastError.as_string())
+               {
+                  errorf("graphics3d draw_layer failed: impact_serial=%d engine=%p placement=(%d,%d %dx%d): %s",
+                     m_pusergraphics3d ? m_pusergraphics3d->m_iImpactSerial : -1, this,
+                     m_rectanglePlacementNew.left, m_rectanglePlacementNew.top,
+                     m_rectanglePlacementNew.width(), m_rectanglePlacementNew.height(), detail.c_str());
+                  lastError = detail;
+               }
+            };
             try
             {
-
                draw_layer();
-
+               payload("graphics3d_last_draw_layer_error") = "";
+            }
+            catch (const ::exception & e)
+            {
+               reportFailure(e.get_message());
+            }
+            catch (const ::std::exception & e)
+            {
+               reportFailure(e.what());
             }
             catch (...)
             {
-
+               reportFailure("Unknown rendering exception");
             }
 
          };

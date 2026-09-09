@@ -1,5 +1,7 @@
 // Created by camilo on 2025-06-08 18:14 < 3ThomasBorregaardSørensen!!
 #include "platform.h"
+#include "bred/gpu/command_buffer.h"
+#include "bred/gpu/command_buffer_lease.h"
 #include "texture.h"
 #include "_gpu_opengl.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -1582,7 +1584,7 @@ namespace gpu_opengl
       siteInput.m_pgputextureSite = this;
       siteInput.m_pointInput = rectangle.origin();
 
-      pcontext->copy(&siteOutput, &siteInput, nullptr, nullptr);
+      pcontext->copy(::gpu::current_command_buffer(), & siteOutput, &siteInput, nullptr, nullptr);
 
       return m_ptextureResolved.cast < ::gpu_opengl::texture >();
 
@@ -1843,8 +1845,11 @@ namespace gpu_opengl
    }
 
 
-   void texture::read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t * ppixmap, const ::i32_point & pointOutput)
+   void texture::read_pixels(::gpu::command_buffer * commands, ::pixmap_t * ppixmap, const ::i32_point & pointOutput)
    {
+
+      if (!ppixmap || !commands || !commands->m_pgpucommandbufferlease)
+         throw ::exception(error_bad_argument, "OpenGL readback requires a pixmap and pending command lease.");
 
       auto sizePixmap = ppixmap->size();
 
@@ -1859,6 +1864,8 @@ namespace gpu_opengl
          throw ::exception(error_bad_argument);
 
       }
+
+      commands->m_pgpucommandbufferlease->commit();
 
       scoped_pixel_transfer_state state;
 

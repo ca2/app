@@ -1,5 +1,6 @@
 #include "platform.h"
 #include "bred_approach.h"
+#include "command_buffer.h"
 #include "context.h"
 #include "context_lease.h"
 #include "device.h"
@@ -509,7 +510,7 @@ namespace gpu
          [pcontext]()
          {
 
-            pcontext->defer_unbind_shader();
+            pcontext->defer_unbind_shader(::gpu::current_command_buffer());
             pcontext->m_prendertargetBound.release();
             //pcontext->m_pgpucompositor = nullptr;
             pcontext->m_bInNonOwnedLease = false;

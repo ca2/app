@@ -270,6 +270,13 @@ namespace gpu
 
       //}
 
+      if (::is_null(puserinteraction))
+      {
+
+         puserinteraction = m_pacmeuserinteractionAffinity->user_interaction();
+
+      }
+
       if (::is_set(pimageTarget))
       {
 
@@ -590,6 +597,13 @@ namespace gpu
 
          auto pgpucontext = gpu_context();
 
+         if (pgpucontext)
+         {
+
+            pgpucontext->defer_unbind_shader(m_pgpucommandbufferGpuGraphics);
+
+         }
+
          if (m_bTargetRenderPassActive)
          {
 
@@ -631,15 +645,6 @@ namespace gpu
 
       if (m_pgputexturesiteTarget)
       {
-
-         auto pgpucontext = gpu_context();
-
-         if (pgpucontext)
-         {
-
-            pgpucontext->defer_unbind_shader();
-
-         }
 
          m_pgputexturesiteTarget.release();
 
@@ -906,6 +911,8 @@ namespace gpu
 
       ::image::image_pointer pimageTarget = pgputexturesite->m_pgputextureSite->get_image(this);
 
+      pimageTarget->m_eacquire = ::draw2d::e_acquire_dont_load;
+
       //auto pcommandbuffer = ::gpu::current_layer()->getCurrentCommandBuffer4();
 
       //::gpu::context_lock contextlock(pcontext);
@@ -1167,6 +1174,10 @@ namespace gpu
 
          pgputextureSource->set_state(pgpucommandbufferState, ::gpu::e_texture_state_shader_read);
 
+         // Leases cancel on destruction. Submit the transition before binding
+         // the source, otherwise only the CPU state tracker sees shader-read.
+         pgpucommandbufferState.commit();
+
       }
 
       set_gpu_shader(pgpucommandbuffer, pgpushaderImage);
@@ -1181,6 +1192,8 @@ namespace gpu
          pgpucommandbuffer,
          ptexturesiteSource,
          0);
+
+      pgpucommandbuffer->m_particleaHold.add(pgputextureSource);
 
       auto pviewportscissorrestore = createø<::gpu::viewport_scissor_restore>();
 
@@ -1466,7 +1479,7 @@ namespace gpu
       //
             //      pmodelbuffer->unbind(pcommandbuffer);
 
-      pcontext->defer_unbind(pshader);
+      pcontext->defer_unbind(pcommandbuffer, pshader);
 
    }
 
@@ -1810,7 +1823,7 @@ namespace gpu
 
       }
 
-      gpu_context()->defer_unbind_shader();
+      gpu_context()->defer_unbind_shader(m_pgpucommandbufferGpuGraphics);
 
    }
 
@@ -2642,7 +2655,7 @@ namespace gpu
 
       pcommandbuffer->draw(pmodelbufferRectangle);
 
-      pgpucontext->defer_unbind(pshader);
+      pgpucontext->defer_unbind(pcommandbuffer, pshader);
 
    }
 
@@ -2767,7 +2780,7 @@ namespace gpu
 
       pmodelbuffer->unbind(pcommandbuffer);
 
-      pcontext->defer_unbind(pshader);
+      pcontext->defer_unbind(pcommandbuffer, pshader);
 
       m_pointTarget.x = x2;
       m_pointTarget.y = y2;
@@ -3328,7 +3341,9 @@ namespace gpu
       //::opengl::check_error("");
 
       pcontext->set_cull_face(::gpu::e_cull_mode_none);
-      pcontext->defer_unbind(m_pgpushaderTextOut);
+      
+      pcontext->defer_unbind(pcommandbuffer, m_pgpushaderTextOut);
+
    }
 
 

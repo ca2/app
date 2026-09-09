@@ -738,3 +738,14 @@ bool comparable_eq_array_base < TYPE, ARG_TYPE, ARRAY_TYPE >::insert_unique_at(:
    return false;
 
 }
+
+
+
+
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+inline ::hash32 as_hash32(const comparable_eq_array_base < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
+{
+
+   return ::as_hash32((const typename ::comparable_eq_array_base < TYPE, ARG_TYPE, ARRAY_TYPE >::BASE_ARRAY &) a);
+
+}

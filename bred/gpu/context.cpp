@@ -349,6 +349,17 @@ namespace gpu
    ::gpu::texture_site *context::current_target_texture(::gpu::layer * pgpulayer)
    {
 
+      auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
+
+      if (pgpuwindowattachment && pgpuwindowattachment->m_pgraphics3dengineinstance)
+      {
+
+         auto pinstance = pgpuwindowattachment->m_pgraphics3dengineinstance;
+
+         //return pinstance->current_target_texture();
+
+      }
+
       if (m_pgpucompositor)
       {
 
@@ -1560,14 +1571,14 @@ namespace gpu
    }
 
 
-   void context::defer_unbind(::gpu::shader* pgpushader)
+   void context::defer_unbind(::gpu::command_buffer * pgpucommandbuffer, ::gpu::shader* pgpushader)
    {
 
 
    }
 
 
-   void context::defer_unbind_shader()
+   void context::defer_unbind_shader(::gpu::command_buffer * pgpucommandbuffer)
    {
 
       if (m_pshaderBound)
@@ -1579,9 +1590,9 @@ namespace gpu
 
          m_pshaderBound.release();
 
-         pshaderBound->unbind(::gpu::current_command_buffer());
+         pshaderBound->unbind(pgpucommandbuffer);
 
-         end_debug_happening(::gpu::current_command_buffer());
+         end_debug_happening(pgpucommandbuffer);
 
       }
 
@@ -3931,17 +3942,19 @@ namespace gpu
    void context::copy(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture_site * ptexturesiteOutput, ::gpu::texture_site * ptexturesiteInput, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady)
    {
 
-      copy(ptexturesiteOutput, ptexturesiteInput, pgpufence, pgpusemaphoreReady);
-
-   }
-
-
-   void context::copy(::gpu::texture_site * ptexturesiteOutput, ::gpu::texture_site * ptexturesiteInput, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady)
-   {
-
       throw ::interface_only();
 
+      //copy(ptexturesiteOutput, ptexturesiteInput, pgpufence, pgpusemaphoreReady);
+
    }
+
+
+   //void context::copy(::gpu::texture_site * ptexturesiteOutput, ::gpu::texture_site * ptexturesiteInput, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady)
+   //{
+
+   //   throw ::interface_only();
+
+   //}
 
 
    void context::merge_layers_dummy_model_buffer()
@@ -4736,7 +4749,7 @@ float4 main(PS_INPUT input) : SV_TARGET
 
       //::gpu::context_lock contextlock(this);
 
-      defer_unbind_shader();
+      defer_unbind_shader(::gpu::current_command_buffer());
 
       if (m_pgpucompositor)
       {
@@ -4925,7 +4938,7 @@ float4 main(PS_INPUT input) : SV_TARGET
 
          ::gpu::context_lock contextlock(this);
 
-         defer_unbind_shader();
+         defer_unbind_shader(::gpu::current_command_buffer());
 
          // pcontext->on_end_draw_detach(this);
       }

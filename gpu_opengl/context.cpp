@@ -1998,7 +1998,7 @@ namespace gpu_opengl
    //}
 
 
-   void context::copy(::gpu::texture_site *ptexturesiteOutput, ::gpu::texture_site *ptexturesiteInput, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady)
+   void context::copy(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture_site *ptexturesiteOutput, ::gpu::texture_site *ptexturesiteInput, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady)
    {
 
       ::gpu::context_lock contextlock(this);

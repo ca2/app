@@ -73,7 +73,7 @@ namespace gpu_opengl
       void bind_render_target() override;
 
 
-      void read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t * ppixmap, const ::i32_point & pointOutput) override;
+      void read_pixels(::gpu::command_buffer * commands, ::pixmap_t * ppixmap, const ::i32_point & pointOutput) override;
 
 
       void set_pixels(bool bSync, const ::i32_rectangle & rectangle, const void * data) override;

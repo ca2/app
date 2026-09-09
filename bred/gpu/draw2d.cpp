@@ -156,16 +156,12 @@ namespace gpu
                                                              const ::i32_size & size)
    {
 
-      auto pdraw2dgraphics = create_memory_graphics(size, pacmeuserinteractionAffinity);
-
-      if (::is_set(pimage))
-      {
-
-         pimage->create_from_graphics(pdraw2dgraphics);
-
-      }
-
-      return pdraw2dgraphics;
+      // Only allocate the context here. _acquire_memory_graphics subsequently
+      // calls on_acquire_memory_graphics to create/bind pimage's render target
+      // and upload existing pixels when e_acquire_load was requested.
+      // Copying from an unbound graphics here is neither initialization nor
+      // target binding, and reaches image's interface-only implementation on DX11.
+      return create_memory_graphics(size, pacmeuserinteractionAffinity);
 
    }
 

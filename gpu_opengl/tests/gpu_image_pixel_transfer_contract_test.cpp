@@ -48,7 +48,7 @@ int main()
    const auto source = read_file("gpu_opengl/texture.cpp");
 
    assert(header.find(
-      "void read_pixels(::gpu::command_buffer * pgpucommandbuffer, "
+      "void read_pixels(::gpu::command_buffer * commands, "
       "::pixmap_t * ppixmap, const ::i32_point & pointOutput) override;") !=
       std::string::npos);
    assert(header.find(
@@ -90,6 +90,7 @@ int main()
    assert(read.find("glCheckFramebufferStatus(GL_READ_FRAMEBUFFER)") !=
       std::string::npos);
    assert(read.find("glReadPixels(") != std::string::npos);
+   assert(read.find("commands->m_pgpucommandbufferlease->commit();") < read.find("glReadPixels("));
    assert(read.find(
       "auto y = raw_height() - pointOutput.y - h;") !=
       std::string::npos);

@@ -159,11 +159,11 @@ namespace graphics
 
                   ::i32 dy = y - centerY;
 
-#if defined(__APPLE__)
-                  ::f64 dHue = atan2(dy, dx);
-#else
+///#if defined(__APPLE__)
+                  //::f64 dHue = atan2(dy, dx);
+                  //#else
                   ::f64 dHue = atan2(-dy, dx);
-#endif
+//#endif
                   ::f64 dRadius = sqrt((dx * dx) + (dy * dy));
 
                   ::u8 opacity = 0;

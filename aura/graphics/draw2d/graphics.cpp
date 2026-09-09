@@ -11,6 +11,7 @@
 #include "acme/platform/application.h"
 #include "acme/prototype/geometry2d/item.h"
 #include "acme/prototype/geometry2d/_defer_item.h"
+#include "apex/gpu/window_attachment.h"
 #include "aura/platform/aura.h"
 #include "aura/graphics/graphics/buffer_item.h"
 #include "aura/graphics/image/array.h"
@@ -21,6 +22,7 @@
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/graphics/write_text/fonts.h"
 #include "aura/graphics/write_text/text_out.h"
+#include "aura/windowing/window.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/prototype/string/str.h"
 #include "aura/user/user/interaction.h"
@@ -208,10 +210,13 @@ namespace draw2d
    }
 
 
-   void graphics::set_target_image(::image::image * pimage)
+   void graphics::set_target_image(::image::image * pimageTarget)
    {
 
-      throw ::interface_only();
+      //throw ::interface_only();
+
+      m_pimageTarget = pimageTarget;
+
 
    }
 
@@ -297,6 +302,79 @@ namespace draw2d
    void graphics::start_frame()
    {
 
+      auto pacmeuserinteraction = m_pacmeuserinteractionAffinity;
+
+      if (::is_null(pacmeuserinteraction))
+      {
+
+         //return nullptr;
+
+         throw ::exception(error_wrong_state);
+
+         return;
+
+      }
+
+      auto pacmewindowingwindow = pacmeuserinteraction->acme_windowing_window();
+
+      if (::is_null(pacmewindowingwindow))
+      {
+
+         //return nullptr;
+
+         throw ::exception(error_wrong_state);
+
+         return;
+
+      }
+
+      ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
+
+      if (!pwindow)
+      {
+
+         //return nullptr;
+
+         throw ::exception(error_wrong_state);
+
+         return;
+
+      }
+
+      auto pgpuwindowattachment = pwindow->m_papexgpuwindowattachment;
+
+      if (!pgpuwindowattachment)
+      {
+
+         //return nullptr;
+
+         throw ::exception(error_wrong_state);
+
+         return;
+
+      }
+
+
+//      auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontext);
+
+      pgpuwindowattachment->start_frame();
+
+      //bool bFrameStarted = false;
+
+      //if (pgpuwindowattachment && pgpuwindowattachment->current_frame()->m_egpuframestate != ::gpu::e_gpu_frame_state_began_frame)
+      //{
+
+      //   auto & egpuframestate = pgpuwindowattachment->current_frame()->m_egpuframestate;
+
+      //   pgpuwindowattachment->m_pgraphics3dengineinstance = this;
+
+      //   pgpuwindowattachment->start_frame();
+
+      //   bFrameStarted = true;
+
+      //}
+
+
 
    }
 
@@ -304,7 +382,59 @@ namespace draw2d
    void graphics::end_frame()
    {
 
+      auto pacmeuserinteraction = m_pacmeuserinteractionAffinity;
 
+      if (::is_null(pacmeuserinteraction))
+      {
+
+         //return nullptr;
+
+         throw ::exception(error_wrong_state);
+
+         return;
+
+      }
+
+      auto pacmewindowingwindow = pacmeuserinteraction->acme_windowing_window();
+
+      if (::is_null(pacmewindowingwindow))
+      {
+
+         //return nullptr;
+
+         throw ::exception(error_wrong_state);
+
+         return;
+
+      }
+
+      ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
+
+      if (!pwindow)
+      {
+
+         //return nullptr;
+
+         throw ::exception(error_wrong_state);
+
+         return;
+
+      }
+
+      auto pgpuwindowattachment = pwindow->m_papexgpuwindowattachment;
+
+      if (!pgpuwindowattachment)
+      {
+
+         //return nullptr;
+
+         throw ::exception(error_wrong_state);
+
+         return;
+
+      }
+
+      pgpuwindowattachment->end_frame();
 
    }
 
@@ -712,10 +842,9 @@ namespace draw2d
       {
        
          m_pimageTarget.release();
+         m_pacmeuserinteractionAffinity.release();
 
       }
-
-      m_pacmeuserinteractionAffinity.release();
 
    }
 

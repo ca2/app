@@ -382,6 +382,7 @@ namespace gpu
          auto ptextureSource = m_pgpucontext->current_target_texture(pgpulayer);
 
          m_pgpucontext->copy(
+            ::gpu::current_command_buffer(),
             ptextureTarget,
             ptextureSource,
             &pgpulayer->m_pgpufence,

@@ -104,7 +104,7 @@ namespace gpu_opengl
 
       //virtual void _create_offscreen_window(const ::i32_size & size);
 
-      void copy(::gpu::texture_site* ptexturesiteOutput, ::gpu::texture_site* ptexturesiteource, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady) override;
+      void copy(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture_site* ptexturesiteOutput, ::gpu::texture_site* ptexturesiteource, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady) override;
 
       //void on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
         //                     ::acme::windowing::window *pwindow, const ::i32_size &size) override;

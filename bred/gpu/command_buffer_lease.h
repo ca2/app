@@ -5,6 +5,8 @@
 namespace gpu
 {
 
+   // A pending lease registers itself in command_buffer::m_pgpucommandbufferlease.
+   // The lease and its command buffer must be used on the same owning thread.
    class CLASS_DECL_BRED command_buffer_lease
    {
    protected:
@@ -21,6 +23,8 @@ namespace gpu
       //void initialize_command_buffer_lease(::gpu::context * pgpucontext, ::gpu::command_buffer * pgpucmdbuffer);  
 
       /// Submit the recorded command buffer and consume this lease.
+      /// Completion waits are backend-specific; synchronous readback also waits
+      /// for the copy before exposing pixels (e.g. DirectX 11's blocking Map).
       ///
       /// This must be called explicitly after recording has completed
       /// successfully. If submission throws, the lease is still consumed and

@@ -14,7 +14,7 @@
 #include "unicode_impl.h"
 
 
-#include "_u32hash.h"
+#include "acme/prototype/string/_u32hash.h"
 #include "_conv.h"
 #include "hex.h"
 
@@ -67,7 +67,7 @@ template < >
 inline ::hash32 as_hash32 < const ansi_string & >(const ansi_string & ansistr)
 {
 
-   return as_hash32(ansistr.c_str());
+   return ::character_array_as_hash32(ansistr.c_str(), ansistr.length());
 
 }
 
@@ -76,7 +76,7 @@ template < >
 inline ::hash32 as_hash32 < const wide_string & >(const wide_string & widestr)
 {
 
-   return as_hash32(widestr.c_str());
+   return ::character_array_as_hash32(widestr.c_str(), widestr.length());
 
 }
 
@@ -656,16 +656,25 @@ template < >
 inline ::hash32 as_hash32 < ansi_string >(const ansi_string & ansistr)
 {
 
-   return as_hash32 < const ansi_string & >(ansistr);
+   return ::character_array_as_hash32(ansistr.c_str(), ansistr.length());
 
 }
 
 
 template < >
-inline ::hash32 as_hash32 < wide_string >(const wide_string & widestr)
+inline ::hash32 as_hash32 < wd16_string >(const wd16_string & widestr)
 {
 
-   return as_hash32 < const wide_string & >(widestr);
+   return ::character_array_as_hash32(widestr.c_str(), widestr.length());
+
+}
+
+
+template < >
+inline ::hash32 as_hash32 < wd32_string >(const wd32_string & widestr)
+{
+
+   return ::character_array_as_hash32(widestr.c_str(), widestr.length());
 
 }
 

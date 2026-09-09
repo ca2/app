@@ -244,17 +244,8 @@ using wd32_range = ::string_range< const ::wd32_character * >;
 template<prototype_character CHARACTER>
 inline ::hash32 _string_range_u32_hash(::string_range<const CHARACTER *> range) {
 
-   if (range.is_empty()) {
-
-      return {0};
-
-   }
-
-   ::u32 uHash = 0;
-
-   while (range.m_begin < range.m_end) uHash = (uHash << 5) + *(range.m_begin++);
-
-   return {uHash};
+   return ::character_array_as_hash32(range.m_begin,
+      range.m_begin == range.m_end ? 0 : range.length());
 
 }
 

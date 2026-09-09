@@ -397,6 +397,8 @@ namespace graphics
 
          }
 
+         pimage->m_eacquire = ::draw2d::e_acquire_dont_load;
+
          return draw2d()->acquire_owned_graphics(
             false,
             m_pdraw2dgraphics,

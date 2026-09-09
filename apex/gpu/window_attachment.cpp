@@ -19,6 +19,7 @@ namespace apex
          m_iCurrentImage = -1;
          m_iFrameSerial2 = -1;
          m_iFrameCount = 3;
+         //m_bGpuFrameStarted = false;
 
       }
 
@@ -108,6 +109,19 @@ namespace apex
 
       }
 
+      
+      void window_attachment::start_frame()
+      {
+
+
+      }
+
+
+      void window_attachment::end_frame()
+      {
+
+
+      }
 
 
    } // namespace gpu

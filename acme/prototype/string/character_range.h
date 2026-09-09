@@ -5,6 +5,7 @@
 
 #include "acme/prototype/collection/range.h"
 #include "acme/prototype/string/string_heap_data.h"
+#include "acme/prototype/string/_u32hash.h"
 
 
 template < typename TYPE >
@@ -249,6 +250,15 @@ public:
 
    inline character_count length() const { return this->m_end - this->m_begin; }
    inline character_count size() const { return this->length(); }
+
+   operator ::hash32() const
+   {
+      // Views need not be null terminated. Avoid subtracting null pointers for
+      // a default-constructed range, and hash only the supplied code units.
+      return ::character_array_as_hash32(this->m_begin,
+         this->m_begin == this->m_end ? 0 : this->length());
+   }
+
    inline memsize character_count_in_bytes() const { return this->length() * sizeof(CHARACTER); };
    inline memsize null_terminated_character_count_in_bytes() const { return (this->length() + 1) * sizeof(CHARACTER); }
 

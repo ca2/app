@@ -3,6 +3,7 @@
 #include "load_image.h"
 #include "context.h"
 #include "acme/graphics/image/frame_array.h"
+#include <exception>
 
 
 namespace image
@@ -34,7 +35,13 @@ namespace image
          if (ploadimage->is_ok())
          {
 
-            auto ppixmapLoad = ploadimage->m_pimageframearray->get_pixmap();
+            auto ppixmapLoad = ploadimage->m_pimageframearray
+               ? ploadimage->m_pimageframearray->get_pixmap() : nullptr;
+
+            if (!ppixmapLoad || !ppixmapLoad->is_ok())
+            {
+               throw ::exception(error_failed, "image load: completion has no valid decoded pixmap");
+            }
 
             if (ppixmapLoad)
             {
@@ -48,6 +55,11 @@ namespace image
                ppixmap->m_eflagElement = ::e_flag_success;
 
                ppixmap->m_estatus = ::success;
+
+               if (!ppixmap->is_ok())
+               {
+                  throw ::exception(error_failed, "image load: copied destination pixmap is invalid");
+               }
 
             }
 
@@ -111,66 +123,42 @@ namespace image
 
    void load_image::run()
    {
-
-      try
+      // Preserve the cached attempt followed by the no-cache retry, but never
+      // silently discard the reason for a failed decode or completion callback.
+      for (int attempt = 0; attempt < 2; ++attempt)
       {
+         ::string reason;
+         try
+         {
+            m_pimagecontext->_task_load_image(this, m_payload, attempt == 0);
+            if (is_ok())
+               return;
+            reason = "loader returned without a successful completion";
+         }
+         catch (const ::exception & exception)
+         {
+            reason = exception.get_message();
+            auto details = exception.m_strDetails;
+            if (details.has_character())
+               reason += " | " + details;
+         }
+         catch (const ::std::exception & exception)
+         {
+            reason = exception.what();
+         }
+         catch (...)
+         {
+            reason = "unknown exception during image loading or completion";
+         }
 
-         m_pimagecontext->_task_load_image(this, m_payload, true);
-
+         // A callback can throw after on_image_loaded has marked us successful.
+         // Do not return a false success or skip the retry in that case.
+         m_estatus = ::error_failed;
+         set_nok();
+         errorf("[image.load] failed path=%s attempt=%d cache=%d action=%s reason=%s",
+            m_payload.as_file_path().c_str(), attempt + 1, attempt == 0,
+            attempt == 0 ? "retry-without-cache" : "give-up", reason.c_str());
       }
-      catch (...)
-      {
-
-      }
-      // simulate a long load time
-      //preempt(2_s);
-
-      if (this->is_ok())
-      {
-
-         ////return pimage->m_estatus;
-
-         ////if (m_pimage)
-         //{
-
-         //   if (m_functionLoaded)
-         //   {
-
-         //      m_functionLoaded(ploadimageinterface);
-
-         //   }
-
-         //}
-
-         return;
-
-      }
-
-      try
-      {
-
-         m_pimagecontext->_task_load_image(this, m_payload, false);
-
-      }
-      catch (...)
-      {
-
-      }
-
-      //if (m_pimage)
-      //{
-
-      //   if (m_functionLoaded)
-      //   {
-
-      //      m_functionLoaded(ploadimageinterface);
-
-      //   }
-
-      //}
-
-      //return pimage->m_estatus;
-
    }
 
 
@@ -216,7 +204,23 @@ namespace image
 
          //m_functionLoaded(m_pimageframearray);
 
-         m_loadoptions.functionLoaded(this);
+         try
+         {
+            m_loadoptions.functionLoaded(this);
+         }
+         catch (const ::exception & exception)
+         {
+            throw ::exception(exception.m_estatus,
+               "image load: completion callback failed: " + exception.get_message(), exception.m_strDetails);
+         }
+         catch (const ::std::exception & exception)
+         {
+            throw ::exception(error_failed, "image load: completion callback failed: " + ::string(exception.what()));
+         }
+         catch (...)
+         {
+            throw ::exception(error_failed, "image load: completion callback failed with an unknown exception");
+         }
 
       }
 

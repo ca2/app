@@ -641,6 +641,10 @@
   <ItemGroup>
     <ClInclude Include="const\idpool.h" />
     <ClInclude Include="gpu\command_buffer_lease.h" />
+    <ClInclude Include="gpu\context1.h" />
+    <ClInclude Include="gpu\context2.h" />
+    <ClInclude Include="gpu\renderer_layer_cache.h" />
+    <ClInclude Include="gpu\scoped_texture_state.h" />
     <ClInclude Include="gpu\texture_site.h" />
     <ClInclude Include="graphics3d\graphics3d.h" />
     <ClInclude Include="platform.h" />
@@ -676,7 +680,7 @@
     <ClInclude Include="gpu\image.h" />
     <ClInclude Include="gpu\input_layout.h" />
     <ClInclude Include="gpu\memory_buffer.h" />
-    <ClInclude Include="gpu\mesh.h" />
+    <ClInclude Include="gpu\aaa_mesh.h" />
     <ClInclude Include="gpu\model_buffer.h" />
     <ClInclude Include="gpu\model_data.h" />
     <ClInclude Include="gpu\object.h" />
@@ -797,6 +801,7 @@
   <ItemGroup>
     <ClCompile Include="const\idpool.cpp" />
     <ClCompile Include="gpu\command_buffer_lease.cpp" />
+    <ClCompile Include="gpu\scoped_texture_state.cpp" />
     <ClCompile Include="graphics3d\graphics3d.cpp" />
     <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -1212,7 +1212,10 @@ namespace core
 
          m_pimageLuminance = image()->create_image({ m_rectangleColors.width() / 8,  m_rectangleColors.height() });
 
-         //rebuild_luminance();
+         // The cached H/S describe the previous image, not this new allocation.
+         // Even unchanged colors must populate the replacement luminance image.
+         m_dLastLuminanceH = -1.0;
+         m_dLastLuminanceS = -1.0;
 
          m_bPendingLuminanceRebuild = true;
 

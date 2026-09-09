@@ -801,9 +801,7 @@ float4 main(PS_INPUT input) : SV_TARGET
 
       pgpucommandbuffer->draw(m_pmodelbufferDummy);
 
-
-      pgpucontext->defer_unbind_shader();
-
+      pgpucontext->defer_unbind_shader(pgpucommandbuffer);
 
    }
 

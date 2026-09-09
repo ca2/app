@@ -33,6 +33,10 @@ namespace gpu
       ::memory white_to_color_sampler_frag() override;
 
 
+      ::memory _001ImageVertexShaderMemory() override;
+      ::memory _001ImageFragmentShaderMemory() override;
+
+
    };
 
 

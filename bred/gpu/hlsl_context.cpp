@@ -254,6 +254,96 @@ float4 main(PSInput input) : SV_TARGET
 
    //}
 
+   ::memory hlsl_context::_001ImageVertexShaderMemory()
+   {
+
+
+
+      auto pvertexshader = R"vertexshader(
+
+
+cbuffer QuadBuffer : register(b1)
+{
+    float4 quad;
+    // source UV: left, bottom, right, top
+};
+
+struct VSOutput
+{
+    float4 position : SV_POSITION;
+    float2 uv       : TEXCOORD0;
+};
+
+VSOutput main(uint vertexId : SV_VertexID)
+{
+static const float2 pos[4] =
+{
+    float2(-1.0, -1.0),
+    float2(-1.0,  1.0),
+    float2( 1.0, -1.0),
+    float2( 1.0,  1.0)
+};
+
+static const float2 tex[4] =
+{
+    float2(0.0, 1.0),
+    float2(0.0, 0.0),
+    float2(1.0, 1.0),
+    float2(1.0, 0.0)
+};
+
+    VSOutput output;
+
+    output.position =
+        float4(pos[vertexId], 0.0, 1.0);
+
+    float2 uvFull =
+        tex[vertexId];
+
+    output.uv = float2(
+        lerp(quad.x, quad.z, uvFull.x),
+        lerp(quad.y, quad.w, uvFull.y)
+    );
+
+    return output;
+}
+
+
+)vertexshader";
+
+      return ::as_block(pvertexshader);
+
+   }
+
+
+   ::memory hlsl_context::_001ImageFragmentShaderMemory()
+   {
+
+      auto pfragmentshader = R"fragmentshader(
+
+Texture2D uTexture : register(t0);
+SamplerState uSampler : register(s0);
+
+struct PSInput
+{
+    float4 position : SV_POSITION;
+    float2 uv       : TEXCOORD0;
+};
+
+float4 main(PSInput input) : SV_TARGET
+{
+    float4 color =
+        uTexture.Sample(uSampler, input.uv);
+
+    // color =
+    //     mul(colorMatrix, color) + colorOffset;
+
+    return color;
+}
+
+)fragmentshader";
+      return ::as_block(pfragmentshader);
+   }
 
 
 } // namespace gpu

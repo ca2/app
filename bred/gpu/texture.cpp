@@ -424,7 +424,7 @@ namespace gpu
    void texture::set_state(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_texture_state etexturestate)
    {
 
-      m_etexturestate = etexturestate;
+      m_egputexturestate = etexturestate;
 
    }
 
@@ -814,7 +814,7 @@ namespace gpu
    }
 
 
-   void texture::read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t *, const ::i32_point & pointOutput)
+   void texture::read_pixels(::gpu::command_buffer * commands, ::pixmap_t *, const ::i32_point & pointOutput)
    {
 
       throw ::not_implemented();
@@ -839,10 +839,23 @@ namespace gpu
    }
 
    
-   void texture::write_pixels(bool bSync, const ::pixmap_t *, const ::i32_point & pointInput)
+   void texture::write_pixels(bool bSync, const ::pixmap_t * ppixmap, const ::i32_point & pointInput)
    {
 
-      throw ::not_implemented();
+      if (!ppixmap)
+      {
+
+         throw ::exception(error_null_pointer);
+
+      }
+
+      write_pixels(bSync,
+         //pgpucommandbuffer,
+         ppixmap->m_pimage32,
+         ppixmap->size(),
+         ppixmap->m_iScan,
+         sizeof(::image32_t),
+         pointInput);
 
    }
 

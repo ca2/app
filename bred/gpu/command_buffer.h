@@ -8,6 +8,7 @@
 namespace gpu
 {
 
+   class command_buffer_lease;
 
    class CLASS_DECL_BRED command_buffer :
       virtual public ::particle
@@ -40,6 +41,10 @@ namespace gpu
       ::pointer_array < ::gpu::semaphore >   m_semaphoreaWait;
       ::pointer_array < ::gpu::semaphore >   m_semaphoreaSignal;
       ::array<::gpu::enum_pipeline_stage>    m_epipelinestageaWait;
+
+      // Non-owning, thread-confined link to the lease currently owning this buffer.
+      // Updated on lease moves and cleared before submission or cancellation.
+      ::gpu::command_buffer_lease *          m_pgpucommandbufferlease = nullptr;
 
       command_buffer();
       ~command_buffer() override;

@@ -24,10 +24,19 @@ namespace graphics3d
 {
 
 
-   texture_render_system::texture_render_system() {}
+   texture_render_system::texture_render_system() 
+   {
+   
+      m_erendersystem = ::graphics3d::e_render_system_texture;
+   
+   }
 
 
-   texture_render_system::~texture_render_system() {}
+   texture_render_system::~texture_render_system() {
+   
+      
+   
+   }
 
 
    void texture_render_system::initialize_render_system(::graphics3d::engine_instance *pengine)
@@ -248,7 +257,7 @@ namespace graphics3d
             continue;
          }
 
-         if (pscenerenderable->m_erendersystem != ::graphics3d::e_render_system_wavefront_obj)
+         if (pscenerenderable->m_erendersystem != ::graphics3d::e_render_system_texture)
          {
 
             continue;

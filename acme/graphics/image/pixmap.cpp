@@ -253,11 +253,11 @@ void pixmap::create_as_descriptor(const ::i32_size & size, ::enum_flag eflagCrea
 
       }
 
-      m_sizeRaw = size;
-
    }
 
    m_size = size;
+
+   m_sizeRaw = size;
 
    m_eflagElement = eflagCreate;
 
@@ -445,6 +445,11 @@ void pixmap::_map(const ::i32_rectangle & rectangle)
          throw ::exception(error_wrong_state);
 
       }
+
+      auto iLeft = left();
+      auto iRight = right();
+      auto iTop = top();
+      auto iBottom = bottom();
 
       if (!contains_x(rectangle.left))
       {
@@ -676,18 +681,17 @@ void pixmap::create_isotropic(::pixmap * ppixmap, ::f64 fIsotropicRate)
 void pixmap::copy(const pixmap_t * ppixmap)
 {
 
-   create_as_descriptor(ppixmap->size());
+   create_as_descriptor(ppixmap->raw_size());
 
-   auto ppixmapThis = this->map();
-
+   auto ppixmapThis = this->map(ppixmap->rectangle());
 
    if (::is_different(m_bTopLeft, ppixmap->m_bTopLeft))
    {
-      y_swap_copy(ppixmap->size(), ppixmap->m_pimage32, ppixmap->m_iScan);
+      ppixmapThis->y_swap_copy(ppixmap->size(), ppixmap->m_pimage32, ppixmap->m_iScan);
    }
    else
    {
-      copy(ppixmap->size(), ppixmap->m_pimage32, ppixmap->m_iScan);
+      ppixmapThis->copy(ppixmap->size(), ppixmap->m_pimage32, ppixmap->m_iScan);
    }
 
 

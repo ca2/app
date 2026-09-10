@@ -9,6 +9,31 @@ namespace graphics
 {
 
 
+   constexpr ::i64 BITMAP_SOURCE_BUFFER_MAGIC = 0x324D5042324143LL;
+   constexpr ::i64 BITMAP_SOURCE_BUFFER_VERSION = 2;
+
+
+   struct bitmap_source_buffer_header
+   {
+
+      ::i64 m_iMagic;
+      ::i64 m_iVersion;
+      ::i64 m_xWindow;
+      ::i64 m_yWindow;
+      ::i64 m_cxWindow;
+      ::i64 m_cyWindow;
+      ::i64 m_xMonitor;
+      ::i64 m_yMonitor;
+      ::i64 m_cxMonitor;
+      ::i64 m_cyMonitor;
+      ::i64 m_cxBitmap;
+      ::i64 m_cyBitmap;
+      ::i64 m_iScan;
+      ::i64 m_bTopLeft;
+
+   };
+
+
    class CLASS_DECL_AURA bitmap_source_buffer_graphics :
       virtual public graphics
    {

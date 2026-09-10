@@ -257,7 +257,7 @@ void pixmap::create_as_descriptor(const ::i32_size & size, ::enum_flag eflagCrea
 
    m_size = size;
 
-   m_sizeRaw = size;
+   m_sizeRaw = m_sizeRaw.maximum(size);
 
    m_eflagElement = eflagCreate;
 
@@ -681,7 +681,13 @@ void pixmap::create_isotropic(::pixmap * ppixmap, ::f64 fIsotropicRate)
 void pixmap::copy(const pixmap_t * ppixmap)
 {
 
-   create_as_descriptor(ppixmap->raw_size());
+   if (ppixmap->raw_size().cx > m_sizeRaw.cx ||
+      ppixmap->raw_size().cy > m_sizeRaw.cy)
+   {
+
+      create_as_descriptor(ppixmap->raw_size());
+
+   }
 
    auto ppixmapThis = this->map(ppixmap->rectangle());
 

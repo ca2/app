@@ -228,9 +228,9 @@ namespace graphics
       try
       {
 
-         auto sizeBitmap = ppixmap->size();
+         auto sizeBitmap = ppixmap->raw_size();
 
-         auto iScan = sizeBitmap.cx * (::i32)sizeof(::image32_t);
+         auto iScan = ppixmap->m_iScan;
 
          ::memsize sRequired = (::memsize)sizeof(bitmap_source_buffer_header)
             + (::memsize)iScan * (::memsize)sizeBitmap.cy;
@@ -286,14 +286,14 @@ namespace graphics
          {
 
             pimage32Target->copy(
-               sizeBitmap, iScan, ppixmap->data(), ppixmap->m_iScan);
+               sizeBitmap, iScan, ppixmap->m_pimage32Raw, ppixmap->m_iScan);
 
          }
          else
          {
 
             pimage32Target->y_swap_copy(
-               sizeBitmap, iScan, ppixmap->data(), ppixmap->m_iScan);
+               sizeBitmap, iScan, ppixmap->m_pimage32Raw, ppixmap->m_iScan);
 
          }
 

@@ -370,14 +370,14 @@ namespace coding
 //      m_pstillClean->display();
 //
 //
-//      m_pbuttonNewReleasePrefix->set_button_style(::user::button::e_style_push);
-//      m_pbuttonCheckout->set_button_style(::user::button::e_style_push);
-//      m_pbuttonApplicationList->set_button_style(::user::button::e_style_push);
-//      m_pbuttonPrepareApplications->set_button_style(::user::button::e_style_push);
-//      m_pbuttonProjectList->set_button_style(::user::button::e_style_push);
-//      m_pbuttonPrepareProjects->set_button_style(::user::button::e_style_push);
-//      m_pbuttonCmake->set_button_style(::user::button::e_style_push);
-//      m_pbuttonClean->set_button_style(::user::button::e_style_push);
+//      m_pbuttonNewReleasePrefix->set_button_style(::user::e_button_style_push);
+//      m_pbuttonCheckout->set_button_style(::user::e_button_style_push);
+//      m_pbuttonApplicationList->set_button_style(::user::e_button_style_push);
+//      m_pbuttonPrepareApplications->set_button_style(::user::e_button_style_push);
+//      m_pbuttonProjectList->set_button_style(::user::e_button_style_push);
+//      m_pbuttonPrepareProjects->set_button_style(::user::e_button_style_push);
+//      m_pbuttonCmake->set_button_style(::user::e_button_style_push);
+//      m_pbuttonClean->set_button_style(::user::e_button_style_push);
 //
 //
 //      m_pstillNewReleasePrefix->m_ealignText = ::e_align_left;

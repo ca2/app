@@ -52,7 +52,7 @@ namespace wallpaper_transform_system_summary
 
       pgraphicsImage->set(m_pfont);
 
-      pgraphicsImage->set_text_color(::color::white);
+      pgraphicsImage->set_solid_color(::color::white);
 
       pgraphicsImage->draw_text(psummary->m_strSystem, r);
 

@@ -605,7 +605,7 @@ namespace nanoui
    //   //if (flags() & ToggleButton)
    //   //{
    //
-   //   //   m_pbutton->set_button_style(::user::button::e_style_push);
+   //   //   m_pbutton->set_button_style(::user::e_button_style_push);
    //
    //   //}
    //

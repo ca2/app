@@ -10,6 +10,7 @@
 #include "apex/platform/context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/user/user/interaction.h"
+#include "aura/windowing/display.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/window_buffer.h"
 #include "aura/windowing/windowing.h"
@@ -227,21 +228,76 @@ namespace graphics
       try
       {
 
-         ::i64 * p = (::i64 *)pdata;
+         auto sizeBitmap = ppixmap->raw_size();
 
-         ::i32 iScan = (::i32)(ppixmap->m_iScan);
+         //auto iScan = sizeBitmap.cx * (::i32)sizeof(::image32_t);
 
-         *p++ = m_pwindow->m_pointWindow.x;
-         *p++ = m_pwindow->m_pointWindow.y;
-         *p++ = m_pwindow->m_sizeWindow.cx;
-         *p++ = m_pwindow->m_sizeWindow.cy;
-         *p++ = ppixmap->m_sizeRaw.cx;
-         *p++ = ppixmap->m_sizeRaw.cy;
-         *p++ = iScan;
+         auto iScan = ppixmap->m_iScan;
 
-         //::copy_image32((::color32_t*)p, ppixmap->size(), iScan, ppixmap);
+         ::memsize sRequired = (::memsize)sizeof(bitmap_source_buffer_header)
+            + (::memsize)iScan * (::memsize)sizeBitmap.cy;
 
-         memory_copy(p, ppixmap->m_pimage32Raw, ppixmap->m_sizeRaw.cy * iScan);
+         auto sMemoryMap = (::memsize)m_pmemorymap->m_size;
+
+         if (sizeBitmap.is_empty()
+            || !ppixmap->data()
+            || ppixmap->m_iScan < sizeBitmap.cx * (::i32)sizeof(::image32_t)
+            || sRequired > sMemoryMap)
+         {
+
+            return false;
+
+         }
+
+         ::i32_rectangle rectangleMainMonitor;
+
+         auto pdisplay = system()->windowing()->display();
+
+         pdisplay->get_main_monitor(rectangleMainMonitor);
+
+         if (rectangleMainMonitor.is_empty())
+         {
+
+            auto sizeMainMonitor = pdisplay->get_main_monitor_size();
+
+            rectangleMainMonitor = {
+               0, 0, sizeMainMonitor.cx, sizeMainMonitor.cy};
+
+         }
+
+         auto pheader = (::graphics::bitmap_source_buffer_header *)pdata;
+
+         pheader->m_iMagic = BITMAP_SOURCE_BUFFER_MAGIC;
+         pheader->m_iVersion = BITMAP_SOURCE_BUFFER_VERSION;
+         pheader->m_xWindow = m_pwindow->m_pointWindow.x;
+         pheader->m_yWindow = m_pwindow->m_pointWindow.y;
+         pheader->m_cxWindow = m_pwindow->m_sizeWindow.cx;
+         pheader->m_cyWindow = m_pwindow->m_sizeWindow.cy;
+         pheader->m_xMonitor = rectangleMainMonitor.left;
+         pheader->m_yMonitor = rectangleMainMonitor.top;
+         pheader->m_cxMonitor = rectangleMainMonitor.width();
+         pheader->m_cyMonitor = rectangleMainMonitor.height();
+         pheader->m_cxBitmap = sizeBitmap.cx;
+         pheader->m_cyBitmap = sizeBitmap.cy;
+         pheader->m_iScan = iScan;
+         pheader->m_bTopLeft = true;
+
+         auto pimage32Target = (::image32_t *)(pheader + 1);
+
+         if (ppixmap->m_bTopLeft)
+         {
+
+            pimage32Target->copy(
+               sizeBitmap, iScan, ppixmap->data(), ppixmap->m_iScan);
+
+         }
+         else
+         {
+
+            pimage32Target->y_swap_copy(
+               sizeBitmap, iScan, ppixmap->data(), ppixmap->m_iScan);
+
+         }
 
       }
       catch (...)
@@ -296,14 +352,14 @@ namespace graphics
 
          }
 
-         auto ppixmapImageBufferItem = get_screen_item()->m_pimageBufferItem->map();
+         //auto ppixmapImageBufferItem = get_screen_item()->m_pimageBufferItem->map();
 
-         if (!ipc_copy(ppixmapImageBufferItem))
-         {
+         //if (!ipc_copy(ppixmapImageBufferItem))
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
       }
 

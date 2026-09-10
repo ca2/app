@@ -5232,7 +5232,11 @@ void imaging::spread(pixmap_t * ppixmapTarget, const pixmap_t * ppixmapSource, :
 
    ::i32 cy = ppixmapTarget->height();
 
-   if (cx != ppixmapSource->width() || cy != ppixmapSource->height())
+   ::i32 cxSource = ppixmapSource->width();
+
+   ::i32 cySource = ppixmapSource->height();
+
+   if (cx != cxSource || cy != cySource)
    {
 
       throw ::exception(error_bad_argument);

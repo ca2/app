@@ -1558,6 +1558,25 @@ namespace image
 
 #endif // UNIVERSAL_WINDOWS
 
+   class load_exception :
+      virtual public ::exception
+   {
+   public:
+
+      load_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage = {}) :
+         ::exception(estatus, scopedstrMessage)
+      {
+
+
+      }
+
+      ~load_exception()
+      {
+
+      }
+
+   };
+
 
    void image_context::_task_load_image(::image::load_image *ploadimage, ::payload payload, bool bCache)
    {
@@ -1594,7 +1613,7 @@ namespace image
 
       if (::is_null(psz) || size <= 0)
       {
-         throw ::exception(error_failed, "image load: file read returned no bytes: " + path);
+         throw ::image::load_exception(error_failed, "image load: file read returned no bytes: " + path);
 
       }
 

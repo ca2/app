@@ -341,23 +341,28 @@ namespace draw2d
 
       }
 
-      auto pgpuwindowattachment = pwindow->m_papexgpuwindowattachment;
-
-      if (!pgpuwindowattachment)
+      if (m_papplication->m_bGpu)
       {
 
-         //return nullptr;
+         auto pgpuwindowattachment = pwindow->m_papexgpuwindowattachment;
 
-         throw ::exception(error_wrong_state);
+         if (!pgpuwindowattachment)
+         {
 
-         return;
+            //return nullptr;
+
+            throw ::exception(error_wrong_state);
+
+            return;
+
+         }
+
+
+         //      auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontext);
+
+         pgpuwindowattachment->start_frame();
 
       }
-
-
-//      auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontext);
-
-      pgpuwindowattachment->start_frame();
 
       //bool bFrameStarted = false;
 
@@ -421,20 +426,25 @@ namespace draw2d
 
       }
 
-      auto pgpuwindowattachment = pwindow->m_papexgpuwindowattachment;
-
-      if (!pgpuwindowattachment)
+      if (m_papplication->m_bGpu)
       {
 
-         //return nullptr;
+         auto pgpuwindowattachment = pwindow->m_papexgpuwindowattachment;
 
-         throw ::exception(error_wrong_state);
+         if (!pgpuwindowattachment)
+         {
 
-         return;
+            //return nullptr;
+
+            throw ::exception(error_wrong_state);
+
+            return;
+
+         }
+
+         pgpuwindowattachment->end_frame();
 
       }
-
-      pgpuwindowattachment->end_frame();
 
    }
 
@@ -764,16 +774,14 @@ namespace draw2d
          if (m_pimageTarget)
          {
 
-            if (pimage == m_pimageTarget)
+            if (pimage != m_pimageTarget)
             {
 
-               return;
+               throw ::exception(
+                  error_wrong_state,
+                  "memory graphics is already bound to an image");
 
             }
-
-            throw ::exception(
-               error_wrong_state,
-               "memory graphics is already bound to an image");
 
          }
 

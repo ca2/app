@@ -206,6 +206,10 @@ namespace gpu_opengl
             // The OBJ renderer has already bound its shader, scene uniforms,
             // and model/normal matrices. Submit this mesh with those bindings.
          }
+         else if (erendersystem == ::graphics3d::e_render_system_texture)
+         {
+
+         }
          else if (erendersystem == ::graphics3d::e_render_system_skybox_ibl)
          {
 

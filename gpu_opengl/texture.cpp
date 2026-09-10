@@ -1945,10 +1945,17 @@ namespace gpu_opengl
 
       //::memory memoryFlipped = m_pixmapFlipped;
       auto &pixmapFlipped = m_pixmapFlipped;
-      pixmapFlipped.create_as_descriptor(ppixmap->size(), DEFAULT_CREATE_IMAGE_FLAG, ppixmap->m_iScan);
+      pixmapFlipped.m_bTopLeft = false;
+      pixmapFlipped.create_as_descriptor(ppixmap->raw_size(), DEFAULT_CREATE_IMAGE_FLAG, ppixmap->m_iScan);
       pixmapFlipped.m_colorindexes = ppixmap->m_colorindexes;
       pixmapFlipped.copy(ppixmap);
-      pixmapFlipped.vertical_swap();
+
+      //if (ppixmap->m_bTopLeft)
+      //{
+
+      //   pixmapFlipped.vertical_swap();
+
+      //}
 
       int cx = ppixmap->width();
       int cy = ppixmap->height();

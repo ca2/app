@@ -102,7 +102,7 @@ namespace graphics3d
       e_render_system_gltf_scene,
       e_render_system_gltf_ibl,
       e_render_system_point_light,
-
+      e_render_system_texture,
    };
 
    CLASS_DECL_BRED enum_render_system as_render_system(const ::scoped_string &scopedstr);

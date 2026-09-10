@@ -228,11 +228,9 @@ namespace graphics
       try
       {
 
-         auto sizeBitmap = ppixmap->raw_size();
+         auto sizeBitmap = ppixmap->size();
 
-         //auto iScan = sizeBitmap.cx * (::i32)sizeof(::image32_t);
-
-         auto iScan = ppixmap->m_iScan;
+         auto iScan = sizeBitmap.cx * (::i32)sizeof(::image32_t);
 
          ::memsize sRequired = (::memsize)sizeof(bitmap_source_buffer_header)
             + (::memsize)iScan * (::memsize)sizeBitmap.cy;

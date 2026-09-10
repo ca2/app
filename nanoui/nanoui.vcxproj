@@ -597,7 +597,6 @@
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="Layout.cpp" />
     <ClCompile Include="MessageDialog.cpp" />
-    <ClCompile Include="platform.cpp" />
     <ClCompile Include="Popup.cpp" />
     <ClCompile Include="PopupButton.cpp" />
     <ClCompile Include="ProgressBar.cpp" />

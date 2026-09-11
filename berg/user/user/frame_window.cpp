@@ -572,9 +572,9 @@ namespace user
 
                   //::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  //auto pgraphicsImage1 = pimage1->acquire_graphics();
+                  //auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-                  //pgraphicsImage1->draw(imagedrawing);
+                  //pdraw2dgraphicsImage1->draw(imagedrawing);
 
                   //auto pcopydesk = copydesk();
 
@@ -606,9 +606,9 @@ namespace user
 
                   ////}
 
-                  //auto pgraphicsImage2 = pimage2->acquire_graphics();
+                  //auto pdraw2dgraphicsImage2 = pimage2->acquire_graphics();
 
-                  //pgraphicsImage2->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+                  //pdraw2dgraphicsImage2->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
                   //::f64_rectangle rectangleSource(rectangle.size());
 
@@ -622,7 +622,7 @@ namespace user
 
                   //   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  //   pgraphicsImage2->draw(imagedrawing);
+                  //   pdraw2dgraphicsImage2->draw(imagedrawing);
 
                   //}
 

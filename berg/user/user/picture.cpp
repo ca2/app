@@ -879,11 +879,11 @@ namespace user
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               auto pgraphicsImageDropShadow = pimageDropShadow->acquire_graphics();
+               auto pdraw2dgraphicsImageDropShadow = pimageDropShadow->acquire_graphics();
 
-               pgraphicsImageDropShadow->clear(color::transparent);
+               pdraw2dgraphicsImageDropShadow->clear(color::transparent);
 
-               pgraphicsImageDropShadow->draw(imagedrawing);
+               pdraw2dgraphicsImageDropShadow->draw(imagedrawing);
 
             }
 

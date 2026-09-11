@@ -128,9 +128,9 @@ namespace image
       if (m_pimage.ok())
       {
 
-         auto pgraphicsImage = m_pimage->acquire_graphics();
+         auto pdraw2dgraphicsImage = m_pimage->acquire_graphics();
 
-         pgraphicsImage->fill_rectangle(m_pimage->rectangle(), color & opacity);
+         pdraw2dgraphicsImage->fill_rectangle(m_pimage->rectangle(), color & opacity);
 
       }
 
@@ -704,9 +704,9 @@ namespace image
 
       }
 
-      auto pgraphicsImage = pimage->acquire_graphics();
+      auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-      draw(pgraphicsImage, iImage, {}, 0);
+      draw(pdraw2dgraphicsImage, iImage, {}, 0);
 
       return pimage;
 
@@ -768,7 +768,19 @@ namespace image
    void image_list::copy_from(const ::image::image_list * plist)
    {
 
-      m_pimage = plist->m_pimage->clone();
+      if (plist->m_pimage.ok())
+      {
+         
+         m_pimage = plist->m_pimage->clone();
+
+      }
+      else
+      {
+
+         m_pimage.release();
+
+      }
+
       m_size = plist->m_size;
       m_iSize = plist->m_iSize;
       m_iGrow = plist->m_iGrow;

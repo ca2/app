@@ -221,13 +221,13 @@ namespace user
 
                {
 
-                  auto pgraphicsImage = pimage->acquire_graphics();
+                  auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-                  pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_set);
+                  pdraw2dgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-                  pgraphicsImage->fill_rectangle(pimage->size(), ::color::transparent);
+                  pdraw2dgraphicsImage->fill_rectangle(pimage->size(), ::color::transparent);
 
-                  get_image_list()->draw(pgraphicsImage, (::i32)m_iImage,
+                  get_image_list()->draw(pdraw2dgraphicsImage, (::i32)m_iImage,
                      i32_point(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate), m_rectangleImage.size(), ::i32_point(), 0);
 
                }
@@ -263,7 +263,7 @@ namespace user
 
                }
 
-               //pgraphicsImage->fill_rectangle(::i32_rectangle(pimage->size()), argb(255, 200, 220, 255));
+               //pdraw2dgraphicsImage->fill_rectangle(::i32_rectangle(pimage->size()), argb(255, 200, 220, 255));
                if (m_pitem->m_pmesh->m_plist->m_iIconBlur > 0 && m_pitem->m_pmesh->m_plist->m_iIconBlurRadius > 0)
                {
 
@@ -327,11 +327,11 @@ namespace user
                rect2.offset(-m_pitem->m_pmesh->m_plist->m_rectangleSpot.top_left());
 
                {
-                  auto pgraphicsImage1 = image1.image()->acquire_graphics();
+                  auto pdraw2dgraphicsImage1 = image1.image()->acquire_graphics();
 
-                  pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
+                  pdraw2dgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-                  get_image_list()->draw(pgraphicsImage1, (::i32)m_iImage,
+                  get_image_list()->draw(pdraw2dgraphicsImage1, (::i32)m_iImage,
                      rect2.top_left(),
                      rectangle.size(), rectangle.top_left(), 0);
                }
@@ -385,7 +385,7 @@ namespace user
             //auto pimageDebug = create_image(m_rectangleImage.size());
             //{
 
-            //   auto ret = get_image_list()->draw(pgraphicsImageDebug->, (::i32)m_iImage, { 0,0 }, m_rectangleImage.size(), ::i32_point(), 0);
+            //   auto ret = get_image_list()->draw(pdraw2dgraphicsImageDebug->, (::i32)m_iImage, { 0,0 }, m_rectangleImage.size(), ::i32_point(), 0);
             //   auto pimage32 = pimageDebug->get_data();
             //   informationf("imageDebug");
 

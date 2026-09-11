@@ -1767,11 +1767,11 @@ namespace draw2d
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            auto pgraphicsImage1 = image1.image()->acquire_graphics();
+            auto pdraw2dgraphicsImage1 = image1.image()->acquire_graphics();
 
-            pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
+            pdraw2dgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-            pgraphicsImage1->draw(imagedrawing);
+            pdraw2dgraphicsImage1->draw(imagedrawing);
 
             auto x = rectangleTarget.left;
 
@@ -1821,7 +1821,7 @@ namespace draw2d
 
    //   auto pimage = pcursor->m_pimage;
 
-   //   return draw(::f64_rectangle(pointDst, pimage->size()), pgraphicsImage);
+   //   return draw(::f64_rectangle(pointDst, pimage->size()), pdraw2dgraphicsImage);
 
    //}
 
@@ -1829,7 +1829,7 @@ namespace draw2d
    //void graphics::draw_at(const ::f64_point & pointDst, ::image::image *pimage)
    //{
 
-   //   return draw(::f64_rectangle(pointDst, pimage->get_size()), pgraphicsImage);
+   //   return draw(::f64_rectangle(pointDst, pimage->get_size()), pdraw2dgraphicsImage);
 
    //}
 
@@ -1877,7 +1877,7 @@ namespace draw2d
    //void graphics::draw(const ::f64_rectangle & rectangleTarget, ::image::image *pimage, const ::f64_point & pointSrc)
    //{
 
-   //   return draw(rectangleTarget, pgraphicsImage, pointSrc);
+   //   return draw(rectangleTarget, pdraw2dgraphicsImage, pointSrc);
 
    //}
 
@@ -1961,7 +1961,7 @@ namespace draw2d
 
    //   //         pimage1 = create_image(rectangle.size());
 
-   //   //         pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //   //         pdraw2dgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    //   //         if (!pimage1->from(nullptr, pgraphicsSrc, point, rectangle.size()))
    //   //            return false;
@@ -1972,7 +1972,7 @@ namespace draw2d
    //   //               (::i32)maximum(0, rectangle.top - m_pointAlphaBlend.y)
    //   //            }, rectangle.size());
 
-   //   //         draw_image(rectangle, pgraphicsImage1);
+   //   //         draw_image(rectangle, pdraw2dgraphicsImage1);
 
    //   //      }
 
@@ -2018,7 +2018,7 @@ namespace draw2d
    //void graphics::stretch(const ::f64_rectangle & rectangleTarget, ::image::image *pimage, const ::f64_rectangle & rectangleSource)
    //{
 
-   //   return stretch(rectangleTarget, pgraphicsImage, rectangleSource.is_null() ? ::f64_rectangle(pimage->rectangle()) : rectangleSource);
+   //   return stretch(rectangleTarget, pdraw2dgraphicsImage, rectangleSource.is_null() ? ::f64_rectangle(pimage->rectangle()) : rectangleSource);
 
    //}
 
@@ -2201,13 +2201,13 @@ namespace draw2d
    //
    //         pimage1 = image()->create_image(rectangleText.size());
    //
-   //         pgraphicsImage1->set(get_current_font());
+   //         pdraw2dgraphicsImage1->set(get_current_font());
    //
-   //         pgraphicsImage1->set(get_current_brush());
+   //         pdraw2dgraphicsImage1->set(get_current_brush());
    //
-   //         pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         pdraw2dgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
-   //         pgraphicsImage1->text_out(0, 0, block);
+   //         pdraw2dgraphicsImage1->text_out(0, 0, block);
    //
    //         {
    //
@@ -2219,7 +2219,7 @@ namespace draw2d
    //
    //            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
    //
-   //            pgraphicsImage1->draw(imagedrawing);
+   //            pdraw2dgraphicsImage1->draw(imagedrawing);
    //
    //         }
    //
@@ -6389,7 +6389,7 @@ namespace draw2d
 
       }
 
-      //auto pgraphicsImage = pimage->acquire_graphics();
+      //auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
       ::image::image_source imagesource(pimage, rectangleSource);
 

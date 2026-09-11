@@ -101,11 +101,11 @@ namespace experience_anthill
       ::i32_rectangle rectangleWindow = rectangleX;
       pframewindow->client_to_screen()(rectangleWindow);
       //pimage = create_image({rectangleX.width(),  rectangleX.height()});
-      //bool b = pgraphicsImage2->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pdraw2dgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
+      //bool b = pdraw2dgraphicsImage2->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pdraw2dgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
 
       {
          
-         auto pgraphicsImage2 = pimage2->acquire_graphics();
+         auto pdraw2dgraphicsImage2 = pimage2->acquire_graphics();
 
          ::image::image_source imagesource(pdraw2dgraphics,
             ::f64_rectangle(::i32_point(rectangleX.left - iInflate, rectangleX.top - iInflate), ::f64_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
@@ -116,7 +116,7 @@ namespace experience_anthill
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphicsImage2->draw(imagedrawing);
+         pdraw2dgraphicsImage2->draw(imagedrawing);
 
       }
 

@@ -25,11 +25,19 @@ namespace draw2d
 
 } // namespace draw2d
 
+//#define IMAGE_IMAGE_TRANSFER(a) \
+//::image::image(::transfer(a)), \
+//::property_object(::transfer(a)), \
+//::image::image_drawer(::transfer(a)), \
+//::image::image_source_interface(::transfer(a)), \
+//::item(::transfer(a)), \
+//::matter(::transfer(a)), \
+//IMAGE_IMAGE_META_TRANSFER(a)
+
 
 #define IMAGE_IMAGE_TRANSFER(a) \
 ::image::image(::transfer(a)), \
 ::property_object(::transfer(a)), \
-::image::image_drawer(::transfer(a)), \
 ::image::image_source_interface(::transfer(a)), \
 ::item(::transfer(a)), \
 ::matter(::transfer(a)), \
@@ -53,7 +61,7 @@ namespace image
    class CLASS_DECL_AURA image :
       virtual public ::image::image_meta,
       virtual public ::property_object,
-      virtual public ::image::image_drawer,
+      //virtual public ::image::image_drawer,
       virtual public ::image::image_source_interface,
       virtual public ::item
    {
@@ -76,6 +84,9 @@ namespace image
 
       //using image_meta::clear;
       //using object::clear;
+
+      ::subparticle_pointer clone() override;
+
 
       virtual void create_with_pixmap(::pixmap * ppixmap);
 
@@ -184,7 +195,7 @@ namespace image
 
       //inline ::i32_size get_size() const;
 
-      ::f64_rectangle get_image_drawer_rectangle() const override;
+      //::f64_rectangle get_image_drawer_rectangle() const override;
 
 
       ::image::image_pointer image_source_image(const ::i32_size &) override;
@@ -248,9 +259,9 @@ namespace image
       //::pixmap_lease map(bool bApplyAlphaTransform = true) const override; // some implementations may requrire to map_base to m_pcolorref before manipulate it
       //void unmap() const override; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
-      virtual void _draw_raw(const ::i32_rectangle& rectangleDstParam, ::image::image* pimageSrc, const ::i32_point& pointSrcParam);
+      //virtual void _draw_raw(const ::i32_rectangle& rectangleDstParam, ::image::image* pimageSrc, const ::i32_point& pointSrcParam);
 
-      virtual void blend(const ::i32_rectangle& rectangleDstParam, ::image::image* pimageSrc, const ::i32_point& pointSrcParam, ::u8 bA);
+      //virtual void blend(const ::i32_rectangle& rectangleDstParam, ::image::image* pimageSrc, const ::i32_point& pointSrcParam, ::u8 bA);
       //virtual void blend2(const ::i32_point& pointDstParam, ::image::image* pimageSrc, const ::i32_point& pointSrcParam, const ::i32_size& sizeParam, ::u8 bA);
 
       //virtual void set_mapped();
@@ -489,9 +500,9 @@ namespace image
       //inline void operator == (const ::image::image & image) const;
       //inline void operator != (const ::image::image & image) const;
 
-      void draw(const ::image::image_drawing & imagedrawing) override;
-      bool _draw_blend(const ::image::image_drawing & imagedrawing) override;
-      void _draw_raw(const ::image::image_drawing & imagedrawing) override;
+      //void draw(const ::image::image_drawing & imagedrawing) override;
+      //bool _draw_blend(const ::image::image_drawing & imagedrawing) override;
+      //void _draw_raw(const ::image::image_drawing & imagedrawing) override;
 
 
       virtual bool on_acquirable_copy_from(::pixmap * ppixmap);

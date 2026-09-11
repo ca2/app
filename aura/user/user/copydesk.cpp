@@ -456,11 +456,11 @@ namespace user
 
                      auto pwritetextfont = m_pwritetextfont;
 
-                     auto pgraphicsImage = pimage->acquire_graphics();
+                     auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-                     pgraphicsImage->set(pwritetextfont);
+                     pdraw2dgraphicsImage->set(pwritetextfont);
 
-                     ::f64_size s = pgraphicsImage->get_text_extent(str);
+                     ::f64_size s = pdraw2dgraphicsImage->get_text_extent(str);
 
                      if (s.area() > 0.)
                      {
@@ -475,15 +475,15 @@ namespace user
                            //if (is_status_ok())
                            //{
 
-                            auto pgraphicsImage = pimage->acquire_graphics();
+                            auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-                              pgraphicsImage->clear(::color::transparent);
+                              pdraw2dgraphicsImage->clear(::color::transparent);
 
-                              pgraphicsImage->set(pwritetextfont);
+                              pdraw2dgraphicsImage->set(pwritetextfont);
 
-                              pgraphicsImage->set_solid_color(argb(255, 0, 0, 0));
+                              pdraw2dgraphicsImage->set_solid_color(argb(255, 0, 0, 0));
 
-                              pgraphicsImage->draw_text(str, ::i32_rectangle(pimage->get_size()), e_align_bottom_left);
+                              pdraw2dgraphicsImage->draw_text(str, ::i32_rectangle(pimage->get_size()), e_align_bottom_left);
 
                               return true;
 

@@ -3,6 +3,7 @@
 #include "drawing.h"
 #include "image.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/image/context.h"
 #include "aura/platform/context.h"
 
@@ -97,7 +98,9 @@ namespace image
 
             */
 
-            pimage->draw(imagedrawing);
+            auto pdraw2dgraphicsImage = pimage->acquire_graphics();
+
+            pdraw2dgraphicsImage->draw(imagedrawing);
 
             add_image(pimage);
 

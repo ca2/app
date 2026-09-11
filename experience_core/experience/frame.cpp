@@ -201,9 +201,9 @@ namespace experience_core
 
          //b = 
 
-         auto pgraphicsImage2 = pimage2->acquire_graphics();
+         auto pdraw2dgraphicsImage2 = pimage2->acquire_graphics();
 
-         pgraphicsImage2->draw(imagedrawing);
+         pdraw2dgraphicsImage2->draw(imagedrawing);
 
       }
 
@@ -498,7 +498,7 @@ namespace experience_core
    }
 
 
-   void frame::set_frame_color_system_default_001()
+   void frame::set_frame_color_system_default_001(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pframewindow = m_pframewindow;
@@ -538,7 +538,7 @@ namespace experience_core
 
       }
 
-      set_frame_color_system_default_001();
+      set_frame_color_system_default_001(pdraw2dgraphics);
 
       auto pframewindow = m_pframewindow;
 

@@ -543,9 +543,9 @@ namespace user
 
                      pimage = image()->create_image(szNew);
 
-                     auto pgraphicsImage = pimage->acquire_graphics();
+                     auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-                     pgraphicsImage->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+                     pdraw2dgraphicsImage->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
                      ::image::image_source imagesource(pimageSrc);
 

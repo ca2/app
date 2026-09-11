@@ -307,7 +307,7 @@ namespace hellobase
 
 /*         pimage->Fill(0, 0, 0, 0);
 
-/*         helloaura_render(pgraphicsImage);
+/*         helloaura_render(pdraw2dgraphicsImage);
 
 
       }
@@ -328,7 +328,7 @@ namespace hellobase
       //   else
       //   {
       //
-      //      helloaura_render_full_impact(pgraphicsImage);
+      //      helloaura_render_full_impact(pdraw2dgraphicsImage);
       //
       //   }
 
@@ -889,9 +889,9 @@ namespace hellobase
 //
 //                     pdraw2dgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 //
-/*                     pdraw2dgraphics->StretchBlt(0, 0, pimage->width() / 40, pimage->height() / 40, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
+/*                     pdraw2dgraphics->StretchBlt(0, 0, pimage->width() / 40, pimage->height() / 40, pdraw2dgraphicsImage, 0, 0, pimage->width(), pimage->height());
 //
-/*                     pdraw2dgraphics->StretchBlt(0, m_cy - pimage->height() / 40, pimage->width() / 40, pimage->height() / 40, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
+/*                     pdraw2dgraphics->StretchBlt(0, m_cy - pimage->height() / 40, pimage->width() / 40, pimage->height() / 40, pdraw2dgraphicsImage, 0, 0, pimage->width(), pimage->height());
 //
 //                  }
 //
@@ -940,9 +940,9 @@ namespace hellobase
 //
 //                     pdraw2dgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 //
-/*                     pdraw2dgraphics->StretchBlt(m_cx - pimage->width() / 32, 0, pimage->width() / 32, pimage->height() / 32, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
+/*                     pdraw2dgraphics->StretchBlt(m_cx - pimage->width() / 32, 0, pimage->width() / 32, pimage->height() / 32, pdraw2dgraphicsImage, 0, 0, pimage->width(), pimage->height());
 //
-/*                     pdraw2dgraphics->StretchBlt(m_cx - pimage->width() / 32, m_cy - pimage->height() / 32, pimage->width() / 32, pimage->height() / 32, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
+/*                     pdraw2dgraphics->StretchBlt(m_cx - pimage->width() / 32, m_cy - pimage->height() / 32, pimage->width() / 32, pimage->height() / 32, pdraw2dgraphicsImage, 0, 0, pimage->width(), pimage->height());
 //
 //                  }
 //
@@ -1049,7 +1049,7 @@ namespace hellobase
 
       //               pimage->defer_update();
 
-/*      //               psystem->imaging().bitmap_blend(pdraw2dgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), 255 - uchAlpha);
+/*      //               psystem->imaging().bitmap_blend(pdraw2dgraphics, ::i32_point(), pimage->get_size(), pdraw2dgraphicsImage, ::i32_point(), 255 - uchAlpha);
 
       //            }
 
@@ -1067,7 +1067,7 @@ namespace hellobase
 
       //               pimage->defer_update();
 
-/*      //               psystem->imaging().bitmap_blend(pdraw2dgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), uchAlpha);
+/*      //               psystem->imaging().bitmap_blend(pdraw2dgraphics, ::i32_point(), pimage->get_size(), pdraw2dgraphicsImage, ::i32_point(), uchAlpha);
 
       //            }
 
@@ -1086,7 +1086,7 @@ namespace hellobase
 
       //            pimage->defer_update();
 
-/*      //            pdraw2dgraphics->BitBlt(0, 0, pimage->width(), pimage->height(), pgraphicsImage, 0, 0);
+/*      //            pdraw2dgraphics->BitBlt(0, 0, pimage->width(), pimage->height(), pdraw2dgraphicsImage, 0, 0);
 
       //         }
 
@@ -1244,7 +1244,7 @@ namespace hellobase
 
       //   uchAlpha = ::u8(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
-/*      //   psystem->imaging().bitmap_blend(pdraw2dgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), uchAlpha);
+/*      //   psystem->imaging().bitmap_blend(pdraw2dgraphics, ::i32_point(), pimage->get_size(), pdraw2dgraphicsImage, ::i32_point(), uchAlpha);
 
       //   psystem->imaging().bitmap_blend(pdraw2dgraphics, ::i32_point(), imageFast.get_size(), imageFast.get_graphics(), ::i32_point(), 255 - uchAlpha);
 
@@ -1252,7 +1252,7 @@ namespace hellobase
       //else
       //{
 
-/*      //   pdraw2dgraphics->from(::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point());
+/*      //   pdraw2dgraphics->from(::i32_point(), pimage->get_size(), pdraw2dgraphicsImage, ::i32_point());
 
       //}
 

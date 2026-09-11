@@ -180,9 +180,9 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
 
          get_html_data()->delete_implementation();
 
-         auto pgraphicsImage = pimage->acquire_graphics();
+         auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-         get_html_data()->on_layout(pgraphicsImage);
+         get_html_data()->on_layout(pdraw2dgraphicsImage);
 
          set_need_redraw();
 
@@ -791,9 +791,9 @@ void html_form::defer_implement()
 
    get_html_data()->m_pcoredata->m_pform = this;
 
-   auto pgraphicsImage = pimage->acquire_graphics();
+   auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-   get_html_data()->implement(pgraphicsImage);
+   get_html_data()->implement(pdraw2dgraphicsImage);
 
 }
 
@@ -815,9 +815,9 @@ void html_form::defer_html_layout()
 
    get_html_data()->m_pcoredata->m_pform = this;
 
-   auto pgraphicsImage = pimage->acquire_graphics();
+   auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-   get_html_data()->on_layout(pgraphicsImage);
+   get_html_data()->on_layout(pdraw2dgraphicsImage);
 
    set_need_redraw();
 

@@ -302,9 +302,9 @@ namespace image
 
       auto pimageStreched = create_image(size);
 
-      auto pgraphicsImageStretched = pimageStreched->acquire_graphics();
+      auto pdraw2dgraphicsImageStretched = pimageStreched->acquire_graphics();
 
-      pgraphicsImageStretched->stretch_image(pimage);
+      pdraw2dgraphicsImageStretched->stretch_image(pimage);
 
       return pimageStreched;
 

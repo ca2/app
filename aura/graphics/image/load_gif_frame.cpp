@@ -237,7 +237,7 @@ namespace image
    //      if (uFrameIndex > 0 && pframea->element_at(uFrameIndex - 1)->m_edisposal == ::draw2d::e_disposal_background)
    //      {
    //
-   //         pgraphicsImageCanvas->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         pdraw2dgraphicsImageCanvas->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
    //         ::color::color crBack = pframea->m_colorBack;
    //
@@ -258,7 +258,7 @@ namespace image
    //
    //         ::i32_rectangle rectangle = pframea->element_at(uFrameIndex - 1)->m_rectangle;
    //
-   //         pgraphicsImageCanvas->fill_rectangle(rectangle, crBack);
+   //         pdraw2dgraphicsImageCanvas->fill_rectangle(rectangle, crBack);
    //
    //      }
    //

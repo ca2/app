@@ -356,7 +356,7 @@ namespace draw3d
 //            point2da[2]= ::i32_point((::i32)locationa[f[iMax][2]].x,(::i32)locationa[f[iMax][2]].y);
 //
 //            throw ::exception(todo, "plgblt");
-//            //m_pdc->PlgBlt(point2da, pgraphicsImage,0,0,pimage->width(),pimage->width(),bm,0,0);
+//            //m_pdc->PlgBlt(point2da, pdraw2dgraphicsImage,0,0,pimage->width(),pimage->width(),bm,0,0);
 
          }
 

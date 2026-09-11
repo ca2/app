@@ -111,8 +111,8 @@
                ::i32_rectangle rectangleWindow = rectangleX;
                pframewindow->client_to_screen(rectangleWindow);
 /*               //pimage = create_image({rectangleX.width(),  rectangleX.height()});
-               //bool b = pgraphicsImage2->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pdraw2dgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
-               pgraphicsImage2->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pdraw2dgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
+               //bool b = pdraw2dgraphicsImage2->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pdraw2dgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
+               pdraw2dgraphicsImage2->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pdraw2dgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
                //bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left - iInflate, rectangleX.top - iInflate);
 
                m_blur1.blur(pimage1, 2, ::i32_rectangle(size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
@@ -140,7 +140,7 @@
                rectangleWindow.height(),
                bf);*/
 
-               pdraw2dgraphics->BitBlt(rectangleX.left, rectangleX.top, rectangleX.width(), rectangleX.height(), pgraphicsImage1, iInflate, iInflate);
+               pdraw2dgraphics->BitBlt(rectangleX.left, rectangleX.top, rectangleX.width(), rectangleX.height(), pdraw2dgraphicsImage1, iInflate, iInflate);
 
             }
 

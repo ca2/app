@@ -48,17 +48,17 @@ namespace wallpaper_transform_system_summary
       r.top = r.bottom - 150;
       r.left += 40;
 
-      auto pgraphicsImage = pimage->acquire_graphics();
+      auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-      pgraphicsImage->set(m_pfont);
+      pdraw2dgraphicsImage->set(m_pfont);
 
-      pgraphicsImage->set_solid_color(::color::white);
+      pdraw2dgraphicsImage->set_solid_color(::color::white);
 
-      pgraphicsImage->draw_text(psummary->m_strSystem, r);
+      pdraw2dgraphicsImage->draw_text(psummary->m_strSystem, r);
 
       r.top = r.bottom - 200;
 
-      pgraphicsImage->draw_text(node()->get_host_name(), r);
+      pdraw2dgraphicsImage->draw_text(node()->get_host_name(), r);
 
    }
 

@@ -15,49 +15,49 @@ namespace user
    public:
 
 
-      ::collection::index                       m_iUpdate;
-      ::pointer<::factory::factory>             m_pfactory;
+      ::collection::index                          m_iUpdate;
+      ::pointer<::factory::factory>                m_pfactory;
       map_base < ::user::enum_control_type, ::pointer<control_style >>m_controlstyle;
       //::pointer<::user::plain_edit_style>   m_pplaineditstyel;
 
-      ::write_text::font_pointer                 m_pwritetextfont;
-      ::write_text::font_pointer                 m_pfontMenu;
-      ::write_text::font_pointer                 m_pfontButton;
-      ::write_text::font_pointer                 m_pfontList;
-      ::write_text::font_pointer                 m_pfontTree;
-      ::write_text::font_pointer                 m_pfontStill;
-      ::write_text::font_pointer                 m_pfontEdit;
-      ::write_text::font_pointer                 m_pfontCombo;
-      ::write_text::font_pointer                 m_pfontTab;
-      enum_translucency                         m_etranslucency;
-      enum_translucency                         m_etranslucencyButton;
-      //::color::color                                m_colorBackground;
-      //::color::color                                m_colorText;
-      //::pointer<color_map>                m_mapColor;
-      //::pointer<font_map>                 m_mapFont;
-      //::pointer<translucency_map>         m_mapTranslucency;
-      //::pointer<flag_map>                 m_mapFlag;
-      //::pointer<rect_map>                 m_mapRect;
-      //::pointer<::user::i32_map>          m_mapInt;
-      //::pointer<::user::f64_map>       m_mapDouble;
+      ::write_text::font_pointer                   m_pwritetextfont;
+      ::write_text::font_pointer                   m_pfontMenu;
+      ::write_text::font_pointer                   m_pfontButton;
+      ::write_text::font_pointer                   m_pfontList;
+      ::write_text::font_pointer                   m_pfontTree;
+      ::write_text::font_pointer                   m_pfontStill;
+      ::write_text::font_pointer                   m_pfontEdit;
+      ::write_text::font_pointer                   m_pfontCombo;
+      ::write_text::font_pointer                   m_pfontTab;
+      enum_translucency                            m_etranslucency;
+      enum_translucency                            m_etranslucencyButton;
+      //::color::color                             m_colorBackground;
+      //::color::color                             m_colorText;
+      //::pointer<color_map>                       m_mapColor;
+      //::pointer<font_map>                        m_mapFont;
+      //::pointer<translucency_map>                m_mapTranslucency;
+      //::pointer<flag_map>                        m_mapFlag;
+      //::pointer<rect_map>                        m_mapRect;
+      //::pointer<::user::i32_map>                 m_mapInt;
+      //::pointer<::user::f64_map>                 m_mapDouble;
 
-      ::pointer<::user::style>              m_puserstyleComposite;
-      ::pointer < ::draw2d::stock_icon >     m_pstockicon;
-      //::pointer<::aura::node>               m_pnode;
+      ::pointer<::user::style>                     m_puserstyleComposite;
+      ::pointer < ::draw2d::stock_icon >           m_pstockicon;
+      //::pointer<::aura::node>                    m_pnode;
 
-      ::draw2d::graphics *                   m_pgraphics;
+      ::draw2d::graphics *                         m_pgraphics;
 
-      ::draw2d::pen_pointer                  m_ppenFocusRect;
-      ::draw2d::pen_pointer                  m_ppenFocusRect0;
-      ::draw2d::pen_pointer                  m_ppenFocusRect1;
-      ::draw2d::pen_pointer                  m_ppenFocusRect2;
-      ::draw2d::pen_pointer                  m_ppenFocusRect3;
-      ::draw2d::pen_pointer                  m_ppenFocusRect4;
-      ::draw2d::pen_pointer                  m_ppenFocusRect5;
-      ::draw2d::pen_pointer                  m_ppenFocusRect6;
-      ::draw2d::pen_pointer                  m_ppenFocusRect7;
-      ::draw2d::pen_pointer                  m_ppenFocusRect8;
-      ::draw2d::pen_pointer                  m_ppenFocusRect9;
+      ::draw2d::pen_pointer                        m_ppenFocusRect;
+      ::draw2d::pen_pointer                        m_ppenFocusRect0;
+      ::draw2d::pen_pointer                        m_ppenFocusRect1;
+      ::draw2d::pen_pointer                        m_ppenFocusRect2;
+      ::draw2d::pen_pointer                        m_ppenFocusRect3;
+      ::draw2d::pen_pointer                        m_ppenFocusRect4;
+      ::draw2d::pen_pointer                        m_ppenFocusRect5;
+      ::draw2d::pen_pointer                        m_ppenFocusRect6;
+      ::draw2d::pen_pointer                        m_ppenFocusRect7;
+      ::draw2d::pen_pointer                        m_ppenFocusRect8;
+      ::draw2d::pen_pointer                        m_ppenFocusRect9;
 
 
 

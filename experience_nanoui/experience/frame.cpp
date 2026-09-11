@@ -136,7 +136,7 @@ namespace experience_nanoui
 
          //b = 
             
-         pgraphicsImage2->draw(imagedrawing);
+         pdraw2dgraphicsImage2->draw(imagedrawing);
 
       }
 

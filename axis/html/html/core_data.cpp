@@ -951,9 +951,9 @@ namespace html
 
       m_pform = pform;
 
-      auto pgraphicsImage = pimage->acquire_graphics();
+      auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-      implement(pgraphicsImage);
+      implement(pdraw2dgraphicsImage);
 
       pform->GetClientBox(m_box);
 
@@ -964,7 +964,7 @@ namespace html
 
       }
 
-      on_layout(pgraphicsImage);
+      on_layout(pdraw2dgraphicsImage);
 
    }
 
@@ -1002,9 +1002,9 @@ namespace html
 
       m_pform = pform;
 
-      auto pgraphicsImage = pimage->acquire_graphics();
+      auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-      implement(pgraphicsImage);
+      implement(pdraw2dgraphicsImage);
 
    }
 
@@ -1051,9 +1051,9 @@ namespace html
 
       }
 
-      auto pgraphicsImage = pimage->acquire_graphics();
+      auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-      on_layout(pgraphicsImage);
+      on_layout(pdraw2dgraphicsImage);
 
    }
 

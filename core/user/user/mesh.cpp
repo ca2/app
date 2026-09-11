@@ -6243,21 +6243,21 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
                auto pbrushText = m_pitem->m_pmesh->createø < ::draw2d::brush > ();
                pbrushText->create_solid(argb(255,255,255,255));
 
-               auto pgraphicsImage1 = pimage1->acquire_graphics();
-               pgraphicsImage1->clear(::color::transparent);
-               pgraphicsImage1->set(pbrushText);
+               auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
+               pdraw2dgraphicsImage1->clear(::color::transparent);
+               pdraw2dgraphicsImage1->set(pbrushText);
                pimage2 = m_pitem->m_pmesh->image()->create_image(size);
 
-               auto pgraphicsImage2 = pimage2->acquire_graphics();
-               pgraphicsImage2->clear(::color::transparent);
+               auto pdraw2dgraphicsImage2 = pimage2->acquire_graphics();
+               pdraw2dgraphicsImage2->clear(::color::transparent);
 
                ::i32_rectangle rectangleCache;
                rectangleCache.left = 2;
                rectangleCache.top = 2;
                rectangleCache.right = rectangleCache.left + (::i32)m_rectangleText.width();
                rectangleCache.bottom = rectangleCache.top + (::i32)m_rectangleText.height();
-               pgraphicsImage1->set(m_pcolumn->m_pdrawlistcolumn->m_pwritetextfont);
-               pgraphicsImage1->_DrawText(m_strText, rectangleCache, m_pcolumn->m_pdrawlistcolumn->m_ealign,
+               pdraw2dgraphicsImage1->set(m_pcolumn->m_pdrawlistcolumn->m_pwritetextfont);
+               pdraw2dgraphicsImage1->_DrawText(m_strText, rectangleCache, m_pcolumn->m_pdrawlistcolumn->m_ealign,
                                           m_pcolumn->m_pdrawlistcolumn->m_edrawtext);
             }
             //::aura::application * get_app() = m_pmesh->get_app();

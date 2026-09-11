@@ -1202,11 +1202,11 @@ namespace core
             auto pacmeuserinteractionAffinity =
                pdraw2dgraphics ? pdraw2dgraphics->m_pacmeuserinteractionAffinity : nullptr;
 
-            auto pgraphicsImage = m_pimage->acquire_graphics(
+            auto pdraw2dgraphicsImage = m_pimage->acquire_graphics(
                ::draw2d::e_acquire_dont_load,
                pacmeuserinteractionAffinity);
 
-            pgraphicsImage->draw(imagedrawing);
+            pdraw2dgraphicsImage->draw(imagedrawing);
 
          }
 

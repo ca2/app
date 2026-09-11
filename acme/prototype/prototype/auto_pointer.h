@@ -242,7 +242,7 @@ public:
 
 
 template < typename TYPE >
-inline auto_pointer <TYPE > as_auto_pointer(TYPE * p)
+inline auto_pointer <TYPE > as_owned_auto_pointer(TYPE * p)
 {
 
    return { transfer_t{}, p };

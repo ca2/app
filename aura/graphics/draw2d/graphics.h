@@ -93,6 +93,7 @@ namespace draw2d
       void* m_pthis;
       //::pointer<::draw2d::graphics_context>        m_pgraphicscontext;
       ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionAffinity;
+      ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionTopic;
       //::pointer < ::user::interaction >            m_puserinteractionDraw2dGraphics;
       //::pointer<::draw2d::host>                    m_pdraw2dhost;
       ::pointer < ::graphics::buffer_item >        m_pgraphicsbufferitem;

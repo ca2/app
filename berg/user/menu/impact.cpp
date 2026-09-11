@@ -828,9 +828,9 @@ namespace user
                //pimageGray->from(pimage1);
                {
 
-                  auto pgraphicsImageGray = pimageGray->map();
+                  auto pdraw2dgraphicsImageGray = pimageGray->map();
 
-                  pgraphicsImageGray->saturation(0.0);
+                  pdraw2dgraphicsImageGray->saturation(0.0);
 
                }
 

@@ -52,7 +52,7 @@ namespace experience_core
 
       virtual void set_button_color_schema_001(const ::color::color& colorMoveableBorder);
 
-      virtual void set_frame_color_system_default_001();
+      virtual void set_frame_color_system_default_001(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual void on_style_change_001_and_002(::draw2d::graphics_pointer & pdraw2dgraphics);
 

@@ -298,37 +298,37 @@ namespace draw2d_cairo
 //
 //   }
 
-   
-   void image::_draw_raw(const ::i32_rectangle & rectangleTarget, ::image::image *pimage, const ::i32_point & pointSrc)
-   {
-
-      auto pdraw2dgraphics = acquire_graphics();
-
-      ::f64_rectangle rectangle(rectangleTarget);
-
-      ::image::image_source imagesource(pimage, ::f64_rectangle(pointSrc, rectangle.size()));
-
-      ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-      pdraw2dgraphics->draw(imagedrawing);
-//      ::draw2d::bitmap_pointer bitmap;
-//      bitmap->CreateCompatibleBitmap(pdraw2dgraphics, 1, 1);
-//      auto estatus = pdraw2dgraphics->set(bitmap);
-//      if(!estatus)
-//         return false;
-//      ::i32_size size = bitmap->get_size();
-//      if(!create(size))
-//      {
-//         pdraw2dgraphics->set(bitmap);
-//         return false;
-//      }
-//      throw ::exception(todo);
-//      // xxx bool bOk = GetDIBits(LNX_HDC(pdraw2dgraphics), (HBITMAP) pdraw2dbitmap->get_os_data(), 0, cy, m_pcolorrefMap, &(m_info), DIB_RGB_COLORS) != false;
-//      // xxx pdraw2dgraphics->SelectObject(pdraw2dbitmap);
-//      // xxx return bOk;
-   }
+//   
+//   void image::_draw_raw(const ::i32_rectangle & rectangleTarget, ::image::image *pimage, const ::i32_point & pointSrc)
+//   {
+//
+//      auto pdraw2dgraphics = acquire_graphics();
+//
+//      ::f64_rectangle rectangle(rectangleTarget);
+//
+//      ::image::image_source imagesource(pimage, ::f64_rectangle(pointSrc, rectangle.size()));
+//
+//      ::image::image_drawing_options imagedrawingoptions(rectangle);
+//
+//      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//      pdraw2dgraphics->draw(imagedrawing);
+////      ::draw2d::bitmap_pointer bitmap;
+////      bitmap->CreateCompatibleBitmap(pdraw2dgraphics, 1, 1);
+////      auto estatus = pdraw2dgraphics->set(bitmap);
+////      if(!estatus)
+////         return false;
+////      ::i32_size size = bitmap->get_size();
+////      if(!create(size))
+////      {
+////         pdraw2dgraphics->set(bitmap);
+////         return false;
+////      }
+////      throw ::exception(todo);
+////      // xxx bool bOk = GetDIBits(LNX_HDC(pdraw2dgraphics), (HBITMAP) pdraw2dbitmap->get_os_data(), 0, cy, m_pcolorrefMap, &(m_info), DIB_RGB_COLORS) != false;
+////      // xxx pdraw2dgraphics->SelectObject(pdraw2dbitmap);
+////      // xxx return bOk;
+//   }
 
 
 //   bool image::from(const ::i32_point & pointDest, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & point, const ::i32_size & size)
@@ -702,7 +702,7 @@ namespace draw2d_cairo
 //
 //      pimage1->set_rgb(255, 255, 255);
 //
-//      pgraphicsImage1->stretch(::i32_size(cx, cy), picon);
+//      pdraw2dgraphicsImage1->stretch(::i32_size(cx, cy), picon);
 //
 //      // Black blend image_impl
 //      auto pimage2 = create_image({cx, cy});
@@ -716,7 +716,7 @@ namespace draw2d_cairo
 //
 //      pimage2->fill(0, 0, 0, 0);
 //
-//      pgraphicsImage2->stretch(::i32_size(cx, cy), picon);
+//      pdraw2dgraphicsImage2->stretch(::i32_size(cx, cy), picon);
 //
 //      // Mask image_impl
 //      auto pimageM = create_image({cx, cy});
@@ -728,7 +728,7 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      pgraphicsImageM->stretch(::i32_size(cx, cy), picon);
+//      pdraw2dgraphicsImageM->stretch(::i32_size(cx, cy), picon);
 //
 //      ::u8 * r1=(::u8*)pimage1->colorref();
 //      ::u8 * r2=(::u8*)pimage2->get_data();
@@ -772,7 +772,7 @@ namespace draw2d_cairo
    //bool image::stretch(const ::image::image *pimage)
    //{
 
-   //   if (!get_graphics()->stretch(this->rectangle(), pgraphicsImage, pimage->rectangle()))
+   //   if (!get_graphics()->stretch(this->rectangle(), pdraw2dgraphicsImage, pimage->rectangle()))
    //   {
 
    //      return false;
@@ -855,7 +855,7 @@ namespace draw2d_cairo
 //
 //         }
 //
-//         ::draw2d::graphics * pdraw2dgraphics = pgraphicsImage1;
+//         ::draw2d::graphics * pdraw2dgraphics = pdraw2dgraphicsImage1;
 //
 //         if (pdraw2dgraphics->nok())
 //         {
@@ -870,10 +870,10 @@ namespace draw2d_cairo
 //         rectanglePaint = rectangleWindow;
 //         rectanglePaint.offset(-rectanglePaint.top_left());
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pgraphicsImage1);
+//         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pdraw2dgraphicsImage1);
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         m_spgraphics-> set_origin(::i32_point());
-//         puserinteraction->_000OnDraw(pgraphicsImage1);
+//         puserinteraction->_000OnDraw(pdraw2dgraphicsImage1);
 //         m_spgraphics->set_origin(::i32_point());
 //         //(dynamic_cast<::win::graphics * >(pdraw2dgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);

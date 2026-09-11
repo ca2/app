@@ -74,7 +74,7 @@ namespace image
 
 
    image::image(image&& image) : ::property_object(::transfer(image)),
-                                 ::image::image_drawer(::transfer(image)),
+//                                 ::image::image_drawer(::transfer(image)),
                                  ::image::image_source_interface(::transfer(image)),
                                  ::item(::transfer(image)),
                                  ::matter(::transfer(image)),
@@ -129,12 +129,12 @@ namespace image
    }
 
 
-   ::f64_rectangle image::get_image_drawer_rectangle() const
-   {
+   //::f64_rectangle image::get_image_drawer_rectangle() const
+   //{
 
-      return {m_point, m_size};
+   //   return {m_point, m_size};
 
-   }
+   //}
 
 
    ::image::image_pointer image::image::image_source_image(const ::i32_size&)
@@ -1104,17 +1104,17 @@ namespace image
       // else
       {
 
-         auto pgraphicsImage = pimage->acquire_graphics();
+         auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-         pgraphicsImage->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphicsImage->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-         ::image::image_source imagesource(pgraphicsImage, ::i32_rectangle_dimension(0, 0, width(), height()));
+         ::image::image_source imagesource(pdraw2dgraphicsImage, ::i32_rectangle_dimension(0, 0, width(), height()));
 
          ::image::image_drawing_options imagedrawingoptions(::i32_rectangle_dimension(0, 0, cx, cy));
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphicsImage->draw(imagedrawing);
+         pdraw2dgraphicsImage->draw(imagedrawing);
 
       }
 
@@ -1238,7 +1238,7 @@ namespace image
    //   return pdraw2dgraphics->draw(i32_rectangle_dimension(0, 0,
    //                                     width(),
    //                                     height()),
-   //                                     pgraphicsImage,
+   //                                     pdraw2dgraphicsImage,
    //                                     i32_rectangle_dimension(0, 0,
    //                                     pimage->width(),
    //                                     pimage->height()));
@@ -1311,316 +1311,316 @@ namespace image
 
 
 
-   void image::_draw_raw(const ::i32_rectangle& rectangleDstParam, ::image::image* pimageSrc,
-                         const ::i32_point& pointSrcParam)
-   {
+   //void image::_draw_raw(const ::i32_rectangle& rectangleDstParam, ::image::image* pimageSrc,
+   //                      const ::i32_point& pointSrcParam)
+   //{
 
-      ::image::image* pimageDst = this;
+   //   ::image::image* pimageDst = this;
 
-      if (pimageDst->m_pimagepixmaplease || pimageSrc->m_pimagepixmaplease)
-      {
+   //   if (pimageDst->m_pimagepixmaplease || pimageSrc->m_pimagepixmaplease)
+   //   {
 
-         throw ::exception(error_wrong_state);
+   //      throw ::exception(error_wrong_state);
 
-      }
+   //   }
 
-      //if (!pimageDst->m_bMapped || !pimageSrc->m_bMapped)
-      {
+   //   //if (!pimageDst->m_bMapped || !pimageSrc->m_bMapped)
+   //   {
 
-         //pdraw2dgraphics->set_alpha_mode(m_ealphamode);
+   //      //pdraw2dgraphics->set_alpha_mode(m_ealphamode);
 
-         ::image::image_source imagesource(pimageSrc, {pointSrcParam, rectangleDstParam.size()});
+   //      ::image::image_source imagesource(pimageSrc, {pointSrcParam, rectangleDstParam.size()});
 
-         ::f64_rectangle rectangle(rectangleDstParam);
+   //      ::f64_rectangle rectangle(rectangleDstParam);
 
-         ::image::image_drawing_options imagedrawingoptions(rectangle);
+   //      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   //      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         auto pdraw2dgraphics = acquire_graphics();
+   //      auto pdraw2dgraphics = acquire_graphics();
 
-         return pdraw2dgraphics->draw(imagedrawing);
+   //      return pdraw2dgraphics->draw(imagedrawing);
 
-      }
+   //   }
 
-      // pimageDst->map();
-      //
-      // pimageSrc->map();
-      //
-      // ::i32_rectangle rectangleTarget(rectangleDstParam);
-      //
-      // ::i32_point pointSrc(pointSrcParam);
-      //
-      // rectangleTarget += m_point;
-      //
-      // if (pointSrc.x < 0)
-      // {
-      //
-      //    rectangleTarget.left -= pointSrc.x;
-      //
-      //    pointSrc.x = 0;
-      //
-      // }
-      //
-      // if (pointSrc.y < 0)
-      // {
-      //
-      //    rectangleTarget.top -= pointSrc.y;
-      //
-      //    pointSrc.y = 0;
-      //
-      // }
-      //
-      // if (rectangleTarget.left < 0)
-      // {
-      //
-      //    rectangleTarget.right += rectangleTarget.left;
-      //
-      //    rectangleTarget.left = 0;
-      //
-      // }
-      //
-      // if (rectangleTarget.width() < 0)
-      // {
-      //
-      //    return;
-      //
-      // }
-      //
-      // if (rectangleTarget.top < 0)
-      // {
-      //
-      //    rectangleTarget.bottom += rectangleTarget.top;
-      //
-      //    rectangleTarget.top = 0;
-      //
-      // }
-      //
-      // if (rectangleTarget.height() < 0)
-      // {
-      //
-      //    return;
-      //
-      // }
-      //
-      // ::i32 xEnd = minimum(rectangleTarget.width(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectangleTarget.left));
-      //
-      // ::i32 yEnd = minimum(rectangleTarget.height(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectangleTarget.top));
-      //
-      // if (xEnd < 0)
-      // {
-      //
-      //    throw ::exception(error_failed);
-      //
-      // }
-      //
-      // if (yEnd < 0)
-      // {
-      //
-      //    throw ::exception(error_failed);
-      //
-      // }
-      //
-      // ::i32 scanDst = pimageDst->m_iScan;
-      //
-      // ::i32 scanSrc = pimageSrc->m_iScan;
-      //
-      // ::u8* pdst = &((::u8*)pimageDst->image32())[scanDst * rectangleTarget.top + rectangleTarget.left * sizeof(image32_t)];
-      //
-      // ::u8* psrc = &((::u8*)pimageSrc->image32())[scanSrc * pointSrc.y + pointSrc.x * sizeof(image32_t)];
-      //
-      // image32_t* pdst2;
-      //
-      // image32_t* psrc2;
-      //
-      // for (::i32 y = 0; y < yEnd; y++)
-      // {
-      //
-      //    pdst2 = (image32_t*)&pdst[scanDst * y];
-      //
-      //    psrc2 = (image32_t*)&psrc[scanSrc * y];
-      //
-      //    ::memory_copy(pdst2, psrc2, xEnd * 4);
-      //    //for(::i32 x = 0; x < xEnd; x++)
-      //    //{
-      //
-      //    //   *pdst2 = *psrc2;
-      //
-      //    //   pdst2++;
-      //
-      //    //   psrc2++;
-      //
-      //    //}
-      //    //pdst2 += xEnd;
-      //    //psrc2 += xEnd;
-      //
-      // }
-      //
-      // //return true;
+   //   // pimageDst->map();
+   //   //
+   //   // pimageSrc->map();
+   //   //
+   //   // ::i32_rectangle rectangleTarget(rectangleDstParam);
+   //   //
+   //   // ::i32_point pointSrc(pointSrcParam);
+   //   //
+   //   // rectangleTarget += m_point;
+   //   //
+   //   // if (pointSrc.x < 0)
+   //   // {
+   //   //
+   //   //    rectangleTarget.left -= pointSrc.x;
+   //   //
+   //   //    pointSrc.x = 0;
+   //   //
+   //   // }
+   //   //
+   //   // if (pointSrc.y < 0)
+   //   // {
+   //   //
+   //   //    rectangleTarget.top -= pointSrc.y;
+   //   //
+   //   //    pointSrc.y = 0;
+   //   //
+   //   // }
+   //   //
+   //   // if (rectangleTarget.left < 0)
+   //   // {
+   //   //
+   //   //    rectangleTarget.right += rectangleTarget.left;
+   //   //
+   //   //    rectangleTarget.left = 0;
+   //   //
+   //   // }
+   //   //
+   //   // if (rectangleTarget.width() < 0)
+   //   // {
+   //   //
+   //   //    return;
+   //   //
+   //   // }
+   //   //
+   //   // if (rectangleTarget.top < 0)
+   //   // {
+   //   //
+   //   //    rectangleTarget.bottom += rectangleTarget.top;
+   //   //
+   //   //    rectangleTarget.top = 0;
+   //   //
+   //   // }
+   //   //
+   //   // if (rectangleTarget.height() < 0)
+   //   // {
+   //   //
+   //   //    return;
+   //   //
+   //   // }
+   //   //
+   //   // ::i32 xEnd = minimum(rectangleTarget.width(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectangleTarget.left));
+   //   //
+   //   // ::i32 yEnd = minimum(rectangleTarget.height(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectangleTarget.top));
+   //   //
+   //   // if (xEnd < 0)
+   //   // {
+   //   //
+   //   //    throw ::exception(error_failed);
+   //   //
+   //   // }
+   //   //
+   //   // if (yEnd < 0)
+   //   // {
+   //   //
+   //   //    throw ::exception(error_failed);
+   //   //
+   //   // }
+   //   //
+   //   // ::i32 scanDst = pimageDst->m_iScan;
+   //   //
+   //   // ::i32 scanSrc = pimageSrc->m_iScan;
+   //   //
+   //   // ::u8* pdst = &((::u8*)pimageDst->image32())[scanDst * rectangleTarget.top + rectangleTarget.left * sizeof(image32_t)];
+   //   //
+   //   // ::u8* psrc = &((::u8*)pimageSrc->image32())[scanSrc * pointSrc.y + pointSrc.x * sizeof(image32_t)];
+   //   //
+   //   // image32_t* pdst2;
+   //   //
+   //   // image32_t* psrc2;
+   //   //
+   //   // for (::i32 y = 0; y < yEnd; y++)
+   //   // {
+   //   //
+   //   //    pdst2 = (image32_t*)&pdst[scanDst * y];
+   //   //
+   //   //    psrc2 = (image32_t*)&psrc[scanSrc * y];
+   //   //
+   //   //    ::memory_copy(pdst2, psrc2, xEnd * 4);
+   //   //    //for(::i32 x = 0; x < xEnd; x++)
+   //   //    //{
+   //   //
+   //   //    //   *pdst2 = *psrc2;
+   //   //
+   //   //    //   pdst2++;
+   //   //
+   //   //    //   psrc2++;
+   //   //
+   //   //    //}
+   //   //    //pdst2 += xEnd;
+   //   //    //psrc2 += xEnd;
+   //   //
+   //   // }
+   //   //
+   //   // //return true;
 
-   }
+   //}
 
 
-   void image::blend(const ::i32_rectangle& rectangleDstParam, ::image::image* pimageSrc,
-                     const ::i32_point& pointSrcParam, ::u8 bA)
-   {
+   //void image::blend(const ::i32_rectangle& rectangleDstParam, ::image::image* pimageSrc,
+   //                  const ::i32_point& pointSrcParam, ::u8 bA)
+   //{
 
-      ::image::image* pimageDst = this;
+   //   ::image::image* pimageDst = this;
 
-      if (pimageDst->m_pimagepixmaplease || pimageSrc->m_pimagepixmaplease)
-      {
+   //   if (pimageDst->m_pimagepixmaplease || pimageSrc->m_pimagepixmaplease)
+   //   {
 
-         throw ::exception(error_wrong_state);
+   //      throw ::exception(error_wrong_state);
 
-      }
+   //   }
 
-      //if (!pimageDst->m_bMapped || !pimageSrc->m_bMapped)
-      {
+   //   //if (!pimageDst->m_bMapped || !pimageSrc->m_bMapped)
+   //   {
 
-         //pdraw2dgraphics->set_alpha_mode(m_ealphamode);
+   //      //pdraw2dgraphics->set_alpha_mode(m_ealphamode);
 
-         ::image::image_source imagesource(pimageSrc, {pointSrcParam, rectangleDstParam.size()});
+   //      ::image::image_source imagesource(pimageSrc, {pointSrcParam, rectangleDstParam.size()});
 
-         ::f64_rectangle rectangle(rectangleDstParam);
+   //      ::f64_rectangle rectangle(rectangleDstParam);
 
-         ::image::image_drawing_options imagedrawingoptions(rectangle);
+   //      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   //      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         auto pdraw2dgraphics = acquire_graphics();
+   //      auto pdraw2dgraphics = acquire_graphics();
 
-         pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //      pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         return pdraw2dgraphics->draw(imagedrawing);
+   //      return pdraw2dgraphics->draw(imagedrawing);
 
-      }
-      //
-      // ::image::image* pimageDst = this;
-      //
-      // pimageDst->map();
-      //
-      // pimageSrc->map();
-      //
-      // ::i32_rectangle rectangleTarget(rectangleDstParam);
-      //
-      // ::i32_point pointSrc(pointSrcParam);
-      //
-      // ::i32_size size(rectangleTarget.size());
-      //
-      // rectangleTarget += m_point;
-      //
-      // if (pointSrc.x < 0)
-      // {
-      //
-      //    rectangleTarget.left -= pointSrc.x;
-      //
-      //    pointSrc.x = 0;
-      //
-      // }
-      //
-      // if (pointSrc.y < 0)
-      // {
-      //
-      //    rectangleTarget.top -= pointSrc.y;
-      //
-      //    pointSrc.y = 0;
-      //
-      // }
-      //
-      // if (rectangleTarget.left < 0)
-      // {
-      //
-      //    size.cx += rectangleTarget.left;
-      //
-      //    rectangleTarget.left = 0;
-      //
-      // }
-      //
-      // if (size.cx < 0)
-      // {
-      //
-      //    //return true;
-      //
-      //    return;
-      //
-      // }
-      //
-      // if (rectangleTarget.top < 0)
-      // {
-      //
-      //    size.cy += rectangleTarget.top;
-      //
-      //    rectangleTarget.top = 0;
-      //
-      // }
-      //
-      // if (size.cy < 0)
-      // {
-      //
-      //    //return true;
-      //
-      //    return;
-      //
-      // }
-      //
-      // ::i32 xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectangleTarget.left));
-      //
-      // ::i32 yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectangleTarget.top));
-      //
-      // if (xEnd < 0)
-      // {
-      //
-      //    //return false;
-      //
-      //    return;
-      //
-      // }
-      //
-      // if (yEnd < 0)
-      // {
-      //
-      //    throw ::exception(error_failed);
-      //
-      // }
-      //
-      // ::i32 scanDst = pimageDst->m_iScan;
-      //
-      // ::i32 scanSrc = pimageSrc->m_iScan;
-      //
-      // ::u8* pdst = &((::u8*)pimageDst->image32())[scanDst * rectangleTarget.top + rectangleTarget.left * sizeof(image32_t)];
-      //
-      // ::u8* psrc = &((::u8*)pimageSrc->image32())[scanSrc * pointSrc.y + pointSrc.x * sizeof(image32_t)];
-      //
-      // ::u8* pdst2;
-      //
-      // ::u8* psrc2;
-      //
-      // for (::i32 y = 0; y < yEnd; y++)
-      // {
-      //
-      //    pdst2 = &pdst[scanDst * y];
-      //
-      //    psrc2 = &psrc[scanSrc * y];
-      //
-      //    for (::i32 x = 0; x < xEnd; x++)
-      //    {
-      //
-      //       pdst2[0] = (psrc2[0] * bA) >> 8;
-      //       pdst2[1] = (psrc2[1] * bA) >> 8;
-      //       pdst2[2] = (psrc2[2] * bA) >> 8;
-      //       pdst2[3] = (psrc2[3] * bA) >> 8;
-      //
-      //       pdst2 += 4;
-      //
-      //       psrc2 += 4;
-      //
-      //    }
-      //
-      // }
-      //
-      // //return true;
+   //   }
+   //   //
+   //   // ::image::image* pimageDst = this;
+   //   //
+   //   // pimageDst->map();
+   //   //
+   //   // pimageSrc->map();
+   //   //
+   //   // ::i32_rectangle rectangleTarget(rectangleDstParam);
+   //   //
+   //   // ::i32_point pointSrc(pointSrcParam);
+   //   //
+   //   // ::i32_size size(rectangleTarget.size());
+   //   //
+   //   // rectangleTarget += m_point;
+   //   //
+   //   // if (pointSrc.x < 0)
+   //   // {
+   //   //
+   //   //    rectangleTarget.left -= pointSrc.x;
+   //   //
+   //   //    pointSrc.x = 0;
+   //   //
+   //   // }
+   //   //
+   //   // if (pointSrc.y < 0)
+   //   // {
+   //   //
+   //   //    rectangleTarget.top -= pointSrc.y;
+   //   //
+   //   //    pointSrc.y = 0;
+   //   //
+   //   // }
+   //   //
+   //   // if (rectangleTarget.left < 0)
+   //   // {
+   //   //
+   //   //    size.cx += rectangleTarget.left;
+   //   //
+   //   //    rectangleTarget.left = 0;
+   //   //
+   //   // }
+   //   //
+   //   // if (size.cx < 0)
+   //   // {
+   //   //
+   //   //    //return true;
+   //   //
+   //   //    return;
+   //   //
+   //   // }
+   //   //
+   //   // if (rectangleTarget.top < 0)
+   //   // {
+   //   //
+   //   //    size.cy += rectangleTarget.top;
+   //   //
+   //   //    rectangleTarget.top = 0;
+   //   //
+   //   // }
+   //   //
+   //   // if (size.cy < 0)
+   //   // {
+   //   //
+   //   //    //return true;
+   //   //
+   //   //    return;
+   //   //
+   //   // }
+   //   //
+   //   // ::i32 xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectangleTarget.left));
+   //   //
+   //   // ::i32 yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectangleTarget.top));
+   //   //
+   //   // if (xEnd < 0)
+   //   // {
+   //   //
+   //   //    //return false;
+   //   //
+   //   //    return;
+   //   //
+   //   // }
+   //   //
+   //   // if (yEnd < 0)
+   //   // {
+   //   //
+   //   //    throw ::exception(error_failed);
+   //   //
+   //   // }
+   //   //
+   //   // ::i32 scanDst = pimageDst->m_iScan;
+   //   //
+   //   // ::i32 scanSrc = pimageSrc->m_iScan;
+   //   //
+   //   // ::u8* pdst = &((::u8*)pimageDst->image32())[scanDst * rectangleTarget.top + rectangleTarget.left * sizeof(image32_t)];
+   //   //
+   //   // ::u8* psrc = &((::u8*)pimageSrc->image32())[scanSrc * pointSrc.y + pointSrc.x * sizeof(image32_t)];
+   //   //
+   //   // ::u8* pdst2;
+   //   //
+   //   // ::u8* psrc2;
+   //   //
+   //   // for (::i32 y = 0; y < yEnd; y++)
+   //   // {
+   //   //
+   //   //    pdst2 = &pdst[scanDst * y];
+   //   //
+   //   //    psrc2 = &psrc[scanSrc * y];
+   //   //
+   //   //    for (::i32 x = 0; x < xEnd; x++)
+   //   //    {
+   //   //
+   //   //       pdst2[0] = (psrc2[0] * bA) >> 8;
+   //   //       pdst2[1] = (psrc2[1] * bA) >> 8;
+   //   //       pdst2[2] = (psrc2[2] * bA) >> 8;
+   //   //       pdst2[3] = (psrc2[3] * bA) >> 8;
+   //   //
+   //   //       pdst2 += 4;
+   //   //
+   //   //       psrc2 += 4;
+   //   //
+   //   //    }
+   //   //
+   //   // }
+   //   //
+   //   // //return true;
 
-   }
+   //}
 
 
    //
@@ -4543,8 +4543,8 @@ namespace image
    // //
    // //   }
    // //
-   // //   //pimage->defer_realize(pgraphicsImage);
-   // //   //defer_realize(pgraphicsImage);
+   // //   //pimage->defer_realize(pdraw2dgraphicsImage);
+   // //   //defer_realize(pdraw2dgraphicsImage);
    // //
    // //   map();
    // //
@@ -10222,7 +10222,7 @@ namespace image
    // //
    // //   }
    // //
-   // //   return pgraphicsImage;
+   // //   return pdraw2dgraphicsImage;
    // //
    // //}
    //
@@ -10470,6 +10470,17 @@ namespace image
       return m_p->size();
 
    }*/
+
+   ::subparticle_pointer image::clone()
+   {
+
+      auto pimageCopy = createø<::image::image>();
+
+      pimageCopy->copy_from(this);
+
+      return pimageCopy;
+
+   }
 
 
    void image::create_with_pixmap(pixmap* ppixmap)
@@ -10853,9 +10864,9 @@ namespace image
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      auto pgraphicsImageNew = pimageNew->acquire_graphics();
+      auto pdraw2dgraphicsImageNew = pimageNew->acquire_graphics();
 
-      pgraphicsImageNew->draw(imagedrawing);
+      pdraw2dgraphicsImageNew->draw(imagedrawing);
 
       return pimageNew;
 
@@ -11706,28 +11717,28 @@ namespace image
    }
 
 
-   bool image::_draw_blend(const ::image::image_drawing& imagedrawing)
-   {
+   //bool image::_draw_blend(const ::image::image_drawing& imagedrawing)
+   //{
 
-      auto pdraw2dgraphics = acquire_graphics();
+   //   auto pdraw2dgraphics = acquire_graphics();
 
-      //if (::is_null(pdraw2dgraphics))
-      //{
+   //   //if (::is_null(pdraw2dgraphics))
+   //   //{
 
-      //   return false;
+   //   //   return false;
 
-      //}
+   //   //}
 
-      return pdraw2dgraphics->_draw_blend(imagedrawing);
-      //{
+   //   return pdraw2dgraphics->_draw_blend(imagedrawing);
+   //   //{
 
-      //   return false;
+   //   //   return false;
 
-      //}
+   //   //}
 
-      //return true;
+   //   //return true;
 
-   }
+   //}
 
 
    //const ::image32_t *image::get_data() const
@@ -11755,62 +11766,62 @@ namespace image
    //}
 
 
-   void image::draw(const ::image::image_drawing& imagedrawing)
-   {
+   //void image::draw(const ::image::image_drawing& imagedrawing)
+   //{
 
-      if (imagedrawing.m_bDoForAllFrames)
-      {
+   //   if (imagedrawing.m_bDoForAllFrames)
+   //   {
 
-         auto pimage = imagedrawing.image();
+   //      auto pimage = imagedrawing.image();
 
-         auto pframes = pimage->frames();
+   //      auto pframes = pimage->frames();
 
-         if (pframes && pframes->has_elements())
-         {
+   //      if (pframes && pframes->has_elements())
+   //      {
 
-            auto pextension = get_extension();
+   //         auto pextension = get_extension();
 
-            construct_newø(pextension->m_pframea);
+   //         construct_newø(pextension->m_pframea);
 
-            pextension->m_pframea->m_size = this->m_size;
+   //         pextension->m_pframea->m_size = this->m_size;
 
-            update(this, pextension->m_pframea, imagedrawing);
+   //         update(this, pextension->m_pframea, imagedrawing);
 
-            return;
+   //         return;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      image_drawer::draw(imagedrawing);
-      //void defer_update_image();
+   //   image_drawer::draw(imagedrawing);
+   //   //void defer_update_image();
 
-   }
+   //}
 
 
-   void image::_draw_raw(const ::image::image_drawing& imagedrawing)
-   {
+   //void image::_draw_raw(const ::image::image_drawing& imagedrawing)
+   //{
 
-      auto pdraw2dgraphics = acquire_graphics();
+   //   auto pdraw2dgraphics = acquire_graphics();
 
-      //if (::is_null(pdraw2dgraphics))
-      //{
+   //   //if (::is_null(pdraw2dgraphics))
+   //   //{
 
-      //   return false;
+   //   //   return false;
 
-      //}
+   //   //}
 
-      //if (!
-      pdraw2dgraphics->_draw_raw(imagedrawing); //;
-      /* {
+   //   //if (!
+   //   pdraw2dgraphics->_draw_raw(imagedrawing); //;
+   //   /* {
 
-          return false;
+   //       return false;
 
-       }
+   //    }
 
-       return true;*/
+   //    return true;*/
 
-   }
+   //}
 
 
    ::image::image_pointer image::get_resized_image(const ::i32_size& size)
@@ -11830,7 +11841,9 @@ namespace image
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      pimage->_draw_raw(imagedrawing);
+      auto pdraw2dgraphicsImage = pimage->acquire_graphics();
+
+      pdraw2dgraphicsImage->_draw_raw(imagedrawing);
 
       return pimage;
 
@@ -12155,9 +12168,9 @@ namespace image
       else
       {
 
-         auto pgraphicsImageThis = this->acquire_graphics();
+         auto pdraw2dgraphicsImageThis = this->acquire_graphics();
 
-         pgraphicsImageThis->clear(::color::transparent);
+         pdraw2dgraphicsImageThis->clear(::color::transparent);
 
 
       }

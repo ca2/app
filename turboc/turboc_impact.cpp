@@ -351,7 +351,7 @@ namespace turboc
 
          //pdraw2dgraphics->FillSolidRect(rectangleX,0);
 
-/*         pdraw2d->imaging().bitmap_blend(pdraw2dgraphics,::i32_point(),pimage->get_size(),pgraphicsImage,::i32_point(),uchAlpha);
+/*         pdraw2d->imaging().bitmap_blend(pdraw2dgraphics,::i32_point(),pimage->get_size(),pdraw2dgraphicsImage,::i32_point(),uchAlpha);
 
          pdraw2d->imaging().bitmap_blend(pdraw2dgraphics,::i32_point(),imageFast.m_size,imageFast.get_graphics(),::i32_point(),255 - uchAlpha);
 
@@ -359,7 +359,7 @@ namespace turboc
       else
       {
 
-/*         pdraw2dgraphics->from(pimage->get_size(),pgraphicsImage);
+/*         pdraw2dgraphics->from(pimage->get_size(),pdraw2dgraphicsImage);
 
       }
 
@@ -605,8 +605,8 @@ namespace turboc
          ::i32 iFactor = 3;
          ::i32 iMult = 1 << iFactor;
 
-/*         pgraphicsImage->StretchBlt(0,0,pimage->width() / iMult,pimage->height() / iMult,pgraphicsImage,0,0,pimage->width(),pimage->height());
-/*         pgraphicsImage->StretchBlt(0,0,pimage->width(),pimage->height(),pgraphicsImage,0,0,pimage->width() / iMult,pimage->height() / iMult);
+/*         pdraw2dgraphicsImage->StretchBlt(0,0,pimage->width() / iMult,pimage->height() / iMult,pdraw2dgraphicsImage,0,0,pimage->width(),pimage->height());
+/*         pdraw2dgraphicsImage->StretchBlt(0,0,pimage->width(),pimage->height(),pdraw2dgraphicsImage,0,0,pimage->width() / iMult,pimage->height() / iMult);
 
          color32_t color32;
 
@@ -644,12 +644,12 @@ namespace turboc
 
          ppen->create_solid(0.5,argb(84,0,0,0));
 
-/*         pgraphicsImage->SelectObject(pen);
+/*         pdraw2dgraphicsImage->SelectObject(pen);
 
 /*         for(::i32 i = 0; i < pimage->height(); i+=3)
          {
 
-/*            pgraphicsImage->draw_line(0,i,pimage->width(),i);
+/*            pdraw2dgraphicsImage->draw_line(0,i,pimage->width(),i);
 
          }
 
@@ -879,7 +879,7 @@ namespace turboc
 
          rectangleImage.FitOnCenterOf(rectangleWork);
 
-/*         pgraphicsImage->StretchBlt(rectangleImage.left,rectangleImage.top,rectangleImage.width(),rectangleImage.height(),m_pgraphicsImagepimage->,0,0,m_pimageImage->width(),m_pimageImage->height());
+/*         pdraw2dgraphicsImage->StretchBlt(rectangleImage.left,rectangleImage.top,rectangleImage.width(),rectangleImage.height(),m_pgraphicsImagepimage->,0,0,m_pimageImage->width(),m_pimageImage->height());
 
 
       }
@@ -887,13 +887,13 @@ namespace turboc
       if(m_bLite)
       {
 
-/*         turboc_render_lite_impact(pgraphicsImage);
+/*         turboc_render_lite_impact(pdraw2dgraphicsImage);
 
       }
       else
       {
 
-/*         turboc_render_full_impact(pgraphicsImage);
+/*         turboc_render_full_impact(pdraw2dgraphicsImage);
 
       }
 

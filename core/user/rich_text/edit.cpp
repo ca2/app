@@ -1165,17 +1165,17 @@ namespace user
 
             auto offset = sz / 2;
 
-            auto pgraphicsImage = pimage->acquire_graphics();
+            auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
             {
 
-               auto targetscope = pgraphicsImage->target_scope();
+               auto targetscope = pdraw2dgraphicsImage->target_scope();
 
                targetscope += offset;
 
-               draw_text(pgraphicsImage, rectangle);
+               draw_text(pdraw2dgraphicsImage, rectangle);
 
-               //pgraphicsImage->offset(-offset);
+               //pdraw2dgraphicsImage->offset(-offset);
 
             }
 

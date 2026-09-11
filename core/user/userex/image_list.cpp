@@ -180,9 +180,9 @@ namespace userex
 
                   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  auto pgraphicsImageSmall = pimageSmall->acquire_graphics();
+                  auto pdraw2dgraphicsImageSmall = pimageSmall->acquire_graphics();
 
-                  pgraphicsImageSmall->draw(imagedrawing);
+                  pdraw2dgraphicsImageSmall->draw(imagedrawing);
 
                   pimage1 = pimageSmall;
 

@@ -2998,8 +2998,8 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphic
             m_pimageBk->create_as_descriptor(rectangleX.size());
 
             {
-               auto pgraphicsImageBk = m_pimageBk->acquire_graphics();
-               pgraphicsImageBk->clear(::argb(0, 200, 200, 190));
+               auto pdraw2dgraphicsImageBk = m_pimageBk->acquire_graphics();
+               pdraw2dgraphicsImageBk->clear(::argb(0, 200, 200, 190));
                //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
                //::image::fastblur *( *pfnNew )(::pointer<::aura::application> = (::image::fastblur *(*)(::pointer<::aura::application> ::GetProcAddress(hmodule, "new_fastblur");
                //m_pimageBlur->create_as_descriptor(this);
@@ -3023,9 +3023,9 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphic
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               auto pgraphicsImageBlur = m_pimageBlur->acquire_graphics();
+               auto pdraw2dgraphicsImageBlur = m_pimageBlur->acquire_graphics();
 
-               pgraphicsImageBlur->draw(imagedrawing);
+               pdraw2dgraphicsImageBlur->draw(imagedrawing);
 
             }
 
@@ -3049,7 +3049,9 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphic
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               m_pimageBlur->draw(imagedrawing);
+               auto pdraw2dgraphicsImageBlur = m_pimageBlur->acquire_graphics();
+
+               pdraw2dgraphicsImageBlur->draw(imagedrawing);
 
             }
 

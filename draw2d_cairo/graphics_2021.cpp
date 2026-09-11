@@ -1416,7 +1416,7 @@ namespace draw2d_cairo
 
          pimage->defer_update_image();
 
-         auto pgraphicsSrc = pgraphicsImage;
+         auto pgraphicsSrc = pdraw2dgraphicsImage;
 
          if (::is_null(pgraphicsSrc))
          {
@@ -1623,7 +1623,7 @@ namespace draw2d_cairo
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphicsImage2->draw(imagedrawing);
+               pdraw2dgraphicsImage2->draw(imagedrawing);
 
             }
 
@@ -1673,7 +1673,7 @@ namespace draw2d_cairo
 
       }
 
-      auto pgraphicsSrc = pgraphicsImage;
+      auto pgraphicsSrc = pdraw2dgraphicsImage;
 
       if (::is_null(pgraphicsSrc))
       {

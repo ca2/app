@@ -118,7 +118,7 @@ namespace experience_anthill
 
       pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pdraw2dgraphics->fill_rectangle(rectangleX, pdraw2dgraphics->m_pbrush->m_color);
+      pdraw2dgraphics->fill_rectangle(rectangleX, pdraw2dgraphics->m_pdraw2dbrush->m_color);
 
       //pdraw2dgraphics->FillEllipse(rectangleEllipse);
 

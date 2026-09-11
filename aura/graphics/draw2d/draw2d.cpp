@@ -1545,23 +1545,23 @@ namespace draw2d
 
          {
 
-            auto pgraphicsImage = pimage->acquire_graphics(::draw2d::e_acquire_dont_load, pdraw2dgraphics->m_pacmeuserinteractionAffinity);
+            auto pdraw2dgraphicsImage = pimage->acquire_graphics(::draw2d::e_acquire_dont_load, pdraw2dgraphics->m_pacmeuserinteractionAffinity);
 
-            pgraphicsImage->clear(::color::transparent);
+            pdraw2dgraphicsImage->clear(::color::transparent);
 
-            pgraphicsImage->set(pbrushText);
+            pdraw2dgraphicsImage->set(pbrushText);
 
             auto shift = rectangleCache.top_left() - rectangle.top_left();
 
             auto extent = rectangleCache.size();
 
-            auto targetscoped = pgraphicsImage->target_scope();
+            auto targetscoped = pdraw2dgraphicsImage->target_scope();
 
             targetscoped.offset_and_set_size(::f64_rectangle(::f64_point(shift), extent));
 
-            functionDraw(pgraphicsImage);
+            functionDraw(pdraw2dgraphicsImage);
 
-            //pgraphicsImage->shift_impact_area(-shift, extent);
+            //pdraw2dgraphicsImage->shift_impact_area(-shift, extent);
 
          }
 

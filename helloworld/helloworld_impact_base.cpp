@@ -118,7 +118,7 @@ auto m_timeRoll = ::time::now();
 
 /*         ::image::image_pointer pimage = m_pimagePost;
 
-/*         _006OnDraw(pgraphicsImage);
+/*         _006OnDraw(pdraw2dgraphicsImage);
 
       }
 
@@ -205,7 +205,7 @@ auto m_timeRoll = ::time::now();
 
       //d->create(rectangleX.size());
 
-      //d->get_graphics()->BitBlt(rectangleX, pgraphicsImage);
+      //d->get_graphics()->BitBlt(rectangleX, pdraw2dgraphicsImage);
 
       //d.save_to_file(         auto psystem = system();
 

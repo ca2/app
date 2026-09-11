@@ -327,9 +327,9 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphi
                   pimage = image()->create_image(rectangle.size());
 
 
-                  auto pgraphicsImage = pimage->acquire_graphics();
-                  pgraphicsImage->clear(::color::white);
-                  pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+                  auto pdraw2dgraphicsImage = pimage->acquire_graphics();
+                  pdraw2dgraphicsImage->clear(::color::white);
+                  pdraw2dgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                   pdraw2dgraphics->flush();
 
                   //const ::i32_point & point = pdraw2dgraphics->get_origin();
@@ -351,7 +351,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphi
 
                   }
 
-                  //pgraphicsImage->fill_rectangle(0, 0, 16, 16, argb(255, 255, 0, 255));
+                  //pdraw2dgraphicsImage->fill_rectangle(0, 0, 16, 16, argb(255, 255, 0, 255));
                   pdraw2dgraphics->invert();
                   //pimage->fill_channel(0, ::color::e_channel_blue);
                   pdraw2dgraphics->fill_channel(255, ::color::e_channel_opacity);
@@ -1621,46 +1621,46 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pdraw2dgraph
    }
 
    {
-      auto pgraphicsImageCache = pimageCache->acquire_graphics();
+      auto pdraw2dgraphicsImageCache = pimageCache->acquire_graphics();
 
-      pgraphicsImageCache->clear(::color::transparent);
+      pdraw2dgraphicsImageCache->clear(::color::transparent);
 
-      pgraphicsImageCache->set(m_pwritetextfont);
+      pdraw2dgraphicsImageCache->set(m_pwritetextfont);
 
-      pgraphicsImageCache->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      pdraw2dgraphicsImageCache->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      pgraphicsImageCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pdraw2dgraphicsImageCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       draw2d::brush_pointer pbrushText(e_create, this);
 
       pbrushText->create_solid(argb(96, 96, 96, 96));
 
-      pgraphicsImageCache->set(pbrushText);
+      pdraw2dgraphicsImageCache->set(pbrushText);
 
       ::f64_size s;
 
       if (m_bColonPrefix)
       {
 
-         pgraphicsImageCache->set(m_pfontPrefix);
+         pdraw2dgraphicsImageCache->set(m_pfontPrefix);
 
-         const ::i32_size & size = pgraphicsImageCache->get_text_extent(m_strPrefix);
+         const ::i32_size & size = pdraw2dgraphicsImageCache->get_text_extent(m_strPrefix);
 
-         m_pgraphicsextension->text_out(pgraphicsImageCache, (::i32)(::i32)((maximum(2.0, m_fRateX * 4.0)) / 2), (::i32)1 * (::i32)((maximum(2.0, m_fRateX * 4.0)) / 2) + m_rectangle.height() - size.cy, m_strPrefix, s);
+         m_pgraphicsextension->text_out(pdraw2dgraphicsImageCache, (::i32)(::i32)((maximum(2.0, m_fRateX * 4.0)) / 2), (::i32)1 * (::i32)((maximum(2.0, m_fRateX * 4.0)) / 2) + m_rectangle.height() - size.cy, m_strPrefix, s);
 
-         pgraphicsImageCache->set(m_pwritetextfont);
+         pdraw2dgraphicsImageCache->set(m_pwritetextfont);
 
          ::i32 x = (::i32) (s.cx + (s.cx / m_strPrefix.length()) + (::i32)(::i32)((maximum(2.0, m_fRateX * 8.0)) / 2));
 
          ::i32 y = (::i32) (1 * (::i32)((maximum(2.0, m_fRateX * 8.0)) / 2));
 
-         m_pgraphicsextension->text_out(pgraphicsImageCache, x, y, m_strRoot, s);
+         m_pgraphicsextension->text_out(pdraw2dgraphicsImageCache, x, y, m_strRoot, s);
 
       }
       else
       {
 
-         m_pgraphicsextension->text_out(pgraphicsImageCache, (::i32)(::i32)((maximum(2.0, m_fRateX * 8.0)) / 2), (::i32)1 * (::i32)((maximum(2.0, m_fRateX * 8.0)) / 2), scopedstr, s);
+         m_pgraphicsextension->text_out(pdraw2dgraphicsImageCache, (::i32)(::i32)((maximum(2.0, m_fRateX * 8.0)) / 2), (::i32)1 * (::i32)((maximum(2.0, m_fRateX * 8.0)) / 2), scopedstr, s);
 
       }
 
@@ -1674,7 +1674,7 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pdraw2dgraph
 
       imaging()->spread(ppixmapImageCache, ppixmapImageCache, ::i32(maximum(1.0, m_fRateX * 2.0 + 2)), argb(23, 23, 20, 23));
 
-      //pgraphicsImageCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      //pdraw2dgraphicsImageCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       imaging()->channel_alpha_gray_blur_32CC(ppixmapImageCache, ppixmapImageCache, 0, ::i32(maximum(1.0, m_fRateX * 2.5)));
       imaging()->channel_alpha_gray_blur_32CC(ppixmapImageCache, ppixmapImageCache, 0, ::i32(maximum(1.0, m_fRateX * 2.5)));
 

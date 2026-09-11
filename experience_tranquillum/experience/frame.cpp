@@ -94,11 +94,11 @@ namespace experience_tranquillum
       //::i32_rectangle rectangleWindow = rectangleX;
       //pframewindow->client_to_screen(rectangleWindow);
       ////pimage = create_image({rectangleX.width(),  rectangleX.height()});
-      //bool b = pgraphicsImage2->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pdraw2dgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
+      //bool b = pdraw2dgraphicsImage2->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pdraw2dgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
       ////bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left - iInflate, rectangleX.top - iInflate);
-      //b = imaging.blur(pgraphicsImage, ::i32_point(),
+      //b = imaging.blur(pdraw2dgraphicsImage, ::i32_point(),
       //                 i32_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2),
-      //                 pgraphicsImage2, ::i32_point(), 2);
+      //                 pdraw2dgraphicsImage2, ::i32_point(), 2);
 
       ////spgraphics->Draw3dRect(rectangleX, 127 << 24, 127 << 24);
       ////rectangleX.deflate(1, 1);
@@ -125,7 +125,7 @@ namespace experience_tranquillum
       //rectangleWindow.height(),
       //bf);*/
 
-      //pdraw2dgraphics->BitBlt(rectangleX.left, rectangleX.top, rectangleX.width(), rectangleX.height(), pgraphicsImage, iInflate, iInflate);
+      //pdraw2dgraphics->BitBlt(rectangleX.left, rectangleX.top, rectangleX.width(), rectangleX.height(), pdraw2dgraphicsImage, iInflate, iInflate);
 
    }
 

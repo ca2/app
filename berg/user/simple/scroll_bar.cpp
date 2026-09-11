@@ -2038,19 +2038,19 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pdraw2d
 
 //         m_pimageDots->fill_byte(0);
 
-         auto pgraphicsImageDots = m_pimageDots->acquire_graphics();
+         auto pdraw2dgraphicsImageDots = m_pimageDots->acquire_graphics();
 
-         if (!pgraphicsImageDots)
+         if (!pdraw2dgraphicsImageDots)
          {
 
             return;
 
          }
 
-         pgraphicsImageDots->clear(::color::transparent);
+         pdraw2dgraphicsImageDots->clear(::color::transparent);
 
 
-         pgraphicsImageDots->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pdraw2dgraphicsImageDots->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          ::f64 iDiv2 = iDiv / 2;
 
@@ -2076,9 +2076,9 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pdraw2d
 
                ::f64_rectangle r(x - iSize, y - iSize, x + iSize, y + iSize);
 
-               auto pgraphicsImageDots = m_pimageDots->acquire_graphics();
+               auto pdraw2dgraphicsImageDots = m_pimageDots->acquire_graphics();
 
-               pgraphicsImageDots->fill_rectangle(r, argb(80, 0, 0, 0));
+               pdraw2dgraphicsImageDots->fill_rectangle(r, argb(80, 0, 0, 0));
 
                y += m_pimageDots->height() / (iDiv2 + 1.0);
 

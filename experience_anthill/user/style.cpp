@@ -47,13 +47,13 @@ namespace experience_anthill
 
       ::berg::style::initialize_theme();
 
-      defer_constructø(m_pfont);
+      defer_constructø(m_pwritetextfont);
 
 //      auto psystem = system();
 //
 //      auto pnode = psystem->node();
 
-      m_pfont->create_font(e_font_sans_ui, 12_pt);
+      m_pwritetextfont->create_font(e_font_sans_ui, 12_pt);
 
    }
 
@@ -960,7 +960,7 @@ namespace experience_anthill
 
       }
 
-      ptab->get_data()->m_ppen->create_solid(1, rgb(32, 32, 32));
+      ptab->get_data()->m_pdraw2dpen->create_solid(1, rgb(32, 32, 32));
 
       pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 

@@ -2641,6 +2641,11 @@ namespace user
 
          place(rectangleWindow, ::user::e_layout_layout, pdraw2dgraphics);
 
+         auto & p2_1 = m_layout.m_statea[0].m_point2;
+         auto & p2 = m_layout.m_statea[1].m_point2;
+
+         information() << "::user::menu::layout_menu place : " << rectangleWindow;
+
          //display(e_display_normal, ::user::e_activation_no_activate);
 
 

@@ -1613,6 +1613,7 @@ namespace image
 
       if (::is_null(psz) || size <= 0)
       {
+
          throw ::image::load_exception(error_failed, "image load: file read returned no bytes: " + path);
 
       }

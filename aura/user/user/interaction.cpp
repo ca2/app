@@ -21519,7 +21519,9 @@ if(get_parent())
 
          auto iLayout = (::i32)elayout;
 
-         int iLayoutBottom = get_parent() == nullptr ? 1 : 0;
+         //int iLayoutBottom = get_parent() == nullptr ? 1 : 0;
+
+         int iLayoutBottom = 0;
 
          while (iLayout >= iLayoutBottom)
          {

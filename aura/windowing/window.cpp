@@ -12375,6 +12375,8 @@ namespace windowing
                      pitemScreen->m_pointBufferItemWindow,
                      pitemScreen->m_sizeBufferItemWindow);
 
+                  auto & p2 = puserinteractionPresent->const_layout().m_statea[1].m_point2;
+
                   auto rectangleLading = ::i32_rectangle(
                      puserinteractionPresent->const_layout().lading().origin(),
                      puserinteractionPresent->const_layout().lading().size());

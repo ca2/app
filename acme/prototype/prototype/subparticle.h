@@ -220,7 +220,9 @@ public:
       bool                                m_bReferencingDebuggingEnabled5 = true;
       bool                                m_bIncludeCallStackTrace = false;
 
-      referencing_debugging();
+      ::subparticle * m_psubparticle;
+
+      referencing_debugging(::subparticle * psubparticle);
       referencing_debugging(referencing_debugging& referencingdebugging)
       {
 
@@ -237,6 +239,8 @@ public:
       bool contains_top_track(::subparticle* psubparticle) const;
       bool find_top_track(::subparticle* psubparticle, ::subparticle** ppsubparticleeParent) const;
 
+
+      bool is_referencing_debugging_enable();
 
       
 

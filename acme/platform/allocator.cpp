@@ -30,7 +30,7 @@ CLASS_DECL_ACME void set_ThisDebug12321575()
    t_bThisDebug12321575 = true;
 
 }
-void destruct_particle_reference_item_array(::subparticle * pparticle);
+void destruct_particle_reference_item_array(::subparticle::referencing_debugging * preferencingdebuggin);
 
 
 namespace allocator
@@ -607,18 +607,18 @@ namespace allocator
 
       }
       else if (((::u8 *)pparticle) >= t_pStartConstruct
-               && ((::u8 *)pparticle) + pparticle->m_sType <= ((::u8 *)t_pStartConstruct) + t_sStartConstruct)
+               && ((::u8 *)pparticle) + pparticle->m_referencingdebugging.m_sType <= ((::u8 *)t_pStartConstruct) + t_sStartConstruct)
       {
 
-         pparticle->m_pType = t_pStartConstruct;
-         pparticle->m_sType = t_sStartConstruct;
-         pparticle->m_bHeapAllocation = t_bStartConstructParticleAndHeapAllocation;
+         pparticle->m_referencingdebugging.m_pType = t_pStartConstruct;
+         pparticle->m_referencingdebugging.m_sType = t_sStartConstruct;
+         pparticle->m_referencingdebugging.m_bHeapAllocation = t_bStartConstructParticleAndHeapAllocation;
 
       }
 
 
       bool bDisableReferencingDebugging = 
-         !pparticle->m_bHeapAllocation
+         !pparticle->m_referencingdebugging.m_bHeapAllocation
          || ::allocator::t_bDisableReferencingDebugging__ExpectedTemporarily__;
 
       t_pStartConstruct = nullptr;
@@ -626,7 +626,7 @@ namespace allocator
       //t_bStartConstructDisableReferencingDebugging = false;
       t_bStartConstructParticleAndHeapAllocation = false;
 
-      if (!pparticle->m_bHeapAllocation)
+      if (!pparticle->m_referencingdebugging.m_bHeapAllocation)
       {
 
          bDisableReferencingDebugging = true;
@@ -650,7 +650,7 @@ namespace allocator
          //pparticle->m_preferenceitema->m_pitem2a = { transfer_t{}, new ::comparable_array<::reference_item_array *>(e_flag_disable_referencing_debugging)};
 
          if (::is_set(t_psubparticleTrackAllocation)
-            && t_psubparticleTrackAllocation->contains_top_track(pparticle))
+            && t_psubparticleTrackAllocation->m_referencingdebugging.contains_top_track(pparticle))
          {
 
             throw ::exception(::error_wrong_state, "particle already tracked");
@@ -662,7 +662,7 @@ namespace allocator
             if (::is_null(t_psubparticleTrackAllocation))
             {
 
-               if (pparticle->m_bHeapAllocation)
+               if (pparticle->m_referencingdebugging.m_bHeapAllocation)
                {
 
                   t_psubparticleTrackAllocation = pparticle;
@@ -680,7 +680,7 @@ namespace allocator
             else
             {
 
-               auto pparticleTopTrack = t_psubparticleTrackAllocation->get_top_track();
+               auto pparticleTopTrack = t_psubparticleTrackAllocation->m_referencingdebugging.get_top_track();
 
                pparticleParent = pparticleTopTrack;
 
@@ -689,8 +689,8 @@ namespace allocator
 
                   bDisableReferencingDebugging = true;
 
-                  if (!pparticleTopTrack->contains_object_in_address_space(pparticle)
-                     && pparticle->m_bHeapAllocation)
+                  if (!pparticleTopTrack->m_referencingdebugging.contains_object_in_address_space(pparticle)
+                     && pparticle->m_referencingdebugging.m_bHeapAllocation)
                   {
 
                      // TODO: Enable tracking and referencing_debugging
@@ -704,7 +704,7 @@ namespace allocator
                else
                {
 
-                  if (pparticleTopTrack->contains_object_in_address_space(pparticle))
+                  if (pparticleTopTrack->m_referencingdebugging.contains_object_in_address_space(pparticle))
                   {
                      // Much probably pparticle is "physical" member of pparticleTopTrack,
                      // directly or indirectly.
@@ -712,10 +712,10 @@ namespace allocator
                      bDisableReferencingDebugging = true;
 
                   }
-                  else if (pparticle->m_bHeapAllocation)
+                  else if (pparticle->m_referencingdebugging.m_bHeapAllocation)
                   {
 
-                     pparticleTopTrack->add_top_track(pparticle);
+                     pparticleTopTrack->m_referencingdebugging.add_top_track(pparticle);
 
                   }
 
@@ -730,7 +730,7 @@ namespace allocator
       if (bDisableReferencingDebugging)
       {
 
-         pparticle->disable_referencing_debugging();
+         pparticle->m_referencingdebugging.disable_referencing_debugging();
 
       }
 
@@ -739,11 +739,11 @@ namespace allocator
 
          //pparticle->m_preferenceitema = øraw_new reference_item_array (pparticle, pparticleParent);
 
-         pparticle->m_preferenceitema = new reference_item_array (pparticle, pparticleParent);
+         pparticle->m_referencingdebugging.m_preferenceitema = new reference_item_array (pparticle, pparticleParent);
 
          //on_after_construct_particle(pparticle->m_preferenceitema);
 
-         pparticle->add_reference_item(true, pparticle->m_bIncludeCallStackTrace);
+         pparticle->m_referencingdebugging.add_reference_item(true, pparticle->m_referencingdebugging.m_bIncludeCallStackTrace);
 
          // if (!pparticle->m_prefererTransfer
          //    && pparticle->m_preferenceitema->m_itema[0])
@@ -775,7 +775,7 @@ namespace allocator
 
       }
 
-      return t_psubparticleTrackAllocation->get_top_track();
+      return t_psubparticleTrackAllocation->m_referencingdebugging.get_top_track();
 
    }
 
@@ -811,10 +811,10 @@ namespace allocator
                         // pparticleTopTrack->add_top_track(pparticle);
             //one can disable the contains top track check:
 
-            if (t_psubparticleTrackAllocation->contains_top_track(pparticle))
+            if (t_psubparticleTrackAllocation->m_referencingdebugging.contains_top_track(pparticle))
             {
 
-               t_psubparticleTrackAllocation->erase_top_track(pparticle);
+               t_psubparticleTrackAllocation->m_referencingdebugging.erase_top_track(pparticle);
 
             }
 
@@ -868,21 +868,21 @@ namespace allocator
       //t_bStartConstructDisableReferencingDebugging = false;
       t_bStartConstructParticleAndHeapAllocation = false;
 
-      if (psubparticle->m_preferenceitema)
+      if (psubparticle->m_referencingdebugging.m_preferenceitema)
       {
 
          ::i8 sz[1024];
 
          psubparticle->get_debug_title(sz, 1024);
 
-         psubparticle->m_preferenceitema->m_strDebug = sz;
+         psubparticle->m_referencingdebugging.m_preferenceitema->m_strDebug = sz;
 
          if (get_top_referer()
-            && psubparticle->m_preferenceitema->m_itema[0]
-            && psubparticle->m_preferenceitema->m_itema[0]->m_preferer)
+            && psubparticle->m_referencingdebugging.m_preferenceitema->m_itema[0]
+            && psubparticle->m_referencingdebugging.m_preferenceitema->m_itema[0]->m_preferer)
          {
 
-            if (get_top_referer()->m_iSerial == psubparticle->m_preferenceitema->m_itema[0]->m_preferer->m_iSerial)
+            if (get_top_referer()->m_iSerial == psubparticle->m_referencingdebugging.m_preferenceitema->m_itema[0]->m_preferer->m_iSerial)
             {
 
                defer_erase_referer();
@@ -957,7 +957,7 @@ namespace allocator
 } // namespace platform
 
 
-void subparticle::disable_referencing_debugging()
+void subparticle::referencing_debugging::disable_referencing_debugging()
 {
 
    m_bReferencingDebuggingEnabled5 = false;
@@ -1007,7 +1007,7 @@ CLASS_DECL_ACME bool refdbg_add_top_track(::subparticle * pparticle)
       ::allocator::t_psubparticleTrackAllocation = pparticle;
 
    }
-   else if (::allocator::t_psubparticleTrackAllocation->contains_top_track(pparticle))
+   else if (::allocator::t_psubparticleTrackAllocation->m_referencingdebugging.contains_top_track(pparticle))
    {
 
       return false;
@@ -1016,9 +1016,9 @@ CLASS_DECL_ACME bool refdbg_add_top_track(::subparticle * pparticle)
    else
    {
 
-      auto p = ::allocator::t_psubparticleTrackAllocation->get_top_track();
+      auto p = ::allocator::t_psubparticleTrackAllocation->m_referencingdebugging.get_top_track();
 
-      p->add_top_track(pparticle);
+      p->m_referencingdebugging.add_top_track(pparticle);
 
    }
 

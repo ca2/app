@@ -13,7 +13,7 @@ task_message_queue::task_message_queue()
 #if REFERENCING_DEBUGGING
 
 
-   disable_referencing_debugging();
+   m_referencingdebugging.disable_referencing_debugging();
 
 
 #endif

@@ -53,14 +53,14 @@ reference_item_array::reference_item_array(::subparticle* psubparticle, ::subpar
    else
    {
 
-      if (::is_null(psubparticleParent->m_preferenceitema))
+      if (::is_null(psubparticleParent->m_referencingdebugging.m_preferenceitema))
       {
 
          throw ::exception(error_wrong_state);
 
       }
 
-      psubparticleParent->m_preferenceitema->add_item_array(this);
+      psubparticleParent->m_referencingdebugging.m_preferenceitema->add_item_array(this);
 
    }
 
@@ -92,7 +92,7 @@ reference_item_array::~reference_item_array()
       if (::is_set(psubparticleParent))
       {
          
-         auto preferenceitema = psubparticleParent->m_preferenceitema;
+         auto preferenceitema = psubparticleParent->m_referencingdebugging.m_preferenceitema;
          
          if (::is_set(preferenceitema))
          {
@@ -477,12 +477,12 @@ string object_name(matter* p)
 //}
 
 
-void subparticle::add_reference_item(bool bConstructing, bool bIncludeCallStackTrace)
+void subparticle::referencing_debugging::add_reference_item(bool bConstructing, bool bIncludeCallStackTrace)
 {
 
    critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
 
-   if (!is_referencing_debugging_enabled())
+   if (!m_bReferencingDebuggingEnabled5)
    {
 
       //::allocator::defer_erase_referer();
@@ -600,7 +600,7 @@ void subparticle::add_reference_item(bool bConstructing, bool bIncludeCallStackT
 }
 
 
-void subparticle::add_referer(::reference_referer * preferer)
+void subparticle::referencing_debugging::add_referer(::reference_referer * preferer)
 {
 
    critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
@@ -1080,15 +1080,15 @@ reference_item_array * subparticle::reference_itema()
 
 
 
-void destruct_particle_reference_item_array(::subparticle * psubparticle)
+void destruct_particle_reference_item_array(::subparticle::referencing_debugging * preferencingdebugging)
 {
 
-   auto preferenceitema = psubparticle->m_preferenceitema;
+   auto preferenceitema = preferencingdebugging->m_preferenceitema;
 
    if (::is_set(preferenceitema))
    {
 
-      psubparticle->m_preferenceitema = nullptr;
+      preferencingdebugging->m_preferenceitema = nullptr;
 
       delete preferenceitema;
 

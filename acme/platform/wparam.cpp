@@ -22,7 +22,7 @@ wparam::wparam(const ::subparticle * psubparticle)
 
       //((subparticle*)psubparticle)->m_prefererTransfer = ::allocator::defer_push_referer((::subparticle *)psubparticle, { (::subparticle *)psubparticle, this, __FUNCTION_FILE_LINE__ });
 
-      ((subparticle *)psubparticle)->m_prefererTransfer2 = __refdbg_add_referer;
+      ((subparticle *)psubparticle)->m_referencingdebugging.m_prefererTransfer2 = __refdbg_add_referer;
 
    }
 
@@ -51,7 +51,7 @@ wparam::wparam(::subparticle * psubparticle, ::reference_referer * preferer)
 
    }
 
-   psubparticle->m_prefererTransfer2 = preferer;
+   psubparticle->m_referencingdebugging.m_prefererTransfer2 = preferer;
 
    m_wparam = (iptr)(void *)psubparticle;
 

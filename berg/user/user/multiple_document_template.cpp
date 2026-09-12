@@ -20,7 +20,7 @@ namespace user
 
       defer_create_synchronization();
 
-      ASSERT(m_docptra.is_empty());
+      ASSERT(m_userdocumenta.is_empty());
 
       m_nUntitledCount = 0;   // start at 1
 
@@ -32,10 +32,10 @@ namespace user
 
 #ifdef _DEBUG
 
-      if (!m_docptra.is_empty())
+      if (!m_userdocumenta.is_empty())
       {
 
-         warning()(e_trace_category_appmsg) << "Warning: destroying multiple_document_template with " << m_docptra.get_count() << " documents alive.";
+         warning()(e_trace_category_appmsg) << "Warning: destroying multiple_document_template with " << m_userdocumenta.get_count() << " documents alive.";
 
       }
 
@@ -48,7 +48,7 @@ namespace user
    void multiple_document_template::destroy()
    {
 
-      for (auto & pdocument : m_docptra)
+      for (auto & pdocument : m_userdocumenta)
       {
          
          try
@@ -77,29 +77,50 @@ namespace user
 
    }
 
+   
+   void multiple_document_template::for_each_document(const ::function < void(::user::document * puserdocument) > & foreachdocument)
+   {
 
+      for (auto & pdocument : m_userdocumenta)
+      {
+
+         try
+         {
+
+            foreachdocument(pdocument);
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
+   }
    
 
    ::collection::count multiple_document_template::get_document_count() const
    {
 
-      return m_docptra.get_count();
+      return m_userdocumenta.get_count();
 
    }
 
 
    ::user::document * multiple_document_template::get_document(::collection::index index) const
    {
-      if(index < 0 || index >= m_docptra.get_count())
+      if(index < 0 || index >= m_userdocumenta.get_count())
          return nullptr;
-      return m_docptra.element_at(index);
+      return m_userdocumenta.element_at(index);
    }
 
 
    void multiple_document_template::add_document(::user::document * pdocument)
    {
 
-      if (m_docptra.add_unique(pdocument))
+      if (m_userdocumenta.add_unique(pdocument))
       {
 
          impact_system::add_document(pdocument);
@@ -114,7 +135,7 @@ namespace user
 
       impact_system::erase_document(pdocument);
 
-      m_docptra.erase(pdocument);
+      m_userdocumenta.erase(pdocument);
 
    }
 
@@ -348,7 +369,7 @@ namespace user
 //      impact_system::dump(dumpcontext);
 //
 //      //dumpcontext << "\nm_nUntitledCount = " << m_nUntitledCount;
-//      //dumpcontext << "\nwith " << m_docptra.get_count() << " open documents";
+//      //dumpcontext << "\nwith " << m_userdocumenta.get_count() << " open documents";
 //      //::collection::count count = get_document_count();
 //      //for(::collection::index index = 0; index < count; index++)
 //      //{

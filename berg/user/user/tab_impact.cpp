@@ -1025,10 +1025,12 @@ namespace user
          else if (pimpactdata->id() == APP_OPTIONS_IMPACT)
          {
 
+            auto idOptions = pimpactdata->id();
+
             auto phandlerimpact = m_maphandlerimpact[pimpactdata->id()];
 
             auto functionHandler = [this](auto puserinteraction)
-               {
+            {
 
                ::cast < ::user::options_impact_handler > poptionsimpacthandler = application();
 
@@ -1039,7 +1041,7 @@ namespace user
 
                }
 
-               };
+            };
 
             phandlerimpact->call_handler(functionHandler);
 

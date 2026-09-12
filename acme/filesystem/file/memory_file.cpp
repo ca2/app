@@ -626,7 +626,7 @@ memsize memory_file::erase_begin(void *pdata, memsize uiCount)
 
    }
 
-   if (pdata != nullptr)
+   if (pdata != nullptr && full_data_begin() != nullptr)
    {
 
       ::memory_copy(pdata, full_data_begin(), (size_t)uiCount);

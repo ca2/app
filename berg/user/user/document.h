@@ -211,6 +211,48 @@ namespace user
 
       }
 
+
+      template < class T >
+      pointer < T > for_each_typed_impact(const ::function < void(T * ) > & foreachtypedimpact) const
+      {
+
+         synchronous_lock synchronouslock(((document *)this)->synchronization());
+
+         for (::collection::index index = 0; index < m_impacta.get_count(); index++)
+         {
+
+            if (m_impacta[index].is_null())
+            {
+
+               continue;
+
+            }
+
+            auto p = m_impacta[index].cast < T >();
+
+            if (p)
+            {
+
+               try
+               {
+
+                  foreachtypedimpact(p);
+
+               }
+               catch (...)
+               {
+
+
+               }
+
+            }
+
+         }
+
+         return nullptr;
+
+      }
+
       //bool                             m_bAutoDelete;     // true => delete document when no more views
       //bool                             m_bEmbedded;       // true => document is being created by OLE
 

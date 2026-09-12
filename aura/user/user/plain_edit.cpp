@@ -203,6 +203,8 @@ namespace user
 
       m_iInputConnectionBatch = 0;
 
+      m_iPlainEditTabWidth = 3;
+
       m_bNewFocusSelectAll = false;
 
       m_iNewFocusSelectAllSelBeg = -1;
@@ -335,6 +337,14 @@ namespace user
    {
 
       return m_ptree->is_tree_modified();
+
+   }
+
+
+   void plain_edit::set_tab_width(::i32 iPlainEditTabWidth)
+   {
+
+      m_iPlainEditTabWidth = iPlainEditTabWidth;
 
    }
 
@@ -922,7 +932,22 @@ namespace user
 
             }
 
-            replace_tab(0, strLineGraphics, m_iTabWidth, { &iCurLineSelBeg, &iCurLineSelEnd, &iCurLineSelCur });
+            auto iExpandedCurLineSelBeg = iCurLineSelBeg;
+
+            auto iExpandedCurLineSelEnd = iCurLineSelEnd;
+
+            auto iExpandedCurLineSelCur = iCurLineSelCur;
+
+            //replace_tab(0, strLineGraphics, m_iTabWidth, { &iCurLineSelBeg, &iCurLineSelEnd, &iCurLineSelCur });
+
+            //replace_tab(0, strLineGraphics, m_iTabWidth);
+
+            replace_tab(0, strLineGraphics, m_iTabWidth,
+               { 
+                  &iExpandedCurLineSelBeg, 
+                  &iExpandedCurLineSelEnd, 
+                  &iExpandedCurLineSelCur
+               });
 
             if (m_bPassword)
             {
@@ -1023,7 +1048,7 @@ namespace user
             {
 
                // Draw Normal Text - not selected - before selection
-               auto strLeft = strLineGraphics.left(iCurLineSelBeg);
+               auto strLeft = strLineGraphics.left(iExpandedCurLineSelBeg);
                pdraw2dgraphics->text_out(left, y, strLeft);
 
             }
@@ -1032,7 +1057,7 @@ namespace user
             {
 
                // Draw Normal Text - not selected - after selection
-               string strRight = strLineGraphics.substr(iCurLineSelEnd);
+               string strRight = strLineGraphics.substr(iExpandedCurLineSelEnd);
                pdraw2dgraphics->text_out(left + x2, y, strRight);
 
             }
@@ -1052,7 +1077,7 @@ namespace user
             {
 
                // Draw Selected Text
-               string strSelected = strLineGraphics.substr(iCurLineSelBeg, iCurLineSelEnd - iCurLineSelBeg);
+               string strSelected = strLineGraphics.substr(iExpandedCurLineSelBeg, iExpandedCurLineSelEnd - iExpandedCurLineSelBeg);
                pdraw2dgraphics->text_out(left + x1, y, strSelected);
 
             }
@@ -5043,9 +5068,13 @@ namespace user
 
       pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
+      auto iExpandedLength = iChar;
+
+      //string strLine = plain_edit_get_expanded_line(pdraw2dgraphics, iLine, { &iChar });
+
       string strLine = plain_edit_get_expanded_line(pdraw2dgraphics, iLine, { &iChar });
 
-      ::f64_size size = pdraw2dgraphics->get_text_extent(strLine, (::i32)iChar);
+      ::f64_size size = pdraw2dgraphics->get_text_extent(strLine, (::i32)iExpandedLength);
 
       return size.cx;
 
@@ -5472,7 +5501,7 @@ namespace user
 
          strExtent = string(psz, pszEnd - psz);
 
-         replace_tab(0, strExtent, m_iTabWidth);
+         //replace_tab(0, strExtent, m_iPlainEditTabWidth);
 
          ::i32 x;
 
@@ -8802,6 +8831,14 @@ namespace user
          }
 
       }
+
+   }
+
+
+   int plain_edit::get_tab_width()
+   {
+
+      return minimum_maximum(m_iPlainEditTabWidth, 1, 64);
 
    }
 

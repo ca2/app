@@ -16930,6 +16930,8 @@ namespace windowing
    ::graphics::e_output_purpose window::most_demanding_graphical_output_purpose()
    {
 
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
       ::graphics::e_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
 
       for (auto & ppurpose : m_graphicaloutputpurposea)

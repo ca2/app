@@ -4991,9 +4991,12 @@ void pixmap::horizontal_line(::i32 y, ::color::color color, ::i32 x1, ::i32 x2)
 {
    if (width() == 0)
       return;
-   map();
+   //map();
    if (x1 < 0)
       x1 = 0;
+
+   if(x2 < 0)
+      x2 += width();
    if (x2 >= width())
       x2 = width() - 1;
    image32_t u32ImageColor(color, color_indexes());
@@ -5033,7 +5036,7 @@ void pixmap::vertical_line(::i32 x, ::color::color color, ::i32 y1, ::i32 y2)
 {
    if (height() == 0)
       return;
-   map();
+   //map();
    if (y1 < 0)
       y1 = 0;
    if (y2 >= height())

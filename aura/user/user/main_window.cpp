@@ -52,6 +52,18 @@ namespace user
 
       m_bExtendOnParentIfOnlyClient = true;
 
+      if (::system()->m_papplication)
+      {
+
+         if (!::system()->m_papplication->main_acme_user_interaction())
+         {
+
+            ::system()->m_papplication->set_main_acme_user_interaction(this);
+
+         }
+
+      }
+
       //m_ewindowflag |= e_window_flag_desktop_window;
 
    }
@@ -182,8 +194,10 @@ namespace user
    {
       
       rectangle = this->rectangle(elayout);
+
+      bool bTopLevel = is_top_level();
    
-      if(is_top_level() && ::is_set(m_pacmewindowingwindow))
+      if(bTopLevel && ::is_set(m_pacmewindowingwindow))
       {
          
          rectangle.top += (::i32)windowing_window()->get_top_margin();

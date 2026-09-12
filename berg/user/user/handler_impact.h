@@ -16,6 +16,7 @@ namespace user
    public:
 
 
+      bool                       m_bHandlerImpactInitialized = false;
       //::pointer<::user::still>             m_pstill;
       //::pointer<::user::plain_edit>        m_pedit;
       //::pointer<::user::button>            m_pbuttonClear;

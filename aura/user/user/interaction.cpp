@@ -21451,6 +21451,15 @@ if(get_parent())
          (::particle *) acme_windowing_window()->m_pmutexBufferSizeAndPosition :
          this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+      ::string strType(::type(*this).name());
+
+      if (strType == "app_veriwell_waven::pane_impact")
+      {
+
+         information("::user::interaction::place {}", strType);
+
+      }
+
       auto sizeNew = rectangle.size();
 
       bool bOnSetSize = on_set_size(sizeNew, elayout);

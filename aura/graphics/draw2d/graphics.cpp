@@ -32,6 +32,8 @@
 #include "aura/graphics/write_text/_defer_geometry2d_item.h"
 
 
+CLASS_DECL_ACME::string _001_pixmap_diagnostics(const pixmap_t * ppixmap);
+
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
 
@@ -1741,6 +1743,13 @@ namespace draw2d
 
       }
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
       if (m_pimageAlphaBlend->is_ok())
       {
 
@@ -1767,11 +1776,15 @@ namespace draw2d
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            auto pdraw2dgraphicsImage1 = image1.image()->acquire_graphics();
+            {
 
-            pdraw2dgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
+               auto pdraw2dgraphicsImage1 = image1.image()->acquire_graphics();
 
-            pdraw2dgraphicsImage1->draw(imagedrawing);
+               pdraw2dgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
+               pdraw2dgraphicsImage1->draw(imagedrawing);
+
+            }
 
             auto x = rectangleTarget.left;
 
@@ -1789,11 +1802,15 @@ namespace draw2d
 
             pointSrc.x = (::i32)maximum(0, x - rectangleAlphaBlend.left);
 
-            auto ppixmapImage1 = image1.image()->map();
+            {
 
-            auto ppixmapImageAlphaBlend = m_pimageAlphaBlend->map();
+               auto ppixmapImage1 = image1.image()->map();
 
-            ppixmapImage1->blend2(pointDst, ppixmapImageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
+               auto ppixmapImageAlphaBlend = m_pimageAlphaBlend->map();
+
+               ppixmapImage1->blend2(pointDst, ppixmapImageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
+
+            }
 
             ::image::image_drawing_options imagedrawingoptionsDrawRaw;
 
@@ -2251,6 +2268,14 @@ namespace draw2d
    bool graphics::TextOutAlphaBlend(::f64 x, ::f64 y, const ::scoped_string & scopedstr)
    {
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
+
       if (m_pimageAlphaBlend->is_set())
       {
 
@@ -2317,11 +2342,28 @@ namespace draw2d
 
             pointSrc.x = (::i32)maximum(0, x - rectangleAlphaBlend.left);
 
-            auto ppixmapImage1 = pimage1->map();
+            {
 
-            auto ppixmapImageAlphaBlend = m_pimageAlphaBlend->map();
+               auto ppixmapImage1 = pimage1->map();
 
-            ppixmapImage1->blend2(pointDst, ppixmapImageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
+               auto ppixmapImageAlphaBlend = m_pimageAlphaBlend->map();
+
+               auto str1 = _001_pixmap_diagnostics(ppixmapImage1);
+
+               auto psz1 = str1.c_str();
+
+               information("draw2d::graphics::TextOutAlphaBlend (pixmapImage1) {}", str1);
+
+               ppixmapImage1->blend2(pointDst, ppixmapImageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
+
+               auto str2 = _001_pixmap_diagnostics(ppixmapImage1);
+
+               auto psz2 = str2.c_str();
+
+               information("draw2d::graphics::TextOutAlphaBlend (pixmapImage1 After Blend) {}", str2);
+
+
+            }
 
             ::image::image_drawing_options imagedrawingoptions;
 

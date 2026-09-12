@@ -85,7 +85,7 @@ namespace user
 
       //void dump(dump_context &) const override;
       // void assert_ok() const override;
-
+      virtual void for_each_document(const ::function < void(::user::document * puserdocument) > & foreachdocument);
 
       virtual void load_impact_system();
 

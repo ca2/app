@@ -38,6 +38,14 @@ namespace user
    }
 
 
+   void impact_system::for_each_document(const ::function < void(::user::document * puserdocument) > & foreachdocument)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
    void impact_system::load_impact_system()
    {
    }

@@ -343,6 +343,7 @@ namespace user
       ::pointer < plain_text_set_sel_command >       m_ppropertysetsel;
       bool                                m_bParseDataPacks;
       bool                                m_bLastCaret;
+      int                                 m_iPlainEditTabWidth;
 
 
       ::function <void(::user::plain_edit *, const ::action_context &) >     m_callbackOnAfterChangeText;
@@ -374,6 +375,7 @@ namespace user
       virtual bool is_caret_on() const;
       virtual bool is_new_focus_select_all() const;
 
+      virtual int get_tab_width();
 
       virtual void get_text_composition_area(::i32_rectangle & r) override;
       void edit_on_text(const ::scoped_string & scopedstr) override;
@@ -498,6 +500,9 @@ namespace user
       virtual bool get_line_color(::color::color & crOverride, const ::scoped_string & scopedstrLine);
 
       virtual void pre_translate_message(::message::message * pmessage) override;
+
+
+      virtual void set_tab_width(::i32 iPlainEditTabWidth);
 
       //void key_to_char(::message::key * pkey);
 

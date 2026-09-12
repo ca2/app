@@ -1170,7 +1170,18 @@ namespace url
 
             m_rangePort.m_end = range.m_end;
 
-            m_iPort = ::as_i32(m_rangePort);
+            try
+            {
+
+               m_iPort = ::as_i32(m_rangePort);
+
+            }
+            catch (...)
+            {
+
+               m_iPort = -1;
+
+            }
 
             m_range.m_end = m_rangePort.m_end;
 

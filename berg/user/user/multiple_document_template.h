@@ -15,7 +15,7 @@ namespace user
    public:
 
 
-      pointer_array < ::user::document > m_docptra;          // open documents of this type
+      pointer_array < ::user::document > m_userdocumenta;          // open documents of this type
       ::u32 m_nUntitledCount;   // start at 0, for "Document1" title
 
 
@@ -24,6 +24,9 @@ namespace user
 
 
       void destroy() override;
+
+
+      void for_each_document(const ::function < void(::user::document * puserdocument) > & foreachdocument) override;
 
 
       void load_impact_system() override;

@@ -25,8 +25,8 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_DEFAULT
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2026,0301,1108,44
- PRODUCTVERSION 2026,0301,1108,44
+ FILEVERSION 2026,0912,0112,48
+ PRODUCTVERSION 2026,0912,0112,48
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -42,10 +42,10 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
 			VALUE "CompanyName", "app"
-			VALUE "FileDescription", "app_compress_zlib"
-            VALUE "FileVersion", "2026.0301.1108.44"
-            VALUE "LegalCopyright", "Copyright (C) 2026-03-01-11-08-44"
-            VALUE "ProductVersion", "2026.0301.1108.44"
+			VALUE "FileDescription", "app_dropbox"
+            VALUE "FileVersion", "2026.0912.0112.48"
+            VALUE "LegalCopyright", "Copyright (C) 2026-09-12-01-12-48"
+            VALUE "ProductVersion", "2026.0912.0112.48"
         END
     END
     BLOCK "VarFileInfo"

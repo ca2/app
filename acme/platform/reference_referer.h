@@ -392,7 +392,7 @@ public:
 
       p->on_after_construct(nullptr);
 
-      p->m_prefererTransfer2 = m_preferencerefererTransferStack;
+      p->m_referencingdebugging.m_prefererTransfer2 = m_preferencerefererTransferStack;
 
 #endif
 

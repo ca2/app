@@ -249,14 +249,14 @@ public:
             ::is_set(this->m_pType)
             && this->m_sType >= sizeof(::subparticle)
             && ((::u8*)psubparticle >= this->m_pType
-               && (((::u8*)psubparticle) + psubparticle->m_sType)
+               && (((::u8*)psubparticle) + psubparticle->m_referencingdebugging.m_sType)
                <= (((::u8*)this->m_pType) + this->m_sType));
 
       }
 
       class reference_item_array* reference_itema();
 
-      virtual void on_after_construct(::reference_referer* preferer);
+      //virtual void on_after_construct(::reference_referer* preferer);
 
 
       void disable_referencing_debugging();
@@ -277,7 +277,7 @@ public:
    bool is_referencing_debugging_enabled() const
    {
 
-      return !this->should_disable_referencing_debugging() && m_bReferencingDebuggingEnabled5;
+      return !this->should_disable_referencing_debugging() && m_referencingdebugging.m_bReferencingDebuggingEnabled5;
 
    }
 
@@ -369,6 +369,9 @@ public:
    [[nodiscard]] virtual character_count sz_len() const;
    virtual void to_sz(char_pointer sz, character_count len) const;
 
+#if REFERENCING_DEBUGGING
+   virtual void on_after_construct(::reference_referer* preferer);
+#endif
 
    virtual void on_timed_out();
 

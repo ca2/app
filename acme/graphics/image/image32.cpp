@@ -315,7 +315,7 @@ void image32_t::_001ProperCopyColorref(::i32 cxParam, ::i32 cyParam, ::i32 iStri
 
 #else
 
-   vertical_swap_copy(cxParam, cyParam, iStrideDst, pimage32Src, iStrideSrc);
+   y_swap_copy(cxParam, cyParam, iStrideDst, pimage32Src, iStrideSrc);
 
 #endif
 
@@ -339,31 +339,31 @@ void image32_t::copy(
 
    constexpr ::i32 iPixelSize = sizeof(::image32_t);
 
-   const ::i32 iRowBytes = cx * iPixelSize;
+   const ::i32 iRowByte = cx * iPixelSize;
 
    if (iStrideSrc == 0)
    {
 
-      iStrideSrc = iRowBytes;
+      iStrideSrc = iRowByte;
 
    }
 
    if (iStrideDst == 0)
    {
 
-      iStrideDst = iRowBytes;
+      iStrideDst = iRowByte;
 
    }
 
    // Fast path for tightly packed images.
-   if (iStrideSrc == iRowBytes &&
-       iStrideDst == iRowBytes)
+   if (iStrideSrc == iRowByte&&
+       iStrideDst == iRowByte)
    {
 
       ::memory_copy(
          this,
          pimage32Src,
-         (::memsize)cy * iRowBytes);
+         (::memsize)cy * iRowByte);
 
       return;
 
@@ -389,7 +389,7 @@ void image32_t::copy(
    for (::i32 y = 0; y < cy; y++)
    {
 
-      ::memory_copy(pdst, psrc, iRowBytes);
+      ::memory_copy(pdst, psrc, iRowByte);
 
       pdst += iStrideDst;
       psrc += iStrideSrc;
@@ -558,7 +558,7 @@ image32_t *image32_t::create_copy_of(::memory &memoryAllocation, const i32_size 
    else if (stride < size.cx * 4)
    {
 
-      throw ::exception(error_bad_argument, "stride at least hold a row with width * 4 bytes");
+      throw ::exception(error_bad_argument, "stride at least hold a row with width * 4 ::u8s");
 
    }
 
@@ -620,14 +620,14 @@ CLASS_DECL_ACME::string _001_image32_diagnostics(::image32_t * pixelPtr, int wid
    {
 
       // Iterate through pixel data
-      UINT * pixels = (UINT *)pixelPtr;
-      for (UINT y = 0; y < height; ++y)
+      ::u32 * pixels = (::u32 *)pixelPtr;
+      for (::u32 y = 0; y < height; ++y)
       {
-         for (UINT x = 0; x < width; ++x)
+         for (::u32 x = 0; x < width; ++x)
          {
             // Get the ARGB color of the pixel
-            UINT color = pixels[y * (stride / 4) + x];
-            BYTE alpha = (color >> 24) & 0xFF; // Shift and mask for Alpha
+            ::u32 color = pixels[y * (stride / 4) + x];
+            ::u8 alpha = (color >> 24) & 0xFF; // Shift and mask for Alpha
 
             if (alpha == 0)
             {

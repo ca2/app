@@ -56,7 +56,6 @@ list(APPEND library_source
         graphics/draw2d/draw2d.h
         graphics/draw2d/drawing.cpp
         graphics/draw2d/drawing.h
-        graphics/draw2d/fwd.h
         graphics/draw2d/graphics.cpp
         graphics/draw2d/graphics.h
    graphics/draw2d/graphics_context.cpp

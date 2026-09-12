@@ -166,10 +166,12 @@ list(APPEND library_source
    #graphics3d/aaa_renderer.h
    graphics3d/camera.cpp
    graphics3d/camera.h
-   graphics3d/engine.cpp
-   graphics3d/engine.h
+   graphics3d/engine_instance.cpp
+   graphics3d/engine_instance.h
    graphics3d/frame.cpp
    #graphics3d/frame.h
+   graphics3d/graphics3d.cpp
+   graphics3d/graphics3d.h
    graphics3d/immersion_layer.cpp
    graphics3d/input.cpp
    graphics3d/input.h

@@ -586,7 +586,7 @@ namespace platform
 
 #if REFERENCING_DEBUGGING
 
-      void on_after_construct(::reference_referer* preferer) override;
+      virtual void on_after_construct(::reference_referer* preferer);
 
 #endif
 

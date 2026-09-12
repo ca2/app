@@ -2055,7 +2055,6 @@ list(APPEND library_source
         platform/_impl.h
         platform/_platform.h
         platform/auto.h
-        platform/auto_pointer.h
         platform/c.cpp
         platform/c.h
         platform/class.h
@@ -2195,6 +2194,7 @@ list(APPEND library_source
         prototype/comparison/sign.h
         prototype/prototype/_impl_pointer.h
         prototype/prototype/_impl_prototype.h
+        prototype/prototype/auto_pointer.h
         procedure.h
         template/list.h
         user/user/_.h

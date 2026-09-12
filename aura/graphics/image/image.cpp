@@ -74,19 +74,19 @@ namespace image
    }
 
 
-   image::image(image&& image) : ::property_object(::transfer(image)),
-//                                 ::image::image_drawer(::transfer(image)),
-                                 ::image::image_source_interface(::transfer(image)),
-                                 ::item(::transfer(image)),
-                                 ::matter(::transfer(image)),
-                                 IMAGE_IMAGE_META_TRANSFER(image),
-                                 m_rectangleTag(::transfer(image.m_rectangleTag))
-
-   {
-
-      m_bDestinationGraphicsLeaseActive.store(image.m_bDestinationGraphicsLeaseActive.load());
-
-   }
+//    image::image(image&& image) : ::property_object(::transfer(image)),
+// //                                 ::image::image_drawer(::transfer(image)),
+//                                  ::image::image_source_interface(::transfer(image)),
+//                                  ::item(::transfer(image)),
+//                                  ::matter(::transfer(image)),
+//                                  IMAGE_IMAGE_META_TRANSFER(image),
+//                                  m_rectangleTag(::transfer(image.m_rectangleTag))
+//
+//    {
+//
+//       m_bDestinationGraphicsLeaseActive.store(image.m_bDestinationGraphicsLeaseActive.load());
+//
+//    }
 
 
    image::~image()

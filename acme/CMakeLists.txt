@@ -645,9 +645,8 @@ list(APPEND library_source
         platform/http_acme.h
         platform/http_apex.cpp
         platform/http_apex.h
-        user/menu/_.h
-        user/menu/menu.cpp
-        user/menu/menu.h
+        platform/allocator.cpp
+        platform/allocator.h
         platform/application_menu.cpp
         platform/application_menu.h
         platform/application_menu_command.cpp
@@ -727,8 +726,8 @@ list(APPEND library_source
         platform/message.h
         #platform/message_box.cpp
         #platform/message_box.h
-   platform/message_sink.cpp
-   platform/message_sink.h
+        platform/message_sink.cpp
+        platform/message_sink.h
         #platform/muldiv64.cpp
         #   platform/nano_http.cpp
         #   platform/nano_http.h
@@ -1414,6 +1413,9 @@ list(APPEND library_source
         user/interface/message_box.cpp
         user/interface/message_box.h
         user/key/state.h
+        user/menu/_.h
+        user/menu/menu.cpp
+        user/menu/menu.h
         user/micro/_.h
         user/micro/button.cpp
         user/micro/button.h
@@ -3284,7 +3286,8 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   prototype/prototype/referencing_debugging.cpp)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

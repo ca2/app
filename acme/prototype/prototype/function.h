@@ -999,9 +999,9 @@ concept prototype_arguments_procedure =
 };
 
 
-#define SIGNAL_HANDLER_BASE_TRANSFER(a) \
-::signal_handler::base(::transfer(a)), \
-SUBPARTICLE_TRANSFER(a)
+// #define SIGNAL_HANDLER_BASE_TRANSFER(a) \
+// ::signal_handler::base(::transfer(a)), \
+// SUBPARTICLE_TRANSFER(a)
 
 
 #define SIGNAL_HANDLER_BASE_COPY_CONSTRUCT(a) \
@@ -1028,13 +1028,13 @@ public:
 
    }
 
-   arguments_procedure_base(arguments_procedure_base && base) :
-      SUBPARTICLE_TRANSFER(base)
-
-   {
-
-
-   }
+   // arguments_procedure_base(arguments_procedure_base && base) :
+   //    SUBPARTICLE_TRANSFER(base)
+   //
+   // {
+   //
+   //
+   // }
 
    ~arguments_procedure_base()
    {

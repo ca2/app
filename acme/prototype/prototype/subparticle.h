@@ -73,9 +73,9 @@ class sequence;
 //};
 
 
-#define SUBPARTICLE_TRANSFER(a) \
-::quantum(::transfer(a))
-
+// #define SUBPARTICLE_TRANSFER(a) \
+// ::quantum(::transfer(a))
+//
 
 #define SUBPARTICLE_COPY_CONSTRUCT(a) \
 ::quantum(a)
@@ -207,23 +207,23 @@ public:
    struct referencing_debugging
    {
 
-      ::subparticle* m_psubparticleTopTrack = nullptr;
+      ::subparticle *                     m_psubparticle;
+      ::subparticle *                     m_psubparticleTopTrack;
 
 
       class ::time                        m_timeAllocation;
-      class reference_item_array* m_preferenceitema = nullptr;
-      bool                                m_bHeapAllocation = false;
-      void* m_pType = nullptr;
-      memsize                             m_sType = sizeof(::subparticle);
-      ::reference_referer* m_prefererTransfer2 = nullptr;
-      ::reference_referer* m_prefererLast2 = nullptr;
-      bool                                m_bReferencingDebuggingEnabled5 = true;
-      bool                                m_bIncludeCallStackTrace = false;
+      class reference_item_array *        m_preferenceitema;
+      bool                                m_bHeapAllocation;
+      void *                              m_pType;
+      memsize                             m_sType;
+      ::reference_referer *               m_prefererTransfer2;
+      ::reference_referer *               m_prefererLast2;
+      bool                                m_bReferencingDebuggingEnabled5;
+      bool                                m_bIncludeCallStackTrace;
 
-      ::subparticle * m_psubparticle;
 
       referencing_debugging(::subparticle * psubparticle);
-      referencing_debugging(referencing_debugging& referencingdebugging)
+      referencing_debugging(referencing_debugging && referencingdebugging)
       {
 
          memcpy(this, &referencingdebugging, sizeof(*this));

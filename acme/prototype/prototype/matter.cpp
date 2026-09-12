@@ -27,17 +27,17 @@ matter::matter(const matter & matter) :
 }
 
 
-
-matter::matter(matter&& matter) :
-   PARTICLE_TRANSFER(matter),
-   m_atomMatterId(::transfer(matter.m_atomMatterId)),
-   m_uError(matter.m_uError)
-{
-
-   matter.m_uError = 0;
-
-}
-
+//
+// matter::matter(matter&& matter) :
+//    PARTICLE_TRANSFER(matter),
+//    m_atomMatterId(::transfer(matter.m_atomMatterId)),
+//    m_uError(matter.m_uError)
+// {
+//
+//    matter.m_uError = 0;
+//
+// }
+//
 
 matter::~matter()
 {

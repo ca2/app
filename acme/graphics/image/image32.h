@@ -139,7 +139,7 @@ struct CLASS_DECL_ACME image32_t
    void swap_red_blue(::i32 cx, ::i32 cy, ::i32 iStride = 0);
    void _001ProperCopyColorref(::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc = -1);
 
-   inline void copy(const ::i32_size &size, ::i32 iStrideDst, const ::pixmap_t *ppixmapSrc);
+   void copy(const ::i32_size &size, ::i32 iStrideDst, const ::pixmap_t *ppixmapSrc);
 
    void set_rectangle(::i32 x, ::i32 y, ::i32 w, ::i32 h, ::i32 s, const ::image32_t & source);
    void blend_rectangle(::i32 x, ::i32 y, ::i32 w, ::i32 h, ::i32 s, const ::image32_t & source);

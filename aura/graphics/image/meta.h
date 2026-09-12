@@ -21,11 +21,11 @@
 #include "aura/graphics/image/dynamic.h"
 
 
-#define IMAGE_IMAGE_META_TRANSFER(a) \
-::image::image_meta(::transfer(a)), \
-PARTICLE_TRANSFER(a)
-
-//PIXMAP_TRANSFER(a)
+// #define IMAGE_IMAGE_META_TRANSFER(a) \
+// ::image::image_meta(::transfer(a)), \
+// PARTICLE_TRANSFER(a)
+//
+// //PIXMAP_TRANSFER(a)
 
 
 namespace image

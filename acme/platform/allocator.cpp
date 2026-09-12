@@ -937,10 +937,10 @@ namespace allocator
    //}
    
    
-   void on_destruct_subparticle(::subparticle * psubparticle)
+   void on_destruct_subparticle(::subparticle::referencing_debugging * preferencingdebugging)
    {
 
-      ::destruct_particle_reference_item_array(psubparticle);
+      ::destruct_particle_reference_item_array(preferencingdebugging);
 
    }
 
@@ -1045,10 +1045,10 @@ CLASS_DECL_ACME void refdbg_erase_top_track(::subparticle* pparticle)
 
          ::subparticle* pparticleParent = ::allocator::t_psubparticleTrackAllocation;
 
-         if (::allocator::t_psubparticleTrackAllocation->find_top_track(pparticle, &pparticleParent))
+         if (::allocator::t_psubparticleTrackAllocation->m_referencingdebugging.find_top_track(pparticle, &pparticleParent))
          {
 
-            pparticleParent->erase_top_track(pparticle);
+            pparticleParent->m_referencingdebugging.erase_top_track(pparticle);
 
          }
 

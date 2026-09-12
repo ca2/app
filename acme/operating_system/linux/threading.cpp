@@ -4,7 +4,7 @@
 #include "acme/windowing/display.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
-#include "acme/platform/platform.h"
+#include "acme/platform/platform_platform.h"
 #include "acme/platform/system.h"
 #include "acme/windowing/windowing.h"
 

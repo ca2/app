@@ -35,13 +35,13 @@ namespace draw2d
 //IMAGE_IMAGE_META_TRANSFER(a)
 
 
-#define IMAGE_IMAGE_TRANSFER(a) \
-::image::image(::transfer(a)), \
-::property_object(::transfer(a)), \
-::image::image_source_interface(::transfer(a)), \
-::item(::transfer(a)), \
-::matter(::transfer(a)), \
-IMAGE_IMAGE_META_TRANSFER(a)
+// #define IMAGE_IMAGE_TRANSFER(a) \
+// ::image::image(::transfer(a)), \
+// ::property_object(::transfer(a)), \
+// ::image::image_source_interface(::transfer(a)), \
+// ::item(::transfer(a)), \
+// ::matter(::transfer(a)), \
+// IMAGE_IMAGE_META_TRANSFER(a)
 
 
 namespace image

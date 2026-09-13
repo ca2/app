@@ -6,7 +6,7 @@
 
 
 // Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSorensen!!
-#pragma once
+//#pragma once
 
 
 #include "platform.h"

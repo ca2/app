@@ -12,7 +12,7 @@
 //#include "main1.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
-#include "acme/platform/set_app_id.h"
+//#include "acme/platform/set_app_id.h"
 #include "acme/platform/system.h"
 #include "acme/platform/system_setup.h"
 #include "acme/prototype/string/command_line.h"

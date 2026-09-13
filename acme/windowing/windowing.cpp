@@ -1041,7 +1041,7 @@ namespace acme
       }
 
 
-      ::pixmap windowing::get_pixmap_from_file(::memory& memoryHost, const void* psourceFile, memsize sizeSourceFile)
+      ::pixmap_pointer windowing::get_pixmap_from_file(const ::block & block)
       {
 
          return {};

@@ -22,9 +22,9 @@ void sort_image_rgb(TYPE& R, TYPE& G, TYPE& B)
 
 
 
-#define PIXMAP_TRANSFER(a) \
-::pixmap(::transfer(a)), \
-PARTICLE_TRANSFER(a)
+// #define PIXMAP_TRANSFER(a) \
+// ::pixmap(::transfer(a)), \
+// PARTICLE_TRANSFER(a)
 
 
 class CLASS_DECL_ACME pixmap :

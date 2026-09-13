@@ -7,43 +7,60 @@
 #include "acme/prototype/geometry2d/size.h"
 
 
-namespace nano {
-namespace graphics {
-
-icon::icon()
-{
-
-}
-
-   icon::~icon()
+namespace nano
 {
 
 
-}
-
-   ::i32_size icon::size() const
-{
-return{};
-
-}
-
-   void icon::load_image_from_file(::file::file * pfile)
-{
-
-   auto memory = pfile->as_memory();
-
-   load_image_file(memory.data(), memory.size());
-
-}
+   namespace graphics
+   {
 
 
-   void icon::load_image_file(const void *p, memsize size)
-{
+      icon::icon()
+      {
 
-   auto pfile = create_memory_file({p, size});
 
-   load_image_from_file(pfile);
+      }
 
-}
-} // graphics
+
+      icon::~icon()
+      {
+
+
+      }
+
+
+      ::i32_size icon::size() const
+      {
+
+         return {};
+
+      }
+
+
+      void icon::load_image_from_file(::file::file* pfile)
+      {
+
+         auto memory = pfile->as_memory();
+
+         load_image_file(memory);
+
+      }
+
+
+      void icon::load_image_file(const ::block & block)
+      {
+
+         auto pfile = create_memory_file(block);
+
+         load_image_from_file(pfile);
+
+      }
+
+
+   } // graphics
+
+
 } // nano
+
+
+

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "log.h"
+#include "acme/platform/log.h"
 
 
 //CLASS_DECL_ACME void __simple_tracev(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstrFormat, va_list args);

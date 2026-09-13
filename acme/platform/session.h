@@ -9,13 +9,13 @@
 
 //#include "context.h"
 #include "acme/handler/handler.h"
-#include "application_container.h"
+#include "acme/platform/application_container.h"
 
-#include "session_acme.h"
-#include "session_apex.h"
-#include "session_aqua.h"
-#include "session_aura.h"
-#include "session_axis.h"
+#include "acme/platform/session_acme.h"
+#include "acme/platform/session_apex.h"
+#include "acme/platform/session_aqua.h"
+#include "acme/platform/session_aura.h"
+#include "acme/platform/session_axis.h"
 
 
 namespace platform

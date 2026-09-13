@@ -175,17 +175,17 @@ public:
    }
 
 
-   item(item && item) noexcept :
-      MATTER_TRANSFER(item),
-      m_item(::transfer(item.m_item)),
-      m_eitem(::transfer(item.m_eitem)),
-      m_eitemflag(::transfer(item.m_eitemflag))
-      //item_base(::transfer(item)),
-      //ITEM_DATA_ADDITIONS(::transfer(item)),
-      //item_data(::transfer(item)),
-   {
-
-   }
+   // item(item && item) noexcept :
+   //    MATTER_TRANSFER(item),
+   //    m_item(::transfer(item.m_item)),
+   //    m_eitem(::transfer(item.m_eitem)),
+   //    m_eitemflag(::transfer(item.m_eitemflag))
+   //    //item_base(::transfer(item)),
+   //    //ITEM_DATA_ADDITIONS(::transfer(item)),
+   //    //item_data(::transfer(item)),
+   // {
+   //
+   // }
 
 
    void get_debug_title(char_pointer sz, character_count c) const override;

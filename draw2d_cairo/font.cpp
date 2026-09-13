@@ -171,6 +171,8 @@ namespace draw2d_cairo
 
       bool bFont = false;
 
+      ::pointer<::draw2d_cairo::graphics>pdraw2dcairographics = pdraw2dgraphics;
+
       if (m_pathFontFile.has_character())
       {
 
@@ -209,10 +211,10 @@ namespace draw2d_cairo
 
       ::f64 dFontScaler = 1.0;
 
-      if(::is_set(pdraw2dgraphics->m_pdraw2dhost))
+      if(::is_set(pdraw2dgraphics->m_pacmeuserinteractionTopic))
       {
 
-         dFontScaler = pdraw2dgraphics->m_pdraw2dhost->font_scaler();
+         dFontScaler = pdraw2dgraphics->m_pacmeuserinteractionTopic->font_scaler();
 
       }
       else
@@ -241,7 +243,7 @@ namespace draw2d_cairo
 
       }
 
-      m_osdata[0] = m_ppangofontdescription;
+      //m_osdata[0] = m_ppangofontdescription;
 
 #elif TOY_FONT_SELECTION
 
@@ -281,7 +283,7 @@ namespace draw2d_cairo
 
 #if defined(USE_PANGO)
 
-      PangoFontDescription * pdesc = (PangoFontDescription *)m_pwritetextfont->get_os_data(this);
+      PangoFontDescription * pdesc = (PangoFontDescription *)m_ppangofontdescription;
 
       if (::is_set(pdesc))
       {
@@ -297,15 +299,14 @@ namespace draw2d_cairo
 
          PangoLayout * playout;                            // layout for a paragraph of text
 
-         playout = pango_cairo_create_layout(m_pcairo);                 // init pango layout ready for use
+         playout = pango_cairo_create_layout(pdraw2dcairographics->m_pcairo);                 // init pango layout ready for use
 
-         pango_layout_set_text(playout, unitext("IAUMGpqg"),
-                               -1);          // sets the text to be associated with the layout (final arg is length, -1
+         pango_layout_set_text(playout, "IAUMGpqg", -1);          // sets the text to be associated with the layout (final arg is length, -1
          // to calculate automatically when passing a nul-terminated string)
          pango_layout_set_font_description(playout,
                                            pdesc);            // assign the previous font description to the layout
 
-         pango_cairo_update_layout(m_pcairo,
+         pango_cairo_update_layout(pdraw2dcairographics->m_pcairo,
                                    playout);                  // if the target surface or transformation properties of the cairo instance
          // have changed, update the pango layout to reflect this
          ::i32 width = 0;
@@ -333,17 +334,17 @@ namespace draw2d_cairo
 
          ::i32 iAscent = pango_font_metrics_get_ascent(pfontmetrics);
 
-         lpMetrics->m_dAscent = iAscent / PANGO_SCALE;
+         m_textmetric2.m_dAscent = iAscent / PANGO_SCALE;
 
          ::i32 iDescent = pango_font_metrics_get_descent(pfontmetrics);
 
-         lpMetrics->m_dDescent = iDescent / PANGO_SCALE;
+         m_textmetric2.m_dDescent = iDescent / PANGO_SCALE;
 
-         lpMetrics->m_dHeight = (::i32)iHeight;
+         m_textmetric2.m_dHeight = (::i32)iHeight;
 
-         lpMetrics->m_dExternalLeading = (lpMetrics->m_dHeight - (lpMetrics->m_dAscent + lpMetrics->m_dDescent));
+         m_textmetric2.m_dExternalLeading = (m_textmetric2.m_dHeight - (m_textmetric2.m_dAscent + m_textmetric2.m_dDescent));
 
-         lpMetrics->m_dInternalLeading = (::i32)0;
+         m_textmetric2.m_dInternalLeading = (::i32)0;
 
          pango_font_metrics_unref(pfontmetrics);
 

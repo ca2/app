@@ -6,18 +6,20 @@
 
 
 // Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSorensen!!
-#pragma once
+//#pragma once
 
 
-#include "platform.h"
+#include "acme/platform/platform_platform.h"
 //#include "acme.h"
-#include "context.h"
+#include "acme/platform/context.h"
 //#include "system_factory.h"
-#include "application_flags.h"
+#include "acme/platform/application_flags.h"
 #include "acme/constant/gender.h"
 #include "acme/parallelization/_types.h"
 #include "acme/prototype/collection/map.h"
 #include "acme/prototype/prototype/factory.h"
+
+
 namespace accessibility
 {
    class accessibility;

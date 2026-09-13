@@ -2,7 +2,7 @@
 #include "image.h"
 #include "imaging.h"
 #include "acme/graphics/image/frame.h"
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 #include "acme/graphics/draw2d/color_array.h"
 
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 
 
 namespace gpu

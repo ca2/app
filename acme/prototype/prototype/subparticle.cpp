@@ -30,7 +30,8 @@ thread_local bool t_bDefaultEnableObjectReferenceCountDebug = true;
 
 subparticle::subparticle() :
    ::quantum(),
-   m_countReference(1)
+   m_countReference(1),
+   m_referencingdebugging(this)
 {
 
    subparticle_referencing_debugging_construct();
@@ -41,7 +42,7 @@ subparticle::subparticle() :
 
 subparticle::subparticle(subparticle&& subparticle) :
    ::quantum(::transfer(subparticle)),
-   m_countReference(::transfer(subparticle)),
+   m_countReference(::transfer(subparticle.m_countReference)),
    m_referencingdebugging(::transfer(subparticle.m_referencingdebugging))
 {
 
@@ -59,7 +60,8 @@ subparticle::subparticle(subparticle&& subparticle) :
 
 subparticle::subparticle(const ::subparticle & subparticle) :
    ::quantum(subparticle),
-   m_countReference(1)
+   m_countReference(1),
+   m_referencingdebugging(this)
 {
 
    subparticle_referencing_debugging_construct();
@@ -67,17 +69,18 @@ subparticle::subparticle(const ::subparticle & subparticle) :
 }
 
 
-subparticle::subparticle(::subparticle && subparticle) :
-   ::quantum(::transfer(subparticle)),
-   m_countReference(1)
-{
-
-   subparticle_referencing_debugging_construct();
-
-   ::allocator::on_destruct_subparticle(&subparticle);
-
-}
-
+// subparticle::subparticle(::subparticle && subparticle) :
+//    ::quantum(::transfer(subparticle)),
+//    m_countReference(1),
+//    m_referencingdebugging(this)
+// {
+//
+//    subparticle_referencing_debugging_construct();
+//
+//    ::allocator::on_destruct_subparticle(&subparticle);
+//
+// }
+//
 
 
 
@@ -90,11 +93,11 @@ void subparticle::subparticle_referencing_debugging_construct()
       || !g_bDefaultEnableObjectReferenceCountDebug)
    {
 
-      disable_referencing_debugging();
+      m_referencingdebugging.disable_referencing_debugging();
 
    }
 
-   m_timeAllocation.Now();
+   m_referencingdebugging.m_timeAllocation.Now();
 
    ::allocator::on_construct_subparticle(this);
 
@@ -103,26 +106,26 @@ void subparticle::subparticle_referencing_debugging_construct()
 }
 
 
-void subparticle::subparticle_referencing_debugging_transfer(transfer&& transfer)
-{
-
-#if REFERENCING_DEBUGGING
-
-   //if (!this->is_referencing_debugging_enabled()
-   //   || !g_bDefaultEnableObjectReferenceCountDebug)
-   //{
-
-   //   disable_referencing_debugging();
-
-   //}
-
-   m_timeAllocation = transfer(transfer.m_timeAllocation);
-
-   ::allocator::on_construct_subparticle(this);
-
-#endif
-
-}
+// void subparticle::referencing_debugging::subparticle_referencing_debugging_transfer(transfer&& transfer)
+// {
+//
+// #if REFERENCING_DEBUGGING
+//
+//    //if (!this->is_referencing_debugging_enabled()
+//    //   || !g_bDefaultEnableObjectReferenceCountDebug)
+//    //{
+//
+//    //   disable_referencing_debugging();
+//
+//    //}
+//
+//    m_timeAllocation = transfer(transfer.m_timeAllocation);
+//
+//    ::allocator::on_construct_subparticle(this);
+//
+// #endif
+//
+// }
 
 
 #endif
@@ -209,7 +212,7 @@ void subparticle::destroy()
 
 #if REFERENCING_DEBUGGING
 
-   add_reference_item(false, m_bIncludeCallStackTrace);
+   m_referencingdebugging.add_reference_item(false, m_referencingdebugging.m_bIncludeCallStackTrace);
 
 #endif
 
@@ -234,7 +237,7 @@ void subparticle::destroy()
    if (c >= 0)
    {
 
-      erase_reference_item();
+      m_referencingdebugging.erase_reference_item();
 
    }
 
@@ -987,7 +990,7 @@ void subparticle::acquire_ownership()
 
    ::string strTime;
 
-   auto elapsed = m_timeAllocation - ::acme::get()->m_timeStart;
+   auto elapsed = m_referencingdebugging.m_timeAllocation - ::acme::get()->m_timeStart;
 
    ::earth::time_span span(elapsed.m_iSecond);
 

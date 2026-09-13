@@ -12,7 +12,7 @@
 #include "bred/gpu/memory_buffer.h"
 //#include "bred/gpu/semaphore.h"
 #include "bred/gpu/shader.h"
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 #include "bred/graphics3d/rotation.h"
 #include "bred/gpu/command_buffer_lease.h"
 

@@ -4,7 +4,7 @@
 #include "color_selector.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"

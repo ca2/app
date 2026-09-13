@@ -103,11 +103,13 @@ namespace user
 
 #if REFERENCING_DEBUGGING 
 
-      auto iStep = m_preferenceitema->m_iStep;
+      auto iStep = m_referencingdebugging.m_preferenceitema->m_iStep;
 
       if (iStep == 111)
       {
+
          output_debug_string("iStep=111");
+
       }
 
 #endif

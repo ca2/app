@@ -4,7 +4,7 @@
 #include "acme/windowing/display.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
-#include "acme/platform/platform.h"
+#include "acme/platform/platform_platform.h"
 #include "acme/platform/system.h"
 #include "acme/windowing/windowing.h"
 
@@ -101,8 +101,9 @@ CLASS_DECL_ACME void _os_task_destroy(htask htask, itask itask)
 
 }
 
-
+#if !defined(_GNU_SOURCE)
 #define _GNU_SOURCE
+#endif
 #include <unistd.h>
 #include <stdio.h>
 #include <stdbool.h>

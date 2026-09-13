@@ -2,7 +2,7 @@
 #include "color_selector_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/image/image.h"

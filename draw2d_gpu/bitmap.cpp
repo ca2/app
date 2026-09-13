@@ -2,7 +2,7 @@
 //glglgl #include "_opengl.h"
 #include "bitmap.h"
 #include "acme/exception/interface_only.h"
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 #include "acme/graphics/image/pixmap.h"
 
 void resizeBilinear(memory & m, ::i32 w2, ::i32 h2, ::i32 * pixels, ::i32 w, ::i32 h);

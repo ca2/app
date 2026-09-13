@@ -35,3 +35,5 @@ CLASS_DECL_ACME self_test* main_self_test();
 
 #define RUN_SELF_TEST(groupid) \
 groupid ## _self_test()->run()
+
+

@@ -53,14 +53,14 @@ reference_item_array::reference_item_array(::subparticle* psubparticle, ::subpar
    else
    {
 
-      if (::is_null(psubparticleParent->m_preferenceitema))
+      if (::is_null(psubparticleParent->m_referencingdebugging.m_preferenceitema))
       {
 
          throw ::exception(error_wrong_state);
 
       }
 
-      psubparticleParent->m_preferenceitema->add_item_array(this);
+      psubparticleParent->m_referencingdebugging.m_preferenceitema->add_item_array(this);
 
    }
 
@@ -92,7 +92,7 @@ reference_item_array::~reference_item_array()
       if (::is_set(psubparticleParent))
       {
          
-         auto preferenceitema = psubparticleParent->m_preferenceitema;
+         auto preferenceitema = psubparticleParent->m_referencingdebugging.m_preferenceitema;
          
          if (::is_set(preferenceitema))
          {
@@ -477,12 +477,12 @@ string object_name(matter* p)
 //}
 
 
-void subparticle::add_reference_item(bool bConstructing, bool bIncludeCallStackTrace)
+void subparticle::referencing_debugging::add_reference_item(bool bConstructing, bool bIncludeCallStackTrace)
 {
 
    critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
 
-   if (!is_referencing_debugging_enabled())
+   if (!m_bReferencingDebuggingEnabled5)
    {
 
       //::allocator::defer_erase_referer();
@@ -600,12 +600,12 @@ void subparticle::add_reference_item(bool bConstructing, bool bIncludeCallStackT
 }
 
 
-void subparticle::add_referer(::reference_referer * preferer)
+void subparticle::referencing_debugging::add_referer(::reference_referer * preferer)
 {
 
    critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
 
-   if (!is_referencing_debugging_enabled())
+   if (!m_bReferencingDebuggingEnabled5)
    {
 
       ::allocator::defer_erase_referer();
@@ -630,12 +630,12 @@ void subparticle::add_referer(::reference_referer * preferer)
 }
 
 
-void subparticle::erase_reference_item()
+void subparticle::referencing_debugging::erase_reference_item()
 {
 
    critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
 
-   if (!is_referencing_debugging_enabled())
+   if (!m_bReferencingDebuggingEnabled5)
    {
 
       ::allocator::defer_erase_releaser(false);
@@ -662,10 +662,10 @@ void subparticle::erase_reference_item()
 }
 
 
-void subparticle::check_pending_releases()
+void subparticle::referencing_debugging::check_pending_releases()
 {
 
-   if (!is_referencing_debugging_enabled())
+   if (!m_bReferencingDebuggingEnabled5)
    {
 
       return;
@@ -812,300 +812,6 @@ void reference_item_array::dump_pending_releases(::string & strDump)
 //    return g_lparamdbg;
 //
 //}
-
-
-
-
-
-
-#if REFERENCING_DEBUGGING
-
-//::particle * particle::__call__add_referer(const ::reference_referer & referer) const
-//{
-//
-//   ::allocator::add_referer(referer);
-//
-//   return (::particle *)this;
-//
-//}
-
-void subparticle::add_top_track(::subparticle* psubparticle)
-{
-
-   if (::is_null(psubparticle))
-   {
-
-      throw ::exception(::error_wrong_state, "cannot track null particle");
-
-   }
-
-   if (contains_top_track(psubparticle))
-   {
-
-      throw ::exception(::error_wrong_state, "particle is already tracked");
-      
-   }
-
-   auto psubparticleTop = get_top_track();
-
-   psubparticleTop->m_psubparticleTopTrack = psubparticle;
-
-}
-
-
-::subparticle* subparticle::get_top_track() const
-{
-
-   return ::is_null(m_psubparticleTopTrack) ?
-      (::subparticle *) this :
-      m_psubparticleTopTrack->get_top_track();
-
-}
-
-
-void subparticle::erase_top_track(::subparticle * psubparticle)
-{
-
-   if (::is_null(psubparticle))
-   {
-
-      return;
-
-   }
-
-   if (::is_null(m_psubparticleTopTrack))
-   {
-
-      throw ::exception(error_wrong_state);
-
-   }
-
-   if (psubparticle == m_psubparticleTopTrack)
-   {
-
-      m_psubparticleTopTrack = m_psubparticleTopTrack->m_psubparticleTopTrack;
-
-   }
-   else
-   {
-
-      auto pNextTop = m_psubparticleTopTrack;
-
-      if (::is_set(pNextTop))
-      {
-
-         pNextTop->erase_top_track(psubparticle);
-
-         return;
-
-      }
-
-   }
-
-}
-
-
-bool subparticle::find_top_track(::subparticle * psubparticle, ::subparticle ** psubparticleParent) const
-{
-
-   if (::is_null(psubparticle))
-   {
-
-      return false;
-
-   }
-
-   if (psubparticle == this)
-   {
-
-      return true;
-
-   }
-
-   if (::is_null(m_psubparticleTopTrack))
-   {
-
-      return false;
-
-   }
-
-   if (m_psubparticleTopTrack == psubparticle)
-   {
-
-      if (psubparticleParent)
-      {
-
-         *psubparticleParent = (::subparticle*)this;
-
-      }
-
-      return true;
-
-   }
-
-   if (psubparticleParent)
-   {
-
-      *psubparticleParent = (::subparticle *)this;
-
-   }
-
-   return m_psubparticleTopTrack->find_top_track(psubparticle, psubparticleParent);
-
-}
-
-
-
-bool subparticle::contains_top_track(::subparticle* psubparticle) const
-{
-
-   if (::is_null(psubparticle))
-   {
-
-      return false;
-
-   }
-
-   if (psubparticle == this)
-   {
-
-      return true;
-
-   }
-
-   if (::is_null(m_psubparticleTopTrack))
-   {
-
-      return false;
-
-   }
-
-   if (m_psubparticleTopTrack == psubparticle)
-   {
-
-      return true;
-
-   }
-   
-   return m_psubparticleTopTrack->contains_top_track(psubparticle);
-
-}
-
-
-reference_item_array * subparticle::reference_itema()
-{
-
-   if (!is_referencing_debugging_enabled())
-   {
-
-      return nullptr;
-
-   }
-
-   //if (::is_null(m_preferenceitema))
-   //{
-
-   //   m_preferenceitema = allocateø reference_item_array(this);
-
-   //}
-
-   return m_preferenceitema;
-
-}
-
-
-#endif
-
-
-
-//void check_all_pending_releases()
-//{
-//
-//   auto c = ::acme::get()->m_pobjectreferencecountdebuga->size();
-//
-//   {
-//
-//      ::string strDump;
-//
-//      strDump.append_formatf("Inspected Items : %d\n", g_iInspectedItems);
-//
-//      strDump.append_formatf("Found %d items with pending releases.\n", c);
-//
-//      ::output_debug_string(strDump);
-//
-//   }
-//
-//   for (::collection::index i = 0; i < c; i++)
-//   {
-//
-//      auto p = g_pobjectreferencecountdebuga->element_at(i);
-//      
-//      {
-//
-//         ::string strDump;
-//
-//         strDump.append_formatf("\n\n%d:\n", i);
-//
-//         try
-//         {
-//
-//            p->dump_pending_releases(strDump);
-//
-//         }
-//         catch (...)
-//         {
-//
-//
-//         }
-//
-//         ::output_debug_string(strDump);
-//
-//      }
-//
-//   }
-//
-//}
-//
-//
-//namespace platform
-//{
-//
-//
-//   extern thread_local void * t_pStartConstruct;
-//   extern thread_local memsize t_sStartConstruct;
-//
-//
-//} // namespace platform
-//
-
-
-
-void destruct_particle_reference_item_array(::subparticle * psubparticle)
-{
-
-   auto preferenceitema = psubparticle->m_preferenceitema;
-
-   if (::is_set(preferenceitema))
-   {
-
-      psubparticle->m_preferenceitema = nullptr;
-
-      delete preferenceitema;
-
-   }
-
-}
-
-
-
-
-
-CLASS_DECL_ACME::critical_section * refdbg_cs()
-{
-
-   return &::acme::get()->m_preferencingdebugging->m_criticalsection;
-
-}
 
 
 #endif

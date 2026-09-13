@@ -15,7 +15,7 @@ namespace factory
 
 #if REFERENCING_DEBUGGING
 
-      disable_referencing_debugging();
+      m_referencingdebugging.disable_referencing_debugging();
 
 #endif
 

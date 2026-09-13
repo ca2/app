@@ -258,7 +258,7 @@ namespace acme
          ::color::color reinterpreted_background_color();
 
 
-         virtual ::pixmap get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile);
+         virtual ::pixmap_pointer get_pixmap_from_file(const ::block & blockMemoryFile);
 
 
          virtual ::windowing::enum_windowing calculate_ewindowing();

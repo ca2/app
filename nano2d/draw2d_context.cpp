@@ -5,6 +5,7 @@
 #include "acme/prototype/geometry2d/ellipse.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/context.h"

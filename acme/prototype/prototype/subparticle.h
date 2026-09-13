@@ -73,9 +73,9 @@ class sequence;
 //};
 
 
-#define SUBPARTICLE_TRANSFER(a) \
-::quantum(::transfer(a))
-
+// #define SUBPARTICLE_TRANSFER(a) \
+// ::quantum(::transfer(a))
+//
 
 #define SUBPARTICLE_COPY_CONSTRUCT(a) \
 ::quantum(a)
@@ -207,21 +207,23 @@ public:
    struct referencing_debugging
    {
 
-      ::subparticle* m_psubparticleTopTrack = nullptr;
+      ::subparticle *                     m_psubparticle;
+      ::subparticle *                     m_psubparticleTopTrack;
 
 
       class ::time                        m_timeAllocation;
-      class reference_item_array* m_preferenceitema = nullptr;
-      bool                                m_bHeapAllocation = false;
-      void* m_pType = nullptr;
-      memsize                             m_sType = sizeof(::subparticle);
-      ::reference_referer* m_prefererTransfer2 = nullptr;
-      ::reference_referer* m_prefererLast2 = nullptr;
-      bool                                m_bReferencingDebuggingEnabled5 = true;
-      bool                                m_bIncludeCallStackTrace = false;
+      class reference_item_array *        m_preferenceitema;
+      bool                                m_bHeapAllocation;
+      void *                              m_pType;
+      memsize                             m_sType;
+      ::reference_referer *               m_prefererTransfer2;
+      ::reference_referer *               m_prefererLast2;
+      bool                                m_bReferencingDebuggingEnabled5;
+      bool                                m_bIncludeCallStackTrace;
 
-      referencing_debugging();
-      referencing_debugging(referencing_debugging& referencingdebugging)
+
+      referencing_debugging(::subparticle * psubparticle);
+      referencing_debugging(referencing_debugging && referencingdebugging)
       {
 
          memcpy(this, &referencingdebugging, sizeof(*this));
@@ -238,6 +240,8 @@ public:
       bool find_top_track(::subparticle* psubparticle, ::subparticle** ppsubparticleeParent) const;
 
 
+      bool is_referencing_debugging_enable();
+
       
 
       void set_size_type(memsize s) { m_sType = s; }
@@ -249,14 +253,14 @@ public:
             ::is_set(this->m_pType)
             && this->m_sType >= sizeof(::subparticle)
             && ((::u8*)psubparticle >= this->m_pType
-               && (((::u8*)psubparticle) + psubparticle->m_sType)
+               && (((::u8*)psubparticle) + psubparticle->m_referencingdebugging.m_sType)
                <= (((::u8*)this->m_pType) + this->m_sType));
 
       }
 
       class reference_item_array* reference_itema();
 
-      virtual void on_after_construct(::reference_referer* preferer);
+      //virtual void on_after_construct(::reference_referer* preferer);
 
 
       void disable_referencing_debugging();
@@ -277,7 +281,7 @@ public:
    bool is_referencing_debugging_enabled() const
    {
 
-      return !this->should_disable_referencing_debugging() && m_bReferencingDebuggingEnabled5;
+      return !this->should_disable_referencing_debugging() && m_referencingdebugging.m_bReferencingDebuggingEnabled5;
 
    }
 
@@ -369,6 +373,9 @@ public:
    [[nodiscard]] virtual character_count sz_len() const;
    virtual void to_sz(char_pointer sz, character_count len) const;
 
+#if REFERENCING_DEBUGGING
+   virtual void on_after_construct(::reference_referer* preferer);
+#endif
 
    virtual void on_timed_out();
 

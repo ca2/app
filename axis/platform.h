@@ -15,19 +15,6 @@
 #else
 
 #include "axis/_.h"
-#include "axis/platform/_platform.h"
-#if BROAD_PRECOMPILED_HEADER
-#include "axis/html/html_lite/_.h"
-#include "axis/geoip/_.h"
-////#include "axis/geoip/_component.h"
-#endif
-#include "axis/mathematics/_.h"
-#include "axis/mathematics/calculator/_.h"
-#include "axis/mathematics/kissfft/_.h"
-//#include "aura/crypto/crypto_openssl.h"
-//#include "aura/_defer.h"
-
-
 
 #endif
 

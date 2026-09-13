@@ -29,6 +29,7 @@ namespace draw2d
 
       graphics_pointer &operator=(::pointer <  ::draw2d::graphics  > && p);
       graphics_pointer &operator=(const ::pointer <  ::draw2d::graphics  > &p);
+      graphics_pointer &operator=(::draw2d::graphics * pgraphics);
 
 
 

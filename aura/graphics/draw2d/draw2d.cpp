@@ -1,6 +1,6 @@
 #include "platform.h"
 #include "lock.h"
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 #include "acme/platform/application.h"
 #include "acme/user/user/interaction.h"
 #include "apex/gpu/approach.h"

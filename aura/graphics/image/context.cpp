@@ -793,6 +793,32 @@ namespace image
    }
 
 
+   void image_context::load_image(::image::image_pointer& pimage, const ::payload& payloadFile, const ::image::load_options& loadoptions)
+   {
+
+      defer_constructø(pimage);
+
+      auto loadoptionsNew = loadoptions;
+
+      auto functionLoaded = loadoptionsNew.functionLoaded;
+
+      auto imageloadcallback = pimage->load_image_callback();
+
+      loadoptionsNew.functionLoaded = [this, imageloadcallback, functionLoaded](::image::load_image * ploadimage)
+      {
+
+         imageloadcallback(ploadimage);
+
+         functionLoaded(ploadimage);
+
+      };
+
+      load_image(payloadFile, loadoptionsNew);
+
+
+   }
+
+
    ::image::image_pointer image_context::load_matter_image(const ::scoped_string & scopedstrMatter, const ::image::load_options& loadoptions)
    {
 

@@ -11,7 +11,7 @@
 #include "apex/parallelization/thread.h"
 #include "bred/gpu/memory_buffer.h"
 #include "bred/gpu/shader.h"
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 
 
 namespace gpu

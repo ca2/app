@@ -4,29 +4,44 @@
 #pragma once
 
 
-#include "object.h"
+#include "acme/nano/graphics/object.h"
 
 
-namespace nano {
-namespace graphics {
+namespace nano
+{
 
-class CLASS_DECL_ACME icon :
-virtual public ::nano::graphics::object{
-  public:
 
-    //::memory_file_pointer      m_pfile;
+   namespace graphics
+   {
 
-    icon();
-    ~icon();
 
-   virtual ::i32_size size() const;
+      class CLASS_DECL_ACME icon :
+         virtual public ::nano::graphics::object
+      {
+      public:
 
-   virtual void load_image_from_file(::file::file * pfile);
-   virtual void load_image_file(const void *p, memsize size);
+
+         //::memory_file_pointer      m_pfile;
+
+
+         icon();
+         ~icon() override;
+
+
+         virtual ::i32_size size() const;
+
+
+         virtual void load_image_from_file(::file::file * pfile);
+         virtual void load_image_file(const ::block & block);
+
    
-};
+      };
 
-} // graphics
+
+   } // graphics
+
+
 } // nano
+
 
 

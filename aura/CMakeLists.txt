@@ -56,7 +56,6 @@ list(APPEND library_source
         graphics/draw2d/draw2d.h
         graphics/draw2d/drawing.cpp
         graphics/draw2d/drawing.h
-        graphics/draw2d/fwd.h
         graphics/draw2d/graphics.cpp
         graphics/draw2d/graphics.h
    graphics/draw2d/graphics_context.cpp
@@ -450,6 +449,7 @@ list(APPEND library_source
         user/user/interaction_listener.h
         user/user/interaction_graphics_thread.cpp
         user/user/interaction_graphics_thread.h
+        user/user/interaction_metrics.cpp
         user/user/interaction_thread.cpp
         user/user/interaction_thread.h
         user/user/interaction_scaler.cpp

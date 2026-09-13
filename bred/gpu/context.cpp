@@ -546,7 +546,6 @@ namespace gpu
    }
 
 
-
    ::pointer<::gpu::texture_site> context::create_empty_texture()
    {
 
@@ -556,7 +555,7 @@ namespace gpu
 
       ptexturesiteEmpty->m_pgputextureSite = ptextureEmpty;
 
-      ::gpu::texture_attributes textureattributes({1, 1});
+      ::gpu::texture_attributes textureattributes(::i32_size{1, 1});
 
       ::gpu::texture_flags textureflags;
 
@@ -2554,7 +2553,7 @@ namespace gpu
 
          auto ptextureNewAtlas = createø<::gpu::texture >();
 
-         ::gpu::texture_attributes textureattributes({4096, 4096}); 
+         ::gpu::texture_attributes textureattributes(::i32_size{4096, 4096});
 
          textureattributes.m_sizeRaw = { 4096, 4096 };
 
@@ -5404,7 +5403,7 @@ return {};
       auto pgputextureMetallicRoughness = createø<::gpu::texture>();
       pgputexturesiteMetallicRoughness->m_pgputextureSite = pgputextureMetallicRoughness;
       ::i32_rectangle r(0, 0, w1, h1);
-      ::gpu::texture_attributes textureattributes({w1, h1});
+      ::gpu::texture_attributes textureattributes(::i32_size{w1, h1});
       textureattributes.m_iBitsPerChannel = 8;
       textureattributes.m_iChannelCount = 1;
       textureattributes.m_etexture = ::gpu::e_texture_image;

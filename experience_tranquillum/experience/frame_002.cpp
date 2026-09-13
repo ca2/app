@@ -3,7 +3,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/path.h"
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 #include "berg/user/experience/frame_window.h"
 #include "berg/user/experience/size_manager.h"
 #include "berg/user/experience/dock_manager.h"

@@ -80,7 +80,7 @@ binary_stream & operator >>(binary_stream & stream, SERIALIZABLE_ARRAY & a)
 
    // }
 
-   // return stream;
+   return stream;
 
 }
 

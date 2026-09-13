@@ -34,7 +34,7 @@ namespace image
 
 
       image_source_interface() {}
-      image_source_interface(image_source_interface&& imagesourceinterface) : MATTER_TRANSFER(imagesourceinterface) {}
+      //image_source_interface(image_source_interface&& imagesourceinterface) : MATTER_TRANSFER(imagesourceinterface) {}
       ~image_source_interface() override {}
 
 

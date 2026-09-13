@@ -12,9 +12,9 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 
-#define MATTER_TRANSFER(a) \
-::matter(::transfer(a)), \
-PARTICLE_TRANSFER(a)
+// #define MATTER_TRANSFER(a) \
+// ::matter(::transfer(a)), \
+// PARTICLE_TRANSFER(a)
 
 
 #define MATTER_COPY_CONSTRUCT(a) \

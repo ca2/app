@@ -1691,7 +1691,7 @@ pdirectorysystem->create("/ca2core");
          if (m_countReference > 1)
          {
 
-            check_pending_releases();
+            m_referencingdebugging.check_pending_releases();
 
          }
 

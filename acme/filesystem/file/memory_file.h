@@ -93,7 +93,7 @@ public:
    memory_file(::file::e_open eopen);
    memory_file(memsize iSize);
    memory_file(const memory_file & file);
-   memory_file(memory_file && file);
+   //memory_file(memory_file && file);
    memory_file(const void * pmemory, memsize dwSize);
    memory_file(const ::block & block);
    template < prototype_payload PAYLOAD >

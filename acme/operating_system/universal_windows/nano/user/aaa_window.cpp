@@ -2,7 +2,7 @@
 #include "window.h"
 #include "acme/operating_system/universal_windows/_winrt_foundation.h"
 #include "acme/platform/application.h"
-#include "acme/platform/platform.h"
+#include "acme/platform/platform_platform.h"
 #include "acme/user/micro/button.h"
 #include "acme/user/micro/window.h"
 #include "acme/user/micro/user.h"

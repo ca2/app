@@ -84,20 +84,20 @@ inline pointer < T > ::pointer(place_t, T2 * p)
          if (m_psubparticle->is_referencing_debugging_enabled())
          {
 
-            if(m_psubparticle->m_prefererTransfer2)
+            if(m_psubparticle->m_referencingdebugging.m_prefererTransfer2)
             {
 
-               m_preferer = m_psubparticle->m_prefererTransfer2;
+               m_preferer = m_psubparticle->m_referencingdebugging.m_prefererTransfer2;
 
-               m_psubparticle->m_prefererTransfer2 = nullptr;
+               m_psubparticle->m_referencingdebugging.m_prefererTransfer2 = nullptr;
 
             }
-            else if(m_psubparticle->m_prefererLast2)
+            else if(m_psubparticle->m_referencingdebugging.m_prefererLast2)
             {
 
-               m_preferer = m_psubparticle->m_prefererLast2;
+               m_preferer = m_psubparticle->m_referencingdebugging.m_prefererLast2;
 
-               m_psubparticle->m_prefererLast2 = nullptr;
+               m_psubparticle->m_referencingdebugging.m_prefererLast2 = nullptr;
 
             }
             else
@@ -176,20 +176,20 @@ pointer < T >::pointer(allocate_t, Args &&... args)
       if (m_psubparticle->is_referencing_debugging_enabled())
       {
 
-         if(m_psubparticle->m_prefererTransfer2)
+         if(m_psubparticle->m_referencingdebugging.m_prefererTransfer2)
          {
 
-            m_preferer = m_psubparticle->m_prefererTransfer2;
+            m_preferer = m_psubparticle->m_referencingdebugging.m_prefererTransfer2;
 
-            m_psubparticle->m_prefererTransfer2 = nullptr;
+            m_psubparticle->m_referencingdebugging.m_prefererTransfer2 = nullptr;
 
          }
-         else if(m_psubparticle->m_prefererLast2)
+         else if(m_psubparticle->m_referencingdebugging.m_prefererLast2)
          {
 
-            m_preferer = m_psubparticle->m_prefererLast2;
+            m_preferer = m_psubparticle->m_referencingdebugging.m_prefererLast2;
 
-            m_psubparticle->m_prefererLast2 = nullptr;
+            m_psubparticle->m_referencingdebugging.m_prefererLast2 = nullptr;
 
          }
          else
@@ -1364,9 +1364,9 @@ inline pointer < T >::pointer(lparam & lparam)
 
 #if REFERENCING_DEBUGGING
 
-   m_preferer = m_psubparticle->m_prefererTransfer2;
+   m_preferer = m_psubparticle->m_referencingdebugging.m_prefererTransfer2;
 
-   m_psubparticle->m_prefererTransfer2 = nullptr;
+   m_psubparticle->m_referencingdebugging.m_prefererTransfer2 = nullptr;
 
 #endif
    
@@ -1408,9 +1408,9 @@ inline pointer<T>::pointer(wparam & wparam)
 
 #if REFERENCING_DEBUGGING
 
-   m_preferer = m_psubparticle->m_prefererTransfer2;
+   m_preferer = m_psubparticle->m_referencingdebugging.m_prefererTransfer2;
 
-   m_psubparticle->m_prefererTransfer2 = nullptr;
+   m_psubparticle->m_referencingdebugging.m_prefererTransfer2 = nullptr;
 
 #endif
 

@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "trace.h"
+#include "acme/platform/trace.h"
 #include "acme/constant/posix_shell.h"
 
 

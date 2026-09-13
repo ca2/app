@@ -2180,8 +2180,10 @@ CLASS_DECL_ACME void os_on_term_thread();
          if (m_countReference > 1)
          {
 
-            check_pending_releases();
+            m_referencingdebugging.check_pending_releases();
+
          }
+
       }
 
 #endif
@@ -3167,7 +3169,7 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
 #if REFERENCING_DEBUGGING
 
-   m_prefererTransfer2 = __refdbg_add_referer
+   m_referencingdebugging.m_prefererTransfer2 = __refdbg_add_referer
 
 #endif
 

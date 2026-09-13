@@ -91,9 +91,9 @@ struct disable_referencing_debugging_t {};
 
 
 
-#define PARTICLE_TRANSFER(a) \
-::particle(::transfer(a)), \
-SIGNAL_HANDLER_BASE_TRANSFER(a)
+// #define PARTICLE_TRANSFER(a) \
+// ::particle(::transfer(a)), \
+// SIGNAL_HANDLER_BASE_TRANSFER(a)
 
 
 #define PARTICLE_COPY_CONSTRUCT(a) \
@@ -134,7 +134,7 @@ public:
 
 
    particle(const ::particle & particle) :
-      SIGNAL_HANDLER_BASE_TRANSFER(particle),
+      SIGNAL_HANDLER_BASE_COPY_CONSTRUCT(particle),
       m_papplication(particle.m_papplication),
       m_pparticleSynchronization(particle.m_pparticleSynchronization)
    {
@@ -143,16 +143,16 @@ public:
    }
 
 
-   particle(::particle&& particle) :
-      SIGNAL_HANDLER_BASE_TRANSFER(particle),
-      m_papplication(particle.m_papplication),
-      m_pparticleSynchronization(particle.m_pparticleSynchronization)
-   {  
-
-      //particle.m_papplication = nullptr;
-      particle.m_pparticleSynchronization = nullptr;
-
-   }
+   // particle(::particle&& particle) :
+   //    SIGNAL_HANDLER_BASE_TRANSFER(particle),
+   //    m_papplication(particle.m_papplication),
+   //    m_pparticleSynchronization(particle.m_pparticleSynchronization)
+   // {
+   //
+   //    //particle.m_papplication = nullptr;
+   //    particle.m_pparticleSynchronization = nullptr;
+   //
+   // }
 
    
 //#else

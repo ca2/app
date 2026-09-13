@@ -120,6 +120,7 @@ namespace image
       virtual ::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions = ::image::load_options());
 
       virtual ::image::image_pointer load_image(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
+      virtual void load_image(::image::image_pointer & pimage, const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
       virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions = ::image::load_options());
       virtual ::image::image_pointer load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
       virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, ::i32 w, ::i32 h);

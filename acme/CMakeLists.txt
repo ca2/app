@@ -295,10 +295,10 @@ list(APPEND library_source
    graphics/image/frame.h
    graphics/image/frame_array.cpp
    graphics/image/frame_array.h
-        graphics/image/image32.cpp
-        graphics/image/image32.h
-        graphics/image/image32_array.cpp
-        graphics/image/image32_array.h
+        graphics/image/image32_t.cpp
+        graphics/image/image32_t.h
+        graphics/image/image32_t_array.cpp
+        graphics/image/image32_t_array.h
    graphics/image/pixmap_lease.cpp
    graphics/image/pixmap_lease.h
         graphics/image/pixmap.cpp
@@ -645,9 +645,8 @@ list(APPEND library_source
         platform/http_acme.h
         platform/http_apex.cpp
         platform/http_apex.h
-        user/menu/_.h
-        user/menu/menu.cpp
-        user/menu/menu.h
+        platform/allocator.cpp
+        platform/allocator.h
         platform/application_menu.cpp
         platform/application_menu.h
         platform/application_menu_command.cpp
@@ -727,8 +726,8 @@ list(APPEND library_source
         platform/message.h
         #platform/message_box.cpp
         #platform/message_box.h
-   platform/message_sink.cpp
-   platform/message_sink.h
+        platform/message_sink.cpp
+        platform/message_sink.h
         #platform/muldiv64.cpp
         #   platform/nano_http.cpp
         #   platform/nano_http.h
@@ -746,8 +745,8 @@ list(APPEND library_source
         platform/node_aqua.h
         platform/node_aura.cpp
         platform/node_aura.h
-        platform/predicate_holder.cpp
-        platform/predicate_holder.h
+        #platform/predicate_holder.cpp
+        #platform/predicate_holder.h
         platform/printf.cpp
         platform/prober.cpp
         platform/prober.h
@@ -1414,6 +1413,9 @@ list(APPEND library_source
         user/interface/message_box.cpp
         user/interface/message_box.h
         user/key/state.h
+        user/menu/_.h
+        user/menu/menu.cpp
+        user/menu/menu.h
         user/micro/_.h
         user/micro/button.cpp
         user/micro/button.h
@@ -2051,11 +2053,10 @@ list(APPEND library_source
         parallelization/waiting_call.cpp
         parallelization/waiting_call.h
         platform/_features.h
-        platform/_global.h
+        #platform/_global.h
         platform/_impl.h
         platform/_platform.h
         platform/auto.h
-        platform/auto_pointer.h
         platform/c.cpp
         platform/c.h
         platform/class.h
@@ -2102,7 +2103,7 @@ list(APPEND library_source
         platform/serial.h
         platform/simple_log.cpp
         platform/simple_log.h
-        platform/status.h
+        #platform/status.h
         platform/string_exchange.cpp
         platform/string_exchange.h
         platform/system.h
@@ -2195,6 +2196,7 @@ list(APPEND library_source
         prototype/comparison/sign.h
         prototype/prototype/_impl_pointer.h
         prototype/prototype/_impl_prototype.h
+        prototype/prototype/auto_pointer.h
         procedure.h
         template/list.h
         user/user/_.h
@@ -3284,7 +3286,8 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   prototype/prototype/referencing_debugging.cpp)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

@@ -22,9 +22,9 @@ void sort_image_rgb(TYPE& R, TYPE& G, TYPE& B)
 
 
 
-#define PIXMAP_TRANSFER(a) \
-::pixmap(::transfer(a)), \
-PARTICLE_TRANSFER(a)
+// #define PIXMAP_TRANSFER(a) \
+// ::pixmap(::transfer(a)), \
+// PARTICLE_TRANSFER(a)
 
 
 class CLASS_DECL_ACME pixmap :
@@ -408,25 +408,4 @@ protected:
 
 
 using pixmap_pointer = ::pointer < ::pixmap >;
-
-inline void image32_t::copy(const ::i32_size & size, ::i32 iStrideDst, const ::pixmap_t * ppixmapSrc)
-{
-   
-   copy(size.minimum(ppixmapSrc->size()), iStrideDst, ppixmapSrc->m_pimage32, ppixmapSrc->m_iScan);
-
-}
-
-
-
-inline void image32_t::copy(const ::pixmap_t* p)
-{
-   copy(::i32_point(), p->size(), p->width() * 4, p->image32(), p->m_iScan);
-}
-
-
-inline void image32_t::y_swap_copy(const ::pixmap_t * p)
-{
-   y_swap_copy(::i32_point(), p->size(), p->width() * 4, p->image32(), p->m_iScan);
-}
-
 

@@ -227,7 +227,7 @@ namespace message
       m_bExt = false;
       m_nFlags = 0;
 #if REFERENCING_DEBUGGING
-      m_bIncludeCallStackTrace = true;
+      m_referencingdebugging.m_bIncludeCallStackTrace = true;
 #endif
 
    }

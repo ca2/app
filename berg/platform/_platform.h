@@ -2,8 +2,6 @@
 
 
 
-
-
 //#ifdef WINDOWS
 //
 //interface ID2D1DeviceContext;

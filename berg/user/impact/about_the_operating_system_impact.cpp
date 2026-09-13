@@ -99,15 +99,11 @@ namespace berg
 });
 
 #if defined(LINUX)
-      ::string strOperatingAmbientImageUrl = papexsystem->operating_ambient_icon_url({64, 64});
-      image()->load_image(strOperatingAmbientImageUrl,
-      {
-         .sync=false,.functionLoaded = [this](::image::image * pimage)
-         {
-            m_pimageOperatingAmbient = pimage;
 
-         }
-      });
+      ::string strOperatingAmbientImageUrl = papexsystem->operating_ambient_icon_url({64, 64});
+
+      image()->load_image(m_pimageOperatingAmbient, strOperatingAmbientImageUrl,{ .sync=false });
+
 #endif
       // application()->show_about_box();
    }

@@ -11,13 +11,15 @@
 
 #include "acme/platform/platform_platform.h"
 //#include "acme.h"
-#include "context.h"
+#include "acme/platform/context.h"
 //#include "system_factory.h"
-#include "application_flags.h"
+#include "acme/platform/application_flags.h"
 #include "acme/constant/gender.h"
 #include "acme/parallelization/_types.h"
 #include "acme/prototype/collection/map.h"
 #include "acme/prototype/prototype/factory.h"
+
+
 namespace accessibility
 {
    class accessibility;

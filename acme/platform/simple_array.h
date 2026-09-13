@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/memory/::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate.h"
+#include "acme/memory/allocate.h"
 
 
 // currently simple_array doesn't call any constructors/destructors on elements

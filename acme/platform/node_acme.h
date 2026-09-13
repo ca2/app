@@ -15,7 +15,7 @@
 #include "acme/prototype/collection/atom_array.h"
 #include "acme/prototype/collection/string_map.h"
 //#include "acme/prototype/time/time.h"
-#include "shell.h"
+#include "acme/platform/shell.h"
 
 
 namespace platform

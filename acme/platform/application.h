@@ -16,23 +16,23 @@ class get_file_extension_mime_type;
 namespace acme { class acme; }
 
 
-#include "application_berg.h"
-#include "application_exit.h"
-#include "application_flags.h"
+#include "acme/platform/application_berg.h"
+#include "acme/platform/application_exit.h"
+#include "acme/platform/application_flags.h"
 #include "acme/constant/gpu.h"
 #include "acme/handler/command_handler.h"
-#include "context.h"
-#include "release_time_for_project.h"
+#include "acme/platform/context.h"
+#include "acme/platform/release_time_for_project.h"
 #include "acme/prototype/data/client.h"
 #include "acme/prototype/text/text.h"
-#include "application_acme.h"
-#include "application_apex.h"
-#include "application_aqua.h"
-#include "application_aura.h"
-#include "application_axis.h"
-#include "application_berg.h"
-#include "application_bred.h"
-#include "application_core.h"
+#include "acme/platform/application_acme.h"
+#include "acme/platform/application_apex.h"
+#include "acme/platform/application_aqua.h"
+#include "acme/platform/application_aura.h"
+#include "acme/platform/application_axis.h"
+#include "acme/platform/application_berg.h"
+#include "acme/platform/application_bred.h"
+#include "acme/platform/application_core.h"
 
 
 #include <atomic>

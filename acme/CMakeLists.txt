@@ -745,8 +745,8 @@ list(APPEND library_source
         platform/node_aqua.h
         platform/node_aura.cpp
         platform/node_aura.h
-        platform/predicate_holder.cpp
-        platform/predicate_holder.h
+        #platform/predicate_holder.cpp
+        #platform/predicate_holder.h
         platform/printf.cpp
         platform/prober.cpp
         platform/prober.h
@@ -2053,7 +2053,7 @@ list(APPEND library_source
         parallelization/waiting_call.cpp
         parallelization/waiting_call.h
         platform/_features.h
-        platform/_global.h
+        #platform/_global.h
         platform/_impl.h
         platform/_platform.h
         platform/auto.h
@@ -2103,7 +2103,7 @@ list(APPEND library_source
         platform/serial.h
         platform/simple_log.cpp
         platform/simple_log.h
-        platform/status.h
+        #platform/status.h
         platform/string_exchange.cpp
         platform/string_exchange.h
         platform/system.h

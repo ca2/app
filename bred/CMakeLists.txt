@@ -25,6 +25,8 @@ list(APPEND library_source
    gpu/buffer.h
    gpu/command_buffer.cpp
    gpu/command_buffer.h
+   gpu/command_buffer_lease.cpp
+   gpu/command_buffer_lease.h
    gpu/compositor.cpp
    gpu/compositor.h
    gpu/context.cpp

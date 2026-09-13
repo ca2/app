@@ -22,7 +22,7 @@
 subparticle::referencing_debugging::referencing_debugging(::subparticle * psubparticle)
 {
 
-   m_psubparticle = nullptr;
+   m_psubparticle = psubparticle;
    m_psubparticleTopTrack = nullptr;
 
    //::time                        m_timeAllocation;

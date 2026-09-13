@@ -50,10 +50,14 @@ namespace graphics3d
       {
       public:
 
-         cube()
-         {
+         using BASE_ARRAY = ::pointer_array < cube_face >;
 
-         }
+         using BASE_ARRAY::BASE_ARRAY;
+         using BASE_ARRAY::operator =;
+
+         cube() { }
+         cube(const cube & cube) : BASE_ARRAY(cube) { }
+         cube(cube && cube) noexcept: BASE_ARRAY(::transfer(cube)) { }
          cube(::std::initializer_list < ::file::path > list)
          {
 
@@ -80,6 +84,9 @@ namespace graphics3d
             ::pointer_array<cube_face>::add(pcubeface);
 
          }
+
+         cube & operator = (const cube & cube){BASE_ARRAY::operator =(cube);return *this;}
+         cube & operator = (cube && cube) noexcept{BASE_ARRAY::operator =(::transfer(cube));return *this;}
 
       };
       //::particle* pparticle, const ::string_array_base& faces

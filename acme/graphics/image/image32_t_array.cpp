@@ -1,5 +1,5 @@
 #include "platform.h"
-#include "image32_array.h"
+#include "image32_t_array.h"
 
 //
 //colorref_array::colorref_array()
@@ -8,7 +8,7 @@
 //}
 //
 
-image32_array::~image32_array()
+image32_t_array::~image32_t_array()
 {
 
 }

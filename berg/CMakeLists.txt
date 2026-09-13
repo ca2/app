@@ -5,8 +5,8 @@ project(berg CXX)
 list(APPEND library_source
    #const/charset.h
    #const/GLOBAL_ID.h
-   constant/idpool.cpp
-   constant/idpool.h
+   #constant/idpool.cpp
+   #constant/idpool.h
    #    const/procedure.h
    #include/_.cpp
    html/user/document.cpp

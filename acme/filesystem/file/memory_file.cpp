@@ -52,16 +52,16 @@ memory_file::memory_file(const memory_file & m) :
 
 }
 
-memory_file::memory_file(memory_file && m) :
-   ::matter(::transfer(m)),
-   memory_container(::transfer(m))
-{
-
-   m_position = m.m_position;
-   m_estatus = m.m_estatus;
-   if(m.is_ok()) set_ok_flag();
-
-}
+// memory_file::memory_file(memory_file && m) :
+//    ::matter(::transfer(m)),
+//    memory_container(::transfer(m))
+// {
+//
+//    m_position = m.m_position;
+//    m_estatus = m.m_estatus;
+//    if(m.is_ok()) set_ok_flag();
+//
+// }
 
 
 memory_file::memory_file(const void * pmemory, memsize dwSize) :

@@ -27,18 +27,18 @@ namespace draw2d
    }
 
 
-   bitmap::bitmap(bitmap&& bitmap) :
-      DRAW2D_OBJECT_TRANSFER(bitmap),
-      m_size(bitmap.m_size),
-      m_iStride(bitmap.m_iStride),
-      m_memoryDraw2dBitmap(::transfer(bitmap.m_memoryDraw2dBitmap))
-   {
-
-      bitmap.m_size.Null();
-
-      bitmap.m_iStride = 0;
-
-   }
+   // bitmap::bitmap(bitmap&& bitmap) :
+   //    DRAW2D_OBJECT_TRANSFER(bitmap),
+   //    m_size(bitmap.m_size),
+   //    m_iStride(bitmap.m_iStride),
+   //    m_memoryDraw2dBitmap(::transfer(bitmap.m_memoryDraw2dBitmap))
+   // {
+   //
+   //    bitmap.m_size.Null();
+   //
+   //    bitmap.m_iStride = 0;
+   //
+   // }
 
 
    bitmap::~bitmap()

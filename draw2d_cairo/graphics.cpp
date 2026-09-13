@@ -3916,11 +3916,10 @@ namespace draw2d_cairo
 
 #if defined(USE_PANGO)
 
-      if (::is_set(pdraw2dcairofont->m_ppangodescription))
+      if (::is_set(pdraw2dcairofont->m_ppangofontdescription))
       {
 
          return internal_draw_text_pango(pwritetextfont, block, rectangle, ealign, edrawtext, &pango_cairo_show_layout);
-
 
       }
 
@@ -3954,7 +3953,7 @@ namespace draw2d_cairo
 
       }
 
-      PangoFontDescription * pdesc = pwritetextfont->m_pdesc;
+      PangoFontDescription * pdesc = pwritetextfont->m_ppangofontdescription;
 
       string strText((const_char_pointer )block.data(), block.size());
 
@@ -4334,27 +4333,27 @@ namespace draw2d_cairo
       if (not_found(str.find_first_character_in("\n\r")))
       {
 
-
 #if defined(USE_PANGO)
 
-         PangoFontDescription * pdesc = (PangoFontDescription *) m_pwritetextfont->get_os_data(this);
+         ::cast < ::draw2d_cairo::font > pdraw2dcairofont = m_pwritetextfont;
 
-         if (::is_set(pdesc))
+         auto ppangofontdescription = pdraw2dcairofont->m_ppangofontdescription;
+
+         if (::is_set(ppangofontdescription))
          {
 
-            PangoLayout * playout;                            // layout for a paragraph of text
+            //PangoLayout * playout;                            // layout for a paragraph of text
 
-            playout = pango_cairo_create_layout(m_pcairo);                 // init pango layout ready for use
+            auto ppangolayout = pango_cairo_create_layout(m_pcairo);                 // init pango layout ready for use
 
-            pango_layout_set_text(playout, scopedstr.m_begin,
+            pango_layout_set_text(ppangolayout, scopedstr.m_begin,
                                   scopedstr.size());          // sets the text to be associated with the layout (final arg is length, -1
 
             // to calculate automatically when passing a nul-terminated string)
-            pango_layout_set_font_description(playout,
-                                              pdesc);            // assign the previous font description to the layout
+            pango_layout_set_font_description(ppangolayout, ppangofontdescription);            // assign the previous font description to the layout
 
             pango_cairo_update_layout(m_pcairo,
-                                      playout);                  // if the target surface or transformation properties of the cairo instance
+                                      ppangolayout);                  // if the target surface or transformation properties of the cairo instance
 
             // have changed, update the pango layout to reflect this
             ::i32 width = 0;
@@ -4363,15 +4362,15 @@ namespace draw2d_cairo
 
             PangoRectangle pos;
 
-            pango_layout_index_to_pos(playout, iIndex, &pos);
+            pango_layout_index_to_pos(ppangolayout, iIndex, &pos);
 
-            pango_layout_get_pixel_size(playout, &width, &height);
+            pango_layout_get_pixel_size(ppangolayout, &width, &height);
 
             //size.cx = ;
 
             //size.cy = height;
 
-            g_object_unref(playout);                         // free the layout
+            g_object_unref(ppangolayout);                         // free the layout
 
             return {(::f64) pos.x / (::f64) PANGO_SCALE, (::f64) height};
 
@@ -4474,31 +4473,33 @@ namespace draw2d_cairo
 
 #if defined(USE_PANGO)
 
-      PangoFontDescription * pdesc = (PangoFontDescription *) m_pwritetextfont->get_os_data(this);
+      ::cast < ::draw2d_cairo::font > pdraw2dcairofont = m_pwritetextfont;
 
-      if (::is_set(pdesc))
+      auto ppangofontdescription = pdraw2dcairofont->m_ppangofontdescription;
+
+      if (::is_set(ppangofontdescription))
       {
 
-         PangoLayout * playout;                            // layout for a paragraph of text
+         //PangoLayout * playout;                            // layout for a paragraph of text
 
-         playout = pango_cairo_create_layout(m_pcairo);                 // init pango layout ready for use
+         auto ppangolayout = pango_cairo_create_layout(m_pcairo);                 // init pango layout ready for use
 
-         pango_layout_set_text(playout, pszString,
+         pango_layout_set_text(ppangolayout, pszString,
                                -1);          // sets the text to be associated with the layout (final arg is length, -1
          // to calculate automatically when passing a nul-terminated string)
-         pango_layout_set_font_description(playout,
-                                           pdesc);            // assign the previous font description to the layout
+         pango_layout_set_font_description(ppangolayout,
+                                           ppangofontdescription);            // assign the previous font description to the layout
 
          pango_cairo_update_layout(m_pcairo,
-                                   playout);                  // if the target surface or transformation properties of the cairo instance
+                                   ppangolayout);                  // if the target surface or transformation properties of the cairo instance
          // have changed, update the pango layout to reflect this
          ::i32 width = 0;
 
          ::i32 height = 0;
 
-         pango_layout_get_pixel_size(playout, &width, &height);
+         pango_layout_get_pixel_size(ppangolayout, &width, &height);
 
-         g_object_unref(playout);                         // free the layout
+         g_object_unref(ppangolayout);                         // free the layout
 
          size.cx = width * m_pwritetextfont->m_dFontWidth;
 
@@ -4514,8 +4515,6 @@ namespace draw2d_cairo
          cairo_text_extents_t ex;
 
          cairo_font_extents_t e;
-
-
 
          cairo_font_extents(m_pcairo, &e);
 

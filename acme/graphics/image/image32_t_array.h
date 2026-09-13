@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "image32.h"
+#include "acme/graphics/image/image32_t.h"
 
 
 //#include "acme/prototype/collection/numeric_array.h"
@@ -22,7 +22,7 @@
 //
 //};
 
-class CLASS_DECL_ACME image32_array :
+class CLASS_DECL_ACME image32_t_array :
    virtual public ::array < ::image32_t >
 {
 public:
@@ -30,7 +30,7 @@ public:
 
    using ::array < ::image32_t >::array;
    
-   ~image32_array();
+   ~image32_t_array();
 
    //void create_web_palette();
 

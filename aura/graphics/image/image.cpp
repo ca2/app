@@ -8,7 +8,7 @@
 #include "context.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/image/_exif.h"
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 #include "acme/platform/application.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -10936,7 +10936,6 @@ namespace image
 
    ::image::image_pointer image::from_image_frame_array(::image::image_frame_array * pimageframearray)
    {
-
       if (::is_null(pimageframearray) || pimageframearray->get_count() <= 1)
       {
 
@@ -10953,6 +10952,8 @@ namespace image
 
       }
 
+      REFDBG_THIS(pimageframearray);
+
       pimageframearray->m_pparticleImage = pimageframearray->createø<::image::image >();
 
       pimage = pimageframearray->m_pparticleImage;
@@ -10968,6 +10969,8 @@ namespace image
 
    ::image::image_pointer image::from(::pixmap * ppixmap)
    {
+
+      REFDBG_THIS(ppixmap);
 
       auto pimage = ppixmap->createø<::image::image >();
 

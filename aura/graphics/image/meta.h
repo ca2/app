@@ -94,56 +94,56 @@ namespace image
 
       }
 
-      image_meta(image_meta && imagemeta) :
-         PARTICLE_TRANSFER(imagemeta),
-         m_bGraphicsWasAcquiredAfterLastMap(imagemeta.m_bGraphicsWasAcquiredAfterLastMap),
-         m_size(imagemeta.m_size),
-         m_sizeRaw(imagemeta.m_sizeRaw),
-         m_point(imagemeta.m_point),
-         m_iScan(imagemeta.m_iScan),
-         m_pimagepixmaplease(nullptr),
-         m_pgraphicslease(nullptr),
-         m_pdraw2dbitmap(::transfer(imagemeta.m_pdraw2dbitmap)),
-         m_ppixmapOwned(::transfer(imagemeta.m_ppixmapOwned)),
-         m_pgraphicsOwned(::transfer(imagemeta.m_pgraphicsOwned)),
-         m_dSpeed(::transfer(imagemeta.m_dSpeed)),
-         m_dIsotropicRate(::transfer(imagemeta.m_dIsotropicRate)),
-         m_dSizeScaler(::transfer(imagemeta.m_dSizeScaler)),
-         m_bOwn(::transfer(imagemeta.m_bOwn)),
-         m_emipmap(::transfer(imagemeta.m_emipmap)),
-         m_iFrame(::transfer(imagemeta.m_iFrame)),
-         m_iExifOrientation(::transfer(imagemeta.m_iExifOrientation)),
-         m_bCreateHelperMaps(::transfer(imagemeta.m_bCreateHelperMaps)),
-         m_pextension(::transfer(imagemeta.m_pextension)),
-         m_dynamic(::transfer(imagemeta.m_dynamic))
-      {
-
-         if (imagemeta.m_pimagepixmaplease)
-         {
-
-            throw ::exception(error_wrong_state);
-
-         }
-
-         if (imagemeta.m_pgraphicslease)
-         {
-
-            throw ::exception(error_wrong_state);
-
-         }
-
-         imagemeta.m_pimagepixmaplease = nullptr;
-         imagemeta.m_pgraphicslease = nullptr;
-         imagemeta.m_dSpeed = 0.;
-         imagemeta.m_dIsotropicRate = 0.;
-         imagemeta.m_dSizeScaler = 0.;
-         imagemeta.m_bOwn = false;
-         imagemeta.m_emipmap = e_mipmap_none;
-         imagemeta.m_iFrame = 0;
-         imagemeta.m_iExifOrientation = 0;
-         imagemeta.m_bCreateHelperMaps = false;
-
-      }
+      // image_meta(image_meta && imagemeta) :
+      //    PARTICLE_TRANSFER(imagemeta),
+      //    m_bGraphicsWasAcquiredAfterLastMap(imagemeta.m_bGraphicsWasAcquiredAfterLastMap),
+      //    m_size(imagemeta.m_size),
+      //    m_sizeRaw(imagemeta.m_sizeRaw),
+      //    m_point(imagemeta.m_point),
+      //    m_iScan(imagemeta.m_iScan),
+      //    m_pimagepixmaplease(nullptr),
+      //    m_pgraphicslease(nullptr),
+      //    m_pdraw2dbitmap(::transfer(imagemeta.m_pdraw2dbitmap)),
+      //    m_ppixmapOwned(::transfer(imagemeta.m_ppixmapOwned)),
+      //    m_pgraphicsOwned(::transfer(imagemeta.m_pgraphicsOwned)),
+      //    m_dSpeed(::transfer(imagemeta.m_dSpeed)),
+      //    m_dIsotropicRate(::transfer(imagemeta.m_dIsotropicRate)),
+      //    m_dSizeScaler(::transfer(imagemeta.m_dSizeScaler)),
+      //    m_bOwn(::transfer(imagemeta.m_bOwn)),
+      //    m_emipmap(::transfer(imagemeta.m_emipmap)),
+      //    m_iFrame(::transfer(imagemeta.m_iFrame)),
+      //    m_iExifOrientation(::transfer(imagemeta.m_iExifOrientation)),
+      //    m_bCreateHelperMaps(::transfer(imagemeta.m_bCreateHelperMaps)),
+      //    m_pextension(::transfer(imagemeta.m_pextension)),
+      //    m_dynamic(::transfer(imagemeta.m_dynamic))
+      // {
+      //
+      //    if (imagemeta.m_pimagepixmaplease)
+      //    {
+      //
+      //       throw ::exception(error_wrong_state);
+      //
+      //    }
+      //
+      //    if (imagemeta.m_pgraphicslease)
+      //    {
+      //
+      //       throw ::exception(error_wrong_state);
+      //
+      //    }
+      //
+      //    imagemeta.m_pimagepixmaplease = nullptr;
+      //    imagemeta.m_pgraphicslease = nullptr;
+      //    imagemeta.m_dSpeed = 0.;
+      //    imagemeta.m_dIsotropicRate = 0.;
+      //    imagemeta.m_dSizeScaler = 0.;
+      //    imagemeta.m_bOwn = false;
+      //    imagemeta.m_emipmap = e_mipmap_none;
+      //    imagemeta.m_iFrame = 0;
+      //    imagemeta.m_iExifOrientation = 0;
+      //    imagemeta.m_bCreateHelperMaps = false;
+      //
+      // }
 
       ~image_meta();
 

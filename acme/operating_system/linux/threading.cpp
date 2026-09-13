@@ -101,8 +101,9 @@ CLASS_DECL_ACME void _os_task_destroy(htask htask, itask itask)
 
 }
 
-
+#if !defined(_GNU_SOURCE)
 #define _GNU_SOURCE
+#endif
 #include <unistd.h>
 #include <stdio.h>
 #include <stdbool.h>

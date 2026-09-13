@@ -937,10 +937,10 @@ namespace allocator
    //}
    
    
-   void on_destruct_subparticle(::subparticle::referencing_debugging * preferencingdebugging)
+   void on_destruct_subparticle(::subparticle * psubparticle)
    {
 
-      ::destruct_particle_reference_item_array(preferencingdebugging);
+      ::destruct_particle_reference_item_array(&psubparticle->m_referencingdebugging);
 
    }
 

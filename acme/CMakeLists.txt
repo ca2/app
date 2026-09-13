@@ -295,10 +295,10 @@ list(APPEND library_source
    graphics/image/frame.h
    graphics/image/frame_array.cpp
    graphics/image/frame_array.h
-        graphics/image/image32.cpp
-        graphics/image/image32.h
-        graphics/image/image32_array.cpp
-        graphics/image/image32_array.h
+        graphics/image/image32_t.cpp
+        graphics/image/image32_t.h
+        graphics/image/image32_t_array.cpp
+        graphics/image/image32_t_array.h
    graphics/image/pixmap_lease.cpp
    graphics/image/pixmap_lease.h
         graphics/image/pixmap.cpp

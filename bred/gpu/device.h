@@ -12,7 +12,7 @@
 #include "bred/gpu/shader.h"
 #include "context_lease.h"
 #include "post_frame_context_registry.h"
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 
 
 namespace gpu

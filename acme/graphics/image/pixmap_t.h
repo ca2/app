@@ -4,7 +4,7 @@
 
 #include "acme/graphics/image/_configuration.h"
 #include "acme/graphics/image/header.h"
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/prototype/prototype/concrete.h"
 

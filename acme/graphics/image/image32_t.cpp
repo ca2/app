@@ -1,7 +1,7 @@
 // exif_orientation_rotate_flip from aura by camilo on 2023-10-09 12:05 <3ThomasBorregaardSorensen!!
 #include "platform.h"
 #include "_exif.h"
-#include "image32.h"
+#include "image32_t.h"
 #include "pixmap.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 
@@ -658,3 +658,29 @@ CLASS_DECL_ACME::string _001_image32_diagnostics(::image32_t * pixelPtr, int wid
    return str;
 
 }
+
+
+void image32_t::copy(const ::i32_size & size, ::i32 iStrideDst, const ::pixmap_t * ppixmapSrc)
+{
+
+   copy(size.minimum(ppixmapSrc->size()), iStrideDst, ppixmapSrc->m_pimage32, ppixmapSrc->m_iScan);
+
+}
+
+
+void image32_t::copy(const ::pixmap_t* p)
+{
+
+   copy(::i32_point(), p->size(), p->width() * 4, p->image32(), p->m_iScan);
+
+}
+
+
+void image32_t::y_swap_copy(const ::pixmap_t * p)
+{
+
+   y_swap_copy(::i32_point(), p->size(), p->width() * 4, p->image32(), p->m_iScan);
+
+}
+
+

@@ -6,10 +6,10 @@
 //#include "acme/prototype/prototype/matter.h"
 
 
-#define DRAW2D_OBJECT_TRANSFER(a) \
-::draw2d::object(::transfer(a)), \
-MATTER_TRANSFER(a)
-
+// #define DRAW2D_OBJECT_TRANSFER(a) \
+// ::draw2d::object(::transfer(a)), \
+// MATTER_TRANSFER(a)
+//
 //::osdata_array(::transfer(a)), \
 
 namespace draw2d
@@ -34,7 +34,7 @@ namespace draw2d
 
 
       object();
-      object(object && object);
+      //object(object && object);
       ~object() override;
 
 

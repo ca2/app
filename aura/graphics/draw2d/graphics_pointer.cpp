@@ -48,4 +48,12 @@ namespace draw2d
    }
 
 
+   graphics_pointer &graphics_pointer::operator=(::draw2d::graphics * pgraphics)
+   {
+
+      return operator=(::pointer<::draw2d::graphics>(pgraphics));
+
+   }
+
+
 } // namespace draw2d

@@ -2,7 +2,7 @@
 
 
 #include "acme/constant/element.h"
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 
 #include "aura/platform/draw_context.h"
 //#include "aura/graphics/graphics/graphics.h"

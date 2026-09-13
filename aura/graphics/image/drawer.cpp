@@ -17,12 +17,12 @@ namespace image
    }
 
 
-   image_drawer::image_drawer(const image_drawer& imagedrawer) :
-      MATTER_TRANSFER(imagedrawer)
-   {
-
-
-   }
+   // image_drawer::image_drawer(const image_drawer& imagedrawer) :
+   //    MATTER_TRANSFER(imagedrawer)
+   // {
+   //
+   //
+   // }
 
 
    image_drawer::~image_drawer()

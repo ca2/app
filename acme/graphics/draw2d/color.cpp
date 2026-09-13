@@ -1,5 +1,5 @@
 #include "platform.h"
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 #include <stdio.h>
 
 

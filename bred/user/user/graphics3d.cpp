@@ -14,7 +14,7 @@
 #include "bred/graphics3d/input.h"
 #include "bred/graphics3d/scene_base.h"
 #include "acme/constant/user_message.h"
-#include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/image32_t.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/node.h"
 #include "acme/platform/session.h"

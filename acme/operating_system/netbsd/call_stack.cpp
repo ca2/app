@@ -2,7 +2,7 @@
 #include "acme/operating_system/ansi/call_stack.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
-#include "acme/platform/platform.h"
+#include "acme/platform/platform_platform.h"
 #include "acme/platform/system.h"
 //#include "_netbsd.h"
 #include <execinfo.h>

@@ -54,9 +54,6 @@
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\constant">
-      <UniqueIdentifier>{7c1254ce-a663-4741-9380-0b58d03bd502}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{93b133e7-09a5-4366-9706-30ace0fdabfa}</UniqueIdentifier>
     </Filter>
@@ -705,9 +702,6 @@
     </ClCompile>
     <ClCompile Include="user\user\split_pane.cpp">
       <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="constant\idpool.cpp">
-      <Filter>Source Files\constant</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows\frame_window.cpp">
       <Filter>Source Files\operating_system\windows</Filter>

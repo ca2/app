@@ -1590,9 +1590,6 @@
     <ClInclude Include="platform\_features.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\_global.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\_impl.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1612,9 +1609,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\auto_pointer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\c_class.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\class.h">
@@ -2078,9 +2072,6 @@
     </ClInclude>
     <ClInclude Include="include\_types.h">
       <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_c.h">
-      <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="prototype\prototype\_text_stream.h">
       <Filter>Header Files\prototype\prototype</Filter>
@@ -3429,12 +3420,6 @@
     <ClInclude Include="graphics\image\_exif.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\image\image32_array.h">
-      <Filter>Header Files\graphics\image</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\image\image32.h">
-      <Filter>Header Files\graphics\image</Filter>
-    </ClInclude>
     <ClInclude Include="constant\user_key.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
@@ -4506,6 +4491,12 @@
     <ClInclude Include="operating_system\windows\window_util.h">
       <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\image\image32_t.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\image32_t_array.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -4913,9 +4904,6 @@
     <ClCompile Include="parallelization\message_queue_global.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="platform\predicate_holder.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\printf.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -5019,9 +5007,6 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\simple_log.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\c_class.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_path.cpp">
@@ -5205,9 +5190,6 @@
       <Filter>Source Files\prototype\text</Filter>
     </ClCompile>
     <ClCompile Include="platform\procedure.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\procedure_array.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\fork.cpp">
@@ -5643,12 +5625,6 @@
       <Filter>Source Files\prototype\geometry2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\image\pixmap.cpp">
-      <Filter>Source Files\graphics\image</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\image\image32.cpp">
-      <Filter>Source Files\graphics\image</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\image\image32_array.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
     <ClCompile Include="graphics\graphics\output_purpose.cpp">
@@ -6499,6 +6475,15 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\window_util.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\image32_t_array.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\image32_t.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\prototype\referencing_debugging.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -66,7 +66,7 @@ void subparticle::referencing_debugging::add_top_track(::subparticle* psubpartic
 {
 
    return ::is_null(m_psubparticleTopTrack) ?
-      (::subparticle *) this :
+      (::subparticle *) m_psubparticle :
       m_psubparticleTopTrack->m_referencingdebugging.get_top_track();
 
 }
@@ -144,7 +144,7 @@ bool subparticle::referencing_debugging::find_top_track(::subparticle * psubpart
       if (psubparticleParent)
       {
 
-         *psubparticleParent = (::subparticle*)this;
+         *psubparticleParent = (::subparticle*)m_psubparticle;
 
       }
 
@@ -155,7 +155,7 @@ bool subparticle::referencing_debugging::find_top_track(::subparticle * psubpart
    if (psubparticleParent)
    {
 
-      *psubparticleParent = (::subparticle *)this;
+      *psubparticleParent = (::subparticle *)m_psubparticle;
 
    }
 

@@ -2733,6 +2733,8 @@
     <ClCompile Include="graphics\draw2d\task_tool.cpp" />
     <ClCompile Include="graphics\image\frame.cpp" />
     <ClCompile Include="graphics\image\frame_array.cpp" />
+    <ClCompile Include="graphics\image\image32_t.cpp" />
+    <ClCompile Include="graphics\image\image32_t_array.cpp" />
     <ClCompile Include="operating_system\windows\top_level_enum.cpp" />
     <ClCompile Include="operating_system\windows\window_util.cpp" />
     <ClCompile Include="platform.cpp">
@@ -2778,9 +2780,7 @@
     <ClCompile Include="graphics\draw2d\os_font_name.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="graphics\graphics\output_purpose.cpp" />
-    <ClCompile Include="graphics\image\image32_array.cpp" />
     <ClCompile Include="graphics\image\pixmap.cpp" />
-    <ClCompile Include="graphics\image\image32.cpp" />
     <ClCompile Include="graphics\image\pixmap_lease.cpp" />
     <ClCompile Include="graphics\image\pixmap_t.cpp" />
     <ClCompile Include="handler\command_handler.cpp" />
@@ -2837,6 +2837,7 @@
     <ClCompile Include="prototype\collection\osdata_array.cpp" />
     <ClCompile Include="prototype\collection\_array_binary_stream.cpp" />
     <ClCompile Include="prototype\geometry\sequence.cpp" />
+    <ClCompile Include="prototype\prototype\referencing_debugging.cpp" />
     <ClCompile Include="prototype\string\string_base.cpp" />
     <ClCompile Include="quality\self_test.cpp" />
     <ClCompile Include="quality\self_test_item.cpp" />
@@ -2884,6 +2885,8 @@
     <ClInclude Include="graphics\draw2d\task_tool.h" />
     <ClInclude Include="graphics\image\frame.h" />
     <ClInclude Include="graphics\image\frame_array.h" />
+    <ClInclude Include="graphics\image\image32_t.h" />
+    <ClInclude Include="graphics\image\image32_t_array.h" />
     <ClInclude Include="graphics\image\pixmap_lease.h" />
     <ClInclude Include="graphics\image\pixmap_t.h" />
     <ClInclude Include="include\_pointer_forward_declaration.h" />
@@ -3763,8 +3766,6 @@
     <ClInclude Include="graphics\draw2d\_text_stream.h" />
     <ClInclude Include="graphics\image\color_indexes.h" />
     <ClInclude Include="graphics\image\header.h" />
-    <ClInclude Include="graphics\image\image32.h" />
-    <ClInclude Include="graphics\image\image32_array.h" />
     <ClInclude Include="graphics\image\pixmap.h" />
     <ClInclude Include="graphics\image\_.h" />
     <ClInclude Include="graphics\image\_configuration.h" />
@@ -4716,7 +4717,6 @@
     <ClCompile Include="platform\http_acme.cpp" />
     <ClCompile Include="platform\http_apex.cpp" />
     <ClCompile Include="platform\message.cpp" />
-    <ClCompile Include="platform\c_class.cpp" />
     <ClCompile Include="platform\Debug.cpp" />
     <ClCompile Include="platform\department.cpp" />
     <ClCompile Include="platform\display.cpp" />
@@ -4830,10 +4830,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="platform\object_type_counter.cpp" />
-    <ClCompile Include="platform\predicate_holder.cpp" />
     <ClCompile Include="platform\printf.cpp" />
     <ClCompile Include="platform\procedure.cpp" />
-    <ClCompile Include="platform\procedure_array.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
     <ClCompile Include="platform\reference_referer.cpp" />
     <ClCompile Include="platform\referencing_debugging.cpp" />
@@ -5564,7 +5562,6 @@
     <ClInclude Include="platform\scoped_restore.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\tracer.h" />
-    <ClInclude Include="platform\_c.h" />
     <ClInclude Include="platform\_main_hold_base.h" />
     <ClInclude Include="platform\__string.h" />
     <ClInclude Include="prototype\collection\address_array.h" />
@@ -5902,7 +5899,6 @@
     <ClInclude Include="platform\const.h" />
     <ClInclude Include="platform\constraint.h" />
     <ClInclude Include="platform\context.h" />
-    <ClInclude Include="platform\c_class.h" />
     <ClInclude Include="platform\Debug.h" />
     <ClInclude Include="platform\definition.h" />
     <ClInclude Include="platform\department.h" />
@@ -5983,7 +5979,6 @@
     <ClInclude Include="memory\plex.h" />
     <ClInclude Include="memory\plex_heap_alloc_sync.h" />
     <ClInclude Include="memory\plex_heap_alloc.h" />
-    <ClInclude Include="platform\_global.h" />
     <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="platform\_platform.h" />
     <ClInclude Include="prototype\comparison\sign.h" />

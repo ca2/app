@@ -204,7 +204,7 @@ public:
    ::subparticle* refdbg_this() const { return (::subparticle*)this; }
 
 
-   struct referencing_debugging
+   struct CLASS_DECL_ACME referencing_debugging
    {
 
       ::subparticle *                     m_psubparticle;

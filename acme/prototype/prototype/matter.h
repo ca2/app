@@ -79,7 +79,7 @@ public:
 
    matter() { }
    matter(const matter& matter);
-   matter(matter&& matter);
+   //matter(matter&& matter);
    ~matter() override;
 
 

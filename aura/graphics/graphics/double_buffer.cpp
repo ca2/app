@@ -87,6 +87,7 @@ namespace graphics
    bool double_buffer_graphics::_on_begin(buffer_item * pbufferitem)
    {
 
+      return ::graphics::graphics::_on_begin(pbufferitem);
       //auto pbufferitem = get_buffer_item();
 
       //buffer_size_and_position(pbufferitem);
@@ -178,7 +179,7 @@ namespace graphics
 
       //return pbufferitem;
 
-      return true;
+      //return true;
 
    }
 

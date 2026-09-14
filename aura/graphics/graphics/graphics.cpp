@@ -549,12 +549,575 @@ namespace graphics
    }
 
 
-   bool graphics::update_buffer(buffer_item * pitem)
+   bool graphics::update_buffer(buffer_item * pbufferitem)
    {
 
-      debug() << "GRAPHICS::GRAPHICS::UPDATE_BUFFER returning true...";
+      if (!pbufferitem->m_pimageBufferItem)
+      {
+
+         constructø(pbufferitem->m_pimageBufferItem);
+
+      }
+
+      //auto pwindowing = m_pwindow->user_interaction()->windowing();
+
+      //auto pdisplay = pwindowing->display();
+
+      //auto rectangleUnion = pdisplay->get_monitor_union_rectangle();
+
+      //auto sizeRaw = m_pwindow->m_sizeWindow.maximum(rectangleUnion.size());
+
+      if (pbufferitem->m_pimageBufferItem.nok()
+         || pbufferitem->m_pimageBufferItem->m_point != pbufferitem->m_pointBufferItem
+         || pbufferitem->m_pimageBufferItem->m_size != pbufferitem->m_sizeBufferItem
+         || pbufferitem->m_pimageBufferItem->m_sizeRaw != m_pwindow->m_sizeRaw)
+      {
+
+         auto playeredwindowbuffer = m_pwindowbuffer;
+
+         ::pointer < ::pixmap > ppixmapPreviousWindowBuffer;
+
+         ////m_bDibIsHostingBuffer = false;
+
+         //if (playeredwindowbuffer
+         //   && !m_papplication->m_gpu.m_bUseSwapChainWindow)
+         //{
+
+
+         //::pointer < layered_window_buffer > playeredwindowbuffer = m_pwindowbuffer;
+
+         if (playeredwindowbuffer && !m_papplication->m_gpu.m_bUseSwapChainWindow)
+         {
+
+            //if (m_bDibIsHostingBuffer)
+            //{
+            //   //::pointer < ::pixmap > ppixmapPreviousWindowBuffer;
+
+            //   //m_bDibIsHostingBuffer = false;
+
+            //   //if (playeredwindowbuffer
+            //   //   && !m_papplication->m_gpu.m_bUseSwapChainWindow)
+            //   //{
+
+            //   //   ppixmapPreviousWindowBuffer =
+            //   //      playeredwindowbuffer->m_ppixmapWindowBuffer;
+
+            //   //   playeredwindowbuffer->update_window_pixmap_buffer(pbufferitem);
+
+            //   //   auto ppixmapWindowBuffer =
+            //   //      playeredwindowbuffer->m_ppixmapWindowBuffer;
+
+            //   playeredwindowbuffer->update_window_pixmap_buffer(pbufferitem);
+
+
+
+
+            //   //   //ppixmapPreviousWindowBuffer =
+            //   //   //   playeredwindowbuffer->m_ppixmapWindowBuffer;
+
+            //   //   //playeredwindowbuffer->update_window_pixmap_buffer(pbufferitem);
+
+            //   //   //auto ppixmapWindowBuffer =
+            //   //   //   playeredwindowbuffer->m_ppixmapWindowBuffer;
+
+            //   //   //if (ppixmapWindowBuffer)
+            //   //   {
+
+            //   //     // ppixmapWindowBuffer->m_point = pbufferitem->m_pointBufferItem;
+
+            //   //      //ppixmapWindowBuffer->m_size = pbufferitem->m_sizeBufferItem;
+
+            //   //      pbufferitem->m_pimageBufferItem->m_bHintCpuBackingEnabled = true;
+
+            //   //      pbufferitem->m_pimageBufferItem->m_point.clear();
+
+            //   //      auto & sizeRaw = pbufferitem->m_pimageBufferItem->m_sizeRaw;
+
+            //   //      pbufferitem->m_pimageBufferItem->update_as_render_target(m_pwindow->m_sizeRaw, m_pwindow->user_interaction());
+
+            //   //      auto & sizeRaw2 = pbufferitem->m_pimageBufferItem->m_sizeRaw;
+
+            //   //     //m_bDibIsHostingBuffer =
+            //   //         //pbufferitem->m_pimageBufferItem->host(
+            //   //         //   m_pwindowbuffer,
+            //   //         //   m_pwindow,
+            //   //         //   m_pwindow->m_sizeRaw);
+
+            //   //   }
+
+            //   //}
+
+            //   if (!m_pdraw2dgraphics)
+            //   {
+
+            //      m_pdraw2dgraphics = system()->draw2d()->allocate_graphics(m_pwindow->m_pacmeuserinteraction);
+
+            //      m_pdraw2dgraphics->m_pgraphicsbufferitem = pbufferitem;
+
+            //      m_pdraw2dgraphics->create_for_window_draw2d(m_pwindow->user_interaction(), m_pwindow->m_sizeRaw);
+
+            //   }
+
+            //   pbufferitem->m_pimageBufferItem->update_as_render_target(m_pwindow->m_sizeRaw,
+            //      m_pwindow->user_interaction(),
+            //      m_pdraw2dgraphics);
+
+            //   //::f64_size sizef64Raw = m_pwindow->m_sizeRaw;
+
+            //   //if (m_pdraw2dgraphics && m_pdraw2dgraphics->m_sizeTotal2 != sizef64Raw)
+            //   //{
+
+            //   auto & point = pbufferitem->m_pimageBufferItem->m_point;
+
+            //   auto & size = pbufferitem->m_pimageBufferItem->m_size;
+
+            //   auto & sizeRaw = pbufferitem->m_pimageBufferItem->m_sizeRaw;
+
+
+
+            //   point = pbufferitem->m_pointBufferItem;
+
+            //   size = pbufferitem->m_sizeBufferItem;
+
+            //   sizeRaw = m_pwindow->m_sizeRaw;
+
+            //   informationf("m_pimageBufferItem point(%d-%d) size(%d-%d) sizeRaw(%d-%d)", point.x, point.y, size.cx, size.cy, sizeRaw.cx, sizeRaw.cy);
+
+            //   //m_pdraw2dgraphics->defer_set_size(m_pwindow->m_sizeRaw);
+
+            ////}
+
+            ////if (pbufferitem->m_pimageBufferItem->m_sizeRaw != sizeRaw)
+            ////{
+
+            ////   //pbufferitem->m_pimageBufferItem->create_as_render_target(sizeRaw, m_pwindow->user_interaction());
+
+            ////   pbufferitem->m_pimageBufferItem->create_as_top_draw2d_target(sizeRaw, m_pwindow->user_interaction(), m_pdraw2dgraphics);
+
+            ////}
+
+            ////pbufferitem->m_pimageBufferItem->pixmap_map({ m_pwindow->m_pointWindow, m_pwindow->m_sizeWindow });
+
+            ////if (pbufferitem->m_pimageBufferItem->m_size != pbufferitem->m_sizeBufferItem)
+            ////{
+            ////   pbufferitem->m_pimageBufferItem->picreate_as_render_target(pbufferitem->m_sizeBufferItem);
+            ////}
+
+            //}
+            //else
+            //{
+
+              // //::pointer < ::pixmap > ppixmapPreviousWindowBuffer;
+
+              ////m_bDibIsHostingBuffer = false;
+
+              ////if (playeredwindowbuffer
+              ////   && !m_papplication->m_gpu.m_bUseSwapChainWindow)
+              ////{
+
+              ////   ppixmapPreviousWindowBuffer =
+              ////      playeredwindowbuffer->m_ppixmapWindowBuffer;
+
+              ////   playeredwindowbuffer->update_window_pixmap_buffer(pbufferitem);
+
+              ////   auto ppixmapWindowBuffer =
+              ////      playeredwindowbuffer->m_ppixmapWindowBuffer;
+
+              //playeredwindowbuffer->update_window_pixmap_buffer(pbufferitem);
+
+
+
+
+              //   //ppixmapPreviousWindowBuffer =
+              //   //   playeredwindowbuffer->m_ppixmapWindowBuffer;
+
+              //   //playeredwindowbuffer->update_window_pixmap_buffer(pbufferitem);
+
+              //   //auto ppixmapWindowBuffer =
+              //   //   playeredwindowbuffer->m_ppixmapWindowBuffer;
+
+              //   //if (ppixmapWindowBuffer)
+              //   {
+
+              //     // ppixmapWindowBuffer->m_point = pbufferitem->m_pointBufferItem;
+
+              //      //ppixmapWindowBuffer->m_size = pbufferitem->m_sizeBufferItem;
+
+              //      pbufferitem->m_pimageBufferItem->m_bHintCpuBackingEnabled = true;
+
+              //      pbufferitem->m_pimageBufferItem->m_point.clear();
+
+              //      auto & sizeRaw = pbufferitem->m_pimageBufferItem->m_sizeRaw;
+
+              //      pbufferitem->m_pimageBufferItem->update_as_render_target(m_pwindow->m_sizeRaw, m_pwindow->user_interaction());
+
+              //      auto & sizeRaw2 = pbufferitem->m_pimageBufferItem->m_sizeRaw;
+
+              //     //m_bDibIsHostingBuffer =
+              //         //pbufferitem->m_pimageBufferItem->host(
+              //         //   m_pwindowbuffer,
+              //         //   m_pwindow,
+              //         //   m_pwindow->m_sizeRaw);
+
+              //   }
+
+              //}
+
+            if (!m_pdraw2dgraphics)
+            {
+
+               m_pdraw2dgraphics = system()->draw2d()->allocate_graphics(m_pwindow->m_pacmeuserinteraction);
+
+               m_pdraw2dgraphics->m_pgraphicsbufferitem = pbufferitem;
+
+               defer_constructø(m_pdraw2dgraphics->m_pgraphicsbufferitem->m_pimageBufferItem);
+
+               m_pdraw2dgraphics->m_pgraphicsbufferitem->m_pimageBufferItem->m_bHintCpuBackingEnabled = false;
+
+               m_pdraw2dgraphics->create_for_window_draw2d(m_pwindow->user_interaction(), m_pwindow->m_sizeRaw);
+
+            }
+            else
+            {
+
+               pbufferitem->m_pimageBufferItem->m_bHintCpuBackingEnabled = false;
+
+               pbufferitem->m_pimageBufferItem->update_as_render_target(m_pwindow->m_sizeRaw,
+                  m_pwindow->user_interaction(),
+                  m_pdraw2dgraphics);
+
+            }
+
+            //::f64_size sizef64Raw = m_pwindow->m_sizeRaw;
+
+            //if (m_pdraw2dgraphics && m_pdraw2dgraphics->m_sizeTotal2 != sizef64Raw)
+            //{
+
+            auto & point = pbufferitem->m_pimageBufferItem->m_point;
+
+            auto & size = pbufferitem->m_pimageBufferItem->m_size;
+
+            auto & sizeRaw = pbufferitem->m_pimageBufferItem->m_sizeRaw;
+
+
+
+            point = pbufferitem->m_pointBufferItem;
+
+            size = pbufferitem->m_sizeBufferItem;
+
+            sizeRaw = m_pwindow->m_sizeRaw;
+
+            informationf("m_pimageBufferItem point(%d-%d) size(%d-%d) sizeRaw(%d-%d)", point.x, point.y, size.cx, size.cy, sizeRaw.cx, sizeRaw.cy);
+
+
+            //}
+
+         }
+         else
+         {
+
+
+            //   //ppixmapPreviousWindowBuffer =
+            //   //   playeredwindowbuffer->m_ppixmapWindowBuffer;
+
+            //   //playeredwindowbuffer->update_window_pixmap_buffer(pbufferitem);
+
+            //   //auto ppixmapWindowBuffer =
+            //   //   playeredwindowbuffer->m_ppixmapWindowBuffer;
+
+            //   //if (ppixmapWindowBuffer)
+            //   {
+
+            //     // ppixmapWindowBuffer->m_point = pbufferitem->m_pointBufferItem;
+
+            //      //ppixmapWindowBuffer->m_size = pbufferitem->m_sizeBufferItem;
+
+            //      pbufferitem->m_pimageBufferItem->m_bHintCpuBackingEnabled = true;
+
+            //      pbufferitem->m_pimageBufferItem->m_point.clear();
+
+            //      auto & sizeRaw = pbufferitem->m_pimageBufferItem->m_sizeRaw;
+
+            //      pbufferitem->m_pimageBufferItem->update_as_render_target(m_pwindow->m_sizeRaw, m_pwindow->user_interaction());
+
+            //      auto & sizeRaw2 = pbufferitem->m_pimageBufferItem->m_sizeRaw;
+
+            //     //m_bDibIsHostingBuffer =
+            //         //pbufferitem->m_pimageBufferItem->host(
+            //         //   m_pwindowbuffer,
+            //         //   m_pwindow,
+            //         //   m_pwindow->m_sizeRaw);
+
+            //   }
+
+            //}
+
+            if (!m_pdraw2dgraphics)
+            {
+
+               m_pdraw2dgraphics = system()->draw2d()->allocate_graphics(m_pwindow->m_pacmeuserinteraction);
+
+               m_pdraw2dgraphics->m_pgraphicsbufferitem = pbufferitem;
+
+               m_pdraw2dgraphics->create_for_window_draw2d(m_pwindow->user_interaction(), m_pwindow->m_sizeRaw);
+
+               pbufferitem->m_pimageBufferItem->m_bHintCpuBackingEnabled = !m_papplication->m_gpu.m_bUseSwapChainWindow;
+
+            }
+
+            pbufferitem->m_pimageBufferItem->update_as_gpu_render_target(m_pwindow->m_sizeRaw,
+               m_pwindow->user_interaction(),
+               m_pdraw2dgraphics);
+
+            //::f64_size sizef64Raw = m_pwindow->m_sizeRaw;
+
+            //if (m_pdraw2dgraphics && m_pdraw2dgraphics->m_sizeTotal2 != sizef64Raw)
+            //{
+
+            auto & point = pbufferitem->m_pimageBufferItem->m_point;
+
+            auto & size = pbufferitem->m_pimageBufferItem->m_size;
+
+            auto & sizeRaw = pbufferitem->m_pimageBufferItem->m_sizeRaw;
+
+
+
+            point = pbufferitem->m_pointBufferItem;
+
+            size = pbufferitem->m_sizeBufferItem;
+
+            sizeRaw = m_pwindow->m_sizeRaw;
+
+            informationf("m_pimageBufferItem point(%d-%d) size(%d-%d) sizeRaw(%d-%d)", point.x, point.y, size.cx, size.cy, sizeRaw.cx, sizeRaw.cy);
+
+            //m_pdraw2dgraphics->defer_set_size(m_pwindow->m_sizeRaw);
+
+         //}
+
+         //if (pbufferitem->m_pimageBufferItem->m_sizeRaw != sizeRaw)
+         //{
+
+         //   //pbufferitem->m_pimageBufferItem->create_as_render_target(sizeRaw, m_pwindow->user_interaction());
+
+         //   pbufferitem->m_pimageBufferItem->create_as_top_draw2d_target(sizeRaw, m_pwindow->user_interaction(), m_pdraw2dgraphics);
+
+         //}
+
+         //pbufferitem->m_pimageBufferItem->pixmap_map({ m_pwindow->m_pointWindow, m_pwindow->m_sizeWindow });
+
+         //if (pbufferitem->m_pimageBufferItem->m_size != pbufferitem->m_sizeBufferItem)
+         //{
+         //   pbufferitem->m_pimageBufferItem->picreate_as_render_target(pbufferitem->m_sizeBufferItem);
+         //}
+
+
+
+         }
+
+      }
+      //HWND hwnd = get_hwnd();
+
+        //auto uExStyle = ::GetWindowLong(hwnd, GWL_EXSTYLE);
+
+        //bool bLayered = (uExStyle & WS_EX_LAYERED) != 0;
+
+        //::pointer < layered_window_buffer > playeredwindowbuffer;
+
+        //if (bLayered && ! m_papplication->m_gpu.m_bUseSwapChainWindow)
+        //{
+
+        //   auto & pwindowbuffer = m_pwindowbuffer;
+
+        //   ::cast < ::windowing_win32::layered_window_buffer > playeredwindowbuffer = pwindowbuffer;
+
+        //   if (!playeredwindowbuffer)
+        //   {
+
+        //      auto playeredwindowbuffer1 = create_newø<layered_window_buffer >();
+
+        //      m_pwindowbuffer = playeredwindowbuffer1;
+
+        //      playeredwindowbuffer = playeredwindowbuffer1;
+
+        //      m_pwindowbuffer->initialize_window_buffer(m_pwindow);
+
+        //   }
+
+
+        //   //if (playeredwindowbuffer->m_ppixmapWindowBuffer->m_sizeRaw.cx > sizeLargeInternalBitmap.cx)
+        //   //{
+
+        //   //   sizeLargeInternalBitmap.cx = playeredwindowbuffer->m_ppixmapWindowBuffer->m_sizeRaw.cx;
+
+        //   //}
+
+        //   //if (playeredwindowbuffer->m_ppixmapWindowBuffer->m_sizeRaw.cy > sizeLargeInternalBitmap.cy)
+        //   //{
+
+        //   //   sizeLargeInternalBitmap.cy = playeredwindowbuffer->m_ppixmapWindowBuffer->m_sizeRaw.cy;
+
+        //   //}
+
+        //   //if (playeredwindowbuffer->m_ppixmapWindowBuffer->m_sizeRaw.cx < sizeLargeInternalBitmap.cx
+        //   //   || playeredwindowbuffer->m_ppixmapWindowBuffer->m_sizeRaw.cy < sizeLargeInternalBitmap.cy)
+        //   //{
+
+        //   //   HBITMAP hbitmap = ::windows::create_windows_dib(sizeLargeInternalBitmap, &iScan, &pimage32);
+
+        //   //   if (hbitmap == nullptr || pimage32 == nullptr || iScan == 0)
+        //   //   {
+
+        //   //      if (hbitmap != nullptr)
+        //   //      {
+
+        //   //         ::DeleteObject(hbitmap);
+
+        //   //      }
+
+        //   //      return false;
+
+        //   //   }
+
+        //   //   playeredwindowbuffer->m_ppixmapWindowBuffer->initialize_pixmap(sizeLargeInternalBitmap, pimage32, iScan);
+
+        //   //   ::cast < ::windows::device_independent_bitmap > pdeviceindepende/*ntbitmap = playeredwindowbuffer->m_ppixmapWindowBuffer;
+
+        //   //   if (playeredwindowbuffer->m_hbitmap != nullptr)
+        //   //   {
+
+        //   //      ::DeleteObject(playeredwindowbuffer->m_hbitmap);
+
+        //   //   }
+
+        //   //   playeredwindowbuffer->m_hbitmap = hbitmap;
+
+        //   //   bool bCreatedCompatibleDC = false;
+
+        //   //   if (playeredwindowbuffer->m_hdc == nullptr)
+        //   //   {
+
+        //   //      playeredwindowbuffer->m_hdc = ::CreateCompatibleDC(nullptr);
+
+        //   //      bCreatedCompatibleDC = true;
+
+        //   //   }
+
+        //   //   if (playeredwindowbuffer->m_hdc == nullptr)
+        //   //   {
+
+        //   //      destroy_buffer();
+
+        //   //      throw ::exception(error_null_pointer);
+
+        //   //   }
+
+        //   //   HBITMAP hbitmapPrevious = (HBITMAP) ::SelectObject(playeredwindowbuffer->m_hdc, playeredwindowbuffer->m_hbitmap);
+
+        //   //   if (bCreatedCompatibleDC)
+        //   //   {
+
+        //   //      playeredwindowbuffer->m_hbitmapOld = hbitmapPrevious;
+
+        //   //   }*/
+
+        //   //}
+
+        //   if (playeredwindowbuffer->m_ppixmapWindowBuffer
+        //      && playeredwindowbuffer->m_ppixmapWindowBuffer->size() == pbufferitem->m_sizeBufferItem)
+        //   {
+
+        //      return true;
+
+        //   }
+
+        //   auto pwindowing = m_pwindow->user_interaction()->windowing();
+
+        //   auto pdisplay = pwindowing->display();
+
+        //   auto rectangleUnion = pdisplay->get_monitor_union_rectangle();
+
+        //   auto sizeLargeInternalBitmap = rectangleUnion.size();
+
+        //   auto sizeRaw = pbufferitem->m_sizeBufferItem.maximum(sizeLargeInternalBitmap);
+
+        //   if (pbufferitem->m_pimageBufferItem->host(m_pwindowbuffer, m_pwindow, sizeRaw))
+        //   {
+
+        //      m_bDibIsHostingBuffer = true;
+
+        //   }
+        //   else
+        //   {
+
+        //      try
+        //      {
+
+        //         pbufferitem->m_pimageBufferItem->create_as_render_target(playeredwindowbuffer->m_ppixmapWindowBuffer->m_sizeRaw);
+
+        //      }
+        //      catch (...)
+        //      {
+
+        //         return false;
+
+        //      }
+
+        //      m_bDibIsHostingBuffer = false;
+
+        //   }
+
+        //}
+        //else
+  //      {
+  //
+  //         if (!pbufferitem->m_pgraphicsBufferItem || pbufferitem->m_pgraphicsBufferItem.nok())
+  //         {
+  //
+  //            constructø(pbufferitem->m_pgraphicsBufferItem);
+  //
+  //            auto puserinteraction = dynamic_cast < ::user::interaction * >( m_pwindow->m_pacmeuserinteraction.m_p);
+  //
+  //            ////if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+  //            ////{
+  //
+  //            ////   pbufferitem->m_pgraphics->create_offscreen_graphics_for_swap_chain_blitting(pbufferitem->m_sizeBufferItemDraw);
+  //
+  //            ////}
+  //            ////else
+  //            ////{
+  //            //pbufferitem->m_pimageBufferItem->create_as_descriptor(pbufferitem->m_sizeBufferItem);
+  //            pbufferitem->m_pgraphicsBufferItem->create_for_window_draw2d(puserinteraction, pbufferitem->m_sizeBufferItem);
+  //
+  //            pbufferitem->m_pgraphicsBufferItem->set_ok_flag();
+  //
+  //            pbufferitem->m_pgraphicsBufferItem->m_estatus = success;
+  //
+  ////               //pbufferitem->m_pgraphics->create_memory_graphics(pbufferitem->m_sizeBufferItemDraw);
+  ////
+  //////            }
+  ////
+  ////            //pbufferitem->m_pgraphics->set_hint_window_output();
+  ////
+  ////            //pbufferitem->m_pgraphics->create_window_graphics(m_pwindow);
+  //
+  //         }
+  //         //else
+  //         //{
+  //
+  //         //   //pbufferitem->m_pgraphicsBufferItem->defer_set_size(pbufferitem->m_sizeBufferItem);
+  //         //   pbufferitem->m_pimageBufferItem->create_as_descriptor(pbufferitem->m_sizeBufferItem);
+  //
+  //         //}
+  //
+  //
+  //      }
 
       return true;
+
+
+      //debug() << "GRAPHICS::GRAPHICS::UPDATE_BUFFER returning true...";
+
+      //return true;
 
    }
 

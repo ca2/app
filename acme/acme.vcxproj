@@ -2883,6 +2883,7 @@
     <ClInclude Include="filesystem\file\byte2_stream.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
     <ClInclude Include="graphics\draw2d\task_tool.h" />
+    <ClInclude Include="graphics\image\aaa_lock.h" />
     <ClInclude Include="graphics\image\frame.h" />
     <ClInclude Include="graphics\image\frame_array.h" />
     <ClInclude Include="graphics\image\image32_t.h" />

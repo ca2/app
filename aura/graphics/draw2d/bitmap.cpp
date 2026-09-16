@@ -230,12 +230,28 @@ namespace draw2d
 
       //auto pgraphicslease = pimage->acquire_graphics(pimage->m_pacmeuserinteractionAffinity);
 
-      create_bitmap(
-         pdraw2dgraphics,
-         pimage->m_sizeRaw,
-         pimage->m_ppixmapOwned);
+      if (pimage->m_ppixmapOwned)
+      {
+         create_bitmap(
+            pdraw2dgraphics,
+            pimage->m_sizeRaw,
+            pimage->m_ppixmapOwned);
          //pimage->m_memoryPixmap,
          //&pimage->m_iScan);
+      }
+      else
+      {
+
+         if (pimage->m_sizeRaw.cx > m_size.cx
+            || pimage->m_sizeRaw.cy > m_size.cy)
+         {
+            create_bitmap(
+               pdraw2dgraphics,
+               pimage->m_sizeRaw);
+         }
+
+      }
+
 
    }
 
@@ -626,24 +642,24 @@ namespace draw2d
    }
 
    
-   void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pdraw2dgraphics,::i32 nWidth,::i32 nHeight)
+   void bitmap::create_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size)
    {
       __UNREFERENCED_PARAMETER(pdraw2dgraphics);
-      __UNREFERENCED_PARAMETER(nWidth);
-      __UNREFERENCED_PARAMETER(nHeight);
+      __UNREFERENCED_PARAMETER(size);
+      //__UNREFERENCED_PARAMETER(nHeight);
       throw ::interface_only();
       //return false;
    }
 
 
-   void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pdraw2dgraphics,::i32 nWidth,::i32 nHeight)
-   {
-      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
-      __UNREFERENCED_PARAMETER(nWidth);
-      __UNREFERENCED_PARAMETER(nHeight);
-      throw ::interface_only();
-      //return false;
-   }
+   // void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pdraw2dgraphics,::i32 nWidth,::i32 nHeight)
+   // {
+   //    __UNREFERENCED_PARAMETER(pdraw2dgraphics);
+   //    __UNREFERENCED_PARAMETER(nWidth);
+   //    __UNREFERENCED_PARAMETER(nHeight);
+   //    throw ::interface_only();
+   //    //return false;
+   // }
 
 
 //   void ::draw2d::bitmap::dump(dump_context & dumpcontext) const

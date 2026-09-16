@@ -286,7 +286,12 @@ namespace graphics
    bool double_buffer_graphics::buffer_lock_round_swap_key_buffers()
    {
 
-      m_pwindowbuffer->buffer_lock_round_swap_key_buffers();
+      if (m_pwindowbuffer)
+      {
+
+         m_pwindowbuffer->buffer_lock_round_swap_key_buffers();
+
+      }
 
       if (is_single_buffer_mode())
       {

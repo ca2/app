@@ -1509,6 +1509,8 @@ namespace image
       else if (pframea->get_count() == 1)
       {
 
+         pframea->m_ppixmap = pframea->first_pointer()->m_ppixmap;
+
          ploadimage->m_estatus = ::success;
 
          ploadimage->set_ok_flag();
@@ -1520,6 +1522,8 @@ namespace image
       ///auto pextension = ploadimage->m_ppixmap->get_extension();
 
       //pextension->m_pframea = pframea;
+
+      defer_construct_newø(pframea->m_ppixmap);
 
       pframea->m_ppixmap->pixmap_t::initialize_pixmap(pframea->m_size, nullptr, 0);
 
@@ -1542,11 +1546,9 @@ namespace image
 
       pframea->m_timeTotal = timeTotal;
 
-      if (ploadimage->m_loadoptions.functionLoaded)
-      {
-         ploadimage->m_loadoptions.functionLoaded(ploadimage);
-
-      }
+      // The caller sends the completion notification after checking this status.
+      ploadimage->m_estatus = ::success;
+      ploadimage->set_ok_flag();
 
    }
 

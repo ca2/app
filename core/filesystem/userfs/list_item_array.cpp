@@ -83,7 +83,20 @@ namespace userfs
    void list_item_array::arrange(::fs::e_arrange earrange)
    {
 
-      //sort((::i64) earrange);
+      if (earrange == ::fs::arrange_by_name)
+      {
+
+         predicate_sort([](auto pitem1, auto pitem2)
+         {
+
+            if (pitem1->is_folder() != pitem2->is_folder())
+               return pitem1->is_folder();
+
+            return (i32_boolean) (pitem1->m_strName.case_insensitive_order(pitem2->m_strName) < 0);
+
+         });
+
+      }
 
    }
 

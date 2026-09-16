@@ -410,7 +410,7 @@ namespace simpledb
 
             pstorage->m_pthreadlocal->m_pstorage = pstorage;
 
-            pstorage->m_pthreadlocal->branch();
+            pstorage->m_pthreadlocal->branch_asynchronously();
 
          }
 
@@ -441,7 +441,7 @@ namespace simpledb
 
             pstorage->m_pthread->m_pstorage = pstorage;
 
-            pstorage->m_pthread->branch();
+            pstorage->m_pthread->branch_asynchronously();
 
          }
 

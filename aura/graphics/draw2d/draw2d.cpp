@@ -415,7 +415,16 @@ namespace draw2d
       if (defer_constructø(pdraw2dgraphics))
       {
 
-         pdraw2dgraphics->create_memory_graphics({256, 256}, ::get_task()->main_acme_user_interaction());
+         auto pacmeuserinteraction = ::get_task()->main_acme_user_interaction();
+
+         if (::is_null(pacmeuserinteraction))
+         {
+
+            pacmeuserinteraction = ::get_task()->m_papplication->main_acme_user_interaction();
+
+         }
+
+         pdraw2dgraphics->create_memory_graphics({256, 256}, pacmeuserinteraction);
 
       }
 

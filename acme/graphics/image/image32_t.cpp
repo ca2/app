@@ -607,15 +607,13 @@ image32_t *image32_t::create_copy_of(::memory &memoryAllocation, const i32_size 
 }
 
 
-
-CLASS_DECL_ACME::string _001_image32_diagnostics(::image32_t * pixelPtr, int width, int height, int stride)
+_001_image32_diagnostics_t::_001_image32_diagnostics_t(image32_t* pixelPtr, int width, int height, int stride)
 {
 
-
-   int totalPixels = width * height;
-   int transparentCount = 0;
-   int translucentCount = 0;
-   int opaqueCount = 0;
+   totalPixels = width * height;
+   transparentCount = 0;
+   translucentCount = 0;
+   opaqueCount = 0;
 
    {
 
@@ -647,6 +645,11 @@ CLASS_DECL_ACME::string _001_image32_diagnostics(::image32_t * pixelPtr, int wid
 
    }
 
+}
+
+
+string _001_image32_diagnostics_t::as_string() const
+{
 
    ::string str;
 

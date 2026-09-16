@@ -698,7 +698,7 @@ x + cx, y + cy);
    {
 
       //return; // abcxxx
-      informationf("experience_core::frame::_001OnDraw        enabled=%d", (int) m_pframewindow->is_frame_experience_enabled());
+      //informationf("experience_core::frame::_001OnDraw        enabled=%d", (int) m_pframewindow->is_frame_experience_enabled());
 
       if (!m_pframewindow->is_frame_experience_enabled())
       {
@@ -716,7 +716,7 @@ x + cx, y + cy);
       if (!pframewindow->layout().is_full_screen() && !pframewindow->layout().is_zoomed() && !pframewindow->layout().is_iconic() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
       {
          
-         informationf("experience_core::frame::_001OnDraw        on_draw_frame");
+         //informationf("experience_core::frame::_001OnDraw        on_draw_frame");
 
          on_draw_frame(pdraw2dgraphics);
 

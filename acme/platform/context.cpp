@@ -878,7 +878,7 @@ namespace platform
 
          ppredtask->m_pcounter = pcounter;
 
-         ppredtask->branch();
+         ppredtask->branch_asynchronously();
 
       }
 

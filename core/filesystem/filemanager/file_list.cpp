@@ -1207,7 +1207,7 @@ namespace filemanager
 
             }
 
-            if (pathFinal.set_existent_folder())
+            if (pathFinal.is_folder())
             {
 
                spitem->m_flags.add(::file::e_flag_folder);
@@ -1226,6 +1226,15 @@ namespace filemanager
             //   informationf("test filemanager file_list");
 
             //}
+
+         }
+
+         fs_list()->m_pitema->arrange(::fs::arrange_by_name);
+         m_pathaStrictOrder.erase_all();
+         for (auto & pitem : *fs_list()->m_pitema)
+         {
+
+            m_pathaStrictOrder.add(pitem->user_path());
 
          }
 
@@ -2174,6 +2183,8 @@ namespace filemanager
          //}
 
          information() << "file_list handle id_browse";
+
+         browse_sync(ptopic->m_actioncontext + ::e_source_sync);
 
          data_get_DisplayToStrict();
 

@@ -3210,7 +3210,7 @@ namespace platform
       if (system()->m_bBranchMainThread)
       {
 
-         system()->acme_windowing()->branch();
+         system()->acme_windowing()->branch_asynchronously();
 
       }
       else

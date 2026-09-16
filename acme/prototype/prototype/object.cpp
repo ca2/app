@@ -1890,7 +1890,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    auto ptask2 = propertyTask.cast < ::task>();
 
-   ptask->branch();
+   ptask->branch_asynchronously();
 
    return ptask;
 
@@ -1954,7 +1954,18 @@ void object::branch_each(const ::procedure_array& routinea)
 
    ptask->id() = typeid(*pbase).name();
 
-   ptask->branch(eparallelization, createtaskattributes);
+   if (eparallelization == e_parallelization_synchronous)
+   {
+
+      ptask->branch_synchronously(createtaskattributes);
+
+   }
+   else
+   {
+
+      ptask->branch_asynchronously(createtaskattributes);
+
+   }
 
    return ptask;
 
@@ -4013,7 +4024,7 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
 
       };
 
-      ptask->branch();
+      ptask->branch_asynchronously();
 
    }
 

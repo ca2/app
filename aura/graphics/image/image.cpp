@@ -23,7 +23,7 @@
 #include "aura/windowing/window.h"
 
 //CLASS_DECL_ACME::string _001_image32_diagnostics(::image32_t * pixelPtr, int width, int height, int stride);
-CLASS_DECL_ACME::string _001_pixmap_diagnostics(const pixmap_t * ppixmap);
+// CLASS_DECL_ACME::string _001_pixmap_diagnostics(const pixmap_t * ppixmap);
 //#include "acme/_operating_system.h"
 
 
@@ -455,7 +455,7 @@ namespace image
 
             m_pdraw2dbitmap->defer_write_pixels(*m_ppixmapOwned);
 
-            ::string str = _001_pixmap_diagnostics(m_ppixmapOwned);
+            ::string str = _001_image32_diagnostics_t(m_ppixmapOwned).as_string();
 
             auto psz = str.c_str();
 
@@ -646,10 +646,13 @@ namespace image
 
       m_pacmeuserinteractionAffinity = puserinteraction;
 
+      create_as_descriptor(sizeRaw, eflagCreate, iGoodStride);
+
+      update_bitmap_as_render_target(m_pacmeuserinteractionAffinity, pdraw2dgraphics);
+
       //m_puserinteraction = puserinteraction;
 
       //return create_from_data(sizeRaw, nullptr, iGoodStride, eflagCreate, bPreserve);
-      create_as_descriptor(sizeRaw, eflagCreate, iGoodStride);
 
    }
 
@@ -11915,6 +11918,9 @@ namespace image
 
       }
 
+      informationf("[image.gif] attached image=%p frames=%lld size=%dx%d",
+         (void *)this, (long long)pimageframearray->get_count(), m_size.cx, m_size.cy);
+
    }
 
 
@@ -11929,10 +11935,11 @@ namespace image
       //m_point.y = (decay<decltype(m_point.y)>)(pframeSource->m_rectangle.top * dy);
       //m_size.cx = (decay<decltype(m_size.cx)>)(pframeSource->m_rectangle.right * dx - m_point.x);
       //m_size.cy = (decay<decltype(m_size.cy)>)(pframeSource->m_rectangle.bottom * dy - m_point.y);
-      m_point.x = pframeSource->m_rectangle.left;
-      m_point.y = pframeSource->m_rectangle.top;
-      m_size.cx = pframeSource->m_rectangle.width();
-      m_size.cy = pframeSource->m_rectangle.height();
+      // The frame pixmap is a snapshot of the entire composed canvas.
+      // m_rectangle describes the GIF update region, whose offset has already
+      // been applied during composition. Applying it here enlarges m_sizeRaw
+      // beyond the snapshot and can cause the bitmap upload to skip its copy.
+      m_point = {};
 
       // pframe->m_rectangle.left = m_point.x;
       // pframe->m_rectangle.top = m_point.y;
@@ -11959,6 +11966,7 @@ namespace image
 
       m_iFrame = pframeSource->m_iFrame;
       m_ppixmapOwned = pframeSource->m_ppixmap;
+      m_pimageframeSource = pframeSource;
 
       // pframe->m_iFrame = pframeSource->m_iFrame;
       // pframe->m_time = pframeSource->m_time;

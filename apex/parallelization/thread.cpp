@@ -2726,16 +2726,15 @@ size_t engine_symbol(char_pointer sz, ::i32 n, DWORD_PTR* pdisplacement, DWORD_P
 //}
 
 
-void thread::branch(enum_parallelization eparallelization,
-                                 const ::create_task_attributes_t& createtaskattributes)
+void thread::branch_asynchronously(const ::create_task_attributes_t& createtaskattributes)
 {
 
-   clear_finishing_flag();
-
-   ENSURE(!m_htask);
-
-   defer_create_synchronization();
-
+   // clear_finishing_flag();
+   //
+   // ENSURE(!m_htask);
+   //
+   // defer_create_synchronization();
+   //
    //if(id().is_empty())
    //{
 
@@ -2806,7 +2805,7 @@ void thread::branch(enum_parallelization eparallelization,
 
    //auto ptask = ::task::branch(eparallelization, ptaskhandler, createtaskattributes);
 
-   ::task::branch(eparallelization, createtaskattributes);
+   ::task::branch_asynchronously(createtaskattributes);
 
    //   if(!m_htask)
    //   {
@@ -2885,6 +2884,15 @@ void thread::branch_synchronously(
 {
 
    //auto ptask = ::task::branch_synchronously(ptaskhandler, createtaskattributes);
+
+   ::string strType = ::type(*this).name();
+
+   if (strType.contains("system"))
+   {
+
+      information("system");
+
+   }
 
    ::task::branch_synchronously(createtaskattributes);
 

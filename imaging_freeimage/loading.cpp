@@ -485,7 +485,42 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
             //file_system()->put_contents("/home/camilo/a.gif", memory);
 
-            _load_multi_frame_image(ploadimage, memory);
+            const char * pszStage = "decode";
+            try
+            {
+
+               _load_multi_frame_image(ploadimage, memory);
+
+               if (ploadimage->has_failed_status())
+               {
+
+                  throw ::exception(error_failed, "GIF decoding did not produce valid frames");
+
+               }
+
+               pszStage = "attach frames";
+               // This override bypasses image_context::_task_load_image.
+               ploadimage->on_image_loaded(::success);
+
+            }
+            catch (const ::exception & exception)
+            {
+
+               errorf("[image.gif] failed path=%s stage=%s reason=%s details=%s stack_trace=%s",
+                  payloadFile.as_file_path().c_str(), pszStage,
+                  exception.get_message().c_str(), exception.m_strDetails.c_str(),
+                  exception.m_strCallStackTrace.c_str());
+               throw;
+
+            }
+            catch (...)
+            {
+
+               errorf("[image.gif] failed path=%s stage=%s reason=unknown exception",
+                  payloadFile.as_file_path().c_str(), pszStage);
+               throw;
+
+            }
 
             //if (!)
             /*        {
@@ -730,6 +765,8 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
       //      }
       //
       //   }
+
+      ploadimage->on_image_loaded(::success);
 
       // ploadimage->m_ppixmap->on_load_image();
       //

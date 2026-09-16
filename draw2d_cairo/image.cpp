@@ -27,14 +27,26 @@ namespace draw2d_cairo
 //   {
 //      return m_pcolorrefMap;
 //   }
+
+
    ::draw2d::bitmap_pointer image::get_bitmap_as_source(::draw2d::graphics * pdraw2dgraphics) const
    {
-      return m_pdraw2dbitmap;
+
+      //return m_pdraw2dbitmap;
+      return ::image::image::get_bitmap_as_source(pdraw2dgraphics);
+
    }
+
+
    ::draw2d::bitmap_pointer image::get_bitmap_as_target(::draw2d::graphics * pdraw2dgraphics) const
    {
-      return m_pdraw2dbitmap;
+
+      //return m_pdraw2dbitmap;
+      return ::image::image::get_bitmap_as_target(pdraw2dgraphics);
+
    }
+
+
    ::draw2d::bitmap_pointer image::detach_bitmap()
    {
 
@@ -515,32 +527,41 @@ namespace draw2d_cairo
 //
 //      }
 //
-      if (m_pdraw2dbitmap.is_null())
+      //if (m_pdraw2dbitmap.is_null())
+
+      ::cast < ::draw2d_cairo::bitmap > pdraw2dbitmap;
+
+      if (!m_pdraw2dbitmap)
+      {
+
+         constructø(m_pdraw2dbitmap);
+
+         pdraw2dbitmap = m_pdraw2dbitmap;
+
+         pdraw2dbitmap->create_bitmap(nullptr, this->raw_size());
+
+      }
+
+      cairo_surface_t * psurface = m_pdraw2dbitmap.cast < ::draw2d_cairo::bitmap>()->m_pcairosurface;
+
+      if (psurface == nullptr)
       {
 
          return {};
 
       }
 
-      cairo_surface_t * surface = m_pdraw2dbitmap.cast < ::draw2d_cairo::bitmap>()->m_pcairosurface;
+      cairo_surface_flush (psurface);
 
-      if (surface == nullptr)
-      {
-
-         return {};
-
-      }
-
-      cairo_surface_flush (surface);
-
-      ::u8  * pdata = (::u8 *) cairo_image_surface_get_data(surface);
+      ::u8  * pdata = (::u8 *) cairo_image_surface_get_data(psurface);
 
       // 1. Get Stride (scanline size in bytes)
-      int stride = cairo_image_surface_get_stride(surface);
+      int stride = cairo_image_surface_get_stride(psurface);
 
       // 2. Get Dimensions
-      int width = cairo_image_surface_get_width(surface);
-      int height = cairo_image_surface_get_height(surface);
+      int width = cairo_image_surface_get_width(psurface);
+
+      int height = cairo_image_surface_get_height(psurface);
 
       // 3. Calculate Total Byte Size
       size_t total_bytes = (size_t)stride * height;
@@ -551,10 +572,24 @@ namespace draw2d_cairo
 
       ppixmapLease->m_pimage32Raw = (::image32_t *) pdata;
 
+      ppixmapLease->m_size = this->m_size;
+
       ppixmapLease->m_sizeRaw.cx = width;
+
       ppixmapLease->m_sizeRaw.cy = height;
 
-      //ppixmapLease->map(rectangle, bApplyAlphaTransform);
+      if (rectangle.is_set())
+      {
+
+         ppixmapLease->pixmap_map(rectangle);
+
+      }
+      else
+      {
+
+         ppixmapLease->pixmap_map({this->m_point, this->m_size});
+
+      }
 
 //      if(pdata != (::u8 *) m_pimage32Raw && pdata != nullptr)
 //      {
@@ -610,7 +645,9 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      _tidy_unmap(pimagepixmaplease);
+      //_tidy_unmap(pimagepixmaplease);
+
+      ::image::image::_unmap(pimagepixmaplease);
 
       // if (!m_bMapped)
       // {

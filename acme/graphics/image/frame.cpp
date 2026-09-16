@@ -6,6 +6,8 @@
 //#include "aura/graphics/image/drawing.h"
 
 
+// CLASS_DECL_ACME::string _001_pixmap_diagnostics(const pixmap_t * ppixmap);
+
 namespace image
 {
 
@@ -46,6 +48,7 @@ namespace image
       }
 
    }
+
 
    void image_frame::_001Process(::pixmap * ppixmapImageCompose, ::pixmap * ppixmapImageFrame, image_frame_array * pframea)
    {
@@ -160,7 +163,57 @@ namespace image
       m_rectangle.right = pframeSource->m_rectangle.right;
       m_rectangle.bottom = pframeSource->m_rectangle.bottom;
 
+      ::i32_rectangle rectangleFrame(ppixmap->m_point, ppixmap->m_size);
+      ::i32_rectangle rectangleTemplate(pframea->m_size);
+
+      auto iFrame = pframeSource->m_iFrame;
+
+      if (rectangleFrame.is_empty())
+      {
+
+         information("alert, gif frame with empty_rectangles {}", iFrame);
+
+      }
+      else if (rectangleFrame.width() < 10)
+      {
+
+         information("alert, gif frame is very thin {}", iFrame);
+
+      }
+      else if (rectangleFrame.height() < 10)
+      {
+
+         information("alert, gif frame is very short {}", iFrame);
+
+      }
+      else if (rectangleTemplate != rectangleFrame)
+      {
+
+         information("alert, gif frame isn't like the template {}", iFrame);
+
+      }
+
+      //ppixmap->m_point = pframea->m_ppixmap->m_point;
+
+
       m_ppixmap = ((::pixmap *)ppixmap)->clone();
+
+      _001_image32_diagnostics_t diagnostics(m_ppixmap);
+
+      ::string strDiagnostics = diagnostics.as_string();
+
+      if (diagnostics.transparentCount > 0)
+      {
+
+         information("frame with transparent pixels {}", strDiagnostics);
+
+      }
+      else if (diagnostics.opaqueCount <= 100)
+      {
+
+         information("alert, gif frame with few opaque pixels {}", strDiagnostics);
+
+      }
 
       // constructø(m_pimage);
       //
@@ -195,6 +248,4 @@ namespace image
 
 
 } // namespace image
-
-
 

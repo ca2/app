@@ -6,10 +6,10 @@
 #include "acme/prototype/geometry2d/size.h"
 
 
-#define DRAW2D_BITMAP_TRANSFER(a) \
-::draw2d::bitmap(::transfer(a)), \
-DRAW2D_OBJECT_TRANSFER(a)
-
+// #define DRAW2D_BITMAP_TRANSFER(a) \
+// ::draw2d::bitmap(::transfer(a)), \
+// DRAW2D_OBJECT_TRANSFER(a)
+//
 
 namespace draw2d
 {
@@ -39,7 +39,7 @@ namespace draw2d
 
 
       bitmap();
-      bitmap(bitmap&& bitmap);
+      //bitmap(bitmap&& bitmap);
       ~bitmap() override;
 
 
@@ -78,8 +78,9 @@ namespace draw2d
 
       //virtual bool CreateBitmapIndirect(::draw2d::graphics * pdraw2dgraphics, LPBITMAP pBitmap);
 
-      virtual void CreateCompatibleBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight);
-      virtual void CreateDiscardableBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight);
+      virtual void create_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size);
+
+      //virtual void CreateDiscardableBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight);
 
       
       virtual void update_bitmap_as_backed_by_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2graphics);

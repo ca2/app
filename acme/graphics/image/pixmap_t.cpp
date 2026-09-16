@@ -3,8 +3,8 @@
 #include "pixmap_t.h"
 
 
-CLASS_DECL_ACME::string _001_image32_diagnostics(::image32_t * pixelPtr, int width, int height, int stride);
-CLASS_DECL_ACME::string _001_pixmap_diagnostics(const pixmap_t * ppixmap);
+//CLASS_DECL_ACME::string _001_image32_diagnostics(::image32_t * pixelPtr, int width, int height, int stride);
+//// CLASS_DECL_ACME::string _001_pixmap_diagnostics(const pixmap_t * ppixmap);
 
 #if defined(WINDOWS_DESKTOP)
 ::i32 pixmap_t::g_iRedLowerDefault = 0;
@@ -908,15 +908,22 @@ void pixmap_t::blend_color(const ::i32_rectangle & rectangle, const ::color::col
 }
 
 
-CLASS_DECL_ACME ::string _001_pixmap_diagnostics(const pixmap_t * ppixmap)
+// CLASS_DECL_ACME ::string _001_pixmap_diagnostics(const pixmap_t * ppixmap)
+// {
+//
+//    return _001_image32_diagnostics(
+//             ppixmap->m_pimage32,
+//             ppixmap->m_size.cx,
+//             ppixmap->m_size.cy,
+//             ppixmap->m_iScan);
+//
+// }
+//
+
+_001_image32_diagnostics_t::_001_image32_diagnostics_t(pixmap_t* ppixmap) :
+_001_image32_diagnostics_t(ppixmap->m_pimage32, ppixmap->m_size.cx, ppixmap->m_size.cy, ppixmap->m_iScan)
 {
 
-   return _001_image32_diagnostics(
-            ppixmap->m_pimage32,
-            ppixmap->m_size.cx,
-            ppixmap->m_size.cy,
-            ppixmap->m_iScan);
+
 
 }
-
-

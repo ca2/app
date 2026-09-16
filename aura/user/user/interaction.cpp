@@ -82,8 +82,11 @@ CLASS_DECL_AURA ::i32 get_last_x_abs()
 }
 #endif
 
-#define REDRAW_LOG_LEVEL 2
-#define DEEP_DEBUGGING
+// Define USER_INTERACTION_HOVER_LOG to enable hover/hit-test diagnostics.
+//#define USER_INTERACTION_HOVER_LOG
+
+#define REDRAW_LOG_LEVEL 0
+#undef DEEP_DEBUGGING
 
 CLASS_DECL_AURA::i32_point __get_top_right();
 CLASS_DECL_AURA void __set_top_right(const ::i32_point & pointTopRight);
@@ -5432,7 +5435,7 @@ namespace user
       if(pszDebugType)
       {
        
-         printf_line("type=%s: _001OnTopNcClip", pszDebugType);
+         //printf_line("type=%s: _001OnTopNcClip", pszDebugType);
          
       }
       
@@ -5496,7 +5499,7 @@ namespace user
             if(pszDebugType && pstrDebug)
             {
                
-               printf_line("type=%s: _001OnTopNcClip apply_clip %s", pszDebugType, pstrDebug->c_str());
+               //printf_line("type=%s: _001OnTopNcClip apply_clip %s", pszDebugType, pstrDebug->c_str());
                
             }
             
@@ -28518,13 +28521,13 @@ __check_refdbg;
       if (::platform::type(this).name() == "app_core_chronometer::impact")
       {
 
-         information("app_core_chronometer::impact update_hover");
+         //information("app_core_chronometer::impact update_hover");
 
       }
       else if (::platform::type(this).name() == "app_core_chronometer::pane_impact")
       {
 
-         information("app_core_chronometer::pane_impact update_hover");
+         //information("app_core_chronometer::pane_impact update_hover");
 
       }
       else
@@ -28532,7 +28535,7 @@ __check_refdbg;
 
          auto strName = ::platform::type(this).name();
 
-         information("update_hover at: {}", strName);
+         //information("update_hover at: {}", strName);
 
       }
 
@@ -28561,7 +28564,9 @@ __check_refdbg;
       if (::is_item_set(pitemHitTest))
       {
 
+#if defined(USER_INTERACTION_HOVER_LOG)
          information() << "::is_item_set(pitemHitTest)";
+#endif
 
          bRet = drag_on_mouse_hover(pitemHitTest, pmouse);
 
@@ -28585,7 +28590,9 @@ __check_refdbg;
       if (!::is_item_equivalent(pitemHitTest, m_pitemHover))
       {
 
+#if defined(USER_INTERACTION_HOVER_LOG)
          informationf("user::interaction::update_hover !is_item_equivalent(pitemHitTest, m_pitemHover)");
+#endif
 
          auto pitemOldHover = m_pitemHover;
 
@@ -28593,6 +28600,7 @@ __check_refdbg;
 
          m_pitemHover = pitemHitTest;
 
+#if defined(USER_INTERACTION_HOVER_LOG)
          informationf("----------------------------------------------------");
          if (m_pitemHover)
          {
@@ -28606,6 +28614,7 @@ __check_refdbg;
                "-------------------------------------------------------------m_pitemHover is null");
          }
          informationf("----------------------------------------------------");
+#endif
          on_update_hover(m_pitemHover);
 
          //m_pitemHOver->m_bAnyHoverChange = true;
@@ -28613,6 +28622,7 @@ __check_refdbg;
          if (::is_item_set(m_pitemHover))
          {
 
+#if defined(USER_INTERACTION_HOVER_LOG)
             if (m_pitemHover->m_item.m_eelement == e_element_reset)
             {
 
@@ -28635,6 +28645,7 @@ __check_refdbg;
                information() << "simple_scroll_bar";
 
             }
+#endif
 
             if (!::is_item_set(pitemOldHover))
             {
@@ -28659,12 +28670,16 @@ __check_refdbg;
          if (::is_item_set(pitemOldHover))
          {
 
+#if defined(USER_INTERACTION_HOVER_LOG)
             informationf("user::interaction::update_hover is_item_set(pitemOldHover)");
+#endif
 
             if (should_redraw_on_hover(pitemOldHover))
             {
 
+#if defined(USER_INTERACTION_HOVER_LOG)
                informationf("user::interaction::update_hover should_redraw_on_hover(pitemOldHover)");
+#endif
 
                //auto puseritem = user_item(pitemOldHover);
 
@@ -28686,12 +28701,16 @@ __check_refdbg;
          if (::is_item_set(pitemHitTest))
          {
 
+#if defined(USER_INTERACTION_HOVER_LOG)
             informationf("user::interaction::update_hover is_item_set(pitemHitTest)");
+#endif
 
             if (should_redraw_on_hover(pitemHitTest))
             {
 
+#if defined(USER_INTERACTION_HOVER_LOG)
                informationf("user::interaction::update_hover should_redraw_on_hover(pitemHitTest)");
+#endif
 
                auto rectangleBounding = item_rectangle(pitemHitTest, e_layout_design);
 
@@ -28713,6 +28732,7 @@ __check_refdbg;
          if (rectanglea.has_element())
          {
 
+#if defined(USER_INTERACTION_HOVER_LOG)
             informationf("user::interaction::update_hover set_need_redraw (%d rectangle(s))", rectanglea.size());
 
             for (auto & rectangle : rectanglea)
@@ -28721,6 +28741,7 @@ __check_refdbg;
                information() << "user::interaction::update_hover set_need_redraw" << rectangle;
 
             }
+#endif
 
             set_need_redraw(rectanglea);
 
@@ -29114,7 +29135,7 @@ __check_refdbg;
 
       auto pitemNone = stock_item(e_element_none);
 
-      information("on_hit_test pitemNone = stock_item(e_element_none);");
+      //information("on_hit_test pitemNone = stock_item(e_element_none);");
 
       return pitemNone;
 

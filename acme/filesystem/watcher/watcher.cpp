@@ -154,7 +154,7 @@ namespace file
                      try
                      {
 
-                        branch();
+                        branch_asynchronously();
 
                      }
                      catch (...)

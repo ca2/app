@@ -35,7 +35,7 @@ void handler_manager::initialize_handler_manager(::particle * pparticle, const :
 
    m_strTaskName = scopedstrThreadName;
 
-   branch();
+   branch_asynchronously();
 
    //m_strThreadName = scopedstrThreadName;
 

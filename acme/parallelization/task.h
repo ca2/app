@@ -460,7 +460,11 @@ private:
 
    using ::object::branch;
 
-   virtual void branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes_t& createtaskattributes = {});
+   //virtual void branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes_t& createtaskattributes = {});
+
+   virtual void defer_branch_asynchronously(const create_task_attributes_t& createtaskattributes = {});
+
+   virtual void branch_asynchronously(const create_task_attributes_t& createtaskattributes = {});
 
    virtual void branch_synchronously(const create_task_attributes_t & createtaskattributes = {});
 

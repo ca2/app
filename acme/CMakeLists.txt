@@ -278,6 +278,7 @@ list(APPEND library_source
         filesystem/watcher/watcher.h
         platform.cpp
         graphics/draw2d/_.cpp
+        graphics/draw2d/_string.cpp
         graphics/draw2d/_system_color.h
         graphics/draw2d/color.cpp
         graphics/draw2d/color32.h
@@ -3287,7 +3288,8 @@ endif ()
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source}
-   prototype/prototype/referencing_debugging.cpp)
+   prototype/prototype/referencing_debugging.cpp
+   graphics/draw2d/_string.cpp)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

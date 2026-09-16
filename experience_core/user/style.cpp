@@ -298,13 +298,13 @@ namespace experience_core
                   && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                {
 
-                  pdraw2dgraphics->set_font(ptab, ::e_element_none, (::user::e_state_selected | ::user::e_state_hover));
+                  pdraw2dgraphics->set_font(ptab, ::e_element_tab, (::user::e_state_selected | ::user::e_state_hover));
 
                }
                else
                {
 
-                  pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
+                  pdraw2dgraphics->set_font(ptab, ::e_element_tab, ::user::e_state_selected);
 
                }
 
@@ -373,7 +373,7 @@ namespace experience_core
 
                   }
 
-                  pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
+                  pdraw2dgraphics->set_font(ptab, ::e_element_tab, ::user::e_state_hover);
 
                   {
 
@@ -428,7 +428,7 @@ namespace experience_core
                      if (!pwritetextfont)
                      {
 
-                        pwritetextfont = pstyle->get_font(ptab, e_element_none);
+                        pwritetextfont = pstyle->get_font(ptab, e_element_tab);
 
                      }
 
@@ -764,7 +764,7 @@ namespace experience_core
                      if (!pwritetextfont)
                      {
 
-                        pwritetextfont = pstyle->get_font(ptab, e_element_none);
+                        pwritetextfont = pstyle->get_font(ptab, e_element_tab);
 
                      }
 
@@ -953,7 +953,7 @@ namespace experience_core
          if (strTitle == "Options")
          {
 
-            warningf("Options");
+            //warningf("Options");
 
          }
 
@@ -983,6 +983,8 @@ namespace experience_core
             i32_size s = pane.m_sizeaText[i];
 
             rectangleText.right = rectangleText.left + s.cx;
+
+            pdraw2dgraphics->set(pwritetextfont);
 
             pdraw2dgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
@@ -1088,7 +1090,7 @@ namespace experience_core
 
       // ptab->defer_handle_auto_hide_tabs(false);
 
-      pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
+      pdraw2dgraphics->set_font(ptab, ::e_element_tab, ::user::e_state_selected);
 
       ptab->m_pgraphicsextension->get_text_extent(pdraw2dgraphics, MAGIC_PALACE_TAB_SIZE, pdata->m_sizeSep);
 
@@ -1200,7 +1202,7 @@ namespace experience_core
 
          ::i32 cy;
 
-         pdraw2dgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
+         pdraw2dgraphics->set_font(ptab, ::e_element_tab, ::user::e_state_selected);
 
          ::i32_rectangle rectangleX = ptab->rectangle(::user::e_layout_sketch);
          //ptab->rectangle(rectangleX);
@@ -2378,6 +2380,5 @@ namespace experience_core
 
 
 } // namespace experience
-
 
 

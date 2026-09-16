@@ -120,6 +120,7 @@ namespace draw2d
       bool                                   m_bStoreThumbnails;
       //::draw2d::bitmap_pointer               m_pdraw2dbitmapTarget;
       ::image::image_pointer                 m_pimageTarget;
+      ::image::image_pointer                 m_pimageOwned;
 
    protected:
       //bool                                   _m_bYFlip;

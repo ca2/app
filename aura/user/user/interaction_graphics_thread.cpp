@@ -172,12 +172,14 @@ namespace user
 
             
             m_puserinteraction->user_thread()->post([this]()
-                                                     {
+            {
+
+               _synchronous_lock synchronouslock(this->synchronization());
 
                if (!is_task_set2())
                {
 
-                  branch();
+                  branch_asynchronously();
 
                }
                

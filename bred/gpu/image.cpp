@@ -15,7 +15,7 @@
 #include "bred/gpu/graphics.h"
 
 
-CLASS_DECL_ACME::string _001_image32_diagnostics(const ::i32_size &size, const image32_t *pimage32, int iScan);
+//CLASS_DECL_ACME::string _001_image32_diagnostics(const ::i32_size &size, const image32_t *pimage32, int iScan);
 
 namespace
 {

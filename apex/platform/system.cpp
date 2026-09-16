@@ -5013,10 +5013,10 @@ namespace apex
    }
 
 
-   void system::branch(enum_parallelization eparallelization, const create_task_attributes_t& createtaskattributes)
+   void system::branch_asynchronously(const create_task_attributes_t& createtaskattributes)
    {
 
-      ::thread::branch(eparallelization, createtaskattributes);
+      ::thread::branch_asynchronously(createtaskattributes);
 
    }
 

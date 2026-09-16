@@ -52,8 +52,8 @@ namespace graphics
       //virtual ::image::image_pointer & get_screen_image() override;
 
 
-      ::collection::index get_buffer_index() const;
-      ::collection::index get_screen_index() const;
+      ::collection::index get_buffer_index() const override;
+      ::collection::index get_screen_index() const override;
 
       using graphics::update_screen;
       void update_screen() override;

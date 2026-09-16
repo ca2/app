@@ -8,6 +8,7 @@
 #include "region.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/draw2d/_text_stream.h"
+#include "acme/graphics/image/frame_array.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/scoped_restore.h"
@@ -28,6 +29,7 @@
 #include "aura/graphics/write_text/_defer_geometry2d_item.h"
 #include <math.h>
 
+#include "aura/graphics/graphics/buffer_item.h"
 
 
 #ifdef _DEBUG
@@ -38,6 +40,9 @@
 
 
 #define DEBUG_WINDOWS_C_ANDROID_FONTS 0
+
+
+CLASS_DECL_ACME bool is_first_multi_frame_loaded();
 
 
 //#define __expand_f64_rgba(color) color.dr(), color.dg(), color.db(), color.da()
@@ -301,9 +306,151 @@ namespace draw2d_cairo
 
       //m_puserinteractionDraw2dGraphics = puserinteraction;
 
-      m_pacmeuserinteractionAffinity = puserinteraction;
+      if (::is_set(puserinteraction))
+      {
+
+         m_pacmeuserinteractionAffinity = puserinteraction;
+
+      }
 
       create_memory_graphics(size, m_pacmeuserinteractionAffinity);
+
+   }
+
+
+
+   void graphics::create_bitmap_graphics(::draw2d::bitmap * pdraw2dbitmap, ::acme::user::interaction * pacmeuserinteractionAffinity)
+   {
+
+      ::cast < ::draw2d_cairo::bitmap > pbitmap = pdraw2dbitmap;
+
+      if (!pbitmap)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto pcairosurface = pbitmap->m_pcairosurface;
+
+      if (!pcairosurface)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      cairo_t * pcairo = cairo_create(pbitmap->m_pcairosurface);
+
+      if (!pcairo)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pcairo = pcairo;
+
+      m_pimageTarget = m_pimageOwned;
+
+      set_ok_flag();
+
+      m_estatus = ::success;
+
+   }
+
+
+   void graphics::_create_memory_graphics(const ::i32_size& size, ::acme::user::interaction * pacmeuserinteractionAffinity)
+   {
+
+      if (::is_set(pacmeuserinteractionAffinity))
+      {
+
+         m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
+
+      }
+
+      create_memory_graphics(size, m_pacmeuserinteractionAffinity);
+
+   }
+
+
+   void graphics::create_memory_graphics(const ::i32_size& size, ::acme::user::interaction * pacmeuserinteractionAffinity)
+   {
+
+      if (::is_set(pacmeuserinteractionAffinity))
+      {
+
+         m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
+
+      }
+
+      destroy();
+
+      if (m_pgraphicsbufferitem)
+      {
+
+         defer_constructø(m_pgraphicsbufferitem->m_pimageBufferItem);
+
+         m_pimageOwned = m_pgraphicsbufferitem->m_pimageBufferItem;
+
+      }
+      else
+      {
+
+         constructø(m_pimageOwned);
+
+      }
+
+      m_pimageOwned->update_as_render_target(size,
+         m_pacmeuserinteractionAffinity->user_interaction(),
+         this);
+
+      if (m_pimageOwned.nok())
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pimageOwned->m_pgraphicsOwned = this;
+
+      ::cast < ::draw2d_cairo::bitmap > pbitmapOwned = m_pimageOwned->m_pdraw2dbitmap;
+
+      if (!pbitmapOwned)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto pcairosurface = pbitmapOwned->m_pcairosurface;
+
+      if (!pcairosurface)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      cairo_t * pcairo = cairo_create(pbitmapOwned->m_pcairosurface);
+
+      if (!pcairo)
+      {
+
+         m_pimageOwned.defer_destroy_and_release();
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pcairo = pcairo;
+
+      m_pimageTarget = m_pimageOwned;
+
+      set_ok_flag();
+
+      m_estatus = ::success;
 
    }
 
@@ -452,6 +599,13 @@ namespace draw2d_cairo
    void graphics::_add_shape(const ::f64_rectangle & rectangle)
    {
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
       //cairo_rectangle(m_pcairo, rectangle.left + m_pointAddShapeTranslate.x, rectangle.top + m_pointAddShapeTranslate.y,
         //              rectangle.width(), rectangle.height());
       cairo_rectangle(m_pcairo, rectangle.left, rectangle.top,
@@ -462,6 +616,13 @@ namespace draw2d_cairo
 
    void graphics::_add_shape(const ::f64_ellipse & ellipse)
    {
+
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
 
       cairo_keep keep(m_pcairo);
 
@@ -487,6 +648,13 @@ namespace draw2d_cairo
       {
 
          return;
+
+      }
+
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
 
       }
 
@@ -866,6 +1034,13 @@ namespace draw2d_cairo
 
       }
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
       ::f64 start = atan2(y3 - centery, x3 - centerx);
 
       ::f64 end = atan2(y4 - centery, x4 - centerx);
@@ -887,6 +1062,13 @@ namespace draw2d_cairo
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
 
       ::f64 end = start + extends;
 
@@ -956,6 +1138,13 @@ namespace draw2d_cairo
 
       }
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
 //      if(payload("log_fill_rectangle").is_true())
 //      {
 //
@@ -982,6 +1171,13 @@ namespace draw2d_cairo
       {
 
          return;
+
+      }
+
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
 
       }
 
@@ -1263,6 +1459,13 @@ namespace draw2d_cairo
 
       }
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
       cairo_keep keep(m_pcairo);
 
       cairo_new_sub_path(m_pcairo);
@@ -1322,6 +1525,13 @@ namespace draw2d_cairo
          //return false;
 
          return;
+
+      }
+
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
 
       }
 
@@ -1389,6 +1599,13 @@ namespace draw2d_cairo
 
       }
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
       cairo_move_to(m_pcairo, pa[0].x, pa[0].y);
 
       for (::i32 i = 1; i < nCount; i++)
@@ -1416,6 +1633,13 @@ namespace draw2d_cairo
          //return true;
 
          return;
+
+      }
+
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
 
       }
 
@@ -1449,6 +1673,13 @@ namespace draw2d_cairo
 
       }
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
       cairo_move_to(m_pcairo, pa[0].x, pa[0].y);
 
       for (::i32 i = 1; i < nCount; i++)
@@ -1477,6 +1708,13 @@ namespace draw2d_cairo
 //
 //      }
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
       cairo_rectangle(m_pcairo, rectangle.left, rectangle.top, ::width(rectangle), ::height(rectangle));
 
       //return
@@ -1502,7 +1740,18 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
       cairo_keep keep(m_pcairo);
+
+      bool bMultiframe = false;
+
+      ::collection::index iFrameIndex = -1;
 
       try
       {
@@ -1518,22 +1767,6 @@ namespace draw2d_cairo
 
          auto pimage = pimageSource->get_source_image();
 
-         auto pgraphicsSrc = pimage->acquire_graphics();
-
-         if (::is_null(pgraphicsSrc))
-         {
-
-            throw ::exception(error_wrong_state);
-
-         }
-
-         if (pgraphicsSrc->nok())
-         {
-
-            throw ::exception(error_wrong_state);
-
-         }
-
          if (rectangleTarget.width() <= 0 || rectangleTarget.height() <= 0)
          {
 
@@ -1541,18 +1774,93 @@ namespace draw2d_cairo
 
          }
 
-         ::cast < ::draw2d_cairo::graphics > pdraw2dcairographicsSrc = pgraphicsSrc;
+         ::cast < ::draw2d_cairo::bitmap > pbitmapSource;
 
-         cairo_surface_t * psurface = cairo_get_target(pdraw2dcairographicsSrc->m_pcairo);
+         auto pframea = pimageSource->frames();
 
-         if (psurface == nullptr)
+         bMultiframe = pimageSource->frames() && pimageSource->frames()->count() > 1;
+
+         if (bMultiframe)
          {
 
-            throw ::exception(error_wrong_state);
+            pbitmapSource = pimage->get_bitmap_as_source(this);
+
+         }
+         else
+         {
+
+            pbitmapSource = pimage->get_bitmap_as_source(this);
 
          }
 
-         cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
+         if (!pbitmapSource || !pbitmapSource->m_pcairosurface)
+         {
+
+            throw ::exception(error_wrong_state, "Cairo source bitmap is unavailable");
+
+         }
+
+         auto psurface = pbitmapSource->m_pcairosurface;
+
+         if (bMultiframe)
+         {
+
+            if (!is_first_multi_frame_loaded())
+            {
+
+               information("first multi frame not loaded");
+
+            }
+            else
+            {
+
+               information("first multi frame loaded");
+
+            }
+
+            auto pdata = cairo_image_surface_get_data(psurface);
+
+            auto width = cairo_image_surface_get_width(psurface);
+
+            auto height = cairo_image_surface_get_height(psurface);
+
+            auto scan = cairo_image_surface_get_stride(psurface);
+
+            ::pixmap_t pixmap;
+
+            pixmap.initialize_pixmap({width, height}, (::image32_t *) pdata, scan);
+
+            auto diagnostics = _001_image32_diagnostics_t(&pixmap);
+
+            if (diagnostics.translucentCount > 100)
+            {
+
+               information("translucentCount is greater than 100");
+
+            }
+            else if (diagnostics.transparentCount == diagnostics.totalPixels)
+            {
+
+               if (pimage->m_pimageframeSource)
+               {
+
+                  iFrameIndex = pimage->m_pimageframeSource->m_iFrame;
+
+               }
+
+               information("Frame is totally transparent!! frame no. {}", iFrameIndex);
+
+            }
+            else if (diagnostics.transparentCount > 100)
+            {
+
+               information("transparentCount is greater than 100");
+
+            }
+
+         }
+
+         cairo_pattern_holder ppattern(cairo_pattern_create_for_surface(psurface));
 
          if (ppattern == nullptr)
          {
@@ -1619,11 +1927,45 @@ namespace draw2d_cairo
 
                cairo_paint_with_alpha(m_pcairo, opacity.f32_opacity());
 
+               if (0 && bMultiframe)
+               {
+
+                  //fill_solid_rectangle({16, 16, 32, 32}, ::color::cyan & ::opacity(.20));
+                  fill_solid_rectangle({16, 16, 32, 32}, ::color::cyan);
+
+               }
+
             }
             else
             {
 
                cairo_paint(m_pcairo);
+
+               if (0 && bMultiframe)
+               {
+
+                  //fill_solid_rectangle({32, 16, 48, 32}, ::color::blue & ::opacity(.20));
+                  fill_solid_rectangle({32, 16, 48, 32}, ::color::blue);
+
+               }
+
+               // 3. Check the context status for any accumulated errors
+               auto status = cairo_status(m_pcairo);
+
+               if (status != CAIRO_STATUS_SUCCESS)
+               {
+
+                  // Handle the error (e.g., CAIRO_STATUS_NO_MEMORY, CAIRO_STATUS_INVALID_STATUS)
+
+                  ::string strError;
+
+                  strError.formatf("Cairo error occurred: %s\n", cairo_status_to_string(status));
+
+                  error(strError);
+
+                  throw ::exception(error_failed, strError);
+
+               }
 
             }
 
@@ -1631,7 +1973,7 @@ namespace draw2d_cairo
 
          cairo_pattern_set_matrix(ppattern, &matrixOld);
 
-         cairo_pattern_destroy(ppattern);
+         // The pattern holder releases the source reference on all exit paths.
 
          //return true;
 
@@ -1639,7 +1981,7 @@ namespace draw2d_cairo
       catch (...)
       {
 
-         //return false;
+         throw;
 
       }
 
@@ -1661,21 +2003,19 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
       cairo_keep keep(m_pcairo);
 
       if (::is_null(pimage))
       {
 
          //return false;
-         throw ::exception(error_null_pointer);
-
-      }
-
-      auto pgraphicsSrc = pimage->acquire_graphics();
-
-      if (::is_null(pgraphicsSrc))
-      {
-
          throw ::exception(error_null_pointer);
 
       }
@@ -1705,23 +2045,18 @@ namespace draw2d_cairo
 
       }
 
-      if (pgraphicsSrc == nullptr || pgraphicsSrc->nok())
+      pimage = pimage->get_source_image();
+
+      ::cast < ::draw2d_cairo::bitmap > pbitmapSource = pimage->get_bitmap_as_source(this);
+
+      if (!pbitmapSource || !pbitmapSource->m_pcairosurface)
       {
 
-         throw ::exception(error_null_pointer);
+         throw ::exception(error_wrong_state, "Cairo source bitmap is unavailable");
 
       }
 
-      ::cast < ::draw2d_cairo::graphics > pdraw2dcairographicsSrc = pgraphicsSrc;
-
-      cairo_surface_t * psurface = cairo_get_target(pdraw2dcairographicsSrc->m_pcairo);
-
-      if (psurface == nullptr)
-      {
-
-         throw ::exception(error_null_pointer);
-
-      }
+      auto psurface = pbitmapSource->m_pcairosurface;
 
       cairo_pattern_holder ppattern(cairo_pattern_create_for_surface(psurface));
 
@@ -3086,21 +3421,30 @@ namespace draw2d_cairo
 //   }
 
 
-   void graphics::DeleteDC()
+   void graphics::destroy()
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (m_pcairo == nullptr)
+      if (m_pcairo != nullptr)
       {
 
-         return;
+         cairo_destroy(m_pcairo);
+
+         m_pcairo = nullptr;
 
       }
 
-      cairo_destroy(m_pcairo);
+      m_pimageOwned.defer_destroy_and_release();
 
-      m_pcairo = nullptr;
+      // if (m_pcairosurface != nullptr)
+      // {
+      //
+      //    cairo_surface_destroy(m_pcairosurface);
+      //
+      //    m_pcairosurface = nullptr;
+      //
+      // }
 
       //m_osdata[0] = nullptr;
 
@@ -3728,6 +4072,13 @@ namespace draw2d_cairo
 
       }
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
       cairo_keep keep(m_pcairo);
 
       ::f64_size sz = get_text_extent(str);
@@ -4323,6 +4674,9 @@ namespace draw2d_cairo
 
       }
 
+      // Font selection is lazy. Measurement must use the same native font as drawing.
+      m_pwritetextfont->defer_update(this);
+
       if (iIndex < 0)
       {
 
@@ -4580,6 +4934,13 @@ namespace draw2d_cairo
          //return false;
 
          return;
+
+      }
+
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
 
       }
 
@@ -6521,18 +6882,7 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      cairo_pattern_t * ppattern = cairo_get_source(m_pcairo);
-
-      if (ppattern == nullptr)
-      {
-
-         throw ::exception(error_null_pointer);
-
-      }
-
-      cairo_surface_t * psurface = nullptr;
-
-      cairo_pattern_get_surface(ppattern, &psurface);
+      cairo_surface_t * psurface = cairo_get_target(m_pcairo);
 
       if (psurface == nullptr)
       {

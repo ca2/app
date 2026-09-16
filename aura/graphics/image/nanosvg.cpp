@@ -31,7 +31,8 @@ namespace image
 
       }
 
-      nsvg_rasterizer_set_output_format(rast, iRedLower);
+      nsvg_rasterizer_set_output_format(rast, iRedLower < 0
+         ? (::color_indexes().red() < ::color_indexes().blue()) : iRedLower);
 
       ::i32 w = (::i32)iWidth;
 

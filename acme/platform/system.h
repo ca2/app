@@ -361,9 +361,9 @@ namespace platform
       virtual ::u32 crc32(::u32 uCrc, const ::block & block) override;
 
 
-      using ::task::branch;
+      using ::task::branch_asynchronously;
 
-      void branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes_t& createtaskattributes = {}) override;
+      void branch_asynchronously(const create_task_attributes_t& createtaskattributes = {}) override;
 
 
 

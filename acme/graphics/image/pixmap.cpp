@@ -788,74 +788,74 @@ void pixmap::y_swap_copy(const ::i32_size & size, const ::image32_t * ppixmap32,
 //}
 
 
-CLASS_DECL_ACME::string _001_image32_diagnostics(const ::i32_size & size, const image32_t * ppixmap32, int iScan)
-{
-
-   ::string strImage32;
-
-   strImage32.formatf("\n\n   ppixmap32=%p (%d,%d) scan=%d,", ppixmap32, size.cx, size.cy, iScan);
-
-   auto pu8 = (::u8 *)ppixmap32;
-
-   if (!pu8)
-   {
-
-      return strImage32;
-
-   }
-
-   ::collection::count opaqueCount = 0;
-   ::collection::count transparentCount = 0;
-   ::collection::count translucentCount = 0;
-   ::collection::count pixelCount = 0;
-
-   for (int i = 0; i < size.cy; i++)
-   {
-
-      auto pu8Line = pu8 + (iScan * i);
-
-      auto p = pu8Line;
-
-      for (int j = 0; j < size.cx; j++)
-      {
-
-         auto r = p[0];
-         auto g = p[1];
-         auto b = p[2];
-         auto a = p[3];
-
-         if (a == 255)
-         {
-
-            opaqueCount++;
-
-         }
-         else if (a == 0)
-         {
-
-            transparentCount++;
-
-         }
-         else
-         {
-
-            translucentCount++;
-
-         }
-
-         p += 4;
-
-         pixelCount++;
-
-      }
-
-   }
-
-   strImage32.append_formatf("\n   pixel=%llu opaque=%llu transp=%llu transl=%llu\n", pixelCount, opaqueCount, transparentCount, translucentCount);
-
-   return strImage32;
-
-}
+// CLASS_DECL_ACME::string _001_image32_diagnostics(const ::i32_size & size, const image32_t * ppixmap32, int iScan)
+// {
+//
+//    ::string strImage32;
+//
+//    strImage32.formatf("\n\n   ppixmap32=%p (%d,%d) scan=%d,", ppixmap32, size.cx, size.cy, iScan);
+//
+//    auto pu8 = (::u8 *)ppixmap32;
+//
+//    if (!pu8)
+//    {
+//
+//       return strImage32;
+//
+//    }
+//
+//    ::collection::count opaqueCount = 0;
+//    ::collection::count transparentCount = 0;
+//    ::collection::count translucentCount = 0;
+//    ::collection::count pixelCount = 0;
+//
+//    for (int i = 0; i < size.cy; i++)
+//    {
+//
+//       auto pu8Line = pu8 + (iScan * i);
+//
+//       auto p = pu8Line;
+//
+//       for (int j = 0; j < size.cx; j++)
+//       {
+//
+//          auto r = p[0];
+//          auto g = p[1];
+//          auto b = p[2];
+//          auto a = p[3];
+//
+//          if (a == 255)
+//          {
+//
+//             opaqueCount++;
+//
+//          }
+//          else if (a == 0)
+//          {
+//
+//             transparentCount++;
+//
+//          }
+//          else
+//          {
+//
+//             translucentCount++;
+//
+//          }
+//
+//          p += 4;
+//
+//          pixelCount++;
+//
+//       }
+//
+//    }
+//
+//    strImage32.append_formatf("\n   pixel=%llu opaque=%llu transp=%llu transl=%llu\n", pixelCount, opaqueCount, transparentCount, translucentCount);
+//
+//    return strImage32;
+//
+// }
 
 
 ::pixmap_pointer pixmap::get_resized_pixmap(const ::i32_size & size)
@@ -4426,16 +4426,17 @@ void pixmap::copy_from(::pixmap * ppixmap)
 
       //create_as_descriptor(ppixmap->size(), DEFAULT_CREATE_IMAGE_FLAG, ppixmap->scan_size());
 
-      auto ppixmapTarget = this->map();
+      //auto ppixmapTarget = this->map();
 
       auto ppixmapSource = ppixmap->map();
 
-      ppixmapTarget->copy(ppixmapSource);
+      copy(ppixmapSource);
 
       return;
 
    }
 
+   throw ::not_implemented();
    //return copy_from(ppixmap, {});
 
 }
@@ -10640,13 +10641,13 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::pixmap::image* m_p, ::i32 Δx, ::i32
 ::subparticle_pointer pixmap::clone()
 {
 
-   auto ppixmap = this->createø<::pixmap>();
+   auto ppixmap = this->create_newø<::pixmap>();
 
    ppixmap->copy_from((::pixmap *) this);
 
-   __refdbg_add_referer
-
-   ppixmap->increment_reference_count();
+   // __refdbg_add_referer
+   //
+   // ppixmap->increment_reference_count();
 
    return ppixmap;
 

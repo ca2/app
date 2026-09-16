@@ -62,7 +62,8 @@ namespace image
       bool                                      m_bOwn;
       ::image::enum_mipmap                      m_emipmap;
       ::collection::index                       m_iFrame;
-      ::i32                                       m_iExifOrientation;
+      ::pointer < ::image::image_frame >        m_pimageframeSource;
+      ::i32                                     m_iExifOrientation;
       bool                                      m_bCreateHelperMaps;
       ::pointer<::image::image_extension>       m_pextension;
       image_dynamic                             m_dynamic;

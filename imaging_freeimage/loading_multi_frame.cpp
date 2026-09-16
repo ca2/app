@@ -1,6 +1,7 @@
 #include "platform.h"
 #include "image_context.h"
 #include "fimemory.h"
+#include "acme/platform/scoped_restore.h"
 ////#include "acme/exception/exception.h"
 #include "acme/prototype/time/_text_stream.h"
 #include "acme/graphics/image/frame.h"
@@ -12,6 +13,10 @@
 #else
 #include <FreeImage.h>
 #endif
+
+
+CLASS_DECL_ACME ::string as_string(::draw2d::enum_disposal edisposal);
+CLASS_DECL_ACME void set_first_multi_frame_loaded();
 
 
 struct FIBITMAP;
@@ -48,6 +53,13 @@ namespace imaging_freeimage
 
             multibitmap = FreeImage_LoadMultiBitmapFromMemory(format, mem);
 
+            if (!multibitmap)
+            {
+
+               throw ::exception(error_failed, "GIF: could not open frame data");
+
+            }
+
             try
             {
 
@@ -66,6 +78,20 @@ namespace imaging_freeimage
 
                   FIBITMAP * pfi = FreeImage_LockPage(multibitmap, (::i32)iFrame);
 
+                  if (!pfi)
+                  {
+
+                     throw ::exception(error_failed, "GIF: could not lock frame");
+
+                  }
+
+                  at_end_of_scope
+                  {
+
+                     FreeImage_UnlockPage(multibitmap, pfi, FALSE);
+
+                  };
+
                   if (pfi != nullptr)
                   {
 
@@ -77,6 +103,8 @@ namespace imaging_freeimage
 
                      if (iFrame <= 0)
                      {
+
+                        pframea->m_size = {w, h};
 
                         if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "LogicalWidth", &ptag))
                         {
@@ -128,7 +156,9 @@ namespace imaging_freeimage
 
                         ppixmapImageCompose->create_as_descriptor(pframea->m_size);
 
-                        ppixmapImageCompose->clear(::color::transparent);
+                        // A descriptor has dimensions but no allocated pixels yet.
+                        auto ppixmapCompose = ppixmapImageCompose->map();
+                        ppixmapCompose->clear(::color::transparent);
 
                      }
 
@@ -219,10 +249,39 @@ namespace imaging_freeimage
 
                      }
 
+                     auto edisposal = pframe->m_edisposal;
+
+                     auto strDisposal = ::as_string(edisposal);
+
+                     if (iFrame == 3)
+                     {
+
+                        information("frame {} disposal {}", iFrame, strDisposal);
+
+                     }
+                     else if (iFrame == 29)
+                     {
+
+                        information("frame {} disposal {}", iFrame, strDisposal);
+
+                     }
+                     else if (iFrame == 30)
+                     {
+
+                        information("frame {} disposal {}", iFrame, strDisposal);
+
+                     }
+                     else
+                     {
+
+                        information("frame {} disposal {}", iFrame, strDisposal);
+
+                     }
+
                      if (!freeimage_load_imagea_frame(ppixmapImageCompose, pframea, iFrame, pfi))
                      {
 
-                        informationf("failed to load page image");
+                        throw ::exception(error_failed, "GIF: failed to decode frame pixels");
 
                      }
 
@@ -233,6 +292,9 @@ namespace imaging_freeimage
             }
             catch (...)
             {
+
+               FreeImage_CloseMultiBitmap(multibitmap);
+               throw;
 
             }
 
@@ -245,10 +307,11 @@ namespace imaging_freeimage
       {
          //return false;
 
-         throw ::exception(error_failed);
+         throw;
 
       }
 
+      set_first_multi_frame_loaded();
       //return true;
 
    }
@@ -259,6 +322,8 @@ namespace imaging_freeimage
 
       if (pfi == nullptr)
       {
+
+         throw ::exception(error_failed, "GIF: failed to decode frame pixels");
 
          return false;
 
@@ -288,17 +353,73 @@ namespace imaging_freeimage
       if (!ppixmapImageFrame)
       {
 
+         throw ::exception(error_failed, "GIF: failed to decode frame pixels");
+
          return false;
 
       }
 
-      pixmap_from_freeimage(ppixmapImageFrame, pfi);
+      if (!pixmap_from_freeimage(ppixmapImageFrame, pfi))
+      {
+
+         throw ::exception(error_failed, "GIF: failed to decode frame pixels");
+
+         return false;
+
+      }
 
       ::draw2d::enum_disposal edisposal = iFrame <= 0 ? ::draw2d::e_disposal_none : pframea->element_at(iFrame)->m_edisposal;
 
       pframe->m_edisposal = edisposal;
 
       pframe->_001Process(ppixmapImageCompose, ppixmapImageFrame, pframea);
+
+      // Each animation frame needs its own snapshot of the composed canvas.
+      pframe->create_frame(pframe, ppixmapImageCompose, pframea);
+
+      auto diagnosticsFrame = _001_image32_diagnostics_t(ppixmapImageFrame);
+
+      ::string strDisposal = ::as_string(edisposal);
+
+      ::string strDiagnosticFrame = diagnosticsFrame.as_string();
+
+      if (diagnosticsFrame.transparentCount > 100)
+      {
+
+         information("frame {} edisposal {} diagnostics: {}", iFrame, strDisposal, strDiagnosticFrame);
+
+      }
+      else
+      {
+
+         information("frame {} edisposal {} diagnostics: {}", iFrame, strDisposal, strDiagnosticFrame);
+
+      }
+
+      auto diagnosticsCompose = _001_image32_diagnostics_t(ppixmapImageCompose);
+
+      ::string strDiagnosticCompose = diagnosticsCompose.as_string();
+
+      if (diagnosticsCompose.transparentCount > 0)
+      {
+
+         information("composed frame {} diagnostics: {}", iFrame, strDiagnosticCompose);
+
+      }
+      else if (diagnosticsCompose.translucentCount > 0)
+      {
+
+         information("composed frame {} diagnostics: {}", iFrame, strDiagnosticCompose);
+
+      }
+      else
+      {
+
+         information("composed frame {} diagnostics: {}", iFrame, strDisposal, strDiagnosticCompose);
+
+      }
+
+
 
 
 //      ::i32 transparentIndex = FreeImage_GetTransparentIndex(pfi);
@@ -385,6 +506,4 @@ namespace imaging_freeimage
 
 
 } // namespace imaging_freeimage
-
-
 

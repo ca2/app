@@ -32,7 +32,7 @@
 #include "aura/graphics/write_text/_defer_geometry2d_item.h"
 
 
-CLASS_DECL_ACME::string _001_pixmap_diagnostics(const pixmap_t * ppixmap);
+// CLASS_DECL_ACME::string _001_pixmap_diagnostics(const pixmap_t * ppixmap);
 
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
@@ -2348,7 +2348,7 @@ namespace draw2d
 
                auto ppixmapImageAlphaBlend = m_pimageAlphaBlend->map();
 
-               auto str1 = _001_pixmap_diagnostics(ppixmapImage1);
+               auto str1 = _001_image32_diagnostics_t(ppixmapImage1).as_string();
 
                auto psz1 = str1.c_str();
 
@@ -2356,7 +2356,7 @@ namespace draw2d
 
                ppixmapImage1->blend2(pointDst, ppixmapImageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
 
-               auto str2 = _001_pixmap_diagnostics(ppixmapImage1);
+               auto str2 = _001_image32_diagnostics_t(ppixmapImage1).as_string();
 
                auto psz2 = str2.c_str();
 
@@ -7243,7 +7243,10 @@ namespace draw2d
 
       }
 
-      if (bExternalRendering)
+      // Buffered windows are presented from rectangleFrame within the backing
+      // image. Use that same origin for drawing: screen_origin() can be zero
+      // on Wayland, or refer to a newer layout than the acquired buffer.
+      if (bExternalRendering || m_pgraphicsbufferitem)
       {
 
          m_pointTarget = rectangleFrame.origin();
@@ -7834,3 +7837,26 @@ namespace draw2d
 
 
 } // namespace draw2d
+
+
+
+bool g_bFirstMultiFrameLoaded = false;
+
+
+CLASS_DECL_ACME void set_first_multi_frame_loaded()
+{
+
+   g_bFirstMultiFrameLoaded = true;
+
+}
+
+
+CLASS_DECL_ACME bool is_first_multi_frame_loaded()
+{
+
+   return g_bFirstMultiFrameLoaded;
+
+}
+
+
+

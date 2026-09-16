@@ -16,8 +16,8 @@ namespace draw2d_cairo
 
 
       cairo_surface_t *       m_pcairosurface;
-      memory                  m_mem;
-      ::i32_size              m_size;
+      //memory                  m_mem;
+      //::i32_size              m_size;
 
 
       bitmap();
@@ -30,8 +30,11 @@ namespace draw2d_cairo
    
       bool CreateBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, ::i32 iStride);
 //      bool CreateBitmapIndirect(::draw2d::graphics * pdraw2dgraphics, LPBITMAP lpBitmap);
-      void CreateCompatibleBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight) override;
-      void CreateDiscardableBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight) override;
+      void create_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size) override;
+      void preserve_image(const ::i32_size & size, ::image::image * pimage) override;
+      void write_pixels(const ::i32_size & size, const ::i32_point & point,
+         const ::image32_t * pimage32, ::i32 iScan, bool bTopDown) override;
+      //void CreateDiscardableBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight) override;
       void create_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size, ::pixmap * ppixmap) override;
       void CreateDIBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void *pjBits, ::u32 iUsage) override;
 
@@ -63,6 +66,4 @@ namespace draw2d_cairo
 
 
 } // namespace draw2d_cairo
-
-
 

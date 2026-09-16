@@ -1,6 +1,7 @@
 #include "platform.h"
 #include "bitmap.h"
 #include "draw2d.h"
+#include "aura/graphics/image/image.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/image/pixmap.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -53,14 +54,14 @@ namespace draw2d_cairo
 
       ::i32 iStride = stride_for_width(cx);
 
-      m_mem.set_size(iStride * cy);
+      m_memoryDraw2dBitmap.set_size(iStride * cy);
 
       if(pdata == nullptr || iStrideParam <= 0)
       {
 
          informationf("draw2d_cairo::bitmap::CreateBitmap setting image transparent");
 
-         memory_set(m_mem.data(), 0, m_mem.size());
+         memory_set(m_memoryDraw2dBitmap.data(), 0, m_memoryDraw2dBitmap.size());
 
       }
       else
@@ -76,7 +77,7 @@ namespace draw2d_cairo
             for(::i32 i = 0; i < cy; i++)
             {
 
-               ::memory_copy(&m_mem.data()[iStride * i], &((::u8 *) pdata)[iStrideParam * i], iW);
+               ::memory_copy(&m_memoryDraw2dBitmap.data()[iStride * i], &((::u8 *) pdata)[iStrideParam * i], iW);
 
             }
 
@@ -84,7 +85,7 @@ namespace draw2d_cairo
          else
          {
 
-            ::memory_copy(m_mem.data(), pdata, iStride * cy);
+            ::memory_copy(m_memoryDraw2dBitmap.data(), pdata, iStride * cy);
 
          }
 
@@ -94,7 +95,7 @@ namespace draw2d_cairo
 
       informationf("draw2d_cairo::bitmap::CreateBitmap cairo_image_surface_create_for_data");
 
-      m_pcairosurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, cx, cy, iStride);
+      m_pcairosurface = cairo_image_surface_create_for_data(m_memoryDraw2dBitmap.data(), CAIRO_FORMAT_ARGB32, cx, cy, iStride);
 
       if(m_pcairosurface == nullptr)
       {
@@ -189,20 +190,20 @@ namespace draw2d_cairo
 
 #endif
 
-         m_mem.m_bAligned = true;
+         m_memoryDraw2dBitmap.m_bAligned = true;
 
-         m_mem.set_size(iStride * size.cy);
+         m_memoryDraw2dBitmap.set_size(iStride * size.cy);
 
-         auto pimage32Target = (::image32_t *)m_mem.data();
+         auto pimage32Target = (::image32_t *)m_memoryDraw2dBitmap.data();
 
-         if (ppixmap && ppixmap->m_memoryPixmap.size() > iSourceStride * size.cy)
+         if (ppixmap && ppixmap->m_memoryPixmap.size() >= (::memsize) iSourceStride * size.cy)
          {
 
             pimage32Target->copy(size, iStride, (::image32_t *) ppixmap->m_memoryPixmap.data(), iSourceStride);
 
          }
 
-         m_pcairosurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, size.cx, size.cy, iStride);
+         m_pcairosurface = cairo_image_surface_create_for_data(m_memoryDraw2dBitmap.data(), CAIRO_FORMAT_ARGB32, size.cx, size.cy, iStride);
 
          ::i32 iSurfaceStatus = cairo_surface_status(m_pcairosurface);
 
@@ -220,7 +221,7 @@ namespace draw2d_cairo
 
                iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, size.cx);
 
-               m_pcairosurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, size.cx, size.cy, iStride);
+               m_pcairosurface = cairo_image_surface_create_for_data(m_memoryDraw2dBitmap.data(), CAIRO_FORMAT_ARGB32, size.cx, size.cy, iStride);
 
                iSurfaceStatus = cairo_surface_status(m_pcairosurface);
 
@@ -252,19 +253,9 @@ namespace draw2d_cairo
 
          //}
 
-         if (ppixmap)
-         {
-
-            ppixmap->m_memoryPixmap.reference_data(m_mem);
-
-         }
-
-         if(ppixmap != nullptr)
-         {
-
-            ppixmap->m_iScan = iStride;
-
-         }
+         // Uploading must not replace the source pixmap's storage or invalidate
+         // its raw and mapped pixel pointers.
+         m_iStride = iStride;
 
          //m_osdata[0] = m_pcairosurface;
 
@@ -335,9 +326,9 @@ namespace draw2d_cairo
 
       //m_mem.m_bAligned = true;
 
-      m_mem.m_begin = (::u8*) ppixmap->m_pimage32Raw;
-      m_mem.m_end = m_mem.m_begin + (ppixmap->m_iScan * ppixmap->m_size.cy);
-      m_mem.m_bOwner = false;
+      m_memoryDraw2dBitmap.m_begin = (::u8*) ppixmap->m_pimage32Raw;
+      m_memoryDraw2dBitmap.m_end = m_memoryDraw2dBitmap.m_begin + (ppixmap->m_iScan * ppixmap->m_size.cy);
+      m_memoryDraw2dBitmap.m_bOwner = false;
 
 //      if(*ppdata != nullptr)
 //      {
@@ -364,7 +355,7 @@ namespace draw2d_cairo
 //
 //      }
 
-      m_pcairosurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx, ppixmap->m_sizeRaw.cy, ppixmap->m_iScan);
+      m_pcairosurface = cairo_image_surface_create_for_data(m_memoryDraw2dBitmap.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx, ppixmap->m_sizeRaw.cy, ppixmap->m_iScan);
 
       ::i32 iSurfaceStatus = cairo_surface_status(m_pcairosurface);
 
@@ -380,7 +371,7 @@ namespace draw2d_cairo
 
             ppixmap->m_iScan = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx);
 
-            m_pcairosurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx, ppixmap->m_sizeRaw.cy, ppixmap->m_iScan);
+            m_pcairosurface = cairo_image_surface_create_for_data(m_memoryDraw2dBitmap.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx, ppixmap->m_sizeRaw.cy, ppixmap->m_iScan);
 
             iSurfaceStatus = cairo_surface_status(m_pcairosurface);
 
@@ -513,29 +504,177 @@ namespace draw2d_cairo
    }
 
 
-   void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 cx, ::i32 cy)
+   void bitmap::write_pixels(const ::i32_size & size, const ::i32_point & point,
+      const ::image32_t * pimage32, ::i32 iScan, bool bTopDown)
    {
 
-      if(!CreateBitmap(pdraw2dgraphics, cx, cy, 1, 32, nullptr, cx * sizeof(color32_t)))
+      _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      if (!m_pcairosurface || cairo_surface_status(m_pcairosurface) != CAIRO_STATUS_SUCCESS
+         || cairo_surface_get_type(m_pcairosurface) != CAIRO_SURFACE_TYPE_IMAGE)
       {
 
-         throw ::exception(error_failed);
+         throw ::exception(error_wrong_state);
 
       }
+
+      if (!pimage32 || size.is_empty() || point.x < 0 || point.y < 0
+         || (::i64) point.x + size.cx > cairo_image_surface_get_width(m_pcairosurface)
+         || (::i64) point.y + size.cy > cairo_image_surface_get_height(m_pcairosurface)
+         || (::i64) iScan < (::i64) size.cx * sizeof(::image32_t))
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      cairo_surface_flush(m_pcairosurface);
+      auto pdata = cairo_image_surface_get_data(m_pcairosurface);
+      auto iStride = cairo_image_surface_get_stride(m_pcairosurface);
+
+      for (::i32 y = 0; y < size.cy; y++)
+      {
+
+         auto ySource = bTopDown ? y : size.cy - 1 - y;
+         auto psource = (const ::u8 *) pimage32 + (::memsize) ySource * iScan;
+         auto ptarget = pdata + (::memsize) (point.y + y) * iStride
+            + (::memsize) point.x * sizeof(::image32_t);
+         if (ptarget != psource)
+         {
+
+            ::memory_copy(ptarget, psource, (::memsize) size.cx * sizeof(::image32_t));
+
+         }
+
+      }
+
+      cairo_surface_mark_dirty_rectangle(m_pcairosurface, point.x, point.y, size.cx, size.cy);
+
+   }
+
+
+   void bitmap::preserve_image(const ::i32_size & size, ::image::image * pimage)
+   {
+
+      _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      if (!pimage || size.is_empty() || pimage->m_pdraw2dbitmap != this)
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      if (pimage->has_active_destination_graphics_lease()
+         || pimage->m_pimagepixmaplease
+         || (pimage->m_ppixmapOwned && pimage->m_ppixmapOwned->m_interlockedcountMap > 0))
+      {
+
+         throw ::exception(error_wrong_state,
+            "Cannot preserve an image while it is mapped or has active destination graphics");
+
+      }
+
+      if (!m_pcairosurface || cairo_surface_status(m_pcairosurface) != CAIRO_STATUS_SUCCESS)
+      {
+
+         throw ::exception(error_wrong_state, "Cairo bitmap has no valid surface to preserve");
+
+      }
+
+      auto sizeRawNew = pimage->raw_size().maximum(pimage->m_point + size);
+
+      if (sizeRawNew == pimage->raw_size())
+      {
+
+         pimage->m_size = size;
+         return;
+
+      }
+
+      // Allocate and copy before replacing the old surface. New pixels are transparent.
+      auto psurfaceNew = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, sizeRawNew.cx, sizeRawNew.cy);
+      auto status = cairo_surface_status(psurfaceNew);
+
+      if (status == CAIRO_STATUS_SUCCESS)
+      {
+
+         auto pcairo = cairo_create(psurfaceNew);
+         cairo_set_operator(pcairo, CAIRO_OPERATOR_SOURCE);
+         cairo_set_source_surface(pcairo, m_pcairosurface, 0, 0);
+         cairo_paint(pcairo);
+         status = cairo_status(pcairo);
+         cairo_destroy(pcairo);
+
+      }
+
+      if (status != CAIRO_STATUS_SUCCESS)
+      {
+
+         cairo_surface_destroy(psurfaceNew);
+         throw ::exception(error_failed, "Could not preserve the Cairo bitmap");
+
+      }
+
+      cairo_surface_destroy(m_pcairosurface);
+      m_pcairosurface = psurfaceNew;
+      m_size = sizeRawNew;
+      m_iStride = cairo_image_surface_get_stride(psurfaceNew);
+
+      pimage->m_size = size;
+      pimage->m_sizeRaw = sizeRawNew;
+      pimage->m_iScan = m_iStride;
+      pimage->m_ppixmapOwned.release();
+      pimage->m_bGraphicsWasAcquiredAfterLastMap = true;
+      pimage->m_bWasMappedAfterLastGraphicsAcquisition = false;
+
+   }
+
+
+   void bitmap::create_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size & size)
+   {
+
+      // if(!CreateBitmap(pdraw2dgraphics, size.cx, size.cy, 1, 32, nullptr, size.cx * sizeof(color32_t)))
+      // {
+      //
+      //    throw ::exception(error_failed);
+      //
+      // }
+
+      destroy();
+
+      m_memoryDraw2dBitmap.clear();
+
+      m_pcairosurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, size.cx, size.cy);
+
+      if(m_pcairosurface == nullptr)
+      {
+
+         ::string strError;
+
+         strError.format("draw2d_cairo::bitmap::create_bitmap Cairo Surface NOT Created");
+
+         error(strError);
+
+         throw ::exception(error_failed, strError);
+
+      }
+
+      m_size = size;
 
       //return true;
 
    }
 
 
-   void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight)
-   {
-
-      //return CreateCompatibleBitmap(pdraw2dgraphics, nWidth, nHeight);
-
-      CreateCompatibleBitmap(pdraw2dgraphics, nWidth, nHeight);
-
-   }
+   // void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pdraw2dgraphics, ::i32 nWidth, ::i32 nHeight)
+   // {
+   //
+   //    //return CreateCompatibleBitmap(pdraw2dgraphics, nWidth, nHeight);
+   //
+   //    CreateCompatibleBitmap(pdraw2dgraphics, nWidth, nHeight);
+   //
+   // }
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -638,6 +777,4 @@ namespace draw2d_cairo
 
 
 } // namespace draw2d_cairo
-
-
 

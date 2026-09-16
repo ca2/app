@@ -12100,6 +12100,13 @@ namespace windowing
 
 #endif
 
+                     pbufferitem = pgraphicsgraphics->get_buffer_item();
+
+                     // Match presentation's lock order: graphics, buffer item, backend.
+                     // Declare this before the lease so the lease is released before
+                     // Qt can map the shared image, including on early returns.
+                     _synchronous_lock slBufferItem(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
                      auto pdraw2dgraphics = pgraphicsgraphics->on_begin_layout();
 
                      //                     if (!pbufferitem)
@@ -12123,8 +12130,6 @@ namespace windowing
 #endif
 
                      {
-
-                        //_synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                         slGraphics.unlock();
 
@@ -12168,7 +12173,6 @@ namespace windowing
                         }
 
 #if 1
-                        pbufferitem = m_pgraphicsgraphics->get_buffer_item();
                         auto pimageBuffer = pbufferitem->m_pimageBufferItem;
                         auto pdraw2dbitmap = pimageBuffer->m_pdraw2dbitmap;
                         auto sizeBitmap = pdraw2dbitmap->size();
@@ -12320,7 +12324,7 @@ namespace windowing
                               time42.Now();
                               frame_draw_stage(pdraw2dgraphics);
 
-                              // pdraw2dgraphics->fill_solid_rectangle({ 100., 100., 500., 500. }, argb(127, 100, 180, 220));
+                               //pdraw2dgraphics->fill_solid_rectangle({ 100., 100., 500., 500. }, argb(127, 100, 180, 220));
                               //pdraw2dgraphics->on_end_draw(this);
 
 
@@ -12342,7 +12346,7 @@ namespace windowing
 
                   }
 
-                  information() << "draw_frame before on_end_draw";
+                  //information() << "draw_frame before on_end_draw";
 
                   //informationf("draw_frame elapsed4 %0.2f", elapsed4.floating_millisecond());
 

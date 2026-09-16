@@ -197,7 +197,7 @@ namespace filemanager
 
       m_iOperation = 0;
 
-      branch();
+      branch_asynchronously();
 
    }
 

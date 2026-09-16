@@ -36,7 +36,7 @@ task_pool::~task_pool()
 
    ptask->m_procedure = procedure;
 
-   ptask->branch();
+   ptask->branch_asynchronously();
 
    return ptask;
 

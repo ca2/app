@@ -1204,6 +1204,24 @@ namespace graphics
    }
 
 
+
+   ::collection::index graphics::get_buffer_index() const
+   {
+
+      return 0;
+
+   }
+
+
+   ::collection::index graphics::get_screen_index() const
+   {
+
+      return 0;
+
+   }
+
+
+
    ::trace_statement & graphics::trace_statement_prefix(::trace_statement & statement) const
    {
 

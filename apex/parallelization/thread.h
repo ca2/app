@@ -426,7 +426,9 @@ public:
    // void task_osterm() override;
 
 
-   void branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes_t & createtaskattributes = {}) override;
+   //void branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes_t & createtaskattributes = {}) override;
+
+   void branch_asynchronously(const create_task_attributes_t & createtaskattributes = {}) override;
 
    void branch_synchronously(const create_task_attributes_t & createtaskattributes = {}) override;
 

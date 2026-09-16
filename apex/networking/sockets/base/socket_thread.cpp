@@ -109,7 +109,7 @@ namespace sockets
 
       m_psockethandler->add(psocket);
 
-      branch();
+      branch_asynchronously();
 
    }
 

@@ -159,6 +159,8 @@ void task::on_initialize_particle()
 
    update_new_main_loop_happening();
 
+   defer_create_synchronization();
+
    //m_pprintingformat);
 
    //if(!estatus)
@@ -552,7 +554,8 @@ bool task::is_task_set2() const
 {
 
    //return has_flag(e_flag_running) && m_htask.is_set();
-   return m_htask.is_set() && m_taskindex && m_itask.is_set();
+   //return m_htask.is_set() && m_taskindex && m_itask.is_set();
+   return m_htask.is_set();
 
 }
 
@@ -597,6 +600,22 @@ void task::kick_thread()
 //}
 
 
+void task::defer_branch_asynchronously(const create_task_attributes_t& createtaskattributes)
+{
+
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   if (is_task_set2())
+   {
+
+      return;
+
+   }
+
+   branch_asynchronously(createtaskattributes);
+
+}
+
 
 void task::set_finish()
 {
@@ -630,11 +649,13 @@ void task::add_msg_translator(::function<bool(MSG*)> msgtranslator)
 
            if (!is_task_set2())
            {
+
               session()->post([this]()
               {
-                 branch();
-              });
 
+                 defer_branch_asynchronously();
+
+              });
 
            }
 
@@ -642,9 +663,14 @@ void task::add_msg_translator(::function<bool(MSG*)> msgtranslator)
     }
 
 }
-   void task::on_stop_timers_handling_hint() {
+
+
+void task::on_stop_timers_handling_hint()
+{
+
 
 }
+
 
 #if defined(WINDOWS_DESKTOP)
 
@@ -3023,17 +3049,45 @@ void task::on_before_branch()
 }
 
 
-void task::branch(enum_parallelization eparallelization, const ::create_task_attributes_t & createtaskattributes)
+void task::branch_asynchronously(const ::create_task_attributes_t & createtaskattributes)
 {
 
-   if (eparallelization == e_parallelization_synchronous)
+   auto strType = ::type(*this).name();
+
+   if (strType.contains("graphics_thread"))
    {
 
-      return branch_synchronously(createtaskattributes);
+      information("graphics_thread");
 
    }
 
+   if (strType.contains("system"))
+   {
+
+      information("system");
+
+   }
+
+   defer_create_synchronization();
+
+   // if (eparallelization == e_parallelization_synchronous)
+   // {
+   //
+   //    return branch_synchronously(createtaskattributes);
+   //
+   // }
+   //
+
    _synchronous_lock synchronouslock(this->synchronization());
+
+   clear_finishing_flag();
+
+   if (m_htask.is_set() || m_itask.is_set() || m_taskindex > 0)
+   {
+
+      throw ::exception(error_wrong_state, "it seems like the task is already branched");
+
+   }
 
    if (m_bBranchCall)
    {
@@ -3059,6 +3113,13 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
          id() = ::platform::type(this).name();
 
       }
+
+   }
+
+   if (strType.contains("system"))
+   {
+
+      information("system");
 
    }
 
@@ -3399,7 +3460,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 
    //auto estatus = branch(epriority, nStackSize, uiCreateFlags);
 
-   branch(e_parallelization_asynchronous, createtaskattributes);
+   branch_asynchronously(createtaskattributes);
 
    if (!m_htask)
    {

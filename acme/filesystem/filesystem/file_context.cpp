@@ -14,6 +14,7 @@
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/nano/http/get.h"
 #include "acme/platform/http.h"
+#include "acme/platform/scoped_restore.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/prototype/prototype/url_domain.h"
 #include "acme/parallelization/happening.h"
@@ -3442,7 +3443,9 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    bool bBypassCache = (eopen & ::file::e_open_no_cache) || (eflag & ::file::e_flag_bypass_cache);
 
-   bool bDoCache = !bBypassCache;
+   // Bypassing an existing entry refreshes it. Explicit no-cache opens
+   // disable both cache reads and writes.
+   bool bDoCache = !(eopen & ::file::e_open_no_cache);
 
    ::file::path pathCache;
 
@@ -3487,7 +3490,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
       
 #endif
       
-      if (exists(pathCache))
+      if (!bBypassCache && exists(pathCache))
       {
          
 #if HEAVY_HTTP_CACHE_LOG
@@ -3500,12 +3503,12 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
          
          auto pdescriptor = (cache_file_descriptor *) memoryDescriptor.data();
 
-         if(::is_set(pdescriptor))
+         if (memoryDescriptor.size() == sizeof(cache_file_descriptor))
          {
        
             auto timeLastDownloadElapsed = pdescriptor->m_timeLastDownload.elapsed();
       
-            if(timeLastDownloadElapsed < 24_hour)
+            if (timeLastDownloadElapsed >= 0_s && timeLastDownloadElapsed < 24_hour)
             {
 
                auto pfile = get_reader(pathCache);
@@ -3539,28 +3542,6 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    });
 
-   {
-
-      _synchronous_lock synchronouslock(http()->download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      if (bDoCache && file_system()->exists(pathCache))
-      {
-
-         synchronouslock.unlock();
-
-         auto pfile = file_get_file(pathCache, eopen);
-
-         if (pfile.ok() && pfile->size() > 0)
-         {
-
-            return pfile;
-
-         }
-
-      }
-
-   }
-
    if (bDoCache)
    {
 
@@ -3569,6 +3550,20 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
       http()->download_array()->add(url.as_string());
 
    }
+
+   at_end_of_scope
+   {
+
+      if (bDoCache)
+      {
+
+         _synchronous_lock synchronouslock(http()->download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         http()->download_array()->erase(url.as_string());
+
+      }
+
+   };
 
    auto pnanohttpget = createø < ::nano::http::get >();
 
@@ -3588,6 +3583,17 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    
    information() << "Got http_file with size : " << size << " bytes.";
 
+   auto iHttpStatus = pnanohttpget->payload("http_status_code").as_i32();
+
+   if (iHttpStatus < 200 || iHttpStatus >= 300)
+   {
+
+      information("HTTP file request failed: status {} for {}", iHttpStatus, url.as_string());
+
+      throw ::exception(error_io, "HTTP file request failed");
+
+   }
+
    pmemoryfile->payload("http_set") = ::transfer(pnanohttpget->property_set());
 
    if (bDoCache)
@@ -3604,28 +3610,19 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
          transfer(pfileCache, pmemoryfile);
 
+         pfileCache->close();
+
+         cache_file_descriptor descriptor;
+
+         put(pathCache + ".cache_file_descriptor", descriptor);
+
       }
       catch (...)
       {
 
       }
 
-      cache_file_descriptor descriptor;
-
-      put(pathCache + ".cache_file_descriptor", descriptor);
-      
       pmemoryfile->seek_to_begin();
-
-      try
-      {
-
-         http()->download_array()->erase(url.as_string());
-
-      }
-      catch (...)
-      {
-
-      }
 
    }
 
@@ -3848,6 +3845,16 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
    }
 
    auto pathProcessed = m_papplication->defer_process_path(path);
+
+   // Path expansion can rebuild the path from a string and lose its flags.
+   // Preserve the retry's cache policy through to the HTTP reader.
+   if (path.flags() & ::file::e_flag_bypass_cache)
+   {
+
+      pathProcessed.flags().set(::file::e_flag_bypass_cache);
+
+   }
+
 
    if (path == "matter://main/icon-256.png")
    {

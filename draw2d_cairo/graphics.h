@@ -35,6 +35,7 @@ namespace draw2d_cairo
       ::i32                         m_iSaveContext;
       ::i32                         m_iSaveContextPositiveClip;
       cairo_t *                     m_pcairo;
+      //cairo_surface_t *             m_pcairosurface;
       ::i32                         m_iType;
       bool                          m_bPrinting;
       ::i32                         m_nStretchBltMode;
@@ -82,8 +83,10 @@ namespace draw2d_cairo
       //bool CreateIC(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * lpInitData) override
       void create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size) override;
       //void create_compatible_graphics(::draw2d::graphics * pdraw2dgraphics) override;
-
-      void DeleteDC() override;
+      void _create_memory_graphics(const ::i32_size& size, ::acme::user::interaction * pacmeuserinteractionAffinity) override;
+      void create_memory_graphics(const ::i32_size & size, ::acme::user::interaction * pacmeuserinteractionAffinity) override;
+      void create_bitmap_graphics(::draw2d::bitmap * pdraw2dbitmap, ::acme::user::interaction * pacmeuserinteractionAffinity) override;
+      void destroy() override;
 
       // Device-Context Functions
       ::i32 save_graphics_context() override;

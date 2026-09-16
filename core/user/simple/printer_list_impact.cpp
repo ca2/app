@@ -109,7 +109,7 @@ bool simple_printer_list_impact::on_click(::item * pitem, ::user::mouse * pmouse
 
    pprinttask->m_pinteraction = m_pimpact;
 
-   pprinttask->branch();
+   pprinttask->branch_asynchronously();
    
    return true;
 

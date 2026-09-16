@@ -78,7 +78,7 @@ namespace networking
 
       auto pfolder = file()->resource_folder();
 
-      m_psocketthread->branch();
+      m_psocketthread->branch_asynchronously();
 
    }
 

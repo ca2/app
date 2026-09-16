@@ -375,8 +375,8 @@ struct CLASS_DECL_ACME _001_image32_diagnostics_t
    int translucentCount = 0;
    int opaqueCount = 0;
 
-   _001_image32_diagnostics_t(::image32_t * pixelPtr, int width, int height, int stride);
-   _001_image32_diagnostics_t(::pixmap_t * ppixmap);
+   _001_image32_diagnostics_t(const ::i32_size & size, const ::image32_t * pixelPtr, int stride);
+   _001_image32_diagnostics_t(const ::pixmap_t * ppixmap);
 
    ::string as_string()const ;
 

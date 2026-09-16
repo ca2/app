@@ -7840,23 +7840,4 @@ namespace draw2d
 
 
 
-bool g_bFirstMultiFrameLoaded = false;
-
-
-CLASS_DECL_ACME void set_first_multi_frame_loaded()
-{
-
-   g_bFirstMultiFrameLoaded = true;
-
-}
-
-
-CLASS_DECL_ACME bool is_first_multi_frame_loaded()
-{
-
-   return g_bFirstMultiFrameLoaded;
-
-}
-
-
 

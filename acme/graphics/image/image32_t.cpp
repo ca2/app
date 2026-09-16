@@ -607,8 +607,11 @@ image32_t *image32_t::create_copy_of(::memory &memoryAllocation, const i32_size 
 }
 
 
-_001_image32_diagnostics_t::_001_image32_diagnostics_t(image32_t* pixelPtr, int width, int height, int stride)
+_001_image32_diagnostics_t::_001_image32_diagnostics_t(const ::i32_size & size, const image32_t* pixelPtr, int stride)
 {
+
+   auto height = size.cy;
+   auto width = size.cx;
 
    totalPixels = width * height;
    transparentCount = 0;

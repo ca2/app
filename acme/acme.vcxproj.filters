@@ -4497,6 +4497,9 @@
     <ClInclude Include="graphics\image\image32_t_array.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\image\aaa_lock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6484,6 +6487,9 @@
     </ClCompile>
     <ClCompile Include="prototype\prototype\referencing_debugging.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\_string.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

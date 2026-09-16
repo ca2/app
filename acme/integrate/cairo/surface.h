@@ -22,7 +22,7 @@ inline cairo_surface_t * cairo_surface_for_pixmap(::pixmap & pixmap)
 }
 
 
-inline ::pixmap get_raw_data_from_cairo_surface(::memory & memoryHost, cairo_surface_t *surface) {
+inline ::pixmap_pointer pixmap_from_cairo_surface(cairo_surface_t *surface) {
    // Ensure the surface format is ARGB32
    if (cairo_image_surface_get_format(surface) != CAIRO_FORMAT_ARGB32) {
       fprintf(stderr, "Surface format is not ARGB32.\n");
@@ -43,21 +43,26 @@ inline ::pixmap get_raw_data_from_cairo_surface(::memory & memoryHost, cairo_sur
       return{};
    }
 
-   memoryHost.set_size(stride * height);
 
-   ::pixmap pixmap;
+   auto ppixmap = ::system()->create_newø<::pixmap>();
+
+   ppixmap->create_as_descriptor({width, height}, e_flag_success, stride);
+   //
+   // memoryHost.set_size(stride * height);
+
+//   ::pixmap pixmap;
 
    //memcpy(memoryHost.data(), data, memoryHost.size());
 
-   pixmap.m_pimage32 = (::image32_t *) memoryHost.data();
-   pixmap.m_sizeRaw.cx = width;
-   pixmap.m_sizeRaw.cy = height;
-   pixmap.m_size.cx = width;
-   pixmap.m_size.cy = height;
-   pixmap.m_iScan = stride;
+   // pixmap.m_pimage32 = (::image32_t *) memoryHost.data();
+   // pixmap.m_sizeRaw.cx = width;
+   // pixmap.m_sizeRaw.cy = height;
+   // pixmap.m_size.cx = width;
+   // pixmap.m_size.cy = height;
+   // pixmap.m_iScan = stride;
+   //
+   ppixmap->copy({width, height}, (image32_t*) data, stride);
 
-   pixmap.m_pimage32->copy_swap_red_blue(width, height,stride, (image32_t*) data, stride);
-
-   return pixmap;
+   return ppixmap;
 
 }

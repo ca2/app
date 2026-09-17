@@ -17696,19 +17696,19 @@ if(get_parent())
       if (strType == "user::list_box")
       {
 
-         information() << "interaction sketch_to_lading user::list_box";
+         //information() << "interaction sketch_to_lading user::list_box";
 
       }
       else if (strType == "app_core_desk::list_impact")
       {
 
-         information() << "interaction sketch_to_lading app_core_desk::list_impact";
+         //information() << "interaction sketch_to_lading app_core_desk::list_impact";
 
       }
       else if (strType == "app_core_hello_multiverse::main_impact")
       {
 
-         information() << "interaction sketch_to_lading app_core_hello_multiverse::main_impact";
+         //information() << "interaction sketch_to_lading app_core_hello_multiverse::main_impact";
 
       }
       // else if(strType.contains("main_frame"))

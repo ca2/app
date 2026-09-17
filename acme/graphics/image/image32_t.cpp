@@ -613,38 +613,45 @@ _001_image32_diagnostics_t::_001_image32_diagnostics_t(const ::i32_size & size, 
    auto height = size.cy;
    auto width = size.cx;
 
-   totalPixels = width * height;
+   totalPixels = 0;
    transparentCount = 0;
    translucentCount = 0;
    opaqueCount = 0;
 
+   if (::is_set(pixelPtr))
    {
 
-      // Iterate through pixel data
-      ::u32 * pixels = (::u32 *)pixelPtr;
-      for (::i32 y = 0; y < height; ++y)
-      {
-         for (::i32 x = 0; x < width; ++x)
-         {
-            // Get the ARGB color of the pixel
-            ::u32 color = pixels[y * (stride / 4) + x];
-            ::u8 alpha = (color >> 24) & 0xFF; // Shift and mask for Alpha
+      totalPixels = width * height;
 
-            if (alpha == 0)
+      {
+
+         // Iterate through pixel data
+         ::u32 * pixels = (::u32 *)pixelPtr;
+         for (::i32 y = 0; y < height; ++y)
+         {
+            for (::i32 x = 0; x < width; ++x)
             {
-               transparentCount++;
-            }
-            else if (alpha > 0 && alpha < 255)
-            {
-               translucentCount++;
-            }
-            else
-            {
-               opaqueCount++;
+               // Get the ARGB color of the pixel
+               ::u32 color = pixels[y * (stride / 4) + x];
+               ::u8 alpha = (color >> 24) & 0xFF; // Shift and mask for Alpha
+
+               if (alpha == 0)
+               {
+                  transparentCount++;
+               }
+               else if (alpha > 0 && alpha < 255)
+               {
+                  translucentCount++;
+               }
+               else
+               {
+                  opaqueCount++;
+               }
             }
          }
-      }
 
+
+      }
 
    }
 

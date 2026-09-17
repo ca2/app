@@ -65,6 +65,9 @@
     <ClInclude Include="text_box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="circle_stroke_alignment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_.cpp">

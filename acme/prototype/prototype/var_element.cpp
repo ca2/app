@@ -115,7 +115,7 @@ void payload::_set_element(::subparticle * pelement)
 
    ::reference_referer * preferencereferer = nullptr;
    
-   if(pelement->is_referencing_debugging_enabled())
+   if(::is_set(pelement) and pelement->is_referencing_debugging_enabled())
    {
 
       preferencereferer = __refdbg_add_referer_for(pelement);

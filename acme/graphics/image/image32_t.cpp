@@ -622,9 +622,9 @@ _001_image32_diagnostics_t::_001_image32_diagnostics_t(const ::i32_size & size, 
 
       // Iterate through pixel data
       ::u32 * pixels = (::u32 *)pixelPtr;
-      for (::u32 y = 0; y < height; ++y)
+      for (::i32 y = 0; y < height; ++y)
       {
-         for (::u32 x = 0; x < width; ++x)
+         for (::i32 x = 0; x < width; ++x)
          {
             // Get the ARGB color of the pixel
             ::u32 color = pixels[y * (stride / 4) + x];

@@ -285,6 +285,13 @@ public:
 
    }
 
+   
+   void check_pending_releases()
+   {
+
+      m_referencingdebugging.check_pending_releases();
+
+   }
 
 
 #else
@@ -308,6 +315,7 @@ public:
    virtual void destroy();
    virtual void destroy_impl_data();
    virtual void clear_node_data();
+
 
    template < typename TYPE >
    ::cast < TYPE > cast() { return this; }

@@ -6,7 +6,7 @@
 #ifdef WINDOWS
 
 
-#pragma comment(lib, "freeimage.lib")
+#pragma comment(lib, "port_freeimage.lib")
 
 
 #endif

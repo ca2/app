@@ -579,3 +579,14 @@ CLASS_DECL_ACME write_text_stream & operator <<(write_text_stream & stream, cons
 
 
 
+
+
+CLASS_DECL_ACME void throw_wrong_type_exception(const char * pszMessage)
+{
+	
+	throw ::exception(error_failed, pszMessage);
+	
+}
+	
+	
+

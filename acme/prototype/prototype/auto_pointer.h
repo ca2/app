@@ -11,6 +11,9 @@ concept dynamically_castable =
 };
 
 
+CLASS_DECL_ACME void throw_wrong_type_exception(const char * pszMessage = nullptr);
+
+
 template < typename TYPE >
 class auto_pointer
 {
@@ -60,7 +63,8 @@ public:
          if (!m_p && p.m_p)
          {
 
-            throw ::exception(error_wrong_type);
+            //throw ::exception(error_wrong_type);
+            throw_wrong_type_exception();
 
          }
       }
@@ -145,7 +149,8 @@ public:
          if (!m_p && p.m_p)
          {
 
-            throw ::exception(error_wrong_type);
+            //throw ::exception(error_wrong_type);
+            throw_wrong_type_exception();
 
          }
       }

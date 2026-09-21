@@ -4100,10 +4100,10 @@ return nullptr;
 
    }
 
-   ::platform::ProfileLogger& acme_system_layer::ProfileLogger()
+   ::platform::profile_logger * acme_system_layer::profile_logger()
    {
 
-      return *((::platform::ProfileLogger *)nullptr);
+      return nullptr;
 
    }
    

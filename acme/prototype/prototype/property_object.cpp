@@ -18,7 +18,7 @@ property_object::property_object()
 
 property_object::property_object(const property_object& propertyobject)  :
    MATTER_COPY_CONSTRUCT(propertyobject),
-   m_ppropertyset(m_ppropertyset->clone())
+   m_ppropertyset(((property_object &) propertyobject).clone())
 {
 
 }

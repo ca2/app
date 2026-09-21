@@ -639,7 +639,7 @@ auto tick2 = ::time::now();
 
 #if defined(__ANDROID__)
 
-      pimage->mult_alpha();
+      ppixmap->mult_alpha();
 
 #endif
 

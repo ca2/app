@@ -282,9 +282,9 @@ namespace platform
 
       //virtual ::windowing::windowing_base * windowing_base();
 
-      virtual ::platform::subsystem *MainSubsystem() override;
+      virtual ::platform::subsystem * MainSubsystem() override;
 
-      virtual ::platform::ProfileLogger &ProfileLogger() override;
+      ::platform::profile_logger * profile_logger() override;
 
       //virtual ::http_system * http_system();
 

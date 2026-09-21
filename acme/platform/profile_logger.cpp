@@ -1,6 +1,6 @@
-// From ProfileLogger by camilo on 2026-04-25 03:51 <3ThomasBorregaardSørensen!!, Mummi!!, Bilbo!!
+// From profile_logger by camilo on 2026-04-25 03:51 <3ThomasBorregaardSørensen!!, Mummi!!, Bilbo!!
 #include "platform.h"
-#include "acme/platform/ProfileLogger.h"
+#include "acme/platform/profile_logger.h"
 
 //#include <algorithm>
 //#include <numeric>
@@ -15,16 +15,16 @@ namespace platform
 {
 
 
-   static ::pointer<ProfileLogger > g_pprofilerlogger;
+   static ::pointer<profile_logger > g_pprofilerlogger;
 
 
-   ProfileLogger::ProfileLogger()
+   profile_logger::profile_logger()
    {
 
       if (g_pprofilerlogger)
       {
 
-         throw "there should be only one ProfileLogger in the process";
+         throw "there should be only one profile_logger in the process";
 
       }
 
@@ -37,7 +37,7 @@ namespace platform
    }
 
 
-   ProfileLogger::~ProfileLogger()
+   profile_logger::~profile_logger()
    {
 
       g_pprofilerlogger = nullptr;
@@ -45,7 +45,7 @@ namespace platform
    }
 
 
-   ProcessorTimes ProfileLogger::checkPoint(const_char_pointer description)
+   processor_times profile_logger::checkPoint(const_char_pointer description)
    {
       critical_section_lock al(&m_criticalsection);
 
@@ -56,7 +56,7 @@ namespace platform
       catch (...) {
         m_lastCycle = 0;
       }*/
-      ProcessorTimes t;
+      processor_times t;
       t.m_cycle = m_last.m_cycle;
       m_last.m_cycle = rdtsc();
       t.m_cycle = m_last.m_cycle - t.m_cycle;
@@ -80,7 +80,7 @@ namespace platform
    }
 
 
-   typedef ::pair<ProcessorTimes, const_char_pointer > CHECKPPOINTPAIR;
+   typedef ::pair<processor_times, const_char_pointer > CHECKPPOINTPAIR;
    typedef ::pair<const_char_pointer , const_char_pointer > STRINGPAIR;
    // helper function for std::sort
    bool pairCompare(const CHECKPPOINTPAIR &firstElem, const CHECKPPOINTPAIR &secondElem)
@@ -107,7 +107,7 @@ namespace platform
    }
 
 
-   ::string_array ProfileLogger::dropStat()
+   ::string_array profile_logger::dropStat()
    {
       critical_section_lock al(&m_criticalsection);
       ::string_array resultStrings;
@@ -121,7 +121,7 @@ namespace platform
       m_lastDrop.Now();
 
       ::array_base<CHECKPPOINTPAIR> checkPointPairs;
-      //std::map<const TCHAR *, std::vector<ProcessorTimes>>::iterator i;
+      //std::map<const TCHAR *, std::vector<processor_times>>::iterator i;
       // Build vector with times-description pairs and sort it by times order
       for (auto i = m_checkPoints.begin(); i != m_checkPoints.end(); i++)
       {
@@ -143,22 +143,22 @@ namespace platform
          return resultStrings;
 
       // calc deltas for consequent points
-      struct ProcessorTimesDeltas
+      struct processor_timesDeltas
       {
          f64_array deltac; // CPU cycles deltas
          f64_array deltap; // Process time deltas
          f64_array deltak; // Kernel time deltas
       };
-      ::map<STRINGPAIR, ProcessorTimesDeltas> deltas;
+      ::map<STRINGPAIR, processor_timesDeltas> deltas;
       auto p = checkPointPairs.begin();
       for (;;)
       {
          auto tag1 = (*p).m_element2;
-         ProcessorTimes pt1 = (*p).m_element1;
+         processor_times pt1 = (*p).m_element1;
          ++p;
          if (p == checkPointPairs.end())
             break;
-         ProcessorTimes pt2 = (*p).m_element1;
+         processor_times pt2 = (*p).m_element1;
          auto tag2 = (*p).m_element2;
          STRINGPAIR sp = STRINGPAIR(tag1, tag2);
          deltas[sp].deltac.add(::f64(pt2.m_cycle - pt1.m_cycle) / 1000000.);
@@ -168,7 +168,7 @@ namespace platform
 
       //;
       //;
-      //::map<STRINGPAIR, ProcessorTimesDeltas>::iterator d;
+      //::map<STRINGPAIR, processor_timesDeltas>::iterator d;
       // print results
       for (auto d = deltas.begin(); d != deltas.end(); ++d)
       {
@@ -189,20 +189,25 @@ namespace platform
 } // namespace platform
 
 
-CLASS_DECL_ACME ::platform::ProfileLogger &ProfileLogger()
+CLASS_DECL_ACME ::platform::profile_logger * profile_logger()
 {
 
-   return *::platform::g_pprofilerlogger;
+   return ::platform::g_pprofilerlogger;
 
 }
 
 
-CLASS_DECL_ACME void deferProfileLogger()
+CLASS_DECL_ACME void deferprofile_logger()
 {
 
    if (!::platform::g_pprofilerlogger)
    {
-      ::platform::g_pprofilerlogger = allocateø platform::ProfileLogger;
+
+      ::platform::g_pprofilerlogger = allocateø platform::profile_logger;
+
    }
 
 }
+
+
+

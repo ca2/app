@@ -17150,6 +17150,46 @@ namespace windowing
        //}
 
 
+   void fill_with_color(const void * pixels, ::i32 width, ::i32 height, ::i32 stride, const ::color::color & color)
+   {
+
+      image32_t image32Color(color, ::color_indexes());
+
+      for (::i32 i = 0; i < height; i++)
+      {
+
+         auto pline = (image32_t *)((::u8 *)pixels + stride * i);
+
+         for (::i32 j = 0; j < width; j++)
+         {
+
+            pline[j] = image32Color;
+
+         }
+
+      }
+
+   }
+
+
+   void window::_fallback_android_fill_plasma(const void * pixels, ::i32 width, ::i32 height, ::i32 stride, ::i64 time_ms)
+   {
+
+      ::i32 r = 50;
+
+      ::i32 g = 100;
+
+      ::i32 b = 150;
+
+      ::i32 a = 180;
+
+      auto color = argb(a, r, g, b);
+
+      fill_with_color(pixels, width, height, stride, color);
+
+   }
+
+
    void window::android_fill_plasma(const void * pixels, ::i32 width, ::i32 height, ::i32 stride, ::i64 time_ms)
    {
 
@@ -17159,7 +17199,8 @@ namespace windowing
 
       ::image::image * pimageSource = nullptr;
 
-      if (m_pgraphicsgraphics) {
+      if (m_pgraphicsgraphics)
+      {
 
          pbufferitemScreen = m_pgraphicsgraphics->get_screen_item();
 
@@ -17193,39 +17234,47 @@ namespace windowing
 
       //_synchronous_lock synchronouslock(pitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::i32 wSource = 0;
+      //::i32 wSource = 0;
 
-      ::i32 hSource = 0;
+      //::i32 hSource = 0;
 
-      ::image32_t * pdataSource = nullptr;
+      //::image32_t * pdataSource = nullptr;
 
-      ::i32 scanSource = 0;
+      //::i32 scanSource = 0;
 
       static int s_iAndroidFillLogCount = 0;
 
-      pixmap_lease map;
+      //pixmap_lease map;
 
-      if (pbufferitemScreen)
+      if (!pbufferitemScreen)
       {
 
-         pimageSource = pbufferitemScreen->m_pimageBufferItem;
+         _fallback_android_fill_plasma(pixels, width, height, stride, time_ms);
 
-         if (pimageSource)
-         {
-
-            pimageSource->map();
-
-            wSource = pimageSource->width();
-
-            hSource = pimageSource->height();
-
-            map = pimageSource->map();
-
-            scanSource = pimageSource->m_iScan;
-
-         }
+         return;
 
       }
+
+      auto pimageBufferItem = pbufferitemScreen->m_pimageBufferItem;
+
+      if (!pimageBufferItem)
+      {
+
+         _fallback_android_fill_plasma(pixels, width, height, stride, time_ms);
+
+         return;
+
+      }
+
+      auto ppixmapImageBufferItem = pimageBufferItem->map();
+
+      auto wSource = ppixmapImageBufferItem->width();
+
+      auto hSource = ppixmapImageBufferItem->height();
+
+      auto scanSource = ppixmapImageBufferItem->m_iScan;
+
+      auto pdataSource = ppixmapImageBufferItem->m_pimage32;
 
       if (s_iAndroidFillLogCount < 40)
       {
@@ -17242,66 +17291,27 @@ namespace windowing
 
       }
 
-      if (!pimageSource)
+      if (!ppixmapImageBufferItem->m_pimage32)
       {
 
-         wSource = width;
+         _fallback_android_fill_plasma(pixels, width, height, stride, time_ms);
 
-         hSource = height;
-
-         pdataSource = nullptr;
-
-         scanSource = wSource * 4;
+         return;
 
       }
-
-      if (pdataSource) {
 
 #if defined(__i386__) || defined(__x86_64__)
 
-         ((image32_t *)pixels)->copy_swap_red_blue(minimum(width, wSource), minimum(height, hSource), stride, pdataSource, scanSource);
+      ((image32_t *)pixels)->copy_swap_red_blue(minimum(width, wSource), minimum(height, hSource), stride, pdataSource, scanSource);
 
 #else
 
-         ((image32_t *)pixels)->copy(
-            minimum(width, wSource), minimum(height, hSource), stride,
-                                      pdataSource,
-                                      scanSource);
+      ((image32_t *)pixels)->copy(
+         minimum(width, wSource), minimum(height, hSource), stride,
+                                   pdataSource,
+                                   scanSource);
 
 #endif
-
-      }
-      else
-      {
-
-         ::i32 r = 50;
-
-         ::i32 g = 100;
-
-         ::i32 b = 150;
-
-         ::i32 a = 180;
-
-         auto color = argb(a, r, g, b);
-
-         image32_t image32Color(color, ::color_indexes());
-
-         for (::i32 i = 0; i < height; i++)
-         {
-
-            auto pline = (image32_t *)((::u8 *)pixels + stride * i);
-
-            for (::i32 j = 0; j < width; j++)
-            {
-
-               pline[j] = image32Color;
-
-            }
-
-         }
-
-
-      }
 
    }
 

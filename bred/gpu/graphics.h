@@ -79,7 +79,7 @@ namespace gpu
       void end_frame() override;
 
 
-      ::gpu::context * gpu_context();
+      ::gpu::context * gpu_context() override;
       virtual ::gpu::texture * _gpu_target_texture();
 
       virtual ::gpu::command_buffer * get_gpu_command_buffer();

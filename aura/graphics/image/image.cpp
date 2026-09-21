@@ -398,7 +398,7 @@ namespace image
    bool image::try_begin_destination_graphics_lease() const
    {
 
-      auto bExpected = false;
+      bool bExpected = false;
 
       ((::image::image *)this)->m_bGraphicsWasAcquiredAfterLastMap = true;
 

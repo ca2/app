@@ -1309,7 +1309,7 @@ namespace windowing
 
 
       virtual void android_fill_plasma(const void * pixels, ::i32 width, ::i32 height, ::i32 stride, ::i64 time_ms);
-
+      virtual void _fallback_android_fill_plasma(const void * pixels, ::i32 width, ::i32 height, ::i32 stride, ::i64 time_ms);
       //void set_opacity(::f64 dOpacity) override;
 
 

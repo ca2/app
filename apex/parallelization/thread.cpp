@@ -3361,27 +3361,13 @@ void thread::post_message(::user::enum_message eusermessage, ::wparam wparam, ::
 
    if (!pmessagequeue)
    {
-
-      if (!is_task_set2())
+      // The OS thread handle can be set before set_task() registers its task
+      // index and message queue. Queue the message for the task in that case.
+      post([this, eusermessage, wparam, lparam]()
       {
-
-         post([this, eusermessage, wparam, lparam]()
-         {
-
-            message_call(eusermessage, wparam, lparam);
-
-         });
-
-         return;
-
-      }
-
-      auto pmessagequeue2 = get_message_queue();
-
-      throw ::exception(::error_wrong_state);
-
+         message_call(eusermessage, wparam, lparam);
+      });
       return;
-
    }
 
    pmessagequeue->post_message(nullptr, eusermessage, wparam, lparam);
@@ -3710,6 +3696,14 @@ message_queue* thread::_get_message_queue()
    auto ptaskmessagequeue = psystem->task_message_queue();
 
    auto pmessagequeue = ptaskmessagequeue->get_message_queue(m_taskindex, true);
+
+   if (!pmessagequeue)
+   {
+
+      // Task storage may not be available yet (or may already be gone).
+      return nullptr;
+
+   }
 
    if (pmessagequeue->m_bQuit)
    {

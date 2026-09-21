@@ -54,7 +54,7 @@ namespace gpu
       ~swap_chain() override;
 
 
-      virtual void on_new_frame();
+      void on_new_frame() override;
 
       void do_output(::gpu::texture_site * pgputexture) override;
 

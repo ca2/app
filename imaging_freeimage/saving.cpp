@@ -78,7 +78,7 @@ namespace imaging_freeimage
 
 #if  defined(__ANDROID__)
 
-      ::i32 iStrideSrc = pimage->scan_size();
+      ::i32 iStrideSrc = ppixmapImage->m_iScan;
 
       for (::collection::index y = 0; y < pimage->height(); y++)
       {

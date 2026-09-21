@@ -68,7 +68,7 @@ namespace platform
    class subsystem;
 
 
-   class ProfileLogger;
+   class profile_logger;
 
 
 } // namespace platform

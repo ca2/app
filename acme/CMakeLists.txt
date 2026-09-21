@@ -754,8 +754,8 @@ list(APPEND library_source
         platform/procedure.cpp
         platform/procedure.h
         platform/profiler.cpp
-        platform/ProfileLogger.cpp
-        platform/ProfileLogger.h
+        platform/profile_logger.cpp
+        platform/profile_logger.h
         platform/serial.cpp
         platform/session.cpp
         platform/session.h

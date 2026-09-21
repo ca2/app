@@ -42,7 +42,7 @@ namespace platform
 } // namespace platform
 
 
-CLASS_DECL_ACME ::platform::ProfileLogger & ProfileLogger();
+CLASS_DECL_ACME ::platform::ProfileLogger * ProfileLogger();
 
 
 CLASS_DECL_ACME void deferProfileLogger();

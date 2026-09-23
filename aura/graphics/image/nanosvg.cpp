@@ -106,6 +106,8 @@ namespace image
 
       }
 
+      m_iRedLower = ::system_default_is_red_lower();
+
       NSVGimage * psvgimage;
 
       ::string strXml(blockXml);

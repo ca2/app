@@ -6759,7 +6759,9 @@ namespace draw2d
       {
          auto ppixmapImage = pimage->map();
 
-         ppixmapImage->draw_error_line(0, 6, w, 1, color);
+         // draw_error_line takes an inclusive last pixel, not a width.
+         // Keep the mapped pixmap at the size allocated by the image.
+         ppixmapImage->draw_error_line(0, 6, pimage->width() - 1, 1, color);
       }
          //
          //
@@ -7837,7 +7839,6 @@ namespace draw2d
 
 
 } // namespace draw2d
-
 
 
 

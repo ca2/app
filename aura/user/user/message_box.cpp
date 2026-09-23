@@ -409,11 +409,13 @@ namespace user
 
       system()->windowing()->display()->get_main_monitor(rectangleMonitor);
 
-      ::i32 iButtonGroupWidth = (::i32) ((iMaxWidth + 30 * screen_scaler()) * m_buttona.get_count());
+      auto fScaler = scaler();
 
-      ::i32 iWidth = maximum((::i32)(iButtonGroupWidth + 20 * screen_scaler()), rectangleMonitor.width() / 2);
+      ::i32 iButtonGroupWidth = (::i32) ((iMaxWidth + 30 * fScaler) * m_buttona.get_count());
 
-      m_pstill->place({ 30 * screen_scaler(), 10 * screen_scaler(), iWidth - 60 * screen_scaler(), 200 * screen_scaler() });
+      ::i32 iWidth = maximum((::i32)(iButtonGroupWidth + 20 * fScaler), rectangleMonitor.width() / 2);
+
+      m_pstill->place({ 30 * fScaler, 10 * fScaler, iWidth - 60 * fScaler, 200 * fScaler });
 
       m_pstill->display();
 
@@ -426,16 +428,16 @@ namespace user
 
          auto pbutton = m_buttona[iButton];
 
-         pbutton->place({ right - iMaxWidth, 230 * screen_scaler(), right, 280 * screen_scaler() });
+         pbutton->place({ right - iMaxWidth, 230 * fScaler, right, 280 * fScaler });
          pbutton->display();
-         right -= (::i32) (iMaxWidth + 20 * screen_scaler());
+         right -= (::i32) (iMaxWidth + 20 * fScaler);
          iButton--;
 
       }
 
       ::i32_rectangle r;
 
-      r.set_dimension(0, 0, iWidth, (::i32) (300 * screen_scaler()));
+      r.set_dimension(0, 0, iWidth, (::i32) (300 * fScaler));
 
       m_pbuttonClose->place({iWidth - 25, 1, iWidth - 1, 25});
 

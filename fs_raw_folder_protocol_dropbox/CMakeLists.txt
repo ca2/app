@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(fs_raw_folder_protocol_dropbox CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 list(APPEND library_source
         _.cpp
         _.h
@@ -63,7 +66,7 @@ if(${WIN32})
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
 
 #    if (DEFINED UBUNTU OR DEFINED DEBIAN OR DEFINED RASPBIAN)

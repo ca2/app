@@ -167,23 +167,27 @@ namespace graphics
    void color_with_shade_of_grey(::color::color & color, ::f64 i, ::f64 j, ::f64 dw, ::f64 dh)
    {
 
-#ifdef __APPLE__
+//      if(bRedLower)
+//      {
+//
+//         image_color_with_shade_of_grey(
+//            color.m_u8Red,
+//            color.m_u8Green,
+//            color.m_u8Blue,
+//            i, dh - j - 1, dw, dh);
+//
+//      }
+//      else
+//      {
 
-      image_color_with_shade_of_grey(
-         color.m_u8Red,
-         color.m_u8Green,
-         color.m_u8Blue,
-         i, dh - j - 1, dw, dh);
+         image_color_with_shade_of_grey(
+            color.m_u8Red,
+            color.m_u8Green,
+            color.m_u8Blue,
+            i, j, dw, dh);
 
-#else
-
-      image_color_with_shade_of_grey(
-         color.m_u8Red,
-         color.m_u8Green,
-         color.m_u8Blue,
-         i, j, dw, dh);
-
-#endif
+//      }
+//      color.m_u8Red,
 
    }
 

@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(regular_expression_pcre2 CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 list(APPEND regular_expression_pcre2_source
         _.cpp
         _.h
@@ -47,7 +50,7 @@ if(${WIN32})
     target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/regular_expression_pcre2.def")
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} pcre)
 
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)

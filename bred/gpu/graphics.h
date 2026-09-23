@@ -112,7 +112,7 @@ namespace gpu
          ::gpu::command_buffer * pgpucommandbuffer,
          ::gpu::shader * pgpushader);
 
-      void on_set_target_rectangle(::image::image * pimage);
+      void on_set_target_rectangle(::image::image * pimage) override;
 
       //void start_layer(::e_graphics egraphics) override;
       //void end_layer(::e_graphics egraphics) override;
@@ -245,7 +245,7 @@ namespace gpu
       void thread_select() override;
 
 
-      void _draw_raw(const ::image::image_drawing & imagedrawing);
+      void _draw_raw(const ::image::image_drawing & imagedrawing) override;
 
       void _set(const ::geometry2d::matrix& matrix) override;
 

@@ -445,6 +445,7 @@ namespace user
 
 
       virtual bool is_host_top_level();
+      virtual bool is_host();
 
 
       virtual bool is_ascendant(element * puiIsAscendant, bool bIncludeSelf);
@@ -748,13 +749,18 @@ namespace user
             /*virtual void pre_translate_message(::message::message * pmessage);
       */
 
-      virtual ::f32 preferred_dpi_x();
+//      virtual ::f32 preferred_dpi_x();
+//
+//      virtual ::f32 preferred_dpi_y();
+//
+//      virtual ::f32 preferred_density();
 
-      virtual ::f32 preferred_dpi_y();
 
-      virtual ::f32 preferred_density();
-
-
+      virtual ::f32 get_density_dpi_for_window();
+      virtual ::f32 get_density_for_window();
+      virtual ::f32 get_font_scale_for_window();
+      virtual ::f32 get_text_scale_for_window();
+      virtual ::f32 scaler();
 
 
 
@@ -955,7 +961,7 @@ namespace user
       virtual bool is_window_zoomed();
       virtual bool is_window_full_screen();
       virtual bool is_window_iconic();
-      virtual ::f32 get_window_scale();
+      //virtual ::f32 get_window_scale();
 
 
       virtual ::i32_point screen_to_window_client(const ::i32_point & point);

@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.17)
 project(typeface_freetype CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
 
 list(APPEND library_source
         _.cpp

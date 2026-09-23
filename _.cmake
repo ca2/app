@@ -38,7 +38,7 @@ set(NETBSD FALSE)
 set(OPENBSD FALSE)
 set(UBUNTU FALSE)
 set(DEBIAN FALSE)
-set(ANDROID FALSE)
+set(__ANDROID__ FALSE)
 set(WIN32 FALSE)
 set(UWP FALSE)
 set(ENABLE_SUBSYSTEM FALSE)
@@ -139,6 +139,61 @@ include_directories(${WORKSPACE_FOLDER}/operating_system)
 
 message(STATUS "going to include \"operating_system/__.cmake\"")
 include(operating_system/__.cmake)
+
+
+if(__ANDROID__)
+   set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
+endif()
+
+project(android-build-all C CXX ASM)
+
+option(CA2_ENABLE_HWASAN "Instrument Android ARM64 native code with HWAddressSanitizer" OFF)
+if(CA2_ENABLE_HWASAN)
+   if(NOT __ANDROID__ OR NOT ANDROID_ABI STREQUAL "arm64-v8a")
+      message(FATAL_ERROR "CA2_ENABLE_HWASAN requires Android arm64-v8a")
+   endif()
+   if(NOT CMAKE_C_COMPILER_ID STREQUAL "Clang" OR NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+      message(FATAL_ERROR "CA2_ENABLE_HWASAN requires the Android NDK Clang compilers")
+   endif()
+   if(NOT ANDROID_STL STREQUAL "c++_shared")
+      message(FATAL_ERROR "CA2_ENABLE_HWASAN requires -DANDROID_STL=c++_shared")
+   endif()
+   # Set before including the project tree so all native subdirectories inherit these.
+   add_compile_options("$<$<COMPILE_LANGUAGE:C,CXX>:-fsanitize=hwaddress>"
+      "$<$<COMPILE_LANGUAGE:C,CXX>:-fno-omit-frame-pointer>"
+      "$<$<COMPILE_LANGUAGE:C,CXX>:-g>")
+   add_link_options(-fsanitize=hwaddress)
+   message(STATUS "ca2: HWAddressSanitizer enabled (run with LD_HWASAN=1 on Android 14+)")
+endif()
+
+if(__ANDROID__ AND DEFINED ANDROID_ABI)
+   foreach(_android_storage_root_candidate
+      "${CMAKE_CURRENT_LIST_DIR}/../../../../../operating_system/storage-android"
+      "${CMAKE_CURRENT_LIST_DIR}/../../operating_system/storage-android")
+      if(EXISTS "${_android_storage_root_candidate}")
+         get_filename_component(_android_storage_root "${_android_storage_root_candidate}" ABSOLUTE)
+         break()
+      endif()
+   endforeach()
+
+   if(_android_storage_root)
+      set(_android_storage_library_dir "${_android_storage_root}/${ANDROID_ABI}/library")
+      set(_android_storage_pkg_config_dir "${_android_storage_library_dir}/pkgconfig")
+   endif()
+
+   if(EXISTS "${_android_storage_library_dir}")
+      link_directories("${_android_storage_library_dir}")
+   endif()
+
+   if(EXISTS "${_android_storage_pkg_config_dir}")
+      if(DEFINED ENV{PKG_CONFIG_PATH} AND NOT "$ENV{PKG_CONFIG_PATH}" STREQUAL "")
+         set(ENV{PKG_CONFIG_PATH} "${_android_storage_pkg_config_dir};$ENV{PKG_CONFIG_PATH}")
+      else()
+         set(ENV{PKG_CONFIG_PATH} "${_android_storage_pkg_config_dir}")
+      endif()
+   endif()
+endif()
+
 
 
 message(STATUS "going to include \"port/__.cmake\"")

@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(gpu CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 if(${WIN32})
 
    # Collect all files in shaders/ directory
@@ -120,7 +123,7 @@ berg
 bred
 )
 
-if (${LINUX} OR ${__BSD__} OR ${ANDROID})
+if (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
    list(APPEND library_references
       ktx
    )
@@ -156,7 +159,7 @@ if(${WIN32})
 
    #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
    target_link_libraries(${PROJECT_NAME} PRIVATE assimp ktx ${library_references} )
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
 
    pkg_check_modules(${PROJECT_NAME}_PKGCONFIG assimp)

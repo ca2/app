@@ -67,7 +67,7 @@ namespace app_app
 
       }
 
-//      pmainwindow->m_procedureOnAfterCreate = [pmainwindow]()
+//      pmainwindow->m_procedureaOnAfterCreate.add([pmainwindow]()
 //      {
 //
 //         //pmainwindow->set_need_layout();
@@ -76,7 +76,7 @@ namespace app_app
 //
 //         pmainwindow->post_redraw();
 //
-//      };
+//      });
 
       //pmainwindow->create_main_window(prequest);
 
@@ -98,6 +98,5 @@ namespace app_app
 
   
 } // namespace app_app
-
 
 

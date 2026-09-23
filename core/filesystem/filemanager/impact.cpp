@@ -74,9 +74,9 @@ namespace filemanager
       if (bPathImpact)
       {
 
-         auto preferredDensity = preferred_density();
+         auto fScaler = scaler();
 
-         set_position(0, (::i32) (24.0 * preferredDensity));
+         set_position(0, (::i32) (24.0 * fScaler));
 
          m_panea[0]->m_bFixedSize = true;
 

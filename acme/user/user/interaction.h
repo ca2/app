@@ -127,6 +127,7 @@ namespace acme
          virtual void set_children_to_destroy_unlocked();
 
          bool is_host_top_level() override;
+         bool is_host() override;
          
          virtual bool is_window();
 
@@ -552,7 +553,7 @@ namespace acme
 
          bool is_window_visible() override;
          bool is_window_iconic() override;
-         ::f32 get_window_scale() override;
+         //::f32 get_window_scale() override;
 
 
          ::i32_point screen_to_window_client(const ::i32_point & point) override;
@@ -579,13 +580,19 @@ namespace acme
          void dump_operating_system_child_window_hierarchy() override;
 
 
-         inline ::f64 screen_scaler() const { return m_dScreenScaler; }
-         inline ::f64 font_scaler() const { return m_dFontScaler; }
+         //inline ::f64 screen_scaler() const { return m_dScreenScaler; }
+         //inline ::f64 font_scaler() const { return m_dFontScaler; }
 
 
-         virtual ::f64 point_dpi(::f64 d);
+         //virtual ::f64 point_dpi(::f64 d);
 
-         virtual ::f64 dpiy(::f64 d);
+         //virtual ::f64 dpiy(::f64 d);
+
+         ::f32 get_density_dpi_for_window() override;
+         ::f32 get_density_for_window() override;
+         ::f32 get_font_scale_for_window() override;
+         ::f32 get_text_scale_for_window() override;
+         ::f32 scaler() override;
 
       };
 

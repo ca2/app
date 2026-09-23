@@ -77,7 +77,7 @@ public:
    memsize storage_size() const { return maximum(0,m_sizeStorage); }
    ::u8 * storage_end() { return storage_begin() + storage_size(); }
    const ::u8 * storage_end() const { return storage_begin() + storage_size(); }
-   memsize offset() const { return m_begin - m_beginStorage; }
+   memsize offset() const { return m_begin && m_beginStorage ? m_begin - m_beginStorage : 0; }
    memsize max_offset() const { return storage_size(); }
 
 };
@@ -459,4 +459,3 @@ inline void memory_base::splice(const memory_base & memory, memsize iStartDst, m
    iCountDst);
 
 }
-

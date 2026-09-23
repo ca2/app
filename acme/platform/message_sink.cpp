@@ -58,6 +58,7 @@ void message_sink::post_simple_message(enum_message emessage)
 
 }
 
+
 void message_sink::post_message(::platform::message * pmessage)
 {
 

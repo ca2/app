@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(imaging_freeimage CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 list(APPEND library_source
         _.cpp
         _.h
@@ -86,7 +89,7 @@ elseif (${FREEBSD})
     message(STATUS "(E) PKGCONFIG_LIBRARIES is ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES}")
 
 
-elseif (${LINUX} OR ${OPENBSD} OR ${NETBSD} OR ${ANDROID})
+elseif (${LINUX} OR ${OPENBSD} OR ${NETBSD} OR ${__ANDROID__})
 
 
     #if(${USE_PKGCONFIG})

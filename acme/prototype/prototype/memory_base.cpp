@@ -145,7 +145,13 @@ void memory_base::set_size(memsize dwNewLength)
 
       auto sizeStorage = this->storage_size();
 
-      if ((this->offset() + dwNewLength) <= sizeStorage)
+      // A reference has no backing storage to grow into. In particular, never
+      // subtract a null storage pointer from a HWASan-tagged data pointer.
+      auto offset = this->offset();
+
+      if (this->m_beginStorage && this->m_begin && !this->m_bReadOnly
+         && offset >= 0 && offset <= sizeStorage
+         && dwNewLength <= sizeStorage - offset)
       {
 
          this->m_end = this->m_begin + dwNewLength;
@@ -156,13 +162,18 @@ void memory_base::set_size(memsize dwNewLength)
 
    }
 
-   erase_offset();
+   if (this->m_bOwner && !this->m_bReadOnly)
+   {
+
+      erase_offset();
+
+   }
 
    {
 
       auto sizeStorage = this->storage_size();
 
-      if (dwNewLength > sizeStorage)
+      if (dwNewLength > sizeStorage || !this->m_bOwner || this->m_bReadOnly)
       {
 
          allocate_internal(dwNewLength);
@@ -212,7 +223,12 @@ void memory_base::allocate_internal(memsize sizeNew)
 
    }
 
-   erase_offset();
+   if (this->m_bOwner && !this->m_bReadOnly)
+   {
+
+      erase_offset();
+
+   }
 
    memsize sizeNewStorage = calc_allocation(sizeNew);
 
@@ -224,6 +240,7 @@ void memory_base::allocate_internal(memsize sizeNew)
    }
 
    ::u8 * pOldStorage = this->storage_begin();
+   auto pOldData = this->data();
 
    ::u8 * pNewStorage = nullptr;
 
@@ -236,10 +253,10 @@ void memory_base::allocate_internal(memsize sizeNew)
 
       pNewStorage = (::u8 *) impl_alloc(sizeNewStorage);
 
-      if (pOldStorage && (!this->m_bOwner || this->m_bReadOnly))
+      if (pOldData && (!this->m_bOwner || this->m_bReadOnly))
       {
 
-         ::memory_copy(pNewStorage, pOldStorage, (memsize) minimum(sizeOld, sizeNewStorage));
+         ::memory_copy(pNewStorage, pOldData, (memsize) minimum(sizeOld, sizeNewStorage));
 
       }
 
@@ -2508,7 +2525,5 @@ void memory_base::append(const ::block & block)
    append(block.data(), block.size());
 
 }
-
-
 
 

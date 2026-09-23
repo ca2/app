@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(folder_zip CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 unset(PKGCONFIG_CFLAGS)
 unset(PKGCONFIG_LDFLAGS)
 unset(PKGCONFIG_LIBRARIES)
@@ -41,11 +44,9 @@ list(APPEND library_references acme)
 list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
-if(${ANDROID})
-    list(APPEND library_references zlib)
-endif()
-
-if(${WIN32})
+if(${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+    list(APPEND library_references z)
+else()
     list(APPEND library_references zlib)
 endif()
 
@@ -65,7 +66,7 @@ if(${WIN32})
     target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} )
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
 
     target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)

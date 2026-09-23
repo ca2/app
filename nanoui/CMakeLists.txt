@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(nanoui CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 list(APPEND library_source
    #nano2d/_component.h
    #nano2d/context.cpp
@@ -120,7 +123,7 @@ if(${WIN32})
    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
    target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 

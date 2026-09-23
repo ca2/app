@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(crypto_openssl CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 list(APPEND library_source
    _.cpp
    _.h
@@ -39,7 +42,7 @@ if (NOT ${NO_PRECOMPILED_HEADER})
 
 endif ()
 
-if(${ANDROID})
+if(${__ANDROID__})
     list(APPEND library_references
     crypto)
 endif()
@@ -53,7 +56,7 @@ if(${WIN32})
     target_link_options(crypto_openssl PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/crypto_openssl.lib")
     target_link_options(crypto_openssl PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/crypto_openssl.def")
     target_link_libraries(crypto_openssl PRIVATE ${library_references} ${global_library_references})
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
     if(${USE_PKGCONFIG})
         pkg_check_modules(${PROJECT_NAME}_PKGCONFIG libcrypto)

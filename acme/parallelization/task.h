@@ -288,8 +288,7 @@ public:
    };
 
 
-   ::block_array<synchronous_lock_description_t, 64>
-      m_synchronouslockdescriptiona;
+   ::array<synchronous_lock_description_t> m_synchronouslockdescriptiona;
 private:
       critical_section m_criticalsectionMsgTranslator;
 #if defined(WINDOWS_DESKTOP)

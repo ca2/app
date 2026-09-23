@@ -16,6 +16,8 @@
 
 // POD
 
+CLASS_DECL_ACME bool system_default_is_red_lower();
+
 #ifdef __cplusplus
 struct CLASS_DECL_ACME pixmap_t : public image_header
 #else
@@ -41,14 +43,14 @@ struct pixmap_t
    //mutable bool m_bMapped; // optionally used by implementation
    bool m_bReduced; // optionally used by implementation
 
-   static ::i32 g_iRedLowerDefault;
+   //static ::i32 g_iRedLowerDefault;
 
 #ifdef __cplusplus
 
    pixmap_t()
    {
       m_bTopLeft = true;
-      m_iRedLower = g_iRedLowerDefault;
+      m_iRedLower = ::system_default_is_red_lower() ? 1 : 0;
       m_iScan = 0;
       m_pimage32 = nullptr;
       m_pimage32Raw = nullptr;

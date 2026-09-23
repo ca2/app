@@ -202,7 +202,7 @@ enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, con
 
 
 void initialize_nano_http(::factory::factory* pfactory);
-
+void set_common_system_image_color_indexes(const ::color_indexes & colorindexes);
 
 namespace platform
 {
@@ -305,6 +305,28 @@ namespace platform
       factory()->add_factory_item < ::nano::http::get>();
       factory()->add_factory_item < ::component >();
       factory()->add_factory_item < ::micro::message_box, ::user_interface::message_box >();
+
+      color_indexes bgra_indexes{2, 1, 0, 3 };
+      color_indexes rgba_indexes{0, 1, 2, 3 };
+
+#if defined(WINDOWS_DESKTOP)
+      m_bDefaultRedLower = false;
+      set_common_system_image_color_indexes(bgra_indexes);
+#elif defined(LINUX)
+      m_bDefaultRedLower = false;
+      set_common_system_image_color_indexes(bgra_indexes);
+#elif defined(FREEBSD) || defined(OPENBSD) || (defined(UNIVERSAL_WINDOWS) && OSBIT == 32)
+      m_bDefaultRedLower = false;
+      set_common_system_image_color_indexes(bgra_indexes);
+#elif defined(__ANDROID__)
+      m_bDefaultRedLower = false;
+      set_common_system_image_color_indexes(bgra_indexes);
+#else
+      m_bDefaultRedLower = true;
+      set_common_system_image_color_indexes(rgba_indexes);
+#endif
+
+
 
 
    }

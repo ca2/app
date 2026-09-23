@@ -1802,50 +1802,51 @@ bool particle::is_branch_current() const
 }
 
 
-CLASS_DECL_ACME lresult __call_message(::particle* pparticle, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+CLASS_DECL_ACME lresult __call_message(::particle* pparticle, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::particle* pparticleCall)
 {
 
-   throw "what?!?!?!";
+   if (::is_null(pparticleCall))
+   {
 
-   //if (::is_null(pparticleCall))
-   //{
+      auto psystem = pparticle->system();
 
-   //   auto psystem = pparticle->system();
+      auto ptopic = psystem->create_topic(eusermessage);
 
-   //   auto ptopic = psystem->create_topic(atom);
+      if(wparam != 0 || lparam != 0)
+      {
 
-   //   if(wParam != 0 || lParam != 0)
-   //   {
+         ptopic->payload("wparam") = wparam;
+         ptopic->payload("lparam") = lparam;
 
-   //      ptopic->payload("wparam") = wParam;
-   //      ptopic->payload("lparam") = lParam;
+      }
 
-   //   }
+      pparticle->handle(ptopic, nullptr);
 
-   //   pparticle->handle(ptopic, nullptr);
+      return ptopic->m_lresult;
 
-   //}
-   //else
-   //{
+   }
+   else
+   {
 
-   //   auto pextendedtopic = create_extended_topic(pparticleCall, atom);
+      auto pextendedtopic = create_extended_topic(pparticleCall, eusermessage);
 
-   //   if(wParam != 0 || lParam != 0)
-   //   {
+      if(wparam != 0 || lparam != 0)
+      {
 
-   //      pextendedtopic->payload("wparam") = wParam;
-   //      pextendedtopic->payload("lparam") = lParam;
+         pextendedtopic->payload("wparam") = wparam;
+         pextendedtopic->payload("lparam") = lparam;
 
-   //   }
+      }
 
-   //   pextendedtopic->m_pparticle = pparticleCall;
+      pextendedtopic->m_pparticle = pparticleCall;
 
-   //   pparticle->handle(pextendedtopic, nullptr);
+      pparticle->handle(pextendedtopic, nullptr);
 
-   //}
+      return pextendedtopic->m_lresult;
+
+   }
 
 }
-
 
 
 //
@@ -1899,7 +1900,7 @@ lresult particle::message_call(::user::enum_message eusermessage, ::wparam wpara
 lresult particle::message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
-   return __call_message(this, eusermessage, wparam, lparam);
+   return __call_message(this, eusermessage, wparam, lparam, nullptr);
 
 }
 
@@ -1973,10 +1974,6 @@ bool particle::_handle_call(::payload& payload, const ::scoped_string& scopedstr
 //   return handle_uri(blockUri);
 //
 //}
-
-
-
-
 
 
 ::payload particle::realize()
@@ -2175,7 +2172,6 @@ void particle::set_library_name(const ::scoped_string& scopedstrLibraryName)
 }
 
 
-
 ::task_pool* particle::taskpool()
 {
 
@@ -2198,12 +2194,6 @@ void particle::set_library_name(const ::scoped_string& scopedstrLibraryName)
    return nullptr;
 
 }
-
-
-
-
-
-
 
 
 bool particle::should_run_async() const

@@ -56,8 +56,8 @@ namespace userex
       bool wfi_is_up_down_target() override;
 
 
-      virtual bool OnUpDownTargetAttach(::user::interaction *pinteraction);
-      virtual bool OnUpDownTargetDetach(::user::interaction *pinteraction);
+      virtual bool OnUpDownTargetAttach(::user::interaction *pinteraction) override;
+      virtual bool OnUpDownTargetDetach(::user::interaction *pinteraction) override;
 
 
       virtual ::pointer<::user::impact> get_hosted_impact(const ::atom &atomImpactId);
@@ -71,7 +71,7 @@ namespace userex
       void _001OnDraw(::draw2d::graphics_pointer &pdraw2dgraphics) override;
 
 
-      void on_layout(::draw2d::graphics_pointer &pdraw2dgraphics);
+      void on_layout(::draw2d::graphics_pointer &pdraw2dgraphics) override;
 
       void update_impact_host_placement();
 

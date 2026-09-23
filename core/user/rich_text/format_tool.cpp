@@ -558,7 +558,7 @@ namespace user
 
                            };
 
-                        m_pcolorselectorpopupForeground->m_procedureOnAfterCreate = set_color_and_show;
+                        m_pcolorselectorpopupForeground->m_procedureaOnAfterCreate.add(set_color_and_show);
 
                         m_pcolorselectorpopupForeground->set_owner(this);
 
@@ -893,5 +893,4 @@ namespace user
 
 
 } // namespace user
-
 

@@ -586,7 +586,7 @@ menu::~menu()
 //   bool menu::track_popup_menu(::channel * pchannelNotify, ::user::interaction * puiParent)
 //   {
 //
-//      m_procedureOnAfterCreate = [this]()
+//      m_procedureaOnAfterCreate.add([this]()
 //         {
 //
 //            if (m_bUsePositionHint)
@@ -2302,6 +2302,5 @@ menu::~menu()
 
 
 } // namespace menu
-
 
 

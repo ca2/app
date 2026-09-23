@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(app_just_message_box CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 list(APPEND library_source
     _.cpp
     _.h

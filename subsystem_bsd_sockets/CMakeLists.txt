@@ -77,7 +77,7 @@ if(${WIN32})
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} Ws2_32)
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
 
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})

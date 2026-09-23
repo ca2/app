@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(app_app CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 list(APPEND library_source
    _.cpp
    _.h
@@ -65,7 +68,7 @@ if(${WIN32})
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
 
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})

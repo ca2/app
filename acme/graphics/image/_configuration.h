@@ -46,23 +46,24 @@
 
 #endif
 
+CLASS_DECL_ACME color_indexes common_system_image_color_indexes();
 
-#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD) || defined(OPENBSD)
-
-
-constexpr inline color_indexes common_system_image_color_indexes() { return bgra_indexes(); }
-
-#elif defined(__APPLE__)
-
-constexpr inline color_indexes common_system_image_color_indexes() { return rgba_indexes(); }
-
-#else
-
-
-constexpr inline color_indexes common_system_image_color_indexes() { return rgba_indexes(); }
-
-
-#endif
-
-
-
+//#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD) || defined(OPENBSD)
+//
+//
+//constexpr inline color_indexes common_system_image_color_indexes() { return bgra_indexes(); }
+//
+//#elif defined(__APPLE__)
+//
+//constexpr inline color_indexes common_system_image_color_indexes() { return rgba_indexes(); }
+//
+//#else
+//
+//
+//constexpr inline color_indexes common_system_image_color_indexes() { return rgba_indexes(); }
+//
+//
+//#endif
+//
+//
+//

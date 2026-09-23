@@ -5,16 +5,12 @@
 
 //CLASS_DECL_ACME::string _001_image32_diagnostics(::image32_t * pixelPtr, int width, int height, int stride);
 //// CLASS_DECL_ACME::string _001_pixmap_diagnostics(const pixmap_t * ppixmap);
+CLASS_DECL_ACME bool system_default_is_red_lower()
+{
 
-#if defined(WINDOWS_DESKTOP)
-::i32 pixmap_t::g_iRedLowerDefault = 0;
-#elif defined(LINUX)
-::i32 pixmap_t::g_iRedLowerDefault = 0;
-#elif defined(FREEBSD) || defined(OPENBSD) || (defined(UNIVERSAL_WINDOWS) && OSBIT == 32)
-::i32 pixmap_t::g_iRedLowerDefault = 0;
-#else
-::i32 pixmap_t::g_iRedLowerDefault = 1;
-#endif
+   return ::system()->m_bDefaultRedLower;
+
+}
 
 
 void pixmap_t::initialize_pixmap(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan)

@@ -153,9 +153,9 @@ namespace html
       bool input_checkbox::layout_phase1(html_data * pdata)
       {
 
-         auto preferredDensity = m_pcheckbox->preferred_density();
+         auto fScaler = m_pcheckbox->scaler();
 
-         m_box.set_size(26 * preferredDensity, 26 * preferredDensity);
+         m_box.set_size(26 * fScaler, 26 * fScaler);
 
          return true;
 

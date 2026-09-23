@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(coding CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 list(APPEND library_source
         #build/_build.h
         #build/build.cpp

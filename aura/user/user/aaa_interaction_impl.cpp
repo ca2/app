@@ -2540,7 +2540,7 @@ namespace user
       if (pmessage->m_emessage == ::user::e_message_create)
       {
 
-         //if (m_puserinteraction->m_procedureOnAfterCreate)
+         //if (m_puserinteraction->m_procedureaOnAfterCreate.has_element())
          //{
 
          //   m_puserinteraction->post_message(::user::e_message_after_create);
@@ -9805,5 +9805,4 @@ CLASS_DECL_AURA::windowing::window *__interaction_impl(::windowing::window *pwin
    return pimpl;
 
 }
-
 

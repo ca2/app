@@ -51,7 +51,7 @@ if(FREERDP_VENDOR AND WITH_CLIENT)
 		endif()
 	endif()
 
-	if(ANDROID)
+	if(__ANDROID__)
 		message(STATUS "Adding Android client")
 		add_subdirectory(Android)
 	endif()

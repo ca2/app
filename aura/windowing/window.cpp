@@ -718,7 +718,7 @@ namespace windowing
       if (pmessage->m_eusermessage == ::user::e_message_create)
       {
 
-         //if (user_interaction()->m_procedureOnAfterCreate)
+         //if (user_interaction()->m_procedureaOnAfterCreate.has_element())
          //{
 
          //   user_interaction()->post_message(::user::e_message_after_create);
@@ -2362,70 +2362,94 @@ namespace windowing
    //}
 
 
-   ::f32 window::get_dpi_for_window()
-   {
-
-      return 96.0f;
-
-   }
-
-
-   ::f32 window::get_density_for_window()
-   {
-
-      return 1.0f;
-
-   }
-
-
-   ::f32 window::dpiy(::f32 y)
-   {
-
-      ::f32 fDpi = get_dpi_for_window();
-
-      return y * fDpi / 96.f;
-
-   }
-
-
-   ::f32 window::dpix(::f32 x)
-   {
-
-      ::f32 fDpi = get_dpi_for_window();
-
-      return x * fDpi / 96.f;
-
-   }
-
-
-   ::f32 window::point_dpi(::f32 points)
-   {
-
-      ::f32 fDpi = get_dpi_for_window();
-
-      return points * fDpi / 72.f;
-
-   }
-
-
-   ::f32 window::y_dpi(::f32 y)
-   {
-
-      ::f32 fDpi = get_dpi_for_window();
-
-      return y / fDpi;
-
-   }
-
-
-   ::f32 window::x_dpi(::f32 x)
-   {
-
-      ::f32 fDpi = get_dpi_for_window();
-
-      return x / fDpi;
-
-   }
+//   ::f32 window::get_dpi_for_window()
+//   {
+//
+//      return 96.0f;
+//
+//   }
+//
+//
+//   ::f32 window::get_density_for_window()
+//   {
+//
+//      return 1.0f;
+//
+//   }
+//
+//
+//   ::f32 window::get_font_scale_for_window()
+//   {
+//
+//      return 96.0f;
+//
+//   }
+//
+//
+//   ::f32 window::get_text_scale_for_window()
+//   {
+//
+//      return get_density_for_window() * get_font_scale_for_window();
+//
+//   }
+//
+//
+//   ::f32 window::scaler()
+//   {
+//
+//      return get_text_scale_for_window();
+//
+//   }
+//
+//
+//   ::f32 window::dpiy(::f32 y)
+//   {
+//
+//      ::f32 fDpi = get_dpi_for_window();
+//
+//      return y * fDpi / 96.f;
+//
+//   }
+//
+//
+//   ::f32 window::dpix(::f32 x)
+//   {
+//
+//      ::f32 fDpi = get_dpi_for_window();
+//
+//      return x * fDpi / 96.f;
+//
+//   }
+//
+//
+//   ::f32 window::point_dpi(::f32 points)
+//   {
+//
+//      ::f32 fDpi = get_dpi_for_window();
+//
+//      return points * fDpi / 72.f;
+//
+//   }
+//
+//
+//   ::f32 window::y_dpi(::f32 y)
+//   {
+//
+//      ::f32 fDpi = get_dpi_for_window();
+//
+//      return y / fDpi;
+//
+//   }
+//
+//
+//   ::f32 window::x_dpi(::f32 x)
+//   {
+//
+//      ::f32 fDpi = get_dpi_for_window();
+//
+//      return x / fDpi;
+//
+//   }
 
 
    void window::on_redraw_window(::u32 flags)
@@ -6372,7 +6396,7 @@ namespace windowing
       if (pmessage->m_eusermessage == ::user::e_message_create)
       {
 
-         //if (user_interaction()->m_procedureOnAfterCreate)
+         //if (user_interaction()->m_procedureaOnAfterCreate.has_element())
          //{
 
          //   user_interaction()->post_message(::user::e_message_after_create);
@@ -12324,9 +12348,11 @@ namespace windowing
                               time42.Now();
                               frame_draw_stage(pdraw2dgraphics);
 
-                               //pdraw2dgraphics->fill_solid_rectangle({ 100., 100., 500., 500. }, argb(127, 100, 180, 220));
-                              //pdraw2dgraphics->on_end_draw(this);
+                              //pdraw2dgraphics->fill_solid_rectangle({ 100., 100., 500., 500. }, argb(127, 100, 180, 220));
 
+
+
+                              //pdraw2dgraphics->on_end_draw(this);
 
                               pdraw2dgraphics->flush();
 
@@ -17153,7 +17179,7 @@ namespace windowing
    void fill_with_color(const void * pixels, ::i32 width, ::i32 height, ::i32 stride, const ::color::color & color)
    {
 
-      image32_t image32Color(color, ::color_indexes());
+      image32_t image32Color(color, {0, 1, 2, 3});
 
       for (::i32 i = 0; i < height; i++)
       {
@@ -17181,7 +17207,7 @@ namespace windowing
 
       ::i32 b = 150;
 
-      ::i32 a = 180;
+      ::i32 a = 255;
 
       auto color = argb(a, r, g, b);
 
@@ -17255,6 +17281,10 @@ namespace windowing
 
       }
 
+//      _fallback_android_fill_plasma(pixels, width, height, stride, time_ms);
+
+//      return;
+
       auto pimageBufferItem = pbufferitemScreen->m_pimageBufferItem;
 
       if (!pimageBufferItem)
@@ -17265,6 +17295,10 @@ namespace windowing
          return;
 
       }
+
+//      _fallback_android_fill_plasma(pixels, width, height, stride, time_ms);
+
+//      return;
 
       auto ppixmapImageBufferItem = pimageBufferItem->map();
 
@@ -17306,7 +17340,7 @@ namespace windowing
 
 #else
 
-      ((image32_t *)pixels)->copy(
+      ((image32_t *)pixels)->copy_swap_red_blue(
          minimum(width, wSource), minimum(height, hSource), stride,
                                    pdataSource,
                                    scanSource);

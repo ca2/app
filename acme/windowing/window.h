@@ -27,6 +27,7 @@
 #include "acme/operating_system/windows/_window_class.h"
 #endif
 
+
 namespace acme
 {
 
@@ -35,14 +36,17 @@ namespace acme
    {
 
    
-   class gpu_context_render_frame :
-   virtual public particle
-   {
-   public:
-      
-      virtual void on_gpu_context_render_frame(::i32 w, ::i32 h) = 0;
-      
-   };
+      class CLASS_DECL_ACME gpu_context_render_frame :
+         virtual public ::particle
+      {
+      public:
+
+
+         virtual void on_gpu_context_render_frame(::i32 w, ::i32 h) = 0;
+
+
+      };
+
 
       class CLASS_DECL_ACME window :
          virtual public ::user::element
@@ -51,46 +55,46 @@ namespace acme
       public:
 
 
-         //::operating_system::window          m_operatingsystemwindow;
-         ::pointer_array < ::exception >     m_exceptiona;
-         ::pointer < ::acme::windowing::gpu_context_render_frame >         m_pgpucontextrenderframe;
-         //::pointer < ::acme::windowing::window >                m_pwindowOwner;
+         //::operating_system::window                                m_operatingsystemwindow;
+         ::pointer_array < ::exception >                             m_exceptiona;
+         ::pointer < ::acme::windowing::gpu_context_render_frame >   m_pgpucontextrenderframe;
+         //::pointer < ::acme::windowing::window >                   m_pwindowOwner;
 
-         //::pointer<::micro::window_implementation>     m_pnanouserwindowimplementation;
-         ::pointer < ::mutex >                     m_pmutexBufferSizeAndPosition;
+         //::pointer<::micro::window_implementation>                 m_pnanouserwindowimplementation;
+         ::pointer < ::mutex >                                       m_pmutexBufferSizeAndPosition;
 
-         class ::time                              m_timeHoverNoiseSuppression;
-
-
-         bool                                      m_bUsesGraphicsThread;
+         class ::time                                                m_timeHoverNoiseSuppression;
 
 
-         i32_rectangle                             m_rectangle;
-         ::i32_rectangle                           m_rectanglePointingTo;
-
-         //bool                                      m_bTopMost;
-         // bool                                      m_bStartCentered;
-         //bool                                      m_bArbitraryPositioning;
+         bool                                                        m_bUsesGraphicsThread;
 
 
+         ::i32_rectangle                                             m_rectangle;
+         ::i32_rectangle                                             m_rectanglePointingTo;
+
+         //bool                                                      m_bTopMost;
+         // bool                                                     m_bStartCentered;
+         //bool                                                      m_bArbitraryPositioning;
 
 
-         //pointer_array < ::micro::button >             m_nanobuttona;
 
-         //map_base < const ::item *, ::user::item >      m_useritemmap;
 
-         bool                                               m_bPerformingEntireRepositionProcess;
-         bool                                               m_bPerformingEntireResizingProcess;
-         bool                                               m_bRepositioningWindowFromCenter;
-         bool                                               m_bResizingWindowFromBottomRight;
-         //::i32_point                                        m_pointDesignRequest;
-         //::i32_size                                         m_sizeDesignRequest;
-         ::i32_point                                        m_pointWindow;
-         ::i32_size                                         m_sizeWindow;
-         ::i32_point                                        m_pointWindowBuffer;
-         ::i32_size                                         m_sizeWindowBuffer;
-         ::i32_point                                        m_pointWindowBufferFixed;
-         ::i32_size                                         m_sizeWindowBufferFixed;
+         //pointer_array < ::micro::button >                         m_nanobuttona;
+
+         //map_base < const ::item *, ::user::item >                 m_useritemmap;
+
+         bool                                                        m_bPerformingEntireRepositionProcess;
+         bool                                                        m_bPerformingEntireResizingProcess;
+         bool                                                        m_bRepositioningWindowFromCenter;
+         bool                                                        m_bResizingWindowFromBottomRight;
+         //::i32_point                                               m_pointDesignRequest;
+         //::i32_size                                                m_sizeDesignRequest;
+         ::i32_point                                                 m_pointWindow;
+         ::i32_size                                                  m_sizeWindow;
+         ::i32_point                                                 m_pointWindowBuffer;
+         ::i32_size                                                  m_sizeWindowBuffer;
+         ::i32_point                                                 m_pointWindowBufferFixed;
+         ::i32_size                                                  m_sizeWindowBufferFixed;
          /// m_sizeRaw should be the same or bigger than m_sizeWindow.
          /// It is meant to be a good fair but also performant
          /// bigger-than-actual-maximum-size of the window back buffer.
@@ -98,22 +102,22 @@ namespace acme
          /// during resize.
          /// A fair guess can be screen size (union of all monitors).
          /// Or the biggest size of last resizes of the window.
-         ::i32_size                                         m_sizeRaw;                                     
-         ::i32_point                                        m_pointCursor2;
+         ::i32_size                                                  m_sizeRaw;
+         ::i32_point                                                 m_pointCursor2;
 
-         ::pointer < ::operating_system::a_system_menu >    m_psystemmenu;
+         ::pointer < ::operating_system::a_system_menu >             m_psystemmenu;
 
-         ::pointer<::acme::user::interaction>               m_pacmeuserinteraction;
-         ::pointer<::acme::user::interaction>               m_pacmeuserinteractionKeyboardFocus;
-         ::pointer<::acme::user::interaction>               m_pacmeuserinteractionHover;
-         ::pointer<::acme::user::interaction>               m_pacmeuserinteractionMouseCapture;
-         //::pointer<::acme::user::interaction>               m_pacmeuserinteractionOwner;
+         ::pointer<::acme::user::interaction>                        m_pacmeuserinteraction;
+         ::pointer<::acme::user::interaction>                        m_pacmeuserinteractionKeyboardFocus;
+         ::pointer<::acme::user::interaction>                        m_pacmeuserinteractionHover;
+         ::pointer<::acme::user::interaction>                        m_pacmeuserinteractionMouseCapture;
+         //::pointer<::acme::user::interaction>                      m_pacmeuserinteractionOwner;
 
 
-         ::pointer < ::acme::windowing::display >           m_pacmewindowingdisplayWindow;
+         ::pointer < ::acme::windowing::display >                    m_pacmewindowingdisplayWindow;
          class ::time m_timeLastPresentRequest;
-//         long                                               m_lX11NativeVisualId;
-//         ::i32                                                m_lX11MapNotify = -1;
+//         long                                                      m_lX11NativeVisualId;
+//         ::i32                                                     m_lX11MapNotify = -1;
 
 
 
@@ -229,7 +233,7 @@ namespace acme
 
 
          bool is_window_iconic() override;
-         ::f32 get_window_scale() override;
+         //::f32 get_window_scale() override;
 
 
          void show_window(::user_interface::enum_show_window eshowwindow) override;
@@ -497,6 +501,11 @@ namespace acme
 
          void display(::e_display edisplay, const ::user::activation& useractivation) override;
 
+         ::f32 get_density_dpi_for_window() override;
+         ::f32 get_density_for_window() override;
+         ::f32 get_font_scale_for_window() override;
+         ::f32 get_text_scale_for_window() override;
+         ::f32 scaler() override;
 
       };
 

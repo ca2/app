@@ -74,10 +74,10 @@ namespace user
 
                construct_newø(m_prichtextformattool);
 
-               m_prichtextformattool->m_procedureOnAfterCreate = [this]()
+               m_prichtextformattool->m_procedureaOnAfterCreate.add([this]()
                   {
                      m_prichtextformattool->set_owner(this);
-                  };
+                  });
 
                //m_prichtextformattool->create_host(e_parallelization_asynchronous);
 

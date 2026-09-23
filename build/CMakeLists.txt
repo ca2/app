@@ -63,7 +63,7 @@ if(${WIN32})
    target_link_options(build PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_options(build PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(build PRIVATE ${library_references} ${global_library_references})
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
    target_compile_options(build PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
    
    target_link_libraries(build PRIVATE ${library_references} ${global_library_references})

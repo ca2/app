@@ -2,7 +2,10 @@ cmake_minimum_required(VERSION 3.16)
 project(acme CXX)
 
 
-if(${ANDROID})
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
+if(${__ANDROID__})
 
    # 1. Define the path to the cpufeatures source in the NDK
    set(CPU_FEATURES_PATH ${ANDROID_NDK}/sources/android/cpufeatures)
@@ -292,6 +295,8 @@ list(APPEND library_source
    graphics/graphics/filters.h
         graphics/graphics/output_purpose.cpp
         graphics/graphics/output_purpose.h
+   graphics/image/color_indexes.cpp
+   graphics/image/color_indexes.h
    graphics/image/frame.cpp
    graphics/image/frame.h
    graphics/image/frame_array.cpp
@@ -2210,7 +2215,7 @@ list(APPEND library_source
         include/_impl.h
 )
 
-if (${ANDROID})
+if (${__ANDROID__})
     list(APPEND library_source
 
             operating_system/android/_.h
@@ -2875,7 +2880,7 @@ if (APPLE)
 endif ()
 
 
-if (${ANDROID})
+if (${__ANDROID__})
 
 
     list(APPEND library_source
@@ -3212,7 +3217,7 @@ endif ()
 # endif ()
 
 
-if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD} OR ${ANDROID})
+if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD} OR ${__ANDROID__})
 
 
     list(APPEND library_source
@@ -3230,7 +3235,7 @@ if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD} OR ${ANDROID})
 endif ()
 
 
-if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${ANDROID})
+if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${__ANDROID__})
 
 
     list(APPEND library_source
@@ -3321,7 +3326,7 @@ if(${WIN32})
     target_link_libraries(${PROJECT_NAME} PRIVATE archive zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
     if (NOT ${SUSE})
 
@@ -3358,16 +3363,16 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
         #list(APPEND static_this_system_libraries util z pthread iconv execinfo elf)
         list(APPEND static_this_system_libraries util z pthread iconv execinfo elf)
         message(STATUS "NETBSD acme this_system_libraries ${this_system_libraries}")
-    elseif (${ANDROID})
+    elseif (${__ANDROID__})
 
         #list(APPEND this_system_libraries z idn)
-        list(APPEND library_references zlib iconv idn)
+        list(APPEND library_references z iconv idn)
         list(APPEND this_system_libraries android log cpufeatures)
         #list(APPEND this_system_libraries log)
         #list(APPEND static_this_system_libraries pthread)
         #message(SEND_ERROR "test is really android?! ${this_system_libraries}")
-        message(STATUS "For acme at ANDROID library_references ${library_references}")
-        message(STATUS "For acme at ANDROID this_system_libraries ${this_system_libraries}")
+        message(STATUS "For acme at __ANDROID__ library_references ${library_references}")
+        message(STATUS "For acme at __ANDROID__ this_system_libraries ${this_system_libraries}")
     else ()
         list(APPEND this_system_libraries z pthread idn)
         list(APPEND static_this_system_libraries pthread)
@@ -3424,7 +3429,7 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
-if(${ANDROID})
+if(${__ANDROID__})
 target_include_directories(${PROJECT_NAME} PRIVATE ${CPU_FEATURES_PATH})
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${CPU_FEATURES_PATH})
 endif()

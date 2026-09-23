@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(aura CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 list(APPEND library_source
         asset/cube_new.inl
         asset/new.inl
@@ -599,7 +602,7 @@ list(APPEND library_source
         #procedure.h
         #update.h
 )
-if (${ANDROID})
+if (${__ANDROID__})
     list(APPEND library_source
             windowing/sandbox/host_interaction.cpp
             windowing/sandbox/host_interaction.h
@@ -887,7 +890,7 @@ if(${WIN32})
     target_link_options(aura PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/aura.lib")
     target_link_options(aura PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aura.def")
     target_link_libraries(aura PRIVATE acme apex aqua zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
     target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
     #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
@@ -903,7 +906,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS})
 
-    if(${ANDROID})
+    if(${__ANDROID__})
         target_link_libraries(aura PRIVATE ${system_dl_references})
     else()
         target_link_libraries(aura PRIVATE ${system_dl_references} pthread)

@@ -595,6 +595,14 @@ namespace user
    }
 
 
+   bool element::is_host()
+   {
+
+      return false;
+
+   }
+
+
    bool element::is_ascendant(element * puiIsAscendant, bool bIncludeSelf)
    {
 
@@ -4748,7 +4756,31 @@ namespace user
    }
 
 
-   ::f32 element::preferred_dpi_x()
+//   ::f32 element::preferred_dpi_x()
+//   {
+//
+//      return 96.0f;
+//
+//   }
+//
+//
+//   ::f32 element::preferred_dpi_y()
+//   {
+//
+//      return 96.0f;
+//
+//   }
+
+
+//   ::f32 element::preferred_density()
+//   {
+//
+//      return 1.0f;
+//
+//   }
+
+
+   ::f32 element::get_density_dpi_for_window()
    {
 
       return 96.0f;
@@ -4756,21 +4788,40 @@ namespace user
    }
 
 
-   ::f32 element::preferred_dpi_y()
+   ::f32 element::get_density_for_window()
    {
 
-      return 96.0f;
+      return get_density_dpi_for_window() / 96.f;
 
    }
 
 
-   ::f32 element::preferred_density()
+   ::f32 element::get_font_scale_for_window()
    {
 
       return 1.0f;
 
    }
 
+
+   ::f32 element::get_text_scale_for_window()
+   {
+
+      auto fDensity = get_density_for_window();
+
+      auto fFontScale = get_font_scale_for_window();
+
+      return fDensity * fFontScale;
+
+   }
+
+
+   ::f32 element::scaler()
+   {
+
+      return get_text_scale_for_window();
+
+   }
 
 
    void element::set_need_redraw(
@@ -5263,271 +5314,268 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
    }
 
 
-      void element::on_window_size(const ::i32_size & size)
-      {
+   void element::on_window_size(const ::i32_size & size)
+   {
 
-         information("::acme::user::element::on_window_size()");
+      information("::acme::user::element::on_window_size()");
 
 
-      }
+   }
 
 
 
-      void element::on_window_set_focus()
-      {
+   void element::on_window_set_focus()
+   {
 
-         information("::acme::user::element::on_window_set_focus()");
+      information("::acme::user::element::on_window_set_focus()");
 
-      }
+   }
 
 
-      void element::set_foreground_window(::user::activation_token *puseractivationtoken)
-      {
+   void element::set_foreground_window(::user::activation_token *puseractivationtoken)
+   {
 
 
 
-      }
+   }
 
 
-      void element::on_window_show(bool bShow, int iDetail)
-      {
+   void element::on_window_show(bool bShow, int iDetail)
+   {
 
 
-      }
+   }
 
 
-      bool element::on_window_activate(::i32 iActivate, bool bMinimized,
-                                           const operating_system::window &operatingsystemwindow)
-      {
+   bool element::on_window_activate(::i32 iActivate, bool bMinimized,
+                                        const operating_system::window &operatingsystemwindow)
+   {
 
-         return false;
+      return false;
 
-      }
+   }
 
 
-      bool element::on_window_mouse_activate(::i32 & iResult, const ::operating_system::window & operatingsystemwindowTop,
-   ::i32 iHitTest, ::i32 iMessage)
-      {
+   bool element::on_window_mouse_activate(::i32 & iResult, const ::operating_system::window & operatingsystemwindowTop,
+::i32 iHitTest, ::i32 iMessage)
+   {
 
-         information("::acme::user::element::on_window_mouse_activate");
+      information("::acme::user::element::on_window_mouse_activate");
 
-         return false;
+      return false;
 
-      }
+   }
 
 
-      bool element::is_window_active()
-      {
+   bool element::is_window_active()
+   {
 
-         return true;
+      return true;
 
-      }
+   }
 
 
-      bool element::is_window_zoomed()
-      {
+   bool element::is_window_zoomed()
+   {
 
-         return false;
+      return false;
 
-      }
+   }
 
 
-      bool element::is_window_full_screen()
-      {
+   bool element::is_window_full_screen()
+   {
 
-         return false;
+      return false;
 
-      }
+   }
 
 
-      bool element::is_window_visible()
-      {
+   bool element::is_window_visible()
+   {
 
-         return false;
+      return false;
 
-      }
+   }
 
 
-      bool element::is_window_stored_iconic()
-      {
+   bool element::is_window_stored_iconic()
+   {
 
-         return false;
+      return false;
 
-      }
+   }
 
 
-      bool element::is_window_iconic()
-      {
+   bool element::is_window_iconic()
+   {
 
-         return false;
+      return false;
 
-      }
+   }
 
 
-      ::f32 element::get_window_scale()
-      {
+//      ::f32 element::get_window_scale()
+//      {
+//
+//         return 1.0f;
+//
+//      }
 
-         return 1.0f;
 
-      }
-
-
-      ::i32_point element::screen_to_window_client(const ::i32_point & point)
-      {
-
-         return {};
-
-      }
-
-
-      ::i32_rectangle element::screen_to_window_client(const ::i32_rectangle & rectangle)
-      {
-
-         return {};
-
-      }
-
-
-      ::i32_point element::window_client_to_screen(const ::i32_point & point)
-      {
-
-         return {};
-
-      }
-
-
-      ::i32_rectangle element::window_client_to_screen(const ::i32_rectangle & rectangle)
-      {
-
-         return {};
-
-      }
-
-
-      void element::set_active_window()
-      {
-
-
-
-      }
-
-
-      void element::set_window_text(const ::scoped_string & scopedstrString)
-      {
-
-         //m_pacmewindowingwindow->set_window_text(scopedstrString);
-
-      }
-
-
-      void element::set_window_text_source(const ::a_string_function & astringfunction)
-      {
-
-      }
-
-
-      void element::set_window_style(::i32 iStyle)
-      {
-
-         //m_pacmewindowingwindow->set_window_style(iStyle);
-
-      }
-
-
-      ::i64 element::get_window_style()
-      {
-
-         return -1;
-
-      }
-
-
-      void element::show_window(::user_interface::enum_show_window eshowwindow)
-      {
-
-         //m_pacmewindowingwindow->show_window(iShowFlags);
-
-      }
-
-
-      void element::set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, ::i32 iSetWindowPosFlags)
-      {
-
-         //m_pacmewindowingwindow->set_window_position(operatingsystemwindow, point, size, iSetWindowPosFlags);
-
-      }
-
-
-      void element::window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase)
-      {
-
-         //m_pacmewindowingwindow->window_invalidate_rect(prectangle, bErase);
-
-      }
-
-
-      void element::update_window()
-      {
-
-         //m_pacmewindowingwindow->update_window();
-
-      }
-
-
-      void element::redraw_window(const i32_rectangle *prectangle, void *pHRGN, ::i32 iRedrawFlags)
-      {
-
-         //m_pacmewindowingwindow->redraw_window(prectangle, pHRGN, iRedrawFlags);
-
-      }
-
-
-      void element::window_set_focus()
-      {
-
-         //m_pacmewindowingwindow->window_set_focus();
-
-      }
-
-
-
-      ::i32_rectangle element::window_get_client_rect()
-      {
-
-         //return m_pacmewindowingwindow->window_get_client_rect();
+   ::i32_point element::screen_to_window_client(const ::i32_point & point)
+   {
 
       return {};
 
-      }
+   }
 
 
-      ::i32_rectangle element::get_window_rect()
-      {
+   ::i32_rectangle element::screen_to_window_client(const ::i32_rectangle & rectangle)
+   {
 
-         //return m_pacmewindowingwindow->get_window_rect();
       return {};
 
-      }
+   }
 
 
-      bool element::defer_update_system_menu()
-      {
+   ::i32_point element::window_client_to_screen(const ::i32_point & point)
+   {
 
-         return false;
+      return {};
 
-      }
+   }
 
 
-      void element::dump_operating_system_child_window_hierarchy()
-      {
+   ::i32_rectangle element::window_client_to_screen(const ::i32_rectangle & rectangle)
+   {
 
-         //m_pacmewindowingwindow->dump_operating_system_child_window_hierarchy();
+      return {};
 
-      }
+   }
 
-   
 
-   
+   void element::set_active_window()
+   {
+
+
+
+   }
+
+
+   void element::set_window_text(const ::scoped_string & scopedstrString)
+   {
+
+      //m_pacmewindowingwindow->set_window_text(scopedstrString);
+
+   }
+
+
+   void element::set_window_text_source(const ::a_string_function & astringfunction)
+   {
+
+   }
+
+
+   void element::set_window_style(::i32 iStyle)
+   {
+
+      //m_pacmewindowingwindow->set_window_style(iStyle);
+
+   }
+
+
+   ::i64 element::get_window_style()
+   {
+
+      return -1;
+
+   }
+
+
+   void element::show_window(::user_interface::enum_show_window eshowwindow)
+   {
+
+      //m_pacmewindowingwindow->show_window(iShowFlags);
+
+   }
+
+
+   void element::set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, ::i32 iSetWindowPosFlags)
+   {
+
+      //m_pacmewindowingwindow->set_window_position(operatingsystemwindow, point, size, iSetWindowPosFlags);
+
+   }
+
+
+   void element::window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase)
+   {
+
+      //m_pacmewindowingwindow->window_invalidate_rect(prectangle, bErase);
+
+   }
+
+
+   void element::update_window()
+   {
+
+      //m_pacmewindowingwindow->update_window();
+
+   }
+
+
+   void element::redraw_window(const i32_rectangle *prectangle, void *pHRGN, ::i32 iRedrawFlags)
+   {
+
+      //m_pacmewindowingwindow->redraw_window(prectangle, pHRGN, iRedrawFlags);
+
+   }
+
+
+   void element::window_set_focus()
+   {
+
+      //m_pacmewindowingwindow->window_set_focus();
+
+   }
+
+
+
+   ::i32_rectangle element::window_get_client_rect()
+   {
+
+      //return m_pacmewindowingwindow->window_get_client_rect();
+
+   return {};
+
+   }
+
+
+   ::i32_rectangle element::get_window_rect()
+   {
+
+      //return m_pacmewindowingwindow->get_window_rect();
+   return {};
+
+   }
+
+
+   bool element::defer_update_system_menu()
+   {
+
+      return false;
+
+   }
+
+
+   void element::dump_operating_system_child_window_hierarchy()
+   {
+
+      //m_pacmewindowingwindow->dump_operating_system_child_window_hierarchy();
+
+   }
+
 
 } // namespace user
 

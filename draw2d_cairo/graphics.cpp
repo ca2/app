@@ -5747,27 +5747,29 @@ namespace draw2d_cairo
       else
       {
 
-         ::f32 fPreferredDpiX = 96.0f;
+         ::f32 fScaler = 1.25f;
 
-         ::f32 fPreferredDpiY = 96.0f;
-
-         ::f32 fPreferredDensity = 1.0f;
-
-         ::f32 fDenominatorDpi;
-
-#ifdef __ANDROID__
-
-         fDenominatorDpi = 160.0;
-
-#elif defined(MACOS)
-
-         fDenominatorDpi = 72.0;
-
-#else
-
-         fDenominatorDpi = 96.0;
-
-#endif
+//         ::f32 fPreferredDpiX = 96.0f;
+//
+//         ::f32 fPreferredDpiY = 96.0f;
+//
+//         ::f32 fPreferredDensity = 1.0f;
+//
+//         ::f32 fDenominatorDpi;
+//
+//#ifdef __ANDROID__
+//
+//         fDenominatorDpi = 160.0;
+//
+//#elif defined(MACOS)
+//
+//         fDenominatorDpi = 72.0;
+//
+//#else
+//
+//         fDenominatorDpi = 96.0;
+//
+//#endif
 
          //::f64 dFontScaler = 1.0;
 
@@ -5778,24 +5780,42 @@ namespace draw2d_cairo
 
          //}
 
-         if (::is_set(m_pacmeuserinteractionAffinity))
+         auto pacmeuserinteractionScaler = m_pacmeuserinteractionTopic;
+
+         if(::is_null(pacmeuserinteractionScaler))
          {
 
-            fPreferredDpiX = m_pacmeuserinteractionAffinity->preferred_dpi_x();
-
-            fPreferredDpiY = m_pacmeuserinteractionAffinity->preferred_dpi_y();
-
-            fPreferredDensity = m_pacmeuserinteractionAffinity->preferred_density();
+            pacmeuserinteractionScaler = m_pacmeuserinteractionAffinity;
 
          }
 
-         ::f32 fDpi = maximum(fPreferredDpiX, fPreferredDpiY);
+         if(::is_set(pacmeuserinteractionScaler))
+         {
 
-         ::f32 fDensity = fPreferredDensity;
+            fScaler *= pacmeuserinteractionScaler->scaler();
+
+         }
+
+//         if (::is_set(m_pacmeuserinteractionAffinity))
+//         {
+//
+//            fPreferredDpiX = m_pacmeuserinteractionAffinity->preferred_dpi_x();
+//
+//            fPreferredDpiY = m_pacmeuserinteractionAffinity->preferred_dpi_y();
+//
+//            fPreferredDensity = m_pacmeuserinteractionAffinity->preferred_density();
+//
+//         }
+//
+//         ::f32 fDpi = maximum(fPreferredDpiX, fPreferredDpiY);
+
+//         ::f32 fDensity = fPreferredDensity;
 
          //cairo_set_font_size(m_pcairo, pfontParam->m_dFontSize * dFontScaler * fPreferredDpiX / fDenominatorDpi);
 
-         cairo_set_font_size(m_pcairo, fFontSize * fPreferredDpiX / fDenominatorDpi);
+//         cairo_set_font_size(m_pcairo, fFontSize * fPreferredDpiX / fDenominatorDpi);
+
+         cairo_set_font_size(m_pcairo, fFontSize * fScaler);
 
       }
 

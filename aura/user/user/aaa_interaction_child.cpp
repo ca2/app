@@ -217,10 +217,12 @@ namespace user
             
          }
 
-         if (m_puserinteraction->m_procedureOnAfterCreate)
+         m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+
+         if (m_puserinteraction->m_procedureaOnAfterCreate.has_element())
          {
 
-            m_puserinteraction->m_procedureOnAfterCreate();
+            m_puserinteraction->m_procedureaOnAfterCreate.run();
 
          }
 
@@ -235,8 +237,6 @@ namespace user
       //   return false;
 
       //}
-
-      m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
       m_bUserImplCreated = true;
 
@@ -974,6 +974,4 @@ namespace user
 
 
 } // namespace user
-
-
 

@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(database_sqlite3 CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 list(APPEND database_sqlite3_source
    _.cpp
    _.h
@@ -54,7 +57,7 @@ if(${WIN32})
    target_link_libraries(database_sqlite3 PRIVATE ${library_references} ${global_library_references} sqlite)
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
 
    if(${USE_PKGCONFIG})

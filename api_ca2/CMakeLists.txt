@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(api_ca2 CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 list(APPEND library_references
    acme
    apex
@@ -44,7 +47,7 @@ if(${WIN32})
     target_link_libraries(api_ca2 PRIVATE ws2_32 winmm shlwapi)
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
 
     target_compile_options(api_ca2 PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

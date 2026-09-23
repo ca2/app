@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.16)
 project(draw2d_cairo CXX)
-message(STATUS "Project is " ${PROJECT_NAME})
+
+
+message("PROJECT_NAME = ${PROJECT_NAME}")
 
 
 list(APPEND library_source
@@ -81,7 +83,7 @@ if(${WIN32})
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura freetype cairo)
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
 
     if(${USE_PKGCONFIG})

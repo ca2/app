@@ -737,8 +737,8 @@ namespace core
 
       ::pointer<::user::impact_system> create_impact_system(const ::atom &atomImpactId) override;
 
-      void on_set_application_main_acme_user_interaction(::platform::application* papplication, ::acme::user::interaction* pacmeuserinteractionMain);
-      void on_set_application_active_acme_user_interaction(::platform::application* papplication, ::acme::user::interaction* pacmeuserinteractionMain);
+      void on_set_application_main_acme_user_interaction(::platform::application* papplication, ::acme::user::interaction* pacmeuserinteractionMain) override;
+      void on_set_application_active_acme_user_interaction(::platform::application* papplication, ::acme::user::interaction* pacmeuserinteractionMain) override;
 
    };
 

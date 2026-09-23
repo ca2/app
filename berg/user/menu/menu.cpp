@@ -774,7 +774,7 @@ namespace user
    bool menu::track_popup_menu(::menu::track_popup* ptrackpopup)
    {
 
-      m_procedureOnAfterCreate = [this]()
+      m_procedureaOnAfterCreate.add([this]()
          {
 
             add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
@@ -793,7 +793,7 @@ namespace user
 
             post_redraw();
 
-         };
+         });
 
       track_hints(ptrackpopup);
 
@@ -2752,5 +2752,4 @@ namespace user
 
 
 } // namespace user
-
 

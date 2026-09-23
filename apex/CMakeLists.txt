@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(apex CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 if (${LINUX})
    set(USE_OPENSSL TRUE)
    set(PTHREAD TRUE)
@@ -1167,7 +1170,7 @@ if (IOS)
 endif ()
 
 
-if (ANDROID)
+if (__ANDROID__)
    list(APPEND apex_source
       #            operating_system/android/Kerr/kerr.h
       #            operating_system/android/Kerr/LocalMemory.h
@@ -1488,7 +1491,7 @@ if(${WIN32})
    target_link_libraries(${PROJECT_NAME} PRIVATE zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32 ${library_references} ${global_library_references})
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
@@ -1511,7 +1514,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
       list(APPEND this_system_libraries pthread z)
    elseif (${FREEBSD})
       list(APPEND this_system_libraries dl pthread z)
-   elseif (${ANDROID})
+   elseif (${__ANDROID__})
       list(APPEND this_system_libraries dl z)
    else ()
       list(APPEND this_system_libraries dl pthread idn z)

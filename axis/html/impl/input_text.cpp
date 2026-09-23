@@ -136,9 +136,9 @@ namespace html
 
          }
 
-         auto preferredDensity = m_pedit->preferred_density();
+         auto fScaler = m_pedit->scaler();
 
-         m_box.set_size(iSize * 10.f * preferredDensity, 23.f * preferredDensity);
+         m_box.set_size(iSize * 10.f * fScaler, 23.f * fScaler);
 
          return true;
 

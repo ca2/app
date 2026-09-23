@@ -880,17 +880,23 @@ namespace acme
       }
 
 
-
-
       bool interaction::is_host_top_level()
       {
 
          return m_pacmewindowingwindow.is_set();
 
       }
-   
-   
-       bool interaction::is_window()
+
+
+      bool interaction::is_host()
+      {
+
+         return !m_pacmeuserinteractionParent.is_set();
+
+      }
+
+
+      bool interaction::is_window()
    {
           
           if(::is_null(this))
@@ -2568,12 +2574,12 @@ namespace acme
       }
 
 
-      ::f32 interaction::get_window_scale()
-      {
-
-         return m_pacmewindowingwindow->get_window_scale();
-
-      }
+//      ::f32 interaction::get_window_scale()
+//      {
+//
+//         return m_pacmewindowingwindow->get_window_scale();
+//
+//      }
 
 
       ::i32_point interaction::screen_to_window_client(const ::i32_point & point)
@@ -2735,21 +2741,106 @@ namespace acme
 
       }
 
-      ::f64 interaction::point_dpi(::f64 d)
+
+//      ::f64 interaction::point_dpi(::f64 d)
+//      {
+//
+//         return d;
+//
+//      }
+//
+//
+//      ::f64 interaction::dpiy(::f64 d)
+//      {
+//
+//         return d;
+//
+//      }
+
+
+      ::f32 interaction::get_density_dpi_for_window()
       {
 
-         return d;
+         auto pacmewindowingwindow = acme_windowing_window();
+
+         if(::is_null(pacmewindowingwindow))
+         {
+
+            return ::user::element::get_density_dpi_for_window();
+
+         }
+
+         return pacmewindowingwindow->get_density_dpi_for_window();
 
       }
 
 
-      ::f64 interaction::dpiy(::f64 d)
+      ::f32 interaction::get_density_for_window()
       {
 
-         return d;
+         auto pacmewindowingwindow = acme_windowing_window();
+
+         if(::is_null(pacmewindowingwindow))
+         {
+
+            return ::user::element::get_density_for_window();
+
+         }
+
+         return pacmewindowingwindow->get_density_for_window();
 
       }
 
+
+      ::f32 interaction::get_font_scale_for_window()
+      {
+
+         auto pacmewindowingwindow = acme_windowing_window();
+
+         if(::is_null(pacmewindowingwindow))
+         {
+
+            return ::user::element::get_font_scale_for_window();
+
+         }
+
+         return pacmewindowingwindow->get_font_scale_for_window();
+
+      }
+
+
+      ::f32 interaction::get_text_scale_for_window()
+      {
+
+         auto pacmewindowingwindow = acme_windowing_window();
+
+         if(::is_null(pacmewindowingwindow))
+         {
+
+            return ::user::element::get_text_scale_for_window();
+
+         }
+
+         return pacmewindowingwindow->get_text_scale_for_window();
+
+      }
+
+
+      ::f32 interaction::scaler()
+      {
+
+         auto pacmewindowingwindow = acme_windowing_window();
+
+         if(::is_null(pacmewindowingwindow))
+         {
+
+            return ::user::element::scaler();
+
+         }
+
+         return pacmewindowingwindow->scaler();
+
+      }
 
 
    } // namespace user

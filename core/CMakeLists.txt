@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(core CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 list(APPEND library_source
    #asset/cube_new.cpp
    #asset/new.cpp
@@ -648,7 +651,7 @@ if (APPLE)
 endif ()
 
 
-if (ANDROID)
+if (__ANDROID__)
    list(APPEND core_source
 
       operating_system/android/Kerr/kerr.h
@@ -867,7 +870,7 @@ if(${WIN32})
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)

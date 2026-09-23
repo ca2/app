@@ -1133,62 +1133,113 @@ namespace user
    //}
 
 
-   ::f64 interaction::point_dpi(::f64 d)
-   {
-
-      auto pwindowThis = window();
-
-      ::f64 dTransformed = pwindowThis->point_dpi((::f32)d);
-
-      return dTransformed;
-
-   }
-
-
-   ::f64 interaction::dpiy(::f64 d)
-   {
-
-      auto pwindowThis = window();
-
-      ::f64 dTransformed = pwindowThis->dpiy((::f32)d);
-
-      return dTransformed;
-
-   }
-
-
-   ::f32 interaction::get_dpi_for_window()
-   {
-
-      auto pwindowThis = window();
-
-      if (::is_null(pwindowThis))
-      {
-
-         return 96.0f;
-
-      }
-
-      return pwindowThis->get_dpi_for_window();
-
-   }
+//   ::f64 interaction::point_dpi(::f64 d)
+//   {
+//
+//      auto pwindowThis = window();
+//
+//      ::f64 dTransformed = pwindowThis->point_dpi((::f32)d);
+//
+//      return dTransformed;
+//
+//   }
+//
+//
+//   ::f64 interaction::dpiy(::f64 d)
+//   {
+//
+//      auto pwindowThis = window();
+//
+//      ::f64 dTransformed = pwindowThis->dpiy((::f32)d);
+//
+//      return dTransformed;
+//
+//   }
 
 
-   ::f32 interaction::get_density_for_window()
-   {
-
-      auto pwindowThis = window();
-
-      if (::is_null(pwindowThis))
-      {
-
-         return 1.0f;
-
-      }
-
-      return pwindowThis->get_density_for_window();
-
-   }
+//   ::f32 interaction::get_dpi_for_window()
+//   {
+//
+//      auto pwindowThis = window();
+//
+//      if (::is_null(pwindowThis))
+//      {
+//
+//         return 96.0f;
+//
+//      }
+//
+//      return pwindowThis->get_dpi_for_window();
+//
+//   }
+//
+//
+//   ::f32 interaction::get_density_for_window()
+//   {
+//
+//      auto pwindowThis = window();
+//
+//      if (::is_null(pwindowThis))
+//      {
+//
+//         return 1.0f;
+//
+//      }
+//
+//      return pwindowThis->get_density_for_window();
+//
+//   }
+//
+//
+//   ::f32 interaction::get_font_scale_for_window()
+//   {
+//
+//      auto pwindowThis = window();
+//
+//      if (::is_null(pwindowThis))
+//      {
+//
+//         return 1.0f;
+//
+//      }
+//
+//      return pwindowThis->get_font_scale_for_window();
+//
+//   }
+//
+//
+//   ::f32 interaction::get_text_scale_for_window()
+//   {
+//
+//      auto pwindowThis = window();
+//
+//      if (::is_null(pwindowThis))
+//      {
+//
+//         return get_density_for_window() * get_font_scale_for_window();
+//
+//      }
+//
+//      return pwindowThis->get_text_scale_for_window();
+//
+//   }
+//
+//
+//   ::f32 interaction::scaler()
+//   {
+//
+//      auto pwindowThis = window();
+//
+//      if (::is_null(pwindowThis))
+//      {
+//
+//         return get_text_scale_for_window();
+//
+//      }
+//
+//      return pwindowThis->scaler();
+//
+//   }
 
 
    ::string interaction::calculate_data_key()
@@ -2395,6 +2446,20 @@ namespace user
    void interaction::post_redraw(bool bAscendants)
    {
 
+      if(!(m_ewindowflag & e_window_flag_window_created))
+      {
+
+         m_procedureaOnAfterCreate.add([this, bAscendants]()
+         {
+
+            post_redraw(bAscendants);
+
+         });
+
+         return;
+
+      }
+
       //      if(!is_window())
       //      {
       //
@@ -2653,6 +2718,13 @@ namespace user
 
    }
 
+
+   bool interaction::is_host()
+   {
+
+      return !::is_set(m_puserinteractionParent);
+
+   }
 
    //   bool interaction::is_host_window() const
    //   {
@@ -3627,6 +3699,8 @@ namespace user
 
       set_display(e_display_zoomed, e_layout_sketch);
 
+      auto & edisplay = m_layout.m_statea[0].m_edisplay;
+
       auto bWindowingHasResizing = system()->acme_windowing()->has_resizing();
 
       if (bWindowingHasResizing)
@@ -3988,6 +4062,21 @@ namespace user
          bChange = true;
 
          layout().sketch() = useractivation;
+
+      }
+
+      if (bChange && !(m_ewindowflag & e_window_flag_window_created))
+      {
+
+         m_procedureaOnAfterCreate.add([this]()
+         {
+
+            set_visibility_change();
+            set_need_layout();
+            set_need_redraw();
+            post_redraw();
+
+         });
 
       }
 
@@ -8832,10 +8921,11 @@ if(get_parent())
    void interaction::on_message_after_create(::message::message * pmessage)
    {
 
-      if (m_procedureOnAfterCreate)
+      if ((m_ewindowflag & e_window_flag_window_created)
+          && m_procedureaOnAfterCreate.has_element())
       {
 
-         m_procedureOnAfterCreate();
+         m_procedureaOnAfterCreate.run();
 
       }
 
@@ -11591,13 +11681,6 @@ if(get_parent())
 
       }
 
-      if (m_procedureOnAfterCreate)
-      {
-
-         m_procedureOnAfterCreate();
-
-      }
-
       //}
       //catch (...)
       //{
@@ -11611,6 +11694,13 @@ if(get_parent())
       //}
 
       m_ewindowflag |= e_window_flag_window_created;
+
+      if (m_procedureaOnAfterCreate.has_element())
+      {
+
+         m_procedureaOnAfterCreate.run();
+
+      }
 
       // A platform may service an invalidation while the create handler is
       // still running. Request the first paint only after this interaction is
@@ -11666,10 +11756,10 @@ if(get_parent())
 
       //   }
 
-      //   if(m_procedureOnAfterCreate)
+      //   if(m_procedureaOnAfterCreate.has_element())
       //   {
 
-      //      m_procedureOnAfterCreate();
+      //      m_procedureaOnAfterCreate.run();
 
       //   }
 
@@ -13731,55 +13821,55 @@ if(get_parent())
    }
 
 
-   ::f32 interaction::preferred_dpi_x()
-   {
-
-      auto pwindowThis = window();
-
-      if (::is_null(pwindowThis))
-      {
-
-         return ::user::interaction_base::preferred_dpi_x();
-
-      }
-
-      return pwindowThis->get_dpi_for_window();
-
-   }
-
-
-   ::f32 interaction::preferred_dpi_y()
-   {
-
-      auto pwindowThis = window();
-
-      if (::is_null(pwindowThis))
-      {
-
-         return ::user::interaction_base::preferred_dpi_y();
-
-      }
-
-      return pwindowThis->get_dpi_for_window();
-
-   }
-
-
-   ::f32 interaction::preferred_density()
-   {
-
-      auto pwindowThis = window();
-
-      if (::is_null(pwindowThis))
-      {
-
-         return ::user::interaction_base::preferred_density();
-
-      }
-
-      return pwindowThis->get_density_for_window();
-
-   }
+//   ::f32 interaction::preferred_dpi_x()
+//   {
+//
+//      auto pwindowThis = window();
+//
+//      if (::is_null(pwindowThis))
+//      {
+//
+//         return ::user::interaction_base::preferred_dpi_x();
+//
+//      }
+//
+//      return pwindowThis->get_dpi_for_window();
+//
+//   }
+//
+//
+//   ::f32 interaction::preferred_dpi_y()
+//   {
+//
+//      auto pwindowThis = window();
+//
+//      if (::is_null(pwindowThis))
+//      {
+//
+//         return ::user::interaction_base::preferred_dpi_y();
+//
+//      }
+//
+//      return pwindowThis->get_dpi_for_window();
+//
+//   }
+//
+//
+//   ::f32 interaction::preferred_density()
+//   {
+//
+//      auto pwindowThis = window();
+//
+//      if (::is_null(pwindowThis))
+//      {
+//
+//         return ::user::interaction_base::preferred_density();
+//
+//      }
+//
+//      return pwindowThis->get_density_for_window();
+//
+//   }
 
 
    void interaction::sort_children_by_zorder(::user::interaction_array & interactiona)
@@ -15165,7 +15255,7 @@ if(get_parent())
          if (pmessage->m_eusermessage == ::user::e_message_create)
          {
 
-            //if (m_puserinteraction->m_procedureOnAfterCreate)
+            //if (m_puserinteraction->m_procedureaOnAfterCreate.has_element())
             //{
 
             //   m_puserinteraction->post_message(::user::e_message_after_create);
@@ -15728,9 +15818,13 @@ if(get_parent())
 
       ::string strType = ::platform::type(this).name();
 
-      if (get_parent() != nullptr)
+      auto pszType = strType.c_str();
+
+      if (!is_host())
       {
+
          sketch_to_lading();
+
       }
 
 
@@ -15813,6 +15907,30 @@ if(get_parent())
          return false;
 
       }
+
+      if(!get_parent() && (!m_pacmeuserinteractionaChildren
+      || m_pacmeuserinteractionaChildren->is_empty()))
+      {
+
+         return false;
+
+      }
+
+      for_user_interaction_children(puserinteraction, this)
+      {
+
+         if (!(puserinteraction->m_ewindowflag & ::e_window_flag_window_created))
+         {
+
+            return false;
+
+         }
+
+      }
+
+      ::string strType(::type(*this).raw_name());
+
+      auto pszType = strType.c_str();
 
       top_down_prefix();
 
@@ -21560,6 +21678,17 @@ if(get_parent())
 
       synchronouslockGeometry.unlock();
 
+//            ::string strType(::type(*this).name());
+//
+//            if (strType == "app_veriwell_waven::pane_impact")
+//            {
+//
+//               information("::user::interaction::place {}", strType);
+//
+//            }
+//
+//            auto pszType = strType.c_str();
+
       if (is_top_level() && windowing_window() && elayout == e_layout_sketch)
       {
 
@@ -21594,7 +21723,56 @@ if(get_parent())
    }
 
 
-   void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pdraw2dgraphics)
+   void interaction::post_if_not_created(const ::procedure & procedure)
+   {
+
+      if (this->m_ewindowflag & ::e_window_flag_window_created)
+      {
+
+         procedure();
+
+      }
+      else
+      {
+
+         post([procedure]()
+              {
+
+                  procedure();
+
+              });
+
+      }
+
+   }
+
+
+   void interaction::post_if_not_created_with_optional_graphics(::draw2d::graphics * pdraw2graphics, const ::function < void(::draw2d::graphics *) > & callback)
+   {
+
+      if (this->m_ewindowflag & ::e_window_flag_window_created)
+      {
+
+         callback(pdraw2graphics);
+
+      }
+      else
+      {
+
+         post([callback]()
+              {
+
+                 callback(nullptr);
+
+              });
+
+      }
+
+   }
+
+
+
+void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pdraw2dgraphics)
    {
       //  if (get_parent() == nullptr)
         //{
@@ -31867,24 +32045,24 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    }
 
 
-   ::f64 interaction::screen_scaler()
-   {
-
-      //return m_pinteractionScaler->screen_scaler();
-
-      return ::acme::user::interaction::screen_scaler();
-
-
-
-   }
-
-
-   ::f64 interaction::font_scaler()
-   {
-
-      return ::acme::user::interaction::font_scaler();
-
-   }
+//   ::f64 interaction::screen_scaler()
+//   {
+//
+//      //return m_pinteractionScaler->screen_scaler();
+//
+//      return ::acme::user::interaction::screen_scaler();
+//
+//
+//
+//   }
+//
+//
+//   ::f64 interaction::font_scaler()
+//   {
+//
+//      return ::acme::user::interaction::font_scaler();
+//
+//   }
 
 
    //   bool interaction::is_this_visible(enum_layout elayout)

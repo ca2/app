@@ -1253,12 +1253,12 @@ namespace acme
       }
 
 
-      ::f32 window::get_window_scale()
-      {
-
-         return 1.0f;
-
-      }
+//      ::f32 window::get_window_scale()
+//      {
+//
+//         return 1.0f;
+//
+//      }
 
 
       void window::show_window(::user_interface::enum_show_window eshowwindow)
@@ -2302,36 +2302,35 @@ void window::on_control_box_zoom()
       }
 
 
-   void window::on_gpu_context_render_frame(::i32 w, ::i32 h)
-   
-   {
-      
-      if(::is_null(m_pgpucontextrenderframe))
+      void window::on_gpu_context_render_frame(::i32 w, ::i32 h)
       {
-         
-         return;
-         
-         //throw ::exception(error_wrong_state);
-         
+
+         if(::is_null(m_pgpucontextrenderframe))
+         {
+
+            return;
+
+            //throw ::exception(error_wrong_state);
+
+         }
+
+         m_pgpucontextrenderframe->on_gpu_context_render_frame(w, h);
+
       }
-      
-      m_pgpucontextrenderframe->on_gpu_context_render_frame(w, h);
 
-   }
 
+      void window::_lock_window_gpu_context()
+      {
+
+
+      }
    
-   void window::_lock_window_gpu_context()
-   {
-      
-      
-   }
    
-   
-    void  window::_unlock_window_gpu_context()
-   {
+      void  window::_unlock_window_gpu_context()
+      {
        
     
-    }
+      }
 
 
       void window::display(::e_display edisplay, const ::user::activation& useractivation)
@@ -2351,7 +2350,47 @@ void window::on_control_box_zoom()
          }
 
       }
-   
+
+
+      ::f32 window::get_density_dpi_for_window()
+      {
+
+         return ::user::element::get_density_dpi_for_window();
+
+      }
+
+
+      ::f32 window::get_density_for_window()
+      {
+
+         return ::user::element::get_density_for_window();
+
+      }
+
+
+      ::f32 window::get_font_scale_for_window()
+      {
+
+         return ::user::element::get_font_scale_for_window();
+
+      }
+
+
+      ::f32 window::get_text_scale_for_window()
+      {
+
+         return ::user::element::get_text_scale_for_window();
+
+      }
+
+
+      ::f32 window::scaler()
+      {
+
+         return ::user::element::scaler();
+
+      }
+
 
    } // namespace windowing
 

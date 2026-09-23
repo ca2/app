@@ -381,7 +381,7 @@ namespace user
       ::draw2d::path_pointer                    m_pathFocusRect2;
       ::draw2d::path_pointer                    m_pathFocusRect3;
       ::draw2d::path_pointer                    m_pathFocusRect4;
-      procedure                                 m_procedureOnAfterCreate;
+      ::procedure_array                         m_procedureaOnAfterCreate;
       ::task_pointer                            m_ptaskTransparentMouseEvents;
 
 
@@ -574,14 +574,19 @@ namespace user
       virtual bool on_set_size(::i32_size & size, enum_layout elayout);
 
       //virtual interaction_draw2d * get_draw2d();
-      ::f64 point_dpi(::f64 d) override;
-      ::f64 dpiy(::f64 d) override;
+      //::f64 point_dpi(::f64 d) override;
+      //::f64 dpiy(::f64 d) override;
 
 
-      virtual ::f32 get_dpi_for_window();
+      //virtual ::f32 get_dpi_for_window();
 
-      virtual ::f32 get_density_for_window();
+      //virtual ::f32 get_density_for_window();
 
+      //virtual ::f32 get_font_scale_for_window();
+
+      //virtual ::f32 get_text_scale_for_window();
+
+      //virtual ::f32 scaler();
 
       virtual ::string calculate_data_key();
 
@@ -635,9 +640,11 @@ namespace user
       virtual bool is_past_reposition_request(const ::i32_point & point);
       virtual bool is_past_resizing_request(const ::i32_size & size);
 
-      ::f64 screen_scaler();
-      ::f64 font_scaler();
+      //::f64 screen_scaler();
+      //::f64 font_scaler();
 
+      virtual void post_if_not_created(const ::procedure & procedure);
+      virtual void post_if_not_created_with_optional_graphics(::draw2d::graphics * pdraw2graphics, const ::function < void(::draw2d::graphics *) > & callback);
 
       //void clear();
       void control_descriptor_common_construct();
@@ -962,9 +969,9 @@ namespace user
       ::property_object * parent_property_set_holder() const override;
 
 
-      ::f32 preferred_dpi_x() override;
-      ::f32 preferred_dpi_y() override;
-      ::f32 preferred_density() override;
+      //::f32 preferred_dpi_x() override;
+      //::f32 preferred_dpi_y() override;
+      //::f32 preferred_density() override;
 
       
       virtual void add_appearance(::e_appearance eappearance, enum_layout elayout = e_layout_sketch);
@@ -1983,6 +1990,7 @@ namespace user
       inline ::i32_boolean is_root() const  { return m_ewindowflag & e_window_flag_root; }
 
       bool is_host_top_level() override;
+      bool is_host() override;
 
 
       bool should_run() const override;
@@ -2953,7 +2961,6 @@ namespace user
 
 
 } // namespace user
-
 
 
 

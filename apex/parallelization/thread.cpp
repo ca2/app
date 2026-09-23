@@ -3361,13 +3361,18 @@ void thread::post_message(::user::enum_message eusermessage, ::wparam wparam, ::
 
    if (!pmessagequeue)
    {
+
       // The OS thread handle can be set before set_task() registers its task
       // index and message queue. Queue the message for the task in that case.
       post([this, eusermessage, wparam, lparam]()
       {
-         message_call(eusermessage, wparam, lparam);
+
+         post_message(eusermessage, wparam, lparam);
+
       });
+
       return;
+
    }
 
    pmessagequeue->post_message(nullptr, eusermessage, wparam, lparam);

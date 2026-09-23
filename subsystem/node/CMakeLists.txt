@@ -150,7 +150,7 @@ if(${WIN32})
    target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
 
-elseif(${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif(${LINUX} OR ${__BSD__} OR ${__ANDROID__})
    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
    #target_link_options(${PROJECT_NAME} PRIVATE -Wl,-rpath=$ORIGIN)
    #target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})

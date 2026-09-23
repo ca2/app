@@ -486,18 +486,23 @@ namespace windowing
       virtual void _task_transparent_mouse_event();
 
 
-      virtual ::f32 get_dpi_for_window();
+      //virtual ::f32 get_dpi_for_window();
 
-      virtual ::f32 get_density_for_window();
+      //virtual ::f32 get_density_for_window();
 
+      //virtual ::f32 get_font_scale_for_window();
 
-      virtual ::f32 point_dpi(::f32 points);
+      //virtual ::f32 get_text_scale_for_window();
 
-      virtual ::f32 y_dpi(::f32 y);
-      virtual ::f32 x_dpi(::f32 x);
+      //virtual ::f32 scaler();
 
-      virtual ::f32 dpiy(::f32 y);
-      virtual ::f32 dpix(::f32 x);
+      //virtual ::f32 point_dpi(::f32 points);
+
+      //virtual ::f32 y_dpi(::f32 y);
+      //virtual ::f32 x_dpi(::f32 x);
+
+      //virtual ::f32 dpiy(::f32 y);
+      //virtual ::f32 dpix(::f32 x);
 
 
       virtual void on_redraw_window(::u32 flags);

@@ -10537,7 +10537,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          
          auto stra = get_about_box_lines();
          
-         auto fWindowScale = pdialog->get_window_scale();
+         auto fWindowScale = pdialog->scaler();
          
          auto y = 30. * fWindowScale;
          
@@ -10659,7 +10659,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
             pdialog->set_text(strTitle);
             
-            auto fWindowScale = pdialog->get_window_scale();
+            auto fWindowScale = pdialog->scaler();
 
             auto stra = straLines;
 

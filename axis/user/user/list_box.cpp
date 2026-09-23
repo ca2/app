@@ -1423,7 +1423,7 @@ namespace user
 
       information() << "on_drop_down (10) : " << rectangleList;
 
-      //m_procedureOnAfterCreate=[this]()
+      //m_procedureaOnAfterCreate.add([this]()
       //{
 
       //   //auto & window_state = const_layout().sketch();
@@ -1689,6 +1689,5 @@ namespace user
 
 
 } // namespace user
-
 
 

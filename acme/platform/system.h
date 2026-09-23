@@ -76,7 +76,8 @@ namespace platform
 #ifdef WINDOWS
       ::pointer<::windows::apartment_thread>m_papartmentthread;
 #endif
-
+      //::color_indexes                        m_colorindexes;
+      bool                                   m_bDefaultRedLower;
       ::map< ::std::type_index, ::particle_pointer >    m_mapSingletons;
 
       system();

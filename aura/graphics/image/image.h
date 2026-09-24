@@ -280,7 +280,7 @@ namespace image
       virtual void create_as_top_draw2d_target(const ::i32_size & size, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
       virtual void update_as_backed_by_gpu_texture(const ::i32_size & size, ::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics);
       virtual void update_as_gpu_render_target(const ::i32_size & size, ::draw2d::graphics * pdraw2dgraphicsOwning = nullptr, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false, bool bTopDraw2dTarget = false);
-      virtual void update_as_render_target(const ::i32_size & size, ::draw2d::graphics * pdraw2dgraphicsOwning = nullptr, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false, bool bTopDraw2dTarget = false);
+      virtual void update_as_render_target(const ::i32_size & size, ::draw2d::domain * pdraw2ddomain, ::draw2d::graphics * pdraw2dgraphicsOwning = nullptr, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false, bool bTopDraw2dTarget = false);
       //virtual bool host(::pixmap_t * ppixmap, ::windowing::window * pwindow);
       using ::particle::initialize;
       //virtual void initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);

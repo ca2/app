@@ -757,6 +757,7 @@ namespace user
 
 
       virtual ::f32 get_density_dpi_for_window();
+      virtual ::f32 get_density_base_dpi_for_window();
       virtual ::f32 get_density_for_window();
       virtual ::f32 get_font_scale_for_window();
       virtual ::f32 get_text_scale_for_window();

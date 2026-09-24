@@ -204,6 +204,8 @@ namespace windows
       bool is_window_visible() override;
       bool is_window_iconic() override;
       //::f32 get_window_scale() override;
+      ::f32 get_density_dpi_for_window() override;
+      ::f32 get_density_base_dpi_for_window() override;
 
 
       ::i32_point screen_to_window_client(const ::i32_point & point);

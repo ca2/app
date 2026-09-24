@@ -4788,6 +4788,14 @@ namespace user
    }
 
 
+   ::f32 element::get_density_base_dpi_for_window()
+   {
+
+      return 96.0f;
+
+   }
+
+
    ::f32 element::get_density_for_window()
    {
 

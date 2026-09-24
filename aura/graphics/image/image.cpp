@@ -640,16 +640,16 @@ namespace image
 
    void image::update_as_render_target(const ::i32_size& sizeRaw ,
                                        //::user::interaction* puserinteraction,
-                                       ::draw2d::domain * pdraw2ddomain, 
+                                       ::draw2d::domain * pdraw2ddomain,
                                        ::draw2d::graphics* pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride,
                                        bool bPreserve, bool bTopDraw2d)
    {
 
-      if (!pdraw2dgraphics->m_pdraw2ddomain)
+      if (!pdraw2ddomain)
       {
-//
-//         throw ::exception(error_null_pointer, "user::interaction is null");
-//
+
+         throw ::exception(error_null_pointer, "draw2d::domain is null");
+
       }
 
       //m_puserinteractionTopic = puserinteraction;
@@ -657,7 +657,7 @@ namespace image
       create_as_descriptor(sizeRaw, eflagCreate, iGoodStride);
 
       //update_bitmap_as_render_target(m_puserinteractionTopic, pdraw2dgraphics);
-      update_bitmap_as_render_target(pdraw2dgraphics->m_pdraw2ddomain, pdraw2dgraphics);
+      update_bitmap_as_render_target(pdraw2ddomain, pdraw2dgraphics);
       
       if(::is_set(pdraw2dgraphics))
       {

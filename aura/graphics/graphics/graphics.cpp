@@ -786,6 +786,7 @@ namespace graphics
 
                pbufferitem->m_pimageBufferItem->update_as_render_target(m_pwindow->m_sizeRaw,
                   //m_pwindow->user_interaction(),
+                                                                        m_pdraw2dgraphics->draw2d_domain(),
                   m_pdraw2dgraphics);
 
   //          }

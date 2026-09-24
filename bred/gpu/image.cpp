@@ -217,7 +217,9 @@ namespace gpu
    }
 
 
-   void image::update_as_render_target(const ::i32_size & sizeRaw, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d)
+   void image::update_as_render_target(const ::i32_size & sizeRaw,
+                                       ::draw2d::domain * pdraw2ddomain,
+                                       ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d)
    {
 
 //      if (!puserinteraction)
@@ -254,7 +256,7 @@ namespace gpu
 
       //auto pixmap = this->pixmap::map();
 
-      auto pdraw2ddomain = pdraw2dgraphics->draw2d_domain();
+      //auto pdraw2ddomain = pdraw2dgraphics->draw2d_domain();
 
       auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pdraw2ddomain);
 

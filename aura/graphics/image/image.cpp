@@ -611,7 +611,8 @@ namespace image
                                            ::i32 iGoodStride, bool bPreserve)
    {
 
-      update_as_render_target(size, pdraw2dgraphics, eflagCreate, iGoodStride, bPreserve, true);
+      update_as_render_target(size, pdraw2dgraphics->m_pdraw2ddomain,
+                              pdraw2dgraphics, eflagCreate, iGoodStride, bPreserve, true);
 
    }
 
@@ -631,6 +632,7 @@ namespace image
 
       update_as_render_target(sizeRaw,
                               //puserinteraction,
+                              pdraw2dgraphics->draw2d_domain(),
                               pdraw2dgraphics, eflagCreate, iGoodStride, bPreserve, bTopDraw2d);
 
    }
@@ -638,7 +640,7 @@ namespace image
 
    void image::update_as_render_target(const ::i32_size& sizeRaw ,
                                        //::user::interaction* puserinteraction,
-                                       
+                                       ::draw2d::domain * pdraw2ddomain, 
                                        ::draw2d::graphics* pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride,
                                        bool bPreserve, bool bTopDraw2d)
    {

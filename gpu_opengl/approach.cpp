@@ -2,14 +2,15 @@
 #include "_gpu_opengl.h"
 #include "approach.h"
 #include "device.h"
-#include "wgl_context.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
 #include "acme/user/user/interaction.h"
 #include "acme/windowing/window.h"
 #include "bred/gpu/context.h"
-
+#if defined(WINDOWS_DESKTOP)
+#include "wgl_context.h"
+#endif
 //
 //#if defined(WINDOWS_DESKTOP)
 //#include "windowing_win32/window.h"
@@ -205,6 +206,7 @@ namespace gpu_opengl
 
    }
 
+#if defined(WINDOWS_DESKTOP)
 
    ::gpu_opengl::wgl_context * approach::dummy_wgl_context()
    {
@@ -229,6 +231,9 @@ namespace gpu_opengl
       return m_pwglcontextDummy;
 
    }
+
+
+#endif
    
    //void approach::gpu_on_before_create_window(::acme::windowing::window* pwindow)
    //{

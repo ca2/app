@@ -7,10 +7,11 @@
 namespace gpu_opengl
 {
 
-
+#if defined(WINDOWS_DESKTOP)
 
    class wgl_context;
 
+#endif
 
    class CLASS_DECL_GPU_OPENGL approach :
       virtual public ::gpu::bred_approach
@@ -73,9 +74,11 @@ namespace gpu_opengl
 
       //virtual void make_current();
 
+#if defined(WINDOWS_DESKTOP)
       
       virtual ::gpu_opengl::wgl_context *dummy_wgl_context();
 
+#endif
 
       //void gpu_on_before_create_window(::acme::windowing::window* pwindow) override;
       void gpu_on_create_window(::acme::windowing::window* pwindow) override;

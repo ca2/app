@@ -71,7 +71,7 @@ namespace draw2d
       ::std::atomic<::u64>                                     m_uMemoryGraphicsPoolDiagnosticsGenerationLast{0};
 
       ::map<task_index, ::pointer_array<::draw2d::graphics >> m_mapThreadPathGraphics;
-
+      ::pointer< ::acme::draw2d::domain >       m_pacmedraw2ddomainMain;
 
       draw2d();
       ~draw2d() override;
@@ -81,6 +81,8 @@ namespace draw2d
 
       virtual const void * get_gpu_physical_device_features(void * p);
       virtual void get_required_gpu_device_extensions(::u64 uPhysicalDevice, ::array<const char *> & pszaRequiredDeviceExtensions);
+      
+      virtual ::draw2d::domain * main_draw2d_domain();
 
    protected:
       friend class ::draw2d::object;
@@ -96,14 +98,14 @@ namespace draw2d
 
       virtual ::draw2d::graphics_lease _acquire_memory_graphics(
          bool bExternalRendering,
-         ::acme::user::interaction * pacmeuserinteractionAffinity,
+         ::draw2d::domain * pdraw2ddomain,
          const ::i32_size & size,
          ::image::image * pimage);
       //::pointer< ::mutex > get_object_list_mutex();
       //::pointer< ::mutex > get_image_list_mutex();
       //::pointer< ::mutex > get_graphics_context_list_mutex();
       virtual ::draw2d::graphics_pointer
-      do_allocation_strategy(::acme::user::interaction * pacmeuserinteractionAffinity, ::image::image *pimage, const ::i32_size &size);
+      do_allocation_strategy(::draw2d::domain * pdraw2ddomain, ::image::image *pimage, const ::i32_size &size);
       virtual void do_release_to_pool_strategy(::draw2d::graphics_pointer &pdraw2dgraphics, ::image::image *pimage);
    public:
       virtual ::image::image_pointer image_from_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics);
@@ -132,24 +134,24 @@ namespace draw2d
 
 
 
-      virtual graphics_pointer allocate_graphics(::acme::user::interaction * pacmeuserinteractionAffinity);
+      virtual graphics_pointer allocate_graphics(::draw2d::domain * pdraw2ddomain);
 
-      virtual graphics_pointer create_memory_graphics(const ::i32_size &size, ::acme::user::interaction * pacmeuserinteractionAffinity);
+      virtual graphics_pointer create_memory_graphics(const ::i32_size &size, ::draw2d::domain * pdraw2ddomain);
 
       virtual ::draw2d::graphics_lease acquire_memory_graphics(
          const ::i32_size &size,
-         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr,
+         ::draw2d::domain * pdraw2ddomain = nullptr,
          bool bExternalRendering = true);
       virtual ::draw2d::graphics_lease acquire_image_graphics(
          bool bExternalRendering,
          ::image::image * pimage,
-         ::acme::user::interaction * pacmeuserinteractionAffinity);
+                                                              ::draw2d::domain * pdraw2ddomain);
       virtual ::draw2d::graphics_lease acquire_owned_graphics(
          bool bExternalRendering,
          ::draw2d::graphics * pdraw2dgraphics,
          ::image::image * pimage,
          const ::i32_size & size,
-         ::acme::user::interaction * pacmeuserinteractionAffinity);
+                                                              ::draw2d::domain * pdraw2ddomain);
       virtual void return_memory_graphics(
          ::draw2d::graphics_pointer pdraw2dgraphics,
          ::image::image_pointer pimage,

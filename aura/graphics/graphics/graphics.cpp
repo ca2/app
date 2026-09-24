@@ -271,7 +271,7 @@ namespace graphics
 
       debug() << "::graphics::graphics::going to call buffer_size_and_position";
 
-      auto pacmeuserinteractionAffinity = m_pwindow->m_pacmeuserinteraction;
+      auto pacmeuserinteractionTopic = m_pwindow->m_pacmeuserinteraction;
 
       // A move can be followed directly by a draw acquisition, without a layout
       // acquisition in between. Keep the buffer rectangle current for both cases;
@@ -359,18 +359,18 @@ namespace graphics
 
          //}
 
-         if (!m_pdraw2dgraphics->m_pacmeuserinteractionAffinity
-            && pacmeuserinteractionAffinity)
+         if (!m_pdraw2dgraphics->m_pacmeuserinteractionTopic
+            && pacmeuserinteractionTopic)
          {
 
-            m_pdraw2dgraphics->m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
+            m_pdraw2dgraphics->m_pacmeuserinteractionTopic = pacmeuserinteractionTopic;
 
          }
 
-         if (!pacmeuserinteractionAffinity)
+         if (!pacmeuserinteractionTopic)
          {
 
-            pacmeuserinteractionAffinity = m_pdraw2dgraphics->m_pacmeuserinteractionAffinity;
+            pacmeuserinteractionTopic = m_pdraw2dgraphics->m_pacmeuserinteractionTopic;
 
          }
 
@@ -384,20 +384,20 @@ namespace graphics
 
          auto pimage = m_pdraw2dgraphics->get_current_target_image();
 
-         if (!pimage->m_pacmeuserinteractionAffinity
-            && pacmeuserinteractionAffinity)
+         if (!pimage->m_pdraw2ddomain
+            && m_pdraw2dgraphics->m_pdraw2ddomain)
          {
 
-            pimage->m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
+            pimage->m_pdraw2ddomain = m_pdraw2dgraphics->m_pdraw2ddomain;
 
          }
 
-         if (!pacmeuserinteractionAffinity)
-         {
-
-            pacmeuserinteractionAffinity = pimage->m_pacmeuserinteractionAffinity;
-
-         }
+//         if (!pacmeuserinteractionTopic)
+//         {
+//
+//            pacmeuserinteractionTopic = pimage->m_pacmeuserinteractionTopic;
+//
+//         }
 
          pimage->m_eacquire = ::draw2d::e_acquire_dont_load;
 
@@ -406,7 +406,7 @@ namespace graphics
             m_pdraw2dgraphics,
             pimage,
             pimage->raw_size(),
-            pacmeuserinteractionAffinity);
+            pacmeuserinteractionTopic);
 
          }
 
@@ -541,6 +541,8 @@ namespace graphics
    void graphics::on_update_screen(buffer_item * pitem)
    {
 
+      m_pwindow->window_update_screen();
+      
       //__UNREFERENCED_PARAMETER(pitem);
 
 
@@ -573,7 +575,7 @@ namespace graphics
          || pbufferitem->m_pimageBufferItem->m_sizeRaw != m_pwindow->m_sizeRaw)
       {
 
-         auto playeredwindowbuffer = m_pwindowbuffer;
+         //auto pwindowbuffer = m_pwindowbuffer;
 
          ::pointer < ::pixmap > ppixmapPreviousWindowBuffer;
 
@@ -586,7 +588,8 @@ namespace graphics
 
          //::pointer < layered_window_buffer > playeredwindowbuffer = m_pwindowbuffer;
 
-         if (playeredwindowbuffer && !m_papplication->m_gpu.m_bUseSwapChainWindow)
+         //if (pwindowbuffer && !m_papplication->m_gpu.m_bUseSwapChainWindow)
+         if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
          {
 
             //if (m_bDibIsHostingBuffer)
@@ -777,16 +780,16 @@ namespace graphics
                m_pdraw2dgraphics->create_for_window_draw2d(m_pwindow->user_interaction(), m_pwindow->m_sizeRaw);
 
             }
-            else
-            {
+//            else
+//            {
 
                pbufferitem->m_pimageBufferItem->m_bHintCpuBackingEnabled = false;
 
                pbufferitem->m_pimageBufferItem->update_as_render_target(m_pwindow->m_sizeRaw,
-                  m_pwindow->user_interaction(),
+                  //m_pwindow->user_interaction(),
                   m_pdraw2dgraphics);
 
-            }
+  //          }
 
             //::f64_size sizef64Raw = m_pwindow->m_sizeRaw;
 
@@ -866,7 +869,7 @@ namespace graphics
             }
 
             pbufferitem->m_pimageBufferItem->update_as_gpu_render_target(m_pwindow->m_sizeRaw,
-               m_pwindow->user_interaction(),
+               //m_pwindow->user_interaction(),
                m_pdraw2dgraphics);
 
             //::f64_size sizef64Raw = m_pwindow->m_sizeRaw;

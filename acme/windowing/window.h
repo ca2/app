@@ -119,8 +119,7 @@ namespace acme
 //         long                                                      m_lX11NativeVisualId;
 //         ::i32                                                     m_lX11MapNotify = -1;
 
-
-
+         ::pointer < ::acme::draw2d::domain >         m_pacmedraw2ddomain;
 //enum_bias m_ebias;
 
 
@@ -137,6 +136,8 @@ namespace acme
 
          virtual void initialize_window(::acme::user::interaction* pacmeuserinteraction);
 
+         
+         virtual ::acme::draw2d::domain * acme_draw2d_domain();
          //virtual void * __win32_HWND();
 
          //virtual long __x11_Window();

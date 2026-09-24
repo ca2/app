@@ -312,7 +312,8 @@ namespace user
             {
                ///return true;
 
-               auto image1 = m_pitem->m_pmesh->image()->pool_image(m_pitem->m_pmesh->m_plist->m_pimageSpot->size());
+               auto image1 = m_pitem->m_pmesh->image()->pool_image(m_pitem->m_pmesh->m_plist->m_pimageSpot->size(),
+                                                                   m_pitem->m_pmesh->draw2d_domain());
 
                ::i32_rectangle rectangle = rectangleI;
 

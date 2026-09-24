@@ -155,6 +155,7 @@ namespace image
    }
 
 
+   //::image::image_pointer image_drawing::image(::acme::user::interaction * pacmeuserinteractionAffinity) const
    ::image::image_pointer image_drawing::image() const
    {
 

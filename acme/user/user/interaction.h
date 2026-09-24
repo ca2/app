@@ -121,7 +121,9 @@ namespace acme
          virtual void on_create_window_object();
 
          virtual void set_window(::acme::windowing::window * pwindow);
-
+         
+         virtual ::acme::draw2d::domain * acme_draw2d_domain();
+         
          void destroy_window() override;
 
          virtual void set_children_to_destroy_unlocked();

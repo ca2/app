@@ -6239,14 +6239,14 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
             ::image::image_pointer pimage2;
 
             {
-               pimage1 = m_pitem->m_pmesh->image()->create_image(size);
+               pimage1 = m_pitem->m_pmesh->image()->create_image(size, m_pitem->m_pmesh->draw2d_domain());
                auto pbrushText = m_pitem->m_pmesh->createø < ::draw2d::brush > ();
                pbrushText->create_solid(argb(255,255,255,255));
 
                auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
                pdraw2dgraphicsImage1->clear(::color::transparent);
                pdraw2dgraphicsImage1->set(pbrushText);
-               pimage2 = m_pitem->m_pmesh->image()->create_image(size);
+               pimage2 = m_pitem->m_pmesh->image()->create_image(size, m_pitem->m_pmesh->draw2d_domain());
 
                auto pdraw2dgraphicsImage2 = pimage2->acquire_graphics();
                pdraw2dgraphicsImage2->clear(::color::transparent);

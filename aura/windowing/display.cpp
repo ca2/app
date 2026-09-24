@@ -278,32 +278,34 @@ namespace windowing
 
       for(auto & pmonitor : m_monitora)
       {
+         
+         auto rectangle = pmonitor->monitor_rectangle();
 
-         if (pmonitor->m_rectangle.left < rectangleUnion.left)
+         if (rectangle.left < rectangleUnion.left)
          {
 
-            rectangleUnion.left = pmonitor->m_rectangle.left;
+            rectangleUnion.left = rectangle.left;
 
          }
 
-         if (pmonitor->m_rectangle.top < rectangleUnion.top)
+         if (rectangle.top < rectangleUnion.top)
          {
 
-            rectangleUnion.top = pmonitor->m_rectangle.top;
+            rectangleUnion.top = rectangle.top;
 
          }
 
-         if (pmonitor->m_rectangle.right > rectangleUnion.right)
+         if (rectangle.right > rectangleUnion.right)
          {
 
-            rectangleUnion.right = pmonitor->m_rectangle.right;
+            rectangleUnion.right = rectangle.right;
 
          }
 
-         if (pmonitor->m_rectangle.bottom > rectangleUnion.bottom)
+         if (rectangle.bottom > rectangleUnion.bottom)
          {
 
-            rectangleUnion.bottom = pmonitor->m_rectangle.bottom;
+            rectangleUnion.bottom = rectangle.bottom;
 
          }
 

@@ -460,7 +460,7 @@ namespace core
 
          ::particle::on_initialize_particle();
 
-         m_pimageTemplate = image()->create_image({ 2048,  2048 });
+         m_pimageTemplate = image()->create_image({ 2048,  2048 }, m_puserinteractionAffinity->draw2d_domain());
 
          {
 
@@ -470,7 +470,7 @@ namespace core
 
          }
 
-         m_pimageLuminance = image()->create_image({ 100,  100 });
+         m_pimageLuminance = image()->create_image({ 100,  100 }, m_puserinteractionAffinity->draw2d_domain());
 
          if (defer_constructø(m_pfontOk))
          {
@@ -1203,18 +1203,18 @@ namespace core
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            auto pacmeuserinteractionAffinity =
-               pdraw2dgraphics ? pdraw2dgraphics->m_pacmeuserinteractionAffinity : nullptr;
+            auto pdraw2ddomain =
+               pdraw2dgraphics ? pdraw2dgraphics->draw2d_domain() : nullptr;
 
             auto pdraw2dgraphicsImage = m_pimage->acquire_graphics(
                ::draw2d::e_acquire_dont_load,
-               pacmeuserinteractionAffinity);
+               pdraw2ddomain);
 
             pdraw2dgraphicsImage->draw(imagedrawing);
 
          }
 
-         m_pimageLuminance = image()->create_image({ m_rectangleColors.width() / 8,  m_rectangleColors.height() });
+         m_pimageLuminance = image()->create_image({ m_rectangleColors.width() / 8,  m_rectangleColors.height() }, m_puserinteractionAffinity->draw2d_domain());
 
          // The cached H/S describe the previous image, not this new allocation.
          // Even unchanged colors must populate the replacement luminance image.

@@ -2322,6 +2322,25 @@ namespace acme
 
 
          }
+   
+   
+         ::acme::draw2d::domain * interaction::acme_draw2d_domain()
+         {
+         
+            auto pacmewindowingwindow = acme_windowing_window();
+            
+            if(::is_null(pacmewindowingwindow))
+            {
+             
+               return nullptr;
+               
+            }
+            
+            return pacmewindowingwindow->acme_draw2d_domain();
+            }
+            
+            
+         }
          
          
          ::acme::user::interaction * interaction::acme_user_parent()

@@ -324,7 +324,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphi
                ::image::image_pointer pimage;
                if (rectangle.area() > 0)
                {
-                  pimage = image()->create_image(rectangle.size());
+                  pimage = image()->create_image(rectangle.size(), m_pContainer->m_puserinteraction->draw2d_domain());
 
 
                   auto pdraw2dgraphicsImage = pimage->acquire_graphics();
@@ -1611,7 +1611,7 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pdraw2dgraph
    
    size.cy += (::i32)(2 * (maximum(2.0, m_fRateX * 8.0)));
 
-   pimageCache = image()->create_image(size);
+   pimageCache = image()->create_image(size, m_pContainer->m_puserinteraction->draw2d_domain());
 
    if (!pimageCache)
    {

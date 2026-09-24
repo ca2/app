@@ -70,7 +70,8 @@ namespace image
       ::draw2d::enum_acquire                    m_eacquire = ::draw2d::e_acquire_load;
       ::i32_rectangle                           m_rectangleTag;
       mutable ::std::atomic_bool                m_bDestinationGraphicsLeaseActive{false};
-      ::pointer < ::acme::user::interaction >   m_pacmeuserinteractionAffinity;
+      //::pointer < ::acme::user::interaction >   m_pacmeuserinteractionAffinity;
+      ::pointer < ::draw2d::domain >            m_pdraw2ddomain;
       //::pointer < ::user::interaction >         m_puserinteraction;
       //::draw2d::graphics_lease *          m_pgraphicsleaseOwned;
 
@@ -87,6 +88,7 @@ namespace image
 
       ::subparticle_pointer clone() override;
 
+      virtual ::draw2d::domain * draw2d_domain();
 
       virtual void create_with_pixmap(::pixmap * ppixmap);
 
@@ -121,7 +123,7 @@ namespace image
       virtual ::pointer < ::image::load_image > create_load_image(::image::image_context* pimagecontext);
 
       virtual ::pointer<::image::image>get_image(const ::i32_size & size);
-      virtual ::pointer<::image::image>get_image(::i32 cx, ::i32 cy);
+      //virtual ::pointer<::image::image>get_image(::i32 cx, ::i32 cy);
 
 
       static ::image::image_pointer from(::image::load_image * ploadimage);
@@ -144,15 +146,15 @@ namespace image
       //virtual ::draw2d::graphics_pointer owned_graphics() const; // is semantically const (besides may not be implementationly constant)
       virtual ::draw2d::graphics_lease acquire_graphics(const ::f64_size &sizeHint);
       ::draw2d::graphics_lease acquire_graphics(
-         ::draw2d::enum_acquire eacquire = ::draw2d::e_acquire_load,
+                                                ::draw2d::enum_acquire eacquire = ::draw2d::e_acquire_load, //,
          //::draw2d::host * pdraw2dhost = nullptr,
-         ::acme::user::interaction * pacmeuserinteractionAffinityExplicit = nullptr,
+         //::acme::user::interaction * pacmeuserinteractionAffinityExplicit = nullptr,
          bool bExternalRendering = true);
       ::draw2d::graphics_lease _acquire_graphics(
          bool bExternalRendering,
-         ::draw2d::enum_acquire eacquire,
+                                                 ::draw2d::enum_acquire eacquire);//,
          //::draw2d::host * pdraw2dhost,
-         ::acme::user::interaction * pacmeuserinteractionAffinity);
+         //::acme::user::interaction * pacmeuserinteractionAffinity);
       bool try_begin_destination_graphics_lease() const;
       void end_destination_graphics_lease() const;
       bool has_active_destination_graphics_lease() const;
@@ -224,7 +226,7 @@ namespace image
       //void create_frame(::image::image_frame * pframeSource, const ::pixmap * ppixmap, ::image::image_frame_array * pframea)
       virtual ::image::image_pointer frame_image(::image::image_frame * pframe);
       virtual ::image::image_pointer calc_current_frame(image_dynamic & dynamic);
-      virtual void update(::image::image *pimageHost, ::image::image_frame_array * pframea, const ::image::image_drawing & imagedrawing);
+      virtual void update(::image::image *pimageHost, ::image::image_frame_array * pframea, const ::image::image_drawing & imagedrawing, ::acme::user::interaction * pacmeuserinteractionAffinity);
 
 
 
@@ -274,10 +276,10 @@ namespace image
                                     ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, 
                                     bool bPreserve = false);
       virtual void create_from_graphics(::draw2d::graphics * pdraw2dgraphics);
-      virtual void create_as_top_draw2d_target(const ::i32_size & size, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
+      virtual void create_as_top_draw2d_target(const ::i32_size & size, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
       virtual void update_as_backed_by_gpu_texture(const ::i32_size & size, ::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics);
-      virtual void update_as_gpu_render_target(const ::i32_size & size, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphicsOwning = nullptr, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false, bool bTopDraw2dTarget = false);
-      virtual void update_as_render_target(const ::i32_size & size, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphicsOwning = nullptr, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false, bool bTopDraw2dTarget = false);
+      virtual void update_as_gpu_render_target(const ::i32_size & size, ::draw2d::graphics * pdraw2dgraphicsOwning = nullptr, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false, bool bTopDraw2dTarget = false);
+      virtual void update_as_render_target(const ::i32_size & size, ::draw2d::graphics * pdraw2dgraphicsOwning = nullptr, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false, bool bTopDraw2dTarget = false);
       //virtual bool host(::pixmap_t * ppixmap, ::windowing::window * pwindow);
       using ::particle::initialize;
       //virtual void initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);

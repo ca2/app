@@ -80,6 +80,7 @@ namespace draw2d
    public:
 
 
+      ::pointer < ::draw2d::domain >               m_pdraw2ddomain;
       e_graphics                                   m_egraphics;
       bool                                         m_bSwapChainFinalInterop = false;
       bool                                         m_bForWindowDraw2d;
@@ -92,8 +93,9 @@ namespace draw2d
       bool                                         m_bOutline;
       void* m_pthis;
       //::pointer<::draw2d::graphics_context>        m_pgraphicscontext;
-      ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionAffinity;
-      ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionTopic;
+      //::pointer < ::acme::user::interaction >       m_pacmeuserinteractionAffinity;
+      //::pointer < ::draw2d::domain >                  m_pdraw2ddomain;
+      ::pointer < ::acme::user::interaction >         m_pacmeuserinteractionTopic;
       //::pointer < ::user::interaction >            m_puserinteractionDraw2dGraphics;
       //::pointer<::draw2d::host>                    m_pdraw2dhost;
       ::pointer < ::graphics::buffer_item >        m_pgraphicsbufferitem;
@@ -168,6 +170,8 @@ namespace draw2d
 
       void on_initialize_particle() override;
 
+      virtual ::draw2d::domain * draw2d_domain();
+
       virtual bool is_gpu_oriented();
       //      // void assert_ok() const override;
       //      // void dump(dump_context & dumpcontext) const override;
@@ -183,7 +187,6 @@ namespace draw2d
       virtual void set_size_scaler(::f64 dSizeScaler);
 
       //virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure);
-
       virtual void reset_target_rectangle();
 
       void on_target_rectangle_update() override;
@@ -405,11 +408,11 @@ namespace draw2d
       virtual void on_release_memory_graphics();
       virtual void create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size = {});
       virtual void defer_set_size(const ::i32_size& size = {});
-      virtual void _create_memory_graphics(const ::i32_size& size = {}, ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr);
+      virtual void _create_memory_graphics(const ::i32_size& size = {}, ::draw2d::domain * pdraw2ddomain = nullptr);
       //virtual void create_compatible_graphics(::draw2d::graphics * pdraw2dgraphics);
       //virtual void create_window_graphics(const ::operating_system::window & operatingsystemwindow);
 
-      virtual void create_bitmap_graphics(::draw2d::bitmap *pdraw2dbitmap, ::acme::user::interaction * pacmeuserinteractionAffinity);
+      virtual void create_bitmap_graphics(::draw2d::bitmap *pdraw2dbitmap, ::draw2d::domain * pdraw2ddomain);
 
 
       virtual ::pointer < ::draw2d::path > create_path();

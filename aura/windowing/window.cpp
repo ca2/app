@@ -26,6 +26,7 @@
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/prototype/prototype/sequence_continuation.h"
 #include "acme/user/user/_text_stream.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/graphics_context.h"
 #include "aura/graphics/draw2d/graphics_layer_scope.h"
 #include "aura/graphics/draw2d/lock.h"
@@ -171,6 +172,8 @@ namespace windowing
       ::channel::on_initialize_particle();
 
       m_pmutexRedrawItem = node()->create_mutex();
+      
+      m_pdraw2ddomain = draw2d()->main_draw2d_domain();
 
    }
 
@@ -977,6 +980,14 @@ namespace windowing
 
       create_graphics_thread();
 
+   }
+
+
+   ::draw2d::domain * window::draw2d_domain()
+   {
+   
+      return m_pdraw2ddomain;
+      
    }
 
 
@@ -12203,7 +12214,7 @@ namespace windowing
 
 #endif
 
-                        pdraw2dgraphics->m_pacmeuserinteractionAffinity = m_pacmeuserinteraction;
+                        pdraw2dgraphics->m_pacmeuserinteractionTopic = m_pacmeuserinteraction;
 
                         pdraw2dgraphics->m_pgraphicsgraphics = pgraphicsgraphics;
 
@@ -12313,7 +12324,7 @@ namespace windowing
 
                         //auto graphicslayerscope = pdraw2dgraphics.begin_layer_scope();
 
-                        pdraw2dgraphics->m_pacmeuserinteractionAffinity = puserinteraction;
+                        pdraw2dgraphics->m_pacmeuserinteractionTopic = puserinteraction;
                         // pdraw2dgraphics = pdraw2dgraphics;
                         pdraw2dgraphics->m_egraphics = ::e_graphics_draw;
 
@@ -12699,7 +12710,7 @@ namespace windowing
 
       //}
 
-      pdraw2dgraphics->m_pacmeuserinteractionAffinity = user_interaction();
+      pdraw2dgraphics->m_pacmeuserinteractionTopic = user_interaction();
 
       pdraw2dgraphics->m_puserstyleGraphics.release();
 

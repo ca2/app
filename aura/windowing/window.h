@@ -4,7 +4,7 @@
 
 
 #include "apex/message/channel.h"
-#include "acme/prototype/collection/osdata_array.h"
+//#include "acme/prototype/collection/osdata_array.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "apex/windowing/window_base.h"
@@ -21,7 +21,7 @@ namespace windowing
 
 
    class CLASS_DECL_AURA window :
-      virtual public osdata_array,
+      //virtual public osdata_array,
       virtual public ::windowing::window_base
    {
    public:
@@ -123,14 +123,14 @@ namespace windowing
       ::thread_pointer                          m_pthreadMouseLeave;
 
       ::i32_point                               m_pointInside;
-      ::pointer<::user::element>               m_pelementSoftwareKeyboard;
+      ::pointer<::user::element>                m_pelementSoftwareKeyboard;
 
       i32_point                                 m_point;
       i32_size                                  m_size;
 
       ::pointer<::graphics::graphics>           m_pgraphicsgraphics;
-      ::draw2d::graphics_pointer              m_pdraw2dgraphics;
-
+      ::draw2d::graphics_pointer                m_pdraw2dgraphics;
+      //::pointer<::draw2d::domain>               m_pdraw2ddomain;
       ::pointer < ::mutex >                     m_pmutexDraw;
       ::pointer < ::mutex >                     m_pmutexRedraw;
 
@@ -216,6 +216,8 @@ namespace windowing
       void create_window() override;
 
       void _create_window() override;
+      
+      virtual ::draw2d::domain * draw2d_domain();
 
       virtual void create_graphics_thread();
 

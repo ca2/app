@@ -13,7 +13,8 @@ namespace graphics
    public:
 
 
-      ::color::hls                     m_hls;
+      ::color::hls                        m_hls;
+      ::pointer < ::user::interaction >   m_puserinteractionAffinity;
 
       ::function < void(const ::color::hls & hls, bool bFinal) >    m_callbackHls;
 

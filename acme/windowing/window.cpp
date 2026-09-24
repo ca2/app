@@ -109,9 +109,18 @@ namespace acme
          }
 
          m_pacmeuserinteraction = pacmeuserinteraction;
-
+         
       }
-
+   
+      
+      ::acme::draw2d::domain * window::acme_draw2d_domain()
+      {
+      
+         return m_pacmedraw2ddomain;
+         
+      }
+   }
+   
 
       bool window::should_avoid_default_swap_chain_present()
       {
@@ -206,6 +215,7 @@ namespace acme
 
          //system()->acme_windowing()->m_windowbasea.add(this);
 
+         //m_pdraw2ddomain = draw2d()->main_draw2d_domain();
 
       }
 
@@ -522,6 +532,14 @@ namespace acme
 
 
       }
+   
+   
+//   void window::draw2d_domain()
+//   {
+//      
+//      return m_pdraw2ddomain;
+//      
+//   }
    
    void window::set_last_present_request_time()
    {

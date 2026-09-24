@@ -676,7 +676,7 @@ namespace nanoui
    ::image::image_pointer Screen::create_image(const ::i32_size& size)
    {
 
-      return m_puserinteraction->image()->create_image(size);
+      return m_puserinteraction->image()->create_image(size, m_puserinteraction->draw2d_domain());
 
    }
 

@@ -191,11 +191,11 @@ namespace graphics
 
       ::i32_size sizeImage(m_sizeTile.cx * m_sizeWindow.cx + m_iBorder * 2, m_sizeTile.cy * m_sizeWindow.cy + m_iBorder * 2);
 
-      m_pimage = image()->create_image(sizeImage);
+      m_pimage = image()->create_image(sizeImage, m_puserinteraction->draw2d_domain());
 
       auto pdraw2dgraphicsImage = m_pimage->acquire_graphics();
       
-      pdraw2dgraphicsImage->m_pacmeuserinteractionAffinity = m_puserinteraction;
+      pdraw2dgraphicsImage->m_pdraw2ddomain = m_puserinteraction->draw2d_domain();
 
       m_papplication->constructø(pdraw2dgraphicsImage->m_pwritetextfont);
 

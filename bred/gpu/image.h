@@ -51,7 +51,8 @@ namespace gpu
 
 
       void update_as_backed_by_gpu_texture(const ::i32_size & size, ::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics) override;
-      void update_as_render_target(const ::i32_size & sizeRaw, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d) override;
+      //void update_as_render_target(const ::i32_size & sizeRaw, ::user::interaction *
+      void update_as_render_target(const ::i32_size & sizeRaw, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d) override;
       virtual void create_gpu_texture_image(::gpu::texture * pgputexture, ::gpu::graphics * pgpugraphics);
 
       void destroy() override;

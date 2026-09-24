@@ -380,7 +380,7 @@ namespace user
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               set_image(getfileimage.m_iImage, iSize, imagedrawing);
+               set_image(getfileimage.m_iImage, iSize, imagedrawing, getfileimage.m_puserinteractionAffinity);
 
             }
 
@@ -1345,7 +1345,7 @@ namespace user
          else
          {
 
-            pimage16 = image()->create_image({16, 16});
+            pimage16 = image()->create_image({16, 16}, getfileimage.m_puserinteractionAffinity->draw2d_domain());
 
             if (pimage16.nok())
             {
@@ -1381,7 +1381,7 @@ namespace user
          else
          {
 
-            pimage48 = image()->create_image({48, 48});
+            pimage48 = image()->create_image({48, 48}, getfileimage.m_puserinteractionAffinity->draw2d_domain());
 
             if (pimage48.nok())
             {
@@ -1516,7 +1516,7 @@ namespace user
       for(::i32 & iSize : iaSize)
       {
          
-         auto pimage = pnode->get_file_image_by_type_identifier(iSize, strTypeIdentifier);
+         auto pimage = pnode->get_file_image_by_type_identifier(iSize, strTypeIdentifier, getfileimage.m_puserinteractionAffinity);
          
          if(pimage.nok())
          {
@@ -1544,7 +1544,7 @@ namespace user
 
          ::image::image_source imagesource(pimage);
 
-         set_image(getfileimage.m_iImage, iSize, imagesource);
+         set_image(getfileimage.m_iImage, iSize, imagesource, getfileimage.m_puserinteractionAffinity);
 
       }
 
@@ -1624,7 +1624,7 @@ namespace user
       for(::i32 & iSize : iaSize)
       {
          
-         auto pimage = pnode->get_file_image(iSize, strPath);
+         auto pimage = pnode->get_file_image(iSize, strPath, getfileimage.m_puserinteractionAffinity);
          
          if(pimage.nok())
          {
@@ -1650,7 +1650,7 @@ namespace user
 
          ::image::image_source imagesource(pimage);
 
-         set_image(getfileimage.m_iImage, iSize, imagesource);
+         set_image(getfileimage.m_iImage, iSize, imagesource, getfileimage.m_puserinteractionAffinity);
 
       }
 
@@ -1768,7 +1768,7 @@ namespace user
    }
 
 
-   void shell::set_icon(::i32 iImage, const ::file::path & pathIcon)
+   void shell::set_icon(::i32 iImage, const ::file::path & pathIcon, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1807,7 +1807,7 @@ namespace user
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         set_image(iImage, iSize, imagedrawing);
+         set_image(iImage, iSize, imagedrawing, pacmeuserinteractionAffinity);
 
       }
 
@@ -1832,7 +1832,7 @@ namespace user
 //   }
 
 
-   void shell::set_image(::i32 iImage, ::i32 iSize, ::image::image_drawing imagedrawing)
+   void shell::set_image(::i32 iImage, ::i32 iSize, ::image::image_drawing imagedrawing, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1855,7 +1855,7 @@ namespace user
       // freshly decoded thumbnails and icons may change representation during
       // their first GPU realization; drawing that original source again can
       // apply its vertical orientation a second time.
-      auto pimageHover = pimagelist->get_image(iImage);
+      auto pimageHover = pimagelist->get_image(iImage, pacmeuserinteractionAffinity);
 
       if (::is_ok(pimageHover))
       {
@@ -2040,7 +2040,7 @@ namespace user
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               set_image(getfileimage.m_iImage, iSize, imagedrawing);
+               set_image(getfileimage.m_iImage, iSize, imagedrawing, getfileimage.m_puserinteractionAffinity);
 
             }
 
@@ -2061,7 +2061,7 @@ namespace user
 
       }
 
-      set_icon(getfileimage.m_iImage, pathIcon);
+      set_icon(getfileimage.m_iImage, pathIcon, getfileimage.m_puserinteractionAffinity);
 
       return getfileimage.m_iImage;
 

@@ -85,11 +85,11 @@ namespace image
 
       virtual ::image::image_pointer create_image();
       
-      virtual ::image::image_pointer create_image(const ::i32_size & size, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
+      virtual ::image::image_pointer create_image(const ::i32_size & size, ::draw2d::domain * pdraw2ddomain, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
 
       virtual ::image::image_pointer create_image_from_data(const ::pixmap_t & pixmap, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
 
-      virtual ::image::pool_image pool_image(const ::i32_size & size);
+      virtual ::image::pool_image pool_image(const ::i32_size & size, ::draw2d::domain * pdraw2ddomain);
 
       virtual void release_pool_image(::image::pool_image * ppoolimage);
 

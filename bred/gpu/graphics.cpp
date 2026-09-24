@@ -1019,7 +1019,7 @@ namespace gpu
 
       }
 
-      auto pimageSrc = imagedrawing.image();
+      auto pimageSrc = imagedrawing.image(m_pacmeuserinteractionAffinity);
 
       if (!::is_ok(pimageSrc))
       {

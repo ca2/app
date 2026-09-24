@@ -4,7 +4,7 @@
 
 
 //#include "acme/filesystem/filesystem/path.h"
-#include "acme/prototype/collection/osdata_array.h"
+//#include "acme/prototype/collection/osdata_array.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "acme/prototype/geometry2d/size.h"
 
@@ -15,8 +15,8 @@ namespace windowing
 
 
    class CLASS_DECL_AURA cursor :
-      virtual public ::particle,
-      virtual public ::osdata_array
+      virtual public ::particle // ,
+      //virtual public ::osdata_array
    {
    public:
 

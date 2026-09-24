@@ -76,6 +76,7 @@ namespace user
 
 
       ::pointer<picture_impl>    m_ppictureimpl;
+      ::pointer < ::user::interaction > m_puserinteractionAffinity;
 
 
       picture();

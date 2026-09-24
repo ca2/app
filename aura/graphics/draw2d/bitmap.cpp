@@ -688,11 +688,11 @@ namespace draw2d
       //return false;
    }
 
-   void * bitmap::detach()
-   {
-      throw ::interface_only();
-      return nullptr;
-   }
+//   void * bitmap::detach()
+//   {
+//      throw ::interface_only();
+//      return nullptr;
+//   }
 
    //const ::i32_size & size bitmap::set_size(const ::i32_size & size)
    //{

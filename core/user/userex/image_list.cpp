@@ -172,7 +172,7 @@ namespace userex
 
                   ::image::image_pointer pimageSmall;
 
-                  pimageSmall = image()->create_image({256,  256 * pimage1->height() / pimage1->width()});
+                  pimageSmall = image()->create_image({256,  256 * pimage1->height() / pimage1->width()}, draw2d_domain());
 
                   ::image::image_source imagesource(pimage1);
 

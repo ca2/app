@@ -1128,8 +1128,7 @@ namespace user
 
       virtual ::frequency get_output_per_second();
 
-
-
+      virtual ::draw2d::domain * draw2d_domain();
 
       virtual void defer_graphics(::draw2d::graphics_pointer &pdraw2dgraphics);
 

@@ -201,7 +201,7 @@ namespace image
    ::draw2d::graphics_lease image::acquire_graphics(
       ::draw2d::enum_acquire eacquire,
       //::draw2d::host * pdraw2dhost,
-      ::acme::user::interaction* pacmeuserinteractionAffinityExplicit,
+      //::acme::user::interaction* pacmeuserinteractionTopicExplicit,
       bool bExternalRendering)
    {
 
@@ -214,14 +214,14 @@ namespace image
 
       //}
 
-      auto pacmeuserinteractionAffinity = pacmeuserinteractionAffinityExplicit;
+      //auto pacmeuserinteractionTopic = pacmeuserinteractionTopicExplicit;
 
-      if (!pacmeuserinteractionAffinity)
-      {
-
-         pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
-
-      }
+//      if (!pacmeuserinteractionTopic)
+//      {
+//
+//         pacmeuserinteractionTopic = m_pacmeuserinteractionTopic;
+//
+//      }
 
       ////if (!pacmeuserinteractionAffinity && pdraw2dhost)
       //{
@@ -231,15 +231,15 @@ namespace image
 
       //}
 
-      auto pacmeuserinteractionMain =
-         m_papplication ? m_papplication->main_acme_user_interaction() : nullptr;
-
-      if (!pacmeuserinteractionAffinity)
-      {
-
-         pacmeuserinteractionAffinity = pacmeuserinteractionMain;
-
-      }
+      //auto pacmeuserinteractionMain =
+//         m_papplication ? m_papplication->main_acme_user_interaction() : nullptr;
+//
+//      if (!pacmeuserinteractionTopic)
+//      {
+//
+//         pacmeuserinteractionTopic = pacmeuserinteractionMain;
+//
+//      }
 
       //if (!pdraw2dhost && pacmeuserinteractionAffinity)
       //{
@@ -257,18 +257,18 @@ namespace image
 
       return ::transfer(_acquire_graphics(
          bExternalRendering,
-         eacquire,
+                                          eacquire));///,
          //pdraw2dhost,
-         pacmeuserinteractionAffinity));
+         //pacmeuserinteractionTopic));
 
    }
 
 
    ::draw2d::graphics_lease image::_acquire_graphics(
       bool bExternalRendering,
-      ::draw2d::enum_acquire eacquire,
+      ::draw2d::enum_acquire eacquire) //,
       //::draw2d::host * pdraw2dhost,
-      ::acme::user::interaction* pacmeuserinteractionAffinity)
+      //::acme::user::interaction* pacmeuserinteractionAffinity)
    {
 
       m_eacquire = eacquire;
@@ -649,7 +649,17 @@ namespace image
       create_as_descriptor(sizeRaw, eflagCreate, iGoodStride);
 
       update_bitmap_as_render_target(m_pacmeuserinteractionAffinity, pdraw2dgraphics);
-
+      
+      if(::is_set(pdraw2dgraphics))
+      {
+         
+         pdraw2dgraphics->m_pimageTarget = this;
+         
+         m_pgraphicsOwned = pdraw2dgraphics;
+         
+         m_pgraphicsOwned->set_ok_flag();
+         
+      }
       //m_puserinteraction = puserinteraction;
 
       //return create_from_data(sizeRaw, nullptr, iGoodStride, eflagCreate, bPreserve);
@@ -10484,6 +10494,14 @@ namespace image
    }
 
 
+   ::draw2d::domain * image::draw2d_domain()
+   {
+      
+      return m_pdraw2ddomain;
+      
+   }
+
+
    void image::create_with_pixmap(pixmap* ppixmap)
    {
 
@@ -10594,7 +10612,7 @@ namespace image
          this,
          pacmeuserinteractionAffinity,
          pdraw2dgraphics);
-
+      
    }
 
 
@@ -10810,20 +10828,25 @@ namespace image
 
       return [pimage](::image::load_image * ploadimage)
       {
-
-         auto ppixmap = ploadimage->m_pimageframearray->get_pixmap();
-
-         if (ppixmap)
+         
+         if(ploadimage->m_pimageframearray)
          {
-
-            pimage->on_load_image(ppixmap);
-
-         }
-         else
-         {
-
-            pimage->on_load_image_frame_array(ploadimage->m_pimageframearray);
-
+            
+            auto ppixmap = ploadimage->m_pimageframearray->get_pixmap();
+            
+            if (ppixmap)
+            {
+               
+               pimage->on_load_image(ppixmap);
+               
+            }
+            else
+            {
+               
+               pimage->on_load_image_frame_array(ploadimage->m_pimageframearray);
+               
+            }
+            
          }
 
       };
@@ -10855,7 +10878,7 @@ namespace image
 
       }
 
-      auto pimageNew = ::particle::image()->create_image(size);
+      auto pimageNew = ::particle::image()->create_image(size, m_pacmeuserinteractionAffinity->);
 
       ::image::image_source imagesource(this, this->rectangle());
 
@@ -10874,14 +10897,14 @@ namespace image
    }
 
 
-   ::pointer<::image::image> image::get_image(::i32 cx, ::i32 cy)
-   {
-
-      auto pimageNew = get_image(::i32_size(cx, cy));
-
-      return pimageNew;
-
-   }
+//   ::pointer<::image::image> image::get_image(::i32 cx, ::i32 cy)
+//   {
+//
+//      auto pimageNew = get_image(::i32_size(cx, cy));
+//
+//      return pimageNew;
+//
+//   }
 
 
    ::image::image_pointer image::from(::image::load_image * ploadimage)
@@ -12105,10 +12128,10 @@ namespace image
    }
 
 
-   void image::update(::image::image *pimageHost, ::image::image_frame_array * pimageframearray, const ::image::image_drawing & imagedrawing)
+   void image::update(::image::image *pimageHost, ::image::image_frame_array * pimageframearray, const ::image::image_drawing & imagedrawing, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
-      auto pimageSource = imagedrawing.image();
+      auto pimageSource = imagedrawing.image(pacmeuserinteractionAffinity);
 
       auto pframes = pimageSource->frames();
 

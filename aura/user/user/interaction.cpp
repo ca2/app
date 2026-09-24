@@ -7130,7 +7130,7 @@ namespace user
    void interaction::_000CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      scoped_restore(pdraw2dgraphics->m_pacmeuserinteractionAffinity);
+      scoped_restore(pdraw2dgraphics->m_pacmeuserinteractionTopic);
 
       //pdraw2dgraphics->m_puserinteraction = m_puserinteraction;
 
@@ -19893,6 +19893,14 @@ if(get_parent())
 
       return pwindowThis->defer_release_mouse_capture(this);
 
+   }
+
+
+   ::draw2d::domain * interaction::draw2d_domain()
+   {
+   
+      return window()->draw2d_domain();
+      
    }
 
 

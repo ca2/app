@@ -217,17 +217,17 @@ namespace gpu
    }
 
 
-   void image::update_as_render_target(const ::i32_size & sizeRaw, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d)
+   void image::update_as_render_target(const ::i32_size & sizeRaw, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d)
    {
 
-      if (!puserinteraction)
-      {
+//      if (!puserinteraction)
+//      {
+//
+//         throw ::exception(error_null_pointer, "user::interaction is null");
+//
+//      }
 
-         throw ::exception(error_null_pointer, "user::interaction is null");
-
-      }
-
-      m_pacmeuserinteractionAffinity = puserinteraction;
+      //m_pacmeuserinteractionAffinity = puserinteraction;
 
       // if (m_pgputexture && m_pgraphics && m_pgputexture->size() == size)
 
@@ -254,9 +254,9 @@ namespace gpu
 
       //auto pixmap = this->pixmap::map();
 
-      auto pacmewindowingwindow = m_pacmeuserinteractionAffinity->m_pacmewindowingwindow;
+      auto pdraw2ddomain = pdraw2dgraphics->draw2d_domain();
 
-      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
+      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pdraw2ddomain);
 
       _synchronous_lock synchronouslock(pgpudevice->synchronization());
 
@@ -266,7 +266,7 @@ namespace gpu
          auto pgpucontextlease = pgpudevice->acquire_gpu_context(
             bTopDraw2d ? ::gpu::e_output_draw2d_bitmap : ::gpu::e_output_none, {25, 25}, pdraw2dgraphics);
 
-         pgpucontextlease->m_pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
+         //pgpucontextlease->m_pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
 
          //::pixmap_t pixmap;
 

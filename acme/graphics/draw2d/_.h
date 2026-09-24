@@ -28,6 +28,24 @@ namespace draw2d
 } // namespace draw2d
 
 
+namespace acme
+{
+
+
+   namespace draw2d
+   {
+   
+   
+      class domain;
+   
+   
+   } // namespace draw2d
+
+
+} // namespace acme
+
+
+
 inline ::u8 clampAndConvert(::f64 v)
 {
 

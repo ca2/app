@@ -76,7 +76,7 @@ namespace image
          for (::i32 col = 0; col < cols; col++)
          {
 
-            auto pimage = pparticle->image()->create_image(size);
+            auto pimage = pparticle->image()->create_image(size, pimageSource->draw2d_domain());
 
             auto rectangleTarget = pimage->rectangle();
 

@@ -148,6 +148,28 @@ namespace draw2d
    }
 
 
+   ::draw2d::domain * graphics::draw2d_domain()
+   {
+      
+      if(!m_pdraw2ddomain)
+      {
+         
+         ::cast < ::user::interaction > puserinteractionTopic = m_pacmeuserinteractionTopic;
+         
+         if(puserinteractionTopic)
+         {
+          
+            m_pdraw2ddomain = puserinteractionTopic->draw2d_domain();
+            
+         }
+         
+      }
+      
+      return m_pdraw2ddomain;
+      
+   }
+
+
    bool graphics::is_gpu_oriented()
    {
 
@@ -225,7 +247,7 @@ namespace draw2d
 
    ::image::image_pointer graphics::image_source_image(const ::i32_size & sizeDst)
    {
-
+      
       return m_pimageTarget->get_image(sizeDst);
 
    }
@@ -868,7 +890,7 @@ namespace draw2d
 
       m_sizeTotal2 = size;
 
-      //create_memory_graphics(size);
+      //_create_memory_graphics(size, puserinteraction);
 
    }
 
@@ -1766,7 +1788,7 @@ namespace draw2d
 
             ::i32_size size(imagedrawing.m_rectangleTarget.size());
 
-            auto image1 = image()->pool_image(size);
+            auto image1 = image()->pool_image(size, m_pacmeuserinteractionAffinity);
 
             ::image::image_source imagesource(imagedrawing.m_pimagesource, rectangleSource);
 
@@ -2310,7 +2332,7 @@ namespace draw2d
 
             ::image::image_pointer pimage1;
 
-            pimage1 = image()->create_image(rectangleText.size());
+            pimage1 = image()->create_image(rectangleText.size(), m_pacmeuserinteractionAffinity);
 
             {
 

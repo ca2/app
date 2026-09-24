@@ -171,9 +171,9 @@ namespace experience_core
 
       ::image::image_pointer pimage2;
 
-      pimage1 = image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
+      pimage1 = image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 }, pframewindow->draw2d_domain());
 
-      pimage2 = image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
+      pimage2 = image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 }, pframewindow->draw2d_domain());
 
       ::i32_rectangle rectangleWindow = rectangleX;
 

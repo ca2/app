@@ -5032,7 +5032,7 @@ void imaging::alpha_spread_R2_24CC(::u8 * pDst,::i32 xDest,::i32 yDest,::i32 wDe
 
 
 void imaging::spread(
-::draw2d::graphics *pdcDst,
+::draw2d::graphics *pdraw2dgraphics,
 const ::i32_point & pointDst,
 const ::i32_size & size,
 ::draw2d::graphics * pdcSrc,
@@ -5044,9 +5044,9 @@ const ::color::color & color)
    if (size.is_empty())
       throw ::exception(error_bad_argument);
 
-   ::image::image_pointer ppixmapDst = image()->create_image(size);
+   ::image::image_pointer ppixmapDst = image()->create_image(size, pdraw2dgraphics->draw2d_domain());
 
-   ::image::image_pointer ppixmapSrc = image()->create_image(size);
+   ::image::image_pointer ppixmapSrc = image()->create_image(size, pdraw2dgraphics->draw2d_domain());
 
    auto pdraw2dgraphicsImageSrc = ppixmapSrc->acquire_graphics();
 
@@ -5096,7 +5096,7 @@ const ::color::color & color)
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      pdcDst->draw(imagedrawing);
+      pdraw2dgraphics->draw(imagedrawing);
       //{
 
       //   return false;

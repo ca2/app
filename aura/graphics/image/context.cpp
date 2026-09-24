@@ -162,7 +162,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::create_image(const ::i32_size & size, ::enum_flag eflagCreate)
+   ::image::image_pointer image_context::create_image(const ::i32_size & size, ::draw2d::domain * pdraw2ddomain, ::enum_flag eflagCreate)
    {
 
       auto pimage = m_papplication->createø < ::image::image >();
@@ -259,7 +259,7 @@ namespace image
    }
 
 
-   ::image::pool_image image_context::pool_image(const ::i32_size& size)
+   ::image::pool_image image_context::pool_image(const ::i32_size& size, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -273,7 +273,7 @@ namespace image
 
       }
 
-      return { this, create_image(size) };
+      return { this, create_image(size, pacmeuserinteractionAffinity) };
 
    }
 
@@ -300,7 +300,7 @@ namespace image
 
       }
 
-      auto pimageStreched = create_image(size);
+      auto pimageStreched = create_image(size, pimage->m_pacmeuserinteractionAffinity);
 
       auto pdraw2dgraphicsImageStretched = pimageStreched->acquire_graphics();
 

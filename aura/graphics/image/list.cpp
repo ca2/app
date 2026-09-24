@@ -5,11 +5,13 @@
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 //#include "aura/graphics/draw2d/draw_scope.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/user/user/interaction.h"
 
 /*
 
@@ -97,7 +99,7 @@ namespace image
 
       defer_constructø(m_pimage);
 
-      m_pimage->m_pacmeuserinteractionAffinity = system()->m_papplication->main_acme_user_interaction();
+      m_pimage->m_pdraw2ddomain = draw2d()->main_draw2d_domain();
 
       if (m_iSize > 0)
       {
@@ -692,10 +694,10 @@ namespace image
    //}
 
 
-   ::image::image_pointer image_list::get_image(::i32 iImage)
+   ::image::image_pointer image_list::get_image(::i32 iImage, ::draw2d::domain * pdraw2ddomain)
    {
 
-      ::image::image_pointer pimage = image()->create_image(m_size);
+      ::image::image_pointer pimage = image()->create_image(m_size, pdraw2ddomain);
 
       if (!pimage)
       {

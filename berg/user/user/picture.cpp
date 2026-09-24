@@ -10,6 +10,7 @@
 #include "picture.h"
 #include "acme/prototype/geometry2d/_binary_stream.h"
 #include "acme/prototype/collection/_array_binary_stream.h"
+#include "aura/user/user/interaction.h"
 //#include "acme/_finish.h"
 
 
@@ -864,7 +865,7 @@ namespace user
 
          rectangleDib.inflate(iShift, iShift);
 
-         pimageDropShadow = image()->create_image(rectangleDib.size());
+         pimageDropShadow = image()->create_image(rectangleDib.size(),m_puserinteractionAffinity);
 
          if (pimageDropShadow)
          {

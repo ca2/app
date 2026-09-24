@@ -31,13 +31,13 @@ namespace platform
 
 
    ::image::image_pointer aura_node_layer::get_file_image_by_type_identifier(
-      ::i32 iSize, const ::scoped_string& scopedstrTypeIdentifier)
+      ::i32 iSize, const ::scoped_string& scopedstrTypeIdentifier, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
       return {};
    }
 
 
-   ::image::image_pointer aura_node_layer::get_file_image(::i32 iSize, const ::file::path& path)
+   ::image::image_pointer aura_node_layer::get_file_image(::i32 iSize, const ::file::path& path, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
       return {};
    }

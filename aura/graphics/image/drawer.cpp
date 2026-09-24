@@ -33,7 +33,7 @@ namespace image
 
 
    void image_drawer::draw(const ::image::image_drawing & imagedrawing)
-   {  
+   {
 
    auto pimagesource = imagedrawing.m_pimagesource;
 
@@ -73,6 +73,14 @@ namespace image
 
    _draw_raw(imagedrawing);
 
+}
+
+
+::acme::user::interaction * image_drawer::affinity_acme_user_interaction()
+{
+   
+   return nullptr;
+   
 }
 
 
@@ -138,6 +146,7 @@ void image_drawer::_draw_raw(const ::image::image_drawing & imagedrawing)
 
    auto rectangleTarget = imagedrawing.target_rectangle();
 
+   //auto pimage = imagedrawing.image(affinity_acme_user_interaction());
    auto pimage = imagedrawing.image();
 
    if (rectangleSource.size() == rectangleTarget.size())

@@ -199,6 +199,7 @@ namespace image
 
       virtual ::f64_rectangle get_image_drawer_rectangle() const = 0;
 
+      virtual ::acme::user::interaction * affinity_acme_user_interaction();
 
       virtual void draw(const ::image::image_drawing & imagedrawing);
 

@@ -95,7 +95,7 @@ namespace image
       //}
 
 
-      virtual ::image::image_pointer get_image(::i32 iImage);
+      virtual ::image::image_pointer get_image(::i32 iImage, ::draw2d::domain * pdraw2ddomain);
 
 
 

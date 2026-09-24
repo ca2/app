@@ -86,11 +86,13 @@ namespace draw2d
       virtual void update_bitmap_as_backed_by_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2graphics);
       virtual void update_bitmap_as_image_render_target(
          ::image::image * pimage,
-         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr,
+         ::draw2d::domain * pdraw2ddomain = nullptr,
+         //::acme::user::interaction * pacmeuserinteractionAffinity = nullptr,
          ::draw2d::graphics * pdraw2dgraphics = nullptr);
       virtual void update_bitmap_as_source(
          ::image::image * pimage,
-         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr,
+         ::draw2d::domain * pdraw2ddomain = nullptr,
+         //::acme::user::interaction * pacmeuserinteractionAffinity = nullptr,
          ::draw2d::graphics * pdraw2dgraphics = nullptr);
       virtual void preserve_image(const ::i32_size & size, ::image::image* pimage);
       //virtual void create_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::i32_size& size, ::memory & memory, ::i32* piScan);
@@ -111,7 +113,7 @@ namespace draw2d
       virtual ::i32 stride_for_width(::i32 iWidth);
 
       virtual void attach(void * posdata);
-      virtual void * detach();
+      //virtual void * detach();
 
       //virtual ::i32_size SetBitmapDimension(::i32 nWidth, ::i32 nHeight);
       //virtual ::i32_size set_size(const ::i32_size & size);

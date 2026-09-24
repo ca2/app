@@ -306,7 +306,7 @@ namespace experience_tranquillum
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, m_pframewindow);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, m_pframewindow->draw2d_domain());
 
       auto pstyle = pframewindow->get_style(pdraw2dgraphics);
 

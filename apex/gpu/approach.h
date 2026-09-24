@@ -74,7 +74,7 @@ namespace gpu
 
       virtual ::pointer < ::apex::gpu::window_attachment > allocate_gpu_window_attachment(::acme::windowing::window * pacmewindowingwindow);
 
-      virtual ::gpu::device* get_gpu_device(::acme::windowing::window * pacmewindowingwindow);
+      virtual ::gpu::device* get_gpu_device(::draw2d::domain * pdraw2domain);
 
 
       virtual void engine_on_frame_context_initialization(::gpu::context* pgpucontext);

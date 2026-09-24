@@ -1092,8 +1092,12 @@ namespace experience_core
 
       pdraw2dgraphics->set_font(ptab, ::e_element_tab, ::user::e_state_selected);
 
-      ptab->m_pgraphicsextension->get_text_extent(pdraw2dgraphics, MAGIC_PALACE_TAB_SIZE, pdata->m_sizeSep);
+      ::f64_size sizeSeparator;
+      
+      ptab->m_pgraphicsextension->get_text_extent(pdraw2dgraphics, MAGIC_PALACE_TAB_SIZE, sizeSeparator);
 
+      pdata->m_sizeSep = sizeSeparator;
+      
       if (pdata->m_bVertical)
       {
          ::i32 iTabWidth = 16;
@@ -1226,6 +1230,8 @@ namespace experience_core
             ppane->do_split_layout(ptab->m_pgraphicsextension, pdraw2dgraphics);
 
             ::f64_size size;
+            
+            auto psz = str.c_str();
 
             ptab->m_pgraphicsextension->get_text_extent(pdraw2dgraphics, str, size);
 
@@ -1265,12 +1271,12 @@ namespace experience_core
             }
 
 
+            auto cxSize = (::i32) (size.cx + ixAdd
+                   + pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right
+                   + pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right
+                                   + pdata->m_rectangleTextMargin.left + pdata->m_rectangleTextMargin.right);
 
-
-            ppane->m_size.cx = (::i32) (size.cx + ixAdd
-               + pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right
-               + pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right
-               + pdata->m_rectangleTextMargin.left + pdata->m_rectangleTextMargin.right);
+            ppane->m_size.cx = cxSize;
 
             x += ppane->m_size.cx;
          }

@@ -90,13 +90,18 @@ namespace user
       struct _get_file_image_
       {
 
-         virtual ~_get_file_image_() = default;
+         virtual ~_get_file_image_()
+         {
+            
+            
+         }
 
           
-         ::i32               m_iImage;
-         ::file::path      m_pathProcessed;
-         ::file::path      m_pathFinal;
-         image_key         m_imagekey;
+         ::i32                               m_iImage;
+         ::file::path                        m_pathProcessed;
+         ::file::path                        m_pathFinal;
+         image_key                           m_imagekey;
+         ::pointer < ::user::interaction >   m_puserinteractionAffinity;
 
 
       };
@@ -260,8 +265,8 @@ namespace user
 
 //      void set_image(::i32 iIndex, ::i32 iSize, ::image::image *pimage);
 
-      virtual void set_image(::i32 iIndex, ::i32 iSize, ::image::image_drawing imagedrawing);
-      virtual void set_icon(::i32 iIndex, const ::file::path & pathIcon);
+      virtual void set_image(::i32 iIndex, ::i32 iSize, ::image::image_drawing imagedrawing, ::acme::user::interaction * pacmeuserinteractionAffinity);
+      virtual void set_icon(::i32 iIndex, const ::file::path & pathIcon, ::acme::user::interaction * pacmeuserinteractionAffinity);
 
 
       //void destroy() override;

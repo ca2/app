@@ -219,7 +219,7 @@ namespace draw2d
 
    void bitmap::update_bitmap_as_image_render_target(
       ::image::image * pimage,
-      ::acme::user::interaction * pacmeuserinteractionAffinity,
+      ::draw2d::domain * pdraw2ddomain,
       ::draw2d::graphics * pdraw2dgraphics)
    {
 
@@ -228,7 +228,7 @@ namespace draw2d
 
       //throw ::interface_only();
 
-      //auto pgraphicslease = pimage->acquire_graphics(pimage->m_pacmeuserinteractionAffinity);
+      //auto pgraphicslease = pimage->acquire_graphics(pimage->m_puserinteractionTopic);
 
       if (pimage->m_ppixmapOwned)
       {
@@ -259,7 +259,7 @@ namespace draw2d
 
    void bitmap::update_bitmap_as_source(
    ::image::image * pimage,
-   ::acme::user::interaction * pacmeuserinteractionAffinity,
+   ::draw2d::domain * pdraw2ddomain,
    ::draw2d::graphics * pdraw2dgraphics)
    {
 
@@ -268,7 +268,7 @@ namespace draw2d
 
       //throw ::interface_only();
 
-      //auto pgraphicslease = pimage->acquire_graphics(pimage->m_pacmeuserinteractionAffinity);
+      //auto pgraphicslease = pimage->acquire_graphics(pimage->m_puserinteractionTopic);
 
       create_bitmap(
          pdraw2dgraphics,

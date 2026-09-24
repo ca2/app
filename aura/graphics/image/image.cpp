@@ -219,7 +219,7 @@ namespace image
 //      if (!pacmeuserinteractionTopic)
 //      {
 //
-//         pacmeuserinteractionTopic = m_pacmeuserinteractionTopic;
+//         pacmeuserinteractionTopic = m_puserinteractionTopic;
 //
 //      }
 
@@ -290,23 +290,23 @@ namespace image
       //}
 
       //if (!pdraw2dhost && m_papplication)
-      if (!pacmeuserinteractionAffinity && m_papplication)
-      {
-
-         auto pacmeuserinteractionMain = application()->main_acme_user_interaction();
-
-         pacmeuserinteractionAffinity = pacmeuserinteractionMain;
-
-      }
-
-      if (!pacmeuserinteractionAffinity)
-      {
-
-         throw ::exception(
-            error_wrong_state,
-            "no draw2d host is available for image graphics acquisition");
-
-      }
+//      if (!pacmeuserinteractionAffinity && m_papplication)
+//      {
+//
+//         auto pacmeuserinteractionMain = application()->main_acme_user_interaction();
+//
+//         pacmeuserinteractionAffinity = pacmeuserinteractionMain;
+//
+//      }
+//
+//      if (!pacmeuserinteractionAffinity)
+//      {
+//
+//         throw ::exception(
+//            error_wrong_state,
+//            "no draw2d host is available for image graphics acquisition");
+//
+//      }
 
       if (!try_begin_destination_graphics_lease())
       {
@@ -378,8 +378,8 @@ namespace image
 
          return pdraw2d->acquire_image_graphics(
             bExternalRendering,
-            this,
-            pacmeuserinteractionAffinity); //,
+                                                this);//,
+            //pacmeuserinteractionAffinity); //,
          //pacmeuserinteractionAffinity);
 
       }
@@ -435,7 +435,7 @@ namespace image
       if (!m_pdraw2dbitmap)
       {
 
-         ((image *)this)->update_bitmap_as_source(m_pacmeuserinteractionAffinity, pdraw2dgraphics);
+         ((image *)this)->update_bitmap_as_source(pdraw2dgraphics->draw2d_domain(), pdraw2dgraphics);
 
       }
       else if (m_bWasMappedAfterLastGraphicsAcquisition)
@@ -478,7 +478,7 @@ namespace image
       if (!m_pdraw2dbitmap)
       {
 
-         ((image *)this)->update_bitmap_as_render_target(m_pacmeuserinteractionAffinity, pdraw2dgraphics);
+         ((image *)this)->update_bitmap_as_render_target(pdraw2dgraphics->draw2d_domain(), pdraw2dgraphics);
 
       }
       else if (m_bWasMappedAfterLastGraphicsAcquisition)
@@ -606,17 +606,18 @@ namespace image
    }
 
 
-   void image::create_as_top_draw2d_target(const ::i32_size& size, ::user::interaction* puserinteraction,
+   void image::create_as_top_draw2d_target(const ::i32_size& size, //::user::interaction* puserinteraction,
                                            ::draw2d::graphics* pdraw2dgraphics, ::enum_flag eflagCreate,
                                            ::i32 iGoodStride, bool bPreserve)
    {
 
-      update_as_render_target(size, puserinteraction, pdraw2dgraphics, eflagCreate, iGoodStride, bPreserve, true);
+      update_as_render_target(size, pdraw2dgraphics, eflagCreate, iGoodStride, bPreserve, true);
 
    }
 
 
-   void image::update_as_backed_by_gpu_texture(const ::i32_size & size, ::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics)
+   void image::update_as_backed_by_gpu_texture(const ::i32_size & size,
+                                               ::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       throw ::interface_only();
@@ -624,31 +625,37 @@ namespace image
    }
 
 
-   void image::update_as_gpu_render_target(const ::i32_size & sizeRaw, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d)
+   void image::update_as_gpu_render_target(const ::i32_size & sizeRaw, //::user::interaction * puserinteraction,
+                                           ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d)
    {
 
-      update_as_render_target(sizeRaw, puserinteraction, pdraw2dgraphics, eflagCreate, iGoodStride, bPreserve, bTopDraw2d);
+      update_as_render_target(sizeRaw,
+                              //puserinteraction,
+                              pdraw2dgraphics, eflagCreate, iGoodStride, bPreserve, bTopDraw2d);
 
    }
 
 
-   void image::update_as_render_target(const ::i32_size& sizeRaw, ::user::interaction* puserinteraction,
+   void image::update_as_render_target(const ::i32_size& sizeRaw ,
+                                       //::user::interaction* puserinteraction,
+                                       
                                        ::draw2d::graphics* pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride,
                                        bool bPreserve, bool bTopDraw2d)
    {
 
-      if (!puserinteraction)
+      if (!pdraw2dgraphics->m_pdraw2ddomain)
       {
-
-         throw ::exception(error_null_pointer, "user::interaction is null");
-
+//
+//         throw ::exception(error_null_pointer, "user::interaction is null");
+//
       }
 
-      m_pacmeuserinteractionAffinity = puserinteraction;
+      //m_puserinteractionTopic = puserinteraction;
 
       create_as_descriptor(sizeRaw, eflagCreate, iGoodStride);
 
-      update_bitmap_as_render_target(m_pacmeuserinteractionAffinity, pdraw2dgraphics);
+      //update_bitmap_as_render_target(m_puserinteractionTopic, pdraw2dgraphics);
+      update_bitmap_as_render_target(pdraw2dgraphics->m_pdraw2ddomain, pdraw2dgraphics);
       
       if(::is_set(pdraw2dgraphics))
       {
@@ -1039,12 +1046,12 @@ namespace image
    }
 
 
-   void image::create_owned_graphics(::acme::user::interaction * pacmeuserinteractionAffinity)
+   void image::create_owned_graphics(::draw2d::domain * pdraw2ddomain)
    {
 
       constructø(m_pgraphicsOwned);
 
-      m_pgraphicsOwned->create_bitmap_graphics(m_pdraw2dbitmap, pacmeuserinteractionAffinity);
+      m_pgraphicsOwned->create_bitmap_graphics(m_pdraw2dbitmap, pdraw2ddomain);
 
    }
 
@@ -10573,7 +10580,8 @@ namespace image
 
 
    void image::update_bitmap_as_render_target(
-      ::acme::user::interaction* pacmeuserinteractionAffinity, ::draw2d::graphics * pdraw2dgraphics)
+      ::draw2d::domain * pdraw2ddomain,
+     ::draw2d::graphics * pdraw2dgraphics)
    {
 
       //if (m_pdraw2dbitmap.ok())
@@ -10587,37 +10595,39 @@ namespace image
 
       m_pdraw2dbitmap->m_bHintCpuBackingEnabled = m_bHintCpuBackingEnabled;
 
-      if (!pacmeuserinteractionAffinity)
-      {
+//      if (!pacmeuserinteractionAffinity)
+//      {
+//
+//         pacmeuserinteractionAffinity = m_puserinteractionTopic;
+//
+//      }
+//
+//      if (!pacmeuserinteractionAffinity && pdraw2dgraphics)
+//      {
+//
+//         pacmeuserinteractionAffinity = pdraw2dgraphics->m_puserinteractionTopic;
+//
+//      }
 
-         pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
-
-      }
-
-      if (!pacmeuserinteractionAffinity && pdraw2dgraphics)
-      {
-
-         pacmeuserinteractionAffinity = pdraw2dgraphics->m_pacmeuserinteractionAffinity;
-
-      }
-
-      if (!m_pacmeuserinteractionAffinity)
-      {
-
-         m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
-
-      }
+//      if (!m_puserinteractionTopic)
+//      {
+//
+//         m_puserinteractionTopic = pacmeuserinteractionAffinity;
+//
+//      }
 
       m_pdraw2dbitmap->update_bitmap_as_image_render_target(
          this,
-         pacmeuserinteractionAffinity,
+         //pacmeuserinteractionAffinity,
+         pdraw2ddomain,
          pdraw2dgraphics);
       
    }
 
 
    void image::update_bitmap_as_source(
-   ::acme::user::interaction * pacmeuserinteractionAffinity, ::draw2d::graphics * pdraw2dgraphics)
+       ::draw2d::domain * pdraw2ddomain,
+       ::draw2d::graphics * pdraw2dgraphics)
    {
 
       //if (m_pdraw2dbitmap.ok())
@@ -10631,30 +10641,30 @@ namespace image
 
       m_pdraw2dbitmap->m_bHintCpuBackingEnabled = false;
 
-      if (!pacmeuserinteractionAffinity)
-      {
-
-         pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
-
-      }
-
-      if (!pacmeuserinteractionAffinity && pdraw2dgraphics)
-      {
-
-         pacmeuserinteractionAffinity = pdraw2dgraphics->m_pacmeuserinteractionAffinity;
-
-      }
-
-      if (!m_pacmeuserinteractionAffinity)
-      {
-
-         m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
-
-      }
+//      if (!pacmeuserinteractionAffinity)
+//      {
+//
+//         pacmeuserinteractionAffinity = m_puserinteractionTopic;
+//
+//      }
+//
+//      if (!pacmeuserinteractionAffinity && pdraw2dgraphics)
+//      {
+//
+//         pacmeuserinteractionAffinity = pdraw2dgraphics->m_puserinteractionTopic;
+//
+//      }
+//
+//      if (!m_puserinteractionTopic)
+//      {
+//
+//         m_puserinteractionTopic = pacmeuserinteractionAffinity;
+//
+//      }
 
       m_pdraw2dbitmap->update_bitmap_as_source(
          this,
-         pacmeuserinteractionAffinity,
+         pdraw2ddomain,
          pdraw2dgraphics);
 
    }
@@ -10878,7 +10888,7 @@ namespace image
 
       }
 
-      auto pimageNew = ::particle::image()->create_image(size, m_pacmeuserinteractionAffinity->);
+      auto pimageNew = ::particle::image()->create_image(size, draw2d_domain());
 
       ::image::image_source imagesource(this, this->rectangle());
 
@@ -12128,10 +12138,10 @@ namespace image
    }
 
 
-   void image::update(::image::image *pimageHost, ::image::image_frame_array * pimageframearray, const ::image::image_drawing & imagedrawing, ::acme::user::interaction * pacmeuserinteractionAffinity)
+   void image::update(::image::image *pimageHost, ::image::image_frame_array * pimageframearray, const ::image::image_drawing & imagedrawing)
    {
 
-      auto pimageSource = imagedrawing.image(pacmeuserinteractionAffinity);
+      auto pimageSource = imagedrawing.image();
 
       auto pframes = pimageSource->frames();
 

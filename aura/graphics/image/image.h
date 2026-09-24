@@ -70,7 +70,7 @@ namespace image
       ::draw2d::enum_acquire                    m_eacquire = ::draw2d::e_acquire_load;
       ::i32_rectangle                           m_rectangleTag;
       mutable ::std::atomic_bool                m_bDestinationGraphicsLeaseActive{false};
-      //::pointer < ::acme::user::interaction >   m_pacmeuserinteractionAffinity;
+      //::pointer < ::acme::user::interaction >   m_puserinteractionTopic;
       ::pointer < ::draw2d::domain >            m_pdraw2ddomain;
       //::pointer < ::user::interaction >         m_puserinteraction;
       //::draw2d::graphics_lease *          m_pgraphicsleaseOwned;
@@ -96,10 +96,10 @@ namespace image
                           ::i32 iGoodStride = -1);
 
       virtual void update_bitmap_as_render_target(
-         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr, ::draw2d::graphics * pdraw2dgraphics = nullptr);
+         ::draw2d::domain * pdraw2ddomain = nullptr, ::draw2d::graphics * pdraw2dgraphics = nullptr);
 
       virtual void update_bitmap_as_source(
-         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr, ::draw2d::graphics * pdraw2dgraphics = nullptr);
+                                           ::draw2d::domain * pdraw2ddomain = nullptr, ::draw2d::graphics * pdraw2dgraphics = nullptr);
 
       virtual void change_raw_size(const ::i32_size & sizeRaw, ::i32 iScan = 0);
 
@@ -163,7 +163,8 @@ namespace image
       virtual ::draw2d::bitmap_pointer get_bitmap_as_target(::draw2d::graphics * pdraw2dgraphics = nullptr) const; // is semantically const (besides may not be implementationly constant)
       virtual ::draw2d::bitmap_pointer detach_bitmap();
 
-      virtual void create_owned_graphics(::acme::user::interaction * pacmeuserinteractionAffinity);
+      //virtual void create_owned_graphics(::acme::user::interaction * pacmeuserinteractionAffinity);
+      virtual void create_owned_graphics(::draw2d::domain * pdraw2ddomain);
 
       virtual ::collection::count get_image_count() const;
       virtual ::image::image_pointer get_image(::collection::index i);
@@ -226,7 +227,7 @@ namespace image
       //void create_frame(::image::image_frame * pframeSource, const ::pixmap * ppixmap, ::image::image_frame_array * pframea)
       virtual ::image::image_pointer frame_image(::image::image_frame * pframe);
       virtual ::image::image_pointer calc_current_frame(image_dynamic & dynamic);
-      virtual void update(::image::image *pimageHost, ::image::image_frame_array * pframea, const ::image::image_drawing & imagedrawing, ::acme::user::interaction * pacmeuserinteractionAffinity);
+      virtual void update(::image::image *pimageHost, ::image::image_frame_array * pframea, const ::image::image_drawing & imagedrawing);
 
 
 

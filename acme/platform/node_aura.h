@@ -42,9 +42,9 @@ namespace platform
 //#endif
 
 
-      virtual ::image::image_pointer get_file_image_by_type_identifier(::i32 iSize, const ::scoped_string & scopedstrTypeIdentifier, ::acme::user::interaction * pacmeuserinteractionAffinity);
+      virtual ::image::image_pointer get_file_image_by_type_identifier(::i32 iSize, const ::scoped_string & scopedstrTypeIdentifier, ::draw2d::domain * pdraw2ddomain);
 
-      virtual ::image::image_pointer get_file_image(::i32 iSize, const ::file::path & path, ::acme::user::interaction * pacmeuserinteractionAffinity);
+      virtual ::image::image_pointer get_file_image(::i32 iSize, const ::file::path & path, ::draw2d::domain * pdraw2ddomain);
 
       virtual void defer_dock_application(bool bDock);
 

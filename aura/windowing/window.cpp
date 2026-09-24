@@ -173,7 +173,7 @@ namespace windowing
 
       m_pmutexRedrawItem = node()->create_mutex();
       
-      m_pdraw2ddomain = draw2d()->main_draw2d_domain();
+      m_pacmedraw2ddomain = draw2d()->main_draw2d_domain();
 
    }
 
@@ -985,8 +985,10 @@ namespace windowing
 
    ::draw2d::domain * window::draw2d_domain()
    {
+      
+      ::cast < ::draw2d::domain > pdraw2ddomain = m_pacmedraw2ddomain;
    
-      return m_pdraw2ddomain;
+      return pdraw2ddomain;
       
    }
 
@@ -10939,7 +10941,7 @@ namespace windowing
 //                        return;
 //                     }
 //
-//                     pdraw2dgraphics->m_pacmeuserinteractionAffinity = m_pacmeuserinteraction;
+//                     pdraw2dgraphics->m_puserinteractionTopic = m_pacmeuserinteraction;
 //
 //                     //pgraphicscontext->m_pbufferitem = pbufferitem;
 //
@@ -11330,7 +11332,7 @@ namespace windowing
 //
 //                     //auto graphicslayerscope = pdraw2dgraphics.begin_layer_scope();
 //
-//                     pdraw2dgraphics->m_pacmeuserinteractionAffinity = puserinteraction;
+//                     pdraw2dgraphics->m_puserinteractionTopic = puserinteraction;
 //                     // pdraw2dgraphics = pdraw2dgraphics;
 //                     pdraw2dgraphics->m_egraphics = ::e_graphics_draw;
 //
@@ -12214,7 +12216,7 @@ namespace windowing
 
 #endif
 
-                        pdraw2dgraphics->m_pacmeuserinteractionTopic = m_pacmeuserinteraction;
+                        pdraw2dgraphics->m_puserinteractionTopic = m_pacmeuserinteraction;
 
                         pdraw2dgraphics->m_pgraphicsgraphics = pgraphicsgraphics;
 
@@ -12324,7 +12326,7 @@ namespace windowing
 
                         //auto graphicslayerscope = pdraw2dgraphics.begin_layer_scope();
 
-                        pdraw2dgraphics->m_pacmeuserinteractionTopic = puserinteraction;
+                        pdraw2dgraphics->m_puserinteractionTopic = puserinteraction;
                         // pdraw2dgraphics = pdraw2dgraphics;
                         pdraw2dgraphics->m_egraphics = ::e_graphics_draw;
 
@@ -12710,7 +12712,7 @@ namespace windowing
 
       //}
 
-      pdraw2dgraphics->m_pacmeuserinteractionTopic = user_interaction();
+      pdraw2dgraphics->m_puserinteractionTopic = user_interaction();
 
       pdraw2dgraphics->m_puserstyleGraphics.release();
 

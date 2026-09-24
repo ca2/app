@@ -5,6 +5,7 @@
 #include "acme/operating_system/console.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/string/international.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_lease.h"

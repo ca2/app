@@ -15,6 +15,7 @@
 #include "acme/prototype/geometry2d/angle.h"
 #include "apex/database/client.h"
 #include "apex/database/stream.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/graphics/context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/source.h"
@@ -170,7 +171,7 @@ namespace graphics3d
 
          constructø(m_pimageOutput);
 
-         m_pimageOutput->m_pacmeuserinteractionAffinity = pusergraphics3d;
+         m_pimageOutput->m_pdraw2ddomain = pusergraphics3d->draw2d_domain();
 
       }
 
@@ -958,8 +959,10 @@ namespace graphics3d
          }
 
          auto pacmewindowingwindow = m_pusergraphics3d->acme_windowing_window();
+         
+         ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
 
-         auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
+         auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pwindow->draw2d_domain());
 
          auto sizeRaw = pacmewindowingwindow->get_raw_buffer_size().maximum(m_rectanglePlacementNew.size());
 

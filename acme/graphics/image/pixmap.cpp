@@ -10078,7 +10078,7 @@ void pixmap::rotate_flip(enum_rotate_flip erotateflip)
 //    if (!pacmeuserinteractionAffinity)
 //    {
 //
-//       pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
+//       pacmeuserinteractionAffinity = m_puserinteractionTopic;
 //
 //    }
 //

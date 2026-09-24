@@ -158,7 +158,7 @@ namespace graphics3d
 
       //   constructø(m_pimageOutput);
 
-      //   m_pimageOutput->m_pacmeuserinteractionAffinity = pusergraphics3d;
+      //   m_pimageOutput->m_puserinteractionTopic = pusergraphics3d;
 
       //}
 

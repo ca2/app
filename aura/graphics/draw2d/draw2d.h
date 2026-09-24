@@ -144,14 +144,15 @@ namespace draw2d
          bool bExternalRendering = true);
       virtual ::draw2d::graphics_lease acquire_image_graphics(
          bool bExternalRendering,
-         ::image::image * pimage,
-                                                              ::draw2d::domain * pdraw2ddomain);
+                                                              ::image::image * pimage);
+                                 //                             ::draw2d::domain * pdraw2ddomain);
       virtual ::draw2d::graphics_lease acquire_owned_graphics(
          bool bExternalRendering,
          ::draw2d::graphics * pdraw2dgraphics,
          ::image::image * pimage,
-         const ::i32_size & size,
-                                                              ::draw2d::domain * pdraw2ddomain);
+                                                              const ::i32_size & size);
+      //,
+      //                                                      ::draw2d::domain * pdraw2ddomain);
       virtual void return_memory_graphics(
          ::draw2d::graphics_pointer pdraw2dgraphics,
          ::image::image_pointer pimage,

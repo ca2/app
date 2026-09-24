@@ -176,7 +176,7 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
 
          synchronous_lock lock(get_html_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         auto pimage = image()->create_image({ 50,  50 }, this);
+         auto pimage = image()->create_image({ 50,  50 }, draw2d_domain());
 
          get_html_data()->delete_implementation();
 
@@ -785,7 +785,7 @@ void html_form::defer_implement()
       
    }
 
-   auto pimage = image()->create_image({ 50,  50 }, this);
+   auto pimage = image()->create_image({ 50,  50 }, draw2d_domain());
 
    get_html_data()->m_pcoredata->m_puserinteraction = this;
 
@@ -809,7 +809,7 @@ void html_form::defer_html_layout()
    if(get_html_data()->m_pcoredata->m_box.area() <= 0.f)
       return;
 
-   auto pimage = image()->create_image({ 50,  50 }, this);
+   auto pimage = image()->create_image({ 50,  50 }, draw2d_domain());
 
    get_html_data()->m_pcoredata->m_puserinteraction = this;
 

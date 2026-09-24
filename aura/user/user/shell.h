@@ -101,7 +101,7 @@ namespace user
          ::file::path                        m_pathProcessed;
          ::file::path                        m_pathFinal;
          image_key                           m_imagekey;
-         ::pointer < ::user::interaction >   m_puserinteractionAffinity;
+         ::pointer < ::draw2d::domain >      m_pdraw2ddomain;
 
 
       };
@@ -265,8 +265,8 @@ namespace user
 
 //      void set_image(::i32 iIndex, ::i32 iSize, ::image::image *pimage);
 
-      virtual void set_image(::i32 iIndex, ::i32 iSize, ::image::image_drawing imagedrawing, ::acme::user::interaction * pacmeuserinteractionAffinity);
-      virtual void set_icon(::i32 iIndex, const ::file::path & pathIcon, ::acme::user::interaction * pacmeuserinteractionAffinity);
+      virtual void set_image(::i32 iIndex, ::i32 iSize, ::image::image_drawing imagedrawing, ::draw2d::domain * pdraw2ddomain);
+      virtual void set_icon(::i32 iIndex, const ::file::path & pathIcon, ::draw2d::domain * pdraw2ddomain);
 
 
       //void destroy() override;

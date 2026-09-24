@@ -227,7 +227,7 @@ namespace gpu
 //
 //      }
 
-      //m_pacmeuserinteractionAffinity = puserinteraction;
+      //m_puserinteractionTopic = puserinteraction;
 
       // if (m_pgputexture && m_pgraphics && m_pgputexture->size() == size)
 
@@ -266,7 +266,7 @@ namespace gpu
          auto pgpucontextlease = pgpudevice->acquire_gpu_context(
             bTopDraw2d ? ::gpu::e_output_draw2d_bitmap : ::gpu::e_output_none, {25, 25}, pdraw2dgraphics);
 
-         //pgpucontextlease->m_pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
+         //pgpucontextlease->m_puserinteractionTopic = m_puserinteractionTopic;
 
          //::pixmap_t pixmap;
 
@@ -288,7 +288,7 @@ namespace gpu
 
       }
 
-      //auto pdraw2dgraphics = system()->draw2d()->allocate_graphics(m_pacmeuserinteractionAffinity);
+      //auto pdraw2dgraphics = system()->draw2d()->allocate_graphics(m_puserinteractionTopic);
 
       //if (bTopDraw2d)
       //{

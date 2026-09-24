@@ -359,18 +359,18 @@ namespace graphics
 
          //}
 
-         if (!m_pdraw2dgraphics->m_pacmeuserinteractionTopic
+         if (!m_pdraw2dgraphics->m_puserinteractionTopic
             && pacmeuserinteractionTopic)
          {
 
-            m_pdraw2dgraphics->m_pacmeuserinteractionTopic = pacmeuserinteractionTopic;
+            m_pdraw2dgraphics->m_puserinteractionTopic = pacmeuserinteractionTopic;
 
          }
 
          if (!pacmeuserinteractionTopic)
          {
 
-            pacmeuserinteractionTopic = m_pdraw2dgraphics->m_pacmeuserinteractionTopic;
+            pacmeuserinteractionTopic = m_pdraw2dgraphics->m_puserinteractionTopic;
 
          }
 
@@ -395,7 +395,7 @@ namespace graphics
 //         if (!pacmeuserinteractionTopic)
 //         {
 //
-//            pacmeuserinteractionTopic = pimage->m_pacmeuserinteractionTopic;
+//            pacmeuserinteractionTopic = pimage->m_puserinteractionTopic;
 //
 //         }
 
@@ -405,8 +405,7 @@ namespace graphics
             false,
             m_pdraw2dgraphics,
             pimage,
-            pimage->raw_size(),
-            pacmeuserinteractionTopic);
+            pimage->raw_size());
 
          }
 
@@ -769,7 +768,7 @@ namespace graphics
             if (!m_pdraw2dgraphics)
             {
 
-               m_pdraw2dgraphics = system()->draw2d()->allocate_graphics(m_pwindow->m_pacmeuserinteraction);
+               m_pdraw2dgraphics = system()->draw2d()->allocate_graphics(m_pwindow->draw2d_domain());
 
                m_pdraw2dgraphics->m_pgraphicsbufferitem = pbufferitem;
 
@@ -858,7 +857,7 @@ namespace graphics
             if (!m_pdraw2dgraphics)
             {
 
-               m_pdraw2dgraphics = system()->draw2d()->allocate_graphics(m_pwindow->m_pacmeuserinteraction);
+               m_pdraw2dgraphics = system()->draw2d()->allocate_graphics(m_pwindow->draw2d_domain());
 
                m_pdraw2dgraphics->m_pgraphicsbufferitem = pbufferitem;
 

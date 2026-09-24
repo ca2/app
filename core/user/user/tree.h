@@ -421,7 +421,7 @@ namespace user
 
                auto pdraw2d = psystem->draw2d();
 
-               auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, pusertree);
+               auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, pusertree->draw2d_domain());
 
                pusertree->on_layout(pdraw2dgraphics);
 

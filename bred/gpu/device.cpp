@@ -23,7 +23,7 @@
 #include "acme/prototype/prototype/call.h"
 #include "aura/platform/application.h"
 #include "aura/platform/system.h"
-////#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/image/image.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/platform/system.h"
@@ -69,62 +69,87 @@ namespace gpu
    }
 
 
-   void device::initialize_gpu_device_for_swap_chain(::gpu::approach * pgpuapproach, ::windowing::window* pwindow)
+//   void device::initialize_gpu_device_for_swap_chain(::gpu::approach * pgpuapproach, ::windowing::window* pwindow)
+//   {
+//
+//      m_edevicetarget = e_device_target_swap_chain;
+//
+//      m_pgpuapproach = pgpuapproach;
+//
+//      m_pwindow = pwindow;
+//
+//      m_pwindow->m_ptaskUpdateScreen = this;
+//
+//      if (m_papplication->m_gpu.m_bMultisample)
+//      {
+//
+//         m_bMultisample = true;
+//
+//      }
+//
+//      //branch_synchronously();
+//
+//   }
+
+
+//   void device::initialize_gpu_device_for_off_screen(::gpu::approach* pgpuapproach, const ::i32_rectangle& rectanglePlacement)
+//   {
+//
+//      m_edevicetarget = e_device_target_off_screen;
+//
+//      m_pgpuapproach = pgpuapproach;
+//
+//      if (m_papplication->m_gpu.m_bMultisample)
+//      {
+//
+//         m_bMultisample = true;
+//
+//      }
+//
+//      //m_pparticle_001OnFrameSynchronization = node()->create_mutex();
+//
+//      //branch_synchronously();
+//
+//      //m_pwindow = pwindow;
+//
+//
+//      //::e_status estatus = 
+//      //::particle::initialize(pparticle);
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      //return estatus;
+//
+//   }
+
+
+   void device::initialize_gpu_device(::gpu::approach * pgpuapproach, ::draw2d::domain * pdraw2ddomain)
    {
 
-      m_edevicetarget = e_device_target_swap_chain;
+      m_edevicetarget = e_device_target_main;
 
       m_pgpuapproach = pgpuapproach;
+   
+      m_pdraw2domain = pdraw2ddomain;
 
-      m_pwindow = pwindow;
-
-      m_pwindow->m_ptaskUpdateScreen = this;
-
-      if (m_papplication->m_gpu.m_bMultisample)
-      {
-
-         m_bMultisample = true;
-
-      }
-
-      //branch_synchronously();
-
-   }
-
-
-   void device::initialize_gpu_device_for_off_screen(::gpu::approach* pgpuapproach, const ::i32_rectangle& rectanglePlacement)
-   {
-
-      m_edevicetarget = e_device_target_off_screen;
-
-      m_pgpuapproach = pgpuapproach;
-
-      if (m_papplication->m_gpu.m_bMultisample)
-      {
-
-         m_bMultisample = true;
-
-      }
-
-      //m_pparticle_001OnFrameSynchronization = node()->create_mutex();
-
-      //branch_synchronously();
-
-      //m_pwindow = pwindow;
-
-
-      //::e_status estatus = 
-      //::particle::initialize(pparticle);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
+//      m_pwindow = pwindow;
+//
+//      m_pwindow->m_ptaskUpdateScreen = this;
+//
+//      if (m_papplication->m_gpu.m_bMultisample)
+//      {
+//
+//         m_bMultisample = true;
+//
+//      }
+//
+//      //branch_synchronously();
+//
    }
 
 

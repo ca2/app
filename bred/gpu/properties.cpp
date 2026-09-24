@@ -3,6 +3,7 @@
 #include "device.h"
 #include "properties.h"
 #include "apex/gpu/approach.h"
+#include "aura/windowing/window.h"
 
 
 namespace gpu
@@ -27,7 +28,9 @@ namespace gpu
 
 		auto pacmeuserinteractionMain = system()->m_papplication->main_acme_user_interaction();
 
-      ::cast<::gpu::device> pgpudevice = pgpuapproach->get_gpu_device(pacmeuserinteractionMain->m_pacmewindowingwindow);
+      ::cast < ::windowing::window > pwindow = pacmeuserinteractionMain->m_pacmewindowingwindow;
+      
+      ::cast<::gpu::device> pgpudevice = pgpuapproach->get_gpu_device(pwindow->draw2d_domain());
 
 		pgpudevice->set_matrix4(m_blockWithSamplers.data(), matrix4);
 

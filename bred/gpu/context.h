@@ -141,7 +141,7 @@ namespace gpu
       ::pointer < ::gpu::model_buffer >            m_pmodelbufferDummy;
       ::pointer < ::gpu::shader >                  m_pshaderBlend3;
       //::pointer < ::acme::windowing::window >      m_pacmewindowingwindowWindowSurface;
-      ::pointer < ::acme::user::interaction >      m_pacmeuserinteractionAffinity;
+      ::pointer < ::acme::user::interaction >      m_puserinteractionTopic;
 
       ::pointer<::gpu::shader>                     m_pgpushaderRgbaFromB_G;
       bool                                         m_bCreated;

@@ -4274,7 +4274,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, draw2d_domain());
 
       _001LayoutTopText(pdraw2dgraphics);
 
@@ -4843,7 +4843,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, draw2d_domain());
 
       //on_change_sketch_scroll_state();
 
@@ -4900,7 +4900,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, draw2d_domain());
 
       //on_change_scroll_state();
 
@@ -5052,7 +5052,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, draw2d_domain());
 
       //
       // 
@@ -5127,7 +5127,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, draw2d_domain());
 
       _001MaximizeColumnWidth(pdraw2dgraphics, iHeaderItem);
 

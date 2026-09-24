@@ -167,7 +167,7 @@ namespace user
 
       auto g = createø<::draw2d::graphics>();
 
-      g->create_memory_graphics({ 256, 256 }, this);
+      g->create_memory_graphics({ 256, 256 }, draw2d_domain());
 
       g->set(m_pwritetextfont);
 

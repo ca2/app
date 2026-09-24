@@ -4,6 +4,7 @@
 #include "image.h"
 #include "acme/graphics/image/pixmap_t.h"
 #include "apex/gpu/approach.h"
+#include "aura/windowing/window.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/renderer.h"
@@ -218,8 +219,10 @@ namespace gpu
       auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
 
       auto pacmewindowingwindow = pacmeuserinteractionMain->m_pacmewindowingwindow;
+      
+      ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
 
-      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
+      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pwindow->draw2d_domain());
 
       _synchronous_lock synchronouslock(pgpudevice->synchronization());
 

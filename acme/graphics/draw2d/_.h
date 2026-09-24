@@ -24,6 +24,8 @@ namespace draw2d
 
    class window_attachment;
 
+   class domain;
+
 
 } // namespace draw2d
 

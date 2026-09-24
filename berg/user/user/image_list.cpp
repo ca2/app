@@ -541,7 +541,7 @@ namespace user
                   if (!szNew.is_empty())
                   {
 
-                     pimage = image()->create_image(szNew, pdraw2dgraphics->m_pacmeuserinteractionAffinity);
+                     pimage = image()->create_image(szNew, pdraw2dgraphics->draw2d_domain());
 
                      auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 

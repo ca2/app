@@ -45,7 +45,7 @@ namespace gpu
       //::pointer < device >       m_pgpudevice;
 
       //::i32_rectangle            m_rectangleOffscreen;
-      ::map<::acme::windowing::window *, ::pointer<::gpu::device>> m_devicemap;
+      ::map<::draw2d::domain *, ::pointer<::gpu::device>> m_devicemap;
 
       bred_approach();
       ~bred_approach() override;

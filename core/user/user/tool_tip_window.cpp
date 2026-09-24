@@ -120,7 +120,7 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, draw2d_domain());
 
       GetToolRect(iTool, &rectangle);
 

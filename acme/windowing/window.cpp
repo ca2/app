@@ -119,8 +119,7 @@ namespace acme
          return m_pacmedraw2ddomain;
          
       }
-   }
-   
+      
 
       bool window::should_avoid_default_swap_chain_present()
       {

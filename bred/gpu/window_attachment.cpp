@@ -12,6 +12,7 @@
 #include "render_target.h"
 #include "texture.h"
 #include "window_attachment.h"
+#include "aura/graphics/draw2d/frame.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/windowing/window.h"
 #include "bred/graphics3d/engine_instance.h"
@@ -67,8 +68,10 @@ namespace gpu
          const_char_pointer pszType = strType.c_str();
 
          information("gpu::approach::gpu_on_create_window for type {}", pszType);
+         
+         ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
 
-         auto pgpudevice = pgpuapproach->get_gpu_device(pacmewindowingwindow);
+         auto pgpudevice = pgpuapproach->get_gpu_device(pwindow->draw2d_domain());
 
          m_pgpucontextWindow = pgpudevice->allocate_gpu_context();
 
@@ -874,7 +877,7 @@ sizeRaw
 
       }
 
-      auto pacmeuserinteractionAffinity = pgpucontext->m_pacmeuserinteractionAffinity;
+      auto pacmeuserinteractionAffinity = pgpucontext->m_puserinteractionTopic;
 
       if (::is_null(pacmeuserinteractionAffinity))
       {
@@ -908,6 +911,30 @@ sizeRaw
       }
 
       return ::gpu::window_attachment::get(pacmewindowingwindow);
+
+   }
+
+
+   ::gpu::window_attachment * window_attachment::get(::draw2d::frame * pdraw2dframe)
+   {
+
+      if (::is_null(pdraw2dframe))
+      {
+
+         return nullptr;
+
+      }
+
+      auto puserinteractionAffinity = pdraw2dframe->m_puserinteractionAffinity;
+
+      if (!puserinteractionAffinity)
+      {
+
+         return nullptr;
+
+      }
+
+      return ::gpu::window_attachment::get(puserinteractionAffinity);
 
    }
 

@@ -865,7 +865,7 @@ namespace user
 
          rectangleDib.inflate(iShift, iShift);
 
-         pimageDropShadow = image()->create_image(rectangleDib.size(),m_puserinteractionAffinity);
+         pimageDropShadow = image()->create_image(rectangleDib.size(),m_puserinteractionAffinity->draw2d_domain());
 
          if (pimageDropShadow)
          {

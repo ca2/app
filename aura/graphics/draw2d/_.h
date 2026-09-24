@@ -37,7 +37,9 @@ namespace draw2d
    class bitmap;
    class drawing;
    class stock_icon;
+
    class domain;
+   class frame;
 
    class graphics_lease;
 

@@ -26,8 +26,9 @@ namespace gpu
    {
 
       e_device_target_undefined,
-      e_device_target_swap_chain,
-      e_device_target_off_screen,
+      e_device_target_main,
+      //e_device_target_swap_chain,
+      //e_device_target_off_screen,
 
    };
 
@@ -43,7 +44,7 @@ namespace gpu
 
 
       itask									                     m_itaskCurrentGpuContext;
-
+      ::pointer < ::draw2d::domain >                     m_pdraw2domain;
       ::pointer < ::gpu::approach >                      m_pgpuapproach;
       ::pointer < ::windowing::window >                  m_pwindow;
       ::gpu::context_pointer                             m_pgpucontextCurrent4;
@@ -137,9 +138,10 @@ namespace gpu
       virtual void unlock_context();
 
 
-      virtual void initialize_gpu_device_for_swap_chain(::gpu::approach * papproach, ::windowing::window * pwindow);
-      virtual void initialize_gpu_device_for_off_screen(::gpu::approach * papproach, const ::i32_rectangle & rectanglePlacement);
+//      virtual void initialize_gpu_device_for_swap_chain(::gpu::approach * papproach, ::windowing::window * pwindow);
+    //  virtual void initialize_gpu_device_for_off_screen(::gpu::approach * papproach, const ::i32_rectangle & rectanglePlacement);
 
+      virtual void initialize_gpu_device(::gpu::approach * papproach, ::draw2d::domain * pdraw2ddomain);
 
       virtual ::gpu::context_pointer allocate_gpu_context();
 

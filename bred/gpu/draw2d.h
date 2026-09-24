@@ -30,7 +30,7 @@ namespace gpu
       ::image::image_pointer image_from_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics) override;
 
       //void on_create_window(::windowing::window* pwindow) override;
-      ::draw2d::graphics_pointer do_allocation_strategy(::acme::user::interaction * pacmeuserinteractionAffinity, ::image::image * pimage,
+      ::draw2d::graphics_pointer do_allocation_strategy(::draw2d::domain * pdraw2ddomain, ::image::image * pimage,
                                                             const ::i32_size & size) override;
 
 

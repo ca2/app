@@ -95,7 +95,7 @@ namespace gpu
       //void end_draw(::acme::windowing::window * pacmewindowingwindow) override;
 
       bool is_memory_graphics_pool_compatible(
-         ::acme::user::interaction * pacmeuserinteractionAffinity) const override;
+         ::draw2d::domain * pdraw2ddomain) const override;
 
       //bool is_memory_graphics_pool_compatible(
         // ::acme::user::interaction * pacmeuserinteractionAffinity) const override;
@@ -104,7 +104,7 @@ namespace gpu
          bool bExternalRendering,
    ::image::image * pimage,
    const ::i32_size & size,
-   ::acme::user::interaction * pacmeuserinteractionAffinity) override;
+                                      ::draw2d::domain * pdraw2ddomain) override;
 
       void on_release_memory_graphics() override;
 
@@ -116,7 +116,7 @@ namespace gpu
 
       //void start_layer(::e_graphics egraphics) override;
       //void end_layer(::e_graphics egraphics) override;
-      void start_layer(bool bFirstLayer = false, ::user::interaction* puserinteraction = nullptr) override;
+      void start_layer(bool bFirstLayer = false, ::user::interaction * puserinteractionTopic = nullptr) override;
       void end_layer(bool bClosingLayer = false) override;
       //void on_start_layer_before_begin_render(::gpu::layer * pgpulayer) override;
       void on_begin_layer_scope() override;

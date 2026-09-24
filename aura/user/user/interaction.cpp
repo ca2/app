@@ -5701,9 +5701,9 @@ namespace user
    void interaction::_001DrawThis(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      //scoped_restore(pdraw2dgraphics->m_pacmeuserinteractionAffinity);
+      //scoped_restore(pdraw2dgraphics->m_puserinteractionTopic);
 
-      //pdraw2dgraphics->m_pacmeuserinteractionAffinity = this;
+      //pdraw2dgraphics->m_puserinteractionTopic = this;
 
       //if (pdraw2dgraphics == nullptr)
       //{
@@ -5900,9 +5900,9 @@ namespace user
 
       }
 
-      //scoped_restore(pdraw2dgraphics->m_pacmeuserinteractionAffinity);
+      //scoped_restore(pdraw2dgraphics->m_puserinteractionTopic);
 
-      //pdraw2dgraphics->m_pacmeuserinteractionAffinity = this;
+      //pdraw2dgraphics->m_puserinteractionTopic = this;
 
       //i32_point pointScroll = m_pointScroll;
 
@@ -7032,9 +7032,9 @@ namespace user
    void interaction::defer_do_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      //scoped_restore(pdraw2dgraphics->m_pacmeuserinteractionAffinity);
+      //scoped_restore(pdraw2dgraphics->m_puserinteractionTopic);
 
-      //pdraw2dgraphics->m_pacmeuserinteractionAffinity = this;
+      //pdraw2dgraphics->m_puserinteractionTopic = this;
 
       ::string strType = ::platform::type(this).name();
 
@@ -7130,7 +7130,7 @@ namespace user
    void interaction::_000CallOnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      scoped_restore(pdraw2dgraphics->m_pacmeuserinteractionTopic);
+      scoped_restore(pdraw2dgraphics->m_puserinteractionTopic);
 
       //pdraw2dgraphics->m_puserinteraction = m_puserinteraction;
 
@@ -19924,7 +19924,7 @@ if(get_parent())
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, draw2d_domain());
 
       return pdraw2dgraphics;
 

@@ -108,6 +108,7 @@ namespace gpu
       static window_attachment * get(::gpu::renderer * pgpurenderer);
       static window_attachment * get(::gpu::context * pgpucontext);
       static window_attachment * get(::acme::user::interaction * pacmeuserinteraction);
+      static window_attachment * get(::draw2d::frame * pdraw2dframe);
       static window_attachment * get(::acme::windowing::window * pacmewindowingwindow);
 
 

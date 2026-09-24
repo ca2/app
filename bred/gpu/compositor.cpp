@@ -9,7 +9,7 @@
 #include "renderer.h"
 #include "render_target.h"
 #include "acme/platform/application.h"
-#include "acme/windowing/window.h"
+#include "aura/windowing/window.h"
 
 
 namespace gpu
@@ -68,8 +68,10 @@ namespace gpu
       {
 
          auto pgpuapproach = application()->get_gpu_approach();
+         
+         ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
 
-         auto pgpudevice = pgpuapproach->get_gpu_device(pacmewindowingwindow);
+         auto pgpudevice = pgpuapproach->get_gpu_device(pwindow->draw2d_domain());
 
 //<<<<<<< HEAD
          //auto pgpucontext = pgpudevice->create_draw2d_context(::gpu::e_output_gpu_buffer, pacmewindowingwindow, rectanglePlacement.size());

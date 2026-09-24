@@ -4,6 +4,7 @@
 #include "context_lease.h"
 #include "context_object.h"
 #include "apex/gpu/approach.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "bred/gpu/device.h"
 
 
@@ -56,7 +57,7 @@ namespace gpu
 
       auto pacmewindowingwindow = pacmeuserinteractionMain->m_pacmewindowingwindow;
 
-      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
+      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pdraw2dgraphics->draw2d_domain());
 
       _synchronous_lock synchronouslock(pgpudevice->synchronization());
 

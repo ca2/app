@@ -381,7 +381,7 @@ namespace user
 
       auto sizeModernOnePixel = ::i32_size{ 1920, 1080 };
 
-      pdraw2dgraphics->create_memory_graphics(sizeModernOnePixel, this);
+      pdraw2dgraphics->create_memory_graphics(sizeModernOnePixel, draw2d_domain());
 
       //pdraw2dgraphics->m_pdraw2dhost = this;
 

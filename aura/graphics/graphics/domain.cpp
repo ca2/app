@@ -7,3 +7,14 @@
 //
 #include "platform.h"
 #include "aura/graphics/graphics/domain.h"
+
+
+namespace graphics
+{
+
+
+
+} // namespace graphics
+
+
+

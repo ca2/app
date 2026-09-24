@@ -313,7 +313,7 @@ namespace gpu
       {
 
        //  m_pacmewindowingwindowWindowSurface->_user_send(procedure);
-         m_pacmeuserinteractionAffinity->main_send(procedure);
+         m_puserinteractionTopic->main_send(procedure);
 
       }
       else
@@ -1637,7 +1637,7 @@ namespace gpu
 
       m_etype = ::gpu::context::e_type_window;
 
-      m_pacmeuserinteractionAffinity = pacmewindowingwindow->m_pacmeuserinteraction;
+      m_puserinteractionTopic = pacmewindowingwindow->m_pacmeuserinteraction;
 
       //if (m_etype != e_type_window)
       //{
@@ -1648,7 +1648,7 @@ namespace gpu
 
       //m_escene = escene;
 
-      m_pacmeuserinteractionAffinity = pacmewindowingwindow->m_pacmeuserinteraction;
+      m_puserinteractionTopic = pacmewindowingwindow->m_pacmeuserinteraction;
 
       if (m_htask.is_null())
       {
@@ -1738,7 +1738,7 @@ namespace gpu
 
       m_escene = escene;
 
-      m_pacmeuserinteractionAffinity = pacmewindowingwindow->m_pacmeuserinteraction;
+      m_puserinteractionTopic = pacmewindowingwindow->m_pacmeuserinteraction;
 
       branch_synchronously();
 
@@ -1788,7 +1788,7 @@ namespace gpu
 
       m_escene = e_scene_2d;
 
-      m_pacmeuserinteractionAffinity = pacmewindowingwindow->m_pacmeuserinteraction;
+      m_puserinteractionTopic = pacmewindowingwindow->m_pacmeuserinteraction;
 
       branch_synchronously();
 
@@ -1830,7 +1830,7 @@ namespace gpu
       
       m_escene = escene;
 
-      m_pacmeuserinteractionAffinity = pacmewindowingwindow->m_pacmeuserinteraction;
+      m_puserinteractionTopic = pacmewindowingwindow->m_pacmeuserinteraction;
 
       if (m_etype == e_type_window)
       {

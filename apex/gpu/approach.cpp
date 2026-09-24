@@ -54,7 +54,7 @@ namespace gpu
    }
 
 
-   ::gpu::device* approach::get_gpu_device(::acme::windowing::window * pacmewindowingwindow)
+   ::gpu::device* approach::get_gpu_device(::draw2d::domain * pdraw2ddomain)
    {
 
       return nullptr;

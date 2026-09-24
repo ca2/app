@@ -553,7 +553,7 @@ void main() {
 
       auto pgpudevice = pgpuapproach->get_gpu_device(m_pacmeuserinteractionAffinity->m_pacmewindowingwindow);
 
-      auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pacmeuserinteractionAffinity);
+      auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pacmeuserinteractionFrameAffinity);
 
       auto pgpucontextWindow = pgpuwindowattachment->window_context();
 

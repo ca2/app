@@ -1693,7 +1693,7 @@ namespace user
 
       //auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
 
-      auto pdraw2dgraphics = pdraw2d->acquire_memory_graphics({256, 256}, this);
+      auto pdraw2dgraphics = pdraw2d->acquire_memory_graphics({256, 256}, draw2d_domain());
 
       //draw_select ds(this, pdraw2dgraphics);
 
@@ -5781,7 +5781,7 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, draw2d_domain());
 
       _001LayoutTopText(pdraw2dgraphics);
 
@@ -6684,7 +6684,7 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
+      auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, draw2d_domain());
 
       _001MaximizeColumnWidth(pdraw2dgraphics, iHeaderItem);
 

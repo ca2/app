@@ -2337,9 +2337,7 @@ namespace acme
             }
             
             return pacmewindowingwindow->acme_draw2d_domain();
-            }
-            
-            
+           
          }
          
          

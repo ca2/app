@@ -552,7 +552,7 @@ namespace user
 
                   window_rectangle(rectangle);
 
-                  pimage1 = image()->create_image(rectangle.size(), this);
+                  pimage1 = image()->create_image(rectangle.size(), draw2d_domain());
 
                   //auto pparticleSynchronization = pimpl->m_pgraphics->get_draw_lock();
 

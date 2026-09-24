@@ -152,7 +152,7 @@ namespace gpu
 
    }
 
-   ::draw2d::graphics_pointer draw2d::do_allocation_strategy(::acme::user::interaction * pacmeuserinteractionAffinity, ::image::image * pimage,
+   ::draw2d::graphics_pointer draw2d::do_allocation_strategy(::draw2d::domain * pdraw2ddomain, ::image::image * pimage,
                                                              const ::i32_size & size)
    {
 
@@ -161,7 +161,7 @@ namespace gpu
       // and upload existing pixels when e_acquire_load was requested.
       // Copying from an unbound graphics here is neither initialization nor
       // target binding, and reaches image's interface-only implementation on DX11.
-      return create_memory_graphics(size, pacmeuserinteractionAffinity);
+      return create_memory_graphics(size, pdraw2ddomain);
 
    }
 

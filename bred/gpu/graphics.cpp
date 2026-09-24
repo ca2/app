@@ -14,6 +14,7 @@
 #include "acme/platform/application.h"
 #include "aura/user/user/interaction.h"
 #include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/graphics/buffer_item.h"
 #include "aura/graphics/graphics/context.h"
@@ -272,8 +273,13 @@ namespace gpu
 
       if (::is_null(puserinteraction))
       {
-
-         puserinteraction = m_pacmeuserinteractionAffinity->user_interaction();
+         
+         if(m_puserinteractionTopic)
+         {
+            
+            puserinteraction = m_puserinteractionTopic->user_interaction();
+            
+         }
 
       }
 
@@ -358,7 +364,7 @@ namespace gpu
       else
       {
 
-         auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pacmeuserinteractionAffinity);
+         auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pdraw2dframe);
 
          pgpuwindowattachment->start_frame();
 
@@ -448,10 +454,10 @@ namespace gpu
    //}
 
    bool graphics::is_memory_graphics_pool_compatible(
-      ::acme::user::interaction * pacmeuserinteractionAffinity) const
+      ::draw2d::domain * pdraw2ddomain) const
    {
 
-      if (!pacmeuserinteractionAffinity
+      if (!pdraw2ddomain
          || m_pimageTarget
          || m_pdraw2dbitmap)
       {
@@ -462,21 +468,17 @@ namespace gpu
 
       auto pgpucontext = m_pgpucontextOwned;
 
-      if (!pgpucontext || !pgpucontext->m_pacmeuserinteractionAffinity)
+      if (!pgpucontext || !pgpucontext->m_puserinteractionTopic)
       {
 
          return false;
 
       }
 
-      auto pacmewindowingwindowRequested =
-         pacmeuserinteractionAffinity->acme_windowing_window();
+      auto pdraw2ddomainContext =
+         pgpucontext->m_pgpudevice->m_pdraw2domain;
 
-      auto pacmewindowingwindowContext =
-         pgpucontext->m_pacmeuserinteractionAffinity->acme_windowing_window();
-
-      return pacmewindowingwindowRequested
-         && pacmewindowingwindowRequested == pacmewindowingwindowContext;
+      return pdraw2ddomain == pdraw2ddomainContext;
 
    }
 
@@ -485,7 +487,7 @@ namespace gpu
       bool bExternalRendering,
       ::image::image * pimage,
       const ::i32_size & size,
-      ::acme::user::interaction * pacmeuserinteractionAffinity)
+      ::draw2d::domain * pdraw2ddomain)
    {
 
       m_bTargetRenderPassActive = false;
@@ -495,7 +497,7 @@ namespace gpu
       if (::is_set(pimage))
       {
 
-         pimage->update_bitmap_as_render_target(pacmeuserinteractionAffinity, this);
+         pimage->update_bitmap_as_render_target(draw2d_domain(), this);
 
          auto pdraw2dbitmap = pimage->m_pdraw2dbitmap;
 
@@ -568,7 +570,7 @@ namespace gpu
          bExternalRendering,
          pimage,
          size,
-         pacmeuserinteractionAffinity);
+         pdraw2ddomain);
 
       if (::is_set(pimage))
       {
@@ -716,7 +718,7 @@ namespace gpu
    }
 
 
-   void graphics::start_layer(bool bFirstLayer, ::user::interaction * puserinteractionContext)
+   void graphics::start_layer(bool bFirstLayer, ::user::interaction * puserinteractionTopic)
    {
 
       m_bTargetRenderPassActive = false;
@@ -729,18 +731,18 @@ namespace gpu
 
       // Layer scopes call start_layer(false) without repeating the interaction.
       // Keep the affinity established when this graphics lease was acquired.
-      if (::is_set(puserinteractionContext))
+      if (::is_set(puserinteractionTopic))
       {
-
-         m_pacmeuserinteractionAffinity = puserinteractionContext;
+         
+         m_puserinteractionTopic = puserinteractionTopic;
 
       }
 
       //auto pgpudevice =
-        // m_papplication->get_gpu_approach()->get_gpu_device(m_pacmeuserinteractionAffinity->acme_windowing_window());
+        // m_papplication->get_gpu_approach()->get_gpu_device(m_puserinteractionTopic->acme_windowing_window());
 
       ::cast<::user::interaction> puserinteraction =
-         m_pacmeuserinteractionAffinity;
+         m_puserinteractionTopic;
 
       if (!puserinteraction)
       {
@@ -864,16 +866,16 @@ namespace gpu
 
       ::i32_rectangle rectangle;
 
-      if (!m_pacmeuserinteractionAffinity && m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_puserinteractionTopic && m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
          auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
 
-         m_pacmeuserinteractionAffinity = dynamic_cast<::user::interaction *>(pacmeuserinteractionMain);
+         m_puserinteractionTopic = dynamic_cast<::user::interaction *>(pacmeuserinteractionMain);
 
       }
 
-      ::cast < ::user::interaction > puserinteractionAffinity = m_pacmeuserinteractionAffinity;
+      ::cast < ::user::interaction > puserinteractionAffinity = m_puserinteractionTopic;
 
       ::i32_rectangle rScreen;
 
@@ -971,7 +973,7 @@ namespace gpu
       //else
       //{
 
-      //   auto pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
+      //   auto pacmeuserinteractionAffinity = m_puserinteractionTopic;
 
       //   auto pacmewindowingwindow = pacmeuserinteractionAffinity->acme_windowing_window();
 
@@ -1019,7 +1021,7 @@ namespace gpu
 
       }
 
-      auto pimageSrc = imagedrawing.image(m_pacmeuserinteractionAffinity);
+      auto pimageSrc = imagedrawing.image();
 
       if (!::is_ok(pimageSrc))
       {
@@ -1988,7 +1990,7 @@ namespace gpu
    void graphics::create_for_window_draw2d(::user::interaction* puserinteraction, const ::i32_size& size)
    {
 
-      m_pacmeuserinteractionAffinity = puserinteraction;
+      m_puserinteractionTopic = puserinteraction;
 
       ::draw2d::graphics::create_for_window_draw2d(puserinteraction, size);
       ///create_offscreen_graphics_for_swap_chain_blitting(puserinteraction, size);

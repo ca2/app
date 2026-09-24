@@ -80,89 +80,92 @@ namespace draw2d
    public:
 
 
-      ::pointer < ::draw2d::domain >               m_pdraw2ddomain;
-      e_graphics                                   m_egraphics;
-      bool                                         m_bSwapChainFinalInterop = false;
-      bool                                         m_bForWindowDraw2d;
-      bool                                         m_bBeginDraw;
-      bool                                         m_bInheritDraw;
-      ::i32                                        m_iYFlipHeight;
+      ::pointer < ::draw2d::domain >                  m_pdraw2ddomain;
+      e_graphics                                      m_egraphics;
+      bool                                            m_bSwapChainFinalInterop = false;
+      bool                                            m_bForWindowDraw2d;
+      bool                                            m_bBeginDraw;
+      bool                                            m_bInheritDraw;
+      ::i32                                           m_iYFlipHeight;
       // try to draw using paths and full prototypes
       // there is little control over lines drawn with move_to line_to than generalized
-      //bool                                         m_bHasCurrentPoint;
-      bool                                         m_bOutline;
-      void* m_pthis;
-      //::pointer<::draw2d::graphics_context>        m_pgraphicscontext;
-      //::pointer < ::acme::user::interaction >       m_pacmeuserinteractionAffinity;
-      //::pointer < ::draw2d::domain >                  m_pdraw2ddomain;
-      ::pointer < ::acme::user::interaction >         m_pacmeuserinteractionTopic;
-      //::pointer < ::user::interaction >            m_puserinteractionDraw2dGraphics;
-      //::pointer<::draw2d::host>                    m_pdraw2dhost;
-      ::pointer < ::graphics::buffer_item >        m_pgraphicsbufferitem;
-      ::f64                                       m_dSizeScaler;
-      bool                                         m_bPat;
-      ///::image32_callback                           m_callbackImage32CpuBuffer;
-      ::i32                                          m_iTargetLayer;
-      ::i32                                          m_iLayer;
-      ::draw2d::graphics_lease * m_pgraphicslease;
-      //bool                                   m_bAlphaBlend;
+      //bool                                          m_bHasCurrentPoint;
+      bool                                            m_bOutline;
+      //void* m_pthis;
+      //::pointer<::draw2d::graphics_context>         m_pgraphicscontext;
+      //::pointer < ::acme::user::interaction >       m_puserinteractionTopic;
+      //::pointer < ::draw2d::domain >                m_pdraw2ddomain;
+      //::pointer < ::acme::user::interaction >       m_pacmeuserinteractionFrameAffinity;
+      ::pointer < ::draw2d::frame >                   m_pdraw2dframe;
+      ::pointer < ::user::interaction >               m_puserinteractionTopic;
+      //::pointer < ::user::interaction >             m_puserinteractionDraw2dGraphics;
+      //::pointer<::draw2d::host>                     m_pdraw2dhost;
+      ::pointer < ::graphics::buffer_item >           m_pgraphicsbufferitem;
+      ::f64                                           m_dSizeScaler;
+      bool                                            m_bPat;
+      //::image32_callback                            m_callbackImage32CpuBuffer;
+      ::i32                                           m_iTargetLayer;
+      ::i32                                           m_iLayer;
+      ::draw2d::graphics_lease *                      m_pgraphicslease;
+      //bool                                          m_bAlphaBlend;
 
-      ::pointer<::text::context>             m_ptextcontext;
-      ::aura::draw_context *                 m_pdrawcontext;
-      ::image::image_pointer                 m_pimageAlphaBlend;
-      ::f64_point                            m_pointAlphaBlend;
-      ::pointer<::task>                      m_ptask;
-      bool                                   m_bDraw;
+      ::pointer<::text::context>                      m_ptextcontext;
+      ::aura::draw_context *                          m_pdrawcontext;
+      ::image::image_pointer                          m_pimageAlphaBlend;
+      ::f64_point                                     m_pointAlphaBlend;
+      ::pointer<::task>                               m_ptask;
+      bool                                            m_bDraw;
 
-      ///::pointer < ::image::image>            m_pimage;
-      ::draw2d::bitmap_pointer               m_pdraw2dbitmap;
-      ::draw2d::pen_pointer                  m_pdraw2dpen;
-      ::draw2d::brush_pointer                m_pdraw2dbrush;
-      ::draw2d::region_pointer               m_pdraw2dregion;
-      bool                                   m_bStoreThumbnails;
-      //::draw2d::bitmap_pointer               m_pdraw2dbitmapTarget;
-      ::image::image_pointer                 m_pimageTarget;
-      ::image::image_pointer                 m_pimageOwned;
+      //::pointer < ::image::image>                   m_pimage;
+      ::draw2d::bitmap_pointer                        m_pdraw2dbitmap;
+      ::draw2d::pen_pointer                           m_pdraw2dpen;
+      ::draw2d::brush_pointer                         m_pdraw2dbrush;
+      ::draw2d::region_pointer                        m_pdraw2dregion;
+      bool                                            m_bStoreThumbnails;
+      //::draw2d::bitmap_pointer                      m_pdraw2dbitmapTarget;
+      ::image::image_pointer                          m_pimageTarget;
+      ::image::image_pointer                          m_pimageOwned;
 
    protected:
-      //bool                                   _m_bYFlip;
-      enum_alpha_mode                        m_ealphamode;
+      //bool                                          _m_bYFlip;
+      enum_alpha_mode                                 m_ealphamode;
 
 
    public:
-      enum_fill_mode                         m_efillmode;
-      enum_smooth_mode                          m_esmoothmode;
-      enum_interpolation_mode                m_einterpolationmode;
-      enum_compositing_quality                  m_ecompositingquality;
-      ::write_text::enum_rendering           m_ewritetextrendering;
-      //::f64                                 m_dFontFactor;
+      enum_fill_mode                                  m_efillmode;
+      enum_smooth_mode                                m_esmoothmode;
+      enum_interpolation_mode                         m_einterpolationmode;
+      enum_compositing_quality                        m_ecompositingquality;
+      ::write_text::enum_rendering                    m_ewritetextrendering;
+      //::f64                                         m_dFontFactor;
 
-      ::f64_size                             m_sizeScaling;
-      //::f64_point                            m_pointOrigin;
-      ::f64_point                            m_pointCurrent;
-      //::f64_point                            m_pointTarget;
-      //::f64_size                             m_sizeTarget;
-      ::f64_size                             m_sizeTotal2;
-      ::geometry2d::matrix                      m_matrix;
-      ::f64_size                             m_sizeScaleOutput;
-      ::f64_point                            m_pointTranslateOutput;
+      ::f64_size                                      m_sizeScaling;
+      //::f64_point                                   m_pointOrigin;
+      ::f64_point                                     m_pointCurrent;
+      //::f64_point                                   m_pointTarget;
+      //::f64_size                                    m_sizeTarget;
+      ::f64_size                                      m_sizeTotal2;
+      ::geometry2d::matrix                            m_matrix;
+      ::f64_size                                      m_sizeScaleOutput;
+      ::f64_point                                     m_pointTranslateOutput;
 
-      ::f64_rectangle                        m_rectangleDraw;
-
-      bool                                   m_bPrinting;
+      ::f64_rectangle                                 m_rectangleDraw;
+         
+      bool                                            m_bPrinting;
       //void* m_osdata[8];
-      ::user::style_pointer                  m_puserstyleGraphics;
-      //::f64_point                            m_pointAddShapeTranslate;
-      bool                                   m_bUseImageMipMapsOrResizedImages;
+      ::user::style_pointer                           m_puserstyleGraphics;
+      //::f64_point                                   m_pointAddShapeTranslate;
+      bool                                            m_bUseImageMipMapsOrResizedImages;
 
-      //::e_status                             m_estatus;
-      //::e_status                             m_estatusLast;
+      //::e_status                                    m_estatus;
+      //::e_status                                    m_estatusLast;
 
-      ::pointer < ::graphics::graphics >     m_pgraphicsgraphics;
-      //::pointer < ::graphics::buffer_item >  m_pgraphicsbufferitem;
+      ::pointer < ::graphics::graphics >               m_pgraphicsgraphics;
+      //::pointer < ::graphics::buffer_item >         m_pgraphicsbufferitem;
 
-      ::pointer < ::user::redraw >           m_puserredraw;
+      ::pointer < ::user::redraw >                    m_puserredraw;
 
+      
       graphics();
       ~graphics() override;
 
@@ -171,6 +174,7 @@ namespace draw2d
       void on_initialize_particle() override;
 
       virtual ::draw2d::domain * draw2d_domain();
+      virtual ::draw2d::frame * draw2d_frame();
 
       virtual bool is_gpu_oriented();
       //      // void assert_ok() const override;
@@ -307,7 +311,7 @@ namespace draw2d
       virtual void end_frame();
 
 
-      virtual void start_layer(bool bFirstLayer = false, ::user::interaction * puserinteraction = nullptr);
+      virtual void start_layer(bool bFirstLayer = false, ::user::interaction * puserinteractionTopic = nullptr);
       virtual void end_layer(bool bClosingLayer = false);
       virtual void on_begin_layer_scope();
       virtual void on_end_layer_scope();
@@ -389,7 +393,9 @@ namespace draw2d
       // Constructors
 
 
-      virtual void update_as_image_render_target(::image::image* pimage, ::acme::user::interaction * pacmeuserinteractionAffinity);
+      //virtual void update_as_image_render_target(::image::image* pimage, ::acme::user::interaction * pacmeuserinteractionAffinity);
+      
+      virtual void update_as_image_render_target(::image::image* pimage);
 
       virtual void create_device_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void* lpInitData);
 
@@ -397,14 +403,14 @@ namespace draw2d
 
       virtual void create_window_graphics(::windowing::window* pwindow);
       virtual void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::i32_size& size = {});
-      virtual void create_memory_graphics(const ::i32_size& sizeParameter, ::acme::user::interaction * pacmeuserinteractionAffinity);
-      virtual bool is_memory_graphics_pool_compatible(::acme::user::interaction * pacmeuserinteractionAffinity) const;
+      virtual void create_memory_graphics(const ::i32_size& sizeParameter, ::draw2d::domain * ppdraw2ddomain);
+      virtual bool is_memory_graphics_pool_compatible(::draw2d::domain * ppdraw2ddomain) const;
       virtual void on_set_target_rectangle(::image::image * pimage);
       virtual void on_acquire_memory_graphics(
          bool bExternalRendering,
          ::image::image * pimage,
          const ::i32_size & size,
-         ::acme::user::interaction * pacmeuserinteractionAffinity);
+         ::draw2d::domain * ppdraw2ddomain);
       virtual void on_release_memory_graphics();
       virtual void create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size = {});
       virtual void defer_set_size(const ::i32_size& size = {});

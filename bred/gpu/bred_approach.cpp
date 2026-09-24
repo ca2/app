@@ -66,10 +66,10 @@ namespace gpu
    }
 
 
-   ::gpu::device* bred_approach::get_gpu_device(::acme::windowing::window * pacmewindowingwindow)
+   ::gpu::device* bred_approach::get_gpu_device(::draw2d::domain * pdraw2domain)
    {
 
-      if (::is_null(pacmewindowingwindow))
+      if (::is_null(pdraw2domain))
       {
 
          throw ::exception(error_bad_argument);
@@ -83,9 +83,9 @@ namespace gpu
 //
 //      }
 
-      auto &pdevice = m_devicemap[pacmewindowingwindow];
+      auto &pdevice = m_devicemap[pdraw2domain];
 
-      ::string strType = ::type(pacmewindowingwindow->m_pacmeuserinteraction).name();
+      //::string strType = ::type(pdraw2domain->m_pacmeuserinteraction).name();
 
       //auto pszType = strType.c_str();
 
@@ -93,43 +93,45 @@ namespace gpu
       {
 
          constructø(pdevice);
+         
+         pdevice->initialize_gpu_device(this, pdraw2domain);
 
-         ::string strType = ::type(pacmewindowingwindow->m_pacmeuserinteraction).name();
+         //::string strType = ::type(pacmewindowingwindow->m_pacmeuserinteraction).name();
          
          //const_char_pointer pszType = strType.c_str();
 
-         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
-         {
-
-            ///auto pwindow = m_pacmeuserinteractionMain->window();
-
-            ::cast < ::windowing::window > pwindow;
-
-            pwindow = pacmewindowingwindow;
-
-            //if (!pwindow)
-            //{
-
-            //   pwindow = m_pacmeuserinteractionMain->window();
-
-            //}
-
-            pdevice->initialize_gpu_device_for_swap_chain(this, pwindow);
-
-         }
-         else
-         {
-
-            if (m_rectangleOffscreen.is_empty())
-            {
-
-               m_rectangleOffscreen = {API_CHANGED_ARGUMENT, 1920, 1080};
-
-            }
-
-            pdevice->initialize_gpu_device_for_off_screen(this, m_rectangleOffscreen);
-
-         }
+//         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+//         {
+//
+//            ///auto pwindow = m_pacmeuserinteractionMain->window();
+//
+//            ::cast < ::windowing::window > pwindow;
+//
+//            pwindow = pacmewindowingwindow;
+//
+//            //if (!pwindow)
+//            //{
+//
+//            //   pwindow = m_pacmeuserinteractionMain->window();
+//
+//            //}
+//
+//            pdevice->initialize_gpu_device_for_swap_chain(this, pwindow);
+//
+//         }
+//         else
+//         {
+//
+//            if (m_rectangleOffscreen.is_empty())
+//            {
+//
+//               m_rectangleOffscreen = {API_CHANGED_ARGUMENT, 1920, 1080};
+//
+//            }
+//
+//            pdevice->initialize_gpu_device_for_off_screen(this, m_rectangleOffscreen);
+//
+//         }
 
       }
 
@@ -184,8 +186,10 @@ namespace gpu
       const_char_pointer pszType = strType.c_str();
 
       information("gpu::approach::gpu_on_create_window for type {}", pszType);
+      
+      ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
 
-      auto pgpudevice = get_gpu_device(pacmewindowingwindow);
+      auto pgpudevice = get_gpu_device(pwindow->draw2d_domain());
 
       auto pgpucontext = pgpudevice->allocate_gpu_context();
 

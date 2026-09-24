@@ -10,9 +10,10 @@
 #include "acme/platform/node.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "acme/graphics/image/frame_array.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
+#include "acme/graphics/image/frame_array.h"
 #include "aura/graphics/image/load_image.h"
 #include "aura/user/user/interaction_thread.h"
 #include "aura/windowing/icon.h"
@@ -173,15 +174,17 @@ namespace image
          return nullptr;
 
       }
+      
+      pimage->m_pdraw2ddomain = pdraw2ddomain;
 
-      auto puserinteraction = ::user::task_interaction();
-
-      if (puserinteraction)
-      {
-
-         pimage->m_pacmeuserinteractionAffinity = puserinteraction;
-
-      }
+//      auto puserinteraction = ::user::task_interaction();
+//
+//      if (puserinteraction)
+//      {
+//
+//         pimage->m_puserinteractionTopic = puserinteraction;
+//
+//      }
 
       //if (::is_set(pixmap.m_pimage32))
       //{
@@ -211,7 +214,7 @@ namespace image
 
 
 
-   ::image::image_pointer image_context::create_image_from_data(const ::pixmap_t& pixmap, ::enum_flag eflagCreate)
+   ::image::image_pointer image_context::create_image_from_data(const ::pixmap_t& pixmap, ::draw2d::domain * pdraw2ddomain, ::enum_flag eflagCreate)
    {
 
       auto pimage = m_papplication->createø < ::image::image >();
@@ -223,14 +226,7 @@ namespace image
 
       }
 
-      auto puserinteraction = ::user::task_interaction();
-
-      if (puserinteraction)
-      {
-
-         pimage->m_pacmeuserinteractionAffinity = puserinteraction;
-
-      }
+      pimage->m_pdraw2ddomain = pdraw2ddomain;
 
       if (::is_set(pixmap.m_pimage32))
       {
@@ -259,7 +255,7 @@ namespace image
    }
 
 
-   ::image::pool_image image_context::pool_image(const ::i32_size& size, ::acme::user::interaction * pacmeuserinteractionAffinity)
+   ::image::pool_image image_context::pool_image(const ::i32_size& size, ::draw2d::domain* pdraw2ddomain)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -273,7 +269,7 @@ namespace image
 
       }
 
-      return { this, create_image(size, pacmeuserinteractionAffinity) };
+      return { this, create_image(size, pdraw2ddomain) };
 
    }
 
@@ -300,7 +296,7 @@ namespace image
 
       }
 
-      auto pimageStreched = create_image(size, pimage->m_pacmeuserinteractionAffinity);
+      auto pimageStreched = create_image(size, pimage->draw2d_domain());
 
       auto pdraw2dgraphicsImageStretched = pimageStreched->acquire_graphics();
 
@@ -336,7 +332,7 @@ namespace image
    }
 
 
-   ::i32 image_context::create_image_integer(const ::pixmap_t & pixmap)
+   ::i32 image_context::create_image_integer(const ::pixmap_t & pixmap, ::draw2d::domain * pdraw2ddomain)
    {
 
       if (pixmap.m_size.area()    <= 0)
@@ -355,7 +351,7 @@ namespace image
 
       }
 
-      auto pimage = create_image_from_data(pixmap);
+      auto pimage = create_image_from_data(pixmap, pdraw2ddomain);
 
       string strPath;
 

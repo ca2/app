@@ -2337,7 +2337,7 @@ namespace experience_core
 
       ::draw2d::save_context savecontext(pdraw2dgraphics);
 
-      //pdraw2dgraphics->m_pacmeuserinteractionAffinity = pinteraction;
+      //pdraw2dgraphics->m_puserinteractionTopic = pinteraction;
 
       if (pinteraction->is_top_level())
       {

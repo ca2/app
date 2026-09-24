@@ -1580,10 +1580,12 @@ namespace write_text
          auto pacmeuserinteractionAffinity = m_puserinteractionGraphicsContext
             ? (::acme::user::interaction *) m_puserinteractionGraphicsContext.m_p
             : (::acme::user::interaction *) m_puserinteraction.m_p;
+         
+         auto puserinteractionAffinity = pacmeuserinteractionAffinity->user_interaction();
 
          auto graphicslease = pdraw2d->acquire_memory_graphics(
             {256, 256},
-            pacmeuserinteractionAffinity);
+            puserinteractionAffinity->draw2d_domain());
 
          auto pdraw2dgraphics = graphicslease.get();
 

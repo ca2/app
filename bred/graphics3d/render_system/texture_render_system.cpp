@@ -20,6 +20,7 @@
 
 //CLASS_DECL_ACME ::string _001_image32_diagnostics(const ::i32_size &size, const image32_t *pimage32, int iScan);
 
+
 namespace graphics3d
 {
 
@@ -32,8 +33,8 @@ namespace graphics3d
    }
 
 
-   texture_render_system::~texture_render_system() {
-   
+   texture_render_system::~texture_render_system()
+   {
       
    
    }
@@ -43,7 +44,9 @@ namespace graphics3d
    {
 
       ::graphics3d::render_system::initialize_render_system(pengine);
+
    }
+
 
    ::memory texture_render_system::vert_shader_memory()
    {
@@ -53,7 +56,9 @@ namespace graphics3d
       m_pgraphics3dengineinstance->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/texture.vert");
 
       return memory;
+
    }
+
 
    ::memory texture_render_system::frag_shader_memory()
    {
@@ -63,6 +68,7 @@ namespace graphics3d
       m_pgraphics3dengineinstance->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/texture.frag");
 
       return memory;
+
    }
 
 
@@ -87,9 +93,9 @@ namespace graphics3d
       // m_pshader->m_bDisableDepthTest = true;
       m_pshader->m_ecullmode = ::gpu::e_cull_mode_none;
 
-            auto pbindingTexture = m_pshader->binding(1, 0);
+      auto pbindingTexture = m_pshader->binding(1, 0);
       pbindingTexture->m_strUniform = "textureSampler";
-            pbindingTexture->m_ebinding = ::gpu::e_binding_sampler2d;
+      pbindingTexture->m_ebinding = ::gpu::e_binding_sampler2d;
       pbindingTexture->m_iTextureUnit = 0;
 
       m_pshader->initialize_shader_with_block(pgpucontext->m_pgpurenderer, this->vert_shader_memory(),
@@ -105,7 +111,11 @@ namespace graphics3d
    }
 
 
-   void texture_render_system::on_update(::gpu::context *pgpucontext, ::graphics3d::scene_base *pscene) {}
+   void texture_render_system::on_update(::gpu::context *pgpucontext, ::graphics3d::scene_base *pscene) 
+   {
+   
+   
+   }
 
 
    ::floating_matrix4 texture_render_system::model_matrix2(::graphics3d::scene_renderable *pscenerenderable)
@@ -118,6 +128,7 @@ namespace graphics3d
       model_and_normal_matrices(matrixModel, matrixNormal, pscenerenderable);
 
       return matrixModel;
+
    }
 
 
@@ -128,7 +139,7 @@ namespace graphics3d
 
       #if 1
 
-            auto T = ::floating_matrix4::translation(pscenerenderable->m_sequence3Translation);
+      auto T = ::floating_matrix4::translation(pscenerenderable->m_sequence3Translation);
 
       auto R = pscenerenderable->m_matrixRotation;
 
@@ -184,6 +195,7 @@ namespace graphics3d
          auto pszName2 = strName2.c_str();
 
          ::information("model ({}) matrix determinant near zero: {}", strName2, determinant);
+
       }
       else if (determinant < 0.f)
       {
@@ -222,6 +234,7 @@ namespace graphics3d
       matrixNormal = floating_matrix3(matrixModel).inversed().transposed();
 
       #endif
+
    }
 
 
@@ -255,12 +268,14 @@ namespace graphics3d
          {
 
             continue;
+
          }
 
          if (pscenerenderable->m_erendersystem != ::graphics3d::e_render_system_texture)
          {
 
             continue;
+
          }
 
          auto prenderable = pscenerenderable->renderable();
@@ -296,6 +311,7 @@ namespace graphics3d
                   prenderable->m_ptextureTexture->binding_slot_set(pgpucommandbuffer, pbindingsetTexture);
 
                pgpucommandbuffer->bind_slot_set(1, pbindingslotsetTexture);
+
             }
 
             // auto T = ::floating_matrix4::translation(pscenerenderable->m_sequence3Translation);
@@ -331,7 +347,9 @@ namespace graphics3d
             pgpucommandbuffer->draw(prenderable);
 
             prenderable->unbind(pgpucommandbuffer);
+
          }
+
       }
 
       // m_pshader->unbind(::gpu::current_command_buffer());
@@ -342,7 +360,12 @@ namespace graphics3d
                                                                ::graphics3d::scene_base *pscene,
                                                                ::graphics3d::scene_renderable *pscenerenderable)
    {
+
+
    }
 
 
 } // namespace graphics3d
+
+
+

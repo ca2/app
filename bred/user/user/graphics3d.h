@@ -7,7 +7,7 @@
 #include "bred/graphics3d/key_map.h"
 #include "bred/graphics3d/types.h"
 #include "apex/platform/app_consumer.h"
-#include "apex/platform/application.h"
+#include "bred/platform/application.h"
 #include "apex/platform/session.h"
 #include "bred/platform/fps_counter.h"
 
@@ -18,7 +18,7 @@ namespace user
   
 
    class CLASS_DECL_BRED graphics3d :
-      virtual public ::app_consumer < ::aura::application, ::user::box>
+      virtual public ::app_consumer < ::bred::application, ::user::box>
    {
    public:
 

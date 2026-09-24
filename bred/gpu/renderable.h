@@ -41,7 +41,7 @@ namespace gpu
       ::string m_strRenderableUsage1;
       enum_renderable_usage m_erenderableusage;
       ::string m_strCoordinateSystem1;
-      enum_coordinate_system m_ecoordinatesystem;
+      enum_coordinate_system m_ecoordinatesystem = e_coordinate_system_none;
       bool m_bCounterClockwise = true;
       ::i32 m_iFlags = -1;
       ::f32 m_fScale = 1.0f;

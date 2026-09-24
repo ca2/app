@@ -20,6 +20,7 @@ namespace graphics3d
 
    wavefront_obj_render_system::wavefront_obj_render_system()
 	{
+
       m_erendersystem = ::graphics3d::e_render_system_wavefront_obj;
 
 	}
@@ -52,6 +53,7 @@ namespace graphics3d
 
    }
 
+
    ::memory wavefront_obj_render_system::frag_shader_memory()
    {
 
@@ -71,6 +73,12 @@ namespace graphics3d
 		auto prenderer = pgpucontext->m_pgpurenderer;
 
       m_pshader = createø<::gpu::shader>();
+
+      // Wavefront meshes are currently rendered two-sided by the OpenGL and
+      // Vulkan backends. Express that policy through the common shader state
+      // so DirectX uses the same rasterization behavior.
+      m_pshader->m_ecullmode = ::gpu::e_cull_mode_none;
+
       m_pshader->m_propertiesPushShared.set_properties(simple_render_properties());
       pgpucontext->layout_push_constants(
          m_pshader->m_propertiesPushShared, false);

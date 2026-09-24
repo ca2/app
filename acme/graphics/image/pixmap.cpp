@@ -257,7 +257,7 @@ void pixmap::create_as_descriptor(const ::i32_size & size, ::enum_flag eflagCrea
 
    m_size = size;
 
-   m_sizeRaw = m_sizeRaw.maximum(size);
+   m_sizeRaw = size.maximum(m_sizeRaw);
 
    m_eflagElement = eflagCreate;
 

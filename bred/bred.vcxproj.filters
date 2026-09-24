@@ -40,14 +40,8 @@
     <Filter Include="Header Files\gpu">
       <UniqueIdentifier>{674ac5cf-00d4-4965-a262-5383e5a9b318}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gpu">
-      <UniqueIdentifier>{9d2983c9-98bf-40f4-86fc-eb5fb305bcc4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\graphics3d">
       <UniqueIdentifier>{cbae24f5-5592-4d64-8708-897504cfa2f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gpu\const">
-      <UniqueIdentifier>{b64687ba-08b5-4462-a4fb-426514e2f646}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\typeface">
       <UniqueIdentifier>{d3a144f4-dcbf-4f2d-9580-421dc2a4b418}</UniqueIdentifier>
@@ -78,6 +72,12 @@
     </Filter>
     <Filter Include="Header Files\ibl">
       <UniqueIdentifier>{c8a13f51-9795-45d5-bdb1-1db594b5ddf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics3d\gpu">
+      <UniqueIdentifier>{9d2983c9-98bf-40f4-86fc-eb5fb305bcc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics3d\gpu\const">
+      <UniqueIdentifier>{b64687ba-08b5-4462-a4fb-426514e2f646}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -510,7 +510,7 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\gpu\const</Filter>
+      <Filter>Source Files\graphics3d\gpu\const</Filter>
     </ClCompile>
     <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
@@ -546,109 +546,109 @@
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="gpu\context.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\context_lease.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\buffer.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\device.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\draw2d.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\frame.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\graphics.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\object.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\program.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\properties.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\render.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\render_target.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\renderer.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\shader.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\layer.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\swap_chain.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\texture.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="user\user\graphics3d.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="gpu\_.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\compositor.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\guard.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\image.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\context_lock.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\command_buffer.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\input_layout.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\context_object.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\memory_buffer.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\model_buffer.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\pixmap.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="typeface\face.cpp">
       <Filter>Source Files\typeface</Filter>
     </ClCompile>
     <ClCompile Include="gpu\bred_approach.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\hlsl_context.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\mesh.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="gpu\frame_storage.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\frame_ephemeral.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\render_system.cpp">
       <Filter>Source Files\graphics3d</Filter>
@@ -672,10 +672,10 @@
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="gpu\queue.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\renderable.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="prodevian\actor.cpp">
       <Filter>Source Files\prodevian</Filter>
@@ -687,7 +687,7 @@
       <Filter>Source Files\prodevian</Filter>
     </ClCompile>
     <ClCompile Include="gpu\types.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\types.cpp">
       <Filter>Source Files\graphics3d</Filter>
@@ -711,10 +711,10 @@
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="gpu\binding.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\block.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\render_system\point_light_render_system.cpp">
       <Filter>Source Files\graphics3d\render_system</Filter>
@@ -729,10 +729,10 @@
       <Filter>Source Files\graphics3d\render_system</Filter>
     </ClCompile>
     <ClCompile Include="gpu\empty_texture_source.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\model_data.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="platform\timer.cpp">
       <Filter>Source Files\platform</Filter>
@@ -747,34 +747,34 @@
       <Filter>Source Files\typeface</Filter>
     </ClCompile>
     <ClCompile Include="gpu\semaphore.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\fence.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\graphics_context.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\context_pointer.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\render_system\texture_render_system.cpp">
       <Filter>Source Files\graphics3d\render_system</Filter>
     </ClCompile>
     <ClCompile Include="gpu\bitmap.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\texture_synchronization.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\window_attachment.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\texture_site.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\command_buffer_lease.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\graphics3d.cpp">
       <Filter>Source Files\graphics3d</Filter>
@@ -783,7 +783,7 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="gpu\scoped_texture_state.cpp">
-      <Filter>Source Files\gpu</Filter>
+      <Filter>Source Files\graphics3d\gpu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

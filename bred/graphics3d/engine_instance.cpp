@@ -37,6 +37,7 @@
 #include "bred/gpu/texture_site.h"
 #include "bred/graphics3d/_functions.h"
 #include "bred/graphics3d/camera.h"
+#include "bred/graphics3d/graphics3d.h"
 #include "bred/graphics3d/shape_factory.h"
 #include "bred/user/user/graphics3d.h"
 #include "aura/graphics/image/aaa_target.h"
@@ -158,6 +159,8 @@ namespace graphics3d
       m_pusergraphics3d = pusergraphics3d;
 
       m_pusergraphics3d->m_pgraphics3dengineinstance = this;
+
+      m_pgraphics3d = pusergraphics3d->m_papp->graphics3d();
 
       //m_papproach = m_papplication->get_gpu_approach();
       // set_gpu_performance_diagnostics(true);

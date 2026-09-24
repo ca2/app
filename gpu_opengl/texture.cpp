@@ -1950,6 +1950,8 @@ namespace gpu_opengl
       pixmapFlipped.m_colorindexes = ppixmap->m_colorindexes;
       pixmapFlipped.copy(ppixmap);
 
+      auto p = pixmapFlipped.map(ppixmap->rectangle());
+
       //if (ppixmap->m_bTopLeft)
       //{
 
@@ -1957,8 +1959,8 @@ namespace gpu_opengl
 
       //}
 
-      int cx = ppixmap->width();
-      int cy = ppixmap->height();
+      int cx = p->width();
+      int cy = p->height();
 
       scoped_pixel_transfer_state state;
 
@@ -1970,9 +1972,9 @@ namespace gpu_opengl
       auto x = pointInput.x;
       auto y = pointInput.y;
 
-      auto requiredWidth = x + cx;
+      auto requiredWidth = ppixmap->raw_width();
 
-      auto requiredHeight = y + cy;
+      auto requiredHeight = ppixmap->raw_height();
 
       if (textureWidth < requiredWidth ||
           textureHeight < requiredHeight)
@@ -2001,13 +2003,13 @@ namespace gpu_opengl
       glTexSubImage2D(
          GL_TEXTURE_2D,
          0,
-         x, 
-         y,
+         0, 
+         ppixmap->raw_height() - (cy + 0),
          cx,
          cy,
          iPixelFormatFlipped,
          GL_UNSIGNED_BYTE,
-         pixmapFlipped.m_pimage32);
+         p->m_pimage32);
       ::opengl::check_error("");
 
       if (m_textureattributes.m_size.cx < requiredWidth)

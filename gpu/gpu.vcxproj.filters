@@ -58,6 +58,12 @@
     <Filter Include="Source Files\model">
       <UniqueIdentifier>{fc1cfa3b-1c27-4213-8255-93fc35a7a463}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\hlsl">
+      <UniqueIdentifier>{5caba024-6cb3-4f2b-87a6-0e0de2d820ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\hlsl">
+      <UniqueIdentifier>{fff49b63-2784-424d-89f6-f40fd336e14b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platform\application.h">
@@ -285,6 +291,18 @@
     <ClInclude Include="model\_assimp.h">
       <Filter>Header Files\model</Filter>
     </ClInclude>
+    <ClInclude Include="hlsl\_001Blend.frag.h">
+      <Filter>Header Files\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="hlsl\_001Blend.vert.h">
+      <Filter>Header Files\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="hlsl\texture.frag.h">
+      <Filter>Header Files\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="hlsl\texture.vert.h">
+      <Filter>Header Files\hlsl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform.cpp">
@@ -398,6 +416,18 @@
     </CustomBuild>
     <CustomBuild Include="ibl\hlsl\scene.vert">
       <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="hlsl\texture.frag">
+      <Filter>Source Files\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="hlsl\_001Blend.frag">
+      <Filter>Source Files\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="hlsl\_001Blend.vert">
+      <Filter>Source Files\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="hlsl\texture.vert">
+      <Filter>Source Files\hlsl</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

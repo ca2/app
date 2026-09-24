@@ -241,6 +241,13 @@ namespace gpu
    ::i32_size texture::raw_size() const
    {
 
+      if (m_textureattributes.m_sizeRaw.is_empty())
+      {
+
+         return m_textureattributes.m_size;
+
+      }
+
       return m_textureattributes.m_sizeRaw;
 
    }

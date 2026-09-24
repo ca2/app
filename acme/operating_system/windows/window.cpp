@@ -1100,14 +1100,22 @@ namespace windows
    }
 
 
-   ::f32 window::get_window_scale()
+   ::f32 window::get_density_base_dpi_for_window()
+   {
+
+      return 96.0f;
+
+   }
+
+
+   ::f32 window::get_density_dpi_for_window()
    {
 
       auto hwnd = m_windowswindow.as_HWND();
 
       UINT dpi = GetDpiForWindow(hwnd);
 
-      return (::f32)dpi / 96.0f;
+      return (::f32)dpi;
 
 
    }

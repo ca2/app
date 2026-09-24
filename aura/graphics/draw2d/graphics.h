@@ -1,3 +1,5 @@
+// Added draw2d::domain_consumer base to draw2d::graphics by
+//   camilo on 2026-09-24 05:01 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
 #pragma once
 
 
@@ -13,10 +15,10 @@
 #include "acme/prototype/geometry2d/matrix.h"
 #include "acme/prototype/geometry2d/shift.h"
 //#include "aura/user/user/redraw.h"
-#include "aura/graphics/draw2d/region.h"
+#include "aura/graphics/draw2d/domain_consumer.h"
 #include "aura/graphics/draw2d/bitmap.h"
 #include "aura/graphics/draw2d/offset.h"
-
+#include "aura/graphics/draw2d/region.h"
 
 //extern template class CLASS_DECL_AURA pointer<draw2d::graphics>;
 
@@ -75,12 +77,13 @@ namespace draw2d
       virtual public ::image::image_drawer,
       virtual public ::write_text::drawer,
       virtual public ::image::image_source_interface,
-      virtual public ::draw2d::target_rectangle
+      virtual public ::draw2d::target_rectangle,
+      virtual public ::draw2d::domain_consumer
    {
    public:
 
 
-      ::pointer < ::draw2d::domain >                  m_pdraw2ddomain;
+      //::pointer < ::draw2d::domain >                  m_pdraw2ddomain;
       e_graphics                                      m_egraphics;
       bool                                            m_bSwapChainFinalInterop = false;
       bool                                            m_bForWindowDraw2d;
@@ -173,7 +176,7 @@ namespace draw2d
 
       void on_initialize_particle() override;
 
-      virtual ::draw2d::domain * draw2d_domain();
+      ::acme::draw2d::domain * acme_draw2d_domain() override;
       virtual ::draw2d::frame * draw2d_frame();
 
       virtual bool is_gpu_oriented();

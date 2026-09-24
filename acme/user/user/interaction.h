@@ -31,6 +31,7 @@
 #ifdef WINDOWS_DESKTOP
 #include "acme/operating_system/windows/_window_class.h"
 #endif
+#include "acme/graphics/draw2d/domain_consumer.h"
 
 
 namespace acme
@@ -46,7 +47,8 @@ namespace acme
          virtual public ::user::drag_client,
          virtual public ::source,
          virtual public ::user::check,
-         virtual public ::user::text
+         virtual public ::user::text,
+         virtual public ::acme::draw2d::domain_consumer
       {
       public:
 

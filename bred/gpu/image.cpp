@@ -242,7 +242,7 @@ namespace gpu
 
       }
 
-      create_as_descriptor(sizeRaw, eflagCreate, iGoodStride);
+      create_as_descriptor(sizeRaw, pdraw2ddomain, eflagCreate, iGoodStride);
 
       auto pdraw2dbitmap = createø<::draw2d::bitmap>();
 
@@ -934,7 +934,7 @@ namespace gpu
       else
       {
 
-         create_as_descriptor(size, e_flag_success, iScan);
+         create_as_descriptor(size, draw2d_domain(), e_flag_success, iScan);
 
          auto ppixmapThis = this->map();
 

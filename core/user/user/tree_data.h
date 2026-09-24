@@ -3,9 +3,10 @@
 
 #include "acme/prototype/data/tree.h"
 #include "acme/prototype/geometry2d/rectangle.h"
-#include "aura/graphics/draw2d/draw2d.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/user/user/element.h"
+#include "aura/graphics/draw2d/domain_consumer.h"
+#include "aura/graphics/draw2d/draw2d.h"
 
 
 namespace user
@@ -28,7 +29,8 @@ namespace user
    };
 
    class CLASS_DECL_CORE tree_data_base :
-      virtual public ::data::tree_base
+      virtual public ::data::tree_base,
+      virtual public ::draw2d::domain_consumer
    {
    public:
 
@@ -39,8 +41,8 @@ namespace user
 
       tree_data_base();
       ~tree_data_base() override;
-
-
+      
+      
       virtual ::collection::count               get_data_bound_impact_count() const override;
       virtual ::user::element * get_data_bound_impact(::collection::index iImpact) override;
 

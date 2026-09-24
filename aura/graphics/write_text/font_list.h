@@ -1,3 +1,5 @@
+// Added ::draw2d::domain_consumer inheritance to ::write_text::font_list by
+//   camilo on 2026-09-24 05:37 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
 #pragma once
 
 
@@ -16,7 +18,8 @@ namespace write_text
 
 
    class CLASS_DECL_AURA font_list :
-      virtual public ::manager
+      virtual public ::manager,
+      virtual public ::draw2d::domain_consumer
    {
    public:
 

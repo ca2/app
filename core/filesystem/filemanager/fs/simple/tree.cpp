@@ -49,7 +49,7 @@ namespace filemanager
 
             construct_newø(m_pimagelist);
 
-            m_pimagelist->create(16, 16);
+            m_pimagelist->create(16, 16, draw2d_domain());
 
 //#ifdef WINDOWS
 //

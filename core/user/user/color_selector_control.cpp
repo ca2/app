@@ -159,6 +159,8 @@ namespace user
    {
 
       //g_iColorWheelExit = atoi(file()->as_string(directory()->home()/"color_wheel_exit.txt"));
+      
+      initialize_color_selector(this);
 
       constructø(m_pwritetextfont);
 

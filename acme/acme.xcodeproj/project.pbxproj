@@ -3233,6 +3233,12 @@
 		9A604EF8E41E0B07733CE3DF /* _setup.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E6A3A86ED53A57F307BC9B7 /* _setup.h */; };
 		9A6913A04315EB043B8C0785 /* cpu_features.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56014052D55228B0440880ED /* cpu_features.cpp */; };
 		9A7B054D6E74BCAEF76C9AB6 /* standard_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BD0C95DCDAE71314C60E303 /* standard_exception.cpp */; };
+		9A88A8CD3065118F002270A2 /* domain_consumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A8CB3065118F002270A2 /* domain_consumer.h */; };
+		9A88A8CE3065118F002270A2 /* domain_consumer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A8CC3065118F002270A2 /* domain_consumer.cpp */; };
+		9A88A8CF3065118F002270A2 /* domain_consumer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A8CC3065118F002270A2 /* domain_consumer.cpp */; };
+		9A88A8D03065118F002270A2 /* domain_consumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A8CB3065118F002270A2 /* domain_consumer.h */; };
+		9A88A8D13065118F002270A2 /* domain_consumer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A8CC3065118F002270A2 /* domain_consumer.cpp */; };
+		9A88A8D23065118F002270A2 /* domain_consumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A8CB3065118F002270A2 /* domain_consumer.h */; };
 		9A9F69C00C5905C9FAF127C1 /* contains.h in Headers */ = {isa = PBXBuildFile; fileRef = 158F1BFB698F7102B3A4BB1B /* contains.h */; };
 		9AA392A43063554B00B9551A /* pixmap_t.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA392A33063554B00B9551A /* pixmap_t.cpp */; };
 		9AA392A53063554B00B9551A /* frame_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA3929B3063554B00B9551A /* frame_array.cpp */; };
@@ -6802,6 +6808,8 @@
 		9A472AB6A85B61CE68BB2974 /* heap_item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = heap_item.h; sourceTree = "<group>"; };
 		9A561359842EA69261D63069 /* assert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = assert.cpp; sourceTree = "<group>"; };
 		9A7DF8DE45A99AFB3BCC9EB3 /* _compare_swap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _compare_swap.h; sourceTree = "<group>"; };
+		9A88A8CB3065118F002270A2 /* domain_consumer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = domain_consumer.h; sourceTree = "<group>"; };
+		9A88A8CC3065118F002270A2 /* domain_consumer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = domain_consumer.cpp; sourceTree = "<group>"; };
 		9AA392933063554B00B9551A /* _exif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _exif.h; sourceTree = "<group>"; };
 		9AA392973063554B00B9551A /* color_indexes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = color_indexes.cpp; sourceTree = "<group>"; };
 		9AA392983063554B00B9551A /* frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frame.h; sourceTree = "<group>"; };
@@ -9203,6 +9211,8 @@
 				208BF0C8CEBEAD46515588AF /* color32.h */,
 				9AA394593064BEA400B9551A /* domain.h */,
 				9AA3945A3064BEA400B9551A /* domain.cpp */,
+				9A88A8CB3065118F002270A2 /* domain_consumer.h */,
+				9A88A8CC3065118F002270A2 /* domain_consumer.cpp */,
 				23F9DEE39A47A236534BF3DB /* opacity.h */,
 				9AA393013063566900B9551A /* os_font_name.cpp */,
 				9AA393023063566900B9551A /* task_tool.h */,
@@ -11392,6 +11402,7 @@
 				4C90DB797511DA53C6C77C2C /* wd32.h in Headers */,
 				00FB3E71E8D3483868E8D0BF /* macos.h in Headers */,
 				249EF62EBD6F1082F1C5B482 /* waiting_call.h in Headers */,
+				9A88A8CD3065118F002270A2 /* domain_consumer.h in Headers */,
 				D68D5BF345661B0781E34D85 /* task_context.h in Headers */,
 				D549217EECC8159205577994 /* _.h in Headers */,
 				B39F6C4126D4945B57EB3256 /* network_payload.h in Headers */,
@@ -12292,6 +12303,7 @@
 				E946C4473D9649816800C70A /* call_stack.h in Headers */,
 				FA007204D9EF421D357AE4A2 /* _generic_map.h in Headers */,
 				36F41230BD8220FD3F4CB52F /* _impl_string_array.h in Headers */,
+				9A88A8D23065118F002270A2 /* domain_consumer.h in Headers */,
 				094EB7B712EEA595DD98EED6 /* _function.h in Headers */,
 				29E9A23248F49942C3827260 /* _impl_payload.h in Headers */,
 				97AFBEFF6F9E13C51D8999D3 /* _impl.h in Headers */,
@@ -14146,6 +14158,7 @@
 				352BC91A8F47F550AC150116 /* debug.h in Headers */,
 				EF19A31E12F34E970B707E9B /* item_container_map.h in Headers */,
 				1B5A515C5687CB62BB93A29D /* impact.h in Headers */,
+				9A88A8D03065118F002270A2 /* domain_consumer.h in Headers */,
 				E644E0076D9C5F86FB8BBAFA /* hasher_algorithm.h in Headers */,
 				772FA6F6CD4E69174BAED336 /* interface_only.h in Headers */,
 				44A985B1FDED43F58ABD5F56 /* _i64.h in Headers */,
@@ -14531,6 +14544,7 @@
 				1A83155EAC61074FE42854F3 /* file_raw.cpp in Sources */,
 				FD3BB78CA686A77EF51C53ED /* file_std.cpp in Sources */,
 				F34079ED3948E5CBBA2F3887 /* file.cpp in Sources */,
+				9A88A8CF3065118F002270A2 /* domain_consumer.cpp in Sources */,
 				63969F528BB1BBCC6BA3D09D /* int_handle.cpp in Sources */,
 				1722A15C63934606D644B236 /* dib.cpp in Sources */,
 				081E2E82B2D72A9861A74678 /* malloc_memory.cpp in Sources */,
@@ -15706,6 +15720,7 @@
 				4F2F2A6DA4E318C9ED072924 /* _api.cpp in Sources */,
 				BF3C162043CFFC55A4AC4206 /* dynamic_library.cpp in Sources */,
 				76705BEB3E9E5B1108641322 /* number_i32.cpp in Sources */,
+				9A88A8CE3065118F002270A2 /* domain_consumer.cpp in Sources */,
 				E064633A132742AD07221B3E /* tools.cpp in Sources */,
 				E1E8BD13ADA8999DC326CBC5 /* color.cpp in Sources */,
 				04E4170E5C10D0479A7FD2E9 /* text_property.cpp in Sources */,
@@ -16240,6 +16255,7 @@
 				067AEDA29878860F5F53CE4A /* manual_reset_happening.cpp in Sources */,
 				823270ED28FD7D3358EDCFF7 /* time.cpp in Sources */,
 				A2753CC2084350E882C5FD56 /* parsing.cpp in Sources */,
+				9A88A8D13065118F002270A2 /* domain_consumer.cpp in Sources */,
 				36AABE0C78737E52CE0C7D41 /* number_f32.cpp in Sources */,
 				81F9510889EAB3B16CF62462 /* item_container.cpp in Sources */,
 				D6AA93299D555B5BED57D382 /* enumerator.cpp in Sources */,

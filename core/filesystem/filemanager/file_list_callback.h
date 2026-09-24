@@ -1,4 +1,9 @@
+// Added ::draw2d::domain_consumer base to filemanager::file_list_callback by
+//   camilo on 2026-09-24 05:31 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
 #pragma once
+
+
+#include "aura/graphics/draw2d/domain_consumer.h"
 
 
 namespace filemanager
@@ -6,7 +11,8 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE file_list_callback :
-      virtual public ::object
+      virtual public ::object,
+      virtual public ::draw2d::domain_consumer
    {
    public:
 
@@ -17,7 +23,7 @@ namespace filemanager
       file_list_callback();
       virtual ~file_list_callback();
 
-      virtual bool initialize_file_list_callback();
+      virtual bool initialize_file_list_callback(::draw2d::domain * pdraw2ddomain);
 
       virtual ::i32 GetActionButtonCount();
       virtual ::image::image_list_pointer GetActionButtonImageList(atom i);

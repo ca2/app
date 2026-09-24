@@ -1,3 +1,5 @@
+// Added draw2d::domain_consumer base to ::user::interaction by camilo
+//  on 2026-09-24 05:20 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
 #pragma once
 
 
@@ -16,6 +18,7 @@
 //#include "apex/database/key.h"
 #include "apex/message/command.h"
 #include "apex/user/user/interaction_base.h"
+#include "aura/graphics/draw2d/domain_consumer.h"
 
 
 namespace user
@@ -96,7 +99,9 @@ namespace user
 
    class CLASS_DECL_AURA interaction :
       virtual public ::user::interaction_base,
-      virtual public ::user::drawable //,
+      virtual public ::user::drawable,
+      virtual public ::draw2d::domain_consumer
+      //,
       //virtual public ::timer_callback//,
       //virtual public ::user::drag_client
       //, virtual public ::graphics::output_purpose

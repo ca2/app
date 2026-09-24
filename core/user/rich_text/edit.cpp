@@ -1159,7 +1159,7 @@ namespace user
 
             constructø(pimage);
 
-            pimage->create_as_descriptor(m_ppictureimpl->m_rectangleDrawing.size());
+            pimage->create_as_descriptor(m_ppictureimpl->m_rectangleDrawing.size(), draw2d_domain());
 
             ::i32_size sz = m_ppictureimpl->m_rectangleDrawing.size();
 

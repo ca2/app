@@ -936,7 +936,7 @@ namespace html
 
       //}
 
-      pimage->create_as_descriptor({50, 50});
+      pimage->create_as_descriptor({50, 50}, pform->draw2d_domain());
 
       /*if (!estatus)
       {
@@ -987,7 +987,7 @@ namespace html
       
       //estatus =
       
-      pimage->create_as_descriptor({50, 50});
+      pimage->create_as_descriptor({50, 50}, pform->draw2d_domain());
 
       //if (!estatus)
       //{
@@ -1027,7 +1027,7 @@ namespace html
 
       //estatus = 
       
-      pimage->create_as_descriptor({50, 50});
+      pimage->create_as_descriptor({50, 50}, pform->draw2d_domain());
 
       //if (!estatus)
       //{

@@ -16,7 +16,9 @@
 //#include "aura/graphics/draw2d/host.h"
 #include "image_pixmap_lease.h"
 #include "acme/graphics/draw2d/task_tool.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/image/image.h"
 #include "aura/graphics/image/load_image.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/window_buffer.h"
@@ -299,14 +301,14 @@ namespace image
 //
 //      }
 //
-//      if (!pacmeuserinteractionAffinity)
-//      {
-//
-//         throw ::exception(
-//            error_wrong_state,
-//            "no draw2d host is available for image graphics acquisition");
-//
-//      }
+      if (::is_null(draw2d_domain()))
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "no draw2d domain is available for image graphics acquisition");
+
+      }
 
       if (!try_begin_destination_graphics_lease())
       {
@@ -556,7 +558,8 @@ namespace image
    }
 
 
-   void image::create_from_data(const ::pixmap_t& pixmap, ::enum_flag eflagCreate, bool bPreserve)
+   void image::create_from_data(const ::pixmap_t& pixmap,
+                                ::draw2d::domain * pdraw2domain, ::enum_flag eflagCreate, bool bPreserve)
    {
 
       if (has_active_destination_graphics_lease())
@@ -570,7 +573,7 @@ namespace image
 
       auto iGoodStride = pixmap.m_iScan;
 
-      create_as_descriptor(pixmap.m_size, eflagCreate, iGoodStride);
+      create_as_descriptor(pixmap.m_size, pdraw2domain, eflagCreate, iGoodStride);
 
       //if (pimageFrame->area() <= 0)
       //{
@@ -611,7 +614,7 @@ namespace image
                                            ::i32 iGoodStride, bool bPreserve)
    {
 
-      update_as_render_target(size, pdraw2dgraphics->m_pdraw2ddomain,
+      update_as_render_target(size, pdraw2dgraphics->draw2d_domain(),
                               pdraw2dgraphics, eflagCreate, iGoodStride, bPreserve, true);
 
    }
@@ -654,7 +657,7 @@ namespace image
 
       //m_puserinteractionTopic = puserinteraction;
 
-      create_as_descriptor(sizeRaw, eflagCreate, iGoodStride);
+      create_as_descriptor(sizeRaw, pdraw2ddomain, eflagCreate, iGoodStride);
 
       //update_bitmap_as_render_target(m_puserinteractionTopic, pdraw2dgraphics);
       update_bitmap_as_render_target(pdraw2ddomain, pdraw2dgraphics);
@@ -712,7 +715,7 @@ namespace image
 
          auto ppixmapImageBefore = ::transfer(m_ppixmapOwned);
 
-         create_as_descriptor(size, eflagCreate, m_iScan);
+         create_as_descriptor(size, draw2d_domain(), eflagCreate, m_iScan);
 
          construct_newø(m_ppixmapOwned);
 
@@ -728,7 +731,7 @@ namespace image
       else
       {
 
-         create_as_descriptor(size, eflagCreate, m_iScan);
+         create_as_descriptor(size, draw2d_domain(), eflagCreate, m_iScan);
 
       }
 
@@ -1099,7 +1102,7 @@ namespace image
 
       ::i32 cy = (::i32)(pimage->m_dIsotropicRate * height());
 
-      pimage->create_as_descriptor({cx, cy});
+      pimage->create_as_descriptor({cx, cy}, draw2d_domain());
 
       // if (::parallelization::get_priority() == ::e_priority_idle)
       // {
@@ -8010,7 +8013,7 @@ namespace image
 
          ::f64 newcy = cy;
 
-         create_as_descriptor({(::i32)newcx, (::i32)newcy});
+         create_as_descriptor({(::i32)newcx, (::i32)newcy}, draw2d_domain());
 
          //if (!create({ (::i32)newcx, (::i32)newcy }))
          //{
@@ -8093,7 +8096,7 @@ namespace image
 
          ::f64 newcy = cy * 2.0 - 1.0;
 
-         create_as_descriptor({(::i32)newcx, (::i32)newcy});
+         create_as_descriptor({(::i32)newcx, (::i32)newcy}, draw2d_domain());
 
          //if (!create({ (::i32)newcx, (::i32)newcy }))
          //{
@@ -10502,30 +10505,37 @@ namespace image
 
    }
 
-
-   ::draw2d::domain * image::draw2d_domain()
-   {
-      
-      return m_pdraw2ddomain;
-      
-   }
+//
+//   ::draw2d::domain * image::draw2d_domain()
+//   {
+//      
+//      return m_pdraw2ddomain;
+//      
+//   }
 
 
    void image::create_with_pixmap(pixmap* ppixmap)
    {
 
-      create_as_descriptor(ppixmap->size(), e_flag_success, ppixmap->m_iScan);
+      create_as_descriptor(ppixmap->size(), draw2d_domain(), e_flag_success, ppixmap->m_iScan);
 
       m_ppixmapOwned = ppixmap;
 
    }
 
 
-   void image::create_as_descriptor(const ::i32_size& size, ::enum_flag eflagCreate,
+   void image::create_as_descriptor(const ::i32_size& size, ::draw2d::domain * pdraw2ddomain, ::enum_flag eflagCreate,
                                     ::i32 iGoodStride)
    {
 
       m_size = size;
+      
+      if(::is_set(pdraw2ddomain))
+      {
+         
+         set_draw2d_domain(pdraw2ddomain);
+         
+      }
 
       if (m_ppixmapOwned.is_set())
       {
@@ -11874,7 +11884,7 @@ namespace image
 
       m_papplication->constructø(pimage);
 
-      pimage->create_as_descriptor(size);
+      pimage->create_as_descriptor(size, draw2d_domain());
 
       ::f64_rectangle rectangleTarget(::f64_point(0, 0), ::f64_size(size));
 
@@ -11914,7 +11924,7 @@ namespace image
    void image::on_load_image(const image32_t* pimage32, const ::i32_size& size, int iScan)
    {
 
-      create_as_descriptor(size);
+      create_as_descriptor(size, draw2d_domain());
 
       construct_newø(m_ppixmapOwned);
 
@@ -11928,7 +11938,7 @@ namespace image
    void image::on_load_image(::pixmap* ppixmap)
    {
 
-      create_as_descriptor(ppixmap->size());
+      create_as_descriptor(ppixmap->size(), draw2d_domain());
 
       m_ppixmapOwned = ppixmap;
 
@@ -11938,7 +11948,7 @@ namespace image
    void image::on_load_image_frame_array(::image::image_frame_array * pimageframearray)
    {
 
-      create_as_descriptor(pimageframearray->m_ppixmap->size());
+      create_as_descriptor(pimageframearray->m_ppixmap->size(), draw2d_domain());
 
       get_extension()->m_pframea = pimageframearray;
 
@@ -11985,7 +11995,7 @@ namespace image
 
       ::f64_size size = pframea->m_size;
 
-      create_as_descriptor(size);
+      create_as_descriptor(size, draw2d_domain());
 
       // ::f64_rectangle r1(pframeSource->m_rectangle.size());
       //
@@ -12168,7 +12178,7 @@ namespace image
 
       ::cast < ::image::image > pimage = pimageframearray->m_pparticleImage;
 
-      pimage->create_as_descriptor(imagedrawing.m_rectangleTarget.size());
+      pimage->create_as_descriptor(imagedrawing.m_rectangleTarget.size(), draw2d_domain());
 
       pimageframearray->set_size(pframes->get_count());
 

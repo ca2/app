@@ -460,6 +460,14 @@ namespace core
 
          ::particle::on_initialize_particle();
 
+      }
+
+
+      void color_selector::initialize_color_selector(::user::interaction * puserinteractionAffinity)
+      {
+         
+         ::graphics::color_selector::initialize_color_selector(puserinteractionAffinity);
+         
          m_pimageTemplate = image()->create_image({ 2048,  2048 }, m_puserinteractionAffinity->draw2d_domain());
 
          {
@@ -480,9 +488,7 @@ namespace core
          }
 
          m_pimageLuminance->defer_create_synchronization();
-
       }
-
 
 
       //void color_selector::set_sel_color(const ::color::hls & hls)
@@ -1193,7 +1199,7 @@ namespace core
          // by _001OnDraw.  e_flag_none leaves the image status as error_failed,
          // so GPU graphics rejects it in _draw_raw even though the texture was
          // successfully rendered.
-         m_pimage->create_as_descriptor(sizeImage, ::e_flag_success);
+         m_pimage->create_as_descriptor(sizeImage, pdraw2dgraphics->draw2d_domain(), ::e_flag_success);
 
          {
 

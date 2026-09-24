@@ -14,7 +14,7 @@
 #include <CoreText/CoreText.h>
 
 template < >
-inline CGColorRef cfref_retain<CGColorRef>(CGColorRef cgcolorref) { ::CGColorRetain(cgcolorref); }
+inline CGColorRef cfref_retain<CGColorRef>(CGColorRef cgcolorref) { return ::CGColorRetain(cgcolorref); }
 
 template < >
 inline void cfref_release<CGColorRef>(CGColorRef cgcolorref) { ::CGColorRelease(cgcolorref); }
@@ -23,7 +23,7 @@ using cgcolorref = cfref<CGColorRef>;
 
 
 template < >
-inline CGColorSpaceRef cfref_retain<CGColorSpaceRef>(CGColorSpaceRef cgcolorspaceref) { ::CGColorSpaceRetain(cgcolorspaceref); }
+inline CGColorSpaceRef cfref_retain<CGColorSpaceRef>(CGColorSpaceRef cgcolorspaceref) { return ::CGColorSpaceRetain(cgcolorspaceref); }
 
 template < >
 inline void cfref_release<CGColorSpaceRef>(CGColorSpaceRef cgcolorspaceref) { ::CGColorSpaceRelease(cgcolorspaceref); }
@@ -54,24 +54,52 @@ using cgcolorspaceref = cfref<CGColorSpaceRef >;
 
 
 template < >
-inline CGContextRef cfref_retain<CGContextRef>(CGContextRef cgcontextref) { ::CGContextRetain(cgcontextref); }
+inline CGContextRef cfref_retain<CGContextRef>(CGContextRef cgcontextref) { return ::CGContextRetain(cgcontextref); }
 
 template < >
 inline void cfref_release<CGContextRef>(CGContextRef cgcontextref) { ::CGContextRelease(cgcontextref); }
 
 
 template < >
-inline CGLayerRef cfref_retain<CGLayerRef>(CGLayerRef cglayerref) { ::CGLayerRetain(cglayerref); }
+inline CGLayerRef cfref_retain<CGLayerRef>(CGLayerRef cglayerref) { return ::CGLayerRetain(cglayerref); }
 
 template < >
 inline void cfref_release<CGLayerRef>(CGLayerRef cglayerref) { ::CGLayerRelease(cglayerref); }
 
 
 template < >
-inline CGPathRef cfref_retain<CGPathRef>(CGPathRef cgpathref) { ::CGPathRetain(cgpathref); }
+inline CGPathRef cfref_retain<CGPathRef>(CGPathRef cgpathref) { return ::CGPathRetain(cgpathref); }
 
 template < >
 inline void cfref_release<CGPathRef>(CGPathRef cgpathref) { ::CGPathRelease(cgpathref); }
 
 
 
+template < >
+inline void cfref_release<CGDataProviderRef>(CGDataProviderRef cgdataprovideref) { ::CGDataProviderRelease(cgdataprovideref); }
+
+
+
+class cg_context_scope
+{
+public:
+   
+   CGContextRef m_cgcontextref;
+
+   cg_context_scope(CGContextRef cgcontextref) :
+      m_cgcontextref(cgcontextref)
+   {
+    
+      CGContextSaveGState(m_cgcontextref);
+      
+   }
+   
+   
+   ~cg_context_scope()
+   {
+      
+      CGContextRestoreGState(m_cgcontextref);
+      
+   }
+   
+};

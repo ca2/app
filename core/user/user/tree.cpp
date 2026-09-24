@@ -151,7 +151,7 @@ namespace user
 
       //estatus = 
 
-      m_pimagelist->create(16, 16, 0, 10, 10);
+      m_pimagelist->create(16, 16, draw2d_domain(), 0, 10, 10);
 
       //if (!estatus)
       //{

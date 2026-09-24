@@ -397,7 +397,7 @@ namespace gpu
 
    auto size = m_pgpucontext->m_pbuffer->m_ppixmap->m_size;
 
-   m_pimageFromGpu->create_as_descriptor(size);
+   m_pimageFromGpu->create_as_descriptor(size, pdraw2dgraphics->draw2d_domain());
 
    auto ppixmapImageGromGpu = m_pimageFromGpu->map();
 

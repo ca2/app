@@ -380,7 +380,7 @@ namespace user
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               set_image(getfileimage.m_iImage, iSize, imagedrawing, getfileimage.m_pdraw2ddomain);
+               set_image(getfileimage.m_iImage, iSize, imagedrawing, draw2d_domain());
 
             }
 
@@ -418,7 +418,7 @@ namespace user
          {
 
             m_pimagelistUserShell[iSize] = create_newø < ::image::image_list >();
-            m_pimagelistUserShell[iSize]->create(iSize, iSize, 0, 10, 10);
+            m_pimagelistUserShell[iSize]->create(iSize, iSize, draw2d_domain(),  0, 10, 10);
 
          }
          else
@@ -433,7 +433,7 @@ namespace user
 
             m_pimagelistUserShellHover[iSize] = create_newø<::image::image_list>();
 
-            m_pimagelistUserShellHover[iSize]->create(iSize, iSize, 0, 10, 10);
+            m_pimagelistUserShellHover[iSize]->create(iSize, iSize, draw2d_domain(), 0, 10, 10);
 
          }
          else
@@ -1345,7 +1345,7 @@ namespace user
          else
          {
 
-            pimage16 = image()->create_image({16, 16}, getfileimage.m_pdraw2ddomain);
+            pimage16 = image()->create_image({16, 16}, draw2d_domain());
 
             if (pimage16.nok())
             {
@@ -1381,7 +1381,7 @@ namespace user
          else
          {
 
-            pimage48 = image()->create_image({48, 48}, getfileimage.m_pdraw2ddomain);
+            pimage48 = image()->create_image({48, 48}, draw2d_domain());
 
             if (pimage48.nok())
             {
@@ -1516,7 +1516,7 @@ namespace user
       for(::i32 & iSize : iaSize)
       {
          
-         auto pimage = pnode->get_file_image_by_type_identifier(iSize, strTypeIdentifier, getfileimage.m_pdraw2ddomain);
+         auto pimage = pnode->get_file_image_by_type_identifier(iSize, strTypeIdentifier, draw2d_domain());
          
          if(pimage.nok())
          {
@@ -1544,7 +1544,7 @@ namespace user
 
          ::image::image_source imagesource(pimage);
 
-         set_image(getfileimage.m_iImage, iSize, imagesource, getfileimage.m_pdraw2ddomain);
+         set_image(getfileimage.m_iImage, iSize, imagesource, draw2d_domain());
 
       }
 
@@ -1624,7 +1624,7 @@ namespace user
       for(::i32 & iSize : iaSize)
       {
          
-         auto pimage = pnode->get_file_image(iSize, strPath, getfileimage.m_pdraw2ddomain);
+         auto pimage = pnode->get_file_image(iSize, strPath, draw2d_domain());
          
          if(pimage.nok())
          {
@@ -1650,7 +1650,7 @@ namespace user
 
          ::image::image_source imagesource(pimage);
 
-         set_image(getfileimage.m_iImage, iSize, imagesource, getfileimage.m_pdraw2ddomain);
+         set_image(getfileimage.m_iImage, iSize, imagesource, draw2d_domain());
 
       }
 
@@ -2040,7 +2040,7 @@ namespace user
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               set_image(getfileimage.m_iImage, iSize, imagedrawing, getfileimage.m_pdraw2ddomain);
+               set_image(getfileimage.m_iImage, iSize, imagedrawing, draw2d_domain());
 
             }
 
@@ -2061,7 +2061,7 @@ namespace user
 
       }
 
-      set_icon(getfileimage.m_iImage, pathIcon, getfileimage.m_pdraw2ddomain);
+      set_icon(getfileimage.m_iImage, pathIcon, draw2d_domain());
 
       return getfileimage.m_iImage;
 

@@ -21,6 +21,9 @@ namespace graphics
 
       color_selector();
       ~color_selector() override;
+      
+      
+      virtual void initialize_color_selector(::user::interaction * puserinteraction);
 
 
       virtual void set_sel_color(const ::color::hls & hls);

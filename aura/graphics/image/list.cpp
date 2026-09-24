@@ -60,15 +60,15 @@ namespace image
    }
 
 
-   bool image_list::create(::i32 cx, ::i32 cy)
+   bool image_list::create(::i32 cx, ::i32 cy, ::draw2d::domain * pdraw2ddomain)
    {
 
-      return create(cx, cy, 0, 0, 0);
+      return create(cx, cy, pdraw2ddomain, 0, 0, 0);
 
    }
 
 
-   bool image_list::create(::i32 cx, ::i32 cy, ::u32 nFlags, ::i32 nInitial, ::i32 nGrow)
+   bool image_list::create(::i32 cx, ::i32 cy, ::draw2d::domain * pdraw2domain, ::u32 nFlags, ::i32 nInitial, ::i32 nGrow)
    {
 
       __UNREFERENCED_PARAMETER(nFlags);
@@ -98,13 +98,13 @@ namespace image
       system()->draw2d();
 
       defer_constructø(m_pimage);
-
-      m_pimage->m_pdraw2ddomain = draw2d()->main_draw2d_domain();
+      
+      m_pimage->set_draw2d_domain(pdraw2domain);
 
       if (m_iSize > 0)
       {
 
-         m_pimage->create_as_descriptor(::i32_size(m_size.cx * m_iSize, m_size.cy));
+         m_pimage->create_as_descriptor(::i32_size(m_size.cx * m_iSize, m_size.cy), pdraw2domain);
 
       }
 

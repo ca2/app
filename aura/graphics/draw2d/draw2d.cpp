@@ -5,6 +5,7 @@
 #include "acme/user/user/interaction.h"
 #include "apex/gpu/approach.h"
 #include "aura/graphics/draw2d/domain.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 //#include "aura/graphics/draw2d/host.h"
 #include "aura/graphics/draw2d/window_attachment.h"
@@ -696,7 +697,7 @@ namespace draw2d
 
       auto pdraw2dgraphics = pdraw2ddomain->createø<::draw2d::graphics>();
 
-      pdraw2dgraphics->m_pdraw2ddomain = pdraw2ddomain;
+      pdraw2dgraphics->set_draw2d_domain(pdraw2ddomain);
 
       return ::transfer(pdraw2dgraphics);
 
@@ -1562,7 +1563,7 @@ namespace draw2d
 
          //estatus =
 
-         pimage->create_as_descriptor(size);
+         pimage->create_as_descriptor(size, main_draw2d_domain());
 
          //if (!estatus)
          //{
@@ -1601,7 +1602,7 @@ namespace draw2d
 
             auto psystem = system();
 
-            pimageBlur->create_as_descriptor(size);
+            pimageBlur->create_as_descriptor(size, main_draw2d_domain());
 
             blur.initialize(pimageBlur->size(), iEffectiveBlurRadius);
 

@@ -63,6 +63,7 @@ namespace core
          virtual void on_initialize_particle() override;
 
 
+         void initialize_color_selector(::user::interaction * puserinteractionAffinity) override;
          //virtual void set_sel_color(const ::color::hls & hls);
          //virtual ::color::hls get_sel_color();
 

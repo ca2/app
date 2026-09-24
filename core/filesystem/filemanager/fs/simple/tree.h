@@ -59,13 +59,13 @@ namespace filemanager
          public:
 
 
-            ::i32                                          m_iIconFolderNormal;
-            ::i32                                          m_iIconFolderSelected;
-            ::i32                                          m_iIconArtistNormal;
-            ::i32                                          m_iIconArtistSelected;
-            ::pointer<::filemanager::fs::simple::impact>  m_pserver;
-            FolderArray                                  m_foldera;
-            ::i64                                          m_iParentFolder;
+            ::i32                                           m_iIconFolderNormal;
+            ::i32                                           m_iIconFolderSelected;
+            ::i32                                           m_iIconArtistNormal;
+            ::i32                                           m_iIconArtistSelected;
+            ::pointer<::filemanager::fs::simple::impact>    m_pserver;
+            FolderArray                                     m_foldera;
+            ::i64                                           m_iParentFolder;
 
 
             tree();

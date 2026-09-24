@@ -2995,7 +2995,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphic
 
          if (rectangleX.size() != m_pimageBk->size())
          {
-            m_pimageBk->create_as_descriptor(rectangleX.size());
+            m_pimageBk->create_as_descriptor(rectangleX.size(), draw2d_domain());
 
             {
                auto pdraw2dgraphicsImageBk = m_pimageBk->acquire_graphics();
@@ -3006,7 +3006,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphic
                //m_fastblur.initialize(rectangleX.size(),2);
             }
 
-            m_pimageBlur->create_as_descriptor(rectangleX.size());
+            m_pimageBlur->create_as_descriptor(rectangleX.size(), draw2d_domain());
 
          }
 

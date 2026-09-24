@@ -149,10 +149,10 @@ namespace draw2d
    }
 
 
-   ::draw2d::domain * graphics::draw2d_domain()
+   ::acme::draw2d::domain * graphics::acme_draw2d_domain()
    {
       
-      if(!m_pdraw2ddomain)
+      if(!m_pacmedraw2ddomain)
       {
          
          ::cast < ::user::interaction > puserinteractionTopic = m_puserinteractionTopic;
@@ -160,13 +160,13 @@ namespace draw2d
          if(puserinteractionTopic)
          {
           
-            m_pdraw2ddomain = puserinteractionTopic->draw2d_domain();
+            m_pacmedraw2ddomain = puserinteractionTopic->acme_draw2d_domain();
             
          }
          
       }
       
-      return m_pdraw2ddomain;
+      return m_pacmedraw2ddomain;
       
    }
 
@@ -791,7 +791,7 @@ namespace draw2d
       ::draw2d::domain * pdraw2ddomain) const
    {
 
-      return m_pdraw2ddomain == pdraw2ddomain;
+      return ((graphics *)this)->draw2d_domain() == pdraw2ddomain;
 
    }
 
@@ -814,10 +814,10 @@ namespace draw2d
       if(::is_set(pdraw2ddomain))
       {
          
-         if(!m_pdraw2ddomain)
+         if(::is_null(draw2d_domain()))
          {
             
-            m_pdraw2ddomain = pdraw2ddomain;
+            set_draw2d_domain(pdraw2ddomain);
             
          }
 
@@ -848,7 +848,7 @@ namespace draw2d
 
          defer_constructø(m_pimageTarget);
 
-         m_pimageTarget->create_as_descriptor(size);
+         m_pimageTarget->create_as_descriptor(size, draw2d_domain());
 
       }
 
@@ -6798,7 +6798,7 @@ namespace draw2d
 
          //estatus =
 
-         pimage->create_as_descriptor({ (::i32)w, 6 });
+         pimage->create_as_descriptor({ (::i32)w, 6 }, draw2d_domain());
 
          //if (!estatus || pimage->area() <= 0)
          if (pimage->area() <= 0)

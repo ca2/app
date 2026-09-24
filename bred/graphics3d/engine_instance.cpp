@@ -174,7 +174,7 @@ namespace graphics3d
 
          constructø(m_pimageOutput);
 
-         m_pimageOutput->m_pdraw2ddomain = pusergraphics3d->draw2d_domain();
+         m_pimageOutput->set_draw2d_domain(pusergraphics3d->draw2d_domain());
 
       }
 
@@ -268,7 +268,7 @@ namespace graphics3d
 
                }
 
-               m_pimageOutput->create_as_descriptor(pgpucontext->m_sizeRaw);
+               m_pimageOutput->create_as_descriptor(pgpucontext->m_sizeRaw, pgpucontext->m_pgpudevice->draw2d_domain());
 
                auto ppixmapImageOutput = m_pimageOutput->map(::image::e_map_discard, rectangleTarget);
 

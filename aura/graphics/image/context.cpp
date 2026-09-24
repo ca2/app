@@ -175,7 +175,7 @@ namespace image
 
       }
       
-      pimage->m_pdraw2ddomain = pdraw2ddomain;
+      pimage->set_draw2d_domain(pdraw2ddomain);
 
 //      auto puserinteraction = ::user::task_interaction();
 //
@@ -195,7 +195,7 @@ namespace image
       //else
       {
 
-         pimage->create_as_descriptor(size, eflagCreate);
+         pimage->create_as_descriptor(size, pdraw2ddomain, eflagCreate);
 
          // if (::is_set(pcolor))
          //{
@@ -226,18 +226,18 @@ namespace image
 
       }
 
-      pimage->m_pdraw2ddomain = pdraw2ddomain;
+      pimage->set_draw2d_domain(pdraw2ddomain);
 
       if (::is_set(pixmap.m_pimage32))
       {
 
-         pimage->create_from_data(pixmap, eflagCreate);
+         pimage->create_from_data(pixmap, pdraw2ddomain, eflagCreate);
 
       }
       else
       {
 
-         pimage->create_as_descriptor(pixmap.m_size, eflagCreate);
+         pimage->create_as_descriptor(pixmap.m_size, pdraw2ddomain, eflagCreate);
 
          // if (::is_set(pcolor))
          //{
@@ -893,7 +893,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::load_thumbnail(const ::payload& payloadFile, ::i32 w, ::i32 h)
+   ::image::image_pointer image_context::load_thumbnail(const ::payload& payloadFile, ::draw2d::domain * pdraw2ddomain, ::i32 w, ::i32 h)
    {
 
       ::image::image_pointer pimage;
@@ -911,7 +911,7 @@ namespace image
 
       //estatus = 
 
-      _load_thumbnail(pimage, payloadFile, w, h);
+      _load_thumbnail(pimage, pdraw2ddomain, payloadFile, w, h);
 
       //if (!estatus)
       //{
@@ -1162,14 +1162,14 @@ namespace image
    }
 
 
-   void image_context::_load_thumbnail(::image::image* pimage, const ::payload& payloadFile, ::i32 w, ::i32 h)
+   void image_context::_load_thumbnail(::image::image* pimage, ::draw2d::domain * pdraw2ddomain, const ::payload& payloadFile, ::i32 w, ::i32 h)
    {
 
       //try
       //{
 
          //if (!)
-      pimage->create_as_descriptor({w, h});
+      pimage->create_as_descriptor({w, h}, pdraw2ddomain);
       //{
 
       //   return false;

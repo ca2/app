@@ -6,6 +6,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/interaction.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
@@ -384,11 +385,11 @@ namespace graphics
 
          auto pimage = m_pdraw2dgraphics->get_current_target_image();
 
-         if (!pimage->m_pdraw2ddomain
-            && m_pdraw2dgraphics->m_pdraw2ddomain)
+         if (::is_null(pimage->draw2d_domain())
+            && ::is_set(m_pdraw2dgraphics->draw2d_domain()))
          {
 
-            pimage->m_pdraw2ddomain = m_pdraw2dgraphics->m_pdraw2ddomain;
+            pimage->set_draw2d_domain(m_pdraw2dgraphics->draw2d_domain());
 
          }
 

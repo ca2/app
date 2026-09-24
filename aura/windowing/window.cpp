@@ -986,7 +986,7 @@ namespace windowing
    ::draw2d::domain * window::draw2d_domain()
    {
       
-      ::cast < ::draw2d::domain > pdraw2ddomain = m_pacmedraw2ddomain;
+      ::cast < ::draw2d::domain > pdraw2ddomain = acme_draw2d_domain();
    
       return pdraw2ddomain;
       

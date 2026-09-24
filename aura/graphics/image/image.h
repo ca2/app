@@ -1,5 +1,9 @@
+// Added draw2d::domain_consumer base to image::image by
+//   camilo on 2026-09-24 05:00 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
 #pragma once
 
+
+#include "aura/graphics/image/meta.h"
 
 #include "aura/graphics/image/meta.h"
 
@@ -63,7 +67,8 @@ namespace image
       virtual public ::property_object,
       //virtual public ::image::image_drawer,
       virtual public ::image::image_source_interface,
-      virtual public ::item
+      virtual public ::item,
+      virtual public ::draw2d::domain_consumer
    {
    public:
 
@@ -71,7 +76,7 @@ namespace image
       ::i32_rectangle                           m_rectangleTag;
       mutable ::std::atomic_bool                m_bDestinationGraphicsLeaseActive{false};
       //::pointer < ::acme::user::interaction >   m_puserinteractionTopic;
-      ::pointer < ::draw2d::domain >            m_pdraw2ddomain;
+      //::pointer < ::draw2d::domain >            m_pdraw2ddomain;
       //::pointer < ::user::interaction >         m_puserinteraction;
       //::draw2d::graphics_lease *          m_pgraphicsleaseOwned;
 
@@ -88,11 +93,11 @@ namespace image
 
       ::subparticle_pointer clone() override;
 
-      virtual ::draw2d::domain * draw2d_domain();
+      //virtual ::draw2d::domain * draw2d_domain();
 
       virtual void create_with_pixmap(::pixmap * ppixmap);
 
-      virtual void create_as_descriptor(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
+      virtual void create_as_descriptor(const ::i32_size &size, ::draw2d::domain * pdraw2ddomain, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
                           ::i32 iGoodStride = -1);
 
       virtual void update_bitmap_as_render_target(
@@ -274,7 +279,8 @@ namespace image
 
       //virtual void create_from_data(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
       virtual void create_from_data(const ::pixmap_t & pixmap,
-                                    ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, 
+                                    ::draw2d::domain * pdraw2domain, 
+                                    ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
                                     bool bPreserve = false);
       virtual void create_from_graphics(::draw2d::graphics * pdraw2dgraphics);
       virtual void create_as_top_draw2d_target(const ::i32_size & size, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);

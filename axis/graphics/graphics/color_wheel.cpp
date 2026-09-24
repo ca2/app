@@ -143,7 +143,7 @@ namespace graphics
 
             constructø(m_pimageCircle);
 
-            m_pimageCircle->create_as_descriptor({diamRound, diamRound});
+            m_pimageCircle->create_as_descriptor({diamRound, diamRound}, pdraw2dgraphics->draw2d_domain());
 
             auto ppixmapImageCircle = m_pimageCircle->map();
 

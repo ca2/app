@@ -4,16 +4,16 @@
 
 
 #include "apex/message/channel.h"
-//#include "acme/prototype/collection/osdata_array.h"
+#include "acme/prototype/collection/list.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "apex/windowing/window_base.h"
-//#include "aura/user/experience/_constant.h"
+#include "aura/graphics/draw2d/domain_consumer.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/notification_listener.h"
 #include "aura/user/user/redraw.h"
-#include "acme/prototype/collection/list.h"
+
 
 
 namespace windowing
@@ -22,7 +22,8 @@ namespace windowing
 
    class CLASS_DECL_AURA window :
       //virtual public osdata_array,
-      virtual public ::windowing::window_base
+      virtual public ::windowing::window_base,
+      virtual public ::draw2d::domain_consumer
    {
    public:
 

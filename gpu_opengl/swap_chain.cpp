@@ -122,7 +122,7 @@ FragColor = texture(uTexture, TexCoord);
 
       }
 
-      if (!m_pgpurenderer->m_pgpucontext->m_pacmeuserinteractionAffinity)
+      if (!m_pgpurenderer->m_pgpucontext->m_pacmeuserinteractionTopic)
       {
 
          information("swap_chain::present No window");

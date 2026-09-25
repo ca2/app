@@ -2641,6 +2641,8 @@
     <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="filesystem\filemanager\callback.cpp" />
     <ClCompile Include="filesystem\filemanager\item_action.cpp" />
+    <ClCompile Include="graphics\draw2d\domain.cpp" />
+    <ClCompile Include="graphics\draw2d\domain_consumer.cpp" />
     <ClCompile Include="graphics\image\image_pixmap_lease.cpp" />
     <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
@@ -2795,6 +2797,8 @@
     <ClCompile Include="graphics\draw3d\ortho.cpp" />
     <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp" />
     <ClCompile Include="graphics\graphics\buffer.cpp" />
+    <ClInclude Include="graphics\draw2d\domain.h" />
+    <ClInclude Include="graphics\draw2d\domain_consumer.h" />
     <ClInclude Include="graphics\graphics\buffer_item.h" />
     <ClCompile Include="graphics\graphics\buffer_item.cpp" />
     <ClCompile Include="graphics\graphics\console.cpp" />

@@ -732,6 +732,12 @@
     <ClCompile Include="user\user\interaction_metrics.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\domain.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\domain_consumer.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -1747,6 +1753,12 @@
     </ClInclude>
     <ClInclude Include="graphics\graphics\buffer_item.h">
       <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\domain_consumer.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\domain.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

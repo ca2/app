@@ -4500,6 +4500,12 @@
     <ClInclude Include="graphics\image\aaa_lock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\domain.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\domain_consumer.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6490,6 +6496,12 @@
     </ClCompile>
     <ClCompile Include="graphics\image\color_indexes.cpp">
       <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\domain.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\domain_consumer.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

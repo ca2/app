@@ -2679,6 +2679,8 @@
     <ClCompile Include="filesystem\watcher\action.cpp" />
     <ClCompile Include="filesystem\watcher\watch.cpp" />
     <ClCompile Include="filesystem\watcher\watcher.cpp" />
+    <ClCompile Include="graphics\draw2d\domain.cpp" />
+    <ClCompile Include="graphics\draw2d\domain_consumer.cpp" />
     <ClCompile Include="graphics\draw2d\task_tool.cpp" />
     <ClCompile Include="graphics\draw2d\_string.cpp" />
     <ClCompile Include="graphics\image\color_indexes.cpp" />
@@ -2832,6 +2834,8 @@
     <ClInclude Include="filesystem\filesystem\_format.h" />
     <ClInclude Include="filesystem\file\byte2_stream.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
+    <ClInclude Include="graphics\draw2d\domain.h" />
+    <ClInclude Include="graphics\draw2d\domain_consumer.h" />
     <ClInclude Include="graphics\draw2d\task_tool.h" />
     <ClInclude Include="graphics\image\aaa_lock.h" />
     <ClInclude Include="graphics\image\frame.h" />

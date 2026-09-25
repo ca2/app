@@ -16846,7 +16846,7 @@ namespace windowing
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (!m_pgraphicsgraphics)
+      if (::is_null(m_pgraphicsgraphics))
       {
 
          return 0;
@@ -16854,6 +16854,13 @@ namespace windowing
       }
 
       auto pbufferitemScreen = m_pgraphicsgraphics->get_screen_item();
+      
+      if(::is_null(pbufferitemScreen))
+      {
+         
+         return 0;
+         
+      }
 
       _synchronous_lock synchronouslockScreen(pbufferitemScreen->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 

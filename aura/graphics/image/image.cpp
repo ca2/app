@@ -10847,12 +10847,12 @@ namespace image
    //}
 
 
-   ::function<void(::image::load_image *)> image::load_image_callback()
+   ::function<void(::image::load_image *)> image::load_image_callback(const ::function < void(::image::load_image *) > & functionLoadedNext)
    {
 
       auto pimage = ::as_pointer(this);
 
-      return [pimage](::image::load_image * ploadimage)
+      return [pimage, functionLoadedNext](::image::load_image * ploadimage)
       {
          
          if(ploadimage->m_pimageframearray)
@@ -10875,19 +10875,42 @@ namespace image
             
          }
 
+         if(functionLoadedNext)
+         {
+          
+            functionLoadedNext(ploadimage);
+            
+         }
+         
       };
 
    }
 
 
-   ::pointer<::image::load_image> image::create_load_image(::image::image_context* pimagecontext)
+   ::pointer<::image::load_image> image::create_load_image(::image::image_context* pimagecontext, const load_options & loadoptions)
    {
 
-      auto ploadimage = create_newø<::image::load_image>();
+      if(::is_null(draw2d_domain()) && ::is_null(loadoptions.draw2d_domain))
+      {
+         
+         throw ::exception(error_wrong_state);
+         
+      }
 
+      auto ploadimage = create_newø<::image::load_image>();
+      
       ploadimage->initialize_load_image(pimagecontext);
 
-      ploadimage->m_loadoptions.functionLoaded = load_image_callback();
+      ploadimage->m_loadoptions.functionLoaded = load_image_callback(loadoptions.functionLoaded);
+
+      if(::is_null(draw2d_domain()))
+      {
+         
+         set_draw2d_domain(loadoptions.draw2d_domain);
+         
+      }
+         
+      ploadimage->set_draw2d_domain(draw2d_domain());
 
       return ploadimage;
 
@@ -10951,6 +10974,8 @@ namespace image
          return {};
 
       }
+      
+      pimage->set_draw2d_domain(ploadimage->draw2d_domain());
 
       return pimage;
 

@@ -20,6 +20,7 @@ namespace image
       bool apply_exif_orientation = true;
       ::particle * pparticleSync = nullptr;
       ::function < void(::image::load_image *) > functionLoaded;
+      ::pointer < ::draw2d::domain > draw2d_domain;
 
    };
 

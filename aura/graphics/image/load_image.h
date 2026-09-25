@@ -4,6 +4,7 @@
 
 
 #include "acme/graphics/image/pixmap_lease.h"
+#include "aura/graphics/draw2d/domain_consumer.h"
 #include "aura/graphics/image/load_options.h"
 //class load_image_interface;
 
@@ -13,7 +14,7 @@ namespace image
 
 
    class CLASS_DECL_AURA load_image :
-      virtual public ::particle
+      virtual public ::draw2d::domain_consumer
    {
    public:
 

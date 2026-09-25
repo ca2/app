@@ -45,12 +45,14 @@ void file_context_interface::safe_get_memory(const ::payload& payloadFile, memor
    }
    catch (const ::exception& exception)
    {
-
-      auto pmessagebox = createø < ::user_interface::message_box >();
-
-      pmessagebox->initialize_message_box(exception, "file_context_interface::safe_get_memory");
-
-      pmessagebox->display(e_display_normal, {});
+      
+      information("safe_get_memory failed");
+      
+//      auto pmessagebox = createø < ::user_interface::message_box >();
+//
+//      pmessagebox->initialize_message_box(exception, "file_context_interface::safe_get_memory");
+//
+//      pmessagebox->display(e_display_normal, {});
 
    }
 

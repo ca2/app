@@ -524,7 +524,7 @@ namespace image
 
             constructø(pimage);
 
-            auto ploadimage = pimage->create_load_image(this);
+            auto ploadimage = pimage->create_load_image(this, {});
 
             //auto ploadimage = create_newø<::image::load_image>();
 
@@ -697,11 +697,18 @@ namespace image
 
    ::image::image_pointer image_context::get_image(const ::payload& payloadFile, const ::image::load_options& loadoptions)
    {
+      
+      if(::is_null(loadoptions.draw2d_domain))
+      {
+         
+         throw ::exception(error_wrong_state);
+         
+      }
 
       ::image::image_pointer pimage;
 
       constructø(pimage);
-
+      
       _get_image(pimage, payloadFile, loadoptions);
 
       return pimage;
@@ -780,7 +787,7 @@ namespace image
 
       }
 
-      auto ploadimage = pimage->create_load_image(this);
+      auto ploadimage = pimage->create_load_image(this, loadoptions);
 
       _load_image(ploadimage, payloadFile, loadoptions);
 
@@ -796,18 +803,7 @@ namespace image
 
       auto loadoptionsNew = loadoptions;
 
-      auto functionLoaded = loadoptionsNew.functionLoaded;
-
-      auto imageloadcallback = pimage->load_image_callback();
-
-      loadoptionsNew.functionLoaded = [this, imageloadcallback, functionLoaded](::image::load_image * ploadimage)
-      {
-
-         imageloadcallback(ploadimage);
-
-         functionLoaded(ploadimage);
-
-      };
+      loadoptionsNew.functionLoaded = pimage->load_image_callback(loadoptions.functionLoaded);
 
       load_image(payloadFile, loadoptionsNew);
 
@@ -1020,9 +1016,9 @@ namespace image
 
    void image_context::_get_image(::image::image* pimage, const ::payload& payloadFile, const ::image::load_options& loadoptions)
    {
-
-      auto ploadimage = pimage->create_load_image(this);
-
+      
+      auto ploadimage = pimage->create_load_image(this, loadoptions);
+      
       _load_image(ploadimage, payloadFile, loadoptions);
 
    }
@@ -1094,7 +1090,7 @@ namespace image
 
       ::file::path path = directory()->matter(scopedstrMatter);
 
-      auto ploadimage = pimage->create_load_image(this);
+      auto ploadimage = pimage->create_load_image(this, loadoptions);
 
       //auto ploadimage = create_newø<::image::load_image>();
 
@@ -1134,7 +1130,7 @@ namespace image
          //auto estatus = 
 
 
-         auto ploadimage = pimage->create_load_image(this);
+         auto ploadimage = pimage->create_load_image(this, {});
          //auto ploadimage = create_newø<::image::load_image>();
 
          //ploadimage->initialize_load_image(this, pimage);

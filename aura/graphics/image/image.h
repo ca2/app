@@ -122,10 +122,10 @@ namespace image
       virtual ::pixmap * owned_pixmap();
       //virtual void set_owned_graphics();
 
-      virtual ::function < void(::image::load_image *) > load_image_callback();
+      virtual ::function < void(::image::load_image *) > load_image_callback(const ::function < void(::image::load_image *) > & functionLoadedNext);
 
 
-      virtual ::pointer < ::image::load_image > create_load_image(::image::image_context* pimagecontext);
+      virtual ::pointer < ::image::load_image > create_load_image(::image::image_context* pimagecontext, const load_options & loadoption);
 
       virtual ::pointer<::image::image>get_image(const ::i32_size & size);
       //virtual ::pointer<::image::image>get_image(::i32 cx, ::i32 cy);

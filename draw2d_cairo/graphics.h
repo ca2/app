@@ -83,9 +83,9 @@ namespace draw2d_cairo
       //bool CreateIC(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * lpInitData) override
       void create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size) override;
       //void create_compatible_graphics(::draw2d::graphics * pdraw2dgraphics) override;
-      void _create_memory_graphics(const ::i32_size& size, ::acme::user::interaction * pacmeuserinteractionAffinity) override;
-      void create_memory_graphics(const ::i32_size & size, ::acme::user::interaction * pacmeuserinteractionAffinity) override;
-      void create_bitmap_graphics(::draw2d::bitmap * pdraw2dbitmap, ::acme::user::interaction * pacmeuserinteractionAffinity) override;
+      void _create_memory_graphics(const ::i32_size& size, ::draw2d::domain * pdraw2domain) override;
+      void create_memory_graphics(const ::i32_size & size, ::draw2d::domain * pdraw2domain) override;
+      void create_bitmap_graphics(::draw2d::bitmap * pdraw2dbitmap, ::draw2d::domain * pdraw2domain) override;
       void destroy() override;
 
       // Device-Context Functions

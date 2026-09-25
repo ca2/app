@@ -2643,6 +2643,7 @@
     <ClCompile Include="filesystem\filemanager\item_action.cpp" />
     <ClCompile Include="graphics\draw2d\domain.cpp" />
     <ClCompile Include="graphics\draw2d\domain_consumer.cpp" />
+    <ClCompile Include="graphics\draw2d\frame.cpp" />
     <ClCompile Include="graphics\image\image_pixmap_lease.cpp" />
     <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
@@ -2799,6 +2800,7 @@
     <ClCompile Include="graphics\graphics\buffer.cpp" />
     <ClInclude Include="graphics\draw2d\domain.h" />
     <ClInclude Include="graphics\draw2d\domain_consumer.h" />
+    <ClInclude Include="graphics\draw2d\frame.h" />
     <ClInclude Include="graphics\graphics\buffer_item.h" />
     <ClCompile Include="graphics\graphics\buffer_item.cpp" />
     <ClCompile Include="graphics\graphics\console.cpp" />

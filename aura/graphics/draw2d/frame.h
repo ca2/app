@@ -18,8 +18,9 @@ namespace draw2d
    public:
    
       
-      ::pointer < ::draw2d::domain >      m_pdraw2ddomain;
-      ::pointer < ::user::interaction >   m_puserinteractionAffinity;
+      ::pointer < ::draw2d::domain >               m_pdraw2ddomain;
+      ::pointer < ::user::interaction >            m_puserinteractionAffinity;
+      ::pointer < ::draw2d::window_attachment >    m_pdraw2dwindowattachemnt;
       
       
       frame();
@@ -30,6 +31,9 @@ namespace draw2d
       
       
       virtual ::draw2d::domain * draw2d_domain();
+
+
+      virtual ::draw2d::window_attachment* window_attachment();
       
 
    };

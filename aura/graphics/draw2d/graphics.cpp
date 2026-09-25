@@ -14,8 +14,10 @@
 #include "apex/gpu/window_attachment.h"
 #include "aura/platform/aura.h"
 #include "aura/graphics/draw2d/domain.h"
+#include "aura/graphics/draw2d/frame.h"
 #include "aura/graphics/graphics/buffer_item.h"
 #include "aura/graphics/image/array.h"
+#include "aura/graphics/draw2d/window_attachment.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/context.h"
@@ -335,51 +337,51 @@ namespace draw2d
    void graphics::start_frame()
    {
 
-      auto pacmeuserinteraction = m_puserinteractionTopic;
+      //auto pacmeuserinteraction = m_puserinteractionTopic;
 
-      if (::is_null(pacmeuserinteraction))
-      {
+      //if (::is_null(pacmeuserinteraction))
+      //{
 
-         //return nullptr;
+      //   //return nullptr;
 
-         throw ::exception(error_wrong_state);
+      //   throw ::exception(error_wrong_state);
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      auto pacmewindowingwindow = pacmeuserinteraction->acme_windowing_window();
+      //auto pacmewindowingwindow = pacmeuserinteraction->acme_windowing_window();
 
-      if (::is_null(pacmewindowingwindow))
-      {
+      //if (::is_null(pacmewindowingwindow))
+      //{
 
-         //return nullptr;
+      //   //return nullptr;
 
-         throw ::exception(error_wrong_state);
+      //   throw ::exception(error_wrong_state);
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
+      //::cast < ::windowing::window > pwindow = pacmewindowingwindow;
 
-      if (!pwindow)
-      {
+      //if (!pwindow)
+      //{
 
-         //return nullptr;
+      //   //return nullptr;
 
-         throw ::exception(error_wrong_state);
+      //   throw ::exception(error_wrong_state);
 
-         return;
+      //   return;
 
-      }
+      //}
 
       if (m_papplication->m_bGpu)
       {
 
-         auto pgpuwindowattachment = pwindow->m_papexgpuwindowattachment;
+         auto pwindowattachment = m_pdraw2dframe->window_attachment();
 
-         if (!pgpuwindowattachment)
+         if (!pwindowattachment)
          {
 
             //return nullptr;
@@ -393,7 +395,7 @@ namespace draw2d
 
          //      auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontext);
 
-         pgpuwindowattachment->start_frame();
+         pwindowattachment->start_frame();
 
       }
 

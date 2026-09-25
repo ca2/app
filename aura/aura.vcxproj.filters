@@ -738,6 +738,9 @@
     <ClCompile Include="graphics\draw2d\domain_consumer.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\frame.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -1758,6 +1761,9 @@
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\domain.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\frame.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
   </ItemGroup>

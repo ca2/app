@@ -42,6 +42,15 @@ namespace draw2d
       
    }
 
+
+   ::draw2d::window_attachment* frame::window_attachment()
+   {
+
+      return m_pdraw2dwindowattachemnt;
+
+   }
+
+
 } // namespace draw2d
 
 

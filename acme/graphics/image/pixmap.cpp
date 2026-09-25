@@ -680,11 +680,12 @@ void pixmap::create_isotropic(::pixmap * ppixmap, ::f64 fIsotropicRate)
 
 void pixmap::copy(const pixmap_t * ppixmap)
 {
-   
  
- //  auto ppixmapThis = this->map(ppixmap->rectangle());
-
-   copy(ppixmap->size(), ppixmap->m_pimage32, ppixmap->m_iScan, ppixmap->m_bTopLeft);
+   copy(
+      ppixmap->size(),
+      ppixmap->m_pimage32,
+      ppixmap->m_iScan,
+      ppixmap->m_bTopLeft);
 //   if (ppixmap->raw_size().cx > m_sizeRaw.cx ||
 //      ppixmap->raw_size().cy > m_sizeRaw.cy)
 //   {
@@ -718,7 +719,11 @@ void pixmap::copy(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iSc
 
    }
 
-   auto ppixmapThis = this->map(size);
+   auto rectangle = this->rectangle();
+
+   rectangle.set_size(rectangle.size().minimum(size));
+
+   auto ppixmapThis = this->map(rectangle);
 
    if (::is_different(m_bTopLeft, bTopDown))
    {

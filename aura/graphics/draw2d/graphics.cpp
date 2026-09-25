@@ -694,17 +694,17 @@ namespace draw2d
 //   }
 
 
-
    void graphics::update_as_image_render_target(::image::image* pimageTarget)
    {
 
       m_pimageTarget = pimageTarget;
 
-      auto pdraw2dbitmap = pimageTarget->get_bitmap_as_target();
+      auto pdraw2dbitmap = pimageTarget->get_bitmap_as_target(this);
 
       create_bitmap_graphics(pdraw2dbitmap, draw2d_domain());
 
    }
+
 
    void graphics::create_device_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * pInitData)
    {

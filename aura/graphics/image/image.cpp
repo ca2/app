@@ -456,12 +456,16 @@ namespace image
          {
 
             m_pdraw2dbitmap->defer_write_pixels(*m_ppixmapOwned);
+            
+#if 0
 
             ::string str = _001_image32_diagnostics_t(m_ppixmapOwned).as_string();
 
             auto psz = str.c_str();
 
             informationf("diag001 : %s", psz);
+            
+#endif
 
          }
 
@@ -11921,7 +11925,7 @@ namespace image
    //
    //}
 
-   void image::on_load_image(const image32_t* pimage32, const ::i32_size& size, int iScan)
+   void image::on_load_image(const image32_t* pimage32, const ::i32_size& size, int iScan, bool bTopDown)
    {
 
       create_as_descriptor(size, draw2d_domain());
@@ -11929,8 +11933,8 @@ namespace image
       construct_newø(m_ppixmapOwned);
 
       m_ppixmapOwned->create_as_descriptor(size, ::e_flag_success, iScan);
-
-      m_ppixmapOwned->copy(size, pimage32, iScan);
+      
+      m_ppixmapOwned->copy(size, pimage32, iScan, bTopDown);
 
    }
 
@@ -11940,6 +11944,14 @@ namespace image
 
       create_as_descriptor(ppixmap->size(), draw2d_domain());
 
+      {
+         
+         ::string strImageDiagnostics = _001_image32_diagnostics_t(ppixmap).as_string();
+         
+         information("do_render_base stretch source pimageImage(B): {}", strImageDiagnostics);
+         
+      }
+      
       m_ppixmapOwned = ppixmap;
 
    }

@@ -43,6 +43,8 @@ namespace user
       ~tree_data_base() override;
       
       
+      virtual void on_initialize_tree();
+      
       virtual ::collection::count               get_data_bound_impact_count() const override;
       virtual ::user::element * get_data_bound_impact(::collection::index iImpact) override;
 

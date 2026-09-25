@@ -15,6 +15,8 @@
 #include "Canvas.h"
 #include "Screen.h"
 #include "nano2d/context.h"
+#include "aura/graphics/draw2d/domain.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/image.h"
 #include "aura/user/user/interaction.h"
 
@@ -162,7 +164,7 @@ void Canvas::draw(::nano2d::context  * pcontext) {
 
       screen()->m_puserinteraction->constructø(m_pimage);
 
-      m_pimage->create_as_descriptor({ m_size.cx, m_size.cy });
+      m_pimage->create_as_descriptor({ m_size.cx, m_size.cy }, draw2d()->main_draw2d_domain());
 
 
    }

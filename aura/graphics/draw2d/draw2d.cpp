@@ -859,6 +859,14 @@ namespace draw2d
    }
 
 
+   bool draw2d::is_image_draw2_graphics_backed_by_backend_bitmap()
+   {
+
+      return false;
+      
+   }
+
+
    ::draw2d::graphics_lease draw2d::_acquire_memory_graphics(
       bool bExternalRendering,
       ::draw2d::domain * pdraw2ddomain,
@@ -921,7 +929,7 @@ namespace draw2d
 
       }
 
-      if (!pdraw2dgraphics)
+      if (!pdraw2dgraphics && (!::is_set(pimage) || !is_image_draw2_graphics_backed_by_backend_bitmap()))
       {
 
          _synchronous_lock synchronouslock(

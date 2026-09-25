@@ -63,7 +63,7 @@ namespace gpu
    }
 
 
-   void pixmap::set_pixels(const void* pdata)
+   void pixmap::set_pixels(const void* pdata, bool bTopDown)
    {
       
       if(::is_null(pdata))
@@ -82,7 +82,7 @@ namespace gpu
       try
       {
 
-         pgputexture->set_pixels(false, m_rectangle, pdata);
+         pgputexture->set_pixels(false, m_rectangle, pdata, bTopDown);
 
       }
       catch (...)

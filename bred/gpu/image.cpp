@@ -821,7 +821,7 @@ namespace gpu
    }
 
 
-   void image::on_load_image(const image32_t * pimage32, const ::i32_size & size, int iScan)
+   void image::on_load_image(const image32_t * pimage32, const ::i32_size & size, int iScan, bool bTopDown)
    {
 
       auto pgputexture = gpu_texture();
@@ -841,8 +841,8 @@ namespace gpu
             m_ppixmapOwned->create_as_descriptor(size);
 
             m_ppixmapOwned->m_memoryPixmap.set_size(iScan * size.height());
-
-            m_ppixmapOwned->copy(size, pimage32, iScan);
+            
+            m_ppixmapOwned->copy(size, pimage32, iScan, bTopDown);
 
             pgpubitmap->initialize_gpu_bitmap(pgpucontextlease, size, *m_ppixmapOwned);
 
@@ -871,7 +871,7 @@ namespace gpu
          auto pgpucontext = ::as_pointer(pgpucontextlease.m_p);
 
          pgpucontext->send(
-            [pthis, pgputexture, pimage32, size, iScan, pgpucontext]()
+            [pthis, pgputexture, pimage32, size, iScan, pgpucontext, bTopDown]()
             {
 
                auto bPerformanceDiagnostics =
@@ -905,7 +905,7 @@ namespace gpu
 
                ::gpu::context_lock contextlock(pgpucontext);
 
-               pgputexture->write_pixels(true, size, pimage32, iScan);
+               pgputexture->write_pixels(true, size, pimage32, iScan, bTopDown);
 
                auto uMicroseconds = (::u64)0;
 
@@ -938,7 +938,7 @@ namespace gpu
 
          auto ppixmapThis = this->map();
 
-         ppixmapThis->copy(size, pimage32, iScan);
+         ppixmapThis->copy(size, pimage32, iScan, bTopDown);
 
          //m_sizeRaw = size;
          //

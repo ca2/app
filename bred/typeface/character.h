@@ -13,6 +13,7 @@ namespace typeface
       ::pointer < ::gpu::pixmap > m_ppixmapOptional;
       ::memory m_memory;
       ::i32 m_iUnicode;
+      bool m_bTopDown = true;
       bool m_bInit;
       //::u32 TextureID; // ID handle of the glyph texture
       i32_sequence2   Size;      // Size of glyph

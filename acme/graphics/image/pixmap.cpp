@@ -29,12 +29,12 @@ pixmap::~pixmap()
 }
 
 
-void pixmap::create_from_data(const ::i32_size &size, const image32_t *ppixmap32, int iScan, ::enum_flag eflagCreate)
+void pixmap::create_from_data(const ::i32_size &size, const image32_t *ppixmap32, int iScan, bool bTopDown, ::enum_flag eflagCreate)
 {
 
    create_as_descriptor(size, eflagCreate, iScan);
 
-   copy(size, ppixmap32, iScan);
+   copy(size, ppixmap32, iScan, bTopDown);
 
 }
 
@@ -550,7 +550,7 @@ void pixmap::_unmap(const ::i32_rectangle & rectangle)
       m_size = rectangle.size();
 
    }
-
+   
    pixmap_map();
 
 }
@@ -680,26 +680,58 @@ void pixmap::create_isotropic(::pixmap * ppixmap, ::f64 fIsotropicRate)
 
 void pixmap::copy(const pixmap_t * ppixmap)
 {
+   
+ 
+ //  auto ppixmapThis = this->map(ppixmap->rectangle());
 
-   if (ppixmap->raw_size().cx > m_sizeRaw.cx ||
-      ppixmap->raw_size().cy > m_sizeRaw.cy)
+   copy(ppixmap->size(), ppixmap->m_pimage32, ppixmap->m_iScan, ppixmap->m_bTopLeft);
+//   if (ppixmap->raw_size().cx > m_sizeRaw.cx ||
+//      ppixmap->raw_size().cy > m_sizeRaw.cy)
+//   {
+//
+//      create_as_descriptor(ppixmap->raw_size());
+//
+//   }
+//
+//   auto ppixmapThis = this->map(ppixmap->rectangle());
+//
+//   if (::is_different(m_bTopLeft, ppixmap->m_bTopLeft))
+//   {
+//      ppixmapThis->y_swap_copy(ppixmap->size(), ppixmap->m_pimage32, ppixmap->m_iScan);
+//   }
+//   else
+//   {
+//      ppixmapThis->copy(ppixmap->size(), ppixmap->m_pimage32, ppixmap->m_iScan);
+//   }
+
+
+}
+
+
+void pixmap::copy(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan, bool bTopDown)
+{
+
+   if (size.cx > m_sizeRaw.cx ||size.cy > m_sizeRaw.cy)
    {
 
-      create_as_descriptor(ppixmap->raw_size());
+      create_as_descriptor(size);
 
    }
 
-   auto ppixmapThis = this->map(ppixmap->rectangle());
+   auto ppixmapThis = this->map(size);
 
-   if (::is_different(m_bTopLeft, ppixmap->m_bTopLeft))
+   if (::is_different(m_bTopLeft, bTopDown))
    {
-      ppixmapThis->y_swap_copy(ppixmap->size(), ppixmap->m_pimage32, ppixmap->m_iScan);
+      
+      ppixmapThis->y_swap_copy(size, pimage32, iScan);
+      
    }
    else
    {
-      ppixmapThis->copy(ppixmap->size(), ppixmap->m_pimage32, ppixmap->m_iScan);
+      
+      ppixmapThis->copy(size, pimage32, iScan);
+      
    }
-
 
 }
 
@@ -708,7 +740,7 @@ void pixmap::copy(const ::i32_size &size, const ::image32_t *ppixmap32, ::i32 iS
 {
 
    auto ppixmapThis = this->map();
-
+   
    ppixmapThis->m_pimage32->copy(size, m_iScan, ppixmap32, iScan);
    
 }

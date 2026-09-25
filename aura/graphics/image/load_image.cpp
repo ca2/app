@@ -104,12 +104,12 @@ namespace image
    }
 
 
-   pixmap * load_image::get_pixmap_from_data(const ::i32_size & size, const image32_t *pimage32, ::i32 iScan)
+   pixmap * load_image::get_pixmap_from_data(const ::i32_size & size, const image32_t *pimage32, ::i32 iScan, bool bTopDown)
    {
 
       auto ppixmap = get_pixmap();
 
-      ppixmap->create_from_data(size, pimage32, iScan, DEFAULT_CREATE_IMAGE_FLAG);
+      ppixmap->create_from_data(size, pimage32, iScan, bTopDown, DEFAULT_CREATE_IMAGE_FLAG);
 
       //on_image_loaded(success);
 
@@ -162,10 +162,34 @@ namespace image
    }
 
 
-   void load_image::on_load_image(const ::i32_size &size, const image32_t *pimage32, int iScan)
+   void load_image::on_load_image(const ::i32_size &size, const image32_t *pimage32, int iScan, bool bTopDown)
    {
+      
+      {
+         
+         {
+            
+            ::string strImageDiagnostics = _001_image32_diagnostics_t(size, pimage32, iScan).as_string();
+            
+            information("do_render_base stretch source pimageImage(B): {}", strImageDiagnostics);
+            
+         }
+         
+      }
 
-      auto ppixmap = get_pixmap_from_data(size, pimage32, iScan);
+      auto ppixmap = get_pixmap_from_data(size, pimage32, iScan, bTopDown);
+      
+      defer_constructø(m_pimageframearray);
+      
+      m_pimageframearray->m_ppixmap = ppixmap;
+      
+      {
+         
+         ::string strImageDiagnostics = _001_image32_diagnostics_t(ppixmap).as_string();
+         
+         information("do_render_base stretch source pimageImage(B): {}", strImageDiagnostics);
+         
+      }
 
       on_image_loaded(success);
 
@@ -206,20 +230,28 @@ namespace image
 
          try
          {
+            
             m_loadoptions.functionLoaded(this);
+            
          }
          catch (const ::exception & exception)
          {
+            
             throw ::exception(exception.m_estatus,
                "image load: completion callback failed: " + exception.get_message(), exception.m_strDetails);
+            
          }
          catch (const ::std::exception & exception)
          {
+            
             throw ::exception(error_failed, "image load: completion callback failed: " + ::string(exception.what()));
+            
          }
          catch (...)
          {
+            
             throw ::exception(error_failed, "image load: completion callback failed with an unknown exception");
+            
          }
 
       }

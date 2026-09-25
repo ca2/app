@@ -829,7 +829,7 @@ namespace gpu
    }
 
 
-   void texture::set_pixels(bool bSync, const ::i32_rectangle & rectangle, const void * data)
+   void texture::set_pixels(bool bSync, const ::i32_rectangle & rectangle, const void * data, bool bTopDown)
    {
 
       ::pixmap_t pixmap;
@@ -840,6 +840,7 @@ namespace gpu
 
       pixmap.m_pimage32 = (::image32_t *)data;
       pixmap.m_pimage32Raw = (::image32_t *)data;
+      pixmap.m_bTopLeft = bTopDown;
 
       write_pixels(bSync, &pixmap, {});
 
@@ -862,12 +863,13 @@ namespace gpu
          ppixmap->size(),
          ppixmap->m_iScan,
          sizeof(::image32_t),
-         pointInput);
+         pointInput,
+         ppixmap->m_bTopLeft);
 
    }
 
 
-   void texture::write_pixels(bool bSync, const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan)
+   void texture::write_pixels(bool bSync, const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan, bool bTopDown)
    {
 
       ::pixmap pixmap;
@@ -948,7 +950,7 @@ namespace gpu
    //}
 
 
-   void texture::write_pixels(bool bSync, const void * pData, const ::i32_size & size, ::i32 iScan, ::i32 iBytesPerPixel, const ::i32_point & point)
+   void texture::write_pixels(bool bSync, const void * pData, const ::i32_size & size, ::i32 iScan, ::i32 iBytesPerPixel, const ::i32_point & point, bool bTopDown)
    {
 
       if (iBytesPerPixel == 4)
@@ -960,6 +962,7 @@ namespace gpu
          pixmap.m_pimage32 = (::image32_t *)pData;
          pixmap.m_pimage32Raw = (::image32_t *)pData;
          pixmap.m_iScan = iScan;
+         pixmap.m_bTopLeft = bTopDown;
 
          write_pixels(bSync, &pixmap, {});
 

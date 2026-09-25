@@ -197,7 +197,7 @@ namespace image
       //virtual void fast_copy(::image32_t * pcolor32FullImage);
 
 
-      virtual void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan);
+      virtual void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan, bool bTopDown);
       virtual void on_load_image(::pixmap * ppixmap);
       virtual void on_load_image_frame_array(::image::image_frame_array * pimageframearray);
 
@@ -279,7 +279,7 @@ namespace image
 
       //virtual void create_from_data(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
       virtual void create_from_data(const ::pixmap_t & pixmap,
-                                    ::draw2d::domain * pdraw2domain, 
+                                    ::draw2d::domain * pdraw2domain,
                                     ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
                                     bool bPreserve = false);
       virtual void create_from_graphics(::draw2d::graphics * pdraw2dgraphics);

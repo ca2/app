@@ -60,7 +60,7 @@ namespace gpu
       ::gpu::texture * get_gpu_texture_as_source(::gpu::context * pgpucontext) override;
       ::gpu::texture * get_gpu_texture_as_target(::gpu::context * pgpucontext) override;
 
-      void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan) override;
+      void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan, bool bTopDown) override;
 
       void reset_performance_diagnostics() const;
       void record_performance_map_transition(::u64 uMicroseconds) const;

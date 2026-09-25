@@ -265,7 +265,7 @@ namespace nano2d
 		virtual ::i32 create_image_rgba(::i32 w, ::i32 h, ::i32 imageFlags, const void* data, ::i32 iScan);
 
 		// Updates image data specified by image handle.
-		virtual void update_image(::i32 image, const void* data);
+		virtual void update_image(::i32 image, const void* data, bool bTopDown);
 
 		// Returns the dimensions of a created image.
 		virtual void image_size(::i32 image, ::i32* w, ::i32* h);

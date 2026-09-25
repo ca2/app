@@ -83,7 +83,7 @@ namespace draw2d
       virtual void get_required_gpu_device_extensions(::u64 uPhysicalDevice, ::array<const char *> & pszaRequiredDeviceExtensions);
       
       virtual ::draw2d::domain * main_draw2d_domain();
-
+      virtual bool is_image_draw2_graphics_backed_by_backend_bitmap();
    protected:
       friend class ::draw2d::object;
       void add_object(::draw2d::object * pobject);

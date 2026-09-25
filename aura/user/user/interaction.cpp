@@ -29168,7 +29168,7 @@ __check_refdbg;
       if (!r.contains(pointClient))
       {
 
-         information() << "hit_test !r.contains(pointClient)";
+         //information() << "hit_test !r.contains(pointClient)";
 
          auto pitemNone = stock_item(e_element_none);
 
@@ -29181,7 +29181,7 @@ __check_refdbg;
       if (!pitem)
       {
 
-         information() << "hit_test(pointClient, ezorder) !pitem";
+         //information() << "hit_test(pointClient, ezorder) !pitem";
 
          return nullptr;
 

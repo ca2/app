@@ -55,7 +55,7 @@ public:
 
    //virtual void create_from_data(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, bool bPreserve = false);
 
-   virtual void create_from_data(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
+   virtual void create_from_data(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan, bool bTopDown, ::enum_flag eflagCreate);
 
 
    virtual void change_raw_size(const ::i32_size & sizeRaw, ::i32 iMinimumScan = 0);
@@ -86,6 +86,7 @@ public:
    virtual void rotate_flip(enum_rotate_flip erotateflip);
 
    virtual void copy(const pixmap_t * ppixmap);
+   virtual void copy(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan, bool bTopDown);
    virtual void copy(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan);
    virtual void y_swap_copy(const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan);
 

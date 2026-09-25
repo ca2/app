@@ -47,6 +47,12 @@ namespace image
          auto ppixmapLoadImage2 = ppixmapLoadImage->map();
 
          nsvgRasterize(rast, psvgimage, 0, 0, 1, (::u8 *)ppixmapLoadImage2->data(), w, h, ppixmapLoadImage2->scan());
+         
+#ifdef __APPLE__
+         
+         ppixmapLoadImage2->vertical_swap();
+         
+#endif
 
          //ploadimage->on_load_image(pdata, {w, h}, iScan);
 

@@ -43,7 +43,7 @@ namespace image
 
       virtual pixmap * get_pixmap();
       virtual pixmap * get_pixmap(const ::i32_size & size, ::i32 iScan = 0);
-      virtual pixmap * get_pixmap_from_data(const ::i32_size & size, const image32_t * pimage32, ::i32 iScan = 0);
+      virtual pixmap * get_pixmap_from_data(const ::i32_size & size, const image32_t * pimage32, ::i32 iScan, bool bTopDown);
 
       
       virtual void nanosvg(const ::block & blockXml, ::f64 dDpi = 0.);
@@ -55,7 +55,7 @@ namespace image
       void run() override;
 
 
-      virtual void on_load_image(const ::i32_size &size, const image32_t *pimage32, int iScan);
+      virtual void on_load_image(const ::i32_size &size, const image32_t *pimage32, int iScan, bool bTopDown);
 
 
       virtual void on_image_loaded(const ::e_status &estatus);

@@ -3326,7 +3326,7 @@ if(${WIN32})
     target_link_libraries(${PROJECT_NAME} PRIVATE archive zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
 
     if (NOT ${SUSE})
 

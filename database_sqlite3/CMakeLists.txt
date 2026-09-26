@@ -57,7 +57,7 @@ if(${WIN32})
    target_link_libraries(database_sqlite3 PRIVATE ${library_references} ${global_library_references} sqlite)
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
 
 
    if(${USE_PKGCONFIG})

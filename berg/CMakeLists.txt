@@ -327,7 +327,7 @@ if(${WIN32})
    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis)
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
 
    #target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)

@@ -2166,8 +2166,8 @@ list(APPEND library_source
         prototype/collection/map_to_smart_pointer.h
         prototype/collection/numeric_array.h
         prototype/collection/numeric_array_range.h
-   prototype/collection/osdata_array.cpp
-   prototype/collection/osdata_array.h
+   #prototype/collection/osdata_array.cpp
+   #prototype/collection/osdata_array.h
         prototype/collection/packset.h
         prototype/collection/pair.h
         prototype/collection/pointer_array.h

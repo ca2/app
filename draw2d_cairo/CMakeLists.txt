@@ -83,7 +83,7 @@ if(${WIN32})
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura freetype cairo)
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
 
 
     if(${USE_PKGCONFIG})

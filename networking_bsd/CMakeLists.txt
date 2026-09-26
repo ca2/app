@@ -135,7 +135,7 @@ if (WIN32 OR UWP)
 endif ()
 
 
-if (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+if (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
 
    list(APPEND library_source
       bsd/_.cpp
@@ -188,7 +188,7 @@ if(${WIN32})
    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} Ws2_32)
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)

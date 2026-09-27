@@ -66,7 +66,7 @@ if(${WIN32})
     target_link_options(app_integration PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(app_integration PRIVATE ${library_references} ${global_library_references})
 
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)

@@ -1197,25 +1197,28 @@ list(APPEND library_source
         #prototype/string/c/ancient/_impl.h
         prototype/string/c/extension/_.h
         prototype/string/c/_.h
+        prototype/string/c/_impl.h
         prototype/string/c/strdup.cpp
         prototype/string/c/strdup.h
-        prototype/string/c/extension/ansi_impl.cpp
-        prototype/string/c/extension/ansi.h
-        prototype/string/c/extension/wd32_impl.cpp
-        prototype/string/c/extension/wd16_impl.cpp
-        prototype/string/c/ancient/wd32.h
-        prototype/string/c/unicode.h
-        prototype/string/c/encoding_impl.h
-        prototype/string/c/_impl.h
         prototype/string/c/ancient/_.h
         prototype/string/c/ancient/_c.cpp
-        prototype/string/c/coupling_impl.cpp
-        prototype/string/c/extension/wd16.h
+        prototype/string/c/ancient/ansi.h
         prototype/string/c/ancient/wd16.h
-        prototype/string/c/unicode_impl.cpp
-        prototype/string/c/ancient/ansi_impl.cpp
-        prototype/string/c/ancient/wd16_impl.cpp
-        prototype/string/c/ancient/wd32_impl.cpp
+        prototype/string/c/ancient/wd32.h
+        prototype/string/c/ancient/wide.h
+        prototype/string/c/coupling/_c.cpp
+        prototype/string/c/coupling/ansi.h
+        prototype/string/c/coupling/wd16.h
+        prototype/string/c/coupling/wd32.h
+        prototype/string/c/coupling/wide.h
+        prototype/string/c/encoding/_impl.h
+        prototype/string/c/extension/ansi.cpp
+        prototype/string/c/extension/ansi.h
+        prototype/string/c/extension/wd32.cpp
+        prototype/string/c/extension/wd16.cpp
+        prototype/string/c/extension/wd16.h
+        prototype/string/c/unicode/_.h
+        prototype/string/c/unicode/_impl.h
         prototype/string/sz/_.h
         prototype/string/sz/wd32.cpp
         prototype/string/sz/ansi.cpp

@@ -275,7 +275,7 @@ class list_base;
 
 
 template < typename T >
-class single;
+class single_element;
 
 
 template < typename SINGLE >
@@ -293,7 +293,7 @@ template < typename ITEM, enum_allocate t_eallocate = e_allocate_normal >
 class node_set_base;
 
 
-template < typename KEY, typename NODE = single < KEY > >
+template < typename KEY, typename NODE = single_element < KEY > >
 using set = node_set_base < ::make_single < NODE > >;
 
 

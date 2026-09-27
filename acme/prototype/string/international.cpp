@@ -39,7 +39,11 @@
          if (65001 == uCodePage)
          {
 
-            unichar_to_utf8(pstrMultiByte, scopedwstr, scopedwstr.size());
+            auto length = utf_to_utf_length1((const_char_pointer) nullptr, scopedwstr.begin(), scopedwstr.size());
+
+            utf_to_utf(pstrMultiByte, scopedwstr.begin(), scopedwstr.size());
+
+            pstrMultiByte[length] = 0;
 
             return true;
 
@@ -133,13 +137,13 @@
       bool unicode_to_utf8(string & str, const ::scoped_wstring & scopedwstr)
       {
 
-         auto lenTarget = unichar_to_utf8_len(scopedwstr, scopedwstr.size());
+         auto lenTarget = utf_to_utf_length1((const_char_pointer) nullptr, scopedwstr.begin(), scopedwstr.size());
 
          char_pointer psz = str.get_buffer(lenTarget); // worst guess?!?
 
-         character_count iLen = unichar_to_utf8(psz, scopedwstr, scopedwstr.size());
+         utf_to_utf(psz, scopedwstr.begin(), scopedwstr.size());
 
-         str.release_buffer(iLen);
+         str.release_buffer(lenTarget);
 
          return true;
 
@@ -160,7 +164,7 @@
          if (65001 == uCodePage)
          {
 
-            return unichar_to_utf8_len(scopedwstr.begin(), scopedwstr.size());
+            return utf_to_utf_length1((const_char_pointer) nullptr, scopedwstr.begin(), scopedwstr.size());
 
          }
          else

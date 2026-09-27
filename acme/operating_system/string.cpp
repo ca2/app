@@ -10,44 +10,6 @@
 #include <strings.h>
 #endif
 
-CLASS_DECL_ACME ::i32 ansi_icmp(const_char_pointer psz1, const_char_pointer psz2)
-{
-#ifdef WINDOWS
-   return _stricmp(psz1, psz2);
-#else
-   return strcasecmp(psz1, psz2);
-#endif
-}
-
-CLASS_DECL_ACME ::i32 ansi_nicmp(const_char_pointer psz1, const_char_pointer psz2, character_count s)
-{
-#ifdef WINDOWS
-   return _strnicmp(psz1, psz2, s);
-#else
-   return strncasecmp(psz1, psz2, s);
-#endif
-}
-
-
-CLASS_DECL_ACME ::i32 ansi_icoll(const_char_pointer psz1, const_char_pointer psz2)
-{
-#ifdef WINDOWS
-   return _stricmp(psz1, psz2);
-#else
-   return strcasecmp(psz1, psz2);
-#endif
-}
-
-CLASS_DECL_ACME ::i32 ansi_nicoll(const_char_pointer psz1, const_char_pointer psz2, character_count s)
-{
-#ifdef WINDOWS
-   return _strnicmp(psz1, psz2, s);
-#else
-   return strncasecmp(psz1, psz2, s);
-#endif
-}
-
-
 CLASS_DECL_ACME ::i64 ansi_to_i64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase)
 {
 
@@ -156,46 +118,6 @@ CLASS_DECL_ACME character_count utf8_len(const_char_pointer psz)
    return strlen(psz);
    
    
-}
-
-
-
-CLASS_DECL_ACME ::ansi_character * __ansitok_r(::ansi_character * psz, const_char_pointer sep, ::ansi_character ** state)
-{
-
-   if (!psz)
-   {
-
-      psz = *state;
-
-      if (!psz)
-      {
-
-         return nullptr;
-
-      }
-
-   }
-
-   auto p = strpbrk(psz, sep);
-
-   if (p)
-   {
-
-      *p = (::ansi_character)(0);
-
-      *state = p + 1;
-
-   }
-   else
-   {
-
-      *state = nullptr;
-
-   }
-
-   return psz;
-
 }
 
 
@@ -371,67 +293,6 @@ CLASS_DECL_ACME ::i32 compare_ignore_case(const string & left, const_char_pointe
    }
 
 }
-
-
-
-CLASS_DECL_ACME ::ansi_character * ansi_dup(const_char_pointer psz) { return _strdup(psz); }
-
-CLASS_DECL_ACME character_count ansi_len(const_char_pointer psz) { return strlen(psz); }
-
-CLASS_DECL_ACME character_count ansi_nlen(const_char_pointer psz, memsize len) { return strnlen(psz, len); }
-
-CLASS_DECL_ACME ::ansi_character * ansi_cat(::ansi_character * pszDst, const_char_pointer psz) { return strcat(pszDst, psz); }
-
-CLASS_DECL_ACME ::ansi_character * ansi_cpy(::ansi_character * pszDst, const_char_pointer psz) { return strcpy(pszDst, psz); }
-
-CLASS_DECL_ACME ::ansi_character * ansi_ncpy(::ansi_character * pszDst, const_char_pointer psz, character_count len) { return strncpy(pszDst, psz, len); }
-
-CLASS_DECL_ACME const_char_pointer ansi_chr(const_char_pointer psz1, ::ansi_character ch) { return strchr(psz1, ch); }
-
-CLASS_DECL_ACME const_char_pointer ansi_pbrk(const_char_pointer psz, const_char_pointer pszCharsToFind) { return strpbrk(psz, pszCharsToFind); }
-
-
-CLASS_DECL_ACME ::ansi_character * ansi_tok_r(::ansi_character * psz, const_char_pointer sep, ::ansi_character ** state)
-{
-
-#if defined(WINDOWS)
-
-    return strtok_s(psz, sep, state);
-
-#else
-
-    return strtok_r(psz, sep, state);
-
-#endif
-
-}
-
-CLASS_DECL_ACME const_char_pointer ansi_rchr(const_char_pointer psz1, ::ansi_character ch) { return strrchr(psz1, ch); }
-
-CLASS_DECL_ACME ::i32 ansi_cmp(const_char_pointer psz1, const_char_pointer psz2) { return strcmp(psz1, psz2); }
-
-CLASS_DECL_ACME ::i32 ansi_ncmp(const_char_pointer psz1, const_char_pointer psz2, character_count s)
-{
-
-   return strncmp(psz1, psz2, s);
-
-}
-
-CLASS_DECL_ACME const_char_pointer ansi_str(const_char_pointer psz, const_char_pointer pszFind) { return strstr(psz, pszFind); }
-
-
-
-CLASS_DECL_ACME ::i32 ansi_coll(const_char_pointer psz1, const_char_pointer psz2) { return strcmp(psz1, psz2); }
-
-CLASS_DECL_ACME ::i32 ansi_ncoll(const_char_pointer psz1, const_char_pointer psz2, character_count s) { return strncmp(psz1, psz2, s); }
-
-CLASS_DECL_ACME ::i32 ansi_icoll(const_char_pointer psz1, const_char_pointer psz2);
-
-CLASS_DECL_ACME ::i32 ansi_nicoll(const_char_pointer psz1, const_char_pointer psz2, character_count s);
-
-CLASS_DECL_ACME character_count ansi_spn(const_char_pointer psz1, const_char_pointer psz2) { return strspn(psz1, psz2); }
-
-CLASS_DECL_ACME character_count ansi_cspn(const_char_pointer psz1, const_char_pointer psz2) { return strcspn(psz1, psz2); }
 
 
 

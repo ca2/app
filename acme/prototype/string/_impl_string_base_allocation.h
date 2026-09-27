@@ -562,6 +562,15 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_cha
 
 
 template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_character(::wide_character wch)
+{
+
+   return append(&wch, 1);
+
+}
+
+
+template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(character_count len, CHARACTER ch)
 {
 

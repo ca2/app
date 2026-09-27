@@ -287,6 +287,8 @@ list(APPEND library_source
         graphics/draw2d/color32.h
         graphics/draw2d/color_array.cpp
         graphics/draw2d/color_array.h
+        graphics/draw2d/domain.cpp
+        graphics/draw2d/domain_consumer.cpp
         graphics/draw2d/os_font_name.cpp
    graphics/draw2d/task_tool.cpp
    graphics/draw2d/task_tool.h
@@ -1147,6 +1149,7 @@ list(APPEND library_source
         prototype/prototype/quantum.h
         prototype/prototype/read_only_memory.cpp
         prototype/prototype/read_only_memory.h
+        prototype/prototype/referencing_debugging.cpp
         prototype/prototype/request_interface.h
         #prototype/prototype/runnable.cpp
         #prototype/prototype/runnable.h
@@ -1190,9 +1193,9 @@ list(APPEND library_source
         prototype/string/_impl_string_base.h
         prototype/string/_impl_string_meta_data.h
         #prototype/string/c/extension/_impl.h
-        prototype/string/c/encoding.h
+        prototype/string/c/encoding/_.h
         prototype/string/c/ancient/ansi.h
-        prototype/string/c/coupling.h
+        prototype/string/c/coupling/_.h
         prototype/string/c/extension/wd32.h
         #prototype/string/c/ancient/_impl.h
         prototype/string/c/extension/_.h
@@ -1206,7 +1209,6 @@ list(APPEND library_source
         prototype/string/c/ancient/wd16.h
         prototype/string/c/ancient/wd32.h
         prototype/string/c/ancient/wide.h
-        prototype/string/c/coupling/_c.cpp
         prototype/string/c/coupling/ansi.h
         prototype/string/c/coupling/wd16.h
         prototype/string/c/coupling/wd32.h
@@ -1216,9 +1218,11 @@ list(APPEND library_source
         prototype/string/c/extension/ansi.h
         prototype/string/c/extension/wd32.cpp
         prototype/string/c/extension/wd16.cpp
+        prototype/string/c/extension/wide.cpp
         prototype/string/c/extension/wd16.h
         prototype/string/c/unicode/_.h
         prototype/string/c/unicode/_impl.h
+        prototype/string/c/unicode/unicode_impl.cpp
         prototype/string/sz/_.h
         prototype/string/sz/wd32.cpp
         prototype/string/sz/ansi.cpp
@@ -1226,6 +1230,7 @@ list(APPEND library_source
         prototype/string/sz/ansi.h
         prototype/string/sz/wd32.h
         prototype/string/sz/wd16_impl.cpp
+        prototype/string/sz/wide_impl.cpp
         prototype/string/sz/wd16.cpp
         prototype/string/sz/wd16.h
         prototype/string/sz/ansi_impl.cpp
@@ -1891,6 +1896,7 @@ list(APPEND library_source
         graphics/draw2d/_.h
         graphics/draw2d/_constant.h
         graphics/draw2d/color.h
+        graphics/draw2d/_string.cpp
         #graphics/draw2d/colorref_array.h
         include/_.h
         #include/_c.h
@@ -2404,8 +2410,10 @@ if (${WIN32})
        operating_system/windows/shared_memory.cpp
             operating_system/windows/thread.cpp
        operating_system/windows/threading.cpp
+            operating_system/windows/top_level_enum.cpp
             operating_system/windows/user.cpp
             operating_system/windows/window.cpp
+            operating_system/windows/window_util.cpp
             operating_system/windows/windowing.cpp
             operating_system/windows/windowing.h
             operating_system/windows/windows.cpp
@@ -3295,9 +3303,7 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   prototype/prototype/referencing_debugging.cpp
-   graphics/draw2d/_string.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

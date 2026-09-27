@@ -1,5 +1,6 @@
 // Created from _unicode by camilo on 2022-11-07 09:23 <3ThomasBorregaardSorensen!!
 #include "platform.h"
+#include <string.h>
 //
 // wide_character support
 //
@@ -593,6 +594,147 @@ namespace unicode_wide_detail
 } // namespace unicode_wide_detail
 
 
+namespace unicode_non_wide_detail
+{
+
+
+   template < typename TARGET_CHARACTER, typename SOURCE_CHARACTER >
+   character_count utf_length(
+      const SOURCE_CHARACTER * psource,
+      character_count srclen)
+   {
+
+      if constexpr (std::same_as < TARGET_CHARACTER, SOURCE_CHARACTER >)
+      {
+
+         return ::unicode_wide_detail::normalize_source_length(psource, srclen);
+
+      }
+      else
+      {
+
+         return ::unicode_wide_detail::utf_length < TARGET_CHARACTER >(psource, srclen);
+
+      }
+
+   }
+
+
+   template < typename TARGET_CHARACTER, typename SOURCE_CHARACTER >
+   character_count utf_length2(
+      const SOURCE_CHARACTER * psource,
+      character_count & srclen)
+   {
+
+      srclen = ::unicode_wide_detail::normalize_source_length(psource, srclen);
+
+      return utf_length < TARGET_CHARACTER >(psource, srclen);
+
+   }
+
+
+   template < typename TARGET_CHARACTER, typename SOURCE_CHARACTER >
+   void utf_convert(
+      TARGET_CHARACTER * ptarget,
+      const SOURCE_CHARACTER * psource,
+      character_count srclen)
+   {
+
+      srclen = ::unicode_wide_detail::normalize_source_length(psource, srclen);
+
+      if constexpr (std::same_as < TARGET_CHARACTER, SOURCE_CHARACTER >)
+      {
+
+         memmove(ptarget, psource, srclen * sizeof(TARGET_CHARACTER));
+
+      }
+      else
+      {
+
+         ::unicode_wide_detail::utf_convert(ptarget, psource, srclen);
+
+      }
+
+   }
+
+
+   template < typename TARGET_CHARACTER, typename SOURCE_CHARACTER >
+   void utf_convert(
+      TARGET_CHARACTER * ptarget,
+      const SOURCE_CHARACTER * psource)
+   {
+
+      if constexpr (std::same_as < TARGET_CHARACTER, SOURCE_CHARACTER >)
+      {
+
+         auto srclen = ::unicode_wide_detail::string_length(psource);
+
+         memmove(ptarget, psource, (srclen + 1) * sizeof(TARGET_CHARACTER));
+
+      }
+      else
+      {
+
+         ::unicode_wide_detail::utf_convert(ptarget, psource);
+
+      }
+
+   }
+
+
+} // namespace unicode_non_wide_detail
+
+
+#define DEFINE_NON_WIDE_UTF_PAIR(TARGET_CHARACTER, SOURCE_CHARACTER) \
+   CLASS_DECL_ACME character_count utf_to_utf_length1( \
+      const TARGET_CHARACTER *, \
+      const SOURCE_CHARACTER * psource, \
+      character_count srclen) \
+   { \
+      return ::unicode_non_wide_detail::utf_length < TARGET_CHARACTER >(psource, srclen); \
+   } \
+   CLASS_DECL_ACME character_count utf_to_utf_length2( \
+      const TARGET_CHARACTER *, \
+      const SOURCE_CHARACTER * psource, \
+      character_count & srclen) \
+   { \
+      return ::unicode_non_wide_detail::utf_length2 < TARGET_CHARACTER >(psource, srclen); \
+   } \
+   CLASS_DECL_ACME character_count utf_to_utf_length( \
+      const TARGET_CHARACTER *, \
+      const SOURCE_CHARACTER * psource) \
+   { \
+      return ::unicode_non_wide_detail::utf_length < TARGET_CHARACTER >(psource, -1); \
+   } \
+   CLASS_DECL_ACME void utf_to_utf( \
+      TARGET_CHARACTER * ptarget, \
+      const SOURCE_CHARACTER * psource, \
+      character_count srclen) \
+   { \
+      ::unicode_non_wide_detail::utf_convert(ptarget, psource, srclen); \
+   } \
+   CLASS_DECL_ACME void utf_to_utf( \
+      TARGET_CHARACTER * ptarget, \
+      const SOURCE_CHARACTER * psource) \
+   { \
+      ::unicode_non_wide_detail::utf_convert(ptarget, psource); \
+   }
+
+
+DEFINE_NON_WIDE_UTF_PAIR(::ansi_character, ::ansi_character)
+DEFINE_NON_WIDE_UTF_PAIR(::ansi_character, ::wd16_character)
+DEFINE_NON_WIDE_UTF_PAIR(::ansi_character, ::wd32_character)
+DEFINE_NON_WIDE_UTF_PAIR(::wd16_character, ::ansi_character)
+DEFINE_NON_WIDE_UTF_PAIR(::wd16_character, ::wd16_character)
+DEFINE_NON_WIDE_UTF_PAIR(::wd16_character, ::wd32_character)
+DEFINE_NON_WIDE_UTF_PAIR(::wd32_character, ::ansi_character)
+DEFINE_NON_WIDE_UTF_PAIR(::wd32_character, ::wd16_character)
+DEFINE_NON_WIDE_UTF_PAIR(::wd32_character, ::wd32_character)
+
+
+#undef DEFINE_NON_WIDE_UTF_PAIR
+
+
 
 //
 // utf_to_utf_length1
@@ -1082,7 +1224,7 @@ CLASS_DECL_ACME void utf_to_utf(
 }
 
 
-inline ::i32 unicode_index(
+CLASS_DECL_ACME ::i32 unicode_index(
    const ::wide_character * psz)
 {
 
@@ -1093,3 +1235,23 @@ inline ::i32 unicode_index(
 }
 
 
+CLASS_DECL_ACME bool unicode_is_whitespace(
+   const ::wide_character * psz)
+{
+
+   return unicode_is_whitespace(unicode_index(psz));
+
+}
+
+
+CLASS_DECL_ACME ::i32 unicode_len(
+   const ::wide_character * psz)
+{
+
+   ::i32 len;
+
+   unicode_index_length(psz, len);
+
+   return len;
+
+}

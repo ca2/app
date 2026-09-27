@@ -257,7 +257,7 @@ namespace draw2d_cairo
 
       ::i32_size size = pdraw2dbitmap->size();
 
-      create_as_descriptor(size);
+      create_as_descriptor(size, pdraw2dgraphics->draw2d_domain());
 
       //if(!create(size))
       //{

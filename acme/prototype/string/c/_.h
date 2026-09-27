@@ -329,9 +329,9 @@ consteval auto string_order_folder_first()
 
 
 #include "ancient/_.h"
-#include "coupling.h"
-#include "encoding.h"
+#include "coupling/_.h"
+#include "encoding/_.h"
 #include "extension/_.h"
-#include "unicode.h"
+#include "unicode/_.h"
 
 

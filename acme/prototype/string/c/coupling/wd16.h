@@ -1,0 +1,32 @@
+#pragma once
+
+CLASS_DECL_ACME ::wd16_character * wd16_dup(const ::wd16_character * psz);
+CLASS_DECL_ACME character_count wd16_len(const ::wd16_character * psz);
+CLASS_DECL_ACME character_count wd16_nlen(const ::wd16_character * psz, memsize len);
+CLASS_DECL_ACME ::wd16_character * wd16_cat(::wd16_character * pszDst, const ::wd16_character * psz);
+CLASS_DECL_ACME ::wd16_character * wd16_cpy(::wd16_character * pszDst, const ::wd16_character * psz);
+CLASS_DECL_ACME ::wd16_character * wd16_ncpy(::wd16_character * pszDst, const ::wd16_character * psz, character_count len);
+CLASS_DECL_ACME const ::wd16_character * wd16_chr(const ::wd16_character * psz1, ::wd16_character ch);
+CLASS_DECL_ACME const ::wd16_character * wd16_pbrk(const ::wd16_character * psz, const ::wd16_character * pszCharsToFind);
+CLASS_DECL_ACME ::wd16_character * wd16_tok_r(::wd16_character * psz, const ::wd16_character * sep, ::wd16_character ** state);
+CLASS_DECL_ACME ::wd16_character * wd16_token(::wd16_character * psz, const ::wd16_character * separators);
+CLASS_DECL_ACME const ::wd16_character * wd16_rchr(const ::wd16_character * psz1, ::wd16_character ch);
+CLASS_DECL_ACME ::i32 wd16_cmp(const ::wd16_character * psz1, const ::wd16_character * psz2);
+CLASS_DECL_ACME ::i32 wd16_ncmp(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s);
+CLASS_DECL_ACME const ::wd16_character * wd16_str(const ::wd16_character * psz, const ::wd16_character * pszFind);
+CLASS_DECL_ACME ::wd16_character wd16_tolower(::wd16_character ch);
+CLASS_DECL_ACME ::wd16_character wd16_toupper(::wd16_character ch);
+CLASS_DECL_ACME ::wd16_character * wd16_lwr(::wd16_character * psz);
+CLASS_DECL_ACME ::wd16_character * wd16_lwr_s(::wd16_character * psz, character_count s);
+CLASS_DECL_ACME ::wd16_character * wd16_upr(::wd16_character * psz);
+CLASS_DECL_ACME ::wd16_character * wd16_upr_s(::wd16_character * psz, character_count s);
+CLASS_DECL_ACME const ::wd16_character * wd16_ichr(const ::wd16_character * psz1, ::wd16_character ch);
+CLASS_DECL_ACME ::i32 wd16_icmp(const ::wd16_character * psz1, const ::wd16_character * psz2);
+CLASS_DECL_ACME ::i32 wd16_nicmp(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s);
+CLASS_DECL_ACME const ::wd16_character * wd16_istr(const ::wd16_character * psz, const ::wd16_character * pszFind);
+CLASS_DECL_ACME ::i32 wd16_coll(const ::wd16_character * psz1, const ::wd16_character * psz2);
+CLASS_DECL_ACME ::i32 wd16_ncoll(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s);
+CLASS_DECL_ACME ::i32 wd16_icoll(const ::wd16_character * psz1, const ::wd16_character * psz2);
+CLASS_DECL_ACME ::i32 wd16_nicoll(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s);
+CLASS_DECL_ACME character_count wd16_spn(const ::wd16_character * psz1, const ::wd16_character * psz2);
+CLASS_DECL_ACME character_count wd16_cspn(const ::wd16_character * psz1, const ::wd16_character * psz2);

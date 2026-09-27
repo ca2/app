@@ -20,6 +20,7 @@
 #include "acme/prototype/string/str.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/write_text/text_out.h"
@@ -187,8 +188,6 @@ namespace draw2d_cairo
    graphics::graphics()
    {
 
-      m_pthis = this;
-
       m_bToyQuotedFontSelection = true;
       m_iSaveContext = 0;
 
@@ -304,23 +303,18 @@ namespace draw2d_cairo
 
       m_bForWindowDraw2d = true;
 
-      //m_puserinteractionDraw2dGraphics = puserinteraction;
+      m_puserinteractionTopic = puserinteraction;
 
-      if (::is_set(puserinteraction))
-      {
-
-         m_pacmeuserinteractionAffinity = puserinteraction;
-
-      }
-
-      create_memory_graphics(size, m_pacmeuserinteractionAffinity);
+      create_memory_graphics(size, puserinteraction->draw2d_domain());
 
    }
 
 
 
-   void graphics::create_bitmap_graphics(::draw2d::bitmap * pdraw2dbitmap, ::acme::user::interaction * pacmeuserinteractionAffinity)
+   void graphics::create_bitmap_graphics(::draw2d::bitmap * pdraw2dbitmap, ::draw2d::domain * pdraw2ddomain)
    {
+
+      set_draw2d_domain(pdraw2ddomain);
 
       ::cast < ::draw2d_cairo::bitmap > pbitmap = pdraw2dbitmap;
 
@@ -360,28 +354,28 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_create_memory_graphics(const ::i32_size& size, ::acme::user::interaction * pacmeuserinteractionAffinity)
+   void graphics::_create_memory_graphics(const ::i32_size& size, ::draw2d::domain * pdraw2ddomain)
    {
 
-      if (::is_set(pacmeuserinteractionAffinity))
+      if (::is_set(pdraw2ddomain))
       {
 
-         m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
+         set_draw2d_domain(pdraw2ddomain);
 
       }
 
-      create_memory_graphics(size, m_pacmeuserinteractionAffinity);
+      create_memory_graphics(size, pdraw2ddomain);
 
    }
 
 
-   void graphics::create_memory_graphics(const ::i32_size& size, ::acme::user::interaction * pacmeuserinteractionAffinity)
+   void graphics::create_memory_graphics(const ::i32_size& size, ::draw2d::domain * pdraw2ddomain)
    {
 
-      if (::is_set(pacmeuserinteractionAffinity))
+      if (::is_set(pdraw2ddomain))
       {
 
-         m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
+         set_draw2d_domain(pdraw2ddomain);
 
       }
 
@@ -403,7 +397,7 @@ namespace draw2d_cairo
       }
 
       m_pimageOwned->update_as_render_target(size,
-         m_pacmeuserinteractionAffinity->user_interaction(),
+         pdraw2ddomain,
          this);
 
       if (m_pimageOwned.nok())
@@ -5780,14 +5774,7 @@ namespace draw2d_cairo
 
          //}
 
-         auto pacmeuserinteractionScaler = m_pacmeuserinteractionTopic;
-
-         if(::is_null(pacmeuserinteractionScaler))
-         {
-
-            pacmeuserinteractionScaler = m_pacmeuserinteractionAffinity;
-
-         }
+         auto pacmeuserinteractionScaler = m_puserinteractionTopic;
 
          if(::is_set(pacmeuserinteractionScaler))
          {

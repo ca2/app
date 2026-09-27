@@ -1,0 +1,32 @@
+#pragma once
+
+CLASS_DECL_ACME ::wide_character * wide_dup(const ::wide_character * psz);
+CLASS_DECL_ACME character_count wide_len(const ::wide_character * psz);
+CLASS_DECL_ACME character_count wide_nlen(const ::wide_character * psz, memsize len);
+CLASS_DECL_ACME ::wide_character * wide_cat(::wide_character * pszDst, const ::wide_character * psz);
+CLASS_DECL_ACME ::wide_character * wide_cpy(::wide_character * pszDst, const ::wide_character * psz);
+CLASS_DECL_ACME ::wide_character * wide_ncpy(::wide_character * pszDst, const ::wide_character * psz, character_count len);
+CLASS_DECL_ACME const ::wide_character * wide_chr(const ::wide_character * psz1, ::wide_character ch);
+CLASS_DECL_ACME const ::wide_character * wide_pbrk(const ::wide_character * psz, const ::wide_character * pszCharsToFind);
+CLASS_DECL_ACME ::wide_character * wide_tok_r(::wide_character * psz, const ::wide_character * sep, ::wide_character ** state);
+CLASS_DECL_ACME ::wide_character * wide_token(::wide_character * psz, const ::wide_character * separators);
+CLASS_DECL_ACME const ::wide_character * wide_rchr(const ::wide_character * psz1, ::wide_character ch);
+CLASS_DECL_ACME ::i32 wide_cmp(const ::wide_character * psz1, const ::wide_character * psz2);
+CLASS_DECL_ACME ::i32 wide_ncmp(const ::wide_character * psz1, const ::wide_character * psz2, character_count s);
+CLASS_DECL_ACME const ::wide_character * wide_str(const ::wide_character * psz, const ::wide_character * pszFind);
+CLASS_DECL_ACME ::wide_character wide_tolower(::wide_character ch);
+CLASS_DECL_ACME ::wide_character wide_toupper(::wide_character ch);
+CLASS_DECL_ACME ::wide_character * wide_lwr(::wide_character * psz);
+CLASS_DECL_ACME ::wide_character * wide_lwr_s(::wide_character * psz, character_count s);
+CLASS_DECL_ACME ::wide_character * wide_upr(::wide_character * psz);
+CLASS_DECL_ACME ::wide_character * wide_upr_s(::wide_character * psz, character_count s);
+CLASS_DECL_ACME const ::wide_character * wide_ichr(const ::wide_character * psz1, ::wide_character ch);
+CLASS_DECL_ACME ::i32 wide_icmp(const ::wide_character * psz1, const ::wide_character * psz2);
+CLASS_DECL_ACME ::i32 wide_nicmp(const ::wide_character * psz1, const ::wide_character * psz2, character_count s);
+CLASS_DECL_ACME const ::wide_character * wide_istr(const ::wide_character * psz, const ::wide_character * pszFind);
+CLASS_DECL_ACME ::i32 wide_coll(const ::wide_character * psz1, const ::wide_character * psz2);
+CLASS_DECL_ACME ::i32 wide_ncoll(const ::wide_character * psz1, const ::wide_character * psz2, character_count s);
+CLASS_DECL_ACME ::i32 wide_icoll(const ::wide_character * psz1, const ::wide_character * psz2);
+CLASS_DECL_ACME ::i32 wide_nicoll(const ::wide_character * psz1, const ::wide_character * psz2, character_count s);
+CLASS_DECL_ACME character_count wide_spn(const ::wide_character * psz1, const ::wide_character * psz2);
+CLASS_DECL_ACME character_count wide_cspn(const ::wide_character * psz1, const ::wide_character * psz2);

@@ -7,17 +7,7 @@
 CLASS_DECL_ACME ::i64 string_to_signed(const ::wd16_character * pwsz)
 {
 
-#ifdef WINDOWS
-
-   return _wtoll(pwsz);
-
-#else
-
-   wd32_string wstr(pwsz);
-
-   return wcstoll(wstr, nullptr, 10);
-
-#endif
+   return wd16_to_i64(pwsz, nullptr, 10);
 
 }
 
@@ -25,17 +15,7 @@ CLASS_DECL_ACME ::i64 string_to_signed(const ::wd16_character * pwsz)
 CLASS_DECL_ACME ::u64 as_u64(const ::wd16_character * pwsz)
 {
 
-#ifdef WINDOWS
-
-   return _wcstoui64(pwsz, nullptr, 10);
-
-#else
-
-   wd32_string wstr(pwsz);
-
-   return wcstoull(wstr, nullptr, 10);
-
-#endif
+   return wd16_to_u64(pwsz, nullptr, 10);
 
 }
 
@@ -43,17 +23,9 @@ CLASS_DECL_ACME ::u64 as_u64(const ::wd16_character * pwsz)
 CLASS_DECL_ACME ::f64 string_to_floating(const ::wd16_character * pwsz)
 {
 
-#ifdef WINDOWS
+   ::string str(pwsz);
 
-   return wcstod(pwsz, nullptr);
-
-#else
-
-   wd32_string wstr(pwsz);
-
-   return wcstod(wstr, nullptr);
-
-#endif
+   return strtod(str, nullptr);
 
 
 }

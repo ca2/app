@@ -1,0 +1,14 @@
+//
+//  _c.h
+//  acme
+//
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 07/11/23.
+//  Copyright © 2023 Camilo Sasuke Tsumanuma. All rights reserved.
+//
+#pragma once
+
+
+CLASS_DECL_ACME char_pointer libc_strdup(const_char_pointer psz);
+
+
+

@@ -253,7 +253,7 @@ namespace draw2d_cairo
 
 #else
 
-      auto pcairographics = __graphics(pdraw2dgraphics);
+      ::cast < ::draw2d_cairo::graphics > pcairographics = pdraw2dgraphics;
 
       FT_Face ftface = pcairographics->ftface(
          m_pfontfamily->family_name(pdraw2dgraphics),

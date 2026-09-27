@@ -27,6 +27,18 @@
 }
 
 
+::wide_character * __u64towide(::u64 u, ::wide_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::wide_character * & end)
+{
+
+   end = buf;
+
+   __tosz(u, end, iBase, edigitcase);
+
+   return buf;
+
+}
+
+
 ::wd16_character * __i64towd16(::i64 i, ::wd16_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::wd16_character *& end)
 {
 
@@ -40,6 +52,18 @@
 
 
 ::wd32_character * __i64towd32(::i64 i, ::wd32_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::wd32_character *& end)
+{
+
+   end = buf;
+
+   __tosz(i, end, iBase, edigitcase);
+
+   return buf;
+
+}
+
+
+::wide_character * __i64towide(::i64 i, ::wide_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::wide_character *& end)
 {
 
    end = buf;

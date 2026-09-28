@@ -2021,8 +2021,8 @@ list(APPEND library_source
         operating_system/sunos/process.h
         operating_system/sunos/simple_ui.h
         operating_system/sunos/solaris.h
-        operating_system/sunos/user_impl.h
-        operating_system/sunos/window_xlib.h
+        #operating_system/sunos/user_impl.h
+        #operating_system/sunos/window_xlib.h
         operating_system/string.cpp
         operating_system/text.h
         operating_system/time.h

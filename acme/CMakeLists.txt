@@ -2005,24 +2005,24 @@ list(APPEND library_source
         operating_system/shared_posix/windows_time.cpp
         operating_system/shared_posix/time.cpp
         operating_system/shared_posix/time1.h
-        operating_system/solaris/linux_internal.h
-        operating_system/solaris/solaris.h
-        operating_system/solaris/solaris_cairo_keep.h
-        operating_system/solaris/solaris_cross_win_file.h
-        operating_system/solaris/solaris_cross_win_gdi.h
-        operating_system/solaris/solaris_cross_win_gdi_internal.h
-        operating_system/solaris/solaris_debug.h
-        operating_system/solaris/solaris_file.h
-        operating_system/solaris/solaris_file_watcher.h
-        operating_system/solaris/solaris_graphics.h
-        operating_system/solaris/solaris_http.h
-        operating_system/solaris/solaris_http_lib.h
-        operating_system/solaris/solaris_internal.h
-        operating_system/solaris/solaris_process.h
-        operating_system/solaris/solaris_simple_ui.h
-        operating_system/solaris/solaris_solaris.h
-        operating_system/solaris/solaris_user_impl.h
-        operating_system/solaris/solaris_window_xlib.h
+        operating_system/sunos/linux_internal.h
+        operating_system/sunos/solaris.h
+        operating_system/sunos/cairo_keep.h
+        operating_system/sunos/cross_win_file.h
+        operating_system/sunos/cross_win_gdi.h
+        operating_system/sunos/cross_win_gdi_internal.h
+        operating_system/sunos/debug.h
+        operating_system/sunos/file.h
+        operating_system/sunos/file_watcher.h
+        operating_system/sunos/graphics.h
+        operating_system/sunos/http.h
+        operating_system/sunos/http_lib.h
+        operating_system/sunos/internal.h
+        operating_system/sunos/process.h
+        operating_system/sunos/simple_ui.h
+        operating_system/sunos/solaris.h
+        operating_system/sunos/user_impl.h
+        operating_system/sunos/window_xlib.h
         operating_system/string.cpp
         operating_system/text.h
         operating_system/time.h
@@ -2943,28 +2943,28 @@ if (SOLARIS)
 
 
     list(APPEND library_source
-            operating_system/solaris/solaris.cpp
-            operating_system/solaris/solaris_cairo_keep.cpp
-            operating_system/solaris/solaris_cross_win_file.cpp
-            operating_system/solaris/solaris_cross_win_gdi.cpp
-            operating_system/solaris/solaris_display.cpp
-            operating_system/solaris/solaris_file.cpp
-            operating_system/solaris/solaris_file_watcher.cpp
-            operating_system/solaris/solaris_http.cpp
-            operating_system/solaris/solaris_http_lib.cpp
-            operating_system/solaris/solaris_launcher.cpp
-            operating_system/solaris/solaris_library.cpp
-            operating_system/solaris/solaris_lock.cpp
-            operating_system/solaris/solaris_message_loop.cpp
-            operating_system/solaris/solaris_process.cpp
-            operating_system/solaris/solaris_process_pid.cpp
-            operating_system/solaris/solaris_simple_shell_launcher.cpp
-            operating_system/solaris/solaris_simple_ui.cpp
-            operating_system/solaris/solaris_small_ipca_channel.cpp
-            operating_system/solaris/solaris_thread.cpp
-            operating_system/solaris/solaris_win_base.cpp
-            operating_system/solaris/solaris_window.cpp
-            operating_system/solaris/solaris_window_xlib.cpp)
+            operating_system/sunos/solaris.cpp
+            operating_system/sunos/cairo_keep.cpp
+            operating_system/sunos/cross_win_file.cpp
+            operating_system/sunos/cross_win_gdi.cpp
+            operating_system/sunos/display.cpp
+            operating_system/sunos/file.cpp
+            operating_system/sunos/file_watcher.cpp
+            operating_system/sunos/http.cpp
+            operating_system/sunos/http_lib.cpp
+            operating_system/sunos/launcher.cpp
+            operating_system/sunos/library.cpp
+            operating_system/sunos/lock.cpp
+            operating_system/sunos/message_loop.cpp
+            operating_system/sunos/process.cpp
+            operating_system/sunos/process_pid.cpp
+            operating_system/sunos/simple_shell_launcher.cpp
+            operating_system/sunos/simple_ui.cpp
+            operating_system/sunos/small_ipca_channel.cpp
+            operating_system/sunos/thread.cpp
+            operating_system/sunos/win_base.cpp
+            operating_system/sunos/window.cpp
+            operating_system/sunos/window_xlib.cpp)
 
 
 endif ()

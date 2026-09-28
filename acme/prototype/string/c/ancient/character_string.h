@@ -1,6 +1,6 @@
 #pragma once
 
-#include "platform.h"
+//#include "platform.h"
 
 // Header-only C-string-like operations for ca2 character types.
 //

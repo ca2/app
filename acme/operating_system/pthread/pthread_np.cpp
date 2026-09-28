@@ -35,12 +35,24 @@
 #endif
 #endif
 
+
+#if defined(__SUNOS__)
+
+#include <sys/types.h>
+#include <sys/processor.h>
+#include <sys/procset.h>
+#include <sys/lwp.h>
+
+//lwpid_t id = _lwp_self();
+
+#endif
+
 #ifdef __APPLE__
 #include <mach/thread_act.h>
 #include <errno.h>
 #endif
 
-#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD) || defined(__ANDROID__)
+#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD) || defined(__ANDROID__) || defined(__SUNOS__)
 
 ::i32 SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
 {
@@ -142,7 +154,58 @@
 
     ::i32 iRet = sched_setaffinity(pid, sizeof(c), &c);
 
-    return iRet != 0;
+    return iRet == 0;
+#elif defined(__SUNOS__)
+
+   ::i32 iProcessor = -1;
+   ::i32 iSetCount = 0;
+
+   for(::i32 i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
+   {
+
+      if((1U << i) & dwThreadAffinityMask)
+      {
+
+         iProcessor = i;
+
+         iSetCount++;
+
+      }
+
+   }
+   
+   /// todo: get lwpid in the thread and associate with pthread when the thread is current
+   auto lwpid = (::lwpid_t) ::literal_cast < pthread_t >(h);
+   
+   if(iSetCount == 0)
+   {
+
+      return processor_bind(
+         P_LWPID,
+         (::id_t) lwpid,
+         PBIND_NONE,
+         nullptr) == 0;
+
+   }
+
+   if(iSetCount != 1)
+   {
+
+      //
+      // illumos cannot represent an arbitrary multi-CPU mask
+      // using processor_bind().
+      //
+
+      return 0;
+
+   }
+
+   return processor_bind(
+      P_LWPID,
+      (::id_t) lwpid,
+      (::processorid_t) iProcessor,
+      nullptr) == 0;
+
 
 #else
     cpuset_t c;

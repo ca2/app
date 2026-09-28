@@ -13,7 +13,7 @@
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__)
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include "acme/operating_system/ansi/_ansi.h"
@@ -197,7 +197,7 @@ bool semaphore::_wait(const class time & timeWait)
 
 }
 
-#elif defined(LINUX) || defined(SOLARIS) || defined(__BSD__)
+#elif defined(LINUX) || defined(SOLARIS) || defined(__BSD__) || defined(__SUNOS__)
 
 bool semaphore::_wait(const class time & timeWait)
 {

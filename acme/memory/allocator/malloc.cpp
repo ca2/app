@@ -110,7 +110,7 @@ namespace heap
 
       //{
 
-#if defined(OPENBSD) || defined(NETBSD)
+#if defined(OPENBSD) || defined(NETBSD) || defined(__SUNOS__)
 
       return 0;
 

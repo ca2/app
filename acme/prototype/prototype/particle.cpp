@@ -1815,8 +1815,8 @@ CLASS_DECL_ACME lresult __call_message(::particle* pparticle, ::user::enum_messa
       if(wparam != 0 || lparam != 0)
       {
 
-         ptopic->payload("wparam") = wparam;
-         ptopic->payload("lparam") = lparam;
+         ptopic->payload("wparam") = (::iptr) wparam;
+         ptopic->payload("lparam") = (::iptr) lparam;
 
       }
 
@@ -1833,8 +1833,8 @@ CLASS_DECL_ACME lresult __call_message(::particle* pparticle, ::user::enum_messa
       if(wparam != 0 || lparam != 0)
       {
 
-         pextendedtopic->payload("wparam") = wparam;
-         pextendedtopic->payload("lparam") = lparam;
+         pextendedtopic->payload("wparam") = (::iptr) wparam;
+         pextendedtopic->payload("lparam") = (::iptr) lparam;
 
       }
 

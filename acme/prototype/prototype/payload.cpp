@@ -1375,7 +1375,7 @@ class ::payload & payload::operator = (const ::color::hls & hls)
 //}
 
 
-#if !defined(LINUX) && !defined(MACOS) && !defined(__ANDROID__) && !defined(APPLE_IOS) && !defined(__BSD__)
+#if !defined(LINUX) && !defined(MACOS) && !defined(__ANDROID__) && !defined(APPLE_IOS) && !defined(__BSD__) && !defined(__SUNOS__)
 
 class ::payload & payload::operator = (long l)
 {
@@ -4302,7 +4302,7 @@ bool payload::as_bool() const
    case e_type_f64:
       return (::i8)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
+#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
       return (::i8)atof(m_str);
 #else
       return (::i8)_atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -4344,7 +4344,7 @@ bool payload::as_bool() const
    case e_type_f64:
       return (::u8)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
+#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
       return (::u8)atof(m_str);
 #else
       return (::u8)_atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -4413,7 +4413,7 @@ bool payload::as_bool() const
    case e_type_f64:
       return (::i16)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
+#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
       return (::i16)atof(m_str);
 #else
       return (::i16)_atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -4483,7 +4483,7 @@ bool payload::as_bool() const
    case e_type_f64:
       return (::u16)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
+#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
       return (::u16)atof(m_str);
 #else
       return (::u16)_atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -4553,7 +4553,7 @@ bool payload::as_bool() const
    case e_type_f64:
       return (::f32) m_f64;
    case e_type_string:
-   #if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
+   #if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
       return (::f32) atof(m_str);
    #else
       return (::f32) _atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -4664,7 +4664,7 @@ bool payload::as_bool() const
    else if(m_etype == ::e_type_string)
    {
 
-#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
+#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
 
       d = atof(m_str);
 

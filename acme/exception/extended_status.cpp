@@ -4,11 +4,11 @@
 #include "platform.h"
 
 
-namespace extended
-{
+//namespace extended
+//{
 
 
-    ::i32 g_iSkipCallStack = SKIP_CALLSTACK;
+  //  ::i32 g_iSkipCallStack = SKIP_CALLSTACK;
 
 
 
@@ -370,6 +370,6 @@ namespace extended
 
     //}
 
-} // namespace status
+//} // namespace status
 
 

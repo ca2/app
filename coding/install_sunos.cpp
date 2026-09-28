@@ -1283,23 +1283,23 @@ namespace coding
    //~ }
 
 
-   //~ bool application::__is_git_scm_installed()
-   //~ {
+   bool application::__is_git_scm_installed()
+   {
 
-      //~ bool bGitInstalled = node()->has_posix_shell_command("git");
+      bool bGitInstalled = node()->has_posix_shell_command("git");
 
-      //~ if (bGitInstalled)
-      //~ {
-         //~ //auto p = message_box("Git is installed", "Git is installed", e_message_box_ok);
+      if (bGitInstalled)
+      {
+         //auto p = message_box("Git is installed", "Git is installed", e_message_box_ok);
 
-         //~ //p->do_synchronously();
-      //~ }
-      //~ else
-      //~ {
-      //~ }
+         //p->do_synchronously();
+      }
+      else
+      {
+      }
 
-      //~ return bGitInstalled;
-   //~ }
+      return bGitInstalled;
+   }
 
 
    void install::install_smart_git()

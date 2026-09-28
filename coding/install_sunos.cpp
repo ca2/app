@@ -26,57 +26,57 @@ namespace coding
 {
 
 
-   //~ ::string install::get_latest_git_credential_manager_download_url()
-   //~ {
+   ::string install::get_latest_git_credential_manager_download_url()
+   {
 
-      //~ auto strUrl = "https://github.com/git-ecosystem/git-credential-manager/releases/latest";
+      auto strUrl = "https://github.com/git-ecosystem/git-credential-manager/releases/latest";
 
-      //~ informationf("gonna get effective url of : %s", strUrl);
+      informationf("gonna get effective url of : %s", strUrl);
 
-      //~ ::property_set set;
+      ::property_set set;
 
-      //~ auto strRedir = http()->get_effective_url(strUrl, set).as_string();
+      auto strRedir = http()->get_effective_url(strUrl, set).as_string();
 
-      //~ auto pszRedir = strRedir.c_str();
+      auto pszRedir = strRedir.c_str();
 
-      //~ informationf("latest release url : %s", pszRedir);
+      informationf("latest release url : %s", pszRedir);
 
-      //~ ::file::path pathRedir = strRedir;
+      ::file::path pathRedir = strRedir;
 
-      //~ ::string strRel = pathRedir.name();
+      ::string strRel = pathRedir.name();
 
-      //~ ::string strNum = strRel;
+      ::string strNum = strRel;
 
-      //~ strNum.case_insensitive_begins_eat("v");
+      strNum.case_insensitive_begins_eat("v");
 
-      //~ auto psummary = node()->operating_system_summary();
+      auto psummary = node()->operating_system_summary();
 
-      //~ ::string strDownload;
+      ::string strDownload;
 
-      //~ if (psummary->m_strSystemFamily.case_insensitive_contains("debian"))
-      //~ {
-         //~ strDownload.formatf(
-            //~ "https://github.com/git-ecosystem/git-credential-manager/releases/download/%s/gcm-linux_amd64.%s.deb",
-            //~ strRel.c_str(),
-            //~ strNum.c_str());
-      //~ }
-      //~ else
-      //~ {
-         //~ strDownload.formatf(
-            //~ "https://github.com/git-ecosystem/git-credential-manager/releases/download/%s/gcm-linux_amd64.%s.tar.gz",
-            //~ strRel.c_str(),
-            //~ strNum.c_str());
-      //~ }
+      if (psummary->m_strSystemFamily.case_insensitive_contains("debian"))
+      {
+         strDownload.formatf(
+            "https://github.com/git-ecosystem/git-credential-manager/releases/download/%s/gcm-linux_amd64.%s.deb",
+            strRel.c_str(),
+            strNum.c_str());
+      }
+      else
+      {
+         strDownload.formatf(
+            "https://github.com/git-ecosystem/git-credential-manager/releases/download/%s/gcm-linux_amd64.%s.tar.gz",
+            strRel.c_str(),
+            strNum.c_str());
+      }
 
-      //~ ::file::path pathSource = strDownload;
+      ::file::path pathSource = strDownload;
 
-      //~ informationf("latest_git_credential_manager : %s", pathSource.c_str());
+      informationf("latest_git_credential_manager : %s", pathSource.c_str());
 
-      //~ return pathSource;
+      return pathSource;
 
-      //~ //      auto pathDownload = directory_system()->download() / pathSource.name();
-      //~ //
-   //~ }
+      //      auto pathDownload = directory_system()->download() / pathSource.name();
+      //
+   }
 
 
    ::file::path install::get_download_url(::string& strName)

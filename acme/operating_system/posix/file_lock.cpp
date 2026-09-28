@@ -16,7 +16,13 @@
 
 
 #include <fcntl.h>
+#ifdef __SUNOS__
+#define file sunos_sys_file
+#define mutex sunos_sys_file_mutex
 #include <sys/file.h>
+#undef file
+#undef mutex
+#endif
 #undef USE_MISC
 #include <unistd.h>
 #include <errno.h>

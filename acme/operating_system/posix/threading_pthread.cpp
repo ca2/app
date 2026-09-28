@@ -10,7 +10,7 @@
 //#include "acme/operating_system/linux/_user.h"
 //#endif
 
-#if defined(OPENBSD)  || defined(FREEBSD) || defined(__APPLE__)
+#if defined(OPENBSD)  || defined(FREEBSD) || defined(__APPLE__) || defined(__SUNOS__)
 
 #include <string.h>
 
@@ -567,7 +567,7 @@ void get_os_priority(::i32 * piPolicy, sched_param * pparam, ::enum_priority epr
    else
    {
 
-#if defined(__APPLE__) || defined(__BSD__)
+#if defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__)
       iOsPolicy = SCHED_OTHER;
 #else
       iOsPolicy = SCHED_IDLE;

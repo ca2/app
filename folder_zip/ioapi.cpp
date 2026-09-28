@@ -75,14 +75,16 @@ extern "C" voidpf ZCALLBACK fopen_file_func (voidpf opaque, const_char_pointer p
 
 
    if ((pszFilename!=nullptr) && (mode_fopen != nullptr))
-#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(SOLARIS) || defined(__BSD__)
+#if defined(WINDOWS_DESKTOP)
+   {
+      err = fopen_s(&file, pszFilename, mode_fopen);
+   }
+#else
    {
       file = fopen(pszFilename, mode_fopen);
       if(file == nullptr)
          err = errno;
    }
-#else
-      err = fopen_s(&file, pszFilename, mode_fopen);
 #endif
    if(err != 0)
       return nullptr;

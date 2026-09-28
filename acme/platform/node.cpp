@@ -3707,7 +3707,7 @@ bool node::_is_smart_git_installed()
 
 #if !defined(ANDROID) && !defined(LINUX)
 
-#if !defined(__APPLE__) && !defined(__BSD__)
+#if !defined(__APPLE__) && !defined(__BSD__) && !defined(__SUNOS__)
 
 
    string node::_get_call_stack_trace(void ** stack, ::i32 frame_count, const ::scoped_string& scopedstrFormat , ::i32 iSkip , void* caller_address, ::i32 iCount)

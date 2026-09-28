@@ -610,6 +610,10 @@ namespace coding
       //return __is_visual_studio_installed();
       
       return true;
+      
+#else
+
+	  return false;
 
 #endif
 

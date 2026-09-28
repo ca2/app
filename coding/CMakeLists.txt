@@ -118,6 +118,12 @@ if(${OPENBSD})
             openbsd.cpp
     )
 endif()
+if(${__SUNOS__})
+    list(APPEND library_source
+            install_sunos.cpp
+            sunos.cpp
+    )
+endif()
 
 
 if(${LINUX} OR ${FREEBSD})

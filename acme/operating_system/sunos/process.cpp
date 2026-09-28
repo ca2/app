@@ -1,209 +1,1087 @@
+// Added launch_process_detached on 2026-01-03 05:53 <3ThomasBorregaardSørensen!!
 #include "platform.h"
 
+#include <iostream>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
-#include <signal.h>
-#undef USE_MISC
+//#include "_linux.h"
+////#include "acme/platform/app_core.h"
+//#include <sys/types.h>
+#include <unistd.h>
+
+#include "acme/operating_system/posix/termination_handler.h"
+//#include <signal.h>
+//#undef USE_MISC
+//
+//#include <sys/wait.h>
+//#include <spawn.h>
+//#include <sys/stat.h>
+//#include <unistd.h>
+//#include "node.h"
+//
+//::i32 create_process6(const_char_pointer _cmd_line, ::i32 * pprocessId);
+//
+//CLASS_DECL_ACME void dll_processes(u32_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrDll)
+//{
+//
+//   __UNREFERENCED_PARAMETER(dwa);
+//   __UNREFERENCED_PARAMETER(straProcesses);
+//   __UNREFERENCED_PARAMETER(scopedstrDll);
+//
+//}
+//::i32 create_process(const ::scoped_string & scopedstrCommandLine, ::i32 * pprocessId)
+//{
+//
+//   string_array_base stra;
+//
+//   stra = get_c_args_for_c(scopedstrCommandLine);
+//
+//   address_array < char_pointer > argv;
+//
+//   for(auto & str : stra)
+//   {
+//
+//      argv.add((char_pointer ) str.c_str());
+//
+//   }
+//
+//   argv.add(nullptr);
+//
+//   pid_t pid = 0;
+//
+//   string strExe = argv[0];
+//
+//   ::i32 status = posix_spawn(&pid, argv[0], nullptr, nullptr, argv.get_data(), environ);
+//
+//   if (status == 0)
+//   {
+//
+//      if(strExe.case_insensitive_ends("_app_core_clockverse"))
+//      {
+//
+//         informationf("app-core/clockverse");
+//
+//      }
+//
+//      if(pprocessId != nullptr)
+//      {
+//
+//         *pprocessId = pid;
+//
+//      }
+//
+//      return 1;
+//
+//   }
+//   else
+//   {
+//
+//      if(strExe.case_insensitive_ends("_app_core_clockverse"))
+//      {
+//
+//         informationf("app-core/clockverse");
+//
+//      }
+//
+//      return 0;
+//
+//   }
+//
+//}
+//
+//
+//::i32 create_process3(const_char_pointer _cmd_line, ::i32 * pprocessId)
+//{
+//
+//   char_pointer exec_path_name;
+//
+//   char_pointer cmd_line;
+//
+//   char_pointer cmd_line2;
+//
+//   cmd_line = strdup(_cmd_line);
+//
+//   if(cmd_line == nullptr)
+//   {
+//
+//      return 0;
+//
+//   }
+//
+//   char_pointer argv[1024 + 1];
+//
+//   ::i32		argc = 0;
+//
+//   prepare_argc_argv(argc, argv, cmd_line);
+//
+//   pid_t pid;
+//
+//   ::i32 status;
+//
+//   status = posix_spawn(&pid, argv[0], nullptr, nullptr, argv, environ);
+//
+//   free(cmd_line);
+//
+//   if (status == 0)
+//   {
+//
+//      return 1;
+//
+//   }
+//   else
+//   {
+//
+//      return 0;
+//
+//   }
+//
+//}
+//
+//
+//::i32 daemonize_process(const ::scoped_string & scopedstrCommandLine, ::i32 * pprocessId)
+//{
+//
+//   string_array_base stra;
+//
+//   stra = get_c_args_for_c(scopedstrCommandLine);
+//
+//   char_pointer * argv = (char_pointer *) malloc(sizeof(char_pointer ) * (stra.get_size() + 1));
+//
+//   ::i32 argc = 0;
+//
+//   for(auto & str : stra)
+//   {
+//
+//      argv[argc] = strdup((char_pointer ) str.c_str());
+//
+//      argc++;
+//
+//   }
+//
+//   argv[argc] = nullptr;
+//
+//   pid_t pid;
+//
+//   pid = fork();
+//
+//   if (pid == -1)
+//   {
+//
+//      printf("fork error\n");
+//
+//      char_pointer * pargv = argv;
+//
+//      while(*pargv != nullptr)
+//      {
+//
+//         free(*pargv);
+//
+//         pargv++;
+//
+//      }
+//
+//      free(argv);
+//
+//      return 0;
+//
+//   }
+//   else if(pid > 0)
+//   {
+//
+//      return 1;
+//
+//   }
+//
+//   daemon(0, 0);
+//
+////   signal(SIGCHLD, SIG_IGN);
+////
+////   umask(0);
+////
+////   ::i32 sid = setsid();
+////
+////   if (sid < 0)
+////   {
+////
+////      exit(EXIT_FAILURE);
+////
+////   }
+////
+////    /* Change the current working directory.  This prevents the current
+////       directory from being locked; hence not being able to erase it. */
+////   if ((chdir("/")) < 0)
+////   {
+////
+////      exit(EXIT_FAILURE);
+////
+////   }
+////
+////   /* Redirect standard files to /dev/null */
+////   freopen( "/dev/null", "r", stdin);
+////   freopen( "/dev/null", "w", stdout);
+////   freopen( "/dev/null", "w", stderr);
+//
+//   ::i32 iExitCode = execv(argv[0], argv);
+//
+//   char_pointer * pargv = argv;
+//
+//   while(*pargv != nullptr)
+//   {
+//
+//      free(*pargv);
+//
+//      pargv++;
+//
+//   }
+//
+//   free(argv);
+//
+//   exit(iExitCode);
+//
+//
+//   return 0;
+//
+//}
+//
+//
+//::i32 create_process4(const ::scoped_string & scopedstrCommandLine, ::i32 * pprocessId)
+//{
+//
+//   string_array_base stra;
+//
+//   stra = get_c_args_for_c(scopedstrCommandLine);
+//
+//   char_pointer * argv = (char_pointer *) malloc(sizeof(char_pointer ) * (stra.get_size() + 1));
+//
+//   ::i32 argc = 0;
+//
+//   for(auto & str : stra)
+//   {
+//
+//      argv[argc] = strdup((char_pointer ) str.c_str());
+//
+//      argc++;
+//
+//   }
+//
+//   argv[argc] = nullptr;
+//
+//   if((*pprocessId = fork()) == 0)
+//   {
+//
+//      execv(argv[0], argv);
+//
+//      ::i32 status = 0;
+//
+//      wait(&status);
+//
+//      char_pointer * pargv = argv;
+//
+//      while(*pargv != nullptr)
+//      {
+//
+//         free(*pargv);
+//
+//         pargv++;
+//
+//      }
+//
+//      free(argv);
+//
+//      exit(status);
+//
+//   }
+//   else if(*pprocessId == -1)
+//   {
+//
+//      *pprocessId = 0;
+//
+//      char_pointer * pargv = argv;
+//
+//      while(*pargv != nullptr)
+//      {
+//
+//         free(*pargv);
+//
+//         pargv++;
+//
+//      }
+//
+//      free(argv);
+//
+//      return 0;
+//
+//   }
+//
+//   return 1;
+//
+//}
+//
+//
+//CLASS_DECL_ACME void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid)
+//{
+//
+//   string strCmdLine;
+//
+//   strCmdLine = pszPath;
+//
+//   if(ansi_length(scopedstrParam) > 0)
+//   {
+//
+//      strCmdLine +=  " ";
+//
+//      strCmdLine += pszParam;
+//
+//   }
+//
+//   ::i32 processId;
+//
+//   if(!create_process(strCmdLine, &processId))
+//   {
+//
+//      if(puiPid != nullptr)
+//      {
+//
+//         *puiPid = -1;
+//
+//      }
+//
+//      return -1;
+//
+//   }
+//
+//   if(puiPid != nullptr)
+//   {
+//
+//      *puiPid = processId;
+//
+//   }
+//
+//   return 0;
+//
+//}
+//
+//
+//CLASS_DECL_ACME void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
+//{
+//
+//   string strCmdLine;
+//
+//   strCmdLine = pszPath;
+//
+//   if(ansi_length(scopedstrParam) > 0)
+//   {
+//
+//      strCmdLine +=  " ";
+//
+//      strCmdLine += pszParam;
+//
+//   }
+//
+//   ::i32 processId;
+//
+//   if(!create_process(strCmdLine, &processId))
+//   {
+//
+//      set["pid"] = processId;
+//
+//      return -1;
+//
+//   }
+//
+//
+//   while(true)
+//   {
+//
+//      if(kill(processId, 0) == -1 && errno == ESRCH) // No process can be found corresponding to processId
+//      {
+//
+//         break;
+//
+//      }
+//
+//      sleep(1_ms);
+//
+//   }
+//
+//   set["pid"] = processId;
+//
+//   return 0;
+//
+//}
+//
+//
+//string module_path_from_pid(::u32 iPid)
+//{
+//
+//   struct stat sb;
+//
+//   ::i32 iSize;
+//
+//   string str;
+//
+//   str = "/proc/" + as_string(iPid) + "/exe";
+//
+//   memory mem;
+//
+//   ssize_t s;
+//
+//   bool iTry;
+//
+//   if(lstat(str, &sb) == -1)
+//   {
+//
+//retry:
+//
+//      iSize = 1024 * 4;
+//
+//      iTry = 1;
+//
+//      sb.st_size = iSize - 1;
+//
+//   }
+//   else
+//   {
+//
+//      iSize = sb.st_size + 1;
+//
+//      iTry = 0;
+//
+//   }
+//#if MEMDLEAK
+//   mem.m_strTag = "memory://function=module_path_from_pid";
+//#endif
+//   mem.set_size(iSize);
+//
+//   s = readlink (str, (char_pointer ) mem.get_data(), iSize);
+//
+//   if(s > sb.st_size)
+//   {
+//
+//      if(iTry <= 0)
+//      {
+//
+//         goto retry;
+//
+//      }
+//      else
+//      {
+//
+//         return "";
+//
+//      }
+//
+//   }
+//
+//   mem.get_data()[s] = '\0';
+//
+//   return (const_char_pointer )mem.get_data();
+//
+//}
+//
+//
+//::i32_array_base module_path_get_pid(const ::file::path & path)
+//{
+//
+//   ::i32_array_base ia;
+//
+//   ::file::path_array_base stra;
+//
+//   ::dir::ls_dir(stra, "/proc/");
+//
+//   for(auto & strPid : stra)
+//   {
+//
+//      ::i32 iPid = atoi(strPid.title());
+//
+//      if(iPid > 0)
+//      {
+//
+//         string strPath =module_path_from_pid(iPid);
+//
+//         if(strPath	 == pszPath)
+//         {
+//
+//            ia.add(iPid);
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//   return ia;
+//
+//}
+//
+//namespace acme
+//{
+//
+//
+//   namespace posix
+//   {
+//
+//
+//      atom_array node::module_path_get_pid(const ::scoped_string & scopedstr)
+//      {
+//
+//         informationf("os/linux_process.cpp app_get_pid (" + string(scopedstr) + ")");
+//
+//         atom_array ia;
+//
+//         ::file::path_array_base stra;
+//
+//         ::dir::ls_dir(stra, "/proc/");
+//
+//         string str(scopedstr);
+//
+//         str = "app=" + str;
+//
+//         string strApp(scopedstr);
+//
+//         strApp.replace("-", "_");
+//
+//         strApp.replace("/", "_");
+//
+//         string strApp2;
+//
+//         strApp2 = "_" + strApp;
+//
+//         for (auto & strPid : stra)
+//         {
+//
+//            ::i32 iPid = atoi(strPid.title());
+//
+//            if (iPid > 0)
+//            {
+//
+//               //if(iPid == 22912)
+//               //{
+//               //informationf("22912");
+//               //}
+//               ::file::path path = module_path_from_pid(iPid);
+//
+//               if (path.has_character())
+//               {
+//
+//                  //information(path + "\n");
+//
+//               }
+//
+//               string strTitle = path.title();
+//
+//               strTitle.case_insensitive_ends_eat(" (deleted)");
+//
+//               if (strTitle == strApp ||
+//                   strTitle == strApp2)
+//               {
+//
+//                  ia.add(iPid);
+//
+//               } else
+//               {
+//
+//                  string_array_base straCmdLine = cmdline_from_pid(iPid);
+//
+//                  string strCmdLine;
+//
+//                  strCmdLine = straCmdLine.implode(" ");
+//
+//                  if (straCmdLine.find_first(str) > 0)
+//                  {
+//
+//                     ia.add(iPid);
+//
+//                  }
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//         return ia;
+//
+//      }
+//
+//
+//      string node::command_line_from_pid(::u32 iPid)
+//      {
+//
+//         string_array_base stra;
+//
+//         string str;
+//
+//         str = "/proc/" + as_string(iPid) + "/cmdline";
+//
+//         memory mem = file_as_memory(str);
+//
+//         string strArg;
+//
+//         ::i8 ch;
+//
+//         for (::i32 i = 0; i < mem.get_size(); i++)
+//         {
+//
+//            ch = (::i8) mem.get_data()[i];
+//
+//            if (ch == '\0')
+//            {
+//
+//               stra.add(strArg);
+//
+//               strArg.empty();
+//
+//            } else
+//            {
+//
+//               strArg += ch;
+//
+//            }
+//
+//
+//         }
+//
+//         if (strArg.has_character())
+//         {
+//
+//            stra.add(strArg);
+//
+//         }
+//
+//         return stra;
+//
+//         /* the easiest case: we are in linux */
+////    ssize_t s = readlink (str, path, iSize);
+//
+//         //  if(s == -1)
+//         //{
+//         // return "";
+//         //}
+//
+//         //path[s] = '\0';
+//
+//         //return path;
+//
+//      }
+//
+//
+//      bool node::is_shared_library_busy(::u32 processid, const string_array_base & stra)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//
+//      bool node::is_shared_library_busy(const string_array_base & stra)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//
+//
+//   } // namespace posix
+//
+//
+//} // namespace acme
+//
+//bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, ::time timeTimeout )
+//{
+//
+//   ::property_set set;
+//
+//   return call_sync(scopedstrFile, pszParams, ::file::path(scopedstrFile).folder(), e_display_none, timeTimeout, set);
+//
+//}
+//
+//
+//CLASS_DECL_ACME ::i32 ca2_main();
+//
+//
+//
+//::i32 create_process2(const ::scoped_string & scopedstrCommandLine, ::i32 * pprocessId)
+//{
+//
+//   string_array_base stra;
+//
+//   stra = get_c_args_for_c(scopedstrCommandLine);
+//
+//   char_pointer * argv = (char_pointer *) malloc(sizeof(char_pointer ) * (stra.get_size() + 1));
+//
+//   ::i32 argc = 0;
+//
+//   for(auto & str : stra)
+//   {
+//
+//      argv[argc] = strdup((char_pointer ) str.c_str());
+//
+//      argc++;
+//
+//   }
+//
+//   argv[argc] = nullptr;
+//
+//   pid_t pid = 0;
+//
+//   if((pid = fork()) == 0) // child
+//   {
+//
+//      ::i32 iExitCode = execv(argv[0], argv);
+//
+//      char_pointer * pargv = argv;
+//
+//      while(*pargv != nullptr)
+//      {
+//
+//         free(*pargv);
+//
+//         pargv++;
+//
+//      }
+//
+//      free(argv);
+//
+//      exit(iExitCode);
+//
+//   }
+//   else if(pid == -1) // in parent, but error
+//   {
+//
+//      char_pointer * pargv = argv;
+//
+//      while(*pargv != nullptr)
+//      {
+//
+//         free(*pargv);
+//
+//         pargv++;
+//
+//      }
+//
+//      free(argv);
+//
+//      return 0;
+//
+//   }
+//
+//   if(pprocessId != nullptr)
+//   {
+//
+//      *pprocessId = pid;
+//
+//   }
+//
+//   return 1;
+//
+//}
+//CLASS_DECL_ACME ::file::path core_app_path(const ::scoped_string & scopedstrApp)
+//{
+//
+//   strApp.replace("-", "_");
+//
+//   strApp.replace("/", "_");
+//
+//   return "/xcore/time/x64/basis/" + strApp;
+//
+//}
+//
+//
 
 
-
-extern thread_int_ptr < os_thread > t_posthread;
-
-namespace acme
+::u32 get_current_process_id()
 {
 
- namespace solaris
- {
+   return getpid();
 
-::i32 create_process(const_char_pointer _cmd_line, ::i32 * pprocessId)
-{
-   char_pointer exec_path_name;
-   char_pointer cmd_line;
-
-   cmd_line = (char_pointer ) ca2_alloc(strlen(_cmd_line ) + 1 );
-
-   if(cmd_line == nullptr)
-      return 0;
-
-   ansi_copy(cmd_line, _cmd_line);
-
-   if((*pprocessId = fork()) == 0)
-   {
-      // child
-      char_pointer pArg, *pPtr;
-      char_pointer argv[1024 + 1];
-      ::i32		 argc;
-      if( ( pArg = ansi_find_char_reverse( exec_path_name, '/' ) ) != nullptr )
-         pArg++;
-      else
-         pArg = exec_path_name;
-      argv[0] = pArg;
-      argc = 1;
-
-      if( cmd_line != nullptr && *cmd_line != '\0' )
-      {
-         pArg = strtok_r_dup(cmd_line, " ", &pPtr);
-         while( pArg != nullptr )
-         {
-            argv[argc] = pArg;
-            argc++;
-            if( argc >= 1024 )
-               break;
-            pArg = strtok_r_dup(nullptr, " ", &pPtr);
-         }
-      }
-      argv[argc] = nullptr;
-
-      execv(exec_path_name, argv);
-      free(cmd_line);
-      exit( -1 );
-   }
-   else if(*pprocessId == -1)
-   {
-      // in parent, but error
-      *pprocessId = 0;
-      free(cmd_line);
-      return 0;
-   }
-   // in parent, success
-   return 1;
 }
 
- } //namespace solaris
 
- }// namespace acme
+//
+//
+//
 
-CLASS_DECL_ACME ::i32 call_async(
-const ::file::path & path,
-const ::scoped_string & scopedstrParam,
-const ::scoped_string & scopedstrDir,
-::i32 iShow)
-{
-   vsstring strCmdLine;
-
-   strCmdLine = pszPath;
-   if(ansi_length(scopedstrParam) > 0)
-   {
-      strCmdLine +=  " ";
-      strCmdLine += pszParam;
-   }
-
-   ::i32 processId;
-
-   if(!create_process(strCmdLine, &processId))
-      return -1;
-
-   return 0;
-
-}
-
-CLASS_DECL_ACME ::u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
-{
-   vsstring strCmdLine;
-
-   strCmdLine = pszPath;
-   if(ansi_length(scopedstrParam) > 0)
-   {
-      strCmdLine +=  " ";
-      strCmdLine += pszParam;
-   }
-
-   ::i32 processId;
-
-   if(!create_process(strCmdLine, &processId))
-      return -1;
-
-
-   while(true)
-   {
-
-      if(kill(processId, 0) == -1 && errno == ESRCH) // No process can be found corresponding to processId
-         break;
-      sleep(1_ms);
-   }
-
-   return 0;
-}
-
-
-
-
-
-
-
-
-
-
-CLASS_DECL_ACME bool main_initialize()
+void install_operating_system_default_signal_handlers()
 {
 
-   initialize_primitive_heap();
-
-   if(!os_initialize())
-      return false;
-
-   return true;
-
-}
-
-
-CLASS_DECL_ACME bool main_finalize()
-{
-
-   bool bOk = true;
-
-   if(!os_finalize())
-      bOk = false;
-
-   finalize_primitive_trace();
-
-   return bOk;
 
 }
 
 
 
-
-bool os_initialize()
+::i32 launch_process_detached(const ::file::path & pathExecutable)
 {
 
+//::string strPath(scopedstrPath);
+//}
 
-   if(!initialize_primitive_trace())
-      return false;
+    char_pointer app_path = strdup(pathExecutable);
 
-   t_posthread = ___new os_thread(nullptr, nullptr);
 
-   t_posthread->m_bRun = true;
+        //const_char_pointer app_path = "/path/to/your/application";
 
-   return true;
+        // Fork a new process
+        pid_t pid = fork();
+
+        if (pid == -1) {
+            ::error() << "Fork failed!";
+            return 1;
+        }
+
+        if (pid == 0) {
+            // In the child process
+
+            // Step 1: Create a new session and detach from the parent
+            if (setsid() == -1) {
+                ::error() << "Failed to create a new session!";
+                return 1;
+            }
+
+            // Step 2: Optionally, close the standard file descriptors
+            close(STDIN_FILENO);
+            close(STDOUT_FILENO);
+            close(STDERR_FILENO);
+
+            // Optionally redirect output to a log file or /dev/null
+            ::i32 dev_null = open("/dev/null", O_RDWR);
+            if (dev_null != -1) {
+                dup2(dev_null, STDOUT_FILENO);
+                dup2(dev_null, STDERR_FILENO);
+            }
+
+            // Step 3: Replace the child process with the executable
+            const_char_pointer args[] = { app_path, nullptr };
+            execv(app_path, (char_pointer const*)args);
+
+            // If execv() fails, print an error
+            ::error() << "Exec failed!";
+            return 1;
+        } else {
+            // In the parent process: Child is detached
+            ::information() << "Application : \""<<app_path<<"\" launched in the background with PID: " << pid;
+        }
+
+
+return 0;
 
 }
 
 
-bool os_finalize()
+void acme_quite_early_construct()
 {
 
-   if(t_posthread != nullptr)
-   {
 
-      try
-      {
-
-         delete t_posthread;
-
-      }
-      catch(...)
-      {
-
-      }
-
-      t_posthread = nullptr;
-
-   }
-
-   os_thread::stop_all((5000) * 49);
-
-   finalize_primitive_trace();
-
-   return true;
+   termination_handler::initialize();
 
 }
+//~ #include <signal.h>
+//~ #undef USE_MISC
+
+
+
+//~ extern thread_int_ptr < os_thread > t_posthread;
+
+//~ namespace acme
+//~ {
+
+ //~ namespace solaris
+ //~ {
+
+//~ ::i32 create_process(const_char_pointer _cmd_line, ::i32 * pprocessId)
+//~ {
+   //~ char_pointer exec_path_name;
+   //~ char_pointer cmd_line;
+
+   //~ cmd_line = (char_pointer ) ca2_alloc(strlen(_cmd_line ) + 1 );
+
+   //~ if(cmd_line == nullptr)
+      //~ return 0;
+
+   //~ ansi_copy(cmd_line, _cmd_line);
+
+   //~ if((*pprocessId = fork()) == 0)
+   //~ {
+      //~ // child
+      //~ char_pointer pArg, *pPtr;
+      //~ char_pointer argv[1024 + 1];
+      //~ ::i32		 argc;
+      //~ if( ( pArg = ansi_find_char_reverse( exec_path_name, '/' ) ) != nullptr )
+         //~ pArg++;
+      //~ else
+         //~ pArg = exec_path_name;
+      //~ argv[0] = pArg;
+      //~ argc = 1;
+
+      //~ if( cmd_line != nullptr && *cmd_line != '\0' )
+      //~ {
+         //~ pArg = strtok_r_dup(cmd_line, " ", &pPtr);
+         //~ while( pArg != nullptr )
+         //~ {
+            //~ argv[argc] = pArg;
+            //~ argc++;
+            //~ if( argc >= 1024 )
+               //~ break;
+            //~ pArg = strtok_r_dup(nullptr, " ", &pPtr);
+         //~ }
+      //~ }
+      //~ argv[argc] = nullptr;
+
+      //~ execv(exec_path_name, argv);
+      //~ free(cmd_line);
+      //~ exit( -1 );
+   //~ }
+   //~ else if(*pprocessId == -1)
+   //~ {
+      //~ // in parent, but error
+      //~ *pprocessId = 0;
+      //~ free(cmd_line);
+      //~ return 0;
+   //~ }
+   //~ // in parent, success
+   //~ return 1;
+//~ }
+
+ //~ } //namespace solaris
+
+ //~ }// namespace acme
+
+//~ CLASS_DECL_ACME ::i32 call_async(
+//~ const ::file::path & path,
+//~ const ::scoped_string & scopedstrParam,
+//~ const ::scoped_string & scopedstrDir,
+//~ ::i32 iShow)
+//~ {
+   //~ vsstring strCmdLine;
+
+   //~ strCmdLine = pszPath;
+   //~ if(ansi_length(scopedstrParam) > 0)
+   //~ {
+      //~ strCmdLine +=  " ";
+      //~ strCmdLine += pszParam;
+   //~ }
+
+   //~ ::i32 processId;
+
+   //~ if(!create_process(strCmdLine, &processId))
+      //~ return -1;
+
+   //~ return 0;
+
+//~ }
+
+//~ CLASS_DECL_ACME ::u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
+//~ {
+   //~ vsstring strCmdLine;
+
+   //~ strCmdLine = pszPath;
+   //~ if(ansi_length(scopedstrParam) > 0)
+   //~ {
+      //~ strCmdLine +=  " ";
+      //~ strCmdLine += pszParam;
+   //~ }
+
+   //~ ::i32 processId;
+
+   //~ if(!create_process(strCmdLine, &processId))
+      //~ return -1;
+
+
+   //~ while(true)
+   //~ {
+
+      //~ if(kill(processId, 0) == -1 && errno == ESRCH) // No process can be found corresponding to processId
+         //~ break;
+      //~ sleep(1_ms);
+   //~ }
+
+   //~ return 0;
+//~ }
+
+
+
+
+
+
+
+
+
+
+//~ CLASS_DECL_ACME bool main_initialize()
+//~ {
+
+   //~ initialize_primitive_heap();
+
+   //~ if(!os_initialize())
+      //~ return false;
+
+   //~ return true;
+
+//~ }
+
+
+//~ CLASS_DECL_ACME bool main_finalize()
+//~ {
+
+   //~ bool bOk = true;
+
+   //~ if(!os_finalize())
+      //~ bOk = false;
+
+   //~ finalize_primitive_trace();
+
+   //~ return bOk;
+
+//~ }
+
+
+
+
+//~ bool os_initialize()
+//~ {
+
+
+   //~ if(!initialize_primitive_trace())
+      //~ return false;
+
+   //~ t_posthread = ___new os_thread(nullptr, nullptr);
+
+   //~ t_posthread->m_bRun = true;
+
+   //~ return true;
+
+//~ }
+
+
+//~ bool os_finalize()
+//~ {
+
+   //~ if(t_posthread != nullptr)
+   //~ {
+
+      //~ try
+      //~ {
+
+         //~ delete t_posthread;
+
+      //~ }
+      //~ catch(...)
+      //~ {
+
+      //~ }
+
+      //~ t_posthread = nullptr;
+
+   //~ }
+
+   //~ os_thread::stop_all((5000) * 49);
+
+   //~ finalize_primitive_trace();
+
+   //~ return true;
+
+//~ }

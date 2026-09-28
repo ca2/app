@@ -114,7 +114,7 @@ void clock_getrealtime(struct timespec * pts)
 
 ::i32 g_iHappeningSerialId = 1;
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
 
 
 bool happening::start_notify_lock(::notify_lock * pnotifylock)

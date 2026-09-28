@@ -63,7 +63,7 @@ CLASS_DECL_ACME void preempt_microsecond(::i64 i)
 #endif
 
 
-#if defined(__ANDROID__) || defined(__APPLE__) || defined(LINUX) || defined(__BSD__)
+#if defined(__ANDROID__) || defined(__APPLE__) || defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 
 
 CLASS_DECL_ACME void preempt_nanosecond(::i64 i)

@@ -1,9 +1,214 @@
 #include "platform.h"
+#include "_sunos.h"
+#include "acme/operating_system/ansi/binreloc.h"
+#include "acme/operating_system/file.h"
+#include <unistd.h>
+#include <sys/types.h>
+//#include <sys/sysctl.h>
+#include <stdio.h>
+#include <limits.h>
+
+
+
+
+//string get_sys_temp_path()
+//{
+
+  // return ::dir::path(getenv("HOME"), ".ca2", "time");
+
+//}
+
 
 
 string get_sys_temp_path()
 {
 
-   return ::dir::path(getenv("HOME"), ".ca2", "time");
+   return ::file::path(getenv("HOME")) / ".ca2" / "time";
 
 }
+
+
+bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
+{
+
+   return false;
+
+}
+
+
+
+//bool context::_os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::interaction_base * pprimitive, bool bNoUI, bool bNoMount)
+//{
+//
+//    if(::is_null(scopedstr))
+//    {
+//
+//        return false;
+//
+//    }
+//   char_pointer pszRealPath = ::realpath(scopedstr, NULL);
+//
+//   if(scopedstrRealPath == NULL)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if(strcmp(scopedstr, pszRealPath) == 0)
+//   {
+//
+//    ::free(scopedstrRealPath);
+//
+//    return false;
+//
+//   }
+//
+//   try
+//   {
+//
+//      path = pszRealPath;
+//
+//   }
+//   catch(...)
+//   {
+//
+//   }
+//
+//   ::free(scopedstrRealPath);
+//
+//   return true;
+//
+//}
+//
+
+
+// CLASS_DECL_ACME bool context::os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::interaction_base * pinteraction, bool bNoUI, bool bNoMount)
+// {
+
+//    return _os_resolve_alias(path, psz, bNoUI, bNoMount);
+
+// }
+
+
+
+CLASS_DECL_ACME bool _os_may_have_alias(const ::scoped_string & scopedstr)
+{
+
+   return true;
+
+}
+
+
+namespace path
+{
+
+
+   ::file::path module()
+   {
+
+      // https://arstechnica.com/civis/viewtopic.php?t=433790
+
+      ::i8 exepath[PATH_MAX];
+
+      ::i8 temp[PATH_MAX];
+
+      ::snprintf(temp, sizeof(temp),"/proc/%d/file", ::getpid());
+
+      ::realpath(temp, exepath);
+      // end https://arstechnica.com/civis/viewtopic.php?t=433790
+
+      return exepath;
+
+   }
+
+
+} // namespace path
+
+
+char_pointer get_current_dir_name()
+{
+
+    return getcwd(nullptr, 0);
+
+}
+
+
+
+
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//#include <errno.h>
+//
+//
+//::file::path get_module_path()
+//{
+//
+//   ::i32 mib[4];
+//   mib[0] = CTL_KERN;
+//   mib[1] = KERN_PROC;
+//   mib[2] = KERN_PROC_PATHNAME;
+//   mib[3] = -1;
+//   ::i8 pathbuf[4096];
+//   size_t cb = sizeof(pathbuf);
+//   sysctl(mib, 4, pathbuf, &cb, NULL, 0);
+//
+//   return pathbuf;
+//
+//}
+
+
+
+
+
+::file::path get_module_path()
+{
+
+   char szModulePath[PATH_MAX];
+
+
+   auto iSize = ::readlink(
+      "/proc/self/path/a.out",
+      szModulePath,
+      sizeof(szModulePath) - 1);
+
+
+   if(iSize <= 0)
+   {
+
+      return {};
+
+   }
+
+
+   szModulePath[iSize] = '\0';
+
+
+   return szModulePath;
+
+}
+
+
+
+
+
+
+
+
+
+CLASS_DECL_ACME ::file::path get_home_config_folder_path()
+{
+
+   auto pathHomeConfigFolder = get_home_folder_path() / ".config";
+
+   return pathHomeConfigFolder;
+
+}
+
+
+
+
+
+

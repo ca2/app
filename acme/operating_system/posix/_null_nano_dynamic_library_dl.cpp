@@ -5,7 +5,7 @@
 #include "acme/operating_system/dynamic_library.h"
 
 
-#if defined(LINUX) || defined(__BSD__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 
 
 namespace operating_system

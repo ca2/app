@@ -32,7 +32,7 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
-target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
+target_link_options(${PROJECT_NAME} PRIVATE ${LINK_STATIC_OPTION} -static-libgcc -static-libstdc++)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 

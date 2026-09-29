@@ -3481,6 +3481,13 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
         message(STATUS "ELSE acme this_system_libraries ${this_system_libraries}")
     endif ()
 
+  
+
+if(CMAKE_SYSTEM_NAME STREQUAL "SunOS")
+      list(APPEND library_references
+      socket)
+endif()
+
     #add_dependencies(${PROJECT_NAME} static_nano_dynamic_library_dl)
 
 

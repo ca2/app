@@ -194,7 +194,10 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 
-
+if(CMAKE_SYSTEM_NAME STREQUAL "SunOS")
+      list(APPEND library_references
+      socket)
+endif()
 
    if (${USE_PKGCONFIG})
       message(STATUS "networking_bsd USE_PKGCONFIG")

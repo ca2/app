@@ -10296,7 +10296,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    }
 
 
-#if defined(LINUX) || defined(__BSD__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 
 
    string application::get_wm_class() const

@@ -1,6 +1,6 @@
 // Created by camilo on 2022-02-06 10:27 <3ThomasBorregaardSorensen!!
 #include "platform.h"
-//#include "_memory.h"
+#include "_memory.h"
 
 
 //#ifdef WINDOWS
@@ -519,7 +519,7 @@ CLASS_DECL_ACME void * reverse_memory_copy(void * dst, const void * src, memsize
 
 
 
-#if defined(_WIN32) || defined(__APPLE__) || defined(__BSD__)
+#if defined(_WIN32) || defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__)
 
 
 const void * _memory_find(const void * l, memsize l_len, const void * s, memsize s_len)

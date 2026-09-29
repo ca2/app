@@ -472,7 +472,7 @@ namespace acme
 
    // #endif
 
-#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
+//#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 
 //::critical_section g_criticalsectionThreadIdHandleLock;
 
@@ -486,7 +486,7 @@ namespace acme
 
 //::critical_section g_criticalsectionTlsData;
 
-#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
+//#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
 
 
 
@@ -658,7 +658,7 @@ namespace acme
 //
 //
 //   }
-      ::platform::platform * acme::platform() { return ::platform::get(); }
+
 
 
    void acme::acme_construct()
@@ -1654,6 +1654,16 @@ namespace acme
 //      return g_criticalsectionGlobal;
 //
 //   }
+
+
+
+
+   ::platform::platform * acme::platform() 
+   {
+	   
+	    return ::platform::get(); 
+	    
+   }
 
 
    bool should_output_debug_string()

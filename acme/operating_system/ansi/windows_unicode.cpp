@@ -13,7 +13,7 @@
 
 
 #ifndef UNIVERSAL_WINDOWS
-
+//#error "Seem Ok you may comment it out again"
 string iconv_charset_from_windows_code_page(::u32 CodePage)
 {
 
@@ -279,6 +279,134 @@ const_char_pointer pMultiByteStr,
   }
 
 }
+
+
+
+
+::i32
+MultiByteToWideChar2(
+::u32     CodePage,
+::u32    dwFlags,
+const_char_pointer pMultiByteStr,
+::i32      cbMultiByte,
+::wide_character *   pWideCharStr,
+::i32      cchWideChar)
+{
+  string str(pMultiByteStr, cbMultiByte);
+
+
+  if(CodePage == CP_UTF8)
+  {
+
+     str = string(pMultiByteStr, cbMultiByte);
+
+
+     wstring wstr(str);
+
+     if(cchWideChar == 0)
+     {
+        if(cbMultiByte < 0)
+        {
+           return (::i32) (wstr.length() + 1);
+        }
+        else
+        {
+           return (::i32) wstr.length();
+        }
+     }
+
+     ::i32 iLen = (::i32) minimum(cchWideChar, wstr.length());
+
+     if(pWideCharStr != nullptr)
+     {
+
+        ::utf_to_utf(pWideCharStr, wstr.c_str(), iLen);
+
+        if(cchWideChar > 0 && cbMultiByte < 0)
+        {
+
+           pWideCharStr[iLen] = L'\0';
+
+
+        }
+
+     }
+
+     if(cbMultiByte < 0)
+     {
+        return iLen + 1;
+     }
+     else
+     {
+        return iLen;
+     }
+
+  }
+  else
+  {
+
+     size_t sIn;
+
+     if(cbMultiByte < 0)
+        sIn = ansi_len(pMultiByteStr);
+
+     else
+        sIn = cbMultiByte;
+
+     if(cchWideChar <= 0)
+     {
+
+        wide_string wstr;
+
+        size_t sOut = sIn * 4;
+
+        wstr.get_buffer(sOut);
+
+        sOut *= sizeof(::wide_character);
+
+        ::wide_character * psz = (::wide_character *) (const ::wide_character *) wstr;
+
+
+        pWideCharStr = psz;
+
+
+        iconv_t iconvPlease = iconv_open("UTF-32LE", iconv_charset_from_windows_code_page(CodePage));
+
+        size_t sOutIn = sOut;
+
+        iconv(iconvPlease, (char_pointer *) &pMultiByteStr, &sIn, (char_pointer *) &psz, &sOut);
+
+
+        iconv_close(iconvPlease);
+
+        return (::i32) (((sOutIn - sOut) / sizeof(::wide_character)) + (cbMultiByte < 0 ? 1 : 0));
+
+     }
+     else
+     {
+
+        ::wide_character * psz = (::wide_character *) (const ::wide_character *) pWideCharStr;
+
+
+        size_t sOut = cchWideChar * sizeof(::wide_character);
+
+        iconv_t iconvPlease = iconv_open("UTF-32LE", iconv_charset_from_windows_code_page(CodePage));
+
+        size_t sOutIn = sOut;
+
+        iconv(iconvPlease, (char_pointer *) &pMultiByteStr, &sIn, (char_pointer *) &psz, &sOut);
+
+
+        iconv_close(iconvPlease);
+
+        return (::i32) (((sOutIn - sOut) / sizeof(::wide_character))  + (cbMultiByte < 0 ? 1 : 0));
+
+     }
+
+  }
+
+}
+
 
 
 ::i32  WideCharToMultiByte2(

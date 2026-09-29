@@ -59,7 +59,8 @@ CLASS_DECL_ACME void ansi_unlink(const ::scoped_string & scopedstr);
 #if !defined(__APPLE__) \
 && !defined(LINUX) \
 && !defined(__ANDROID__) \
-&& !defined(__BSD__)
+&& !defined(__BSD__) \
+&& !defined(__SUNOS__)
 
 ::i32 ftruncate(::i32 file, filesize len);
 

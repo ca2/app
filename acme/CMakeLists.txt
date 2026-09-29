@@ -3249,7 +3249,7 @@ if (${__SUNOS__})
             #operating_system/freebsd/_user.h
             #operating_system/freebsd/application.h
             #operating_system/freebsd/call_stack.cpp
-			#operating_system/freebsd/console.cpp
+			operating_system/sunos/console.cpp
 			operating_system/sunos/cpu_features.cpp
             operating_system/sunos/cpu_features_i86pc.cpp
             #      operating_system/freebsd/cross_win_file.cpp
@@ -3282,9 +3282,9 @@ if (${__SUNOS__})
             #operating_system/freebsd/root_tools.cpp
             #operating_system/freebsd/root_tools.h
             #operating_system/freebsd/simple_app.cpp
-            #operating_system/freebsd/standard_exception.cpp
-            #operating_system/freebsd/standard_exception.h
-            #operating_system/freebsd/system.cpp
+            operating_system/sunos/standard_exception.cpp
+            operating_system/sunos/standard_exception.h
+            operating_system/sunos/sunos.cpp
             #operating_system/freebsd/thread.cpp
             #operating_system/freebsd/thread.h
             operating_system/sunos/threading.cpp
@@ -3373,7 +3373,7 @@ if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${__ANDROID__} OR ${__SU
 endif ()
 
 
-if (${LINUX} OR ${__BSD__})
+if (${LINUX} OR ${__BSD__} OR ${__SUNOS__})
 
 
     list(APPEND library_source

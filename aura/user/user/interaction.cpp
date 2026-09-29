@@ -19400,7 +19400,7 @@ if(get_parent())
          pmessage->m_operatingsystemwindow = system()->windowing()->operating_system_window(wparam);
       }
       break;
-#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
+#if defined(WINDOWS_DESKTOP)
       case ::user::e_message_prototype_window_pos:
 
       {

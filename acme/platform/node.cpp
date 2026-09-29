@@ -3661,7 +3661,7 @@ bool node::_is_smart_git_installed()
 //   }
 
 
-#if defined(__BSD__) || defined(__APPLE__)
+#if defined(__BSD__) || defined(__APPLE__) || defined(__SUNOS__)
 
    void node::arp_a(void *p, void(*callback)(void * addr, ::u32 uIp, const_char_pointer status))
    {

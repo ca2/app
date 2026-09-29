@@ -1498,6 +1498,8 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 
+
+
    #   if (${USE_PKGCONFIG})
    #      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG libarchive)
    #   endif ()

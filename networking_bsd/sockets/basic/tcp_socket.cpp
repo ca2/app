@@ -23,7 +23,7 @@
 CLASS_DECL_ACME::collection::count get_count_of_opened_sockets();
 CLASS_DECL_ACME::string _017Time(class ::time& time);
 
-#if defined(LINUX) || defined(__BSD__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 #undef USE_MISC
 #include <unistd.h>
 #include <sys/types.h>
@@ -2361,11 +2361,25 @@ m_ibuf(isize)
          warning() << "could not SSL_connect: " << error_str;
 
          ::i32 iErrorSsl = SSL_get_error(m_psslcontext->m_ssl, r);
+         
+                     const SSL_METHOD *meth;
+
+
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+
+meth = TLS_client_method();
+
+#else
+
+meth = SSLv23_client_method();
+
+#endif
+
 
          //if(m_spsslclientcontext.is_set() &&
          if (m_psslcontext->m_pclientcontext->m_psslcontext != nullptr &&
             iErrorSsl == SSL_ERROR_ZERO_RETURN
-            && (m_psslcontext->m_pclientcontext->m_psslmethod == TLS_client_method()))
+            && (m_psslcontext->m_pclientcontext->m_psslmethod == meth))
          {
 
             warning() << "::networking_bsd::tcp_socket::SSLNegotiate_Client ssl_error_zero_return";
@@ -2623,8 +2637,21 @@ m_ibuf(isize)
       //InitializeContext(m_strInitSSLClientContext,TLSv1_client_method());
 
       //InitializeContext(m_strInitSSLClientContext,TLS_client_method());
+      
+            const SSL_METHOD *meth;
 
-      InitializeContext(m_strInitSSLClientContext, TLS_client_method());
+
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+
+meth = TLS_client_method();
+
+#else
+
+meth = SSLv23_client_method();
+
+#endif
+
+      InitializeContext(m_strInitSSLClientContext, meth);
    }
 
 
@@ -2657,6 +2684,21 @@ m_ibuf(isize)
       string strId = m_strCat;
 
       auto psystem = system();
+      
+      
+                  const SSL_METHOD *meth;
+
+
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+
+meth = TLS_server_method();
+
+#else
+
+meth = SSLv23_server_method();
+
+#endif
+
 
       if (strId.case_insensitive_begins("cat://"))
       {
@@ -2666,7 +2708,7 @@ m_ibuf(isize)
          strId = "cat://" + psystem->crypto()->md5(strId);
 
       }
-      InitializeContext(strId, m_strCat, "", TLS_server_method());
+      InitializeContext(strId, m_strCat, "", meth);
 
       string strCipherList = m_strCipherList;
 
@@ -2739,35 +2781,75 @@ m_ibuf(isize)
 
          //SSL_CTX_set_tmp_ecdh(m_psslcontext->m_pclientcontext->m_psslcontext, ecdh);
 
-         i32_array_base iaCurves;
+         //i32_array_base iaCurves;
          //::i32* curves_new;
          //char_pointer cs = NULL;
          //char_pointer p, * q;
          //::i32 rv = -1;
          //::i32 nid;
 
+#if OPENSSL_VERSION_NUMBER >= 0x10101000L
 
-#define TLS_ECDHE_CURVES	"X25519,P-256,P-384"
-         //const_char_pointer curves = NID_secp384r1;
+   ::int_array iaGroups;
 
-         //free(config->ecdhecurves);
-         //config->ecdhecurves = NULL;
-         //config->ecdhecurves_len = 0;
+#ifdef NID_X25519
+   iaGroups.add(NID_X25519);
+#endif
 
-         //if (curves == NULL || strcasecmp(curves, "default") == 0)
-         //   curves = TLS_ECDHE_CURVES;
+   iaGroups.add(NID_X9_62_prime256v1);
+   iaGroups.add(NID_secp384r1);
+   iaGroups.add(NID_secp521r1);
 
-         iaCurves.add(NID_X25519);
-         iaCurves.add(NID_secp256k1);
-         iaCurves.add(NID_secp384r1);
-         // iaCurves.add(NID_secp521r1);
+   if(!SSL_CTX_set1_groups(
+      m_psslcontext->m_pclientcontext->m_psslcontext,
+      iaGroups.get_data(),
+      (long)iaGroups.get_size()))
+   {
 
-         if (!SSL_CTX_set1_groups(m_psslcontext->m_pclientcontext->m_psslcontext, iaCurves.get_data(), (long)iaCurves.get_size()))
-         {
+      // error
 
-            warning() << "::networking_bsd::tcp_socket::_001InitSSLServer failed to set ecdhe curves";
+   }
 
-         }
+#else
+
+   ::i32_array iaCurves;
+
+   iaCurves.add(NID_X9_62_prime256v1);
+   iaCurves.add(NID_secp384r1);
+   iaCurves.add(NID_secp521r1);
+
+   if(!SSL_CTX_set1_curves(
+      m_psslcontext->m_pclientcontext->m_psslcontext,
+      iaCurves.get_data(),
+      (int)iaCurves.get_size()))
+   {
+
+      // error
+
+   }
+
+#endif
+//~ #define TLS_ECDHE_CURVES	"X25519,P-256,P-384"
+         //~ //const_char_pointer curves = NID_secp384r1;
+
+         //~ //free(config->ecdhecurves);
+         //~ //config->ecdhecurves = NULL;
+         //~ //config->ecdhecurves_len = 0;
+
+         //~ //if (curves == NULL || strcasecmp(curves, "default") == 0)
+         //~ //   curves = TLS_ECDHE_CURVES;
+
+         //~ iaCurves.add(NID_X25519);
+         //~ iaCurves.add(NID_secp256k1);
+         //~ iaCurves.add(NID_secp384r1);
+         //~ // iaCurves.add(NID_secp521r1);
+
+         //~ if (!SSL_CTX_set1_groups(m_psslcontext->m_pclientcontext->m_psslcontext, iaCurves.get_data(), (long)iaCurves.get_size()))
+         //~ {
+
+            //~ warning() << "::networking_bsd::tcp_socket::_001InitSSLServer failed to set ecdhe curves";
+
+         //~ }
 
       }
 
@@ -2819,11 +2901,30 @@ m_ibuf(isize)
          m_psslcontext = allocateø ssl_context();
 
       }
+      
+                  const SSL_METHOD *meth = meth_in;
+                  
+                  if(::is_null(meth))
+                  {
+
+
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+
+meth = TLS_server_method();
+
+#else
+
+meth = SSLv23_server_method();
+
+#endif
+
+}
+
 
       if (m_psslcontext->m_pclientcontext.is_null())
       {
 
-         m_psslcontext->m_pclientcontext = allocateø ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method());
+         m_psslcontext->m_pclientcontext = allocateø ssl_client_context(meth);
 
          m_psslcontext->m_pclientcontext->initialize(this);
 
@@ -2986,9 +3087,28 @@ m_ibuf(isize)
 
    void tcp_socket::InitializeContext(const string& context, const string& certfile, const string& keyfile, const string& password, const SSL_METHOD* meth_in)
    {
+       
+                   const SSL_METHOD *meth = meth_in;
+                   
+                   if(::is_null(meth))
+                   {
+
+
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+
+meth = TLS_client_method();
+
+#else
+
+meth = SSLv23_client_method();
+
+#endif
+
+
+}
 
       /* create our context*/
-      m_psslcontext->m_pclientcontext->m_psslmethod = meth_in != nullptr ? meth_in : TLS_client_method();
+      m_psslcontext->m_pclientcontext->m_psslmethod = meth;
       m_psslcontext->m_pclientcontext->m_psslcontext = SSL_CTX_new(m_psslcontext->m_pclientcontext->m_psslmethod);
       SSL_CTX_set_mode(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_MODE_AUTO_RETRY | SSL_MODE_RELEASE_BUFFERS);
       SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_OP_NO_COMPRESSION | SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext));
@@ -3565,15 +3685,31 @@ m_ibuf(isize)
                   {
                      // Current name is a DNS name, let's check it
 
-#if (defined(LINUX)) && (OPENSSL_API_COMPAT < 0x10100000L)
+const unsigned char * pData = nullptr;
 
-                     string strDnsName((const_char_pointer )ASN1_STRING_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+
+   pData = ASN1_STRING_get0_data(current_name->d.dNSName);
 
 #else
 
-                     string strDnsName((const_char_pointer )ASN1_STRING_get0_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+   pData = ASN1_STRING_data(current_name->d.dNSName);
 
 #endif
+
+
+string strDnsName(
+   (const_char_pointer)pData,
+   ASN1_STRING_length(current_name->d.dNSName));
+//~ #if (defined(LINUX)) && (OPENSSL_API_COMPAT < 0x10100000L)
+
+                     //~ string strDnsName((const_char_pointer )ASN1_STRING_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+
+//~ #else
+
+                     //~ string strDnsName((const_char_pointer )ASN1_STRING_get0_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+
+//~ #endif
 
                      if (strDnsName.case_insensitive_order(common_name) == 0)
                      {
@@ -3686,7 +3822,20 @@ m_ibuf(isize)
 
 #if defined(HAVE_OPENSSL)
 
-      InitializeContext("", TLS_client_method());
+            const SSL_METHOD *meth;
+
+
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+
+meth = TLS_client_method();
+
+#else
+
+meth = SSLv23_client_method();
+
+#endif
+
+      InitializeContext("", meth);
 
 #endif
 

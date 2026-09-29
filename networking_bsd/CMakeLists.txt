@@ -147,7 +147,7 @@ if (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
 endif()
 
 
-if (${__BSD__})
+if (${__BSD__} OR ${__SUNOS__})
 
    list(APPEND library_source
    bsd/bsd_list_computers.cpp
@@ -196,7 +196,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
 
 if(CMAKE_SYSTEM_NAME STREQUAL "SunOS")
       list(APPEND library_references
-      socket)
+      socket nsl)
 endif()
 
    if (${USE_PKGCONFIG})

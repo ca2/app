@@ -3,7 +3,8 @@
 
 #include "apex/message/message.h"
 #include "acme/prototype/prototype/action_context.h"
-
+#undef loword
+#undef hiword
 
 namespace message
 {

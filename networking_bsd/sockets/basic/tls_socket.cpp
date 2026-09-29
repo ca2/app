@@ -24,8 +24,30 @@ namespace sockets_bsd
 
    void tls_socket::InitSSLClient()
    {
+       
+                          //const SSL_METHOD *meth = meth_in;
+                          
+                          const SSL_METHOD *meth;
+                   
+                   //if(::is_null(meth))
+                   {
 
-      InitializeContext(m_strCat, TLS_client_method());
+
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+
+meth = TLS_client_method();
+
+#else
+
+meth = SSLv23_client_method();
+
+#endif
+
+
+}
+
+
+      InitializeContext(m_strCat, meth);
 
    }
 

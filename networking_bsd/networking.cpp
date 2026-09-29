@@ -45,10 +45,10 @@ bool defer_finalize_operating_system_networking();
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
 #undef USE_MISC
 #include <signal.h>
-#if defined(__APPLE__) || defined(__BSD__)
+#if defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__)
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
@@ -59,7 +59,7 @@ bool defer_finalize_operating_system_networking();
 //#include <ctype.h>
 #endif
 
-#if defined(LINUX) || defined(__BSD__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 #include <unistd.h>
 #endif
 

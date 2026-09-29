@@ -5,6 +5,38 @@
 #include "acme/prototype/prototype/memory.h"
 
 
+static inline EVP_MD_CTX * openssl_evp_md_ctx_new()
+{
+
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+
+   return EVP_MD_CTX_new();
+
+#else
+
+   return EVP_MD_CTX_create();
+
+#endif
+
+}
+
+
+static inline void openssl_evp_md_ctx_free(EVP_MD_CTX * pctx)
+{
+
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+
+   EVP_MD_CTX_free(pctx);
+
+#else
+
+   EVP_MD_CTX_destroy(pctx);
+
+#endif
+
+}
+
+
 namespace crypto_openssl
 {
 
@@ -59,7 +91,7 @@ namespace crypto_openssl
 
       memoryHash.set_size(digest_size);
 
-      auto mdctx = EVP_MD_CTX_new();
+      auto mdctx = openssl_evp_md_ctx_new();
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 
@@ -76,7 +108,9 @@ namespace crypto_openssl
 
       EVP_DigestFinal_ex(mdctx, memoryHash.data(), &digest_size);
 
-      EVP_MD_CTX_free(mdctx);
+      //EVP_MD_CTX_free(mdctx);
+      
+      openssl_evp_md_ctx_free(mdctx);
 
       memoryHash.set_size(digest_size);
 

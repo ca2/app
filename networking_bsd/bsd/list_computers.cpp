@@ -11,6 +11,8 @@
 #define BSD_UNIX 1
 #elif defined(__BSD__)
 #define BSD_UNIX 1
+#elif defined(__SUNOS__)
+#define BSD_UNIX 1
 #endif
 
 

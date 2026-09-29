@@ -15,12 +15,12 @@
 ////#include <ctype.h>
 
 
-#if defined(LINUX) || defined(__BSD__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 #undef USE_MISC
 #include <unistd.h>
 #endif
 
-#if defined(__APPLE__) || defined(__BSD__)
+#if defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__)
 #include <netdb.h>
 #endif
 

@@ -106,7 +106,7 @@ namespace crypto_openssl
       m_prsa->n = n;
       m_prsa->e = e;
       m_prsa->d = d;
-      m_prsa->p = point;
+      m_prsa->p = p;
       m_prsa->q = q;
       m_prsa->dmp1 = dmp1;
       m_prsa->dmq1 = dmq1;

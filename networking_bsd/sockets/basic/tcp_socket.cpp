@@ -2790,7 +2790,7 @@ meth = SSLv23_server_method();
 
 #if OPENSSL_VERSION_NUMBER >= 0x10101000L
 
-   ::int_array iaGroups;
+   ::i32_array iaGroups;
 
 #ifdef NID_X25519
    iaGroups.add(NID_X25519);

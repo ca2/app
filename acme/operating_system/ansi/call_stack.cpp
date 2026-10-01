@@ -19,6 +19,10 @@
 #include "acme/platform/system.h"
 #include <execinfo.h>
 #include <cxxabi.h>
+#if defined(__SUNOS__)
+#include <dlfcn.h>
+#include <stdint.h>
+#endif
 
 
 //#define __USE_BFD
@@ -56,6 +60,49 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, ::i32 frames
 #else
 
    ::string strCallstack;
+
+#if defined(__SUNOS__)
+   // OpenIndiana's backtrace_symbols text does not use the Linux syntax
+   // expected by backtrace_symbol_parse. Resolve the captured PCs directly.
+   if (!ppui || frames <= 0)
+   {
+      return strCallstack;
+   }
+
+   for (::i32 i = maximum(iSkip, 0); i < frames; ++i)
+   {
+      Dl_info info = {};
+      ::string strLine;
+      ::string strSymbolName = "<unknown>";
+      if (::dladdr(ppui[i], &info))
+      {
+         if (info.dli_sname && *info.dli_sname)
+         {
+            int status = -1;
+            ::acme::malloc<char_pointer> demangled(
+               abi::__cxa_demangle(info.dli_sname, nullptr, nullptr, &status));
+            strSymbolName = status == 0 && demangled.get()
+               ? demangled.get() : info.dli_sname;
+         }
+
+         const auto moduleOffset = (uintptr_t)ppui[i] - (uintptr_t)info.dli_fbase;
+         const auto symbolOffset = info.dli_saddr
+            ? (uintptr_t)ppui[i] - (uintptr_t)info.dli_saddr : 0;
+         strLine.formatf("%02d : %p : %s + 0x%llx (%s + 0x%llx)\n",
+            frames - i - 1, ppui[i], strSymbolName.c_str(),
+            (unsigned long long)symbolOffset,
+            info.dli_fname ? info.dli_fname : "<unknown module>",
+            (unsigned long long)moduleOffset);
+      }
+      else
+      {
+         strLine.formatf("%02d : %p : <unresolved>\n", frames - i - 1, ppui[i]);
+      }
+      strCallstack += strLine;
+   }
+
+   return strCallstack;
+#else
 
    ::acme::malloc<char_pointer *> messages(::backtrace_symbols(ppui, frames));
 
@@ -147,6 +194,8 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, ::i32 frames
    }
 
    return strCallstack;
+
+#endif // __SUNOS__
 
 #endif
 

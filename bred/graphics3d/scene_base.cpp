@@ -15,7 +15,9 @@
 #include "bred/graphics3d/global_ubo1.h"
 #include "bred/graphics3d/immersion_layer.h"
 #include "bred/prodevian/actor.h"
+#if !defined(__SUNOS__)
 #include <openssl/ct.h>
+#endif
 
 
 namespace graphics3d

@@ -89,6 +89,28 @@ elseif (${FREEBSD})
     message(STATUS "(E) PKGCONFIG_LIBRARIES is ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES}")
 
 
+elseif (__SUNOS__)
+
+    if(USE_PORT_FREEIMAGE)
+        if(NOT TARGET port_freeimage)
+            message(FATAL_ERROR "USE_PORT_FREEIMAGE requires the port_freeimage target")
+        endif()
+        set(imaging_freeimage_SUNOS_LIBRARY port_freeimage)
+    else()
+        find_library(imaging_freeimage_SUNOS_LIBRARY NAMES freeimage FreeImage)
+        if(NOT imaging_freeimage_SUNOS_LIBRARY)
+            message(FATAL_ERROR "imaging_freeimage: FreeImage library not found for SunOS")
+        endif()
+    endif()
+
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS})
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${imaging_freeimage_SUNOS_LIBRARY} ${library_references} ${global_library_references})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${imaging_freeimage_SUNOS_LIBRARY} ${static_library_references} ${global_library_references})
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    message(STATUS "imaging_freeimage: SunOS FreeImage library: ${imaging_freeimage_SUNOS_LIBRARY}")
+
 elseif (${LINUX} OR ${OPENBSD} OR ${NETBSD} OR ${__ANDROID__})
 
 

@@ -617,7 +617,7 @@ namespace user
 
       puserinteractionOwner->m_menua.add(this);
 
-#elif defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS) || defined(__ANDROID__) || defined(APPLE_IOS)
+#elif defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS) || defined(__ANDROID__) || defined(APPLE_IOS) || defined(__SUNOS__)
 
       information() << "::user::menu::create_menu parent window: " << (::iptr)owner_window();
 
@@ -627,6 +627,13 @@ namespace user
       {
 
          puserinteractionTopOwner = puiParent;
+
+      }
+
+      if (::is_null(puserinteractionTopOwner))
+      {
+
+         throw ::exception(error_wrong_state, "Cannot create menu without an owner or parent interaction");
 
       }
 

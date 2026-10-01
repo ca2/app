@@ -32,6 +32,11 @@ list(APPEND library_references
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
+if(USE_PORT_FREEIMAGE)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE USE_PORT_FREEIMAGE)
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE USE_PORT_FREEIMAGE)
+endif()
+
 
 
 

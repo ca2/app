@@ -3,8 +3,8 @@
 #include "draw2d.h"
 #include "graphics.h"
 #include "acme/parallelization/synchronous_lock.h"
-//#include "aura/graphics/draw2d/host.h"
 #include "acme/platform/application.h"
+#include "aura/user/user/interaction.h"
 
 
 
@@ -211,10 +211,10 @@ namespace draw2d_cairo
 
       ::f64 dFontScaler = 1.0;
 
-      if(::is_set(pdraw2dgraphics->m_pacmeuserinteractionTopic))
+      if(::is_set(pdraw2dgraphics->m_puserinteractionTopic))
       {
 
-         dFontScaler = pdraw2dgraphics->m_pacmeuserinteractionTopic->font_scaler();
+         dFontScaler = pdraw2dgraphics->m_puserinteractionTopic->scaler();
 
       }
       else

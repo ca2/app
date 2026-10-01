@@ -22,6 +22,8 @@
 #include <sys/file.h>
 #undef file
 #undef mutex
+#else
+#include <sys/file.h>
 #endif
 #undef USE_MISC
 #include <unistd.h>

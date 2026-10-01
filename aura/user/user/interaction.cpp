@@ -7450,6 +7450,25 @@ namespace user
 
       scoped_restore(pdraw2dgraphics->m_bInheritDraw);
 
+#if defined(__SUNOS__)
+      const bool bTraceFrame = get_parent() == nullptr && is_frame_window();
+
+      if (bTraceFrame)
+      {
+
+         information() << "interaction frame draw: type=" << ::platform::type(this).name()
+            << ", is_window=" << !!(m_ewindowflag & e_window_flag_is_window)
+            << ", not_visible=" << !!(m_ewindowflag & e_window_flag_not_visible)
+            << ", design display=" << (int) const_layout().design().display()
+            << ", window display=" << (int) const_layout().window().display()
+            << ", design visible=" << const_layout().design().is_visible()
+            << ", inherit draw=" << pdraw2dgraphics->m_bInheritDraw
+            << ", draw enabled=" << pdraw2dgraphics->m_bDraw
+            << ", draw pass=" << !!(pdraw2dgraphics->m_egraphics & e_graphics_draw);
+
+      }
+#endif
+
       //defer_update_hover(pdraw2dgraphics);
 
       //      auto pszType = typeid(*this).name();
@@ -7482,6 +7501,10 @@ namespace user
       if (pdraw2dgraphics->m_bInheritDraw && !(pdraw2dgraphics->m_egraphics & e_graphics_draw))
       {
 
+#if defined(__SUNOS__)
+         if (bTraceFrame) information() << "interaction frame draw disabled: no draw pass";
+#endif
+
          pdraw2dgraphics->m_bInheritDraw = false;
 
          //         if (!get_parent())
@@ -7498,6 +7521,10 @@ namespace user
 
       if (pdraw2dgraphics->m_bInheritDraw && !bIsThisVisible)
       {
+
+#if defined(__SUNOS__)
+         if (bTraceFrame) information() << "interaction frame draw disabled: is_this_visible returned false";
+#endif
 
          //         if (!get_parent())
          //         {
@@ -7520,6 +7547,10 @@ namespace user
       if (pdraw2dgraphics->m_bInheritDraw && !pdraw2dgraphics->m_bDraw)
       {
 
+#if defined(__SUNOS__)
+         if (bTraceFrame) information() << "interaction frame draw disabled: m_bDraw is false";
+#endif
+
          //         if (pdraw2dgraphics->payload("set_transparent") == "set_transparent")
          //         {
          //
@@ -7539,6 +7570,10 @@ namespace user
 
       if (pdraw2dgraphics->m_bInheritDraw && !needs_to_draw(pdraw2dgraphics))
       {
+
+#if defined(__SUNOS__)
+         if (bTraceFrame) information() << "interaction frame draw disabled: needs_to_draw returned false";
+#endif
 
          //         ::string strType = ::platform::type(this).name();
          //
@@ -7595,6 +7630,9 @@ namespace user
       }
       if (!should_draw())
       {
+#if defined(__SUNOS__)
+         if (bTraceFrame) information() << "interaction frame draw skipped: should_draw returned false";
+#endif
          //         if (!get_parent())
          //         {
          //

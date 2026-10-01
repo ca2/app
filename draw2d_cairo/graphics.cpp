@@ -1796,6 +1796,58 @@ namespace draw2d_cairo
 
          auto psurface = pbitmapSource->m_pcairosurface;
 
+         // An attached GTK context has no image target. Inspect the viewport
+         // being presented without modifying the backing surface.
+         if (!m_pimageTarget && cairo_surface_get_type(psurface) == CAIRO_SURFACE_TYPE_IMAGE)
+         {
+
+            cairo_surface_flush(psurface);
+            int iRawWidth = cairo_image_surface_get_width(psurface);
+            int iRawHeight = cairo_image_surface_get_height(psurface);
+            int iStride = cairo_image_surface_get_stride(psurface);
+            auto pdata = cairo_image_surface_get_data(psurface);
+            int iSamples = 0;
+            int iVisibleSamples = 0;
+            if (pdata && cairo_image_surface_get_format(psurface) == CAIRO_FORMAT_ARGB32)
+            {
+
+               for (int iy = 0; iy < 16; iy++)
+               {
+
+                  int y = (int)pointSrc.y + (int)(rectangleTarget.height() * (iy + 0.5) / 16.0);
+                  for (int ix = 0; ix < 16; ix++)
+                  {
+
+                     int x = (int)pointSrc.x + (int)(rectangleTarget.width() * (ix + 0.5) / 16.0);
+                     if (x >= 0 && y >= 0 && x < iRawWidth && y < iRawHeight)
+                     {
+
+                        auto prow = reinterpret_cast<const ::u32 *>(pdata + y * iStride);
+                        iSamples++;
+                        if (prow[x] >> 24)
+                        {
+
+                           iVisibleSamples++;
+
+                        }
+
+                     }
+
+                  }
+
+               }
+
+            }
+
+            information() << "Cairo present: surface=" << iRawWidth << "," << iRawHeight
+               << " source=" << pointSrc.x << "," << pointSrc.y
+               << " target size=" << rectangleTarget.width() << "," << rectangleTarget.height()
+               << " visible samples=" << iVisibleSamples << "/" << iSamples
+               << " surface status=" << (int)cairo_surface_status(psurface)
+               << " context status=" << (int)cairo_status(m_pcairo);
+
+         }
+
          if (bMultiframe)
          {
 

@@ -107,7 +107,7 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #endif
 
 
-#if defined(LINUX) || defined(__BSD__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 
 extern char _binary__matter_zip_start[];
 extern char _binary__matter_zip_end[];
@@ -130,7 +130,7 @@ int main(int argc, char* argv[], char* envp[])
    const char * p1 = nullptr; //_todo_begin;
    const char * p2 = nullptr; //_todo_end;
    APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp, p1, p2);
-#elif defined(LINUX) || defined(__BSD__)
+#elif defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
    const char * p1 = _binary__matter_zip_start;
    const char * p2 = _binary__matter_zip_end;
    APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp, p1, p2);

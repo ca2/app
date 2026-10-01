@@ -944,7 +944,7 @@ namespace axis
       const char * pszStage = "resolving application database path";
 
       information() << "startup: axis::application::init1: app=" << m_strAppId
-         << ", initialize data central=" << m_bInitializeDataCentral;
+         << ", initialize data central=" << (bool) m_bInitializeDataCentral;
 
       try
       {

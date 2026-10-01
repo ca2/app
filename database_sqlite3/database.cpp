@@ -370,22 +370,34 @@ namespace sqlite
 
    void database::_connect()
    {
+      information() << "startup: sqlite::database::_connect: enter";
 
+
+      information() << "startup: sqlite::database::_connect: before _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX)";
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      information() << "startup: sqlite::database::_connect: after _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX)";
 
+      information() << "startup: sqlite::database::_connect: before disconnect()";
       disconnect();
+      information() << "startup: sqlite::database::_connect: after disconnect()";
 
+      information() << "startup: sqlite::database::_connect: before ::i32 iOpenResult = sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite)";
       ::i32 iOpenResult = sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite);
+      information() << "startup: sqlite::database::_connect: after ::i32 iOpenResult = sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite)";
 
       if (iOpenResult == SQLITE_OK)
       {
          //cout << "Connected!\n";
          char_pointer err = nullptr;
 
+         information() << "startup: sqlite::database::_connect: before sqlite3_exec(PRAGMA empty_result_callbacks=ON)";
          ::i32 iResult = sqlite3_exec((sqlite3 *) get_handle(), "PRAGMA empty_result_callbacks=ON", nullptr, nullptr,
                                     &err);
+         information() << "startup: sqlite::database::_connect: after sqlite3_exec, code=" << iResult;
 
+         information() << "startup: sqlite::database::_connect: before set_error_code(iResult)";
          set_error_code(iResult);
+         information() << "startup: sqlite::database::_connect: after set_error_code(iResult)";
 
          if (iResult != SQLITE_OK)
          {
@@ -416,11 +428,12 @@ namespace sqlite
 
          m_bActive = true;
 
+         information() << "startup: sqlite::database::_connect: leave (connected)";
          return;
 
       }
 
-      error() << "sqlite::database::_connect: sqlite3_open failed for " << m_strName
+      information() << "sqlite::database::_connect: sqlite3_open failed for " << m_strName
          << " (code " << iOpenResult << "): "
          << (m_psqlite ? sqlite3_errmsg(m_psqlite) : "no SQLite handle");
 

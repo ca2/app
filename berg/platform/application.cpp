@@ -53,11 +53,19 @@ namespace berg
 
    void application::initialize(::particle * pparticle)
    {
+      information() << "startup: berg::application::initialize: enter";
 
+
+      information() << "startup: berg::application::initialize: before ::axis::application::initialize(pparticle)";
       ::axis::application::initialize(pparticle);
+      information() << "startup: berg::application::initialize: after ::axis::application::initialize(pparticle)";
 
+      information() << "startup: berg::application::initialize: before ::user::document_manager_container::initialize(pparticle)";
       ::user::document_manager_container::initialize(pparticle);
+      information() << "startup: berg::application::initialize: after ::user::document_manager_container::initialize(pparticle)";
 
+
+      information() << "startup: berg::application::initialize: leave";
 
    }
 

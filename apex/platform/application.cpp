@@ -329,16 +329,24 @@ namespace apex
 
    void application::initialize(::particle * pparticle)
    {
+      information() << "startup: apex::application::initialize: enter";
+
 
       //auto estatus = ::thread::initialize(pparticle);
 
+      information() << "startup: apex::application::initialize: before ::thread::initialize(pparticle)";
       ::thread::initialize(pparticle);
+      information() << "startup: apex::application::initialize: after ::thread::initialize(pparticle)";
 
+      information() << "startup: apex::application::initialize: before ::platform::application::initialize(pparticle)";
       ::platform::application::initialize(pparticle);
+      information() << "startup: apex::application::initialize: after ::platform::application::initialize(pparticle)";
 
       m_psystem = m_papplication->m_psystem;
 
+      information() << "startup: apex::application::initialize: before defer_create_synchronization()";
       defer_create_synchronization();
+      information() << "startup: apex::application::initialize: after defer_create_synchronization()";
 
 
       //if (!estatus)
@@ -365,6 +373,8 @@ namespace apex
       //}
 
       //return estatus;
+
+      information() << "startup: apex::application::initialize: leave";
 
    }
 
@@ -3052,17 +3062,25 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    void application::process_init()
    {
+      information() << "startup: apex::application::process_init: enter";
 
+
+      information() << "startup: apex::application::process_init: before ::platform::application::process_init()";
       ::platform::application::process_init();
+      information() << "startup: apex::application::process_init: after ::platform::application::process_init()";
 
+      information() << "startup: apex::application::process_init: before auto psystem = system()";
       auto psystem = system();
+      information() << "startup: apex::application::process_init: after auto psystem = system()";
 
       if (!m_bAppHasInstallerChangedProtected)
       {
 
 #ifdef UNIVERSAL_WINDOWS
 
+         information() << "startup: apex::application::process_init: before set_has_installer(false)";
          set_has_installer(false);
+         information() << "startup: apex::application::process_init: after set_has_installer(false)";
 
 #else
 
@@ -3118,11 +3136,15 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       if (::get_task() == nullptr)
       {
 
+         information() << "startup: apex::application::process_init: before ::set_task(dynamic_cast <task *> (this))";
          ::set_task(dynamic_cast <task *> (this));
+         information() << "startup: apex::application::process_init: after ::set_task(dynamic_cast <task *> (this))";
 
       }
 
+      information() << "startup: apex::application::process_init: before notify_process_init()";
       notify_process_init();
+      information() << "startup: apex::application::process_init: after notify_process_init()";
 
       //if (!notify_process_init())
       //{
@@ -3188,7 +3210,9 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       //auto estatus =
 
+      information() << "startup: apex::application::process_init: before userfs_process_init()";
       userfs_process_init();
+      information() << "startup: apex::application::process_init: after userfs_process_init()";
 
       //if()
       //{
@@ -3198,12 +3222,13 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       //return false;
       //
       //}
-
       debug() << "apex::application::process_init end";
 
       //return true;
 
 
+
+      information() << "startup: apex::application::process_init: leave";
 
    }
 
@@ -3393,9 +3418,13 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    void application::init1()
    {
+      information() << "startup: apex::application::init1: enter";
 
 
+
+      information() << "startup: apex::application::init1: before initialize_context_1()";
       initialize_context_1();
+      information() << "startup: apex::application::init1: after initialize_context_1()";
 
       //auto estatus =
 
@@ -3406,10 +3435,14 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       //}
 
+      information() << "startup: apex::application::init1: before auto psystem = system()";
       auto psystem = system();
+      information() << "startup: apex::application::init1: after auto psystem = system()";
 
       //estatus =
+      information() << "startup: apex::application::init1: before m_puserlanguagemap = allocateø ::user::language_map()";
       m_puserlanguagemap = allocateø ::user::language_map();
+      information() << "startup: apex::application::init1: after m_puserlanguagemap = allocateø ::user::language_map()";
 
       //REFDBG(m_puserlanguagemap.add_reference_item({ this, __FUNCTION_FILE_LINE__ }));
 
@@ -3427,7 +3460,9 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          if (psystem->m_pintstringLanguageResourceMap != nullptr)
          {
 
+            information() << "startup: apex::application::init1: before m_puserlanguagemap->set_language_resource_map(psystem->m_pintstringLanguageResourceMap)";
             m_puserlanguagemap->set_language_resource_map(psystem->m_pintstringLanguageResourceMap);
+            information() << "startup: apex::application::init1: after m_puserlanguagemap->set_language_resource_map(psystem->m_pintstringLanguageResourceMap)";
 
          }
 
@@ -3436,20 +3471,28 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       if (m_bLocalization)
       {
 
+         information() << "startup: apex::application::init1: before string strLang = psystem->get_user_language()";
          string strLang = psystem->get_user_language();
+         information() << "startup: apex::application::init1: after string strLang = psystem->get_user_language()";
 
          if (!m_puserlanguagemap->set_language(this, strLang))
          {
 
+            information() << "startup: apex::application::init1: before m_puserlanguagemap->set_default_language(this)";
             m_puserlanguagemap->set_default_language(this);
+            information() << "startup: apex::application::init1: after m_puserlanguagemap->set_default_language(this)";
 
          }
 
       }
 
+      information() << "startup: apex::application::init1: before ping()";
       ping();
+      information() << "startup: apex::application::init1: after ping()";
 
+      information() << "startup: apex::application::init1: before notify_init1()";
       notify_init1();
+      information() << "startup: apex::application::init1: after notify_init1()";
       //if (!notify_init1())
       /*{
 
@@ -3467,7 +3510,9 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          //if (psystem->get_user_language().has_character())
          //{
 
+         information() << "startup: apex::application::init1: before m_strLocale = psystem->get_user_language()";
          m_strLocale = psystem->get_user_language();
+         information() << "startup: apex::application::init1: after m_strLocale = psystem->get_user_language()";
 
          m_strSchema = m_strLocale;
 
@@ -3490,39 +3535,53 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          if (psystem->payload("locale").get_count() > 0)
          {
 
+            information() << "startup: apex::application::init1: before strLocale = psystem->payload(\"locale\").as_string_array()[0]";
             strLocale = psystem->payload("locale").as_string_array()[0];
+            information() << "startup: apex::application::init1: after strLocale = psystem->payload(\"locale\").as_string_array()[0]";
 
          }
 
          if (psystem->payload("schema").get_count() > 0)
          {
 
+            information() << "startup: apex::application::init1: before strSchema = psystem->payload(\"schema\").as_string_array()[0]";
             strSchema = psystem->payload("schema").as_string_array()[0];
+            information() << "startup: apex::application::init1: after strSchema = psystem->payload(\"schema\").as_string_array()[0]";
 
          }
 
          if (get_app()->payload("locale").get_count() > 0)
          {
 
+            information() << "startup: apex::application::init1: before strLocale = get_app()->payload(\"locale\").as_string_array()[0]";
             strLocale = get_app()->payload("locale").as_string_array()[0];
+            information() << "startup: apex::application::init1: after strLocale = get_app()->payload(\"locale\").as_string_array()[0]";
 
          }
 
          if (get_app()->payload("schema").get_count() > 0)
          {
 
+            information() << "startup: apex::application::init1: before strSchema = get_app()->payload(\"schema\").as_string_array()[0]";
             strSchema = get_app()->payload("schema").as_string_array()[0];
+            information() << "startup: apex::application::init1: after strSchema = get_app()->payload(\"schema\").as_string_array()[0]";
 
          }
 
+         information() << "startup: apex::application::init1: before set_locale(strLocale, ::e_source_database)";
          set_locale(strLocale, ::e_source_database);
+         information() << "startup: apex::application::init1: after set_locale(strLocale, ::e_source_database)";
 
+         information() << "startup: apex::application::init1: before set_schema(strSchema, ::e_source_database)";
          set_schema(strSchema, ::e_source_database);
+         information() << "startup: apex::application::init1: after set_schema(strSchema, ::e_source_database)";
 
       }
 
       //if (!initialize_contextualized_theme())
+      information() << "startup: apex::application::init1: before initialize_contextualized_theme()";
       initialize_contextualized_theme();
+      information() << "startup: apex::application::init1: after initialize_contextualized_theme()";
       //{
 
       //   fatal() <<"Failed to initialize_contextualized_theme";
@@ -3530,12 +3589,15 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       //   return false;
 
       //}
-
       debug() << "apex::application::init1 end";
 
+      information() << "startup: apex::application::init1: before ping()";
       ping();
+      information() << "startup: apex::application::init1: after ping()";
 
       //return ::success;
+
+      information() << "startup: apex::application::init1: leave";
 
    }
 

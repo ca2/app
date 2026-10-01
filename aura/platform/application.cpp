@@ -260,10 +260,14 @@ namespace aura
 
    void application::initialize(::particle * pparticle)
    {
+      information() << "startup: aura::application::initialize: enter";
+
 
       //auto estatus =
       
+      information() << "startup: aura::application::initialize: before ::aqua::application::initialize(pparticle)";
       ::aqua::application::initialize(pparticle);
+      information() << "startup: aura::application::initialize: after ::aqua::application::initialize(pparticle)";
 
       //if (!estatus)
       //{
@@ -274,7 +278,9 @@ namespace aura
 
       //estatus =
       
+      information() << "startup: aura::application::initialize: before construct_newø(m_puserinteractiona)";
       construct_newø(m_puserinteractiona);
+      information() << "startup: aura::application::initialize: after construct_newø(m_puserinteractiona)";
 
       //if (!estatus)
       //{
@@ -285,7 +291,9 @@ namespace aura
 
       //estatus = 
       
+      information() << "startup: aura::application::initialize: before construct_newø(m_puserinteractionaFrame)";
       construct_newø(m_puserinteractionaFrame);
+      information() << "startup: aura::application::initialize: after construct_newø(m_puserinteractionaFrame)";
 
       //if (!estatus)
       //{
@@ -297,6 +305,8 @@ namespace aura
       //m_pauracontext = this;
 
       //return estatus;
+
+      information() << "startup: aura::application::initialize: leave";
 
    }
 
@@ -2319,10 +2329,14 @@ retry_license:
 
    void application::process_init()
    {
+      information() << "startup: aura::application::process_init: enter";
+
 
       //auto estatus =
       
+      information() << "startup: aura::application::process_init: before ::aqua::application::process_init()";
       ::aqua::application::process_init();
+      information() << "startup: aura::application::process_init: after ::aqua::application::process_init()";
 
       //if (!estatus)
       //{
@@ -2339,6 +2353,8 @@ retry_license:
 
 
       //return true;
+
+      information() << "startup: aura::application::process_init: leave";
 
    }
 
@@ -2478,10 +2494,14 @@ retry_license:
 
    void application::init1()
    {
+      information() << "startup: aura::application::init1: enter";
+
 
       //::e_status estatus = 
       
+      information() << "startup: aura::application::init1: before ::aqua::application::init1()";
       ::aqua::application::init1();
+      information() << "startup: aura::application::init1: after ::aqua::application::init1()";
 
       //if (!estatus)
       //{
@@ -2490,7 +2510,9 @@ retry_license:
 
       //}
 
+      information() << "startup: aura::application::init1: before auto psystem = system()";
       auto psystem = system();
+      information() << "startup: aura::application::init1: after auto psystem = system()";
 
       //if (psystem->m_bImaging)
       //{
@@ -2538,9 +2560,13 @@ retry_license:
 
       information() << "aura::application::init1 end";
 
+      information() << "startup: aura::application::init1: before ping()";
       ping();
+      information() << "startup: aura::application::init1: after ping()";
 
       //return ::success;
+
+      information() << "startup: aura::application::init1: leave";
 
    }
 

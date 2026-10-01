@@ -30,10 +30,14 @@ namespace simpledb
 
    void server::initialize_simpledb_server(::particle * pparticle, const ::scoped_string & scopedstrDatabase)
    {
+      information() << "startup: simpledb::server::initialize_simpledb_server: enter";
+
 
       //auto estatus =
       
+      information() << "startup: simpledb::server::initialize_simpledb_server: before ::database::server::initialize(pparticle)";
       ::database::server::initialize(pparticle);
+      information() << "startup: simpledb::server::initialize_simpledb_server: after ::database::server::initialize(pparticle)";
 
       //if (!estatus)
       //{
@@ -42,19 +46,27 @@ namespace simpledb
 
       //}
 
+      information() << "startup: simpledb::server::initialize_simpledb_server: before m_bRemote = !m_papplication->is_local_data()";
       m_bRemote = !m_papplication->is_local_data();
+      information() << "startup: simpledb::server::initialize_simpledb_server: after m_bRemote = !m_papplication->is_local_data()";
 
       if (m_pdatabaseLocal.is_set())
       {
 
+         information() << "startup: simpledb::server::initialize_simpledb_server: before destroy()";
          destroy();
+         information() << "startup: simpledb::server::initialize_simpledb_server: after destroy()";
 
       }
 
+      information() << "startup: simpledb::server::initialize_simpledb_server: before ::file::path pathDatabase(scopedstrDatabase)";
       ::file::path pathDatabase(scopedstrDatabase);
+      information() << "startup: simpledb::server::initialize_simpledb_server: after ::file::path pathDatabase(scopedstrDatabase)";
 
       //if (!
+      information() << "startup: simpledb::server::initialize_simpledb_server: before directory()->create(pathDatabase.folder())";
       directory()->create(pathDatabase.folder());
+      information() << "startup: simpledb::server::initialize_simpledb_server: after directory()->create(pathDatabase.folder())";
 
       //{
 
@@ -64,7 +76,9 @@ namespace simpledb
 
       //}
 
+      information() << "startup: simpledb::server::initialize_simpledb_server: before auto & pfactoryDatabase = system()->factory(\"database\", \"sqlite3\")";
       auto & pfactoryDatabase = system()->factory("database", "sqlite3");
+      information() << "startup: simpledb::server::initialize_simpledb_server: after auto & pfactoryDatabase = system()->factory(\"database\", \"sqlite3\")";
 
       //if(!pfactoryDatabase)
       //{
@@ -75,7 +89,9 @@ namespace simpledb
 
       //}
 
+      information() << "startup: simpledb::server::initialize_simpledb_server: before pfactoryDatabase->constructø(this, m_pdatabaseLocal)";
       pfactoryDatabase->constructø(this, m_pdatabaseLocal);
+      information() << "startup: simpledb::server::initialize_simpledb_server: after pfactoryDatabase->constructø(this, m_pdatabaseLocal)";
 
       //if (!estatus)
       //{
@@ -84,7 +100,9 @@ namespace simpledb
 
       //}
 
+      information() << "startup: simpledb::server::initialize_simpledb_server: before _synchronous_lock synchronouslock(m_pdatabaseLocal->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX)";
       _synchronous_lock synchronouslock(m_pdatabaseLocal->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      information() << "startup: simpledb::server::initialize_simpledb_server: after _synchronous_lock synchronouslock(m_pdatabaseLocal->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX)";
 
       //estatus = pdatabase->set_finish(this);
 
@@ -97,7 +115,9 @@ namespace simpledb
 
       //m_pdatabaseLocal = pdatabase;
 
+      information() << "startup: simpledb::server::initialize_simpledb_server: before m_pdatabaseLocal->initialize(this)";
       m_pdatabaseLocal->initialize(this);
+      information() << "startup: simpledb::server::initialize_simpledb_server: after m_pdatabaseLocal->initialize(this)";
 
  /*     if (!estatus)
       {
@@ -108,7 +128,9 @@ namespace simpledb
 
       //estatus = 
       
+      information() << "startup: simpledb::server::initialize_simpledb_server: before m_pdatabaseLocal->connect(scopedstrDatabase)";
       m_pdatabaseLocal->connect(scopedstrDatabase);
+      information() << "startup: simpledb::server::initialize_simpledb_server: after m_pdatabaseLocal->connect(scopedstrDatabase)";
 
  /*     if (!estatus)
       {
@@ -119,7 +141,9 @@ namespace simpledb
 
       //estatus =
       
+      information() << "startup: simpledb::server::initialize_simpledb_server: before construct_newø(m_psimpledb)";
       construct_newø(m_psimpledb);
+      information() << "startup: simpledb::server::initialize_simpledb_server: after construct_newø(m_psimpledb)";
 
       //if (!estatus)
       //{
@@ -130,7 +154,9 @@ namespace simpledb
 
       //estatus = 
       
+      information() << "startup: simpledb::server::initialize_simpledb_server: before m_psimpledb->initialize_simpledb(this)";
       m_psimpledb->initialize_simpledb(this);
+      information() << "startup: simpledb::server::initialize_simpledb_server: after m_psimpledb->initialize_simpledb(this)";
 
       //if (!estatus)
       //{
@@ -139,7 +165,9 @@ namespace simpledb
 
       //}
       
+      information() << "startup: simpledb::server::initialize_simpledb_server: before create_server_dataset()";
       create_server_dataset();
+      information() << "startup: simpledb::server::initialize_simpledb_server: after create_server_dataset()";
       //if (!)
       //{
 
@@ -149,7 +177,9 @@ namespace simpledb
 
       //estatus = 
       
+      information() << "startup: simpledb::server::initialize_simpledb_server: before construct_newø(m_pstorage)";
       construct_newø(m_pstorage);
+      information() << "startup: simpledb::server::initialize_simpledb_server: after construct_newø(m_pstorage)";
 
       //if (!estatus)
       //{
@@ -160,7 +190,9 @@ namespace simpledb
 
       //estatus = 
       
+      information() << "startup: simpledb::server::initialize_simpledb_server: before m_pstorage->initialize_simpledb_storage(this)";
       m_pstorage->initialize_simpledb_storage(this);
+      information() << "startup: simpledb::server::initialize_simpledb_server: after m_pstorage->initialize_simpledb_storage(this)";
 
       //if (!estatus)
       //{
@@ -176,6 +208,8 @@ namespace simpledb
       m_strDatabase = scopedstrDatabase;
 
       // return ::success;
+
+      information() << "startup: simpledb::server::initialize_simpledb_server: leave";
 
    }
 

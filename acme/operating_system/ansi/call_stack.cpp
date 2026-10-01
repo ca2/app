@@ -71,6 +71,10 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, ::i32 frames
 
    for (::i32 i = maximum(iSkip, 0); i < frames; ++i)
    {
+      if (!ppui[i])
+      {
+         break;
+      }
       Dl_info info = {};
       ::string strLine;
       ::string strSymbolName = "<unknown>";

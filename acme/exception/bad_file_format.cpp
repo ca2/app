@@ -6,6 +6,7 @@
 bad_file_format::bad_file_format(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, const ::e_status & estatus) :
    ::exception(estatus, scopedstrMessage, scopedstrDetails)
 {
+   log_constructor("bad_file_format");
 
 }
 

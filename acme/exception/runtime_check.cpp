@@ -6,6 +6,7 @@
 runtime_check_exception::runtime_check_exception(const ::e_status& estatus, const_char_pointer pszMessage, const_char_pointer pszDetails , ::i32 iSkip, void* caller_address) :
    ::exception::exception(estatus, pszMessage, pszDetails, iSkip, caller_address)
 {
+   log_constructor("runtime_check_exception");
 
 
 }
@@ -14,6 +15,7 @@ runtime_check_exception::runtime_check_exception(const ::e_status& estatus, cons
 runtime_check_exception::runtime_check_exception(const ::e_status& estatus, const ::array_base < error_code > & errorcodea, const_char_pointer pszMessage, const_char_pointer pszDetails, ::i32 iSkip, void* caller_address) :
    ::exception::exception(estatus, errorcodea, pszMessage, pszDetails, iSkip, caller_address)
 {
+   log_constructor("runtime_check_exception");
 
 
 }

@@ -22,6 +22,7 @@ exit_exception::exit_exception(const ::e_status &estatus, ::task *playeredThread
    }*/
 
    m_iCheck = 0;
+   log_constructor("exit_exception");
 
 }
 

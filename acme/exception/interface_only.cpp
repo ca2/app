@@ -5,6 +5,7 @@
 interface_only::interface_only(const ::scoped_string & scopedstrMessage, const ::e_status & estatus) :
    not_implemented(scopedstrMessage, estatus)
 {
+   log_constructor("interface_only");
 
 }
 

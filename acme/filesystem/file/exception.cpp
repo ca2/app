@@ -104,6 +104,7 @@ namespace file
          //m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0 && !(m_eopen & ::file::e_open_no_callstack);
 
          construct_file_exception();
+         log_constructor("file::exception");
 
          /*const_char_pointer psz = ::file::status_short_description(estatus);
 
@@ -149,6 +150,8 @@ namespace file
          // m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0 && !(m_eopen & ::file::e_open_no_callstack);
 
          construct_file_exception();
+
+         log_constructor("file::exception");
 
       }
 

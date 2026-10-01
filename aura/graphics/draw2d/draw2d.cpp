@@ -2494,7 +2494,7 @@ namespace draw2d
 
       return "afont";
 
-#elif defined(__BSD__)
+#elif defined(__BSD__) || defined(__SUNOS__)
 
 
       return "pango";

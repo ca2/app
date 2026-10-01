@@ -9,6 +9,8 @@
 #include "axis/database/database/exception.h"
 #include "axis/database/database/field.h"
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
 
 extern "C" ::i32 database_sqlite3_sqlite_callback(void * res_ptr,::i32 ncol, char_pointer * reslt,char_pointer * cols);
@@ -382,7 +384,14 @@ namespace sqlite
       information() << "startup: sqlite::database::_connect: after disconnect()";
 
       information() << "startup: sqlite::database::_connect: before ::i32 iOpenResult = sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite)";
+      errno = 0;
       ::i32 iOpenResult = sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite);
+      // Capture errno before tracing or other library calls can overwrite it.
+      int iOpenErrno = errno;
+      int iExtendedError = m_psqlite ? sqlite3_extended_errcode(m_psqlite) : iOpenResult;
+#if SQLITE_VERSION_NUMBER >= 3012000
+      int iSystemErrno = m_psqlite ? sqlite3_system_errno(m_psqlite) : 0;
+#endif
       information() << "startup: sqlite::database::_connect: after ::i32 iOpenResult = sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite)";
 
       if (iOpenResult == SQLITE_OK)
@@ -436,6 +445,19 @@ namespace sqlite
       information() << "sqlite::database::_connect: sqlite3_open failed for " << m_strName
          << " (code " << iOpenResult << "): "
          << (m_psqlite ? sqlite3_errmsg(m_psqlite) : "no SQLite handle");
+
+      information() << "sqlite::database::_connect: extended error=" << iExtendedError
+         << ", captured errno=" << iOpenErrno << " (" << strerror(iOpenErrno) << ")";
+
+#if SQLITE_VERSION_NUMBER >= 3012000
+      information() << "sqlite::database::_connect: SQLite system errno=" << iSystemErrno
+         << " (" << strerror(iSystemErrno) << ")";
+#else
+      information() << "sqlite::database::_connect: SQLite system errno unavailable with these headers";
+#endif
+
+      information() << "sqlite::database::_connect: SQLite runtime=" << sqlite3_libversion()
+         << ", headers=" << SQLITE_VERSION;
 
       throw ::exception(error_failed, "sqlite3_open failed", m_strName);
 

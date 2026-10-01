@@ -211,9 +211,38 @@ namespace database
    void client::initialize_data_client(server * pserver)
    {
 
-      defer_construct_newø(m_pstream);
+      try
+      {
 
-      m_pstream->m_pclient = this;
+         defer_construct_newø(m_pstream);
+
+         if (!m_pstream)
+         {
+
+            throw ::exception(error_no_memory, "database::client: stream construction returned null");
+
+         }
+
+         m_pstream->m_pclient = this;
+
+      }
+      catch (const ::exception & e)
+      {
+
+         error() << "database::client::initialize_data_client: stream creation failed: "
+            << e.get_message() << " " << e.m_strDetails;
+
+         throw;
+
+      }
+      catch (...)
+      {
+
+         error() << "database::client::initialize_data_client: stream creation failed (unknown exception)";
+
+         throw;
+
+      }
 
       //set_data_server(pserver);
 

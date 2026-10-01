@@ -916,6 +916,9 @@ namespace axis
 
       ::aura::application::init1();
 
+      ::file::path pathDatabase;
+      const char * pszStage = "resolving application database path";
+
       try
       {
 
@@ -928,8 +931,6 @@ namespace axis
                m_strDatabaseAppId = m_strAppId;
 
             }
-
-            ::file::path pathDatabase;
 
             // auto pcontext = get_context();
 
@@ -954,15 +955,44 @@ namespace axis
 
             }
 
+            information() << "axis::application::init1: initializing database for " << m_strAppId << " at " << pathDatabase;
+
+            pszStage = "initializing simpledb server (database_sqlite3)";
+
+            if (!m_psimpledb)
+            {
+
+               throw ::exception(error_wrong_state, "simpledb server was not constructed during process_init");
+
+            }
+
             m_psimpledb->initialize_simpledb_server(this, pathDatabase);
 
+            pszStage = "creating and registering database client stream";
+
             initialize_data_client(m_psimpledb);
+
+            information() << "axis::application::init1: database client stream ready for " << m_strAppId;
 
          }
 
       }
+      catch (const ::exception & e)
+      {
+
+         error() << "axis::application::init1: " << pszStage << " failed for " << m_strAppId
+            << " at " << pathDatabase << ": " << e.get_message() << " " << e.m_strDetails;
+
+         throw;
+
+      }
       catch (...)
       {
+
+         error() << "axis::application::init1: " << pszStage << " failed for " << m_strAppId
+            << " at " << pathDatabase << " (unknown exception)";
+
+         throw;
 
       }
 

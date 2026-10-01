@@ -375,7 +375,9 @@ namespace sqlite
 
       disconnect();
 
-      if (sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite) == SQLITE_OK)
+      ::i32 iOpenResult = sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite);
+
+      if (iOpenResult == SQLITE_OK)
       {
          //cout << "Connected!\n";
          char_pointer err = nullptr;
@@ -418,7 +420,11 @@ namespace sqlite
 
       }
 
-      throw ::exception(error_failed);
+      error() << "sqlite::database::_connect: sqlite3_open failed for " << m_strName
+         << " (code " << iOpenResult << "): "
+         << (m_psqlite ? sqlite3_errmsg(m_psqlite) : "no SQLite handle");
+
+      throw ::exception(error_failed, "sqlite3_open failed", m_strName);
 
    }
 

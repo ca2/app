@@ -5699,7 +5699,15 @@ namespace draw2d_cairo
 
          }
 
-         ::cast < ::draw2d_cairo::bitmap > pdraw2dcairobitmap = pdraw2dbrush->m_pimage->get_bitmap_as_source();
+         ::cast < ::draw2d_cairo::bitmap > pdraw2dcairobitmap = pdraw2dbrush->m_pimage->get_bitmap_as_source(this);
+
+         if (!pdraw2dcairobitmap)
+         {
+
+            information() << "Cairo pattern brush: source bitmap is unavailable";
+            return false;
+
+         }
 
          //cairo_surface_t * psurface = cairo_get_target((cairo_t *) pdraw2dbrush->m_pimage->get_bitmap_as_source()->get_os_data());
 

@@ -1808,8 +1808,37 @@ namespace draw2d_cairo
             auto pdata = cairo_image_surface_get_data(psurface);
             int iSamples = 0;
             int iVisibleSamples = 0;
+            int iSurfaceVisibleSamples = 0;
+            int iVisibleLeft = iRawWidth;
+            int iVisibleTop = iRawHeight;
+            int iVisibleRight = -1;
+            int iVisibleBottom = -1;
             if (pdata && cairo_image_surface_get_format(psurface) == CAIRO_FORMAT_ARGB32)
             {
+
+               // Sample the whole backing surface as well: content may have
+               // been drawn outside the viewport being presented after a move.
+               for (int y = 0; y < iRawHeight; y += maximum(1, iRawHeight / 64))
+               {
+
+                  auto prow = reinterpret_cast<const ::u32 *>(pdata + y * iStride);
+                  for (int x = 0; x < iRawWidth; x += maximum(1, iRawWidth / 64))
+                  {
+
+                     if (prow[x] >> 24)
+                     {
+
+                        iSurfaceVisibleSamples++;
+                        iVisibleLeft = minimum(iVisibleLeft, x);
+                        iVisibleTop = minimum(iVisibleTop, y);
+                        iVisibleRight = maximum(iVisibleRight, x);
+                        iVisibleBottom = maximum(iVisibleBottom, y);
+
+                     }
+
+                  }
+
+               }
 
                for (int iy = 0; iy < 16; iy++)
                {
@@ -1843,6 +1872,9 @@ namespace draw2d_cairo
                << " source=" << pointSrc.x << "," << pointSrc.y
                << " target size=" << rectangleTarget.width() << "," << rectangleTarget.height()
                << " visible samples=" << iVisibleSamples << "/" << iSamples
+               << " whole surface visible samples=" << iSurfaceVisibleSamples
+               << " sampled bounds=" << iVisibleLeft << "," << iVisibleTop
+               << "-" << iVisibleRight << "," << iVisibleBottom
                << " surface status=" << (int)cairo_surface_status(psurface)
                << " context status=" << (int)cairo_status(m_pcairo);
 

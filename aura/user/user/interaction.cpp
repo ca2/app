@@ -7464,6 +7464,7 @@ namespace user
             << ", design visible=" << const_layout().design().is_visible()
             << ", inherit draw=" << pdraw2dgraphics->m_bInheritDraw
             << ", draw enabled=" << pdraw2dgraphics->m_bDraw
+            << ", on draw enabled=" << m_bOnDraw
             << ", draw pass=" << !!(pdraw2dgraphics->m_egraphics & e_graphics_draw);
 
       }

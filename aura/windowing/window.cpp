@@ -13067,7 +13067,7 @@ namespace windowing
             // xxxdirectx user_interaction()->_000TopCallOnDraw(pdraw2dgraphics);
             user_interaction()->_000TopCallOnDraw(pgraphicspointer);
 
-            // pdraw2dgraphics->fill_solid_rectangle({ 0., 0., 100., 100. }, ::argb(0.5, 0.5, 0.8, 0.75));
+             //pdraw2dgraphics->fill_solid_rectangle({ 0., 0., 100., 100. }, ::argb(0.5, 0.5, 0.8, 0.75));
 
             ////user_interaction()->_000CallOnDraw(pdraw2dgraphics);
 

@@ -86,6 +86,8 @@ namespace draw2d_cairo
       void _create_memory_graphics(const ::i32_size& size, ::draw2d::domain * pdraw2domain) override;
       void create_memory_graphics(const ::i32_size & size, ::draw2d::domain * pdraw2domain) override;
       void create_bitmap_graphics(::draw2d::bitmap * pdraw2dbitmap, ::draw2d::domain * pdraw2domain) override;
+      void on_acquire_memory_graphics(bool bExternalRendering, ::image::image * pimage,
+         const ::i32_size & size, ::draw2d::domain * pdraw2ddomain) override;
       void destroy() override;
 
       // Device-Context Functions

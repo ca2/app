@@ -354,6 +354,41 @@ namespace draw2d_cairo
    }
 
 
+   void graphics::on_acquire_memory_graphics(bool bExternalRendering,
+      ::image::image * pimage, const ::i32_size & size,
+      ::draw2d::domain * pdraw2ddomain)
+   {
+
+      // A buffer growth can replace the bitmap surface while the existing
+      // Cairo context still holds a reference to the previous surface.
+      // Rebind before the base acquisition resets clipping and draws.
+      if (pimage && (!m_pimageTarget || m_pimageTarget == pimage))
+      {
+
+         ::cast < ::draw2d_cairo::bitmap > pbitmap = pimage->m_pdraw2dbitmap;
+         if (pbitmap && pbitmap->m_pcairosurface)
+         {
+
+            if (!m_pcairo || cairo_get_target(m_pcairo) != pbitmap->m_pcairosurface)
+            {
+
+#if defined(__SUNOS__)
+               information() << "Cairo acquire: rebinding context to current bitmap surface";
+#endif
+               set(pbitmap.m_p);
+
+            }
+
+         }
+
+      }
+
+      ::draw2d::graphics::on_acquire_memory_graphics(
+         bExternalRendering, pimage, size, pdraw2ddomain);
+
+   }
+
+
    void graphics::_create_memory_graphics(const ::i32_size& size, ::draw2d::domain * pdraw2ddomain)
    {
 

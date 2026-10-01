@@ -158,7 +158,7 @@ namespace graphics
 
       synchronous_lock synchronouslock(m_pwindow->m_pmutexBufferSizeAndPosition);
 
-      debug() << "::graphics::graphics::buffer_size_and_position (1)";
+      //information() << "::graphics::graphics::buffer_size_and_position (1)";
 
       if (::is_null(m_pwindow) || ::is_null(m_pwindow->user_interaction()))
       {
@@ -167,7 +167,7 @@ namespace graphics
 
       }
 
-      debug() << "::graphics::graphics::buffer_size_and_position (2)";
+      //information() << "::graphics::graphics::buffer_size_and_position (2)";
 
       auto puserinteraction = m_pwindow->user_interaction();
 
@@ -180,6 +180,8 @@ namespace graphics
          puserinteraction->const_layout().lading().size());
 
       auto rectangleRaw = ::i32_rectangle(m_pwindow->m_sizeRaw);
+      
+      //information() << "::graphics::graphics::buffer_size_and_position (3) sizeRaw = " << m_pwindow->m_sizeRaw.cx << ", " << m_pwindow->m_sizeRaw.cy;
 
       auto rectangleFixed = rectangleDesign.intersection(rectangleRaw);
 

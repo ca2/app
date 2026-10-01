@@ -15824,9 +15824,25 @@ if(get_parent())
       {
 
          sketch_to_lading();
+		//~ if (strType.contains("main_window"))
+		//~ {
+  
+		   //~ information() << "main_window top_down_prefix sketch_to_lading !is_host ";
+  
+		//~ }
 
       }
+		else
+		{
+					//~ if (strType.contains("main_window"))
+		//~ {
+  
+		   //~ information() << "main_window top_down_prefix sketch_to_lading is_host ";
+  
+		//~ }
 
+			
+		}
 
       //      if (strType == "user::still")
       //      {
@@ -15908,13 +15924,13 @@ if(get_parent())
 
       }
 
-      if(!get_parent() && (!m_pacmeuserinteractionaChildren
-      || m_pacmeuserinteractionaChildren->is_empty()))
-      {
+      //~ if(!get_parent() && (!m_pacmeuserinteractionaChildren
+      //~ || m_pacmeuserinteractionaChildren->is_empty()))
+      //~ {
 
-         return false;
+         //~ return false;
 
-      }
+      //~ }
 
       for_user_interaction_children(puserinteraction, this)
       {

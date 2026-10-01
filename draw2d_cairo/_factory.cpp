@@ -9,6 +9,7 @@
 #include "font.h"
 #include "path.h"
 #include "draw2d.h"
+#include "aura/graphics/draw2d/domain.h"
 
 
 __FACTORY_EXPORT void draw2d_cairo_factory(::factory::factory * pfactory)
@@ -25,6 +26,10 @@ __FACTORY_EXPORT void draw2d_cairo_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::draw2d_cairo::region, ::draw2d::region >();
    pfactory->add_factory_item < ::draw2d_cairo::font, ::write_text::font >();
    pfactory->add_factory_item < ::draw2d_cairo::path, ::draw2d::path >();
+   
+   
+   pfactory->add_factory_item < ::draw2d::domain, ::acme::draw2d::domain >();
+   
 
    pfactory->add_factory_item < ::draw2d_cairo::draw2d, ::draw2d::draw2d >();
 

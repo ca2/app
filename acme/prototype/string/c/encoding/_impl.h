@@ -487,33 +487,41 @@ inline character_count wd32_to_ansi_char(char_pointer psz, ::wd32_character wch)
 }
 
 
-#if WCHAR_T_SIZE == 16
+//#if WCHAR_T_SIZE == 16
 
 
-inline character_count utf8_to_unichar_len(const_char_pointer psz) { return ansi_to_wd16_len(psz, string_safe_length(psz)); }
-inline character_count utf8_to_unichar_len(const_char_pointer psz, character_count srclen) { return ansi_to_wd16_len(psz, srclen); }
-inline character_count utf8_to_unichar(::wd16_character * pwsz, const_char_pointer psz) { return ansi_to_wd16(pwsz, psz, string_safe_length(psz)); }
-inline character_count utf8_to_unichar(::wd16_character * pwsz, const_char_pointer psz, character_count srclen) { return ansi_to_wd16(pwsz, psz, srclen); }
+inline character_count utf8_to_wd16char_len(const_char_pointer psz) { return ansi_to_wd16_len(psz, string_safe_length(psz)); }
+inline character_count utf8_to_wd16char_len(const_char_pointer psz, character_count srclen) { return ansi_to_wd16_len(psz, srclen); }
+inline character_count utf8_to_wd16char(::wd16_character * pwsz, const_char_pointer psz) { return ansi_to_wd16(pwsz, psz, string_safe_length(psz)); }
+inline character_count utf8_to_wd16char(::wd16_character * pwsz, const_char_pointer psz, character_count srclen) { return ansi_to_wd16(pwsz, psz, srclen); }
 
 
-inline character_count unichar_to_utf8_len(const ::wd16_character * pwsz) { return wd16_to_ansi_len(pwsz, string_safe_length(pwsz)); }
-inline character_count unichar_to_utf8_len(const ::wd16_character * pwsz, character_count srclen) { return wd16_to_ansi_len(pwsz, srclen); }
-inline character_count unichar_to_utf8(char_pointer psz, const ::wd16_character * pwsz) { return wd16_to_ansi(psz, pwsz, string_safe_length(pwsz)); }
-inline character_count unichar_to_utf8(char_pointer psz, const ::wd16_character * pwsz, character_count srclen) { return wd16_to_ansi(psz, pwsz, srclen); }
+inline character_count wd16char_to_utf8_len(const ::wd16_character * pwsz) { return wd16_to_ansi_len(pwsz, string_safe_length(pwsz)); }
+inline character_count wd16char_to_utf8_len(const ::wd16_character * pwsz, character_count srclen) { return wd16_to_ansi_len(pwsz, srclen); }
+inline character_count wd16char_to_utf8(char_pointer psz, const ::wd16_character * pwsz) { return wd16_to_ansi(psz, pwsz, string_safe_length(pwsz)); }
+inline character_count wd16char_to_utf8(char_pointer psz, const ::wd16_character * pwsz, character_count srclen) { return wd16_to_ansi(psz, pwsz, srclen); }
 
 
-#else
+//#else
 
 
-inline character_count utf8_to_unichar_len(const_char_pointer psz, character_count srclen) { return ansi_to_wd32_len(psz, srclen); }
-inline character_count utf8_to_unichar(::wd32_character * pwsz, const_char_pointer psz, character_count srclen) { return ansi_to_wd32(pwsz, psz, srclen); }
+inline character_count utf8_to_wd32char_len(const_char_pointer psz, character_count srclen) { return ansi_to_wd32_len(psz, srclen); }
+inline character_count utf8_to_wd32char(::wd32_character * pwsz, const_char_pointer psz, character_count srclen) { return ansi_to_wd32(pwsz, psz, srclen); }
 
 
-inline character_count unichar_to_utf8_len(const ::wd32_character * pwsz, character_count srclen) { return wd32_to_ansi_len(pwsz, srclen); }
-inline character_count unichar_to_utf8(char_pointer psz, const ::wd32_character * pwsz, character_count srclen) { return wd32_to_ansi(psz, pwsz, srclen); }
+inline character_count wd32char_to_utf8_len(const ::wd32_character * pwsz, character_count srclen) { return wd32_to_ansi_len(pwsz, srclen); }
+inline character_count wd32char_to_utf8(char_pointer psz, const ::wd32_character * pwsz, character_count srclen) { return wd32_to_ansi(psz, pwsz, srclen); }
 
 
-#endif
+
+inline character_count utf8_to_widechar_len(const_char_pointer psz, character_count srclen) { return ansi_to_wide_len(psz, srclen); }
+inline character_count utf8_to_widechar(::wd32_character * pwsz, const_char_pointer psz, character_count srclen) { return ansi_to_wide(pwsz, psz, srclen); }
+
+
+inline character_count widechar_to_utf8_len(const ::wide_character * pwsz, character_count srclen) { return wide_to_ansi_len(pwsz, srclen); }
+inline character_count widechar_to_utf8(char_pointer psz, const ::wide_character * pwsz, character_count srclen) { return wide_to_ansi(psz, pwsz, srclen); }
+
+//#endif
 
 
 

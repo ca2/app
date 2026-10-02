@@ -7505,7 +7505,7 @@ namespace user
       if (pdraw2dgraphics->m_bInheritDraw && !(pdraw2dgraphics->m_egraphics & e_graphics_draw))
       {
 
-#if defined(__SUNOS__)
+#if MORE_LOG && defined(__SUNOS__)
          if (bTraceFrame) information() << "interaction frame draw disabled: no draw pass";
 #endif
 
@@ -7526,7 +7526,7 @@ namespace user
       if (pdraw2dgraphics->m_bInheritDraw && !bIsThisVisible)
       {
 
-#if defined(__SUNOS__)
+#if MORE_LOG && defined(__SUNOS__)
          if (bTraceFrame) information() << "interaction frame draw disabled: is_this_visible returned false";
 #endif
 
@@ -7551,7 +7551,7 @@ namespace user
       if (pdraw2dgraphics->m_bInheritDraw && !pdraw2dgraphics->m_bDraw)
       {
 
-#if defined(__SUNOS__)
+#if MORE_LOG && defined(__SUNOS__)
          if (bTraceFrame) information() << "interaction frame draw disabled: m_bDraw is false";
 #endif
 
@@ -7575,7 +7575,7 @@ namespace user
       if (pdraw2dgraphics->m_bInheritDraw && !needs_to_draw(pdraw2dgraphics))
       {
 
-#if defined(__SUNOS__)
+#if MORE_LOG && defined(__SUNOS__)
          if (bTraceFrame) information() << "interaction frame draw disabled: needs_to_draw returned false";
 #endif
 
@@ -7634,7 +7634,7 @@ namespace user
       }
       if (!should_draw())
       {
-#if defined(__SUNOS__)
+#if MORE_LOG && defined(__SUNOS__)
          if (bTraceFrame) information() << "interaction frame draw skipped: should_draw returned false";
 #endif
          //         if (!get_parent())

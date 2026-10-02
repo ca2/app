@@ -4,89 +4,89 @@
 ////#include "acme/exception/exception.h"
 
 
-character_count wide_to_ansi_len(const ::wide_character* pwsz, character_count srclen)
-{
+//character_count wide_to_ansi_len(const ::wide_character* pwsz, character_count srclen)
+//{
+//
+//   if (pwsz == nullptr)
+//   {
+//
+//      return -1;
+//
+//   }
+//
+//   character_count len = 0;
+//
+//   character_count n;
+//
+//   //::i8 sz[16];
+//
+//   while (*pwsz != L'\0' && srclen != 0)
+//   {
+//
+//      n = wide_to_ansi_char_len(*pwsz);
+//
+//      if (n <= 0)
+//      {
+//
+//         break;
+//
+//      }
+//
+//      len += n;
+//
+//      pwsz++;
+//
+//      srclen--;
+//
+//   }
+//
+//   return len;
+//
+//}
 
-   if (pwsz == nullptr)
-   {
 
-      return -1;
-
-   }
-
-   character_count len = 0;
-
-   character_count n;
-
-   //::i8 sz[16];
-
-   while (*pwsz != L'\0' && srclen != 0)
-   {
-
-      n = wide_to_ansi_char_len(*pwsz);
-
-      if (n <= 0)
-      {
-
-         break;
-
-      }
-
-      len += n;
-
-      pwsz++;
-
-      srclen--;
-
-   }
-
-   return len;
-
-}
-
-
-character_count wide_to_ansi_len2(const ::wide_character *pwsz, character_count & srclen)
-{
-
-   if (pwsz == nullptr)
-   {
-
-      return -1;
-   }
-
-   character_count len = 0;
-
-   character_count n;
-
-   character_count count = 0;
-
-   // ::i8 sz[16];
-
-   while (count < srclen && *pwsz != L'\0')
-   {
-
-      n = wide_to_ansi_char_len(*pwsz);
-
-      if (n <= 0)
-      {
-
-         break;
-
-      }
-
-      len += n;
-
-      pwsz++;
-
-      count++;
-
-   }
-
-   srclen = count;
-
-   return len;
-
-}
+//character_count wide_to_ansi_len2(const ::wide_character *pwsz, character_count & srclen)
+//{
+//
+//   if (pwsz == nullptr)
+//   {
+//
+//      return -1;
+//   }
+//
+//   character_count len = 0;
+//
+//   character_count n;
+//
+//   character_count count = 0;
+//
+//   // ::i8 sz[16];
+//
+//   while (count < srclen && *pwsz != L'\0')
+//   {
+//
+//      n = wide_to_ansi_char_len(*pwsz);
+//
+//      if (n <= 0)
+//      {
+//
+//         break;
+//
+//      }
+//
+//      len += n;
+//
+//      pwsz++;
+//
+//      count++;
+//
+//   }
+//
+//   srclen = count;
+//
+//   return len;
+//
+//}
 
 
 
@@ -146,33 +146,35 @@ character_count utf32_len(const ::wide_character* pwsz)
    }
    return s;
 }
-character_count wide_to_ansi(char_pointer psz, const ::wide_character* pwsz, character_count srclen)
-{
 
-   character_count c = 0;
 
-   character_count n;
-
-   if (srclen < 0)
-   {
-
-      srclen = utf32_len(pwsz);
-
-   }
-   while (srclen != 0 && *pwsz != L'\0')
-   {
-      n = wide_to_ansi_char(psz, *pwsz);
-      if (n <= 0)
-         break;
-      c += n;
-      pwsz++;
-      psz += n;
-      srclen--;
-   }
-
-   *psz = L'\0';
-   return c;
-}
+//character_count wide_to_ansi(char_pointer psz, const ::wide_character* pwsz, character_count srclen)
+//{
+//
+//   character_count c = 0;
+//
+//   character_count n;
+//
+//   if (srclen < 0)
+//   {
+//
+//      srclen = utf32_len(pwsz);
+//
+//   }
+//   while (srclen != 0 && *pwsz != L'\0')
+//   {
+//      n = wide_to_ansi_char(psz, *pwsz);
+//      if (n <= 0)
+//         break;
+//      c += n;
+//      pwsz++;
+//      psz += n;
+//      srclen--;
+//   }
+//
+//   *psz = L'\0';
+//   return c;
+//}
 
 
 character_count ansi_to_wide_len(const_char_pointer psz, character_count srclen)

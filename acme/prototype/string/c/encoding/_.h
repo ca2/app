@@ -323,7 +323,7 @@ inline character_count wd32_to_wd16_char(::wd16_character * pwd16sz, ::wd32_char
 
 
 
-CLASS_DECL_ACME character_count wide_to_ansi_len(const wide_character * pcwsz, character_count input_size = -1)
+inline character_count wide_to_ansi_len(const wide_character * pcwsz, character_count input_size = -1)
 {
    
    return wd16_to_ansi_len((const wd16_character*) pcwsz, input_size);
@@ -331,7 +331,7 @@ CLASS_DECL_ACME character_count wide_to_ansi_len(const wide_character * pcwsz, c
 }
 
 
-CLASS_DECL_ACME character_count wide_to_ansi_len2(const wide_character * pcwsz, character_count &input_size)
+inline character_count wide_to_ansi_len2(const wide_character * pcwsz, character_count &input_size)
 {
    
    return wd16_to_ansi_len((const wd16_character*) pcwsz, input_size);
@@ -339,7 +339,7 @@ CLASS_DECL_ACME character_count wide_to_ansi_len2(const wide_character * pcwsz, 
 }
 
 
-CLASS_DECL_ACME character_count wide_to_ansi(ansi_character *psz, const wide_character *pcwsz,
+inline character_count wide_to_ansi(char_pointer psz, const wide_character *pcwsz,
                                              character_count input_size = -1)
 {
    
@@ -348,7 +348,7 @@ CLASS_DECL_ACME character_count wide_to_ansi(ansi_character *psz, const wide_cha
 }
 
 
-CLASS_DECL_ACME character_count wide_to_ansi_char(ansi_character * psz, wide_character wch)
+inline character_count wide_to_ansi_char(char_pointer psz, wide_character wch)
 {
    
    return wd16_to_ansi_char(psz, (::wd16_character) wch);
@@ -360,7 +360,7 @@ CLASS_DECL_ACME character_count wide_to_ansi_char(ansi_character * psz, wide_cha
 
 
 
-CLASS_DECL_ACME character_count wide_to_wd16_len(const wide_character * pcwsz, character_count input_size = -1)
+inline character_count wide_to_wd16_len(const wide_character * pcwsz, character_count input_size = -1)
 {
    
    return wd16_to_wd16_len((const wd16_character*) pcwsz, input_size);
@@ -368,7 +368,7 @@ CLASS_DECL_ACME character_count wide_to_wd16_len(const wide_character * pcwsz, c
 }
 
 
-CLASS_DECL_ACME character_count wide_to_wd16_len2(const wide_character * pcwsz, character_count &input_size)
+inline character_count wide_to_wd16_len2(const wide_character * pcwsz, character_count &input_size)
 {
    
    return wd16_to_wd16_len((const wd16_character*) pcwsz, input_size);
@@ -376,7 +376,7 @@ CLASS_DECL_ACME character_count wide_to_wd16_len2(const wide_character * pcwsz, 
 }
 
 
-CLASS_DECL_ACME character_count wide_to_wd16(wd16_character *pwsz, const wide_character *pcwsz,
+inline character_count wide_to_wd16(wd16_character *pwsz, const wide_character *pcwsz,
                                              character_count input_size = -1)
 {
    
@@ -391,7 +391,7 @@ CLASS_DECL_ACME character_count wide_to_wd16(wd16_character *pwsz, const wide_ch
 
 
 
-CLASS_DECL_ACME character_count wide_to_wd32_len(const wide_character * pcwsz, character_count input_size = -1)
+inline character_count wide_to_wd32_len(const wide_character * pcwsz, character_count input_size = -1)
 {
    
    return wd16_to_wd32_len((const wd16_character*) pcwsz, input_size);
@@ -399,7 +399,7 @@ CLASS_DECL_ACME character_count wide_to_wd32_len(const wide_character * pcwsz, c
 }
 
 
-CLASS_DECL_ACME character_count wide_to_wd32_len2(const wide_character * pcwsz, character_count &input_size)
+inline character_count wide_to_wd32_len2(const wide_character * pcwsz, character_count &input_size)
 {
    
    return wd16_to_wd32_len((const wd16_character*) pcwsz, input_size);
@@ -407,7 +407,7 @@ CLASS_DECL_ACME character_count wide_to_wd32_len2(const wide_character * pcwsz, 
 }
 
 
-CLASS_DECL_ACME character_count wide_to_wd32(wd32_character *pwsz, const wide_character *pcwsz,
+inline character_count wide_to_wd32(wd32_character *pwsz, const wide_character *pcwsz,
                                              character_count input_size = -1)
 {
    
@@ -431,7 +431,7 @@ CLASS_DECL_ACME character_count wide_to_wd32(wd32_character *pwsz, const wide_ch
 
 
 
-CLASS_DECL_ACME character_count wide_to_ansi_len(const wide_character * pcwsz, character_count input_size)
+inline character_count wide_to_ansi_len(const wide_character * pcwsz, character_count input_size)
 {
    
    return wd32_to_ansi_len((const wd32_character*) pcwsz, input_size);
@@ -439,7 +439,7 @@ CLASS_DECL_ACME character_count wide_to_ansi_len(const wide_character * pcwsz, c
 }
 
 
-CLASS_DECL_ACME character_count wide_to_ansi_len2(const wide_character * pcwsz, character_count &input_size)
+inline character_count wide_to_ansi_len2(const wide_character * pcwsz, character_count &input_size)
 {
    
    return wd32_to_ansi_len((const wd32_character*) pcwsz, input_size);
@@ -447,7 +447,7 @@ CLASS_DECL_ACME character_count wide_to_ansi_len2(const wide_character * pcwsz, 
 }
 
 
-CLASS_DECL_ACME character_count wide_to_ansi(ansi_character *psz, const wide_character *pcwsz,
+inline character_count wide_to_ansi(char_pointer psz, const wide_character *pcwsz,
                                              character_count input_size)
 {
    
@@ -456,7 +456,7 @@ CLASS_DECL_ACME character_count wide_to_ansi(ansi_character *psz, const wide_cha
 }
 
 
-CLASS_DECL_ACME character_count wide_to_ansi_char(ansi_character * psz, wide_character wch)
+inline character_count wide_to_ansi_char(char_pointer psz, wide_character wch)
 {
    
    return wd32_to_ansi_char(psz, (::wd32_character) wch);
@@ -470,7 +470,7 @@ CLASS_DECL_ACME character_count wide_to_ansi_char(ansi_character * psz, wide_cha
 
 
 
-CLASS_DECL_ACME character_count wide_to_wd16_len(const wide_character * pcwsz, character_count input_size = -1)
+inline character_count wide_to_wd16_len(const wide_character * pcwsz, character_count input_size = -1)
 {
    
    return wd32_to_wd16_len((const wd32_character*) pcwsz, input_size);
@@ -478,7 +478,7 @@ CLASS_DECL_ACME character_count wide_to_wd16_len(const wide_character * pcwsz, c
 }
 
 
-CLASS_DECL_ACME character_count wide_to_wd16_len2(const wide_character * pcwsz, character_count &input_size)
+inline character_count wide_to_wd16_len2(const wide_character * pcwsz, character_count &input_size)
 {
    
    return wd32_to_wd16_len((const wd32_character*) pcwsz, input_size);
@@ -486,7 +486,7 @@ CLASS_DECL_ACME character_count wide_to_wd16_len2(const wide_character * pcwsz, 
 }
 
 
-CLASS_DECL_ACME character_count wide_to_wd16(wd16_character *pwsz, const wide_character *pcwsz,
+inline character_count wide_to_wd16(wd16_character *pwsz, const wide_character *pcwsz,
                                              character_count input_size = -1)
 {
    
@@ -501,7 +501,7 @@ CLASS_DECL_ACME character_count wide_to_wd16(wd16_character *pwsz, const wide_ch
 
 
 
-CLASS_DECL_ACME character_count wide_to_wd32_len(const wide_character * pcwsz, character_count input_size = -1)
+inline character_count wide_to_wd32_len(const wide_character * pcwsz, character_count input_size = -1)
 {
    
    return wd32_to_wd32_len((const wd32_character*) pcwsz, input_size);
@@ -509,7 +509,7 @@ CLASS_DECL_ACME character_count wide_to_wd32_len(const wide_character * pcwsz, c
 }
 
 
-CLASS_DECL_ACME character_count wide_to_wd32_len2(const wide_character * pcwsz, character_count &input_size)
+inline character_count wide_to_wd32_len2(const wide_character * pcwsz, character_count &input_size)
 {
    
    return wd32_to_wd32_len((const wd32_character*) pcwsz, input_size);
@@ -517,7 +517,7 @@ CLASS_DECL_ACME character_count wide_to_wd32_len2(const wide_character * pcwsz, 
 }
 
 
-CLASS_DECL_ACME character_count wide_to_wd32(wd32_character *pwsz, const wide_character *pcwsz,
+inline character_count wide_to_wd32(wd32_character *pwsz, const wide_character *pcwsz,
                                              character_count input_size = -1)
 {
    

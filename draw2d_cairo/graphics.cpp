@@ -368,7 +368,9 @@ namespace draw2d_cairo
       if (pimage && (!m_pimageTarget || m_pimageTarget == pimage))
       {
 
-         ::cast < ::draw2d_cairo::bitmap > pbitmap = pimage->m_pdraw2dbitmap;
+         // A pooled context may be reused for a descriptor-only image. Create
+         // its destination bitmap before drawing, rather than using the old target.
+         ::cast < ::draw2d_cairo::bitmap > pbitmap = pimage->get_bitmap_as_target(this);
          if (pbitmap && pbitmap->m_pcairosurface)
          {
 
@@ -3553,7 +3555,22 @@ namespace draw2d_cairo
 
       }
 
-      m_pimageOwned.defer_destroy_and_release();
+      // Detach both sides before destroying the image: it may own this graphics.
+      auto pimageOwned = ::transfer(m_pimageOwned);
+      m_pimageTarget.release();
+      if (pimageOwned)
+      {
+
+         if (pimageOwned->m_pgraphicsOwned == this)
+         {
+
+            pimageOwned->m_pgraphicsOwned.release();
+
+         }
+
+         pimageOwned->destroy();
+
+      }
 
       // if (m_pcairosurface != nullptr)
       // {

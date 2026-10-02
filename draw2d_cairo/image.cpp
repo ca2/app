@@ -572,6 +572,9 @@ namespace draw2d_cairo
 
       ppixmapLease->m_pimage32Raw = (::image32_t *) pdata;
 
+      ppixmapLease->m_iScan = stride;
+      ppixmapLease->m_bTopLeft = true;
+
       ppixmapLease->m_size = this->m_size;
 
       ppixmapLease->m_sizeRaw.cx = width;

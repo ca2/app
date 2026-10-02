@@ -390,7 +390,7 @@ namespace sqlite
       int iOpenErrno = errno;
       int iExtendedError = m_psqlite ? sqlite3_extended_errcode((sqlite3*)m_psqlite) : iOpenResult;
 #if SQLITE_VERSION_NUMBER >= 3012000
-      int iSystemErrno = m_psqlite ? sqlite3_system_errno((sqlite*)m_psqlite) : 0;
+      int iSystemErrno = m_psqlite ? sqlite3_system_errno((sqlite3*)m_psqlite) : 0;
 #endif
       information() << "startup: sqlite::database::_connect: after ::i32 iOpenResult = sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite)";
 
@@ -444,7 +444,7 @@ namespace sqlite
 
       information() << "sqlite::database::_connect: sqlite3_open failed for " << m_strName
          << " (code " << iOpenResult << "): "
-         << (m_psqlite ? sqlite3_errmsg(m_psqlite) : "no SQLite handle");
+         << (m_psqlite ? sqlite3_errmsg((sqlite3*)m_psqlite) : "no SQLite handle");
 
       information() << "sqlite::database::_connect: extended error=" << iExtendedError
          << ", captured errno=" << iOpenErrno << " (" << strerror(iOpenErrno) << ")";

@@ -403,7 +403,7 @@ __FACTORY_EXPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfa
 TOKEN_CONCATENATE(name, _factory)(pfactory)
 
 
-#if defined(MACOS) || defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__BSD__)
+#if defined(MACOS) || defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 #define IS_DESKTOP_SYSTEM() (true)
 #else
 #define IS_DESKTOP_SYSTEM() (false)

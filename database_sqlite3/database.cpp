@@ -388,9 +388,9 @@ namespace sqlite
       ::i32 iOpenResult = sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite);
       // Capture errno before tracing or other library calls can overwrite it.
       int iOpenErrno = errno;
-      int iExtendedError = m_psqlite ? sqlite3_extended_errcode(m_psqlite) : iOpenResult;
+      int iExtendedError = m_psqlite ? sqlite3_extended_errcode((sqlite3*)m_psqlite) : iOpenResult;
 #if SQLITE_VERSION_NUMBER >= 3012000
-      int iSystemErrno = m_psqlite ? sqlite3_system_errno(m_psqlite) : 0;
+      int iSystemErrno = m_psqlite ? sqlite3_system_errno((sqlite*)m_psqlite) : 0;
 #endif
       information() << "startup: sqlite::database::_connect: after ::i32 iOpenResult = sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite)";
 

@@ -81,6 +81,8 @@ inline character_count wd32_to_ansi_char_len(::wd32_character wch)
 }
 
 
+
+
 inline character_count wd16_to_wd32_char(::wd32_character * output, const ::wd16_character * input, character_count len)
 {
 
@@ -486,6 +488,18 @@ inline character_count wd32_to_ansi_char(char_pointer psz, ::wd32_character wch)
    }
 }
 
+#if WCHAR_T_SIZE == 16
+inline character_count wide_to_ansi_char_len(const ::wide_character ** ppu16a, character_count * plen)
+{
+   return wd16_to_ansi_char_len((::wd16_character **)ppu16a, plen);
+}
+#else
+inline character_count wide_to_ansi_char_len(const ::wide_character wch)
+{
+   return wd16_to_ansi_char_len((::wd32_character)wch);
+}
+#endif
+
 
 //#if WCHAR_T_SIZE == 16
 
@@ -514,6 +528,22 @@ inline character_count wd32char_to_utf8(char_pointer psz, const ::wd32_character
 
 
 
+#if WCHAR_T_SIZE == 16
+
+
+inline character_count utf8_to_widechar_len(const_char_pointer psz) { return ansi_to_wide_len(psz, string_safe_length(psz)); }
+inline character_count utf8_to_widechar_len(const_char_pointer psz, character_count srclen) { return ansi_to_wide_len(psz, srclen); }
+inline character_count utf8_to_widechar(::wide_character * pwsz, const_char_pointer psz) { return ansi_to_wide(pwsz, psz, string_safe_length(psz)); }
+inline character_count utf8_to_widechar(::wide_character * pwsz, const_char_pointer psz, character_count srclen) { return ansi_to_wide(pwsz, psz, srclen); }
+
+
+inline character_count widechar_to_utf8_len(const ::wide_character * pwsz) { return wide_to_ansi_len(pwsz, string_safe_length(pwsz)); }
+inline character_count widechar_to_utf8_len(const ::wide_character * pwsz, character_count srclen) { return wide_to_ansi_len(pwsz, srclen); }
+inline character_count widechar_to_utf8(char_pointer psz, const ::wide_character * pwsz) { return wide_to_ansi(psz, pwsz, string_safe_length(pwsz)); }
+inline character_count widechar_to_utf8(char_pointer psz, const ::wide_character * pwsz, character_count srclen) { return wide_to_ansi(psz, pwsz, srclen); }
+
+#else
+
 inline character_count utf8_to_widechar_len(const_char_pointer psz, character_count srclen) { return ansi_to_wide_len(psz, srclen); }
 inline character_count utf8_to_widechar(::wide_character * pwsz, const_char_pointer psz, character_count srclen) { return ansi_to_wide(pwsz, psz, srclen); }
 
@@ -521,7 +551,7 @@ inline character_count utf8_to_widechar(::wide_character * pwsz, const_char_poin
 inline character_count widechar_to_utf8_len(const ::wide_character * pwsz, character_count srclen) { return wide_to_ansi_len(pwsz, srclen); }
 inline character_count widechar_to_utf8(char_pointer psz, const ::wide_character * pwsz, character_count srclen) { return wide_to_ansi(psz, pwsz, srclen); }
 
-//#endif
+#endif
 
 
 

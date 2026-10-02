@@ -427,11 +427,11 @@ const_char_pointer pDefaultChar,
   if(CodePage == CP_UTF8)
   {
 
-     auto len = unichar_to_utf8_len(wstr);
+     auto len = widechar_to_utf8_len(wstr, wstr.length());
 
      char_pointer psz = str.get_buffer(len);
 
-     unichar_to_utf8(psz, wstr, len);
+     widechar_to_utf8(psz, wstr, len);
 
   }
   else

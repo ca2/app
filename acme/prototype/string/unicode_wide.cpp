@@ -1,0 +1,516 @@
+#include "platform.h"
+#include "acme/prototype/string/sz/_template.h"
+//#include "string.h"
+////#include "acme/exception/exception.h"
+
+
+character_count wide_to_ansi_len(const ::wide_character* pwsz, character_count srclen)
+{
+
+   if (pwsz == nullptr)
+   {
+
+      return -1;
+
+   }
+
+   character_count len = 0;
+
+   character_count n;
+
+   //::i8 sz[16];
+
+   while (*pwsz != L'\0' && srclen != 0)
+   {
+
+      n = wide_to_ansi_char_len(*pwsz);
+
+      if (n <= 0)
+      {
+
+         break;
+
+      }
+
+      len += n;
+
+      pwsz++;
+
+      srclen--;
+
+   }
+
+   return len;
+
+}
+
+
+character_count wide_to_ansi_len2(const ::wide_character *pwsz, character_count & srclen)
+{
+
+   if (pwsz == nullptr)
+   {
+
+      return -1;
+   }
+
+   character_count len = 0;
+
+   character_count n;
+
+   character_count count = 0;
+
+   // ::i8 sz[16];
+
+   while (count < srclen && *pwsz != L'\0')
+   {
+
+      n = wide_to_ansi_char_len(*pwsz);
+
+      if (n <= 0)
+      {
+
+         break;
+
+      }
+
+      len += n;
+
+      pwsz++;
+
+      count++;
+
+   }
+
+   srclen = count;
+
+   return len;
+
+}
+
+
+
+//character_count wide_to_ansi_len_len(const ::wide_character* pwsz, character_count input_size)
+//{
+//
+//   if (pwsz == nullptr)
+//   {
+//
+//      return -1;
+//
+//   }
+//
+//   character_count len = 0;
+//
+//   character_count n;
+//
+//   ::i8 sz[16];
+//
+//   while (input_size != 0 && *pwsz != L'\0')
+//   {
+//
+//      n = wide_to_ansichar(sz, *pwsz);
+//
+//      if (n <= 0)
+//      {
+//
+//         break;
+//
+//      }
+//
+//      len += n;
+//
+//      input_size--;
+//
+//      pwsz++;
+//
+//   }
+//
+//   return len;
+//
+//}
+
+
+character_count utf32_len(const ::wide_character* pwsz)
+{
+
+   if (pwsz == nullptr)
+   {
+      return 0;
+   }
+   character_count s = 0;
+   while (*pwsz != 0)
+   {
+      s++;
+      pwsz++;
+   }
+   return s;
+}
+character_count wide_to_ansi(char_pointer psz, const ::wide_character* pwsz, character_count srclen)
+{
+
+   character_count c = 0;
+
+   character_count n;
+
+   if (srclen < 0)
+   {
+
+      srclen = utf32_len(pwsz);
+
+   }
+   while (srclen != 0 && *pwsz != L'\0')
+   {
+      n = wide_to_ansi_char(psz, *pwsz);
+      if (n <= 0)
+         break;
+      c += n;
+      pwsz++;
+      psz += n;
+      srclen--;
+   }
+
+   *psz = L'\0';
+   return c;
+}
+
+
+character_count ansi_to_wide_len(const_char_pointer psz, character_count srclen)
+{
+
+   character_count len;
+
+   character_count utf32len = 0;
+
+   while (psz != nullptr && *psz != '\0')
+   {
+      
+      if(srclen == 0)
+      {
+         
+         break;
+         
+      }
+
+      len = unicode_len(psz);
+
+      if (srclen > 0 && len > srclen)
+      {
+
+         throw ::exception(error_invalid_character, "reached maximum string length");
+
+         break;
+
+      }
+
+      psz += len;
+
+      utf32len++;
+
+      srclen -= len;
+
+   }
+
+   return utf32len;
+
+}
+
+
+character_count ansi_to_wide_len2(const_char_pointer psz, character_count & srclen)
+{
+
+   character_count len;
+
+   character_count utf32len = 0;
+
+   character_count count = 0;
+
+   while (count < srclen && *psz != '\0')
+   {
+
+      len = unicode_len(psz);
+
+      if (count + len > srclen)
+      {
+
+         throw ::exception(error_invalid_character, "reached maximum string length");
+
+         break;
+      }
+
+      psz += len;
+
+      utf32len++;
+
+      count += len;
+
+   }
+
+   srclen = count;
+
+   return utf32len;
+
+}
+
+
+
+
+character_count ansi_to_wide(::wide_character* pwsz, const_char_pointer psz, character_count srclen)
+{
+
+   ::i32 dstlen = 0;
+
+   ::i32 len = 0;
+
+   while (srclen != 0 && psz != nullptr && *psz != '\0')
+   {
+
+      auto iWd32 = unicode_index_length(psz, len);
+
+      if (iWd32 < 0)
+      {
+
+         return -1;
+
+      }
+
+      psz += len;
+
+      dstlen += len;
+
+      *pwsz++ = iWd32;
+
+      srclen -= len;
+
+   }
+
+   if (psz != nullptr)
+   {
+
+      *pwsz = L'\0';
+
+   }
+
+   return dstlen;
+
+}
+
+
+
+
+::wide_character* ansi_to_wide_dup(const_char_pointer input, character_count input_size)
+{
+
+   character_count s = ansi_to_wide_len(input, input_size);
+
+   ::wide_character* v = (::wide_character*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wide_character) * (s + 1), nullptr);
+
+   ansi_to_wide(v, input, s);
+
+   v[s] = 0;
+
+   return v;
+
+}
+
+
+
+
+
+
+
+
+string wide_to_ansi_str(const ::wide_character * pwszUni32, character_count iUni32Len)
+{
+
+   character_count iUtf8Len = wide_to_ansi_len(pwszUni32, iUni32Len);
+
+   string str;
+
+   char_pointer psz = str.get_buffer(iUtf8Len);
+
+   wide_to_ansi(psz, pwszUni32, iUni32Len);
+
+   str.release_buffer(iUtf8Len);
+
+   return str;
+
+}
+
+
+
+
+
+
+
+
+
+CLASS_DECL_ACME character_count wide_to_wide_len(const wide_character * psz, character_count srclen)
+{
+
+   return __utftype_to_utftype_len2(psz, srclen);
+
+   //if (input_size < 0)
+   //{
+
+   //   auto p = psz;
+
+   //   ::i32 iError = 0;
+
+   //   while (*p)
+   //   {
+
+   //      p = unicode_next(p, &iError);
+
+   //      if (iError > 0)
+   //      {
+
+   //         throw ::exception(error_invalid_character, "wide_to_wide_len");
+   //      }
+   //   }
+
+   //   return p - psz;
+   //}
+   //else
+   //{
+
+   //   return wide_to_wide_len2(psz, input_size);
+   //}
+}
+
+
+CLASS_DECL_ACME character_count wide_to_wide_len2(const wide_character * psz, character_count &srclen)
+{
+
+   return __utftype_to_utftype_len2(psz, srclen);
+
+   //if (input_size < 0)
+   //{
+
+   //   return wide_to_wide_len(psz, -1);
+   //}
+   //else
+   //{
+
+   //   auto p = psz;
+
+   //   auto count = 0;
+
+   //   ::i32 iError = 0;
+
+   //   while (count < input_size && *p)
+   //   {
+
+   //      auto pNext = unicode_next(p, &iError);
+
+   //      if (iError > 0)
+   //      {
+
+   //         throw ::exception(error_invalid_character, "wide_to_wide_len2");
+   //      }
+
+   //      auto len = pNext - p;
+
+   //      if (count + len > input_size)
+   //      {
+
+   //         throw ::exception(error_index_out_of_bounds, "wide_to_wide_len2 (b)");
+   //      }
+
+   //      p = pNext;
+
+   //      count += len;
+   //   }
+
+   //   return count;
+   //}
+}
+
+
+CLASS_DECL_ACME character_count wide_to_wide(wide_character *psz, const wide_character *pcsz,
+                                             character_count input_size)
+{
+
+   if (input_size < 0)
+   {
+
+      auto pSrc = pcsz;
+
+      auto pDst = psz;
+
+      ::i32 iError = 0;
+
+      while (*pSrc)
+      {
+
+         auto pSrcNext = unicode_next(pSrc, &iError);
+
+         if (iError > 0)
+         {
+
+            throw ::exception(error_invalid_character, "wide_to_wide_len (a)");
+
+         }
+
+         while (pSrc < pSrcNext)
+         {
+
+            *pDst = *pSrc;
+
+            pSrc++;
+
+            pDst++;
+
+         }
+
+      }
+
+      return pDst - psz;
+
+   }
+   else
+   {
+
+      auto pSrc = pcsz;
+
+      auto pDst = psz;
+
+      auto count = 0;
+
+      ::i32 iError = 0;
+
+      while (count < input_size && *pSrc)
+      {
+
+         auto pSrcNext = unicode_next(pSrc, &iError);
+
+         if (iError > 0)
+         {
+
+            throw ::exception(error_invalid_character, "wide_to_wide (b1)");
+         }
+
+         auto len = pSrcNext - pSrc;
+
+         if (count + len > input_size)
+         {
+
+            throw ::exception(error_index_out_of_bounds, "wide_to_wide (b2)");
+         }
+
+         while (pSrc < pSrcNext)
+         {
+
+            *pDst = *pSrc;
+
+            pSrc++;
+
+            pDst++;
+
+            count++;
+         }
+      }
+
+      return count;
+   }
+}

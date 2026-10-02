@@ -515,7 +515,7 @@ inline character_count wd32char_to_utf8(char_pointer psz, const ::wd32_character
 
 
 inline character_count utf8_to_widechar_len(const_char_pointer psz, character_count srclen) { return ansi_to_wide_len(psz, srclen); }
-inline character_count utf8_to_widechar(::wd32_character * pwsz, const_char_pointer psz, character_count srclen) { return ansi_to_wide(pwsz, psz, srclen); }
+inline character_count utf8_to_widechar(::wide_character * pwsz, const_char_pointer psz, character_count srclen) { return ansi_to_wide(pwsz, psz, srclen); }
 
 
 inline character_count widechar_to_utf8_len(const ::wide_character * pwsz, character_count srclen) { return wide_to_ansi_len(pwsz, srclen); }

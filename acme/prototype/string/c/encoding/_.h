@@ -173,6 +173,72 @@ inline character_count wd32_to_ansi_char_len(::wd32_character wch);
 inline character_count wd32_to_ansi_char(char_pointer psz, ::wd32_character wch);
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CLASS_DECL_ACME character_count utf32_len(const ::wide_character* psz);
+
+
+//CLASS_DECL_ACME const ::wide_character *unicode_next(const ::wide_character *psz, ::i32 *piError);
+//CLASS_DECL_ACME const ::wide_character *unicode_prior(const ::wide_character *psz, const ::wide_character *pszBeg);
+
+
+CLASS_DECL_ACME character_count wide_to_wide_len(const wide_character * pcwsz, character_count input_size = -1);
+CLASS_DECL_ACME character_count wide_to_wide_len2(const wide_character * pcwsz, character_count &input_size);
+CLASS_DECL_ACME character_count wide_to_wide(wide_character *pwsz, const wide_character *pcwsz,
+                                             character_count input_size = -1);
+
+
+CLASS_DECL_ACME character_count ansi_to_wide_len(const_char_pointer psz, character_count srclen = -1);
+CLASS_DECL_ACME character_count ansi_to_wide_len2(const_char_pointer psz, character_count & srclen);
+CLASS_DECL_ACME character_count ansi_to_wide(::wide_character* pwsz, const_char_pointer psz, character_count srclen = -1);
+
+CLASS_DECL_ACME ::wide_character* ansi_to_wide_dup(const_char_pointer pcwsz, character_count input_size = -1);
+
+
+CLASS_DECL_ACME character_count wide_to_ansi_len(const ::wide_character* pwsz, character_count srclen = -1);
+CLASS_DECL_ACME character_count wide_to_ansi_len2(const ::wide_character *pwsz, character_count & srclen);
+CLASS_DECL_ACME character_count wide_to_ansi(char_pointer psz, const ::wide_character* pwsz, character_count srclen = -1);
+
+CLASS_DECL_ACME char_pointer wide_to_ansi_dup(const ::wide_character * input, character_count input_size);
+
+
+/**
+ * Encode a code i32_point using UTF-8
+ *
+ * @adaptor ca2
+ * @authorr Ondrhej Hrusjka <ondra@ondrovo.com>
+ * @license MIT
+ *
+ * @paramrr out - output buffer (minimum 5 characters), will be 0-terminated
+ * @paramrr utf - code i32_point 0-0x10FFFF
+ * @returnr number of bytes on success, 0 on failure (also produces U+FFFD, which uses 3 bytes)
+ */
+inline character_count wide_to_ansi_char_len(::wide_character wch);
+
+inline character_count wide_to_ansi_char(char_pointer psz, ::wide_character wch);
+
+
+
+
+
+
+
+
+
+
 inline character_count replacement_utf8_char(char_pointer psz)
 {
     psz[0] = (::i8) 0xEF;

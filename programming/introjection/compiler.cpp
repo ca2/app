@@ -1104,7 +1104,7 @@ pdirectorysystem->create("/var/tmp/ca2/intermediate");
       directory()->create(pathOutputFolder);
 
 
-#if defined(LINUX) || defined(__BSD__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 
       string strTargetPath =  m_pintegrationcontext->m_pathBuildFolder /"time" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / plibrary->m_pathScript.title();
       strTargetPath.case_insensitive_ends_eat(".cpp");
@@ -1116,7 +1116,9 @@ pdirectorysystem->create("/var/tmp/ca2/intermediate");
       strTargetPath.case_insensitive_ends_eat(".cpp");
       strTargetPath.case_insensitive_ends_eat(".dll");
 
+#if defined(WINDOWS)
       ::SetThreadUILanguage((LANGID)65001);
+#endif
 
 
 #endif

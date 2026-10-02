@@ -1353,12 +1353,13 @@ list(APPEND library_source
         #prototype/string/to_string.cpp
         prototype/string/tokenizer.cpp
         prototype/string/tokenizer.h
-   prototype/string/utf8_character.cpp
-   prototype/string/utf8_character.h
+        prototype/string/utf8_character.cpp
+        prototype/string/utf8_character.h
         prototype/string/unicode.cpp
-        prototype/string/unicode16.cpp
-        prototype/string/unicode16_32.cpp
-        prototype/string/unicode32.cpp
+        prototype/string/unicode_wd16.cpp
+        prototype/string/unicode_wd16_wd32.cpp
+        prototype/string/unicode_wd32.cpp
+        prototype/string/unicode_wide.cpp
         prototype/string/wildcard.cpp
         #prototype/string/wstring_adaptor.h
         #prototype/string/x.cpp

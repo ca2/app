@@ -265,51 +265,70 @@ CLASS_DECL_ACME ::wd16_character * string_reverse(::wd16_character * psz) noexce
 
 CLASS_DECL_ACME character_count _string_format(::wd16_character * pszBuffer, character_count nlength, const ::wd16_character * pszFormat, va_list args) noexcept
 {
+   
+   wd16_string wd16str(pszFormat);
+   
+   wide_string wstr(wd16str);
+   
+   wide_string wstrFormat;
 
-#ifdef WINDOWS
-
-   wide_string widestrFormat(pszFormat);
-
-   wide_string widestrBuffer;
-
-   auto pwszBuffer = widestrBuffer.get_buffer(nlength);
-
-   auto result = vswprintf_s(pwszBuffer, (size_t)nlength, widestrFormat.c_str(), args);
-
-   if (result >= 0)
-   {
-
-      utf_to_utf(pszBuffer, pwszBuffer, result);
-
-      pszBuffer[result] = 0;
-
-   }
-   else if (nlength > 0)
-   {
-
-      pszBuffer[0] = 0;
-
-   }
-
-   return result;
-
-#else
-
-   wd32_string wstrBuffer;
-
-   auto psz = wstrBuffer.get_buffer(nlength);
-
-   wd32_string wstrFormat(pszFormat);
-
-   auto len = vswprintf(psz, nlength, wstrFormat.c_str(), args);
-
-   utf_to_utf(pszBuffer, psz, nlength);
-
-   return len;
-
-#endif
+   wstrFormat.formatf_arguments(wstr, args);
+   
+   wd16_string wd16strFormat(wstrFormat);
+   
+   zero(pszBuffer, nlength);
+   
+   wd16_ncpy(pszBuffer, wd16str.c_str(), minimum(nlength, wd16strFormat.length()));
+   
+   pszBuffer[nlength] = '\0';
 
 }
+//{
+//
+//#ifdef WINDOWS
+//
+//   wide_string widestrFormat(pszFormat);
+//
+//   wide_string widestrBuffer;
+//
+//   auto pwszBuffer = widestrBuffer.get_buffer(nlength);
+//
+//   auto result = vswprintf_s(pwszBuffer, (size_t)nlength, widestrFormat.c_str(), args);
+//
+//   if (result >= 0)
+//   {
+//
+//      utf_to_utf(pszBuffer, pwszBuffer, result);
+//
+//      pszBuffer[result] = 0;
+//
+//   }
+//   else if (nlength > 0)
+//   {
+//
+//      pszBuffer[0] = 0;
+//
+//   }
+//
+//   return result;
+//
+//#else
+//
+//   wd32_string wstrBuffer;
+//
+//   auto psz = wstrBuffer.get_buffer(nlength);
+//
+//   wd32_string wstrFormat(pszFormat);
+//
+//   auto len = vswprintf(psz, nlength, wstrFormat.c_str(), args);
+//
+//   utf_to_utf(pszBuffer, psz, nlength);
+//
+//   return len;
+//
+//#endif
+//
+//}
 
 
 CLASS_DECL_ACME const ::wd16_character * string_rear_find_character(const ::wd16_character * psz, ::wd16_character ch) noexcept

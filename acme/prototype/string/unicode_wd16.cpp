@@ -336,28 +336,38 @@ character_count wd16_to_ansi(char_pointer psz, const ::wd16_character* pwsz, cha
 extern "C"
 {
 
+   
    char_pointer c_utf8_str(const wchar_t* str)
    {
+      
       return strdup(unicode_to_utf8(str));
+      
    }
+
 
    wchar_t* c_wide_str(const_char_pointer str)
    {
+      
 #if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__)
-      wchar_t* p = ansi_to_wd32_dup(str);
-      wchar_t* point2 = wcsdup(p);
+      
+      wchar_t * p = ansi_to_wide_dup(str);
+      
+      wchar_t * p2 = wcsdup(p);
+      
       ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);
-      return point2;
+      
+      return p2;
+      
 #else
+      
       return wcsdup(utf8_to_unicode(str));
+      
 #endif
 
    }
 
 
-
 } // extern "C"
-
 
 
 

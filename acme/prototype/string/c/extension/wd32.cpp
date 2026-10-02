@@ -792,13 +792,57 @@ CLASS_DECL_ACME ::u32 wd32_to_u32(const ::wd32_character * psz, const ::wd32_cha
    return __wd32tou32(psz, (::wd32_character **) ppszEnd, iBase);
 
 }
+
+
+
+
+
+
+
+
 #else
+
+
+
+
+
+
 
 
 CLASS_DECL_ACME ::i64 wd32_to_i64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
 {
+   
+   wd32_string wd32str(psz);
+   
+   wide_string wstr(wd32str);
+   
+   wide_character * pwszEnd = nullptr;
+   
+   auto pwsz = wstr.c_str();
 
-   return wcstoll(psz, (::wd32_character **) ppszEnd, iBase);
+   auto i = wcstoll(pwsz, &pwszEnd, iBase);
+   
+   if(ppszEnd)
+   {
+      
+      if((pwszEnd - pwsz) < wstr.length())
+      {
+         
+         auto iLength = wide_to_wd32_len(pwsz, pwszEnd - pwsz);
+         
+         *ppszEnd = psz + iLength;
+         
+      }
+      else
+      {
+       
+         *ppszEnd = nullptr;
+         
+      }
+      
+   }
+   
+   return i;
 
 }
 
@@ -806,7 +850,37 @@ CLASS_DECL_ACME ::i64 wd32_to_i64(const ::wd32_character * psz, const ::wd32_cha
 CLASS_DECL_ACME ::u64 wd32_to_u64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
 {
 
-   return wcstoull(psz, (::wd32_character **) ppszEnd, iBase);
+   wd32_string wd32str(psz);
+   
+   wide_string wstr(wd32str);
+   
+   wide_character * pwszEnd = nullptr;
+   
+   auto pwsz = wstr.c_str();
+
+   auto u = wcstoull(pwsz, &pwszEnd, iBase);
+   
+   if(ppszEnd)
+   {
+      
+      if((pwszEnd - pwsz) < wstr.length())
+      {
+         
+         auto iLength = wide_to_wd32_len(pwsz, pwszEnd - pwsz);
+         
+         *ppszEnd = psz + iLength;
+         
+      }
+      else
+      {
+       
+         *ppszEnd = nullptr;
+         
+      }
+      
+   }
+   
+   return u;
 
 }
 
@@ -814,14 +888,42 @@ CLASS_DECL_ACME ::u64 wd32_to_u64(const ::wd32_character * psz, const ::wd32_cha
 CLASS_DECL_ACME ::i32 wd32_to_int(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
 {
    
-#ifdef WINDOWS
+   wd32_string wd32str(psz);
+   
+   wide_string wstr(wd32str);
+   
+   wide_character * pwszEnd = nullptr;
+   
+   auto pwsz = wstr.c_str();
 
-   return wcstol(psz, (::wd32_character **) ppszEnd, iBase);
+//#ifdef WINDOWS
+//
+//   return wcstol(pwsz, (::wd32_character **) ppszEnd, iBase);
+//   
+//#else
    
-#else
+   long l = wcstol(pwsz, &pwszEnd, iBase);
    
-   long l = wcstol(psz, (::wd32_character **) ppszEnd, iBase);
-   
+   if(ppszEnd)
+   {
+      
+      if((pwszEnd - pwsz) < wstr.length())
+      {
+         
+         auto iLength = wide_to_wd32_len(pwsz, pwszEnd - pwsz);
+         
+         *ppszEnd = psz + iLength;
+         
+      }
+      else
+      {
+       
+         *ppszEnd = nullptr;
+         
+      }
+      
+   }
+
    if(l > INT_MAX)
    {
       
@@ -841,20 +943,48 @@ CLASS_DECL_ACME ::i32 wd32_to_int(const ::wd32_character * psz, const ::wd32_cha
 
    return (::i32) l;
    
-#endif
+//#endif
 }
 
 
 CLASS_DECL_ACME ::u32 wd32_to_u32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
 {
 
-#ifdef WINDOWS
+   wd32_string wd32str(psz);
    
-   return wcstoul(psz, (::wd32_character **) ppszEnd, iBase);
+   wide_string wstr(wd32str);
    
-#else
+   wide_character * pwszEnd = nullptr;
+   
+   auto pwsz = wstr.c_str();
 
-   ulong ul = wcstoul(psz, (::wd32_character **) ppszEnd, iBase);
+//#ifdef WINDOWS
+//   
+//   auto ul = wcstoul(pwsz, &pwszEnd, iBase);
+//   
+//#else
+
+   ulong ul = wcstoul(pwsz, &pwszEnd, iBase);
+   
+   if(ppszEnd)
+   {
+      
+      if((pwszEnd - pwsz) < wstr.length())
+      {
+         
+         auto iLength = wide_to_wd32_len(pwsz, pwszEnd - pwsz);
+         
+         *ppszEnd = psz + iLength;
+         
+      }
+      else
+      {
+       
+         *ppszEnd = nullptr;
+         
+      }
+      
+   }
 
    if(ul > UINT_MAX)
    {
@@ -867,7 +997,7 @@ CLASS_DECL_ACME ::u32 wd32_to_u32(const ::wd32_character * psz, const ::wd32_cha
 
    return (::u32) ul;
    
-#endif
+//#endif
 
 }
 

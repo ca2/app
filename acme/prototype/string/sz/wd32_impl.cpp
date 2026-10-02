@@ -227,16 +227,21 @@ CLASS_DECL_ACME ::wd32_character * string_reverse(::wd32_character * psz) noexce
 CLASS_DECL_ACME character_count wd32tring_format(::wd32_character * pszBuffer, character_count nlength, const ::wd32_character * pszFormat, va_list args) noexcept
 {
 
-#ifdef WINDOWS
-   throw_todo();
-   //return vswprintf_s(pszBuffer, (size_t)nlength, pszFormat, args);
-   return 0;
+   wd32_string wd32str(pszFormat);
+   
+   wide_string wstr(wd32str);
+   
+   wide_string wstrFormat;
 
-#else
-
-   return vswprintf(pszBuffer, nlength, pszFormat, args);
-
-#endif
+   wstrFormat.formatf_arguments(wstr, args);
+   
+   wd32_string wd32strFormat(wstrFormat);
+   
+   zero(pszBuffer, nlength);
+   
+   wd32_ncpy(pszBuffer, wd32str.c_str(), minimum(nlength, wd32strFormat.length()));
+   
+   pszBuffer[nlength] = '\0';
 
 }
 

@@ -1,4 +1,7 @@
 #include "platform.h"
+#ifndef MORE_LOG
+#define MORE_LOG 0
+#endif
 #include "bitmap.h"
 #include "graphics.h"
 #include "draw2d.h"
@@ -372,7 +375,7 @@ namespace draw2d_cairo
             if (!m_pcairo || cairo_get_target(m_pcairo) != pbitmap->m_pcairosurface)
             {
 
-#if defined(__SUNOS__)
+#if MORE_LOG && defined(__SUNOS__)
                information() << "Cairo acquire: rebinding context to current bitmap surface";
 #endif
                set(pbitmap.m_p);
@@ -1831,6 +1834,7 @@ namespace draw2d_cairo
 
          auto psurface = pbitmapSource->m_pcairosurface;
 
+#if MORE_LOG
          // An attached GTK context has no image target. Inspect the viewport
          // being presented without modifying the backing surface.
          if (!m_pimageTarget && cairo_surface_get_type(psurface) == CAIRO_SURFACE_TYPE_IMAGE)
@@ -1915,6 +1919,7 @@ namespace draw2d_cairo
 
          }
 
+#endif
          if (bMultiframe)
          {
 

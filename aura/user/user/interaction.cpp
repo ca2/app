@@ -1,4 +1,7 @@
 #include "platform.h"
+#ifndef MORE_LOG
+#define MORE_LOG 0
+#endif
 //#include "interaction_child.h"
 #include "scroll_state.h"
 #include "alpha_source.h"
@@ -2186,7 +2189,7 @@ namespace user
 
          m_setneedredrawa.add({ rectangleaNeedRedraw, function, bAscendants });
 
-#ifdef MORE_LOG
+#if MORE_LOG
 
          if (!window())
          {
@@ -2218,7 +2221,7 @@ namespace user
 
       }
 
-#ifdef MORE_LOG
+#if MORE_LOG
       information() << "set_need_redraw (1)";
 #endif
       //if(m_pdragCurrent && m_pdragCurrent->m_eelement == e_element_resize)
@@ -7450,7 +7453,7 @@ namespace user
 
       scoped_restore(pdraw2dgraphics->m_bInheritDraw);
 
-#if defined(__SUNOS__)
+#if MORE_LOG && defined(__SUNOS__)
       const bool bTraceFrame = get_parent() == nullptr && is_frame_window();
 
       if (bTraceFrame)
@@ -17769,7 +17772,7 @@ if(get_parent())
    void interaction::track_mouse_hover()
    {
 
-#ifdef MORE_LOG
+#if MORE_LOG
 
       information() << "interaction::track_mouse_hover";
 

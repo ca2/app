@@ -47,6 +47,7 @@
 #endif
 
 CLASS_DECL_ACME color_indexes common_system_image_color_indexes();
+CLASS_DECL_ACME void set_common_system_image_color_indexes(const ::color_indexes & colorindexes);
 
 //#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD) || defined(OPENBSD)
 //

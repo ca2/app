@@ -6,6 +6,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 //#include "aura/graphics/draw2d/draw_scope.h"
 #include "aura/graphics/draw2d/domain.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
@@ -95,7 +96,13 @@ namespace image
       m_size.cx = cx;
       m_size.cy = cy;
 
-      system()->draw2d();
+      auto pdraw2d = system()->draw2d();
+      if (!pdraw2domain)
+      {
+
+         pdraw2domain = pdraw2d->main_draw2d_domain();
+
+      }
 
       defer_constructø(m_pimage);
       
@@ -599,6 +606,9 @@ namespace image
       }
       catch (...)
       {
+
+         error() << "image_list::set: failed to render image " << iItem;
+         return -1;
 
       }
 

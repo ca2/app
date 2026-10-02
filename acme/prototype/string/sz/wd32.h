@@ -73,8 +73,8 @@ CLASS_DECL_ACME character_count string_skip_any_character_in(const ::wd32_charac
 CLASS_DECL_ACME character_count string_find_first_character_in(const ::wd32_character * pszBlock, const ::wd32_character * pszSet) noexcept;
 
 
-CLASS_DECL_ACME character_count get_formatted_length(const ::wd32_character * pszFormat, va_list args) noexcept;
-CLASS_DECL_ACME character_count _string_format(::wd32_character * pszBuffer, character_count nlength, const ::wd32_character * pszFormat, va_list args) noexcept;
+//CLASS_DECL_ACME character_count get_formatted_length(const ::wd32_character * pszFormat, va_list args) noexcept;
+//CLASS_DECL_ACME character_count _string_format(::wd32_character * pszBuffer, character_count nlength, const ::wd32_character * pszFormat, va_list args) noexcept;
 CLASS_DECL_ACME void  flood_characters(::wd32_character * psz, ::wd32_character ch, character_count len) noexcept;
 
 

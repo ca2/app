@@ -181,86 +181,86 @@ CLASS_DECL_ACME ::wd16_character * string_reverse(::wd16_character * psz) noexce
 }
 
 
-CLASS_DECL_ACME character_count get_formatted_length(const ::wd16_character * pszFormat, va_list args) noexcept
-{
-
-#ifdef WINDOWS
-
-   wide_string widestrFormat(pszFormat);
-
-   return _vscwprintf(widestrFormat.c_str(), args);
-
-#else
-
-   wd32_string wd32str(pszFormat);
-
-   wd32_character dummy;
-
-   return vswprintf(&dummy, 0, wd32str.c_str(), args);
-
-#endif
-
-}
-
-
-CLASS_DECL_ACME character_count _string_format(::wd16_character * pszBuffer, const ::wd16_character * pszFormat, va_list args) noexcept
-{
-
-#ifdef WINDOWS
-
-   wide_string widestrFormat(pszFormat);
-
-   va_list argsLength;
-
-   va_copy(argsLength, args);
-
-   auto nlength = _vscwprintf(widestrFormat.c_str(), argsLength);
-
-   va_end(argsLength);
-
-   if (nlength < 0)
-   {
-
-      return nlength;
-
-   }
-
-   wide_string widestrBuffer;
-
-   auto pwszBuffer = widestrBuffer.get_buffer(nlength);
-
-   auto result = _vswprintf(pwszBuffer, widestrFormat.c_str(), args);
-
-   if (result >= 0)
-   {
-
-      utf_to_utf(pszBuffer, pwszBuffer, result);
-
-      pszBuffer[result] = 0;
-
-   }
-
-   return result;
-
-#else
-
-   wd32_string wstrBuffer;
-
-   auto nlength = get_formatted_length(pszFormat, args);
-
-   auto psz = wstrBuffer.get_buffer(nlength);
-
-   wd32_string wstrFormat(pszFormat);
-
-   auto len = vswprintf(psz, nlength, wstrFormat.c_str(), args);
-
-   utf_to_utf(pszBuffer, psz, nlength);
-
-   return len;
-
-#endif
-
-}
+//CLASS_DECL_ACME character_count get_formatted_length(const ::wd16_character * pszFormat, va_list args) noexcept
+//{
+//
+//#ifdef WINDOWS
+//
+//   wide_string widestrFormat(pszFormat);
+//
+//   return _vscwprintf(widestrFormat.c_str(), args);
+//
+//#else
+//
+//   wd32_string wd32str(pszFormat);
+//
+//   wd32_character dummy;
+//
+//   return vswprintf(&dummy, 0, wd32str.c_str(), args);
+//
+//#endif
+//
+//}
+//
+//
+//CLASS_DECL_ACME character_count _string_format(::wd16_character * pszBuffer, const ::wd16_character * pszFormat, va_list args) noexcept
+//{
+//
+//#ifdef WINDOWS
+//
+//   wide_string widestrFormat(pszFormat);
+//
+//   va_list argsLength;
+//
+//   va_copy(argsLength, args);
+//
+//   auto nlength = _vscwprintf(widestrFormat.c_str(), argsLength);
+//
+//   va_end(argsLength);
+//
+//   if (nlength < 0)
+//   {
+//
+//      return nlength;
+//
+//   }
+//
+//   wide_string widestrBuffer;
+//
+//   auto pwszBuffer = widestrBuffer.get_buffer(nlength);
+//
+//   auto result = _vswprintf(pwszBuffer, widestrFormat.c_str(), args);
+//
+//   if (result >= 0)
+//   {
+//
+//      utf_to_utf(pszBuffer, pwszBuffer, result);
+//
+//      pszBuffer[result] = 0;
+//
+//   }
+//
+//   return result;
+//
+//#else
+//
+//   wd32_string wstrBuffer;
+//
+//   auto nlength = get_formatted_length(pszFormat, args);
+//
+//   auto psz = wstrBuffer.get_buffer(nlength);
+//
+//   wd32_string wstrFormat(pszFormat);
+//
+//   auto len = vswprintf(psz, nlength, wstrFormat.c_str(), args);
+//
+//   utf_to_utf(pszBuffer, psz, nlength);
+//
+//   return len;
+//
+//#endif
+//
+//}
 
 
 CLASS_DECL_ACME character_count _string_format(::wd16_character * pszBuffer, character_count nlength, const ::wd16_character * pszFormat, va_list args) noexcept

@@ -95,10 +95,12 @@ namespace draw2d_cairo
 
 #if defined(USE_PANGO)
 
-      if (m_ppangofontdescription == nullptr)
+      if (m_ppangofontdescription != nullptr)
       {
 
-         pango_font_description_free(m_ppangofontdescription);
+         auto pdescription = m_ppangofontdescription;
+         m_ppangofontdescription = nullptr;
+         pango_font_description_free(pdescription);
 
       }
 
@@ -107,7 +109,9 @@ namespace draw2d_cairo
       if (::is_set(m_pcairofontface))
       {
 
-         cairo_font_face_destroy(m_pcairofontface);
+         auto pfontface = m_pcairofontface;
+         m_pcairofontface = nullptr;
+         cairo_font_face_destroy(pfontface);
 
       }
 
@@ -180,7 +184,8 @@ namespace draw2d_cairo
 
          auto pfontface = pdraw2d->private_ftface_from_file(pdraw2dgraphics->m_papplication, m_pathFontFile);
 
-         m_pcairofontface = pfontface;
+         // The private-font cache owns its reference; this font needs its own.
+         m_pcairofontface = pfontface ? cairo_font_face_reference(pfontface) : nullptr;
 
          //m_osdata[1] = m_pcairofontface;
 

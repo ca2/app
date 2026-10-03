@@ -166,8 +166,19 @@ namespace user
             forkø() << [this]()
                {
 
-                  _001SetExpandImage("matter://list/expand.png");
-                  _001SetExpandImageDark("matter://list/expand_dark.png");
+                  try
+                  {
+
+                     _001SetExpandImage("matter://list/expand.png");
+                     _001SetExpandImageDark("matter://list/expand_dark.png");
+
+                  }
+                  catch (const ::exception & exception)
+                  {
+
+                     error() << "tree expand images failed: " << exception.get_message();
+
+                  }
 
                   task_set_name(::platform::type(this).name() + "::Expand");
 
@@ -205,8 +216,19 @@ namespace user
       forkø()<< [this]()
          {
 
-            _001SetCollapseImage("matter://list/collapse.png");
-            _001SetCollapseImageDark("matter://list/collapse_dark.png");
+            try
+            {
+
+               _001SetCollapseImage("matter://list/collapse.png");
+               _001SetCollapseImageDark("matter://list/collapse_dark.png");
+
+            }
+            catch (const ::exception & exception)
+            {
+
+               error() << "tree collapse images failed: " << exception.get_message();
+
+            }
 
             task_set_name(::platform::type(this).name() + "::Open");
 

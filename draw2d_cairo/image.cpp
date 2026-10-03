@@ -511,6 +511,15 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+      // Until graphics acquisition creates a surface, map the persistent CPU
+      // backing. Loaders write through this lease before installing a bitmap.
+      if (!m_pdraw2dbitmap)
+      {
+
+         return ::image::image::_map(emap, rectangle);
+
+      }
+
       _tidy_map(rectangle);
 
       // if (m_bMapped)
@@ -538,7 +547,9 @@ namespace draw2d_cairo
 
          pdraw2dbitmap = m_pdraw2dbitmap;
 
-         pdraw2dbitmap->create_bitmap(nullptr, this->raw_size());
+         // Decoded images may still have only CPU pixels. Preserve those pixels
+         // when creating the Cairo surface for the first mapping.
+         pdraw2dbitmap->create_bitmap(nullptr, this->raw_size(), m_ppixmapOwned);
 
       }
 

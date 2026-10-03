@@ -243,6 +243,8 @@ CLASS_DECL_ACME character_count wd32tring_format(::wd32_character * pszBuffer, c
    
    pszBuffer[nlength] = '\0';
 
+   return wd32strFormat.length();
+
 }
 
 

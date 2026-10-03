@@ -43,7 +43,7 @@ void file_context_interface::safe_get_memory(const ::payload& payloadFile, memor
       }
 
    }
-   catch (const ::exception& exception)
+   catch (const ::exception& /*exception */)
    {
       
       information("safe_get_memory failed");

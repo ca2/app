@@ -2799,6 +2799,7 @@
     <ClCompile Include="prototype\string\string_base.cpp" />
     <ClCompile Include="prototype\string\sz\wide.cpp" />
     <ClCompile Include="prototype\string\sz\wide_impl.cpp" />
+    <ClCompile Include="prototype\string\unicode_wide.cpp" />
     <ClCompile Include="quality\self_test.cpp" />
     <ClCompile Include="quality\self_test_item.cpp" />
     <ClCompile Include="quality_test_context.cpp" />
@@ -3661,6 +3662,8 @@
     <ClInclude Include="prototype\string\c\coupling\wd32_impl.h" />
     <ClInclude Include="prototype\string\c\coupling\wide.h" />
     <ClInclude Include="prototype\string\c\coupling\wide_impl.h" />
+    <ClInclude Include="prototype\string\c\encoding\_.h" />
+    <ClInclude Include="prototype\string\c\encoding\_impl.h" />
     <ClInclude Include="prototype\string\c\extension\wide.h" />
     <ClInclude Include="prototype\string\c\strdup.h" />
     <ClInclude Include="prototype\string\c\unicode\_.h" />
@@ -6118,9 +6121,9 @@
     <ClCompile Include="prototype\string\_c_trait_ansi.cpp" />
     <ClCompile Include="prototype\string\_c_trait_wide.cpp" />
     <ClCompile Include="prototype\string\unicode.cpp" />
-    <ClCompile Include="prototype\string\unicode16.cpp" />
-    <ClCompile Include="prototype\string\unicode16_32.cpp" />
-    <ClCompile Include="prototype\string\unicode32.cpp" />
+    <ClCompile Include="prototype\string\unicode_wd16.cpp" />
+    <ClCompile Include="prototype\string\unicode_wd16_wd32.cpp" />
+    <ClCompile Include="prototype\string\unicode_wd32.cpp" />
     <ClInclude Include="filesystem\filesystem.h" />
     <ClInclude Include="filesystem\file\binary_stream.h" />
     <ClInclude Include="filesystem\file\buffer.h" />

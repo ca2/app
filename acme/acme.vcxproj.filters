@@ -511,6 +511,9 @@
     <Filter Include="Header Files\prototype\string\c\coupling">
       <UniqueIdentifier>{71fbd601-d4bc-435e-a4c5-a8339096738b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\prototype\string\c\encoding">
+      <UniqueIdentifier>{b2a8fb40-527e-41ef-b3f5-200a55a699fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -4530,6 +4533,12 @@
     <ClInclude Include="prototype\string\c\strdup.h">
       <Filter>Header Files\prototype\string\c</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\string\c\encoding\_.h">
+      <Filter>Header Files\prototype\string\c\encoding</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\encoding\_impl.h">
+      <Filter>Header Files\prototype\string\c\encoding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -4688,13 +4697,13 @@
     <ClCompile Include="prototype\prototype\_.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\string\unicode32.cpp">
+    <ClCompile Include="prototype\string\unicode_wd32.cpp">
       <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\string\unicode16_32.cpp">
+    <ClCompile Include="prototype\string\unicode_wd16_wd32.cpp">
       <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\string\unicode16.cpp">
+    <ClCompile Include="prototype\string\unicode_wd16.cpp">
       <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
     <ClCompile Include="prototype\string\unicode.cpp">
@@ -6523,6 +6532,9 @@
     </ClCompile>
     <ClCompile Include="prototype\string\sz\wide_impl.cpp">
       <Filter>Source Files\prototype\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\string\unicode_wide.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

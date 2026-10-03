@@ -263,7 +263,7 @@ CLASS_DECL_ACME ::wd16_character * string_reverse(::wd16_character * psz) noexce
 //}
 
 
-CLASS_DECL_ACME character_count _string_format(::wd16_character * pszBuffer, character_count nlength, const ::wd16_character * pszFormat, va_list args) noexcept
+CLASS_DECL_ACME character_count wd16string_format(::wd16_character * pszBuffer, character_count nlength, const ::wd16_character * pszFormat, va_list args) noexcept
 {
    
    wd16_string wd16str(pszFormat);
@@ -281,6 +281,8 @@ CLASS_DECL_ACME character_count _string_format(::wd16_character * pszBuffer, cha
    wd16_ncpy(pszBuffer, wd16str.c_str(), minimum(nlength, wd16strFormat.length()));
    
    pszBuffer[nlength] = '\0';
+
+   return wd16strFormat.length();;
 
 }
 //{

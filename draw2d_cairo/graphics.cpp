@@ -3186,6 +3186,11 @@ namespace draw2d_cairo
    void graphics::draw(::draw2d::path * pdraw2dpath)
    {
 
+      if (pdraw2dpath && pdraw2dpath->m_itema.is_empty())
+      {
+         return;
+      }
+
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!_set(pdraw2dpath))
@@ -3203,6 +3208,11 @@ namespace draw2d_cairo
 
    void graphics::fill(::draw2d::path * pdraw2dpath)
    {
+
+      if (pdraw2dpath && pdraw2dpath->m_itema.is_empty())
+      {
+         return;
+      }
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -3222,6 +3232,11 @@ namespace draw2d_cairo
    void graphics::draw(::draw2d::path * pdraw2dpath, ::draw2d::pen * pdraw2dpen)
    {
 
+      if (pdraw2dpath && pdraw2dpath->m_itema.is_empty())
+      {
+         return;
+      }
+
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!_set(pdraw2dpath))
@@ -3239,6 +3254,11 @@ namespace draw2d_cairo
 
    void graphics::fill(::draw2d::path * pdraw2dpath, ::draw2d::brush * pdraw2dbrush)
    {
+
+      if (pdraw2dpath && pdraw2dpath->m_itema.is_empty())
+      {
+         return;
+      }
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 

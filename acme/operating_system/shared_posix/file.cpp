@@ -6,7 +6,11 @@
 //  Copyright © 2026 ca2 Software Development. All rights reserved.
 //
 #include "platform.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 #include "acme/operating_system/file.h"
+#if defined(__APPLE__)
+#include <unistd.h>
+#endif
 
 
 ::file::path get_current_directory_path()

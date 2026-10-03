@@ -3403,7 +3403,7 @@
 		9ADA7AB7306FF4B600F8DDEF /* wide_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA7AAB306FF4B600F8DDEF /* wide_impl.cpp */; };
 		9ADA7AB930706DE500F8DDEF /* file.cpp in Headers */ = {isa = PBXBuildFile; fileRef = 9ADA7AB830706D2200F8DDEF /* file.cpp */; };
 		9ADA7ABA30706DE500F8DDEF /* file.cpp in Headers */ = {isa = PBXBuildFile; fileRef = 9ADA7AB830706D2200F8DDEF /* file.cpp */; };
-		9ADA7ABB30706DE500F8DDEF /* file.cpp in Headers */ = {isa = PBXBuildFile; fileRef = 9ADA7AB830706D2200F8DDEF /* file.cpp */; };
+		9ADA7ABB30706DE500F8DDEF /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA7AB830706D2200F8DDEF /* file.cpp */; };
 		9AFF9B8920AC411D0479D948 /* _str_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D75AA7B6874C799089175AE /* _str_impl.h */; };
 		9B128E8CB9F75A9387DB6EF2 /* message_box_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 72F33098CD3160FCBBAAC943 /* message_box_implementation.h */; };
 		9B16614041364472CCEBAD09 /* prototype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 284EC75FD0ED6F0B308A1E0C /* prototype.cpp */; };
@@ -7989,7 +7989,6 @@
 		1D3CD803418C98C347777828 /* apple */ = {
 			isa = PBXGroup;
 			children = (
-				B36CF0A96D1CB720D7DAAB64 /* nano */,
 				CC80B08EEB0C8075F0016199 /* _.h */,
 				536D9CF1AFE359CA41777EE1 /* _.cpp */,
 				C41D2110495C14FD8F10C9BC /* _apple.h */,
@@ -8007,6 +8006,7 @@
 				9AEE066A76C0004C807DF249 /* graphics.h */,
 				054F299E4207E1E0456D5D7A /* main.h */,
 				F3F9AAFCDCDCD9320C5A7B09 /* mmcpp.cpp */,
+				B36CF0A96D1CB720D7DAAB64 /* nano */,
 				0FE0BF5C1490620F1925317E /* ns_exception.h */,
 				40322F810906F48163C660F0 /* ns_exception.cpp */,
 				67FD606BD0FB701F2FF11037 /* process.cpp */,
@@ -14131,7 +14131,6 @@
 				76BAD344395304E995294ACB /* array_base_quantum.h in Headers */,
 				0FE02CFC2E2D06472A561085 /* enumeration.h in Headers */,
 				4AE4D475DFE98EEA6EC98AB0 /* cfref.h in Headers */,
-				9ADA7ABB30706DE500F8DDEF /* file.cpp in Headers */,
 				CCD43CB67523EC0FEBD1F147 /* universal_windows.h in Headers */,
 				A287E4D1B3DAB4C599C03D7B /* memory_heap.h in Headers */,
 				BEE2B77F24C7F03ACA345754 /* console_common.h in Headers */,
@@ -14502,6 +14501,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(PROJECT_DIR)/library.txt",
 			);
 			name = _on_before_build_project;
 			outputFileListPaths = (
@@ -14523,6 +14523,7 @@
 				87F7346350977246D3C2C920 /* compress.cpp in Sources */,
 				C5453433A41D78D6A2926E56 /* is_dir.cpp in Sources */,
 				3E24C7C8FFF96744D4369DE4 /* not_dir.cpp in Sources */,
+				9ADA7ABB30706DE500F8DDEF /* file.cpp in Sources */,
 				0D99D131D16B3689D880D2D1 /* uncompress.cpp in Sources */,
 				5B3348AEE9668F4DA888C8FF /* crypto.cpp in Sources */,
 				2B03E2499C01E8A053999E1E /* initializer.cpp in Sources */,

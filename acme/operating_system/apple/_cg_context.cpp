@@ -16,13 +16,13 @@ CGContextRef CreateARGBBitmapContext (CGImageRef inImage, ::i32 cx, ::i32 cy)
 
    CGContextRef    context = nullptr;
 
-   CGColorSpaceRef colorSpace;
+   CGColorSpaceRef colorSpace = nullptr;
 
    //void *          bitmapData;
 
-   ::i32             bitmapByteCount;
+   ::i32             bitmapByteCount = 0;
 
-   ::i32             bitmapBytesPerRow;
+   ::i32             bitmapBytesPerRow = 0;
 
    bitmapBytesPerRow   = (cx * 4);
 

@@ -50,7 +50,7 @@ namespace console
    ::i32 console::get_thoughtful_character()
    {
 
-      ::i32 iCharacter;
+      ::i32 iCharacter = 0;
 
       while (true)
       {

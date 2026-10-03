@@ -555,6 +555,19 @@ namespace draw2d_cairo
 
       cairo_surface_t * psurface = m_pdraw2dbitmap.cast < ::draw2d_cairo::bitmap>()->m_pcairosurface;
 
+      // A descriptor resize does not resize an existing Cairo allocation.
+      // Mapping must use the current dimensions, just like graphics acquisition.
+      if (psurface
+         && (cairo_image_surface_get_width(psurface) != raw_size().cx
+            || cairo_image_surface_get_height(psurface) != raw_size().cy))
+      {
+
+         auto pbitmap = m_pdraw2dbitmap.cast < ::draw2d_cairo::bitmap>();
+         pbitmap->create_bitmap(nullptr, raw_size());
+         psurface = pbitmap->m_pcairosurface;
+
+      }
+
       if (psurface == nullptr)
       {
 

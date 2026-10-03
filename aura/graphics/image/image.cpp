@@ -10892,8 +10892,15 @@ namespace image
 
       if(::is_null(draw2d_domain()) && ::is_null(loadoptions.draw2d_domain))
       {
-         
-         throw ::exception(error_wrong_state);
+
+         set_draw2d_domain(system()->draw2d()->main_draw2d_domain());
+
+         if (::is_null(draw2d_domain()))
+         {
+
+            throw ::exception(error_wrong_state, "image loading requires a draw2d domain");
+
+         }
          
       }
 

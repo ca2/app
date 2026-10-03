@@ -8,6 +8,7 @@
 #include "acme/prototype/data/listener.h"
 #include "acme/prototype/time/frequency.h"
 #include "aura/message/user.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"

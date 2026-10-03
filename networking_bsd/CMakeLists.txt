@@ -228,8 +228,10 @@ endif()
    message(STATUS "(G) PKGCONFIG_LDFLAGS is ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS}")
 endif ()
 
-if(${LINUX} OR ${__BSD__})
-add_dependencies(${PROJECT_NAME} nano_idn_libidn)
+if(LINUX OR __BSD__ OR __SUNOS__ OR CMAKE_SYSTEM_NAME STREQUAL "SunOS")
+   # URL handling loads the IDN component dynamically at runtime.
+   add_dependencies(${PROJECT_NAME} nano_idn_libidn)
+   add_dependencies(static_${PROJECT_NAME} nano_idn_libidn)
 endif()
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

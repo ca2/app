@@ -194,10 +194,9 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 
-if(CMAKE_SYSTEM_NAME STREQUAL "SunOS")
-      list(APPEND library_references
-      socket nsl)
-endif()
+   if(${__SUNOS__})
+         list(APPEND library_references socket nsl)
+   endif()
 
    if (${USE_PKGCONFIG})
       message(STATUS "networking_bsd USE_PKGCONFIG")
@@ -228,8 +227,10 @@ endif()
    message(STATUS "(G) PKGCONFIG_LDFLAGS is ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS}")
 endif ()
 
-if(${LINUX} OR ${__BSD__})
-add_dependencies(${PROJECT_NAME} nano_idn_libidn)
+if(${LINUX} OR ${__BSD__} OR ${__SUNOS__})
+   # URL handling loads the IDN component dynamically at runtime.
+   add_dependencies(${PROJECT_NAME} nano_idn_libidn)
+   add_dependencies(static_${PROJECT_NAME} nano_idn_libidn)
 endif()
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

@@ -85,6 +85,12 @@ namespace micro
 
       auto r = m_rectangle;
 
+      if (r.width() <= 0 || r.height() <= 0)
+      {
+         r = initial_frame_rectangle();
+         m_rectangle = r;
+      }
+
 
       m_pacmewindowingwindow->m_pointWindow = r.origin();
       m_pacmewindowingwindow->m_sizeWindow = r.size();

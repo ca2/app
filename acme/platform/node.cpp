@@ -5341,6 +5341,13 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
       ::string strDesktopAmbient;
 
+      if (psummary->m_strAmbientName.has_character())
+         strDesktopAmbient = "Desktop Ambient: " + psummary->m_strAmbientName;
+      else if (psummary->m_strAmbient.has_character())
+         strDesktopAmbient = "Desktop Ambient: " + psummary->m_strAmbient;
+      if (strDesktopAmbient.has_character() && psummary->m_strAmbientVersion.has_character())
+         strDesktopAmbient += " " + psummary->m_strAmbientVersion;
+
 #if defined(LINUX)
 
       auto strOperatingAmbient = psummary->m_strAmbient;

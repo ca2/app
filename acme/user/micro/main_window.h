@@ -41,6 +41,7 @@ namespace micro
          virtual public ::acme::user::frame_interaction
       {
       public:
+         void on_create_window_object() override;
 
 //         ::collection::index                                   m_iDefaultButton = -1;
 

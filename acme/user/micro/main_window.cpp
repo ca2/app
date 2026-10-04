@@ -51,6 +51,14 @@
 namespace micro
 {
 
+   void main_window::on_create_window_object()
+   {
+      system()->do_windowing_factory();
+      // Aura may replace the global Acme window registration. Micro dialogs
+      // need the selected Acme backend's own factory, including its input path.
+      constructø(m_pacmewindowingwindow, system()->m_pfactoryAcmeWindowing);
+   }
+
 
    main_window::main_window()
    {

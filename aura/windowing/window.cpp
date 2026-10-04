@@ -20692,6 +20692,14 @@ namespace windowing
 
       auto puserinteraction = user_interaction();
 
+      // Nano/Micro dialogs have an Acme interaction without Aura layout state.
+      if (!puserinteraction)
+      {
+         m_sizeWindow = ::i32_size(cx, cy);
+         m_pointWindow = ::i32_point(x, y);
+         return;
+      }
+
       ::i32_size s(cx, cy);
 
       if (m_sizeWindow != s)

@@ -5265,7 +5265,7 @@ namespace user
       //
       //#endif
 
-#ifdef WINDOWS_DESKTOP
+#if defined(WINDOWS_DESKTOP) || defined(HAS_GTK3)
 
                                                                                                                               //auto pwindowingicon = get_windowing_icon();
 

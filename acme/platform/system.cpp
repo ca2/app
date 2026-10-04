@@ -5919,6 +5919,16 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       #endif
    }
 
+   ::string system::operating_system_kernel_icon_url(const ::i32_size &size)
+   {
+      auto psummary = node()->operating_system_summary();
+      if (psummary->m_strKernel.is_empty())
+         return {};
+      ::string strUrl;
+      strUrl.format("https://ca2.site/image/operating-system-kernel/{}/{}.png", size.cx, psummary->m_strKernel);
+      return strUrl;
+   }
+
 
    ::pixmap_pointer system::create_pixmap(const ::i32_size &size, ::enum_flag eflagCreate, ::i32 iGoodStride)
    {

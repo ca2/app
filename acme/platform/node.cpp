@@ -5396,6 +5396,8 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
       stra.add(strOperatingSystemName);
       stra.add(strMoreOperatingSystemVersionInformation);
+      if (psummary->m_strKernelName.has_character())
+         stra.add("Kernel: " + psummary->m_strKernelName + " " + psummary->m_strKernelVersion);
       stra.add("<br />");
       stra.add(strDesktopAmbient);
       stra.add(strMachineArchitecture);

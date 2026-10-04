@@ -1507,6 +1507,7 @@ namespace platform
 
       virtual ::string operating_system_icon_url(const ::i32_size &size);
       virtual ::string operating_ambient_icon_url(const ::i32_size &size);
+      virtual ::string operating_system_kernel_icon_url(const ::i32_size &size);
 
       virtual ::pixmap_pointer create_pixmap(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
                        ::i32 iGoodStride = -1);

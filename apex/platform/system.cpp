@@ -5265,6 +5265,9 @@ namespace apex
       if (strOperatingSystemIconUrl.has_character())
       {
          straIconUrl.add(strOperatingSystemIconUrl);
+         auto strKernelIconUrl = operating_system_kernel_icon_url({32, 32});
+         if (strKernelIconUrl.has_character())
+            straIconUrl.add(strKernelIconUrl);
 
          ::string strAmbientSystemIconUrl = operating_ambient_icon_url({32, 32});
 

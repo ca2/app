@@ -10729,63 +10729,26 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
             ::f32 y_icon = 30 * fWindowScale;
 
-            if (straIconUrl.size() >= 1)
+            ::i32 iIcon = 0;
+            for (const auto & strIconUrl : straIconUrl)
             {
-
+               if (strIconUrl.is_empty())
+                  continue;
+               auto iSize = iIcon == 0 ? 48 : 32;
                try
                {
-
                   auto pstillIcon = createø<::innate_ui::still>();
-
                   pstillIcon->create_icon_still(pdialog);
-
-                  pstillIcon->set_size({48 * fWindowScale, 48 * fWindowScale});
-
-                  pstillIcon->set_position({30 * fWindowScale, y_icon});
-
-                  auto strSystemIconUrl = straIconUrl[0];
-
-                  //auto piconApplication = innate_ui_icon(strSystemIconUrl, {48, 48});
-
-                  pstillIcon->set_icon_path(strSystemIconUrl,
-                                            {48 * fWindowScale, 48 * fWindowScale});
-
-               }
-               catch (...)
-               {
-
-
-               }
-
-            }
-
-            y_icon += (48 + 5) * fWindowScale;
-
-            if (straIconUrl.size() >= 2)
-            {
-               try
-               {
-
-                  auto pstillIcon = createø<::innate_ui::still>();
-
-                  pstillIcon->create_icon_still(pdialog);
-
-                  pstillIcon->set_size({32 * fWindowScale, 32 * fWindowScale});
-
-                  pstillIcon->set_position({(30 + 48 - 32) * fWindowScale, y_icon});
-
-                  auto strAmbientIconUrl = straIconUrl[1];
-
-                  pstillIcon->set_icon_path(strAmbientIconUrl,
-                                               {32 * fWindowScale, 32 * fWindowScale});
+                  pstillIcon->set_size({iSize * fWindowScale, iSize * fWindowScale});
+                  pstillIcon->set_position({(30 + 48 - iSize) * fWindowScale, y_icon});
+                  pstillIcon->set_icon_path(strIconUrl, {iSize * fWindowScale, iSize * fWindowScale});
                }
                catch (...)
                {
                }
+               y_icon += (iSize + 5) * fWindowScale;
+               ++iIcon;
             }
-
-            y_icon += (32 + 5) * fWindowScale   ;
-
             for (auto str: stra)
             {
 

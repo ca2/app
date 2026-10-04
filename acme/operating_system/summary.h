@@ -36,6 +36,9 @@ namespace operating_system
       ::string          m_strSystemReleaseName;
 
       ::string          m_strAmbientName;
+      ::string          m_strKernel;
+      ::string          m_strKernelName;
+      ::string          m_strKernelVersion;
 
       ::string          m_strSystem;
       ::string          m_strSystemFamily;

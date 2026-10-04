@@ -3055,6 +3055,9 @@ namespace platform
       paboutbox->set_dialog_details_title("Operating System Information ...");
 
       paboutbox->dialog_details_icon_urls().add(system()->operating_system_icon_url({48, 48}));
+      auto strKernelIconUrl = system()->operating_system_kernel_icon_url({32, 32});
+      if (strKernelIconUrl.has_character())
+         paboutbox->dialog_details_icon_urls().add(strKernelIconUrl);
       paboutbox->dialog_details_icon_urls().add(system()->operating_ambient_icon_url({32, 32}));
 
       //psequencer->then([this, strPath](auto pconversation)

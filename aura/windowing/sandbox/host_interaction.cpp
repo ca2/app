@@ -39,6 +39,12 @@ namespace sandbox_windowing
       
    }
 
+   void host_interaction::on_create_window_object()
+   {
+      // This host also inherits Micro's main_window, but renders through Aura.
+      ::user::interaction::on_create_window_object();
+   }
+
 
    void host_interaction::destroy()
    {

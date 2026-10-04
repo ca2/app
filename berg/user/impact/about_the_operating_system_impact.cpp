@@ -94,17 +94,29 @@ namespace berg
    .sync=false,.functionLoaded = [this](::image::load_image * ploadimage)
    {
                                                           m_pimageOperatingSystem = ::image::image::from(ploadimage->m_pimageframearray);
+      set_need_redraw();
+      post_redraw();
 
    }
 });
 
-#if defined(LINUX)
+      auto strKernelUrl = papexsystem->operating_system_kernel_icon_url({64, 64});
+      if (strKernelUrl.has_character())
+         image()->load_image(strKernelUrl, { .sync=false, .functionLoaded = [this](::image::load_image * ploadimage)
+         {
+            m_pimageOperatingSystemKernel = ::image::image::from(ploadimage->m_pimageframearray);
+            set_need_redraw();
+            post_redraw();
+         }});
 
-      ::string strOperatingAmbientImageUrl = papexsystem->operating_ambient_icon_url({64, 64});
-
-      image()->load_image(m_pimageOperatingAmbient, strOperatingAmbientImageUrl,{ .sync=false });
-
-#endif
+      auto strAmbientUrl = papexsystem->operating_ambient_icon_url({64, 64});
+      if (strAmbientUrl.has_character())
+         image()->load_image(strAmbientUrl, { .sync=false, .functionLoaded = [this](::image::load_image * ploadimage)
+         {
+            m_pimageOperatingAmbient = ::image::image::from(ploadimage->m_pimageframearray);
+            set_need_redraw();
+            post_redraw();
+         }});
       // application()->show_about_box();
    }
 
@@ -316,14 +328,22 @@ namespace berg
 
       }
 
-      if (m_pimageOperatingAmbient)
+      if (::is_ok(m_pimageOperatingSystemKernel))
+      {
+         ::image::image_source imagesource(m_pimageOperatingSystemKernel);
+         ::image::image_drawing_options options(::i32_rectangle_dimension(point.x + 64, point.y + 139, 64, 64));
+         ::image::image_drawing drawing(options, imagesource);
+         pdraw2dgraphics->draw(drawing);
+      }
+
+      if (::is_ok(m_pimageOperatingAmbient))
       {
 
          //         pdraw2dgraphicsImage->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          ::image::image_source imagesource(m_pimageOperatingAmbient);
 
-         ::image::image_drawing_options imagedrawingoptions(::i32_rectangle_dimension(point.x, point.y + 128+ 11, m_pimageOperatingAmbient->width(), m_pimageOperatingAmbient->height()));
+         ::image::image_drawing_options imagedrawingoptions(::i32_rectangle_dimension(point.x + 64, point.y + (::is_ok(m_pimageOperatingSystemKernel) ? 214 : 139), 64, 64));
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -333,7 +353,7 @@ namespace berg
       }
 
 
-      point.x += 128+11;
+      point.x += 128 + 11;
       ::color::color color;
 
       //::i32 iFont = -1024;

@@ -11,6 +11,11 @@
 namespace accessibility
 {
 
+   automation::element_pointer accessibility::automation_desktop()
+   {
+      throw ::exception(error_interface_only);
+   }
+
 
    accessibility::accessibility()
    {

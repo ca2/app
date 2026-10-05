@@ -286,7 +286,10 @@ namespace windowing
 
       //this->windowing().release();
 
-      m_graphicaloutputpurposea.clear();
+      {
+         _synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         m_graphicaloutputpurposea.clear();
+      }
 
       if (m_pthreadMouseLeave)
       {
@@ -17003,13 +17006,14 @@ namespace windowing
 
    bool window::has_screen_output_purpose()
    {
+      _synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
 
       for (auto & ppurpose : m_graphicaloutputpurposea)
       {
 
-         if (ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+         if (ppurpose && ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
          {
 
             return true;
@@ -17027,13 +17031,14 @@ namespace windowing
 
    bool window::has_offscreen_output_purpose()
    {
+      _synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
 
       for (auto & ppurpose : m_graphicaloutputpurposea)
       {
 
-         if (ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_offscreen)
+         if (ppurpose && ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_offscreen)
          {
 
             return true;
@@ -17051,6 +17056,7 @@ namespace windowing
 
    bool window::has_graphical_output_purpose()
    {
+      _synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_graphicaloutputpurposea.has_element();
 
@@ -17059,6 +17065,9 @@ namespace windowing
 
    bool window::has_fps_output_purpose()
    {
+      // Output-purpose entries can be added/removed when restoring a tray
+      // window while the graphics task is reading them.
+      _synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
 

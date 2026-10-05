@@ -1095,7 +1095,7 @@ inline bool atom::operator == (::user::enum_message eusermessage) const
 
    return ::comparison::tuple
            (
-                   [&]() { return m_etype == e_type_message; },
+                   [&]() { return m_etype == e_type_user_message; },
                    [&]() { return m_eusermessage == eusermessage; }
            );
 
@@ -1108,7 +1108,7 @@ inline ::std::strong_ordering atom::operator <=>(::user::enum_message eusermessa
 
    return ::comparison::tuple
            (
-                   [&]() { return m_etype <=> e_type_message; },
+                   [&]() { return m_etype <=> e_type_user_message; },
                    [&]() { return m_eusermessage <=> eusermessage; }
            );
 

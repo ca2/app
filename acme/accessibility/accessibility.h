@@ -2,7 +2,7 @@
 // Created by camilo on 2026-04-27 19:00 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
 //
 #pragma once
-#include "automation.h"
+#include "selection.h"
 
 
 namespace accessibility
@@ -34,6 +34,10 @@ namespace accessibility
       virtual ::pointer_array < main_window > system_get_main_windows();
 
       virtual automation::element_pointer automation_desktop();
+
+      // Synchronous automation: invoke from a worker, outside the GUI thread.
+      virtual ::pointer<automation::menu_selection_result> select_application_menu(
+         const automation::menu_selection_request &request);
 
    };
 

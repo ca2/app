@@ -7,6 +7,27 @@ namespace accessibility::automation
    using predicate = ::function<bool(element &)>;
    using settle_function = ::procedure;
 
+   class menu_selection_request : virtual public ::particle
+   {
+   public:
+      ::string m_strExecutable;
+      ::string m_strItem;
+      bool m_bVerifyChecked = false;
+      bool m_bEveryTab = true;
+      predicate m_windowMatches;
+      class ::time m_timeTimeout = 30_s;
+   };
+
+   class menu_selection_result : virtual public ::particle
+   {
+   public:
+      int m_iApplications = 0;
+      int m_iWindows = 0;
+      int m_iViews = 0;
+      int m_iFailures = 0;
+      ::string_array_base m_errors;
+   };
+
    // Application/window enumeration is deliberately distinct from recursive
    // control search, so a window title cannot masquerade as an application.
    inline element_array applications(const element_pointer &desktop,
@@ -138,5 +159,60 @@ namespace accessibility::automation
          restore(); throw;
       }
       restore(); return applied;
+   }
+
+   // Backend-neutral transaction used both by components and diagnostic tools.
+   inline ::pointer<menu_selection_result> select_application_menu(
+      const element_pointer &desktop, const menu_selection_request &request)
+   {
+      if (request.m_strExecutable.is_empty() || request.m_strItem.is_empty())
+         throw ::exception(error_bad_argument, "Executable and menu item names are required");
+      auto result = allocateø menu_selection_result();
+      ::pointer<session> context = allocateø session(desktop);
+      auto timeStart = ::time::now();
+      ::procedure settle = [&]
+      {
+         if (timeStart.elapsed() > request.m_timeTimeout)
+            throw ::exception(error_failed, "Accessibility menu selection timed out");
+         ::preempt(100_ms);
+      };
+      auto apps = context->applications([&](element &app)
+      { return app.executable_name() == request.m_strExecutable; });
+      for (auto &app : apps)
+      {
+         ++result->m_iApplications;
+         try
+         {
+            for (auto &window : context->windows(app))
+            {
+               if (timeStart.elapsed() > request.m_timeTimeout)
+                  throw ::exception(error_failed, "Accessibility menu selection timed out");
+               try
+               {
+                  if (request.m_windowMatches && !request.m_windowMatches(*window)) continue;
+                  ::procedure operation = [&]
+                  {
+                     select_menu_item(window, [&](element &item)
+                     { return item.name() == request.m_strItem; }, settle, request.m_bVerifyChecked);
+                  };
+                  if (request.m_bEveryTab)
+                     result->m_iViews += for_each_tab(window, operation, settle);
+                  else { operation(); ++result->m_iViews; }
+                  ++result->m_iWindows;
+               }
+               catch (const ::exception &e)
+               {
+                  ++result->m_iFailures;
+                  result->m_errors.add(e.get_message());
+               }
+            }
+         }
+         catch (const ::exception &e)
+         {
+            ++result->m_iFailures;
+            result->m_errors.add(e.get_message());
+         }
+      }
+      return result;
    }
 }

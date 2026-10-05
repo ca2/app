@@ -1151,7 +1151,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    //#if !defined(WINDOWS)
 
-      //defer_set_icon();
+      if (m_piconNotify && window()) window()->set_icon(m_piconNotify);
 
    //#endif
 
@@ -1270,6 +1270,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
 
    if (pshow->m_bShow)
    {
+      if (m_piconNotify && window()) window()->set_icon(m_piconNotify);
 
       //informationf("simple_frame_window::on_message_show_window true : " + ::platform::type(this).name());
 
@@ -3214,6 +3215,7 @@ void simple_frame_window::defer_create_notification_icon()
 
 
                m_piconNotify->set_app_tray_icon(get_app()->m_strAppId);
+               if (window()) window()->set_icon(m_piconNotify);
 
                }
                catch(...)

@@ -608,8 +608,13 @@ namespace platform
 
    string node::veriwell_multimedia_music_midi_get_default_implementation_name()
    {
-
+#ifdef __SUNOS__
+      // ALSA is not a SunOS backend. Keep MIDI optional unless an installed
+      // implementation has been explicitly selected in appconfig.
+      return system()->implementation_name("music_midi", "");
+#else
       return system()->implementation_name("music_midi", "alsa");
+#endif
 
    }
 

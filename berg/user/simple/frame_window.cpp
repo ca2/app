@@ -4607,6 +4607,7 @@ void simple_frame_window::on_select_user_style()
 
 void simple_frame_window::call_notification_area_action(const ::atom & atom, ::user::activation_token * puseractivationtoken)
 {
+   information() << "Notification area command received: " << atom;
 
    auto puseractivationtokenHold = as_pointer(puseractivationtoken);
 

@@ -10,7 +10,7 @@
 namespace accessibility::automation
 {
    enum class role { other, application, window, menu_bar, menu, menu_item,
-      radio_menu_item, tab_list, tab, terminal };
+      radio_menu_item, tab_list, tab, terminal, radio_button, check_menu_item, check_box };
 
    class element;
    using element_pointer = ::pointer<element>;
@@ -22,6 +22,7 @@ namespace accessibility::automation
       ~element() override = default;
       virtual ::string name() = 0;
       virtual role type() = 0;
+      virtual ::string role_name() { return ::as_string(static_cast<int>(type())); }
       virtual unsigned int process_id() = 0;
       // Optional verified executable identity supplied by the platform backend.
       virtual ::string executable_name() { return {}; }

@@ -62,7 +62,9 @@ namespace accessibility::automation
          auto found = find_all(bar, [&](element &e)
          {
             auto type = e.type();
-            return (type == role::menu_item || type == role::radio_menu_item) && matches(e);
+            return (type == role::menu_item || type == role::radio_menu_item
+               || type == role::radio_button || type == role::check_menu_item
+               || type == role::check_box) && matches(e);
          });
          items.append(found);
       }

@@ -1902,7 +1902,7 @@ namespace platform
 
       }
 
-#elif defined(LINUX) || defined(__BSD__)
+#elif defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 
       strName = "_" + strName;
 

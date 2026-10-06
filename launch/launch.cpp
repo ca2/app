@@ -147,6 +147,23 @@ namespace launch
          printf_line("Branch is \"%s\"", m_strBranch.c_str());
 
       }
+      else if (m_strSystem == "openindiana")
+      {
+
+         print_line("This is OpenIndiana System...");
+
+         m_strBranch = m_poperatingsystemsummary->m_strAmbient;
+
+         m_strBranch.make_lower();
+
+         if (m_strBranch.is_empty())
+         {
+
+            m_strBranch = strBranch;
+
+         }
+
+      }
       else if (m_strSystem == "netbsd")
       {
 

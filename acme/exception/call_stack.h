@@ -26,6 +26,19 @@
 */
 #pragma once
 
+// Thread-local context: ordinary exception construction defaults to false.
+CLASS_DECL_ACME bool call_stack_within_signal_handler();
+CLASS_DECL_ACME bool call_stack_set_within_signal_handler(bool bWithinSignalHandler);
+
+class call_stack_signal_handler_scope
+{
+public:
+   bool m_bPrevious;
+   call_stack_signal_handler_scope() : m_bPrevious(call_stack_set_within_signal_handler(true)) {}
+   ~call_stack_signal_handler_scope() { call_stack_set_within_signal_handler(m_bPrevious); }
+   call_stack_signal_handler_scope(const call_stack_signal_handler_scope &) = delete;
+};
+
 
 
 

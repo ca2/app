@@ -1,5 +1,15 @@
 // added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSorensen!!
 #include "platform.h"
+#include "acme/exception/call_stack.h"
+
+static thread_local bool t_bWithinSignalHandler = false;
+bool call_stack_within_signal_handler() { return t_bWithinSignalHandler; }
+bool call_stack_set_within_signal_handler(bool bWithinSignalHandler)
+{
+   auto previous = t_bWithinSignalHandler;
+   t_bWithinSignalHandler = bWithinSignalHandler;
+   return previous;
+}
 //#include "exception.h"
 //#include "callstack.h"
 //#include "acme/prototype/string/as_string.h"

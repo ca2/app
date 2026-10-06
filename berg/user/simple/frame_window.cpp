@@ -17,6 +17,7 @@
 #include "apex/platform/savings.h"
 #include "apex/platform/system.h"
 #include "acme/platform/application_menu.h"
+#include "acme/platform/scoped_restore.h"
 #include "acme/user/user/activation_token.h"
 #include "aqua/xml/document.h"
 #include "aura/user/user/interaction_array.h"
@@ -211,6 +212,10 @@ void simple_frame_window::enable_default_notification_icon(bool bEnableDefaultNo
 
 void simple_frame_window::on_update_notify_icon_menu(::application_menu *pmenu)
 {
+   if (!pmenu || m_bBuildingNotifyMenu) return;
+   scoped_restore_struct<bool> building(&m_bBuildingNotifyMenu, true);
+   pmenu->erase_all();
+   pmenu->m_iCurrentLayoutItemIndex = 0;
 
    on_update_notify_icon_menu_header(pmenu);
 

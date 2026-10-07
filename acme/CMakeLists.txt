@@ -3341,7 +3341,7 @@ if (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
 endif ()
 
 
-if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${__ANDROID__} OR ${__SUNOS__})
+if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
 
     list(APPEND library_source
@@ -3397,6 +3397,17 @@ if (${LINUX} OR ${__BSD__})
 
 endif ()
 
+
+if (${__HAIKU__})
+    list(APPEND library_source
+        operating_system/ansi/acme.cpp
+        operating_system/linux/console.cpp
+        operating_system/linux/cpu_features.cpp
+        operating_system/sunos/cpu_features_i86pc.cpp
+        operating_system/haiku/platform.cpp
+        operating_system/posix/termination_handler.cpp
+    )
+endif()
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
 

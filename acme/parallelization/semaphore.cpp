@@ -18,6 +18,8 @@
 #include <sys/sem.h>
 #include "acme/operating_system/ansi/_ansi.h"
 #include <errno.h>
+#elif defined(__HAIKU__)
+#include <OS.h>
 #elif defined(__ANDROID__)
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -51,6 +53,18 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const_char_pointer ps
       throw ::exception(error_resource);
 
    }
+
+#elif defined(__HAIKU__)
+
+   if (lMaxCount <= 0 || lInitialCount < 0 || lInitialCount > lMaxCount)
+      throw ::exception(error_bad_argument);
+
+   m_lMaxCount = lMaxCount;
+   m_strName = pstrName ? pstrName : "acme semaphore";
+   // Native semaphore names are labels; each instance owns a distinct ID.
+   m_hsync = ::create_sem(lInitialCount, m_strName.c_str());
+   if (m_hsync < B_OK)
+      throw ::exception(error_resource);
 
 #elif defined(__ANDROID__)
 
@@ -146,6 +160,10 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const_char_pointer ps
 
 semaphore::~semaphore()
 {
+#if defined(__HAIKU__)
+   if (m_hsync >= B_OK)
+      ::delete_sem(m_hsync);
+#endif
 }
 
 
@@ -166,6 +184,38 @@ bool semaphore::_wait(const class time& timeWait)
 
    return _hsynchronization_wait(m_handleSemaphore, timeWait);
 
+}
+
+#elif defined(__HAIKU__)
+
+bool semaphore::_wait(const class time & timeWait)
+{
+   const bool infinite = timeWait.is_infinite();
+   bigtime_t deadline = B_INFINITE_TIMEOUT;
+   if (!infinite)
+   {
+      const auto now = ::system_time();
+      // Clamp before converting seconds to microseconds to avoid overflow.
+      const auto limit = B_INFINITE_TIMEOUT - now - 1;
+      bigtime_t duration = 0;
+      if (timeWait.m_iSecond >= limit / 1000000)
+         duration = limit;
+      else if (timeWait.m_iSecond >= 0)
+         duration = minimum<bigtime_t>(limit, maximum<bigtime_t>(0,
+            timeWait.m_iSecond * 1000000 + timeWait.m_iNanosecond / 1000));
+      deadline = now + duration;
+   }
+
+   status_t status;
+   do
+   {
+      status = infinite ? ::acquire_sem(m_hsync)
+         : ::acquire_sem_etc(m_hsync, 1, B_ABSOLUTE_TIMEOUT, deadline);
+   } while (status == B_INTERRUPTED);
+
+   if (status == B_OK) return true;
+   if (status == B_TIMED_OUT || status == B_WOULD_BLOCK) return false;
+   throw ::exception(error_failed);
 }
 
 #elif defined(__ANDROID__)
@@ -382,6 +432,24 @@ void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
 #ifdef WINDOWS
 
    /*return */ ::ReleaseSemaphore(m_handleSemaphore, lCount, (LPLONG)pPrevCount) /*  != false */;
+
+#elif defined(__HAIKU__)
+
+   if (lCount <= 0)
+      throw ::exception(error_bad_argument);
+
+   // Serialize releases so concurrent unlocks cannot exceed the maximum.
+   std::lock_guard<std::mutex> lock(m_mutexRelease);
+   int32 count = 0;
+   if (::get_sem_count(m_hsync, &count) != B_OK)
+      throw ::exception(error_failed);
+   // A negative native count represents waiting threads, not available tokens.
+   const auto available = maximum<::i32>(count, 0);
+   if (lCount > m_lMaxCount - available)
+      throw ::exception(error_failed);
+   if (::release_sem_etc(m_hsync, lCount, 0) != B_OK)
+      throw ::exception(error_failed);
+   if (pPrevCount) *pPrevCount = available;
 
 #elif defined(__ANDROID__)
 

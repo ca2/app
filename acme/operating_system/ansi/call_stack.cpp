@@ -18,8 +18,33 @@
 #include "acme/platform/acme.h"
 #include "acme/platform/platform_platform.h"
 #include "acme/platform/system.h"
+#if !defined(__HAIKU__)
 #include <execinfo.h>
+#else
+#include <unwind.h>
+#include <dlfcn.h>
+#include <stdint.h>
+#endif
 #include <cxxabi.h>
+#if defined(__HAIKU__)
+struct haiku_call_stack_capture
+{
+   void **stack;
+   ::i32 capacity;
+   ::i32 count;
+};
+
+static _Unwind_Reason_Code haiku_call_stack_capture_frame(
+   _Unwind_Context *context, void *argument)
+{
+   auto &capture = *static_cast<haiku_call_stack_capture *>(argument);
+   auto address = _Unwind_GetIP(context);
+   if (!address || capture.count >= capture.capacity)
+      return _URC_END_OF_STACK;
+   capture.stack[capture.count++] = reinterpret_cast<void *>(address);
+   return _URC_NO_REASON;
+}
+#endif
 #if defined(__SUNOS__)
 #include <dlfcn.h>
 #include <stdint.h>
@@ -213,6 +238,9 @@ void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, c
 #define DISABLE_BACKTRACE 0
 void freebsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char_pointer pmessage, void * address);
 
+#elif defined(__HAIKU__)
+#define DISABLE_BACKTRACE 0
+
 #elif defined(OPENBSD)
 #define DISABLE_BACKTRACE 1
 void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char_pointer pmessage, void * address);
@@ -237,7 +265,31 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, ::i32 frames
 
    ::string strCallstack;
 
-#if defined(__SUNOS__)
+#if defined(__HAIKU__)
+   if (!ppui || frames <= 0) return strCallstack;
+   for (::i32 i = maximum(iSkip, 0); i < frames; ++i)
+   {
+      if (!ppui[i]) break;
+      Dl_info info = {};
+      ::string symbol = "<unknown>";
+      const bool resolved = ::dladdr(ppui[i], &info) != 0;
+      if (resolved && info.dli_sname)
+      {
+         int status = -1;
+         ::acme::malloc<char_pointer> demangled(
+            abi::__cxa_demangle(info.dli_sname, nullptr, nullptr, &status));
+         symbol = status == 0 && demangled.get() ? demangled.get() : info.dli_sname;
+      }
+      const auto offset = resolved && info.dli_saddr
+         ? (uintptr_t)ppui[i] - (uintptr_t)info.dli_saddr : 0;
+      ::string line;
+      line.formatf("%02d : %p : %s + 0x%llx (%s)\n",
+         frames - i - 1, ppui[i], symbol.c_str(), (unsigned long long)offset,
+         resolved && info.dli_fname ? info.dli_fname : "<unknown module>");
+      strCallstack += line;
+   }
+   return strCallstack;
+#elif defined(__SUNOS__)
    // OpenIndiana's backtrace_symbols text does not use the Linux syntax
    // expected by backtrace_symbol_parse. Resolve the captured PCs directly.
    if (!ppui || frames <= 0)
@@ -422,7 +474,18 @@ namespace platform
       
       ::i32 iFrameCount = minimum(frame_count, iMaximumFramesToCapture);
 
+#if defined(__HAIKU__)
+      if (!stack || iFrameCount <= 0)
+      {
+         frame_count = 0;
+         return;
+      }
+      haiku_call_stack_capture capture { stack, iFrameCount, 0 };
+      ::_Unwind_Backtrace(haiku_call_stack_capture_frame, &capture);
+      auto frames = capture.count;
+#else
       auto frames = ::backtrace(stack, iFrameCount);
+#endif
       
       frame_count = frames;
 #endif

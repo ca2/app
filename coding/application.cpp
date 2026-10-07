@@ -768,7 +768,7 @@ namespace coding
    bool application::__is_smart_git_installed()
    {
 
-#if defined(__BSD__) || defined(__SUNOS__)
+#if defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 
       return false;
 

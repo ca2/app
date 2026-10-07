@@ -125,6 +125,10 @@ if(${__SUNOS__})
     )
 endif()
 
+if(${__HAIKU__})
+    list(APPEND library_source install_haiku.cpp)
+endif()
+
 
 if(${LINUX} OR ${FREEBSD})
     list(APPEND library_source

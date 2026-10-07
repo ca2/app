@@ -4,6 +4,11 @@
 
 #include "acme/operating_system/security_attributes.h"
 
+#if defined(__HAIKU__)
+#include <OS.h>
+#include <mutex>
+#endif
+
 
 class CLASS_DECL_ACME semaphore :
    virtual public particle
@@ -16,6 +21,12 @@ public:
 #ifdef WINDOWS
 
    ::hsynchronization      m_handleSemaphore;
+
+#elif defined(__HAIKU__)
+
+   sem_id            m_hsync = -1;
+   ::i32             m_lMaxCount;
+   std::mutex        m_mutexRelease;
 
 #elif defined(__ANDROID__)
 

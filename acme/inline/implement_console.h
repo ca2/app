@@ -10,6 +10,10 @@ CLASS_DECL_IMPORT void application_factory(::factory::factory * pfactory);
 #include "acme/operating_system/process.h"
 #include APPLICATION_INCLUDE
 #include <type_traits>
+#if defined(__HAIKU__)
+#include <exception>
+#include <cxxabi.h>
+#endif
 
 #if defined(__BSD__)
 #include <stdio.h>
@@ -183,13 +187,61 @@ extern char_pointer *environ;
       psystem->m_iExitCode = exception.m_estatus.exit_code();
 
    }
+#if defined(__HAIKU__)
+   catch (const char * message)
+   {
+      fprintf(stderr, "Unhandled string exception: %s\n", message ? message : "<null>");
+      try
+      {
+         ::exception diagnostic(error_exception, message ? message : "<null>",
+            "String exception caught at console entry point; this is a catch-site stack, not the original throw-site stack.");
+         fprintf(stderr, "Catch-site stack:\n%s\n", diagnostic.m_strCallStackTrace.c_str());
+      }
+      catch (...)
+      {
+         fprintf(stderr, "Catch-site stack unavailable.\n");
+      }
+      psystem->m_iExitCode = 1;
+   }
+   catch (const std::exception & exception)
+   {
+      fprintf(stderr, "Unhandled standard exception: %s\n", exception.what());
+      try
+      {
+         ::exception diagnostic(error_exception, exception.what(),
+            "Standard exception caught at console entry point; this is a catch-site stack, not the original throw-site stack.");
+         fprintf(stderr, "Catch-site stack:\n%s\n", diagnostic.m_strCallStackTrace.c_str());
+      }
+      catch (...)
+      {
+         fprintf(stderr, "Catch-site stack unavailable.\n");
+      }
+      psystem->m_iExitCode = 1;
+   }
+#endif
    catch (...)
    {
 
       if (psystem->m_bConsole)
       {
 
+#if defined(__HAIKU__)
+         const auto type = abi::__cxa_current_exception_type();
+         fprintf(stderr, "Unhandled exception: type=%s\n", type ? type->name() : "<unknown>");
+         try
+         {
+            ::exception diagnostic(error_exception, "Unhandled exception",
+               "Catch-site stack; original throw-site stack is unavailable for this exception type.");
+            fprintf(stderr, "Catch-site stack:\n%s\n", diagnostic.m_strCallStackTrace.c_str());
+         }
+         catch (...)
+         {
+            fprintf(stderr, "Catch-site stack unavailable.\n");
+         }
+         psystem->m_iExitCode = 1;
+#else
          fprintf(stderr, "%s", "Unhandled Exception");
+#endif
 
       }
       else

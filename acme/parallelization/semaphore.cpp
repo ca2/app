@@ -13,13 +13,13 @@
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
+#if defined(__HAIKU__)
+#include <OS.h>
+#elif defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__)
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include "acme/operating_system/ansi/_ansi.h"
 #include <errno.h>
-#elif defined(__HAIKU__)
-#include <OS.h>
 #elif defined(__ANDROID__)
 #include <sys/types.h>
 #include <sys/stat.h>

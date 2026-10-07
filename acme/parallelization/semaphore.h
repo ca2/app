@@ -5,7 +5,6 @@
 #include "acme/operating_system/security_attributes.h"
 
 #if defined(__HAIKU__)
-#include <OS.h>
 #include <mutex>
 #endif
 
@@ -24,7 +23,7 @@ public:
 
 #elif defined(__HAIKU__)
 
-   sem_id            m_hsync = -1;
+   ::i32             m_hsync = -1; // Haiku sem_id, without exposing OS.h here.
    ::i32             m_lMaxCount;
    std::mutex        m_mutexRelease;
 

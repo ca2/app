@@ -30,7 +30,7 @@
 #include "acme/prototype/string/str.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/style.h"
-#include "nanosvg.h"
+#include "nanosvg/nanosvg.h"
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "aura/graphics/write_text/_defer_geometry2d_item.h"
 

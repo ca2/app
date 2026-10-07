@@ -94,7 +94,7 @@ elseif (${FREEBSD})
     message(STATUS "(E) PKGCONFIG_LIBRARIES is ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES}")
 
 
-elseif (__SUNOS__)
+elseif (__SUNOS__ OR __HAIKU__)
 
     if(USE_PORT_FREEIMAGE)
         if(NOT TARGET port_freeimage)

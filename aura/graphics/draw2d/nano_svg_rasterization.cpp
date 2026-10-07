@@ -10,9 +10,9 @@
 
 //#include "acme/_start.h"
 
-#include "nanosvg.h"
+#include "nanosvg/nanosvg.h"
 #define NANOSVGRAST_IMPLEMENTATION
-#include "nanosvgrast.h"
+#include "nanosvg/nanosvgrast.h"
 
 
 void nsvg_rasterizer_set_output_format(NSVGrasterizer * prasterizer, int iRedLower)

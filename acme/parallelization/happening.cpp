@@ -24,7 +24,7 @@
 
 void printf_line(const_char_pointer pszFormat, ...);
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 #include <sys/ipc.h>
 #include <sys/time.h>
 #include <time.h>
@@ -32,7 +32,7 @@ void printf_line(const_char_pointer pszFormat, ...);
 #include <sys/errno.h>
 #include <string.h>
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__SUNOS__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__SUNOS__) || defined(__HAIKU__)
 #include <sys/sem.h>
 #endif
 #include "acme/operating_system/ansi/_ansi.h"
@@ -114,7 +114,7 @@ void clock_getrealtime(struct timespec * pts)
 
 ::i32 g_iHappeningSerialId = 1;
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 
 
 bool happening::start_notify_lock(::notify_lock * pnotifylock)

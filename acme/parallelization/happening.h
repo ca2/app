@@ -2,7 +2,7 @@
 #pragma once
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 #include <sys/types.h>
 #include <sys/sem.h>
 #endif
@@ -47,7 +47,7 @@ public:
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 
    /// Private Mutexes
    bool              m_bManualEvent;
@@ -64,7 +64,7 @@ public:
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__ANDROID__) || defined(__SUNOS__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__ANDROID__) || defined(__SUNOS__) || defined(__HAIKU__)
 
    /// Named Mutexes
    ::i32               m_sem;

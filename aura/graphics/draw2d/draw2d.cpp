@@ -2494,6 +2494,8 @@ namespace draw2d
 
       return "afont";
 
+#elif defined(__HAIKU__)
+      return "haiku";
 #elif defined(__BSD__) || defined(__SUNOS__)
 
 

@@ -135,7 +135,7 @@ if (WIN32 OR UWP)
 endif ()
 
 
-if (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
+if (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
    list(APPEND library_source
       bsd/_.cpp
@@ -147,7 +147,7 @@ if (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
 endif()
 
 
-if (${__BSD__} OR ${__SUNOS__})
+if (${__BSD__} OR ${__SUNOS__} OR ${__HAIKU__})
 
    list(APPEND library_source
    bsd/bsd_list_computers.cpp
@@ -166,6 +166,12 @@ endif ()
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Haiku")
+   target_compile_definitions(${PROJECT_NAME} PRIVATE _DEFAULT_SOURCE)
+   target_compile_definitions(static_${PROJECT_NAME} PRIVATE _DEFAULT_SOURCE)
+   target_link_libraries(${PROJECT_NAME} PRIVATE bsd)
+endif()
 
 
 if (NOT ${NO_PRECOMPILED_HEADER})

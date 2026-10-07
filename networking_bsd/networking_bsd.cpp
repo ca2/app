@@ -7,7 +7,7 @@
 //#define _BSD_SOURCE
 //#endif
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 #include <arpa/inet.h>
 #endif
 
@@ -15,7 +15,7 @@
 //#include <arpa/inet.h>
 //#endif
 
-#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 #include <netdb.h>
 #endif
 

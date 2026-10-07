@@ -9,6 +9,9 @@ namespace windowing
 
    ::string get_eoperating_ambient_name()
    {
+#if defined(__HAIKU__)
+      return "haiku";
+#endif
       
       auto eoperatingambient = get_eoperating_ambient();
       

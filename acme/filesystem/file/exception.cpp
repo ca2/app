@@ -1,6 +1,9 @@
 #include "platform.h"
 //#include "text_stream.h"
 #include "exception.h"
+#if defined(__HAIKU__)
+#include <errno.h>
+#endif
 
 
 CLASS_DECL_ACME void get_message(::string & strMessage, const ::error_code & errorcode);
@@ -393,6 +396,7 @@ namespace file
 
    /* Error Codes */
 
+#if !defined(__HAIKU__)
 #define EPERM           1
 #define ENOENT          2
 #define ESRCH           3
@@ -427,6 +431,7 @@ namespace file
 #define EPIPE           32
 #define EDOM            33
 #define ERANGE          34
+#endif // !defined(__HAIKU__)
 
 #if defined(WINDOWS)
 

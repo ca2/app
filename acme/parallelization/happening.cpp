@@ -29,7 +29,7 @@ void printf_line(const_char_pointer pszFormat, ...);
 #include <sys/time.h>
 #include <time.h>
 #include <sys/time.h>
-#include <sys/errno.h>
+#include <errno.h>
 #include <string.h>
 
 #if defined(LINUX) || defined(__APPLE__) || defined(__SUNOS__) || defined(__HAIKU__)

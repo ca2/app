@@ -13,7 +13,7 @@
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include "acme/operating_system/ansi/_ansi.h"
@@ -197,7 +197,7 @@ bool semaphore::_wait(const class time & timeWait)
 
 }
 
-#elif defined(LINUX) || defined(SOLARIS) || defined(__BSD__) || defined(__SUNOS__)
+#elif defined(LINUX) || defined(SOLARIS) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 
 bool semaphore::_wait(const class time & timeWait)
 {
@@ -222,7 +222,7 @@ bool semaphore::_wait(const class time & timeWait)
 
       timespec += timeWait;
 
-#if defined(__BSD__)
+#if defined(__BSD__) || defined(__HAIKU__)
       iRet = _semtimedop(static_cast < ::i32 > (m_hsync), &sb, 1, &timespec);
 #else
       iRet = semtimedop(static_cast < ::i32 > (m_hsync), &sb, 1, &timespec);

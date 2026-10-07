@@ -445,3 +445,17 @@ _STUD_API type& operator=(const ::platform::type &) noexcept = delete
 
 //_STUD_API_END
 
+
+#if defined(__GNUC__) && (__GNUC__ < 14)
+
+#define USER_DEFINED_LITERAL(SUFFIX) "" SUFFIX
+
+#else
+
+#define USER_DEFINED_LITERAL(SUFFIX) ""##SUFFIX
+
+#endif
+
+
+
+

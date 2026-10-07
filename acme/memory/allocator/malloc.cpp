@@ -110,7 +110,7 @@ namespace heap
 
       //{
 
-#if defined(OPENBSD) || defined(NETBSD) || defined(__SUNOS__)
+#if defined(OPENBSD) || defined(NETBSD) || defined(__SUNOS__) || defined(__HAIKU__)
 
       return 0;
 

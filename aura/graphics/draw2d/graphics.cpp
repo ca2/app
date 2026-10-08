@@ -95,6 +95,7 @@ namespace draw2d
       //_m_bYFlip = false;
       m_bForWindowDraw2d = false;
       m_bDraw = true;
+      m_bHasCurrentPoint = false;
 //      m_puserinteraction = nullptr;
       m_bUseImageMipMapsOrResizedImages = false;
 
@@ -7633,7 +7634,8 @@ namespace draw2d
    void graphics::clear_current_point()
    {
 
-      throw ::exception(todo);
+      m_bHasCurrentPoint = false;
+      //throw ::exception(todo);
 
       //return ::success_none;
 

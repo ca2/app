@@ -11,7 +11,7 @@
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "aura/graphics/write_text/_defer_geometry2d_item.h"
 #include "path_shape.h"
-#include "nanosvg.h"
+#include "nanosvg/nanosvg.h"
 
 //#include "acme/prototype/geometry2d/_defer_shape.h"
 

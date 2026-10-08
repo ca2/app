@@ -11,7 +11,7 @@
 #define BSD_UNIX 1
 #elif defined(__BSD__)
 #define BSD_UNIX 1
-#elif defined(__SUNOS__)
+#elif defined(__SUNOS__) || defined(__HAIKU__)
 #define BSD_UNIX 1
 #endif
 

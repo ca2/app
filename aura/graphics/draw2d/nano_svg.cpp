@@ -11,7 +11,7 @@
 
 
 #define NANOSVG_IMPLEMENTATION  // Expands implementation
-#include "nanosvg.h"
+#include "nanosvg/nanosvg.h"
 
 
 

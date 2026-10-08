@@ -45,10 +45,10 @@ bool defer_finalize_operating_system_networking();
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 #undef USE_MISC
 #include <signal.h>
-#if defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
@@ -59,7 +59,7 @@ bool defer_finalize_operating_system_networking();
 //#include <ctype.h>
 #endif
 
-#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 #include <unistd.h>
 #endif
 
@@ -1418,7 +1418,11 @@ namespace networking_bsd
       }
       return false;
 #else
+#if defined(__HAIKU__)
+      ::i8 host[2050]{}; // Twice Haiku's NI_MAXHOST (1025).
+#else
       ::i8 host[NI_MAXHOST *2]{};
+#endif
       //::i8 serv[NI_MAXSERV];
       // NI_NOFQDN
       // NI_NUMERICHOST

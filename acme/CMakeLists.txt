@@ -3586,3 +3586,9 @@ if(BUILD_TESTING)
 endif()
 
 
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Haiku")
+   target_sources(acme PRIVATE operating_system/posix/networking.cpp)
+   target_link_libraries(acme PRIVATE network)
+   target_sources(static_acme PRIVATE operating_system/posix/networking.cpp)
+endif()

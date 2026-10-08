@@ -1519,7 +1519,11 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
    elseif (${__ANDROID__})
       list(APPEND this_system_libraries dl z)
    else ()
+      if(__HAIKU__)
+         list(APPEND this_system_libraries pthread idn z)
+      else()
       list(APPEND this_system_libraries dl pthread idn z)
+      endif()
    endif ()
 
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES} ${this_system_libraries})

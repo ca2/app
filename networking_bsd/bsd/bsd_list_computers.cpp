@@ -5,7 +5,7 @@
 #include "acme/platform/node.h"
 
 
-#if defined(__BSD__) || defined(MACOS) || defined(__SUNOS__)
+#if defined(__BSD__) || defined(MACOS) || defined(__SUNOS__) || defined(__HAIKU__)
 //
 //void arp_a(void *p, void(*callback)(void *p, void * addr, const_char_pointer ip_address, const_char_pointer host, const_char_pointer status));
 
@@ -26,7 +26,11 @@ namespace networking_bsd
          
          defer_construct_newø(m_pitema);
          
+#if defined(__HAIKU__)
+         throw ::exception(error_not_supported, "Haiku ARP discovery is not implemented" );
+#else
          node()->arp_a(this, &arp_a::callback);
+#endif
          
       }
 

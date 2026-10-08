@@ -1318,6 +1318,10 @@ namespace aura
       
       return implementation_name("draw2d", "direct2d");
 
+#elif defined(__HAIKU__)
+
+      return implementation_name("draw2d", "haiku");
+
 #else
       
       return implementation_name("draw2d", "cairo");

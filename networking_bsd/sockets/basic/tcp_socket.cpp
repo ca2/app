@@ -23,7 +23,7 @@
 CLASS_DECL_ACME::collection::count get_count_of_opened_sockets();
 CLASS_DECL_ACME::string _017Time(class ::time& time);
 
-#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 #undef USE_MISC
 #include <unistd.h>
 #include <sys/types.h>

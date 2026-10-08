@@ -3,7 +3,7 @@
 #include "acme/operating_system/networking.h"
 #include <unistd.h>
 
-#if defined(__SUNOS__)
+#if defined(__SUNOS__) || defined(__HAIKU__)
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -45,7 +45,7 @@
 }
 
 
-#if defined(__BSD__) || defined(__ANDROID__) || defined(__APPLE__) || defined(LINUX) || defined(__SUNOS__)
+#if defined(__BSD__) || defined(__ANDROID__) || defined(__APPLE__) || defined(LINUX) || defined(__SUNOS__) || defined(__HAIKU__)
 ::i32 _accept_socket(::i32 s, sockaddr* addr, socklen_t* addrlen)
 #else
 ::i32 _accept_socket(::i32 s, sockaddr* addr, ::i32* addrlen)

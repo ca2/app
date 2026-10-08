@@ -44,7 +44,7 @@ list(APPEND library_references acme)
 list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
-if(${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
+if(${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
     list(APPEND library_references z)
 else()
     list(APPEND library_references zlib)

@@ -136,12 +136,13 @@ namespace image
 
 
       virtual void _get_image(::image::image *pimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options());
+      virtual ::pointer<::image::load_image> create_load_pixmap(::pixmap * ppixmap, const load_options & loadoptions);
       virtual void _get_pixmap(::pixmap*ppixmap, const ::payload &payloadFile,
                               const ::image::load_options &options = ::image::load_options());
       virtual void _matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, const ::image::load_options & options = ::image::load_options());
 
 
-      virtual void _load_image(::image::load_image *ploadimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options());
+      virtual void _load_image(::image::load_image *ploadimage, const ::payload & payloadFile);
       //virtual void _load_pixmap(::pixmap*ppixmap, const ::payload &payloadFile,
       //                         const ::image::load_options &options = ::image::load_options());
       virtual void _load_matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions = ::image::load_options());

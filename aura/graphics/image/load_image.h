@@ -26,7 +26,7 @@ namespace image
       ::i32_size                                         m_sizePreferred;
       bool                                               m_bCreateHelperMaps = false;
       //::pointer<::load_image_interface>                  m_ploadimageinterface;
-      //::image::image_pointer                             m_pimage2;
+      ::image::image_pointer                             m_pimage;
       //::pixmap_pointer                                   m_ppixmap;
       ::pointer <::image::image_frame_array>             m_pimageframearray;
       //::function < void(::image::load_image *) >         m_functionLoaded;
@@ -45,8 +45,11 @@ namespace image
       virtual pixmap * get_pixmap();
       virtual pixmap * get_pixmap(const ::i32_size & size, ::i32 iScan = 0);
       virtual pixmap * get_pixmap_from_data(const ::i32_size & size, const image32_t * pimage32, ::i32 iScan, bool bTopDown);
-
+      virtual void set_pixmap(::pixmap * ppixmap);
+      virtual void set_image(::image::image * pimage);
       
+      virtual ::image::image * get_image();
+
       virtual void nanosvg(const ::block & blockXml, ::f64 dDpi = 0.);
 
       

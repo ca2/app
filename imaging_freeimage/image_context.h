@@ -25,7 +25,7 @@ namespace imaging_freeimage
       ~image_context() override;
 
 
-      void _load_image(::image::load_image * ploadimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options()) override;
+      void _load_image(::image::load_image * ploadimage, const ::payload & payloadFile) override;
 
       void _load_image(::pixmap *ppixmap, ::pointer<::image::image_frame_array>& pframea, memory & memory) override;
       void save_image(memory & memory, ::image::image *pimage, const ::image::encoding_options & encodingoptions) override;

@@ -29,7 +29,7 @@ namespace image
 
       auto ppixmap = ::as_pointer(ppixmapCallback);
 
-      m_loadoptions.functionLoaded = [ppixmap](::image::load_image * ploadimage)
+      m_loadoptions.functionaLoaded.insert_at(0, [ppixmap](::image::load_image * ploadimage)
       {
 
          if (ploadimage->is_ok())
@@ -65,7 +65,7 @@ namespace image
 
          }
 
-      };
+      });
 
       m_pimagecontext = pimagecontext;
 
@@ -118,7 +118,55 @@ namespace image
    }
 
 
+   void load_image::set_pixmap(::pixmap * ppixmap)
+   {
 
+      if (m_pimageframearray)
+      {
+
+         auto ppixmapSource = m_pimageframearray->get_pixmap();
+
+         ppixmap->copy_from(ppixmapSource);
+
+      }
+
+   }
+
+
+   void load_image::set_image(::image::image * pimage)
+   {
+
+      m_pimage = pimage;
+
+      if (m_pimageframearray)
+      {
+
+         auto ppixmap = m_pimageframearray->get_pixmap();
+
+         if (ppixmap)
+         {
+
+            pimage->on_load_image(ppixmap);
+
+         }
+         else
+         {
+
+            pimage->on_load_image_frame_array(m_pimageframearray);
+
+         }
+
+      }
+
+   }
+
+
+   ::image::image * load_image::get_image()
+   {
+
+      return m_pimage;
+
+   }
 
 
    void load_image::run()
@@ -214,7 +262,7 @@ namespace image
 
       }
 
-      if (m_loadoptions.functionLoaded)
+      if (m_loadoptions.functionaLoaded.has_element())
       {
 
          // if (!m_pimageframearray && m_ppixmap)
@@ -228,30 +276,35 @@ namespace image
 
          //m_functionLoaded(m_pimageframearray);
 
-         try
+         for (auto & functionLoaded : m_loadoptions.functionaLoaded)
          {
-            
-            m_loadoptions.functionLoaded(this);
-            
-         }
-         catch (const ::exception & exception)
-         {
-            
-            throw ::exception(exception.m_estatus,
-               "image load: completion callback failed: " + exception.get_message(), exception.m_strDetails);
-            
-         }
-         catch (const ::std::exception & exception)
-         {
-            
-            throw ::exception(error_failed, "image load: completion callback failed: " + ::string(exception.what()));
-            
-         }
-         catch (...)
-         {
-            
-            throw ::exception(error_failed, "image load: completion callback failed with an unknown exception");
-            
+
+            try
+            {
+
+               functionLoaded(this);
+
+            }
+            catch (const ::exception & exception)
+            {
+
+               throw ::exception(exception.m_estatus,
+                  "image load: completion callback failed: " + exception.get_message(), exception.m_strDetails);
+
+            }
+            catch (const ::std::exception & exception)
+            {
+
+               throw ::exception(error_failed, "image load: completion callback failed: " + ::string(exception.what()));
+
+            }
+            catch (...)
+            {
+
+               throw ::exception(error_failed, "image load: completion callback failed with an unknown exception");
+
+            }
+
          }
 
       }

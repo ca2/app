@@ -279,8 +279,10 @@ const_char_pointer getFreeImageFormatName(FREE_IMAGE_FORMAT format) {
 void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
     printf("FreeImage Error [format %d]: %s\n", fif, message);
 }
-   void image_context::_load_image(::image::load_image* ploadimage, const ::payload& varFileParam,
-                                   const ::image::load_options& loadoptions)
+
+
+
+   void image_context::_load_image(::image::load_image* ploadimage, const ::payload& varFileParam)
    {
 
       if (::is_null(ploadimage))

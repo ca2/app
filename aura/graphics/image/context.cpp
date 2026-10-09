@@ -789,7 +789,7 @@ namespace image
 
       auto ploadimage = pimage->create_load_image(this, loadoptions);
 
-      _load_image(ploadimage, payloadFile, loadoptions);
+      _load_image(ploadimage, payloadFile);
 
       return pimage;
 
@@ -803,7 +803,7 @@ namespace image
 
       auto loadoptionsNew = loadoptions;
 
-      loadoptionsNew.functionLoaded = pimage->load_image_callback(loadoptions.functionLoaded);
+      pimage->load_image_callback(loadoptionsNew.functionaLoaded);
 
       load_image(payloadFile, loadoptionsNew);
 
@@ -1019,30 +1019,72 @@ namespace image
       
       auto ploadimage = pimage->create_load_image(this, loadoptions);
       
-      _load_image(ploadimage, payloadFile, loadoptions);
+      _load_image(ploadimage, payloadFile);
 
    }
+
+
+   ::pointer<::image::load_image> image_context::create_load_pixmap(::pixmap * ppixmap, const load_options & loadoptions)
+   {
+
+      auto ploadimage = create_newø<::image::load_image>();
+
+      ploadimage->initialize_load_image(this);
+
+      if (::is_null(loadoptions.draw2d_domain))
+      {
+
+         ploadimage->set_draw2d_domain(system()->draw2d()->main_draw2d_domain());
+
+         if (::is_null(ploadimage->draw2d_domain()))
+         {
+
+            throw ::exception(error_wrong_state, "image loading requires a draw2d domain");
+
+         }
+
+      }
+
+      ploadimage->m_loadoptions = loadoptions;
+
+      ploadimage->m_loadoptions.functionaLoaded.insert_at(0, [this, ppixmap](::image::load_image * ploadimage)
+      {
+
+         ploadimage->set_pixmap(ppixmap);
+
+      });
+
+      return ploadimage;
+
+   }
+
 
 
    void image_context::_get_pixmap(::pixmap *ppixmap, const ::payload &payloadFile,
                                   const ::image::load_options &loadoptions)
    {
 
-      auto ploadimage = create_newø<::image::load_image>();
 
-      ploadimage->initialize_load_image(this, ppixmap);
+      auto ploadimage = create_load_pixmap(ppixmap, loadoptions);
 
-      _load_image(ploadimage, payloadFile, loadoptions);
+      _load_image(ploadimage, payloadFile);
 
-      if (loadoptions.sync && !ppixmap->is_ok())
-      {
-         errorf("[image.pixmap] synchronous load returned invalid destination path=%s loader_ok=%d callback=%d object=%p size=%dx%d stride=%d raw=%p pixels=%p ok_flag=%d",
-            payloadFile.as_file_path().c_str(), (int)ploadimage->is_ok(),
-            (int)(bool)ploadimage->m_loadoptions.functionLoaded, (void *)ppixmap,
-            ppixmap->m_size.cx, ppixmap->m_size.cy, ppixmap->m_iScan,
-            (void *)ppixmap->m_pimage32Raw, (void *)ppixmap->m_pimage32,
-            (int)ppixmap->has_ok_flag());
-      }
+
+      //auto ploadimage = create_newø<::image::load_image>();
+
+      //ploadimage->initialize_load_image(this, ppixmap);
+
+      //_load_image(ploadimage, payloadFile, loadoptions);
+
+      //if (loadoptions.sync && !ppixmap->is_ok())
+      //{
+      //   errorf("[image.pixmap] synchronous load returned invalid destination path=%s loader_ok=%d callback=%d object=%p size=%dx%d stride=%d raw=%p pixels=%p ok_flag=%d",
+      //      payloadFile.as_file_path().c_str(), (int)ploadimage->is_ok(),
+      //      (int)ploadimage->m_loadoptions.functionaLoaded.get_count(), (void *)ppixmap,
+      //      ppixmap->m_size.cx, ppixmap->m_size.cy, ppixmap->m_iScan,
+      //      (void *)ppixmap->m_pimage32Raw, (void *)ppixmap->m_pimage32,
+      //      (int)ppixmap->has_ok_flag());
+      //}
 
    }
 
@@ -1070,7 +1112,7 @@ namespace image
    }
 
 
-   void image_context::_load_image(::image::load_image* pimage, const ::payload& payloadFile, const ::image::load_options& loadoptions)
+   void image_context::_load_image(::image::load_image* pimage, const ::payload& payloadFile)
    {
 
    }
@@ -1099,7 +1141,7 @@ namespace image
       //ploadimage->initialize_load_image(this, pimage->m_ppixmapOwned);
 
       //auto estatus = 
-      _load_image(ploadimage, path, loadoptions);
+      _load_image(ploadimage, path);
 
       //if (!estatus)
       //{

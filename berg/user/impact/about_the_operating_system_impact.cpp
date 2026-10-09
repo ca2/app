@@ -91,12 +91,12 @@ namespace berg
    
       image()->load_image(strOperatingSystemImageUrl,
       {
-   .sync=false,.functionLoaded = [this](::image::load_image * ploadimage)
+   .sync = false,.functionaLoaded = {[this](::image::load_image * ploadimage)
    {
                                                           m_pimageOperatingSystem = ::image::image::from(ploadimage->m_pimageframearray);
 
    }
-});
+} });
 
 #if defined(LINUX)
 

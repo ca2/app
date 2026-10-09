@@ -10847,42 +10847,17 @@ namespace image
    //}
 
 
-   ::function<void(::image::load_image *)> image::load_image_callback(const ::function < void(::image::load_image *) > & functionLoadedNext)
+   void image::load_image_callback(::array < ::function < void(::image::load_image *) > > & functionaLoaded)
    {
 
       auto pimage = ::as_pointer(this);
 
-      return [pimage, functionLoadedNext](::image::load_image * ploadimage)
+      functionaLoaded.insert_at(0, [this, pimage](::image::load_image * ploadimage)
       {
          
-         if(ploadimage->m_pimageframearray)
-         {
-            
-            auto ppixmap = ploadimage->m_pimageframearray->get_pixmap();
-            
-            if (ppixmap)
-            {
-               
-               pimage->on_load_image(ppixmap);
-               
-            }
-            else
-            {
-               
-               pimage->on_load_image_frame_array(ploadimage->m_pimageframearray);
-               
-            }
-            
-         }
+         ploadimage->set_image(this);
 
-         if(functionLoadedNext)
-         {
-          
-            functionLoadedNext(ploadimage);
-            
-         }
-         
-      };
+      });
 
    }
 
@@ -10908,12 +10883,14 @@ namespace image
       
       ploadimage->initialize_load_image(pimagecontext);
 
-      ploadimage->m_loadoptions.functionLoaded = load_image_callback(loadoptions.functionLoaded);
+      ploadimage->m_loadoptions = loadoptions;
+
+      load_image_callback(ploadimage->m_loadoptions.functionaLoaded);
 
       if(::is_null(draw2d_domain()))
       {
          
-         set_draw2d_domain(loadoptions.draw2d_domain);
+         set_draw2d_domain(ploadimage->m_loadoptions.draw2d_domain);
          
       }
          
@@ -12402,6 +12379,13 @@ namespace image
       }
       else if (m_ppixmapOwned)
       {
+
+         if (m_sizeRaw < ppixmap->size())
+         {
+
+            create_as_descriptor(ppixmap->size(), draw2d_domain(), e_flag_none);
+
+         }
 
          m_ppixmapOwned->copy_from(ppixmap);
 

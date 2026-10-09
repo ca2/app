@@ -26,6 +26,19 @@
 */
 #pragma once
 
+// Thread-local context: ordinary exception construction defaults to false.
+CLASS_DECL_ACME bool call_stack_within_signal_handler();
+CLASS_DECL_ACME bool call_stack_set_within_signal_handler(bool bWithinSignalHandler);
+
+class call_stack_signal_handler_scope
+{
+public:
+   bool m_bPrevious;
+   call_stack_signal_handler_scope() : m_bPrevious(call_stack_set_within_signal_handler(true)) {}
+   ~call_stack_signal_handler_scope() { call_stack_set_within_signal_handler(m_bPrevious); }
+   call_stack_signal_handler_scope(const call_stack_signal_handler_scope &) = delete;
+};
+
 
 
 
@@ -42,14 +55,14 @@ public:
    void *            m_caller_address;
 
 
-   call_stack(const ::scoped_string & scopedstrFormat = default_format(), ::i32 iSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, ::i32 iCount = -1);
+   call_stack(const ::scoped_string & scopedstrFormat = default_format(), ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, ::i32 iCount = -1);
    virtual ~call_stack();
 
 
    //static void global_enable_stack_trace(bool bEnable = true);
    static const_char_pointer default_format() { return "%f(%l) %s\n"; }
 
-   const_char_pointer get_dup(const ::scoped_string & scopedstrFormat = default_format(), ::i32 uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER, ::i32 iCount = -1);
+   const_char_pointer get_dup(const ::scoped_string & scopedstrFormat = default_format(), ::i32 uiSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, ::i32 iCount = -1);
 
    const_char_pointer xxxstack_trace() const;
 

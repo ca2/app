@@ -155,8 +155,6 @@ if(__ANDROID__)
    set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
 endif()
 
-project(android-build-all C CXX ASM)
-
 option(CA2_ENABLE_HWASAN "Instrument Android ARM64 native code with HWAddressSanitizer" OFF)
 if(CA2_ENABLE_HWASAN)
    if(NOT __ANDROID__ OR NOT ANDROID_ABI STREQUAL "arm64-v8a")

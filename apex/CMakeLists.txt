@@ -1491,7 +1491,7 @@ if(${WIN32})
    target_link_libraries(${PROJECT_NAME} PRIVATE zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32 ${library_references} ${global_library_references})
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
@@ -1519,7 +1519,11 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
    elseif (${__ANDROID__})
       list(APPEND this_system_libraries dl z)
    else ()
+      if(__HAIKU__)
+         list(APPEND this_system_libraries pthread idn z)
+      else()
       list(APPEND this_system_libraries dl pthread idn z)
+      endif()
    endif ()
 
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES} ${this_system_libraries})

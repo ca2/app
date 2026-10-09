@@ -159,7 +159,7 @@ if(${WIN32})
 
    #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
    target_link_libraries(${PROJECT_NAME} PRIVATE assimp ktx ${library_references} )
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
 
    pkg_check_modules(${PROJECT_NAME}_PKGCONFIG assimp)

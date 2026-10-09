@@ -1,6 +1,6 @@
 #include "platform.h"
-#include "nanosvg.h"
-#include "nanosvgrast.h"
+#include "nanosvg/nanosvg.h"
+#include "nanosvg/nanosvgrast.h"
 #include "image.h"
 #include "imaging.h"
 #include "load_image.h"

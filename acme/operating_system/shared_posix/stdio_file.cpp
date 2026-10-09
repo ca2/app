@@ -967,7 +967,7 @@ void file_system::append_wait(const ::file::path & pathFile, const block & block
    while (true)
    {
 
-#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 
       pfile = fopen(pathFile, "ab");
 
@@ -1117,7 +1117,7 @@ void file_system::append_wait(const ::scoped_string & scopedstrFile, const block
    while (true)
    {
 
-#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 
       pfile = fopen(scopedstrFile.as_string().c_str(), "ab");
 

@@ -92,7 +92,7 @@ namespace draw2d
       ::i32                                           m_iYFlipHeight;
       // try to draw using paths and full prototypes
       // there is little control over lines drawn with move_to line_to than generalized
-      //bool                                          m_bHasCurrentPoint;
+      bool                                          m_bHasCurrentPoint;
       bool                                            m_bOutline;
       //void* m_pthis;
       //::pointer<::draw2d::graphics_context>         m_pgraphicscontext;

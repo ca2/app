@@ -60,7 +60,8 @@ CLASS_DECL_ACME void ansi_unlink(const ::scoped_string & scopedstr);
 && !defined(LINUX) \
 && !defined(__ANDROID__) \
 && !defined(__BSD__) \
-&& !defined(__SUNOS__)
+&& !defined(__SUNOS__) \
+&& !defined(__HAIKU__)
 
 ::i32 ftruncate(::i32 file, filesize len);
 

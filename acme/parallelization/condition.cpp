@@ -4,7 +4,7 @@
 #include "acme/_operating_system.h"
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 
 #include <sys/ipc.h>
 #include <sys/sem.h>

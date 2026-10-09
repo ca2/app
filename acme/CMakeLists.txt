@@ -3341,7 +3341,7 @@ if (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
 endif ()
 
 
-if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${__ANDROID__} OR ${__SUNOS__})
+if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
 
     list(APPEND library_source
@@ -3398,6 +3398,17 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
+if (${__HAIKU__})
+    list(APPEND library_source
+        operating_system/ansi/acme.cpp
+        operating_system/linux/console.cpp
+        operating_system/linux/cpu_features.cpp
+        operating_system/sunos/cpu_features_i86pc.cpp
+        operating_system/haiku/platform.cpp
+        operating_system/posix/termination_handler.cpp
+    )
+endif()
+
 add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
@@ -3430,7 +3441,7 @@ if(${WIN32})
     target_link_libraries(${PROJECT_NAME} PRIVATE archive zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
     if (NOT ${SUSE})
 
@@ -3477,6 +3488,9 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
         #message(SEND_ERROR "test is really android?! ${this_system_libraries}")
         message(STATUS "For acme at __ANDROID__ library_references ${library_references}")
         message(STATUS "For acme at __ANDROID__ this_system_libraries ${this_system_libraries}")
+    elseif (${__HAIKU__})
+        list(APPEND this_system_libraries z pthread idn iconv)
+        list(APPEND static_this_system_libraries pthread iconv)
     else ()
         list(APPEND this_system_libraries z pthread idn)
         list(APPEND static_this_system_libraries pthread)
@@ -3572,3 +3586,9 @@ if(BUILD_TESTING)
 endif()
 
 
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Haiku")
+   target_sources(acme PRIVATE operating_system/posix/networking.cpp)
+   target_link_libraries(acme PRIVATE network)
+   target_sources(static_acme PRIVATE operating_system/posix/networking.cpp)
+endif()

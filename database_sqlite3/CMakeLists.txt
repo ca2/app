@@ -47,16 +47,16 @@ endif ()
 
 set_target_properties(database_sqlite3 PROPERTIES LINKER_LANGUAGE CXX)
 
-set(database_sqlite3_USE_PORT FALSE)
-if(USE_PORT_SQLITE AND __SUNOS__)
-   set(database_sqlite3_USE_PORT TRUE)
-   if(NOT TARGET sqlite OR NOT TARGET static_sqlite)
-      message(FATAL_ERROR "USE_PORT_SQLITE requires the port/base/sqlite targets")
-   endif()
-   target_link_libraries(${PROJECT_NAME} PRIVATE sqlite)
-   target_link_libraries(static_${PROJECT_NAME} PRIVATE static_sqlite)
-   message(STATUS "database_sqlite3: using internal port/base/sqlite")
-endif()
+
+#if(${USE_PORT_SQLITE} AND __SUNOS__)
+#   set(database_sqlite3_USE_PORT TRUE)
+#   if(NOT TARGET sqlite OR NOT TARGET static_sqlite)
+#     message(FATAL_ERROR "USE_PORT_SQLITE requires the port/base/sqlite targets")
+#   endif()
+#   target_link_libraries(${PROJECT_NAME} PRIVATE sqlite)
+#   target_link_libraries(static_${PROJECT_NAME} PRIVATE static_sqlite)
+#   message(STATUS "database_sqlite3: using internal port/base/sqlite")
+#endif()
 
 if(${WIN32})
 
@@ -68,10 +68,10 @@ if(${WIN32})
    target_link_libraries(database_sqlite3 PRIVATE ${library_references} ${global_library_references} sqlite)
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
 
-   if(database_sqlite3_USE_PORT)
+   if(${USE_PORT_SQLITE})
       # The port targets supply matching headers and libraries. Do not add
       # system SQLite pkg-config flags to either adapter target.
       set(${PROJECT_NAME}_PKGCONFIG_CFLAGS "")

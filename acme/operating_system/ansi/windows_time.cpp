@@ -1014,7 +1014,13 @@ NTSTATUS NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *OldTime)
    tv.tv_sec = sec;
    tv.tv_usec = 0;
 
-#ifdef HAVE_SETTIMEOFDAY
+#if defined(__HAIKU__)
+   struct timespec ts = {};
+   ts.tv_sec = tv.tv_sec;
+   if (::clock_settime(CLOCK_REALTIME, &ts) == 0)
+      return STATUS_SUCCESS;
+   return errno == EPERM ? STATUS_PRIVILEGE_NOT_HELD : STATUS_INVALID_PARAMETER;
+#elif defined(HAVE_SETTIMEOFDAY)
    if (!settimeofday(&tv, nullptr)) /* 0 is OK, -1 is error */
       return STATUS_SUCCESS;
    //tm_t = sec;

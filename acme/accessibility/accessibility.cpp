@@ -11,6 +11,17 @@
 namespace accessibility
 {
 
+   automation::element_pointer accessibility::automation_desktop()
+   {
+      throw ::exception(error_interface_only);
+   }
+
+   ::pointer<automation::menu_selection_result> accessibility::select_application_menu(
+      const automation::menu_selection_request &request)
+   {
+      return automation::select_application_menu(automation_desktop(), request);
+   }
+
 
    accessibility::accessibility()
    {

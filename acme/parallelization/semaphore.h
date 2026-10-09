@@ -4,6 +4,10 @@
 
 #include "acme/operating_system/security_attributes.h"
 
+#if defined(__HAIKU__)
+#include <mutex>
+#endif
+
 
 class CLASS_DECL_ACME semaphore :
    virtual public particle
@@ -17,12 +21,18 @@ public:
 
    ::hsynchronization      m_handleSemaphore;
 
+#elif defined(__HAIKU__)
+
+   ::i32             m_hsync = -1; // Haiku sem_id, without exposing OS.h here.
+   ::i32             m_lMaxCount;
+   std::mutex        m_mutexRelease;
+
 #elif defined(__ANDROID__)
 
    ::i32              m_lMaxCount;
    sem_t *           m_psem;
 
-#elif defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__)
+#elif defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 
    ::i32         m_lMaxCount;
    ::i32           m_hsync;

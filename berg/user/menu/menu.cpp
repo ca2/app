@@ -617,7 +617,7 @@ namespace user
 
       puserinteractionOwner->m_menua.add(this);
 
-#elif defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS) || defined(__ANDROID__) || defined(APPLE_IOS) || defined(__SUNOS__)
+#elif defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS) || defined(__ANDROID__) || defined(APPLE_IOS) || defined(__SUNOS__) || defined(__APPLE__) || defined(__HAIKU__)
 
       information() << "::user::menu::create_menu parent window: " << (::iptr)owner_window();
 

@@ -567,7 +567,7 @@ void get_os_priority(::i32 * piPolicy, sched_param * pparam, ::enum_priority epr
    else
    {
 
-#if defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__)
+#if defined(__APPLE__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
       iOsPolicy = SCHED_OTHER;
 #else
       iOsPolicy = SCHED_IDLE;

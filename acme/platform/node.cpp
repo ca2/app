@@ -608,8 +608,13 @@ namespace platform
 
    string node::veriwell_multimedia_music_midi_get_default_implementation_name()
    {
-
+#ifdef __SUNOS__
+      // ALSA is not a SunOS backend. Keep MIDI optional unless an installed
+      // implementation has been explicitly selected in appconfig.
+      return system()->implementation_name("music_midi", "");
+#else
       return system()->implementation_name("music_midi", "alsa");
+#endif
 
    }
 
@@ -1897,7 +1902,7 @@ namespace platform
 
       }
 
-#elif defined(LINUX) || defined(__BSD__)
+#elif defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 
       strName = "_" + strName;
 
@@ -3707,7 +3712,7 @@ bool node::_is_smart_git_installed()
 
 #if !defined(ANDROID) && !defined(LINUX)
 
-#if !defined(__APPLE__) && !defined(__BSD__) && !defined(__SUNOS__)
+#if !defined(__APPLE__) && !defined(__BSD__) && !defined(__SUNOS__) && !defined(__HAIKU__)
 
 
    string node::_get_call_stack_trace(void ** stack, ::i32 frame_count, const ::scoped_string& scopedstrFormat , ::i32 iSkip , void* caller_address, ::i32 iCount)
@@ -5340,6 +5345,13 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
       auto psummary = this->operating_system_summary();
 
       ::string strDesktopAmbient;
+
+      if (psummary->m_strAmbientName.has_character())
+         strDesktopAmbient = "Desktop Ambient: " + psummary->m_strAmbientName;
+      else if (psummary->m_strAmbient.has_character())
+         strDesktopAmbient = "Desktop Ambient: " + psummary->m_strAmbient;
+      if (strDesktopAmbient.has_character() && psummary->m_strAmbientVersion.has_character())
+         strDesktopAmbient += " " + psummary->m_strAmbientVersion;
 
 #if defined(LINUX)
 

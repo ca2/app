@@ -5833,6 +5833,10 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          ::string strOperatingAmbientName = ::windowing::get_eoperating_ambient_name();
 
+#ifdef __SUNOS__
+         strOperatingAmbientName = "gtk3";
+#endif
+
 #if (defined(LINUX) || defined(__BSD__)) && !defined(ANDROID)
 
          strOperatingAmbientName = "gtk4";

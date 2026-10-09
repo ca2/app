@@ -30,7 +30,7 @@
 #include "acme/prototype/string/str.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/style.h"
-#include "nanosvg.h"
+#include "nanosvg/nanosvg.h"
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "aura/graphics/write_text/_defer_geometry2d_item.h"
 
@@ -95,6 +95,7 @@ namespace draw2d
       //_m_bYFlip = false;
       m_bForWindowDraw2d = false;
       m_bDraw = true;
+      m_bHasCurrentPoint = false;
 //      m_puserinteraction = nullptr;
       m_bUseImageMipMapsOrResizedImages = false;
 
@@ -7633,7 +7634,8 @@ namespace draw2d
    void graphics::clear_current_point()
    {
 
-      throw ::exception(todo);
+      m_bHasCurrentPoint = false;
+      //throw ::exception(todo);
 
       //return ::success_none;
 

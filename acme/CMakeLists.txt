@@ -3323,7 +3323,7 @@ endif ()
 # endif ()
 
 
-if (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
+if (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
 
     list(APPEND library_source

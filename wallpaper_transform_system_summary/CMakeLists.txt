@@ -55,7 +55,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 set_target_properties(static_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
-if(${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__})
+if(${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
     list(APPEND library_references z)
 else()
     list(APPEND library_references zlib)

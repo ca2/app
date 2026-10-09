@@ -102,21 +102,27 @@ namespace berg
 
       auto strKernelUrl = papexsystem->operating_system_kernel_icon_url({64, 64});
       if (strKernelUrl.has_character())
-         image()->load_image(strKernelUrl, { .sync=false, .functionLoaded = [this](::image::load_image * ploadimage)
-         {
-            m_pimageOperatingSystemKernel = ::image::image::from(ploadimage->m_pimageframearray);
-            set_need_redraw();
-            post_redraw();
-         }});
+         image()->load_image(strKernelUrl,
+      {
+         .sync=false, .functionaLoaded ={ [this](::image::load_image * ploadimage)
+{
+m_pimageOperatingSystemKernel = ::image::image::from(ploadimage->m_pimageframearray);
+set_need_redraw();
+post_redraw();
+}}
+      });
 
       auto strAmbientUrl = papexsystem->operating_ambient_icon_url({64, 64});
       if (strAmbientUrl.has_character())
-         image()->load_image(strAmbientUrl, { .sync=false, .functionLoaded = [this](::image::load_image * ploadimage)
-         {
-            m_pimageOperatingAmbient = ::image::image::from(ploadimage->m_pimageframearray);
-            set_need_redraw();
-            post_redraw();
-         }});
+         image()->load_image(strAmbientUrl,
+      {
+         .sync=false, .functionaLoaded = {[this](::image::load_image * ploadimage)
+{
+m_pimageOperatingAmbient = ::image::image::from(ploadimage->m_pimageframearray);
+set_need_redraw();
+post_redraw();
+}}
+      });
       // application()->show_about_box();
    }
 

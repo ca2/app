@@ -12,7 +12,7 @@
 // apt install libidn11-dev
 // dnf install libidn-devel
 #include <idna.h>
-#elif defined(__BSD__) || defined(__SUNOS__)
+#elif defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 // apt install libidn11-dev
 // dnf install libidn-devel
 #include <idna.h>

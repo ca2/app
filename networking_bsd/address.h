@@ -24,7 +24,7 @@ namespace networking_bsd
          {
 
 
-#if defined(FREEBSD) || defined(__APPLE__) || defined(OPENBSD)
+#if defined(FREEBSD) || defined(__APPLE__) || defined(OPENBSD) || defined(__HAIKU__)
 
             ::u8 m_len;
             ::u8 m_u8Family;
@@ -38,7 +38,7 @@ namespace networking_bsd
 
             ::u16 m_port;
 
-#if defined(FREEBSD) || defined(__APPLE__) || defined(OPENBSD)
+#if defined(FREEBSD) || defined(__APPLE__) || defined(OPENBSD) || defined(__HAIKU__)
 
 
             void set_family(::i32 family, ::i32 len)

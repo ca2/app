@@ -3338,6 +3338,13 @@ if (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
        operating_system/posix/termination_handler.h
     )
 
+    if(__HAIKU__)
+        # Haiku's platform.cpp provides the native desktop/toolkit getters.
+        list(REMOVE_ITEM library_source
+            operating_system/posix/__edesktop_calculate.cpp
+            operating_system/posix/__etoolkit_calculate.cpp)
+    endif()
+
 endif ()
 
 

@@ -17,7 +17,7 @@ add_executable(${PROJECT_NAME} ${application_source})
 
 
 
-if(${LINUX} OR ${__BSD__} OR ${__SUNOS__})
+if(${LINUX} OR ${__BSD__} OR ${__SUNOS__} OR ${__HAIKU__})
 
    target_sources(${PROJECT_NAME} PRIVATE .link_object/_matter.zip.o)
 

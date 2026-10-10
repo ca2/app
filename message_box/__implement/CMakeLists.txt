@@ -13,6 +13,12 @@ endif()
 
 add_executable(${PROJECT_NAME} ${application_source})
 
+if(__HAIKU__)
+   haiku_set_application_icon(${PROJECT_NAME}
+      "app/message_box"
+      "../../_matter/message_box/_std/_std/main/icon.png")
+endif()
+
 
 
 
@@ -26,7 +32,7 @@ list(APPEND executable_references
    )
 
 
-if(${LINUX} OR ${__BSD__} OR ${__SUNOS__})
+if(${LINUX} OR ${__BSD__} OR ${__SUNOS__} OR ${__HAIKU__})
 
    target_sources(${PROJECT_NAME} PRIVATE .link_object/_matter.zip.o)
 

@@ -45,6 +45,13 @@ namespace api_ca2
 
    }
 
+   void api::load_configuration()
+   {
+      // ca2 obtains its redirect identity from the application and credentials
+      // from the saved login profile; no OAuth provider configuration is needed.
+      m_setConfiguration.erase_all();
+   }
+
 
    bool api::user_seems_to_be_on_pre_login_screen() const
    {

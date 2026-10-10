@@ -138,6 +138,12 @@ int main(int argc, char* argv[], char* envp[])
 #elif defined(LINUX) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
    const char * p1 = _binary__matter_zip_start;
    const char * p2 = _binary__matter_zip_end;
+   printf("_binary__matter_zip_start = %p\n", p1);
+   printf("_binary__matter_zip_end = %p\n", p2);
+   char sz[8];
+   memcpy(sz, p1, 7);
+   sz[7]='\0';
+   printf("_binary__matter_zip_start beginning = %s\n", sz);
    APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp, p1, p2);
 #else
    const char * p1 = nullptr; //_todo_begin;

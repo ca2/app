@@ -772,8 +772,10 @@ information("message_box::on_initialize_dialog");
             if (payloadResult == e_dialog_result_yes)
             {
 
-               ::string strBody =
-                  pmessageboxParent->get_message() + "\n\n" + pmessageboxParent->dialog_details();
+               ::string strBody = pmessageboxParent->get_message();
+               auto strDetails = pmessageboxParent->dialog_details();
+               if (strDetails.has_character() && strDetails != strBody)
+                  strBody += "\n\n" + strDetails;
 
                auto pszBody = strBody.c_str();
 

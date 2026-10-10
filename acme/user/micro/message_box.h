@@ -8,7 +8,7 @@
 #include "acme/user/interface/message_box.h"
 #include "acme/user/micro/dialog.h"
 #include "acme/user/user/message_box_reifier.h"
-#include "user/implementation/message_box_implementation.h"
+#include "acme/user/implementation/message_box_implementation.h"
 
 
 namespace micro

@@ -309,7 +309,7 @@ void image32_t::_001ProperCopyColorref(::i32 cxParam, ::i32 cyParam, ::i32 iStri
 
    ::image32_t * pimage32Dst = this;
 
-#ifdef WINDOWS_DESKTOP
+#if defined(WINDOWS_DESKTOP) 
 
    copy(cxParam, cyParam, iStrideDst, pimage32Src, iStrideSrc);
 

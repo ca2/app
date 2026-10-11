@@ -545,72 +545,69 @@ namespace platform
    void system::initialize_matter()
    {
 
+      if (application()->m_bResource)
+      {
 
-      // if (application()->m_bResource)
-      // {
-      //
-      //    bool bMatterFromHttpCache = false;
-      //
-      //    bool bMatterFromResource = false;
-      //
-      //    auto pfile = file()->create_resource_file("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.dedicatory");
-      //
-      //    if (pfile)
-      //    {
-      //
-      //       information() << "found Thomas Borregaard Sørensen.dedicatory";
-      //
-      //       bMatterFromResource = true;
-      //
-      //    }
-      //    else
-      //    {
-      //
-      //       warning() << "Thomas Borregaard Sørensen.dedicatory not found";
-      //
-      //    }
-      //
-      //    if (bMatterFromResource)
-      //    {
-      //
-      //       m_pdirectorysystem->m_bMatterFromHttpCache = false;
-      //
-      //       m_pdirectorysystem->m_bMatterFromResource = true;
-      //
-      //    }
-      //    else
-      //    {
-      //
-      //       if (m_iMatterFromHttpCache == -1)
-      //       {
-      //
-      //          ::file::path pathSide = m_papplication->side_get_matter_path("app/_matter/main");
-      //
-      //          ::file::path pathLocal = local_get_matter_path("app/_matter/main");
-      //
-      //          bool bFileSystemMatter = m_pdirectorysystem->is(pathSide) || m_pdirectorysystem->is(pathLocal);
-      //
-      //          bMatterFromHttpCache = !bFileSystemMatter;
-      //
-      //       }
-      //       else
-      //       {
-      //
-      //          bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
-      //
-      //       }
-      //
-      //       m_pdirectorysystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
-      //
-      //       m_pdirectorysystem->m_bMatterFromResource = false;
-      //
-      //    }
-      //
-      //    m_bAttemptedToInitializeMatter = true;
-      //
-      // }
+         bool bMatterFromHttpCache = false;
 
+         bool bMatterFromResource = false;
 
+         auto pfile = file()->create_resource_file("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.dedicatory");
+
+         if (pfile)
+         {
+
+            information() << "found Thomas Borregaard Sørensen.dedicatory";
+
+            bMatterFromResource = true;
+
+         }
+         else
+         {
+
+            warning() << "Thomas Borregaard Sørensen.dedicatory not found";
+
+         }
+
+         if (bMatterFromResource)
+         {
+
+            m_pdirectorysystem->m_bMatterFromHttpCache = false;
+
+            m_pdirectorysystem->m_bMatterFromResource = true;
+
+         }
+         else
+         {
+
+            if (m_iMatterFromHttpCache == -1)
+            {
+
+               ::file::path pathSide = m_papplication->side_get_matter_path("app/_matter/main");
+
+               ::file::path pathLocal = local_get_matter_path("app/_matter/main");
+
+               bool bFileSystemMatter = m_pdirectorysystem->is(pathSide) || m_pdirectorysystem->is(pathLocal);
+
+               bMatterFromHttpCache = !bFileSystemMatter;
+
+            }
+            else
+            {
+
+               bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
+
+            }
+
+            m_pdirectorysystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
+
+            m_pdirectorysystem->m_bMatterFromResource = false;
+
+         }
+
+         m_bAttemptedToInitializeMatter = true;
+
+      }
 
    }
 

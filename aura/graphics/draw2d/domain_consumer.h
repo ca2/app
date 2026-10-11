@@ -14,9 +14,25 @@
 namespace draw2d
 {
 
+
+class CLASS_DECL_AURA domain_container :
+   virtual public ::acme::draw2d::domain_container
+{
+public:
+   
+   
+   domain_container();
+   ~domain_container() override;
+   
+   virtual ::draw2d::domain * draw2d_domain();
+   
+   
+};
+
    
    class CLASS_DECL_AURA domain_consumer :
-      virtual public ::acme::draw2d::domain_consumer
+      virtual public ::acme::draw2d::domain_consumer,
+      virtual public ::draw2d::domain_container
    {
    public:
       

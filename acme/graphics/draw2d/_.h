@@ -26,6 +26,7 @@ namespace draw2d
 
    class domain;
 
+   class domain_container;
 
 } // namespace draw2d
 

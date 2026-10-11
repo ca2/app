@@ -1700,8 +1700,10 @@ namespace user
       pdraw2dgraphics->set_font(this, ::e_element_none);
 
       auto pwritetextfont = pdraw2dgraphics->get_current_font();
+      
+      pwritetextfont->defer_update(pdraw2dgraphics);
 
-      auto iFontHeight = pwritetextfont->get_height(pdraw2dgraphics);
+      auto iFontHeight = pwritetextfont->text_metric(pdraw2dgraphics).get_line_height();
 
       iItemHeight = 1;
 

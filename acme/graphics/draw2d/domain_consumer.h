@@ -14,10 +14,25 @@ namespace acme
 
    namespace draw2d
    {
+   
+   
+   class CLASS_DECL_ACME domain_container :
+      virtual public ::particle
+   {
+   public:
+      
+      
+      domain_container();
+      ~domain_container() override;
+      
+      virtual ::acme::draw2d::domain * acme_draw2d_domain();
+      
+   };
+
 
 
       class CLASS_DECL_ACME domain_consumer :
-         virtual public ::particle
+         virtual public ::acme::draw2d::domain_container
       {
       public:
          

@@ -14,6 +14,26 @@ namespace draw2d
 {
 
 
+domain_container::domain_container()
+{
+   
+}
+domain_container::~domain_container()
+{
+   
+   
+}
+
+::draw2d::domain * domain_container::draw2d_domain()
+{
+   
+   throw ::interface_only();
+   
+   return nullptr;
+   
+}
+
+
    domain_consumer::domain_consumer()
    {
       

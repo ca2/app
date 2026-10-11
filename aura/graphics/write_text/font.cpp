@@ -933,45 +933,54 @@ namespace write_text
    //}
 
 
-   ::f64 font::get_ascent(::draw2d::graphics * pdraw2dgraphics)
+//   ::f64 font::get_ascent(::draw2d::graphics * pdraw2dgraphics)
+//   {
+//
+//      defer_update(pdraw2dgraphics);
+//
+//      return m_textmetric2.m_dAscent;
+//
+//   }
+//
+//
+//   ::f64 font::get_height(::draw2d::graphics * pdraw2dgraphics)
+//   {
+//
+//      defer_update(pdraw2dgraphics);
+//
+//      return m_textmetric2.m_dHeight;
+//
+//   }
+//
+//
+//   ::f64 font::get_leading(::draw2d::graphics * pdraw2dgraphics)
+//   {
+//
+//      defer_update(pdraw2dgraphics);
+//
+//      return m_textmetric2.m_dInternalLeading + m_textmetric2.m_dExternalLeading;
+//
+//   }
+//
+//
+//   ::f64 font::get_descent(::draw2d::graphics * pdraw2dgraphics)
+//   {
+//
+//      defer_update(pdraw2dgraphics);
+//
+//      return m_textmetric2.m_dDescent;
+//
+//   }
+
+
+   ::write_text::text_metric & font::text_metric(::draw2d::graphics * pdraw2dgraphics)
    {
-
+      
       defer_update(pdraw2dgraphics);
-
-      return m_textmetric2.m_dAscent;
-
+      
+      return m_textmetric4;
+      
    }
-
-
-   ::f64 font::get_height(::draw2d::graphics * pdraw2dgraphics)
-   {
-
-      defer_update(pdraw2dgraphics);
-
-      return m_textmetric2.m_dHeight;
-
-   }
-
-
-   ::f64 font::get_leading(::draw2d::graphics * pdraw2dgraphics)
-   {
-
-      defer_update(pdraw2dgraphics);
-
-      return m_textmetric2.m_dInternalLeading + m_textmetric2.m_dExternalLeading;
-
-   }
-
-
-   ::f64 font::get_descent(::draw2d::graphics * pdraw2dgraphics)
-   {
-
-      defer_update(pdraw2dgraphics);
-
-      return m_textmetric2.m_dDescent;
-
-   }
-
 
    //void font::_get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm)
    //{

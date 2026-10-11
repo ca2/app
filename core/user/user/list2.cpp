@@ -943,7 +943,7 @@ namespace user
 
       pwritetextfont->defer_update(pdraw2dgraphics);
 
-      auto iLineHeight = pwritetextfont->get_height(pdraw2dgraphics);
+      auto iLineHeight = pwritetextfont->text_metric(pdraw2dgraphics).get_line_height();
 
       iLineHeight *= 1.25;
 

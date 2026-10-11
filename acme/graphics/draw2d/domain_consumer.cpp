@@ -17,7 +17,25 @@ namespace acme
    namespace draw2d
    {
 
-
+   
+   domain_container::domain_container()
+   {
+      
+   }
+   domain_container::~domain_container()
+   {
+      
+   }
+   
+   
+   ::acme::draw2d::domain * domain_container::acme_draw2d_domain()
+   {
+    
+      throw ::interface_only();
+      
+      return nullptr;
+      
+   }
       domain_consumer::domain_consumer()
       {
          

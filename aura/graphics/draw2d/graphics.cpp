@@ -2591,7 +2591,7 @@ namespace draw2d
 
       m_pwritetextfont->defer_update(this);
 
-      *pMetrics = m_pwritetextfont->m_textmetric2;
+      *pMetrics = m_pwritetextfont->text_metric(this);
       //m_pwritetextfont->get_os_data(this);
 
       //memory_copy(pMetrics, &m_pwritetextfont->m_textmetric2, sizeof(*pMetrics));

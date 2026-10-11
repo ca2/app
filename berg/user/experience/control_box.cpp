@@ -1097,7 +1097,7 @@ namespace experience
    ::i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto dFontHeight = m_pfontMarlett->get_height(pdraw2dgraphics);
+      auto dFontHeight = m_pfontMarlett->text_metric(pdraw2dgraphics).get_line_height();
 
       ::i32 iButtonSize = (::i32) (dFontHeight + m_iDefaultButtonMargin * 3);
 

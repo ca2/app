@@ -174,11 +174,12 @@ namespace platform
 
       virtual void initialize_layer();
 
-      virtual enum_trace_level get_trace_level() override;
+      enum_trace_level get_trace_level() override;
       //void os_construct();
 
-      virtual void defer_initialize_matter() override;
-      
+      void defer_initialize_matter() override;
+
+      void initialize_matter() override;
 
 #ifdef _DEBUG
 

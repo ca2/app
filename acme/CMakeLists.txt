@@ -625,16 +625,6 @@ list(APPEND library_source
         #platform/apex_main_data.h
         #platform/apex_main_struct.cpp
         #platform/apex_main_struct.h
-   platform/ini.cpp
-   platform/ini.h
-   platform/registry.cpp
-   platform/registry.h
-        platform/http.cpp
-        platform/http.h
-        platform/http_acme.cpp
-        platform/http_acme.h
-        platform/http_apex.cpp
-        platform/http_apex.h
         platform/allocator.cpp
         platform/allocator.h
         platform/application_menu.cpp
@@ -653,6 +643,8 @@ list(APPEND library_source
         platform/application_aura.h
         platform/application_array.cpp
         platform/application_array.h
+        platform/application_axis.cpp
+        platform/application_axis.h
         platform/application_berg.cpp
         platform/application_berg.h
         platform/application_bred.cpp
@@ -694,9 +686,17 @@ list(APPEND library_source
         platform/component_implementation.h
         platform/fixed_alloc.cpp
         platform/flags.cpp
+        platform/http.cpp
+        platform/http.h
+        platform/http_acme.cpp
+        platform/http_acme.h
+        platform/http_apex.cpp
+        platform/http_apex.h
         platform/hyperlink.cpp
         platform/implementable.cpp
         platform/implementable.h
+        platform/ini.cpp
+        platform/ini.h
         #platform/ini.cpp
         platform/integration_context.cpp
         platform/integration_context.h
@@ -745,6 +745,8 @@ list(APPEND library_source
         platform/profiler.cpp
         platform/profile_logger.cpp
         platform/profile_logger.h
+        platform/registry.cpp
+        platform/registry.h
         platform/serial.cpp
         platform/session.cpp
         platform/session.h

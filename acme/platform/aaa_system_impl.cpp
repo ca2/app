@@ -127,7 +127,8 @@ void initialize_nano_http(::factory::factory * pfactory);
 namespace platform
 {
 
-   platform::system * system::g_p = nullptr;
+
+   system * system::g_p = nullptr;
 
    system::system()
    {
@@ -3640,44 +3641,17 @@ namespace platform
    string system::get_system_configuration()
    {
 
-#ifndef CA2_PLATFORM_VERSION
+#ifdef DEBUG
 
-#error "CA2_PLATFORM_VERSION not defined"
-
-#endif
-
-#ifndef CA2_BASIS
-
-#error "CA2_BASIS not defined"
-
-#endif
-
-#ifndef CA2_STAGE
-
-#error "CA2_STAGE not defined"
-
-#endif
-
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-
-      return "basis";
-
-      //#pragma message "CA2_PLATFORM_VERSION is CA2_BASIS"
-
-#elif CA2_PLATFORM_VERSION == CA2_STAGE
-
-      return "stage";
-
-      //#pragma message "CA2_PLATFORM_VERSION is CA2_STAGE"
+      return "Debug";
 
 #else
 
-#error "CA2_PLATFORM_VERSION has unsupported definition"
+      return "Release";
 
 #endif
 
    }
-
 
 
    string system::get_system_platform()

@@ -629,24 +629,6 @@ list(APPEND library_source
    platform/ini.h
    platform/registry.cpp
    platform/registry.h
-        platform/system_acme.h
-        platform/system_apex.h
-        platform/system_aqua.h
-        platform/system_aura.h
-   platform/user_interaction_sink.h
-   platform/user_interaction_sink.cpp
-        platform/application_acme.h
-        platform/application_acme.cpp
-        platform/application_apex.h
-        platform/application_apex.cpp
-        platform/application_aqua.h
-        platform/application_aqua.cpp
-        platform/application_aura.h
-        platform/application_aura.cpp
-        platform/application_axis.h
-        platform/application_axis.cpp
-        platform/application_axis.h
-        platform/application_axis.cpp
         platform/http.cpp
         platform/http.h
         platform/http_acme.cpp
@@ -809,6 +791,7 @@ list(APPEND library_source
         platform/system_core.h
         platform/system_factory.cpp
         platform/system_factory.h
+        #platform/system_impl.cpp
         platform/system_setup.cpp
         platform/system_setup.h
         platform/text.cpp

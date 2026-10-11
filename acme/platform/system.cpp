@@ -539,6 +539,13 @@ namespace platform
 
       initialize_matter();
 
+   }
+
+
+   void system::initialize_matter()
+   {
+
+
       // if (application()->m_bResource)
       // {
       //
@@ -603,8 +610,9 @@ namespace platform
       //
       // }
 
-   }
 
+
+   }
 
    //void system::prepare_application()
    //{

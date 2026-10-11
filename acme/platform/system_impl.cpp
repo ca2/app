@@ -403,6 +403,8 @@ namespace platform
 
          }
 
+         m_bAttemptedToInitializeMatter = true;
+
       }
 
    }

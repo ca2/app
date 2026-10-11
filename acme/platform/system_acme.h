@@ -246,6 +246,8 @@ namespace platform
       //void os_construct();
 
       virtual void defer_initialize_matter();
+      virtual void initialize_matter();
+
 //
 // #ifdef _DEBUG
 //

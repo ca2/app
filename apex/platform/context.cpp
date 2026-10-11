@@ -687,9 +687,25 @@ namespace apex
       }
       else if (_001IsProtocol(path, "appconfig:/"))
       {
-
-         path = get_app()->appconfig_folder() / path;
-
+         auto applicationPath = directory()->appconfig() / path;
+         auto legacyApplicationPath = get_app()->appconfig_folder() / path;
+         auto rootPath = directory()->rootconfig() / path;
+         auto sharedPath = directory()->sharedconfig() / path;
+         if (file_system()->exists(applicationPath)) path = applicationPath;
+         // Existing application-name folders remain application-specific
+         // overrides while applications adopt the ID-based directory helper.
+         else if (legacyApplicationPath != applicationPath && file_system()->exists(legacyApplicationPath)) path = legacyApplicationPath;
+         else if (file_system()->exists(rootPath)) path = rootPath;
+         else if (file_system()->exists(sharedPath)) path = sharedPath;
+         else path = applicationPath;
+      }
+      else if (_001IsProtocol(path, "rootconfig:/"))
+      {
+         path = directory()->rootconfig() / path;
+      }
+      else if (_001IsProtocol(path, "sharedconfig:/"))
+      {
+         path = directory()->sharedconfig() / path;
       }
       else if (_001IsProtocol(path, "download:/"))
       {

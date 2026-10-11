@@ -2320,6 +2320,11 @@ particle::message_box(const ::exception &exception, const ::scoped_string &scope
 
    auto pfactoryitem = pfactory->_find_factory_item(type);
 
+   if (!pfactoryitem)
+   {
+      throw ::exception(error_not_found, "No factory registered for " + type.text());
+   }
+
    auto p = pfactoryitem->__call__create_particle();
 
    //if (!pparticleNew)

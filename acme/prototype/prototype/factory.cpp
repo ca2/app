@@ -1331,6 +1331,19 @@ namespace factory
       if (type.m_customid.is_set())
       {
 
+         // Serialized polymorphic objects carry their registered class name.
+         // String types also represent custom IDs, which retain priority.
+         if (type.m_customid.m_strNameId.has_character())
+         {
+            critical_section_lock lock(&((factory *)this)->m_criticalsection);
+            auto p = m_mapByCustomNameId2.find(type.m_customid.m_strNameId);
+            if ((!p || !p->payload()) && !_find_factory_item_by_ipair(type.m_customid.m_ipairId))
+            {
+               auto pfactoryitem = _find_factory_item_by_type_name(type.m_customid.m_strNameId);
+               if (pfactoryitem) return pfactoryitem;
+            }
+         }
+
          auto pfactoryitem = _find_factory_item_by_custom_id(type.m_customid);
 
          if (::is_set(pfactoryitem))
@@ -1752,6 +1765,3 @@ namespace factory
    //
 
 } // namespace factory
-
-
-

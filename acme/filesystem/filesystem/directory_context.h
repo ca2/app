@@ -117,6 +117,9 @@
 
       virtual ::file::path install();
       virtual ::file::path config();
+        ::file::path appconfig();
+        ::file::path rootconfig();
+        ::file::path sharedconfig();
 
       virtual ::file::path home();
 

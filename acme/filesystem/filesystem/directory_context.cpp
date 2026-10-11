@@ -1941,6 +1941,24 @@ bool directory_context::name_is(const ::file::path& strPath)
 }
 
 
+::file::path directory_context::appconfig()
+{
+   return directory_system()->config() / application()->m_strAppId;
+}
+
+::file::path directory_context::rootconfig()
+{
+   ::string root = application()->m_strAppId;
+   auto slash = root.find_index('/');
+   if (slash >= 0) root = root.left(slash);
+   return directory_system()->config() / root;
+}
+
+::file::path directory_context::sharedconfig()
+{
+   return directory_system()->config() / "shared";
+}
+
 ::file::path directory_context::config()
 {
 

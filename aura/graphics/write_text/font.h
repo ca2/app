@@ -114,7 +114,7 @@ namespace write_text
       enum_character_set_array      m_echaracterseta;
       enum_character_set            m_echaracterset;
       ///enum_rendering                m_erendering;
-      text_metric                   m_textmetric4;
+      ::write_text::text_metric      m_textmetric4;
       bool                          m_bCacheLayout;
       bool                          m_bUpdated;
       //bool                          m_bTextMetric;

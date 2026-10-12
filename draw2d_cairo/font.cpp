@@ -370,15 +370,15 @@ namespace draw2d_cairo
 
          cairo_font_extents(pdraw2dcairographics->m_pcairo, &fontextents);
 
-         m_textmetric2.m_dAscent = fontextents.ascent;
+         m_textmetric4.m_dAscent = fontextents.ascent;
 
-         m_textmetric2.m_dDescent = fontextents.descent;
+         m_textmetric4.m_dDescent = fontextents.descent;
 
-         m_textmetric2.m_dHeight = fontextents.height;
+         m_textmetric4.m_dHeight = fontextents.height;
 
-         m_textmetric2.m_dInternalLeading = 0.;
+         m_textmetric4.m_dInternalLeading = 0.;
 
-         m_textmetric2.m_dExternalLeading = 0.;
+         m_textmetric4.m_dExternalLeading = 0.;
 
          //lpMetrics->m_dInternalLeading = lpMetrics->m_dAscent * 0.2;
 

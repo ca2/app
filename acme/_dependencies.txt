@@ -1,7 +1,5 @@
 default_acme
 default_acme_windowing
 default_nano_graphics
-default_nano_http
-default_nano_compress
 default_nano_idn
 

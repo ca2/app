@@ -348,7 +348,7 @@ list(APPEND library_source
         #        operating_system/http.cpp
         #        #operating_system/operating_system.h
         #        #operating_system/os_windowing2.h
-        #        #operating_system/process.h
+        #        #operating_system/process_process.h
         #        #operating_system/text.h
         #        operating_system/thread.cpp
         #        operating_system/time.h
@@ -788,7 +788,7 @@ endif ()
 #            operating_system/universal_windows/multithreading.h
 #            operating_system/universal_windows/multithreading_winrt.h
 #            operating_system/universal_windows/oswindow.h
-#            #operating_system/universal_windows/process.h
+#            #operating_system/universal_windows/process_process.h
 #            operating_system/universal_windows/simple_hold_handle.h
 #            operating_system/universal_windows/simple_ui.h
 #            operating_system/universal_windows/sockets.h

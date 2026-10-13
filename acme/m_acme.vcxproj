@@ -475,7 +475,7 @@
     <ClInclude Include="acme\os\os_binreloc.h" />
     <ClInclude Include="acme\os\os_process.h" />
     <ClInclude Include="acme\os\os_time.h" />
-    <ClInclude Include="acme\process\process.h" />
+    <ClInclude Include="acme\process\process_process.h" />
     <ClInclude Include="acme\process\process_bidi_pipe.h" />
     <ClInclude Include="acme\process\process_department.h" />
     <ClInclude Include="acme\process\process_pipe.h" />

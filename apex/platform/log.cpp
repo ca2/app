@@ -1,4 +1,7 @@
 #include "platform.h"
+#ifdef __REACTOS__
+#include "acme/platform/debug.h"
+#endif
 #include "log.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
@@ -251,7 +254,11 @@ namespace apex
    {
 #ifdef WIN32
 
+#ifdef __REACTOS__
+      if (iReportType == _DEBUG_ASSERT)
+#else
       if(iReportType == _CRT_ASSERT)
+#endif
       {
 
          if(is_debugger_attached())

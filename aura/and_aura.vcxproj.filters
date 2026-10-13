@@ -1947,7 +1947,7 @@
     <ClInclude Include="aura\aura_policy\aura_policy_winrt.h">
       <Filter>Header Files\aura\aura_policy</Filter>
     </ClInclude>
-    <ClInclude Include="aura\process\process.h">
+    <ClInclude Include="aura\process\process_process.h">
       <Filter>Header Files\aura\process</Filter>
     </ClInclude>
     <ClInclude Include="aura\process\process_bidi_pipe.h">

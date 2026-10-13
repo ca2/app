@@ -248,7 +248,7 @@
     <ClInclude Include="apex\os\os.h" />
     <ClInclude Include="apex\os\os_binreloc.h" />
     <ClInclude Include="apex\os\os_process.h" />
-    <ClInclude Include="apex\process\process.h" />
+    <ClInclude Include="apex\process\process_process.h" />
     <ClInclude Include="apex\process\process_bidi_pipe.h" />
     <ClInclude Include="apex\process\process_department.h" />
     <ClInclude Include="apex\process\process_pipe.h" />

@@ -1161,7 +1161,7 @@
     <ClCompile Include="apex\node\windows\ip_enum.cpp" />
     <ClCompile Include="apex\node\windows\os_context.cpp" />
     <ClCompile Include="apex\node\windows\pipe.cpp" />
-    <ClCompile Include="apex\node\windows\process.cpp" />
+    <ClCompile Include="apex\node\windows\process_process.cpp" />
     <ClCompile Include="apex\node\windows\registry.cpp" />
     <ClCompile Include="apex\node\windows\shell.cpp" />
     <ClCompile Include="apex\node\windows\stdio_file.cpp" />
@@ -1178,7 +1178,7 @@
     <ClCompile Include="apex\os\ansios\file.cpp" />
     <ClCompile Include="apex\os\ansios\file_std.cpp" />
     <ClCompile Include="apex\os\ansios\language.cpp" />
-    <ClCompile Include="apex\os\ansios\process.cpp" />
+    <ClCompile Include="apex\os\ansios\process_process.cpp" />
     <ClCompile Include="apex\os\ansios\thread.cpp" />
     <ClCompile Include="apex\os\ansios\user.cpp" />
     <ClCompile Include="apex\os\ansios\win.cpp" />
@@ -1296,7 +1296,7 @@
     <ClCompile Include="apex\os\windows\message_loop.cpp" />
     <ClCompile Include="apex\os\windows\multithreading.cpp" />
     <ClCompile Include="apex\os\windows\printer.cpp" />
-    <ClCompile Include="apex\os\windows\process.cpp" />
+    <ClCompile Include="apex\os\windows\process_process.cpp" />
     <ClCompile Include="apex\os\windows\registry.cpp" />
     <ClCompile Include="apex\os\windows\serial.cpp" />
     <ClCompile Include="apex\os\windows\simple_app.cpp" />
@@ -2038,7 +2038,7 @@
     <ClInclude Include="apex\node\windows\os.h" />
     <ClInclude Include="apex\node\windows\pipe.h" />
     <ClInclude Include="apex\node\windows\printer.h" />
-    <ClInclude Include="apex\node\windows\process.h" />
+    <ClInclude Include="apex\node\windows\process_process.h" />
     <ClInclude Include="apex\node\windows\registry.h" />
     <ClInclude Include="apex\node\windows\RoundWindowApp.h" />
     <ClInclude Include="apex\node\windows\shell.h" />
@@ -2101,7 +2101,7 @@
     <ClInclude Include="apex\os\windows\port_forward.h" />
     <ClInclude Include="apex\os\windows\printer.h" />
     <ClInclude Include="apex\os\windows\print_job.h" />
-    <ClInclude Include="apex\os\windows\process.h" />
+    <ClInclude Include="apex\os\windows\process_process.h" />
     <ClInclude Include="apex\os\windows\process_env_reader.h" />
     <ClInclude Include="apex\os\windows\registry.h" />
     <ClInclude Include="apex\os\windows\serial.h" />
@@ -2120,7 +2120,7 @@
     <ClInclude Include="apex\os\windows_common\file.h" />
     <ClInclude Include="apex\os\windows_common\windows_common_new_api.h" />
     <ClInclude Include="apex\os\_os.h" />
-    <ClInclude Include="apex\process\process.h" />
+    <ClInclude Include="apex\process\process_process.h" />
     <ClInclude Include="apex\process\process_bidi_pipe.h" />
     <ClInclude Include="apex\process\process_department.h" />
     <ClInclude Include="apex\process\process_pipe.h" />

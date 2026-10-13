@@ -248,7 +248,7 @@
     <ClInclude Include="aura\os\os.h" />
     <ClInclude Include="aura\os\os_binreloc.h" />
     <ClInclude Include="aura\os\os_process.h" />
-    <ClInclude Include="aura\process\process.h" />
+    <ClInclude Include="aura\process\process_process.h" />
     <ClInclude Include="aura\process\process_bidi_pipe.h" />
     <ClInclude Include="aura\process\process_department.h" />
     <ClInclude Include="aura\process\process_pipe.h" />

@@ -234,7 +234,7 @@ list(APPEND library_source
 #   operating_system/file.h
 #   operating_system/graphics.h
 #   operating_system/os_windowing2.h
-#   #   operating_system/process.h
+#   #   operating_system/process_process.h
 #   operating_system/text.h
 #   operating_system/threading.h
 #   operating_system/time.h
@@ -688,7 +688,7 @@ if (__ANDROID__)
       operating_system/android/main.cpp
       operating_system/android/os_context.cpp
       operating_system/android/os_context.h
-      #      operating_system/android/process.cpp
+      #      operating_system/android/process_process.cpp
       operating_system/android/shell.cpp
       operating_system/android/shell.h
       operating_system/android/thread.cpp
@@ -732,8 +732,8 @@ if (__ANDROID__)
       operating_system/android/main_android.cpp
       operating_system/android/message_loop.cpp
       operating_system/android/multithreading.cpp
-      #      operating_system/android/process.cpp
-      #      operating_system/android/process.h
+      #      operating_system/android/process_process.cpp
+      #      operating_system/android/process_process.h
       #      operating_system/android/process_pid.cpp
       operating_system/android/simple_shell_launcher.cpp
       operating_system/android/small_ipca_channel.cpp
@@ -770,7 +770,7 @@ if (WIN32 OR LINUX OR APPLE)
       #operating_system/ansios/language.cpp
       #operating_system/ansios/memory.cpp
       #operating_system/ansios/multithreading.h
-      #operating_system/ansios/process.cpp
+      #operating_system/ansios/process_process.cpp
       #operating_system/ansios/user.cpp
       #operating_system/ansios/win.cpp
       #operating_system/posix/base_file.cpp

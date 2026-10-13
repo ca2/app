@@ -88,7 +88,7 @@ list(APPEND library_source
         #prototype/promise/handler1.h
         #prototype/promise/manager.cpp
         #prototype/promise/manager.h
-        #prototype/promise/process.cpp
+        #prototype/promise/process_process.cpp
         #prototype/promise/promise.cpp
         #prototype/promise/promise.h
         #prototype/promise/promise1.h
@@ -523,7 +523,7 @@ list(APPEND library_source
         operating_system/ansi/file_std.cpp
         #operating_system/ansi/language.cpp
         #operating_system/ansi/memory.cpp
-        operating_system/ansi/process.cpp
+        operating_system/ansi/process_process.cpp
         #operating_system/ansi/user.cpp
         #operating_system/application.cpp
         #operating_system/application.h
@@ -551,7 +551,7 @@ list(APPEND library_source
    operating_system/performance_counter.h
         operating_system/path.cpp
         operating_system/path.h
-        operating_system/process.h
+        operating_system/process_process.h
    operating_system/shared_memory.h
    operating_system/shared_memory.cpp
         operating_system/string.cpp
@@ -1594,7 +1594,7 @@ list(APPEND library_source
         # operating_system/windows/port_forward.h
         # operating_system/windows/print_job.h
         # operating_system/windows/printer.h
-        # operating_system/windows/process.h
+        # operating_system/windows/process_process.h
         # operating_system/windows/process_data.h
         # operating_system/windows/registry.h
         # operating_system/windows/shell1.h
@@ -1978,7 +1978,7 @@ list(APPEND library_source
         operating_system/posix/mq_base.h
         operating_system/posix/file.h
         operating_system/pthread/pthread_np.cpp
-        operating_system/process.cpp
+        operating_system/process_process.cpp
         operating_system/security_attributes.cpp
         operating_system/security_attributes.h
         operating_system/shared_posix/c_errno.cpp
@@ -2005,7 +2005,7 @@ list(APPEND library_source
         operating_system/sunos/http.h
         operating_system/sunos/http_lib.h
         operating_system/sunos/internal.h
-        operating_system/sunos/process.h
+        operating_system/sunos/process_process.h
         operating_system/sunos/simple_ui.h
         operating_system/sunos/solaris.h
         #operating_system/sunos/user_impl.h
@@ -2019,7 +2019,7 @@ list(APPEND library_source
         operating_system/universal_windows/host_interaction.h
         operating_system/universal_windows/threading.h
         operating_system/universal_windows/threading_winrt.h
-        operating_system/universal_windows/process.h
+        operating_system/universal_windows/process_process.h
         operating_system/universal_windows/sockets.h
         operating_system/user.h
         operating_system/windows/_.h
@@ -2233,7 +2233,7 @@ if (${__ANDROID__})
             operating_system/android/file.h
             operating_system/android/graphics.h
             operating_system/android/internal.h
-            operating_system/android/process.h
+            operating_system/android/process_process.h
             operating_system/android/standard_exception.cpp
             operating_system/android/standard_exception.h
             operating_system/android/time.cpp
@@ -2260,7 +2260,7 @@ if (APPLE_IOS)
             operating_system/ios/mm_oswindow.h
             operating_system/ios/oswindow_data.h
             operating_system/ios/parallelization.h
-            operating_system/ios/process.h
+            operating_system/ios/process_process.h
             operating_system/ios/window.h
             operating_system/ios/window_boot.h
             operating_system/ios/window_impl.h
@@ -2298,7 +2298,7 @@ if (UWP)
             operating_system/universal_windows/main.cpp
             operating_system/universal_windows/parallelization.cpp
             operating_system/universal_windows/os_message_box.cpp
-            operating_system/universal_windows/process.cpp
+            operating_system/universal_windows/process_process.cpp
             operating_system/universal_windows/sockets.cpp
             operating_system/universal_windows/time.cpp
             operating_system/universal_windows/user.cpp)
@@ -2359,7 +2359,7 @@ if (${WIN32})
             #      operating_system/windows/main.cpp
             #      operating_system/windows/message_loop.cpp
             #      operating_system/windows/printer.cpp
-            #      operating_system/windows/process.cpp
+            #      operating_system/windows/process_process.cpp
             #      operating_system/windows/registry.cpp
             #      operating_system/windows/simple_app.cpp
             #      operating_system/windows/parallelization.cpp
@@ -2392,7 +2392,7 @@ if (${WIN32})
             operating_system/windows/message_box.cpp
             operating_system/windows/message_loop.cpp
             operating_system/windows/parallelization.cpp
-            operating_system/windows/process.cpp
+            operating_system/windows/process_process.cpp
        operating_system/windows/shared_memory.h
        operating_system/windows/shared_memory.cpp
             operating_system/windows/thread.cpp
@@ -2569,7 +2569,7 @@ if (${WIN32} OR ${UWP})
             operating_system/windows_common/memory.cpp
             operating_system/windows_common/networking.cpp
             operating_system/windows_common/threading.cpp
-            operating_system/windows_common/process.cpp
+            operating_system/windows_common/process_process.cpp
        operating_system/windows_common/task.cpp
             operating_system/windows_common/time.cpp
             operating_system/windows_common/unicode.cpp
@@ -2629,8 +2629,8 @@ if (${LINUX})
             operating_system/linux/node.cpp
             operating_system/linux/os.cpp
             operating_system/linux/threading.cpp
-            operating_system/linux/process.cpp
-            operating_system/linux/process.h
+            operating_system/linux/process_process.cpp
+            operating_system/linux/process_process.h
             operating_system/linux/process_pid.cpp
             operating_system/linux/root_tools.cpp
             operating_system/linux/root_tools.h
@@ -2713,7 +2713,7 @@ if (MACOS)
             #operating_system/macos/NSPasteboard++.mm
             #operating_system/macos/os.cpp
             operating_system/macos/parallelization.cpp
-            #operating_system/macos/process.cpp
+            #operating_system/macos/process_process.cpp
             #operating_system/macos/process_pid.cpp
             #operating_system/macos/time.cpp
             #operating_system/macos/user.cpp
@@ -2797,7 +2797,7 @@ if (IOS)
             operating_system/ios/mm_user.mm
             operating_system/ios/parallelization.cpp
             operating_system/ios/oswindow_data.cpp
-            operating_system/ios/process.cpp
+            operating_system/ios/process_process.cpp
             operating_system/ios/process_pid.cpp
             operating_system/ios/simple_shell_launcher.cpp
             operating_system/ios/small_ipca_channel.cpp
@@ -2871,7 +2871,7 @@ if (APPLE)
             #operating_system/apple/ns_exception.cpp
             #operating_system/apple/NSObject+DDExtensions.mm
             #operating_system/apple/NSString+SymlinksAndAliases.mm
-            #operating_system/apple/process.cpp
+            #operating_system/apple/process_process.cpp
             #operating_system/apple/time.cpp
             #operating_system/apple/UncaughtExceptionHandler.mm
     )
@@ -2892,7 +2892,7 @@ if (${__ANDROID__})
             operating_system/android/_factory.cpp
             operating_system/android/file.cpp
             operating_system/android/main.cpp
-            operating_system/android/process.cpp
+            operating_system/android/process_process.cpp
             operating_system/android/thread.cpp
             operating_system/android/threading.cpp
             #operating_system/android/trace.cpp
@@ -2917,7 +2917,7 @@ if (${__ANDROID__})
             operating_system/android/locale.cpp
             operating_system/android/lock.cpp
             operating_system/android/main.cpp
-            operating_system/android/process.cpp
+            operating_system/android/process_process.cpp
             operating_system/android/process_pid.cpp
             operating_system/android/win_base.cpp
     )
@@ -2943,7 +2943,7 @@ if (SOLARIS)
             operating_system/sunos/library.cpp
             operating_system/sunos/lock.cpp
             operating_system/sunos/message_loop.cpp
-            operating_system/sunos/process.cpp
+            operating_system/sunos/process_process.cpp
             operating_system/sunos/process_pid.cpp
             operating_system/sunos/simple_shell_launcher.cpp
             operating_system/sunos/simple_ui.cpp
@@ -3019,8 +3019,8 @@ if (${FREEBSD})
             operating_system/freebsd/internal.h
             #operating_system/freebsd/library.cpp
             operating_system/freebsd/os.cpp
-            operating_system/freebsd/process.cpp
-            operating_system/freebsd/process.h
+            operating_system/freebsd/process_process.cpp
+            operating_system/freebsd/process_process.h
             operating_system/freebsd/process_pid.cpp
             operating_system/freebsd/root_tools.cpp
             operating_system/freebsd/root_tools.h
@@ -3110,8 +3110,8 @@ if (${OPENBSD})
             operating_system/openbsd/internal.h
             #            operating_system/openbsd/library.cpp
             operating_system/openbsd/os.cpp
-            operating_system/openbsd/process.cpp
-            operating_system/openbsd/process.h
+            operating_system/openbsd/process_process.cpp
+            operating_system/openbsd/process_process.h
             operating_system/openbsd/process_pid.cpp
             operating_system/openbsd/root_tools.cpp
             operating_system/openbsd/root_tools.h
@@ -3165,8 +3165,8 @@ if (${NETBSD})
             operating_system/netbsd/graphics.cpp
             operating_system/netbsd/internal.h
             operating_system/netbsd/os.cpp
-            operating_system/netbsd/process.cpp
-            operating_system/netbsd/process.h
+            operating_system/netbsd/process_process.cpp
+            operating_system/netbsd/process_process.h
             operating_system/netbsd/process_pid.cpp
             operating_system/netbsd/root_tools.cpp
             operating_system/netbsd/root_tools.h
@@ -3263,8 +3263,8 @@ if (${__SUNOS__})
             #operating_system/freebsd/internal.h
             #operating_system/freebsd/library.cpp
             #operating_system/freebsd/os.cpp
-            operating_system/sunos/process.cpp
-            #operating_system/freebsd/process.h
+            operating_system/sunos/process_process.cpp
+            #operating_system/freebsd/process_process.h
             #operating_system/freebsd/process_pid.cpp
             #operating_system/freebsd/root_tools.cpp
             #operating_system/freebsd/root_tools.h
@@ -3349,7 +3349,7 @@ if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${__ANDROID__} OR ${__SU
             #operating_system/posix/idn.cpp
             #operating_system/posix/local_memory_map.cpp
             operating_system/posix/memory.cpp
-            operating_system/posix/process.cpp
+            operating_system/posix/process_process.cpp
             #operating_system/posix/time.cpp
             #operating_system/posix/timer.cpp
             operating_system/winpr_keycode.cpp
@@ -3363,7 +3363,7 @@ if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${__ANDROID__} OR ${__SU
        operating_system/pthread/parallelization.cpp
     )
 
-    #set_source_files_properties(operating_system/posix/process.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+    #set_source_files_properties(operating_system/posix/process_process.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 endif ()
 
 
@@ -3449,6 +3449,7 @@ if(${WIN32})
    endif()
 
 
+    target_link_libraries(${PROJECT_NAME} PRIVATE psapi)
     #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
     target_link_libraries(${PROJECT_NAME} PRIVATE archive zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 

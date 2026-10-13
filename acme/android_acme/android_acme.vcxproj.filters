@@ -386,7 +386,7 @@
     <ClCompile Include="..\primitive\promise\handler.cpp">
       <Filter>Source Files\primitive\promise</Filter>
     </ClCompile>
-    <ClCompile Include="..\primitive\promise\process.cpp">
+    <ClCompile Include="..\primitive\promise\process_process.cpp">
       <Filter>Source Files\primitive\promise</Filter>
     </ClCompile>
     <ClCompile Include="..\primitive\promise\promise.cpp">
@@ -560,7 +560,7 @@
     <ClCompile Include="..\os\ansios\memory.cpp">
       <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="..\os\ansios\process.cpp">
+    <ClCompile Include="..\os\ansios\process_process.cpp">
       <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
     <ClCompile Include="..\os\ansios\user.cpp">
@@ -608,7 +608,7 @@
     <ClCompile Include="..\os\android\parallelization.cpp">
       <Filter>Source Files\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="..\os\android\process.cpp">
+    <ClCompile Include="..\os\android\process_process.cpp">
       <Filter>Source Files\os\android</Filter>
     </ClCompile>
     <ClCompile Include="..\os\android\process_pid.cpp">
@@ -689,7 +689,7 @@
     <ClCompile Include="..\node\android\main.cpp">
       <Filter>Source Files\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="..\node\android\process.cpp">
+    <ClCompile Include="..\node\android\process_process.cpp">
       <Filter>Source Files\node\android</Filter>
     </ClCompile>
     <ClCompile Include="..\node\android\thread.cpp">
@@ -3057,7 +3057,7 @@
     <ClInclude Include="..\acme\os\android\internal.h">
       <Filter>Header Files\acme\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="..\acme\os\android\process.h">
+    <ClInclude Include="..\acme\os\android\process_process.h">
       <Filter>Header Files\acme\os\android</Filter>
     </ClInclude>
     <ClInclude Include="..\acme\os\android\view_bitmap.h">
@@ -3294,7 +3294,7 @@
     <ClInclude Include="..\acme\aura_policy\aura_policy_winrt.h">
       <Filter>Header Files\acme\aura_policy</Filter>
     </ClInclude>
-    <ClInclude Include="..\acme\process\process.h">
+    <ClInclude Include="..\acme\process\process_process.h">
       <Filter>Header Files\acme\process</Filter>
     </ClInclude>
     <ClInclude Include="..\acme\process\process_bidi_pipe.h">
@@ -3546,7 +3546,7 @@
     <ClInclude Include="..\os\os_windowing2.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
-    <ClInclude Include="..\os\process.h">
+    <ClInclude Include="..\os\process_process.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
     <ClInclude Include="..\os\text.h">
@@ -3603,7 +3603,7 @@
     <ClInclude Include="..\os\android\_os_impl.h">
       <Filter>Header Files\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="..\os\android\process.h">
+    <ClInclude Include="..\os\android\process_process.h">
       <Filter>Header Files\os\android</Filter>
     </ClInclude>
     <ClInclude Include="..\os\android\_.h">

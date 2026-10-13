@@ -1,6 +1,6 @@
 #include "platform.h"
 #include "acme/node/posix/pipe.h"
-#include "acme/node/apple/process.h"
+#include "acme/node/apple/process_process.h"
 #include "acme/platform/app_core.h"
 #include "acme/platform/static_start.h"
 

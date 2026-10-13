@@ -337,7 +337,7 @@
     <ClCompile Include="operating_system\android\nano_http\http.cpp" />
     <ClCompile Include="operating_system\android\nano_http\_nano_http.cpp" />
     <ClCompile Include="operating_system\android\parallelization.cpp" />
-    <ClCompile Include="operating_system\android\process.cpp" />
+    <ClCompile Include="operating_system\android\process_process.cpp" />
     <ClCompile Include="operating_system\android\process2.cpp" />
     <ClCompile Include="operating_system\android\process_pid.cpp" />
     <ClCompile Include="operating_system\android\standard_exception.cpp" />
@@ -355,7 +355,7 @@
     <ClCompile Include="operating_system\ansi\file_raw.cpp" />
     <ClCompile Include="operating_system\ansi\file_std.cpp" />
     <ClCompile Include="operating_system\ansi\int_handle.cpp" />
-    <ClCompile Include="operating_system\ansi\process.cpp" />
+    <ClCompile Include="operating_system\ansi\process_process.cpp" />
     <ClCompile Include="operating_system\ansi\time.cpp" />
     <ClCompile Include="operating_system\ansi\windows_time.cpp" />
     <ClCompile Include="operating_system\ansi\windows_unicode.cpp" />
@@ -382,7 +382,7 @@
     <ClCompile Include="operating_system\posix\parallelization.cpp" />
     <ClCompile Include="operating_system\posix\parallelization_pthread.cpp" />
     <ClCompile Include="operating_system\posix\_.cpp" />
-    <ClCompile Include="operating_system\process.cpp" />
+    <ClCompile Include="operating_system\process_process.cpp" />
     <ClCompile Include="operating_system\security_attributes.cpp" />
     <ClCompile Include="operating_system\shared_posix\c_error_number.cpp" />
     <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp" />
@@ -869,7 +869,7 @@
     <ClInclude Include="operating_system\android\jni_object.h" />
     <ClInclude Include="operating_system\android\nano_http\http.h" />
     <ClInclude Include="operating_system\android\nano_http\_nano_http.h" />
-    <ClInclude Include="operating_system\android\process.h" />
+    <ClInclude Include="operating_system\android\process_process.h" />
     <ClInclude Include="operating_system\android\standard_exception.h" />
     <ClInclude Include="operating_system\android\thread.h" />
     <ClInclude Include="operating_system\android\_.h" />
@@ -891,7 +891,7 @@
     <ClInclude Include="os\file.h" />
     <ClInclude Include="os\graphics.h" />
     <ClInclude Include="os\os_windowing2.h" />
-    <ClInclude Include="os\process.h" />
+    <ClInclude Include="os\process_process.h" />
     <ClInclude Include="os\text.h" />
     <ClInclude Include="os\time.h" />
     <ClInclude Include="os\_user.h" />

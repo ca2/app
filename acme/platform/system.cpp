@@ -38,7 +38,7 @@
 #include "acme/user/micro/message_box.h"
 #include "acme/operating_system/dynamic_library.h"
 #include "acme/operating_system/file.h"
-#include "acme/operating_system/process.h"
+#include "acme/operating_system/process_process.h"
 #include "acme/operating_system/summary.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/debug.h"

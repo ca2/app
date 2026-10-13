@@ -1467,7 +1467,7 @@
     <ClInclude Include="operating_system\parallelization.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\process.h">
+    <ClInclude Include="operating_system\process_process.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\serial.h">
@@ -5330,7 +5330,7 @@
     <ClCompile Include="operating_system\exit_status.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\process.cpp">
+    <ClCompile Include="operating_system\process_process.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\last_error_exception.cpp">
@@ -5489,7 +5489,7 @@
     <ClCompile Include="operating_system\summary.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows_common\process.cpp">
+    <ClCompile Include="operating_system\windows_common\process_process.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows\user.cpp">
@@ -5519,7 +5519,7 @@
     <ClCompile Include="prototype\geometry2d\size.cpp">
       <Filter>Source Files\prototype\geometry2d</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\process.cpp">
+    <ClCompile Include="operating_system\windows\process_process.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\print_formatting.cpp">

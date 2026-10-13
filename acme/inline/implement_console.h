@@ -7,7 +7,7 @@ CLASS_DECL_IMPORT void application_factory(::factory::factory * pfactory);
 }
 
 #include "acme/_operating_system.h"
-#include "acme/operating_system/process.h"
+#include "acme/operating_system/process_process.h"
 #include APPLICATION_INCLUDE
 #include <type_traits>
 #if defined(__HAIKU__)

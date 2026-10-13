@@ -402,7 +402,7 @@
     <ClCompile Include="..\node\android\_factory.cpp" />
     <ClCompile Include="..\node\android\file.cpp" />
     <ClCompile Include="..\node\android\main.cpp" />
-    <ClCompile Include="..\node\android\process.cpp" />
+    <ClCompile Include="..\node\android\process_process.cpp" />
     <ClCompile Include="..\node\android\thread.cpp" />
     <ClCompile Include="..\node\android\util.cpp" />
     <ClCompile Include="..\node\posix\pipe.cpp" />
@@ -419,7 +419,7 @@
     <ClCompile Include="..\os\android\locale.cpp" />
     <ClCompile Include="..\os\android\lock.cpp" />
     <ClCompile Include="..\os\android\parallelization.cpp" />
-    <ClCompile Include="..\os\android\process.cpp" />
+    <ClCompile Include="..\os\android\process_process.cpp" />
     <ClCompile Include="..\os\android\process_pid.cpp" />
     <ClCompile Include="..\os\android\user.cpp" />
     <ClCompile Include="..\os\android\win_base.cpp" />
@@ -434,7 +434,7 @@
     <ClCompile Include="..\os\ansios\file_std.cpp" />
     <ClCompile Include="..\os\ansios\language.cpp" />
     <ClCompile Include="..\os\ansios\memory.cpp" />
-    <ClCompile Include="..\os\ansios\process.cpp" />
+    <ClCompile Include="..\os\ansios\process_process.cpp" />
     <ClCompile Include="..\os\ansios\user.cpp" />
     <ClCompile Include="..\os\ansios\win.cpp" />
     <ClCompile Include="..\os\argcargv.cpp" />
@@ -617,7 +617,7 @@
     <ClCompile Include="..\primitive\primitive\_.cpp" />
     <ClCompile Include="..\primitive\promise\context.cpp" />
     <ClCompile Include="..\primitive\promise\handler.cpp" />
-    <ClCompile Include="..\primitive\promise\process.cpp" />
+    <ClCompile Include="..\primitive\promise\process_process.cpp" />
     <ClCompile Include="..\primitive\promise\promise.cpp" />
     <ClCompile Include="..\primitive\promise\routine.cpp" />
     <ClCompile Include="..\primitive\promise\routine_array.cpp" />
@@ -898,7 +898,7 @@
     <ClInclude Include="..\acme\os\android\graphics.h" />
     <ClInclude Include="..\acme\os\android\internal.h" />
     <ClInclude Include="..\acme\os\android\node_data_exchange.h" />
-    <ClInclude Include="..\acme\os\android\process.h" />
+    <ClInclude Include="..\acme\os\android\process_process.h" />
     <ClInclude Include="..\acme\os\android\view_bitmap.h" />
     <ClInclude Include="..\acme\os\android\vsnord_native_app_glue.h" />
     <ClInclude Include="..\acme\os\android\windowing.h" />
@@ -950,7 +950,7 @@
     <ClInclude Include="..\acme\os\cross\windows\windows_user.h" />
     <ClInclude Include="..\acme\os\cross\windows\windows_winnt.h" />
     <ClInclude Include="..\acme\os\_os.h" />
-    <ClInclude Include="..\acme\process\process.h" />
+    <ClInclude Include="..\acme\process\process_process.h" />
     <ClInclude Include="..\acme\process\process_bidi_pipe.h" />
     <ClInclude Include="..\acme\process\process_department.h" />
     <ClInclude Include="..\acme\process\process_pipe.h" />
@@ -1207,7 +1207,7 @@
     <ClInclude Include="..\os\android\file.h" />
     <ClInclude Include="..\os\android\graphics.h" />
     <ClInclude Include="..\os\android\internal.h" />
-    <ClInclude Include="..\os\android\process.h" />
+    <ClInclude Include="..\os\android\process_process.h" />
     <ClInclude Include="..\os\android\_.h" />
     <ClInclude Include="..\os\android\_android.h" />
     <ClInclude Include="..\os\android\_c.h" />
@@ -1255,7 +1255,7 @@
     <ClInclude Include="..\os\file.h" />
     <ClInclude Include="..\os\graphics.h" />
     <ClInclude Include="..\os\os_windowing2.h" />
-    <ClInclude Include="..\os\process.h" />
+    <ClInclude Include="..\os\process_process.h" />
     <ClInclude Include="..\os\text.h" />
     <ClInclude Include="..\os\time.h" />
     <ClInclude Include="..\os\winpr_input.h" />

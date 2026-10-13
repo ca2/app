@@ -743,7 +743,7 @@
     <ClInclude Include="apex\node\ansios\ansios_thread_impl.h">
       <Filter>Header Files\apex\node\ansios</Filter>
     </ClInclude>
-    <ClInclude Include="apex\process\process.h">
+    <ClInclude Include="apex\process\process_process.h">
       <Filter>Header Files\apex\process</Filter>
     </ClInclude>
     <ClInclude Include="apex\process\process_bidi_pipe.h">
@@ -1019,7 +1019,7 @@
     <ClInclude Include="apex\os\windows\print_job.h">
       <Filter>Header Files\apex\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="apex\os\windows\process.h">
+    <ClInclude Include="apex\os\windows\process_process.h">
       <Filter>Header Files\apex\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="apex\os\windows\process_env_reader.h">
@@ -1106,7 +1106,7 @@
     <ClInclude Include="apex\node\windows\printer.h">
       <Filter>Header Files\apex\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="apex\node\windows\process.h">
+    <ClInclude Include="apex\node\windows\process_process.h">
       <Filter>Header Files\apex\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="apex\node\windows\registry.h">
@@ -4054,7 +4054,7 @@
     <ClCompile Include="apex\os\windows\printer.cpp">
       <Filter>Source Files\apex\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="apex\os\windows\process.cpp">
+    <ClCompile Include="apex\os\windows\process_process.cpp">
       <Filter>Source Files\apex\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="apex\os\windows\registry.cpp">
@@ -4114,7 +4114,7 @@
     <ClCompile Include="apex\node\windows\pipe.cpp">
       <Filter>Source Files\apex\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="apex\node\windows\process.cpp">
+    <ClCompile Include="apex\node\windows\process_process.cpp">
       <Filter>Source Files\apex\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="apex\node\windows\registry.cpp">
@@ -5875,7 +5875,7 @@
     <ClCompile Include="apex\os\ansios\language.cpp">
       <Filter>Source Files\apex\os\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="apex\os\ansios\process.cpp">
+    <ClCompile Include="apex\os\ansios\process_process.cpp">
       <Filter>Source Files\apex\os\ansios</Filter>
     </ClCompile>
     <ClCompile Include="apex\os\ansios\thread.cpp">

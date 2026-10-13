@@ -812,7 +812,7 @@
 		<Unit filename="apex/node/android/shell_android.h" />
 		<Unit filename="apex/node/android/stdio_file.h" />
 		<Unit filename="apex/node/android/thread.h" />
-		<Unit filename="apex/node/apple/process.h" />
+		<Unit filename="apex/node/apple/process_process.h" />
 		<Unit filename="apex/node/ios/RoundViewController.h" />
 		<Unit filename="apex/node/ios/RoundWindow.h" />
 		<Unit filename="apex/node/ios/RoundWindowApp.h" />
@@ -885,8 +885,8 @@
 		<Unit filename="apex/node/linux/linux.cpp" />
 		<Unit filename="apex/node/linux/os_context.cpp" />
 		<Unit filename="apex/node/linux/os_context.h" />
-		<Unit filename="apex/node/linux/process.cpp" />
-		<Unit filename="apex/node/linux/process.h" />
+		<Unit filename="apex/node/linux/process_process.cpp" />
+		<Unit filename="apex/node/linux/process_process.h" />
 		<Unit filename="apex/node/linux/root_tools.cpp" />
 		<Unit filename="apex/node/linux/root_tools.h" />
 		<Unit filename="apex/node/linux/shell.cpp" />
@@ -1030,7 +1030,7 @@
 		<Unit filename="apex/node/windows/ip_enum.h" />
 		<Unit filename="apex/node/windows/os_context.h" />
 		<Unit filename="apex/node/windows/pipe.h" />
-		<Unit filename="apex/node/windows/process.h" />
+		<Unit filename="apex/node/windows/process_process.h" />
 		<Unit filename="apex/node/windows/registry.h" />
 		<Unit filename="apex/node/windows/serial.h" />
 		<Unit filename="apex/node/windows/shell.h" />
@@ -1078,7 +1078,7 @@
 		<Unit filename="apex/os/android/graphics.h" />
 		<Unit filename="apex/os/android/internal.h" />
 		<Unit filename="apex/os/android/node_data_exchange.h" />
-		<Unit filename="apex/os/android/process.h" />
+		<Unit filename="apex/os/android/process_process.h" />
 		<Unit filename="apex/os/android/view_bitmap.h" />
 		<Unit filename="apex/os/android/vsnord_native_app_glue.h" />
 		<Unit filename="apex/os/android/window_android.h" />
@@ -1097,7 +1097,7 @@
 		<Unit filename="apex/os/ansios/language.cpp" />
 		<Unit filename="apex/os/ansios/multithreading.cpp" />
 		<Unit filename="apex/os/ansios/multithreading.h" />
-		<Unit filename="apex/os/ansios/process.cpp" />
+		<Unit filename="apex/os/ansios/process_process.cpp" />
 		<Unit filename="apex/os/ansios/thread.h" />
 		<Unit filename="apex/os/ansios/user.cpp" />
 		<Unit filename="apex/os/ansios/win.cpp" />
@@ -1249,8 +1249,8 @@
 		<Unit filename="apex/os/linux/osdisplay.h" />
 		<Unit filename="apex/os/linux/oswindow.cpp" />
 		<Unit filename="apex/os/linux/oswindow.h" />
-		<Unit filename="apex/os/linux/process.cpp" />
-		<Unit filename="apex/os/linux/process.h" />
+		<Unit filename="apex/os/linux/process_process.cpp" />
+		<Unit filename="apex/os/linux/process_process.h" />
 		<Unit filename="apex/os/linux/process_pid.cpp" />
 		<Unit filename="apex/os/linux/simple_app.cpp" />
 		<Unit filename="apex/os/linux/simple_shell_launcher.cpp" />
@@ -1368,8 +1368,8 @@
 		<Unit filename="apex/os/os_time.h" />
 		<Unit filename="apex/os/os_windowing.h" />
 		<Unit filename="apex/os/os_windowing2.h" />
-		<Unit filename="apex/os/process.cpp" />
-		<Unit filename="apex/os/process.h" />
+		<Unit filename="apex/os/process_process.cpp" />
+		<Unit filename="apex/os/process_process.h" />
 		<Unit filename="apex/os/solaris/linux_internal.h" />
 		<Unit filename="apex/os/solaris/solaris.h" />
 		<Unit filename="apex/os/solaris/solaris_cairo_keep.h" />
@@ -1410,7 +1410,7 @@
 		<Unit filename="apex/os/universal_windows/multithreading.h" />
 		<Unit filename="apex/os/universal_windows/multithreading_winrt.h" />
 		<Unit filename="apex/os/universal_windows/oswindow.h" />
-		<Unit filename="apex/os/universal_windows/process.h" />
+		<Unit filename="apex/os/universal_windows/process_process.h" />
 		<Unit filename="apex/os/universal_windows/simple_hold_handle.h" />
 		<Unit filename="apex/os/universal_windows/simple_ui.h" />
 		<Unit filename="apex/os/universal_windows/sockets.h" />
@@ -1453,7 +1453,7 @@
 		<Unit filename="apex/os/windows/port_forward.h" />
 		<Unit filename="apex/os/windows/print_job.h" />
 		<Unit filename="apex/os/windows/printer.h" />
-		<Unit filename="apex/os/windows/process.h" />
+		<Unit filename="apex/os/windows/process_process.h" />
 		<Unit filename="apex/os/windows/process_env_reader.h" />
 		<Unit filename="apex/os/windows/registry.h" />
 		<Unit filename="apex/os/windows/serial.h" />
@@ -1504,7 +1504,7 @@
 		<Unit filename="apex/os/x11/x11_keyboard.h" />
 		<Unit filename="apex/os/x11/x11_windowing.cpp" />
 		<Unit filename="apex/os/x11/x11_xrender.cpp" />
-		<Unit filename="apex/process/process.h" />
+		<Unit filename="apex/process/process_process.h" />
 		<Unit filename="apex/process/process_bidi_pipe.cpp" />
 		<Unit filename="apex/process/process_bidi_pipe.h" />
 		<Unit filename="apex/process/process_department.cpp" />

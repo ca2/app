@@ -1060,7 +1060,7 @@
     <ClCompile Include="operating_system\universal_windows\parallelization.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\process.cpp">
+    <ClCompile Include="operating_system\universal_windows\process_process.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\universal_windows\universal_windows.cpp">
@@ -1243,7 +1243,7 @@
     <ClCompile Include="operating_system\pipe.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\process.cpp">
+    <ClCompile Include="operating_system\process_process.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\security_attributes.cpp">
@@ -3747,7 +3747,7 @@
     <ClInclude Include="operating_system\parallelization.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\process.h">
+    <ClInclude Include="operating_system\process_process.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\serial.h">
@@ -3792,7 +3792,7 @@
     <ClInclude Include="operating_system\universal_windows\parallelization.h">
       <Filter>Header Files\operating_system\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\process.h">
+    <ClInclude Include="operating_system\universal_windows\process_process.h">
       <Filter>Header Files\operating_system\universal_windows</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\universal_windows\aaa_simple_ui.h">

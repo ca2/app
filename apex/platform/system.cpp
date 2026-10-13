@@ -1,4 +1,7 @@
 #include "platform.h"
+#ifdef __REACTOS__
+#include "acme/platform/debug.h"
+#endif
 #include "session.h"
 #include "system.h"
 #include "context.h"
@@ -26,7 +29,7 @@
 #include "acme/handler/request.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "acme/prototype/prototype/url.h"
-#include "acme/operating_system/process.h"
+#include "acme/operating_system/process_process.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/platform/http.h"
 #include "acme/platform/profiler.h"
@@ -2095,7 +2098,11 @@ pdirectorysystem->create("/ca2core");
 
       informationf(strPrint);
 
+#ifdef __REACTOS__
+      if (iReportType == _DEBUG_ASSERT)
+#else
       if (iReportType == _CRT_ASSERT)
+#endif
       {
 
          return 1;

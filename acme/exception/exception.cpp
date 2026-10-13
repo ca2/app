@@ -14,7 +14,7 @@ bool call_stack_set_within_signal_handler(bool bWithinSignalHandler)
 //#include "callstack.h"
 //#include "acme/prototype/string/as_string.h"
 #include "acme/filesystem/file/exception.h"
-#include "acme/operating_system/process.h"
+#include "acme/operating_system/process_process.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/atom.h"

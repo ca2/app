@@ -1497,8 +1497,8 @@
 		<Unit filename="node/linux/linux.cpp" />
 		<Unit filename="node/linux/os_context.cpp" />
 		<Unit filename="node/linux/os_context.h" />
-		<Unit filename="node/linux/process.cpp" />
-		<Unit filename="node/linux/process.h" />
+		<Unit filename="node/linux/process_process.cpp" />
+		<Unit filename="node/linux/process_process.h" />
 		<Unit filename="node/linux/root_tools.cpp" />
 		<Unit filename="node/linux/root_tools.h" />
 		<Unit filename="node/linux/shell.cpp" />
@@ -1554,7 +1554,7 @@
 		<Unit filename="node/windows/ip_enum.h" />
 		<Unit filename="node/windows/os_context.h" />
 		<Unit filename="node/windows/pipe.h" />
-		<Unit filename="node/windows/process.h" />
+		<Unit filename="node/windows/process_process.h" />
 		<Unit filename="node/windows/registry.h" />
 		<Unit filename="node/windows/serial.h" />
 		<Unit filename="node/windows/shell.h" />
@@ -1591,7 +1591,7 @@
 		<Unit filename="os/ansios/memory.cpp" />
 		<Unit filename="os/ansios/multithreading.cpp" />
 		<Unit filename="os/ansios/multithreading.h" />
-		<Unit filename="os/ansios/process.cpp" />
+		<Unit filename="os/ansios/process_process.cpp" />
 		<Unit filename="os/ansios/user.cpp" />
 		<Unit filename="os/ansios/win.cpp" />
 		<Unit filename="os/argcargv.cpp" />
@@ -1701,8 +1701,8 @@
 		<Unit filename="os/linux/osdisplay.h" />
 		<Unit filename="os/linux/oswindow.cpp" />
 		<Unit filename="os/linux/oswindow.h" />
-		<Unit filename="os/linux/process.cpp" />
-		<Unit filename="os/linux/process.h" />
+		<Unit filename="os/linux/process_process.cpp" />
+		<Unit filename="os/linux/process_process.h" />
 		<Unit filename="os/linux/process_pid.cpp" />
 		<Unit filename="os/linux/simple_app.cpp" />
 		<Unit filename="os/linux/simple_shell_launcher.cpp" />
@@ -1723,8 +1723,8 @@
 		<Unit filename="os/openssl_crypt.cpp" />
 		<Unit filename="os/os_os.cpp" />
 		<Unit filename="os/os_windowing2.h" />
-		<Unit filename="os/process.cpp" />
-		<Unit filename="os/process.h" />
+		<Unit filename="os/process_process.cpp" />
+		<Unit filename="os/process_process.h" />
 		<Unit filename="os/text.h" />
 		<Unit filename="os/thread.cpp" />
 		<Unit filename="os/threading.h" />
@@ -2469,7 +2469,7 @@
 		<Unit filename="primitive/string/x/x_defines.h" />
 		<Unit filename="primitive/string/x/x_encodings.h" />
 		<Unit filename="primitive/string/x/x_tables.h" />
-		<Unit filename="process/process.h" />
+		<Unit filename="process/process_process.h" />
 		<Unit filename="process/process_bidi_pipe.cpp" />
 		<Unit filename="process/process_bidi_pipe.h" />
 		<Unit filename="process/process_department.cpp" />

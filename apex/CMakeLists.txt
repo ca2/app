@@ -116,7 +116,7 @@ list(APPEND apex_source
    handler/manager.h
    handler/manager_room.cpp
    handler/manager_room.h
-   #handler/process.cpp
+   #handler/process_process.cpp
    #handler/promise.cpp
    handler/promise.h
    #handler/routine.cpp
@@ -416,7 +416,7 @@ list(APPEND apex_source
    #operating_system/ansios/file_c.h
    #operating_system/ansi/language.cpp
    #operating_system/ansi/parallelization.h
-   #operating_system/ansios/process.cpp
+   #operating_system/ansios/process_process.cpp
    #operating_system/ansi/win.cpp
    #operating_system/_.h
    #operating_system/_application.cpp
@@ -436,7 +436,7 @@ list(APPEND apex_source
    #operating_system/operating_system.h
    #operating_system/operating_system.cpp#
    #operating_system/os_windowing2.h
-   #operating_system/process.h
+   #operating_system/process_process.h
    #operating_system/text.h
    #operating_system/thread.cpp
    #operating_system/thread.h
@@ -582,8 +582,8 @@ list(APPEND apex_source
    #process/_.h
    operating_system/department.cpp
    operating_system/department.h
-   #operating_system/process.cpp
-   #operating_system/process.h
+   #operating_system/process_process.cpp
+   #operating_system/process_process.h
    progress/integer.cpp
    progress/integer.h
    progress/listener.cpp
@@ -674,8 +674,8 @@ if (WIN32)
       #operating_system/windows/ip_enum.h
       ##operating_system/windows/os_context.cpp
       ##operating_system/windows/os_context.h
-      #operating_system/windows/process.cpp
-      #operating_system/windows/process.h
+      #operating_system/windows/process_process.cpp
+      #operating_system/windows/process_process.h
       #operating_system/windows/thread.cpp
       #operating_system/windows/thread.h
       #operating_system/windows/timer.cpp
@@ -865,8 +865,8 @@ if (UWP)
       #            operating_system/universal_windows/metrowin_metrowin.h
       #            operating_system/universal_windows/parallelization.cpp
       #            operating_system/universal_windows/parallelization.h
-      #            #operating_system/universal_windows/process.cpp
-      #            #operating_system/universal_windows/process.h
+      #            #operating_system/universal_windows/process_process.cpp
+      #            #operating_system/universal_windows/process_process.h
       #            operating_system/universal_windows/simple_app.cpp
       #            operating_system/universal_windows/simple_hold_handle.h
       #            operating_system/universal_windows/simple_shell_launcher.cpp
@@ -1035,7 +1035,7 @@ if (MACOS)
       #operating_system/macos/NSPasteboard++.mm
       #operating_system/macos/os.cpp
       #operating_system/macos/os.h
-      ##operating_system/macos/process.cpp
+      ##operating_system/macos/process_process.cpp
       ##operating_system/macos/process_c.h
       ##operating_system/macos/process_pid.cpp
       #operating_system/macos/simple_app.cpp
@@ -1150,8 +1150,8 @@ if (IOS)
       #            operating_system/ios/parallelization.h
       #            operating_system/ios/oswindow_data.cpp
       #            operating_system/ios/oswindow_data.h
-      #            #operating_system/ios/process.cpp
-      #            #operating_system/ios/process.h
+      #            #operating_system/ios/process_process.cpp
+      #            #operating_system/ios/process_process.h
       #            #operating_system/ios/process_pid.cpp
       #            operating_system/ios/simple_shell_launcher.cpp
       #            operating_system/ios/small_ipca_channel.cpp
@@ -1204,7 +1204,7 @@ if (__ANDROID__)
       #            operating_system/android/main.cpp
       #            operating_system/android/os_context.cpp
       #            operating_system/android/os_context.h
-      #            operating_system/android/process.cpp
+      #            operating_system/android/process_process.cpp
       #            operating_system/android/shell.cpp
       #            operating_system/android/shell.h
       #            operating_system/android/thread.cpp
@@ -1247,8 +1247,8 @@ if (__ANDROID__)
       #            operating_system/android/main_android.cpp
       #            operating_system/android/message_loop.cpp
       #            operating_system/android/parallelization.cpp
-      #            #operating_system/android/process.cpp
-      #            #operating_system/android/process.h
+      #            #operating_system/android/process_process.cpp
+      #            #operating_system/android/process_process.h
       #            #operating_system/android/process_pid.cpp
       #            operating_system/android/simple_shell_launcher.cpp
       #            operating_system/android/small_ipca_channel.cpp
@@ -1289,8 +1289,8 @@ if (${FREEBSD})
       #            operating_system/freebsd/freebsd.cpp
       #            #operating_system/freebsd/os_context.cpp
       #            #operating_system/freebsd/os_context.h
-      #            #operating_system/freebsd/process.cpp
-      #            #operating_system/freebsd/process.h
+      #            #operating_system/freebsd/process_process.cpp
+      #            #operating_system/freebsd/process_process.h
       #            operating_system/freebsd/root_tools.cpp
       #            operating_system/freebsd/root_tools.h
       #            operating_system/freebsd/thread.cpp
@@ -1330,8 +1330,8 @@ if (${FREEBSD})
       #            operating_system/freebsd/message_loop.cpp
       #            operating_system/freebsd/parallelization.cpp
       #            operating_system/freebsd/os.cpp
-      #            #operating_system/freebsd/process.cpp
-      #            #operating_system/freebsd/process.h
+      #            #operating_system/freebsd/process_process.cpp
+      #            #operating_system/freebsd/process_process.h
       #            #operating_system/freebsd/process_pid.cpp
       #            operating_system/freebsd/simple_app.cpp
       #            operating_system/freebsd/shell_launcher.cpp
@@ -1351,8 +1351,8 @@ if (APPLE)
    list(APPEND apex_source
       #timer.mm
       #operating_system/apple/apple_timer.cpp
-      #operating_system/apple/process.cpp
-      #operating_system/apple/process.h
+      #operating_system/apple/process_process.cpp
+      #operating_system/apple/process_process.h
       #operating_system/apple/_.cpp
       #operating_system/apple/_.h
       #operating_system/apple/_apple.h
@@ -1371,7 +1371,7 @@ if (APPLE)
       #operating_system/apple/multihreading.cpp
       #operating_system/apple/ns_exception.cpp
       #operating_system/apple/ns_exception.h
-      ##operating_system/apple/process.cpp
+      ##operating_system/apple/process_process.cpp
       #operating_system/apple/time.cpp
       #operating_system/apple/time.h
    )

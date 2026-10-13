@@ -2,7 +2,7 @@
 // Created by camilo on 2020-11-19. <3Thomas Boregaard SoerensenCamilo SasukeThomas Boregaard Soerensen!! DOMAS_16-09-0.1989
 //
 #include "platform.h"
-#include "acme/operating_system/process.h"
+#include "acme/operating_system/process_process.h"
 #include "acme/parallelization/single_lock.h"
 ////#include "acme/exception/exception.h"
 #include "acme/platform/_synchronization.h"

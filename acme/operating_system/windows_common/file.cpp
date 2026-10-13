@@ -540,6 +540,62 @@ namespace windows
 
    [[nodiscard]] ::file::path file::get_final_path_by_handle() const
    {
+#ifdef __REACTOS__
+      // Query the open file's object name, rather than its original (possibly renamed) path.
+      using query_object = LONG (WINAPI *)(HANDLE, ULONG, void *, ULONG, ULONG *);
+      auto query = reinterpret_cast<query_object>(
+         GetProcAddress(GetModuleHandleW(L"ntdll.dll"), "NtQueryObject"));
+      if (!query)
+         return {};
+
+      struct object_name
+      {
+         USHORT length;
+         USHORT maximumLength;
+         PWSTR buffer;
+      };
+
+      ULONG required = 0;
+      query((HANDLE)m_u, 1, nullptr, 0, &required); // ObjectNameInformation
+      if (required < sizeof(object_name) || required > 1024 * 1024)
+         return {};
+      memory storage(required);
+      if (query((HANDLE)m_u, 1, storage.data(), required, &required) < 0)
+         return {};
+
+      const auto name = static_cast<const object_name *>(static_cast<const void *>(storage.data()));
+      if (!name->buffer || !name->length)
+         return {};
+      ::wstring path;
+      auto buffer = path.get_buffer(name->length / sizeof(wchar_t));
+      memcpy(buffer, name->buffer, name->length);
+      path.release_buffer(name->length / sizeof(wchar_t));
+
+      if (path.begins_eat(L"\\Device\\Mup\\"))
+      {
+         ::wstring unc(L"\\\\");
+         unc += path;
+         return unc;
+      }
+
+      for (wchar_t drive = L'A'; drive <= L'Z'; ++drive)
+      {
+         wchar_t driveName[]{drive, L':', 0};
+         wchar_t device[512]{};
+         if (!QueryDosDeviceW(driveName, device, 512))
+            continue;
+         const auto length = wcslen(device);
+         if (path.begins(device) && (path.length() == length || path[length] == L'\\'))
+         {
+            path.begins_eat(device);
+            ::wstring dosPath(driveName);
+            dosPath += path;
+            return dosPath;
+         }
+      }
+      // No DOS drive mapping exists for this object.
+      return {};
+#else
       
       DWORD nCharacterCount = GetFinalPathNameByHandleW((HANDLE)m_u, nullptr, 0, VOLUME_NAME_DOS);
 
@@ -566,6 +622,8 @@ namespace windows
       }
 
       return wstrFinal;
+
+#endif
 
    }
 
@@ -604,6 +662,12 @@ bool CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, ::file::path &str,
 
 ::file::path get_home_folder_path()
 {
+#ifdef __REACTOS__
+   wchar_t profile[MAX_PATH]{};
+   if (SUCCEEDED(SHGetFolderPathW(nullptr, CSIDL_PROFILE, nullptr,
+      SHGFP_TYPE_CURRENT, profile)))
+      return ::file::path(profile);
+#else
    PWSTR widePath = nullptr;
 
    HRESULT hr = SHGetKnownFolderPath(
@@ -619,6 +683,7 @@ bool CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, ::file::path &str,
       CoTaskMemFree(widePath);
       return result;
    }
+#endif
 
    // Fallback (rare)
    wchar_t buffer[MAX_PATH];

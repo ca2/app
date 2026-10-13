@@ -4,7 +4,7 @@
 
 
 
-class CLASS_DECL_ACME trace_category :
+class CLASS_DECL_ACME registered_trace_category :
    virtual public particle
 {
 public:
@@ -15,11 +15,11 @@ public:
    bool                       m_bEnable;
 
 
-   static pointer_array < trace_category > * s_ptracecategorya;
+   static pointer_array < registered_trace_category > * s_ptracecategorya;
 
    
 
-   trace_category(enum_trace_category etracecategory, const ::scoped_string & scopedstrTopicText) :
+   registered_trace_category(enum_trace_category etracecategory, const ::scoped_string & scopedstrTopicText) :
       m_etracecategory(etracecategory),
       m_strTopicText(scopedstrTopicText)
    {

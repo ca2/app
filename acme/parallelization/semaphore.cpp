@@ -39,6 +39,13 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const_char_pointer ps
 
    wstring wstrName(pstrName);
 
+#ifdef __REACTOS__
+   m_handleSemaphore = ::CreateSemaphoreW(
+      (LPSECURITY_ATTRIBUTES)(psecurityattributes ? psecurityattributes->get_os_security_attributes() : nullptr),
+      lInitialCount,
+      lMaxCount,
+      pstrName == nullptr ? nullptr : (const wchar_t *) wstrName);
+#else
    m_handleSemaphore = ::CreateSemaphoreExW(
       (LPSECURITY_ATTRIBUTES)(psecurityattributes ? psecurityattributes->get_os_security_attributes() : nullptr),
       lInitialCount,
@@ -46,6 +53,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const_char_pointer ps
       pstrName == nullptr ? nullptr : (const wchar_t *)  wstrName, 
       0,
       SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
+#endif
 
    if (m_handleSemaphore == nullptr)
    {

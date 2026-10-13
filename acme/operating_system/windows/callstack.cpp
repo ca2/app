@@ -186,7 +186,7 @@ namespace platform
       for (auto i = 0; i < frame_count; ++i)
       {
 
-         IMAGEHLP_LINE imagehlp_line{ .SizeOfStruct = sizeof(IMAGEHLP_LINE) };
+         IMAGEHLP_LINE64 imagehlp_line{ .SizeOfStruct = sizeof(IMAGEHLP_LINE64) };
 
          DWORD dwDisplacement = 0;
 

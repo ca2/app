@@ -849,7 +849,11 @@ namespace acme
 
 #if defined(WINDOWS)
 
+#ifdef __REACTOS__
+      g_localeC = _create_locale(LC_ALL, "C");
+#else
       g_localeC = _wcreate_locale(LC_ALL, L"C");
+#endif
 
       //#elif defined(__APPLE__)
       //

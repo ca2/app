@@ -11,7 +11,7 @@
 # include <alloca.h>
 #endif
 
-#if defined (__MINGW32__)
+#if defined(__MINGW32__) && !defined(alloca)
 # define alloca __builtin_alloca
 #endif
 

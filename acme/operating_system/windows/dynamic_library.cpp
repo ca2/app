@@ -641,7 +641,7 @@ namespace windows
    void* dynamic_library::raw_get(library_t* plibrary, const ::scoped_string& scopedstrEntryName)
    {
 
-      return ::GetProcAddress((HINSTANCE)plibrary, scopedstrEntryName);
+      return reinterpret_cast<void *>(::GetProcAddress((HINSTANCE)plibrary, scopedstrEntryName));
 
 
    }

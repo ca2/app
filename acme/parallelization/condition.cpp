@@ -73,7 +73,11 @@ condition::~condition()
 
 bool condition::set_happening()
 {
-#ifdef WINDOWS
+#ifdef __REACTOS__
+
+   return m_conditionvariable.wake_all();
+
+#elif defined(WINDOWS)
 
    WakeAllConditionVariable(&(CONDITION_VARIABLE&)m_conditionvariable);
 
@@ -114,7 +118,11 @@ bool condition::set_happening()
 
 bool condition::pulse_happening()
 {
-#ifdef WINDOWS
+#ifdef __REACTOS__
+
+   return m_conditionvariable.wake_all();
+
+#elif defined(WINDOWS)
 
    WakeAllConditionVariable(&(CONDITION_VARIABLE &)m_conditionvariable);
 
@@ -170,7 +178,12 @@ bool condition::pulse_happening()
 {
 
 
-#ifdef WINDOWS
+#ifdef __REACTOS__
+
+   if (!m_conditionvariable.wait(INFINITE))
+      return error_failed;
+
+#elif defined(WINDOWS)
 
    SleepConditionVariableCS(
       &(CONDITION_VARIABLE &)m_conditionvariable,
@@ -226,7 +239,14 @@ bool condition::pulse_happening()
 ::e_status condition::wait(const class time & timeWait)
 {
 
-#ifdef WINDOWS
+#ifdef __REACTOS__
+
+   if (!m_conditionvariable.wait(::windows::wait_millis(timeWait)))
+      return GetLastError() == ERROR_TIMEOUT ? error_wait_timeout : error_failed;
+
+   return ::success;
+
+#elif defined(WINDOWS)
 
    if (!SleepConditionVariableCS(
       &(CONDITION_VARIABLE &)m_conditionvariable,

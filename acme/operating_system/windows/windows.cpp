@@ -351,6 +351,13 @@ namespace windows
    if(hmodule == nullptr)
    {
 
+#ifdef __REACTOS__
+      wchar_t programFiles[MAX_PATH]{};
+      if (FAILED(SHGetFolderPathW(nullptr, CSIDL_PROGRAM_FILES, nullptr,
+         SHGFP_TYPE_CURRENT, programFiles)))
+         return "";
+      wstrModuleFilePath = programFiles;
+#else
       PWSTR pwstr = nullptr;
 
       try
@@ -382,6 +389,7 @@ namespace windows
          pwstr = nullptr;
 
       }
+#endif
 
 
       //if(wstrModuleFilePath[wcslen(wstrModuleFilePath) - 1] == '\\'

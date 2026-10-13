@@ -4,6 +4,10 @@
 ////#include "acme/exception/exception.h"
 #include "acme/_operating_system.h"
 
+#ifdef __REACTOS__
+#include "acme/platform/debug.h"
+#endif
+
 
 #ifdef WINDOWS_DESKTOP
 
@@ -198,7 +202,11 @@ string get_debug_report_type_text(::i32 iType)
 
    string strType;
 
+#ifdef __REACTOS__
+   if (iType == _DEBUG_ASSERT)
+#else
    if (iType == _CRT_ASSERT)
+#endif
    {
 
       strType = "ASSERT";

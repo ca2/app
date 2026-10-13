@@ -39,7 +39,7 @@ namespace windows
    void* window::_WNDPROC_default() const
    {
 
-      return m_wndprocDefault;
+      return reinterpret_cast<void *>(m_wndprocDefault);
 
    }
 
@@ -790,7 +790,7 @@ namespace windows
 
    bool window::is_window_class_registered(const_char_pointer pszWindowClassName)
    {
-      auto hinstance = (HINSTANCE) hinstance_from_function(s_window_procedure);
+      auto hinstance = (HINSTANCE) hinstance_from_function(reinterpret_cast<void *>(s_window_procedure));
       WNDCLASSEXW wndclassexw{};
       ::wstring wstrWindowClassName(pszWindowClassName);
       if (GetClassInfoExW(hinstance, wstrWindowClassName, &wndclassexw))
@@ -810,7 +810,7 @@ namespace windows
 
       wstrWindowClassName = pszWindowClassName;
 
-      auto hinstance = (HINSTANCE) hinstance_from_function(s_window_procedure);
+      auto hinstance = (HINSTANCE) hinstance_from_function(reinterpret_cast<void *>(s_window_procedure));
 
       //WNDCLASS wcWindowClass = {0};
       wndclassex.lpfnWndProc = s_window_procedure;
@@ -910,7 +910,7 @@ namespace windows
          originsize,
          operatingsystemwindowParent,
          pHMENU,
-         ::windows::hinstance_from_function(s_window_procedure),
+         ::windows::hinstance_from_function(reinterpret_cast<void *>(s_window_procedure)),
          (void*) (::windows::window *) this);
 
    }
@@ -1113,7 +1113,17 @@ namespace windows
 
       auto hwnd = m_windowswindow.as_HWND();
 
+#ifdef __REACTOS__
+      auto hdc = GetDC(hwnd);
+      if (!hdc)
+         return get_density_base_dpi_for_window();
+      const auto dpi = GetDeviceCaps(hdc, LOGPIXELSX);
+      ReleaseDC(hwnd, hdc);
+      if (dpi <= 0)
+         return get_density_base_dpi_for_window();
+#else
       UINT dpi = GetDpiForWindow(hwnd);
+#endif
 
       return (::f32)dpi;
 
@@ -1414,7 +1424,7 @@ namespace windows
 
          WPARAM wparamHere = (WPARAM) m_hmenuSystem;
 
-         LRESULT lresultHere = 1;
+         ::lresult lresultHere = 1;
 
          if (_on_default_system_menu_init_menu(lresultHere, wparamHere))
          {
@@ -1519,7 +1529,7 @@ CLASS_DECL_ACME ::uptr as_uptr(const ::operating_system::window & operatingsyste
 }
 
 
-CLASS_DECL_ACME ::uptr as_u64(const ::operating_system::window & operatingsystemwindow)
+CLASS_DECL_ACME ::u64 as_u64(const ::operating_system::window & operatingsystemwindow)
 {
 
    if (operatingsystemwindow.m_eoperatingambient == ::windowing::e_operating_ambient_none)

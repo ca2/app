@@ -12,6 +12,10 @@
 #include "acme/platform/trace.h"
 #include "acme/prototype/prototype/memory.h"
 
+#ifdef __REACTOS__
+#include <share.h>
+#endif
+
 
 
 stdio_file::stdio_file()

@@ -5,6 +5,9 @@
 #include "acme/prototype/string/str.h"
 #include "acme/_operating_system.h"
 #include <io.h>
+#ifdef __REACTOS__
+#include <sys/stat.h>
+#endif
 
 
 namespace windows

@@ -326,6 +326,23 @@ typedef struct tagTHREADNAME_INFO
 
 ::i32_bool SetThreadName(::u32 dwThreadID, const_char_pointer threadName)
 {
+#ifdef __REACTOS__
+   using set_thread_description = HRESULT (WINAPI *)(HANDLE, PCWSTR);
+   auto setDescription = reinterpret_cast<set_thread_description>(
+      GetProcAddress(GetModuleHandleW(L"kernel32.dll"), "SetThreadDescription"));
+   if (!setDescription)
+      return false;
+
+   HANDLE thread = dwThreadID == static_cast<::u32>(-1) ? GetCurrentThread() :
+      OpenThread(THREAD_SET_INFORMATION, FALSE, dwThreadID);
+   if (!thread)
+      return false;
+   ::wstring name(threadName);
+   const auto result = setDescription(thread, name);
+   if (dwThreadID != static_cast<::u32>(-1))
+      CloseHandle(thread);
+   return SUCCEEDED(result);
+#else
    THREADNAME_INFO info;
    info.dwType = 0x1000;
    info.szName = threadName;
@@ -341,6 +358,8 @@ typedef struct tagTHREADNAME_INFO
 #pragma warning(pop)
 
    return true;
+
+#endif
 
 }
 

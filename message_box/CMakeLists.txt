@@ -65,10 +65,10 @@ endif ()
 set_target_properties(app_message_box PROPERTIES LINKER_LANGUAGE CXX)
 
 if(${WIN32})
-    target_compile_options(app_message_box PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(app_message_box PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(app_message_box PRIVATE "/SUBSYSTEM:WINDOWS")
-    target_link_libraries(app_message_box PRIVATE ${library_references} ${global_library_references})
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
 elseif(${LINUX})
 
     #if(GTK_BASED_DESKTOP)
@@ -78,7 +78,7 @@ elseif(${LINUX})
     #   add_dependencies(app_message_box node_kde windowing_xcb)
     #endif()
 
-    target_link_libraries(app_message_box PRIVATE ${library_references} ${global_library_references})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

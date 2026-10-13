@@ -486,7 +486,7 @@ using i64_array_base = numeric_array_base < ::i64 >;
 
 using u8_array_base = numeric_array_base < ::u8 >;
 using u16_array_base = numeric_array_base < ::u16 >;
-using unsigned_i32_array_base = numeric_array_base < ::u32 >;
+using u32_array_base = numeric_array_base < ::u32 >;
 using u64_array_base = numeric_array_base < ::u64 >;
 
 using f32_array_base = numeric_array_base < ::f32 >;

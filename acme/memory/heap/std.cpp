@@ -649,7 +649,15 @@ namespace heap
       memsize size(void * pmemory) override
       {
 
+#if defined(_MSC_VER) && !defined(__clang__)
+
          return size_debug(pmemory, _NORMAL_BLOCK);
+
+#else
+
+         return size_debug(pmemory, 0);
+
+#endif
 
       }
 

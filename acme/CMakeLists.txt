@@ -3426,10 +3426,31 @@ if(${WIN32})
     message(STATUS "acme LIBRARY_OUTPUT_PATH is ${LIBRARY_OUTPUT_PATH}")
     message(STATUS "some target link options ${PROJECT_NAME} PRIVATE \"/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme.lib\"")
 
-    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme.lib")
-    #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/acme.def")
+
+
+   if(MSVC)
+
+
+      target_compile_options(${PROJECT_NAME} PRIVATE    "/MD$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/SUBSYSTEM:WINDOWS")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/bigobj")
+      target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+      target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   else()
+
+
+      target_link_options(${PROJECT_NAME} PRIVATE "-mwindows")
+      target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   endif()
+
+
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+    #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
     target_link_libraries(${PROJECT_NAME} PRIVATE archive zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 
 
@@ -3526,7 +3547,7 @@ endif()
 elseif (MACOS)
 
 
-    target_link_libraries(acme PRIVATE z iconv idn ${COCOA} ${IOKIT})
+    target_link_libraries(${PROJECT_NAME} PRIVATE z iconv idn ${COCOA} ${IOKIT})
 
 
 endif ()
@@ -3562,7 +3583,7 @@ if(BUILD_TESTING)
    add_executable(accessibility_application_exit_contract_test
       test/accessibility_application_exit_contract.cpp)
 
-   target_link_libraries(accessibility_application_exit_contract_test PRIVATE static_acme)
+   target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
 
    add_test(NAME accessibility_application_exit_contract_test
       COMMAND accessibility_application_exit_contract_test)
@@ -3570,7 +3591,7 @@ if(BUILD_TESTING)
    add_executable(message_box_custom_buttons_test
       test/message_box_custom_buttons.cpp)
 
-   target_link_libraries(message_box_custom_buttons_test PRIVATE static_acme)
+   target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
 
    add_test(NAME message_box_custom_buttons_test
       COMMAND message_box_custom_buttons_test)
@@ -3581,6 +3602,6 @@ endif()
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Haiku")
    target_sources(acme PRIVATE operating_system/posix/networking.cpp)
-   target_link_libraries(acme PRIVATE network)
+   target_link_libraries(${PROJECT_NAME} PRIVATE network)
    target_sources(static_acme PRIVATE operating_system/posix/networking.cpp)
 endif()

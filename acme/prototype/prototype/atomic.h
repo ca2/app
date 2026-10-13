@@ -202,7 +202,7 @@ inline ::i64 atomic_add64(::i64* pi, ::i64 i)
 
 #ifdef WINDOWS
 
-   #define atomic_add32(pi, i) _interlockedadd((long *)(pi),(long) (i))
+   #define atomic_add32(pi, i) _InterlockedAdd((long *)(pi),(long) (i))
 
 #else
 
@@ -252,7 +252,7 @@ inline ::i32 atomic_add32(::i32* pi, ::i32 i)
 
 #ifdef WINDOWS
 
-#define   atomic_subtract32(pi, i) _interlockedadd((long*)(pi), (long)(-(i)))
+#define   atomic_subtract32(pi, i) _InterlockedAdd((long*)(pi), (long)(-(i)))
 
 #else
 

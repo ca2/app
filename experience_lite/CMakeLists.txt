@@ -69,11 +69,11 @@ set_target_properties(experience_lite PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if(${WIN32})
-    target_compile_options(experience_lite PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(experience_lite PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(experience_lite PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_lite.lib")
-    target_link_options(experience_lite PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_lite.def")
-    target_link_libraries(experience_lite PRIVATE acme apex aqua aura axis berg)
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis berg)
 elseif(${LINUX})
 
 
@@ -89,7 +89,7 @@ elseif(${LINUX})
     target_link_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS})
     
     target_link_libraries(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
-    target_link_libraries(experience_lite PRIVATE acme apex aqua aura axis berg)
+    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis berg)
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

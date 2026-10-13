@@ -14,9 +14,28 @@ add_executable(${PROJECT_NAME} ${executable_source} unit_test/_unit_test.h)
 
 
 if(${WIN32})
-    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:CONSOLE")
+
+
+   if(MSVC)
+
+
+      target_compile_options(${PROJECT_NAME} PRIVATE     "/MD$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE     "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE     "/SUBSYSTEM:CONSOLE")
+      target_link_options(${PROJECT_NAME} PRIVATE     "/bigobj")
+      target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+      target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   else()
+
+
+      target_link_options(${PROJECT_NAME} PRIVATE "-mwindows")
+      target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   endif()
+
 endif()
 
 

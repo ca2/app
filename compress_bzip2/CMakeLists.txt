@@ -49,11 +49,11 @@ target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 if(${WIN32})
 
 
-   target_compile_options(compress_bzip2 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(compress_bzip2 PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(compress_bzip2 PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/compress_bzip2.lib")
-   target_link_options(compress_bzip2 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/compress_bzip2.def")
-   target_link_libraries(compress_bzip2 PRIVATE acme apex aqua aura Gdiplus)
+   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+   target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+   target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura Gdiplus)
 
 
 elseif(${LINUX})
@@ -83,7 +83,7 @@ target_compile_options(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFI
 endif()
 
 
-   target_link_libraries(compress_bzip2 PRIVATE ${library_references} ${global_library_references})
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

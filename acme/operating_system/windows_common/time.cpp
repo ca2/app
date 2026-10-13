@@ -396,3 +396,35 @@ void datetime_to_filetime(::file_time * pfiletime, const ::earth::time & time)
 //}
 
 
+#if defined(__MINGW32__) && !defined(_WIN64)
+
+#include <windows.h>
+#include <time.h>
+
+CLASS_DECL_ACME struct timespec __get_timespec()
+{
+   FILETIME ft;
+   GetSystemTimeAsFileTime(&ft);
+
+   const unsigned long long ticks =
+      (static_cast<unsigned long long>(ft.dwHighDateTime) << 32)
+      | ft.dwLowDateTime;
+
+   // Convert 100 ns ticks since 1601 to Unix time since 1970.
+   const unsigned long long unix_ticks =
+      ticks - 116444736000000000ULL;
+
+   struct timespec result{};
+   result.tv_sec = static_cast<decltype(result.tv_sec)>(
+      unix_ticks / 10000000ULL);
+   result.tv_nsec = static_cast<decltype(result.tv_nsec)>(
+      (unix_ticks % 10000000ULL) * 100ULL);
+
+   return result;
+}
+
+
+#endif
+
+
+

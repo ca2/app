@@ -512,7 +512,7 @@ inline ::hash32 as_hash32 < pointer_key >(const pointer_key& key)
 inline ::string type_raw_name(const ::std::type_info & typeinfo)
 {
 
-#ifdef WINDOWS
+#if defined(_MSC_VER) && !defined(__clang__)
 
    return (::string_literal) typeinfo.raw_name();
 

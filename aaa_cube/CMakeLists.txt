@@ -74,11 +74,11 @@ set_target_properties(bred PROPERTIES LINKER_LANGUAGE CXX)
 if(${WIN32})
 
 
-    target_compile_options(bred PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(bred PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(bred PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/bred.lib")
-    #target_link_options(bred PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/bred.def")
-    target_link_libraries(bred PRIVATE ${library_references} ${global_library_references})
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+    #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
 
 
 elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
@@ -88,7 +88,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
     target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
-    target_link_libraries(bred PRIVATE ${library_references} ${global_library_references})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

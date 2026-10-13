@@ -61,11 +61,11 @@ set_target_properties(database_sqlite3 PROPERTIES LINKER_LANGUAGE CXX)
 if(${WIN32})
 
 
-   target_compile_options(database_sqlite3 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(database_sqlite3 PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(database_sqlite3 PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/database_sqlite3.lib")
-   target_link_options(database_sqlite3 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/database_sqlite3.def")
-   target_link_libraries(database_sqlite3 PRIVATE ${library_references} ${global_library_references} sqlite)
+   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+   target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} sqlite)
 
 
 elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})

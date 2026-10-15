@@ -21,7 +21,7 @@
 #if defined(WINDOWS)
 #include "acme/_operating_system.h"
 #endif
-inline void ca2_write_standard_trace(const char *text)
+inline void ca2_write_standard_trace(const char *text, bool errorStream = true)
 {
    if (!text)
       return;
@@ -29,9 +29,9 @@ inline void ca2_write_standard_trace(const char *text)
 #if defined(WINDOWS)
    DWORD savedError = GetLastError();
 #if CA2_STD_TRACE
-   HANDLE output = GetStdHandle(STD_ERROR_HANDLE);
+   HANDLE output = GetStdHandle(errorStream ? STD_ERROR_HANDLE : STD_OUTPUT_HANDLE);
    if (!output || output == INVALID_HANDLE_VALUE)
-      output = GetStdHandle(STD_OUTPUT_HANDLE);
+      output = GetStdHandle(errorStream ? STD_OUTPUT_HANDLE : STD_ERROR_HANDLE);
    if (output && output != INVALID_HANDLE_VALUE)
    {
       size_t left = strlen(text);
@@ -89,9 +89,10 @@ inline void ca2_write_standard_trace(const char *text)
    SetLastError(savedError);
 #else
 #if CA2_STD_TRACE
-   fputs(text, stderr);
-   fputc('\n', stderr);
-   fflush(stderr);
+   FILE *output = errorStream ? stderr : stdout;
+   fputs(text, output);
+   fputc('\n', output);
+   fflush(output);
 #endif
 #endif
    errno = savedErrno;

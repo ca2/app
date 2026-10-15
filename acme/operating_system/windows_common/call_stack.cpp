@@ -198,7 +198,18 @@ void call_stack::capture(::i32 iSkip, void * caller_address, ::i32 iCount)
 
       void * moduleBase = nullptr;
 
+#if defined(__REACTOS__)
+      // VirtualQuery is available on XP/ReactOS and identifies the containing
+      // image without importing RtlPcToFileHeader from kernel32.
+      MEMORY_BASIC_INFORMATION memoryInformation{};
+      if (::VirtualQuery(m_stack[i], &memoryInformation, sizeof(memoryInformation))
+         && memoryInformation.Type == MEM_IMAGE)
+      {
+         moduleBase = memoryInformation.AllocationBase;
+      }
+#else
       RtlPcToFileHeader(m_stack[i], &moduleBase);
+#endif
 
       m_modulea[i] = moduleBase;
 

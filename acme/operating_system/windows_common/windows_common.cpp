@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "acme/operating_system/windows/windows_xp_compat.h"
 #include "acme/operating_system/error_code.h"
 #include "acme/prototype/prototype/memory.h"
 //#include "acme/prototype/prototype/function.h"
@@ -159,7 +160,11 @@ CLASS_DECL_ACME itask current_itask()
 CLASS_DECL_ACME itask as_itask(htask htask)
 {
 
+#if defined(WINDOWS_XP)
+   return ca2_xp_get_thread_id((HANDLE) htask.m_h);
+#else
    return ::GetThreadId((HANDLE) htask.m_h);
+#endif
 
 }
 

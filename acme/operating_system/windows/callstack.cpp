@@ -1,5 +1,6 @@
 // Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSorensen!!
 #include "platform.h"
+#include "acme/operating_system/windows/windows_xp_compat.h"
 #include "acme/prototype/prototype/memory.h"
 #include "acme/platform/_synchronization.h"
 #include "acme/platform/node.h"
@@ -109,13 +110,27 @@ namespace platform
 
          SymSetOptions(SymGetOptions() | SYMOPT_LOAD_LINES);
 
+#if defined(WINDOWS_XP)
+         m_bCallStackInitialized = SymInitialize(process, NULL, TRUE) != FALSE;
+         if (!m_bCallStackInitialized)
+            return;
+#else
          SymInitialize(process, NULL, TRUE);
+#endif
 
       }
       else if(m_bUpdateCallStack)
       {
 
+#if defined(WINDOWS_XP)
+         if (!ca2_xp_refresh_module_list(process))
+         {
+            m_bCallStackInitialized = false;
+            return; // Retry initialization rather than using an invalid session.
+         }
+#else
          SymRefreshModuleList(process);
+#endif
 
       }
 

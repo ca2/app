@@ -67,6 +67,10 @@ if(${WIN32})
    endif()
 
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} pcre)
+    if(__REACTOS__ AND TARGET port_runtime_pcre)
+        # PCRE2 is loaded with this wrapper at runtime, including in CLion.
+        add_dependencies(${PROJECT_NAME} port_runtime_pcre)
+    endif()
 
 elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 

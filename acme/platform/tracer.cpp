@@ -182,7 +182,10 @@ namespace platform
       std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
 
 #if CA2_STD_TRACE || CA2_TRACE_TO_FILE
-      ca2_write_standard_trace(tracestatement.as_string().c_str());
+      // Severity increases as the numeric trace level decreases.
+      const bool errorStream = tracestatement.m_etracelevel >= e_trace_level_fatal
+         && tracestatement.m_etracelevel <= e_trace_level_warning;
+      ca2_write_standard_trace(tracestatement.as_string().c_str(), errorStream);
 #endif
 
       ::platform::logger * plogger = nullptr;

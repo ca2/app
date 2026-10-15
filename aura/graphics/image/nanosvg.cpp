@@ -7,7 +7,8 @@
 ////#include "acme/exception/exception.h"
 
 
-void nsvg_rasterizer_set_output_format(NSVGrasterizer * prasterizer, ::i32 iRedLower);
+void nsvg_rasterize(NSVGrasterizer * prasterizer, NSVGimage * pimage,
+   unsigned char * pdata, int width, int height, int stride, int iRedLower);
 
 
 ::f64 get_default_screen_dpi();
@@ -31,9 +32,6 @@ namespace image
 
       }
 
-      nsvg_rasterizer_set_output_format(rast, iRedLower < 0
-         ? (::color_indexes().red() < ::color_indexes().blue()) : iRedLower);
-
       ::i32 w = (::i32)iWidth;
 
       ::i32 h = (::i32)iHeight;
@@ -46,7 +44,8 @@ namespace image
 
          auto ppixmapLoadImage2 = ppixmapLoadImage->map();
 
-         nsvgRasterize(rast, psvgimage, 0, 0, 1, (::u8 *)ppixmapLoadImage2->data(), w, h, ppixmapLoadImage2->scan());
+         nsvg_rasterize(rast, psvgimage, (::u8 *)ppixmapLoadImage2->data(), w, h, ppixmapLoadImage2->scan(),
+            iRedLower < 0 ? (ppixmapLoadImage2->color_indexes().red() < ppixmapLoadImage2->color_indexes().blue()) : iRedLower);
          
 #ifdef __APPLE__
          

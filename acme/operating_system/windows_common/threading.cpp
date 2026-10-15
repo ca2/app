@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "acme/operating_system/windows/windows_xp_compat.h"
 //#include "parallelization.h"
 //#include "api.h"
 ////#include "acme/exception/exception.h"
@@ -91,7 +92,11 @@ CLASS_DECL_ACME void task_set_name(htask htask, const ::scoped_string & scopedst
    if (!bOk1 && ::is_debugger_attached())
    {
 
+#if defined(WINDOWS_XP)
+      bOk1 = SetThreadName(ca2_xp_get_thread_id((HANDLE) htask.m_h), ::string(scopedstr)) != false;
+#else
       bOk1 = SetThreadName(GetThreadId((HANDLE) htask.m_h), ::string(scopedstr)) != false;
+#endif
 
    }
 
@@ -516,9 +521,13 @@ CLASS_DECL_ACME class ::time default_run_timeout()
 bool htask::operator==(const htask & htask) const
 {
 
+#if defined(WINDOWS_XP)
+   DWORD dw1 = ca2_xp_get_thread_id((HANDLE) m_h);
+   DWORD dw2 = ca2_xp_get_thread_id((HANDLE) htask.m_h);
+#else
    DWORD dw1 = ::GetThreadId((HANDLE) m_h);
-
    DWORD dw2 = ::GetThreadId((HANDLE) htask.m_h);
+#endif
 
    return dw1 == dw2;
 

@@ -559,10 +559,13 @@ namespace windows
       if (::is_null(plibrary))
       {
 
-         string details(strMessage);
-         strMessage = "LoadLibraryW Failed opening " + strPath;
+         string strDetails(strMessage);
 
-         throw library_not_loaded(strMessage, details);
+         auto strError = "LoadLibraryW Failed opening " + strPath;
+
+         warning() << strError << ": " << strMessage;
+
+         throw library_not_loaded(strError, strDetails);
 
          return nullptr;
 

@@ -5889,8 +5889,11 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 #if defined(WINDOWS) && defined(__REACTOS__)
       // Select artwork for the actual host, not just the compatibility build.
-      if (node()->get_current_operating_system_name() == "ReactOS")
+      auto strOperatingSystemName = node()->get_current_operating_system_name();
+      if (strOperatingSystemName == "ReactOS")
          strSystem = "reactos";
+      else if (strOperatingSystemName == "Windows XP")
+         strSystem = "windowsxp";
 #endif
 
       if (strSystem == "windows")

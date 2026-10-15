@@ -1593,7 +1593,11 @@ namespace aura
       if (strImplementationName.is_empty())
       {
 
-#ifdef WINDOWS
+#if defined(WINDOWS) && defined(__REACTOS__)
+
+         strImplementationName = implementation_name("imaging", "freeimage");
+
+#elif defined(WINDOWS)
 
          strImplementationName = implementation_name("imaging", "wic");
 
@@ -1836,7 +1840,11 @@ namespace aura
 
       }
 
-#ifdef WINDOWS
+#if defined(WINDOWS) && defined(__REACTOS__)
+
+      return implementation_name("imaging", "freeimage");
+
+#elif defined(WINDOWS)
 
       return implementation_name("imaging", "wic");
 

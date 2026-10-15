@@ -15,6 +15,7 @@
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/icon.h"
@@ -345,7 +346,22 @@ namespace user
 
       auto pimagecontext = image();
 
+#if defined(__REACTOS__)
+      // The shell already caches completed thumbnails. Decode the current file
+      // synchronously instead of reusing an earlier image-loader cache entry.
+      ::image::load_options options;
+      options.sync = true;
+      options.cache = false;
+      options.draw2d_domain = draw2d_domain();
+      auto pathThumbnail = final_path(getfileimage);
+      if (pathThumbnail.is_empty())
+         pathThumbnail = getfileimage.m_imagekey.m_strPath;
+      auto pimageTemplate = pimagecontext->load_image(pathThumbnail, options);
+      if (pimageTemplate.nok())
+         warningf("[shell.thumbnail] decode failed path=%s", getfileimage.m_imagekey.m_strPath.c_str());
+#else
       auto pimageTemplate = image()->load_image(getfileimage.m_imagekey.m_strPath);
+#endif
 
       if (pimageTemplate.ok())
       {

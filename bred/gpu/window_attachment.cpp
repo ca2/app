@@ -118,7 +118,7 @@ namespace gpu
          //void approach::_gpu_on_create_window(::acme::windowing::window * pwindowParam)
          //{
 
-            #if defined(WINDOWS_DESKTOP)
+            #if defined(WINDOWS_DESKTOP) && !defined(__REACTOS__)
 
 
 
@@ -134,6 +134,7 @@ namespace gpu
             bb.hRgnBlur = hRgn;
             bb.fEnable = TRUE;
             DwmEnableBlurBehindWindow((HWND)hwnd, &bb);
+            ::DeleteObject(hRgn);
 
             #endif
 

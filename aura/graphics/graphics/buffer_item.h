@@ -29,6 +29,7 @@ namespace graphics
       ::pointer < manual_reset_happening >         m_pmanualresethappening;
       ::i32_size                                   m_sizeInternal;
       ::i32                                        m_iScan;
+      bool                                         m_bTightRawBuffer = false;
 
 
       virtual ::draw2d::graphics_lease acquire_graphics();

@@ -110,7 +110,9 @@ inline const_char_pointer ansi_pbrk(const_char_pointer psz, const_char_pointer p
 
 inline ::ansi_character * ansi_tok_r(::ansi_character * psz, const_char_pointer sep, ::ansi_character ** state)
 {
-#if defined(_WIN32)
+#if defined(__REACTOS__)
+   return __ansitok_r(psz, sep, state);
+#elif defined(_WIN32)
    return ::strtok_s(psz, sep, state);
 #elif defined(__linux__)
    return ::strtok_r(psz, sep, state);
@@ -194,7 +196,19 @@ inline ::ansi_character * ansi_lwr(::ansi_character * psz)
 
 inline ::ansi_character * ansi_lwr_s(::ansi_character * psz, character_count s)
 {
-#if defined(_WIN32)
+#if defined(__REACTOS__)
+   if (!psz || s <= 0)
+      return nullptr;
+   character_count length = 0;
+   while (length < s && psz[length])
+      ++length;
+   if (length == s)
+   {
+      psz[0] = 0;
+      return nullptr;
+   }
+   return ::_strlwr(psz);
+#elif defined(_WIN32)
    return ::_strlwr_s(psz, (size_t) s) == 0 ? psz : nullptr;
 #else
    return __ansilwr_s(psz, s); // no POSIX strlwr_s
@@ -212,7 +226,19 @@ inline ::ansi_character * ansi_upr(::ansi_character * psz)
 
 inline ::ansi_character * ansi_upr_s(::ansi_character * psz, character_count s)
 {
-#if defined(_WIN32)
+#if defined(__REACTOS__)
+   if (!psz || s <= 0)
+      return nullptr;
+   character_count length = 0;
+   while (length < s && psz[length])
+      ++length;
+   if (length == s)
+   {
+      psz[0] = 0;
+      return nullptr;
+   }
+   return ::_strupr(psz);
+#elif defined(_WIN32)
    return ::_strupr_s(psz, (size_t) s) == 0 ? psz : nullptr;
 #else
    return __ansiupr_s(psz, s); // no POSIX strupr_s

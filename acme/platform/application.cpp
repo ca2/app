@@ -3021,6 +3021,15 @@ namespace platform
    void application::show_about_box(::user::activation_token * puseractivationtoken)
    {
 
+#if defined(__REACTOS__)
+      const DWORD aboutStart = ::GetTickCount();
+      auto aboutStage = [&](const char *stage)
+      {
+         informationf("ABOUT stage=%s elapsed_ms=%lu", stage,
+            (unsigned long)(::GetTickCount() - aboutStart));
+      };
+      aboutStage("begin");
+#endif
       auto lines = get_about_box_lines();
 
       for (auto & line : lines)
@@ -3040,7 +3049,13 @@ namespace platform
 
       ::string_array straOperatingSystemLines;
       
+#if defined(__REACTOS__)
+      aboutStage("operating system information begin");
+#endif
       straOperatingSystemLines = get_operating_system_information_lines();
+#if defined(__REACTOS__)
+      aboutStage("operating system information end");
+#endif
 
       ::string strDetails = straOperatingSystemLines.implode("\n");
 
@@ -3048,10 +3063,16 @@ namespace platform
       strDetails.find_replace("-#", "");
       strDetails.find_replace("#", "");
 
+#if defined(__REACTOS__)
+      aboutStage("dialog creation begin");
+#endif
       auto paboutbox = system()->acme_windowing()->createø < ::user_interface::message_box >();
       paboutbox->initialize_message_box("About\n\n" + strMessage, nullptr, ::user::e_message_box_ok,
          strDetails, {"matter://main/icon.png"});
 
+#if defined(__REACTOS__)
+      aboutStage("dialog initialized; icons begin");
+#endif
       paboutbox->set_dialog_details_title("Operating System Information ...");
 
       paboutbox->dialog_details_icon_urls().add(system()->operating_system_icon_url({48, 48}));
@@ -3081,7 +3102,13 @@ namespace platform
 
       paboutbox->set_user_activation_token(puseractivationtoken);
 
+#if defined(__REACTOS__)
+      aboutStage("display begin");
+#endif
       paboutbox->display();
+#if defined(__REACTOS__)
+      aboutStage("display returned");
+#endif
 
 
 

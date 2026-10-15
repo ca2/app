@@ -5,7 +5,7 @@ project(_app_just_acme_message_box CXX)
 list(APPEND application_source main.cpp)
 
 
-if(MSVC)
+if(WIN32)
     list(APPEND application_source ../deployment.rc main.rc)
 endif()
 
@@ -48,8 +48,19 @@ if(${WIN32})
       #target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
       #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
    else()
+
+
       target_link_options(${PROJECT_NAME} PRIVATE "-mwindows")
+
+
+      if(MINGW)
+         target_link_options(${PROJECT_NAME} PRIVATE "-municode")
+      endif()
+
+
       #target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
    endif()
 
 

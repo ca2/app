@@ -25,6 +25,7 @@ namespace app_app
    {
 
       m_bTransparent = true;
+      m_dDrawControlBox = true;
 
       m_rectangleInitialRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
 
@@ -58,6 +59,9 @@ namespace app_app
 
    void main_window::on_message_create(::message::message * pmessage)
    {
+
+      // The inherited handler creates the default control-box items.
+      pmessage->previous();
 
 #if !STEPPY_DEBUG
 
@@ -280,6 +284,16 @@ namespace app_app
       }
 
       ::user::interaction::_001OnDraw(pdraw2dgraphics);
+      if (m_dDrawControlBox)
+      {
+         informationf("CONTROL_BOX first draw: enabled=%d platform=%d items=%lld close=%p zoom=%p minimize=%p closeDraws=%d",
+            (int)m_bEnableDefaultControlBox, (int)should_show_platform_control_box(),
+            (long long)tool().item_count(), tool().item(::e_element_close_button),
+            tool().item(::e_element_maximize_button), tool().item(::e_element_minimize_button),
+            m_iCloseButtonDraw);
+         m_dDrawControlBox = false;
+      }
+
 
    }
 

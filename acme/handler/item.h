@@ -43,9 +43,9 @@ struct item_t
    constexpr item_t(const ::e_element & eelement = e_element_none, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1) noexcept :
       // constexpr item_t(const ::e_element & eelement = e_element_none, ::collection::index iItem = -1) :
       m_eelement(eelement),
-      m_iItem(iItem)
-      //,m_iSubItem(iSubItem)
-      //,m_iListItem(iListItem)
+      m_iItem(iItem),
+      m_iSubItem(iSubItem),
+      m_iListItem(iListItem)
    {
    }
 
@@ -76,7 +76,13 @@ struct item_t
    }
 
 
-   operator hash32() const { return { (const void *)this, sizeof(item_t) }; }
+   operator hash32() const
+   {
+      // Equal keys must hash equally, regardless of object padding.
+      const ::i64 fields[] = { (::i64)m_eelement, (::i64)m_iItem,
+         (::i64)m_iSubItem, (::i64)m_iListItem };
+      return { (const void *)fields, sizeof(fields) };
+   }
 
    //constexpr ::collection::index menu_impact_index() const { return (::collection::index) m_iItem; }
    //constexpr ::collection::index menu_impact_group() const { return (::collection::index) m_iSubItem; }

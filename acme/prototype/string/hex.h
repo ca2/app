@@ -1,3 +1,8 @@
+#if defined(__MINGW32__) && !defined(_MSC_VER)
+#define CA2_HEX_INLINE_DECL
+#else
+#define CA2_HEX_INLINE_DECL CLASS_DECL_ACME
+#endif
 #pragma once
 
 
@@ -21,7 +26,7 @@ namespace hex
 
    CLASS_DECL_ACME ::u32 to_u32(const ::scoped_string & scopedstr);
 
-   inline CLASS_DECL_ACME ::i32 to_nibble(::i8 ch)
+   inline CA2_HEX_INLINE_DECL ::i32 to_nibble(::i8 ch)
    {
 
       return (ch >= '0' && ch <= '9') ? ch - '0' :
@@ -36,7 +41,7 @@ namespace hex
    }
 
 
-   constexpr CLASS_DECL_ACME ::i8 nibble_lower_case_from(::u8 b)
+   constexpr CA2_HEX_INLINE_DECL ::i8 nibble_lower_case_from(::u8 b)
    {
 
       if(b >= 10)
@@ -51,7 +56,7 @@ namespace hex
    }
 
 
-   constexpr CLASS_DECL_ACME ::i8 nibble_upper_case_from(::u8 b)
+   constexpr CA2_HEX_INLINE_DECL ::i8 nibble_upper_case_from(::u8 b)
    {
 
       if(b >= 10)
@@ -66,7 +71,7 @@ namespace hex
    }
 
 
-   constexpr CLASS_DECL_ACME void lower_case_from(char_pointer sz, ::u8 b)
+   constexpr CA2_HEX_INLINE_DECL void lower_case_from(char_pointer sz, ::u8 b)
    {
 
       sz[0] = nibble_lower_case_from((b >> 4) & (::i8) 0x0f);
@@ -75,7 +80,7 @@ namespace hex
    }
 
    
-   constexpr CLASS_DECL_ACME void upper_case_from(char_pointer sz, ::u8 b)
+   constexpr CA2_HEX_INLINE_DECL void upper_case_from(char_pointer sz, ::u8 b)
    {
 
       sz[0] = nibble_upper_case_from((b >> 4) & (::i8) 0x0f);
@@ -85,7 +90,7 @@ namespace hex
 
 
    // sz buffer should have twice i32_size of s (p)
-   constexpr CLASS_DECL_ACME void lower_case_from(char_pointer sz, const void * p, memsize s)
+   constexpr CA2_HEX_INLINE_DECL void lower_case_from(char_pointer sz, const void * p, memsize s)
    {
        const ::u8 * pb = (const ::u8 *) p;
        while(s)
@@ -98,7 +103,7 @@ namespace hex
    }
 
    
-   constexpr CLASS_DECL_ACME void upper_case_from(char_pointer sz, const void * p, memsize s)
+   constexpr CA2_HEX_INLINE_DECL void upper_case_from(char_pointer sz, const void * p, memsize s)
    {
        const ::u8 * pb = (const ::u8 *) p;
        while(s)
@@ -210,7 +215,7 @@ namespace hex
 #endif
    inline uptr to_uptr(const ::scoped_string & scopedstr) { uptr u; to(u,scopedstr); return u; }
 
-   ::u16 parse_u16_exc(::const_ansi_range & range);
+   CLASS_DECL_ACME ::u16 parse_u16_exc(::const_ansi_range & range);
 
 
 } // namespace hex
@@ -239,3 +244,5 @@ namespace hex
 
 } // namespace hex
 
+
+#undef CA2_HEX_INLINE_DECL

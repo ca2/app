@@ -75,7 +75,7 @@ extern "C" voidpf ZCALLBACK fopen_file_func (voidpf opaque, const_char_pointer p
 
 
    if ((pszFilename!=nullptr) && (mode_fopen != nullptr))
-#if defined(WINDOWS_DESKTOP)
+#if defined(WINDOWS_DESKTOP) && !defined(__REACTOS__)
    {
       err = fopen_s(&file, pszFilename, mode_fopen);
    }

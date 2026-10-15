@@ -743,7 +743,19 @@ void __cdecl __clearerr_s(FILE * stream)
 
    c_errno cerrno;
 
-#ifdef WINDOWS
+#if defined(__REACTOS__)
+
+   if (!stream)
+   {
+      cerrno.m_iErrNo = EINVAL;
+   }
+   else
+   {
+      ::clearerr(stream);
+      cerrno.m_iErrNo = 0;
+   }
+
+#elif defined(WINDOWS)
 
    cerrno.m_iErrNo = ::clearerr_s(stream);
 

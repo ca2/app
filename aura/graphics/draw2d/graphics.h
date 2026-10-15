@@ -4,6 +4,7 @@
 
 
 #include "acme/constant/element.h"
+#include "acme/prototype/prototype/memory.h"
 #include "acme/graphics/image/image32_t.h"
 
 #include "aura/platform/draw_context.h"
@@ -118,6 +119,10 @@ namespace draw2d
       ::f64_point                                     m_pointAlphaBlend;
       ::pointer<::task>                               m_ptask;
       bool                                            m_bDraw;
+#if defined(__REACTOS__)
+      // Reused across frames; always zero, never submitted as writable storage.
+      ::memory                                        m_memoryTransparentFrame;
+#endif
 
       //::pointer < ::image::image>                   m_pimage;
       ::draw2d::bitmap_pointer                        m_pdraw2dbitmap;

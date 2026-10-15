@@ -173,7 +173,7 @@ APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)()
 
 #ifdef WINDOWS
 
-         psystem->m_hinstanceMain = ::windows::hinstance_from_function(APPLICATION_NAMESPACE_MAIN(main));
+         psystem->m_hinstanceMain = ::windows::hinstance_from_function(reinterpret_cast<void *>(APPLICATION_NAMESPACE_MAIN(main)));
 
 #endif
 

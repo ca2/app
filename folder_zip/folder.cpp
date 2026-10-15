@@ -420,7 +420,8 @@ namespace folder_zip
 
       ::LocalFileTimeToFileTime(&filetimeLocal, &filetime);
 
-      time = class ::time(as_file_time(filetime));
+      using time_type = class ::time;
+      time = time_type(as_file_time(filetime));
 
 #else
 

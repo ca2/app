@@ -1,3 +1,8 @@
+#if defined(__MINGW32__) && !defined(_MSC_VER)
+#define CA2_ANSI_INLINE_DECL
+#else
+#define CA2_ANSI_INLINE_DECL CLASS_DECL_ACME
+#endif
 // Refactored by camilo on 2022-11-04 05:50 <3ThomasBorregaardSorensen!!
 #pragma once
 
@@ -10,7 +15,7 @@
 
 
 template < prototype_character CHARACTER >
-CLASS_DECL_ACME constexpr memsize character_count_to_byte_length(const CHARACTER * pszTrigger, character_count nCharLength)
+CA2_ANSI_INLINE_DECL constexpr memsize character_count_to_byte_length(const CHARACTER * pszTrigger, character_count nCharLength)
 {
  
    return (::memsize)((nCharLength) * sizeof(CHARACTER));
@@ -19,7 +24,7 @@ CLASS_DECL_ACME constexpr memsize character_count_to_byte_length(const CHARACTER
 
 
 template < prototype_character CHARACTER >
-CLASS_DECL_ACME constexpr memsize character_count_to_byte_length_constrain_source_length(const CHARACTER * pszTrigger, character_count nCharLength)
+CA2_ANSI_INLINE_DECL constexpr memsize character_count_to_byte_length_constrain_source_length(const CHARACTER * pszTrigger, character_count nCharLength)
 {
 
    return (::memsize)::minimum((nCharLength) * sizeof(CHARACTER), (string_get_length(pszTrigger) + 1) * sizeof(CHARACTER));
@@ -28,7 +33,7 @@ CLASS_DECL_ACME constexpr memsize character_count_to_byte_length_constrain_sourc
 
 
 template < prototype_character CHARACTER >
-CLASS_DECL_ACME constexpr character_count byte_length_to_character_count(const CHARACTER * pszTrigger, memsize nByteLength)
+CA2_ANSI_INLINE_DECL constexpr character_count byte_length_to_character_count(const CHARACTER * pszTrigger, memsize nByteLength)
 {
 
    return (::character_count)((nByteLength / sizeof(CHARACTER)));
@@ -37,7 +42,7 @@ CLASS_DECL_ACME constexpr character_count byte_length_to_character_count(const C
 
 
 template < prototype_character CHARACTER >
-CLASS_DECL_ACME constexpr memsize null_terminated_character_count_to_byte_length(const CHARACTER * pszTrigger, character_count nCharLength)
+CA2_ANSI_INLINE_DECL constexpr memsize null_terminated_character_count_to_byte_length(const CHARACTER * pszTrigger, character_count nCharLength)
 {
  
    return (::memsize)((nCharLength + 1) * sizeof(CHARACTER));
@@ -150,3 +155,5 @@ CLASS_DECL_ACME ::f64 string_to_floating(const_char_pointer psz);
 
 
 
+
+#undef CA2_ANSI_INLINE_DECL

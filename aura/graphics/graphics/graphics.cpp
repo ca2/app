@@ -183,7 +183,12 @@ namespace graphics
       
       //information() << "::graphics::graphics::buffer_size_and_position (3) sizeRaw = " << m_pwindow->m_sizeRaw.cx << ", " << m_pwindow->m_sizeRaw.cy;
 
-      auto rectangleFixed = rectangleDesign.intersection(rectangleRaw);
+      pbufferitem->m_bTightRawBuffer = puserinteraction->windowing()->m_bTightRawBuffer
+         && !m_papplication->m_gpu.m_bUseSwapChainWindow;
+      auto rectangleBuffer = pbufferitem->m_bTightRawBuffer
+         ? ::i32_rectangle(::i32_point{}, rectangleDesign.size()) : rectangleDesign;
+      auto rectangleFixed = pbufferitem->m_bTightRawBuffer
+         ? rectangleBuffer : rectangleBuffer.intersection(rectangleRaw);
 
       auto pointDesign = puserinteraction->const_layout().lading().origin();
 
@@ -447,7 +452,10 @@ namespace graphics
 
       auto rectangleUnion = pdisplay->get_monitor_union_rectangle();
 
-      m_pwindow->m_sizeRaw = m_pwindow->m_sizeRaw.maximum(rectangleUnion.size());
+      if (pbufferitem->m_bTightRawBuffer)
+         m_pwindow->m_sizeRaw = pbufferitem->m_sizeBufferItem.maximum(::i32_size(1, 1));
+      else
+         m_pwindow->m_sizeRaw = m_pwindow->m_sizeRaw.maximum(rectangleUnion.size());
 
       auto & sizeWindow = m_pwindow->m_sizeWindow;
 
@@ -472,7 +480,7 @@ namespace graphics
 
 
       if (pbufferitem->m_pimageBufferItem.nok()
-         || pbufferitem->m_pimageBufferItem->m_point != pbufferitem->m_pointBufferItem
+         || pbufferitem->m_pimageBufferItem->m_point != (pbufferitem->m_bTightRawBuffer ? ::i32_point{} : pbufferitem->m_pointBufferItem)
          || pbufferitem->m_pimageBufferItem->m_size != pbufferitem->m_sizeBufferItem
          || pbufferitem->m_pimageBufferItem->m_sizeRaw != m_pwindow->m_sizeRaw)
       {
@@ -572,7 +580,7 @@ namespace graphics
       //auto sizeRaw = m_pwindow->m_sizeWindow.maximum(rectangleUnion.size());
 
       if (pbufferitem->m_pimageBufferItem.nok()
-         || pbufferitem->m_pimageBufferItem->m_point != pbufferitem->m_pointBufferItem
+         || pbufferitem->m_pimageBufferItem->m_point != (pbufferitem->m_bTightRawBuffer ? ::i32_point{} : pbufferitem->m_pointBufferItem)
          || pbufferitem->m_pimageBufferItem->m_size != pbufferitem->m_sizeBufferItem
          || pbufferitem->m_pimageBufferItem->m_sizeRaw != m_pwindow->m_sizeRaw)
       {
@@ -807,7 +815,7 @@ namespace graphics
 
 
 
-            point = pbufferitem->m_pointBufferItem;
+            point = pbufferitem->m_bTightRawBuffer ? ::i32_point{} : pbufferitem->m_pointBufferItem;
 
             size = pbufferitem->m_sizeBufferItem;
 

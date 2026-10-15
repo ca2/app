@@ -12434,7 +12434,8 @@ namespace windowing
                   auto pimageFrame = pitemScreen->m_pimageBufferItem;
 
                   auto bImageMatchesFrame = pimageFrame
-                     && pimageFrame->m_point == rectangleFrame.origin()
+                     && pimageFrame->m_point == (pitemScreen->m_bTightRawBuffer
+                        ? ::i32_point{} : rectangleFrame.origin())
                      && pimageFrame->m_size == rectangleFrame.size();
 
                   // Sketch may already contain the next resize step. This frame is

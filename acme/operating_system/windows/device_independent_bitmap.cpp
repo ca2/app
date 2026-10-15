@@ -59,16 +59,23 @@ namespace windows
 
       }
 
+      ::SetLastError(ERROR_SUCCESS);
       m_hbitmap = CreateDIBSection(m_hdcMemory, &info, DIB_RGB_COLORS, (void **)&m_pimage32Raw, nullptr, 0);
 
       if (!m_hdcMemory || !m_hbitmap || !m_pimage32Raw)
       {
 
-         ::DeleteDC(m_hdcMemory);
-
-         m_hdcMemory = nullptr;
-         
-         throw ::exception(error_failed, "defer_create_device_independent_bitmap CreateDIBSection failed");
+         const DWORD error = ::GetLastError();
+         destroy_device_independent_bitmap();
+         m_pimage32Raw = nullptr;
+         m_pimage32 = nullptr;
+         ::string message;
+         message.formatf("defer_create_device_independent_bitmap CreateDIBSection failed size=(%d,%d) bytes=%llu error=%lu",
+            sizeRaw.cx, sizeRaw.cy,
+            (unsigned long long)(sizeRaw.cx > 0 && sizeRaw.cy > 0
+               ? (unsigned long long)sizeRaw.cx * sizeRaw.cy * sizeof(::image32_t) : 0),
+            (unsigned long)error);
+         throw ::exception(error_failed, message);
 
       }
 

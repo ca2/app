@@ -200,8 +200,8 @@ if(${WIN32})
       target_link_options(${PROJECT_NAME} PRIVATE    "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
       target_link_options(${PROJECT_NAME} PRIVATE    "/SUBSYSTEM:WINDOWS")
       target_link_options(${PROJECT_NAME} PRIVATE    "/bigobj")
-      target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
-      target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
 
 
    else()
@@ -215,7 +215,7 @@ if(${WIN32})
 
 
 
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} Ws2_32)
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} Ws2_32 libssl libcrypto dnsapi iphlpapi)
 elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
@@ -255,10 +255,17 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
    message(STATUS "(G) PKGCONFIG_LDFLAGS is ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS}")
 endif ()
 
-if(${LINUX} OR ${__BSD__} OR ${__SUNOS__})
+if(LINUX OR __BSD__ OR __SUNOS__ OR __REACTOS__)
    # URL handling loads the IDN component dynamically at runtime.
    add_dependencies(${PROJECT_NAME} nano_idn_libidn)
    add_dependencies(static_${PROJECT_NAME} nano_idn_libidn)
+endif()
+
+
+if(WIN32 AND NOT __REACTOS__)
+   # URL handling loads the IDN component dynamically at runtime.
+   add_dependencies(${PROJECT_NAME} nano_idn_windows_common)
+   add_dependencies(static_${PROJECT_NAME} nano_idn_windows_common)
 endif()
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

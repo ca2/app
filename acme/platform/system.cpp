@@ -266,7 +266,16 @@ namespace platform
       iAddUp += sizeof(payload.m_preferer);
 #endif
       ::i32 iETypeSizeHere = (::i32)((::u8*)pAll - (::u8*)pType);
-      ::i32 iComputed = (::i32)(((::u8*)pAll - (::u8*)pType) + iAll + iAddUp);
+      // Account for compiler-inserted member and trailing alignment padding.
+#if REFERENCING_DEBUGGING
+      auto pLastEnd = reinterpret_cast<const unsigned char *>(&payload.m_preferer) + sizeof(payload.m_preferer);
+#else
+      auto pLastEnd = reinterpret_cast<const unsigned char *>(pAll) + sizeof(payload.m_payloadall);
+#endif
+      auto memberExtent = pLastEnd - reinterpret_cast<const unsigned char *>(&payload);
+      auto payloadAlignment = alignof(::payload);
+      ::i32 iComputed = static_cast<::i32>(
+         ((memberExtent + payloadAlignment - 1) / payloadAlignment) * payloadAlignment);
       ::i32 iColor = sizeof(payload.m_color);
       ::i32 iStr = sizeof(payload.m_str);
       ::i32 iHls = sizeof(payload.m_hls);
@@ -5877,6 +5886,12 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       strSystem = psummary->m_strSystem;
 
       auto strSystemRelease = psummary->m_strSystemRelease;
+
+#if defined(WINDOWS) && defined(__REACTOS__)
+      // Select artwork for the actual host, not just the compatibility build.
+      if (node()->get_current_operating_system_name() == "ReactOS")
+         strSystem = "reactos";
+#endif
 
       if (strSystem == "windows")
       {

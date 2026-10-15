@@ -191,7 +191,19 @@ inline ::wide_character * wide_lwr(::wide_character * s)
 
 inline ::wide_character * wide_lwr_s(::wide_character * s, character_count n)
 {
-#if defined(_WIN32)
+#if defined(__REACTOS__)
+   if (!s || n <= 0)
+      return nullptr;
+   character_count length = 0;
+   while (length < n && s[length])
+      ++length;
+   if (length == n)
+   {
+      s[0] = 0;
+      return nullptr;
+   }
+   return ::_wcslwr(s);
+#elif defined(_WIN32)
    return ::_wcslwr_s(s, (size_t) n) == 0 ? s : nullptr;
 #else
    return __widelwr_s(s, n);
@@ -209,7 +221,19 @@ inline ::wide_character * wide_upr(::wide_character * s)
 
 inline ::wide_character * wide_upr_s(::wide_character * s, character_count n)
 {
-#if defined(_WIN32)
+#if defined(__REACTOS__)
+   if (!s || n <= 0)
+      return nullptr;
+   character_count length = 0;
+   while (length < n && s[length])
+      ++length;
+   if (length == n)
+   {
+      s[0] = 0;
+      return nullptr;
+   }
+   return ::_wcsupr(s);
+#elif defined(_WIN32)
    return ::_wcsupr_s(s, (size_t) n) == 0 ? s : nullptr;
 #else
    return __wideupr_s(s, n);

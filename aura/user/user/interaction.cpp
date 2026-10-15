@@ -7749,6 +7749,7 @@ namespace user
 
                _001OnNcClip(pdraw2dgraphics);
 
+
                //}
 
                //auto pstyle = get_style(pdraw2dgraphics);
@@ -9861,14 +9862,14 @@ if(get_parent())
 
          if (!is_top_level())
          {
-
+            information() << "DRAG_START refused: not top level";
             return false;
 
          }
 
          if (is_display_like_maximized() || is_display_like_full_screen())
          {
-
+            information() << "DRAG_START refused: maximized or full screen";
             return false;
 
          }
@@ -9883,6 +9884,7 @@ if(get_parent())
          }
 
          pointDrag = layout().window().origin();
+         informationf("DRAG_START client accepted origin=(%d,%d)", pointDrag.x, pointDrag.y);
 
          return true;
 

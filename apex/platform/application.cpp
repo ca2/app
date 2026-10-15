@@ -10580,14 +10580,26 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       auto puseractivationtoken = ::as_pointer(puseractivationtokenParameter);
       
+#if defined(__REACTOS__)
+      information() << "ABOUT_INNATE queued";
+#endif
       main_post([this, puseractivationtoken]()
       {
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE begin; initializing innate UI";
+#endif
          
          system()->defer_innate_ui();
          
          auto pdialog = createø < ::innate_ui::dialog>();
          
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE creating dialog";
+#endif
          pdialog->create();
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE dialog created";
+#endif
          
          ::i32 max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx;
          
@@ -10611,9 +10623,15 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          
          pstillIcon->set_position({30 * fWindowScale, 30 * fWindowScale});
          
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE loading application icon";
+#endif
          auto piconApplication = innate_ui_icon({48 * fWindowScale, 48 * fWindowScale});
          
          pstillIcon->set_icon(piconApplication);
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE icon ready; building controls";
+#endif
          
          for (auto str : stra)
          {
@@ -10668,6 +10686,9 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
             {minimum(520 * fWindowScale, max_width), y + 30 * fWindowScale});
          
          pdialog->center();
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE controls ready; dialog centered";
+#endif
          
          auto pdialogRaw = pdialog.m_p;
 
@@ -10687,7 +10708,13 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
             
          });
          
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE show_front begin";
+#endif
          pdialog->show_front(puseractivationtoken);
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE show_front returned";
+#endif
          
       });
 

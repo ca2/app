@@ -240,7 +240,18 @@ CLASS_DECL_ACME character_count _string_format(::wide_character * pszBuffer, con
 CLASS_DECL_ACME character_count _string_format(::wide_character * pszBuffer, character_count nlength, const ::wide_character * pszFormat, va_list args) noexcept
 {
 
-#ifdef WINDOWS
+#if defined(__REACTOS__)
+   if (!pszBuffer || nlength <= 0 || !pszFormat)
+      return -1;
+   int result = _vsnwprintf(pszBuffer, (size_t)nlength, pszFormat, args);
+   if (result < 0 || result >= nlength)
+   {
+      pszBuffer[0] = 0;
+      return -1;
+   }
+   pszBuffer[result] = 0;
+   return result;
+#elif defined(WINDOWS)
 
    return vswprintf_s(pszBuffer, (size_t)nlength, pszFormat, args);
 

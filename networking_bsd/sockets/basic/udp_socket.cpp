@@ -644,7 +644,7 @@ namespace sockets_bsd
       {
          CreateConnection();
       }
-      if (setsockopt(GetSocketId(), SOL_IP, IP_MULTICAST_TTL, (char_pointer )&ttl, sizeof(::i32)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_MULTICAST_TTL, (char_pointer )&ttl, sizeof(::i32)) == -1)
       {
 
          warning() <<"SetMulticastTTL" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
@@ -662,7 +662,7 @@ namespace sockets_bsd
       {
          CreateConnection();
       }
-      if (getsockopt(GetSocketId(), SOL_IP, IP_MULTICAST_TTL, (char_pointer )&ttl, &size) == -1)
+      if (getsockopt(GetSocketId(), IPPROTO_IP, IP_MULTICAST_TTL, (char_pointer )&ttl, &size) == -1)
       {
 
          warning() <<"GetMulticastTTL" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
@@ -700,7 +700,7 @@ namespace sockets_bsd
 
       ::i32 val = x ? 1 : 0;
 
-      if (setsockopt(GetSocketId(), SOL_IP, IP_MULTICAST_LOOP, (char_pointer )&val, sizeof(::i32)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_MULTICAST_LOOP, (char_pointer )&val, sizeof(::i32)) == -1)
       {
 
          warning() <<"SetMulticastLoop" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
@@ -732,7 +732,7 @@ namespace sockets_bsd
       }
       ::i32 is_loop = 0;
       socklen_t size = sizeof(::i32);
-      if (getsockopt(GetSocketId(), SOL_IP, IP_MULTICAST_LOOP, (char_pointer )&is_loop, &size) == -1)
+      if (getsockopt(GetSocketId(), IPPROTO_IP, IP_MULTICAST_LOOP, (char_pointer )&is_loop, &size) == -1)
       {
 
          warning() <<"IsMulticastLoop" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
@@ -791,7 +791,7 @@ namespace sockets_bsd
 
       //   ::memory_copy(&x.imr_interface.s_addr, &addr, sizeof(addr));
       //   //      x.imr_ifindex = if_index;
-      //   if (setsockopt(GetSocketId(), SOL_IP, IP_ADD_MEMBERSHIP, (char_pointer )&x, sizeof(struct ip_mreq)) == -1)
+      //   if (setsockopt(GetSocketId(), IPPROTO_IP, IP_ADD_MEMBERSHIP, (char_pointer )&x, sizeof(struct ip_mreq)) == -1)
       //   {
 
       //      warning() <<"AddMulticastMembership " << networking_last_error() << " , " << bsd_socket_error(networking_last_error());
@@ -847,7 +847,7 @@ namespace sockets_bsd
       //   paddressdepartment->convert(addr, local_if);
       //   ::memory_copy(&x.imr_interface.s_addr, &addr, sizeof(addr));
       //   //      x.imr_ifindex = if_index;
-      //   if (setsockopt(GetSocketId(), SOL_IP, IP_DROP_MEMBERSHIP, (char_pointer )&x, sizeof(struct ip_mreq)) == -1)
+      //   if (setsockopt(GetSocketId(), IPPROTO_IP, IP_DROP_MEMBERSHIP, (char_pointer )&x, sizeof(struct ip_mreq)) == -1)
       //   {
 
       //      warning() <<"DropMulticastMembership " << networking_last_error() << ", " << bsd_socket_error(networking_last_error());

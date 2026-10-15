@@ -85,6 +85,40 @@ payload::payload() :
 
 
 
+#if defined(__REACTOS__) && defined(__MINGW32__) && !defined(_UCRT)
+#include <locale.h>
+#include <stdlib.h>
+#include <string>
+
+static double ca2_reactos_atof_l(const char *text, _locale_t locale)
+{
+   // The MinGW MSVCRT locale structure exposes its numeric locale data.
+   // Normalize to strtod's current locale without changing global locale state.
+   const char *sourceDecimal = nullptr;
+   if (locale && locale->locinfo && locale->locinfo->lconv)
+      sourceDecimal = locale->locinfo->lconv->decimal_point;
+   const char *targetDecimal = localeconv()->decimal_point;
+   if (!sourceDecimal || !strcmp(sourceDecimal, targetDecimal))
+      return strtod(text, nullptr);
+   std::string normalized(text);
+   size_t decimal = normalized.find(sourceDecimal);
+   size_t otherDecimal = normalized.find(targetDecimal);
+   // A separator from another locale must terminate parsing, not become valid.
+   if (otherDecimal != std::string::npos &&
+       (decimal == std::string::npos || otherDecimal < decimal))
+      normalized.resize(otherDecimal);
+   else if (decimal != std::string::npos)
+      normalized.replace(decimal, strlen(sourceDecimal), targetDecimal);
+   return strtod(normalized.c_str(), nullptr);
+}
+#endif
+
+#if defined(__REACTOS__) && defined(__MINGW32__) && !defined(_UCRT)
+#define ca2_payload_atof_l ca2_reactos_atof_l
+#else
+#define ca2_payload_atof_l _atof_l
+#endif
+
 #if defined(WINDOWS)
 //extern _locale_t ::get_task()->locale()->m_locale;
 #else
@@ -4305,7 +4339,7 @@ bool payload::as_bool() const
 #if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
       return (::i8)atof(m_str);
 #else
-      return (::i8)_atof_l(m_str, ::get_task()->locale()->m_locale);
+      return (::i8)ca2_payload_atof_l(m_str, ::get_task()->locale()->m_locale);
 #endif
    //case e_type_payload_pointer:
    //   return m_ppayload->as_i8(iDefault);
@@ -4347,7 +4381,7 @@ bool payload::as_bool() const
 #if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
       return (::u8)atof(m_str);
 #else
-      return (::u8)_atof_l(m_str, ::get_task()->locale()->m_locale);
+      return (::u8)ca2_payload_atof_l(m_str, ::get_task()->locale()->m_locale);
 #endif
    //case e_type_payload_pointer:
    //   return m_ppayload->as_u8(uDefault);
@@ -4416,7 +4450,7 @@ bool payload::as_bool() const
 #if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
       return (::i16)atof(m_str);
 #else
-      return (::i16)_atof_l(m_str, ::get_task()->locale()->m_locale);
+      return (::i16)ca2_payload_atof_l(m_str, ::get_task()->locale()->m_locale);
 #endif
    //case e_type_payload_pointer:
    //   return m_ppayload->as_i16(iDefault);
@@ -4486,7 +4520,7 @@ bool payload::as_bool() const
 #if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
       return (::u16)atof(m_str);
 #else
-      return (::u16)_atof_l(m_str, ::get_task()->locale()->m_locale);
+      return (::u16)ca2_payload_atof_l(m_str, ::get_task()->locale()->m_locale);
 #endif
    //case e_type_payload_pointer:
    //   return m_ppayload->as_u16(uDefault);
@@ -4556,7 +4590,7 @@ bool payload::as_bool() const
    #if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
       return (::f32) atof(m_str);
    #else
-      return (::f32) _atof_l(m_str, ::get_task()->locale()->m_locale);
+      return (::f32) ca2_payload_atof_l(m_str, ::get_task()->locale()->m_locale);
    #endif
    //case e_type_payload_pointer:
    //   return m_ppayload->as_f32(fDefault);
@@ -4684,7 +4718,7 @@ bool payload::as_bool() const
       if(plocale)
       {
          
-         d = _atof_l(m_str, plocale->m_locale);
+         d = ca2_payload_atof_l(m_str, plocale->m_locale);
          
       }
       else
@@ -6802,7 +6836,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //#if defined(LINUX) || defined(__ANDROID__)
 //      return atof(m_str) / (::f64) ul;
 //#else
-//      return _atof_l(m_str, ::get_task()->locale()->m_locale) / (::f64) ul;
+//      return ca2_payload_atof_l(m_str, ::get_task()->locale()->m_locale) / (::f64) ul;
 //#endif
 //   case ::e_type_payload_pointer:
 //      return m_ppayload->operator / (ul);
@@ -6859,7 +6893,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //#if defined(LINUX) || defined(__ANDROID__)
 //      return (::f64) ul / atof(payload.m_str);
 //#else
-//      return (::f64) ul / _atof_l(payload.m_str, ::get_task()->locale()->m_locale);
+//      return (::f64) ul / ca2_payload_atof_l(payload.m_str, ::get_task()->locale()->m_locale);
 //#endif
 //   case ::e_type_payload_pointer:
 //      return operator / (ul, *payload.m_ppayload);
@@ -6916,7 +6950,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //      return atof(m_str) * (::f64) ul;
 //#else
-//      return _atof_l(m_str, ::get_task()->locale()->m_locale) * (::f64) ul;
+//      return ca2_payload_atof_l(m_str, ::get_task()->locale()->m_locale) * (::f64) ul;
 //#endif
 //   case ::e_type_payload_pointer:
 //      return m_ppayload->operator * (ul);
@@ -6973,7 +7007,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //#if defined(LINUX) || defined(__ANDROID__)
 //      return (::f64) ul * atof(payload.m_str);
 //#else
-//      return (::f64) ul * _atof_l(payload.m_str, ::get_task()->locale()->m_locale);
+//      return (::f64) ul * ca2_payload_atof_l(payload.m_str, ::get_task()->locale()->m_locale);
 //#endif
 //   case ::e_type_payload_pointer:
 //      return operator * (ul, *payload.m_ppayload);
@@ -7294,8 +7328,8 @@ bool payload::is_floating() const
 //                && fabs(atof(str)) <= pow(2.0, 31.0)))
 //#else
 //      if(is_scalar()
-//            && (fmod(_atof_l(str, ::get_task()->locale()->m_locale), 1.0) == 0.0
-//                && fabs(_atof_l(str, ::get_task()->locale()->m_locale)) <= pow(2.0, 31.0)))
+//            && (fmod(ca2_payload_atof_l(str, ::get_task()->locale()->m_locale), 1.0) == 0.0
+//                && fabs(ca2_payload_atof_l(str, ::get_task()->locale()->m_locale)) <= pow(2.0, 31.0)))
 //#endif
       {
          str.trim();
@@ -8174,7 +8208,7 @@ end:
 
 //#else
 
-      //::f64 d = _atof_l(strNumber, ::get_task()->locale()->m_locale);
+      //::f64 d = ca2_payload_atof_l(strNumber, ::get_task()->locale()->m_locale);
 
 //#endif
 

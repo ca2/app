@@ -3,6 +3,7 @@
 //
 #include "platform.h"
 #include "tracer.h"
+#include "std_trace_output.h"
 #include <mutex>
 
 static std::recursive_mutex g_tracerFlushMutex;
@@ -179,6 +180,10 @@ namespace platform
    {
 
       std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
+
+#if CA2_STD_TRACE || CA2_TRACE_TO_FILE
+      ca2_write_standard_trace(tracestatement.as_string().c_str());
+#endif
 
       ::platform::logger * plogger = nullptr;
 

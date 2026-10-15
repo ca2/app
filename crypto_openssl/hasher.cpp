@@ -461,7 +461,11 @@ namespace crypto_openssl
    memory hasher::get_hash_and_reset()
    {
 
-#if OPENSSL_VERSION_NUMBER >= 0x30000000
+#if defined(__REACTOS__)
+
+      ::u32 md_len = EVP_MD_get_size(EVP_MD_CTX_get0_md(m_pctx));
+
+#elif OPENSSL_VERSION_NUMBER >= 0x30000000
 
       ::u32 md_len = EVP_MD_CTX_get_size(m_pctx);
 

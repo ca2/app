@@ -294,7 +294,12 @@ namespace apex
       {
 
          ::i8 buf[2048];
+#if defined(__REACTOS__)
+         _vsnprintf(buf, sizeof(buf) - 1, pszFormat, list_base);
+         buf[sizeof(buf) - 1] = 0;
+#else
          vsnprintf_s(buf, sizeof(buf), sizeof(buf), pszFormat, list_base);
+#endif
          informationf(buf);
 
       }

@@ -1,6 +1,7 @@
 // Created by camilo on 2024-09-13 15:58 <3ThomasBorregaardSorensen!!
 #include "platform.h"
 #include "window.h"
+#include "modal_task_pump.h"
 #include "windowing.h"
 #include "acme/platform/application.h"
 #include "acme/user/user/interaction.h"
@@ -767,12 +768,17 @@ namespace windows
       auto hmenu = GetSystemMenu(hwnd, true);
       m_hmenuSystem = GetSystemMenu(hwnd, false);
       //SetForegroundWindow(hwnd);
+      modal_task_pump modalPump;
+      informationf("MODAL_MENU enter thread=%lu ownerThread=%lu taskPump=%d",
+         (unsigned long)::GetCurrentThreadId(),
+         (unsigned long)::GetWindowThreadProcessId(hwnd, nullptr), (int)modalPump.is_active());
       TrackPopupMenu(m_hmenuSystem,
          TPM_LEFTALIGN | TPM_TOPALIGN,
          pmouse->m_pointAbsolute.x,
          pmouse->m_pointAbsolute.y,
          0,
          hwnd, NULL);
+      information() << "MODAL_MENU leave";
       //PostMessage(hwnd, WM_NULL, 0, 0);
 
    }

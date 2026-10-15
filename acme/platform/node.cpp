@@ -3072,8 +3072,11 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
       }
       else if (scopedstrComponentName == "nano_idn")
       {
-
+#if defined(__REACTOS__)
+         return "libidn";
+#else
          return "windows_common";
+#endif
       }
 #endif
       else if (scopedstrComponentName == "nano_http")

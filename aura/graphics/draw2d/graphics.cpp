@@ -1,5 +1,6 @@
 #include "platform.h"
 #include "graphics.h"
+#include "bitmap.h"
 #include "brush.h"
 #include "clip.h"
 #include "pen.h"
@@ -30,7 +31,7 @@
 #include "acme/prototype/string/str.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/style.h"
-#include "nanosvg/nanosvg.h"
+#include <nanosvg.h>
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "aura/graphics/write_text/_defer_geometry2d_item.h"
 
@@ -7307,7 +7308,8 @@ namespace draw2d
       if (bExternalRendering || m_pgraphicsbufferitem)
       {
 
-         m_pointTarget = rectangleFrame.origin();
+         m_pointTarget = !bExternalRendering && m_pgraphicsbufferitem && m_pgraphicsbufferitem->m_bTightRawBuffer
+            ? ::i32_point{} : rectangleFrame.origin();
 
          m_sizeTarget = rectangleFrame.size();
 
@@ -7324,6 +7326,47 @@ namespace draw2d
       m_bTargetRectangleModified = false;
 
       update_matrix();
+
+#if defined(__REACTOS__)
+      if (!bExternalRendering && m_pgraphicsbufferitem && m_pimageTarget
+         && system()->draw2d()->graphics_context_does_full_redraw())
+      {
+         // Clear once at the frame boundary, including frames painted through
+         // a separate drawable. Do not depend on a transparent GDI+ primitive
+         // or on an interaction's parent/drawing flags to replace old pixels.
+         // Partial-redraw backends must retain their undamaged backing pixels.
+         auto pbitmap = m_pimageTarget->m_pdraw2dbitmap;
+         if (pbitmap)
+         {
+            const auto size = pbitmap->size();
+            if (size.cx > 0 && size.cy > 0 && size.cx <= INT_MAX / 4)
+            {
+               sync_flush();
+               const auto stride = size.cx * 4;
+               auto & transparentPixels = m_memoryTransparentFrame;
+               const auto byteCount = (::u64)stride * (::u64)size.cy;
+               if (byteCount > (::u64)::numeric_info<::memsize>::maximum())
+               {
+                  throw ::exception(error_bad_argument);
+               }
+               if (transparentPixels.size() != (::memsize)byteCount)
+               {
+                  transparentPixels.set_size((::memsize)byteCount);
+                  ::memory_set(transparentPixels.data(), 0, transparentPixels.size());
+               }
+               pbitmap->write_pixels(size, {},
+                  (const ::image32_t *)transparentPixels.data(), stride, true);
+               if (!payload("reactos_frame_clear_traced").is_true())
+               {
+                  informationf("ReactOSFrameClear bitmap=%p size=(%d,%d) raw pixels replaced",
+                     pbitmap.m_p, size.cx, size.cy);
+                  payload("reactos_frame_clear_traced") = true;
+               }
+            }
+         }
+      }
+#endif
+
 
 
 

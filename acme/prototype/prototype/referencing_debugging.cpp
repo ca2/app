@@ -299,8 +299,10 @@ void destruct_particle_reference_item_array(::subparticle::referencing_debugging
       preferencingdebugging->m_preferenceitema = nullptr;
 
       delete preferenceitema;
-
+      
    }
+
+   preferencingdebugging->m_psubparticle = nullptr;
 
 }
 

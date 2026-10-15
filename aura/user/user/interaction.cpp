@@ -15976,17 +15976,17 @@ if(get_parent())
 
       //~ }
 
-      for_user_interaction_children(puserinteraction, this)
-      {
-
-         if (!(puserinteraction->m_ewindowflag & ::e_window_flag_window_created))
-         {
-
-            return false;
-
-         }
-
-      }
+//      for_user_interaction_children(puserinteraction, this)
+//      {
+//
+//         if (!(puserinteraction->m_ewindowflag & ::e_window_flag_window_created))
+//         {
+//
+//            return false;
+//
+//         }
+//
+//      }
 
       ::string strType(::type(*this).raw_name());
 

@@ -1879,6 +1879,8 @@ void * task::s_os_task(void * p)
       auto ptaskhandler = ::transfer_as_pointer((::task_handler *)p);
 
       __check_refdbg
+      
+      auto ptaskRaw_  = ptaskhandler->m_ptask.m_p;
 
       ptaskhandler->__task_handle();
 
@@ -1892,23 +1894,74 @@ void * task::s_os_task(void * p)
          auto itask = ptaskhandler->m_itaskHandler;
          
          auto psystem = ::system();
-
-         psystem->post([htask, itask]()
+         
+         if(psystem == ptaskRaw_)
+         {
+            
+            try
             {
 
+               _os_task_destroy(htask, itask);
+
+            }
+            catch (...)
+            {
+
+
+            }
+            
+            try
+            {
+               
+               // System task is ending, so:
+               //    - Force release of all system references
+               //      because there maybe many references that weren't released.
+               
+               while(psystem->m_countReference > 0)
+               {
+                  
+                  try
+                  {
+                     
+                     psystem->release();
+
+                  }
+                  catch(...)
+                  {
+                     
+                     
+                  }
+                  
+               }
+            
+            }
+            catch(...)
+            {
+            
+            }
+
+         }
+         else
+         {
+            
+            psystem->post([htask, itask]()
+                          {
+               
                try
                {
-
+                  
                   _os_task_destroy(htask, itask);
-
+                  
                }
                catch (...)
                {
-
-
+                  
+                  
                }
-
+               
             });
+            
+         }
 
       }
 

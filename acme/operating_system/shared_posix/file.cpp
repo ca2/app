@@ -8,8 +8,10 @@
 #include "platform.h"
 #include "acme/operating_system/shared_posix/c_errno.h"
 #include "acme/operating_system/file.h"
-#include <unistd.h>
 
+
+#if !defined(WINDOWS)
+#include <unistd.h>
 
 ::file::path get_current_directory_path()
 {
@@ -53,6 +55,10 @@
 #endif
    
 }
+
+
+
+#endif
 
 
 

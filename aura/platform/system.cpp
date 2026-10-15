@@ -1288,6 +1288,8 @@ namespace aura
 
       strImplementationName = file()->safe_get_string(path);
 
+//      throw ::exception(todo);
+
       if(strImplementationName.has_character())
       {
 

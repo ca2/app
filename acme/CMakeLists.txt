@@ -810,6 +810,8 @@ list(APPEND library_source
         platform/tracer.cpp
         platform/tracer.h
         platform/trace_category.cpp
+        platform/user_interaction_sink.cpp
+        platform/user_interaction_sink.h
         platform/uuid.cpp
         platform/uuid.h
         platform/url_context.cpp
@@ -2523,7 +2525,9 @@ if (${WIN32} OR ${UWP})
     list(APPEND library_source
             operating_system/windows_common/com/bstring.cpp
             operating_system/windows_common/com/bstring.h
-            operating_system/windows_common/com/comptr.h
+       operating_system/windows_common/call_stack.cpp
+
+       operating_system/windows_common/com/comptr.h
             operating_system/windows_common/com/comptr_array.h
             operating_system/windows_common/com/cotaskptr.h
             operating_system/windows_common/com/hresult_exception.cpp

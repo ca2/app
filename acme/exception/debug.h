@@ -102,7 +102,11 @@ inline void __assert_ok(const ::particle * p, const_char_pointer pszFile, ::i32 
 #elif defined(LINUX) || defined(__BSD__)
 #define ASSERT_OK(cond)
 #else
-#define ASSERT_OK(cond) __noop;
+#if defined(_MSC_VER)
+#define ASSERT_OK(cond) __noop
+#else
+#define ASSERT_OK(cond) ((void)0)
+#endif
 #endif
 #endif
 

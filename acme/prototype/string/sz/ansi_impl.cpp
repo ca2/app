@@ -1,5 +1,6 @@
 // Refactored by camilo on 2022-11-04 05:43 <3ThomasBorregaardSorensen!!
 #include "platform.h"
+#include "acme/operating_system/windows/printf_format.h"
 #include "_template.h"
 #include <string.h>
 #include <stdio.h>
@@ -240,7 +241,7 @@ CLASS_DECL_ACME character_count  get_formatted_length(const_char_pointer pszForm
 
 #ifdef WINDOWS
 
-   return _vscprintf(pszFormat, args);
+   return _vscprintf(CA2_PRINTF_FORMAT(pszFormat), args);
 
 #else
 
@@ -256,7 +257,7 @@ CLASS_DECL_ACME character_count _string_format(::ansi_character * pszBuffer, cha
 
 #ifdef WINDOWS
 
-   return vsprintf_s(pszBuffer, (size_t)nlength, pszFormat, args);
+   return vsprintf_s(pszBuffer, (size_t)nlength, CA2_PRINTF_FORMAT(pszFormat), args);
 
 #else
 

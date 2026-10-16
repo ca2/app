@@ -15,7 +15,7 @@ namespace helloaxis
       ::sphere::application(pparticle)
    {
 
-      m_strAppName = "app/helloaxis";
+      m_strAppName = "helloaxis";
       m_strLibraryName = "app/helloaxis";
       m_strBaseSupportId = "ca2_flag";
       m_bLicense = false;

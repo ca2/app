@@ -82,7 +82,7 @@ namespace coding
 
       m_strAppId = "integration/integration";
 
-      m_strAppName = "integration/integration";
+      m_strAppName = "integration";
 
       m_strBaseSupportId = "integration/integration";
 

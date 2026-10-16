@@ -888,7 +888,7 @@ bool happening::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-      printf_line("happening(%d)::_wait(timeWait(m_iSecond=%lld,m_iNanosecond=%lld,c=%llX,m=%llX))", m_iEventSerialId, timeWait.m_iSecond, timeWait.m_iNanosecond, m_pcond, m_pmutex);
+      printf_line("happening(%d)::_wait(timeWait(m_iSecond=%lld,m_iNanosecond=%lld,c=%p,m=%p))", m_iEventSerialId, timeWait.m_iSecond, timeWait.m_iNanosecond, m_pcond, m_pmutex);
 
 #endif
 

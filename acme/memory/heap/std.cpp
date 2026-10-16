@@ -546,7 +546,8 @@ namespace heap
       void free_debug(void * pmemory, ::i32 iBlockType) override
       {
 
-         if ((iptr)pmemory < 1024)
+         // Address ordering must be unsigned: valid 32-bit allocations can be above 2 GiB.
+         if ((uptr)pmemory < 1024)
          {
 
             return;

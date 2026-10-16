@@ -11458,7 +11458,7 @@ namespace user
 
       _unlocked_plain_edit_on_change_text_selection(e_source_sync);
 
-      informationf("insert tree->iSelBeg=%lld,iSelEnd=%lld", m_ptree->m_iSelBeg, m_ptree->m_iSelEnd);
+      informationf("insert tree->iSelBeg=%lld,iSelEnd=%lld", static_cast<long long>(m_ptree->m_iSelBeg), static_cast<long long>(m_ptree->m_iSelEnd));
       informationf("insert edit file size=%lld", m_ptree->m_peditfile->m_sizeEditFile);
 
       //}

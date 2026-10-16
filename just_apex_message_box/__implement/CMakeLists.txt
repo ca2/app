@@ -69,7 +69,7 @@ if(${WIN32})
 
 
     target_link_libraries(${PROJECT_NAME} PRIVATE ${executable_references})
-    add_dependencies(${PROJECT_NAME} copy_libraries_step)
+    #add_dependencies(${PROJECT_NAME} copy_libraries_step)
 
 
 elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})

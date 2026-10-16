@@ -9,6 +9,7 @@ namespace windows
 {
 
    CLASS_DECL_ACME ::u32 get_windows_build_number();
+   CLASS_DECL_ACME bool is_windows_xp();
    CLASS_DECL_ACME bool is_windows_11();
    CLASS_DECL_ACME bool is_windows_10();
 

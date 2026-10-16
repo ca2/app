@@ -1872,11 +1872,20 @@ void * task::s_os_task(void * p)
 
    ::i32 iExitCode = 0;
 
+#if defined(WINDOWS)
+   // Keep the runtime alive until the handler and thread-handle cleanup finish.
+   ::pointer<::task> tasklifetime;
+#endif
+
    {
 
       __check_refdbg
 
       auto ptaskhandler = ::transfer_as_pointer((::task_handler *)p);
+
+#if defined(WINDOWS)
+      tasklifetime = ptaskhandler->m_ptask;
+#endif
 
       __check_refdbg
 
@@ -1891,6 +1900,11 @@ void * task::s_os_task(void * p)
 
          auto itask = ptaskhandler->m_itaskHandler;
          
+#if defined(WINDOWS)
+         // The handler may have released and destroyed the system task.
+         // Windows allows closing this thread's handle before the thread exits.
+         _os_task_destroy(htask, itask);
+#else
          auto psystem = ::system();
 
          psystem->post([htask, itask]()
@@ -1909,6 +1923,7 @@ void * task::s_os_task(void * p)
                }
 
             });
+#endif
 
       }
 

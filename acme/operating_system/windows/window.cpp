@@ -1486,9 +1486,9 @@ CLASS_DECL_ACME RECT as_RECT(const ::i32_rectangle & rectangle)
 CLASS_DECL_ACME ::operating_system::window as_operating_system_window(HWND hwnd)
 {
 
-   ::operating_system::windows_window window(hwnd);
-
-   return window.as_operating_system_window();
+   // Initialize every opaque word; native thread messages have a null HWND.
+   // Copying a narrow Windows wrapper can otherwise retain indeterminate padding.
+   return {::windowing::e_operating_ambient_windows, (::u64)(::uptr)hwnd, 0, 0};
 
 }
 

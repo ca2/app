@@ -150,7 +150,7 @@ namespace userex
 
          string str;
 
-         str.formatf("%d", time.integral_second());
+         str.formatf("%lld", static_cast<long long>(time.integral_second()));
 
          pinteraction->set_text(str, ::e_source_sync);
 

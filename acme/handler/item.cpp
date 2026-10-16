@@ -36,7 +36,7 @@ void item::get_debug_title(char_pointer sz, character_count c) const
 
    strTitle.append_formatf("(%s, item=%lld)",
       get_e_element_text(m_item.m_eelement).c_str(),
-      m_item.m_iItem);
+      static_cast<long long>(m_item.m_iItem));
 
    ::string_count_copy(sz, strTitle.c_str(), c);
 

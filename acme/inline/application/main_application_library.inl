@@ -157,6 +157,12 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_con
 APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)()
 {
 
+#if defined(WINDOWS)
+   // The system worker must not destroy the runtime while the main thread
+   // still returns through windowing, thread cleanup, and exit-code retrieval.
+   ::pointer<::platform::system> systemlifetime(::system());
+#endif
+
    int iExitCode = -1;
 
    {

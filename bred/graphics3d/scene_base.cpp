@@ -408,7 +408,7 @@ namespace graphics3d
          m_pimmersionlayer->on_initial_camera_load();
       }
 
-      informationf("Scene '%s' loaded. Total renderables: %d", fileName.c_str(), m_mapSceneRenderable.size());
+      informationf("Scene '%s' loaded. Total renderables: %lld", fileName.c_str(), static_cast<long long>(m_mapSceneRenderable.size()));
 
                if (m_strSkybox.has_character())
       {

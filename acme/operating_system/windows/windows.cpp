@@ -1009,6 +1009,33 @@ namespace windows
    
    typedef LONG(WINAPI *RtlGetVersionProc)(PRTL_OSVERSIONINFOW);
 
+   CLASS_DECL_ACME bool is_windows_xp()
+   {
+      OSVERSIONINFOEXW version{};
+      version.dwOSVersionInfoSize = sizeof(version);
+
+      auto hNtDll = ::GetModuleHandleW(L"ntdll.dll");
+      auto getVersion = hNtDll
+         ? reinterpret_cast<RtlGetVersionProc>(::GetProcAddress(hNtDll, "RtlGetVersion"))
+         : nullptr;
+
+      if (!getVersion || getVersion(reinterpret_cast<PRTL_OSVERSIONINFOW>(&version)) != 0)
+      {
+         version = {};
+         version.dwOSVersionInfoSize = sizeof(version);
+         if (!::GetVersionExW(reinterpret_cast<OSVERSIONINFOW *>(&version)))
+         {
+            return false;
+         }
+      }
+
+      // XP x64 shares NT 5.2 with Server 2003, so check the product type too.
+      return version.dwPlatformId == VER_PLATFORM_WIN32_NT
+         && version.dwMajorVersion == 5
+         && (version.dwMinorVersion == 1
+            || (version.dwMinorVersion == 2 && version.wProductType == VER_NT_WORKSTATION));
+   }
+
    CLASS_DECL_ACME ::u32 get_windows_build_number()
    {
       HMODULE hNtDll = GetModuleHandleW(L"ntdll.dll");

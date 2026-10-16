@@ -7,6 +7,7 @@
 // 08/12/06 (mv)
 
 #include "platform.h"
+#include "acme/operating_system/windows/printf_format.h"
 #include <wchar.h>
 #include <stdio.h>
 #include <stdarg.h>
@@ -17,7 +18,7 @@
 {
    va_list args;
    va_start(args, format);
-   ::i32 ret = vprintf(format, args);
+   ::i32 ret = vprintf(CA2_PRINTF_FORMAT(format), args);
    va_end(args);
 
    return ret;
@@ -28,7 +29,7 @@
 {
    va_list args;
    va_start(args, format);
-   ::i32 ret = vwprintf(format, args);
+   ::i32 ret = vwprintf(CA2_PRINTF_FORMAT(format), args);
    va_end(args);
 
    return ret;
@@ -39,7 +40,7 @@
 ::i32 vprintf_dup(const_char_pointer format, va_list args)
 {
 
-   return vprintf(format, args);
+   return vprintf(CA2_PRINTF_FORMAT(format), args);
 
 }
 
@@ -47,7 +48,7 @@
 ::i32 vwprintf_dup(const ::wide_character *format, va_list args)
 {
 
-   return vwprintf(format, args);
+   return vwprintf(CA2_PRINTF_FORMAT(format), args);
 
 }
 

@@ -1,6 +1,9 @@
 //Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSorensen!!
 #include "platform.h"
 #include "heap_allocator.h"
+#if defined(MEMORY_DIAGNOSTICS)
+#include "acme/memory/diagnostics.h"
+#endif
 #include "acme/memory/allocator.h"
 #include "acme/memory/heap.h"
 #include "acme/_operating_system.h"
@@ -71,6 +74,9 @@ namespace windows_common
 
       }
 
+#if defined(MEMORY_DIAGNOSTICS)
+      ca2_memory_diagnostics_allocate(p, (size_t)s, pszAnnotation);
+#endif
       return p;
 
    }
@@ -81,7 +87,13 @@ namespace windows_common
 
       raw_critical_section_lock criticalsectionlock(&m_criticalsection);
 
+#if defined(MEMORY_DIAGNOSTICS)
+      auto result = ::HeapReAlloc(m_handle, 0, p, s);
+      ca2_memory_diagnostics_reallocate(p, result, (size_t)s, pszAnnotation);
+      return result;
+#else
       return ::HeapReAlloc(m_handle, 0, p, s);
+#endif
 
    }
 
@@ -91,7 +103,11 @@ namespace windows_common
 
       raw_critical_section_lock criticalsectionlock(&m_criticalsection);
 
-      if (!::HeapFree(m_handle, 0, p))
+      auto freed = ::HeapFree(m_handle, 0, p);
+#if defined(MEMORY_DIAGNOSTICS)
+      if (freed) ca2_memory_diagnostics_free(p);
+#endif
+      if (!freed)
       {
 
          DWORD dwError = ::GetLastError();

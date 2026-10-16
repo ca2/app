@@ -20,7 +20,7 @@ namespace app_app
       
       m_strAppId = "app/app";
 
-      m_strAppName = "app/app";
+      m_strAppName = "app";
 
       m_strBaseSupportId = "app_app";
 

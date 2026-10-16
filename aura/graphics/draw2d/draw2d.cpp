@@ -715,9 +715,13 @@ namespace draw2d
       if (sizeCreate.is_empty())
       {
 
-         auto sizeModernOnePixel = ::i32_size{1920, 1080};
+         //auto sizeModernOnePixel = ::i32_size{1920, 1080};
 
-         sizeCreate = sizeModernOnePixel;
+         //sizeCreate = sizeModernOnePixel;
+
+         auto sizeNonZeroOnly = ::i32_size{1, 1};
+
+         sizeCreate = sizeNonZeroOnly;
 
       }
 

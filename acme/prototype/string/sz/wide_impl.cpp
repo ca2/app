@@ -1,5 +1,6 @@
 // Refactored by camilo on 2022-11-04 05:42 <3ThomasBorregaardSorensen!!
 #include "platform.h"
+#include "acme/operating_system/windows/printf_format.h"
 #include "_template.h"
 #include <wchar.h>
 //CLASS_DECL_ACME  constexpr character_count     character_count_to_byte_length(const_widechar_trigger, character_count nCharLength) { return (::memsize)(nCharLength * sizeof(::wide_character)); }
@@ -191,7 +192,7 @@ CLASS_DECL_ACME character_count  get_formatted_length(const ::wide_character * p
 
    wstring wstr(pszFormat);
 
-   return _vscwprintf(wstr.c_str(), args);
+   return _vscwprintf(CA2_PRINTF_FORMAT(wstr.c_str()), args);
 
 #else
 
@@ -215,7 +216,7 @@ CLASS_DECL_ACME character_count _string_format(::wide_character * pszBuffer, con
 
    va_copy(argsLength, args);
 
-   auto nlength = _vscwprintf(pszFormat, argsLength);
+   auto nlength = _vscwprintf(CA2_PRINTF_FORMAT(pszFormat), argsLength);
 
    va_end(argsLength);
 
@@ -226,7 +227,7 @@ CLASS_DECL_ACME character_count _string_format(::wide_character * pszBuffer, con
 
    }
 
-   return _vswprintf(pszBuffer, pszFormat, args);
+   return _vswprintf(pszBuffer, CA2_PRINTF_FORMAT(pszFormat), args);
 
 #else
 
@@ -243,7 +244,7 @@ CLASS_DECL_ACME character_count _string_format(::wide_character * pszBuffer, cha
 #if defined(__REACTOS__)
    if (!pszBuffer || nlength <= 0 || !pszFormat)
       return -1;
-   int result = _vsnwprintf(pszBuffer, (size_t)nlength, pszFormat, args);
+   int result = _vsnwprintf(pszBuffer, (size_t)nlength, CA2_PRINTF_FORMAT(pszFormat), args);
    if (result < 0 || result >= nlength)
    {
       pszBuffer[0] = 0;

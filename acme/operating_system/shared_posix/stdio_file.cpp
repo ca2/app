@@ -596,7 +596,7 @@ memory file_system::__safe_get_memory(const ::file::path& pathParam, character_c
    if (iRead != size)
    {
 
-      warningf("read %lld bytes from reported size %lld", iRead, size);
+      warningf("read %zu bytes from reported size %ld", iRead, size);
 
    }
    //str.release_buffer(size);

@@ -1,5 +1,6 @@
 // Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSorensen!!
 #include "platform.h"
+#include "acme/operating_system/windows/printf_format.h"
 #include "call.h"
 #include "type.h"
 #include "factory.h"
@@ -918,7 +919,7 @@ void particle::printf_line(const_char_pointer pszFormat, ...) const
 
    strLine += "\n";
 
-   vprintf(strLine.c_str(), arguments);
+   vprintf(CA2_PRINTF_FORMAT(strLine.c_str()), arguments);
 
    va_end(arguments);
 
@@ -934,7 +935,7 @@ void particle::printf_out(const_char_pointer pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   vprintf(pszFormat, arguments);
+   vprintf(CA2_PRINTF_FORMAT(pszFormat), arguments);
 
    va_end(arguments);
 
@@ -980,7 +981,7 @@ void particle::errf_line(const_char_pointer pszFormat, ...) const
 
    strLine += "\n";
 
-   vfprintf(stderr, strLine.c_str(), arguments);
+   vfprintf(stderr, CA2_PRINTF_FORMAT(strLine.c_str()), arguments);
 
    va_end(arguments);
 
@@ -996,7 +997,7 @@ void particle::errf_out(const_char_pointer pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   vfprintf(stderr, pszFormat, arguments);
+   vfprintf(stderr, CA2_PRINTF_FORMAT(pszFormat), arguments);
 
    va_end(arguments);
 

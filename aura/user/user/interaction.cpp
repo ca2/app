@@ -28852,7 +28852,7 @@ __check_refdbg;
          {
             informationf(
                "-------------------------------------------------------------m_pitemHover->m_item.m_iItem = %lld",
-               m_pitemHover->m_item.m_iItem);
+               static_cast<long long>(m_pitemHover->m_item.m_iItem));
          }
          else
          {
@@ -28979,7 +28979,7 @@ __check_refdbg;
          {
 
 #if defined(USER_INTERACTION_HOVER_LOG)
-            informationf("user::interaction::update_hover set_need_redraw (%d rectangle(s))", rectanglea.size());
+            informationf("user::interaction::update_hover set_need_redraw (%lld rectangle(s))", static_cast<long long>(rectanglea.size()));
 
             for (auto & rectangle : rectanglea)
             {

@@ -825,19 +825,19 @@ namespace coding
       else if (time < 1_hour)
       {
 
-         strElapsedTime.formatf("%d'%02d''%03d", time.integral_minute(), time.m_iSecond % 60, time.m_iNanosecond / 1'000'000);
+         strElapsedTime.formatf("%lld'%02lld''%03lld", static_cast<long long>(time.integral_minute()), static_cast<long long>(time.m_iSecond % 60), static_cast<long long>(time.m_iNanosecond / 1'000'000));
 
       }
       else if (time < 24_hour)
       {
 
-         strElapsedTime.formatf("%dh%02d'%02d''%03d", time.integral_hour(), time.integral_minute() % 60, time.m_iSecond % 60, time.m_iNanosecond / 1'000'000);
+         strElapsedTime.formatf("%lldh%02lld'%02lld''%03lld", static_cast<long long>(time.integral_hour()), static_cast<long long>(time.integral_minute() % 60), static_cast<long long>(time.m_iSecond % 60), static_cast<long long>(time.m_iNanosecond / 1'000'000));
 
       }
       else if (time < 365_day)
       {
 
-         strElapsedTime.formatf("%dd%02dh%02d'%02d''%03d", time.integral_day(), time.integral_hour() % 24, time.integral_minute() % 60, time.m_iSecond % 60, time.m_iNanosecond / 1'000'000);
+         strElapsedTime.formatf("%lldd%02lldh%02lld'%02lld''%03lld", static_cast<long long>(time.integral_day()), static_cast<long long>(time.integral_hour() % 24), static_cast<long long>(time.integral_minute() % 60), static_cast<long long>(time.m_iSecond % 60), static_cast<long long>(time.m_iNanosecond / 1'000'000));
 
       }
       else

@@ -3405,6 +3405,16 @@ if (${__HAIKU__})
     )
 endif()
 
+option(MEMORY_DIAGNOSTICS "Track Windows heap blocks with bounded stack diagnostics" OFF)
+if(MEMORY_DIAGNOSTICS)
+    if(NOT WIN32)
+        message(FATAL_ERROR "MEMORY_DIAGNOSTICS currently supports Windows heap allocation")
+    endif()
+    list(APPEND library_source memory/diagnostics.cpp)
+    set_source_files_properties(memory/diagnostics.cpp operating_system/windows_common/heap_allocator.cpp
+        PROPERTIES COMPILE_DEFINITIONS MEMORY_DIAGNOSTICS=1 SKIP_PRECOMPILE_HEADERS ON)
+endif()
+
 add_library(${PROJECT_NAME} SHARED ${library_source})
 
 

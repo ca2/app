@@ -115,7 +115,10 @@ namespace geo
 
       ::file::path pathWeatherBin;
 
-      pathWeatherBin = pathFolder / "weather.bin";
+      // Version 2 always stores array counts as i64, independent of pointer size.
+      pathWeatherBin = pathFolder / "weather-v2.bin";
+      auto pathWeatherRead = pfile->exists(pathWeatherBin)
+         ? pathWeatherBin : pathFolder / "weather.bin";
 
       {
 
@@ -124,7 +127,7 @@ namespace geo
 
             DEBUGF_LINE("abcxxx2 Going to open file : \"%s\".", pathWeatherBin.c_str());
 
-            auto memory = pfile->as_memory(pathWeatherBin);
+            auto memory = pfile->as_memory(pathWeatherRead);
 
             DEBUGF_LINE("abcxxx3");
 
@@ -136,16 +139,82 @@ namespace geo
 
             DEBUGF_LINE("abcxxx5");
 
-            stream >> m_straCity;
-            DEBUGF_LINE("abcxxx5.1 m_straCity.size() == %d", m_straCity.size());
-            stream >> m_straCityLo;
-            DEBUGF_LINE("abcxxx5.2 m_straCityLo.size() == %d", m_straCityLo.size());
-            stream >> m_iaIds;
-            DEBUGF_LINE("abcxxx5.3 m_iaIds == %d", m_iaIds.size());
-            stream >> m_daLon;
-            DEBUGF_LINE("abcxxx5.4 m_daLon == %d", m_daLon.size());
-            stream >> m_daLat;
-            DEBUGF_LINE("abcxxx5.5 m_daLat == %d", m_daLat.size());
+            ::i64 firstCount = 0;
+            stream >> firstCount;
+            auto countBytes = pathWeatherRead == pathWeatherBin
+               || (firstCount > 1 && firstCount <= 1'000'000) ? 8 : 4;
+            pfile->seek_to_begin();
+
+            auto readArray = [&](auto & array, ::memsize minimumItemBytes, ::collection::count expectedCount = 0)
+            {
+               ::i64 count = 0;
+               if (countBytes == 8)
+               {
+                  stream >> count;
+               }
+               else
+               {
+                  ::i32 legacyCount = 0;
+                  stream >> legacyCount;
+                  count = legacyCount;
+               }
+               // Bound allocations before entering the general array reader.
+               if (stream.nok() || count < 2 || count > 1'000'000
+                  || count > pfile->_right_size() / minimumItemBytes
+                  || (expectedCount > 0 && count != expectedCount))
+               {
+                  stream.set_nok();
+                  return false;
+               }
+               array.set_size((::collection::count)count);
+               for (auto & item : array)
+               {
+                  if constexpr (requires { item.get_buffer((character_count)0); })
+                  {
+                     auto length = stream.read_buffer_length();
+                     if (stream.nok() || length > (::u64)pfile->_right_size())
+                     {
+                        stream.set_nok();
+                        return false;
+                     }
+                     auto buffer = item.get_buffer((character_count)length);
+                     stream.read({buffer, (::memsize)length});
+                     item.release_buffer((character_count)length);
+                  }
+                  else
+                  {
+                     stream >> item;
+                  }
+                  if (stream.nok())
+                  {
+                     return false;
+                  }
+               }
+               return true;
+            };
+
+            bool cacheReadOk = readArray(m_straCity, 1)
+               && readArray(m_straCityLo, 1, m_straCity.size())
+               && readArray(m_iaIds, sizeof(::i64), m_straCity.size())
+               && readArray(m_daLon, sizeof(::f64), m_straCity.size())
+               && readArray(m_daLat, sizeof(::f64), m_straCity.size());
+            if (cacheReadOk)
+            {
+               for (::collection::index i = 0; i < m_daLon.size(); ++i)
+               {
+                  if (!(m_daLon[i] >= -180.0 && m_daLon[i] <= 180.0
+                     && m_daLat[i] >= -90.0 && m_daLat[i] <= 90.0))
+                  {
+                     cacheReadOk = false;
+                     break;
+                  }
+               }
+            }
+            DEBUGF_LINE("abcxxx5.1 m_straCity.size() == %lld", static_cast<long long>(m_straCity.size()));
+            DEBUGF_LINE("abcxxx5.2 m_straCityLo.size() == %lld", static_cast<long long>(m_straCityLo.size()));
+            DEBUGF_LINE("abcxxx5.3 m_iaIds == %lld", static_cast<long long>(m_iaIds.size()));
+            DEBUGF_LINE("abcxxx5.4 m_daLon == %lld", static_cast<long long>(m_daLon.size()));
+            DEBUGF_LINE("abcxxx5.5 m_daLat == %lld", static_cast<long long>(m_daLat.size()));
 
 
             //file()->to_array(m_straCity,          auto psystem = system();
@@ -175,7 +244,7 @@ namespace geo
    //pdirectorysystem->system() / "weather-lat.bin");
 
 
-            bOk = m_straCityLo.get_size() == m_straCity.get_size()
+            bOk = cacheReadOk && m_straCityLo.get_size() == m_straCity.get_size()
                && m_straCity.get_size() == m_iaIds.get_size()
                && m_iaIds.get_size() == m_daLon.get_size()
                && m_daLon.get_size() == m_daLat.get_size()
@@ -187,7 +256,7 @@ namespace geo
                for (::i32 i = 0; i < 20; i++)
                {
 
-                  informationf("dump: %s, %s, %d, %f, %f\n", m_straCity[i].c_str(), m_straCityLo[i].c_str(), m_iaIds[i], m_daLon[i], m_daLat[i]);
+                  informationf("dump: %s, %s, %lld, %f, %f\n", m_straCity[i].c_str(), m_straCityLo[i].c_str(), (long long)m_iaIds[i], m_daLon[i], m_daLat[i]);
 
                }
 
@@ -377,11 +446,19 @@ namespace geo
 
                binary_stream stream(pfileOut);
 
-               stream << m_straCity;
-               stream << m_straCityLo;
-               stream << m_iaIds;
-               stream << m_daLon;
-               stream << m_daLat;
+               auto writeArray = [&](const auto & array)
+               {
+                  stream << (::i64)array.size();
+                  for (const auto & item : array)
+                  {
+                     stream << item;
+                  }
+               };
+               writeArray(m_straCity);
+               writeArray(m_straCityLo);
+               writeArray(m_iaIds);
+               writeArray(m_daLon);
+               writeArray(m_daLat);
 
             }
 

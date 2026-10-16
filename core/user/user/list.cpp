@@ -1687,32 +1687,32 @@ namespace user
 
       }
 
-      auto psystem = system();
-
-      auto pdraw2d = psystem->draw2d();
-
-      //auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
-
-      auto pdraw2dgraphics = pdraw2d->acquire_memory_graphics({256, 256}, draw2d_domain());
-
-      //draw_select ds(this, pdraw2dgraphics);
-
-      pdraw2dgraphics->set_font(this, ::e_element_none);
-
-      auto pwritetextfont = pdraw2dgraphics->get_current_font();
-      
-      pwritetextfont->defer_update(pdraw2dgraphics);
-
-      auto iFontHeight = pwritetextfont->text_metric(pdraw2dgraphics).get_line_height();
-
-      iItemHeight = 1;
-
-      if (iFontHeight > iItemHeight)
-      {
-
-         iItemHeight = (decltype(iItemHeight)) maximum(iFontHeight, iItemHeight);
-
-      }
+//      auto psystem = system();
+//
+//      auto pdraw2d = psystem->draw2d();
+//
+//      //auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
+//
+//      auto pdraw2dgraphics = pdraw2d->acquire_memory_graphics({256, 256}, draw2d_domain());
+//
+//      //draw_select ds(this, pdraw2dgraphics);
+//
+//      pdraw2dgraphics->set_font(this, ::e_element_none);
+//
+//      auto pwritetextfont = pdraw2dgraphics->get_current_font();
+//      
+//      pwritetextfont->defer_update(pdraw2dgraphics);
+//
+//      auto iFontHeight = pwritetextfont->text_metric(pdraw2dgraphics).get_line_height();
+//
+//      iItemHeight = 1;
+//
+//      if (iFontHeight > iItemHeight)
+//      {
+//
+//         iItemHeight = (decltype(iItemHeight)) maximum(iFontHeight, iItemHeight);
+//
+//      }
 
       //on_ui_event(event_calc_item_height, object_list, this);
 
@@ -1722,6 +1722,18 @@ namespace user
 
       if (m_bSingleColumnMode)
       {
+         
+         auto psystem = system();
+   
+         auto pdraw2d = psystem->draw2d();
+   
+         //auto pdraw2dgraphics = pdraw2d->create_memory_graphics({}, this);
+   
+         auto pdraw2dgraphics = pdraw2d->acquire_memory_graphics({256, 256}, draw2d_domain());
+   
+         //draw_select ds(this, pdraw2dgraphics);
+   
+         pdraw2dgraphics->set_font(this, ::e_element_none);
 
          m_iItemWidth = _001CalcColumnWidth(pdraw2dgraphics, 0);
 

@@ -35,7 +35,7 @@
 
 particle::~particle()
 {
-
+   
    m_pparticleSynchronization.release();
 
 }

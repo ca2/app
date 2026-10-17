@@ -523,7 +523,7 @@ namespace launch
 
 #if defined(WINDOWS)
 
-      ::string strExecutable = "shared_" + m_strAppRoot + "_" + m_strAppName + ".exe";
+      ::string strExecutable = "_" + m_strAppRoot + "_" + m_strAppName + ".exe";
 
 #else
 
@@ -544,6 +544,7 @@ namespace launch
       // }
       //
       //    }
+      strExecutable.find_replace("/", "_");
       strExecutable.find_replace("-", "_");
 
       auto pathExecutable = m_pathBinaryFolder / strExecutable;

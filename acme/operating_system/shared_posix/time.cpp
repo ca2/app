@@ -360,18 +360,7 @@ namespace earth
 class ::time & time::Now()
 {
 
-#ifdef __REACTOS__
-   const auto timespec = _get_timespec();
-#else
-   struct timespec timespec;
-
-   if (timespec_get(&timespec, TIME_UTC) != TIME_UTC)
-   {
-
-      throw "timespec_get failed!!";
-
-   }
-#endif
+   const auto timespec = get_utc_timespec();
 
    m_iSecond = timespec.tv_sec;
 

@@ -13,15 +13,20 @@
 #define CA2_TRACE_TO_FILE 0
 #endif
 #endif
-#if CA2_STD_TRACE || CA2_TRACE_TO_FILE
+#if defined(WINDOWS)
+#include "acme/_operating_system.h"
+CLASS_DECL_ACME void ca2_set_application_build_timestamp(const char *timestamp);
+CLASS_DECL_ACME void ca2_enable_standard_trace_file(bool enable);
+CLASS_DECL_ACME bool ca2_standard_trace_file_enabled();
+CLASS_DECL_ACME bool ca2_set_standard_trace_path(const wchar_t *path);
+#endif
+#if defined(WINDOWS) || CA2_STD_TRACE || CA2_TRACE_TO_FILE
 #include <errno.h>
 #include <stdio.h>
 #include <string.h>
 #include <wchar.h>
-#if defined(WINDOWS)
-#include "acme/_operating_system.h"
-#endif
-inline void ca2_write_standard_trace(const char *text, bool errorStream = true)
+inline void ca2_write_standard_trace(const char *text, bool errorStream = true,
+   const wchar_t *tracePath = nullptr)
 {
    if (!text)
       return;
@@ -49,43 +54,31 @@ inline void ca2_write_standard_trace(const char *text, bool errorStream = true)
       WriteFile(output, "\r\n", 2, &written, nullptr);
    }
 #endif
-#if CA2_TRACE_TO_FILE
-   wchar_t path[MAX_PATH];
-   DWORD count = GetModuleFileNameW(nullptr, path, MAX_PATH);
-   if (count && count < MAX_PATH)
+   // The system selects a per-run path beside its command-line/environment dumps.
+   // No trace is written beside the executable before that folder is available.
+   if (tracePath && *tracePath)
    {
-      wchar_t *slash = wcsrchr(path, L'\\');
-      if (slash && (size_t)(slash-path)+1+wcslen(L"ca2-trace.log") < MAX_PATH)
+      HANDLE file = CreateFileW(tracePath, FILE_APPEND_DATA, FILE_SHARE_READ | FILE_SHARE_WRITE,
+         nullptr, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+      if (file != INVALID_HANDLE_VALUE)
       {
-         wcscpy(slash+1, L"ca2-trace.log");
-         HANDLE file = CreateFileW(path, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
-            nullptr, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
-         if (file != INVALID_HANDLE_VALUE)
+         size_t left = strlen(text);
+         const char *cursor = text;
+         while (left)
          {
-            LARGE_INTEGER endOffset = {};
-            if (SetFilePointerEx(file, endOffset, nullptr, FILE_END))
-            {
-
-            size_t left = strlen(text);
-            const char *cursor = text;
-            while (left)
-            {
-               DWORD written = 0;
-               DWORD chunk = left > 65536 ? 65536 : (DWORD)left;
-               if (!WriteFile(file, cursor, chunk, &written, nullptr) || !written)
-                  break;
-               cursor += written;
-               left -= written;
-            }
-            DWORD written;
-            WriteFile(file, "\r\n", 2, &written, nullptr);
-            FlushFileBuffers(file);
-            }
-            CloseHandle(file);
+            DWORD written = 0;
+            DWORD chunk = left > 65536 ? 65536 : (DWORD)left;
+            if (!WriteFile(file, cursor, chunk, &written, nullptr) || !written)
+               break;
+            cursor += written;
+            left -= written;
          }
+         DWORD written;
+         WriteFile(file, "\r\n", 2, &written, nullptr);
+         FlushFileBuffers(file);
+         CloseHandle(file);
       }
    }
-#endif
    SetLastError(savedError);
 #else
 #if CA2_STD_TRACE

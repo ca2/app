@@ -5,6 +5,7 @@
 #include "acme.h"
 #include "system_setup.h"
 #include "system.h"
+#include "std_trace_output.h"
 #include "system_factory.h"
 //#include "sequencer.h"
 #include "application.h"
@@ -1381,10 +1382,22 @@ namespace platform
       auto pdatetime = datetime();
 
       string strLogTime = pdatetime->date_time_text_for_file_with_no_spaces();
+      const string strTraceTimestamp = strLogTime;
 
       strLogTime.replace_with("/", "-");
 
       strLogTime.replace_with("/", "_");
+
+#if defined(WINDOWS)
+      if (ca2_standard_trace_file_enabled())
+      {
+         auto pathTrace = directory_system()->home() / "application" / application()->m_strAppId
+            / (strTraceTimestamp + "-pid" + strPid + "-trace-log.txt");
+         directory_system()->create(pathTrace.folder());
+         file_system()->ensure_exists(pathTrace);
+         ca2_set_standard_trace_path(wstring(pathTrace));
+      }
+#endif
 
       {
 

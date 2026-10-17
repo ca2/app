@@ -7,6 +7,43 @@
 #include <mutex>
 
 static std::recursive_mutex g_tracerFlushMutex;
+#if defined(WINDOWS)
+static bool g_standardTraceFileEnabled = CA2_TRACE_TO_FILE != 0;
+static wchar_t g_standardTracePath[32768] = {};
+static char g_applicationBuildTimestamp[128] = "Application build timestamp: unavailable (not registered by entry point).";
+
+void ca2_set_application_build_timestamp(const char *timestamp)
+{
+   std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
+   if (timestamp && *timestamp)
+      snprintf(g_applicationBuildTimestamp, sizeof(g_applicationBuildTimestamp),
+         "Application built: %s (compiler local time)", timestamp);
+}
+
+void ca2_enable_standard_trace_file(bool enable)
+{
+   std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
+   g_standardTraceFileEnabled = enable;
+}
+
+bool ca2_standard_trace_file_enabled()
+{
+   std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
+   return g_standardTraceFileEnabled;
+}
+
+bool ca2_set_standard_trace_path(const wchar_t *path)
+{
+   std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
+   if (!path || wcslen(path) >= sizeof(g_standardTracePath) / sizeof(wchar_t))
+      return false;
+   wcscpy(g_standardTracePath, path);
+   // Write the header under the same lock as trace flushing, before any log records.
+   if (g_standardTraceFileEnabled && *path)
+      ca2_write_standard_trace(g_applicationBuildTimestamp, false, g_standardTracePath);
+   return true;
+}
+#endif
 #include "acme/platform/log.h"
 #include "acme/platform/system.h"
 
@@ -181,11 +218,16 @@ namespace platform
 
       std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
 
-#if CA2_STD_TRACE || CA2_TRACE_TO_FILE
+#if defined(WINDOWS) || CA2_STD_TRACE || CA2_TRACE_TO_FILE
       // Severity increases as the numeric trace level decreases.
       const bool errorStream = tracestatement.m_etracelevel >= e_trace_level_fatal
          && tracestatement.m_etracelevel <= e_trace_level_warning;
+#if defined(WINDOWS)
+      ca2_write_standard_trace(tracestatement.as_string().c_str(), errorStream,
+         g_standardTraceFileEnabled ? g_standardTracePath : nullptr);
+#else
       ca2_write_standard_trace(tracestatement.as_string().c_str(), errorStream);
+#endif
 #endif
 
       ::platform::logger * plogger = nullptr;

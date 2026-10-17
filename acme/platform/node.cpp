@@ -42,7 +42,7 @@ CLASS_DECL_ACME ::string friendly_byte_count(::u64 ul, const_char_pointer pszFor
 
 #ifdef WINDOWS_DESKTOP
 
-//__FACTORY_EXPORT void nano_http_wininet_factory(::factory::factory * pfactory);
+//__FACTORY_EXPORT void nano_http_winhttp_factory(::factory::factory * pfactory);
 __FACTORY_EXPORT void nano_compress_windows_factory(::factory::factory * pfactory);
 
 #endif
@@ -3100,7 +3100,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
 
 #elif defined(WINDOWS_DESKTOP)
 
-         return "wininet";
+         return "winhttp";
 
 #endif
          
@@ -3137,7 +3137,7 @@ bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
 
    //   auto pfactory = allocateø::factory::factory();
 
-   //   nano_http_wininet_factory(pfactory);
+   //   nano_http_winhttp_factory(pfactory);
 
    //   pfactory->merge_to_global_factory();
 

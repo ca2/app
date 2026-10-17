@@ -1,3 +1,49 @@
+# Refresh the entry-point compilation timestamp whenever this application is built.
+# Only the entry point is recompiled; the remaining application objects stay incremental.
+function(ca2_refresh_application_build_timestamp target entry_source)
+    set(stamp "${CMAKE_CURRENT_BINARY_DIR}/${target}-build-time.h")
+    if(NOT EXISTS "${stamp}")
+        file(WRITE "${stamp}" "// Build timestamp refresh dependency.\n")
+    endif()
+    add_custom_target(${target}_build_time
+        COMMAND "${CMAKE_COMMAND}" -E touch "${stamp}"
+        BYPRODUCTS "${stamp}"
+        VERBATIM)
+    set_property(SOURCE "${entry_source}" APPEND PROPERTY OBJECT_DEPENDS "${stamp}")
+    # Force inclusion also gives Visual Studio/MSVC a normal tracked header dependency.
+    if(MSVC)
+        set_property(SOURCE "${entry_source}" APPEND PROPERTY COMPILE_OPTIONS "/FI${stamp}")
+    else()
+        set_property(SOURCE "${entry_source}" APPEND PROPERTY COMPILE_OPTIONS "-include" "${stamp}")
+    endif()
+    add_dependencies(${target} ${target}_build_time)
+endfunction()
+
+# Copy a build target to a shared deployment path, including after configuration switches.
+# The check always runs when copy_target is requested; identical bytes are not rewritten.
+function(ca2_add_up_to_date_copy copy_target source_target destination)
+    if(NOT ARGC EQUAL 3)
+        message(FATAL_ERROR "ca2_add_up_to_date_copy expects: copy_target source_target destination")
+    endif()
+    if(NOT TARGET "${source_target}")
+        message(FATAL_ERROR "Copy source target does not exist: ${source_target}")
+    endif()
+    get_filename_component(destination_directory "${destination}" DIRECTORY)
+    if(destination_directory STREQUAL "")
+        set(destination_directory ".")
+    endif()
+    # Do not declare the shared destination as OUTPUT/BYPRODUCTS: another build
+    # configuration can overwrite it with a newer file containing different bytes.
+    add_custom_target("${copy_target}"
+        COMMAND "${CMAKE_COMMAND}" -E echo
+            "Checking ${copy_target} [$<CONFIG>]: $<TARGET_FILE:${source_target}> -> ${destination}"
+        COMMAND "${CMAKE_COMMAND}" -E make_directory "${destination_directory}"
+        COMMAND "${CMAKE_COMMAND}" -E copy_if_different
+            "$<TARGET_FILE:${source_target}>" "${destination}"
+        VERBATIM)
+    add_dependencies("${copy_target}" "${source_target}")
+endfunction()
+
 # Created by camilo on 2023-02 <3ThomasBorregaardSorensen!!
 # default configuration
 message(STATUS "source/app/_.cmake")
@@ -248,3 +294,25 @@ add_subdirectory(source)
 
 
 
+
+# CUBE applications must not require separate GCC/libstdc++/pthread runtime DLLs.
+# Compiler/runtime selection is independent of the Windows/ReactOS OS target.
+function(ca2_link_cube_mingw_runtimes directory)
+   get_property(cube_targets DIRECTORY "${directory}" PROPERTY BUILDSYSTEM_TARGETS)
+   foreach(cube_target IN LISTS cube_targets)
+      get_target_property(cube_type "${cube_target}" TYPE)
+      get_target_property(cube_definitions "${cube_target}" COMPILE_DEFINITIONS)
+      if(cube_type STREQUAL "EXECUTABLE" AND "CUBE" IN_LIST cube_definitions)
+         # -static also selects the static pthread dependency of libstdc++.
+         # Explicit Windows import libraries continue to link OS DLLs normally.
+         target_link_options("${cube_target}" PRIVATE -static -static-libgcc -static-libstdc++)
+      endif()
+   endforeach()
+   get_property(cube_subdirectories DIRECTORY "${directory}" PROPERTY SUBDIRECTORIES)
+   foreach(cube_subdirectory IN LISTS cube_subdirectories)
+      ca2_link_cube_mingw_runtimes("${cube_subdirectory}")
+   endforeach()
+endfunction()
+if(MINGW AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+   ca2_link_cube_mingw_runtimes("${CMAKE_SOURCE_DIR}")
+endif()

@@ -126,14 +126,7 @@ endif()
 
 message(STATUS "Output of LAUNCH_EXECUTABLE target custom_command dependency is \"${LAUNCH_EXECUTABLE}\"")
 
-add_custom_command(
-    OUTPUT ${LAUNCH_EXECUTABLE}
-    COMMAND echo "Copying from \"$<TARGET_FILE:${PROJECT_NAME}>\" to \"${LAUNCH_EXECUTABLE}\""
-    COMMAND cp $<TARGET_FILE:${PROJECT_NAME}> ${LAUNCH_EXECUTABLE}
-    DEPENDS ${PROJECT_NAME}
-)
-
-add_custom_target(deploy_${PROJECT_NAME} DEPENDS ${LAUNCH_EXECUTABLE})
+ca2_add_up_to_date_copy(deploy_${PROJECT_NAME} ${PROJECT_NAME} "${LAUNCH_EXECUTABLE}")
 
 
 

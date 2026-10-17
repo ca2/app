@@ -401,7 +401,7 @@ void datetime_to_filetime(::file_time * pfiletime, const ::earth::time & time)
 #include <windows.h>
 #include <time.h>
 
-CLASS_DECL_ACME struct timespec __get_timespec()
+CLASS_DECL_ACME struct timespec __get_utc_timespec()
 {
    FILETIME ft;
    GetSystemTimeAsFileTime(&ft);

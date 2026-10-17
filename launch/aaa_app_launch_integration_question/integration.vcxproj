@@ -38,7 +38,7 @@
     <ProjectGuid>{4B776F6A-069F-4696-A099-980D732543AC}</ProjectGuid>
     <RootNamespace>app</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>shared_console_http_get</ProjectName>
+    <ProjectName>_console_http_get</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

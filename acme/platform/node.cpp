@@ -1898,7 +1898,7 @@ namespace platform
       else
       {
 
-         strName = "shared_" + strName + ".exe";
+         strName = "_" + strName + ".exe";
 
       }
 

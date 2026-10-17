@@ -1,1 +1,1 @@
-port/imaging/port_freeimage
+port/port_freeimage

@@ -7,6 +7,9 @@
 //
 #include "platform.h"
 #include "http.h"
+#include <exception>
+#include <memory>
+#include <mutex>
 
 #include "acme/prototype/datetime/datetime.h"
 
@@ -25,6 +28,42 @@ namespace nano
    namespace http
    {
 
+      // Keep the request and its failure state alive across task dispatch. Capture
+      // failures inside the procedure and rethrow on the waiting caller's stack.
+      static void send_http_request(http *owner, const ::pointer<get>& request)
+      {
+         struct result_state
+         {
+            std::mutex mutex;
+            std::exception_ptr failure;
+            bool complete = false;
+         };
+         auto result = std::make_shared<result_state>();
+         owner->send(::procedure([request, result]()
+         {
+            std::exception_ptr failure;
+            try
+            {
+               request->run();
+            }
+            catch (...)
+            {
+               failure = std::current_exception();
+            }
+            std::lock_guard<std::mutex> lock(result->mutex);
+            result->failure = failure;
+            result->complete = true;
+         }, request->m_timeSyncTimeout));
+         std::exception_ptr failure;
+         {
+            std::lock_guard<std::mutex> lock(result->mutex);
+            if (!result->complete)
+               throw ::exception(error_timeout, "HTTP request timed out before receiving a response.");
+            failure = result->failure;
+         }
+         if (failure)
+            std::rethrow_exception(failure);
+      }
       http::http()
       {
 
@@ -122,7 +161,7 @@ namespace nano
             
             pnanohttpget->m_timeSyncTimeout = 5_min;
 
-            send(pnanohttpget);
+            send_http_request(this, pnanohttpget);
 
             auto strLocation = pnanohttpget->payload("out_headers")["location"].as_string();
 
@@ -165,10 +204,13 @@ namespace nano
 
          pnanohttpget->m_timeSyncTimeout = 5_min;
 
-         send(pnanohttpget);
+         send_http_request(this, pnanohttpget);
 
          auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_i32();
 
+         set["http_status_code"] = iHttpStatusCode;
+         if (iHttpStatusCode == 0)
+            throw ::exception(error_failed, "HTTP request completed without a response status: " + urlEffective.as_string());
          return iHttpStatusCode == 200;
 
       }
@@ -201,7 +243,7 @@ namespace nano
 
          pnanohttpget->want_memory_response();
 
-         send(pnanohttpget);
+         send_http_request(this, pnanohttpget);
 
          auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_i32();
 
@@ -250,7 +292,7 @@ namespace nano
 
          pnanohttpget->want_memory_response();
 
-         send(pnanohttpget);
+         send_http_request(this, pnanohttpget);
 
          auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_i32();
 

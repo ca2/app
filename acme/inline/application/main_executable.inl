@@ -3,6 +3,7 @@
 #define CLASS_DECL_APPLICATION_NAMESPACE CLASS_DECL_IMPORT
 #include "acme/inline/application/main.h"
 #include "startup_diagnostics.h"
+#include "acme/platform/std_trace_output.h"
 
 
 #ifdef CUBE
@@ -128,6 +129,10 @@ int main(int argc, char* argv[], char* envp[])
 #endif
 {
 
+#if defined(WINDOWS)
+   // Capture the executable translation unit's build time, rather than acme's build time.
+   ca2_set_application_build_timestamp(__DATE__ " " __TIME__);
+#endif
 #if defined(WINDOWS) && (CA2_STARTUP_TRACE || CA2_ATTACH_PARENT_CONSOLE)
    ca2_startup_diagnostics::attach_console();
 #endif

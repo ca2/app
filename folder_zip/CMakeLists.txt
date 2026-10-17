@@ -129,7 +129,7 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
-target_compile_definitions(static_${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE _${PROJECT_NAME}_project)
 
 
 if(BUILD_TESTING)
@@ -150,4 +150,10 @@ if(BUILD_TESTING)
     target_link_libraries(${PROJECT_NAME} PRIVATE static_folder_zip static_acme zlib)
     add_test(NAME folder_zip_session_concurrency_test COMMAND folder_zip_session_concurrency_test)
 
+endif()
+
+if(__REACTOS__ AND TARGET static_zlib)
+    target_include_directories(static_${PROJECT_NAME} BEFORE PRIVATE
+        "$<TARGET_PROPERTY:static_zlib,INTERFACE_INCLUDE_DIRECTORIES>")
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE static_zlib static_acme)
 endif()

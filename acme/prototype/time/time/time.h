@@ -26,12 +26,12 @@ namespace earth
 
 #if defined(__MINGW32__) && !defined(_WIN64)
 
-CLASS_DECL_ACME struct timespec __get_timespec();
+CLASS_DECL_ACME struct timespec __get_utc_timespec();
 
-inline struct timespec _get_timespec()
+inline struct timespec get_utc_timespec()
 {
 
-   return __get_timespec();
+   return __get_utc_timespec();
 
 }
 
@@ -54,7 +54,7 @@ inline struct timespec get_timespec(int iBase)
 }
 
 
-inline struct timespec _get_timespec()
+inline struct timespec get_utc_timespec()
 {
 
    return get_timespec(TIME_UTC);
@@ -98,7 +98,7 @@ public:
    {
    }
 
-   time(now_t) : time(__get_timespec()) {}
+   time(now_t) : time(get_utc_timespec()) {}
 
    constexpr time(infinite_t) { Infinite(); }
 

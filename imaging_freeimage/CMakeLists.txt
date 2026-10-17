@@ -68,7 +68,7 @@ if(__REACTOS__)
     target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/port/imaging/port_freeimage/include")
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} port_freeimage)
     foreach(codec IN ITEMS port_freeimage port_jpeg port_webp port_jxr port_openexr port_openjpeg port_tiff4 port_rawlite png zlib)
-        add_dependencies(${PROJECT_NAME} port_runtime_${codec})
+        add_dependencies(${PROJECT_NAME} ${codec})
     endforeach()
 elseif (${MSVC})
 

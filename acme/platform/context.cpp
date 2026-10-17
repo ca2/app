@@ -791,6 +791,19 @@ namespace platform
 
    ::file::path context::__defer_process_path(::file::path path)
    {
+      // appdata is local per-application storage, independent of cloud providers.
+      // Resolve before relative-path handling and optional protocol adapters.
+      if (path.case_insensitive_begins_eat("appdata:/"))
+      {
+         auto flags = path.flags();
+         while (path.begins("/") || path.begins("\\"))
+         {
+            path = path.substr(1);
+         }
+         auto pathAppData = directory()->appdata() / path;
+         pathAppData.flags() = flags;
+         return pathAppData;
+      }
 
       __check_refdbg
 

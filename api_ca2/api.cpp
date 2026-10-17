@@ -6,6 +6,7 @@
 #include "acme/prototype/prototype/memory.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/platform/hyperlink.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/datetime/datetime.h"
 #include "apex/networking/application/application.h"
@@ -28,6 +29,9 @@ namespace api_ca2
 
    api::api()
    {
+
+      defer_create_synchronization();
+      m_uAuthenticationAttempt = 0;
 
    }
 
@@ -61,81 +65,105 @@ namespace api_ca2
    }
 
 
+   void api::ensure_authenticated()
+   {
+      // Login owns synchronization and profile loading is done once by the client.
+      api_login();
+   }
+
+
    void api::api_login()
    {
-
-      if (m_bAuthenticated) 
+      if (!::task_get_run())
       {
-
-         return;
-
+         throw_exit_exception();
       }
-
-      string str;
-
-      m_strAppLogin = get_app_login();
-
-      if (m_strAppLogin.is_empty())
+      bool bOwner = false;
+      ::u64 uAttempt;
       {
-
-         throw ::exception(error_failed);
-
-      }
-
-      m_strState = system()->mathematics()->random_alphanumeric(64);
-
-      string strUrl = ::string("http://ca2.site/account/?platform=" PLATFORM_STRING);
-
-      strUrl += "&applogin=" + ::url::encode(m_strAppLogin);
-
-      strUrl += "&appstate=" + ::url::encode(m_strState);
-
-      m_phyperlinkPreLoginScreen = create_newø <::hyperlink >();
-
-      m_phyperlinkPreLoginScreen->m_strLink = strUrl;
-
-      m_phyperlinkPreLoginScreen->m_strBrowserAccount = m_strBrowserAccount;
-
-      m_bWaitingResponseFromUser = true;
-
-      m_timeLastNotifyOnPreLoginScreen.Now();
-
-      m_bAuthenticating = true;
-
-      m_phyperlinkPreLoginScreen->run();
-
-      m_happeningResponse.reset_happening();
-
-      while (::task_get_run())
-      {
-
-         auto bOk = m_happeningResponse.wait(2_s);
-
-         if (bOk)
+         _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         if (m_bAuthenticated)
          {
-
-            break;
-
+            return;
          }
-
-         if (!user_seems_to_be_on_pre_login_screen())
+         if (!m_bWaitingResponseFromUser)
          {
+            // Publish the attempt and arm its event before opening the browser.
+            m_happeningResponse.reset_happening();
+            m_bWaitingResponseFromUser = true;
+            m_bAuthenticating = true;
+            m_timeAuthenticationStarted.Now();
+            ++m_uAuthenticationAttempt;
+            bOwner = true;
+         }
+         uAttempt = m_uAuthenticationAttempt;
+      }
 
+      try
+      {
+         if (bOwner)
+         {
+            _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            m_strAppLogin = get_app_login();
+            if (m_strAppLogin.is_empty())
+            {
+               throw ::exception(error_failed);
+            }
+            m_strState = system()->mathematics()->random_alphanumeric(64);
+            string strUrl = ::string("http://ca2.site/account/?platform=" PLATFORM_STRING);
+            strUrl += "&applogin=" + ::url::encode(m_strAppLogin);
+            strUrl += "&appstate=" + ::url::encode(m_strState);
+            m_phyperlinkPreLoginScreen = create_newø <::hyperlink >();
+            m_phyperlinkPreLoginScreen->m_strLink = strUrl;
+            m_phyperlinkPreLoginScreen->m_strBrowserAccount = m_strBrowserAccount;
             m_timeLastNotifyOnPreLoginScreen.Now();
-
-            m_phyperlinkPreLoginScreen->run();
-
+            information() << "ca2_auth: browser_open app=" << get_app()->m_strAppId;
+            auto phyperlink = m_phyperlinkPreLoginScreen;
+            lock.unlock();
+            phyperlink->run();
          }
 
+         while (::task_get_run())
+         {
+            m_happeningResponse.wait(1_s);
+            _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            if (uAttempt != m_uAuthenticationAttempt)
+            {
+               throw ::exception(error_failed);
+            }
+            if (!m_bWaitingResponseFromUser)
+            {
+               if (m_bAuthenticated && m_strToken.has_character())
+               {
+                  return;
+               }
+               throw ::exception(error_failed);
+            }
+            // A missing heartbeat is not permission to open another tab.
+            if (m_timeAuthenticationStarted.elapsed() >= 5_min)
+            {
+               information() << "ca2_auth: timeout app=" << get_app()->m_strAppId;
+               throw ::exception(error_timeout);
+            }
+         }
+         throw_exit_exception();
       }
-
-      if (m_strToken.is_empty() || !m_bAuthenticated)
+      catch (...)
       {
-
-         throw ::exception(error_failed);
-
+         if (bOwner)
+         {
+            _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            if (uAttempt == m_uAuthenticationAttempt)
+            {
+               m_bWaitingResponseFromUser = false;
+               m_bAuthenticating = false;
+               m_strState.empty();
+               m_happeningResponse.set_happening();
+               information() << "ca2_auth: attempt_finished app=" << get_app()->m_strAppId;
+            }
+         }
+         throw;
       }
-
    }
 
 
@@ -144,7 +172,7 @@ namespace api_ca2
 
       ::i32 iRetry = 0;
 
-      while (iRetry < 3)
+      while (iRetry++ < 3)
       {
 
          m_papiclient->defer_api();
@@ -246,6 +274,7 @@ namespace api_ca2
          if (strScript == m_strScriptNotifyOnPreLoginScreen)
          {
 
+            _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
             m_timeLastNotifyOnPreLoginScreen.Now();
 
             strHtml = "Waiting for Authentication";
@@ -255,8 +284,6 @@ namespace api_ca2
          }
 
       }
-
-      m_timeLastNotifyOnPreLoginScreen.Now();
 
       strHtml += "<html>";
       strHtml += "<html>";
@@ -272,7 +299,41 @@ namespace api_ca2
 
       string strAppCode = ::url::get_parameter(scopedstrUrl, "appcode");
 
-      if (check_authenticated(strAppState, strAppCode))
+      _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      if (!m_bWaitingResponseFromUser || strAppState != m_strState
+         || m_timeAuthenticationStarted.elapsed() >= 5_min)
+      {
+         strHtml += "Authentication attempt is no longer pending.</body></html>";
+         information() << "ca2_auth: ignored_callback app=" << get_app()->m_strAppId;
+         return ::success;
+      }
+
+      bool bAuthenticated = false;
+      try
+      {
+         if (strAppCode.has_character())
+         {
+            bAuthenticated = check_authenticated(strAppState, strAppCode);
+         }
+         else
+         {
+            m_bAuthenticated = false;
+            m_strToken.empty();
+         }
+      }
+      catch (...)
+      {
+         m_bAuthenticated = false;
+         m_strToken.empty();
+      }
+
+      if (!bAuthenticated)
+      {
+         m_setProfile.unset("applogin");
+         m_setProfile.unset("appstate");
+      }
+
+      if (bAuthenticated)
       {
 
          strHtml += "<h1>";
@@ -296,7 +357,22 @@ namespace api_ca2
       strHtml += "</body>";
       strHtml += "</html>";
 
-      on_login_response();
+      // Retain the API until its waiting caller has observed success/failure.
+      // The caller owns failure recovery; the callback must not release it.
+      m_bWaitingResponseFromUser = false;
+      m_bAuthenticating = false;
+      m_strState.empty();
+      try
+      {
+         save_profile();
+      }
+      catch (...)
+      {
+         information() << "ca2_auth: profile_save_failed app=" << get_app()->m_strAppId;
+      }
+      m_happeningResponse.set_happening();
+      information() << "ca2_auth: callback app=" << get_app()->m_strAppId
+         << " authenticated=" << m_bAuthenticated;
 
       return ::success;
 
@@ -306,7 +382,7 @@ namespace api_ca2
    bool api::check_authenticated(const ::scoped_string & scopedstrAppState, const ::scoped_string & scopedstrAppCode)
    {
 
-      string strAppLogin = get_app_login();
+      string strAppLogin = m_strAppLogin;
 
       //string strClientId = m_setConfiguration["installed"]["client_id"];
 
@@ -323,6 +399,8 @@ namespace api_ca2
 
       set["raw_http"] = true;
       set["disable_common_name_cert_check"] = true;
+
+      set["timeout"] = 30_s;
 
       string strGet = "https://ca2.site/account/token";
 

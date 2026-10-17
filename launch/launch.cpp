@@ -606,7 +606,11 @@ namespace launch
       //system(szDownloadCommand);
 
       nano()->compress()->unzip(m_pathBinaryFolder, pathZipName);
+#if defined(__REACTOS__)
+      information() << "Archive extraction finished: " << pathZipName;
+#else
       information() << "Archive extraction requested: " << pathZipName;
+#endif
 
       //::i8 szUnzipCommand[2048];
 
@@ -649,7 +653,9 @@ namespace launch
 
       }
 
+      information() << "Launching executable: " << pathExecutable;
       node()->detached_command(strCommand, m_pathLog);
+      information() << "Launch request completed: " << pathExecutable;
 
       m_plaunchapplication->on_launched();
 

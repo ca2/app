@@ -12,6 +12,80 @@ static bool g_standardTraceFileEnabled = CA2_TRACE_TO_FILE != 0;
 static wchar_t g_standardTracePath[32768] = {};
 static char g_applicationBuildTimestamp[128] = "Application build timestamp: unavailable (not registered by entry point).";
 
+// Access is serialized by g_tracerFlushMutex, including path changes and disable.
+static struct standard_trace_file
+{
+   HANDLE handle = INVALID_HANDLE_VALUE;
+   wchar_t path[32768] = {};
+
+   void close()
+   {
+      const DWORD savedError = GetLastError();
+      if (handle != INVALID_HANDLE_VALUE)
+      {
+         CloseHandle(handle);
+         handle = INVALID_HANDLE_VALUE;
+      }
+      path[0] = L'\0';
+      SetLastError(savedError);
+   }
+
+   ~standard_trace_file() { close(); }
+} g_standardTraceFile;
+
+void ca2_write_standard_trace_file(const char *text, const wchar_t *path)
+{
+   const int savedErrno = errno;
+   const DWORD savedError = GetLastError();
+   {
+      std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
+      if (g_standardTraceFileEnabled && text && path && *path
+         && wcslen(path) < sizeof(g_standardTraceFile.path) / sizeof(wchar_t))
+      {
+         if (wcscmp(path, g_standardTraceFile.path) != 0)
+            g_standardTraceFile.close();
+
+         if (g_standardTraceFile.handle == INVALID_HANDLE_VALUE)
+         {
+            g_standardTraceFile.handle = CreateFileW(path, FILE_APPEND_DATA,
+               FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_ALWAYS,
+               FILE_ATTRIBUTE_NORMAL, nullptr);
+            if (g_standardTraceFile.handle != INVALID_HANDLE_VALUE)
+               wcscpy(g_standardTraceFile.path, path);
+         }
+
+         if (g_standardTraceFile.handle != INVALID_HANDLE_VALUE)
+         {
+            size_t left = strlen(text);
+            const char *cursor = text;
+            bool complete = true;
+            while (left)
+            {
+               DWORD written = 0;
+               const DWORD chunk = left > 65536 ? 65536 : (DWORD)left;
+               if (!WriteFile(g_standardTraceFile.handle, cursor, chunk, &written, nullptr)
+                  || !written)
+               {
+                  complete = false;
+                  break;
+               }
+               cursor += written;
+               left -= written;
+            }
+            DWORD written = 0;
+            if (complete)
+               complete = WriteFile(g_standardTraceFile.handle, "\r\n", 2, &written, nullptr)
+                  && written == 2;
+            // Keep crash diagnostics durable. Only handle acquisition is cached.
+            if (!FlushFileBuffers(g_standardTraceFile.handle) || !complete)
+               g_standardTraceFile.close(); // Allow a later statement to retry opening.
+         }
+      }
+   }
+   SetLastError(savedError);
+   errno = savedErrno;
+}
+
 void ca2_set_application_build_timestamp(const char *timestamp)
 {
    std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
@@ -24,6 +98,8 @@ void ca2_enable_standard_trace_file(bool enable)
 {
    std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
    g_standardTraceFileEnabled = enable;
+   if (!enable)
+      g_standardTraceFile.close();
 }
 
 bool ca2_standard_trace_file_enabled()
@@ -37,6 +113,8 @@ bool ca2_set_standard_trace_path(const wchar_t *path)
    std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
    if (!path || wcslen(path) >= sizeof(g_standardTracePath) / sizeof(wchar_t))
       return false;
+   if (wcscmp(path, g_standardTracePath) != 0)
+      g_standardTraceFile.close();
    wcscpy(g_standardTracePath, path);
    // Write the header under the same lock as trace flushing, before any log records.
    if (g_standardTraceFileEnabled && *path)

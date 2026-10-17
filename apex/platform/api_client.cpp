@@ -1,6 +1,7 @@
 // Created by camilo on 2021-11-17 01:29 PM <3ThomasBorregaardSorensen!! & Mummi!!
 #include "platform.h"
 #include "api.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 ///#include "acme/exception/exception.h"
 #include "apex/platform/application.h"
@@ -12,6 +13,7 @@
 api_client::api_client()
 {
 
+   defer_create_synchronization();
 
 }
 
@@ -37,6 +39,29 @@ void api_client::initialize_api_client(const ::scoped_string & scopedstrImplemen
 
 void api_client::defer_api()
 {
+   if (m_strImplementation == "ca2")
+   {
+      ::pointer < ::api > papi;
+      {
+         // Publish one initialized API per client before any caller starts login.
+         _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         if (!m_papi)
+         {
+            papi = create_api(m_strImplementation, m_strService);
+            if (m_pathProfileFolder.is_empty())
+            {
+               m_pathProfileFolder = directory()->appdata() / "api" / m_strImplementation;
+            }
+            papi->initialize_api(m_pparticleContext, m_pathProfileFolder, m_strBrowserAccount);
+            m_papi = papi;
+         }
+         papi = m_papi;
+      }
+      // ca2 joins the pending attempt with cancellable, bounded waits.
+      // Keep the same API on failure so registered callbacks retain one identity.
+      papi->api_login();
+      return;
+   }
 
    if (!m_papi || !m_papi->m_bAuthenticated)
    {

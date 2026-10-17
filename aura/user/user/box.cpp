@@ -4,6 +4,7 @@
 #include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/parallelization/single_lock.h"
+#include "acme/parallelization/_.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
@@ -476,22 +477,46 @@ namespace user
 
          information() << "user::box::load_window_display_and_layout " << edisplay;
 
+         // Keep these boundaries visible when a window stops during restoration.
+         auto traceRestore = [&](const char * stage)
+         {
+            information() << "window_restore: " << stage
+               << " thread=" << (::iptr) ::current_itask()
+               << " window=" << (::iptr) this
+               << " display=" << edisplayForRestore;
+         };
+
+         information() << "window_restore: saved rectangles"
+            << " thread=" << (::iptr) ::current_itask()
+            << " window=" << (::iptr) this
+            << " normal=" << windowdisplayandlayout.m_rectangleNormal
+            << " compact=" << windowdisplayandlayout.m_rectangleCompact
+            << " broad=" << windowdisplayandlayout.m_rectangleBroad;
+
          switch(edisplayForRestore.m_cflag)
          {
             case e_display_compact:
+               traceRestore("before place compact");
                place(windowdisplayandlayout.m_rectangleCompact);
+               traceRestore("after place compact");
                break;
             case e_display_broad:
+               traceRestore("before place broad");
                place(windowdisplayandlayout.m_rectangleBroad);
+               traceRestore("after place broad");
                break;
             default:
+               traceRestore("before place normal");
                place(windowdisplayandlayout.m_rectangleNormal);
+               traceRestore("after place normal");
                edisplayForRestore = e_display_normal;
                break;
 
          }
 
+         traceRestore("before display");
          display(edisplayForRestore);
+         traceRestore("after display");
 
          return true;
 

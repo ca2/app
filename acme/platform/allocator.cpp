@@ -941,6 +941,7 @@ namespace allocator
    {
 
       ::destruct_particle_reference_item_array(&psubparticle->m_referencingdebugging);
+      psubparticle->m_referencingdebugging.m_psubparticle = nullptr;
 
    }
 

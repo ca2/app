@@ -302,7 +302,8 @@ void destruct_particle_reference_item_array(::subparticle::referencing_debugging
       
    }
 
-   preferencingdebugging->m_psubparticle = nullptr;
+   // Disabling reference debugging also calls this cleanup. The live object's
+   // identity is still needed by get_top_track(), even when tracking is disabled.
 
 }
 

@@ -75,8 +75,10 @@ CLASS_DECL_ACME void defer_initialize_callstack();
 
 call_stack::call_stack() :
    m_pszFormat(nullptr),
+   m_pszCallStack(nullptr),
    m_iCount(0),
-   m_caller_address(nullptr)
+   m_caller_address(nullptr),
+   m_u32Hash(0)
 {
 
 

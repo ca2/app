@@ -1,5 +1,6 @@
 #include "platform.h"
 #include "frame.h"
+#include "aura/user/user/style.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -690,7 +691,11 @@ namespace experience_tranquillum
          else
          {
 
-            pdraw2dgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
+            auto pstyle = m_pframewindow->get_style(pdraw2dgraphics);
+            const auto colorCaption = pstyle->is_dark_mode()
+               ? argb(255, 48, 50, 52)
+               : m_colorCaptionTextBk;
+            pdraw2dgraphics->fill_rectangle(m_rectangleCaptionTextBk, colorCaption);
 
          }
 

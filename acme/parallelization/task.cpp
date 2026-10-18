@@ -1957,7 +1957,6 @@ void * task::s_os_task(void * p)
          }
          else
          {
-            
             psystem->post([htask, itask]()
                           {
                
@@ -1974,6 +1973,7 @@ void * task::s_os_task(void * p)
                }
                
             });
+         }
 #endif
 
       }

@@ -444,6 +444,12 @@ namespace launch
 
       ::property_set setCheckUrlOkDownload;
 
+      ::function<void(const ::scoped_string&)> httpStatus = [this](const ::scoped_string& text)
+      {
+         on_detail_status(text);
+      };
+      setCheckUrlOkDownload["http_status_function"] = httpStatus;
+
       m_papplication->get_http_user_agent(setCheckUrlOkDownload);
 
       bool bDownloadAvailable;
@@ -577,6 +583,8 @@ namespace launch
       auto pathZipName = m_pathBinaryFolder / strZipName;
 
       ::property_set set;
+
+      set["http_status_function"] = httpStatus;
 
       m_papplication->get_http_user_agent(set);
 

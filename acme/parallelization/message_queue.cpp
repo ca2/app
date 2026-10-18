@@ -99,10 +99,12 @@ void message_queue::post_message(const MESSAGE & message)
 
    m_messagea.add(message);
    
-   if(m_messagea.size() > 100)
+   // Report the threshold crossing, not every post while the queue is busy.
+   // Trace output may flush to disk; repeating it here delays queue consumers.
+   if(m_messagea.size() == 101)
    {
       
-      information() << "Why m_messagea.size() > 100, let's figure out...";
+      warning() << "message_queue backlog crossed 100 messages";
       
    }
 

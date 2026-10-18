@@ -311,7 +311,8 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
       set_bypass_cache_if_empty(payloadFile);
 
-      std::lock_guard<std::recursive_mutex> freeimageLock(g_freeimageMutex);
+      // Network/cache reads must not block all other image decoders.
+      std::unique_lock<std::recursive_mutex> freeimageLock(g_freeimageMutex, std::defer_lock);
 
       //::file::path path = payloadFile.as_file_path();
 
@@ -323,6 +324,9 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
       for(::i32 i = 0; i < 2; i++)
       {
+
+         if (freeimageLock.owns_lock())
+            freeimageLock.unlock();
 
          if(i == 1)
          {
@@ -483,7 +487,7 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
          else if (bGif)
          {
 
-            std::lock_guard<std::recursive_mutex> lock(g_freeimageMutex);
+            freeimageLock.lock();
 
             //file_system()->put_contents("/home/camilo/a.gif", memory);
 
@@ -502,6 +506,7 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
                pszStage = "attach frames";
                // This override bypasses image_context::_task_load_image.
+               freeimageLock.unlock();
                ploadimage->on_image_loaded(::success);
 
             }
@@ -544,7 +549,7 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
             // return pimage->m_estatus;
          }
 
-         std::lock_guard<std::recursive_mutex> lock(g_freeimageMutex);
+         freeimageLock.lock();
 
          pmem = FreeImage_OpenMemory(memory.data(), (::u32)memory.size());
 
@@ -768,6 +773,8 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
       //
       //   }
 
+      // Loaded callbacks can take application/UI locks; decoding is complete.
+      freeimageLock.unlock();
       ploadimage->on_image_loaded(::success);
 
       // ploadimage->m_ppixmap->on_load_image();

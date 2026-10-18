@@ -147,20 +147,7 @@ namespace experience_tranquillum
                if (is_dark_mode())
                {
 
-                  //auto pthemecolors = node()->_get_os_theme_colors();
-
-                  auto colorBackground = system()->background_color();
-
-                  //if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
-                  {
-
-                     //return pthemecolors->m_colorBack;
-
-                     return colorBackground;
-
-                  }
-
-                  return argb(255, 51, 51, 51);
+                  return argb(255, 32, 32, 32);
 
                }
                else
@@ -177,21 +164,7 @@ namespace experience_tranquillum
                if (is_dark_mode())
                {
 
-
-                  auto colorBackground = system()->background_color();
-
-                  return colorBackground;
-
-                  //auto pthemecolors = node()->_get_os_theme_colors();
-
-                  //if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
-                  //{
-
-                  //   return pthemecolors->m_colorBack;
-
-                  //}
-
-                  return argb(255, 51, 51, 51);
+                  return argb(255, 32, 32, 32);
 
                }
                else
@@ -563,21 +536,7 @@ namespace experience_tranquillum
             else
             {
 
-               auto colorBackground = system()->background_color();
-
-               return colorBackground;
-
-
-               //auto pthemecolors = node()->_get_os_theme_colors();
-
-               //if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
-               //{
-
-               //   return pthemecolors->m_colorBack;
-
-               //}
-
-               return argb(255, 51, 51, 51);
+               return argb(255, 32, 32, 32);
 
             }
 
@@ -1196,7 +1155,11 @@ namespace experience_tranquillum
 
       pdraw2dgraphics->fill_rectangle(rcClient, crbk);
 
-      pdraw2dgraphics->fill_rectangle(rcTape, argb(255, 192, 192, 192));
+      const auto colorTape = pstyle->is_dark_mode()
+         ? argb(255, 56, 56, 56)
+         : argb(255, 192, 192, 192);
+
+      pdraw2dgraphics->fill_rectangle(rcTape, colorTape);
 
       //return true;
 

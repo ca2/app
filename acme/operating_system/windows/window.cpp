@@ -2,6 +2,7 @@
 #include "platform.h"
 #include "window.h"
 #include "modal_task_pump.h"
+#include "dark_popup_menu.h"
 #include "windowing.h"
 #include "acme/platform/application.h"
 #include "acme/user/user/interaction.h"
@@ -767,6 +768,7 @@ namespace windows
 
       auto hmenu = GetSystemMenu(hwnd, true);
       m_hmenuSystem = GetSystemMenu(hwnd, false);
+        dark_popup_menu menuTheme(hwnd, m_hmenuSystem);
       //SetForegroundWindow(hwnd);
       modal_task_pump modalPump;
       informationf("MODAL_MENU enter thread=%lu ownerThread=%lu taskPump=%d",

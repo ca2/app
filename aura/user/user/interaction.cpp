@@ -29279,12 +29279,16 @@ __check_refdbg;
       if (get_element_rectangle(rectangleXHitTest, e_element_client_hit_test))
       {
 
+#ifdef DEEP_DEBUGGING
          information() << "hit_test got_element_rect client_hit_test";
+#endif
 
          if (!rectangleXHitTest.contains(pointClient))
          {
 
+#ifdef DEEP_DEBUGGING
             information() << "hit_test got_element_rect !rectangleXHitTest";
+#endif
 
             return nullptr;
 

@@ -1023,7 +1023,16 @@ namespace windows
       {
          version = {};
          version.dwOSVersionInfoSize = sizeof(version);
-         if (!::GetVersionExW(reinterpret_cast<OSVERSIONINFOW *>(&version)))
+         // Keep the legacy fallback when RtlGetVersion is unavailable or fails.
+#if defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable : 4996)
+#endif
+         const bool bGotVersion = ::GetVersionExW(reinterpret_cast<OSVERSIONINFOW *>(&version)) != FALSE;
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#endif
+         if (!bGotVersion)
          {
             return false;
          }

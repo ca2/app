@@ -224,11 +224,11 @@ void call_stack::capture(::i32 iSkip, void * caller_address, ::i32 iCount)
 
          wcscpy(m_szaModulePath[i], L"(unknown)");
 
-         m_u32ModulePathLength[i] = wcslen(m_szaModulePath[i]);
+         m_u32ModulePathLength[i] = (::u32) wcslen(m_szaModulePath[i]);
 
       }
 
-      iGoodSize += 64 +strlen(m_pszFormat) + m_u32ModulePathLength[i];
+      iGoodSize += 64 + (::u32) strlen(m_pszFormat) + m_u32ModulePathLength[i];
 
    }
 

@@ -287,22 +287,22 @@ list(APPEND library_source
         graphics/draw2d/color32.h
         graphics/draw2d/color_array.cpp
         graphics/draw2d/color_array.h
-        graphics/draw2d/domain.cpp
         graphics/draw2d/domain_consumer.cpp
+        graphics/draw2d/domain_consumer.h
         graphics/draw2d/os_font_name.cpp
-   graphics/draw2d/task_tool.cpp
-   graphics/draw2d/task_tool.h
+        graphics/draw2d/task_tool.cpp
+        graphics/draw2d/task_tool.h
         graphics/graphics/_.h
-   graphics/graphics/double_pass_scale.h
-   graphics/graphics/filters.h
+        graphics/graphics/double_pass_scale.h
+        graphics/graphics/filters.h
         graphics/graphics/output_purpose.cpp
         graphics/graphics/output_purpose.h
-   graphics/image/color_indexes.cpp
-   graphics/image/color_indexes.h
-   graphics/image/frame.cpp
-   graphics/image/frame.h
-   graphics/image/frame_array.cpp
-   graphics/image/frame_array.h
+        graphics/image/color_indexes.cpp
+        graphics/image/color_indexes.h
+        graphics/image/frame.cpp
+        graphics/image/frame.h
+        graphics/image/frame_array.cpp
+        graphics/image/frame_array.h
         graphics/image/image32_t.cpp
         graphics/image/image32_t.h
         graphics/image/image32_t_array.cpp

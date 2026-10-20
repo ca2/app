@@ -57,7 +57,7 @@ namespace gpu_opengl
 
          information("gpu::approach::gpu_on_create_window for type {}", pszType);
 
-         auto pgpudevice = pgpuapproach->get_gpu_device(pwindow);
+         auto pgpudevice = pgpuapproach->get_gpu_device(pwindow->m_pacmeuserinteraction->user_interaction()->draw2d_domain());
 
          m_pgpucontextWindow = pgpudevice->allocate_gpu_context();
 

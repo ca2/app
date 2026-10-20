@@ -49,6 +49,8 @@ namespace gpu
       ::pointer_array < ::pointer_array < ::particle > > m_particleaFrame;
 
       ::pointer< ::gpu::context >                        m_pgpucontextWindow;
+      // Non-owning: the offscreen context owns this attachment.
+      ::gpu::context *                                  m_pgpucontextOffscreen = nullptr;
       ::gpu::context_pointer                             m_pgpucontextDraw2d;
       ::pointer<::gpu::context>                          m_pgpucontextWork;
       using post_frame_context_registry_t =
@@ -72,6 +74,8 @@ namespace gpu
 
 
       void initialize_gpu_window_attachment(::acme::windowing::window * pacmewindowingwindow) override;
+
+      virtual void initialize_offscreen_frame(::gpu::context * pcontext);
 
       virtual ::gpu::render_target * render_target();
       virtual void set_render_target(::gpu::render_target * pgpurendertargetTarget);

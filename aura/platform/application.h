@@ -167,6 +167,7 @@ namespace aura
       
 
       virtual void initialize(::particle * pparticle) override;
+      void defer_initialize_graphics_configuration();
 
 
       //virtual string application_file_setting(const ::scoped_string& scopedstrFileName);

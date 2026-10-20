@@ -464,7 +464,7 @@ namespace gpu
 
          ::i32_size sizeRaw = pacmewindowingwindow->get_raw_buffer_size().maximum(size);
 
-         pcontext->create_draw2d_gpu_context(this, pacmewindowingwindow, pdraw2dgraphics, {}, {}, size, sizeRaw);
+         pcontext->create_draw2d_gpu_context(this, pdraw2dgraphics->draw2d_domain(), pdraw2dgraphics, {}, {}, size, sizeRaw);
 
 //>>>>>>> origin/main
          //pcontext->m_pgpucompositor = nullptr;

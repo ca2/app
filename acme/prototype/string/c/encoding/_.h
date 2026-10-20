@@ -518,21 +518,20 @@ inline character_count wd32_to_wide(::wide_character * pwsz, const ::wd32_charac
 }
 
 
-inline ::wide_character * wd32_to_wd32_alloc(const ::wd32_character * pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function)
+inline ::wd32_character * wide_to_wd32_alloc(const ::wide_character * pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function)
 {
 
-   return (::wide_character *)wd32_to_wd32_alloc(pcwsz, input_size, malloc_function);
+   return wd32_to_wd32_alloc((const ::wd32_character *)pcwsz, input_size, malloc_function);
 
 }
 
 
-inline ::wide_character * wd32_to_wd32_dup(const ::wd32_character * pcwsz, character_count input_size)
+inline ::wide_character * wd32_to_wide_alloc(const ::wd32_character * pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function)
 {
 
-   return (::wide_character *)wd32_to_wd32_alloc(pcwsz, input_size, &cpp_malloc);
- 
-}
+   return (::wide_character *) wd32_to_wd32_alloc(pcwsz, input_size, malloc_function);
 
+}
 
 inline character_count wide_to_ansi_len(const wide_character * pcwsz, character_count input_size)
 {
@@ -637,9 +636,36 @@ inline character_count wide_to_wd32(wd32_character *pwsz, const wide_character *
 }
 
 
+inline character_count ansi_to_wide(::wide_character * pwsz, const_char_pointer pcsz, character_count input_size)
+{
+
+   return ansi_to_wd32((::wd32_character *) pwsz, pcsz, input_size);
+
+}
 
 
+inline ::ansi_character * wide_to_ansi_alloc(const ::wide_character * pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function)
+{
 
+   return wd32_to_ansi_alloc((const ::wd32_character *)pcwsz, input_size, malloc_function);
+
+}
+
+
+inline character_count ansi_to_wide_len(const_char_pointer pcsz, character_count input_size)
+{
+
+   return ansi_to_wd32_len(pcsz, input_size);
+
+}
+
+
+inline ::wide_character * ansi_to_wide_alloc(const_char_pointer pcsz, character_count input_size, MALLOC_FUNCTION * malloc_function)
+{
+
+   return (::wide_character *) ansi_to_wd32_alloc(pcsz, input_size, malloc_function);
+
+}
 
 
 

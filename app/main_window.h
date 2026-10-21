@@ -20,7 +20,8 @@ namespace app_app
       class ::time      m_timeStart;
       ::f64            m_dPhaseShift;
       ::i32               m_iCloseButtonDraw;
-
+      ::i32               m_iFrameSerial;
+      class ::time        m_timeFirstFrame;
 
       main_window();
       ~main_window() override;

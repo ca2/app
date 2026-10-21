@@ -71,6 +71,7 @@
 #include "node.h"
 //#include "apex/os/_os.h"
 #include "application_impl.h"
+#include "startup_delay_debug.h"
 
 
 
@@ -335,17 +336,26 @@ namespace apex
       //auto estatus = ::thread::initialize(pparticle);
 
       information() << "startup: apex::application::initialize: before ::thread::initialize(pparticle)";
-      ::thread::initialize(pparticle);
+      {
+         STARTUP_DELAY_TRACE_SCOPE("apex::application::initialize - thread::initialize");
+         ::thread::initialize(pparticle);
+      }
       information() << "startup: apex::application::initialize: after ::thread::initialize(pparticle)";
 
       information() << "startup: apex::application::initialize: before ::platform::application::initialize(pparticle)";
-      ::platform::application::initialize(pparticle);
+      {
+         STARTUP_DELAY_TRACE_SCOPE("apex::application::initialize - platform::application::initialize");
+         ::platform::application::initialize(pparticle);
+      }
       information() << "startup: apex::application::initialize: after ::platform::application::initialize(pparticle)";
 
       m_psystem = m_papplication->m_psystem;
 
       information() << "startup: apex::application::initialize: before defer_create_synchronization()";
-      defer_create_synchronization();
+      {
+         STARTUP_DELAY_TRACE_SCOPE("apex::application::initialize - defer_create_synchronization");
+         defer_create_synchronization();
+      }
       information() << "startup: apex::application::initialize: after defer_create_synchronization()";
 
 

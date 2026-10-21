@@ -1,5 +1,6 @@
 #include "platform.h"
 #include "application.h"
+#include "startup_delay_debug.h"
 #include "shell_open.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
@@ -266,7 +267,10 @@ namespace aura
       //auto estatus =
       
       information() << "startup: aura::application::initialize: before ::aqua::application::initialize(pparticle)";
-      ::aqua::application::initialize(pparticle);
+      {
+         STARTUP_DELAY_TRACE_SCOPE("aura::application::initialize - aqua::application::initialize");
+         ::aqua::application::initialize(pparticle);
+      }
       information() << "startup: aura::application::initialize: after ::aqua::application::initialize(pparticle)";
 
       //if (!estatus)
@@ -279,7 +283,10 @@ namespace aura
       //estatus =
       
       information() << "startup: aura::application::initialize: before construct_newø(m_puserinteractiona)";
-      construct_newø(m_puserinteractiona);
+      {
+         STARTUP_DELAY_TRACE_SCOPE("aura::application::initialize - construct user interaction array");
+         construct_newø(m_puserinteractiona);
+      }
       information() << "startup: aura::application::initialize: after construct_newø(m_puserinteractiona)";
 
       //if (!estatus)
@@ -292,7 +299,10 @@ namespace aura
       //estatus = 
       
       information() << "startup: aura::application::initialize: before construct_newø(m_puserinteractionaFrame)";
-      construct_newø(m_puserinteractionaFrame);
+      {
+         STARTUP_DELAY_TRACE_SCOPE("aura::application::initialize - construct frame interaction array");
+         construct_newø(m_puserinteractionaFrame);
+      }
       information() << "startup: aura::application::initialize: after construct_newø(m_puserinteractionaFrame)";
 
       //if (!estatus)

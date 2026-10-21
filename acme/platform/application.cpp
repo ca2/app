@@ -4,6 +4,7 @@
 // app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSorensen!!
 #include "platform.h"
 #include "application.h"
+#include "startup_delay_debug.h"
 #include "message.h"
 #include "acme.h"
 #include "application_menu.h"
@@ -1171,6 +1172,9 @@ namespace platform
 
    void application::post_request(::request * prequest)
    {
+
+      STARTUP_DELAY_TRACE_SCOPE_IF("platform::application::post_request",
+         prequest && prequest->m_strAppId == "app/app");
 
       if (prequest)
       {

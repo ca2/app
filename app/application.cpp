@@ -2,6 +2,7 @@
 #include "application.h"
 #include "main_window.h"
 #include "acme/platform/system.h"
+#include "startup_delay_debug.h"
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(app_app);
@@ -57,13 +58,22 @@ namespace app_app
       if (!m_pmainwindow)
       {
 
-         m_pmainwindow = create_newø<::app_app::main_window>();
+         {
+            STARTUP_DELAY_TRACE_SCOPE("app_app::application::on_request - create main window object");
+            m_pmainwindow = create_newø<::app_app::main_window>();
+         }
 
-         m_pmainwindow->create_main_window(prequest);
+         {
+            STARTUP_DELAY_TRACE_SCOPE("app_app::application::on_request - create_main_window");
+            m_pmainwindow->create_main_window(prequest);
+         }
 
          //m_pmainwindow->display(e_display_normal);
          
-         m_pmainwindow->initial_frame_placement();
+         {
+            STARTUP_DELAY_TRACE_SCOPE("app_app::application::on_request - initial_frame_placement");
+            m_pmainwindow->initial_frame_placement();
+         }
 
       }
 

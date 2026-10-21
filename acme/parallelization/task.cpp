@@ -1,5 +1,6 @@
 #include "platform.h"
 #include "task.h"
+#include "startup_delay_debug.h"
 #include "../user/interface/message_box.h"
 #include "acme/_operating_system.h"
 #include "acme/exception/_text_stream.h"
@@ -155,7 +156,8 @@ void task::on_initialize_particle()
 
    ::handler::handler::on_initialize_particle();
 
-   //m_synchronizationaMainLoop.add(new_main_loop_happening());
+   // Install the main-loop wake event before task_wait snapshots the wait set.
+   new_main_loop_happening();
 
    update_new_main_loop_happening();
 
@@ -1259,9 +1261,20 @@ void task::main()
 
    //__task_init();
 
-   call_init_task();
+   {
+      STARTUP_DELAY_TRACE_SCOPE_IF("task::main - call_init_task",
+         application() && application()->m_strAppId == "app/app");
+      call_init_task();
+   }
 
    m_bReadyToAttendRequests = true;
+
+#if STARTUP_DELAY_DEBUG
+   if (application() && application()->m_strAppId == "app/app")
+   {
+      STARTUP_DELAY_TRACE_EVENT("Startup request queue: task ready handler=%p", this);
+   }
+#endif
 
    if (defer_implement(application()))
    {
@@ -1615,7 +1628,26 @@ bool task::task_wait(const class ::time & timeRemaining)
 
    ::multiple_lock multiplelock(m_synchronizationaMainLoop);
 
+#if STARTUP_DELAY_DEBUG
+   auto bStartupAppTask = application() && application()->m_strAppId == "app/app";
+   auto bStartupRequestPendingBeforeWait = bStartupAppTask && has_main_loop_happening();
+   class ::time timeWaitStart;
+   timeWaitStart.Now();
+#endif
+
    auto estatus = multiplelock.lock(timeRemaining, false, QS_ALLINPUT);
+
+#if STARTUP_DELAY_DEBUG
+   auto bStartupRequestPendingAfterWait = bStartupAppTask && has_main_loop_happening();
+   if (estatus == error_wait_timeout &&
+       (bStartupRequestPendingBeforeWait || bStartupRequestPendingAfterWait))
+   {
+      auto dWaitSeconds = timeWaitStart.elapsed().floating_second();
+      STARTUP_DELAY_TRACE_EVENT("Startup request wait: task=%p waited=%.3f seconds timeout=%d pending_before=%d pending_after=%d",
+         this, dWaitSeconds, (int)(estatus == error_wait_timeout),
+         (int)bStartupRequestPendingBeforeWait, (int)bStartupRequestPendingAfterWait);
+   }
+#endif
 
    if (estatus == error_wait_timeout)
    {

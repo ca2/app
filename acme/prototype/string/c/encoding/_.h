@@ -20,6 +20,7 @@ inline ::i8 utf8_e(::u8 c);
 
 
 
+
 CLASS_DECL_ACME character_count utf8_len(const_char_pointer psz);
 
 
@@ -78,7 +79,8 @@ CLASS_DECL_ACME character_count wd16_to_wd32_len2(const ::wd16_character *pcwsz,
 CLASS_DECL_ACME character_count wd16_to_wd32(::wd32_character* pwsz, const ::wd16_character* pcwsz, character_count input_size = -1);
 
 
-CLASS_DECL_ACME ::wd32_character* wd16_to_wd32_dup(const ::wd16_character* pcwsz, character_count input_size = -1);
+CLASS_DECL_ACME ::wd32_character* wd16_to_wd32_alloc(const ::wd16_character* pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function);
+inline ::wd32_character * wd16_to_wd32_dup(const ::wd16_character * pcwsz, character_count input_size = -1);
 
 
 
@@ -86,11 +88,19 @@ CLASS_DECL_ACME character_count wd32_to_wd16_len(const ::wd32_character* pcwsz, 
 CLASS_DECL_ACME character_count wd32_to_wd16_len2(const ::wd32_character *pcwsz, character_count & input_size);
 CLASS_DECL_ACME character_count wd32_to_wd16(::wd16_character * pwsz, const ::wd32_character* pcwsz, character_count input_size = -1);
 
-CLASS_DECL_ACME ::wd16_character* wd32_to_wd16_dup(const ::wd16_character* pcwsz, character_count input_size = -1);
-
+CLASS_DECL_ACME ::wd16_character* wd32_to_wd16_alloc(const ::wd32_character* pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function);
+inline ::wd16_character * wd32_to_wd16_dup(const ::wd32_character * pcwsz, character_count input_size = -1);
 
 
 CLASS_DECL_ACME character_count utf16_len(const ::wd16_character* psz);
+
+
+CLASS_DECL_ACME::wd32_character * wd32_to_wd32_alloc(const ::wd32_character * pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function);
+
+
+inline ::wd32_character * wd32_to_wd32_dup(const ::wd32_character * pcwsz, character_count input_size = -1);
+
+
 
 
 //CLASS_DECL_ACME const ::wd16_character * unicode_next(const ::wd16_character* psz, ::i32 * piError);
@@ -108,14 +118,16 @@ CLASS_DECL_ACME character_count ansi_to_wd16_len(const_char_pointer psz, charact
 CLASS_DECL_ACME character_count ansi_to_wd16_len2(const_char_pointer psz, character_count & srclen);
 CLASS_DECL_ACME character_count ansi_to_wd16(::wd16_character* pwsz, const_char_pointer psz, character_count srclen = -1);
 
-CLASS_DECL_ACME ::wd16_character * ansi_to_wd16_dup(const_char_pointer input, character_count input_size);
+CLASS_DECL_ACME ::wd16_character * ansi_to_wd16_alloc(const_char_pointer input, character_count input_size, MALLOC_FUNCTION * malloc_function);
+inline ::wd16_character * ansi_to_wd16_dup(const_char_pointer input, character_count input_size = -1);
 
 
 CLASS_DECL_ACME character_count wd16_to_ansi_len(const ::wd16_character* pwsz, character_count srclen = -1);
 CLASS_DECL_ACME character_count wd16_to_ansi_len2(const ::wd16_character *pwsz, character_count & srclen);
 CLASS_DECL_ACME character_count wd16_to_ansi(char_pointer psz, const ::wd16_character* pwsz, character_count srclen = -11);
 
-CLASS_DECL_ACME char_pointer wd16_to_ansi_dup(const ::wd16_character * input, character_count input_size);
+CLASS_DECL_ACME char_pointer wd16_to_ansi_alloc(const ::wd16_character * input, character_count input_size, MALLOC_FUNCTION * malloc_function);
+inline char_pointer wd16_to_ansi_dup(const ::wd16_character * input, character_count input_size=-1);
 
 
 
@@ -147,14 +159,16 @@ CLASS_DECL_ACME character_count ansi_to_wd32_len(const_char_pointer psz, charact
 CLASS_DECL_ACME character_count ansi_to_wd32_len2(const_char_pointer psz, character_count & srclen);
 CLASS_DECL_ACME character_count ansi_to_wd32(::wd32_character* pwsz, const_char_pointer psz, character_count srclen = -1);
 
-CLASS_DECL_ACME ::wd32_character* ansi_to_wd32_dup(const_char_pointer pcwsz, character_count input_size = -1);
+CLASS_DECL_ACME ::wd32_character* ansi_to_wd32_alloc(const_char_pointer pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function);
+inline ::wd32_character * ansi_to_wd32_dup(const_char_pointer pcwsz, character_count input_size = -1);
 
 
 CLASS_DECL_ACME character_count wd32_to_ansi_len(const ::wd32_character* pwsz, character_count srclen = -1);
 CLASS_DECL_ACME character_count wd32_to_ansi_len2(const ::wd32_character *pwsz, character_count & srclen);
 CLASS_DECL_ACME character_count wd32_to_ansi(char_pointer psz, const ::wd32_character* pwsz, character_count srclen = -1);
 
-CLASS_DECL_ACME char_pointer wd32_to_ansi_dup(const ::wd32_character * input, character_count input_size);
+CLASS_DECL_ACME char_pointer wd32_to_ansi_alloc(const ::wd32_character * input, character_count input_size, MALLOC_FUNCTION * malloc_function);
+inline char_pointer wd32_to_ansi_dup(const ::wd32_character * input, character_count input_size = -1);
 
 
 /**
@@ -195,24 +209,34 @@ CLASS_DECL_ACME character_count utf32_len(const ::wide_character* psz);
 //CLASS_DECL_ACME const ::wide_character *unicode_prior(const ::wide_character *psz, const ::wide_character *pszBeg);
 
 
-CLASS_DECL_ACME character_count wide_to_wide_len(const wide_character * pcwsz, character_count input_size = -1);
-CLASS_DECL_ACME character_count wide_to_wide_len2(const wide_character * pcwsz, character_count &input_size);
-CLASS_DECL_ACME character_count wide_to_wide(wide_character *pwsz, const wide_character *pcwsz,
+inline character_count wide_to_wide_len(const wide_character * pcwsz, character_count input_size = -1);
+inline character_count wide_to_wide_len2(const wide_character * pcwsz, character_count &input_size);
+inline character_count wide_to_wide(wide_character *pwsz, const wide_character *pcwsz,
                                              character_count input_size = -1);
 
 
-CLASS_DECL_ACME character_count ansi_to_wide_len(const_char_pointer psz, character_count srclen = -1);
-CLASS_DECL_ACME character_count ansi_to_wide_len2(const_char_pointer psz, character_count & srclen);
-CLASS_DECL_ACME character_count ansi_to_wide(::wide_character* pwsz, const_char_pointer psz, character_count srclen = -1);
+inline character_count wd32_to_wide_len(const ::wd32_character * pcwsz, character_count input_size = -1);
+inline character_count wd32_to_wd16_len2(const ::wd32_character * pcwsz, character_count & input_size);
+inline character_count wd32_to_wide(::wide_character * pwsz, const ::wd32_character * pcwsz, character_count input_size = -1);
 
-CLASS_DECL_ACME ::wide_character* ansi_to_wide_dup(const_char_pointer pcwsz, character_count input_size = -1);
+inline ::wide_character * wd32_to_wide_alloc(const ::wd32_character * pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function);
+inline ::wide_character * wd32_to_wide_dup(const ::wd32_character * pcwsz, character_count input_size = -1);
 
 
-CLASS_DECL_ACME character_count wide_to_ansi_len(const ::wide_character* pwsz, character_count srclen = -1);
-CLASS_DECL_ACME character_count wide_to_ansi_len2(const ::wide_character *pwsz, character_count & srclen);
-CLASS_DECL_ACME character_count wide_to_ansi(char_pointer psz, const ::wide_character* pwsz, character_count srclen = -1);
+inline character_count ansi_to_wide_len(const_char_pointer psz, character_count srclen = -1);
+inline character_count ansi_to_wide_len2(const_char_pointer psz, character_count & srclen);
+inline character_count ansi_to_wide(::wide_character* pwsz, const_char_pointer psz, character_count srclen = -1);
 
-CLASS_DECL_ACME char_pointer wide_to_ansi_dup(const ::wide_character * input, character_count input_size);
+inline ::wide_character* ansi_to_wide_alloc(const_char_pointer pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function);
+inline ::wide_character * ansi_to_wide_dup(const_char_pointer pcwsz, character_count input_size = -1);
+
+
+inline character_count wide_to_ansi_len(const ::wide_character* pwsz, character_count srclen = -1);
+inline character_count wide_to_ansi_len2(const ::wide_character *pwsz, character_count & srclen);
+inline character_count wide_to_ansi(char_pointer psz, const ::wide_character* pwsz, character_count srclen = -1);
+
+inline char_pointer wide_to_ansi_alloc(const ::wide_character * input, character_count input_size, MALLOC_FUNCTION * malloc_function);
+inline char_pointer wide_to_ansi_dup(const ::wide_character * input, character_count input_size = -1  );
 
 
 /**
@@ -319,9 +343,43 @@ inline character_count wd32_to_wd16_char(::wd16_character * pwd16sz, ::wd32_char
 
 
 
+inline character_count wd32_to_wide_len(const ::wd32_character * pcwsz, character_count input_size)
+{
+
+   return wd32_to_wd16_len(pcwsz, input_size);
+
+}
 
 
+inline character_count wd32_to_wide_len2(const ::wd32_character * pcwsz, character_count & input_size)
+{
 
+   return wd32_to_wd16_len2(pcwsz, input_size);
+
+}
+
+
+inline character_count wd32_to_wide(::wide_character * pwsz, const ::wd32_character * pcwsz, character_count input_size)
+{
+
+   return wd32_to_wd16((::wd16_character*) pwsz, pcwsz, input_size);
+
+}
+
+
+inline ::wide_character * wd32_to_wide_alloc(const ::wd32_character * pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function)
+{
+
+   return (::wide_character *)wd32_to_wd16_alloc(pcwsz, input_size, malloc_function);
+
+}
+
+inline ::wide_character * wd32_to_wide_dup(const ::wd32_character * pcwsz, character_count input_size)
+{
+
+   return (::wide_character *)wd32_to_wd16_alloc(pcwsz, input_size, &cpp_malloc);
+
+}
 
 inline character_count wide_to_ansi_len(const wide_character * pcwsz, character_count input_size)
 {
@@ -437,7 +495,43 @@ inline character_count wide_to_wd32(wd32_character *pwsz, const wide_character *
 
 
 
+inline character_count wd32_to_wide_len(const ::wd32_character * pcwsz, character_count input_size)
+{
 
+   return wd32_to_wd32_len(pcwsz, input_size);
+
+}
+
+inline character_count wd32_to_wide_len2(const ::wd32_character * pcwsz, character_count & input_size)
+{
+
+   return wd32_to_wd32_len2(pcwsz, input_size);
+
+}
+
+
+inline character_count wd32_to_wide(::wide_character * pwsz, const ::wd32_character * pcwsz, character_count input_size)
+{
+
+   return wd32_to_wd32((::wd32_character *)pwsz, pcwsz, input_size);
+
+}
+
+
+inline ::wd32_character * wide_to_wd32_alloc(const ::wide_character * pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function)
+{
+
+   return wd32_to_wd32_alloc((const ::wd32_character *)pcwsz, input_size, malloc_function);
+
+}
+
+
+inline ::wide_character * wd32_to_wide_alloc(const ::wd32_character * pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function)
+{
+
+   return (::wide_character *) wd32_to_wd32_alloc(pcwsz, input_size, malloc_function);
+
+}
 
 inline character_count wide_to_ansi_len(const wide_character * pcwsz, character_count input_size)
 {
@@ -542,13 +636,111 @@ inline character_count wide_to_wd32(wd32_character *pwsz, const wide_character *
 }
 
 
+inline character_count ansi_to_wide(::wide_character * pwsz, const_char_pointer pcsz, character_count input_size)
+{
+
+   return ansi_to_wd32((::wd32_character *) pwsz, pcsz, input_size);
+
+}
 
 
+inline ::ansi_character * wide_to_ansi_alloc(const ::wide_character * pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function)
+{
 
+   return wd32_to_ansi_alloc((const ::wd32_character *)pcwsz, input_size, malloc_function);
+
+}
+
+
+inline character_count ansi_to_wide_len(const_char_pointer pcsz, character_count input_size)
+{
+
+   return ansi_to_wd32_len(pcsz, input_size);
+
+}
+
+
+inline ::wide_character * ansi_to_wide_alloc(const_char_pointer pcsz, character_count input_size, MALLOC_FUNCTION * malloc_function)
+{
+
+   return (::wide_character *) ansi_to_wd32_alloc(pcsz, input_size, malloc_function);
+
+}
 
 
 
 #endif
+
+
+inline ::wd32_character * wd16_to_wd32_dup(const ::wd16_character * pcwsz, character_count input_size)
+{
+
+   return wd16_to_wd32_alloc(pcwsz, input_size, &cpp_malloc);
+
+}
+
+
+inline ::wd16_character * wd32_to_wd16_dup(const ::wd32_character * pcwsz, character_count input_size)
+{
+
+   return wd32_to_wd16_alloc(pcwsz, input_size, &cpp_malloc);  
+
+}
+
+
+
+inline ::wd32_character * wd32_to_wd32_dup(const ::wd32_character * pcwsz, character_count input_size)
+{
+
+   return wd32_to_wd32_alloc(pcwsz, input_size, &cpp_malloc);
+
+}
+
+
+
+
+inline ::wd16_character * ansi_to_wd16_dup(const_char_pointer input, character_count input_size)
+{
+   return ansi_to_wd16_alloc(input, input_size, &cpp_malloc);
+}
+
+
+
+inline ::ansi_character * wd16_to_ansi_dup(const ::wd16_character * input, character_count input_size)
+{
+   return wd16_to_ansi_alloc(input, input_size, &cpp_malloc);
+}
+
+
+
+inline ::wd32_character * ansi_to_wd32_dup(const_char_pointer pcwsz, character_count input_size)
+{
+   return ansi_to_wd32_alloc(pcwsz, input_size, &cpp_malloc);
+}
+
+
+
+
+inline char_pointer wd32_to_ansi_dup(const ::wd32_character * input, character_count input_size)
+{
+   return wd32_to_ansi_alloc(input, input_size, &cpp_malloc);
+}
+
+
+
+inline ::wide_character * ansi_to_wide_dup(const_char_pointer pcwsz, character_count input_size)
+{
+   return ansi_to_wide_alloc(pcwsz, input_size, &cpp_malloc);
+}
+
+
+
+
+
+inline char_pointer wide_to_ansi_dup(const ::wide_character * input, character_count input_size)
+{
+   return wide_to_ansi_alloc(input, input_size, &cpp_malloc);
+}  
 
 
 

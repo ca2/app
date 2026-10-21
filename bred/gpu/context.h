@@ -30,6 +30,8 @@
 namespace gpu
 {
 
+   class window_attachment;
+
    enum enum_api
    {
       e_api_none,
@@ -129,6 +131,8 @@ namespace gpu
       //enum_output                                m_eoutputContextEngine = e_output_gpu_buffer;
       ::pointer < ::gpu::compositor >              m_pgpucompositor;
       ::pointer<::gpu::device>                     m_pgpudevice;
+      // Offscreen engines own frame resources independently of the window.
+      ::pointer<::gpu::window_attachment>          m_pgpuwindowattachmentOffscreen;
       //::i32_rectangle                            m_rectangleNew;
       ::f32                                        m_z;
       i32_point                                    m_pointTranslate;
@@ -141,7 +145,7 @@ namespace gpu
       ::pointer < ::gpu::model_buffer >            m_pmodelbufferDummy;
       ::pointer < ::gpu::shader >                  m_pshaderBlend3;
       //::pointer < ::acme::windowing::window >      m_pacmewindowingwindowWindowSurface;
-      ::pointer < ::acme::user::interaction >      m_puserinteractionTopic;
+      ::pointer < ::user::interaction >            m_puserinteractionTopic;
 
       ::pointer<::gpu::shader>                     m_pgpushaderRgbaFromB_G;
       bool                                         m_bCreated;
@@ -305,14 +309,18 @@ namespace gpu
 //<<<<<<< HEAD
 //      virtual void create_draw2d_context(::gpu::device* pgpudevice, const enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size& size);
 //=======
-      virtual void create_draw2d_gpu_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2graphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
+      //virtual void create_draw2d_gpu_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2graphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
+      // 
+      virtual void create_draw2d_gpu_context(::gpu::device* pgpudevice, ::draw2d::domain * pdraw2ddomain, ::draw2d::graphics * pdraw2graphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
 //>>>>>>> origin/main
 
       virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
 
       virtual void create_window_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
 
-      virtual void _create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
+      //virtual void _create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
+
+      virtual void _create_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::draw2d::domain * pdraw2ddomain, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
 
       //virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::acme::windowing::window* pwindow, const ::i32_size & size);
 
@@ -520,6 +528,8 @@ namespace gpu
 
       virtual ::memory circle_shader_vert();
       virtual ::memory circle_shader_frag();
+      virtual ::memory brush_fill_shader_vert();
+      virtual ::memory brush_fill_shader_frag(bool bPattern);
 
       //virtual void white_to_color_sampler_shader_setup(gpu::shader * pshader);
       virtual ::memory white_to_color_sampler_vert();

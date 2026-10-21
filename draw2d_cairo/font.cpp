@@ -339,17 +339,17 @@ namespace draw2d_cairo
 
          ::i32 iAscent = pango_font_metrics_get_ascent(pfontmetrics);
 
-         m_textmetric2.m_dAscent = iAscent / PANGO_SCALE;
+         m_textmetric4.m_dAscent = iAscent / PANGO_SCALE;
 
          ::i32 iDescent = pango_font_metrics_get_descent(pfontmetrics);
 
-         m_textmetric2.m_dDescent = iDescent / PANGO_SCALE;
+         m_textmetric4.m_dDescent = iDescent / PANGO_SCALE;
 
-         m_textmetric2.m_dHeight = (::i32)iHeight;
+         m_textmetric4.m_dHeight = (::i32)iHeight;
 
-         m_textmetric2.m_dExternalLeading = (m_textmetric2.m_dHeight - (m_textmetric2.m_dAscent + m_textmetric2.m_dDescent));
+         m_textmetric4.m_dExternalLeading = (m_textmetric4.m_dHeight - (m_textmetric4.m_dAscent + m_textmetric4.m_dDescent));
 
-         m_textmetric2.m_dInternalLeading = (::i32)0;
+         m_textmetric4.m_dInternalLeading = (::i32)0;
 
          pango_font_metrics_unref(pfontmetrics);
 

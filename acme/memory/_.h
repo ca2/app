@@ -65,3 +65,21 @@ CLASS_DECL_ACME void increment_particle_counter(::particle * pparticle);
 
 CLASS_DECL_ACME void decrement_particle_counter(::particle * pparticle);
 
+
+/// MALLOC_FUNCTION is a function pointer type for a memory allocation
+/// function that takes a size parameter and returns a pointer to the allocated memory. 
+/// The function is expected to allocate memory of the specified size 
+/// and return a pointer to it. If the allocation fails, it should return nullptr.
+
+
+typedef void * MALLOC_FUNCTION(memsize s);
+
+
+CLASS_DECL_ACME void * cpp_malloc(memsize size);
+
+
+CLASS_DECL_ACME void * main_memory_allocate(memsize size);
+
+
+
+

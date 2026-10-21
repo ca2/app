@@ -2,6 +2,10 @@
 #pragma once
 
 
+
+#include "aura/graphics/draw2d/frame.h"
+
+
 namespace gpu
 {
 

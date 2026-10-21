@@ -2800,7 +2800,6 @@
     <ClCompile Include="prototype\string\string_base.cpp" />
     <ClCompile Include="prototype\string\sz\wide.cpp" />
     <ClCompile Include="prototype\string\sz\wide_impl.cpp" />
-    <ClCompile Include="prototype\string\unicode_wide.cpp" />
     <ClCompile Include="quality\self_test.cpp" />
     <ClCompile Include="quality\self_test_item.cpp" />
     <ClCompile Include="quality_test_context.cpp" />

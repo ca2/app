@@ -1685,7 +1685,7 @@ namespace gpu
 
                ::i32_size size(rectangleTarget.size());
 
-               _create_gpu_context(m_pgpudevice, eoutput, escene, pacmewindowingwindow, nullptr, {}, pointTarget, size, sizeRaw);
+               _create_gpu_context(m_pgpudevice, eoutput, escene, m_puserinteractionTopic->draw2d_domain(), nullptr, {}, pointTarget, size, sizeRaw);
 
                if (m_papplication->m_gpu.m_bUseSwapChainWindow)
                {
@@ -1746,10 +1746,10 @@ namespace gpu
 
       //rear_guard guard(this);
 
-      sendø() <<[this, pgpudevice, eoutput, escene, pointInput, pointOutput, size, sizeRaw, pacmewindowingwindow, pdraw2dgraphics]()
+      sendø() <<[this, pgpudevice, eoutput, escene, pointInput, pointOutput, size, sizeRaw, pdraw2dgraphics]()
          {
 
-            _create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, pdraw2dgraphics, pointInput, pointOutput, size, sizeRaw);
+            _create_gpu_context(pgpudevice, eoutput, escene, m_puserinteractionTopic->draw2d_domain(), pdraw2dgraphics, pointInput, pointOutput, size, sizeRaw);
 
          };
 
@@ -1759,7 +1759,7 @@ namespace gpu
 //<<<<<<< HEAD
   // void context::create_draw2d_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size& size)
 //=======
-   void context::create_draw2d_gpu_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
+   void context::create_draw2d_gpu_context(::gpu::device* pgpudevice, ::draw2d::domain * pdraw2ddomain,  ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
 //>>>>>>> origin/main
    {
 
@@ -1788,7 +1788,12 @@ namespace gpu
 
       m_escene = e_scene_2d;
 
-      m_puserinteractionTopic = pacmewindowingwindow->m_pacmeuserinteraction;
+      if (pdraw2dgraphics)
+      {
+
+         m_puserinteractionTopic = pdraw2dgraphics->m_puserinteractionTopic;
+
+      }
 
       branch_synchronously();
 
@@ -1798,25 +1803,20 @@ namespace gpu
 
       auto pgpucontext = ::as_pointer(this);
 
-      sendø() << [pgpucontext, pgpudevice, pointInput, pointOutput, size, sizeRaw, pacmewindowingwindow, pdraw2dgraphics]()
+      sendø() << [this, pgpucontext, pdraw2ddomain,pgpudevice, pointInput, pointOutput, size, sizeRaw, pdraw2dgraphics]()
          {
 
-            pgpucontext->_create_gpu_context(pgpudevice, ::gpu::e_output_draw2d_bitmap, ::gpu::e_scene_2d, pacmewindowingwindow, pdraw2dgraphics, pointInput, pointOutput, size, sizeRaw);
+            pgpucontext->_create_gpu_context(pgpudevice, ::gpu::e_output_draw2d_bitmap, ::gpu::e_scene_2d, pdraw2ddomain, pdraw2dgraphics, pointInput, pointOutput, size, sizeRaw);
 
          };
 
    }
 
 
-   void context::_create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2graphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
+   void context::_create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::draw2d::domain * pdraw2ddomain, ::draw2d::graphics * pdraw2graphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
    {
 
-      if (m_sizeRaw.is_empty())
-      {
-
-         m_sizeRaw = pacmewindowingwindow->m_sizeRaw;
-
-      }
+      m_sizeRaw = sizeRaw.maximum(size);
 
       m_pointInput = pointInput;
 
@@ -1830,7 +1830,7 @@ namespace gpu
       
       m_escene = escene;
 
-      m_puserinteractionTopic = pacmewindowingwindow->m_pacmeuserinteraction;
+      //m_puserinteractionTopic = pacmewindowingwindow->m_pacmeuserinteraction;
 
       if (m_etype == e_type_window)
       {
@@ -2476,7 +2476,7 @@ namespace gpu
             m_pointOutput,
             m_pointInput,
             size,
-            m_pgpudevice->m_pwindow, 
+            m_puserinteractionTopic->draw2d_domain(),
             nullptr);
 
       }
@@ -4882,6 +4882,13 @@ float4 main(PS_INPUT input) : SV_TARGET
 
       auto pgpurenderer = this->get_gpu_renderer();
 
+
+      if (::is_set(puserinteractionContext))
+      {
+
+         m_sizeRaw = puserinteractionContext->window()->m_sizeRaw;
+
+      }
       // aaaxyz
       //pgpurenderer->frame_prefix();
       pgpurenderer->start_layer(bFirstLayer, estartlayer);
@@ -4918,6 +4925,8 @@ float4 main(PS_INPUT input) : SV_TARGET
             //puserinteractionContext->m_pointOutput = rectangleScreen.origin();
             pgputexturesite->m_pointOutput = rectangleScreen.origin();
          //}
+
+            //m_sizeRaw = puserinteractionContext->window()->m_sizeRaw;
 
       }
 
@@ -5019,6 +5028,10 @@ float4 main(PS_INPUT input) : SV_TARGET
       return {};
 
    }
+
+
+   ::memory context::brush_fill_shader_vert() { return {}; }
+   ::memory context::brush_fill_shader_frag(bool) { return {}; }
 
 
    ::memory context::circle_shader_vert()

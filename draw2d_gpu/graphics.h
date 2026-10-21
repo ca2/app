@@ -119,7 +119,13 @@ namespace draw2d_gpu
       bool CreateIC(const ::scoped_string & lpszDriverName, const ::scoped_string & lpszDeviceName,
                     const_char_pointer pszOutput, const void * lpInitData);
       //void create_memory_graphics(const ::i32_size & size = {}) override;
-      void create_memory_graphics(const ::i32_size & sizeParameter, ::acme::user::interaction * pacmeuserinteractionAffinity) override;
+      //void create_memory_graphics(const ::i32_size & sizeParameter, ::acme::user::interaction * pacmeuserinteractionAffinity) override;
+      // 
+      
+      
+      void create_memory_graphics(const ::i32_size & sizeParameter, ::draw2d::domain * pdraw2ddomain) override;
+
+
       //void create_window_graphics(::windowing::window * pwindow) override;
       //void create_compatible_graphics(::draw2d::graphics * pdraw2dgraphics) override;
 

@@ -881,12 +881,12 @@ character_count ansi_to_wd16(::wd16_character *pwsz, const_char_pointer psz, cha
 }
 
 
-::wd16_character* ansi_to_wd16_dup(const_char_pointer input, character_count input_size)
+::wd16_character* ansi_to_wd16_alloc(const_char_pointer input, character_count input_size, MALLOC_FUNCTION * malloc_function)
 {
 
    character_count s = ansi_to_wd16_len(input, input_size);
 
-   ::wd16_character* v = (::wd16_character*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd16_character) * (s + 1), nullptr);
+   ::wd16_character* v = (::wd16_character*)malloc_function(sizeof(::wd16_character) * (s + 1));
 
    ansi_to_wd16(v, input, s);
 

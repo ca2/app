@@ -1790,14 +1790,17 @@ namespace aura
    //}
 
 
-   void application::init_instance()
+   void application::defer_initialize_graphics_configuration()
    {
 
-      //auto estatus =
-      
-      ::aqua::application::init_instance();
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+      if (payload("graphics_configuration_initialized").is_true())
+      {
 
+         return;
+
+      }
 
       {
 
@@ -2023,6 +2026,22 @@ namespace aura
          }
 
       }
+
+      payload("graphics_configuration_initialized") = true;
+
+   }
+
+
+   void application::init_instance()
+   {
+
+      //auto estatus =
+
+      ::aqua::application::init_instance();
+
+
+
+      defer_initialize_graphics_configuration();
 
       ::cast < ::manager > pmanager = system();
  
@@ -9964,6 +9983,9 @@ namespace aura
 
    ::string application::draw2d_get_default_implementation_name()
    {
+
+      // Windowing can request draw2d before application::init_instance().
+      defer_initialize_graphics_configuration();
 
       if (m_gpu.m_bUseSwapChainWindow)
       {

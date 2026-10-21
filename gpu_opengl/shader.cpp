@@ -1323,7 +1323,14 @@ namespace gpu_opengl
 
          strName.begins_eat("sampler:");
 
-         if (!strName.case_insensitive_begins("padding"))
+         // A shared properties layout can contain uniforms unused by this
+         // shader variant. OpenGL removes them when linking; skip the upload
+         // while still advancing the data offset below.
+         auto location = strName.case_insensitive_begins("padding") ? -1
+            : glGetUniformLocation(m_ProgramID, strName);
+         ::opengl::check_error("");
+
+         if (location >= 0)
          {
 
             switch (p->m_etype)

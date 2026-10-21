@@ -76,7 +76,7 @@ namespace draw2d_cairo
       ::u32 SetLayout(::u32 dwLayout) override;
 
 
-      ::f64 get_dpix() override;
+      //::f64 get_dpix() override;
 
       // Constructors
       //bool CreateDC(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * lpInitData) override;

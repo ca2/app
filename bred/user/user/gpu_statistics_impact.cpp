@@ -192,7 +192,19 @@ namespace user
 
          ::collection::index iFrameSerial = -1;
 
-         iFrameSerial = pgpuwindowattachment->m_iFrameSerial2;
+         if (m_papplication->m_gpu.m_bUseSwapChainWindow && pgpuwindowattachment)
+         {
+
+            iFrameSerial = pgpuwindowattachment->m_iFrameSerial2;
+
+         }
+         else
+         {
+
+            // CPU window drawing has no shared GPU frame; count statistics redraws.
+            iFrameSerial = ++m_iSequence;
+
+         }
 
          strText.formatf("øçåJErDgTBS__!!; %lld", (::i64)iFrameSerial);
 

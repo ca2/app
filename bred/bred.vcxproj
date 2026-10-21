@@ -887,6 +887,14 @@
   <ItemGroup>
     <ResourceCompile Include="deployment.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gpu\brush_fill_geometry.h" />
+    <ClInclude Include="gpu\brush_fill_shader_source.h" />
+    <None Include="gpu\tests\brush_fill_tests.cpp" />
+    <None Include="gpu\tests\validate_brush_fill_shaders.py" />
+    <None Include="gpu\tests\render_brush_fill_tests.py" />
+    <None Include="gpu\tests\README.md" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

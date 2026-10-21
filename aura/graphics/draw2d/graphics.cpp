@@ -177,9 +177,48 @@ namespace draw2d
 
    ::draw2d::frame * graphics::draw2d_frame()
    {
-      
+
+      if (!m_pdraw2dframe)
+      {
+
+         initialize_draw2d_frame();
+
+      }
+
       return m_pdraw2dframe;
       
+   }
+
+
+   void graphics::initialize_draw2d_frame()
+   {
+      
+      if (m_pdraw2dframe)
+      {
+
+         return;
+
+      }
+
+      if (!m_puserinteractionTopic)
+      {
+
+         ::string strErrorMessage;
+
+         strErrorMessage = "m_puserinteractionTopic is null";
+
+         error(strErrorMessage);
+
+         throw ::exception(error_wrong_state, strErrorMessage);
+
+      }
+
+      construct_newø(m_pdraw2dframe);
+
+      m_pdraw2dframe->initialize_draw2d_frame(draw2d_domain());
+
+      m_pdraw2dframe->m_pdraw2dwindowattachment = m_puserinteractionTopic->window()->m_pdraw2dwindowattachment;
+
    }
 
 
@@ -378,10 +417,11 @@ namespace draw2d
 
       //}
 
-      if (m_papplication->m_bGpu)
+      // Offscreen engines manage their own GPU frames; CPU window drawing does not.
+      if (m_papplication->m_bGpu && m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         auto pwindowattachment = m_pdraw2dframe->window_attachment();
+         auto pwindowattachment = draw2d_frame()->window_attachment();
 
          if (!pwindowattachment)
          {
@@ -463,7 +503,8 @@ namespace draw2d
 
       }
 
-      if (m_papplication->m_bGpu)
+      // Offscreen engines manage their own GPU frames; CPU window drawing does not.
+      if (m_papplication->m_bGpu && m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
          auto pgpuwindowattachment = pwindow->m_papexgpuwindowattachment;
@@ -3489,6 +3530,27 @@ namespace draw2d
    }
 
 
+   ::f32 graphics::get_density_dpi()
+   {
+
+      if (!m_puserinteractionTopic)
+      {
+
+         return 96.0f;
+
+      }
+
+      return m_puserinteractionTopic->get_density_dpi_for_window();
+
+   }
+
+
+   ::f32 graphics::point_pixel(::f32 fSize)
+   {
+
+      return get_density_dpi() * fSize / 72.0f;
+
+   }
 
 
    void graphics::send(const ::procedure & procedure)
@@ -5270,20 +5332,20 @@ namespace draw2d
    //}
 
 
-   ::f64 graphics::get_dpix()
-   {
+   //::f64 graphics::get_dpix()
+   //{
 
-      return 96.0;
+   //   return 96.0;
 
-   }
+   //}
 
 
-   ::f64 graphics::get_dpiy()
-   {
+   //::f64 graphics::get_dpiy()
+   //{
 
-      return 96.0;
+   //   return 96.0;
 
-   }
+   //}
 
 
    void graphics::set_fill_mode(::draw2d::enum_fill_mode efillmode)

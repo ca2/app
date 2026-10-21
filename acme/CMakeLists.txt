@@ -287,6 +287,7 @@ list(APPEND library_source
         graphics/draw2d/color32.h
         graphics/draw2d/color_array.cpp
         graphics/draw2d/color_array.h
+        graphics/draw2d/domain.cpp
         graphics/draw2d/domain_consumer.cpp
         graphics/draw2d/domain_consumer.h
         graphics/draw2d/os_font_name.cpp
@@ -1346,7 +1347,6 @@ list(APPEND library_source
         prototype/string/unicode_wd16.cpp
         prototype/string/unicode_wd16_wd32.cpp
         prototype/string/unicode_wd32.cpp
-        prototype/string/unicode_wide.cpp
         prototype/string/wildcard.cpp
         #prototype/string/wstring_adaptor.h
         #prototype/string/x.cpp

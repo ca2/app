@@ -915,71 +915,73 @@ namespace coding
 
       auto psummary = node()->operating_system_summary();
 
-      if (psummary->m_strSystem == "ubuntu")
-      {
-         if (psummary->m_strSystemBranch == "xfce")
-         {
-            return {"xubuntudeps"};
-         }
-         else if (psummary->m_strSystemBranch == "kde")
-         {
-            return {"ubuntuk6deps"};
-         }
-         else
-         {
-            if (atoi(psummary->m_strSystemRelease) >= 24)
-            {
-               return {"ubuntug4deps"};
-            }
-            else
-            {
-               return {"ubuntug3deps"};
-            }
-         }
-      }
-      else if (psummary->m_strSystem == "linuxmint")
-      {
-         return {"ubuntug3deps"};
-      }
-      else if (psummary->m_strSystem == "debian")
-      {
-         if (psummary->m_strSystemBranch == "xfce")
-         {
-            return {"xdebiandeps"};
-         }
-         else if (psummary->m_strSystemBranch == "kde")
-         {
-            return {"kdebiandeps"};
-         }
-         else
-         {
-            return {"debiangdeps"};
-         }
-      }
-       else if (psummary->m_strSystem == "fedora")
-       {
-           if (psummary->m_strSystemBranch == "xfce")
-           {
-               return {"fedorag3deps"};
-           }
-           else if (psummary->m_strSystemBranch == "kde")
-           {
-               return {"fedorak6deps"};
-           }
-           else
-           {
-               //if (atoi(psummary->m_strDistroRelease) >= 24)
-               //{
-                 //  return {"ubuntug4deps"};
-               //}
-               //else
-               //{
-                   return {"fedorag4deps"};
-               //}
-           }
-       }
+      return { psummary->m_strSystemAmbientReleaseArchitecture} ;
 
-      return {};
+      // if (psummary->m_strSystem == "ubuntu")
+      // {
+      //    if (psummary->m_strSystemBranch == "xfce")
+      //    {
+      //       return {"xubuntudeps"};
+      //    }
+      //    else if (psummary->m_strSystemBranch == "kde")
+      //    {
+      //       return {"ubuntuk6deps"};
+      //    }
+      //    else
+      //    {
+      //       if (atoi(psummary->m_strSystemRelease) >= 24)
+      //       {
+      //          return {"ubuntug4deps"};
+      //       }
+      //       else
+      //       {
+      //          return {"ubuntug3deps"};
+      //       }
+      //    }
+      // }
+      // else if (psummary->m_strSystem == "linuxmint")
+      // {
+      //    return {"ubuntug3deps"};
+      // }
+      // else if (psummary->m_strSystem == "debian")
+      // {
+      //    if (psummary->m_strSystemBranch == "xfce")
+      //    {
+      //       return {"xdebiandeps"};
+      //    }
+      //    else if (psummary->m_strSystemBranch == "kde")
+      //    {
+      //       return {"kdebiandeps"};
+      //    }
+      //    else
+      //    {
+      //       return {"debiangdeps"};
+      //    }
+      // }
+      //  else if (psummary->m_strSystem == "fedora")
+      //  {
+      //      if (psummary->m_strSystemBranch == "xfce")
+      //      {
+      //          return {"fedorag3deps"};
+      //      }
+      //      else if (psummary->m_strSystemBranch == "kde")
+      //      {
+      //          return {"fedorak6deps"};
+      //      }
+      //      else
+      //      {
+      //          //if (atoi(psummary->m_strDistroRelease) >= 24)
+      //          //{
+      //            //  return {"ubuntug4deps"};
+      //          //}
+      //          //else
+      //          //{
+      //              return {"fedorag4deps"};
+      //          //}
+      //      }
+      //  }
+
+      //return {};
    }
 
 
@@ -997,19 +999,28 @@ namespace coding
 
       }
 
+      if (depsa.get_count() != 1)
+      {
+
+         print_line("get_install_dep_script_names returned list with more than one item");
+
+         return {};
+
+      }
+
       ::string_array straPackageNames;
 
       for (auto& deps : depsa)
       {
 
-         if (deps.begins("____"))
-         {
+         // if (deps.begins("____"))
+         // {
+         //
+         //    continue;
+         //
+         // }
 
-            continue;
-
-         }
-
-         ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / (deps + ".package_names");
+         ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / deps / "packages.txt";
 
          if (file()->exists(path))
          {
@@ -1052,14 +1063,14 @@ namespace coding
       for (auto& deps : depsa)
       {
 
-         if (deps.begins("____"))
-         {
+         //if (deps.begins("____"))
+         //{
 
-            continue;
+           // continue;
 
-         }
+         //}
 
-         ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / (deps + ".install_group_names");
+         ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / deps / "groups.txt";
 
          auto lines = file()->lines(path);
 

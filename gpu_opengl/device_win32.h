@@ -32,8 +32,10 @@ namespace gpu_opengl
 
       //void create_main_context(::acme::windowing::window * pacmewindowingwindow) override;
 
-      void initialize_gpu_device_for_swap_chain(::gpu::approach* papproach, ::windowing::window* pwindow) override;
-      void initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::i32_rectangle& rectanglePlacement) override;
+      //void initialize_gpu_device_for_swap_chain(::gpu::approach* papproach, ::windowing::window* pwindow) override;
+      //void initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::i32_rectangle& rectanglePlacement) override;
+
+      void initialize_gpu_device(::gpu::approach * papproach, ::draw2d::domain * pdraw2ddomain) override;
 
       virtual void destroy_device();
 

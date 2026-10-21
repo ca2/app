@@ -300,12 +300,12 @@ character_count ansi_to_wide(::wide_character* pwsz, const_char_pointer psz, cha
 
 
 
-::wide_character* ansi_to_wide_dup(const_char_pointer input, character_count input_size)
+::wide_character* ansi_to_wide_alloc(const_char_pointer input, character_count input_size, MALLOC_FUNCTION * malloc_function)
 {
 
    character_count s = ansi_to_wide_len(input, input_size);
 
-   ::wide_character* v = (::wide_character*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wide_character) * (s + 1), nullptr);
+   ::wide_character* v = (::wide_character*)malloc_function(sizeof(::wide_character) * (s + 1));
 
    ansi_to_wide(v, input, s);
 

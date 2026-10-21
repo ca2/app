@@ -289,20 +289,21 @@ list(APPEND library_source
         graphics/draw2d/color_array.h
         graphics/draw2d/domain.cpp
         graphics/draw2d/domain_consumer.cpp
+        graphics/draw2d/domain_consumer.h
         graphics/draw2d/os_font_name.cpp
-   graphics/draw2d/task_tool.cpp
-   graphics/draw2d/task_tool.h
+        graphics/draw2d/task_tool.cpp
+        graphics/draw2d/task_tool.h
         graphics/graphics/_.h
-   graphics/graphics/double_pass_scale.h
-   graphics/graphics/filters.h
+        graphics/graphics/double_pass_scale.h
+        graphics/graphics/filters.h
         graphics/graphics/output_purpose.cpp
         graphics/graphics/output_purpose.h
-   graphics/image/color_indexes.cpp
-   graphics/image/color_indexes.h
-   graphics/image/frame.cpp
-   graphics/image/frame.h
-   graphics/image/frame_array.cpp
-   graphics/image/frame_array.h
+        graphics/image/color_indexes.cpp
+        graphics/image/color_indexes.h
+        graphics/image/frame.cpp
+        graphics/image/frame.h
+        graphics/image/frame_array.cpp
+        graphics/image/frame_array.h
         graphics/image/image32_t.cpp
         graphics/image/image32_t.h
         graphics/image/image32_t_array.cpp
@@ -1346,7 +1347,6 @@ list(APPEND library_source
         prototype/string/unicode_wd16.cpp
         prototype/string/unicode_wd16_wd32.cpp
         prototype/string/unicode_wd32.cpp
-        prototype/string/unicode_wide.cpp
         prototype/string/wildcard.cpp
         #prototype/string/wstring_adaptor.h
         #prototype/string/x.cpp
@@ -2607,7 +2607,7 @@ if (${LINUX})
             #operating_system/linux/_linux.h
             #operating_system/linux/_user.h
             operating_system/linux/application.h
-            operating_system/linux/callstack.cpp
+            operating_system/linux/call_stack.cpp
             operating_system/linux/console.cpp
             operating_system/linux/cpu_features.cpp
             #operating_system/linux/cross_win_file.cpp

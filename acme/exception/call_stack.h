@@ -62,9 +62,9 @@ public:
    void * m_modulea[TRACE_MAX_STACK_FRAMES];
    ::u32 m_u32ModulePathLength[TRACE_MAX_STACK_FRAMES];
 #if defined(WINDOWS)
-   wchar_t m_szaModulePath[MODULE_BUF_SIZE][TRACE_MAX_STACK_FRAMES];
+   wchar_t m_szaModulePath[TRACE_MAX_STACK_FRAMES][MODULE_BUF_SIZE];
 #else
-   char m_szaModulePath[MODULE_BUF_SIZE][TRACE_MAX_STACK_FRAMES];
+   char m_szaModulePath[TRACE_MAX_STACK_FRAMES][MODULE_BUF_SIZE];
 #endif
    ::u32 m_u32Hash;
 

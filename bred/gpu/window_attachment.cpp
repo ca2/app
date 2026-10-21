@@ -91,6 +91,8 @@ namespace gpu
 
          m_pgpucontextWindow->m_sizeRaw = sizeRaw;
 
+         m_pgpucontextWindow->m_puserinteractionTopic = pacmewindowingwindow->m_pacmeuserinteraction;
+
          ::gpu::enum_scene escene = ::gpu::e_scene_2d;
 
          if (m_papplication->m_gpu.m_bUseSwapChainWindow)
@@ -157,6 +159,16 @@ namespace gpu
 
 
 
+   void window_attachment::initialize_offscreen_frame(::gpu::context * pcontext)
+   {
+
+      m_pgpucontextOffscreen = pcontext;
+      m_iFrameCount = 1;
+      defer_create_synchronization();
+
+   }
+
+
    ::gpu::context * window_attachment::window_context()
    {
 
@@ -196,6 +208,8 @@ namespace gpu
 
          ::cast < ::user::interaction > puserinteraction = pacmeuserinteractionMain;
 
+         m_pgpucontextDraw2d->m_puserinteractionTopic = puserinteraction;
+
          if (!m_pgpucontextDraw2d->m_itask
             && puserinteraction->m_pacmewindowingwindow)
          {
@@ -227,7 +241,7 @@ namespace gpu
                   m_pgpucontextDraw2d->create_draw2d_gpu_context(
 //>>>>>>> origin/main
 m_pgpucontextWindow->m_pgpudevice,
-pwindow,
+pwindow->draw2d_domain(),
 nullptr,
 {},
 pointTarget,
@@ -665,6 +679,12 @@ sizeRaw
          m_pgpucontextWindow->on_new_frame();
 
       }
+      else if (m_pgpucontextOffscreen)
+      {
+
+         m_pgpucontextOffscreen->on_new_frame();
+
+      }
 
          // m_iCurrentFrame3 = (m_iCurrentFrame3 + 1) % iFrameCount;
 
@@ -681,6 +701,12 @@ sizeRaw
             {
 
                pgpudevice = m_pgpucontextWindow->m_pgpudevice;
+
+            }
+            else if (m_pgpucontextOffscreen)
+            {
+
+               pgpudevice = m_pgpucontextOffscreen->m_pgpudevice;
 
             }
             else if (m_pgraphics3dengineinstance)
@@ -809,7 +835,7 @@ sizeRaw
 
       //pgpuwindowattachment->present();
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_pgpucontextOffscreen && m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
          present();
@@ -875,6 +901,13 @@ sizeRaw
       {
 
          return nullptr;
+
+      }
+
+      if (pgpucontext->m_pgpuwindowattachmentOffscreen)
+      {
+
+         return pgpucontext->m_pgpuwindowattachmentOffscreen;
 
       }
 

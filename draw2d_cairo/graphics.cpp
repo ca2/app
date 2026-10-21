@@ -5481,12 +5481,12 @@ namespace draw2d_cairo
    }
 
 
-   ::f64 graphics::get_dpix()
-   {
+   //::f64 graphics::get_dpix()
+   //{
 
-      return 72.0;
+   //   return 72.0;
 
-   }
+   //}
 
 
    bool graphics::_set(::draw2d::brush * pdraw2dbrush, ::f64 x, ::f64 y)

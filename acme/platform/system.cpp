@@ -712,15 +712,15 @@ namespace platform
 
       constructø(m_plogger);
 
-      {
-
-         ::trace_statement tracestatmentStartTime(this);
-
-         tracestatmentStartTime.m_etracelevel = e_trace_level_none;
-
-         tracestatmentStartTime << "Start Time: " << international_date_time_with_milliseconds(m_timeStart);
-
-      }
+      // {
+      //
+      //    ::trace_statement tracestatmentStartTime(this);
+      //
+      //    tracestatmentStartTime.m_etracelevel = e_trace_level_none;
+      //
+      //    tracestatmentStartTime << "Start Time: " << international_date_time_with_milliseconds(m_timeStart);
+      //
+      // }
 
       //constructø(m_pmutexTask);
 

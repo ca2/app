@@ -183,6 +183,8 @@ namespace draw2d
 
       ::acme::draw2d::domain * acme_draw2d_domain() override;
       virtual ::draw2d::frame * draw2d_frame();
+      virtual void initialize_draw2d_frame();
+    
 
       virtual bool is_gpu_oriented();
       //      // void assert_ok() const override;
@@ -193,10 +195,21 @@ namespace draw2d
       // void destroy_os_data() override;
 
 
+
       virtual bool is_y_flip();
 
       virtual ::f64 size_scaler();
       virtual void set_size_scaler(::f64 dSizeScaler);
+
+
+      virtual ::f32 get_density_dpi();
+
+      virtual ::f32 point_pixel(::f32 fSize);
+
+
+      //virtual ::f64 get_dpix();
+      //virtual ::f64 get_dpiy();
+
 
       //virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure);
       virtual void reset_target_rectangle();
@@ -493,8 +506,6 @@ namespace draw2d
       //virtual ::i32 GetStretchBltMode();
 
 
-      virtual ::f64 get_dpix();
-      virtual ::f64 get_dpiy();
 
       //virtual ::i32 SetPolyFillMode(::i32 nPolyFillMode);
       //virtual ::i32 SetROP2(::i32 nDrawMode);

@@ -32,6 +32,10 @@ namespace gpu
          const ::image32_t * pimage32,
          ::i32 iScan,
          bool bTopDown) override;
+      void update_bitmap_as_image_render_target(
+         ::image::image * pimage,
+         ::draw2d::domain * pdraw2ddomain,
+         ::draw2d::graphics * pdraw2dgraphics) override;
       void update_bitmap_as_backed_by_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics) override;
       virtual void _create_gpu_bitmap(const ::i32_size & size, ::draw2d::graphics * pdraw2dgraphics, pixmap_t * ppixmap = nullptr);
       void create_bitmap(::draw2d::graphics *pdraw2dgraphics, const ::i32_size &size, ::pixmap * ppixmapOwned) override;

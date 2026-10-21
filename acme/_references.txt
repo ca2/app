@@ -1,3 +1,3 @@
 third/archive
-third/idn
+port/base/idn
 third/zlib

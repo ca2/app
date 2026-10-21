@@ -339,6 +339,8 @@ namespace graphics
 
          auto & pimg = p->m_pimageTarget.m_p;
 
+         m_pdraw2dgraphics->m_puserinteractionTopic = m_pwindow->user_interaction();
+
          //if (m_bNewFrame)
          if (egraphics == e_graphics_draw)
          {

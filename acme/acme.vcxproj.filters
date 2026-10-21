@@ -6533,9 +6533,6 @@
     <ClCompile Include="prototype\string\sz\wide_impl.cpp">
       <Filter>Source Files\prototype\string\sz</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\string\unicode_wide.cpp">
-      <Filter>Source Files\prototype\string</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\windows_common\call_stack.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>

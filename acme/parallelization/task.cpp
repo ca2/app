@@ -28,6 +28,10 @@
 #include "acme/windowing/windowing.h"
 
 
+bool should_log_task_has_finishing_flag();
+void set_should_log_task_has_finishing_flag(bool bSet);
+
+
 #ifdef LINUX
 
 ::i32 SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask);
@@ -472,13 +476,18 @@ bool task::should_run() const
 
    }
 
-   if (((::task*)this)->m_timeLastFinishingReport.has_timed_out_with_update(1_s))
+   if (should_log_task_has_finishing_flag())
    {
 
-      ::string strTaskName = m_strTaskName;
+      if (((::task*)this)->m_timeLastFinishingReport.has_timed_out_with_update(1_s))
+      {
 
-      information("Task \"{}\" has finishing flag.", strTaskName);
+         ::string strTaskName = m_strTaskName;
 
+         information("Task \"{}\" has finishing flag.", strTaskName);
+
+
+      }
 
    }
 
@@ -4826,3 +4835,25 @@ bool cpp_task_get_run()
    return ::task_get_run();
    
 }
+
+
+bool g_bShouldLogTaskHasFinishingFlag = true;
+
+
+bool should_log_task_has_finishing_flag()
+{
+
+   return g_bShouldLogTaskHasFinishingFlag;
+
+}
+
+
+void set_should_log_task_has_finishing_flag(bool bSet)
+{
+
+   g_bShouldLogTaskHasFinishingFlag = false;
+
+}
+
+
+

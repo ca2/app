@@ -1022,7 +1022,7 @@ namespace platform
 
       auto pdirsystem = psystem->directory_system();
 
-      ::file::path pathResource = pdirsystem->m_pathInstall;
+      ::file::path pathResource = pdirsystem->installed_path();
 
 #ifdef __APPLE__
 
@@ -1043,7 +1043,7 @@ namespace platform
 
          auto psystem = system();
 
-         ::file::path pathCache = psystem->directory_system()->m_pathLocalAppMatterFolder / path;
+         ::file::path pathCache = psystem->directory_system()->local_app_matter_folder() / path;
 
          if (path.flags().has(::file::e_flag_get_local_path)
              || (path.flags().is_clear(::file::e_flag_bypass_cache)

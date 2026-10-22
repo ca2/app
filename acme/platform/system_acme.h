@@ -18,6 +18,7 @@
 #include "acme/parallelization/_types.h"
 #include "acme/prototype/collection/map.h"
 #include "acme/prototype/prototype/factory.h"
+#include <mutex>
 
 
 namespace accessibility
@@ -190,6 +191,10 @@ namespace platform
       ::pointer<class ::directory_system>                                     m_pdirectorysystem;
       ::pointer<class ::file_system>                                          m_pfilesystem;
       ::pointer<class ::path_system>                                          m_ppathsystem;
+      ::std::recursive_mutex                                                  m_mutexFileSystemComponents;
+      bool                                                                    m_bFileSystemComponentsInitializing = false;
+      bool                                                                    m_bFileSystemComponentsInitialized = false;
+      bool                                                                    m_bDirectorySystemInitialized = false;
 
       //::pointer<::directory_system>                                         m_pdirectorysystem;
       //::pointer<::file_system>                                              m_pfilesystem;

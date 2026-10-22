@@ -1,10 +1,13 @@
 #pragma once
 
+#ifndef STARTUP_DELAY_DEBUG
 #define STARTUP_DELAY_DEBUG 0
+#endif
 
 #if STARTUP_DELAY_DEBUG
 
 #include <chrono>
+#include <cstdio>
 
 namespace startup_delay_debug
 {
@@ -32,7 +35,7 @@ namespace startup_delay_debug
 
          auto duration = std::chrono::steady_clock::now() - m_timeStart;
          auto dSeconds = std::chrono::duration_cast<std::chrono::duration<double>>(duration).count();
-         informationf("Startup phase '%s': %.3f seconds", m_pszPhase, dSeconds);
+         std::fprintf(stderr, "Startup phase '%s': %.3f seconds\n", m_pszPhase, dSeconds);
       }
    };
 
@@ -40,7 +43,7 @@ namespace startup_delay_debug
 
 #define STARTUP_DELAY_TRACE_SCOPE(name) ::startup_delay_debug::scope startupDelayScope##__LINE__(name)
 #define STARTUP_DELAY_TRACE_SCOPE_IF(name, condition) ::startup_delay_debug::scope startupDelayScope##__LINE__(name, (condition))
-#define STARTUP_DELAY_TRACE_EVENT(...) informationf(__VA_ARGS__)
+#define STARTUP_DELAY_TRACE_EVENT(...) do { std::fprintf(stderr, __VA_ARGS__); std::fputc('\n', stderr); } while (false)
 
 #else
 

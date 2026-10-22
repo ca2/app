@@ -528,9 +528,9 @@ namespace platform
    void application::initialize_application()
    {
 
-      information() << "startup: platform::application::initialize_application: before set_platform()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::initialize_application: before set_platform()");
       set_platform();
-      information() << "startup: platform::application::initialize_application: after set_platform()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::initialize_application: after set_platform()");
 
       // if (m_papplication == nullptr)
       // {
@@ -2249,35 +2249,35 @@ namespace platform
 
    void application::process_init()
    {
-      information() << "startup: platform::application::process_init: enter";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: enter");
 
 
-      information() << "startup: platform::application::process_init: before initialize_context()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: before initialize_context()");
       initialize_context();
-      information() << "startup: platform::application::process_init: after initialize_context()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: after initialize_context()");
 
       if (m_strAppId.has_character())
       {
 
          string_array_base stra;
 
-         information() << "startup: platform::application::process_init: before stra.explode(\"/\", m_strAppId)";
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: before stra.explode(\"/\", m_strAppId)");
          stra.explode("/", m_strAppId);
-         information() << "startup: platform::application::process_init: after stra.explode(\"/\", m_strAppId)";
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: after stra.explode(\"/\", m_strAppId)");
 
          m_strRoot = stra[0];
 
-         information() << "startup: platform::application::process_init: before m_strDomain = stra.slice(1).implode(\"/\")";
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: before m_strDomain = stra.slice(1).implode(\"/\")");
          m_strDomain = stra.slice(1).implode("/");
-         information() << "startup: platform::application::process_init: after m_strDomain = stra.slice(1).implode(\"/\")";
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: after m_strDomain = stra.slice(1).implode(\"/\")");
 
-         information() << "startup: platform::application::process_init: before add_matter_locator(this)";
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: before add_matter_locator(this)");
          add_matter_locator(this);
-         information() << "startup: platform::application::process_init: after add_matter_locator(this)";
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: after add_matter_locator(this)");
 
       }
 
-      information() << "startup: platform::application::process_init: leave";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: leave");
 
    }
 
@@ -2617,22 +2617,22 @@ namespace platform
 
    void application::init_application()
    {
-      information() << "startup: platform::application::init_application: enter";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: enter");
 
 
-      information() << "startup: platform::application::init_application: before auto psystem = system()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before auto psystem = system()");
       auto psystem = system();
-      information() << "startup: platform::application::init_application: after auto psystem = system()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after auto psystem = system()");
 
       //information() << "apex::application::init_application";
 
-      information() << "startup: platform::application::init_application: before ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before ping()");
       ping();
-      information() << "startup: platform::application::init_application: after ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after ping()");
 
-      information() << "startup: platform::application::init_application: before init1()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before init1()");
       init1();
-      information() << "startup: platform::application::init_application: after init1()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after init1()");
 
       //if (!init1())
       //{
@@ -2647,13 +2647,13 @@ namespace platform
 
       //xxdebug_box("init1 ok", "init1 ok", ::user::e_message_box_icon_information);
 
-      information() << "startup: platform::application::init_application: before ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before ping()");
       ping();
-      information() << "startup: platform::application::init_application: after ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after ping()");
 
-      information() << "startup: platform::application::init_application: before init2()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before init2()");
       init2();
-      information() << "startup: platform::application::init_application: after init2()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after init2()");
 
       //if (!init2())
       //{
@@ -2668,13 +2668,13 @@ namespace platform
 
       //xxdebug_box("init2 ok", "init2 ok", ::user::e_message_box_icon_information);
 
-      information() << "startup: platform::application::init_application: before ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before ping()");
       ping();
-      information() << "startup: platform::application::init_application: after ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after ping()");
 
-      information() << "startup: platform::application::init_application: before init3()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before init3()");
       init3();
-      information() << "startup: platform::application::init_application: after init3()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after init3()");
 
       //if (!init3())
       //{
@@ -2689,18 +2689,18 @@ namespace platform
 
       //xxdebug_box("init3 ok", "init3 ok", ::user::e_message_box_icon_information);
 
-      information() << "startup: platform::application::init_application: before ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before ping()");
       ping();
-      information() << "startup: platform::application::init_application: after ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after ping()");
 
       //dappy(::platform::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
 
       //try
       //{
 
-      information() << "startup: platform::application::init_application: before init()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before init()");
       init();
-      information() << "startup: platform::application::init_application: after init()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after init()");
       //{
       //
       ////dappy(::platform::type(this).name() + " : initialize failure : " + as_string(m_iErrorCode));
@@ -2730,7 +2730,7 @@ namespace platform
 
       //return true;
 
-      information() << "startup: platform::application::init_application: leave";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: leave");
 
    }
 

@@ -1,6 +1,7 @@
 #include "platform.h"
 #include "task.h"
 #include "startup_delay_debug.h"
+#include "shutdown_delay_debug.h"
 #include "../user/interface/message_box.h"
 #include "acme/_operating_system.h"
 #include "acme/exception/_text_stream.h"
@@ -1783,6 +1784,8 @@ void task::stop_task()
 void task::destroy()
 {
 
+   SHUTDOWN_DELAY_TRACE_SCOPE("task::destroy");
+
    if (m_phappeningFinished2)
    {
 
@@ -1796,9 +1799,15 @@ void task::destroy()
 
    //bool bHasFinishingFlag2 = has_finishing_flag();
 
-   ::object::destroy();
+   {
+      SHUTDOWN_DELAY_TRACE_SCOPE("task::destroy: object destruction and child tasks");
+      ::object::destroy();
+   }
 
-   ::data::property_container::destroy();
+   {
+      SHUTDOWN_DELAY_TRACE_SCOPE("task::destroy: property container");
+      ::data::property_container::destroy();
+   }
 
 #ifdef WINDOWS
 
@@ -2939,6 +2948,8 @@ void task::init_task()
 
 void task::term_task()
 {
+
+   SHUTDOWN_DELAY_TRACE_SCOPE("task::term_task");
 
    //try
    //{

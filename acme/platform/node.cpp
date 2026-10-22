@@ -2,6 +2,7 @@
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "platform.h"
+#include "startup_delay_debug.h"
 #include "node.h"
 //#include "sequencer.h"
 #include "application.h"
@@ -359,13 +360,21 @@ namespace platform
    void node::node_implement_main()
    {
 
+      STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main");
+
       //m_pparticleQuit = create_quit_particle(pnode);
 
       auto psystem = system();
       
-      psystem->m_papplication->__task_init();
+      {
+         STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main: application task setup");
+         psystem->m_papplication->__task_init();
+      }
 
-      psystem->init_task();
+      {
+         STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main: system task setup");
+         psystem->init_task();
+      }
 
       if (application()->m_bSession)
       {
@@ -374,7 +383,10 @@ namespace platform
 
       }
 
-      psystem->m_papplication->init_task();
+      {
+         STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main: application init_task");
+         psystem->m_papplication->init_task();
+      }
 
       if (psystem->m_pfnImplement)
       {
@@ -393,7 +405,10 @@ namespace platform
 
          psystem->m_papplication->property_set().merge(prequest->property_set());
 
-         psystem->m_papplication->main();
+         {
+            STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main: application main");
+            psystem->m_papplication->main();
+         }
          
          if(psystem->m_iExitCode == 0)
          {

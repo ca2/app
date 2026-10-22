@@ -1203,7 +1203,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
    if (pathParam.case_insensitive_begins("appmatter://"))
    {
 
-      path = psystem->directory_system()->m_pathLocalAppMatterFolder / path.substr(12);
+      path = psystem->directory_system()->local_app_matter_folder() / path.substr(12);
 
    }
    else
@@ -1936,7 +1936,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 
    auto psystem = system();
 
-   return psystem->directory_system()->m_pathInstall;
+   return psystem->directory_system()->installed_path();
 
 }
 
@@ -1966,7 +1966,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 
    auto psystem = system();
 
-   return psystem->directory_system()->m_pathCa2Config;
+   return psystem->directory_system()->ca2_config_path();
 
 }
 
@@ -1978,7 +1978,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 
    auto psystem = system();
 
-   return psystem->directory_system()->m_pathHome;
+   return psystem->directory_system()->home_path();
 
 }
 
@@ -2391,14 +2391,14 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
    if (psystem->directory_system()->m_bMatterFromHttpCache)
    {
 
-      if (psystem->directory_system()->m_pathLocalAppMatterCacheFolder.has_character())
+      if (psystem->directory_system()->local_app_matter_cache_folder().has_character())
       {
 
          ::file::path pathLs0 = straMatterLocator.first();
 
          pathLs0 /= application()->get_locale_schema_dir();
 
-         pathCache = psystem->directory_system()->m_pathLocalAppMatterCacheFolder / pathLs0 / (patha[0] + ".map_question");
+         pathCache = psystem->directory_system()->local_app_matter_cache_folder() / pathLs0 / (patha[0] + ".map_question");
 
          information() << "cache map_base path: " << pathCache;
 
@@ -2435,7 +2435,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
             if (strFinal.case_insensitive_begins("appmatter://"))
             {
 
-               strFinal = psystem->directory_system()->m_pathLocalAppMatterFolder / strFinal.substr(12);
+               strFinal = psystem->directory_system()->local_app_matter_folder() / strFinal.substr(12);
 
             }
 
@@ -2599,7 +2599,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
          if (bDir)
          {
 
-            directory_system()->create(psystem->directory_system()->m_pathLocalAppMatterFolder / strMatter);
+            directory_system()->create(psystem->directory_system()->local_app_matter_folder() / strMatter);
 
          }
 
@@ -2663,7 +2663,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
             strMatter = strLs / pathItem;
 
-            path = psystem->directory_system()->m_pathLocalAppMatterFolder / strMatter;
+            path = psystem->directory_system()->local_app_matter_folder() / strMatter;
 
             auto etype = path_system()->get_type(path);
 
@@ -2720,7 +2720,7 @@ ret:
 
       strMatter.case_insensitive_begins_eat("appmatter://");
 
-      ::file::path pathCache = directory_system()->m_pathLocalAppMatterFolder / strMatter;
+      ::file::path pathCache = directory_system()->local_app_matter_folder() / strMatter;
 
       ::file::path pathMeta = pathCache + ".meta_information";
 
@@ -2959,6 +2959,13 @@ ret:
    {
 
       strAppId = application()->m_strAppId;
+
+   }
+
+   if (strAppId == application()->m_strAppId)
+   {
+
+      return directory_system()->application_app_data_path();
 
    }
 

@@ -122,7 +122,7 @@ FragColor = texture(uTexture, TexCoord);
 
       }
 
-      if (!m_pgpurenderer->m_pgpucontext->m_pacmeuserinteractionTopic)
+      if (!m_pgpurenderer->m_pgpucontext->m_pgpudevice->draw2d_domain())
       {
 
          information("swap_chain::present No window");

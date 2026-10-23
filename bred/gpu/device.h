@@ -3,10 +3,10 @@
 #pragma once
 
 
-////#include "acme/exception/exception.h"
 #include "acme/constant/gpu.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "acme/prototype/prototype/memory.h"
+#include "aura/graphics/draw2d/domain_consumer.h"
 #include "aura/graphics/draw3d/matrix.h"
 #include "apex/parallelization/thread.h"
 #include "bred/gpu/shader.h"
@@ -34,7 +34,8 @@ namespace gpu
 
 
    class CLASS_DECL_BRED device :
-      virtual public ::object
+      virtual public ::object,
+      virtual public ::draw2d::domain_consumer
    {
    public:
 
@@ -44,7 +45,7 @@ namespace gpu
 
 
       itask									                     m_itaskCurrentGpuContext;
-      ::pointer < ::draw2d::domain >                     m_pdraw2domain;
+      //::pointer < ::draw2d::domain >                     m_pdraw2domain;
       ::pointer < ::gpu::approach >                      m_pgpuapproach;
       ::pointer < ::windowing::window >                  m_pwindow;
       ::gpu::context_pointer                             m_pgpucontextCurrent4;

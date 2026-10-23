@@ -408,7 +408,7 @@ namespace apex
    ::file::path application::cloud_protocol()
    {
 
-      return "dropbox://";
+      return "cloud://";
 
    }
 

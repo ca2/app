@@ -4,6 +4,7 @@
 
 #include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
+#include "presentation_trace.h"
 
 
 namespace graphics
@@ -30,6 +31,7 @@ namespace graphics
       ::i32_size                                   m_sizeInternal;
       ::i32                                        m_iScan;
       bool                                         m_bTightRawBuffer = false;
+      presentation_trace_frame                     m_presentationTrace;
 
 
       virtual ::draw2d::graphics_lease acquire_graphics();

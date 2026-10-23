@@ -50,6 +50,9 @@ public:
    string                        m_strApiCc;
 
    ::file::path                  m_pathCa2Config;
+   ::file::path                  m_pathCloudProtocol;
+   critical_section              m_criticalsectionCloudProtocol;
+   bool                          m_bCloudProtocolCalculated = false;
    //::file::path                  m_pathModule;
    ::file::path                  m_pathHome;
    ::file::path                  m_pathInstall;
@@ -161,6 +164,7 @@ public:
    virtual ::file::path ca2roaming(); // writable root (non-bin, non-exe)
    virtual ::file::path ca2appdata(); // writable root (non-bin, non-exe)
    virtual ::file::path roaming();
+   virtual ::file::path cloud_protocol(); // selected cloud root, overridable by roaming/user/cloud.txt
    virtual ::file::path program_data();
    virtual ::file::path application_data_base();
    virtual ::file::path application_data();

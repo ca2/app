@@ -1508,6 +1508,13 @@ namespace windowing
 
       ::i32_rectangle rectangleHint(rectangleHintParam);
 
+      ::string strRestoreTrace;
+      strRestoreTrace.formatf(
+          "Restore trace: get_good_restore begin mode=%d hint=(%d,%d,%d,%d) interaction=%p",
+         (int)edisplay, rectangleHint.left, rectangleHint.top, rectangleHint.right,
+         rectangleHint.bottom, (void *)pinteraction);
+      information() << strRestoreTrace;
+
       ::i32_rectangle rectangleWorkspace;
 
       ::i32_size sizeMin;
@@ -1529,6 +1536,12 @@ namespace windowing
 
          if (iMonitor >= 0)
          {
+
+            strRestoreTrace.formatf(
+                "Restore trace: preferred result mode=%d monitor=%d result=(%d,%d,%d,%d)",
+               (int)edisplay, (int)iMonitor, prectangle->left, prectangle->top,
+               prectangle->right, prectangle->bottom);
+            information() << strRestoreTrace;
 
             information() << "get_preferred_restore : " << *prectangle;
 
@@ -1553,6 +1566,12 @@ namespace windowing
 
             if (iMatchingWorkspace < 0)
             {
+
+               strRestoreTrace.formatf(
+                   "Restore trace: workspace lookup failed mode=%d hint=(%d,%d,%d,%d)",
+                  (int)edisplay, rectangleHint.left, rectangleHint.top,
+                  rectangleHint.right, rectangleHint.bottom);
+               information() << strRestoreTrace;
 
                information() << "iMatchingWorkspace (2): " << iMatchingWorkspace;
 
@@ -1592,14 +1611,52 @@ namespace windowing
 
          rectangleNormal = pinteraction->get_window_normal_stored_rectangle();
 
-         if(rectangleNormal.size() < sizeMin)
+         auto sizeMaximumRestore = sizeMin.maximum(rectangleWorkspace.size() * 9 / 10);
+
+         if (!(rectangleNormal.size() >= sizeMin)
+            || !(rectangleNormal.size() <= sizeMaximumRestore))
          {
 
-            rectangleNormal.set_size(rectangleWorkspace.size() * 3 / 5);
+            rectangleNormal.set_size(sizeMin.maximum(rectangleWorkspace.size() * 3 / 5));
 
-            rectangleNormal.top_left() = rectangleWorkspace.size() * 1 / 10;
+            rectangleNormal.top_left() = rectangleWorkspace.top_left() + rectangleWorkspace.size() / 10;
 
          }
+
+         auto normalize_restore_rectangle = [&](::i32_rectangle & rectangle)
+         {
+
+            if (rectangle.is_empty())
+            {
+
+               return;
+
+            }
+
+            auto width = minimum(rectangle.width(), rectangleWorkspace.width());
+            auto height = minimum(rectangle.height(), rectangleWorkspace.height());
+
+            rectangle.set_size({ width, height });
+            rectangle.move_to({
+               maximum(rectangleWorkspace.left, minimum(rectangle.left, rectangleWorkspace.right - width)),
+               maximum(rectangleWorkspace.top, minimum(rectangle.top, rectangleWorkspace.bottom - height)) });
+
+         };
+
+         normalize_restore_rectangle(rectangleBroad);
+         normalize_restore_rectangle(rectangleCompact);
+         normalize_restore_rectangle(rectangleNormal);
+
+         strRestoreTrace.formatf(
+             "Restore trace: candidates mode=%d monitor=%d workspace=(%d,%d,%d,%d) hint=(%d,%d,%d,%d) normal=(%d,%d,%d,%d) compact=(%d,%d,%d,%d) broad=(%d,%d,%d,%d) minimum=%dx%d",
+            (int)edisplay, (int)iMatchingWorkspace,
+            rectangleWorkspace.left, rectangleWorkspace.top, rectangleWorkspace.right, rectangleWorkspace.bottom,
+            rectangleHint.left, rectangleHint.top, rectangleHint.right, rectangleHint.bottom,
+            rectangleNormal.left, rectangleNormal.top, rectangleNormal.right, rectangleNormal.bottom,
+            rectangleCompact.left, rectangleCompact.top, rectangleCompact.right, rectangleCompact.bottom,
+            rectangleBroad.left, rectangleBroad.top, rectangleBroad.right, rectangleBroad.bottom,
+            sizeMin.cx, sizeMin.cy);
+         information() << strRestoreTrace;
 
       }
       else
@@ -1656,6 +1713,8 @@ namespace windowing
 
          if (rectangleHint.size() == rectangleBroad.size() 
             || rectangleHint.size() == rectangleCompact.size()
+            || !(rectangleHint.size() >= sizeMin)
+            || !(rectangleHint.size() <= sizeMin.maximum(rectangleWorkspace.size() * 9 / 10))
             || is_like_maximized(rectangleWorkspace, rectangleHint))
          {
 
@@ -1698,6 +1757,21 @@ namespace windowing
 
       }
 
+      // A saved restore rectangle can have coordinates from a previous
+      // monitor or workspace. Clamp the final placement before returning it.
+      if (!rectanglePlacement.is_empty())
+      {
+
+         auto width = minimum(rectanglePlacement.width(), rectangleWorkspace.width());
+         auto height = minimum(rectanglePlacement.height(), rectangleWorkspace.height());
+
+         rectanglePlacement.set_size({ width, height });
+         rectanglePlacement.move_to({
+            maximum(rectangleWorkspace.left, minimum(rectanglePlacement.left, rectangleWorkspace.right - width)),
+            maximum(rectangleWorkspace.top, minimum(rectanglePlacement.top, rectangleWorkspace.bottom - height)) });
+
+      }
+
       if (rectanglePlacement.right > rectangleWorkspace.right)
       {
 
@@ -1731,6 +1805,13 @@ namespace windowing
       }
 
       *prectangle = rectanglePlacement;
+
+      strRestoreTrace.formatf(
+          "Restore trace: get_good_restore result mode=%d monitor=%d workspace=(%d,%d,%d,%d) result=(%d,%d,%d,%d)",
+         (int)edisplay, (int)iMatchingWorkspace,
+         rectangleWorkspace.left, rectangleWorkspace.top, rectangleWorkspace.right, rectangleWorkspace.bottom,
+         rectanglePlacement.left, rectanglePlacement.top, rectanglePlacement.right, rectanglePlacement.bottom);
+      information() << strRestoreTrace;
 
       information() << "windowing::display get_good_restore final rectanglePlacement : " << rectanglePlacement;
 

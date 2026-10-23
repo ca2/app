@@ -5,6 +5,7 @@
 #include "acme.h"
 #include "system_setup.h"
 #include "system.h"
+#include "release_mode_trace_level.h"
 #include "console_lifecycle_trace.h"
 #include "startup_delay_debug.h"
 #include "shutdown_delay_debug.h"
@@ -317,11 +318,9 @@ namespace platform
 
 #endif
 
-#ifdef _DEBUG
-      m_etracelevelMinimum = e_trace_level_information;
-#else
-      m_etracelevelMinimum = e_trace_level_warning;
-#endif
+      // Let get_trace_level() resolve the build default and any command-line
+      // or configuration override during logger initialization.
+      m_etracelevelMinimum = e_trace_level_undefined;
 
       m_bBranchMainThread = false;
       m_bSystemLoadedFromALibrary = false;
@@ -539,6 +538,8 @@ namespace platform
 
 #else
 
+      etracelevel = CA2_RELEASE_MODE_TRACE_LEVEL;
+
       auto pathCa2ConfigSystemFolder = _ca2_config_system_folder_path();
 
       auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
@@ -555,12 +556,6 @@ namespace platform
       {
 
          etracelevel = e_trace_level_information;
-
-      }
-      else
-      {
-
-         etracelevel = e_trace_level_warning;
 
       }
 

@@ -3293,6 +3293,32 @@ bool directory_context::is_inside(const ::file::path & pathFolder, const ::file:
 }
 
 
+::file::path directory_context::cloud_app(const ::scoped_string & scopedstrAppId)
+{
+
+   if (!scopedstrAppId.has_character())
+   {
+
+      return {};
+
+   }
+
+   auto pathCloudRoot = directory_system()->cloud_protocol();
+
+   if (pathCloudRoot.is_empty())
+   {
+
+      return {};
+
+   }
+
+   ::file::path pathCloudApp = pathCloudRoot / "application" / scopedstrAppId;
+
+   return pathCloudApp;
+
+}
+
+
 //::file::path directory_context::dropbox()
 //{
 //

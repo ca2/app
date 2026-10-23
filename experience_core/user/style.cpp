@@ -521,7 +521,7 @@ namespace experience_core
 
                   auto targetscope = pdraw2dgraphics->target_scope();
 
-                  targetscope += offset;
+                  targetscope.offset_x(offset);
 
                   pdraw2dgraphics->fill(pdraw2dpath);
 
@@ -544,7 +544,7 @@ namespace experience_core
 
                   auto targetscope = pdraw2dgraphics->target_scope();
 
-                  targetscope += offset;
+                  targetscope.offset_x(offset);
 
                   pdraw2dgraphics->draw(pdraw2dpath);
 
@@ -1193,7 +1193,7 @@ namespace experience_core
          m_rectangleTab.height(),
          0);*/
 
-         pdata->m_rectangleHosting.left = ptab->m_bEffectiveVisibleControl ? pdata->m_rectangleTab.right : rectangleX.left;
+         pdata->m_rectangleHosting.left = ptab->m_pAutoHide->m_bEffectiveVisibleControl ? pdata->m_rectangleTab.right : rectangleX.left;
          pdata->m_rectangleHosting.top = pdata->m_rectangleTab.top;
          pdata->m_rectangleHosting.right = rectangleX.right;
          pdata->m_rectangleHosting.bottom = pdata->m_rectangleTab.bottom;
@@ -1324,7 +1324,7 @@ namespace experience_core
          //bool bTabbedClient = ptab->m_bShowTabs;
 
          rectangleHosting.left = pdata->m_rectangleTab.left;
-         rectangleHosting.top = ptab->m_bEffectiveVisibleControl ? pdata->m_rectangleTab.bottom : rectangleX.top;
+         rectangleHosting.top = ptab->m_pAutoHide->m_bEffectiveVisibleControl ? pdata->m_rectangleTab.bottom : rectangleX.top;
          rectangleHosting.right = pdata->m_rectangleTab.right;
          rectangleHosting.bottom = rectangleX.bottom;
 

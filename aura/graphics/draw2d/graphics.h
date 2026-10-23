@@ -49,6 +49,19 @@ namespace draw2d
 {
 
 
+   enum enum_image_opacity_policy
+   {
+
+      /// Graphics contexts inherit the current draw2d policy unless overridden.
+      e_image_opacity_policy_inherit,
+      /// Preserve the normal DrawImage edge behavior.
+      e_image_opacity_policy_disabled,
+      /// Extend edge sampling only for certified static, fully opaque sources.
+      e_image_opacity_policy_preserve_static_opaque,
+
+   };
+
+
 
 
    class clip;
@@ -137,6 +150,7 @@ namespace draw2d
    protected:
       //bool                                          _m_bYFlip;
       enum_alpha_mode                                 m_ealphamode;
+      enum_image_opacity_policy                       m_eimageopacitypolicy = e_image_opacity_policy_inherit;
 
 
    public:
@@ -176,6 +190,17 @@ namespace draw2d
       
       graphics();
       ~graphics() override;
+
+
+      void set_image_opacity_policy(enum_image_opacity_policy epolicy)
+      {
+
+         m_eimageopacitypolicy = epolicy;
+
+      }
+
+
+      enum_image_opacity_policy get_effective_image_opacity_policy() const;
 
 
 

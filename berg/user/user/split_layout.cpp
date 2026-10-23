@@ -1079,6 +1079,14 @@ namespace user
    ::i32 split_layout::GetMinPos(::collection::index iPane, enum_layout elayout)
    {
 
+      // A hidden leading pane must release its split-bar gap as well as its
+      // content area. Keep its stored split position for when it is revealed.
+      bool bPrecedingVisible = false;
+      for (::collection::index i = 0; i < iPane && i < get_pane_count(); ++i)
+         bPrecedingVisible = bPrecedingVisible || is_pane_visible((::i32)i);
+      if (!bPrecedingVisible)
+         return GetMinPos(elayout);
+
       if (get_split_count() <= 0 || iPane <= 0)
       {
 

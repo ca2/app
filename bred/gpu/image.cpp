@@ -524,7 +524,7 @@ namespace gpu
 
       pthis->m_ppixmapOwned->m_pimage32 = pthis->m_ppixmapOwned->m_pimage32Raw;
 
-      if (emap == ::image::e_map_load)
+      if (emap != ::image::e_map_discard)
       {
 
          ::gpu::texture * pgputexture = nullptr;
@@ -615,7 +615,7 @@ namespace gpu
 
             }
 
-            if (emap == ::image::e_map_load)
+            if (emap != ::image::e_map_discard)
             {
 
                //auto pgpucommandbuffer = ::gpu::current_layer()->getCurrentCommandBuffer4();
@@ -705,8 +705,9 @@ namespace gpu
 
    void image::_unmap(::image_pixmap_lease * pimagepixmaplease)
    {
-
+      const bool readOnly = m_eActiveAlphaMap == ::image::e_map_read_only;
       ::image::image::_unmap(pimagepixmaplease);
+      if (readOnly) return; // Statistics readback must not upload/modify the texture.
       //_tidy_unmap(pimagepixmaplease);
       // if (!_on_unmap(bDoUnmap))
       // {

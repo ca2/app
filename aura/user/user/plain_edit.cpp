@@ -751,6 +751,8 @@ namespace user
 
       pdraw2dgraphics->set_font(this, ::e_element_none);
 
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
       ::f64 dLineHeight = m_dLineHeight;
 
       string_array_base & straLines = m_straLines;
@@ -1044,41 +1046,56 @@ namespace user
             }
 
 
-            if (iCurLineSelBeg > 0)
+            // Keep shaping and spacing independent of the caret and selection.
+            auto bLineHasSelection = iCurLineSelBeg >= 0 && iCurLineSelEnd > iCurLineSelBeg;
+
+            if (bLineHasSelection)
             {
 
-               // Draw Normal Text - not selected - before selection
-               auto strLeft = strLineGraphics.left(iExpandedCurLineSelBeg);
-               pdraw2dgraphics->text_out(left, y, strLeft);
+               // Paint normal text only outside the selection, avoiding double
+               // blending of antialiased glyphs in the selected region.
+               {
 
-            }
+                  ::draw2d::save_context savecontext(pdraw2dgraphics);
+                  pdraw2dgraphics->intersect_clip(::f64_rectangle(
+                     rectangleX.left, y, left + x1, y + m_dLineHeight));
+                  pdraw2dgraphics->text_out(left, y, strLineGraphics);
 
-            if (iCurLineSelBeg < strLineGraphics.length())
-            {
+               }
 
-               // Draw Normal Text - not selected - after selection
-               string strRight = strLineGraphics.substr(iExpandedCurLineSelEnd);
-               pdraw2dgraphics->text_out(left + x2, y, strRight);
+               {
 
-            }
+                  ::draw2d::save_context savecontext(pdraw2dgraphics);
+                  pdraw2dgraphics->intersect_clip(::f64_rectangle(
+                     left + x2, y, rectangleX.right, y + m_dLineHeight));
+                  pdraw2dgraphics->text_out(left, y, strLineGraphics);
 
-            if (bOverride)
-            {
+               }
 
             }
             else
             {
 
-               pdraw2dgraphics->set(pbrushTextSel);
+               pdraw2dgraphics->text_out(left, y, strLineGraphics);
 
             }
 
-            if (iCurLineSelBeg >= 0 && iCurLineSelEnd > iCurLineSelBeg)
+            if (bLineHasSelection)
             {
 
-               // Draw Selected Text
-               string strSelected = strLineGraphics.substr(iExpandedCurLineSelBeg, iExpandedCurLineSelEnd - iExpandedCurLineSelBeg);
-               pdraw2dgraphics->text_out(left + x1, y, strSelected);
+               ::draw2d::save_context savecontext(pdraw2dgraphics);
+
+               pdraw2dgraphics->intersect_clip(
+                  ::f64_rectangle_dimension(left + x1, y, x2 - x1, m_dLineHeight));
+
+               if (!bOverride)
+               {
+
+                  pdraw2dgraphics->set(pbrushTextSel);
+
+               }
+
+               pdraw2dgraphics->text_out(left, y, strLineGraphics);
 
             }
 
@@ -3742,6 +3759,8 @@ namespace user
 
       pdraw2dgraphics->set_font(this, ::e_element_none);
 
+      pdraw2dgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
       ::f64_size sizeUniText;
 
       if (pdraw2dgraphics == nullptr)
@@ -5070,9 +5089,7 @@ namespace user
 
       auto iExpandedLength = iChar;
 
-      //string strLine = plain_edit_get_expanded_line(pdraw2dgraphics, iLine, { &iChar });
-
-      string strLine = plain_edit_get_expanded_line(pdraw2dgraphics, iLine, { &iChar });
+      string strLine = plain_edit_get_expanded_line(pdraw2dgraphics, iLine, { &iExpandedLength });
 
       ::f64_size size = pdraw2dgraphics->get_text_extent(strLine, (::i32)iExpandedLength);
 
@@ -6397,7 +6414,7 @@ namespace user
    }
 
 
-   inline const_char_pointer _001UnicodeNext(const_char_pointer psz, ::i32 * piError)
+   inline const_char_pointer _001UnicodeNext(const_char_pointer psz, character_count * piRemaining)
    {
 
       if (!*psz)
@@ -6412,11 +6429,27 @@ namespace user
       if (pszTry)
       {
 
+         auto count = pszTry - psz;
+
+         if (piRemaining)
+         {
+
+            if (count > *piRemaining)
+            {
+
+               return nullptr;
+
+            }
+
+            *piRemaining -= count;
+
+         }
+
          return pszTry;
 
       }
 
-      return unicode_next(psz, piError);
+      return unicode_next(psz, piRemaining);
 
    }
 
@@ -6562,11 +6595,12 @@ namespace user
 
             get_text(strSel, iSample1, iSample2);
 
-            ::i32 iError = 0;
+            // unicode_next receives the available byte count, not an error flag.
+            character_count countRemaining = strSel.length();
 
-            auto pszNext = _001UnicodeNext(strSel.begin(), &iError);
+            auto pszNext = _001UnicodeNext(strSel.begin(), &countRemaining);
 
-            if (::is_null(pszNext) || iError > 0)
+            if (::is_null(pszNext) || pszNext <= strSel.begin())
             {
 
                return false;
@@ -8292,11 +8326,20 @@ namespace user
                if (is_text_composition_active())
                {
 
+#ifdef WINDOWS_DESKTOP
+
+                  // Match Backspace: finish composition before a deletion.
+                  on_text_composition_done();
+
+#else
+
                   return;
+
+#endif
 
                }
 
-               if (is_window_enabled())
+               if (is_window_enabled() && !m_bReadOnly)
                {
 
                   _001DeleteSel(false, e_source_user);

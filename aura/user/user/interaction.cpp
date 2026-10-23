@@ -3749,7 +3749,17 @@ namespace user
 
       information() << "display_visible_trying_to_restore_last_visible : " << edisplayPrevious;
 
-      if (!::is_screen_visible(edisplayPrevious))
+      // Full screen is visible, but it cannot be a useful destination when
+      // exiting full screen. This happens when the application starts in full
+      // screen and records that as its previous visible display.
+      if (edisplayPrevious == e_display_full_screen)
+      {
+
+         information() << "previous visible display is full screen; restoring normal placement";
+         edisplayPrevious = e_display_normal;
+
+      }
+      else if (!::is_screen_visible(edisplayPrevious))
       {
 
          information() << "edisplayPrevious isn't screen visible, using e_display_normal";
@@ -19958,8 +19968,13 @@ if(get_parent())
 
    ::draw2d::domain * interaction::draw2d_domain()
    {
-   
-      return window()->draw2d_domain();
+      auto pwindowThis = window();
+      if (::is_null(pwindowThis))
+      {
+         return nullptr;
+      }
+
+      return pwindowThis->draw2d_domain();
       
    }
 
@@ -22778,10 +22793,13 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
          ::i32_size sizeMinimumBroad = sizeMin.maximum(rectangleWorkspace.size() * 7 / 10);
 
+         // Restored windows must leave a visible margin around the workspace.
+         ::i32_size sizeMaximumBroad = sizeMin.maximum(rectangleWorkspace.size() * 9 / 10);
+
          auto rectangleStoredBroad = get_window_broad_stored_rectangle();
 
          if (rectangleStoredBroad.size() >= sizeMinimumBroad
-             && rectangleStoredBroad.size() <= rectangleWorkspace.size())
+             && rectangleStoredBroad.size() <= sizeMaximumBroad)
          {
 
             m_rectangleRestoreBroad = rectangleStoredBroad;
@@ -22792,7 +22810,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
             m_rectangleRestoreBroad.set_size(sizeMin.maximum(rectangleWorkspace.size() * 4 / 5));
 
-            m_rectangleRestoreBroad.move_to(rectangleWorkspace.size() / 10);
+            m_rectangleRestoreBroad.move_to(rectangleWorkspace.top_left() + rectangleWorkspace.size() / 10);
 
          }
 
@@ -22814,7 +22832,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
             m_rectangleRestoreCompact.set_size(sizeMin.maximum(rectangleWorkspace.size() * 2 / 5));
 
-            m_rectangleRestoreCompact.move_to(rectangleWorkspace.size() / 10);
+            m_rectangleRestoreCompact.move_to(rectangleWorkspace.top_left() + rectangleWorkspace.size() / 10);
 
          }
 

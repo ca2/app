@@ -601,6 +601,13 @@ namespace graphics
          //::pointer < layered_window_buffer > playeredwindowbuffer = m_pwindowbuffer;
 
          //if (pwindowbuffer && !m_papplication->m_gpu.m_bUseSwapChainWindow)
+         // Allocate in raw bitmap coordinates. The image still carries the
+         // previous frame's mapped screen origin here; adding it to sizeRaw
+         // would replace the bitmap on a restore/move even when the raw size
+         // is unchanged, leaving cached backend graphics on the old bitmap.
+         // Both branches restore the acquired frame's origin below.
+         pbufferitem->m_pimageBufferItem->m_point.clear();
+
          if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
          {
 

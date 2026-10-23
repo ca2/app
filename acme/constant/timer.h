@@ -110,6 +110,7 @@ enum enum_timer : ::iptr
    e_timer_main,
    e_timer_step,
    e_timer_update_main_frame_caption,
+   e_timer_full_screen_editor_interest,
 
 };
 

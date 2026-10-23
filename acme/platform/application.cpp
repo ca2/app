@@ -1845,7 +1845,7 @@ namespace platform
       if (m_bUseCloudStorageForAppData)
       {
 
-         pathFolder = "dropbox-app://";
+         pathFolder = "cloud-app://";
 
       }
       else
@@ -3298,7 +3298,7 @@ namespace platform
 
       ::file::path path;
 
-      path = "dropbox-app://" / scopedstrFileName;
+      path = "cloud-app://" / scopedstrFileName;
 
       ::string str = file()->safe_get_string(path);
 
@@ -3348,7 +3348,7 @@ namespace platform
 
          ::file::path path;
 
-         path = "dropbox-app://" / scopedstrFileName;
+         path = "cloud-app://" / scopedstrFileName;
 
          bool bOk = false;
 

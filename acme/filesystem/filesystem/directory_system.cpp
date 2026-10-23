@@ -154,6 +154,61 @@ void directory_system::initialize(::particle * pparticle)
 }
 
 
+::file::path directory_system::cloud_protocol()
+{
+
+   critical_section_lock synchronouslock(&m_criticalsectionCloudProtocol);
+
+   if (!m_bCloudProtocolCalculated)
+   {
+
+      auto pathCloudConfiguration = userconfig() / "cloud.txt";
+
+      if (file_system()->exists(pathCloudConfiguration))
+      {
+
+         ::string strCloudRoot = file_system()->as_string(pathCloudConfiguration);
+
+         strCloudRoot.trim();
+
+         if (strCloudRoot.has_character()
+            && !strCloudRoot.case_insensitive_begins("cloud://"))
+         {
+
+            m_pathCloudProtocol = strCloudRoot;
+
+         }
+
+      }
+
+      if (m_pathCloudProtocol.is_empty())
+      {
+
+#if defined(WINDOWS)
+
+         m_pathCloudProtocol = "onedrive://";
+
+#elif defined(LINUX)
+
+         m_pathCloudProtocol = "dropbox://";
+
+#elif defined(MACOS) || defined(APPLE_IOS)
+
+         m_pathCloudProtocol = "icloud://";
+
+#endif
+
+      }
+
+      m_bCloudProtocolCalculated = true;
+
+   }
+
+   return m_pathCloudProtocol;
+
+}
+
+
 ::file::path directory_system::config()
 {
 

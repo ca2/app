@@ -1,5 +1,8 @@
 #include "platform.h"
 #include "frame_window.h"
+#include "render_lines.h"
+#include "fps_statistics.h"
+#include "fps_debug.h"
 #include "document.h"
 #include "impact.h"
 #include "impact_host.h"
@@ -662,6 +665,9 @@ namespace user
    void frame_window::destroy()
    {
 
+      m_pfpsstatistics.defer_destroy_and_release();
+      m_prenderlinesStatistics.defer_destroy_and_release();
+
       m_pimpactMain.defer_destroy_and_release();
 
       ::user::interaction::destroy();
@@ -1019,6 +1025,18 @@ namespace user
 
    void frame_window::on_message_create(::message::message * pmessage)
    {
+
+#if FPS_STATISTICS
+      if (get_parent() == nullptr && !m_prenderlinesStatistics)
+      {
+         construct_newø(m_prenderlinesStatistics);
+         construct_newø(m_pfpsstatistics);
+         m_pfpsstatistics->m_prenderlines = m_prenderlinesStatistics;
+         m_pfpsstatistics->m_pinteractionSource = this;
+         m_pfpsstatistics->m_strLabel = "Window FPS";
+         m_pfpsstatistics->m_iLine = 0;
+      }
+#endif
 
       //if (!m_pacmeuserinteractionMain)
       //{
@@ -2997,6 +3015,19 @@ namespace user
 
       }
 
+   }
+
+
+   void frame_window::_001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+      ::user::main_window::_001OnNcPostDraw(pgraphics);
+      if (!m_prenderlinesStatistics) return;
+
+      if (m_pfpsstatistics) m_pfpsstatistics->update();
+      ::draw2d::save_context context(pgraphics);
+      set_context_org(pgraphics);
+      pgraphics->reset_clip();
+      m_prenderlinesStatistics->draw(this, pgraphics);
    }
 
 

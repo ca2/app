@@ -1284,7 +1284,7 @@ namespace aura
 
       auto pdirectorysystem = directory_system();
 
-      ::file::path path = "dropbox://application" / application()->m_strAppId / "draw2d.txt";
+      ::file::path path = "cloud://application" / application()->m_strAppId / "draw2d.txt";
 
       strImplementationName = file()->safe_get_string(path);
 

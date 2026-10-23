@@ -150,6 +150,10 @@ list(APPEND library_source
    user/user/form_handler.cpp
    user/user/frame_window.cpp
    user/user/frame_window.h
+   user/user/render_lines.cpp
+   user/user/render_lines.h
+   user/user/fps_statistics.cpp
+   user/user/fps_statistics.h
    user/user/hotplugin.cpp
    user/user/image_list.cpp
    user/user/image_list.h

@@ -143,6 +143,37 @@ namespace draw2d
    }
 
 
+   enum_image_opacity_policy graphics::get_effective_image_opacity_policy() const
+   {
+
+      if (m_eimageopacitypolicy != e_image_opacity_policy_inherit)
+      {
+
+         return m_eimageopacitypolicy;
+
+      }
+
+      if (!system())
+      {
+
+         return e_image_opacity_policy_disabled;
+
+      }
+
+      auto pdraw2d = system()->draw2d();
+
+      if (!pdraw2d)
+      {
+
+         return e_image_opacity_policy_disabled;
+
+      }
+
+      return pdraw2d->get_image_opacity_policy();
+
+   }
+
+
    void graphics::on_initialize_particle()
    {
 

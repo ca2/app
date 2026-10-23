@@ -6,6 +6,7 @@
 #include "acme/platform/nanosecond_timer.h"
 #include "acme/prototype/time/frequency.h"
 #include "apex/parallelization/thread.h"
+#include "frame_pacer.h"
 
 
 namespace user
@@ -27,6 +28,12 @@ namespace user
 
       //::pointer<::user::thread>                   m_puserthread;
       nanosecond_timer                            m_nanosecondtimer;
+      frame_pacer                                m_framepacer;
+      bool                                       m_bFpsFrameActive = false;
+      bool                                       m_bFpsPresentationWait = false;
+      frame_pacer::time_point                     m_timeFpsFrameStart{};
+      frame_pacer::time_point                     m_timeFpsRenderEnd{};
+      frame_pacer::time_point                     m_timeFpsWaitEnd{};
 
       class ::time                                m_timeStart;
       class ::time                                m_timeThisFrame;
@@ -45,7 +52,6 @@ namespace user
       class ::time                                m_timeNextFrame;
       class ::time                                m_timeNextScreenUpdate;
       //::collection::count                                   m_cLost;
-      ::array < class ::time >                    m_timeaFrame;
 
       class ::time                                m_timeBeforeUpdateScreen;
       class ::time                                m_timeAfterUpdateScreen;
@@ -119,6 +125,7 @@ namespace user
       virtual bool defer_process_redraw_message();
 
       virtual bool wait_to_present();
+      bool wait_for_fps_presentation();
       
       virtual void profiling_on_before_update_screen();
       virtual void profiling_on_after_update_screen();

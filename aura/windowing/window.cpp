@@ -1,6 +1,7 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "platform.h"
+#include "fps_debug.h"
 #include "cursor.h"
 #include "display.h"
 #include "apex/gpu/approach.h"
@@ -12025,6 +12026,9 @@ namespace windowing
       };
 
       m_bWindowDrawingFrame = true;
+#if FPS_DEBUG
+      auto traceFrameStart = ::graphics::presentation_trace::now_ns();
+#endif
 
       class ::time time1;
 
@@ -12147,6 +12151,11 @@ namespace windowing
                      // Qt can map the shared image, including on early returns.
                      _synchronous_lock slBufferItem(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+#if FPS_DEBUG
+                     // Discard any trace belonging to the previous use of this buffer.
+                     pbufferitem->m_presentationTrace = {};
+                     pbufferitem->m_presentationTrace.frame_start_ns = traceFrameStart;
+#endif
                      auto pdraw2dgraphics = pgraphicsgraphics->on_begin_layout();
 
                      //                     if (!pbufferitem)
@@ -12237,7 +12246,13 @@ namespace windowing
                            //informationf("draw_frame elapsed2.1 %0.2f", elapsed21.floating_millisecond());
                            class ::time time22;
                            time22.Now();
+#if FPS_DEBUG
+                           pbufferitem->m_presentationTrace.layout_start_ns = ::graphics::presentation_trace::now_ns();
+#endif
                            frame_layout_stage(pdraw2dgraphics);
+#if FPS_DEBUG
+                           pbufferitem->m_presentationTrace.layout_end_ns = ::graphics::presentation_trace::now_ns();
+#endif
                            auto elapsed22 = time22.elapsed();
                            //informationf("draw_frame elapsed2.2 %0.2f", elapsed22.floating_millisecond());
 
@@ -12400,13 +12415,33 @@ namespace windowing
 
                //}
 
+#if FPS_DEBUG
+                  if (pbufferitem->m_presentationTrace.trace)
+                     pbufferitem->m_presentationTrace.render_end_ns = ::graphics::presentation_trace::now_ns();
+#endif
                   pgraphicsgraphics->on_end_draw();
 
                }
 
                }
 
+               // Rendering is complete and its locks have been released. The
+               // graphics thread owns the continuous-output presentation clock.
+               if (m_pgraphicsthread && !m_pgraphicsthread->wait_for_fps_presentation())
+               {
+
+                  return;
+
+               }
+
                auto puserinteractionPresent = user_interaction();
+
+               if (!puserinteractionPresent || has_finishing_flag() || has_destroying_flag())
+               {
+
+                  return;
+
+               }
 
                bool bPresentFrame;
 
@@ -13956,7 +13991,56 @@ namespace windowing
    ::frequency window::get_output_per_second()
    {
 
+      critical_section_lock lock(&m_criticalsectionOutputFrames);
+
+      auto timeNow = std::chrono::steady_clock::now();
+
+      while (m_timeaOutputFrame.has_element()
+         && timeNow - m_timeaOutputFrame.first() > std::chrono::seconds(1))
+      {
+
+         m_timeaOutputFrame.erase_at(0);
+
+      }
+
+      m_frequencyOutputFramesPerSecond = 0.0;
+
+      if (m_timeaOutputFrame.get_size() >= 2)
+      {
+
+         auto duration = std::chrono::duration<double>(
+            m_timeaOutputFrame.last() - m_timeaOutputFrame.first()).count();
+
+         if (duration > 0.0)
+         {
+
+            m_frequencyOutputFramesPerSecond = (m_timeaOutputFrame.get_size() - 1) / duration;
+
+         }
+
+      }
+
       return m_frequencyOutputFramesPerSecond;
+
+   }
+
+
+   void window::record_output_frame()
+   {
+
+      critical_section_lock lock(&m_criticalsectionOutputFrames);
+
+      auto timeNow = std::chrono::steady_clock::now();
+
+      while (m_timeaOutputFrame.has_element()
+         && timeNow - m_timeaOutputFrame.first() > std::chrono::seconds(1))
+      {
+
+         m_timeaOutputFrame.erase_at(0);
+
+      }
+
+      m_timeaOutputFrame.add(timeNow);
 
    }
 

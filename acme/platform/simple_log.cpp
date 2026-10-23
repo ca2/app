@@ -409,7 +409,22 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 
    auto pplatform = ::platform::get();
 
-   if ((pplatform && pplatform->is_console()) || (!::is_debugger_attached() && g_bPrintfIfDebuggerIsNotAttached))
+   const bool bDebuggerAttached = ::is_debugger_attached();
+   const bool bStandardOutput = (pplatform && pplatform->is_console())
+      || (!bDebuggerAttached && g_bPrintfIfDebuggerIsNotAttached);
+#if defined(WINDOWS)
+   // Standard-stream mirroring must not replace Visual Studio's debugger output.
+   const bool bDebuggerOutput = bDebuggerAttached || !bStandardOutput;
+#else
+   const bool bDebuggerOutput = !bStandardOutput;
+#endif
+   if (bDebuggerOutput)
+   {
+      ::output_debug_string(str);
+      ::output_debug_string_flush();
+   }
+
+   if (bStandardOutput)
    {
 
       if (tracestatement.m_pparticleLogging)
@@ -450,14 +465,6 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
          }
 
       }
-
-   }
-   else
-   {
-
-      ::output_debug_string(str);
-
-      ::output_debug_string_flush();
 
    }
 

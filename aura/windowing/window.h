@@ -5,6 +5,7 @@
 
 #include "apex/message/channel.h"
 #include "acme/prototype/collection/list.h"
+#include "acme/parallelization/critical_section.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "apex/windowing/window_base.h"
@@ -14,6 +15,9 @@
 #include "aura/user/user/notification_listener.h"
 #include "aura/user/user/redraw.h"
 
+
+
+#include <chrono>
 
 
 namespace windowing
@@ -118,6 +122,8 @@ namespace windowing
       ::frequency                               m_frequencyProdevianFramesPerSecond;
       ::frequency                               m_frequencyNominalFramesPerSecond;
       ::frequency                               m_frequencyOutputFramesPerSecond;
+      critical_section                          m_criticalsectionOutputFrames;
+      ::array < std::chrono::steady_clock::time_point > m_timeaOutputFrame;
       i32_point                                 m_pointMouseMove;
       particle_array                            m_particleaRedraw;
 
@@ -626,6 +632,8 @@ namespace windowing
       virtual ::frequency get_prodevian_frames_per_second();
       virtual ::frequency get_nominal_frames_per_second();
       virtual ::frequency get_output_per_second();
+      // Called once after the graphics backend completes a screen update.
+      void record_output_frame();
 
       //void user_common_construct();
 

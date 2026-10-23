@@ -16,6 +16,7 @@
 #include "aura/platform/session.h"
 #include "aura/user/user/user.h"
 #include "aura/windowing/windowing.h"
+#include "aura/windowing/window.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/monitor.h"
 
@@ -140,9 +141,56 @@ namespace user
 
       auto & edisplay = layout().design().display();
 
+      if (m_iRestoreDiagnosticConfigureCount > 0)
+      {
+
+         auto rectangleNative = window()->get_window_rectangle();
+         auto rectangleWindow = layout().window().parent_raw_rectangle();
+         auto rectangleDesign = layout().design().parent_raw_rectangle();
+
+         ::string strRestoreTrace;
+         strRestoreTrace.formatf(
+             "Restore trace: configure remaining=%d rect=(%d,%d,%d,%d) size=%dx%d native=(%d,%d,%d,%d) design=(%d,%d,%d,%d) window=(%d,%d,%d,%d) sketch_display=%d lading_display=%d layout_display=%d design_display=%d window_display=%d",
+            m_iRestoreDiagnosticConfigureCount,
+            rectangle.left, rectangle.top, rectangle.right, rectangle.bottom,
+            rectangle.width(), rectangle.height(),
+            rectangleNative.left, rectangleNative.top, rectangleNative.right, rectangleNative.bottom,
+            rectangleDesign.left, rectangleDesign.top, rectangleDesign.right, rectangleDesign.bottom,
+            rectangleWindow.left, rectangleWindow.top, rectangleWindow.right, rectangleWindow.bottom,
+            (int)layout().sketch().display(), (int)layout().lading().display(),
+            (int)layout().layout().display(), (int)layout().design().display(),
+            (int)layout().window().display());
+         information() << strRestoreTrace;
+         --m_iRestoreDiagnosticConfigureCount;
+
+      }
+
       m_windowdisplayandlayout.m_edisplay = const_layout().window().display();
 
       m_windowdisplayandlayout.m_rectangleWindow = rectangle;
+
+      // Configure notifications can arrive while the layout stages disagree
+      // during a transition. Check every stage so a full-screen rectangle
+      // cannot be learned as a normal restore preset.
+      auto bSpecialDisplay = layout().is_full_screen(::user::e_layout_sketch)
+         || layout().is_full_screen(::user::e_layout_lading)
+         || layout().is_full_screen(::user::e_layout_layout)
+         || layout().is_full_screen(::user::e_layout_design)
+         || layout().is_full_screen(::user::e_layout_output)
+         || layout().is_full_screen(::user::e_layout_window)
+         || layout().is_zoomed(::user::e_layout_sketch)
+         || layout().is_zoomed(::user::e_layout_lading)
+         || layout().is_zoomed(::user::e_layout_layout)
+         || layout().is_zoomed(::user::e_layout_design)
+         || layout().is_zoomed(::user::e_layout_output)
+         || layout().is_zoomed(::user::e_layout_window);
+
+      if (bSpecialDisplay)
+      {
+
+         return;
+
+      }
 
       if (is_docking_appearance(edisplay))
       {
@@ -154,7 +202,27 @@ namespace user
       else if (!layout().is_docking() && is_equivalent_in_equivalence_sink(edisplay, e_display_normal))
       {
 
-         calculate_broad_and_compact_restore();
+         ::i32_rectangle rectangleWorkspace;
+
+         if (calculate_broad_and_compact_restore(&rectangleWorkspace) < 0)
+         {
+
+            return;
+
+         }
+
+         auto sizeMin = get_window_minimum_size();
+         auto sizeMaximumRestore = sizeMin.maximum(rectangleWorkspace.size() * 9 / 10);
+         auto sizeWindow = rectangle.size();
+
+         // Do not learn full-screen/maximized transition geometry as a restore
+         // preset, even if its configure event arrives during a normal state.
+         if (!(sizeWindow >= sizeMin) || !(sizeWindow <= sizeMaximumRestore))
+         {
+
+            return;
+
+         }
 
          ::e_display edisplay = ::e_display_undefined;
 
@@ -443,6 +511,18 @@ namespace user
 
       m_windowdisplayandlayout = m_windowdisplayandlayoutStore;
 
+      ::string strRestoreTrace;
+      strRestoreTrace.formatf(
+          "Restore trace: load display=%d appearance=%d normal=(%d,%d,%d,%d) compact=(%d,%d,%d,%d) broad=(%d,%d,%d,%d)",
+         (int)windowdisplayandlayout.m_edisplay, (int)windowdisplayandlayout.m_eappearance,
+         windowdisplayandlayout.m_rectangleNormal.left, windowdisplayandlayout.m_rectangleNormal.top,
+         windowdisplayandlayout.m_rectangleNormal.right, windowdisplayandlayout.m_rectangleNormal.bottom,
+         windowdisplayandlayout.m_rectangleCompact.left, windowdisplayandlayout.m_rectangleCompact.top,
+         windowdisplayandlayout.m_rectangleCompact.right, windowdisplayandlayout.m_rectangleCompact.bottom,
+         windowdisplayandlayout.m_rectangleBroad.left, windowdisplayandlayout.m_rectangleBroad.top,
+         windowdisplayandlayout.m_rectangleBroad.right, windowdisplayandlayout.m_rectangleBroad.bottom);
+      information() << strRestoreTrace;
+
       auto edisplay = windowdisplayandlayout.m_edisplay;
 
       const_layout().sketch().appearance() = windowdisplayandlayout.m_eappearance;
@@ -475,6 +555,21 @@ namespace user
 
          ::e_display edisplayForRestore = edisplay;
 
+         strRestoreTrace.formatf(
+             "Restore trace: load apply display=%d normal=(%d,%d,%d,%d) compact=(%d,%d,%d,%d) broad=(%d,%d,%d,%d) sketch=(%d,%d,%d,%d)",
+            (int)edisplayForRestore,
+            windowdisplayandlayout.m_rectangleNormal.left, windowdisplayandlayout.m_rectangleNormal.top,
+            windowdisplayandlayout.m_rectangleNormal.right, windowdisplayandlayout.m_rectangleNormal.bottom,
+            windowdisplayandlayout.m_rectangleCompact.left, windowdisplayandlayout.m_rectangleCompact.top,
+            windowdisplayandlayout.m_rectangleCompact.right, windowdisplayandlayout.m_rectangleCompact.bottom,
+            windowdisplayandlayout.m_rectangleBroad.left, windowdisplayandlayout.m_rectangleBroad.top,
+            windowdisplayandlayout.m_rectangleBroad.right, windowdisplayandlayout.m_rectangleBroad.bottom,
+            const_layout().sketch().parent_raw_rectangle().left,
+            const_layout().sketch().parent_raw_rectangle().top,
+            const_layout().sketch().parent_raw_rectangle().right,
+            const_layout().sketch().parent_raw_rectangle().bottom);
+         information() << strRestoreTrace;
+
          information() << "user::box::load_window_display_and_layout " << edisplay;
 
          // Keep these boundaries visible when a window stops during restoration.
@@ -499,16 +594,28 @@ namespace user
                traceRestore("before place compact");
                place(windowdisplayandlayout.m_rectangleCompact);
                traceRestore("after place compact");
+               strRestoreTrace.formatf("Restore trace: load placed mode=compact rect=(%d,%d,%d,%d)",
+                  windowdisplayandlayout.m_rectangleCompact.left, windowdisplayandlayout.m_rectangleCompact.top,
+                  windowdisplayandlayout.m_rectangleCompact.right, windowdisplayandlayout.m_rectangleCompact.bottom);
+               information() << strRestoreTrace;
                break;
             case e_display_broad:
                traceRestore("before place broad");
                place(windowdisplayandlayout.m_rectangleBroad);
                traceRestore("after place broad");
+               strRestoreTrace.formatf("Restore trace: load placed mode=broad rect=(%d,%d,%d,%d)",
+                  windowdisplayandlayout.m_rectangleBroad.left, windowdisplayandlayout.m_rectangleBroad.top,
+                  windowdisplayandlayout.m_rectangleBroad.right, windowdisplayandlayout.m_rectangleBroad.bottom);
+               information() << strRestoreTrace;
                break;
             default:
                traceRestore("before place normal");
                place(windowdisplayandlayout.m_rectangleNormal);
                traceRestore("after place normal");
+               strRestoreTrace.formatf("Restore trace: load placed mode=normal rect=(%d,%d,%d,%d)",
+                  windowdisplayandlayout.m_rectangleNormal.left, windowdisplayandlayout.m_rectangleNormal.top,
+                  windowdisplayandlayout.m_rectangleNormal.right, windowdisplayandlayout.m_rectangleNormal.bottom);
+               information() << strRestoreTrace;
                edisplayForRestore = e_display_normal;
                break;
 
@@ -704,6 +811,25 @@ namespace user
 
       }
 
+      // Full-screen startup is an app presentation choice, not a restored
+      // window size. Keep the last persisted normal/broad/compact rectangles.
+      if (layout().is_full_screen() || layout().is_zoomed())
+      {
+
+         ::string strRestoreTrace;
+         strRestoreTrace.formatf(
+             "Restore trace: save skipped full_screen=%d zoomed=%d sketch=%d lading=%d layout=%d design=%d output=%d window=%d",
+            (int)layout().is_full_screen(), (int)layout().is_zoomed(),
+            (int)layout().sketch().display(),
+            (int)layout().lading().display(), (int)layout().layout().display(),
+            (int)layout().design().display(), (int)layout().output().display(),
+            (int)layout().window().display());
+         information() << strRestoreTrace;
+
+         return;
+
+      }
+
       if (m_windowdisplayandlayoutStore.m_edisplay == e_display_undefined)
       {
 
@@ -719,6 +845,20 @@ namespace user
       }
       
       m_windowdisplayandlayoutStore = m_windowdisplayandlayout;
+
+      ::string strRestoreTrace;
+      strRestoreTrace.formatf(
+          "Restore trace: save display=%d window=(%d,%d,%d,%d) normal=(%d,%d,%d,%d) compact=(%d,%d,%d,%d) broad=(%d,%d,%d,%d)",
+         (int)m_windowdisplayandlayout.m_edisplay,
+         m_windowdisplayandlayout.m_rectangleWindow.left, m_windowdisplayandlayout.m_rectangleWindow.top,
+         m_windowdisplayandlayout.m_rectangleWindow.right, m_windowdisplayandlayout.m_rectangleWindow.bottom,
+         m_windowdisplayandlayout.m_rectangleNormal.left, m_windowdisplayandlayout.m_rectangleNormal.top,
+         m_windowdisplayandlayout.m_rectangleNormal.right, m_windowdisplayandlayout.m_rectangleNormal.bottom,
+         m_windowdisplayandlayout.m_rectangleCompact.left, m_windowdisplayandlayout.m_rectangleCompact.top,
+         m_windowdisplayandlayout.m_rectangleCompact.right, m_windowdisplayandlayout.m_rectangleCompact.bottom,
+         m_windowdisplayandlayout.m_rectangleBroad.left, m_windowdisplayandlayout.m_rectangleBroad.top,
+         m_windowdisplayandlayout.m_rectangleBroad.right, m_windowdisplayandlayout.m_rectangleBroad.bottom);
+      information() << strRestoreTrace;
 
 //      auto windowrect = m_windowdisplayandlayoutStore;
 //
@@ -844,6 +984,8 @@ namespace user
       if (is_frame_window())
       {
 
+         auto edisplayRequested = edisplay;
+
          if (equivalence_sink(edisplay) != e_display_normal)
          {
 
@@ -853,14 +995,118 @@ namespace user
          
          auto rectangleSketch = const_layout().sketch().parent_raw_rectangle();
 
+         auto rectangleStored = edisplay == e_display_broad
+            ? m_windowdisplayandlayout.m_rectangleBroad
+            : edisplay == e_display_compact
+               ? m_windowdisplayandlayout.m_rectangleCompact
+               : m_windowdisplayandlayout.m_rectangleNormal;
+
+         ::string strRestoreTrace;
+         strRestoreTrace.formatf(
+             "Restore trace: choose requested=%d stored_mode=%d normal=(%d,%d,%d,%d) compact=(%d,%d,%d,%d) broad=(%d,%d,%d,%d) sketch=(%d,%d,%d,%d) selected=(%d,%d,%d,%d)",
+            (int)edisplayRequested, (int)edisplay,
+            m_windowdisplayandlayout.m_rectangleNormal.left, m_windowdisplayandlayout.m_rectangleNormal.top,
+            m_windowdisplayandlayout.m_rectangleNormal.right, m_windowdisplayandlayout.m_rectangleNormal.bottom,
+            m_windowdisplayandlayout.m_rectangleCompact.left, m_windowdisplayandlayout.m_rectangleCompact.top,
+            m_windowdisplayandlayout.m_rectangleCompact.right, m_windowdisplayandlayout.m_rectangleCompact.bottom,
+            m_windowdisplayandlayout.m_rectangleBroad.left, m_windowdisplayandlayout.m_rectangleBroad.top,
+            m_windowdisplayandlayout.m_rectangleBroad.right, m_windowdisplayandlayout.m_rectangleBroad.bottom,
+            rectangleSketch.left, rectangleSketch.top, rectangleSketch.right, rectangleSketch.bottom,
+            rectangleStored.left, rectangleStored.top, rectangleStored.right, rectangleStored.bottom);
+         information() << strRestoreTrace;
+
+         ::i32_rectangle rectangleWorkspace;
+
+         if (calculate_broad_and_compact_restore(&rectangleWorkspace, {},
+            rectangleStored.is_empty() ? rectangleSketch : rectangleStored) >= 0)
+         {
+
+            auto sizeMin = get_window_minimum_size();
+            auto sizeMaximum = sizeMin.maximum(rectangleWorkspace.size() * 9 / 10);
+
+            bool bWrongModeSize = edisplay == e_display_broad
+               ? !(rectangleStored.size() >= sizeMin.maximum(rectangleWorkspace.size() * 7 / 10))
+               : edisplay == e_display_compact
+                  && !(rectangleStored.size() <= sizeMin.maximum(rectangleWorkspace.size() / 2));
+
+            bool bOutsideWorkspace = rectangleStored.left < rectangleWorkspace.left
+               || rectangleStored.top < rectangleWorkspace.top
+               || rectangleStored.right > rectangleWorkspace.right
+               || rectangleStored.bottom > rectangleWorkspace.bottom;
+
+            if (!(rectangleStored.size() >= sizeMin)
+               || !(rectangleStored.size() <= sizeMaximum) || bWrongModeSize || bOutsideWorkspace)
+            {
+
+               ::string strRestoreTrace;
+               strRestoreTrace.formatf(
+                   "Restore trace: repairing requested_mode=%d stored=(%d,%d,%d,%d) workspace=(%d,%d,%d,%d) minimum=%dx%d maximum=%dx%d wrong_mode_size=%d outside_workspace=%d",
+                  (int)edisplay,
+                  rectangleStored.left, rectangleStored.top, rectangleStored.right, rectangleStored.bottom,
+                  rectangleWorkspace.left, rectangleWorkspace.top, rectangleWorkspace.right, rectangleWorkspace.bottom,
+                  sizeMin.cx, sizeMin.cy, sizeMaximum.cx, sizeMaximum.cy,
+                  (int)bWrongModeSize, (int)bOutsideWorkspace);
+               information() << strRestoreTrace;
+
+               auto default_rectangle = [&](int numerator)
+               {
+
+                  ::i32_rectangle rectangleDefault;
+                  rectangleDefault.set_size(sizeMin.maximum(rectangleWorkspace.size() * numerator / 5));
+                  rectangleDefault.move_to(rectangleWorkspace.top_left()
+                     + (rectangleWorkspace.size() - rectangleDefault.size()) / 2);
+                  return rectangleDefault;
+
+               };
+
+                // Repair the requested slot with its own default. Switching to
+                // a different mode based on stale dimensions breaks restore
+                // cycling (for example, broad can unexpectedly become compact).
+                auto iDefaultNumerator = edisplay == e_display_broad ? 4
+                   : edisplay == e_display_compact ? 2 : 3;
+                auto rectangleChosen = default_rectangle(iDefaultNumerator);
+
+                // Record the chosen default immediately; configure notifications
+                // should not be required to repair the stored restore preset.
+                if (edisplay == e_display_broad)
+                   m_windowdisplayandlayout.m_rectangleBroad = rectangleChosen;
+                else if (edisplay == e_display_compact)
+                   m_windowdisplayandlayout.m_rectangleCompact = rectangleChosen;
+                else
+                   m_windowdisplayandlayout.m_rectangleNormal = rectangleChosen;
+
+               strRestoreTrace.formatf(
+                    "Restore trace: repaired requested_mode=%d chosen=(%d,%d,%d,%d)",
+                  (int)edisplay, rectangleChosen.left, rectangleChosen.top,
+                  rectangleChosen.right, rectangleChosen.bottom);
+               information() << strRestoreTrace;
+
+            }
+
+         }
+
+
          if (edisplay == e_display_broad)
          {
             
             auto rectangle = m_windowdisplayandlayout.m_rectangleBroad.is_empty() ? rectangleSketch : m_windowdisplayandlayout.m_rectangleBroad;
 
+            ::i32_rectangle rectanglePlaced;
+
+            m_iRestoreDiagnosticConfigureCount = 4;
+
             information() << "display_normal m_windowdisplayandlayout.m_rectangleBroad : " << m_windowdisplayandlayout.m_rectangleBroad << ", rectangleSketch : " << rectangleSketch;
 
-            good_restore(nullptr, rectangle, true, useractivation, e_zorder_top, e_display_broad);
+            good_restore(&rectanglePlaced, rectangle, true, useractivation, e_zorder_top, e_display_broad);
+
+            ::string strRestoreTrace;
+            strRestoreTrace.formatf(
+                "Restore trace: applied mode=broad input=(%d,%d,%d,%d) placed=(%d,%d,%d,%d)",
+               rectangle.left, rectangle.top, rectangle.right, rectangle.bottom,
+               rectanglePlaced.left, rectanglePlaced.top, rectanglePlaced.right, rectanglePlaced.bottom);
+            information() << strRestoreTrace;
+
+            m_windowdisplayandlayout.m_rectangleBroad = rectanglePlaced;
 
          }
          else if (edisplay == e_display_compact)
@@ -868,9 +1114,22 @@ namespace user
 
             auto rectangle = m_windowdisplayandlayout.m_rectangleCompact.is_empty() ? rectangleSketch : m_windowdisplayandlayout.m_rectangleCompact;
 
+            ::i32_rectangle rectanglePlaced;
+
+            m_iRestoreDiagnosticConfigureCount = 4;
+
             information() << "display_normal m_windowdisplayandlayout.m_rectangleCompact : " << m_windowdisplayandlayout.m_rectangleCompact << ", rectangleSketch : " << rectangleSketch;
 
-            good_restore(nullptr, rectangle, true, useractivation, e_zorder_top, e_display_compact);
+            good_restore(&rectanglePlaced, rectangle, true, useractivation, e_zorder_top, e_display_compact);
+
+            ::string strRestoreTrace;
+            strRestoreTrace.formatf(
+                "Restore trace: applied mode=compact input=(%d,%d,%d,%d) placed=(%d,%d,%d,%d)",
+               rectangle.left, rectangle.top, rectangle.right, rectangle.bottom,
+               rectanglePlaced.left, rectanglePlaced.top, rectanglePlaced.right, rectanglePlaced.bottom);
+            information() << strRestoreTrace;
+
+            m_windowdisplayandlayout.m_rectangleCompact = rectanglePlaced;
 
          }
          else
@@ -878,11 +1137,26 @@ namespace user
 
             auto rectangle = m_windowdisplayandlayout.m_rectangleNormal.is_empty() ? rectangleSketch : m_windowdisplayandlayout.m_rectangleNormal;
 
+            ::i32_rectangle rectanglePlaced;
+
+            m_iRestoreDiagnosticConfigureCount = 4;
+
             information() << "display_normal m_windowdisplayandlayout.m_rectangleNormal : " << m_windowdisplayandlayout.m_rectangleNormal << ", rectangleSketch : " << rectangleSketch;
 
-            good_restore(nullptr, rectangle, true, useractivation, e_zorder_top, e_display_normal);
+            good_restore(&rectanglePlaced, rectangle, true, useractivation, e_zorder_top, e_display_normal);
+
+            ::string strRestoreTrace;
+            strRestoreTrace.formatf(
+                "Restore trace: applied mode=normal input=(%d,%d,%d,%d) placed=(%d,%d,%d,%d)",
+               rectangle.left, rectangle.top, rectangle.right, rectangle.bottom,
+               rectanglePlaced.left, rectanglePlaced.top, rectanglePlaced.right, rectanglePlaced.bottom);
+            information() << strRestoreTrace;
+
+            m_windowdisplayandlayout.m_rectangleNormal = rectanglePlaced;
 
          }
+
+         defer_save_window_placement();
 
       }
       else

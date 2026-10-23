@@ -14,11 +14,15 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/message_queue.h"
 #include "acme/platform/node.h"
+#include "acme/platform/scoped_restore.h"
 #include "acme/prototype/time/_text_stream.h"
 #include "acme/prototype/datetime/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/windowing/window.h"
+#include "fps_debug.h"
+
+#include <cmath>
 //#include "acme/_finish.h"
 
 
@@ -858,6 +862,86 @@ namespace user
    #undef EXTRA_PRODEVIAN_ITERATION_LOG
 
 
+   bool graphics_thread::wait_for_fps_presentation()
+   {
+
+      // Native/UI-thread draws must not wait on another thread's schedule.
+      if (!is_current_task() || !m_bFpsFrameActive)
+      {
+
+         return true;
+
+      }
+
+      m_bFpsPresentationWait = true;
+#if FPS_DEBUG
+      m_timeFpsRenderEnd = frame_pacer::clock::now();
+
+      at_end_of_scope
+      {
+
+         m_timeFpsWaitEnd = frame_pacer::clock::now();
+
+      };
+#endif
+
+      auto deadline = m_framepacer.m_deadline;
+
+      while (should_run() && m_puserinteraction
+         && !m_puserinteraction->has_finishing_flag()
+         && !m_puserinteraction->has_destroying_flag())
+      {
+
+         if (!m_puserinteraction->has_fps_output_purpose())
+         {
+
+            m_framepacer.reset();
+            return true;
+
+         }
+
+         auto now = frame_pacer::clock::now();
+
+         if (!m_framepacer.should_wait(now))
+         {
+
+            return true;
+
+         }
+
+         // task_wait uses millisecond OS waits. Round up so the final
+         // fraction of a millisecond does not become a busy polling loop.
+         auto wait = std::chrono::ceil<std::chrono::milliseconds>(deadline - now);
+         if (wait > std::chrono::milliseconds(50))
+         {
+
+            wait = std::chrono::milliseconds(50);
+
+         }
+
+         class ::time waitTime(0, wait.count() * 1'000'000LL);
+         if (task_wait(waitTime))
+         {
+
+            if (!task_iteration())
+            {
+
+               return false;
+
+            }
+
+            update_new_main_loop_happening();
+
+         }
+
+         // A message or early timer wakeup does not consume the tick.
+      }
+
+      return false;
+
+   }
+
+
    bool graphics_thread::wait_to_present()
    {
 
@@ -935,8 +1019,15 @@ namespace user
          // - It has graphics_thread mode (FPS drawing);
          // - Or it is going to wait because a frame was already drawn an instant ago due on-request-drawing (cool down).
 
-         auto timeFrame = m_puserinteraction->has_fps_output_purpose()
-            ? m_timePostRedrawProdevian : m_timePostRedrawNominal ;
+         auto bFpsOutput = m_puserinteraction->has_fps_output_purpose();
+         class ::time timeFrame;
+         {
+
+            _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            timeFrame = bFpsOutput
+               ? m_timePostRedrawProdevian : m_timePostRedrawNominal;
+
+         }
 
          if (
             m_puserinteraction->m_pacmewindowingwindow)
@@ -1181,6 +1272,15 @@ namespace user
    bool graphics_thread::graphics_thread_iteration()
    {
 
+      // Messages processed during the presentation wait may request another
+      // redraw. The current frame owns the deadline until it has completed.
+      if (is_current_task() && m_bFpsFrameActive)
+      {
+
+         return true;
+
+      }
+
       //information() << "graphics_thread_iteration (A0)";
 
       if (!m_puserinteraction->is_window())
@@ -1303,7 +1403,20 @@ namespace user
 
 #endif
 
-         if(!wait_to_present())
+         auto bPacedFrame = is_current_task()
+            && m_puserinteraction->has_fps_output_purpose()
+            && (m_puserinteraction->const_layout().sketch().is_screen_visible()
+               || m_puserinteraction->const_layout().window().is_screen_visible()
+               || pwindow->has_offscreen_output_purpose());
+
+         if (!bPacedFrame && is_current_task())
+         {
+
+            m_framepacer.reset();
+
+         }
+
+         if (!bPacedFrame && !wait_to_present())
          {
 
             return false;
@@ -1356,7 +1469,106 @@ namespace user
             timeDrawFrame.Now();
             //if(m_bGraphicsThreadDoesDraw)
             //{
+            {
+
+               if (bPacedFrame)
+               {
+
+                  class ::time interval;
+                  {
+
+                     _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+                     interval = m_timePostRedrawProdevian;
+
+                  }
+
+                  m_timeFpsFrameStart = frame_pacer::clock::now();
+                  m_framepacer.begin_frame(m_timeFpsFrameStart,
+                     std::chrono::duration_cast<frame_pacer::duration>(
+                        std::chrono::nanoseconds(interval.total_nanoseconds())));
+                  m_bFpsPresentationWait = false;
+                  m_bFpsFrameActive = true;
+
+               }
+
+               at_end_of_scope
+               {
+
+                  if (bPacedFrame)
+                  {
+
+                     auto end = frame_pacer::clock::now();
+                     [[maybe_unused]] auto deadline = m_framepacer.m_deadline;
+                     [[maybe_unused]] auto skipped = m_bFpsPresentationWait
+                        ? m_framepacer.complete_frame(end) : 0ULL;
+                     if (!m_bFpsPresentationWait)
+                     {
+
+                        m_framepacer.reset();
+
+                     }
+                     m_bFpsFrameActive = false;
+
+#if FPS_DEBUG
+                     if (m_bFpsPresentationWait)
+                     {
+
+                        static thread_local auto reportStart = end;
+                        static thread_local unsigned int frames = 0;
+                        static thread_local unsigned long long skippedTicks = 0;
+                        static thread_local double renderMs = 0.0;
+                        static thread_local double waitMs = 0.0;
+                        static thread_local double presentMs = 0.0;
+                        static thread_local double lateMs = 0.0;
+
+                        ++frames;
+                        skippedTicks += skipped;
+                        renderMs += std::chrono::duration<double, std::milli>(m_timeFpsRenderEnd - m_timeFpsFrameStart).count();
+                        waitMs += std::chrono::duration<double, std::milli>(m_timeFpsWaitEnd - m_timeFpsRenderEnd).count();
+                        presentMs += std::chrono::duration<double, std::milli>(end - m_timeFpsWaitEnd).count();
+                        auto expectedWake = m_timeFpsRenderEnd > deadline ? m_timeFpsRenderEnd : deadline;
+                        if (m_timeFpsWaitEnd > expectedWake)
+                        {
+
+                           lateMs += std::chrono::duration<double, std::milli>(m_timeFpsWaitEnd - expectedWake).count();
+
+                        }
+
+                        if (end - reportStart >= std::chrono::seconds(1))
+                        {
+
+                           string strFpsReport;
+                           strFpsReport.formatf("FPS pacing: target=%.1f frames=%u render=%.2fms wait=%.2fms present=%.2fms wake_late=%.2fms skipped_ticks=%.0f",
+                              1.0 / std::chrono::duration<double>(m_framepacer.m_interval).count(),
+                              frames, renderMs / frames, waitMs / frames, presentMs / frames, lateMs / frames,
+                              static_cast<double>(skippedTicks));
+                           ::output_debug_string(strFpsReport + "\n");
+                           reportStart = end;
+                           frames = 0;
+                           skippedTicks = 0;
+                           renderMs = waitMs = presentMs = lateMs = 0.0;
+
+                        }
+
+                     }
+#endif
+
+                  }
+
+               };
+
                pwindow->draw_frame();
+
+               // A skipped/invalid frame still consumes its scheduled slot;
+               // otherwise repeated redraws could spin without presenting.
+               if (bPacedFrame && !m_bFpsPresentationWait)
+               {
+
+                  wait_for_fps_presentation();
+
+               }
+
+            }
             //}
             auto fMillis = timeDrawFrame.elapsed().floating_millisecond();
             //informationf("draw_frame took %0.2f ms", fMillis);
@@ -1404,36 +1616,19 @@ namespace user
    void graphics_thread::on_graphics_thread_iteration_end()
    {
 
+      if (m_puserinteraction)
       {
 
-         _synchronous_lock sl(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         auto pwindow = m_puserinteraction->windowing_window();
 
-         auto timeNow = ::time::now();
-
-         for (::collection::index i = 0; i < m_timeaFrame.get_size();)
+         if (pwindow)
          {
 
-            auto timeFrame = m_timeaFrame[i];
-
-            auto timeDiff = timeNow - timeFrame;
-
-            if (timeDiff > 1_s)
-            {
-
-               m_timeaFrame.erase_at(i);
-
-            } else
-            {
-
-               break;
-
-            }
+            pwindow->get_output_per_second();
 
          }
 
       }
-
-      m_puserinteraction->windowing_window()->m_frequencyOutputFramesPerSecond = (::f64)(m_timeaFrame.get_size());
 
    }
 
@@ -1503,11 +1698,15 @@ namespace user
 
       m_bUpdatingScreen = true;
 
+#if FPS_DEBUG
       profiling_on_before_update_screen();
+#endif
 
       m_puserinteraction->windowing_window()->__update_graphics_buffer();
 
+#if FPS_DEBUG
       profiling_on_after_update_screen();
+#endif
 
       //if (!m_bUpdatingScreen || m_timeLastScreenUpdate.elapsed() > 200_ms)
 //         {
@@ -1925,8 +2124,6 @@ namespace user
 
       //m_timeLastFrame = m_timeNow;
 
-      m_timeaFrame.add(m_timeLastFrame);
-
       m_timeAfterUpdateScreen.Now();
 
       m_timeDuringUpdateScreen = m_timeAfterUpdateScreen - m_timeBeforeUpdateScreen;
@@ -1970,6 +2167,15 @@ namespace user
    void graphics_thread::set_fps_interest_frames_per_second(::frequency frequencyProdevianFramesPerSecond)
    {
 
+      _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      if (!std::isfinite(frequencyProdevianFramesPerSecond.hertz()) || frequencyProdevianFramesPerSecond.hertz() <= 0.0)
+      {
+
+         frequencyProdevianFramesPerSecond = 60.0;
+
+      }
+
       m_timePostRedrawProdevian = 1.0 / frequencyProdevianFramesPerSecond;
 
    }
@@ -1977,6 +2183,15 @@ namespace user
 
    void graphics_thread::set_nominal_frames_per_second(::frequency frequencyNominalFramesPerSecond)
    {
+
+      _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      if (!std::isfinite(frequencyNominalFramesPerSecond.hertz()) || frequencyNominalFramesPerSecond.hertz() <= 0.0)
+      {
+
+         frequencyNominalFramesPerSecond = 60.0;
+
+      }
 
       m_timePostRedrawNominal = 1.0 / frequencyNominalFramesPerSecond;
 

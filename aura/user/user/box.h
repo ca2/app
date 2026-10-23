@@ -19,6 +19,7 @@ namespace user
       //::string                      m_strDataKey2;
       window_display_and_layout     m_windowdisplayandlayout;
       window_display_and_layout     m_windowdisplayandlayoutStore;
+      ::i32                         m_iRestoreDiagnosticConfigureCount = 0;
 
 
       box();

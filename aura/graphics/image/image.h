@@ -18,6 +18,7 @@
 #include "acme/prototype/prototype/memory.h"
 
 #include <atomic>
+#include <mutex>
 
 
 namespace draw2d
@@ -56,6 +57,7 @@ namespace image
    {
       e_map_load,
       e_map_discard,
+      e_map_read_only, // Readback without publishing a CPU pixel modification.
 
    };
 
@@ -79,6 +81,22 @@ namespace image
       //::pointer < ::draw2d::domain >            m_pdraw2ddomain;
       //::pointer < ::user::interaction >         m_puserinteraction;
       //::draw2d::graphics_lease *          m_pgraphicsleaseOwned;
+
+      mutable std::recursive_mutex m_mutexAlphaStatistics;
+      enum_map m_eActiveAlphaMap = e_map_load;
+
+      void set_pixel_usage(pixel_usage usage);
+      pixel_usage get_pixel_usage() const;
+      void invalidate_alpha_statistics(const char * pszReason = nullptr);
+      bool publish_static_pixels(alpha_statistics * pstatistics = nullptr);
+      bool get_alpha_statistics(alpha_statistics & statistics);
+      bool get_cached_alpha_statistics(alpha_statistics & statistics) const;
+      bool get_cached_opaque_region_statistics(alpha_statistics & statistics,
+         ::collection::count maximumRegions = 64, double minimumCoverage = 0.5) const;
+      bool has_cached_fully_opaque_pixels() const;
+      bool has_cached_opaque_optimization_candidate() const;
+      bool alpha_statistics_up_to_date() const;
+      void report_alpha_optimization_candidate();
 
       image();
       image(image&& image);

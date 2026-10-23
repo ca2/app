@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "inet_compat.h"
 #include "acme/exception/interface_only.h"
 #include "acme/operating_system/shared_posix/c_errno.h"
 
@@ -7,7 +8,7 @@
 //#define _BSD_SOURCE
 //#endif
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 #include <arpa/inet.h>
 #endif
 
@@ -15,7 +16,7 @@
 //#include <arpa/inet.h>
 //#endif
 
-#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
+#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 #include <netdb.h>
 #endif
 
@@ -90,7 +91,7 @@ static const uchar index_hex[256] =
 ///*
 //* StringToV6Addr() returns 1 if the conversion succeeds,
 //* or 0 if the input is not a valid IPv6 address string.
-//* (Same as inet_pton(AF_INET6, string, addr).)
+//* (Same as ca2_inet_pton(AF_INET6, string, addr).)
 //*/
 //CLASS_DECL_NETWORKING_BSD void from_string(in6_addr & addr, const_char_pointer string)
 //{
@@ -228,7 +229,7 @@ static const uchar index_hex[256] =
 ///*
 //* V6AddrToString() returns a pointer to the buffer containing
 //* the text string if the conversion succeeds, and nullptr otherwise.
-//* (Same as inet_ntop(AF_INET6, addr, buf, size), except that errno
+//* (Same as ca2_inet_ntop(AF_INET6, addr, buf, size), except that errno
 //* is not set on failure.)
 //*/
 //CLASS_DECL_NETWORKING_BSD ::string as_string(const in6_addr  & addr)
@@ -444,7 +445,7 @@ CLASS_DECL_NETWORKING_BSD::string __string_inet_ntop(::i32 iFamily, const void *
 
    ::i8 sz[INET6_ADDRSTRLEN * 2];
 
-   if (!inet_ntop(iFamily, paddr, sz, sizeof(sz)))
+   if (!ca2_inet_ntop(iFamily, paddr, sz, sizeof(sz)))
    {
 
       auto cerrno = c_errno();
@@ -635,7 +636,7 @@ CLASS_DECL_NETWORKING_BSD ::i32 c_inet_pton(::i32 af, const_char_pointer src, vo
 CLASS_DECL_NETWORKING_BSD ::e_status from_string(in_addr & addr, const_char_pointer src)
 {
 
-   ::i32 iRet = inet_pton(AF_INET, src, &addr);
+   ::i32 iRet = ca2_inet_pton(AF_INET, src, &addr);
 
    if (iRet == 0)
    {
@@ -662,7 +663,7 @@ CLASS_DECL_NETWORKING_BSD ::e_status from_string(in_addr & addr, const_char_poin
 CLASS_DECL_NETWORKING_BSD ::e_status from_string(in6_addr & addr, const_char_pointer src)
 {
 
-   ::i32 iRet = inet_pton(AF_INET6, src, &addr);
+   ::i32 iRet = ca2_inet_pton(AF_INET6, src, &addr);
 
    if (iRet == 0)
    {
@@ -765,11 +766,11 @@ namespace net
       switch (sockaddr.sa_family)
       {
       case AF_INET:
-         inet_ntop(AF_INET, &(((struct sockaddr_in &)sockaddr).sin_addr), sz, sizeof(sz));
+         ca2_inet_ntop(AF_INET, &(((struct sockaddr_in &)sockaddr).sin_addr), sz, sizeof(sz));
          break;
 
       case AF_INET6:
-         inet_ntop(AF_INET6, &(((struct sockaddr_in6 &)sockaddr).sin6_addr), sz, sizeof(sz));
+         ca2_inet_ntop(AF_INET6, &(((struct sockaddr_in6 &)sockaddr).sin6_addr), sz, sizeof(sz));
          break;
 
       default:

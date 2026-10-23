@@ -745,7 +745,7 @@ void TransformSkewX(::f32* t, ::f32 a)
 	}
 
 
-	void context::update_image(::i32 image, const void * data)
+	void context::update_image(::i32 image, const void * data, bool bTopDown)
 	{
 		//::i32 w h;
 		//params.renderGetTextureSize(params.userPtr, image, &w, &h);

@@ -23,7 +23,11 @@ CLASS_DECL_ACME ::i32 framework_is_stage()
 }
 
 
-namespace version
+namespace platform
+{
+
+
+namespace release
 {
 
 
@@ -83,7 +87,10 @@ namespace version
    }
 
 
-} // namespace version
+} // namespace release
+
+
+} // namespace platform
 
 
 

@@ -1,5 +1,9 @@
+// Added draw2d::domain_consumer base to image::image by
+//   camilo on 2026-09-24 05:00 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
 #pragma once
 
+
+#include "aura/graphics/image/meta.h"
 
 #include "aura/graphics/image/meta.h"
 
@@ -14,6 +18,7 @@
 #include "acme/prototype/prototype/memory.h"
 
 #include <atomic>
+#include <mutex>
 
 
 namespace draw2d
@@ -52,6 +57,7 @@ namespace image
    {
       e_map_load,
       e_map_discard,
+      e_map_read_only, // Readback without publishing a CPU pixel modification.
 
    };
 
@@ -63,7 +69,8 @@ namespace image
       virtual public ::property_object,
       //virtual public ::image::image_drawer,
       virtual public ::image::image_source_interface,
-      virtual public ::item
+      virtual public ::item,
+      virtual public ::draw2d::domain_consumer
    {
    public:
 
@@ -71,9 +78,25 @@ namespace image
       ::i32_rectangle                           m_rectangleTag;
       mutable ::std::atomic_bool                m_bDestinationGraphicsLeaseActive{false};
       //::pointer < ::acme::user::interaction >   m_puserinteractionTopic;
-      ::pointer < ::draw2d::domain >            m_pdraw2ddomain;
+      //::pointer < ::draw2d::domain >            m_pdraw2ddomain;
       //::pointer < ::user::interaction >         m_puserinteraction;
       //::draw2d::graphics_lease *          m_pgraphicsleaseOwned;
+
+      mutable std::recursive_mutex m_mutexAlphaStatistics;
+      enum_map m_eActiveAlphaMap = e_map_load;
+
+      void set_pixel_usage(pixel_usage usage);
+      pixel_usage get_pixel_usage() const;
+      void invalidate_alpha_statistics(const char * pszReason = nullptr);
+      bool publish_static_pixels(alpha_statistics * pstatistics = nullptr);
+      bool get_alpha_statistics(alpha_statistics & statistics);
+      bool get_cached_alpha_statistics(alpha_statistics & statistics) const;
+      bool get_cached_opaque_region_statistics(alpha_statistics & statistics,
+         ::collection::count maximumRegions = 64, double minimumCoverage = 0.5) const;
+      bool has_cached_fully_opaque_pixels() const;
+      bool has_cached_opaque_optimization_candidate() const;
+      bool alpha_statistics_up_to_date() const;
+      void report_alpha_optimization_candidate();
 
       image();
       image(image&& image);
@@ -88,11 +111,11 @@ namespace image
 
       ::subparticle_pointer clone() override;
 
-      virtual ::draw2d::domain * draw2d_domain();
+      //virtual ::draw2d::domain * draw2d_domain();
 
       virtual void create_with_pixmap(::pixmap * ppixmap);
 
-      virtual void create_as_descriptor(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
+      virtual void create_as_descriptor(const ::i32_size &size, ::draw2d::domain * pdraw2ddomain, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
                           ::i32 iGoodStride = -1);
 
       virtual void update_bitmap_as_render_target(
@@ -117,10 +140,10 @@ namespace image
       virtual ::pixmap * owned_pixmap();
       //virtual void set_owned_graphics();
 
-      virtual ::function < void(::image::load_image *) > load_image_callback();
+      virtual void load_image_callback(::array < ::function < void(::image::load_image *) > > & functionaLoaded);
 
 
-      virtual ::pointer < ::image::load_image > create_load_image(::image::image_context* pimagecontext);
+      virtual ::pointer < ::image::load_image > create_load_image(::image::image_context* pimagecontext, const load_options & loadoption);
 
       virtual ::pointer<::image::image>get_image(const ::i32_size & size);
       //virtual ::pointer<::image::image>get_image(::i32 cx, ::i32 cy);
@@ -192,7 +215,7 @@ namespace image
       //virtual void fast_copy(::image32_t * pcolor32FullImage);
 
 
-      virtual void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan);
+      virtual void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan, bool bTopDown);
       virtual void on_load_image(::pixmap * ppixmap);
       virtual void on_load_image_frame_array(::image::image_frame_array * pimageframearray);
 
@@ -274,7 +297,8 @@ namespace image
 
       //virtual void create_from_data(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
       virtual void create_from_data(const ::pixmap_t & pixmap,
-                                    ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, 
+                                    ::draw2d::domain * pdraw2domain,
+                                    ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
                                     bool bPreserve = false);
       virtual void create_from_graphics(::draw2d::graphics * pdraw2dgraphics);
       virtual void create_as_top_draw2d_target(const ::i32_size & size, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);

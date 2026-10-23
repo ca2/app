@@ -1748,7 +1748,7 @@
     <ClInclude Include="os\windows\printer.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\process.h">
+    <ClInclude Include="os\windows\process_process.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\registry.h">
@@ -1859,7 +1859,7 @@
     <ClInclude Include="node\windows\pipe.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\process.h">
+    <ClInclude Include="node\windows\process_process.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\registry.h">
@@ -1928,7 +1928,7 @@
     <ClInclude Include="os\os_windowing2.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
-    <ClInclude Include="os\process.h">
+    <ClInclude Include="os\process_process.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
     <ClInclude Include="os\text.h">
@@ -3520,7 +3520,7 @@
     <ClCompile Include="os\windows\printer.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\process.cpp">
+    <ClCompile Include="os\windows\process_process.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\registry.cpp">
@@ -3616,7 +3616,7 @@
     <ClCompile Include="os\os_os.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
-    <ClCompile Include="os\process.cpp">
+    <ClCompile Include="os\process_process.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
     <ClCompile Include="os\thread.cpp">
@@ -3892,7 +3892,7 @@
     <ClCompile Include="node\windows\pipe.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\process.cpp">
+    <ClCompile Include="node\windows\process_process.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="node\windows\registry.cpp">
@@ -3979,7 +3979,7 @@
     <ClCompile Include="os\ansios\language.cpp">
       <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="os\ansios\process.cpp">
+    <ClCompile Include="os\ansios\process_process.cpp">
       <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
     <ClCompile Include="os\ansios\user.cpp">

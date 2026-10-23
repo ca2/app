@@ -31,6 +31,14 @@ namespace windowing
    {
 
       m_psandboxwindowing = nullptr;
+#if defined(WINDOWS)
+      m_bTightRawBuffer = sizeof(void *) == 4;
+#if defined(__REACTOS__)
+      m_bTightRawBuffer = true;
+#endif
+#else
+      m_bTightRawBuffer = false;
+#endif
 
       //m_pWindowing4 = nullptr;
 

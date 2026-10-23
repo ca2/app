@@ -257,11 +257,13 @@ that we consider it dangerous to even throw ::exception( an exception
 #define MAKEINTRESOURCEA(i) ((char_pointer )((uptr)((::u16)(i))))
 #define MAKEINTRESOURCEW(i) ((wide_character * )((uptr)((::u16)(i))))
 #endif
+#ifndef MAKEINTRESOURCE
 #ifdef UNICODE
 #define MAKEINTRESOURCE  MAKEINTRESOURCEW
 #else
 #define MAKEINTRESOURCE  MAKEINTRESOURCEA
 #endif // !UNICODE
+#endif // MAKEINTRESOURCE
 #ifndef WINDOWS
 #define IS_INTRESOURCE(_r) ((((uptr)(_r)) >> 16) == 0)
 #endif
@@ -302,11 +304,17 @@ that we consider it dangerous to even throw ::exception( an exception
 #define MAXIMUM_RESERVED_MANIFEST_RESOURCE_ID 16  /* inclusive */
 #else  /* RC_INVOKED */
 #define RT_MANIFEST                        MAKEINTRESOURCE(24)
+#ifndef CREATEPROCESS_MANIFEST_RESOURCE_ID
 #define CREATEPROCESS_MANIFEST_RESOURCE_ID MAKEINTRESOURCE( 1)
+#endif
 #define ISOLATIONAWARE_MANIFEST_RESOURCE_ID MAKEINTRESOURCE(2)
 #define ISOLATIONAWARE_NOSTATICIMPORT_MANIFEST_RESOURCE_ID MAKEINTRESOURCE(3)
+#ifndef MINIMUM_RESERVED_MANIFEST_RESOURCE_ID
 #define MINIMUM_RESERVED_MANIFEST_RESOURCE_ID MAKEINTRESOURCE( 1 /*inclusive*/)
+#endif
+#ifndef MAXIMUM_RESERVED_MANIFEST_RESOURCE_ID
 #define MAXIMUM_RESERVED_MANIFEST_RESOURCE_ID MAKEINTRESOURCE(16 /*inclusive*/)
+#endif
 #endif /* RC_INVOKED */
 
 /* sal.h stuff that is not in the current LKG */

@@ -1,4 +1,7 @@
 #include "platform.h"
+#ifndef MORE_LOG
+#define MORE_LOG 0
+#endif
 //#include "interaction_child.h"
 #include "scroll_state.h"
 #include "alpha_source.h"
@@ -2186,7 +2189,7 @@ namespace user
 
          m_setneedredrawa.add({ rectangleaNeedRedraw, function, bAscendants });
 
-#ifdef MORE_LOG
+#if MORE_LOG
 
          if (!window())
          {
@@ -2218,7 +2221,7 @@ namespace user
 
       }
 
-#ifdef MORE_LOG
+#if MORE_LOG
       information() << "set_need_redraw (1)";
 #endif
       //if(m_pdragCurrent && m_pdragCurrent->m_eelement == e_element_resize)
@@ -3746,7 +3749,17 @@ namespace user
 
       information() << "display_visible_trying_to_restore_last_visible : " << edisplayPrevious;
 
-      if (!::is_screen_visible(edisplayPrevious))
+      // Full screen is visible, but it cannot be a useful destination when
+      // exiting full screen. This happens when the application starts in full
+      // screen and records that as its previous visible display.
+      if (edisplayPrevious == e_display_full_screen)
+      {
+
+         information() << "previous visible display is full screen; restoring normal placement";
+         edisplayPrevious = e_display_normal;
+
+      }
+      else if (!::is_screen_visible(edisplayPrevious))
       {
 
          information() << "edisplayPrevious isn't screen visible, using e_display_normal";
@@ -5262,7 +5275,7 @@ namespace user
       //
       //#endif
 
-#ifdef WINDOWS_DESKTOP
+#if defined(WINDOWS_DESKTOP) || defined(HAS_GTK3)
 
                                                                                                                               //auto pwindowingicon = get_windowing_icon();
 
@@ -7450,6 +7463,26 @@ namespace user
 
       scoped_restore(pdraw2dgraphics->m_bInheritDraw);
 
+#if MORE_LOG && defined(__SUNOS__)
+      const bool bTraceFrame = get_parent() == nullptr && is_frame_window();
+
+      if (bTraceFrame)
+      {
+
+         information() << "interaction frame draw: type=" << ::platform::type(this).name()
+            << ", is_window=" << !!(m_ewindowflag & e_window_flag_is_window)
+            << ", not_visible=" << !!(m_ewindowflag & e_window_flag_not_visible)
+            << ", design display=" << (int) const_layout().design().display()
+            << ", window display=" << (int) const_layout().window().display()
+            << ", design visible=" << const_layout().design().is_visible()
+            << ", inherit draw=" << pdraw2dgraphics->m_bInheritDraw
+            << ", draw enabled=" << pdraw2dgraphics->m_bDraw
+            << ", on draw enabled=" << m_bOnDraw
+            << ", draw pass=" << !!(pdraw2dgraphics->m_egraphics & e_graphics_draw);
+
+      }
+#endif
+
       //defer_update_hover(pdraw2dgraphics);
 
       //      auto pszType = typeid(*this).name();
@@ -7482,6 +7515,10 @@ namespace user
       if (pdraw2dgraphics->m_bInheritDraw && !(pdraw2dgraphics->m_egraphics & e_graphics_draw))
       {
 
+#if MORE_LOG && defined(__SUNOS__)
+         if (bTraceFrame) information() << "interaction frame draw disabled: no draw pass";
+#endif
+
          pdraw2dgraphics->m_bInheritDraw = false;
 
          //         if (!get_parent())
@@ -7498,6 +7535,10 @@ namespace user
 
       if (pdraw2dgraphics->m_bInheritDraw && !bIsThisVisible)
       {
+
+#if MORE_LOG && defined(__SUNOS__)
+         if (bTraceFrame) information() << "interaction frame draw disabled: is_this_visible returned false";
+#endif
 
          //         if (!get_parent())
          //         {
@@ -7520,6 +7561,10 @@ namespace user
       if (pdraw2dgraphics->m_bInheritDraw && !pdraw2dgraphics->m_bDraw)
       {
 
+#if MORE_LOG && defined(__SUNOS__)
+         if (bTraceFrame) information() << "interaction frame draw disabled: m_bDraw is false";
+#endif
+
          //         if (pdraw2dgraphics->payload("set_transparent") == "set_transparent")
          //         {
          //
@@ -7539,6 +7584,10 @@ namespace user
 
       if (pdraw2dgraphics->m_bInheritDraw && !needs_to_draw(pdraw2dgraphics))
       {
+
+#if MORE_LOG && defined(__SUNOS__)
+         if (bTraceFrame) information() << "interaction frame draw disabled: needs_to_draw returned false";
+#endif
 
          //         ::string strType = ::platform::type(this).name();
          //
@@ -7595,6 +7644,9 @@ namespace user
       }
       if (!should_draw())
       {
+#if MORE_LOG && defined(__SUNOS__)
+         if (bTraceFrame) information() << "interaction frame draw skipped: should_draw returned false";
+#endif
          //         if (!get_parent())
          //         {
          //
@@ -7706,6 +7758,7 @@ namespace user
                //{
 
                _001OnNcClip(pdraw2dgraphics);
+
 
                //}
 
@@ -9819,14 +9872,14 @@ if(get_parent())
 
          if (!is_top_level())
          {
-
+            information() << "DRAG_START refused: not top level";
             return false;
 
          }
 
          if (is_display_like_maximized() || is_display_like_full_screen())
          {
-
+            information() << "DRAG_START refused: maximized or full screen";
             return false;
 
          }
@@ -9841,6 +9894,7 @@ if(get_parent())
          }
 
          pointDrag = layout().window().origin();
+         informationf("DRAG_START client accepted origin=(%d,%d)", pointDrag.x, pointDrag.y);
 
          return true;
 
@@ -15824,9 +15878,25 @@ if(get_parent())
       {
 
          sketch_to_lading();
+		//~ if (strType.contains("main_window"))
+		//~ {
+  
+		   //~ information() << "main_window top_down_prefix sketch_to_lading !is_host ";
+  
+		//~ }
 
       }
+		else
+		{
+					//~ if (strType.contains("main_window"))
+		//~ {
+  
+		   //~ information() << "main_window top_down_prefix sketch_to_lading is_host ";
+  
+		//~ }
 
+			
+		}
 
       //      if (strType == "user::still")
       //      {
@@ -15908,25 +15978,25 @@ if(get_parent())
 
       }
 
-      if(!get_parent() && (!m_pacmeuserinteractionaChildren
-      || m_pacmeuserinteractionaChildren->is_empty()))
-      {
+      //~ if(!get_parent() && (!m_pacmeuserinteractionaChildren
+      //~ || m_pacmeuserinteractionaChildren->is_empty()))
+      //~ {
 
-         return false;
+         //~ return false;
 
-      }
+      //~ }
 
-      for_user_interaction_children(puserinteraction, this)
-      {
-
-         if (!(puserinteraction->m_ewindowflag & ::e_window_flag_window_created))
-         {
-
-            return false;
-
-         }
-
-      }
+//      for_user_interaction_children(puserinteraction, this)
+//      {
+//
+//         if (!(puserinteraction->m_ewindowflag & ::e_window_flag_window_created))
+//         {
+//
+//            return false;
+//
+//         }
+//
+//      }
 
       ::string strType(::type(*this).raw_name());
 
@@ -17714,7 +17784,7 @@ if(get_parent())
    void interaction::track_mouse_hover()
    {
 
-#ifdef MORE_LOG
+#if MORE_LOG
 
       information() << "interaction::track_mouse_hover";
 
@@ -19400,7 +19470,7 @@ if(get_parent())
          pmessage->m_operatingsystemwindow = system()->windowing()->operating_system_window(wparam);
       }
       break;
-#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
+#if defined(WINDOWS_DESKTOP)
       case ::user::e_message_prototype_window_pos:
 
       {
@@ -19898,8 +19968,13 @@ if(get_parent())
 
    ::draw2d::domain * interaction::draw2d_domain()
    {
-   
-      return window()->draw2d_domain();
+      auto pwindowThis = window();
+      if (::is_null(pwindowThis))
+      {
+         return nullptr;
+      }
+
+      return pwindowThis->draw2d_domain();
       
    }
 
@@ -22718,10 +22793,13 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
          ::i32_size sizeMinimumBroad = sizeMin.maximum(rectangleWorkspace.size() * 7 / 10);
 
+         // Restored windows must leave a visible margin around the workspace.
+         ::i32_size sizeMaximumBroad = sizeMin.maximum(rectangleWorkspace.size() * 9 / 10);
+
          auto rectangleStoredBroad = get_window_broad_stored_rectangle();
 
          if (rectangleStoredBroad.size() >= sizeMinimumBroad
-             && rectangleStoredBroad.size() <= rectangleWorkspace.size())
+             && rectangleStoredBroad.size() <= sizeMaximumBroad)
          {
 
             m_rectangleRestoreBroad = rectangleStoredBroad;
@@ -22732,7 +22810,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
             m_rectangleRestoreBroad.set_size(sizeMin.maximum(rectangleWorkspace.size() * 4 / 5));
 
-            m_rectangleRestoreBroad.move_to(rectangleWorkspace.size() / 10);
+            m_rectangleRestoreBroad.move_to(rectangleWorkspace.top_left() + rectangleWorkspace.size() / 10);
 
          }
 
@@ -22754,7 +22832,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
             m_rectangleRestoreCompact.set_size(sizeMin.maximum(rectangleWorkspace.size() * 2 / 5));
 
-            m_rectangleRestoreCompact.move_to(rectangleWorkspace.size() / 10);
+            m_rectangleRestoreCompact.move_to(rectangleWorkspace.top_left() + rectangleWorkspace.size() / 10);
 
          }
 
@@ -28792,7 +28870,7 @@ __check_refdbg;
          {
             informationf(
                "-------------------------------------------------------------m_pitemHover->m_item.m_iItem = %lld",
-               m_pitemHover->m_item.m_iItem);
+               static_cast<long long>(m_pitemHover->m_item.m_iItem));
          }
          else
          {
@@ -28919,7 +28997,7 @@ __check_refdbg;
          {
 
 #if defined(USER_INTERACTION_HOVER_LOG)
-            informationf("user::interaction::update_hover set_need_redraw (%d rectangle(s))", rectanglea.size());
+            informationf("user::interaction::update_hover set_need_redraw (%lld rectangle(s))", static_cast<long long>(rectanglea.size()));
 
             for (auto & rectangle : rectanglea)
             {
@@ -29168,7 +29246,7 @@ __check_refdbg;
       if (!r.contains(pointClient))
       {
 
-         information() << "hit_test !r.contains(pointClient)";
+         //information() << "hit_test !r.contains(pointClient)";
 
          auto pitemNone = stock_item(e_element_none);
 
@@ -29181,7 +29259,7 @@ __check_refdbg;
       if (!pitem)
       {
 
-         information() << "hit_test(pointClient, ezorder) !pitem";
+         //information() << "hit_test(pointClient, ezorder) !pitem";
 
          return nullptr;
 
@@ -29219,12 +29297,16 @@ __check_refdbg;
       if (get_element_rectangle(rectangleXHitTest, e_element_client_hit_test))
       {
 
+#ifdef DEEP_DEBUGGING
          information() << "hit_test got_element_rect client_hit_test";
+#endif
 
          if (!rectangleXHitTest.contains(pointClient))
          {
 
+#ifdef DEEP_DEBUGGING
             information() << "hit_test got_element_rect !rectangleXHitTest";
+#endif
 
             return nullptr;
 

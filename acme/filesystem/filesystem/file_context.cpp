@@ -1617,7 +1617,9 @@ resource_folder_lease file_context::resource_folder()
 
    auto pfileOutput = create_memory_file();
 
-   transfer(pfileOutput, pfile);
+   // Resource images are often tiny. Avoid the generic 16 MiB transfer
+   // buffer for each concurrent load, especially in a 32-bit process.
+   pfileOutput->write(pfile, 32 * 1024);
 
    pfileOutput->seek_to_begin();
 

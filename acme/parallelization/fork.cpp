@@ -1,6 +1,6 @@
 #include "platform.h"
 #include "fork.h"
-#include "acme/operating_system/process.h"
+#include "acme/operating_system/process_process.h"
 #include "acme/parallelization/counter.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"

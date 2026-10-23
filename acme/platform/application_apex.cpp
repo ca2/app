@@ -1494,7 +1494,7 @@ void apex_application_layer::setResourceName(::i32 iId
       return {};
    }
 
-#if defined(LINUX) || defined(__BSD__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 
     ::string apex_application_layer::apex_application_layer::get_wm_class() const
     {

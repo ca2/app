@@ -113,13 +113,13 @@ namespace acme
       }
    
       
-      ::acme::draw2d::domain * window::acme_draw2d_domain()
-      {
-      
-         return m_pacmedraw2ddomain;
-         
-      }
-      
+//      ::acme::draw2d::domain * window::acme_draw2d_domain()
+//      {
+//      
+//         return m_pacmedraw2ddomain;
+//         
+//      }
+//      
 
       bool window::should_avoid_default_swap_chain_present()
       {

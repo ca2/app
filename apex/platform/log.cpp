@@ -1,4 +1,7 @@
 #include "platform.h"
+#ifdef __REACTOS__
+#include "acme/platform/debug.h"
+#endif
 #include "log.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
@@ -251,7 +254,11 @@ namespace apex
    {
 #ifdef WIN32
 
+#ifdef __REACTOS__
+      if (iReportType == _DEBUG_ASSERT)
+#else
       if(iReportType == _CRT_ASSERT)
+#endif
       {
 
          if(is_debugger_attached())
@@ -287,7 +294,12 @@ namespace apex
       {
 
          ::i8 buf[2048];
+#if defined(__REACTOS__)
+         _vsnprintf(buf, sizeof(buf) - 1, pszFormat, list_base);
+         buf[sizeof(buf) - 1] = 0;
+#else
          vsnprintf_s(buf, sizeof(buf), sizeof(buf), pszFormat, list_base);
+#endif
          informationf(buf);
 
       }

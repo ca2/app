@@ -1,5 +1,6 @@
 // Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSorensen!!
 #include "platform.h"
+#include "acme/operating_system/windows/printf_format.h"
 #include "call.h"
 #include "type.h"
 #include "factory.h"
@@ -34,7 +35,7 @@
 
 particle::~particle()
 {
-
+   
    m_pparticleSynchronization.release();
 
 }
@@ -918,7 +919,7 @@ void particle::printf_line(const_char_pointer pszFormat, ...) const
 
    strLine += "\n";
 
-   vprintf(strLine.c_str(), arguments);
+   vprintf(CA2_PRINTF_FORMAT(strLine.c_str()), arguments);
 
    va_end(arguments);
 
@@ -934,7 +935,7 @@ void particle::printf_out(const_char_pointer pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   vprintf(pszFormat, arguments);
+   vprintf(CA2_PRINTF_FORMAT(pszFormat), arguments);
 
    va_end(arguments);
 
@@ -980,7 +981,7 @@ void particle::errf_line(const_char_pointer pszFormat, ...) const
 
    strLine += "\n";
 
-   vfprintf(stderr, strLine.c_str(), arguments);
+   vfprintf(stderr, CA2_PRINTF_FORMAT(strLine.c_str()), arguments);
 
    va_end(arguments);
 
@@ -996,7 +997,7 @@ void particle::errf_out(const_char_pointer pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   vfprintf(stderr, pszFormat, arguments);
+   vfprintf(stderr, CA2_PRINTF_FORMAT(pszFormat), arguments);
 
    va_end(arguments);
 
@@ -1815,8 +1816,8 @@ CLASS_DECL_ACME lresult __call_message(::particle* pparticle, ::user::enum_messa
       if(wparam != 0 || lparam != 0)
       {
 
-         ptopic->payload("wparam") = wparam;
-         ptopic->payload("lparam") = lparam;
+         ptopic->payload("wparam") = (::iptr) wparam;
+         ptopic->payload("lparam") = (::iptr) lparam;
 
       }
 
@@ -1833,8 +1834,8 @@ CLASS_DECL_ACME lresult __call_message(::particle* pparticle, ::user::enum_messa
       if(wparam != 0 || lparam != 0)
       {
 
-         pextendedtopic->payload("wparam") = wparam;
-         pextendedtopic->payload("lparam") = lparam;
+         pextendedtopic->payload("wparam") = (::iptr) wparam;
+         pextendedtopic->payload("lparam") = (::iptr) lparam;
 
       }
 
@@ -2319,6 +2320,11 @@ particle::message_box(const ::exception &exception, const ::scoped_string &scope
    }
 
    auto pfactoryitem = pfactory->_find_factory_item(type);
+
+   if (!pfactoryitem)
+   {
+      throw ::exception(error_not_found, "No factory registered for " + type.text());
+   }
 
    auto p = pfactoryitem->__call__create_particle();
 

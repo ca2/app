@@ -1,9 +1,12 @@
 // From gpu_vulkan::context by
 // camilo on 2025-05-27 05:03 <3ThomasBorregaardSorensen!!
+// Added ::draw2d::domain_consumer inheritance to ::gpu::device by
+//   camilo on 2026-09-24 05:56 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
 #pragma once
 
 
 #include "acme/constant/gpu.h"
+#include "acme/graphics/image/image32_t.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "acme/prototype/prototype/memory.h"
 #include "aura/graphics/draw2d/domain_consumer.h"
@@ -12,7 +15,6 @@
 #include "bred/gpu/shader.h"
 #include "context_lease.h"
 #include "post_frame_context_registry.h"
-#include "acme/graphics/image/image32_t.h"
 
 
 namespace gpu

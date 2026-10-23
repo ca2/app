@@ -228,7 +228,9 @@
    WM_IME_SETCONTEXT,
    WM_IME_NOTIFY,
    WM_GETICON,
+#ifndef __REACTOS__
    WM_DWMNCRENDERINGCHANGED,
+#endif
 #endif
    (::u32)-1
 };

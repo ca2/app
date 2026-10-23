@@ -188,8 +188,10 @@ namespace networking_bsd
                strLog.append_formatf("%lx ", pCurrAddresses->ZoneIndices[i]);
             strLog.append_formatf("\n");
 
+#if !defined(__REACTOS__)
             strLog.append_formatf("\tTransmit link speed: %I64u\n", pCurrAddresses->TransmitLinkSpeed);
             strLog.append_formatf("\tReceive link speed: %I64u\n", pCurrAddresses->ReceiveLinkSpeed);
+#endif
 
             pPrefix = pCurrAddresses->FirstPrefix;
             if (pPrefix) {

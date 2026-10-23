@@ -25,7 +25,7 @@ namespace APPLICATION_NAMESPACE
 
 
 
-#if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
+#if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS) || defined(__SUNOS__) || defined(__HAIKU__)
 extern char _binary__matter_zip_start[];
 extern char _binary__matter_zip_end[];
 #endif
@@ -95,7 +95,7 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_sys
 
 #endif
 
-#if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
+#if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS) || defined(__SUNOS__) || defined(__HAIKU__)
 //
 //       psystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
       psystem->set_resource_block(p1, p2);
@@ -137,7 +137,7 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_con
 
 #endif
 
-#if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
+#if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS) || defined(__SUNOS__) || defined(__HAIKU__)
 
       psystem->set_resource_block(p1, p2);
 
@@ -157,6 +157,12 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_con
 APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)()
 {
 
+#if defined(WINDOWS)
+   // The system worker must not destroy the runtime while the main thread
+   // still returns through windowing, thread cleanup, and exit-code retrieval.
+   ::pointer<::platform::system> systemlifetime(::system());
+#endif
+
    int iExitCode = -1;
 
    {
@@ -173,7 +179,7 @@ APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)()
 
 #ifdef WINDOWS
 
-         psystem->m_hinstanceMain = ::windows::hinstance_from_function(APPLICATION_NAMESPACE_MAIN(main));
+         psystem->m_hinstanceMain = ::windows::hinstance_from_function(reinterpret_cast<void *>(APPLICATION_NAMESPACE_MAIN(main)));
 
 #endif
 

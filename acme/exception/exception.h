@@ -70,6 +70,9 @@ public:
 
    virtual string get_message() const;
 
+   // Constructor diagnostics reuse the captured stack and never throw.
+   void log_constructor(const char * pszType, bool bIncludeStack = false) noexcept;
+
    virtual string get_title() const;
    
    virtual string get_consolidated_details(::particle * pparticle) const;

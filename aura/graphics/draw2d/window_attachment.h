@@ -29,6 +29,9 @@ namespace draw2d
       void destroy() override;
 
 
+      virtual void start_frame();
+
+
    };
 
 

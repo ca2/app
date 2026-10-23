@@ -15,6 +15,7 @@
 #include "acme/prototype/collection/map.h"
 #include "acme/prototype/collection/string_map.h"
 #include "acme/parallelization/mutex.h"
+#include "acme/parallelization/critical_section.h"
 
 
 
@@ -30,15 +31,28 @@ public:
 
    ::file::path                  m_pathLocalAppMatterFolder;
    ::file::path                  m_pathLocalAppMatterCacheFolder;
+   critical_section              m_criticalsectionLazyPaths;
+   bool                          m_bLocalAppMatterFolderCalculated = false;
+   bool                          m_bLocalAppMatterCacheFolderCalculated = false;
+   bool                          m_bInstallPathCalculated = false;
 
    //::pointer<::file::watcher>   m_pfilewatcher;
 
    ::file::path                  m_pathAppData;
    ::file::path                  m_pathDefaultAppData;
 
+   bool                          m_bAppDataPathCalculated = false;
+   bool                          m_bDefaultAppDataPathCalculated = false;
+   bool                          m_bRoamingAppDataPathCalculated = false;
+   bool                          m_bHomePathCalculated = false;
+   bool                          m_bCa2ConfigPathCalculated = false;
+
    string                        m_strApiCc;
 
    ::file::path                  m_pathCa2Config;
+   ::file::path                  m_pathCloudProtocol;
+   critical_section              m_criticalsectionCloudProtocol;
+   bool                          m_bCloudProtocolCalculated = false;
    //::file::path                  m_pathModule;
    ::file::path                  m_pathHome;
    ::file::path                  m_pathInstall;
@@ -125,11 +139,19 @@ public:
 
    virtual ::file::path install();
    virtual ::file::path default_install();
+   virtual ::file::path installed_path();
    virtual ::file::path beforeca2();
    virtual ::file::path module();
    virtual ::file::path relative(::file::path path);
    virtual ::string appid();
    virtual ::file::path appdata(); // appdata
+   virtual ::file::path local_app_matter_folder();
+   virtual ::file::path local_app_matter_cache_folder();
+   virtual ::file::path app_data_path();
+   virtual ::file::path application_app_data_path();
+   virtual ::file::path default_app_data_path();
+   virtual ::file::path home_path();
+   virtual ::file::path ca2_config_path();
    virtual ::file::path archive();
    virtual ::file::path tool();
    //virtual ::file::path public_system();
@@ -142,6 +164,7 @@ public:
    virtual ::file::path ca2roaming(); // writable root (non-bin, non-exe)
    virtual ::file::path ca2appdata(); // writable root (non-bin, non-exe)
    virtual ::file::path roaming();
+   virtual ::file::path cloud_protocol(); // selected cloud root, overridable by roaming/user/cloud.txt
    virtual ::file::path program_data();
    virtual ::file::path application_data_base();
    virtual ::file::path application_data();

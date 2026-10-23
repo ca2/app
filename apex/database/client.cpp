@@ -210,16 +210,50 @@ namespace database
 
    void client::initialize_data_client(server * pserver)
    {
+      information() << "startup: database::client::initialize_data_client: enter";
 
-      defer_construct_newø(m_pstream);
 
-      m_pstream->m_pclient = this;
+      try
+      {
+
+         information() << "startup: database::client::initialize_data_client: before defer_construct_newø(m_pstream)";
+         defer_construct_newø(m_pstream);
+         information() << "startup: database::client::initialize_data_client: after defer_construct_newø(m_pstream)";
+
+         if (!m_pstream)
+         {
+
+            throw ::exception(error_no_memory, "database::client: stream construction returned null");
+
+         }
+
+         m_pstream->m_pclient = this;
+
+      }
+      catch (const ::exception & e)
+      {
+
+         information() << "database::client::initialize_data_client: stream creation failed: "
+            << e.get_message() << " " << e.m_strDetails;
+
+         throw;
+
+      }
+      catch (...)
+      {
+
+         information() << "database::client::initialize_data_client: stream creation failed (unknown exception)";
+
+         throw;
+
+      }
 
       //set_data_server(pserver);
 
       if (m_pdataserver == pserver)
       {
 
+         information() << "startup: database::client::initialize_data_client: leave (server already registered, stream ready)";
          return;
 
       }
@@ -227,24 +261,34 @@ namespace database
       if (m_pdataserver != nullptr)
       {
 
+         information() << "startup: database::client::initialize_data_client: before _synchronous_lock synchronouslock(m_pdataserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX)";
          _synchronous_lock synchronouslock(m_pdataserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         information() << "startup: database::client::initialize_data_client: after _synchronous_lock synchronouslock(m_pdataserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX)";
 
+         information() << "startup: database::client::initialize_data_client: before m_pdataserver->m_clienta.erase_client(this)";
          m_pdataserver->m_clienta.erase_client(this);
+         information() << "startup: database::client::initialize_data_client: after m_pdataserver->m_clienta.erase_client(this)";
 
       }
 
       if (pserver != nullptr)
       {
 
+         information() << "startup: database::client::initialize_data_client: before _synchronous_lock synchronouslock(pserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX)";
          _synchronous_lock synchronouslock(pserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         information() << "startup: database::client::initialize_data_client: after _synchronous_lock synchronouslock(pserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX)";
 
+         information() << "startup: database::client::initialize_data_client: before pserver->m_clienta.add_client(this)";
          pserver->m_clienta.add_client(this);
+         information() << "startup: database::client::initialize_data_client: after pserver->m_clienta.add_client(this)";
 
       }
 
       m_pdataserver = pserver;
 
       //return true;
+
+      information() << "startup: database::client::initialize_data_client: leave";
 
    }
 

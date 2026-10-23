@@ -63,7 +63,7 @@ CLASS_DECL_ACME void preempt_microsecond(::i64 i)
 #endif
 
 
-#if defined(__ANDROID__) || defined(__APPLE__) || defined(LINUX) || defined(__BSD__)
+#if defined(__ANDROID__) || defined(__APPLE__) || defined(LINUX) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 
 
 CLASS_DECL_ACME void preempt_nanosecond(::i64 i)
@@ -152,7 +152,11 @@ struct tm * tm_struct(struct tm * ptm, const ::posix_time & posixtime, const cla
 
    }
 
+#ifdef __REACTOS__
+   __time64_t time = posixtime.m_iSecond + timeshift.m_iSecond;
+#else
    time_t time = posixtime.m_iSecond + timeshift.m_iSecond;
+#endif
 
 #ifdef WINDOWS
 
@@ -275,7 +279,11 @@ CLASS_DECL_ACME struct tm * GetZoneTm(struct tm * ptm, const ::earth::zone_time 
 
    struct tm tmTemp;
 
+#ifdef __REACTOS__
+   __time64_t t = zonetime.m_iSecond + zonetime.m_timeshift.m_iSecond;
+#else
    time_t t = zonetime.m_iSecond + zonetime.m_timeshift.m_iSecond;
+#endif
 
    errno_t err = _gmtime64_s(&tmTemp, &t);
 
@@ -352,14 +360,7 @@ namespace earth
 class ::time & time::Now()
 {
 
-   struct timespec timespec;
-
-   if (timespec_get(&timespec, TIME_UTC) != TIME_UTC)
-   {
-
-      throw "timespec_get failed!!";
-
-   }
+   const auto timespec = get_utc_timespec();
 
    m_iSecond = timespec.tv_sec;
 

@@ -2,6 +2,7 @@
 // From acme_windows/file_system.cpp
 // 04:38 BRT <3ThomasBorregaardSorensen
 #include "platform.h"
+#include "startup_delay_debug.h"
 #include "file_system.h"
 #include "directory_system.h"
 #include "file_system_real_path_interface.h"
@@ -1796,6 +1797,8 @@ void file_system::initialize(::particle* pparticle)
 
 void file_system::init_system()
 {
+
+   STARTUP_DELAY_TRACE_SCOPE("file_system::init_system");
 
    //   auto estatus = update_module_path();
    //

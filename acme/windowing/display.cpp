@@ -361,6 +361,12 @@ namespace acme
       }
 
 
+      ::string display::get_desktop_theme_name()
+      {
+         return get_desktop_theme();
+      }
+
+
       string display::impl_get_desktop_theme()
       {
 

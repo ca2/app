@@ -1247,7 +1247,7 @@ namespace platform
       //      //virtual bool process_contains_module(string & strImage, ::process_identifier processidentifier, const ::scoped_string & scopedstrLibrary);
       //      //virtual void shared_library_process(dword_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrLibrary);
       //#endif
-#if defined(__BSD__) || defined(__APPLE__)
+#if defined(__BSD__) || defined(__APPLE__) || defined(__SUNOS__)
 
       virtual void arp_a(void *p, void(*callback)(void * p, ::u32 uIp, const_char_pointer status));
 

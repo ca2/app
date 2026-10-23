@@ -292,10 +292,13 @@ BOOL CALLBACK windows_dump_child_window_hierarchy_EnumChildProc(HWND hwnd, LPARA
    RECT rc;
    GetWindowRect(hwnd, &rc);
 
-   wchar_t buffer[1024];
+   wchar_t buffer[1024] = {};
 
-   swprintf_s(
-       buffer,
+#if defined(__REACTOS__)
+   _snwprintf(buffer, 1023,
+#else
+   swprintf_s(buffer,
+#endif
        L"HWND=%p\nClass=%s\nText=%s\nRect=(%ld,%ld)-(%ld,%ld)\nVisible=%d\n\n",
        hwnd,
        className,
@@ -306,6 +309,7 @@ BOOL CALLBACK windows_dump_child_window_hierarchy_EnumChildProc(HWND hwnd, LPARA
        rc.bottom,
        IsWindowVisible(hwnd));
 
+   buffer[1023] = 0;
    OutputDebugString(buffer);
 
    ::windows::_dump_child_window_hierarchy(hwnd);

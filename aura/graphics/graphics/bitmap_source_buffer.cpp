@@ -14,10 +14,140 @@
 #include "aura/windowing/window.h"
 #include "aura/windowing/window_buffer.h"
 #include "aura/windowing/windowing.h"
+#include "acme/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/filesystem/listing.h"
+#include "acme/filesystem/file/file.h"
+#include <chrono>
 
 
 namespace graphics
 {
+
+   bitmap_source_interest::~bitmap_source_interest()
+   {
+      release_interest();
+   }
+
+   void bitmap_source_interest::acquire(const ::file::path & pathProducerAppData,
+      const ::scoped_string & scopedstrInstanceName)
+   {
+#if defined(WINDOWS)
+      string strName(scopedstrInstanceName);
+      if (strName.is_empty() || strName.begins("_") || strName.contains("/")
+         || strName.contains("\\") || strName.contains(":") || !strName.ends(".txt"))
+      {
+         throw ::exception(error_bad_argument);
+      }
+      release_interest();
+      auto pathFolder = pathProducerAppData / "bitmap_source";
+      directory()->create(pathFolder);
+      auto pfile = file()->get_file(pathFolder / strName,
+         ::file::e_open_read_write | ::file::e_open_create | ::file::e_open_no_truncate
+         | ::file::e_open_share_deny_none | ::file::e_open_no_inherit
+         | ::file::e_open_no_share_violation_wait);
+      // Lock beyond the declaration contents so readers can inspect metadata.
+      pfile->lock(0x7ffffffe, 1);
+      m_pfileLease = pfile;
+#else
+      throw ::exception(error_not_supported);
+#endif
+   }
+
+   void bitmap_source_interest::release_interest()
+   {
+      // Closing the handle also releases the lock, including after a crash.
+      m_pfileLease.release();
+   }
+
+   void bitmap_source_interest::destroy()
+   {
+      release_interest();
+      object::destroy();
+   }
+
+   void bitmap_source_buffer_graphics::destroy()
+   {
+      stop_interest_monitor();
+      graphics::destroy();
+   }
+
+   bool bitmap_source_buffer_graphics::has_bitmap_source_interest()
+   {
+#if defined(WINDOWS)
+      ::file::listing_base listing;
+      listing.set_file_listing(directory()->appdata() / "bitmap_source");
+      directory()->enumerate(listing);
+      for (auto & path : listing)
+      {
+         auto strName = path.name();
+         if (strName.begins("_") || !strName.ends(".txt"))
+            continue;
+         ::file_pointer pfile;
+         try
+         {
+            pfile = file()->get_file(path, ::file::e_open_read_write
+               | ::file::e_open_share_deny_none | ::file::e_open_no_inherit
+               | ::file::e_open_no_share_violation_wait | ::file::e_open_no_callstack);
+         }
+         catch (...)
+         {
+            continue; // An open failure is not evidence of an active lease.
+         }
+         try
+         {
+            pfile->lock(0x7ffffffe, 1);
+            pfile->unlock(0x7ffffffe, 1);
+         }
+         catch (const ::exception & exception)
+         {
+            if (exception.m_estatus == error_file_lock_violation)
+               return true;
+         }
+      }
+      return false;
+#else
+      // The POSIX file adapter currently has no lock implementation.
+      // Preserve publishing there until a real lease implementation is available.
+      return true;
+#endif
+   }
+
+   void bitmap_source_buffer_graphics::start_interest_monitor()
+   {
+#if defined(WINDOWS)
+      directory()->create(directory()->appdata() / "bitmap_source");
+      m_bStopBitmapSourceInterest = false;
+      m_threadBitmapSourceInterest = std::thread([this]()
+      {
+         std::unique_lock<std::mutex> lock(m_mutexBitmapSourceInterest);
+         while (!m_bStopBitmapSourceInterest)
+         {
+            lock.unlock();
+            bool bInterested = false;
+            try { bInterested = has_bitmap_source_interest(); }
+            catch (...) { }
+            m_bBitmapSourceInterested.store(bInterested);
+            lock.lock();
+            m_conditionBitmapSourceInterest.wait_for(lock, std::chrono::milliseconds(500),
+               [this]() { return m_bStopBitmapSourceInterest; });
+         }
+      });
+#else
+      m_bBitmapSourceInterested.store(true);
+#endif
+   }
+
+   void bitmap_source_buffer_graphics::stop_interest_monitor()
+   {
+      {
+         std::lock_guard<std::mutex> lock(m_mutexBitmapSourceInterest);
+         m_bStopBitmapSourceInterest = true;
+      }
+      m_conditionBitmapSourceInterest.notify_all();
+      if (m_threadBitmapSourceInterest.joinable())
+         m_threadBitmapSourceInterest.join();
+      m_bBitmapSourceInterested.store(false);
+   }
 
 
    bitmap_source_buffer_graphics::bitmap_source_buffer_graphics()
@@ -147,12 +277,14 @@ namespace graphics
       {
 
          m_pmemorymap->open_path(path, false, true, true, 128_MiB);
+         start_interest_monitor();
       }
 
       else
       {
 
          m_pmemorymap->open_path(path, false, true, false, 128_MiB);
+         m_bBitmapSourceInterested.store(true);
 
       }
 
@@ -170,6 +302,8 @@ namespace graphics
 
    void bitmap_source_buffer_graphics::clear_bitmap_source()
    {
+
+      stop_interest_monitor();
 
       m_strBitmapSource.empty();
 
@@ -192,7 +326,7 @@ namespace graphics
    string bitmap_source_buffer_graphics::get_bitmap_source() const
    {
 
-      if (!is_ipc_copy_enabled())
+      if (!m_pmemorymap || !m_pmemorymap->is_mapped())
       {
 
          return "";

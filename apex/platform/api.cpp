@@ -15,6 +15,7 @@
 api::api()
 {
 
+   m_bAuthenticating = false;
    m_bAuthenticated = false;
    m_bWaitingResponseFromUser = false;
    //m_bCheckingAuthenticated = false;

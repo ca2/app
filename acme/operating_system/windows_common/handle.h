@@ -17,7 +17,7 @@ namespace windows
       ::uptr      m_u;
 
 
-      handle(::uptr u = ULLONG_MAX);
+      handle(::uptr u = static_cast<::uptr>(-1));
       ~handle();
 
 
@@ -30,7 +30,7 @@ namespace windows
       operator ::uptr & () { return m_u; }
 
 
-      bool nok() const { return m_u == ULLONG_MAX || m_u == NULL; }
+      bool nok() const { return m_u == static_cast<::uptr>(-1) || m_u == 0; }
       bool is_ok() const { return !nok(); }
 
 

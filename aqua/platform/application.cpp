@@ -51,10 +51,14 @@ namespace aqua
 
    void application::initialize(::particle * pparticle)
    {
+      information() << "startup: aqua::application::initialize: enter";
+
 
       //auto estatus = 
       
+      information() << "startup: aqua::application::initialize: before ::apex::application::initialize(pparticle)";
       ::apex::application::initialize(pparticle);
+      information() << "startup: aqua::application::initialize: after ::apex::application::initialize(pparticle)";
 
 
       //if (!estatus)
@@ -65,6 +69,8 @@ namespace aqua
       //}
 
       //return estatus;
+
+      information() << "startup: aqua::application::initialize: leave";
 
    }
 

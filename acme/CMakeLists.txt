@@ -88,7 +88,7 @@ list(APPEND library_source
         #prototype/promise/handler1.h
         #prototype/promise/manager.cpp
         #prototype/promise/manager.h
-        #prototype/promise/process.cpp
+        #prototype/promise/process_process.cpp
         #prototype/promise/promise.cpp
         #prototype/promise/promise.h
         #prototype/promise/promise1.h
@@ -287,20 +287,23 @@ list(APPEND library_source
         graphics/draw2d/color32.h
         graphics/draw2d/color_array.cpp
         graphics/draw2d/color_array.h
+        graphics/draw2d/domain.cpp
+        graphics/draw2d/domain_consumer.cpp
+        graphics/draw2d/domain_consumer.h
         graphics/draw2d/os_font_name.cpp
-   graphics/draw2d/task_tool.cpp
-   graphics/draw2d/task_tool.h
+        graphics/draw2d/task_tool.cpp
+        graphics/draw2d/task_tool.h
         graphics/graphics/_.h
-   graphics/graphics/double_pass_scale.h
-   graphics/graphics/filters.h
+        graphics/graphics/double_pass_scale.h
+        graphics/graphics/filters.h
         graphics/graphics/output_purpose.cpp
         graphics/graphics/output_purpose.h
-   graphics/image/color_indexes.cpp
-   graphics/image/color_indexes.h
-   graphics/image/frame.cpp
-   graphics/image/frame.h
-   graphics/image/frame_array.cpp
-   graphics/image/frame_array.h
+        graphics/image/color_indexes.cpp
+        graphics/image/color_indexes.h
+        graphics/image/frame.cpp
+        graphics/image/frame.h
+        graphics/image/frame_array.cpp
+        graphics/image/frame_array.h
         graphics/image/image32_t.cpp
         graphics/image/image32_t.h
         graphics/image/image32_t_array.cpp
@@ -521,7 +524,7 @@ list(APPEND library_source
         operating_system/ansi/file_std.cpp
         #operating_system/ansi/language.cpp
         #operating_system/ansi/memory.cpp
-        operating_system/ansi/process.cpp
+        operating_system/ansi/process_process.cpp
         #operating_system/ansi/user.cpp
         #operating_system/application.cpp
         #operating_system/application.h
@@ -549,7 +552,7 @@ list(APPEND library_source
    operating_system/performance_counter.h
         operating_system/path.cpp
         operating_system/path.h
-        operating_system/process.h
+        operating_system/process_process.h
    operating_system/shared_memory.h
    operating_system/shared_memory.cpp
         operating_system/string.cpp
@@ -623,34 +626,6 @@ list(APPEND library_source
         #platform/apex_main_data.h
         #platform/apex_main_struct.cpp
         #platform/apex_main_struct.h
-   platform/ini.cpp
-   platform/ini.h
-   platform/registry.cpp
-   platform/registry.h
-        platform/system_acme.h
-        platform/system_apex.h
-        platform/system_aqua.h
-        platform/system_aura.h
-   platform/user_interaction_sink.h
-   platform/user_interaction_sink.cpp
-        platform/application_acme.h
-        platform/application_acme.cpp
-        platform/application_apex.h
-        platform/application_apex.cpp
-        platform/application_aqua.h
-        platform/application_aqua.cpp
-        platform/application_aura.h
-        platform/application_aura.cpp
-        platform/application_axis.h
-        platform/application_axis.cpp
-        platform/application_axis.h
-        platform/application_axis.cpp
-        platform/http.cpp
-        platform/http.h
-        platform/http_acme.cpp
-        platform/http_acme.h
-        platform/http_apex.cpp
-        platform/http_apex.h
         platform/allocator.cpp
         platform/allocator.h
         platform/application_menu.cpp
@@ -669,6 +644,8 @@ list(APPEND library_source
         platform/application_aura.h
         platform/application_array.cpp
         platform/application_array.h
+        platform/application_axis.cpp
+        platform/application_axis.h
         platform/application_berg.cpp
         platform/application_berg.h
         platform/application_bred.cpp
@@ -710,9 +687,17 @@ list(APPEND library_source
         platform/component_implementation.h
         platform/fixed_alloc.cpp
         platform/flags.cpp
+        platform/http.cpp
+        platform/http.h
+        platform/http_acme.cpp
+        platform/http_acme.h
+        platform/http_apex.cpp
+        platform/http_apex.h
         platform/hyperlink.cpp
         platform/implementable.cpp
         platform/implementable.h
+        platform/ini.cpp
+        platform/ini.h
         #platform/ini.cpp
         platform/integration_context.cpp
         platform/integration_context.h
@@ -761,6 +746,8 @@ list(APPEND library_source
         platform/profiler.cpp
         platform/profile_logger.cpp
         platform/profile_logger.h
+        platform/registry.cpp
+        platform/registry.h
         platform/serial.cpp
         platform/session.cpp
         platform/session.h
@@ -807,6 +794,7 @@ list(APPEND library_source
         platform/system_core.h
         platform/system_factory.cpp
         platform/system_factory.h
+        #platform/system_impl.cpp
         platform/system_setup.cpp
         platform/system_setup.h
         platform/text.cpp
@@ -823,6 +811,8 @@ list(APPEND library_source
         platform/tracer.cpp
         platform/tracer.h
         platform/trace_category.cpp
+        platform/user_interaction_sink.cpp
+        platform/user_interaction_sink.h
         platform/uuid.cpp
         platform/uuid.h
         platform/url_context.cpp
@@ -1147,6 +1137,7 @@ list(APPEND library_source
         prototype/prototype/quantum.h
         prototype/prototype/read_only_memory.cpp
         prototype/prototype/read_only_memory.h
+        prototype/prototype/referencing_debugging.cpp
         prototype/prototype/request_interface.h
         #prototype/prototype/runnable.cpp
         #prototype/prototype/runnable.h
@@ -1190,32 +1181,36 @@ list(APPEND library_source
         prototype/string/_impl_string_base.h
         prototype/string/_impl_string_meta_data.h
         #prototype/string/c/extension/_impl.h
-        prototype/string/c/encoding.h
+        prototype/string/c/encoding/_.h
         prototype/string/c/ancient/ansi.h
-        prototype/string/c/coupling.h
+        prototype/string/c/coupling/_.h
         prototype/string/c/extension/wd32.h
         #prototype/string/c/ancient/_impl.h
         prototype/string/c/extension/_.h
         prototype/string/c/_.h
+        prototype/string/c/_impl.h
         prototype/string/c/strdup.cpp
         prototype/string/c/strdup.h
-        prototype/string/c/extension/ansi_impl.cpp
-        prototype/string/c/extension/ansi.h
-        prototype/string/c/extension/wd32_impl.cpp
-        prototype/string/c/extension/wd16_impl.cpp
-        prototype/string/c/ancient/wd32.h
-        prototype/string/c/unicode.h
-        prototype/string/c/encoding_impl.h
-        prototype/string/c/_impl.h
         prototype/string/c/ancient/_.h
         prototype/string/c/ancient/_c.cpp
-        prototype/string/c/coupling_impl.cpp
-        prototype/string/c/extension/wd16.h
+        prototype/string/c/ancient/ansi.h
         prototype/string/c/ancient/wd16.h
-        prototype/string/c/unicode_impl.cpp
-        prototype/string/c/ancient/ansi_impl.cpp
-        prototype/string/c/ancient/wd16_impl.cpp
-        prototype/string/c/ancient/wd32_impl.cpp
+        prototype/string/c/ancient/wd32.h
+        prototype/string/c/ancient/wide.h
+        prototype/string/c/coupling/ansi.h
+        prototype/string/c/coupling/wd16.h
+        prototype/string/c/coupling/wd32.h
+        prototype/string/c/coupling/wide.h
+        prototype/string/c/encoding/_impl.h
+        prototype/string/c/extension/ansi.cpp
+        prototype/string/c/extension/ansi.h
+        prototype/string/c/extension/wd32.cpp
+        prototype/string/c/extension/wd16.cpp
+        prototype/string/c/extension/wide.cpp
+        prototype/string/c/extension/wd16.h
+        prototype/string/c/unicode/_.h
+        prototype/string/c/unicode/_impl.h
+        prototype/string/c/unicode/unicode_impl.cpp
         prototype/string/sz/_.h
         prototype/string/sz/wd32.cpp
         prototype/string/sz/ansi.cpp
@@ -1223,6 +1218,7 @@ list(APPEND library_source
         prototype/string/sz/ansi.h
         prototype/string/sz/wd32.h
         prototype/string/sz/wd16_impl.cpp
+        prototype/string/sz/wide_impl.cpp
         prototype/string/sz/wd16.cpp
         prototype/string/sz/wd16.h
         prototype/string/sz/ansi_impl.cpp
@@ -1345,12 +1341,12 @@ list(APPEND library_source
         #prototype/string/to_string.cpp
         prototype/string/tokenizer.cpp
         prototype/string/tokenizer.h
-   prototype/string/utf8_character.cpp
-   prototype/string/utf8_character.h
+        prototype/string/utf8_character.cpp
+        prototype/string/utf8_character.h
         prototype/string/unicode.cpp
-        prototype/string/unicode16.cpp
-        prototype/string/unicode16_32.cpp
-        prototype/string/unicode32.cpp
+        prototype/string/unicode_wd16.cpp
+        prototype/string/unicode_wd16_wd32.cpp
+        prototype/string/unicode_wd32.cpp
         prototype/string/wildcard.cpp
         #prototype/string/wstring_adaptor.h
         #prototype/string/x.cpp
@@ -1600,7 +1596,7 @@ list(APPEND library_source
         # operating_system/windows/port_forward.h
         # operating_system/windows/print_job.h
         # operating_system/windows/printer.h
-        # operating_system/windows/process.h
+        # operating_system/windows/process_process.h
         # operating_system/windows/process_data.h
         # operating_system/windows/registry.h
         # operating_system/windows/shell1.h
@@ -1888,6 +1884,7 @@ list(APPEND library_source
         graphics/draw2d/_.h
         graphics/draw2d/_constant.h
         graphics/draw2d/color.h
+        graphics/draw2d/_string.cpp
         #graphics/draw2d/colorref_array.h
         include/_.h
         #include/_c.h
@@ -1983,7 +1980,7 @@ list(APPEND library_source
         operating_system/posix/mq_base.h
         operating_system/posix/file.h
         operating_system/pthread/pthread_np.cpp
-        operating_system/process.cpp
+        operating_system/process_process.cpp
         operating_system/security_attributes.cpp
         operating_system/security_attributes.h
         operating_system/shared_posix/c_errno.cpp
@@ -1991,29 +1988,30 @@ list(APPEND library_source
         operating_system/shared_posix/debug.cpp
         operating_system/shared_posix/earth_time_shift.cpp
         operating_system/shared_posix/errno.cpp
+        operating_system/shared_posix/file.cpp
         operating_system/shared_posix/stdio_file.cpp
         operating_system/shared_posix/stdio_file.h
         operating_system/shared_posix/windows_time.cpp
         operating_system/shared_posix/time.cpp
         operating_system/shared_posix/time1.h
-        operating_system/solaris/linux_internal.h
-        operating_system/solaris/solaris.h
-        operating_system/solaris/solaris_cairo_keep.h
-        operating_system/solaris/solaris_cross_win_file.h
-        operating_system/solaris/solaris_cross_win_gdi.h
-        operating_system/solaris/solaris_cross_win_gdi_internal.h
-        operating_system/solaris/solaris_debug.h
-        operating_system/solaris/solaris_file.h
-        operating_system/solaris/solaris_file_watcher.h
-        operating_system/solaris/solaris_graphics.h
-        operating_system/solaris/solaris_http.h
-        operating_system/solaris/solaris_http_lib.h
-        operating_system/solaris/solaris_internal.h
-        operating_system/solaris/solaris_process.h
-        operating_system/solaris/solaris_simple_ui.h
-        operating_system/solaris/solaris_solaris.h
-        operating_system/solaris/solaris_user_impl.h
-        operating_system/solaris/solaris_window_xlib.h
+        operating_system/sunos/linux_internal.h
+        operating_system/sunos/solaris.h
+        operating_system/sunos/cairo_keep.h
+        operating_system/sunos/cross_win_file.h
+        operating_system/sunos/cross_win_gdi.h
+        operating_system/sunos/cross_win_gdi_internal.h
+        operating_system/sunos/debug.h
+        operating_system/sunos/file.h
+        operating_system/sunos/file_watcher.h
+        operating_system/sunos/graphics.h
+        operating_system/sunos/http.h
+        operating_system/sunos/http_lib.h
+        operating_system/sunos/internal.h
+        operating_system/sunos/process_process.h
+        operating_system/sunos/simple_ui.h
+        operating_system/sunos/solaris.h
+        #operating_system/sunos/user_impl.h
+        #operating_system/sunos/window_xlib.h
         operating_system/string.cpp
         operating_system/text.h
         operating_system/time.h
@@ -2023,7 +2021,7 @@ list(APPEND library_source
         operating_system/universal_windows/host_interaction.h
         operating_system/universal_windows/threading.h
         operating_system/universal_windows/threading_winrt.h
-        operating_system/universal_windows/process.h
+        operating_system/universal_windows/process_process.h
         operating_system/universal_windows/sockets.h
         operating_system/user.h
         operating_system/windows/_.h
@@ -2166,8 +2164,8 @@ list(APPEND library_source
         prototype/collection/map_to_smart_pointer.h
         prototype/collection/numeric_array.h
         prototype/collection/numeric_array_range.h
-   prototype/collection/osdata_array.cpp
-   prototype/collection/osdata_array.h
+   #prototype/collection/osdata_array.cpp
+   #prototype/collection/osdata_array.h
         prototype/collection/packset.h
         prototype/collection/pair.h
         prototype/collection/pointer_array.h
@@ -2237,7 +2235,7 @@ if (${__ANDROID__})
             operating_system/android/file.h
             operating_system/android/graphics.h
             operating_system/android/internal.h
-            operating_system/android/process.h
+            operating_system/android/process_process.h
             operating_system/android/standard_exception.cpp
             operating_system/android/standard_exception.h
             operating_system/android/time.cpp
@@ -2264,7 +2262,7 @@ if (APPLE_IOS)
             operating_system/ios/mm_oswindow.h
             operating_system/ios/oswindow_data.h
             operating_system/ios/parallelization.h
-            operating_system/ios/process.h
+            operating_system/ios/process_process.h
             operating_system/ios/window.h
             operating_system/ios/window_boot.h
             operating_system/ios/window_impl.h
@@ -2302,7 +2300,7 @@ if (UWP)
             operating_system/universal_windows/main.cpp
             operating_system/universal_windows/parallelization.cpp
             operating_system/universal_windows/os_message_box.cpp
-            operating_system/universal_windows/process.cpp
+            operating_system/universal_windows/process_process.cpp
             operating_system/universal_windows/sockets.cpp
             operating_system/universal_windows/time.cpp
             operating_system/universal_windows/user.cpp)
@@ -2363,7 +2361,7 @@ if (${WIN32})
             #      operating_system/windows/main.cpp
             #      operating_system/windows/message_loop.cpp
             #      operating_system/windows/printer.cpp
-            #      operating_system/windows/process.cpp
+            #      operating_system/windows/process_process.cpp
             #      operating_system/windows/registry.cpp
             #      operating_system/windows/simple_app.cpp
             #      operating_system/windows/parallelization.cpp
@@ -2396,13 +2394,15 @@ if (${WIN32})
             operating_system/windows/message_box.cpp
             operating_system/windows/message_loop.cpp
             operating_system/windows/parallelization.cpp
-            operating_system/windows/process.cpp
+            operating_system/windows/process_process.cpp
        operating_system/windows/shared_memory.h
        operating_system/windows/shared_memory.cpp
             operating_system/windows/thread.cpp
        operating_system/windows/threading.cpp
+            operating_system/windows/top_level_enum.cpp
             operating_system/windows/user.cpp
             operating_system/windows/window.cpp
+            operating_system/windows/window_util.cpp
             operating_system/windows/windowing.cpp
             operating_system/windows/windowing.h
             operating_system/windows/windows.cpp
@@ -2525,7 +2525,9 @@ if (${WIN32} OR ${UWP})
     list(APPEND library_source
             operating_system/windows_common/com/bstring.cpp
             operating_system/windows_common/com/bstring.h
-            operating_system/windows_common/com/comptr.h
+       operating_system/windows_common/call_stack.cpp
+
+       operating_system/windows_common/com/comptr.h
             operating_system/windows_common/com/comptr_array.h
             operating_system/windows_common/com/cotaskptr.h
             operating_system/windows_common/com/hresult_exception.cpp
@@ -2571,7 +2573,7 @@ if (${WIN32} OR ${UWP})
             operating_system/windows_common/memory.cpp
             operating_system/windows_common/networking.cpp
             operating_system/windows_common/threading.cpp
-            operating_system/windows_common/process.cpp
+            operating_system/windows_common/process_process.cpp
        operating_system/windows_common/task.cpp
             operating_system/windows_common/time.cpp
             operating_system/windows_common/unicode.cpp
@@ -2605,7 +2607,7 @@ if (${LINUX})
             #operating_system/linux/_linux.h
             #operating_system/linux/_user.h
             operating_system/linux/application.h
-            operating_system/linux/callstack.cpp
+            operating_system/linux/call_stack.cpp
             operating_system/linux/console.cpp
             operating_system/linux/cpu_features.cpp
             #operating_system/linux/cross_win_file.cpp
@@ -2631,8 +2633,8 @@ if (${LINUX})
             operating_system/linux/node.cpp
             operating_system/linux/os.cpp
             operating_system/linux/threading.cpp
-            operating_system/linux/process.cpp
-            operating_system/linux/process.h
+            operating_system/linux/process_process.cpp
+            operating_system/linux/process_process.h
             operating_system/linux/process_pid.cpp
             operating_system/linux/root_tools.cpp
             operating_system/linux/root_tools.h
@@ -2715,7 +2717,7 @@ if (MACOS)
             #operating_system/macos/NSPasteboard++.mm
             #operating_system/macos/os.cpp
             operating_system/macos/parallelization.cpp
-            #operating_system/macos/process.cpp
+            #operating_system/macos/process_process.cpp
             #operating_system/macos/process_pid.cpp
             #operating_system/macos/time.cpp
             #operating_system/macos/user.cpp
@@ -2799,7 +2801,7 @@ if (IOS)
             operating_system/ios/mm_user.mm
             operating_system/ios/parallelization.cpp
             operating_system/ios/oswindow_data.cpp
-            operating_system/ios/process.cpp
+            operating_system/ios/process_process.cpp
             operating_system/ios/process_pid.cpp
             operating_system/ios/simple_shell_launcher.cpp
             operating_system/ios/small_ipca_channel.cpp
@@ -2873,7 +2875,7 @@ if (APPLE)
             #operating_system/apple/ns_exception.cpp
             #operating_system/apple/NSObject+DDExtensions.mm
             #operating_system/apple/NSString+SymlinksAndAliases.mm
-            #operating_system/apple/process.cpp
+            #operating_system/apple/process_process.cpp
             #operating_system/apple/time.cpp
             #operating_system/apple/UncaughtExceptionHandler.mm
     )
@@ -2894,7 +2896,7 @@ if (${__ANDROID__})
             operating_system/android/_factory.cpp
             operating_system/android/file.cpp
             operating_system/android/main.cpp
-            operating_system/android/process.cpp
+            operating_system/android/process_process.cpp
             operating_system/android/thread.cpp
             operating_system/android/threading.cpp
             #operating_system/android/trace.cpp
@@ -2919,7 +2921,7 @@ if (${__ANDROID__})
             operating_system/android/locale.cpp
             operating_system/android/lock.cpp
             operating_system/android/main.cpp
-            operating_system/android/process.cpp
+            operating_system/android/process_process.cpp
             operating_system/android/process_pid.cpp
             operating_system/android/win_base.cpp
     )
@@ -2932,28 +2934,28 @@ if (SOLARIS)
 
 
     list(APPEND library_source
-            operating_system/solaris/solaris.cpp
-            operating_system/solaris/solaris_cairo_keep.cpp
-            operating_system/solaris/solaris_cross_win_file.cpp
-            operating_system/solaris/solaris_cross_win_gdi.cpp
-            operating_system/solaris/solaris_display.cpp
-            operating_system/solaris/solaris_file.cpp
-            operating_system/solaris/solaris_file_watcher.cpp
-            operating_system/solaris/solaris_http.cpp
-            operating_system/solaris/solaris_http_lib.cpp
-            operating_system/solaris/solaris_launcher.cpp
-            operating_system/solaris/solaris_library.cpp
-            operating_system/solaris/solaris_lock.cpp
-            operating_system/solaris/solaris_message_loop.cpp
-            operating_system/solaris/solaris_process.cpp
-            operating_system/solaris/solaris_process_pid.cpp
-            operating_system/solaris/solaris_simple_shell_launcher.cpp
-            operating_system/solaris/solaris_simple_ui.cpp
-            operating_system/solaris/solaris_small_ipca_channel.cpp
-            operating_system/solaris/solaris_thread.cpp
-            operating_system/solaris/solaris_win_base.cpp
-            operating_system/solaris/solaris_window.cpp
-            operating_system/solaris/solaris_window_xlib.cpp)
+            operating_system/sunos/solaris.cpp
+            operating_system/sunos/cairo_keep.cpp
+            operating_system/sunos/cross_win_file.cpp
+            operating_system/sunos/cross_win_gdi.cpp
+            operating_system/sunos/display.cpp
+            operating_system/sunos/file.cpp
+            operating_system/sunos/file_watcher.cpp
+            operating_system/sunos/http.cpp
+            operating_system/sunos/http_lib.cpp
+            operating_system/sunos/launcher.cpp
+            operating_system/sunos/library.cpp
+            operating_system/sunos/lock.cpp
+            operating_system/sunos/message_loop.cpp
+            operating_system/sunos/process_process.cpp
+            operating_system/sunos/process_pid.cpp
+            operating_system/sunos/simple_shell_launcher.cpp
+            operating_system/sunos/simple_ui.cpp
+            operating_system/sunos/small_ipca_channel.cpp
+            operating_system/sunos/thread.cpp
+            operating_system/sunos/win_base.cpp
+            operating_system/sunos/window.cpp
+            operating_system/sunos/window_xlib.cpp)
 
 
 endif ()
@@ -3021,8 +3023,8 @@ if (${FREEBSD})
             operating_system/freebsd/internal.h
             #operating_system/freebsd/library.cpp
             operating_system/freebsd/os.cpp
-            operating_system/freebsd/process.cpp
-            operating_system/freebsd/process.h
+            operating_system/freebsd/process_process.cpp
+            operating_system/freebsd/process_process.h
             operating_system/freebsd/process_pid.cpp
             operating_system/freebsd/root_tools.cpp
             operating_system/freebsd/root_tools.h
@@ -3112,8 +3114,8 @@ if (${OPENBSD})
             operating_system/openbsd/internal.h
             #            operating_system/openbsd/library.cpp
             operating_system/openbsd/os.cpp
-            operating_system/openbsd/process.cpp
-            operating_system/openbsd/process.h
+            operating_system/openbsd/process_process.cpp
+            operating_system/openbsd/process_process.h
             operating_system/openbsd/process_pid.cpp
             operating_system/openbsd/root_tools.cpp
             operating_system/openbsd/root_tools.h
@@ -3167,8 +3169,8 @@ if (${NETBSD})
             operating_system/netbsd/graphics.cpp
             operating_system/netbsd/internal.h
             operating_system/netbsd/os.cpp
-            operating_system/netbsd/process.cpp
-            operating_system/netbsd/process.h
+            operating_system/netbsd/process_process.cpp
+            operating_system/netbsd/process_process.h
             operating_system/netbsd/process_pid.cpp
             operating_system/netbsd/root_tools.cpp
             operating_system/netbsd/root_tools.h
@@ -3207,6 +3209,99 @@ if (${__BSD__})
 
 endif ()
 
+
+if (${__SUNOS__})
+    list(APPEND library_source
+
+            #operating_system/freebsd/application_system_run.cpp
+            #operating_system/freebsd/console.cpp
+            #operating_system/freebsd/console.h
+            #operating_system/freebsd/file.cpp
+            #operating_system/freebsd/file.h
+            #operating_system/freebsd/gdk.cpp
+            #operating_system/freebsd/gdk.h
+            #operating_system/freebsd/list_serial_ports.cpp
+            #operating_system/freebsd/operating_system.cpp
+            #operating_system/freebsd/operating_system.h
+            #operating_system/freebsd/shell.cpp
+            #operating_system/freebsd/shell_freebsd.cpp
+            #operating_system/freebsd/stdio_file.cpp
+            #operating_system/freebsd/stdio_file.h
+            #operating_system/freebsd/user.cpp
+            #operating_system/freebsd/
+            operating_system/sunos/_.cpp
+            #operating_system/freebsd/_.cpp
+            #operating_system/freebsd/_.h
+            #operating_system/freebsd/_.h
+            #operating_system/freebsd/_c.h
+            #operating_system/freebsd/_factory.cpp
+            #operating_system/freebsd/_freebsd.h
+            #operating_system/freebsd/_freebsd2.h
+            #operating_system/freebsd/_user.h
+            #operating_system/freebsd/application.h
+            #operating_system/freebsd/call_stack.cpp
+			operating_system/sunos/console.cpp
+			operating_system/sunos/cpu_features.cpp
+            operating_system/sunos/cpu_features_i86pc.cpp
+            #      operating_system/freebsd/cross_win_file.cpp
+            #      operating_system/freebsd/cross_win_file.h
+            #      operating_system/freebsd/cross_win_gdi.cpp
+            #      operating_system/freebsd/cross_win_gdi.h
+            #      operating_system/freebsd/cross_win_gdi_internal.h
+            operating_system/sunos/debug.cpp
+            #operating_system/freebsd/debug.h
+            #operating_system/freebsd/dumpinit.cpp
+            #operating_system/freebsd/error.cpp
+            #operating_system/freebsd/exception.cpp
+            #operating_system/freebsd/exception_engine.cpp
+            #operating_system/freebsd/exception_engine.h
+            operating_system/sunos/file.cpp
+            #operating_system/freebsd/file.h
+            #operating_system/freebsd/file_lock.cpp
+            #operating_system/freebsd/freebsd.cpp
+            #operating_system/freebsd/freebsd.inl
+            #operating_system/freebsd/freebsd2.cpp
+            #operating_system/freebsd/freebsd_freebsd.h
+            #operating_system/freebsd/get_module_path_openbsd.cpp
+            #operating_system/freebsd/graphics.cpp
+            #operating_system/freebsd/internal.h
+            #operating_system/freebsd/library.cpp
+            #operating_system/freebsd/os.cpp
+            operating_system/sunos/process_process.cpp
+            #operating_system/freebsd/process_process.h
+            #operating_system/freebsd/process_pid.cpp
+            #operating_system/freebsd/root_tools.cpp
+            #operating_system/freebsd/root_tools.h
+            #operating_system/freebsd/simple_app.cpp
+            operating_system/sunos/standard_exception.cpp
+            operating_system/sunos/standard_exception.h
+            operating_system/sunos/sunos.cpp
+            #operating_system/freebsd/thread.cpp
+            #operating_system/freebsd/thread.h
+            operating_system/sunos/threading.cpp
+            operating_system/sunos/time.cpp
+            #operating_system/freebsd/trace.cpp
+            #operating_system/freebsd/user.h
+            #operating_system/freebsd/user_private.h
+            #operating_system/freebsd/util.cpp
+            #operating_system/freebsd/win_base.cpp
+    )
+
+    if(${__SYSTEM_ARCHITECTURE} STREQUAL "amd64")
+       list(APPEND library_source
+          operating_system/freebsd/cpu_features_amd64.cpp
+       )
+    elseif(${__SYSTEM_ARCHITECTURE} STREQUAL "arm64")
+       list(APPEND library_source
+          operating_system/freebsd/cpu_features_arm64.cpp
+       )
+    else()
+       message(FATAL "uknown architecture")
+    endif()
+
+endif ()
+
+
 # if (${LINUX})
 
 #    list(APPEND library_source
@@ -3217,7 +3312,7 @@ endif ()
 # endif ()
 
 
-if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD} OR ${__ANDROID__})
+if (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
 
     list(APPEND library_source
@@ -3232,10 +3327,17 @@ if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD} OR ${__ANDROID__})
        operating_system/posix/termination_handler.h
     )
 
+    if(__HAIKU__)
+        # Haiku's platform.cpp provides the native desktop/toolkit getters.
+        list(REMOVE_ITEM library_source
+            operating_system/posix/__edesktop_calculate.cpp
+            operating_system/posix/__etoolkit_calculate.cpp)
+    endif()
+
 endif ()
 
 
-if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${__ANDROID__})
+if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
 
     list(APPEND library_source
@@ -3251,7 +3353,7 @@ if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${__ANDROID__})
             #operating_system/posix/idn.cpp
             #operating_system/posix/local_memory_map.cpp
             operating_system/posix/memory.cpp
-            operating_system/posix/process.cpp
+            operating_system/posix/process_process.cpp
             #operating_system/posix/time.cpp
             #operating_system/posix/timer.cpp
             operating_system/winpr_keycode.cpp
@@ -3265,11 +3367,11 @@ if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${__ANDROID__})
        operating_system/pthread/parallelization.cpp
     )
 
-    #set_source_files_properties(operating_system/posix/process.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+    #set_source_files_properties(operating_system/posix/process_process.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 endif ()
 
 
-if (${LINUX} OR ${__BSD__})
+if (${LINUX} OR ${__BSD__} OR ${__SUNOS__})
 
 
     list(APPEND library_source
@@ -3292,9 +3394,28 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   prototype/prototype/referencing_debugging.cpp
-   graphics/draw2d/_string.cpp)
+if (${__HAIKU__})
+    list(APPEND library_source
+        operating_system/ansi/acme.cpp
+        operating_system/linux/console.cpp
+        operating_system/linux/cpu_features.cpp
+        operating_system/sunos/cpu_features_i86pc.cpp
+        operating_system/haiku/platform.cpp
+        operating_system/posix/termination_handler.cpp
+    )
+endif()
+
+option(MEMORY_DIAGNOSTICS "Track Windows heap blocks with bounded stack diagnostics" OFF)
+if(MEMORY_DIAGNOSTICS)
+    if(NOT WIN32)
+        message(FATAL_ERROR "MEMORY_DIAGNOSTICS currently supports Windows heap allocation")
+    endif()
+    list(APPEND library_source memory/diagnostics.cpp)
+    set_source_files_properties(memory/diagnostics.cpp operating_system/windows_common/heap_allocator.cpp
+        PROPERTIES COMPILE_DEFINITIONS MEMORY_DIAGNOSTICS=1 SKIP_PRECOMPILE_HEADERS ON)
+endif()
+
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}
@@ -3319,14 +3440,35 @@ if(${WIN32})
     message(STATUS "acme LIBRARY_OUTPUT_PATH is ${LIBRARY_OUTPUT_PATH}")
     message(STATUS "some target link options ${PROJECT_NAME} PRIVATE \"/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme.lib\"")
 
-    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme.lib")
-    #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/acme.def")
+
+
+   if(MSVC)
+
+
+      target_compile_options(${PROJECT_NAME} PRIVATE    "/MD$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/SUBSYSTEM:WINDOWS")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/bigobj")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   else()
+
+
+      target_link_options(${PROJECT_NAME} PRIVATE "-mwindows")
+      target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   endif()
+
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE psapi)
+    #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
     target_link_libraries(${PROJECT_NAME} PRIVATE archive zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
     if (NOT ${SUSE})
 
@@ -3373,11 +3515,21 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
         #message(SEND_ERROR "test is really android?! ${this_system_libraries}")
         message(STATUS "For acme at __ANDROID__ library_references ${library_references}")
         message(STATUS "For acme at __ANDROID__ this_system_libraries ${this_system_libraries}")
+    elseif (${__HAIKU__})
+        list(APPEND this_system_libraries z pthread idn iconv)
+        list(APPEND static_this_system_libraries pthread iconv)
     else ()
         list(APPEND this_system_libraries z pthread idn)
         list(APPEND static_this_system_libraries pthread)
         message(STATUS "ELSE acme this_system_libraries ${this_system_libraries}")
     endif ()
+
+  
+
+if(CMAKE_SYSTEM_NAME STREQUAL "SunOS")
+      list(APPEND library_references
+      socket)
+endif()
 
     #add_dependencies(${PROJECT_NAME} static_nano_dynamic_library_dl)
 
@@ -3409,7 +3561,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 elseif (MACOS)
 
 
-    target_link_libraries(acme PRIVATE z iconv idn ${COCOA} ${IOKIT})
+    target_link_libraries(${PROJECT_NAME} PRIVATE z iconv idn ${COCOA} ${IOKIT})
 
 
 endif ()
@@ -3445,7 +3597,7 @@ if(BUILD_TESTING)
    add_executable(accessibility_application_exit_contract_test
       test/accessibility_application_exit_contract.cpp)
 
-   target_link_libraries(accessibility_application_exit_contract_test PRIVATE static_acme)
+   target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
 
    add_test(NAME accessibility_application_exit_contract_test
       COMMAND accessibility_application_exit_contract_test)
@@ -3453,7 +3605,7 @@ if(BUILD_TESTING)
    add_executable(message_box_custom_buttons_test
       test/message_box_custom_buttons.cpp)
 
-   target_link_libraries(message_box_custom_buttons_test PRIVATE static_acme)
+   target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
 
    add_test(NAME message_box_custom_buttons_test
       COMMAND message_box_custom_buttons_test)
@@ -3461,3 +3613,51 @@ if(BUILD_TESTING)
 endif()
 
 
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Haiku")
+   target_sources(acme PRIVATE operating_system/posix/networking.cpp)
+   target_link_libraries(${PROJECT_NAME} PRIVATE network)
+   target_sources(static_acme PRIVATE operating_system/posix/networking.cpp)
+endif()
+
+set(CA2_STD_TRACE "AUTO" CACHE STRING "Mirror trace statements to stderr: AUTO (Debug only), ON, or OFF")
+set_property(CACHE CA2_STD_TRACE PROPERTY STRINGS AUTO ON OFF)
+if(CA2_STD_TRACE STREQUAL "AUTO")
+   set(ca2_std_trace_definition "CA2_STD_TRACE=$<IF:$<CONFIG:Debug>,1,0>")
+elseif(CA2_STD_TRACE STREQUAL "ON")
+   set(ca2_std_trace_definition "CA2_STD_TRACE=1")
+elseif(CA2_STD_TRACE STREQUAL "OFF")
+   set(ca2_std_trace_definition "CA2_STD_TRACE=0")
+else()
+   message(FATAL_ERROR "CA2_STD_TRACE must be AUTO, ON, or OFF")
+endif()
+set_property(SOURCE platform/tracer.cpp APPEND PROPERTY COMPILE_DEFINITIONS "${ca2_std_trace_definition}")
+
+set(CA2_TRACE_TO_FILE "AUTO" CACHE STRING "Windows trace file: AUTO (Debug only), ON, or OFF")
+set_property(CACHE CA2_TRACE_TO_FILE PROPERTY STRINGS AUTO ON OFF)
+if(CA2_TRACE_TO_FILE STREQUAL "AUTO")
+   set(ca2_trace_file_definition "CA2_TRACE_TO_FILE=$<IF:$<CONFIG:Debug>,1,0>")
+elseif(CA2_TRACE_TO_FILE STREQUAL "ON")
+   set(ca2_trace_file_definition "CA2_TRACE_TO_FILE=1")
+elseif(CA2_TRACE_TO_FILE STREQUAL "OFF")
+   set(ca2_trace_file_definition "CA2_TRACE_TO_FILE=0")
+else()
+   message(FATAL_ERROR "CA2_TRACE_TO_FILE must be AUTO, ON, or OFF")
+endif()
+set_property(SOURCE platform/tracer.cpp APPEND PROPERTY COMPILE_DEFINITIONS "${ca2_trace_file_definition}")
+
+# Select raw addresses without introducing a symbol-reader dependency.
+set(CA2_RAW_STACK_TRACE "AUTO" CACHE STRING "Raw Windows stack traces: AUTO (ReactOS), ON, or OFF")
+set_property(CACHE CA2_RAW_STACK_TRACE PROPERTY STRINGS AUTO ON OFF)
+if(CA2_RAW_STACK_TRACE STREQUAL "AUTO")
+   set(ca2_raw_stack_definition "") # Source defaults to the exact __REACTOS__ guard.
+elseif(CA2_RAW_STACK_TRACE STREQUAL "ON")
+   set(ca2_raw_stack_definition "CA2_RAW_STACK_TRACE=1")
+elseif(CA2_RAW_STACK_TRACE STREQUAL "OFF")
+   set(ca2_raw_stack_definition "CA2_RAW_STACK_TRACE=0")
+else()
+   message(FATAL_ERROR "CA2_RAW_STACK_TRACE must be AUTO, ON, or OFF")
+endif()
+if(WIN32 AND NOT ca2_raw_stack_definition STREQUAL "")
+   set_property(SOURCE operating_system/windows/callstack.cpp APPEND PROPERTY COMPILE_DEFINITIONS "${ca2_raw_stack_definition}")
+endif()

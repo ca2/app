@@ -14,6 +14,7 @@
 #include "acme/prototype/mathematics/mathematics.h"
 #include "acme/user/simple/dialog_box_line.h"
 #include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/load_image.h"
@@ -87,27 +88,36 @@ namespace berg
       
       ::cast < ::apex::system > papexsystem = system();
       
-      ::string strOperatingSystemImageUrl = papexsystem->operating_system_icon_url({128, 128});
-   
-      image()->load_image(strOperatingSystemImageUrl,
+      auto loadOptionalIcon = [this](const ::string &url, int kind)
       {
-   .sync=false,.functionLoaded = [this](::image::load_image * ploadimage)
-   {
-                                                          m_pimageOperatingSystem = ::image::image::from(ploadimage->m_pimageframearray);
-
+         if (url.is_empty()) return;
+         ::pointer<about_the_operating_system_impact> self = this;
+         fork([self, url, kind]()
+         {
+            try
+            {
+               auto image = self->image()->load_image(url, {.draw2d_domain = self->draw2d_domain()});
+               if (image.nok()) return;
+               self->user_post([self, image, kind]()
+               {
+                  if (!self->is_window()) return;
+                  if (kind == 0) self->m_pimageOperatingSystem = image;
+                  else if (kind == 1) self->m_pimageOperatingSystemKernel = image;
+                  else self->m_pimageOperatingAmbient = image;
+                  self->set_need_redraw();
+                  self->post_redraw();
+               });
+            }
+            catch (...)
+            {
+               self->warning() << "Operating System Information: optional icon unavailable: " << url;
+            }
+         });
+      };
+      loadOptionalIcon(papexsystem->operating_system_icon_url({128, 128}), 0);
+      loadOptionalIcon(papexsystem->operating_system_kernel_icon_url({64, 64}), 1);
+      loadOptionalIcon(papexsystem->operating_ambient_icon_url({64, 64}), 2);
    }
-});
-
-#if defined(LINUX)
-
-      ::string strOperatingAmbientImageUrl = papexsystem->operating_ambient_icon_url({64, 64});
-
-      image()->load_image(m_pimageOperatingAmbient, strOperatingAmbientImageUrl,{ .sync=false });
-
-#endif
-      // application()->show_about_box();
-   }
-
 
    void about_the_operating_system_impact::on_message_destroy(::message::message *pmessage) {}
 
@@ -316,14 +326,22 @@ namespace berg
 
       }
 
-      if (m_pimageOperatingAmbient)
+      if (::is_ok(m_pimageOperatingSystemKernel))
+      {
+         ::image::image_source imagesource(m_pimageOperatingSystemKernel);
+         ::image::image_drawing_options options(::i32_rectangle_dimension(point.x + 64, point.y + 139, 64, 64));
+         ::image::image_drawing drawing(options, imagesource);
+         pdraw2dgraphics->draw(drawing);
+      }
+
+      if (::is_ok(m_pimageOperatingAmbient))
       {
 
          //         pdraw2dgraphicsImage->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          ::image::image_source imagesource(m_pimageOperatingAmbient);
 
-         ::image::image_drawing_options imagedrawingoptions(::i32_rectangle_dimension(point.x, point.y + 128+ 11, m_pimageOperatingAmbient->width(), m_pimageOperatingAmbient->height()));
+         ::image::image_drawing_options imagedrawingoptions(::i32_rectangle_dimension(point.x + 64, point.y + (::is_ok(m_pimageOperatingSystemKernel) ? 214 : 139), 64, 64));
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -333,7 +351,7 @@ namespace berg
       }
 
 
-      point.x += 128+11;
+      point.x += 128 + 11;
       ::color::color color;
 
       //::i32 iFont = -1024;

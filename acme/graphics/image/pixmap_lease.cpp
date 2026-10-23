@@ -54,7 +54,7 @@ pixmap_lease::~pixmap_lease()
       return;
 
    }
-
+   
    m_p->_unmap(m_rectangle);
 
    // if (m_bRectangleMap)

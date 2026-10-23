@@ -575,7 +575,11 @@ namespace file
       if (m_ptreeitem == m_ptreeitemFlush)
       {
 
-         return (memsize)(m_position = m_pfile->read({ pdata, nCount }));
+         auto countRead = m_pfile->read({ pdata, nCount });
+
+         m_position = m_pfile->get_position();
+
+         return countRead;
 
       }
 
@@ -841,24 +845,17 @@ namespace file
 
    {
 
-      // ::pointer<insert_item>pinsert;
-      auto pinsert = allocateø ::file::insert_item(m_position, pdata, nCount);
-   //   pinsert->m_position = m_position;
-   //   //pinsert->m_memstorage.set_size(nCount);
-   //pinsert->m_memstorage.assign(pdata, nCount);
+      if (nCount <= 0)
+      {
 
-TreeInsert(pinsert);
-m_position += nCount;
+         return;
 
+      }
 
-      //::pointer<edit_item>pedit;
-      //pedit = allocateø edit_item();
-      //pedit->m_position = m_position;
-      //pedit->m_memstorage.set_size(nCount);
-      //::memory_copy(pedit->m_memstorage.data(),pdata,nCount);
+      Insert(pdata, nCount);
 
-      //TreeInsert(pedit);
-      //m_position += nCount;
+      m_position += nCount;
+
    }
 
    
@@ -918,9 +915,11 @@ m_position += nCount;
 
       ::pointer<delete_item>pdelete;
 
-      uiCount = minimum(uiCount,(memsize) (get_length() - get_position()));
+      m_position = get_position();
 
-      if (uiCount == 0)
+      uiCount = minimum(uiCount,(memsize) (get_length() - m_position));
+
+      if (uiCount <= 0)
       {
 
          return nullptr;
@@ -934,7 +933,18 @@ m_position += nCount;
       pdelete->m_size = pdelete->m_memstorage.size();
       seek((filesize)m_position,::e_seek_set);
       auto pszData = (char_pointer )pdelete->m_memstorage.data();
-      read(pszData,uiCount);
+      auto countRead = read(pszData,uiCount);
+
+      // Reading the undo payload must not move the deletion/insertion point.
+      seek(pdelete->m_position, ::e_seek_set);
+
+      if (countRead != uiCount)
+      {
+
+         throw ::exception(error_io);
+
+      }
+
       TreeInsert(pdelete);
       m_sizeEditFile -= uiCount;
 

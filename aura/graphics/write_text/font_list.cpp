@@ -513,7 +513,7 @@ namespace write_text
 
                pdraw2dgraphics->text_out(point, "Loading " + m_pfontenumeration->m_pathaLoading[i].title());
 
-               point.y += (::i32)pdraw2dgraphics->m_pwritetextfont->get_height(pdraw2dgraphics);
+               point.y += (::i32)pdraw2dgraphics->m_pwritetextfont->text_metric(pdraw2dgraphics).get_line_height();
 
             }
 

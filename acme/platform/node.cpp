@@ -2,6 +2,7 @@
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "platform.h"
+#include "startup_delay_debug.h"
 #include "node.h"
 //#include "sequencer.h"
 #include "application.h"
@@ -42,7 +43,7 @@ CLASS_DECL_ACME ::string friendly_byte_count(::u64 ul, const_char_pointer pszFor
 
 #ifdef WINDOWS_DESKTOP
 
-//__FACTORY_EXPORT void nano_http_wininet_factory(::factory::factory * pfactory);
+//__FACTORY_EXPORT void nano_http_winhttp_factory(::factory::factory * pfactory);
 __FACTORY_EXPORT void nano_compress_windows_factory(::factory::factory * pfactory);
 
 #endif
@@ -359,13 +360,21 @@ namespace platform
    void node::node_implement_main()
    {
 
+      STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main");
+
       //m_pparticleQuit = create_quit_particle(pnode);
 
       auto psystem = system();
       
-      psystem->m_papplication->__task_init();
+      {
+         STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main: application task setup");
+         psystem->m_papplication->__task_init();
+      }
 
-      psystem->init_task();
+      {
+         STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main: system task setup");
+         psystem->init_task();
+      }
 
       if (application()->m_bSession)
       {
@@ -374,7 +383,10 @@ namespace platform
 
       }
 
-      psystem->m_papplication->init_task();
+      {
+         STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main: application init_task");
+         psystem->m_papplication->init_task();
+      }
 
       if (psystem->m_pfnImplement)
       {
@@ -393,7 +405,10 @@ namespace platform
 
          psystem->m_papplication->property_set().merge(prequest->property_set());
 
-         psystem->m_papplication->main();
+         {
+            STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main: application main");
+            psystem->m_papplication->main();
+         }
          
          if(psystem->m_iExitCode == 0)
          {
@@ -608,8 +623,13 @@ namespace platform
 
    string node::veriwell_multimedia_music_midi_get_default_implementation_name()
    {
-
+#ifdef __SUNOS__
+      // ALSA is not a SunOS backend. Keep MIDI optional unless an installed
+      // implementation has been explicitly selected in appconfig.
+      return system()->implementation_name("music_midi", "");
+#else
       return system()->implementation_name("music_midi", "alsa");
+#endif
 
    }
 
@@ -1893,11 +1913,11 @@ namespace platform
       else
       {
 
-         strName = "shared_" + strName + ".exe";
+         strName = "_" + strName + ".exe";
 
       }
 
-#elif defined(LINUX) || defined(__BSD__)
+#elif defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 
       strName = "_" + strName;
 
@@ -3067,8 +3087,11 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
       }
       else if (scopedstrComponentName == "nano_idn")
       {
-
+#if defined(__REACTOS__)
+         return "libidn";
+#else
          return "windows_common";
+#endif
       }
 #endif
       else if (scopedstrComponentName == "nano_http")
@@ -3092,7 +3115,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
 
 #elif defined(WINDOWS_DESKTOP)
 
-         return "wininet";
+         return "winhttp";
 
 #endif
          
@@ -3129,7 +3152,7 @@ bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
 
    //   auto pfactory = allocateø::factory::factory();
 
-   //   nano_http_wininet_factory(pfactory);
+   //   nano_http_winhttp_factory(pfactory);
 
    //   pfactory->merge_to_global_factory();
 
@@ -3661,7 +3684,7 @@ bool node::_is_smart_git_installed()
 //   }
 
 
-#if defined(__BSD__) || defined(__APPLE__)
+#if defined(__BSD__) || defined(__APPLE__) || defined(__SUNOS__)
 
    void node::arp_a(void *p, void(*callback)(void * addr, ::u32 uIp, const_char_pointer status))
    {
@@ -3707,7 +3730,7 @@ bool node::_is_smart_git_installed()
 
 #if !defined(ANDROID) && !defined(LINUX)
 
-#if !defined(__APPLE__) && !defined(__BSD__)
+#if !defined(__APPLE__) && !defined(__BSD__) && !defined(__SUNOS__) && !defined(__HAIKU__)
 
 
    string node::_get_call_stack_trace(void ** stack, ::i32 frame_count, const ::scoped_string& scopedstrFormat , ::i32 iSkip , void* caller_address, ::i32 iCount)
@@ -5341,6 +5364,13 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
       ::string strDesktopAmbient;
 
+      if (psummary->m_strAmbientName.has_character())
+         strDesktopAmbient = "Desktop Ambient: " + psummary->m_strAmbientName;
+      else if (psummary->m_strAmbient.has_character())
+         strDesktopAmbient = "Desktop Ambient: " + psummary->m_strAmbient;
+      if (strDesktopAmbient.has_character() && psummary->m_strAmbientVersion.has_character())
+         strDesktopAmbient += " " + psummary->m_strAmbientVersion;
+
 #if defined(LINUX)
 
       auto strOperatingAmbient = psummary->m_strAmbient;
@@ -5396,6 +5426,8 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
       stra.add(strOperatingSystemName);
       stra.add(strMoreOperatingSystemVersionInformation);
+      if (psummary->m_strKernelName.has_character())
+         stra.add("Kernel: " + psummary->m_strKernelName + " " + psummary->m_strKernelVersion);
       stra.add("<br />");
       stra.add(strDesktopAmbient);
       stra.add(strMachineArchitecture);

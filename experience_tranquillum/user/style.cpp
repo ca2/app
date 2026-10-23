@@ -147,20 +147,7 @@ namespace experience_tranquillum
                if (is_dark_mode())
                {
 
-                  //auto pthemecolors = node()->_get_os_theme_colors();
-
-                  auto colorBackground = system()->background_color();
-
-                  //if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
-                  {
-
-                     //return pthemecolors->m_colorBack;
-
-                     return colorBackground;
-
-                  }
-
-                  return argb(255, 51, 51, 51);
+                  return argb(255, 32, 32, 32);
 
                }
                else
@@ -177,21 +164,7 @@ namespace experience_tranquillum
                if (is_dark_mode())
                {
 
-
-                  auto colorBackground = system()->background_color();
-
-                  return colorBackground;
-
-                  //auto pthemecolors = node()->_get_os_theme_colors();
-
-                  //if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
-                  //{
-
-                  //   return pthemecolors->m_colorBack;
-
-                  //}
-
-                  return argb(255, 51, 51, 51);
+                  return argb(255, 32, 32, 32);
 
                }
                else
@@ -563,21 +536,7 @@ namespace experience_tranquillum
             else
             {
 
-               auto colorBackground = system()->background_color();
-
-               return colorBackground;
-
-
-               //auto pthemecolors = node()->_get_os_theme_colors();
-
-               //if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
-               //{
-
-               //   return pthemecolors->m_colorBack;
-
-               //}
-
-               return argb(255, 51, 51, 51);
+               return argb(255, 32, 32, 32);
 
             }
 
@@ -970,7 +929,7 @@ namespace experience_tranquillum
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleHosting.left = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.right : rectangleX.left;
+         ptab->get_data()->m_rectangleHosting.left = ptab->m_pAutoHide->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.right : rectangleX.left;
          ptab->get_data()->m_rectangleHosting.top = ptab->get_data()->m_rectangleTab.top;
          ptab->get_data()->m_rectangleHosting.right = rectangleX.right;
          ptab->get_data()->m_rectangleHosting.bottom = ptab->get_data()->m_rectangleTab.bottom;
@@ -1101,7 +1060,7 @@ namespace experience_tranquillum
          // bool bTabbedClient = ptab->m_bEffectiveVisibleTabs;
 
          rectangleHosting.left = ptab->get_data()->m_rectangleTab.left;
-         rectangleHosting.top = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.bottom : rectangleX.top;
+         rectangleHosting.top = ptab->m_pAutoHide->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.bottom : rectangleX.top;
          rectangleHosting.right = ptab->get_data()->m_rectangleTab.right;
          rectangleHosting.bottom = rectangleX.bottom;
 
@@ -1196,7 +1155,11 @@ namespace experience_tranquillum
 
       pdraw2dgraphics->fill_rectangle(rcClient, crbk);
 
-      pdraw2dgraphics->fill_rectangle(rcTape, argb(255, 192, 192, 192));
+      const auto colorTape = pstyle->is_dark_mode()
+         ? argb(255, 56, 56, 56)
+         : argb(255, 192, 192, 192);
+
+      pdraw2dgraphics->fill_rectangle(rcTape, colorTape);
 
       //return true;
 

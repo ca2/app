@@ -5,7 +5,7 @@
 //#pragma pack(push, color_indexes, 1)
 
 
-struct color_indexes
+struct CLASS_DECL_ACME color_indexes
 {
 
    union

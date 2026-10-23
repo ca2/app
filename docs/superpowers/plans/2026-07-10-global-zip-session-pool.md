@@ -63,7 +63,7 @@ Under `if(BUILD_TESTING)` in `folder_zip/CMakeLists.txt`, add:
 
 ```cmake
 add_executable(folder_zip_system_limit_test test/system_zip_session_limit.cpp)
-target_link_libraries(folder_zip_system_limit_test PRIVATE static_acme)
+target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
 add_test(NAME folder_zip_system_limit_test COMMAND folder_zip_system_limit_test)
 ```
 

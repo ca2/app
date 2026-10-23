@@ -85,6 +85,12 @@ namespace micro
 
       auto r = m_rectangle;
 
+      if (r.width() <= 0 || r.height() <= 0)
+      {
+         r = initial_frame_rectangle();
+         m_rectangle = r;
+      }
+
 
       m_pacmewindowingwindow->m_pointWindow = r.origin();
       m_pacmewindowingwindow->m_sizeWindow = r.size();
@@ -766,8 +772,10 @@ information("message_box::on_initialize_dialog");
             if (payloadResult == e_dialog_result_yes)
             {
 
-               ::string strBody =
-                  pmessageboxParent->get_message() + "\n\n" + pmessageboxParent->dialog_details();
+               ::string strBody = pmessageboxParent->get_message();
+               auto strDetails = pmessageboxParent->dialog_details();
+               if (strDetails.has_character() && strDetails != strBody)
+                  strBody += "\n\n" + strDetails;
 
                auto pszBody = strBody.c_str();
 

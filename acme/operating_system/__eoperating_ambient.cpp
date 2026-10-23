@@ -9,6 +9,9 @@ namespace windowing
 
    ::string get_eoperating_ambient_name()
    {
+#if defined(__HAIKU__)
+      return "haiku";
+#endif
       
       auto eoperatingambient = get_eoperating_ambient();
       
@@ -31,6 +34,7 @@ namespace windowing
          case e_operating_ambient_unity:
       case e_operating_ambient_gnome:
       case e_operating_ambient_cinnamon:
+      case e_operating_ambient_mate:
 #ifdef HAS_GTK4
          return "gtk4";
 #else

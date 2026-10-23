@@ -1947,7 +1947,7 @@
     <ClInclude Include="apex\apex_policy\apex_policy_winrt.h">
       <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\process\process.h">
+    <ClInclude Include="apex\process\process_process.h">
       <Filter>Header Files\apex\process</Filter>
     </ClInclude>
     <ClInclude Include="apex\process\process_bidi_pipe.h">

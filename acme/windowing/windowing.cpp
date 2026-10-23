@@ -1287,7 +1287,11 @@ namespace windowing
    ::string get_user_toolkit_id()
    {
 
+#if defined(__HAIKU__)
+      return "haiku";
+#else
       return ::as_string(get_etoolkit());
+#endif
 
    }
 

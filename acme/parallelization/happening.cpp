@@ -9,6 +9,14 @@
 #include "acme/prototype/time/timespec.h"
 #include "acme/_operating_system.h"
 
+#if defined(__SUNOS__)
+	#if defined(PARALLELIZATION_PTHREAD)
+	//	#error "Seems ok!!"
+	#else
+		#error "Hey!! What is going on?!!? We are in a Sun OS compatible system and we don't have PARALLELIZATION_PTHREAD macro set"
+	#endif
+#endif
+
 
 #ifdef PARALLELIZATION_PTHREAD
 #include "acme/operating_system/ansi/_pthread.h"
@@ -16,20 +24,20 @@
 
 void printf_line(const_char_pointer pszFormat, ...);
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 #include <sys/ipc.h>
 #include <sys/time.h>
 #include <time.h>
 #include <sys/time.h>
-#include <sys/errno.h>
+#include <errno.h>
 #include <string.h>
 
-#if defined(LINUX) || defined(__APPLE__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__SUNOS__) || defined(__HAIKU__)
 #include <sys/sem.h>
 #endif
 #include "acme/operating_system/ansi/_ansi.h"
 
-#if defined(OPENBSD) || defined(NETBSD)
+#if defined(OPENBSD) || defined(NETBSD) || defined(__SUNOS__)
 
 #include <stdio.h>
 
@@ -106,7 +114,7 @@ void clock_getrealtime(struct timespec * pts)
 
 ::i32 g_iHappeningSerialId = 1;
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 
 
 bool happening::start_notify_lock(::notify_lock * pnotifylock)
@@ -953,7 +961,7 @@ bool happening::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-      printf_line("happening(%d)::_wait(timeWait(m_iSecond=%lld,m_iNanosecond=%lld,c=%llX,m=%llX))", m_iEventSerialId, timeWait.m_iSecond, timeWait.m_iNanosecond, m_pcond, m_pmutex);
+      printf_line("happening(%d)::_wait(timeWait(m_iSecond=%lld,m_iNanosecond=%lld,c=%p,m=%p))", m_iEventSerialId, timeWait.m_iSecond, timeWait.m_iNanosecond, m_pcond, m_pmutex);
 
 #endif
 

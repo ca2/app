@@ -1498,7 +1498,7 @@ copy $(__operating_system)storage-windows\third\binary\$(PlatformName)\$(Configu
     <ClCompile Include="node\windows\ip_enum.cpp" />
     <ClCompile Include="node\windows\os_context.cpp" />
     <ClCompile Include="node\windows\pipe.cpp" />
-    <ClCompile Include="node\windows\process.cpp" />
+    <ClCompile Include="node\windows\process_process.cpp" />
     <ClCompile Include="node\windows\registry.cpp" />
     <ClCompile Include="node\windows\serial.cpp" />
     <ClCompile Include="node\windows\shell.cpp" />
@@ -1519,7 +1519,7 @@ copy $(__operating_system)storage-windows\third\binary\$(PlatformName)\$(Configu
     <ClCompile Include="os\ansios\file_std.cpp" />
     <ClCompile Include="os\ansios\language.cpp" />
     <ClCompile Include="os\ansios\memory.cpp" />
-    <ClCompile Include="os\ansios\process.cpp" />
+    <ClCompile Include="os\ansios\process_process.cpp" />
     <ClCompile Include="os\ansios\user.cpp" />
     <ClCompile Include="os\ansios\win.cpp" />
     <ClCompile Include="os\binreloc.cpp" />
@@ -1529,7 +1529,7 @@ copy $(__operating_system)storage-windows\third\binary\$(PlatformName)\$(Configu
     <ClCompile Include="os\http.cpp" />
     <ClCompile Include="os\openssl_crypt.cpp" />
     <ClCompile Include="os\os_os.cpp" />
-    <ClCompile Include="os\process.cpp" />
+    <ClCompile Include="os\process_process.cpp" />
     <ClCompile Include="os\thread.cpp" />
     <ClCompile Include="os\time.cpp" />
     <ClCompile Include="os\win32\dialog.cpp" />
@@ -1567,7 +1567,7 @@ copy $(__operating_system)storage-windows\third\binary\$(PlatformName)\$(Configu
     <ClCompile Include="os\windows\multimedia.cpp" />
     <ClCompile Include="os\windows\multithreading.cpp" />
     <ClCompile Include="os\windows\printer.cpp" />
-    <ClCompile Include="os\windows\process.cpp" />
+    <ClCompile Include="os\windows\process_process.cpp" />
     <ClCompile Include="os\windows\registry.cpp" />
     <ClCompile Include="os\windows\simple_app.cpp" />
     <ClCompile Include="os\windows\simple_shell_launcher.cpp" />
@@ -2076,7 +2076,7 @@ copy $(__operating_system)storage-windows\third\binary\$(PlatformName)\$(Configu
     <ClInclude Include="node\windows\ip_enum.h" />
     <ClInclude Include="node\windows\os_context.h" />
     <ClInclude Include="node\windows\pipe.h" />
-    <ClInclude Include="node\windows\process.h" />
+    <ClInclude Include="node\windows\process_process.h" />
     <ClInclude Include="node\windows\registry.h" />
     <ClInclude Include="node\windows\serial.h" />
     <ClInclude Include="node\windows\shell.h" />
@@ -2099,7 +2099,7 @@ copy $(__operating_system)storage-windows\third\binary\$(PlatformName)\$(Configu
     <ClInclude Include="os\file.h" />
     <ClInclude Include="os\graphics.h" />
     <ClInclude Include="os\os_windowing2.h" />
-    <ClInclude Include="os\process.h" />
+    <ClInclude Include="os\process_process.h" />
     <ClInclude Include="os\text.h" />
     <ClInclude Include="os\threading.h" />
     <ClInclude Include="os\time.h" />
@@ -2125,7 +2125,7 @@ copy $(__operating_system)storage-windows\third\binary\$(PlatformName)\$(Configu
     <ClInclude Include="os\windows\port_forward.h" />
     <ClInclude Include="os\windows\printer.h" />
     <ClInclude Include="os\windows\print_job.h" />
-    <ClInclude Include="os\windows\process.h" />
+    <ClInclude Include="os\windows\process_process.h" />
     <ClInclude Include="os\windows\registry.h" />
     <ClInclude Include="os\windows\shell1.h" />
     <ClInclude Include="os\windows\simple_hold_handle.h" />

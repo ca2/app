@@ -1,7 +1,7 @@
 #include "platform.h"
 #include "acme/node/posix/pipe.h"
 #include "acme/platform/static_start.h"
-#include "process.h"
+#include "process_process.h"
 
 
 #include <sys/wait.h>

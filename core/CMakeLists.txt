@@ -234,7 +234,7 @@ list(APPEND library_source
 #   operating_system/file.h
 #   operating_system/graphics.h
 #   operating_system/os_windowing2.h
-#   #   operating_system/process.h
+#   #   operating_system/process_process.h
 #   operating_system/text.h
 #   operating_system/threading.h
 #   operating_system/time.h
@@ -688,7 +688,7 @@ if (__ANDROID__)
       operating_system/android/main.cpp
       operating_system/android/os_context.cpp
       operating_system/android/os_context.h
-      #      operating_system/android/process.cpp
+      #      operating_system/android/process_process.cpp
       operating_system/android/shell.cpp
       operating_system/android/shell.h
       operating_system/android/thread.cpp
@@ -732,8 +732,8 @@ if (__ANDROID__)
       operating_system/android/main_android.cpp
       operating_system/android/message_loop.cpp
       operating_system/android/multithreading.cpp
-      #      operating_system/android/process.cpp
-      #      operating_system/android/process.h
+      #      operating_system/android/process_process.cpp
+      #      operating_system/android/process_process.h
       #      operating_system/android/process_pid.cpp
       operating_system/android/simple_shell_launcher.cpp
       operating_system/android/small_ipca_channel.cpp
@@ -770,7 +770,7 @@ if (WIN32 OR LINUX OR APPLE)
       #operating_system/ansios/language.cpp
       #operating_system/ansios/memory.cpp
       #operating_system/ansios/multithreading.h
-      #operating_system/ansios/process.cpp
+      #operating_system/ansios/process_process.cpp
       #operating_system/ansios/user.cpp
       #operating_system/ansios/win.cpp
       #operating_system/posix/base_file.cpp
@@ -863,14 +863,41 @@ target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 if(${WIN32})
 
 
-   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
-   target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+
+
+   if(MSVC)
+
+
+      target_compile_options(${PROJECT_NAME} PRIVATE    "/MD$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/SUBSYSTEM:WINDOWS")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/bigobj")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   else()
+
+
+      target_link_options(${PROJECT_NAME} PRIVATE "-mwindows")
+      target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   endif()
+
+
+
+
+   ##target_link_options(${PROJECT_NAME}   PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+   ##target_link_options(${PROJECT_NAME}   PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
@@ -884,7 +911,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
-   target_link_libraries(core PRIVATE ${library_references} ${global_library_references})
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
    # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

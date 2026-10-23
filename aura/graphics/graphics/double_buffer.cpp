@@ -442,6 +442,8 @@ namespace graphics
 
       on_update_screen(pitemScreen);
 
+      m_pwindow->record_output_frame();
+
    }
 
 

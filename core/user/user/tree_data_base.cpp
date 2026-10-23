@@ -23,6 +23,13 @@ namespace user
    }
 
 
+   void tree_data_base::on_initialize_tree()
+   {
+      
+      
+   }
+
+
    ::collection::count tree_data_base::get_data_bound_impact_count() const
    {
 

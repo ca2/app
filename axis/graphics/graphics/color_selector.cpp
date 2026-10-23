@@ -38,6 +38,14 @@ namespace graphics
    }
 
 
+   void color_selector::initialize_color_selector(::user::interaction * puserinteraction)
+   {
+     
+      m_puserinteractionAffinity = puserinteraction;
+      
+   }
+
+
    void color_selector::set_sel_color(const ::color::hls & hls)
    {
 

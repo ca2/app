@@ -8,9 +8,12 @@
 #include "acme/prototype/data/listener.h"
 #include "acme/prototype/time/frequency.h"
 #include "aura/message/user.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/context.h"
+#include "aura/graphics/image/image.h"
 //#include "aura/user/user/prototype_impl.h"
 #include "aura/user/user/scroll_state.h"
 #include "aura/user/user/style.h"
@@ -151,7 +154,7 @@ namespace user
 
       //estatus = 
 
-      m_pimagelist->create(16, 16, 0, 10, 10);
+      m_pimagelist->create(16, 16, draw2d_domain(), 0, 10, 10);
 
       //if (!estatus)
       //{
@@ -166,8 +169,19 @@ namespace user
             forkø() << [this]()
                {
 
-                  _001SetExpandImage("matter://list/expand.png");
-                  _001SetExpandImageDark("matter://list/expand_dark.png");
+                  try
+                  {
+
+                     _001SetExpandImage("matter://list/expand.png");
+                     _001SetExpandImageDark("matter://list/expand_dark.png");
+
+                  }
+                  catch (const ::exception & exception)
+                  {
+
+                     error() << "tree expand images failed: " << exception.get_message();
+
+                  }
 
                   task_set_name(::platform::type(this).name() + "::Expand");
 
@@ -205,8 +219,19 @@ namespace user
       forkø()<< [this]()
          {
 
-            _001SetCollapseImage("matter://list/collapse.png");
-            _001SetCollapseImageDark("matter://list/collapse_dark.png");
+            try
+            {
+
+               _001SetCollapseImage("matter://list/collapse.png");
+               _001SetCollapseImageDark("matter://list/collapse_dark.png");
+
+            }
+            catch (const ::exception & exception)
+            {
+
+               error() << "tree collapse images failed: " << exception.get_message();
+
+            }
 
             task_set_name(::platform::type(this).name() + "::Open");
 
@@ -1546,7 +1571,8 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
    void tree::_001SetExpandImage(const ::scoped_string & scopedstrMatter)
    {
 
-      auto imagepayloadExpand = ::image::image_payload(this, scopedstrMatter);
+      auto imagepayloadExpand = image()->get_image(scopedstrMatter,
+         { .sync = true, .draw2d_domain = draw2d_domain() });
 
       if (!imagepayloadExpand.ok())
       {
@@ -1555,7 +1581,8 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
 
       }
 
-      m_iImageExpand = m_pimagelist->add(imagepayloadExpand);
+      m_iImageExpand = m_pimagelist->add(::image::image_drawing(
+         ::image::image_source(imagepayloadExpand)));
 
    }
 
@@ -1563,7 +1590,8 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
    void tree::_001SetCollapseImage(const ::scoped_string & scopedstrMatter)
    {
 
-      auto imagepayloadCollapse = ::image::image_payload(this, scopedstrMatter);
+      auto imagepayloadCollapse = image()->get_image(scopedstrMatter,
+         { .sync = true, .draw2d_domain = draw2d_domain() });
 
       if (!imagepayloadCollapse.ok())
       {
@@ -1572,7 +1600,8 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
 
       }
 
-      m_iImageCollapse = m_pimagelist->add(imagepayloadCollapse);
+      m_iImageCollapse = m_pimagelist->add(::image::image_drawing(
+         ::image::image_source(imagepayloadCollapse)));
 
    }
 
@@ -1580,7 +1609,11 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
    void tree::_001SetExpandImageDark(const ::scoped_string & scopedstrMatter)
    {
 
-      m_iImageExpandDark = m_pimagelist->add(::image::image_payload(this, scopedstrMatter));
+      auto pimage = image()->get_image(scopedstrMatter,
+         { .sync = true, .draw2d_domain = draw2d_domain() });
+
+      m_iImageExpandDark = m_pimagelist->add(::image::image_drawing(
+         ::image::image_source(pimage)));
 
    }
 
@@ -1588,7 +1621,11 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
    void tree::_001SetCollapseImageDark(const ::scoped_string & scopedstrMatter)
    {
 
-      m_iImageCollapseDark = m_pimagelist->add(::image::image_payload(this, scopedstrMatter));
+      auto pimage = image()->get_image(scopedstrMatter,
+         { .sync = true, .draw2d_domain = draw2d_domain() });
+
+      m_iImageCollapseDark = m_pimagelist->add(::image::image_drawing(
+         ::image::image_source(pimage)));
 
    }
 

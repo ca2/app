@@ -94,6 +94,15 @@ namespace gpu
       ::floating_sequence2 local_position;
    };
 
+   // Seven vec4s keep the push constants aligned identically in GLSL/HLSL
+   // and below Vulkan's guaranteed 128-byte push-constant limit.
+   struct brush_fill_uniform_set
+   {
+      floating_sequence4 brushColor0, brushColor1;
+      floating_sequence4 brushData0, brushData1;
+      floating_sequence4 fillShape, brushParameters, textureInformation;
+   };
+
    struct circle_uniform_set
    {
       floating_sequence4 uniformFragmentColor;
@@ -117,6 +126,7 @@ DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::floating_sequence2)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::uniformFragmentColor)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::circle_vertex)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::circle_uniform_set)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::brush_fill_uniform_set)
 
 
 namespace geometry2d

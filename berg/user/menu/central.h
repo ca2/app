@@ -3,6 +3,7 @@
 
 #include "acme/platform/department.h"
 #include "acme/prototype/collection/integer_map.h"
+#include "aura/graphics/draw2d/domain_consumer.h"
 
 
 namespace user
@@ -10,7 +11,8 @@ namespace user
 
 
    class CLASS_DECL_BERG menu_central :
-      virtual public ::platform::department
+      virtual public ::platform::department,
+      virtual public ::draw2d::domain_consumer
    {
    public:
 

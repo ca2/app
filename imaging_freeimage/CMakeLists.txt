@@ -32,6 +32,11 @@ list(APPEND library_references
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
+if(USE_PORT_FREEIMAGE)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE USE_PORT_FREEIMAGE)
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE USE_PORT_FREEIMAGE)
+endif()
+
 
 
 
@@ -58,13 +63,42 @@ endif ()
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
-if (${MSVC})
+if(__REACTOS__)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE USE_PORT_FREEIMAGE)
+    target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/port/imaging/port_freeimage/include")
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} port_freeimage)
+    foreach(codec IN ITEMS port_freeimage port_jpeg port_webp port_jxr port_openexr port_openjpeg port_tiff4 port_rawlite png zlib)
+        add_dependencies(${PROJECT_NAME} ${codec})
+    endforeach()
+elseif (${MSVC})
 
 
-    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
-    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+
+
+   if(MSVC)
+
+
+      target_compile_options(${PROJECT_NAME} PRIVATE    "/MD$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/SUBSYSTEM:WINDOWS")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/bigobj")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   else()
+
+
+      target_link_options(${PROJECT_NAME} PRIVATE "-mwindows")
+      target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   endif()
+
+
+
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura freeimage)
 
 
@@ -88,6 +122,28 @@ elseif (${FREEBSD})
     message(STATUS "(E) PKGCONFIG_LDFLAGS is ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS}")
     message(STATUS "(E) PKGCONFIG_LIBRARIES is ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES}")
 
+
+elseif (__SUNOS__ OR __HAIKU__)
+
+    if(USE_PORT_FREEIMAGE)
+        if(NOT TARGET port_freeimage)
+            message(FATAL_ERROR "USE_PORT_FREEIMAGE requires the port_freeimage target")
+        endif()
+        set(imaging_freeimage_SUNOS_LIBRARY port_freeimage)
+    else()
+        find_library(imaging_freeimage_SUNOS_LIBRARY NAMES freeimage FreeImage)
+        if(NOT imaging_freeimage_SUNOS_LIBRARY)
+            message(FATAL_ERROR "imaging_freeimage: FreeImage library not found for SunOS")
+        endif()
+    endif()
+
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS})
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${imaging_freeimage_SUNOS_LIBRARY} ${library_references} ${global_library_references})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${imaging_freeimage_SUNOS_LIBRARY} ${static_library_references} ${global_library_references})
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    message(STATUS "imaging_freeimage: SunOS FreeImage library: ${imaging_freeimage_SUNOS_LIBRARY}")
 
 elseif (${LINUX} OR ${OPENBSD} OR ${NETBSD} OR ${__ANDROID__})
 

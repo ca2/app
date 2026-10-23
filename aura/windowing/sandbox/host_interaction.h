@@ -32,6 +32,7 @@ namespace sandbox_windowing
       ::sandbox_windowing::windowing* windowing();
 
       void create_window() override;
+      void on_create_window_object() override;
 
       void install_message_routing(::channel* pchannel) override;
 

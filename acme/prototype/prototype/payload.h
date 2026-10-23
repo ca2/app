@@ -513,7 +513,7 @@ public:
    ::posix_time as_time(const class ::time & timeDefault) const;
 
    ::string as_string(const ::scoped_string & scopedstrOnNull) const;
-   ::string as_string() const;
+   inline ::string as_string() const;
    ::string get_recursive_string() const;
    ::atom as_atom() const;
    ::atom as_atom(const ::atom & idDefault) const;

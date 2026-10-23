@@ -1,5 +1,7 @@
 #include "platform.h"
 #include "task.h"
+#include "startup_delay_debug.h"
+#include "shutdown_delay_debug.h"
 #include "../user/interface/message_box.h"
 #include "acme/_operating_system.h"
 #include "acme/exception/_text_stream.h"
@@ -26,6 +28,10 @@
 #include "waiting_call.h"
 ///#include "acme/windowing/window_base.h"
 #include "acme/windowing/windowing.h"
+
+
+bool should_log_task_has_finishing_flag();
+void set_should_log_task_has_finishing_flag(bool bSet);
 
 
 #ifdef LINUX
@@ -155,7 +161,8 @@ void task::on_initialize_particle()
 
    ::handler::handler::on_initialize_particle();
 
-   //m_synchronizationaMainLoop.add(new_main_loop_happening());
+   // Install the main-loop wake event before task_wait snapshots the wait set.
+   new_main_loop_happening();
 
    update_new_main_loop_happening();
 
@@ -472,13 +479,18 @@ bool task::should_run() const
 
    }
 
-   if (((::task*)this)->m_timeLastFinishingReport.has_timed_out_with_update(1_s))
+   if (should_log_task_has_finishing_flag())
    {
 
-      ::string strTaskName = m_strTaskName;
+      if (((::task*)this)->m_timeLastFinishingReport.has_timed_out_with_update(1_s))
+      {
 
-      information("Task \"{}\" has finishing flag.", strTaskName);
+         ::string strTaskName = m_strTaskName;
 
+         information("Task \"{}\" has finishing flag.", strTaskName);
+
+
+      }
 
    }
 
@@ -1259,9 +1271,20 @@ void task::main()
 
    //__task_init();
 
-   call_init_task();
+   {
+      STARTUP_DELAY_TRACE_SCOPE_IF("task::main - call_init_task",
+         application() && application()->m_strAppId == "app/app");
+      call_init_task();
+   }
 
    m_bReadyToAttendRequests = true;
+
+#if STARTUP_DELAY_DEBUG
+   if (application() && application()->m_strAppId == "app/app")
+   {
+      STARTUP_DELAY_TRACE_EVENT("Startup request queue: task ready handler=%p", this);
+   }
+#endif
 
    if (defer_implement(application()))
    {
@@ -1615,7 +1638,26 @@ bool task::task_wait(const class ::time & timeRemaining)
 
    ::multiple_lock multiplelock(m_synchronizationaMainLoop);
 
+#if STARTUP_DELAY_DEBUG
+   auto bStartupAppTask = application() && application()->m_strAppId == "app/app";
+   auto bStartupRequestPendingBeforeWait = bStartupAppTask && has_main_loop_happening();
+   class ::time timeWaitStart;
+   timeWaitStart.Now();
+#endif
+
    auto estatus = multiplelock.lock(timeRemaining, false, QS_ALLINPUT);
+
+#if STARTUP_DELAY_DEBUG
+   auto bStartupRequestPendingAfterWait = bStartupAppTask && has_main_loop_happening();
+   if (estatus == error_wait_timeout &&
+       (bStartupRequestPendingBeforeWait || bStartupRequestPendingAfterWait))
+   {
+      auto dWaitSeconds = timeWaitStart.elapsed().floating_second();
+      STARTUP_DELAY_TRACE_EVENT("Startup request wait: task=%p waited=%.3f seconds timeout=%d pending_before=%d pending_after=%d",
+         this, dWaitSeconds, (int)(estatus == error_wait_timeout),
+         (int)bStartupRequestPendingBeforeWait, (int)bStartupRequestPendingAfterWait);
+   }
+#endif
 
    if (estatus == error_wait_timeout)
    {
@@ -1742,6 +1784,8 @@ void task::stop_task()
 void task::destroy()
 {
 
+   SHUTDOWN_DELAY_TRACE_SCOPE("task::destroy");
+
    if (m_phappeningFinished2)
    {
 
@@ -1755,9 +1799,15 @@ void task::destroy()
 
    //bool bHasFinishingFlag2 = has_finishing_flag();
 
-   ::object::destroy();
+   {
+      SHUTDOWN_DELAY_TRACE_SCOPE("task::destroy: object destruction and child tasks");
+      ::object::destroy();
+   }
 
-   ::data::property_container::destroy();
+   {
+      SHUTDOWN_DELAY_TRACE_SCOPE("task::destroy: property container");
+      ::data::property_container::destroy();
+   }
 
 #ifdef WINDOWS
 
@@ -1872,13 +1922,24 @@ void * task::s_os_task(void * p)
 
    ::i32 iExitCode = 0;
 
+#if defined(WINDOWS)
+   // Keep the runtime alive until the handler and thread-handle cleanup finish.
+   ::pointer<::task> tasklifetime;
+#endif
+
    {
 
       __check_refdbg
 
       auto ptaskhandler = ::transfer_as_pointer((::task_handler *)p);
 
+#if defined(WINDOWS)
+      tasklifetime = ptaskhandler->m_ptask;
+#endif
+
       __check_refdbg
+      
+      auto ptaskRaw_  = ptaskhandler->m_ptask.m_p;
 
       ptaskhandler->__task_handle();
 
@@ -1891,24 +1952,79 @@ void * task::s_os_task(void * p)
 
          auto itask = ptaskhandler->m_itaskHandler;
          
+#if defined(WINDOWS)
+         // The handler may have released and destroyed the system task.
+         // Windows allows closing this thread's handle before the thread exits.
+         _os_task_destroy(htask, itask);
+#else
          auto psystem = ::system();
-
-         psystem->post([htask, itask]()
+         
+         if(psystem == ptaskRaw_)
+         {
+            
+            try
             {
 
+               _os_task_destroy(htask, itask);
+
+            }
+            catch (...)
+            {
+
+
+            }
+            
+            try
+            {
+               
+               // System task is ending, so:
+               //    - Force release of all system references
+               //      because there maybe many references that weren't released.
+               
+               while(psystem->m_countReference > 0)
+               {
+                  
+                  try
+                  {
+                     
+                     psystem->release();
+
+                  }
+                  catch(...)
+                  {
+                     
+                     
+                  }
+                  
+               }
+            
+            }
+            catch(...)
+            {
+            
+            }
+
+         }
+         else
+         {
+            psystem->post([htask, itask]()
+                          {
+               
                try
                {
-
+                  
                   _os_task_destroy(htask, itask);
-
+                  
                }
                catch (...)
                {
-
-
+                  
+                  
                }
-
+               
             });
+         }
+#endif
 
       }
 
@@ -2832,6 +2948,8 @@ void task::init_task()
 
 void task::term_task()
 {
+
+   SHUTDOWN_DELAY_TRACE_SCOPE("task::term_task");
 
    //try
    //{
@@ -4760,3 +4878,25 @@ bool cpp_task_get_run()
    return ::task_get_run();
    
 }
+
+
+bool g_bShouldLogTaskHasFinishingFlag = true;
+
+
+bool should_log_task_has_finishing_flag()
+{
+
+   return g_bShouldLogTaskHasFinishingFlag;
+
+}
+
+
+void set_should_log_task_has_finishing_flag(bool bSet)
+{
+
+   g_bShouldLogTaskHasFinishingFlag = false;
+
+}
+
+
+

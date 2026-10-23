@@ -18,7 +18,7 @@
 #include "acme/platform/http.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/prototype/prototype/url.h"
-#include "acme/operating_system/process.h"
+#include "acme/operating_system/process_process.h"
 #include "acme/parallelization/happening.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -71,6 +71,7 @@
 #include "node.h"
 //#include "apex/os/_os.h"
 #include "application_impl.h"
+#include "startup_delay_debug.h"
 
 
 
@@ -329,16 +330,33 @@ namespace apex
 
    void application::initialize(::particle * pparticle)
    {
+      information() << "startup: apex::application::initialize: enter";
+
 
       //auto estatus = ::thread::initialize(pparticle);
 
-      ::thread::initialize(pparticle);
+      information() << "startup: apex::application::initialize: before ::thread::initialize(pparticle)";
+      {
+         STARTUP_DELAY_TRACE_SCOPE("apex::application::initialize - thread::initialize");
+         ::thread::initialize(pparticle);
+      }
+      information() << "startup: apex::application::initialize: after ::thread::initialize(pparticle)";
 
-      ::platform::application::initialize(pparticle);
+      information() << "startup: apex::application::initialize: before ::platform::application::initialize(pparticle)";
+      {
+         STARTUP_DELAY_TRACE_SCOPE("apex::application::initialize - platform::application::initialize");
+         ::platform::application::initialize(pparticle);
+      }
+      information() << "startup: apex::application::initialize: after ::platform::application::initialize(pparticle)";
 
       m_psystem = m_papplication->m_psystem;
 
-      defer_create_synchronization();
+      information() << "startup: apex::application::initialize: before defer_create_synchronization()";
+      {
+         STARTUP_DELAY_TRACE_SCOPE("apex::application::initialize - defer_create_synchronization");
+         defer_create_synchronization();
+      }
+      information() << "startup: apex::application::initialize: after defer_create_synchronization()";
 
 
       //if (!estatus)
@@ -366,6 +384,8 @@ namespace apex
 
       //return estatus;
 
+      information() << "startup: apex::application::initialize: leave";
+
    }
 
 
@@ -388,7 +408,7 @@ namespace apex
    ::file::path application::cloud_protocol()
    {
 
-      return "dropbox://";
+      return "cloud://";
 
    }
 
@@ -3052,17 +3072,25 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    void application::process_init()
    {
+      information() << "startup: apex::application::process_init: enter";
 
+
+      information() << "startup: apex::application::process_init: before ::platform::application::process_init()";
       ::platform::application::process_init();
+      information() << "startup: apex::application::process_init: after ::platform::application::process_init()";
 
+      information() << "startup: apex::application::process_init: before auto psystem = system()";
       auto psystem = system();
+      information() << "startup: apex::application::process_init: after auto psystem = system()";
 
       if (!m_bAppHasInstallerChangedProtected)
       {
 
 #ifdef UNIVERSAL_WINDOWS
 
+         information() << "startup: apex::application::process_init: before set_has_installer(false)";
          set_has_installer(false);
+         information() << "startup: apex::application::process_init: after set_has_installer(false)";
 
 #else
 
@@ -3118,11 +3146,15 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       if (::get_task() == nullptr)
       {
 
+         information() << "startup: apex::application::process_init: before ::set_task(dynamic_cast <task *> (this))";
          ::set_task(dynamic_cast <task *> (this));
+         information() << "startup: apex::application::process_init: after ::set_task(dynamic_cast <task *> (this))";
 
       }
 
+      information() << "startup: apex::application::process_init: before notify_process_init()";
       notify_process_init();
+      information() << "startup: apex::application::process_init: after notify_process_init()";
 
       //if (!notify_process_init())
       //{
@@ -3188,7 +3220,9 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       //auto estatus =
 
+      information() << "startup: apex::application::process_init: before userfs_process_init()";
       userfs_process_init();
+      information() << "startup: apex::application::process_init: after userfs_process_init()";
 
       //if()
       //{
@@ -3198,12 +3232,13 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       //return false;
       //
       //}
-
       debug() << "apex::application::process_init end";
 
       //return true;
 
 
+
+      information() << "startup: apex::application::process_init: leave";
 
    }
 
@@ -3393,9 +3428,13 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    void application::init1()
    {
+      information() << "startup: apex::application::init1: enter";
 
 
+
+      information() << "startup: apex::application::init1: before initialize_context_1()";
       initialize_context_1();
+      information() << "startup: apex::application::init1: after initialize_context_1()";
 
       //auto estatus =
 
@@ -3406,10 +3445,14 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       //}
 
+      information() << "startup: apex::application::init1: before auto psystem = system()";
       auto psystem = system();
+      information() << "startup: apex::application::init1: after auto psystem = system()";
 
       //estatus =
+      information() << "startup: apex::application::init1: before m_puserlanguagemap = allocateø ::user::language_map()";
       m_puserlanguagemap = allocateø ::user::language_map();
+      information() << "startup: apex::application::init1: after m_puserlanguagemap = allocateø ::user::language_map()";
 
       //REFDBG(m_puserlanguagemap.add_reference_item({ this, __FUNCTION_FILE_LINE__ }));
 
@@ -3427,7 +3470,9 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          if (psystem->m_pintstringLanguageResourceMap != nullptr)
          {
 
+            information() << "startup: apex::application::init1: before m_puserlanguagemap->set_language_resource_map(psystem->m_pintstringLanguageResourceMap)";
             m_puserlanguagemap->set_language_resource_map(psystem->m_pintstringLanguageResourceMap);
+            information() << "startup: apex::application::init1: after m_puserlanguagemap->set_language_resource_map(psystem->m_pintstringLanguageResourceMap)";
 
          }
 
@@ -3436,20 +3481,28 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       if (m_bLocalization)
       {
 
+         information() << "startup: apex::application::init1: before string strLang = psystem->get_user_language()";
          string strLang = psystem->get_user_language();
+         information() << "startup: apex::application::init1: after string strLang = psystem->get_user_language()";
 
          if (!m_puserlanguagemap->set_language(this, strLang))
          {
 
+            information() << "startup: apex::application::init1: before m_puserlanguagemap->set_default_language(this)";
             m_puserlanguagemap->set_default_language(this);
+            information() << "startup: apex::application::init1: after m_puserlanguagemap->set_default_language(this)";
 
          }
 
       }
 
+      information() << "startup: apex::application::init1: before ping()";
       ping();
+      information() << "startup: apex::application::init1: after ping()";
 
+      information() << "startup: apex::application::init1: before notify_init1()";
       notify_init1();
+      information() << "startup: apex::application::init1: after notify_init1()";
       //if (!notify_init1())
       /*{
 
@@ -3467,7 +3520,9 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          //if (psystem->get_user_language().has_character())
          //{
 
+         information() << "startup: apex::application::init1: before m_strLocale = psystem->get_user_language()";
          m_strLocale = psystem->get_user_language();
+         information() << "startup: apex::application::init1: after m_strLocale = psystem->get_user_language()";
 
          m_strSchema = m_strLocale;
 
@@ -3490,39 +3545,53 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          if (psystem->payload("locale").get_count() > 0)
          {
 
+            information() << "startup: apex::application::init1: before strLocale = psystem->payload(\"locale\").as_string_array()[0]";
             strLocale = psystem->payload("locale").as_string_array()[0];
+            information() << "startup: apex::application::init1: after strLocale = psystem->payload(\"locale\").as_string_array()[0]";
 
          }
 
          if (psystem->payload("schema").get_count() > 0)
          {
 
+            information() << "startup: apex::application::init1: before strSchema = psystem->payload(\"schema\").as_string_array()[0]";
             strSchema = psystem->payload("schema").as_string_array()[0];
+            information() << "startup: apex::application::init1: after strSchema = psystem->payload(\"schema\").as_string_array()[0]";
 
          }
 
          if (get_app()->payload("locale").get_count() > 0)
          {
 
+            information() << "startup: apex::application::init1: before strLocale = get_app()->payload(\"locale\").as_string_array()[0]";
             strLocale = get_app()->payload("locale").as_string_array()[0];
+            information() << "startup: apex::application::init1: after strLocale = get_app()->payload(\"locale\").as_string_array()[0]";
 
          }
 
          if (get_app()->payload("schema").get_count() > 0)
          {
 
+            information() << "startup: apex::application::init1: before strSchema = get_app()->payload(\"schema\").as_string_array()[0]";
             strSchema = get_app()->payload("schema").as_string_array()[0];
+            information() << "startup: apex::application::init1: after strSchema = get_app()->payload(\"schema\").as_string_array()[0]";
 
          }
 
+         information() << "startup: apex::application::init1: before set_locale(strLocale, ::e_source_database)";
          set_locale(strLocale, ::e_source_database);
+         information() << "startup: apex::application::init1: after set_locale(strLocale, ::e_source_database)";
 
+         information() << "startup: apex::application::init1: before set_schema(strSchema, ::e_source_database)";
          set_schema(strSchema, ::e_source_database);
+         information() << "startup: apex::application::init1: after set_schema(strSchema, ::e_source_database)";
 
       }
 
       //if (!initialize_contextualized_theme())
+      information() << "startup: apex::application::init1: before initialize_contextualized_theme()";
       initialize_contextualized_theme();
+      information() << "startup: apex::application::init1: after initialize_contextualized_theme()";
       //{
 
       //   fatal() <<"Failed to initialize_contextualized_theme";
@@ -3530,12 +3599,15 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       //   return false;
 
       //}
-
       debug() << "apex::application::init1 end";
 
+      information() << "startup: apex::application::init1: before ping()";
       ping();
+      information() << "startup: apex::application::init1: after ping()";
 
       //return ::success;
+
+      information() << "startup: apex::application::init1: leave";
 
    }
 
@@ -10296,7 +10368,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    }
 
 
-#if defined(LINUX) || defined(__BSD__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 
 
    string application::get_wm_class() const
@@ -10518,14 +10590,26 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       auto puseractivationtoken = ::as_pointer(puseractivationtokenParameter);
       
+#if defined(__REACTOS__)
+      information() << "ABOUT_INNATE queued";
+#endif
       main_post([this, puseractivationtoken]()
       {
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE begin; initializing innate UI";
+#endif
          
          system()->defer_innate_ui();
          
          auto pdialog = createø < ::innate_ui::dialog>();
          
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE creating dialog";
+#endif
          pdialog->create();
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE dialog created";
+#endif
          
          ::i32 max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx;
          
@@ -10549,9 +10633,15 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          
          pstillIcon->set_position({30 * fWindowScale, 30 * fWindowScale});
          
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE loading application icon";
+#endif
          auto piconApplication = innate_ui_icon({48 * fWindowScale, 48 * fWindowScale});
          
          pstillIcon->set_icon(piconApplication);
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE icon ready; building controls";
+#endif
          
          for (auto str : stra)
          {
@@ -10606,6 +10696,9 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
             {minimum(520 * fWindowScale, max_width), y + 30 * fWindowScale});
          
          pdialog->center();
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE controls ready; dialog centered";
+#endif
          
          auto pdialogRaw = pdialog.m_p;
 
@@ -10625,7 +10718,13 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
             
          });
          
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE show_front begin";
+#endif
          pdialog->show_front(puseractivationtoken);
+#if defined(__REACTOS__)
+         information() << "ABOUT_INNATE show_front returned";
+#endif
          
       });
 
@@ -10667,63 +10766,26 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
             ::f32 y_icon = 30 * fWindowScale;
 
-            if (straIconUrl.size() >= 1)
+            ::i32 iIcon = 0;
+            for (const auto & strIconUrl : straIconUrl)
             {
-
+               if (strIconUrl.is_empty())
+                  continue;
+               auto iSize = iIcon == 0 ? 48 : 32;
                try
                {
-
                   auto pstillIcon = createø<::innate_ui::still>();
-
                   pstillIcon->create_icon_still(pdialog);
-
-                  pstillIcon->set_size({48 * fWindowScale, 48 * fWindowScale});
-
-                  pstillIcon->set_position({30 * fWindowScale, y_icon});
-
-                  auto strSystemIconUrl = straIconUrl[0];
-
-                  //auto piconApplication = innate_ui_icon(strSystemIconUrl, {48, 48});
-
-                  pstillIcon->set_icon_path(strSystemIconUrl,
-                                            {48 * fWindowScale, 48 * fWindowScale});
-
-               }
-               catch (...)
-               {
-
-
-               }
-
-            }
-
-            y_icon += (48 + 5) * fWindowScale;
-
-            if (straIconUrl.size() >= 2)
-            {
-               try
-               {
-
-                  auto pstillIcon = createø<::innate_ui::still>();
-
-                  pstillIcon->create_icon_still(pdialog);
-
-                  pstillIcon->set_size({32 * fWindowScale, 32 * fWindowScale});
-
-                  pstillIcon->set_position({(30 + 48 - 32) * fWindowScale, y_icon});
-
-                  auto strAmbientIconUrl = straIconUrl[1];
-
-                  pstillIcon->set_icon_path(strAmbientIconUrl,
-                                               {32 * fWindowScale, 32 * fWindowScale});
+                  pstillIcon->set_size({iSize * fWindowScale, iSize * fWindowScale});
+                  pstillIcon->set_position({(30 + 48 - iSize) * fWindowScale, y_icon});
+                  pstillIcon->set_icon_path(strIconUrl, {iSize * fWindowScale, iSize * fWindowScale});
                }
                catch (...)
                {
                }
+               y_icon += (iSize + 5) * fWindowScale;
+               ++iIcon;
             }
-
-            y_icon += (32 + 5) * fWindowScale   ;
-
             for (auto str: stra)
             {
 

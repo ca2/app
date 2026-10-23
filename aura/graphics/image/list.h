@@ -42,8 +42,8 @@ namespace image
       ~image_list() override;
 
 
-      virtual bool create(::i32 cx, ::i32 cy);
-      virtual bool create(::i32 cx, ::i32 cy, ::u32 nFlags, ::i32 nInitial, ::i32 nGrow);
+      virtual bool create(::i32 cx, ::i32 cy, ::draw2d::domain * pdraw2ddomain);
+      virtual bool create(::i32 cx, ::i32 cy, ::draw2d::domain * pdraw2ddomain, ::u32 nFlags, ::i32 nInitial, ::i32 nGrow);
       virtual void create_color_blend(image_list *pimagelistSource, const ::color::color &color,
                                const class ::opacity &opacity);
       virtual void realize(::draw2d::graphics * pdraw2dgraphics) const;

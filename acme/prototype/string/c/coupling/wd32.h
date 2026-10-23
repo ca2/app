@@ -1,0 +1,32 @@
+#pragma once
+
+CLASS_DECL_ACME ::wd32_character * wd32_dup(const ::wd32_character * psz);
+CLASS_DECL_ACME character_count wd32_len(const ::wd32_character * psz);
+CLASS_DECL_ACME character_count wd32_nlen(const ::wd32_character * psz, memsize len);
+CLASS_DECL_ACME ::wd32_character * wd32_cat(::wd32_character * pszDst, const ::wd32_character * psz);
+CLASS_DECL_ACME ::wd32_character * wd32_cpy(::wd32_character * pszDst, const ::wd32_character * psz);
+CLASS_DECL_ACME ::wd32_character * wd32_ncpy(::wd32_character * pszDst, const ::wd32_character * psz, character_count len);
+CLASS_DECL_ACME const ::wd32_character * wd32_chr(const ::wd32_character * psz1, ::wd32_character ch);
+CLASS_DECL_ACME const ::wd32_character * wd32_pbrk(const ::wd32_character * psz, const ::wd32_character * pszCharsToFind);
+CLASS_DECL_ACME ::wd32_character * wd32_tok_r(::wd32_character * psz, const ::wd32_character * sep, ::wd32_character ** state);
+CLASS_DECL_ACME ::wd32_character * wd32_token(::wd32_character * psz, const ::wd32_character * separators);
+CLASS_DECL_ACME const ::wd32_character * wd32_rchr(const ::wd32_character * psz1, ::wd32_character ch);
+CLASS_DECL_ACME ::i32 wd32_cmp(const ::wd32_character * psz1, const ::wd32_character * psz2);
+CLASS_DECL_ACME ::i32 wd32_ncmp(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s);
+CLASS_DECL_ACME const ::wd32_character * wd32_str(const ::wd32_character * psz, const ::wd32_character * pszFind);
+CLASS_DECL_ACME ::wd32_character wd32_tolower(::wd32_character ch);
+CLASS_DECL_ACME ::wd32_character wd32_toupper(::wd32_character ch);
+CLASS_DECL_ACME ::wd32_character * wd32_lwr(::wd32_character * psz);
+CLASS_DECL_ACME ::wd32_character * wd32_lwr_s(::wd32_character * psz, character_count s);
+CLASS_DECL_ACME ::wd32_character * wd32_upr(::wd32_character * psz);
+CLASS_DECL_ACME ::wd32_character * wd32_upr_s(::wd32_character * psz, character_count s);
+CLASS_DECL_ACME const ::wd32_character * wd32_ichr(const ::wd32_character * psz1, ::wd32_character ch);
+CLASS_DECL_ACME ::i32 wd32_icmp(const ::wd32_character * psz1, const ::wd32_character * psz2);
+CLASS_DECL_ACME ::i32 wd32_nicmp(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s);
+CLASS_DECL_ACME const ::wd32_character * wd32_istr(const ::wd32_character * psz, const ::wd32_character * pszFind);
+CLASS_DECL_ACME ::i32 wd32_coll(const ::wd32_character * psz1, const ::wd32_character * psz2);
+CLASS_DECL_ACME ::i32 wd32_ncoll(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s);
+CLASS_DECL_ACME ::i32 wd32_icoll(const ::wd32_character * psz1, const ::wd32_character * psz2);
+CLASS_DECL_ACME ::i32 wd32_nicoll(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s);
+CLASS_DECL_ACME character_count wd32_spn(const ::wd32_character * psz1, const ::wd32_character * psz2);
+CLASS_DECL_ACME character_count wd32_cspn(const ::wd32_character * psz1, const ::wd32_character * psz2);

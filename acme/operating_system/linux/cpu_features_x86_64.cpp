@@ -44,7 +44,12 @@ cpu_features::cpu_features()
       m_bAVX  = false;
    }
 
+auto uMaximumLeaf = __get_cpuid_max(0, nullptr);
+
+if(uMaximumLeaf >= 7)
+{
    // CPUID leaf 7, subleaf 0: AVX2
    __cpuid_count(7, 0, eax, ebx, ecx, edx);
+}
    m_bAVX2 = (ebx & (1u << 5)) != 0; // AVX2
 }

@@ -2,9 +2,14 @@
 // From nano_archive_libarchive by camilo on 2024-06-02 17:28 <3ThomasBorregaardSorensen!!
 #include "platform.h"
 #include "nano_idn_libidn.h"
+#if defined(__REACTOS__)
+#include <idn-free.h>
+#endif
 
 
-#if defined(__ANDROID__)
+#if defined(__REACTOS__)
+#include "idn/idna.h"
+#elif defined(__ANDROID__)
 #include "idn/idna.h"
 #elif defined(__APPLE__)
 #include "idn/idna.h"
@@ -12,7 +17,7 @@
 // apt install libidn11-dev
 // dnf install libidn-devel
 #include <idna.h>
-#elif defined(__BSD__)
+#elif defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 // apt install libidn11-dev
 // dnf install libidn-devel
 #include <idna.h>
@@ -58,7 +63,11 @@ namespace libidn
 
             string strReturn(psz);
 
+#if defined(__REACTOS__)
+            idn_free(psz);
+#else
             free(psz);
+#endif
 
             return strReturn;
 
@@ -99,7 +108,11 @@ namespace libidn
 
             string strReturn(psz);
 
+#if defined(__REACTOS__)
+            idn_free(psz);
+#else
             free(psz);
+#endif
 
             return strReturn;
 

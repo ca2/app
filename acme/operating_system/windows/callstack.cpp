@@ -1,5 +1,6 @@
 // Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSorensen!!
 #include "platform.h"
+#include "acme/operating_system/windows/windows_xp_compat.h"
 #include "acme/prototype/prototype/memory.h"
 #include "acme/platform/_synchronization.h"
 #include "acme/platform/node.h"
@@ -74,6 +75,15 @@
 //::critical_section * ::platform::get()->sym_dbg_help_critical_section() { return &g_criticalsectionSymDbgHelp; }
 //
 
+// Raw traces intentionally avoid DbgHelp and any debug-information translation.
+#ifndef CA2_RAW_STACK_TRACE
+#if defined(__REACTOS__)
+#define CA2_RAW_STACK_TRACE 1
+#else
+#define CA2_RAW_STACK_TRACE 0
+#endif
+#endif
+
 namespace platform
 {
 
@@ -100,13 +110,27 @@ namespace platform
 
          SymSetOptions(SymGetOptions() | SYMOPT_LOAD_LINES);
 
+#if defined(WINDOWS_XP)
+         m_bCallStackInitialized = SymInitialize(process, NULL, TRUE) != FALSE;
+         if (!m_bCallStackInitialized)
+            return;
+#else
          SymInitialize(process, NULL, TRUE);
+#endif
 
       }
       else if(m_bUpdateCallStack)
       {
 
+#if defined(WINDOWS_XP)
+         if (!ca2_xp_refresh_module_list(process))
+         {
+            m_bCallStackInitialized = false;
+            return; // Retry initialization rather than using an invalid session.
+         }
+#else
          SymRefreshModuleList(process);
+#endif
 
       }
 
@@ -124,7 +148,9 @@ namespace platform
 
       frame_count = ::minimum(62, frame_count); // does not support more then 62 frames of stackbacktrace
 
+#if !CA2_RAW_STACK_TRACE
       defer_update_call_stack();
+#endif
 
       frame_count = CaptureStackBackTrace(0, frame_count, stack, NULL);
 
@@ -167,6 +193,41 @@ namespace platform
 
       //auto frames = CaptureStackBackTrace(0, iMaximumFramesToCapture, stack, NULL);
 
+#if CA2_RAW_STACK_TRACE
+      // Keep addresses useful even when no module information is available.
+      strCallstack = "CA2_RAW_STACK_TRACE (untranslated; module offsets are RVAs)\n";
+      const DWORD savedError = GetLastError();
+      const ::i32 first = iSkip > 0 ? ::minimum(iSkip, frame_count) : 0;
+      const ::i32 last = iCount >= 0 ? first + ::minimum(iCount, frame_count - first) : frame_count;
+      for (::i32 i = first; i < last; ++i)
+      {
+         MEMORY_BASIC_INFORMATION region{};
+         HMODULE module = nullptr;
+         char modulePath[32768] = {};
+         if (VirtualQuery(stack[i], &region, sizeof(region)) && region.Type == MEM_IMAGE)
+         {
+            module = static_cast<HMODULE>(region.AllocationBase);
+            const DWORD length = GetModuleFileNameA(module, modulePath, sizeof(modulePath));
+            if (!length || length >= sizeof(modulePath))
+               modulePath[0] = 0;
+         }
+         ::string line;
+         if (module)
+         {
+            line.formatf("#%02d pc=%p base=%p rva=0x%llx module=%s\n",
+               i - first, stack[i], static_cast<void *>(module),
+               static_cast<unsigned long long>(reinterpret_cast<uptr>(stack[i]) - reinterpret_cast<uptr>(module)),
+               modulePath[0] ? modulePath : "<unknown>");
+         }
+         else
+         {
+            line.formatf("#%02d pc=%p module=<unknown>\n", i - first, stack[i]);
+         }
+         strCallstack += line;
+      }
+      SetLastError(savedError);
+      return strCallstack;
+#else
       ::i32 iMaximumNameLength = 1024;
 
       memory memory(sizeof(SYMBOL_INFO) + iMaximumNameLength * sizeof(::i8));
@@ -186,7 +247,7 @@ namespace platform
       for (auto i = 0; i < frame_count; ++i)
       {
 
-         IMAGEHLP_LINE imagehlp_line{ .SizeOfStruct = sizeof(IMAGEHLP_LINE) };
+         IMAGEHLP_LINE64 imagehlp_line{ .SizeOfStruct = sizeof(IMAGEHLP_LINE64) };
 
          DWORD dwDisplacement = 0;
 
@@ -233,6 +294,7 @@ namespace platform
       }
 
       return ::transfer(strCallstack);
+#endif
 
    }
 

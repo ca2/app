@@ -7,6 +7,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/user/user/content.h"
 #include "aura/user/user/scroll_state.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
@@ -105,6 +106,8 @@ namespace user
          {
 
             defer_construct_newø(m_pfontlist);
+            
+            m_pfontlist->set_draw2d_domain(draw2d_domain());
 
             m_pfontlist->m_puserinteraction = this;
 

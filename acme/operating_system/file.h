@@ -4,6 +4,7 @@
 CLASS_DECL_ACME ::i32 file_touch(const ::scoped_string & scopedstr);
 CLASS_DECL_ACME ::i32_bool file_exists_raw(const ::file::path & path1);
 CLASS_DECL_ACME ::string file_as_string(const ::file::path & path);
+CLASS_DECL_ACME ::file::path get_current_directory_path();
 CLASS_DECL_ACME ::file::path get_appconfig_folder_path();
 CLASS_DECL_ACME ::string get_appconfig(const ::scoped_string & scopedstr);
 CLASS_DECL_ACME ::file::path get_home_config_folder_path();

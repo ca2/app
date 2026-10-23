@@ -19,7 +19,7 @@ namespace dynamic_source
 
       g_interlockedcountDynamicSourceSession++;
 
-      ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountDynamicSourceSession.operator ::i64());
+      ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountDynamicSourceSession.operator ::iptr());
 
    }
 

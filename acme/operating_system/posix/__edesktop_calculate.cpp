@@ -72,6 +72,14 @@ namespace windowing
          return ::windowing::e_operating_ambient_lxde;
          
       }
+      else if (strDesktop.case_insensitive_order("mate") == 0)
+      {
+
+         printf_line("calculate_edesktop e_operating_ambient_mate");
+
+         return ::windowing::e_operating_ambient_mate;
+         
+      }
       else if (strDesktop.case_insensitive_begins("lxqt:")
          || strDesktop.case_insensitive_ends(":lxqt")
          || strDesktop.case_insensitive_contains(":lxqt:")

@@ -1643,7 +1643,7 @@ namespace user
    void plain_edit::get_selection_text(string & str)
    {
 
-      get_text(str, m_ptree->m_iSelBeg, m_ptree->m_iSelEnd);
+      get_text(str, static_cast<long long>(m_ptree->m_iSelBeg), static_cast<long long>(m_ptree->m_iSelEnd));
 
    }
 
@@ -9381,7 +9381,7 @@ namespace user
          MacroRecord(allocateø plain_text_file_command());
          MacroEnd();
 
-         informationf("insert tree->iSelBeg=%lld,iSelEnd=%lld", m_ptree->m_iSelBeg, m_ptree->m_iSelEnd);
+         informationf("insert tree->iSelBeg=%lld,iSelEnd=%lld", static_cast<long long>(m_ptree->m_iSelBeg), static_cast<long long>(m_ptree->m_iSelEnd));
          informationf("insert edit file size=%lld", m_ptree->m_peditfile->m_sizeEditFile);
 
       }

@@ -1191,7 +1191,7 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
    }
 
 
-   void draw2d_context::update_image(::i32 image, const void * data)
+   void draw2d_context::update_image(::i32 image, const void * data, bool bTopDown)
    {
 
       if (image <= 0)
@@ -1207,7 +1207,7 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
 
       auto ppixmap = pimage->map();
 
-      ppixmap->copy(pimage->size(), (const image32_t *)data, pimage->m_iScan);
+      ppixmap->copy(pimage->size(), (const image32_t *)data, pimage->m_iScan, bTopDown);
 
    }
 

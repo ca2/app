@@ -502,6 +502,18 @@
     <Filter Include="Header Files\quality">
       <UniqueIdentifier>{91055bda-96bd-4c78-a9ef-5666511f060b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\prototype\string\c\unicode">
+      <UniqueIdentifier>{dbcc7717-d45e-4629-99fd-6980b3f1bb6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\prototype\string\c\unicode">
+      <UniqueIdentifier>{dce7ddba-4b50-4c7e-ae7c-6a7fea6b9ddb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\prototype\string\c\coupling">
+      <UniqueIdentifier>{71fbd601-d4bc-435e-a4c5-a8339096738b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\prototype\string\c\encoding">
+      <UniqueIdentifier>{b2a8fb40-527e-41ef-b3f5-200a55a699fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1455,7 +1467,7 @@
     <ClInclude Include="operating_system\parallelization.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\process.h">
+    <ClInclude Include="operating_system\process_process.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\serial.h">
@@ -1929,25 +1941,13 @@
     <ClInclude Include="prototype\string\encoding_exception.h">
       <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\string\c\ancient\_impl.h">
-      <Filter>Header Files\prototype\string\c\ancient</Filter>
-    </ClInclude>
     <ClInclude Include="prototype\string\c\ancient\ansi.h">
-      <Filter>Header Files\prototype\string\c\ancient</Filter>
-    </ClInclude>
-    <ClInclude Include="prototype\string\c\ancient\ansi_impl.h">
       <Filter>Header Files\prototype\string\c\ancient</Filter>
     </ClInclude>
     <ClInclude Include="prototype\string\c\ancient\wd16.h">
       <Filter>Header Files\prototype\string\c\ancient</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\string\c\ancient\wd16_impl.h">
-      <Filter>Header Files\prototype\string\c\ancient</Filter>
-    </ClInclude>
     <ClInclude Include="prototype\string\c\ancient\wd32.h">
-      <Filter>Header Files\prototype\string\c\ancient</Filter>
-    </ClInclude>
-    <ClInclude Include="prototype\string\c\ancient\wd32_impl.h">
       <Filter>Header Files\prototype\string\c\ancient</Filter>
     </ClInclude>
     <ClInclude Include="prototype\string\c\extension\_impl.h">
@@ -1956,19 +1956,10 @@
     <ClInclude Include="prototype\string\c\extension\ansi.h">
       <Filter>Header Files\prototype\string\c\extension</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\string\c\extension\ansi_impl.h">
-      <Filter>Header Files\prototype\string\c\extension</Filter>
-    </ClInclude>
     <ClInclude Include="prototype\string\c\extension\wd16.h">
       <Filter>Header Files\prototype\string\c\extension</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\string\c\extension\wd16_impl.h">
-      <Filter>Header Files\prototype\string\c\extension</Filter>
-    </ClInclude>
     <ClInclude Include="prototype\string\c\extension\wd32.h">
-      <Filter>Header Files\prototype\string\c\extension</Filter>
-    </ClInclude>
-    <ClInclude Include="prototype\string\c\extension\wd32_impl.h">
       <Filter>Header Files\prototype\string\c\extension</Filter>
     </ClInclude>
     <ClInclude Include="prototype\string\c\_.h">
@@ -2004,17 +1995,8 @@
     <ClInclude Include="prototype\string\sz\_.h">
       <Filter>Header Files\prototype\string\sz</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\string\c\ancient\_.h">
-      <Filter>Header Files\prototype\string\c\ancient</Filter>
-    </ClInclude>
     <ClInclude Include="prototype\string\c\extension\_.h">
       <Filter>Header Files\prototype\string\c\extension</Filter>
-    </ClInclude>
-    <ClInclude Include="prototype\string\c\unicode.h">
-      <Filter>Header Files\prototype\string\c</Filter>
-    </ClInclude>
-    <ClInclude Include="prototype\string\c\unicode_impl.h">
-      <Filter>Header Files\prototype\string\c</Filter>
     </ClInclude>
     <ClInclude Include="platform\__string.h">
       <Filter>Header Files\platform</Filter>
@@ -4500,6 +4482,63 @@
     <ClInclude Include="graphics\image\aaa_lock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\domain.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\domain_consumer.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\unicode\_.h">
+      <Filter>Header Files\prototype\string\c\unicode</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\coupling\wide_impl.h">
+      <Filter>Header Files\prototype\string\c\coupling</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\coupling\wide.h">
+      <Filter>Header Files\prototype\string\c\coupling</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\coupling\wd32_impl.h">
+      <Filter>Header Files\prototype\string\c\coupling</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\coupling\wd32.h">
+      <Filter>Header Files\prototype\string\c\coupling</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\coupling\wd16_impl.h">
+      <Filter>Header Files\prototype\string\c\coupling</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\coupling\wd16.h">
+      <Filter>Header Files\prototype\string\c\coupling</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\coupling\ansi_impl.h">
+      <Filter>Header Files\prototype\string\c\coupling</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\coupling\ansi.h">
+      <Filter>Header Files\prototype\string\c\coupling</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\ancient\_character_string.h">
+      <Filter>Header Files\prototype\string\c\ancient</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\ancient\wide.h">
+      <Filter>Header Files\prototype\string\c\ancient</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\ancient\_.h">
+      <Filter>Header Files\prototype\string\c\ancient</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\extension\wide.h">
+      <Filter>Header Files\prototype\string\c\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\sz\wide.h">
+      <Filter>Header Files\prototype\string\sz</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\strdup.h">
+      <Filter>Header Files\prototype\string\c</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\encoding\_.h">
+      <Filter>Header Files\prototype\string\c\encoding</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\c\encoding\_impl.h">
+      <Filter>Header Files\prototype\string\c\encoding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -4658,13 +4697,13 @@
     <ClCompile Include="prototype\prototype\_.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\string\unicode32.cpp">
+    <ClCompile Include="prototype\string\unicode_wd32.cpp">
       <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\string\unicode16_32.cpp">
+    <ClCompile Include="prototype\string\unicode_wd16_wd32.cpp">
       <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\string\unicode16.cpp">
+    <ClCompile Include="prototype\string\unicode_wd16.cpp">
       <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
     <ClCompile Include="prototype\string\unicode.cpp">
@@ -5291,7 +5330,7 @@
     <ClCompile Include="operating_system\exit_status.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\process.cpp">
+    <ClCompile Include="operating_system\process_process.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\last_error_exception.cpp">
@@ -5450,7 +5489,7 @@
     <ClCompile Include="operating_system\summary.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows_common\process.cpp">
+    <ClCompile Include="operating_system\windows_common\process_process.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows\user.cpp">
@@ -5480,7 +5519,7 @@
     <ClCompile Include="prototype\geometry2d\size.cpp">
       <Filter>Source Files\prototype\geometry2d</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\process.cpp">
+    <ClCompile Include="operating_system\windows\process_process.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\print_formatting.cpp">
@@ -5521,30 +5560,6 @@
     </ClCompile>
     <ClCompile Include="prototype\string\sz\wd32_impl.cpp">
       <Filter>Source Files\prototype\string\sz</Filter>
-    </ClCompile>
-    <ClCompile Include="prototype\string\c\coupling_impl.cpp">
-      <Filter>Source Files\prototype\string\c</Filter>
-    </ClCompile>
-    <ClCompile Include="prototype\string\c\unicode_impl.cpp">
-      <Filter>Source Files\prototype\string\c</Filter>
-    </ClCompile>
-    <ClCompile Include="prototype\string\c\ancient\ansi_impl.cpp">
-      <Filter>Source Files\prototype\string\c\ancient</Filter>
-    </ClCompile>
-    <ClCompile Include="prototype\string\c\ancient\wd16_impl.cpp">
-      <Filter>Source Files\prototype\string\c\ancient</Filter>
-    </ClCompile>
-    <ClCompile Include="prototype\string\c\ancient\wd32_impl.cpp">
-      <Filter>Source Files\prototype\string\c\ancient</Filter>
-    </ClCompile>
-    <ClCompile Include="prototype\string\c\extension\ansi_impl.cpp">
-      <Filter>Source Files\prototype\string\c\extension</Filter>
-    </ClCompile>
-    <ClCompile Include="prototype\string\c\extension\wd16_impl.cpp">
-      <Filter>Source Files\prototype\string\c\extension</Filter>
-    </ClCompile>
-    <ClCompile Include="prototype\string\c\extension\wd32_impl.cpp">
-      <Filter>Source Files\prototype\string\c\extension</Filter>
     </ClCompile>
     <ClCompile Include="prototype\string\_str_impl.cpp">
       <Filter>Source Files\prototype\string</Filter>
@@ -6128,9 +6143,6 @@
     <ClCompile Include="platform\http_acme.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\string\c\strdup.cpp">
-      <Filter>Source Files\prototype\string\c</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\frame_interaction.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -6490,6 +6502,39 @@
     </ClCompile>
     <ClCompile Include="graphics\image\color_indexes.cpp">
       <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\domain.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\domain_consumer.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\string\c\unicode\unicode_impl.cpp">
+      <Filter>Source Files\prototype\string\c\unicode</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\string\c\strdup.cpp">
+      <Filter>Source Files\prototype\string\c</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\string\c\extension\ansi.cpp">
+      <Filter>Source Files\prototype\string\c\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\string\c\extension\wd16.cpp">
+      <Filter>Source Files\prototype\string\c\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\string\c\extension\wd32.cpp">
+      <Filter>Source Files\prototype\string\c\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\string\c\extension\wide.cpp">
+      <Filter>Source Files\prototype\string\c\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\string\sz\wide.cpp">
+      <Filter>Source Files\prototype\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\string\sz\wide_impl.cpp">
+      <Filter>Source Files\prototype\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\call_stack.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

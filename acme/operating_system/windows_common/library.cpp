@@ -24,7 +24,7 @@ namespace windows
       if (hmodule)
       {
 
-         return ::GetProcAddress(hmodule, scopedstrSymbolName);
+         return (void *) ::GetProcAddress(hmodule, scopedstrSymbolName);
 
       }
 

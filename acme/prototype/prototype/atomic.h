@@ -202,7 +202,19 @@ inline ::i64 atomic_add64(::i64* pi, ::i64 i)
 
 #ifdef WINDOWS
 
-   #define atomic_add32(pi, i) _interlockedadd((long *)(pi),(long) (i))
+inline ::i32 atomic_add32(volatile ::i32* pi, ::i32 i)
+{
+
+#if defined(__MINGW32__) && defined(__i386__)
+   // Preserve MinGW32's native add-and-fetch intrinsic.
+   return (::i32)_InterlockedAdd((volatile long*)pi, (long)i);
+#else
+   // Exchange-add returns the old value; unsigned arithmetic preserves 32-bit wraparound.
+   auto previous = _InterlockedExchangeAdd((volatile long*)pi, (long)i);
+   return (::i32)((unsigned long)previous + (unsigned long)i);
+#endif
+
+}
 
 #else
 
@@ -252,7 +264,13 @@ inline ::i32 atomic_add32(::i32* pi, ::i32 i)
 
 #ifdef WINDOWS
 
-#define   atomic_subtract32(pi, i) _interlockedadd((long*)(pi), (long)(-(i)))
+inline ::i32 atomic_subtract32(volatile ::i32* pi, ::i32 i)
+{
+
+   // Negate as unsigned so subtracting the minimum signed value is well-defined.
+   return atomic_add32(pi, (::i32)(0UL - (unsigned long)i));
+
+}
 
 #else
 

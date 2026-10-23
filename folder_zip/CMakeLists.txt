@@ -44,7 +44,7 @@ list(APPEND library_references acme)
 list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
-if(${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+if(${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
     list(APPEND library_references z)
 else()
     list(APPEND library_references zlib)
@@ -61,12 +61,34 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 set_target_properties(static_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 if(${WIN32})
-    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
-    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+
+
+   if(MSVC)
+
+
+      target_compile_options(${PROJECT_NAME} PRIVATE    "/MD$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/SUBSYSTEM:WINDOWS")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/bigobj")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   else()
+
+
+      target_link_options(${PROJECT_NAME} PRIVATE "-mwindows")
+      target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   endif()
+
+
+
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} )
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
 
     target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
@@ -107,25 +129,31 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
-target_compile_definitions(static_${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE _${PROJECT_NAME}_project)
 
 
 if(BUILD_TESTING)
 
     add_executable(folder_zip_system_limit_test test/system_zip_session_limit.cpp)
-    target_link_libraries(folder_zip_system_limit_test PRIVATE static_acme)
+    target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
     add_test(NAME folder_zip_system_limit_test COMMAND folder_zip_system_limit_test)
 
     add_executable(resource_folder_pool_test test/resource_folder_pool.cpp)
-    target_link_libraries(resource_folder_pool_test PRIVATE static_acme)
+    target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
     add_test(NAME resource_folder_pool_test COMMAND resource_folder_pool_test)
 
     add_executable(resource_file_context_test test/resource_file_context.cpp)
-    target_link_libraries(resource_file_context_test PRIVATE static_acme)
+    target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
     add_test(NAME resource_file_context_test COMMAND resource_file_context_test)
 
     add_executable(folder_zip_session_concurrency_test test/concurrent_folder_reads.cpp)
-    target_link_libraries(folder_zip_session_concurrency_test PRIVATE static_folder_zip static_acme zlib)
+    target_link_libraries(${PROJECT_NAME} PRIVATE static_folder_zip static_acme zlib)
     add_test(NAME folder_zip_session_concurrency_test COMMAND folder_zip_session_concurrency_test)
 
+endif()
+
+if(__REACTOS__ AND TARGET static_zlib)
+    target_include_directories(static_${PROJECT_NAME} BEFORE PRIVATE
+        "$<TARGET_PROPERTY:static_zlib,INTERFACE_INCLUDE_DIRECTORIES>")
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE static_zlib static_acme)
 endif()

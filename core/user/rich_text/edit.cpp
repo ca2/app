@@ -662,7 +662,7 @@ namespace user
                      //if (pbox->m_size.cy <= 0)
                      {
 
-                        pbox->m_sizeBox.cy = pformat->get_font(pdraw2dgraphics)->get_height(pdraw2dgraphics);
+                        pbox->m_sizeBox.cy = pformat->get_font(pdraw2dgraphics)->text_metric(pdraw2dgraphics).get_line_height();
 
                      }
 
@@ -1159,7 +1159,7 @@ namespace user
 
             constructø(pimage);
 
-            pimage->create_as_descriptor(m_ppictureimpl->m_rectangleDrawing.size());
+            pimage->create_as_descriptor(m_ppictureimpl->m_rectangleDrawing.size(), draw2d_domain());
 
             ::i32_size sz = m_ppictureimpl->m_rectangleDrawing.size();
 
@@ -1224,7 +1224,7 @@ namespace user
 
                }
 
-               auto dDescent = pbox->m_pspan->m_pformat->m_pwritetextfont->get_descent(pdraw2dgraphics);
+               auto dDescent = pbox->m_pspan->m_pformat->m_pwritetextfont->text_metric(pdraw2dgraphics).m_dDescent;
 
                pdraw2dgraphics->fill_rectangle(::f64_rectangle(r,
                   pbox->m_rectangleBox.top + 1,

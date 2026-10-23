@@ -22,6 +22,7 @@ namespace berg
       ::map_base < ::enum_simple_dialog_style, ::write_text::font_pointer > m_mapFontThomasBS_;
       ::image::image_pointer m_pimageOperatingSystem;
       ::image::image_pointer m_pimageOperatingAmbient;
+      ::image::image_pointer m_pimageOperatingSystemKernel;
       //string m_strFont1;
       ::i32 m_iSequence;
 

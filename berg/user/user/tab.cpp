@@ -41,6 +41,8 @@ namespace user
 
    tab::tab()
    {
+      m_pAutoHide = create_newø<::user::auto_hide>();
+      m_pAutoHide->attach(this);
 
       m_bDefaultClickHandling = true;
 
@@ -76,6 +78,11 @@ namespace user
 
    tab::~tab()
    {
+      if (m_pAutoHide)
+      {
+         m_pAutoHide->erase_auto_hide_interaction(this);
+         if (m_pAutoHide->m_powner == this) m_pAutoHide->detach();
+      }
 
    }
 
@@ -121,6 +128,12 @@ namespace user
 
    void tab::destroy()
    {
+      if (m_pAutoHide)
+      {
+         m_pAutoHide->erase_auto_hide_interaction(this);
+         if (m_pAutoHide->m_powner == this) m_pAutoHide->detach();
+         m_pAutoHide.release();
+      }
 
       m_pdata.defer_destroy_and_release();
 
@@ -815,7 +828,7 @@ namespace user
 
       }
 
-      auto_hide_on_message_mouse_move(pmessage);
+      m_pAutoHide->auto_hide_on_message_mouse_move(pmessage);
 
    }
 
@@ -823,11 +836,25 @@ namespace user
    void tab::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      m_pAutoHide->auto_hide_on_message_mouse_leave(pmessage);
       //::pointer<::user::message>pusermessage(pmessage);
 
    }
 
+
+   void tab::set_auto_hide_controller(::user::auto_hide * pcontroller)
+   {
+      if (!pcontroller || m_pAutoHide == pcontroller) return;
+      m_pAutoHide->erase_auto_hide_interaction(this);
+      if (m_pAutoHide->m_powner == this) m_pAutoHide->detach();
+      m_pAutoHide = pcontroller;
+      m_pAutoHide->add_auto_hide_interaction(this, auto_hide_threshold_height());
+   }
+
+   bool tab::should_draw()
+   {
+      return ::user::interaction::should_draw() && m_pAutoHide->should_draw();
+   }
 
    ::i32 tab::auto_hide_threshold_height()
    {
@@ -1576,7 +1603,7 @@ namespace user
 
       top_level()->add_handler(this);
 
-      auto_hide_on_message_create(pmessage);
+      m_pAutoHide->initialize(this);
 
       if (is_sandboxed())
       {
@@ -1601,7 +1628,7 @@ namespace user
       if (psystem->has_property("no_tabs"))
       {
 
-         m_bForceHiddenControl = false;
+         m_pAutoHide->m_bForceHiddenControl = false;
 
       }
 
@@ -1620,7 +1647,7 @@ namespace user
 
       construct_newø(get_data()->m_pimagelist);
 
-      get_data()->m_pimagelist->create(16, 16, 0, 0, 16);
+      get_data()->m_pimagelist->create(16, 16, draw2d_domain(), 0, 0, 16);
 
       //auto pdraw2d = psystem->draw2d();
 
@@ -2761,7 +2788,19 @@ namespace user
 
       ::user::interaction::handle(ptopic, phandlercontext);
 
-      ::user::auto_hide::handle(ptopic, phandlercontext);
+      if (ptopic->id() == "auto_hide_visibility")
+      {
+         bool bVisible = m_pAutoHide->m_bEffectiveVisibleControl;
+         if (bVisible != m_bAutoHideLastVisible)
+         {
+            m_bAutoHideLastVisible = bVisible;
+            set_need_layout();
+            set_need_redraw();
+            post_redraw();
+         }
+         return;
+      }
+      if (m_pAutoHide->m_powner == this) m_pAutoHide->handle(ptopic, phandlercontext);
 
       if (ptopic->id() == id_get_topic_impact_id)
       {
@@ -2823,7 +2862,7 @@ namespace user
 
       ::user::interaction::operator()(ptimer);
 
-      ::user::auto_hide::operator()(ptimer);
+      if (m_pAutoHide->m_powner == this) m_pAutoHide->operator()(ptimer);
 
       if (ptimer->m_etimer == e_timer_drag_start)
       {

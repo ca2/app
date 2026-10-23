@@ -273,7 +273,7 @@ namespace std
 
 
    template < typename T >
-   ALIENATED_ANDROID_ANARCHY tuple_size< ::single <T > > : integral_constant<size_t, 1> {};
+   ALIENATED_ANDROID_ANARCHY tuple_size< ::single_element <T > > : integral_constant<size_t, 1> {};
 
 
 } // namespace std

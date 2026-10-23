@@ -2051,7 +2051,7 @@ namespace gpu_opengl
    //}
 
 
-   void texture::set_pixels(bool bSync, const ::i32_rectangle & rectangle, const void * data)
+   void texture::set_pixels(bool bSync, const ::i32_rectangle & rectangle, const void * data, bool bTopDown)
    {
 
       if (::is_null(data))
@@ -2064,27 +2064,31 @@ namespace gpu_opengl
       glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
       ::opengl::check_error("");
 
-      // ::i32 w = rectangle.width();
-      // ::i32 h = rectangle.height();
-      //
-      // ::memory memory;
-      //
-      // memory.set_size(w*h*4);
-      //
-      // auto src = (char_pointer )data);
-      // auto rgba = (char_pointer ) memory.data();
-      //
-      // for (::i32 y = 0; y < h; ++y)
-      // {
-      //    for (::i32 x = 0; x < w; ++x)
-      //    {
-      //       ::u8 a = bm->buffer[y * bm->pitch + x];
-      //       rgba[(y*w + x)*4 + 0] = 255;
-      //       rgba[(y*w + x)*4 + 1] = 255;
-      //       rgba[(y*w + x)*4 + 2] = 255;
-      //       rgba[(y*w + x)*4 + 3] = a;
-      //    }
-      // }
+      if (bTopDown)
+      {
+         // ::i32 w = rectangle.width();
+         // ::i32 h = rectangle.height();
+         //
+         // ::memory memory;
+         //
+         // memory.set_size(w*h*4);
+         //
+         // auto src = (char_pointer )data);
+         // auto rgba = (char_pointer ) memory.data();
+         //
+         // for (::i32 y = 0; y < h; ++y)
+         // {
+         //    for (::i32 x = 0; x < w; ++x)
+         //    {
+         //       ::u8 a = bm->buffer[y * bm->pitch + x];
+         //       rgba[(y*w + x)*4 + 0] = 255;
+         //       rgba[(y*w + x)*4 + 1] = 255;
+         //       rgba[(y*w + x)*4 + 2] = 255;
+         //       rgba[(y*w + x)*4 + 3] = a;
+         //    }
+         // }
+
+      }
 
       glBindTexture(m_gluType, m_gluTextureID);
       ::opengl::check_error("");

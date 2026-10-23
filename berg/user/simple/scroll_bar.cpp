@@ -2022,7 +2022,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pdraw2d
       if (size.has_area())
       {
 
-         m_pimageDots->create_as_descriptor(size);
+         m_pimageDots->create_as_descriptor(size, draw2d_domain());
 
       }
 

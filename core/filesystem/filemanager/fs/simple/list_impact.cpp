@@ -86,7 +86,7 @@ namespace filemanager
 
             m_pimagelist = create_newø< ::image::image_list>();
 
-            m_pimagelist->create(16, 16, 0, 0, 0);
+            m_pimagelist->create(16, 16, draw2d_domain(), 0, 0, 0);
 
 #ifdef WINDOWS
 

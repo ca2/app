@@ -42,6 +42,7 @@ namespace gpu
       ::pointer < ::gpu::shader >               m_pshaderBlendSequence2WithUniformColor;
       ::pointer < ::gpu::shader >               m_pshaderSourceCircle;
       ::pointer < ::gpu::shader >               m_pshaderBlendCircle;
+      ::pointer < ::gpu::shader >               m_pshaderBrushFill[2][2];
       ::pointer < ::gpu::shader >               m_pshaderSourceImage;
       ::pointer < ::gpu::shader >               m_pshaderBlendImage;
       map_base < ::draw2d::enum_model, ::pool <::gpu::model_buffer > >   m_mapModelBufferPool;
@@ -78,6 +79,11 @@ namespace gpu
       void start_frame() override;
       void end_frame() override;
 
+
+      //::draw2d::frame * draw2d_frame() override;
+
+      //void initialize_draw2d_frame(::user::interaction * puserinteractionTopic) override;
+     
 
       ::gpu::context * gpu_context() override;
       virtual ::gpu::texture * _gpu_target_texture();
@@ -291,6 +297,24 @@ namespace gpu
 
 
       void draw_ellipse(const ::f64_rectangle & rectangleParam) override;
+      using ::draw2d::graphics::fill_ellipse;
+      using ::draw2d::graphics::fill_polygon;
+      using ::draw2d::graphics::fill_rectangle;
+      void fill_ellipse(const ::f64_rectangle & rectangle) override;
+      void fill_polygon(const ::f64_point * points, ::collection::count count) override;
+      void fill_rectangle(const ::f64_rectangle & rectangle, ::draw2d::brush * pbrush) override;
+
+      using ::draw2d::graphics::fill;
+      void fill(::draw2d::path * ppath) override;
+      void fill(::draw2d::path * ppath, ::draw2d::brush * pbrush) override;
+
+      // Tessellators for paths/other shapes can share the complete brush pipeline.
+      // Coordinates are untransformed draw2d user coordinates, three per triangle.
+      virtual void fill_brush_triangles(const ::f64_point * points, ::collection::count count,
+         ::draw2d::brush * pbrush);
+      virtual void _fill_brush_triangles(const ::f64_point * points, ::collection::count count,
+         ::draw2d::brush * pbrush, const ::f64_rectangle * pellipse);
+      virtual ::gpu::shader * brush_fill_shader(bool bPattern);
 
       using ::draw2d::graphics::line;
       void line(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::draw2d::pen* pdraw2dpen) override;

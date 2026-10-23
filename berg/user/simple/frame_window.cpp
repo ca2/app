@@ -17,6 +17,7 @@
 #include "apex/platform/savings.h"
 #include "apex/platform/system.h"
 #include "acme/platform/application_menu.h"
+#include "acme/platform/scoped_restore.h"
 #include "acme/user/user/activation_token.h"
 #include "aqua/xml/document.h"
 #include "aura/user/user/interaction_array.h"
@@ -211,6 +212,10 @@ void simple_frame_window::enable_default_notification_icon(bool bEnableDefaultNo
 
 void simple_frame_window::on_update_notify_icon_menu(::application_menu *pmenu)
 {
+   if (!pmenu || m_bBuildingNotifyMenu) return;
+   scoped_restore_struct<bool> building(&m_bBuildingNotifyMenu, true);
+   pmenu->erase_all();
+   pmenu->m_iCurrentLayoutItemIndex = 0;
 
    on_update_notify_icon_menu_header(pmenu);
 
@@ -1151,7 +1156,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    //#if !defined(WINDOWS)
 
-      //defer_set_icon();
+      if (m_piconNotify && window()) window()->set_icon(m_piconNotify);
 
    //#endif
 
@@ -1270,6 +1275,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
 
    if (pshow->m_bShow)
    {
+      if (m_piconNotify && window()) window()->set_icon(m_piconNotify);
 
       //informationf("simple_frame_window::on_message_show_window true : " + ::platform::type(this).name());
 
@@ -2995,7 +3001,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphic
 
          if (rectangleX.size() != m_pimageBk->size())
          {
-            m_pimageBk->create_as_descriptor(rectangleX.size());
+            m_pimageBk->create_as_descriptor(rectangleX.size(), draw2d_domain());
 
             {
                auto pdraw2dgraphicsImageBk = m_pimageBk->acquire_graphics();
@@ -3006,7 +3012,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphic
                //m_fastblur.initialize(rectangleX.size(),2);
             }
 
-            m_pimageBlur->create_as_descriptor(rectangleX.size());
+            m_pimageBlur->create_as_descriptor(rectangleX.size(), draw2d_domain());
 
          }
 
@@ -3214,6 +3220,7 @@ void simple_frame_window::defer_create_notification_icon()
 
 
                m_piconNotify->set_app_tray_icon(get_app()->m_strAppId);
+               if (window()) window()->set_icon(m_piconNotify);
 
                }
                catch(...)
@@ -4607,6 +4614,7 @@ void simple_frame_window::on_select_user_style()
 
 void simple_frame_window::call_notification_area_action(const ::atom & atom, ::user::activation_token * puseractivationtoken)
 {
+   information() << "Notification area command received: " << atom.as_string();
 
    auto puseractivationtokenHold = as_pointer(puseractivationtoken);
 

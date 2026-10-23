@@ -8,6 +8,7 @@ class CLASS_DECL_BERG simple_frame_window :
    virtual public ::experience::frame_window
 {
 public:
+   bool m_bBuildingNotifyMenu = false;
 
 
    //bool                                            m_bDefaultNotifyIcon2 : 1;

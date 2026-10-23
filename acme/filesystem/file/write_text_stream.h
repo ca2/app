@@ -6,7 +6,7 @@
 
 #include "acme/filesystem/file/print_formatting.h"
 #include "acme/prototype/prototype/pointer.h"
-#include "acme/prototype/string/c/encoding.h"
+#include "acme/prototype/string/c/encoding/_.h"
 
 
 struct CLASS_DECL_ACME write_text_stream_struct

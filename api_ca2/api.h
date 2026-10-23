@@ -27,6 +27,8 @@ namespace api_ca2
       string                           m_strRedirectUri;
       string                           m_strScriptNotifyOnPreLoginScreen;
       class ::time                     m_timeLastNotifyOnPreLoginScreen;
+      ::u64                            m_uAuthenticationAttempt;
+      class ::time                     m_timeAuthenticationStarted;
       string                           m_strAppLogin;
       ::pointer < ::hyperlink >        m_phyperlinkPreLoginScreen;
 
@@ -36,11 +38,13 @@ namespace api_ca2
 
 
       string get_name_for_profile() override;
+      void load_configuration() override;
       
 
       //void api_login(const ::scoped_string & scopedstrConfig, const ::scoped_string & scopedstrProfile) override;
 
       void api_login() override;
+      void ensure_authenticated() override;
 
 
       virtual bool user_seems_to_be_on_pre_login_screen() const;

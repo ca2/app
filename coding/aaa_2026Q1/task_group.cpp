@@ -607,7 +607,7 @@ namespace coding
 
          m_straLine3.append_formatf(
             "%lld Succeeded and %lld Failed to Build!",
-            ok_count(), nok_count());
+            static_cast<long long>(ok_count()), static_cast<long long>(nok_count()));
 
       }
 

@@ -236,7 +236,7 @@ namespace user
 
                iMaximumNormal = ::maximum(iMaximumNormal, iNormalDimension);
 
-               auto dAscent = pstyle->get_font(puserinteraction, puserinteraction->m_eelementMain)->get_ascent(pdraw2dgraphics);
+               auto dAscent = pstyle->get_font(puserinteraction, puserinteraction->m_eelementMain)->text_metric(pdraw2dgraphics).m_dAscent;
 
                dMaximumAscent = ::maximum(dMaximumAscent, dAscent);
 
@@ -296,7 +296,7 @@ namespace user
                   auto pwritetextfont = pstyle->get_font(puserinteraction,
                      puserinteraction->m_eelementMain);
 
-                  auto dAscent = pwritetextfont->get_ascent(pdraw2dgraphics);
+                  auto dAscent = pwritetextfont->text_metric(pdraw2dgraphics).m_dAscent;
 
                   point.set_orthogonal_dimension(m_eorientation,
                      (::i32) (dMaximumAscent - dAscent));

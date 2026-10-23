@@ -21,9 +21,34 @@ add_library(static_${PROJECT_NAME}_library STATIC ${library_source})
 
 
 if(${WIN32})
-    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:CONSOLE")
+
+
+
+
+
+
+   if(MSVC)
+
+
+      target_compile_options(${PROJECT_NAME} PRIVATE    "/MD$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/SUBSYSTEM:WINDOWS")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/bigobj")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   else()
+
+
+      target_link_options(${PROJECT_NAME} PRIVATE "-mwindows")
+      target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   endif()
+
+
+
 endif ()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE CUBE)
@@ -43,29 +68,29 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 target_include_directories(static_${PROJECT_NAME}_library PRIVATE ${library_include_directories})
 
-#target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
+#target_link_options(${PROJECT_NAME} PRIVATE ${LINK_STATIC_OPTION} -static-libgcc -static-libstdc++)
 
 if(${LINUX})
-   target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
+   target_link_options(${PROJECT_NAME} PRIVATE ${LINK_STATIC_OPTION} -static-libgcc -static-libstdc++)
 elseif(${FREEBSD})
-	target_link_options(${PROJECT_NAME} PRIVATE -static)
+	target_link_options(${PROJECT_NAME} PRIVATE ${LINK_STATIC_OPTION})
 	target_link_libraries(${PROJECT_NAME} PRIVATE procstat kvm util)
 elseif(${OPENBSD})
-   target_link_options(${PROJECT_NAME} PRIVATE -static)
+   target_link_options(${PROJECT_NAME} PRIVATE ${LINK_STATIC_OPTION})
 elseif(${NETBSD})
-   target_link_options(${PROJECT_NAME} PRIVATE -static)
+   target_link_options(${PROJECT_NAME} PRIVATE ${LINK_STATIC_OPTION})
 endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
 
 if(${LINUX})
-   target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
+   target_link_options(${PROJECT_NAME} PRIVATE ${LINK_STATIC_OPTION} -static-libgcc -static-libstdc++)
 elseif(${FREEBSD})
    target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_posix)
    target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_darwin)
    target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_freebsd)
 elseif(${OPENBSD})
-   target_link_options(${PROJECT_NAME} PRIVATE -static)
+   target_link_options(${PROJECT_NAME} PRIVATE ${LINK_STATIC_OPTION})
 elseif(${WIN32})
    target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_windows_common)
    target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_windows)
@@ -101,14 +126,7 @@ endif()
 
 message(STATUS "Output of LAUNCH_EXECUTABLE target custom_command dependency is \"${LAUNCH_EXECUTABLE}\"")
 
-add_custom_command(
-    OUTPUT ${LAUNCH_EXECUTABLE}
-    COMMAND echo "Copying from \"$<TARGET_FILE:${PROJECT_NAME}>\" to \"${LAUNCH_EXECUTABLE}\""
-    COMMAND cp $<TARGET_FILE:${PROJECT_NAME}> ${LAUNCH_EXECUTABLE}
-    DEPENDS ${PROJECT_NAME}
-)
-
-add_custom_target(deploy_${PROJECT_NAME} DEPENDS ${LAUNCH_EXECUTABLE})
+ca2_add_up_to_date_copy(deploy_${PROJECT_NAME} ${PROJECT_NAME} "${LAUNCH_EXECUTABLE}")
 
 
 

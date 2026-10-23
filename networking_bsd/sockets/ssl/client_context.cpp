@@ -82,8 +82,25 @@ namespace sockets_bsd
    {
 
       free_ssl_client_context();
+      
+      const SSL_METHOD *meth = meth_in;
 
-      const SSL_METHOD *meth = meth_in != nullptr ? meth_in : TLS_client_method();
+if(::is_null(meth))
+{
+
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+
+meth = TLS_client_method();
+
+#else
+
+meth = SSLv23_client_method();
+
+#endif
+
+}
+      
+//       != nullptr ? meth_in : TLS_client_method();
 
       m_psslcontext = SSL_CTX_new(meth);
 

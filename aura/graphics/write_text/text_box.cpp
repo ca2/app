@@ -81,7 +81,7 @@ namespace write_text
 
       }
 
-      m_pimage->create_as_descriptor(m_size);
+      m_pimage->create_as_descriptor(m_size, plist->draw2d_domain());
 
       m_bOk = false;
 

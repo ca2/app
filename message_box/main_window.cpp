@@ -44,7 +44,8 @@ namespace app_message_box
    void main_window::on_message_create(::message::message * pmessage)
    {
 
-      //::app_app::main_window::on_create_user_interaction();
+      // Preserve inherited main-window and control-box initialization.
+      pmessage->previous();
 
       constructø(m_pbuttonShowMessageBox);
 

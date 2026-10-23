@@ -6,6 +6,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 //#include "aura/graphics/draw2d/draw_scope.h"
 #include "aura/graphics/draw2d/domain.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
@@ -60,15 +61,15 @@ namespace image
    }
 
 
-   bool image_list::create(::i32 cx, ::i32 cy)
+   bool image_list::create(::i32 cx, ::i32 cy, ::draw2d::domain * pdraw2ddomain)
    {
 
-      return create(cx, cy, 0, 0, 0);
+      return create(cx, cy, pdraw2ddomain, 0, 0, 0);
 
    }
 
 
-   bool image_list::create(::i32 cx, ::i32 cy, ::u32 nFlags, ::i32 nInitial, ::i32 nGrow)
+   bool image_list::create(::i32 cx, ::i32 cy, ::draw2d::domain * pdraw2domain, ::u32 nFlags, ::i32 nInitial, ::i32 nGrow)
    {
 
       __UNREFERENCED_PARAMETER(nFlags);
@@ -95,16 +96,22 @@ namespace image
       m_size.cx = cx;
       m_size.cy = cy;
 
-      system()->draw2d();
+      auto pdraw2d = system()->draw2d();
+      if (!pdraw2domain)
+      {
+
+         pdraw2domain = pdraw2d->main_draw2d_domain();
+
+      }
 
       defer_constructø(m_pimage);
-
-      m_pimage->m_pdraw2ddomain = draw2d()->main_draw2d_domain();
+      
+      m_pimage->set_draw2d_domain(pdraw2domain);
 
       if (m_iSize > 0)
       {
 
-         m_pimage->create_as_descriptor(::i32_size(m_size.cx * m_iSize, m_size.cy));
+         m_pimage->create_as_descriptor(::i32_size(m_size.cx * m_iSize, m_size.cy), pdraw2domain);
 
       }
 
@@ -599,6 +606,9 @@ namespace image
       }
       catch (...)
       {
+
+         error() << "image_list::set: failed to render image " << iItem;
+         return -1;
 
       }
 

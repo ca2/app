@@ -10,7 +10,19 @@
 #include "acme/filesystem/filesystem/path_system.h"
 #include "acme/_operating_system.h"
 #include <dlfcn.h>
+#if defined(__HAIKU__)
+#include <OS.h>
+#include <image.h>
+#else
 #include <link.h>
+#endif
+
+// Haiku supports dlopen but does not expose RTLD_NODELETE.
+#if defined(__HAIKU__)
+constexpr int ca2_dl_nodelete = 0;
+#else
+constexpr int ca2_dl_nodelete = RTLD_NODELETE;
+#endif
 #include <errno.h>
 #include <string.h>
 
@@ -79,11 +91,41 @@ public:
    void iterate()
    {
 
+#if defined(__HAIKU__)
+      int32 cookie = 0;
+      image_info info{};
+      while (get_next_image_info(B_CURRENT_TEAM, &cookie, &info) == B_OK)
+      {
+         auto path = ::file::path(info.name);
+         if (m_plibrary)
+         {
+            auto handle = (::library_t *)dlopen(info.name, RTLD_NOLOAD | RTLD_LAZY);
+            if (!handle) continue;
+            bool matches = handle == m_plibrary;
+            dlclose(handle);
+            if (!matches) continue;
+            m_path = path;
+            m_strName = path.name();
+            return;
+         }
+         if ((m_strName.has_character() && path.name() == m_strName)
+            || (m_path.has_character() && path_system()->real_path_is_same(path, m_path)))
+         {
+            m_plibrary = (::library_t *)dlopen(info.name, RTLD_NOLOAD | RTLD_LAZY);
+            if (!m_plibrary) continue;
+            m_path = path;
+            m_strName = path.name();
+            return;
+         }
+      }
+#else
       dl_iterate_phdr(&s_callback, this);
+#endif
 
    }
 
 
+#if !defined(__HAIKU__)
    static ::i32 s_callback(::dl_phdr_info* info, size_t size, void* data)
    {
 
@@ -134,6 +176,7 @@ public:
 
    }
 
+#endif
 };
 
 
@@ -234,7 +277,7 @@ namespace dl
 
       }
 
-      auto plibrary = (library_t*)dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | RTLD_NODELETE);
+      auto plibrary = (library_t*)dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | ca2_dl_nodelete);
       //void * plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_NODELETE);
 
       if (plibrary == nullptr)
@@ -298,7 +341,7 @@ namespace dl
 
       }
 
-      auto plibrary = (library_t*)dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | RTLD_NODELETE);
+      auto plibrary = (library_t*)dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | ca2_dl_nodelete);
 
       if (plibrary != nullptr)
       {

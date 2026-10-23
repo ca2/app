@@ -3,6 +3,7 @@
 //
 #include "platform.h"
 #include "color_indexes.h"
+#include "_configuration.h"
 
 
 static color_indexes g_colorindexes;

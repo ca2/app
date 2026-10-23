@@ -1,3 +1,5 @@
+// Added ::draw2d::domain_consumer inheritance to ::user::shell by
+//  camilo on 2026-09-24 05:34 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
 #pragma once
 
 
@@ -5,6 +7,7 @@
 #include "acme/parallelization/task.h"
 #include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/prototype/auto_pointer.h"
+#include "aura/graphics/draw2d/domain_consumer.h"
 //#include "acme/prototype/collection/numeric_array.h"
 //#include "acme/prototype/collection/string_array.h"
 
@@ -14,7 +17,8 @@ namespace user
 
 
    class CLASS_DECL_AURA shell :
-      virtual public ::task
+      virtual public ::task,
+      virtual public ::draw2d::domain_consumer
    {
    public:
 
@@ -101,7 +105,6 @@ namespace user
          ::file::path                        m_pathProcessed;
          ::file::path                        m_pathFinal;
          image_key                           m_imagekey;
-         ::pointer < ::draw2d::domain >      m_pdraw2ddomain;
 
 
       };

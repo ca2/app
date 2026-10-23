@@ -193,7 +193,7 @@ namespace filemanager
 //#ifdef WINDOWS_DESKTOP
 //         if (pil->create(16, 16, ILC_COLOR32, 0, 1))
 //#else
-         if (pil->create(16, 16, 0, 0, 1))
+         if (pil->create(16, 16, draw2d_domain(), 0, 0, 1))
 //#endif
          {
 

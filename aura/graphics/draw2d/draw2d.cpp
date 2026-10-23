@@ -5,6 +5,7 @@
 #include "acme/user/user/interaction.h"
 #include "apex/gpu/approach.h"
 #include "aura/graphics/draw2d/domain.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 //#include "aura/graphics/draw2d/host.h"
 #include "aura/graphics/draw2d/window_attachment.h"
@@ -696,7 +697,7 @@ namespace draw2d
 
       auto pdraw2dgraphics = pdraw2ddomain->createø<::draw2d::graphics>();
 
-      pdraw2dgraphics->m_pdraw2ddomain = pdraw2ddomain;
+      pdraw2dgraphics->set_draw2d_domain(pdraw2ddomain);
 
       return ::transfer(pdraw2dgraphics);
 
@@ -714,9 +715,13 @@ namespace draw2d
       if (sizeCreate.is_empty())
       {
 
-         auto sizeModernOnePixel = ::i32_size{1920, 1080};
+         //auto sizeModernOnePixel = ::i32_size{1920, 1080};
 
-         sizeCreate = sizeModernOnePixel;
+         //sizeCreate = sizeModernOnePixel;
+
+         auto sizeNonZeroOnly = ::i32_size{1, 1};
+
+         sizeCreate = sizeNonZeroOnly;
 
       }
 
@@ -858,6 +863,14 @@ namespace draw2d
    }
 
 
+   bool draw2d::is_image_draw2_graphics_backed_by_backend_bitmap()
+   {
+
+      return false;
+      
+   }
+
+
    ::draw2d::graphics_lease draw2d::_acquire_memory_graphics(
       bool bExternalRendering,
       ::draw2d::domain * pdraw2ddomain,
@@ -920,7 +933,7 @@ namespace draw2d
 
       }
 
-      if (!pdraw2dgraphics)
+      if (!pdraw2dgraphics && (!::is_set(pimage) || !is_image_draw2_graphics_backed_by_backend_bitmap()))
       {
 
          _synchronous_lock synchronouslock(
@@ -1562,7 +1575,7 @@ namespace draw2d
 
          //estatus =
 
-         pimage->create_as_descriptor(size);
+         pimage->create_as_descriptor(size, main_draw2d_domain());
 
          //if (!estatus)
          //{
@@ -1601,7 +1614,7 @@ namespace draw2d
 
             auto psystem = system();
 
-            pimageBlur->create_as_descriptor(size);
+            pimageBlur->create_as_descriptor(size, main_draw2d_domain());
 
             blur.initialize(pimageBlur->size(), iEffectiveBlurRadius);
 
@@ -2485,7 +2498,9 @@ namespace draw2d
 
       return "afont";
 
-#elif defined(__BSD__)
+#elif defined(__HAIKU__)
+      return "haiku";
+#elif defined(__BSD__) || defined(__SUNOS__)
 
 
       return "pango";

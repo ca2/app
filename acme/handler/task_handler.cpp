@@ -47,11 +47,14 @@ void task_handler::__task_handle()
 
       m_iHandlerExitCode = ptask->__task_main();
 
+      // Releasing the system task can destroy the tracer used by informationf.
+      informationf("Going to call task suffix for task \"%s\" (%llu)", ::current_task_name().c_str(), (unsigned long long)::current_task_index());
+
       ptask->release();
 
    }
 
-   informationf("Going to call task suffix for task \"%s\" (%llu)", ::current_task_name().c_str(), ::current_task_index());
+//   informationf("Going to call task suffix for task \"%s\" (%llu)", ::current_task_name().c_str(), ::current_task_index());
    
    __task_suffix();
 

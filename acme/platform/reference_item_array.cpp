@@ -751,13 +751,13 @@ void reference_item_array::dump_pending_releases(::string & strDump)
          if (pitem->m_preferer)
          {
 
-            strDump.append_formatf("%4d: %4d (%7lld) %s: %s (%lld)\n", iIndex, iStep, iSerial, str.c_str(), pitem->m_preferer->m_cstringType.m_psz, pitem->m_preferer->m_iSerial);
+            strDump.append_formatf("%4lld: %4lld (%7lld) %s: %s (%lld)\n", (long long)iIndex, (long long)iStep, (long long)iSerial, str.c_str(), pitem->m_preferer->m_cstringType.m_psz, (long long)pitem->m_preferer->m_iSerial);
 
          }
          else
          {
 
-            strDump.append_formatf("%4d: %4d (%7lld) %s \n", iIndex, iStep, iSerial, str.c_str());
+            strDump.append_formatf("%4lld: %4lld (%7lld) %s \n", (long long)iIndex, (long long)iStep, (long long)iSerial, str.c_str());
 
          }
 

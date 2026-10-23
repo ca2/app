@@ -1,5 +1,8 @@
 #include "platform.h"
 #include "frame_window.h"
+#include "render_lines.h"
+#include "fps_statistics.h"
+#include "fps_debug.h"
 #include "document.h"
 #include "impact.h"
 #include "impact_host.h"
@@ -662,6 +665,9 @@ namespace user
    void frame_window::destroy()
    {
 
+      m_pfpsstatistics.defer_destroy_and_release();
+      m_prenderlinesStatistics.defer_destroy_and_release();
+
       m_pimpactMain.defer_destroy_and_release();
 
       ::user::interaction::destroy();
@@ -1019,6 +1025,18 @@ namespace user
 
    void frame_window::on_message_create(::message::message * pmessage)
    {
+
+#if FPS_STATISTICS
+      if (get_parent() == nullptr && !m_prenderlinesStatistics)
+      {
+         construct_newø(m_prenderlinesStatistics);
+         construct_newø(m_pfpsstatistics);
+         m_pfpsstatistics->m_prenderlines = m_prenderlinesStatistics;
+         m_pfpsstatistics->m_pinteractionSource = this;
+         m_pfpsstatistics->m_strLabel = "Window FPS";
+         m_pfpsstatistics->m_iLine = 0;
+      }
+#endif
 
       //if (!m_pacmeuserinteractionMain)
       //{
@@ -1989,6 +2007,13 @@ namespace user
    void frame_window::show_control_bar(::user::control_bar * pcontrolbar)
    {
 
+      if (!pcontrolbar)
+      {
+
+         return;
+
+      }
+
       if(!is_child(pcontrolbar))
       {
 
@@ -2021,6 +2046,13 @@ namespace user
 
    void frame_window::hide_control_bar(::user::control_bar * pcontrolbar)
    {
+
+      if (!pcontrolbar)
+      {
+
+         return;
+
+      }
 
       if(!is_child(pcontrolbar))
       {
@@ -2063,6 +2095,8 @@ namespace user
       }
       catch (const ::exception & exception)
       {
+
+         warning() << "Failed to create toolbar " << idToolbar.as_string() << ": " << exception.get_message();
 
 #ifdef _DEBUG
 
@@ -2147,7 +2181,17 @@ namespace user
       if(strToolbar.is_empty())
       {
 
-         strToolbar = idToolbar + ".toolbar";
+         strToolbar = idToolbar.as_string();
+
+         // File Manager supplies the XML resource as its toolbar id.
+         // Only symbolic ids need the conventional .toolbar suffix.
+         if (!strToolbar.case_insensitive_ends(".xml")
+            && !strToolbar.case_insensitive_ends(".toolbar"))
+         {
+
+            strToolbar += ".toolbar";
+
+         }
 
       }
 
@@ -2971,6 +3015,19 @@ namespace user
 
       }
 
+   }
+
+
+   void frame_window::_001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+      ::user::main_window::_001OnNcPostDraw(pgraphics);
+      if (!m_prenderlinesStatistics) return;
+
+      if (m_pfpsstatistics) m_pfpsstatistics->update();
+      ::draw2d::save_context context(pgraphics);
+      set_context_org(pgraphics);
+      pgraphics->reset_clip();
+      m_prenderlinesStatistics->draw(this, pgraphics);
    }
 
 

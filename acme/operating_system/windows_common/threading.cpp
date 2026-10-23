@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "acme/operating_system/windows/windows_xp_compat.h"
 //#include "parallelization.h"
 //#include "api.h"
 ////#include "acme/exception/exception.h"
@@ -91,7 +92,11 @@ CLASS_DECL_ACME void task_set_name(htask htask, const ::scoped_string & scopedst
    if (!bOk1 && ::is_debugger_attached())
    {
 
+#if defined(WINDOWS_XP)
+      bOk1 = SetThreadName(ca2_xp_get_thread_id((HANDLE) htask.m_h), ::string(scopedstr)) != false;
+#else
       bOk1 = SetThreadName(GetThreadId((HANDLE) htask.m_h), ::string(scopedstr)) != false;
+#endif
 
    }
 
@@ -326,6 +331,23 @@ typedef struct tagTHREADNAME_INFO
 
 ::i32_bool SetThreadName(::u32 dwThreadID, const_char_pointer threadName)
 {
+#ifdef __REACTOS__
+   using set_thread_description = HRESULT (WINAPI *)(HANDLE, PCWSTR);
+   auto setDescription = reinterpret_cast<set_thread_description>(
+      GetProcAddress(GetModuleHandleW(L"kernel32.dll"), "SetThreadDescription"));
+   if (!setDescription)
+      return false;
+
+   HANDLE thread = dwThreadID == static_cast<::u32>(-1) ? GetCurrentThread() :
+      OpenThread(THREAD_SET_INFORMATION, FALSE, dwThreadID);
+   if (!thread)
+      return false;
+   ::wstring name(threadName);
+   const auto result = setDescription(thread, name);
+   if (dwThreadID != static_cast<::u32>(-1))
+      CloseHandle(thread);
+   return SUCCEEDED(result);
+#else
    THREADNAME_INFO info;
    info.dwType = 0x1000;
    info.szName = threadName;
@@ -341,6 +363,8 @@ typedef struct tagTHREADNAME_INFO
 #pragma warning(pop)
 
    return true;
+
+#endif
 
 }
 
@@ -497,9 +521,13 @@ CLASS_DECL_ACME class ::time default_run_timeout()
 bool htask::operator==(const htask & htask) const
 {
 
+#if defined(WINDOWS_XP)
+   DWORD dw1 = ca2_xp_get_thread_id((HANDLE) m_h);
+   DWORD dw2 = ca2_xp_get_thread_id((HANDLE) htask.m_h);
+#else
    DWORD dw1 = ::GetThreadId((HANDLE) m_h);
-
    DWORD dw2 = ::GetThreadId((HANDLE) htask.m_h);
+#endif
 
    return dw1 == dw2;
 

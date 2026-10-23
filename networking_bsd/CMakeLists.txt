@@ -135,7 +135,7 @@ if (WIN32 OR UWP)
 endif ()
 
 
-if (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+if (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
    list(APPEND library_source
       bsd/_.cpp
@@ -147,7 +147,7 @@ if (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 endif()
 
 
-if (${__BSD__})
+if (${__BSD__} OR ${__SUNOS__} OR ${__HAIKU__})
 
    list(APPEND library_source
    bsd/bsd_list_computers.cpp
@@ -167,6 +167,12 @@ endif ()
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
+if(CMAKE_SYSTEM_NAME STREQUAL "Haiku")
+   target_compile_definitions(${PROJECT_NAME} PRIVATE _DEFAULT_SOURCE)
+   target_compile_definitions(static_${PROJECT_NAME} PRIVATE _DEFAULT_SOURCE)
+   target_link_libraries(${PROJECT_NAME} PRIVATE bsd)
+endif()
+
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
@@ -183,18 +189,42 @@ target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
 if(${WIN32})
-   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
-   target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} Ws2_32)
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+
+
+
+
+   if(MSVC)
+
+
+      target_compile_options(${PROJECT_NAME} PRIVATE    "/MD$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/SUBSYSTEM:WINDOWS")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/bigobj")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   else()
+
+
+      target_link_options(${PROJECT_NAME} PRIVATE "-mwindows")
+      target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   endif()
+
+
+
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} Ws2_32 libssl libcrypto dnsapi iphlpapi)
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 
-
+   if(${__SUNOS__})
+         list(APPEND library_references socket nsl)
+   endif()
 
    if (${USE_PKGCONFIG})
       message(STATUS "networking_bsd USE_PKGCONFIG")
@@ -225,8 +255,17 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
    message(STATUS "(G) PKGCONFIG_LDFLAGS is ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS}")
 endif ()
 
-if(${LINUX} OR ${__BSD__})
-add_dependencies(${PROJECT_NAME} nano_idn_libidn)
+if(LINUX OR __BSD__ OR __SUNOS__ OR __REACTOS__)
+   # URL handling loads the IDN component dynamically at runtime.
+   add_dependencies(${PROJECT_NAME} nano_idn_libidn)
+   add_dependencies(static_${PROJECT_NAME} nano_idn_libidn)
+endif()
+
+
+if(WIN32 AND NOT __REACTOS__)
+   # URL handling loads the IDN component dynamically at runtime.
+   add_dependencies(${PROJECT_NAME} nano_idn_windows_common)
+   add_dependencies(static_${PROJECT_NAME} nano_idn_windows_common)
 endif()
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

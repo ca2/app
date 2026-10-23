@@ -1,0 +1,7 @@
+; coding.def
+
+LIBRARY  "coding"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+

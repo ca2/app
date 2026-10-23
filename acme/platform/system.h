@@ -174,11 +174,12 @@ namespace platform
 
       virtual void initialize_layer();
 
-      virtual enum_trace_level get_trace_level() override;
+      enum_trace_level get_trace_level() override;
       //void os_construct();
 
-      virtual void defer_initialize_matter() override;
-      
+      void defer_initialize_matter() override;
+
+      void initialize_matter() override;
 
 #ifdef _DEBUG
 
@@ -236,6 +237,8 @@ namespace platform
       virtual ::directory_system * directory_system() const;
 
       virtual ::path_system * path_system() const;
+
+      void ensure_file_system_components();
 
       ::platform::system_factory * system_factory() override;
 
@@ -1507,6 +1510,7 @@ namespace platform
 
       virtual ::string operating_system_icon_url(const ::i32_size &size);
       virtual ::string operating_ambient_icon_url(const ::i32_size &size);
+      virtual ::string operating_system_kernel_icon_url(const ::i32_size &size);
 
       virtual ::pixmap_pointer create_pixmap(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
                        ::i32 iGoodStride = -1);

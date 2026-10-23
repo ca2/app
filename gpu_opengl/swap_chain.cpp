@@ -122,7 +122,11 @@ FragColor = texture(uTexture, TexCoord);
 
       }
 
+<<<<<<< HEAD
       if (!m_pgpurenderer->m_pgpucontext->m_pgpudevice->draw2d_domain())
+=======
+      if (!m_pgpurenderer->m_pgpucontext->m_puserinteractionTopic)
+>>>>>>> origin/main
       {
 
          information("swap_chain::present No window");
@@ -142,7 +146,7 @@ FragColor = texture(uTexture, TexCoord);
 //
 //      }
 
-      ::cast < ::windowing::window > pwindow = m_pgpurenderer->m_pgpucontext->m_pacmeuserinteractionAffinity->acme_windowing_window();
+      auto pwindow = m_pgpurenderer->m_pgpucontext->m_puserinteractionTopic->window();
 
       
       if (pwindow->should_avoid_default_swap_chain_present())
@@ -614,7 +618,7 @@ void swap_chain::present_shader()
       
    }
    
-   auto size = m_pgpurenderer->m_pgpucontext->m_pacmeuserinteractionAffinity->get_window_rectangle().size();
+   auto size = m_pgpurenderer->m_pgpucontext->m_puserinteractionTopic->get_window_rectangle().size();
    
    if(::is_null(m_ptexturesitePresent) ||
       m_ptexturesitePresent->size() != size

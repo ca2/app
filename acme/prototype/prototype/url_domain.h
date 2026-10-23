@@ -70,7 +70,7 @@ public:
 
 bool CLASS_DECL_ACME server_is_top_domain(const_char_pointer pszTop1, character_count iLen1, const_char_pointer pszTop2, character_count iLen2);
 
-inline bool CLASS_DECL_ACME server_is_top_domain(const ::scoped_string & scopedstrTop1, const ::scoped_string & scopedstrTop2)
+inline bool server_is_top_domain(const ::scoped_string & scopedstrTop1, const ::scoped_string & scopedstrTop2)
 {
 
    return server_is_top_domain(scopedstrTop1, scopedstrTop1.length(), scopedstrTop2, scopedstrTop2.length());

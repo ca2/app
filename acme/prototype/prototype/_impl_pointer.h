@@ -987,6 +987,15 @@ template < class T >
 inline ::i64 pointer <T>::release()
 {
 
+   // Empty pointers own no reference and can outlive the runtime's debug lock
+   // (for example, during destruction of globals in a DLL).
+   if (::is_null(m_p))
+   {
+
+      return -1;
+
+   }
+
    ::subparticle * pparticle = nullptr;
 
    ::collection::count c = -1;

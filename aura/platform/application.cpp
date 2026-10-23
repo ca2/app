@@ -1,5 +1,6 @@
 #include "platform.h"
 #include "application.h"
+#include "startup_delay_debug.h"
 #include "shell_open.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
@@ -260,10 +261,17 @@ namespace aura
 
    void application::initialize(::particle * pparticle)
    {
+      information() << "startup: aura::application::initialize: enter";
+
 
       //auto estatus =
       
-      ::aqua::application::initialize(pparticle);
+      information() << "startup: aura::application::initialize: before ::aqua::application::initialize(pparticle)";
+      {
+         STARTUP_DELAY_TRACE_SCOPE("aura::application::initialize - aqua::application::initialize");
+         ::aqua::application::initialize(pparticle);
+      }
+      information() << "startup: aura::application::initialize: after ::aqua::application::initialize(pparticle)";
 
       //if (!estatus)
       //{
@@ -274,7 +282,12 @@ namespace aura
 
       //estatus =
       
-      construct_newø(m_puserinteractiona);
+      information() << "startup: aura::application::initialize: before construct_newø(m_puserinteractiona)";
+      {
+         STARTUP_DELAY_TRACE_SCOPE("aura::application::initialize - construct user interaction array");
+         construct_newø(m_puserinteractiona);
+      }
+      information() << "startup: aura::application::initialize: after construct_newø(m_puserinteractiona)";
 
       //if (!estatus)
       //{
@@ -285,7 +298,12 @@ namespace aura
 
       //estatus = 
       
-      construct_newø(m_puserinteractionaFrame);
+      information() << "startup: aura::application::initialize: before construct_newø(m_puserinteractionaFrame)";
+      {
+         STARTUP_DELAY_TRACE_SCOPE("aura::application::initialize - construct frame interaction array");
+         construct_newø(m_puserinteractionaFrame);
+      }
+      information() << "startup: aura::application::initialize: after construct_newø(m_puserinteractionaFrame)";
 
       //if (!estatus)
       //{
@@ -297,6 +315,8 @@ namespace aura
       //m_pauracontext = this;
 
       //return estatus;
+
+      information() << "startup: aura::application::initialize: leave";
 
    }
 
@@ -1780,14 +1800,17 @@ namespace aura
    //}
 
 
-   void application::init_instance()
+   void application::defer_initialize_graphics_configuration()
    {
 
-      //auto estatus =
-      
-      ::aqua::application::init_instance();
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+      if (payload("graphics_configuration_initialized").is_true())
+      {
 
+         return;
+
+      }
 
       {
 
@@ -2013,6 +2036,22 @@ namespace aura
          }
 
       }
+
+      payload("graphics_configuration_initialized") = true;
+
+   }
+
+
+   void application::init_instance()
+   {
+
+      //auto estatus =
+
+      ::aqua::application::init_instance();
+
+
+
+      defer_initialize_graphics_configuration();
 
       ::cast < ::manager > pmanager = system();
  
@@ -2319,10 +2358,14 @@ retry_license:
 
    void application::process_init()
    {
+      information() << "startup: aura::application::process_init: enter";
+
 
       //auto estatus =
       
+      information() << "startup: aura::application::process_init: before ::aqua::application::process_init()";
       ::aqua::application::process_init();
+      information() << "startup: aura::application::process_init: after ::aqua::application::process_init()";
 
       //if (!estatus)
       //{
@@ -2339,6 +2382,8 @@ retry_license:
 
 
       //return true;
+
+      information() << "startup: aura::application::process_init: leave";
 
    }
 
@@ -2478,10 +2523,14 @@ retry_license:
 
    void application::init1()
    {
+      information() << "startup: aura::application::init1: enter";
+
 
       //::e_status estatus = 
       
+      information() << "startup: aura::application::init1: before ::aqua::application::init1()";
       ::aqua::application::init1();
+      information() << "startup: aura::application::init1: after ::aqua::application::init1()";
 
       //if (!estatus)
       //{
@@ -2490,7 +2539,9 @@ retry_license:
 
       //}
 
+      information() << "startup: aura::application::init1: before auto psystem = system()";
       auto psystem = system();
+      information() << "startup: aura::application::init1: after auto psystem = system()";
 
       //if (psystem->m_bImaging)
       //{
@@ -2538,9 +2589,13 @@ retry_license:
 
       information() << "aura::application::init1 end";
 
+      information() << "startup: aura::application::init1: before ping()";
       ping();
+      information() << "startup: aura::application::init1: after ping()";
 
       //return ::success;
+
+      information() << "startup: aura::application::init1: leave";
 
    }
 
@@ -9938,6 +9993,9 @@ namespace aura
 
    ::string application::draw2d_get_default_implementation_name()
    {
+
+      // Windowing can request draw2d before application::init_instance().
+      defer_initialize_graphics_configuration();
 
       if (m_gpu.m_bUseSwapChainWindow)
       {

@@ -9,6 +9,8 @@
 #include "axis/database/database/exception.h"
 #include "axis/database/database/field.h"
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
 
 extern "C" ::i32 database_sqlite3_sqlite_callback(void * res_ptr,::i32 ncol, char_pointer * reslt,char_pointer * cols);
@@ -370,20 +372,41 @@ namespace sqlite
 
    void database::_connect()
    {
+      information() << "startup: sqlite::database::_connect: enter";
 
+
+      information() << "startup: sqlite::database::_connect: before _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX)";
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      information() << "startup: sqlite::database::_connect: after _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX)";
 
+      information() << "startup: sqlite::database::_connect: before disconnect()";
       disconnect();
+      information() << "startup: sqlite::database::_connect: after disconnect()";
 
-      if (sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite) == SQLITE_OK)
+      information() << "startup: sqlite::database::_connect: before ::i32 iOpenResult = sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite)";
+      errno = 0;
+      ::i32 iOpenResult = sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite);
+      // Capture errno before tracing or other library calls can overwrite it.
+      int iOpenErrno = errno;
+      int iExtendedError = m_psqlite ? sqlite3_extended_errcode((sqlite3*)m_psqlite) : iOpenResult;
+#if SQLITE_VERSION_NUMBER >= 3012000
+      int iSystemErrno = m_psqlite ? sqlite3_system_errno((sqlite3*)m_psqlite) : 0;
+#endif
+      information() << "startup: sqlite::database::_connect: after ::i32 iOpenResult = sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite)";
+
+      if (iOpenResult == SQLITE_OK)
       {
          //cout << "Connected!\n";
          char_pointer err = nullptr;
 
+         information() << "startup: sqlite::database::_connect: before sqlite3_exec(PRAGMA empty_result_callbacks=ON)";
          ::i32 iResult = sqlite3_exec((sqlite3 *) get_handle(), "PRAGMA empty_result_callbacks=ON", nullptr, nullptr,
                                     &err);
+         information() << "startup: sqlite::database::_connect: after sqlite3_exec, code=" << iResult;
 
+         information() << "startup: sqlite::database::_connect: before set_error_code(iResult)";
          set_error_code(iResult);
+         information() << "startup: sqlite::database::_connect: after set_error_code(iResult)";
 
          if (iResult != SQLITE_OK)
          {
@@ -414,11 +437,29 @@ namespace sqlite
 
          m_bActive = true;
 
+         information() << "startup: sqlite::database::_connect: leave (connected)";
          return;
 
       }
 
-      throw ::exception(error_failed);
+      information() << "sqlite::database::_connect: sqlite3_open failed for " << m_strName
+         << " (code " << iOpenResult << "): "
+         << (m_psqlite ? sqlite3_errmsg((sqlite3*)m_psqlite) : "no SQLite handle");
+
+      information() << "sqlite::database::_connect: extended error=" << iExtendedError
+         << ", captured errno=" << iOpenErrno << " (" << strerror(iOpenErrno) << ")";
+
+#if SQLITE_VERSION_NUMBER >= 3012000
+      information() << "sqlite::database::_connect: SQLite system errno=" << iSystemErrno
+         << " (" << strerror(iSystemErrno) << ")";
+#else
+      information() << "sqlite::database::_connect: SQLite system errno unavailable with these headers";
+#endif
+
+      information() << "sqlite::database::_connect: SQLite runtime=" << sqlite3_libversion()
+         << ", headers=" << SQLITE_VERSION;
+
+      throw ::exception(error_failed, "sqlite3_open failed", m_strName);
 
    }
 

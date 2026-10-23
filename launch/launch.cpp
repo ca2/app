@@ -147,6 +147,23 @@ namespace launch
          printf_line("Branch is \"%s\"", m_strBranch.c_str());
 
       }
+      else if (m_strSystem == "openindiana")
+      {
+
+         print_line("This is OpenIndiana System...");
+
+         m_strBranch = m_poperatingsystemsummary->m_strAmbient;
+
+         m_strBranch.make_lower();
+
+         if (m_strBranch.is_empty())
+         {
+
+            m_strBranch = strBranch;
+
+         }
+
+      }
       else if (m_strSystem == "netbsd")
       {
 
@@ -226,6 +243,10 @@ namespace launch
       printf_line("Release is \"%s\"", m_strRelease.c_str());
 
       m_strArchitecture = m_poperatingsystemsummary->m_strSystemArchitecture;
+#if defined(WINDOWS) && (defined(__i386__) || defined(_M_IX86))
+      // Store package folders use the build platform name, not the CPU name.
+      m_strArchitecture = "Win32";
+#endif
 
       printf_line("Architecture is \"%s\"", m_strArchitecture.c_str());
 
@@ -402,6 +423,7 @@ namespace launch
       parse_app_root_and_app_name();
 
       auto strDownloadUrl = calculate_download_url();
+      information() << "Installer download URL: " << strDownloadUrl;
 
       if (strDownloadUrl.is_empty())
       {
@@ -422,35 +444,54 @@ namespace launch
 
       ::property_set setCheckUrlOkDownload;
 
+      ::function<void(const ::scoped_string&)> httpStatus = [this](const ::scoped_string& text)
+      {
+         on_detail_status(text);
+      };
+      setCheckUrlOkDownload["http_status_function"] = httpStatus;
+
       m_papplication->get_http_user_agent(setCheckUrlOkDownload);
 
-      if (!nano()->http()->check_url_ok(strDownloadUrl, setCheckUrlOkDownload))
+      bool bDownloadAvailable;
+
+#if defined(__REACTOS__)
+      try
+      {
+
+         bDownloadAvailable = nano()->http()->check_url_ok(strDownloadUrl, setCheckUrlOkDownload);
+
+      }
+      catch (...)
+      {
+
+         // The direct origin may support TLS clients that cannot connect through Cloudflare.
+         // Keep normal HTTPS certificate validation for both endpoints.
+         if (!strDownloadUrl.begins("https://windows.ca2.site/"))
+         {
+
+            throw;
+
+         }
+
+         strDownloadUrl.replace_with("https://windows.ca2site.net/", "https://windows.ca2.site/");
+         information() << "Cloudflare request failed; trying direct origin: " << strDownloadUrl;
+         on_main_status("Trying direct origin: " + strDownloadUrl);
+         bDownloadAvailable = nano()->http()->check_url_ok(strDownloadUrl, setCheckUrlOkDownload);
+
+      }
+#else
+      bDownloadAvailable = nano()->http()->check_url_ok(strDownloadUrl, setCheckUrlOkDownload);
+#endif
+
+      if (!bDownloadAvailable)
       {
 
          m_iExitCode = -1;
 
          ::string strErr;
 
-         strErr.formatf("Server seems not to have build of \"%s/%s\" for this operating-system release \"%s\" (%s, %s)",
-            m_strAppRoot.c_str(),
-            m_strAppName.c_str(),
-            m_poperatingsystemsummary->m_strName.c_str(),
-            m_poperatingsystemsummary->m_strSystemReleaseName.c_str(),
-            m_poperatingsystemsummary->m_strSystemArchitecture.c_str());
-
-         if (m_strBranch.has_character())
-         {
-
-            strErr.append_formatf(" \"%s\".", m_poperatingsystemsummary->m_strSystemBranchName.c_str());
-
-         }
-         else
-         {
-
-            strErr += ".";
-
-         }
-
+         strErr.formatf("Server returned HTTP %d for %s.",
+            setCheckUrlOkDownload["http_status_code"].as_i32(), strDownloadUrl.c_str());
          on_error_status(strErr);
 
          return;
@@ -506,7 +547,7 @@ namespace launch
 
 #if defined(WINDOWS)
 
-      ::string strExecutable = "shared_" + m_strAppRoot + "_" + m_strAppName + ".exe";
+      ::string strExecutable = "_" + m_strAppRoot + "_" + m_strAppName + ".exe";
 
 #else
 
@@ -527,6 +568,7 @@ namespace launch
       // }
       //
       //    }
+      strExecutable.find_replace("/", "_");
       strExecutable.find_replace("-", "_");
 
       auto pathExecutable = m_pathBinaryFolder / strExecutable;
@@ -541,6 +583,8 @@ namespace launch
       auto pathZipName = m_pathBinaryFolder / strZipName;
 
       ::property_set set;
+
+      set["http_status_function"] = httpStatus;
 
       m_papplication->get_http_user_agent(set);
 
@@ -570,6 +614,11 @@ namespace launch
       //system(szDownloadCommand);
 
       nano()->compress()->unzip(m_pathBinaryFolder, pathZipName);
+#if defined(__REACTOS__)
+      information() << "Archive extraction finished: " << pathZipName;
+#else
+      information() << "Archive extraction requested: " << pathZipName;
+#endif
 
       //::i8 szUnzipCommand[2048];
 
@@ -601,7 +650,7 @@ namespace launch
 
       ::string strCommand;
 
-      strCommand = pathExecutable;
+      strCommand = "\"" + pathExecutable + "\"";
 
       auto strTraceLevel = ::system()->get_argument_begins_eat("--trace-level=");
 
@@ -612,7 +661,9 @@ namespace launch
 
       }
 
+      information() << "Launching executable: " << pathExecutable;
       node()->detached_command(strCommand, m_pathLog);
+      information() << "Launch request completed: " << pathExecutable;
 
       m_plaunchapplication->on_launched();
 

@@ -3,6 +3,9 @@
 //   Date : 09-04-98
 //////////////////////////////////////////////////////////////////////
 #include "platform.h"
+#include "fps_debug.h"
+#include <map>
+#include <utility>
 #include "acme/graphics/image/frame_array.h"
 #include "drawing.h"
 #include "context.h"
@@ -16,7 +19,9 @@
 //#include "aura/graphics/draw2d/host.h"
 #include "image_pixmap_lease.h"
 #include "acme/graphics/draw2d/task_tool.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/image/image.h"
 #include "aura/graphics/image/load_image.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/window_buffer.h"
@@ -63,6 +68,227 @@ void sort_image_argb(TYPE& A, TYPE& R, TYPE& G, TYPE& B)
 
 namespace image
 {
+
+
+   void image::set_pixel_usage(pixel_usage usage)
+   {
+      std::lock_guard<std::recursive_mutex> lock(m_mutexAlphaStatistics);
+      m_alphastatisticscache.usage = usage;
+      invalidate_alpha_statistics("set_pixel_usage");
+   }
+
+   pixel_usage image::get_pixel_usage() const
+   {
+      std::lock_guard<std::recursive_mutex> lock(m_mutexAlphaStatistics);
+      return m_alphastatisticscache.usage;
+   }
+
+   void image::invalidate_alpha_statistics(const char * pszReason)
+   {
+      std::lock_guard<std::recursive_mutex> lock(m_mutexAlphaStatistics);
+#if FPS_DEBUG
+      auto & cache = m_alphastatisticscache;
+      ::string strImagePath = m_pathImageSource;
+      if (cache.valid && cache.usage == pixel_usage::static_source
+         && (strImagePath.case_insensitive_contains("DABZO5y")
+            || strImagePath.case_insensitive_contains("DABZ05y")))
+      {
+         static ::std::atomic<const void *> s_reportedImage{nullptr};
+         auto pReported = s_reportedImage.load(::std::memory_order_relaxed);
+         if (pReported != this && s_reportedImage.compare_exchange_strong(
+            pReported, this, ::std::memory_order_relaxed))
+         {
+            informationf("FPS DABZO5y alpha-cache invalidated: image=%p reason=%s "
+               "cached_size=%dx%d cached_origin=(%d,%d) path=%s",
+               this, pszReason ? pszReason : "unspecified",
+               cache.statistics.size.cx, cache.statistics.size.cy,
+               cache.statistics.origin.x, cache.statistics.origin.y,
+               strImagePath.c_str());
+         }
+      }
+#endif
+      m_alphastatisticscache.valid = false;
+      m_alphastatisticscache.candidate_reported = false;
+   }
+
+   bool image::publish_static_pixels(alpha_statistics * pstatistics)
+   {
+      set_pixel_usage(pixel_usage::static_source);
+      alpha_statistics statistics;
+      if (!get_alpha_statistics(statistics)) return false;
+      if (pstatistics) *pstatistics = statistics;
+      report_alpha_optimization_candidate();
+      return true;
+   }
+
+   bool image::get_cached_alpha_statistics(alpha_statistics & statistics) const
+   {
+      std::unique_lock<std::recursive_mutex> lock(m_mutexAlphaStatistics, std::try_to_lock);
+      const auto & cache = m_alphastatisticscache;
+      if (!lock.owns_lock() || cache.usage != pixel_usage::static_source
+         || !cache.valid || has_active_destination_graphics_lease()
+         || m_pimagepixmaplease || cache.statistics.size != size()
+         || cache.statistics.origin != m_point) return false;
+      statistics = cache.statistics;
+      return true;
+   }
+
+   bool image::get_cached_opaque_region_statistics(alpha_statistics & statistics,
+      ::collection::count maximumRegions, double minimumCoverage) const
+   {
+      std::unique_lock<std::recursive_mutex> lock(m_mutexAlphaStatistics, std::try_to_lock);
+      const auto & cache = m_alphastatisticscache;
+      if (!lock.owns_lock() || cache.usage != pixel_usage::static_source
+         || !cache.valid || has_active_destination_graphics_lease()
+         || m_pimagepixmaplease || cache.statistics.size != size()
+         || cache.statistics.origin != m_point
+         || cache.statistics.fully_opaque()
+         || cache.statistics.opaque_region_fraction() < minimumCoverage
+         || cache.statistics.opaque_regions.get_count() <= 0
+         || cache.statistics.opaque_regions.get_count() > maximumRegions)
+         return false;
+      statistics = cache.statistics;
+      return true;
+   }
+
+   bool image::alpha_statistics_up_to_date() const
+   {
+      std::unique_lock<std::recursive_mutex> lock(m_mutexAlphaStatistics, std::try_to_lock);
+      const auto & cache = m_alphastatisticscache;
+      return lock.owns_lock() && cache.usage == pixel_usage::static_source
+         && cache.valid && !has_active_destination_graphics_lease()
+         && !m_pimagepixmaplease && cache.statistics.size == size()
+         && cache.statistics.origin == m_point;
+   }
+
+   bool image::has_cached_fully_opaque_pixels() const
+   {
+      std::unique_lock<std::recursive_mutex> lock(m_mutexAlphaStatistics, std::try_to_lock);
+      const auto & cache = m_alphastatisticscache;
+      return lock.owns_lock() && cache.usage == pixel_usage::static_source
+         && cache.valid && !has_active_destination_graphics_lease()
+         && !m_pimagepixmaplease && cache.statistics.size == size()
+         && cache.statistics.origin == m_point && cache.statistics.fully_opaque();
+   }
+
+   bool image::has_cached_opaque_optimization_candidate() const
+   {
+      std::unique_lock<std::recursive_mutex> lock(m_mutexAlphaStatistics, std::try_to_lock);
+      const auto & cache = m_alphastatisticscache;
+      return lock.owns_lock() && cache.usage == pixel_usage::static_source
+         && cache.valid && !has_active_destination_graphics_lease()
+         && !m_pimagepixmaplease && cache.statistics.size == size()
+         && cache.statistics.origin == m_point
+         && cache.statistics.optimization_candidate();
+   }
+
+   bool image::get_alpha_statistics(alpha_statistics & statistics)
+   {
+      std::lock_guard<std::recursive_mutex> lock(m_mutexAlphaStatistics);
+      auto & cache = m_alphastatisticscache;
+      if (cache.usage != pixel_usage::static_source || !is_ok()
+         || has_active_destination_graphics_lease() || m_pimagepixmaplease)
+         return false;
+      if (cache.valid && cache.statistics.size == size()
+         && cache.statistics.origin == m_point)
+      {
+         statistics = cache.statistics;
+         return true;
+      }
+      alpha_statistics result;
+      result.size = size();
+      result.origin = m_point;
+      if (result.size.cx <= 0 || result.size.cy <= 0) return false;
+      {
+         auto pixels = map(e_map_read_only);
+         if (!pixels || !pixels->m_pimage32
+            || (::i64)pixels->m_iScan < (::i64)result.size.cx * 4)
+            return false;
+         std::map<std::pair<int, int>, size_t> previous;
+         for (int top = 0; top < result.size.cy;)
+         {
+            int bottom = top + minimum(32, result.size.cy - top);
+            int run = -1;
+            std::map<std::pair<int, int>, size_t> current;
+            auto flush = [&](int right)
+            {
+               if (run < 0) return;
+               auto key = std::make_pair(run, right);
+               auto found = previous.find(key);
+               if (found != previous.end())
+               {
+                  result.opaque_regions[found->second].bottom = bottom;
+                  current[key] = found->second;
+               }
+               else
+               {
+                  current[key] = result.opaque_regions.get_count();
+                  result.opaque_regions.add(::i32_rectangle(run, top, right, bottom));
+               }
+               run = -1;
+            };
+            for (int left = 0; left < result.size.cx;)
+            {
+               int right = left + minimum(32, result.size.cx - left);
+               bool opaque = true;
+               for (int y = top; y < bottom; ++y)
+               {
+                  auto row = reinterpret_cast<const ::image32_t *>(
+                     reinterpret_cast<const ::u8 *>(pixels->m_pimage32) + (::i64)y * pixels->m_iScan);
+                  for (int x = left; x < right; ++x)
+                  {
+                     auto alpha = row[x].u8_opacity(pixels->color_indexes());
+                     if (alpha == 255) ++result.opaque;
+                     else
+                     {
+                        opaque = false;
+                        if (alpha == 0) ++result.transparent;
+                        else ++result.translucent;
+                     }
+                  }
+               }
+               if (opaque) { if (run < 0) run = left; }
+               else flush(left);
+               left = right;
+            }
+            flush(result.size.cx);
+            previous = std::move(current);
+            top = bottom;
+         }
+      }
+      for (::collection::index i = 0; i < result.opaque_regions.get_count();)
+      {
+         auto & rectangle = result.opaque_regions.element_at(i);
+         ::u64 area = (::u64)rectangle.width() * rectangle.height();
+         if (area < 4096) result.opaque_regions.erase_at(i);
+         else { result.opaque_region_pixels += area; ++i; }
+      }
+      cache.statistics = std::move(result);
+      cache.valid = true;
+      cache.candidate_reported = false;
+      statistics = cache.statistics;
+      return true;
+   }
+
+   void image::report_alpha_optimization_candidate()
+   {
+#if FPS_DEBUG
+      std::lock_guard<std::recursive_mutex> lock(m_mutexAlphaStatistics);
+      auto & cache = m_alphastatisticscache;
+      if (!cache.valid || cache.candidate_reported
+         || !cache.statistics.optimization_candidate()) return;
+      cache.candidate_reported = true;
+      const auto & s = cache.statistics;
+      string message;
+      auto strProvenance = image_debug_provenance();
+      message.formatf("Alpha optimization candidate: image=%p size=%dx%d transparent=%.2f%% opaque=%.2f%% translucent=%.2f%% large_opaque_regions=%u coverage=%.2f%%%s; consider opaque copies, not proof of a rendering bug.\n",
+         this, s.size.cx, s.size.cy, 100.0 * s.transparent / s.total(),
+         100.0 * s.opaque_fraction(), 100.0 * s.translucent_fraction(),
+         (unsigned)s.opaque_regions.get_count(), 100.0 * s.opaque_region_fraction(),
+         strProvenance.c_str());
+      ::output_debug_string(message);
+#endif
+   }
 
 
    image::image()
@@ -299,14 +525,14 @@ namespace image
 //
 //      }
 //
-//      if (!pacmeuserinteractionAffinity)
-//      {
-//
-//         throw ::exception(
-//            error_wrong_state,
-//            "no draw2d host is available for image graphics acquisition");
-//
-//      }
+      if (::is_null(draw2d_domain()))
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "no draw2d domain is available for image graphics acquisition");
+
+      }
 
       if (!try_begin_destination_graphics_lease())
       {
@@ -397,16 +623,18 @@ namespace image
 
    bool image::try_begin_destination_graphics_lease() const
    {
-
-      bool bExpected = false;
-
-      ((::image::image *)this)->m_bGraphicsWasAcquiredAfterLastMap = true;
-
-      return m_bDestinationGraphicsLeaseActive.compare_exchange_strong(
-         bExpected,
-         true,
-         ::std::memory_order_acq_rel);
-
+      std::lock_guard<std::recursive_mutex> alphaLock(m_mutexAlphaStatistics);
+      if (m_pimagepixmaplease) return false;
+      bool expected = false;
+      bool acquired = m_bDestinationGraphicsLeaseActive.compare_exchange_strong(
+         expected, true, ::std::memory_order_acq_rel);
+      if (acquired)
+      {
+         auto pimage = const_cast<image *>(this);
+         pimage->invalidate_alpha_statistics("destination_graphics_lease");
+         pimage->m_bGraphicsWasAcquiredAfterLastMap = true;
+      }
+      return acquired;
    }
 
 
@@ -454,12 +682,16 @@ namespace image
          {
 
             m_pdraw2dbitmap->defer_write_pixels(*m_ppixmapOwned);
+            
+#if 0
 
             ::string str = _001_image32_diagnostics_t(m_ppixmapOwned).as_string();
 
             auto psz = str.c_str();
 
             informationf("diag001 : %s", psz);
+            
+#endif
 
          }
 
@@ -474,6 +706,7 @@ namespace image
 
    ::draw2d::bitmap_pointer image::get_bitmap_as_target(::draw2d::graphics* pdraw2dgraphics) const
    {
+      const_cast<image *>(this)->invalidate_alpha_statistics("get_bitmap_as_target");
 
       if (!m_pdraw2dbitmap)
       {
@@ -556,7 +789,8 @@ namespace image
    }
 
 
-   void image::create_from_data(const ::pixmap_t& pixmap, ::enum_flag eflagCreate, bool bPreserve)
+   void image::create_from_data(const ::pixmap_t& pixmap,
+                                ::draw2d::domain * pdraw2domain, ::enum_flag eflagCreate, bool bPreserve)
    {
 
       if (has_active_destination_graphics_lease())
@@ -570,7 +804,7 @@ namespace image
 
       auto iGoodStride = pixmap.m_iScan;
 
-      create_as_descriptor(pixmap.m_size, eflagCreate, iGoodStride);
+      create_as_descriptor(pixmap.m_size, pdraw2domain, eflagCreate, iGoodStride);
 
       //if (pimageFrame->area() <= 0)
       //{
@@ -611,7 +845,7 @@ namespace image
                                            ::i32 iGoodStride, bool bPreserve)
    {
 
-      update_as_render_target(size, pdraw2dgraphics->m_pdraw2ddomain,
+      update_as_render_target(size, pdraw2dgraphics->draw2d_domain(),
                               pdraw2dgraphics, eflagCreate, iGoodStride, bPreserve, true);
 
    }
@@ -654,7 +888,7 @@ namespace image
 
       //m_puserinteractionTopic = puserinteraction;
 
-      create_as_descriptor(sizeRaw, eflagCreate, iGoodStride);
+      create_as_descriptor(sizeRaw, pdraw2ddomain, eflagCreate, iGoodStride);
 
       //update_bitmap_as_render_target(m_puserinteractionTopic, pdraw2dgraphics);
       update_bitmap_as_render_target(pdraw2ddomain, pdraw2dgraphics);
@@ -712,7 +946,7 @@ namespace image
 
          auto ppixmapImageBefore = ::transfer(m_ppixmapOwned);
 
-         create_as_descriptor(size, eflagCreate, m_iScan);
+         create_as_descriptor(size, draw2d_domain(), eflagCreate, m_iScan);
 
          construct_newø(m_ppixmapOwned);
 
@@ -728,7 +962,7 @@ namespace image
       else
       {
 
-         create_as_descriptor(size, eflagCreate, m_iScan);
+         create_as_descriptor(size, draw2d_domain(), eflagCreate, m_iScan);
 
       }
 
@@ -1099,7 +1333,7 @@ namespace image
 
       ::i32 cy = (::i32)(pimage->m_dIsotropicRate * height());
 
-      pimage->create_as_descriptor({cx, cy});
+      pimage->create_as_descriptor({cx, cy}, draw2d_domain());
 
       // if (::parallelization::get_priority() == ::e_priority_idle)
       // {
@@ -1210,6 +1444,8 @@ namespace image
 
    void image::destroy()
    {
+      std::lock_guard<std::recursive_mutex> alphaLock(m_mutexAlphaStatistics);
+      invalidate_alpha_statistics("destroy");
 
       if (has_active_destination_graphics_lease())
       {
@@ -8010,7 +8246,7 @@ namespace image
 
          ::f64 newcy = cy;
 
-         create_as_descriptor({(::i32)newcx, (::i32)newcy});
+         create_as_descriptor({(::i32)newcx, (::i32)newcy}, draw2d_domain());
 
          //if (!create({ (::i32)newcx, (::i32)newcy }))
          //{
@@ -8093,7 +8329,7 @@ namespace image
 
          ::f64 newcy = cy * 2.0 - 1.0;
 
-         create_as_descriptor({(::i32)newcx, (::i32)newcy});
+         create_as_descriptor({(::i32)newcx, (::i32)newcy}, draw2d_domain());
 
          //if (!create({ (::i32)newcx, (::i32)newcy }))
          //{
@@ -10502,30 +10738,39 @@ namespace image
 
    }
 
-
-   ::draw2d::domain * image::draw2d_domain()
-   {
-      
-      return m_pdraw2ddomain;
-      
-   }
+//
+//   ::draw2d::domain * image::draw2d_domain()
+//   {
+//      
+//      return m_pdraw2ddomain;
+//      
+//   }
 
 
    void image::create_with_pixmap(pixmap* ppixmap)
    {
 
-      create_as_descriptor(ppixmap->size(), e_flag_success, ppixmap->m_iScan);
+      create_as_descriptor(ppixmap->size(), draw2d_domain(), e_flag_success, ppixmap->m_iScan);
 
       m_ppixmapOwned = ppixmap;
 
    }
 
 
-   void image::create_as_descriptor(const ::i32_size& size, ::enum_flag eflagCreate,
+   void image::create_as_descriptor(const ::i32_size& size, ::draw2d::domain * pdraw2ddomain, ::enum_flag eflagCreate,
                                     ::i32 iGoodStride)
    {
+      std::lock_guard<std::recursive_mutex> alphaLock(m_mutexAlphaStatistics);
 
+      invalidate_alpha_statistics("create_as_descriptor");
       m_size = size;
+      
+      if(::is_set(pdraw2ddomain))
+      {
+         
+         set_draw2d_domain(pdraw2ddomain);
+         
+      }
 
       if (m_ppixmapOwned.is_set())
       {
@@ -10730,6 +10975,7 @@ namespace image
 
    ::gpu::texture * image::get_gpu_texture_as_target(::gpu::context * pgpucontext)
    {
+      invalidate_alpha_statistics("get_gpu_texture_as_target");
 
       return nullptr;
 
@@ -10833,47 +11079,54 @@ namespace image
    //}
 
 
-   ::function<void(::image::load_image *)> image::load_image_callback()
+   void image::load_image_callback(::array < ::function < void(::image::load_image *) > > & functionaLoaded)
    {
 
       auto pimage = ::as_pointer(this);
 
-      return [pimage](::image::load_image * ploadimage)
+      functionaLoaded.insert_at(0, [this, pimage](::image::load_image * ploadimage)
       {
          
-         if(ploadimage->m_pimageframearray)
-         {
-            
-            auto ppixmap = ploadimage->m_pimageframearray->get_pixmap();
-            
-            if (ppixmap)
-            {
-               
-               pimage->on_load_image(ppixmap);
-               
-            }
-            else
-            {
-               
-               pimage->on_load_image_frame_array(ploadimage->m_pimageframearray);
-               
-            }
-            
-         }
+         ploadimage->set_image(this);
 
-      };
+      });
 
    }
 
 
-   ::pointer<::image::load_image> image::create_load_image(::image::image_context* pimagecontext)
+   ::pointer<::image::load_image> image::create_load_image(::image::image_context* pimagecontext, const load_options & loadoptions)
    {
 
-      auto ploadimage = create_newø<::image::load_image>();
+      if(::is_null(draw2d_domain()) && ::is_null(loadoptions.draw2d_domain))
+      {
 
+         set_draw2d_domain(system()->draw2d()->main_draw2d_domain());
+
+         if (::is_null(draw2d_domain()))
+         {
+
+            throw ::exception(error_wrong_state, "image loading requires a draw2d domain");
+
+         }
+         
+      }
+
+      auto ploadimage = create_newø<::image::load_image>();
+      
       ploadimage->initialize_load_image(pimagecontext);
 
-      ploadimage->m_loadoptions.functionLoaded = load_image_callback();
+      ploadimage->m_loadoptions = loadoptions;
+
+      load_image_callback(ploadimage->m_loadoptions.functionaLoaded);
+
+      if(::is_null(draw2d_domain()))
+      {
+         
+         set_draw2d_domain(ploadimage->m_loadoptions.draw2d_domain);
+         
+      }
+         
+      ploadimage->set_draw2d_domain(draw2d_domain());
 
       return ploadimage;
 
@@ -10937,6 +11190,8 @@ namespace image
          return {};
 
       }
+      
+      pimage->set_draw2d_domain(ploadimage->draw2d_domain());
 
       return pimage;
 
@@ -11583,7 +11838,12 @@ namespace image
    ::image_pixmap_lease image::_map(::image::enum_map emap, const ::i32_rectangle& rectangle)
    {
 
+      std::lock_guard<std::recursive_mutex> alphaLock(m_mutexAlphaStatistics);
       _tidy_map(rectangle);
+      if (emap != e_map_read_only || (!rectangle.is_null()
+         && (rectangle.origin() != m_point || rectangle.size() != m_size)))
+         invalidate_alpha_statistics("map_write_or_region");
+      m_eActiveAlphaMap = emap;
 
       if (!rectangle.is_null())
       {
@@ -11619,7 +11879,7 @@ namespace image
 
          m_ppixmapOwned->m_point.clear();
 
-         if (emap == ::image::e_map_load)
+         if (emap != ::image::e_map_discard)
          {
 
             m_ppixmapOwned->change_size_and_stride_preserving_data(sizeRawThis, m_iScan);
@@ -11645,7 +11905,7 @@ namespace image
 
       m_ppixmapOwned->pixmap_map();
 
-      if (emap == ::image::e_map_load && m_bGraphicsWasAcquiredAfterLastMap)
+      if (emap != ::image::e_map_discard && m_bGraphicsWasAcquiredAfterLastMap)
       {
 
          m_bGraphicsWasAcquiredAfterLastMap = false;
@@ -11660,7 +11920,8 @@ namespace image
 
       }
 
-      m_bWasMappedAfterLastGraphicsAcquisition = true;
+      if (emap != e_map_read_only)
+         m_bWasMappedAfterLastGraphicsAcquisition = true;
 
       return {this, m_ppixmapOwned};
 
@@ -11697,7 +11958,10 @@ namespace image
    void image::_unmap(::image_pixmap_lease * pimagepixmaplease)
    {
 
+      std::lock_guard<std::recursive_mutex> alphaLock(m_mutexAlphaStatistics);
       _tidy_unmap(pimagepixmaplease);
+      if (m_eActiveAlphaMap != e_map_read_only)
+         invalidate_alpha_statistics("unmap_write");
 
       m_pimagepixmaplease = nullptr;
 
@@ -11874,7 +12138,7 @@ namespace image
 
       m_papplication->constructø(pimage);
 
-      pimage->create_as_descriptor(size);
+      pimage->create_as_descriptor(size, draw2d_domain());
 
       ::f64_rectangle rectangleTarget(::f64_point(0, 0), ::f64_size(size));
 
@@ -11895,6 +12159,40 @@ namespace image
 
    ::image_pixmap_lease image::map(enum_map emap, const ::i32_rectangle& rectangle)
    {
+      // Track maps here as well as in the common implementation, because some
+      // backends provide their own _map while retaining the public lease API.
+      std::lock_guard<std::recursive_mutex> lock(m_mutexAlphaStatistics);
+      bool bWritableMap = emap != e_map_read_only;
+      bool bRegionMismatch = !rectangle.is_null()
+         && (rectangle.origin() != m_point || rectangle.size() != m_size);
+      if (bWritableMap || bRegionMismatch)
+      {
+#if FPS_DEBUG
+         const char * pszMode = emap == e_map_read_only ? "read_only"
+            : emap == e_map_discard ? "discard" : "load";
+         ::string strReason;
+         if (rectangle.is_null())
+         {
+            strReason.formatf("map mode=%s cause=%s requested=full logical=(%d,%d %dx%d)",
+               pszMode, bWritableMap ? "writable" : "region_mismatch",
+               m_point.x, m_point.y, m_size.cx, m_size.cy);
+         }
+         else
+         {
+            auto pointRequested = rectangle.origin();
+            auto sizeRequested = rectangle.size();
+            strReason.formatf("map mode=%s cause=%s requested=(%d,%d %dx%d) logical=(%d,%d %dx%d)",
+               pszMode, bWritableMap && bRegionMismatch ? "writable+region_mismatch"
+                  : bWritableMap ? "writable" : "region_mismatch",
+               pointRequested.x, pointRequested.y, sizeRequested.cx, sizeRequested.cy,
+               m_point.x, m_point.y, m_size.cx, m_size.cy);
+         }
+         invalidate_alpha_statistics(strReason.c_str());
+#else
+         invalidate_alpha_statistics("map_write_or_region");
+#endif
+      }
+      m_eActiveAlphaMap = emap;
 
       auto ppixmap = ::transfer(_map(emap, rectangle));
 
@@ -11911,16 +12209,16 @@ namespace image
    //
    //}
 
-   void image::on_load_image(const image32_t* pimage32, const ::i32_size& size, int iScan)
+   void image::on_load_image(const image32_t* pimage32, const ::i32_size& size, int iScan, bool bTopDown)
    {
 
-      create_as_descriptor(size);
+      create_as_descriptor(size, draw2d_domain());
 
       construct_newø(m_ppixmapOwned);
 
       m_ppixmapOwned->create_as_descriptor(size, ::e_flag_success, iScan);
-
-      m_ppixmapOwned->copy(size, pimage32, iScan);
+      
+      m_ppixmapOwned->copy(size, pimage32, iScan, bTopDown);
 
    }
 
@@ -11928,8 +12226,18 @@ namespace image
    void image::on_load_image(::pixmap* ppixmap)
    {
 
-      create_as_descriptor(ppixmap->size());
+      create_as_descriptor(ppixmap->size(), draw2d_domain());
 
+      {
+         
+#if FPS_DEBUG
+         ::string strImageDiagnostics = _001_image32_diagnostics_t(ppixmap).as_string();
+         
+         information("do_render_base stretch source pimageImage(B): {}", strImageDiagnostics);
+#endif
+         
+      }
+      
       m_ppixmapOwned = ppixmap;
 
    }
@@ -11938,7 +12246,7 @@ namespace image
    void image::on_load_image_frame_array(::image::image_frame_array * pimageframearray)
    {
 
-      create_as_descriptor(pimageframearray->m_ppixmap->size());
+      create_as_descriptor(pimageframearray->m_ppixmap->size(), draw2d_domain());
 
       get_extension()->m_pframea = pimageframearray;
 
@@ -11985,7 +12293,7 @@ namespace image
 
       ::f64_size size = pframea->m_size;
 
-      create_as_descriptor(size);
+      create_as_descriptor(size, draw2d_domain());
 
       // ::f64_rectangle r1(pframeSource->m_rectangle.size());
       //
@@ -12168,7 +12476,7 @@ namespace image
 
       ::cast < ::image::image > pimage = pimageframearray->m_pparticleImage;
 
-      pimage->create_as_descriptor(imagedrawing.m_rectangleTarget.size());
+      pimage->create_as_descriptor(imagedrawing.m_rectangleTarget.size(), draw2d_domain());
 
       pimageframearray->set_size(pframes->get_count());
 
@@ -12312,6 +12620,8 @@ namespace image
 
    void image::copy_from(::pixmap * ppixmap)
    {
+      std::lock_guard<std::recursive_mutex> alphaLock(m_mutexAlphaStatistics);
+      invalidate_alpha_statistics("copy_from_pixmap");
 
       if (m_pgraphicslease)
       {
@@ -12349,6 +12659,13 @@ namespace image
       else if (m_ppixmapOwned)
       {
 
+         if (m_sizeRaw < ppixmap->size())
+         {
+
+            create_as_descriptor(ppixmap->size(), draw2d_domain(), e_flag_none);
+
+         }
+
          m_ppixmapOwned->copy_from(ppixmap);
 
       }
@@ -12364,6 +12681,8 @@ namespace image
 
    void image::copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
    {
+      std::lock_guard<std::recursive_mutex> alphaLock(m_mutexAlphaStatistics);
+      invalidate_alpha_statistics("copy_from_pixmap_region");
 
       if (m_pgraphicslease)
       {
@@ -12564,6 +12883,8 @@ namespace image
 
    void image::copy_from(::image::image * pimage)
    {
+      std::lock_guard<std::recursive_mutex> alphaLock(m_mutexAlphaStatistics);
+      invalidate_alpha_statistics("copy_from_image");
 
       if (m_pgraphicslease)
       {
@@ -12604,6 +12925,8 @@ namespace image
 
    void image::copy_from(::image::image * pimage, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
    {
+      std::lock_guard<std::recursive_mutex> alphaLock(m_mutexAlphaStatistics);
+      invalidate_alpha_statistics("copy_from_image_region");
 
       if (m_pgraphicslease)
       {
@@ -12711,6 +13034,8 @@ namespace image
 
    void image::change_raw_size(const ::i32_size & sizeRawNew, ::i32 iMinimumScan)
    {
+      std::lock_guard<std::recursive_mutex> alphaLock(m_mutexAlphaStatistics);
+      invalidate_alpha_statistics("change_raw_size");
 
       if (sizeRawNew <= m_sizeRaw && iMinimumScan < m_iScan)
       {

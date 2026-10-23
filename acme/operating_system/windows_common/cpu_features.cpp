@@ -62,8 +62,14 @@ cpu_features::cpu_features()
    bool osUsesXSAVE_XRSTORE = (cpuInfo[2] & (1 << 27)) != 0;
    if (m_bAVX && osUsesXSAVE_XRSTORE)
    {
-      ::u64 xcrFeatureMask =
-         _xgetbv(_XCR_XFEATURE_ENABLED_MASK);
+#ifdef __REACTOS__
+      unsigned int low, high;
+      // OSXSAVE above guarantees that reading XCR0 is supported.
+      __asm__ volatile ("xgetbv" : "=a"(low), "=d"(high) : "c"(0));
+      ::u64 xcrFeatureMask = (static_cast<::u64>(high) << 32) | low;
+#else
+      ::u64 xcrFeatureMask = _xgetbv(0);
+#endif
 
       // XMM (bit 1) and YMM (bit 2)
       m_bAVX = (xcrFeatureMask & 0x6) == 0x6;
@@ -75,7 +81,7 @@ cpu_features::cpu_features()
 
    // -------- CPUID leaf 7 --------
    __cpuid(cpuInfo, 7);
-   m_bAVX2 = (cpuInfo[1] & (1 << 5)) != 0;
+   m_bAVX2 = m_bAVX && (cpuInfo[1] & (1 << 5)) != 0;
 
 
 #elif defined(CPU_ARM64) || defined(CPU_ARM32)
@@ -109,6 +115,17 @@ namespace operating_system
    ::string machine_architecture()
    {
 
+#ifdef __REACTOS__
+      SYSTEM_INFO info{};
+      GetNativeSystemInfo(&info);
+      switch (info.wProcessorArchitecture)
+      {
+      case PROCESSOR_ARCHITECTURE_AMD64: return "x64";
+      case PROCESSOR_ARCHITECTURE_INTEL: return "x86";
+      case PROCESSOR_ARCHITECTURE_ARM64: return "arm64";
+      default: return "unknown";
+      }
+#else
       USHORT processMachine = 0;
       USHORT nativeMachine = 0;
 
@@ -144,6 +161,8 @@ namespace operating_system
       }
 
       return strArchitecture;
+
+#endif
 
    }
 

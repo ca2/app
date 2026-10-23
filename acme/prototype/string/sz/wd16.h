@@ -2,6 +2,8 @@
 #pragma once
 
 
+#include "acme/prototype/string/c/coupling/wd16.h"
+
 #define const_wd16char_trigger const ::wd16_character *
 
 #include <wchar.h>
@@ -34,13 +36,13 @@ CLASS_DECL_ACME ::std::strong_ordering string_collate(const ::wd16_character * p
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_collate(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering string_count_collate(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_collate(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
-#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__ANDROID__)
-inline ::i32 _string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return string_count_compare(pszA, pszB, len); }
-inline ::i32 _case_insensitive_string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return case_insensitive_string_count_compare(pszA, pszB, len); }
-#else
-inline ::i32 _string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return wcsncmp(pszA, pszB, len); }
-inline ::i32 _case_insensitive_string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return wcsnicmp(pszA, pszB, len); }
-#endif
+//#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__ANDROID__)
+//inline ::i32 _string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return string_count_compare(pszA, pszB, len); }
+//inline ::i32 _case_insensitive_string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return case_insensitive_string_count_compare(pszA, pszB, len); }
+//#else
+inline ::i32 _string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return wd16_ncmp(pszA, pszB, len); }
+inline ::i32 _case_insensitive_string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return __wd16nicmp(pszA, pszB, len); }
+//#endif
 
 
 CLASS_DECL_ACME character_count string_get_length(const ::wd16_character * psz) noexcept;
@@ -79,8 +81,8 @@ CLASS_DECL_ACME character_count string_skip_any_character_in(const ::wd16_charac
 CLASS_DECL_ACME character_count string_find_first_character_in(const ::wd16_character * pszBlock, const ::wd16_character * pszSet) noexcept;
 
 
-CLASS_DECL_ACME character_count get_formatted_length(const ::wd16_character * pszFormat, va_list args) noexcept;
-CLASS_DECL_ACME character_count _string_format(::wd16_character * pszBuffer, character_count nlength, const ::wd16_character * pszFormat, va_list args) noexcept;
+//CLASS_DECL_ACME character_count get_formatted_length(const ::wd16_character * pszFormat, va_list args) noexcept;
+//CLASS_DECL_ACME character_count _string_format(::wd16_character * pszBuffer, character_count nlength, const ::wd16_character * pszFormat, va_list args) noexcept;
 CLASS_DECL_ACME void  flood_characters(::wd16_character * psz, ::wd16_character ch, character_count len) noexcept;
 
 

@@ -53,7 +53,7 @@ release_time_for_project application::release_time() { return __RELEASE_TIME(lib
 
 #endif
 
-#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(MACOS) || defined(__BSD__)
+#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(MACOS) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 #define DESKTOP_PLATFORM
 #endif
 
@@ -403,7 +403,7 @@ __FACTORY_EXPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfa
 TOKEN_CONCATENATE(name, _factory)(pfactory)
 
 
-#if defined(MACOS) || defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__BSD__)
+#if defined(MACOS) || defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 #define IS_DESKTOP_SYSTEM() (true)
 #else
 #define IS_DESKTOP_SYSTEM() (false)
@@ -444,4 +444,18 @@ _STUD_API type& operator=(const ::platform::type &) noexcept = delete
 #define _STUD_MAKE_NONMOVEABLE(type) _STUD_API type(type&&) noexcept = delete;
 
 //_STUD_API_END
+
+
+#if defined(__GNUC__) && (__GNUC__ < 14)
+
+#define USER_DEFINED_LITERAL(SUFFIX) "" SUFFIX
+
+#else
+
+#define USER_DEFINED_LITERAL(SUFFIX) ""##SUFFIX
+
+#endif
+
+
+
 

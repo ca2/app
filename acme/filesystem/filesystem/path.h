@@ -318,7 +318,7 @@ namespace file
 //      path(const ::payload & payload);
 //      path(const ::property & property);
 ////      path(const ::scoped_string & scopedstr);
-      ~path() noexcept;
+      inline ~path() noexcept;
 
 
       //void construct() { *this = ::file::path(); }
@@ -332,10 +332,10 @@ namespace file
       path & set_file_path(const ::scoped_string & scopedstrFile);
       path & set_folder_path(const ::scoped_string & scopedstrFolder);
 
-      path & set_file_path();
+      inline path & set_file_path();
       path & set_folder_path();
 
-      path& set_existent();
+      inline path& set_existent();
 
       path& set_existent_file();
       path& set_existent_folder();
@@ -374,7 +374,7 @@ namespace file
       /// @straRelatedExtensions are erased.
       /// </summary>
       /// <param name="scopestrExtension"></param>
-      void defer_set_extension(const ::string_array_base& straPreserveExtensions, const ::string_array_base& straRelatedExtensions);
+      inline void defer_set_extension(const ::string_array_base& straPreserveExtensions, const ::string_array_base& straRelatedExtensions);
       void defer_set_extension(const ::string_array_base& straPreserveExtensions);
       void defer_set_extension(const ::file::file_dialog * pdialog);
 
@@ -382,7 +382,7 @@ namespace file
       ::file::path with_final_extension(const ::scoped_string& scopestrExtension) const;
       ::file::path with_extension_if_no_extension(const ::scoped_string& scopestrExtension) const;
 
-      ::file::path with_deferred_extension(const ::string_array_base & straPreserveExtensions, const ::string_array_base& straRelatedExtensions) const;
+      inline ::file::path with_deferred_extension(const ::string_array_base & straPreserveExtensions, const ::string_array_base& straRelatedExtensions) const;
       ::file::path with_deferred_extension(const ::string_array_base & straPreserveExtensions) const;
       ::file::path with_deferred_extension(const ::file::file_dialog* pdialog) const;
 
@@ -408,7 +408,7 @@ namespace file
       //}
 
 
-      path & operator = (const ::file::path & path);
+      inline path & operator = (const ::file::path & path);
 
       //template < prototype_character CHARACTER2 >
       //path & operator = (const ::character_range < const CHARACTER2 *> & range)
@@ -493,10 +493,10 @@ namespace file
       //bool operator == (const ::ansi_string & str) const;
 
 
-      bool operator == (const ::string & str) const;
+      inline bool operator == (const ::string & str) const;
 
 
-      bool operator != (const path & path) const;
+      inline bool operator != (const path & path) const;
 
       bool operator != (const ::ansi_string & str) const;
 
@@ -507,7 +507,7 @@ namespace file
       //      bool operator == (const ::scoped_string & scopedstr) const;
       //bool operator == (const ::payload & payload) const;
 
-      //      bool operator != (const path & path) const;
+      //      inline bool operator != (const path & path) const;
 
       //      bool operator != (const ::ansi_string & str) const;
       //      bool operator != (const ::scoped_string & scopedstr) const;
@@ -604,7 +604,7 @@ namespace file
 
       ::const_ansi_range title() const;
 
-      ::const_ansi_range name() const;
+      inline ::const_ansi_range name() const;
 
       //string name(::collection::index i /* = -1 */) const;
 
@@ -613,11 +613,11 @@ namespace file
 
       /// return index just after first dot in file name
       /// -1 if not found
-      ::const_ansi_range find_all_extensions() const;
+      inline ::const_ansi_range find_all_extensions() const;
 
       /// return index just after last dot in file name
       /// -1 if not found
-      ::const_ansi_range find_final_extension() const;
+      inline ::const_ansi_range find_final_extension() const;
 
       //      bool is_equal(const ::file::path & path2) const;
 
@@ -643,8 +643,8 @@ namespace file
 
       path folder() const;
       path folder(::i32 i) const;
-      path parent() const;
-      path ascendant(::i32 i) const;
+      inline path parent() const;
+      inline path ascendant(::i32 i) const;
       path & ascend();
       path & ascend(::i32 i);
       path operator - (::i32 i) const { return this->ascendant(i); }

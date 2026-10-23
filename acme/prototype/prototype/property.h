@@ -72,8 +72,8 @@ namespace xml
 //using property = payload;
 
 
-void on_property_construct(property * pproperty);
-void on_property_destruct(property * pproperty);
+CLASS_DECL_ACME void on_property_construct(property * pproperty);
+CLASS_DECL_ACME void on_property_destruct(property * pproperty);
 
 
 class CLASS_DECL_ACME property : 

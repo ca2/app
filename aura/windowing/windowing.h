@@ -46,6 +46,9 @@ namespace windowing
       enum_cursor                               m_ecursor;
 
       bool                                      m_bDrawCursor;
+      // CPU backing storage uses window-local coordinates when enabled.
+      // Configure before creating windows; each frame snapshots this policy.
+      bool                                      m_bTightRawBuffer;
 
       void *                                    m_pSnLauncheeContext;
 

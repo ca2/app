@@ -12,9 +12,34 @@ add_executable(${PROJECT_NAME} ${executable_source})
 
 
 if(${WIN32})
-    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:CONSOLE")
+
+
+
+
+
+
+   if(MSVC)
+
+
+      target_compile_options(${PROJECT_NAME} PRIVATE    "/MD$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/SUBSYSTEM:WINDOWS")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/bigobj")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   else()
+
+
+      target_link_options(${PROJECT_NAME} PRIVATE "-mwindows")
+      target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   endif()
+
+
+
 endif ()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE CUBE)
@@ -32,14 +57,14 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 if(${LINUX})
-   target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
+   target_link_options(${PROJECT_NAME} PRIVATE ${LINK_STATIC_OPTION} -static-libgcc -static-libstdc++)
 elseif(${FREEBSD})
-   target_link_options(${PROJECT_NAME} PRIVATE -static)
+   target_link_options(${PROJECT_NAME} PRIVATE ${LINK_STATIC_OPTION})
 
 elseif(${OPENBSD})
-   target_link_options(${PROJECT_NAME} PRIVATE -static)
+   target_link_options(${PROJECT_NAME} PRIVATE ${LINK_STATIC_OPTION})
 elseif(${NETBSD})
-   target_link_options(${PROJECT_NAME} PRIVATE -static)
+   target_link_options(${PROJECT_NAME} PRIVATE ${LINK_STATIC_OPTION})
 endif()
 
 
@@ -49,7 +74,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if(${LINUX})
-   target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
+   target_link_options(${PROJECT_NAME} PRIVATE ${LINK_STATIC_OPTION} -static-libgcc -static-libstdc++)
 elseif(${FREEBSD})
    target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_posix)
    target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_darwin)
@@ -59,7 +84,7 @@ elseif(${FREEBSD})
    target_link_libraries(${PROJECT_NAME} PRIVATE kvm procstat util)
    
 elseif(${OPENBSD})
-   target_link_options(${PROJECT_NAME} PRIVATE -static)
+   target_link_options(${PROJECT_NAME} PRIVATE ${LINK_STATIC_OPTION})
 elseif(${WIN32})
    target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_windows_common)
    target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_windows)

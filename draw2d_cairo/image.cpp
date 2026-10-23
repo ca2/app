@@ -257,7 +257,7 @@ namespace draw2d_cairo
 
       ::i32_size size = pdraw2dbitmap->size();
 
-      create_as_descriptor(size);
+      create_as_descriptor(size, pdraw2dgraphics->draw2d_domain());
 
       //if(!create(size))
       //{
@@ -511,6 +511,15 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+      // Until graphics acquisition creates a surface, map the persistent CPU
+      // backing. Loaders write through this lease before installing a bitmap.
+      if (!m_pdraw2dbitmap)
+      {
+
+         return ::image::image::_map(emap, rectangle);
+
+      }
+
       _tidy_map(rectangle);
 
       // if (m_bMapped)
@@ -538,11 +547,26 @@ namespace draw2d_cairo
 
          pdraw2dbitmap = m_pdraw2dbitmap;
 
-         pdraw2dbitmap->create_bitmap(nullptr, this->raw_size());
+         // Decoded images may still have only CPU pixels. Preserve those pixels
+         // when creating the Cairo surface for the first mapping.
+         pdraw2dbitmap->create_bitmap(nullptr, this->raw_size(), m_ppixmapOwned);
 
       }
 
       cairo_surface_t * psurface = m_pdraw2dbitmap.cast < ::draw2d_cairo::bitmap>()->m_pcairosurface;
+
+      // A descriptor resize does not resize an existing Cairo allocation.
+      // Mapping must use the current dimensions, just like graphics acquisition.
+      if (psurface
+         && (cairo_image_surface_get_width(psurface) != raw_size().cx
+            || cairo_image_surface_get_height(psurface) != raw_size().cy))
+      {
+
+         auto pbitmap = m_pdraw2dbitmap.cast < ::draw2d_cairo::bitmap>();
+         pbitmap->create_bitmap(nullptr, raw_size());
+         psurface = pbitmap->m_pcairosurface;
+
+      }
 
       if (psurface == nullptr)
       {
@@ -571,6 +595,9 @@ namespace draw2d_cairo
       ppixmapLease->m_memoryPixmap.reference_data(pdata, total_bytes);
 
       ppixmapLease->m_pimage32Raw = (::image32_t *) pdata;
+
+      ppixmapLease->m_iScan = stride;
+      ppixmapLease->m_bTopLeft = true;
 
       ppixmapLease->m_size = this->m_size;
 
@@ -647,7 +674,9 @@ namespace draw2d_cairo
 
       //_tidy_unmap(pimagepixmaplease);
 
+      const bool readOnly = m_eActiveAlphaMap == ::image::e_map_read_only;
       ::image::image::_unmap(pimagepixmaplease);
+      if (readOnly) return;
 
       // if (!m_bMapped)
       // {

@@ -1284,9 +1284,11 @@ namespace aura
 
       auto pdirectorysystem = directory_system();
 
-      ::file::path path = "dropbox://application" / application()->m_strAppId / "draw2d.txt";
+      ::file::path path = "cloud://application" / application()->m_strAppId / "draw2d.txt";
 
       strImplementationName = file()->safe_get_string(path);
+
+//      throw ::exception(todo);
 
       if(strImplementationName.has_character())
       {
@@ -1317,6 +1319,10 @@ namespace aura
 #elif defined(UNIVERSAL_WINDOWS)
       
       return implementation_name("draw2d", "direct2d");
+
+#elif defined(__HAIKU__)
+
+      return implementation_name("draw2d", "haiku");
 
 #else
       
@@ -1587,7 +1593,11 @@ namespace aura
       if (strImplementationName.is_empty())
       {
 
-#ifdef WINDOWS
+#if defined(WINDOWS) && defined(__REACTOS__)
+
+         strImplementationName = implementation_name("imaging", "freeimage");
+
+#elif defined(WINDOWS)
 
          strImplementationName = implementation_name("imaging", "wic");
 
@@ -1830,7 +1840,11 @@ namespace aura
 
       }
 
-#ifdef WINDOWS
+#if defined(WINDOWS) && defined(__REACTOS__)
+
+      return implementation_name("imaging", "freeimage");
+
+#elif defined(WINDOWS)
 
       return implementation_name("imaging", "wic");
 

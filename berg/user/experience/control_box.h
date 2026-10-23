@@ -10,10 +10,10 @@ namespace experience
 
 
    class CLASS_DECL_BERG control_box :
-      virtual public ::user::box,
-      virtual public ::user::auto_hide
+      virtual public ::user::box
    {
    public:
+      ::pointer<::user::auto_hide> m_pAutoHide;
 
 
       class CLASS_DECL_BERG item :
@@ -120,7 +120,7 @@ namespace experience
 
       //virtual void reset_layout(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      ::i32 auto_hide_threshold_height() override;
+      ::i32 auto_hide_threshold_height();
 
       virtual void _layout_button(enum_button ebutton, ::i32_rectangle & rectangle);
       virtual bool should_show_button(enum_button ebutton) const;

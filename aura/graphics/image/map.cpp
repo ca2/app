@@ -2,13 +2,14 @@
 #include "map.h"
 #include "image.h"
 #include "acme/platform/system.h"
+#include "aura/graphics/draw2d/draw2d.h"
 
 
 namespace image
 {
 
 
-   ::image::image_pointer & image_descriptor_map_base::operator[](const image_header & key)
+   ::image::image_pointer & image_descriptor_map::operator[](const image_header & key)
    {
 
       while (get_count() > m_iLimitCount)
@@ -25,7 +26,7 @@ namespace image
 
          system()->constructø(pimage);
 
-         pimage->create_as_descriptor(key.m_size);
+         pimage->create_as_descriptor(key.m_size, m_pdraw2ddomain);
 
       }
 
@@ -35,7 +36,7 @@ namespace image
 
 
 
-   void image_descriptor_map_base::erase_bigger()
+   void image_descriptor_map::erase_bigger()
    {
 
       image_header itemFind;
@@ -76,7 +77,7 @@ namespace image
    }
 
 
-   ::image::image_pointer & size_image_base::operator[](const ::i32_size & size)
+   ::image::image_pointer & size_image::operator[](const ::i32_size & size)
    {
 
       bool bExists;
@@ -86,7 +87,7 @@ namespace image
    }
 
 
-   ::image::image_pointer & size_image_base::get(const ::i32_size & size, bool & bExists)
+   ::image::image_pointer & size_image::get(const ::i32_size & size, bool & bExists)
    {
 
       auto & pimage = ::map_base < ::i32_size, ::image::image_pointer >::operator [](size);
@@ -96,7 +97,7 @@ namespace image
 
          system()->constructø(pimage);
 
-         pimage->create_as_descriptor(size);
+         pimage->create_as_descriptor(size, m_pdraw2ddomain);
 
          bExists = false;
 

@@ -12,7 +12,11 @@ namespace parallelization
    {
    public:
 
+#ifdef __REACTOS__
+      CRITICAL_SECTION m_lock{};
+#else
       SRWLOCK m_lock{};
+#endif
    };
 
 
@@ -20,17 +24,36 @@ namespace parallelization
    {
 
       m_pimpl = new mutex_impl;
+#ifdef __REACTOS__
+      if (!InitializeCriticalSectionAndSpinCount(&m_pimpl->m_lock, 0))
+         std::terminate();
+#else
       InitializeSRWLock(&m_pimpl->m_lock);
+#endif
    }
 
-   mutex::~mutex() noexcept { delete m_pimpl; }
+   mutex::~mutex() noexcept
+   {
+#ifdef __REACTOS__
+      DeleteCriticalSection(&m_pimpl->m_lock);
+#endif
+      delete m_pimpl;
+   }
 
 
+#ifdef __REACTOS__
+   void mutex::lock() noexcept { EnterCriticalSection(&m_pimpl->m_lock); }
+
+   bool mutex::try_lock() noexcept { return TryEnterCriticalSection(&m_pimpl->m_lock) != FALSE; }
+
+   void mutex::unlock() noexcept { LeaveCriticalSection(&m_pimpl->m_lock); }
+#else
    void mutex::lock() noexcept { AcquireSRWLockExclusive(&m_pimpl->m_lock); }
 
    bool mutex::try_lock() noexcept { return TryAcquireSRWLockExclusive(&m_pimpl->m_lock) != FALSE; }
 
    void mutex::unlock() noexcept { ReleaseSRWLockExclusive(&m_pimpl->m_lock); }
+#endif
 
 
    //enum class win32_cv_status
@@ -46,7 +69,73 @@ namespace parallelization
    public:
 
 
+#ifdef __REACTOS__
+      struct waiter
+      {
+         HANDLE event;
+         waiter * next;
+         bool notified;
+      };
+
+      CRITICAL_SECTION m_lock{};
+      waiter * m_first{};
+
+      condition_payload_impl() noexcept
+      {
+         if (!InitializeCriticalSectionAndSpinCount(&m_lock, 0))
+            std::terminate();
+      }
+
+      ~condition_payload_impl() { DeleteCriticalSection(&m_lock); }
+
+      void notify(bool all) noexcept
+      {
+         EnterCriticalSection(&m_lock);
+         for (auto waiter = m_first; waiter; waiter = waiter->next)
+         {
+            if (!waiter->notified && SetEvent(waiter->event))
+            {
+               waiter->notified = true;
+               if (!all)
+                  break;
+            }
+         }
+         LeaveCriticalSection(&m_lock);
+      }
+
+      BOOL sleep(mutex & mutex, DWORD timeout)
+      {
+         waiter current{CreateEventW(nullptr, FALSE, FALSE, nullptr), nullptr, false};
+         if (!current.event)
+            return FALSE;
+
+         // Register before releasing the caller's mutex to avoid losing a notification.
+         EnterCriticalSection(&m_lock);
+         current.next = m_first;
+         m_first = &current;
+         mutex.unlock();
+         LeaveCriticalSection(&m_lock);
+
+         const auto result = WaitForSingleObject(current.event, timeout);
+         const auto error = result == WAIT_TIMEOUT ? ERROR_TIMEOUT : GetLastError();
+
+         EnterCriticalSection(&m_lock);
+         auto link = &m_first;
+         while (*link != &current)
+            link = &(*link)->next;
+         *link = current.next;
+         LeaveCriticalSection(&m_lock);
+         CloseHandle(current.event);
+
+         // A condition-variable wait returns owning the same mutex, even on timeout.
+         mutex.lock();
+         if (result != WAIT_OBJECT_0)
+            SetLastError(error);
+         return result == WAIT_OBJECT_0;
+      }
+#else
       CONDITION_VARIABLE m_conditionvariable{};
+#endif
    };
 
 
@@ -96,7 +185,9 @@ namespace parallelization
    condition_payload::condition_payload() noexcept
    {
       m_pimpl = new condition_payload_impl();
+#ifndef __REACTOS__
       InitializeConditionVariable(&m_pimpl->m_conditionvariable);
+#endif
    }
 
    // condition_payload(const condition_payload &) = delete;
@@ -105,15 +196,25 @@ namespace parallelization
    // CONDITION_VARIABLE does not require destruction.
    condition_payload::~condition_payload() { delete m_pimpl; }
 
+#ifdef __REACTOS__
+   void condition_payload::notify_one() noexcept { m_pimpl->notify(false); }
+
+   void condition_payload::notify_all() noexcept { m_pimpl->notify(true); }
+#else
    void condition_payload::notify_one() noexcept { WakeConditionVariable(&m_pimpl->m_conditionvariable); }
 
    void condition_payload::notify_all() noexcept { WakeAllConditionVariable(&m_pimpl->m_conditionvariable); }
+#endif
 
    void condition_payload::wait(unique_lock &lock)
    {
       condition_payload_validate_lock(lock);
 
+#ifdef __REACTOS__
+      BOOL bResult = m_pimpl->sleep(*lock.m_pmutex, INFINITE);
+#else
       BOOL bResult = SleepConditionVariableSRW(&m_pimpl->m_conditionvariable, &lock.m_pmutex->m_pimpl->m_lock, INFINITE, 0);
+#endif
 
       if (!bResult)
       {
@@ -136,7 +237,11 @@ namespace parallelization
 
       DWORD dwTimeout = condition_payload_duration_to_timeout(duration);
 
+#ifdef __REACTOS__
+      BOOL bResult = m_pimpl->sleep(*lock.m_pmutex, dwTimeout);
+#else
       BOOL bResult = SleepConditionVariableSRW(&m_pimpl->m_conditionvariable, &lock.m_pmutex->m_pimpl->m_lock, dwTimeout, 0);
+#endif
 
       if (bResult)
       {

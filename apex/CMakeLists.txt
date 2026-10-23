@@ -116,7 +116,7 @@ list(APPEND apex_source
    handler/manager.h
    handler/manager_room.cpp
    handler/manager_room.h
-   #handler/process.cpp
+   #handler/process_process.cpp
    #handler/promise.cpp
    handler/promise.h
    #handler/routine.cpp
@@ -416,7 +416,7 @@ list(APPEND apex_source
    #operating_system/ansios/file_c.h
    #operating_system/ansi/language.cpp
    #operating_system/ansi/parallelization.h
-   #operating_system/ansios/process.cpp
+   #operating_system/ansios/process_process.cpp
    #operating_system/ansi/win.cpp
    #operating_system/_.h
    #operating_system/_application.cpp
@@ -436,7 +436,7 @@ list(APPEND apex_source
    #operating_system/operating_system.h
    #operating_system/operating_system.cpp#
    #operating_system/os_windowing2.h
-   #operating_system/process.h
+   #operating_system/process_process.h
    #operating_system/text.h
    #operating_system/thread.cpp
    #operating_system/thread.h
@@ -582,8 +582,8 @@ list(APPEND apex_source
    #process/_.h
    operating_system/department.cpp
    operating_system/department.h
-   #operating_system/process.cpp
-   #operating_system/process.h
+   #operating_system/process_process.cpp
+   #operating_system/process_process.h
    progress/integer.cpp
    progress/integer.h
    progress/listener.cpp
@@ -674,8 +674,8 @@ if (WIN32)
       #operating_system/windows/ip_enum.h
       ##operating_system/windows/os_context.cpp
       ##operating_system/windows/os_context.h
-      #operating_system/windows/process.cpp
-      #operating_system/windows/process.h
+      #operating_system/windows/process_process.cpp
+      #operating_system/windows/process_process.h
       #operating_system/windows/thread.cpp
       #operating_system/windows/thread.h
       #operating_system/windows/timer.cpp
@@ -865,8 +865,8 @@ if (UWP)
       #            operating_system/universal_windows/metrowin_metrowin.h
       #            operating_system/universal_windows/parallelization.cpp
       #            operating_system/universal_windows/parallelization.h
-      #            #operating_system/universal_windows/process.cpp
-      #            #operating_system/universal_windows/process.h
+      #            #operating_system/universal_windows/process_process.cpp
+      #            #operating_system/universal_windows/process_process.h
       #            operating_system/universal_windows/simple_app.cpp
       #            operating_system/universal_windows/simple_hold_handle.h
       #            operating_system/universal_windows/simple_shell_launcher.cpp
@@ -1035,7 +1035,7 @@ if (MACOS)
       #operating_system/macos/NSPasteboard++.mm
       #operating_system/macos/os.cpp
       #operating_system/macos/os.h
-      ##operating_system/macos/process.cpp
+      ##operating_system/macos/process_process.cpp
       ##operating_system/macos/process_c.h
       ##operating_system/macos/process_pid.cpp
       #operating_system/macos/simple_app.cpp
@@ -1056,7 +1056,7 @@ if (MACOS)
 endif ()
 
 
-if (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD} OR ${MACOS})
+if (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD} OR ${MACOS} OR ${__SUNOS__})
 
    list(APPEND apex_source
       operating_system/freedesktop/desktop_file.cpp
@@ -1150,8 +1150,8 @@ if (IOS)
       #            operating_system/ios/parallelization.h
       #            operating_system/ios/oswindow_data.cpp
       #            operating_system/ios/oswindow_data.h
-      #            #operating_system/ios/process.cpp
-      #            #operating_system/ios/process.h
+      #            #operating_system/ios/process_process.cpp
+      #            #operating_system/ios/process_process.h
       #            #operating_system/ios/process_pid.cpp
       #            operating_system/ios/simple_shell_launcher.cpp
       #            operating_system/ios/small_ipca_channel.cpp
@@ -1204,7 +1204,7 @@ if (__ANDROID__)
       #            operating_system/android/main.cpp
       #            operating_system/android/os_context.cpp
       #            operating_system/android/os_context.h
-      #            operating_system/android/process.cpp
+      #            operating_system/android/process_process.cpp
       #            operating_system/android/shell.cpp
       #            operating_system/android/shell.h
       #            operating_system/android/thread.cpp
@@ -1247,8 +1247,8 @@ if (__ANDROID__)
       #            operating_system/android/main_android.cpp
       #            operating_system/android/message_loop.cpp
       #            operating_system/android/parallelization.cpp
-      #            #operating_system/android/process.cpp
-      #            #operating_system/android/process.h
+      #            #operating_system/android/process_process.cpp
+      #            #operating_system/android/process_process.h
       #            #operating_system/android/process_pid.cpp
       #            operating_system/android/simple_shell_launcher.cpp
       #            operating_system/android/small_ipca_channel.cpp
@@ -1289,8 +1289,8 @@ if (${FREEBSD})
       #            operating_system/freebsd/freebsd.cpp
       #            #operating_system/freebsd/os_context.cpp
       #            #operating_system/freebsd/os_context.h
-      #            #operating_system/freebsd/process.cpp
-      #            #operating_system/freebsd/process.h
+      #            #operating_system/freebsd/process_process.cpp
+      #            #operating_system/freebsd/process_process.h
       #            operating_system/freebsd/root_tools.cpp
       #            operating_system/freebsd/root_tools.h
       #            operating_system/freebsd/thread.cpp
@@ -1330,8 +1330,8 @@ if (${FREEBSD})
       #            operating_system/freebsd/message_loop.cpp
       #            operating_system/freebsd/parallelization.cpp
       #            operating_system/freebsd/os.cpp
-      #            #operating_system/freebsd/process.cpp
-      #            #operating_system/freebsd/process.h
+      #            #operating_system/freebsd/process_process.cpp
+      #            #operating_system/freebsd/process_process.h
       #            #operating_system/freebsd/process_pid.cpp
       #            operating_system/freebsd/simple_app.cpp
       #            operating_system/freebsd/shell_launcher.cpp
@@ -1351,8 +1351,8 @@ if (APPLE)
    list(APPEND apex_source
       #timer.mm
       #operating_system/apple/apple_timer.cpp
-      #operating_system/apple/process.cpp
-      #operating_system/apple/process.h
+      #operating_system/apple/process_process.cpp
+      #operating_system/apple/process_process.h
       #operating_system/apple/_.cpp
       #operating_system/apple/_.h
       #operating_system/apple/_apple.h
@@ -1371,7 +1371,7 @@ if (APPLE)
       #operating_system/apple/multihreading.cpp
       #operating_system/apple/ns_exception.cpp
       #operating_system/apple/ns_exception.h
-      ##operating_system/apple/process.cpp
+      ##operating_system/apple/process_process.cpp
       #operating_system/apple/time.cpp
       #operating_system/apple/time.h
    )
@@ -1481,21 +1481,43 @@ target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
 if(${WIN32})
-   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/apex.lib")
-   #target_link_options(apex PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/apex.def")
-
    message(STATUS "\${library_references} ${global_library_references} is ${library_references} ${global_library_references}")
+
+
+
+
+   if(MSVC)
+
+
+      target_compile_options(${PROJECT_NAME} PRIVATE    "/MD$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/SUBSYSTEM:WINDOWS")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/bigobj")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   else()
+
+
+      target_link_options(${PROJECT_NAME} PRIVATE "-mwindows")
+      target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   endif()
+
+
 
    target_link_libraries(${PROJECT_NAME} PRIVATE zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32 ${library_references} ${global_library_references})
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+
+
 
 
    #   if (${USE_PKGCONFIG})
@@ -1517,7 +1539,11 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
    elseif (${__ANDROID__})
       list(APPEND this_system_libraries dl z)
    else ()
+      if(__HAIKU__)
+         list(APPEND this_system_libraries pthread idn z)
+      else()
       list(APPEND this_system_libraries dl pthread idn z)
+      endif()
    endif ()
 
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES} ${this_system_libraries})

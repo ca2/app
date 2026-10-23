@@ -1,4 +1,7 @@
 #include "platform.h"
+#ifndef MORE_LOG
+#define MORE_LOG 0
+#endif
 #include "bitmap.h"
 #include "graphics.h"
 #include "draw2d.h"
@@ -20,6 +23,7 @@
 #include "acme/prototype/string/str.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/write_text/text_out.h"
@@ -187,8 +191,6 @@ namespace draw2d_cairo
    graphics::graphics()
    {
 
-      m_pthis = this;
-
       m_bToyQuotedFontSelection = true;
       m_iSaveContext = 0;
 
@@ -304,23 +306,18 @@ namespace draw2d_cairo
 
       m_bForWindowDraw2d = true;
 
-      //m_puserinteractionDraw2dGraphics = puserinteraction;
+      m_puserinteractionTopic = puserinteraction;
 
-      if (::is_set(puserinteraction))
-      {
-
-         m_pacmeuserinteractionAffinity = puserinteraction;
-
-      }
-
-      create_memory_graphics(size, m_pacmeuserinteractionAffinity);
+      create_memory_graphics(size, puserinteraction->draw2d_domain());
 
    }
 
 
 
-   void graphics::create_bitmap_graphics(::draw2d::bitmap * pdraw2dbitmap, ::acme::user::interaction * pacmeuserinteractionAffinity)
+   void graphics::create_bitmap_graphics(::draw2d::bitmap * pdraw2dbitmap, ::draw2d::domain * pdraw2ddomain)
    {
+
+      set_draw2d_domain(pdraw2ddomain);
 
       ::cast < ::draw2d_cairo::bitmap > pbitmap = pdraw2dbitmap;
 
@@ -360,28 +357,65 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_create_memory_graphics(const ::i32_size& size, ::acme::user::interaction * pacmeuserinteractionAffinity)
+   void graphics::on_acquire_memory_graphics(bool bExternalRendering,
+      ::image::image * pimage, const ::i32_size & size,
+      ::draw2d::domain * pdraw2ddomain)
    {
 
-      if (::is_set(pacmeuserinteractionAffinity))
+      // A buffer growth can replace the bitmap surface while the existing
+      // Cairo context still holds a reference to the previous surface.
+      // Rebind before the base acquisition resets clipping and draws.
+      if (pimage && (!m_pimageTarget || m_pimageTarget == pimage))
       {
 
-         m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
+         // A pooled context may be reused for a descriptor-only image. Create
+         // its destination bitmap before drawing, rather than using the old target.
+         ::cast < ::draw2d_cairo::bitmap > pbitmap = pimage->get_bitmap_as_target(this);
+         if (pbitmap && pbitmap->m_pcairosurface)
+         {
+
+            if (!m_pcairo || cairo_get_target(m_pcairo) != pbitmap->m_pcairosurface)
+            {
+
+#if MORE_LOG && defined(__SUNOS__)
+               information() << "Cairo acquire: rebinding context to current bitmap surface";
+#endif
+               set(pbitmap.m_p);
+
+            }
+
+         }
 
       }
 
-      create_memory_graphics(size, m_pacmeuserinteractionAffinity);
+      ::draw2d::graphics::on_acquire_memory_graphics(
+         bExternalRendering, pimage, size, pdraw2ddomain);
 
    }
 
 
-   void graphics::create_memory_graphics(const ::i32_size& size, ::acme::user::interaction * pacmeuserinteractionAffinity)
+   void graphics::_create_memory_graphics(const ::i32_size& size, ::draw2d::domain * pdraw2ddomain)
    {
 
-      if (::is_set(pacmeuserinteractionAffinity))
+      if (::is_set(pdraw2ddomain))
       {
 
-         m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
+         set_draw2d_domain(pdraw2ddomain);
+
+      }
+
+      create_memory_graphics(size, pdraw2ddomain);
+
+   }
+
+
+   void graphics::create_memory_graphics(const ::i32_size& size, ::draw2d::domain * pdraw2ddomain)
+   {
+
+      if (::is_set(pdraw2ddomain))
+      {
+
+         set_draw2d_domain(pdraw2ddomain);
 
       }
 
@@ -403,7 +437,7 @@ namespace draw2d_cairo
       }
 
       m_pimageOwned->update_as_render_target(size,
-         m_pacmeuserinteractionAffinity->user_interaction(),
+         pdraw2ddomain,
          this);
 
       if (m_pimageOwned.nok())
@@ -1802,6 +1836,92 @@ namespace draw2d_cairo
 
          auto psurface = pbitmapSource->m_pcairosurface;
 
+#if MORE_LOG
+         // An attached GTK context has no image target. Inspect the viewport
+         // being presented without modifying the backing surface.
+         if (!m_pimageTarget && cairo_surface_get_type(psurface) == CAIRO_SURFACE_TYPE_IMAGE)
+         {
+
+            cairo_surface_flush(psurface);
+            int iRawWidth = cairo_image_surface_get_width(psurface);
+            int iRawHeight = cairo_image_surface_get_height(psurface);
+            int iStride = cairo_image_surface_get_stride(psurface);
+            auto pdata = cairo_image_surface_get_data(psurface);
+            int iSamples = 0;
+            int iVisibleSamples = 0;
+            int iSurfaceVisibleSamples = 0;
+            int iVisibleLeft = iRawWidth;
+            int iVisibleTop = iRawHeight;
+            int iVisibleRight = -1;
+            int iVisibleBottom = -1;
+            if (pdata && cairo_image_surface_get_format(psurface) == CAIRO_FORMAT_ARGB32)
+            {
+
+               // Sample the whole backing surface as well: content may have
+               // been drawn outside the viewport being presented after a move.
+               for (int y = 0; y < iRawHeight; y += maximum(1, iRawHeight / 64))
+               {
+
+                  auto prow = reinterpret_cast<const ::u32 *>(pdata + y * iStride);
+                  for (int x = 0; x < iRawWidth; x += maximum(1, iRawWidth / 64))
+                  {
+
+                     if (prow[x] >> 24)
+                     {
+
+                        iSurfaceVisibleSamples++;
+                        iVisibleLeft = minimum(iVisibleLeft, x);
+                        iVisibleTop = minimum(iVisibleTop, y);
+                        iVisibleRight = maximum(iVisibleRight, x);
+                        iVisibleBottom = maximum(iVisibleBottom, y);
+
+                     }
+
+                  }
+
+               }
+
+               for (int iy = 0; iy < 16; iy++)
+               {
+
+                  int y = (int)pointSrc.y + (int)(rectangleTarget.height() * (iy + 0.5) / 16.0);
+                  for (int ix = 0; ix < 16; ix++)
+                  {
+
+                     int x = (int)pointSrc.x + (int)(rectangleTarget.width() * (ix + 0.5) / 16.0);
+                     if (x >= 0 && y >= 0 && x < iRawWidth && y < iRawHeight)
+                     {
+
+                        auto prow = reinterpret_cast<const ::u32 *>(pdata + y * iStride);
+                        iSamples++;
+                        if (prow[x] >> 24)
+                        {
+
+                           iVisibleSamples++;
+
+                        }
+
+                     }
+
+                  }
+
+               }
+
+            }
+
+            information() << "Cairo present: surface=" << iRawWidth << "," << iRawHeight
+               << " source=" << pointSrc.x << "," << pointSrc.y
+               << " target size=" << rectangleTarget.width() << "," << rectangleTarget.height()
+               << " visible samples=" << iVisibleSamples << "/" << iSamples
+               << " whole surface visible samples=" << iSurfaceVisibleSamples
+               << " sampled bounds=" << iVisibleLeft << "," << iVisibleTop
+               << "-" << iVisibleRight << "," << iVisibleBottom
+               << " surface status=" << (int)cairo_surface_status(psurface)
+               << " context status=" << (int)cairo_status(m_pcairo);
+
+         }
+
+#endif
          if (bMultiframe)
          {
 
@@ -3066,6 +3186,11 @@ namespace draw2d_cairo
    void graphics::draw(::draw2d::path * pdraw2dpath)
    {
 
+      if (pdraw2dpath && pdraw2dpath->m_itema.is_empty())
+      {
+         return;
+      }
+
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!_set(pdraw2dpath))
@@ -3083,6 +3208,11 @@ namespace draw2d_cairo
 
    void graphics::fill(::draw2d::path * pdraw2dpath)
    {
+
+      if (pdraw2dpath && pdraw2dpath->m_itema.is_empty())
+      {
+         return;
+      }
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -3102,6 +3232,11 @@ namespace draw2d_cairo
    void graphics::draw(::draw2d::path * pdraw2dpath, ::draw2d::pen * pdraw2dpen)
    {
 
+      if (pdraw2dpath && pdraw2dpath->m_itema.is_empty())
+      {
+         return;
+      }
+
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!_set(pdraw2dpath))
@@ -3119,6 +3254,11 @@ namespace draw2d_cairo
 
    void graphics::fill(::draw2d::path * pdraw2dpath, ::draw2d::brush * pdraw2dbrush)
    {
+
+      if (pdraw2dpath && pdraw2dpath->m_itema.is_empty())
+      {
+         return;
+      }
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -3435,7 +3575,22 @@ namespace draw2d_cairo
 
       }
 
-      m_pimageOwned.defer_destroy_and_release();
+      // Detach both sides before destroying the image: it may own this graphics.
+      auto pimageOwned = ::transfer(m_pimageOwned);
+      m_pimageTarget.release();
+      if (pimageOwned)
+      {
+
+         if (pimageOwned->m_pgraphicsOwned == this)
+         {
+
+            pimageOwned->m_pgraphicsOwned.release();
+
+         }
+
+         pimageOwned->destroy();
+
+      }
 
       // if (m_pcairosurface != nullptr)
       // {
@@ -5326,12 +5481,12 @@ namespace draw2d_cairo
    }
 
 
-   ::f64 graphics::get_dpix()
-   {
+   //::f64 graphics::get_dpix()
+   //{
 
-      return 72.0;
+   //   return 72.0;
 
-   }
+   //}
 
 
    bool graphics::_set(::draw2d::brush * pdraw2dbrush, ::f64 x, ::f64 y)
@@ -5586,7 +5741,15 @@ namespace draw2d_cairo
 
          }
 
-         ::cast < ::draw2d_cairo::bitmap > pdraw2dcairobitmap = pdraw2dbrush->m_pimage->get_bitmap_as_source();
+         ::cast < ::draw2d_cairo::bitmap > pdraw2dcairobitmap = pdraw2dbrush->m_pimage->get_bitmap_as_source(this);
+
+         if (!pdraw2dcairobitmap)
+         {
+
+            information() << "Cairo pattern brush: source bitmap is unavailable";
+            return false;
+
+         }
 
          //cairo_surface_t * psurface = cairo_get_target((cairo_t *) pdraw2dbrush->m_pimage->get_bitmap_as_source()->get_os_data());
 
@@ -5780,14 +5943,7 @@ namespace draw2d_cairo
 
          //}
 
-         auto pacmeuserinteractionScaler = m_pacmeuserinteractionTopic;
-
-         if(::is_null(pacmeuserinteractionScaler))
-         {
-
-            pacmeuserinteractionScaler = m_pacmeuserinteractionAffinity;
-
-         }
+         auto pacmeuserinteractionScaler = m_puserinteractionTopic;
 
          if(::is_set(pacmeuserinteractionScaler))
          {

@@ -114,7 +114,7 @@ namespace write_text
       enum_character_set_array      m_echaracterseta;
       enum_character_set            m_echaracterset;
       ///enum_rendering                m_erendering;
-      text_metric                   m_textmetric2;
+      ::write_text::text_metric      m_textmetric4;
       bool                          m_bCacheLayout;
       bool                          m_bUpdated;
       //bool                          m_bTextMetric;
@@ -190,13 +190,15 @@ namespace write_text
 
       //virtual void _get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm);
 
-      virtual ::f64 get_ascent(::draw2d::graphics * pdraw2dgraphics);
-
-      virtual ::f64 get_descent(::draw2d::graphics * pdraw2dgraphics);
-
-      virtual ::f64 get_leading(::draw2d::graphics * pdraw2dgraphics);
-
-      virtual ::f64 get_height(::draw2d::graphics * pdraw2dgraphics);
+//      virtual ::f64 get_ascent(::draw2d::graphics * pdraw2dgraphics);
+//
+//      virtual ::f64 get_descent(::draw2d::graphics * pdraw2dgraphics);
+//
+//      virtual ::f64 get_leading(::draw2d::graphics * pdraw2dgraphics);
+//
+//      virtual ::f64 get_height(::draw2d::graphics * pdraw2dgraphics);
+      
+      virtual ::write_text::text_metric & text_metric(::draw2d::graphics * pdraw2dgraphics);
 
       //text_metric * get_text_metric_struct()  { return (text_metric*) m_osdata[WRITE_TEXT_TEXT_METRIC_INDEX]; }
       //const text_metric * get_text_metric_struct() const { return (text_metric*) m_osdata[WRITE_TEXT_TEXT_METRIC_INDEX]; }

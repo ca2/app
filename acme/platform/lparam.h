@@ -3,6 +3,8 @@
 
 //#include "acme/prototype/geometry2d/point.h"
 #include "acme/prototype/prototype/pointer.h"
+#undef loword
+#undef hiword
 
 
 class CLASS_DECL_ACME lparam

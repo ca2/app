@@ -28,7 +28,7 @@ namespace experience
    control_box::control_box()
    {
 
-      m_bVisibleIfWindowActive = true;
+
 
       m_strInteractionTag = "control_box";
 
@@ -49,6 +49,7 @@ namespace experience
 
    control_box::~control_box()
    {
+      if (m_pAutoHide) m_pAutoHide->erase_auto_hide_interaction(this);
 
    }
 
@@ -110,7 +111,7 @@ namespace experience
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto_hide_on_message_mouse_move(pmessage);
+      if (m_pAutoHide) m_pAutoHide->auto_hide_on_message_mouse_move(pmessage);
 
       if (m_pframewindow != nullptr
           && m_pframewindow->m_pframe != nullptr
@@ -138,7 +139,7 @@ namespace experience
    void control_box::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      auto_hide_on_message_mouse_leave(pmessage);
+      if (m_pAutoHide) m_pAutoHide->auto_hide_on_message_mouse_leave(pmessage);
 
    }
 
@@ -220,143 +221,15 @@ namespace experience
 
    void control_box::operator()(::timer * ptimer)
    {
-
-      ::user::auto_hide::operator()(ptimer);
-
-      if (ptimer->m_etimer == e_timer_check_hover)
-      {
-
-         if (top_level()->layout().is_moving())
-         {
-
-            //informationf("experience control_box : top level is moving : ignoring ::user::e_message_timer");
-
-            //return true;
-
-            return;
-
-         }
-         else if (top_level()->layout().is_sizing())
-         {
-
-            //informationf("experience control_box : top level is sizing : ignoring ::user::e_message_timer");
-
-            //return true;
-
-            return;
-
-         }
-
-         ::i32_point pointCursorHost;
-
-         pointCursorHost = host_mouse_cursor_position();
-
-         if (is_window_visible())
-         {
-
-            if (m_bDrag)
-            {
-
-               m_timeShow.Now();
-
-            }
-            else
-            {
-
-               if (m_pframewindow != nullptr)
-               {
-
-                  if (m_pframewindow->layout().is_full_screen())
-                  {
-
-                     auto rectangleHost = host_rectangle();
-
-                     if (rectangleHost.contains(pointCursorHost))
-                     {
-
-                        m_timeShow.Now();
-
-                     }
-                     else
-                     {
-
-                        if (m_timeShow.elapsed() > 1_s)
-                        {
-
-                           display(e_display_none);
-
-                        }
-
-                     }
-
-                  }
-
-               }
-
-            }
-
-         } else if (m_bShowAttempt)
-         {
-            //if ((m_timeShowTime.elapsed()) > 284)
-            {
-               if (m_pframewindow != nullptr)
-               {
-
-                  if (m_pframewindow->layout().is_full_screen())
-                  {
-
-                     auto rectangleHost = host_rectangle();
-
-                     if (pointCursorHost.x >= rectangleHost.left
-                     && pointCursorHost.x <= rectangleHost.right &&
-                        pointCursorHost.y == 0)
-                     {
-
-                        order(e_zorder_top);
-
-                        display();
-
-                     }
-
-                     m_bShowAttempt = false;
-
-                  }
-
-               }
-
-            }
-         } else
-         {
-
-            if (m_pframewindow->layout().is_full_screen())
-            {
-
-               auto rectangleHost = host_rectangle();
-
-               if (pointCursorHost.x >= rectangleHost.left
-                   && pointCursorHost.x <= rectangleHost.right &&
-                   pointCursorHost.y == 0)
-               {
-
-                  m_bShowAttempt = true;
-
-                  m_timeShow.Now();
-
-               }
-
-            }
-
-         }
-
-      }
-
+      ::user::box::operator()(ptimer);
    }
 
 
    void control_box::on_message_create(::message::message * pmessage)
    {
 
-      auto_hide_on_message_create(pmessage);
+      m_pAutoHide = m_pframewindow->full_screen_auto_hide();
+      m_pAutoHide->add_auto_hide_interaction(this);
 
       constructø(m_pbrushButtonBack);
       constructø(m_pbrushButtonBackSel);
@@ -393,6 +266,8 @@ namespace experience
 
    void control_box::on_message_destroy(::message::message * pmessage)
    {
+      if (m_pAutoHide) m_pAutoHide->erase_auto_hide_interaction(this);
+      m_pAutoHide.release();
 
       m_pbrushButtonBack.release();
       m_pbrushButtonBackSel.release();
@@ -656,7 +531,7 @@ namespace experience
    void control_box::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto_hide_calculate_control_visibility();
+      if (m_pAutoHide) m_pAutoHide->auto_hide_calculate_control_visibility();
 //      ::i32_rectangle rectangleWindow = m_pframewindow->window_rectangle(::user::e_layout_lading);
 //
 //      ::i32_rectangle rectangleParent(rectangleWindow);
@@ -1097,7 +972,7 @@ namespace experience
    ::i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto dFontHeight = m_pfontMarlett->get_height(pdraw2dgraphics);
+      auto dFontHeight = m_pfontMarlett->text_metric(pdraw2dgraphics).get_line_height();
 
       ::i32 iButtonSize = (::i32) (dFontHeight + m_iDefaultButtonMargin * 3);
 
@@ -1399,7 +1274,18 @@ namespace experience
 
       ::user::box::handle(ptopic, phandlercontext);
 
-      ::user::auto_hide::handle(ptopic, phandlercontext);
+      if (ptopic->id() == "auto_hide_visibility"
+         && ptopic->payload("coordinated").is_true())
+      {
+         bool bVisible = ptopic->payload("visible").is_true();
+         if (const_layout().sketch().is_visible() != bVisible)
+         {
+            order(e_zorder_top);
+            display(bVisible ? e_display_normal : e_display_none);
+            set_need_redraw();
+            post_redraw();
+         }
+      }
 
    }
 

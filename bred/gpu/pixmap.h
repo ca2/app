@@ -27,7 +27,7 @@ namespace gpu
       virtual void initialize_gpu_pixmap(::gpu::texture * pgputexture, const ::i32_rectangle& rectangle);
       virtual void on_initialize_gpu_pixmap();
 
-      virtual void set_pixels(const void* data);
+      virtual void set_pixels(const void* data, bool bTopDown);
 
       virtual void bind_texture(::gpu::shader * pgpushader);
       virtual void unbind_texture(::gpu::shader* pgpushader);

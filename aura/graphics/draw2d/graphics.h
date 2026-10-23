@@ -1,7 +1,10 @@
+// Added draw2d::domain_consumer base to draw2d::graphics by
+//   camilo on 2026-09-24 05:01 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
 #pragma once
 
 
 #include "acme/constant/element.h"
+#include "acme/prototype/prototype/memory.h"
 #include "acme/graphics/image/image32_t.h"
 
 #include "aura/platform/draw_context.h"
@@ -13,10 +16,10 @@
 #include "acme/prototype/geometry2d/matrix.h"
 #include "acme/prototype/geometry2d/shift.h"
 //#include "aura/user/user/redraw.h"
-#include "aura/graphics/draw2d/region.h"
+#include "aura/graphics/draw2d/domain_consumer.h"
 #include "aura/graphics/draw2d/bitmap.h"
 #include "aura/graphics/draw2d/offset.h"
-
+#include "aura/graphics/draw2d/region.h"
 
 //extern template class CLASS_DECL_AURA pointer<draw2d::graphics>;
 
@@ -44,6 +47,19 @@ class shape_array;
 
 namespace draw2d
 {
+
+
+   enum enum_image_opacity_policy
+   {
+
+      /// Graphics contexts inherit the current draw2d policy unless overridden.
+      e_image_opacity_policy_inherit,
+      /// Preserve the normal DrawImage edge behavior.
+      e_image_opacity_policy_disabled,
+      /// Extend edge sampling only for certified static, fully opaque sources.
+      e_image_opacity_policy_preserve_static_opaque,
+
+   };
 
 
 
@@ -75,12 +91,13 @@ namespace draw2d
       virtual public ::image::image_drawer,
       virtual public ::write_text::drawer,
       virtual public ::image::image_source_interface,
-      virtual public ::draw2d::target_rectangle
+      virtual public ::draw2d::target_rectangle,
+      virtual public ::draw2d::domain_consumer
    {
    public:
 
 
-      ::pointer < ::draw2d::domain >                  m_pdraw2ddomain;
+      //::pointer < ::draw2d::domain >                  m_pdraw2ddomain;
       e_graphics                                      m_egraphics;
       bool                                            m_bSwapChainFinalInterop = false;
       bool                                            m_bForWindowDraw2d;
@@ -89,7 +106,7 @@ namespace draw2d
       ::i32                                           m_iYFlipHeight;
       // try to draw using paths and full prototypes
       // there is little control over lines drawn with move_to line_to than generalized
-      //bool                                          m_bHasCurrentPoint;
+      bool                                          m_bHasCurrentPoint;
       bool                                            m_bOutline;
       //void* m_pthis;
       //::pointer<::draw2d::graphics_context>         m_pgraphicscontext;
@@ -115,6 +132,10 @@ namespace draw2d
       ::f64_point                                     m_pointAlphaBlend;
       ::pointer<::task>                               m_ptask;
       bool                                            m_bDraw;
+#if defined(__REACTOS__)
+      // Reused across frames; always zero, never submitted as writable storage.
+      ::memory                                        m_memoryTransparentFrame;
+#endif
 
       //::pointer < ::image::image>                   m_pimage;
       ::draw2d::bitmap_pointer                        m_pdraw2dbitmap;
@@ -129,6 +150,7 @@ namespace draw2d
    protected:
       //bool                                          _m_bYFlip;
       enum_alpha_mode                                 m_ealphamode;
+      enum_image_opacity_policy                       m_eimageopacitypolicy = e_image_opacity_policy_inherit;
 
 
    public:
@@ -170,11 +192,24 @@ namespace draw2d
       ~graphics() override;
 
 
+      void set_image_opacity_policy(enum_image_opacity_policy epolicy)
+      {
+
+         m_eimageopacitypolicy = epolicy;
+
+      }
+
+
+      enum_image_opacity_policy get_effective_image_opacity_policy() const;
+
+
 
       void on_initialize_particle() override;
 
-      virtual ::draw2d::domain * draw2d_domain();
+      ::acme::draw2d::domain * acme_draw2d_domain() override;
       virtual ::draw2d::frame * draw2d_frame();
+      virtual void initialize_draw2d_frame();
+    
 
       virtual bool is_gpu_oriented();
       //      // void assert_ok() const override;
@@ -185,10 +220,21 @@ namespace draw2d
       // void destroy_os_data() override;
 
 
+
       virtual bool is_y_flip();
 
       virtual ::f64 size_scaler();
       virtual void set_size_scaler(::f64 dSizeScaler);
+
+
+      virtual ::f32 get_density_dpi();
+
+      virtual ::f32 point_pixel(::f32 fSize);
+
+
+      //virtual ::f64 get_dpix();
+      //virtual ::f64 get_dpiy();
+
 
       //virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure);
       virtual void reset_target_rectangle();
@@ -485,8 +531,6 @@ namespace draw2d
       //virtual ::i32 GetStretchBltMode();
 
 
-      virtual ::f64 get_dpix();
-      virtual ::f64 get_dpiy();
 
       //virtual ::i32 SetPolyFillMode(::i32 nPolyFillMode);
       //virtual ::i32 SetROP2(::i32 nDrawMode);

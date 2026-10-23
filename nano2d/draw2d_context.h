@@ -160,7 +160,7 @@ namespace nano2d
       void image_size(::i32 image, ::i32 * w, ::i32 * h) override;
 
 
-      void update_image(::i32 image, const void * data) override;
+      void update_image(::i32 image, const void * data, bool bTopDowns) override;
       void _draw_image(::f32 x, ::f32 y, ::f32 w, ::f32 h, ::image::image *pimage) override;
 
 

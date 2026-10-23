@@ -5,11 +5,11 @@
 // Refactored to crypto_openssl by camilo 2021-11-19 14:19 BRT <3ThomasBS_!!
 //
 #include "platform.h"
-
 #include "initializer.h"
-
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/_operating_system.h"
-
+#include "acme/platform/node.h"
+#include "acme/prototype/mathematics/mathematics.h"
 #include <openssl/ssl.h>
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
@@ -44,10 +44,10 @@ namespace crypto_openssl
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 
-   map_base < ::i32, ::pointer < ::mutex >* >* g_pmapMutex = nullptr;
+   map_base < ::i32, ::pointer < ::mutex > > * g_pmapMutex = nullptr;
 
 
-   ::pointer < ::mutex >* g_pmutexMap = nullptr;
+   ::pointer < ::mutex > g_pmutexMap = nullptr;
 
 
 #endif
@@ -60,9 +60,9 @@ namespace crypto_openssl
 
       m_rand_size = 1024;
 
-      g_pmapMutex = memory_new map_base < ::i32, ::pointer < ::mutex >*>;
+      g_pmapMutex = system()->create_newø< ::map < ::i32, ::pointer < ::mutex > > >();
 
-      g_pmutexMap = ___new ::pointer < ::mutex > ();
+      g_pmutexMap = system()->node()->create_mutex();
 
       OpenSSL_add_all_digests();
 
@@ -106,23 +106,18 @@ namespace crypto_openssl
 
       if (g_pmapMutex != nullptr)
       {
-
-         for (auto i : *g_pmapMutex)
-         {
-
-            delete i.element2();
-
-         }
+          
          delete g_pmapMutex;
 
          g_pmapMutex = nullptr;
+         
       }
 
       if (g_pmutexMap != nullptr)
       {
-         delete g_pmutexMap;
-
-         g_pmutexMap = nullptr;
+         
+         g_pmutexMap.release();
+         
       }
 
 #endif
@@ -136,10 +131,10 @@ namespace crypto_openssl
    void initializer::DeleteRandFile()
    {
 
-      if (m_rand_file.get_length())
+      if (m_rand_file.has_character())
       {
 
-         file()->del(m_rand_file);
+         file()->erase(m_rand_file);
 
       }
 
@@ -155,23 +150,23 @@ namespace crypto_openssl
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 
-extern "C" void crypto_initializer_SSL_locking_function(::i32 mode, ::i32 n, const_char_pointer file, ::i32 line)
+extern "C" void crypto_initializer_locking_function(::i32 mode, ::i32 n, const_char_pointer file, ::i32 line)
 {
 
    __UNREFERENCED_PARAMETER(file);
 
    __UNREFERENCED_PARAMETER(line);
 
-   synchronous_lock synchronouslock(::crypto::g_pmutexMap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+   synchronous_lock synchronouslock(::crypto_openssl::g_pmutexMap);
 
-   ::pointer < ::mutex >* pmutex = nullptr;
+   ::pointer < ::mutex > pmutex;
 
-   if (::crypto::g_pmapMutex != nullptr && !::crypto::g_pmapMutex->find(n, pmutex))
+   if (::crypto_openssl::g_pmapMutex != nullptr && !::crypto_openssl::g_pmapMutex->find(n, pmutex))
    {
 
-      ::crypto::g_pmapMutex->operator [](n) = ___new ::pointer < ::mutex > ();
+      ::crypto_openssl::g_pmapMutex->operator [](n) = ::system()->node()->create_mutex();
 
-      if (!::crypto::g_pmapMutex->find(n, pmutex))
+      if (!::crypto_openssl::g_pmapMutex->find(n, pmutex))
       {
 
          return;
@@ -204,7 +199,7 @@ extern "C" void crypto_initializer_SSL_locking_function(::i32 mode, ::i32 n, con
 
 }
 
-extern "C" ulong crypto_initializer_SSL_id_function()
+extern "C" ulong crypto_initializer_id_function()
 {
 
    //#ifdef WIN32
@@ -233,7 +228,7 @@ extern "C" ::i32 crypto_initializer_rand_seed(const void* buf, ::i32 num)
 extern "C" ::i32 crypto_initializer_rand_bytes(::u8 * buf, ::i32 num)
 {
 
-   generate_random_bytes(buf, num);
+   system()->mathematics()->random({buf, num});
 
    return 1;
 
@@ -258,7 +253,7 @@ extern "C" ::i32 crypto_initializer_rand_add(const void* buf, ::i32 num, ::f64 e
 extern "C" ::i32 crypto_initializer_rand_pseudorand(::u8 * buf, ::i32 num)
 {
 
-   generate_random_bytes(buf, num);
+   system()->mathematics()->random({buf, num});
 
    return num;
 

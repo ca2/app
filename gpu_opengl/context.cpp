@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "bred/gpu/brush_fill_shader_source.h"
 #define STB_USE_HUNTER
 #include "_gpu_opengl.h"
 #include "command_buffer.h"
@@ -2974,6 +2975,27 @@ void main() {
 
    }
 
+
+
+   ::memory context::brush_fill_shader_vert()
+   {
+      auto source = ::gpu::brush_fill_source::source(false, false, false);
+      // The pointer/length memory constructor borrows the string's storage.
+      // Copy before the temporary source string is destroyed.
+      ::memory memory;
+      memory.assign(source.data(), source.size());
+      return memory;
+   }
+
+   ::memory context::brush_fill_shader_frag(bool bPattern)
+   {
+      auto source = ::gpu::brush_fill_source::source(false, true, bPattern);
+      // The pointer/length memory constructor borrows the string's storage.
+      // Copy before the temporary source string is destroyed.
+      ::memory memory;
+      memory.assign(source.data(), source.size());
+      return memory;
+   }
 
 
    ::memory context::circle_shader_vert()

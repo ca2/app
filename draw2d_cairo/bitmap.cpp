@@ -196,10 +196,16 @@ namespace draw2d_cairo
 
          auto pimage32Target = (::image32_t *)m_memoryDraw2dBitmap.data();
 
-         if (ppixmap && ppixmap->m_memoryPixmap.size() >= (::memsize) iSourceStride * size.cy)
+         if (ppixmap && ppixmap->m_pimage32Raw)
          {
 
-            pimage32Target->copy(size, iStride, (::image32_t *) ppixmap->m_memoryPixmap.data(), iSourceStride);
+            pimage32Target->copy(size, iStride, ppixmap->m_pimage32Raw, iSourceStride);
+
+         }
+         else
+         {
+
+            memory_set(m_memoryDraw2dBitmap.data(), 0, m_memoryDraw2dBitmap.size());
 
          }
 

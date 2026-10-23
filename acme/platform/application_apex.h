@@ -1359,7 +1359,7 @@ namespace platform
 
       virtual string as_string(const ::payload& payload);
 
-#if defined(LINUX) || defined(__BSD__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 
       virtual string get_wm_class() const;
 

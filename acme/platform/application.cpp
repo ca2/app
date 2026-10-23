@@ -4,6 +4,7 @@
 // app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSorensen!!
 #include "platform.h"
 #include "application.h"
+#include "startup_delay_debug.h"
 #include "message.h"
 #include "acme.h"
 #include "application_menu.h"
@@ -527,7 +528,9 @@ namespace platform
    void application::initialize_application()
    {
 
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::initialize_application: before set_platform()");
       set_platform();
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::initialize_application: after set_platform()");
 
       // if (m_papplication == nullptr)
       // {
@@ -1169,6 +1172,9 @@ namespace platform
 
    void application::post_request(::request * prequest)
    {
+
+      STARTUP_DELAY_TRACE_SCOPE_IF("platform::application::post_request",
+         prequest && prequest->m_strAppId == "app/app");
 
       if (prequest)
       {
@@ -1839,7 +1845,7 @@ namespace platform
       if (m_bUseCloudStorageForAppData)
       {
 
-         pathFolder = "dropbox-app://";
+         pathFolder = "cloud-app://";
 
       }
       else
@@ -2243,23 +2249,35 @@ namespace platform
 
    void application::process_init()
    {
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: enter");
 
+
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: before initialize_context()");
       initialize_context();
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: after initialize_context()");
 
       if (m_strAppId.has_character())
       {
 
          string_array_base stra;
 
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: before stra.explode(\"/\", m_strAppId)");
          stra.explode("/", m_strAppId);
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: after stra.explode(\"/\", m_strAppId)");
 
          m_strRoot = stra[0];
 
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: before m_strDomain = stra.slice(1).implode(\"/\")");
          m_strDomain = stra.slice(1).implode("/");
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: after m_strDomain = stra.slice(1).implode(\"/\")");
 
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: before add_matter_locator(this)");
          add_matter_locator(this);
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: after add_matter_locator(this)");
 
       }
+
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: leave");
 
    }
 
@@ -2599,14 +2617,22 @@ namespace platform
 
    void application::init_application()
    {
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: enter");
 
+
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before auto psystem = system()");
       auto psystem = system();
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after auto psystem = system()");
 
       //information() << "apex::application::init_application";
 
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before ping()");
       ping();
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after ping()");
 
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before init1()");
       init1();
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after init1()");
 
       //if (!init1())
       //{
@@ -2621,9 +2647,13 @@ namespace platform
 
       //xxdebug_box("init1 ok", "init1 ok", ::user::e_message_box_icon_information);
 
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before ping()");
       ping();
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after ping()");
 
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before init2()");
       init2();
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after init2()");
 
       //if (!init2())
       //{
@@ -2638,9 +2668,13 @@ namespace platform
 
       //xxdebug_box("init2 ok", "init2 ok", ::user::e_message_box_icon_information);
 
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before ping()");
       ping();
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after ping()");
 
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before init3()");
       init3();
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after init3()");
 
       //if (!init3())
       //{
@@ -2655,14 +2689,18 @@ namespace platform
 
       //xxdebug_box("init3 ok", "init3 ok", ::user::e_message_box_icon_information);
 
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before ping()");
       ping();
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after ping()");
 
       //dappy(::platform::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
 
       //try
       //{
 
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before init()");
       init();
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after init()");
       //{
       //
       ////dappy(::platform::type(this).name() + " : initialize failure : " + as_string(m_iErrorCode));
@@ -2691,6 +2729,8 @@ namespace platform
       //      m_bAuraInitializeInstanceResult = true;
 
       //return true;
+
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: leave");
 
    }
 
@@ -2985,6 +3025,15 @@ namespace platform
    void application::show_about_box(::user::activation_token * puseractivationtoken)
    {
 
+#if defined(__REACTOS__)
+      const DWORD aboutStart = ::GetTickCount();
+      auto aboutStage = [&](const char *stage)
+      {
+         informationf("ABOUT stage=%s elapsed_ms=%lu", stage,
+            (unsigned long)(::GetTickCount() - aboutStart));
+      };
+      aboutStage("begin");
+#endif
       auto lines = get_about_box_lines();
 
       for (auto & line : lines)
@@ -3004,7 +3053,13 @@ namespace platform
 
       ::string_array straOperatingSystemLines;
       
+#if defined(__REACTOS__)
+      aboutStage("operating system information begin");
+#endif
       straOperatingSystemLines = get_operating_system_information_lines();
+#if defined(__REACTOS__)
+      aboutStage("operating system information end");
+#endif
 
       ::string strDetails = straOperatingSystemLines.implode("\n");
 
@@ -3012,13 +3067,22 @@ namespace platform
       strDetails.find_replace("-#", "");
       strDetails.find_replace("#", "");
 
+#if defined(__REACTOS__)
+      aboutStage("dialog creation begin");
+#endif
       auto paboutbox = system()->acme_windowing()->createø < ::user_interface::message_box >();
       paboutbox->initialize_message_box("About\n\n" + strMessage, nullptr, ::user::e_message_box_ok,
          strDetails, {"matter://main/icon.png"});
 
+#if defined(__REACTOS__)
+      aboutStage("dialog initialized; icons begin");
+#endif
       paboutbox->set_dialog_details_title("Operating System Information ...");
 
       paboutbox->dialog_details_icon_urls().add(system()->operating_system_icon_url({48, 48}));
+      auto strKernelIconUrl = system()->operating_system_kernel_icon_url({32, 32});
+      if (strKernelIconUrl.has_character())
+         paboutbox->dialog_details_icon_urls().add(strKernelIconUrl);
       paboutbox->dialog_details_icon_urls().add(system()->operating_ambient_icon_url({32, 32}));
 
       //psequencer->then([this, strPath](auto pconversation)
@@ -3042,7 +3106,13 @@ namespace platform
 
       paboutbox->set_user_activation_token(puseractivationtoken);
 
+#if defined(__REACTOS__)
+      aboutStage("display begin");
+#endif
       paboutbox->display();
+#if defined(__REACTOS__)
+      aboutStage("display returned");
+#endif
 
 
 
@@ -3228,7 +3298,7 @@ namespace platform
 
       ::file::path path;
 
-      path = "dropbox-app://" / scopedstrFileName;
+      path = "cloud-app://" / scopedstrFileName;
 
       ::string str = file()->safe_get_string(path);
 
@@ -3278,7 +3348,7 @@ namespace platform
 
          ::file::path path;
 
-         path = "dropbox-app://" / scopedstrFileName;
+         path = "cloud-app://" / scopedstrFileName;
 
          bool bOk = false;
 

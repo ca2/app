@@ -31,6 +31,8 @@
 #include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
+#include "acme/graphics/draw2d/domain.h"
+#include "acme/graphics/draw2d/domain_consumer.h"
 #include "acme/handler/topic.h"
 #include "acme/nano/graphics/context.h"
 #include "acme/nano/nano.h"
@@ -2326,17 +2328,24 @@ namespace acme
    
          ::acme::draw2d::domain * interaction::acme_draw2d_domain()
          {
-         
-            auto pacmewindowingwindow = acme_windowing_window();
             
-            if(::is_null(pacmewindowingwindow))
+            if(!m_pacmedraw2ddomain)
             {
-             
-               return nullptr;
+               
+               auto pacmewindowingwindow = acme_windowing_window();
+               
+               if(::is_null(pacmewindowingwindow))
+               {
+                  
+                  return nullptr;
+                  
+               }
+               
+               m_pacmedraw2ddomain = pacmewindowingwindow->acme_draw2d_domain();
                
             }
             
-            return pacmewindowingwindow->acme_draw2d_domain();
+            return m_pacmedraw2ddomain;
            
          }
          

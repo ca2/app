@@ -76,16 +76,18 @@ namespace draw2d_cairo
       ::u32 SetLayout(::u32 dwLayout) override;
 
 
-      ::f64 get_dpix() override;
+      //::f64 get_dpix() override;
 
       // Constructors
       //bool CreateDC(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * lpInitData) override;
       //bool CreateIC(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * lpInitData) override
       void create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size) override;
       //void create_compatible_graphics(::draw2d::graphics * pdraw2dgraphics) override;
-      void _create_memory_graphics(const ::i32_size& size, ::acme::user::interaction * pacmeuserinteractionAffinity) override;
-      void create_memory_graphics(const ::i32_size & size, ::acme::user::interaction * pacmeuserinteractionAffinity) override;
-      void create_bitmap_graphics(::draw2d::bitmap * pdraw2dbitmap, ::acme::user::interaction * pacmeuserinteractionAffinity) override;
+      void _create_memory_graphics(const ::i32_size& size, ::draw2d::domain * pdraw2domain) override;
+      void create_memory_graphics(const ::i32_size & size, ::draw2d::domain * pdraw2domain) override;
+      void create_bitmap_graphics(::draw2d::bitmap * pdraw2dbitmap, ::draw2d::domain * pdraw2domain) override;
+      void on_acquire_memory_graphics(bool bExternalRendering, ::image::image * pimage,
+         const ::i32_size & size, ::draw2d::domain * pdraw2ddomain) override;
       void destroy() override;
 
       // Device-Context Functions

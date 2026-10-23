@@ -6,6 +6,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/interaction.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
@@ -157,7 +158,7 @@ namespace graphics
 
       synchronous_lock synchronouslock(m_pwindow->m_pmutexBufferSizeAndPosition);
 
-      debug() << "::graphics::graphics::buffer_size_and_position (1)";
+      //information() << "::graphics::graphics::buffer_size_and_position (1)";
 
       if (::is_null(m_pwindow) || ::is_null(m_pwindow->user_interaction()))
       {
@@ -166,7 +167,7 @@ namespace graphics
 
       }
 
-      debug() << "::graphics::graphics::buffer_size_and_position (2)";
+      //information() << "::graphics::graphics::buffer_size_and_position (2)";
 
       auto puserinteraction = m_pwindow->user_interaction();
 
@@ -179,8 +180,15 @@ namespace graphics
          puserinteraction->const_layout().lading().size());
 
       auto rectangleRaw = ::i32_rectangle(m_pwindow->m_sizeRaw);
+      
+      //information() << "::graphics::graphics::buffer_size_and_position (3) sizeRaw = " << m_pwindow->m_sizeRaw.cx << ", " << m_pwindow->m_sizeRaw.cy;
 
-      auto rectangleFixed = rectangleDesign.intersection(rectangleRaw);
+      pbufferitem->m_bTightRawBuffer = puserinteraction->windowing()->m_bTightRawBuffer
+         && !m_papplication->m_gpu.m_bUseSwapChainWindow;
+      auto rectangleBuffer = pbufferitem->m_bTightRawBuffer
+         ? ::i32_rectangle(::i32_point{}, rectangleDesign.size()) : rectangleDesign;
+      auto rectangleFixed = pbufferitem->m_bTightRawBuffer
+         ? rectangleBuffer : rectangleBuffer.intersection(rectangleRaw);
 
       auto pointDesign = puserinteraction->const_layout().lading().origin();
 
@@ -331,6 +339,8 @@ namespace graphics
 
          auto & pimg = p->m_pimageTarget.m_p;
 
+         m_pdraw2dgraphics->m_puserinteractionTopic = m_pwindow->user_interaction();
+
          //if (m_bNewFrame)
          if (egraphics == e_graphics_draw)
          {
@@ -384,11 +394,11 @@ namespace graphics
 
          auto pimage = m_pdraw2dgraphics->get_current_target_image();
 
-         if (!pimage->m_pdraw2ddomain
-            && m_pdraw2dgraphics->m_pdraw2ddomain)
+         if (::is_null(pimage->draw2d_domain())
+            && ::is_set(m_pdraw2dgraphics->draw2d_domain()))
          {
 
-            pimage->m_pdraw2ddomain = m_pdraw2dgraphics->m_pdraw2ddomain;
+            pimage->set_draw2d_domain(m_pdraw2dgraphics->draw2d_domain());
 
          }
 
@@ -444,7 +454,10 @@ namespace graphics
 
       auto rectangleUnion = pdisplay->get_monitor_union_rectangle();
 
-      m_pwindow->m_sizeRaw = m_pwindow->m_sizeRaw.maximum(rectangleUnion.size());
+      if (pbufferitem->m_bTightRawBuffer)
+         m_pwindow->m_sizeRaw = pbufferitem->m_sizeBufferItem.maximum(::i32_size(1, 1));
+      else
+         m_pwindow->m_sizeRaw = m_pwindow->m_sizeRaw.maximum(rectangleUnion.size());
 
       auto & sizeWindow = m_pwindow->m_sizeWindow;
 
@@ -469,7 +482,7 @@ namespace graphics
 
 
       if (pbufferitem->m_pimageBufferItem.nok()
-         || pbufferitem->m_pimageBufferItem->m_point != pbufferitem->m_pointBufferItem
+         || pbufferitem->m_pimageBufferItem->m_point != (pbufferitem->m_bTightRawBuffer ? ::i32_point{} : pbufferitem->m_pointBufferItem)
          || pbufferitem->m_pimageBufferItem->m_size != pbufferitem->m_sizeBufferItem
          || pbufferitem->m_pimageBufferItem->m_sizeRaw != m_pwindow->m_sizeRaw)
       {
@@ -569,7 +582,7 @@ namespace graphics
       //auto sizeRaw = m_pwindow->m_sizeWindow.maximum(rectangleUnion.size());
 
       if (pbufferitem->m_pimageBufferItem.nok()
-         || pbufferitem->m_pimageBufferItem->m_point != pbufferitem->m_pointBufferItem
+         || pbufferitem->m_pimageBufferItem->m_point != (pbufferitem->m_bTightRawBuffer ? ::i32_point{} : pbufferitem->m_pointBufferItem)
          || pbufferitem->m_pimageBufferItem->m_size != pbufferitem->m_sizeBufferItem
          || pbufferitem->m_pimageBufferItem->m_sizeRaw != m_pwindow->m_sizeRaw)
       {
@@ -588,6 +601,13 @@ namespace graphics
          //::pointer < layered_window_buffer > playeredwindowbuffer = m_pwindowbuffer;
 
          //if (pwindowbuffer && !m_papplication->m_gpu.m_bUseSwapChainWindow)
+         // Allocate in raw bitmap coordinates. The image still carries the
+         // previous frame's mapped screen origin here; adding it to sizeRaw
+         // would replace the bitmap on a restore/move even when the raw size
+         // is unchanged, leaving cached backend graphics on the old bitmap.
+         // Both branches restore the acquired frame's origin below.
+         pbufferitem->m_pimageBufferItem->m_point.clear();
+
          if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
          {
 
@@ -804,7 +824,7 @@ namespace graphics
 
 
 
-            point = pbufferitem->m_pointBufferItem;
+            point = pbufferitem->m_bTightRawBuffer ? ::i32_point{} : pbufferitem->m_pointBufferItem;
 
             size = pbufferitem->m_sizeBufferItem;
 

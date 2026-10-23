@@ -6,6 +6,7 @@
 serialization_exception::serialization_exception(::e_status estatus, const ::scoped_string & scopedstrMessage, ::i32 iSkip) :
    ::exception(estatus, scopedstrMessage, nullptr, iSkip)
 {
+   log_constructor("serialization_exception");
 
 }
 

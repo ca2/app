@@ -40,6 +40,7 @@ namespace draw2d
       static ::f64 g_dEmboss;
       void * m_pimpl;
       bool m_bUseGraphicsPool;
+      ::std::atomic<enum_image_opacity_policy> m_eimageopacitypolicy{e_image_opacity_policy_preserve_static_opaque};
 
       i32_map < ::pointer<memory >>m_alpha_spread__24CC_filterMap;
       i32_map < ::pointer<memory >>m_alpha_spread__32CC_filterMap;
@@ -83,7 +84,22 @@ namespace draw2d
       virtual void get_required_gpu_device_extensions(::u64 uPhysicalDevice, ::array<const char *> & pszaRequiredDeviceExtensions);
       
       virtual ::draw2d::domain * main_draw2d_domain();
+      virtual bool is_image_draw2_graphics_backed_by_backend_bitmap();
 
+      void set_image_opacity_policy(enum_image_opacity_policy epolicy)
+      {
+
+         m_eimageopacitypolicy.store(epolicy == e_image_opacity_policy_inherit
+            ? e_image_opacity_policy_preserve_static_opaque : epolicy, ::std::memory_order_relaxed);
+
+      }
+
+      enum_image_opacity_policy get_image_opacity_policy() const
+      {
+
+         return m_eimageopacitypolicy.load(::std::memory_order_relaxed);
+
+      }
    protected:
       friend class ::draw2d::object;
       void add_object(::draw2d::object * pobject);

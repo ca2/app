@@ -19,7 +19,7 @@
 #include "acme/nano/nano.h"
 #include "acme/nano/speech/speech.h"
 #include "acme/user/micro/user.h"
-#include "acme/operating_system/process.h"
+#include "acme/operating_system/process_process.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/scoped_restore.h"

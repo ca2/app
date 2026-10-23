@@ -5,6 +5,11 @@
 #include "acme.h"
 #include "system_setup.h"
 #include "system.h"
+#include "release_mode_trace_level.h"
+#include "console_lifecycle_trace.h"
+#include "startup_delay_debug.h"
+#include "shutdown_delay_debug.h"
+#include "std_trace_output.h"
 #include "system_factory.h"
 //#include "sequencer.h"
 #include "application.h"
@@ -38,7 +43,7 @@
 #include "acme/user/micro/message_box.h"
 #include "acme/operating_system/dynamic_library.h"
 #include "acme/operating_system/file.h"
-#include "acme/operating_system/process.h"
+#include "acme/operating_system/process_process.h"
 #include "acme/operating_system/summary.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/debug.h"
@@ -207,6 +212,79 @@ void set_common_system_image_color_indexes(const ::color_indexes & colorindexes)
 namespace platform
 {
 
+#if STARTUP_DELAY_DEBUG || SHUTDOWN_DELAY_DEBUG
+   static long long console_trace_now()
+   {
+
+      return std::chrono::duration_cast<std::chrono::nanoseconds>(
+         std::chrono::steady_clock::now().time_since_epoch()).count();
+
+   }
+#endif
+
+
+   console_lifecycle_trace::console_lifecycle_trace() :
+      m_iPhaseStart(0),
+      m_bShuttingDown(false)
+   {
+
+#if STARTUP_DELAY_DEBUG
+      m_iPhaseStart = console_trace_now();
+#endif
+
+   }
+
+
+   console_lifecycle_trace::~console_lifecycle_trace()
+   {
+
+#if SHUTDOWN_DELAY_DEBUG
+      if (m_bShuttingDown)
+      {
+
+         std::fprintf(stderr, "Shutdown phase 'console entry point: shutdown through system release': %.3f ms\n",
+            (console_trace_now() - m_iPhaseStart) / 1000000.0);
+
+      }
+#endif
+
+   }
+
+
+   void console_lifecycle_trace::system_constructed()
+   {
+
+#if STARTUP_DELAY_DEBUG
+      auto iNow = console_trace_now();
+      std::fprintf(stderr, "Startup phase 'console entry point: construct system': %.3f ms\n",
+         (iNow - m_iPhaseStart) / 1000000.0);
+      m_iPhaseStart = iNow;
+#endif
+
+   }
+
+
+   void console_lifecycle_trace::system_initialized()
+   {
+
+#if STARTUP_DELAY_DEBUG
+      std::fprintf(stderr, "Startup phase 'console entry point: initialize system': %.3f ms\n",
+         (console_trace_now() - m_iPhaseStart) / 1000000.0);
+#endif
+
+   }
+
+
+   void console_lifecycle_trace::start_shutdown()
+   {
+
+#if SHUTDOWN_DELAY_DEBUG
+      m_iPhaseStart = console_trace_now();
+      m_bShuttingDown = true;
+#endif
+
+   }
+
 
    ::platform::system* system::s_p = nullptr;
 
@@ -240,11 +318,9 @@ namespace platform
 
 #endif
 
-#ifdef _DEBUG
-      m_etracelevelMinimum = e_trace_level_information;
-#else
-      m_etracelevelMinimum = e_trace_level_warning;
-#endif
+      // Let get_trace_level() resolve the build default and any command-line
+      // or configuration override during logger initialization.
+      m_etracelevelMinimum = e_trace_level_undefined;
 
       m_bBranchMainThread = false;
       m_bSystemLoadedFromALibrary = false;
@@ -266,7 +342,16 @@ namespace platform
       iAddUp += sizeof(payload.m_preferer);
 #endif
       ::i32 iETypeSizeHere = (::i32)((::u8*)pAll - (::u8*)pType);
-      ::i32 iComputed = (::i32)(((::u8*)pAll - (::u8*)pType) + iAll + iAddUp);
+      // Account for compiler-inserted member and trailing alignment padding.
+#if REFERENCING_DEBUGGING
+      auto pLastEnd = reinterpret_cast<const unsigned char *>(&payload.m_preferer) + sizeof(payload.m_preferer);
+#else
+      auto pLastEnd = reinterpret_cast<const unsigned char *>(pAll) + sizeof(payload.m_payloadall);
+#endif
+      auto memberExtent = pLastEnd - reinterpret_cast<const unsigned char *>(&payload);
+      auto payloadAlignment = alignof(::payload);
+      ::i32 iComputed = static_cast<::i32>(
+         ((memberExtent + payloadAlignment - 1) / payloadAlignment) * payloadAlignment);
       ::i32 iColor = sizeof(payload.m_color);
       ::i32 iStr = sizeof(payload.m_str);
       ::i32 iHls = sizeof(payload.m_hls);
@@ -334,6 +419,8 @@ namespace platform
 
    system::~system()
    {
+
+      SHUTDOWN_DELAY_TRACE_SCOPE("system destructor body");
 
       ::task_release();
 
@@ -451,6 +538,8 @@ namespace platform
 
 #else
 
+      etracelevel = CA2_RELEASE_MODE_TRACE_LEVEL;
+
       auto pathCa2ConfigSystemFolder = _ca2_config_system_folder_path();
 
       auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
@@ -467,12 +556,6 @@ namespace platform
       {
 
          etracelevel = e_trace_level_information;
-
-      }
-      else
-      {
-
-         etracelevel = e_trace_level_warning;
 
       }
 
@@ -537,6 +620,14 @@ namespace platform
 
       }
 
+      initialize_matter();
+
+   }
+
+
+   void system::initialize_matter()
+   {
+
       if (application()->m_bResource)
       {
 
@@ -564,9 +655,9 @@ namespace platform
          if (bMatterFromResource)
          {
 
-            m_pdirectorysystem->m_bMatterFromHttpCache = false;
+            directory_system()->m_bMatterFromHttpCache = false;
 
-            m_pdirectorysystem->m_bMatterFromResource = true;
+            directory_system()->m_bMatterFromResource = true;
 
          }
          else
@@ -579,7 +670,7 @@ namespace platform
 
                ::file::path pathLocal = local_get_matter_path("app/_matter/main");
 
-               bool bFileSystemMatter = m_pdirectorysystem->is(pathSide) || m_pdirectorysystem->is(pathLocal);
+               bool bFileSystemMatter = directory_system()->is(pathSide) || directory_system()->is(pathLocal);
 
                bMatterFromHttpCache = !bFileSystemMatter;
 
@@ -591,9 +682,9 @@ namespace platform
 
             }
 
-            m_pdirectorysystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
+            directory_system()->m_bMatterFromHttpCache = bMatterFromHttpCache;
 
-            m_pdirectorysystem->m_bMatterFromResource = false;
+            directory_system()->m_bMatterFromResource = false;
 
          }
 
@@ -602,7 +693,6 @@ namespace platform
       }
 
    }
-
 
    //void system::prepare_application()
    //{
@@ -695,15 +785,15 @@ namespace platform
 
       constructø(m_plogger);
 
-      {
-
-         ::trace_statement tracestatmentStartTime(this);
-
-         tracestatmentStartTime.m_etracelevel = e_trace_level_none;
-
-         tracestatmentStartTime << "Start Time: " << international_date_time_with_milliseconds(m_timeStart);
-
-      }
+      // {
+      //
+      //    ::trace_statement tracestatmentStartTime(this);
+      //
+      //    tracestatmentStartTime.m_etracelevel = e_trace_level_none;
+      //
+      //    tracestatmentStartTime << "Start Time: " << international_date_time_with_milliseconds(m_timeStart);
+      //
+      // }
 
       //constructø(m_pmutexTask);
 
@@ -800,6 +890,8 @@ namespace platform
    void system::application_main(::platform::application* papplication)
    {
 
+      STARTUP_DELAY_TRACE_SCOPE("system::application_main");
+
       if (!papplication->m_bUserApplication)
       {
 
@@ -809,22 +901,37 @@ namespace platform
 
       }
 
-      papplication->initialize_application();
+      {
+         STARTUP_DELAY_TRACE_SCOPE("system::application_main: initialize application");
+         papplication->initialize_application();
+      }
 
 
       m_pdynamiclibrary->initialize(papplication);
 
 
-      create_os_node(papplication);
+      {
+         STARTUP_DELAY_TRACE_SCOPE("system::application_main: create OS node");
+         create_os_node(papplication);
+      }
 
 
-      system_construct(papplication);
+      {
+         STARTUP_DELAY_TRACE_SCOPE("system::application_main: system construct");
+         system_construct(papplication);
+      }
 
 
-      initialize_layer();
+      {
+         STARTUP_DELAY_TRACE_SCOPE("system::application_main: initialize layer");
+         initialize_layer();
+      }
 
 
-      papplication->initialize(papplication);
+      {
+         STARTUP_DELAY_TRACE_SCOPE("system::application_main: initialize application context");
+         papplication->initialize(papplication);
+      }
 
       // system.branch_synchronously();
 
@@ -892,6 +999,14 @@ namespace platform
 
       /*auto estatus =*/
          init_system();
+
+      if (m_pdirectorysystem && !m_bDirectorySystemInitialized)
+      {
+
+         m_pdirectorysystem->init_system();
+         m_bDirectorySystemInitialized = true;
+
+      }
 
       //if (!estatus)
       //{
@@ -1140,11 +1255,19 @@ namespace platform
    void system::process_init()
    {
 
+      STARTUP_DELAY_TRACE_SCOPE("system::process_init");
+
+      {
+
+         STARTUP_DELAY_TRACE_SCOPE("system::process_init: construct core system objects");
+
       construct_newø(m_pmanualresethappeningPlatformSystemFinished);
 
       application()->initialize_application_flags();
 
       factory()->add_factory_item<::request>();
+
+      ensure_file_system_components();
 
 
 #if REFERENCING_DEBUGGING
@@ -1157,204 +1280,23 @@ namespace platform
 
       //::acme::idpool::init(this);
 
-      //      /// Create/Replace logger
-
       construct_newø(m_pdatetime);
-
 
       m_pnode->m_htaskSystem = m_htask;
 
-      //auto estatus = defer_construct_newø(m_pfactorysquare);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      // auto estatus = ([a-z0-9_]+)_factory("acme", OPERATING_SYSTEM_NAME);
-
-      // if (!estatus)
-      // {
-
-      //    return estatus;
-
-      // }
-
-      //estatus = constructø(m_pnode);
-
-      //if (!m_pnode)
-      //{
-
-      //   return error_no_memory;
-
-      //}
-
-      //auto estatus = øraw_construct(m_pdirectorysystem);
-
-      øraw_construct(m_pdirectorysystem);
-
-      /*if (!estatus)
-       {
-
-       return estatus;
-
-       }*/
-
-       //      m_pdirectorysystem = pdirectorysystem;
-
-       //    m_pdirectorysystem->increment_reference_count();
-
-       //estatus = øraw_construct(m_pfilesystem);
-
-      øraw_construct(m_pfilesystem);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus = øraw_construct(m_ppathsystem);
-
-      øraw_construct(m_ppathsystem);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      m_pdirectorysystem->m_pfilesystem = m_pfilesystem;
-      m_pdirectorysystem->m_ppathsystem = m_ppathsystem;
-      m_pfilesystem->m_pdirectorysystem = m_pdirectorysystem;
-      m_pfilesystem->m_ppathsystem = m_ppathsystem;
-      m_ppathsystem->m_pdirectorysystem = m_pdirectorysystem;
-      m_ppathsystem->m_pfilesystem = m_pfilesystem;
-
-      //estatus = m_pfilesystem->initialize(this);
-
-      m_pfilesystem->initialize(this);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus = m_ppathsystem->initialize(this);
-
-      m_ppathsystem->initialize(this);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus = m_pdirectorysystem->initialize(this);
-
-      m_pdirectorysystem->initialize(this);
-
-
-      //throw ::exception(error_failed);
-
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
+      // Directory accessors calculate filesystem paths as they are needed.
 
       m_timeStart.Now();
 
       m_timeAfterApplicationFirstRequest = m_timeStart;
 
-      //if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
-      //{
-
-      //   sleep(10_s);
-
-      //}
-
-      //if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
-      //{
-
-      //   //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
-
-      ////}
-      ////estatus =
-
-      //constructø(m_pfilesystem);
-
-      ////if(!estatus)
-      ////{
-
-      ////   ERROR("failed to initialize file-system");
-
-      ////   return estatus;
-
-      ////}
-
-      ////estatus =
-
-      ////::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
-
-      //constructø(m_pdirectorysystem);
-
-      //if (!estatus)
-      //{
-
-      //   ERROR("failed to initialize dir-system");
-
-      //   return false;
-
-      //}
-
-      ///INFORMATION("apex::session::process_init .3");
-
-      //estatus =
-      m_pfilesystem->init_system();
-
-      //if (!estatus)
-      //{
-
-      //   m_estatus = estatus;
-
-      //   return estatus;
-
-      //}
-
-      //estatus =
-      m_pdirectorysystem->init_system();
-
-      //if (!estatus)
-      //{
-
-      //   m_estatus = estatus;
-
-      //   return estatus;
-
-      //}
-
-      //estatus = ::platform::context::initialize_context();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
+      }
 
 #if !defined(APPLE_IOS)
+
+      {
+
+         STARTUP_DELAY_TRACE_SCOPE("system::process_init: capture startup diagnostics");
 
       auto pid = node()->current_process_identifier();
 
@@ -1365,10 +1307,22 @@ namespace platform
       auto pdatetime = datetime();
 
       string strLogTime = pdatetime->date_time_text_for_file_with_no_spaces();
+      const string strTraceTimestamp = strLogTime;
 
       strLogTime.replace_with("/", "-");
 
       strLogTime.replace_with("/", "_");
+
+#if defined(WINDOWS)
+      if (ca2_standard_trace_file_enabled())
+      {
+         auto pathTrace = directory_system()->home() / "application" / application()->m_strAppId
+            / (strTraceTimestamp + "-pid" + strPid + "-trace-log.txt");
+         directory_system()->create(pathTrace.folder());
+         file_system()->ensure_exists(pathTrace);
+         ca2_set_standard_trace_path(wstring(pathTrace));
+      }
+#endif
 
       {
 
@@ -1464,14 +1418,17 @@ namespace platform
 
       }
 
+      {
+
+         STARTUP_DELAY_TRACE_SCOPE("system::process_init: report_system_instance");
+
+         report_system_instance();
+
+      }
+
 #endif
 
-#if !defined(APPLE_IOS)
-
-      report_system_instance();
-
-#endif
-
+      }
 
    }
 
@@ -1652,6 +1609,8 @@ namespace platform
    void system::term()
    {
 
+      SHUTDOWN_DELAY_TRACE_SCOPE("system::term");
+
 
       for (auto & pSingleton : m_mapSingletons.payloads())
       {
@@ -1707,8 +1666,6 @@ namespace platform
 
       m_pdirectorysystem.release();
       m_pfilesystem.release();
-      m_pfilesystem.release();
-      m_pdirectorysystem.release();
       m_ppathsystem.release();
 
       m_purlcontext.release();
@@ -1846,6 +1803,8 @@ namespace platform
    path_system* system::path_system() const
    {
 
+      const_cast<system*>(this)->ensure_file_system_components();
+
       return m_ppathsystem;
 
    }
@@ -1867,8 +1826,95 @@ namespace platform
    }
 
 
+   void system::ensure_file_system_components()
+   {
+
+      ::std::lock_guard<::std::recursive_mutex> lock(m_mutexFileSystemComponents);
+
+      if (m_bFileSystemComponentsInitialized || m_bFileSystemComponentsInitializing)
+      {
+
+         return;
+
+      }
+
+      try
+      {
+
+         if (!m_pdirectorysystem)
+         {
+
+            øraw_construct(m_pdirectorysystem);
+
+         }
+
+         if (!m_pfilesystem)
+         {
+
+            øraw_construct(m_pfilesystem);
+
+         }
+
+         if (!m_ppathsystem)
+         {
+
+            øraw_construct(m_ppathsystem);
+
+         }
+
+         m_pdirectorysystem->m_pfilesystem = m_pfilesystem;
+         m_pdirectorysystem->m_ppathsystem = m_ppathsystem;
+         m_pfilesystem->m_pdirectorysystem = m_pdirectorysystem;
+         m_pfilesystem->m_ppathsystem = m_ppathsystem;
+         m_ppathsystem->m_pdirectorysystem = m_pdirectorysystem;
+         m_ppathsystem->m_pfilesystem = m_pfilesystem;
+
+         m_bFileSystemComponentsInitializing = true;
+
+         {
+
+            STARTUP_DELAY_TRACE_SCOPE("system::ensure_file_system_components: initialize members");
+
+            m_pfilesystem->initialize(this);
+            m_ppathsystem->initialize(this);
+            m_pdirectorysystem->initialize(this);
+
+         }
+
+         {
+
+            STARTUP_DELAY_TRACE_SCOPE("system::ensure_file_system_components: init_system members");
+
+            m_pfilesystem->init_system();
+            m_pdirectorysystem->init_system();
+            m_bDirectorySystemInitialized = true;
+
+         }
+
+         m_bFileSystemComponentsInitialized = true;
+
+         m_bFileSystemComponentsInitializing = false;
+
+      }
+      catch (...)
+      {
+
+         m_pdirectorysystem.release();
+         m_pfilesystem.release();
+         m_ppathsystem.release();
+         m_bFileSystemComponentsInitializing = false;
+
+         throw;
+
+      }
+
+   }
+
+
    file_system* system::file_system() const
    {
+
+      const_cast<system*>(this)->ensure_file_system_components();
 
       return m_pfilesystem;
 
@@ -1877,6 +1923,8 @@ namespace platform
 
    directory_system* system::directory_system() const
    {
+
+      const_cast<system*>(this)->ensure_file_system_components();
 
       return m_pdirectorysystem;
 
@@ -2122,6 +2170,8 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    void system::term_task()
    {
+
+      SHUTDOWN_DELAY_TRACE_SCOPE("system::term_task");
 
       if (m_pacmewindowing)
       {
@@ -3629,8 +3679,13 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::on_system_end()
    {
 
+      SHUTDOWN_DELAY_TRACE_SCOPE("system::on_system_end");
+
       /*auto estatus = */
-      on_system_termination();
+      {
+         SHUTDOWN_DELAY_TRACE_SCOPE("system::on_system_termination");
+         on_system_termination();
+      }
 
       //if (!estatus)
       //{
@@ -3640,7 +3695,10 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       //}
 
       /*estatus = */
-      inline_term();
+      {
+         SHUTDOWN_DELAY_TRACE_SCOPE("system::inline_term");
+         inline_term();
+      }
 
       //if (!estatus)
       //{
@@ -3674,7 +3732,13 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          string strDate;
 
-         strDate = datetime()->date_time_text_for_file_with_no_spaces();
+         {
+
+            STARTUP_DELAY_TRACE_SCOPE("report_system_instance: format timestamp");
+
+            strDate = datetime()->date_time_text_for_file_with_no_spaces();
+
+         }
 
          string strPid;
 
@@ -3690,7 +3754,13 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 #else
 
-         pathFolder = directory_system()->roaming();
+         {
+
+            STARTUP_DELAY_TRACE_SCOPE("report_system_instance: resolve roaming folder");
+
+            pathFolder = directory_system()->roaming();
+
+         }
 
 #endif
 
@@ -3698,17 +3768,50 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          pathFolder /= "instance";
 
+         // The timestamp is formatted as YYYY-MM-DD_HH-MM-SS.
+         pathFolder /= strDate.substr(0, 4);
+         pathFolder /= strDate.substr(5, 2);
+         pathFolder /= strDate.substr(8, 2);
+
          ::file::path path = pathFolder / (strModifier + "_command_line.txt");
 
-         file_system()->put_contents(path, this->command_line_text());
+         {
 
-         ::file::path pathExecutable = file_system()->module();
+            STARTUP_DELAY_TRACE_SCOPE("report_system_instance: write command line metadata");
 
-         string strAppTitle = node()->executable_title_from_appid(strAppId);
+            file_system()->put_contents(path, this->command_line_text());
+
+         }
+
+         ::file::path pathExecutable;
+
+         {
+
+            STARTUP_DELAY_TRACE_SCOPE("report_system_instance: resolve module path");
+
+            pathExecutable = file_system()->module();
+
+         }
+
+         string strAppTitle;
+
+         {
+
+            STARTUP_DELAY_TRACE_SCOPE("report_system_instance: resolve executable title");
+
+            strAppTitle = node()->executable_title_from_appid(strAppId);
+
+         }
 
          path = pathFolder / (strModifier + "_executable.txt");
 
-         file_system()->put_contents(path, pathExecutable);
+         {
+
+            STARTUP_DELAY_TRACE_SCOPE("report_system_instance: write executable metadata");
+
+            file_system()->put_contents(path, pathExecutable);
+
+         }
 
       }
 
@@ -4623,6 +4726,8 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::destroy()
    {
 
+      SHUTDOWN_DELAY_TRACE_SCOPE("system::destroy");
+
 #if !defined(WINDOWS)
 
       if (::is_set(m_pexceptiontranslator))
@@ -4641,7 +4746,10 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       //::platform::context::destroy();
 
-      ::task::destroy();
+      {
+         SHUTDOWN_DELAY_TRACE_SCOPE("system::destroy: task destruction");
+         ::task::destroy();
+      }
 
       auto ptask = ::get_task();
 
@@ -5833,6 +5941,10 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          ::string strOperatingAmbientName = ::windowing::get_eoperating_ambient_name();
 
+#ifdef __SUNOS__
+         strOperatingAmbientName = "gtk3";
+#endif
+
 #if (defined(LINUX) || defined(__BSD__)) && !defined(ANDROID)
 
          strOperatingAmbientName = "gtk4";
@@ -5866,6 +5978,15 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       strSystem = psummary->m_strSystem;
 
       auto strSystemRelease = psummary->m_strSystemRelease;
+
+#if defined(WINDOWS) && defined(__REACTOS__)
+      // Select artwork for the actual host, not just the compatibility build.
+      auto strOperatingSystemName = node()->get_current_operating_system_name();
+      if (strOperatingSystemName == "ReactOS")
+         strSystem = "reactos";
+      else if (strOperatingSystemName == "Windows XP")
+         strSystem = "windowsxp";
+#endif
 
       if (strSystem == "windows")
       {
@@ -5917,6 +6038,16 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       return strUrl;
 
       #endif
+   }
+
+   ::string system::operating_system_kernel_icon_url(const ::i32_size &size)
+   {
+      auto psummary = node()->operating_system_summary();
+      if (psummary->m_strKernel.is_empty())
+         return {};
+      ::string strUrl;
+      strUrl.format("https://ca2.site/image/operating-system-kernel/{}/{}.png", size.cx, psummary->m_strKernel);
+      return strUrl;
    }
 
 

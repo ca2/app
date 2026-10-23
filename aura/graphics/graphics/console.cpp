@@ -196,7 +196,7 @@ namespace graphics
 
       auto pdraw2dgraphicsImage = m_pimage->acquire_graphics();
       
-      pdraw2dgraphicsImage->m_pdraw2ddomain = m_puserinteraction->draw2d_domain();
+      pdraw2dgraphicsImage->set_draw2d_domain(m_puserinteraction->draw2d_domain());
 
       m_papplication->constructø(pdraw2dgraphicsImage->m_pwritetextfont);
 

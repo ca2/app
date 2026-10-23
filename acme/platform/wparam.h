@@ -4,6 +4,8 @@
 
 #include "acme/prototype/prototype/pointer.h"
 #include "acme/platform/lparam.h"
+#undef loword
+#undef hiword
 
 
 class CLASS_DECL_ACME wparam

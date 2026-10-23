@@ -362,6 +362,9 @@
 		9A8D30423064CF4100631964 /* frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8D30403064CF3B00631964 /* frame.h */; };
 		9A8D30443064CF4D00631964 /* frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D30433064CF4800631964 /* frame.cpp */; };
 		9A8D30453064CF4D00631964 /* frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D30433064CF4800631964 /* frame.cpp */; };
+		9A8D30C930650DAF00631964 /* domain_consumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8D30C830650DA100631964 /* domain_consumer.h */; };
+		9A8D30CB30650DC200631964 /* domain_consumer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D30CA30650DB800631964 /* domain_consumer.cpp */; };
+		9A8D30CC30650DC200631964 /* domain_consumer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D30CA30650DB800631964 /* domain_consumer.cpp */; };
 		9AA393E930637E0300B9551A /* image_pixmap_lease.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA393E830637E0300B9551A /* image_pixmap_lease.cpp */; };
 		9AA393EA30637E0300B9551A /* image_pixmap_lease.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA393E730637E0300B9551A /* image_pixmap_lease.h */; };
 		9AA393EB30637E0300B9551A /* image_pixmap_lease.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA393E830637E0300B9551A /* image_pixmap_lease.cpp */; };
@@ -979,6 +982,8 @@
 		9A30F290DEF284C6058AC128 /* text_out_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_out_array.cpp; sourceTree = "<group>"; };
 		9A8D30403064CF3B00631964 /* frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frame.h; sourceTree = "<group>"; };
 		9A8D30433064CF4800631964 /* frame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = frame.cpp; sourceTree = "<group>"; };
+		9A8D30C830650DA100631964 /* domain_consumer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = domain_consumer.h; sourceTree = "<group>"; };
+		9A8D30CA30650DB800631964 /* domain_consumer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = domain_consumer.cpp; sourceTree = "<group>"; };
 		9AA393E730637E0300B9551A /* image_pixmap_lease.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = image_pixmap_lease.h; sourceTree = "<group>"; };
 		9AA393E830637E0300B9551A /* image_pixmap_lease.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = image_pixmap_lease.cpp; sourceTree = "<group>"; };
 		9AA393F230637EDD00B9551A /* graphics_context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = graphics_context.h; sourceTree = "<group>"; };
@@ -1680,6 +1685,8 @@
 				18221C04C68392EABE39D3EA /* device_lock.cpp */,
 				9AA394543064A26500B9551A /* domain.h */,
 				9AA394563064A27700B9551A /* domain.cpp */,
+				9A8D30C830650DA100631964 /* domain_consumer.h */,
+				9A8D30CA30650DB800631964 /* domain_consumer.cpp */,
 				1056A0440374EB5EEA30F36C /* draw2d.h */,
 				84A8F675616A72D891F50AAF /* draw2d.cpp */,
 				A87F5514F64CDC0A96F90E37 /* drawing.h */,
@@ -2018,6 +2025,7 @@
 				1E38298E299741BD5C7516A7 /* windowing.h in Headers */,
 				988D861B5BE7BD207A0FC073 /* transformation.h in Headers */,
 				C2BB0BD3ED015DCC26D1515A /* wallpaper_transform.h in Headers */,
+				9A8D30C930650DAF00631964 /* domain_consumer.h in Headers */,
 				14AB409AACE98488F35FA705 /* load_options.h in Headers */,
 				ED5E27C5FABAE64BD9E00B3E /* encoding_options.h in Headers */,
 				46F74246187470D4077B93F6 /* color_filter.h in Headers */,
@@ -2433,6 +2441,7 @@
 				CCDE39B5A208D2093BA585AC /* draw_context.cpp in Sources */,
 				9AA393EB30637E0300B9551A /* image_pixmap_lease.cpp in Sources */,
 				5FF8174FA8852547CD1D55EA /* redraw.cpp in Sources */,
+				9A8D30CB30650DC200631964 /* domain_consumer.cpp in Sources */,
 				D7A1B49142ED39829EB637EF /* target.cpp in Sources */,
 				F023638E4C0C1C6CBC2F5BB0 /* graphics.cpp in Sources */,
 				6781851F7DF3D38720D3CC74 /* bitmap.cpp in Sources */,
@@ -2632,6 +2641,7 @@
 				B4B08BA315E90590E71037A4 /* scroll_base.cpp in Sources */,
 				9AA393E930637E0300B9551A /* image_pixmap_lease.cpp in Sources */,
 				FB8042AB505A4E5601E2BF0C /* load_gif_frame.cpp in Sources */,
+				9A8D30CC30650DC200631964 /* domain_consumer.cpp in Sources */,
 				BDB606E2476009E41999D022 /* palette.cpp in Sources */,
 				2D4A643F33EBF68740FA5CF0 /* menu.cpp in Sources */,
 				C49BE2B091E02C24BD76AA5E /* layout_state.cpp in Sources */,

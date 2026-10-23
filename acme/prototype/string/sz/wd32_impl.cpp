@@ -184,59 +184,66 @@ CLASS_DECL_ACME ::wd32_character * string_reverse(::wd32_character * psz) noexce
 }
 
 
-CLASS_DECL_ACME character_count  get_formatted_length(const ::wd32_character * pszFormat, va_list args) noexcept
-{
-
-#ifdef WINDOWS
-
-   wstring wstr(pszFormat);
-
-   return _vscwprintf(wstr.c_str(), args);
-
-#else
-
-   wd32_string wstr(pszFormat);
-
-   wd32_character dummy;
-
-   return vswprintf(&dummy, 0, pszFormat, args);
-
-#endif
-
-}
-
-
-CLASS_DECL_ACME character_count _string_format(::wd32_character * pszBuffer, const ::wd32_character * pszFormat, va_list args) noexcept
-{
-
-#ifdef WINDOWS
-
-   throw_todo();
-
-   return -1;
-
-#else
-
-   return vswprintf(pszBuffer, get_formatted_length(pszFormat, args), pszFormat, args);
-
-#endif
-
-}
+//CLASS_DECL_ACME character_count  get_formatted_length(const ::wd32_character * pszFormat, va_list args) noexcept
+//{
+//
+//#ifdef WINDOWS
+//
+//   wstring wstr(pszFormat);
+//
+//   return _vscwprintf(wstr.c_str(), args);
+//
+//#else
+//
+//   wd32_string wstr(pszFormat);
+//
+//   wd32_character dummy;
+//
+//   return vswprintf(&dummy, 0, pszFormat, args);
+//
+//#endif
+//
+//}
+//
+//
+//CLASS_DECL_ACME character_count _string_format(::wd32_character * pszBuffer, const ::wd32_character * pszFormat, va_list args) noexcept
+//{
+//
+//#ifdef WINDOWS
+//
+//   throw_todo();
+//
+//   return -1;
+//
+//#else
+//
+//   return vswprintf(pszBuffer, get_formatted_length(pszFormat, args), pszFormat, args);
+//
+//#endif
+//
+//}
 
 
 CLASS_DECL_ACME character_count wd32tring_format(::wd32_character * pszBuffer, character_count nlength, const ::wd32_character * pszFormat, va_list args) noexcept
 {
 
-#ifdef WINDOWS
-   throw_todo();
-   //return vswprintf_s(pszBuffer, (size_t)nlength, pszFormat, args);
-   return 0;
+   wd32_string wd32str(pszFormat);
+   
+   wide_string wstr(wd32str);
+   
+   wide_string wstrFormat;
 
-#else
+   wstrFormat.formatf_arguments(wstr, args);
+   
+   wd32_string wd32strFormat(wstrFormat);
+   
+   zero(pszBuffer, nlength);
+   
+   wd32_ncpy(pszBuffer, wd32str.c_str(), minimum(nlength, wd32strFormat.length()));
+   
+   pszBuffer[nlength] = '\0';
 
-   return vswprintf(pszBuffer, nlength, pszFormat, args);
-
-#endif
+   return wd32strFormat.length();
 
 }
 

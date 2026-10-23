@@ -1,0 +1,70 @@
+// Created by camilo on 2022-11-04 18:42 <3ThomasBorregaardSorensen!!
+#include "platform.h"
+
+
+
+#include <wchar.h>
+
+
+CLASS_DECL_ACME ::i64 string_to_signed(const ::wide_character * pwsz)
+{
+
+#ifdef WINDOWS
+
+   //wd16_string wstr(pwsz);
+
+   //return _wtoll(wstr);
+
+   return _wtoll(pwsz);
+
+#else
+
+   return wcstoll(pwsz, nullptr, 10);
+
+#endif
+
+}
+
+
+CLASS_DECL_ACME ::u64 as_u64(const ::wide_character * pwsz)
+{
+
+#ifdef WINDOWS
+
+   //wd16_string wstr(pwsz);
+
+   //return _wcstoui64(wstr, nullptr, 10);
+
+   return _wcstoui64(pwsz, nullptr, 10);
+
+#else
+
+   return wcstoull(pwsz, nullptr, 10);
+
+#endif
+
+}
+
+
+CLASS_DECL_ACME ::f64 string_to_floating(const ::wide_character * pwsz)
+{
+
+#ifdef WINDOWS
+
+   //wd16_string wstr(pwsz);
+
+   //return wcstod(wstr, nullptr);
+
+   return wcstod(pwsz, nullptr);
+
+#else
+
+   return wcstod(pwsz, nullptr);
+
+#endif
+
+}
+
+
+
+

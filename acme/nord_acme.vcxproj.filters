@@ -295,7 +295,7 @@
     <ClCompile Include="operating_system\android\process_pid.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\android\process.cpp">
+    <ClCompile Include="operating_system\android\process_process.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\android\parallelization.cpp">
@@ -373,7 +373,7 @@
     <ClCompile Include="operating_system\ansi\file_std.cpp">
       <Filter>Source Files\operating_system\ansi</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\ansi\process.cpp">
+    <ClCompile Include="operating_system\ansi\process_process.cpp">
       <Filter>Source Files\operating_system\ansi</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\ansi\time.cpp">
@@ -1021,7 +1021,7 @@
     <ClCompile Include="operating_system\pipe.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\process.cpp">
+    <ClCompile Include="operating_system\process_process.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\security_attributes.cpp">
@@ -2166,7 +2166,7 @@
     <ClInclude Include="os\os_windowing2.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
-    <ClInclude Include="os\process.h">
+    <ClInclude Include="os\process_process.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
     <ClInclude Include="os\text.h">
@@ -2886,7 +2886,7 @@
     <ClInclude Include="operating_system\android\internal2.h">
       <Filter>Header Files\operating_system\android</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\android\process.h">
+    <ClInclude Include="operating_system\android\process_process.h">
       <Filter>Header Files\operating_system\android</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\android\thread.h">

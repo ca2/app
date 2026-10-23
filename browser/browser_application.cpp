@@ -19,7 +19,7 @@ namespace browser
       m_ptemplateHelloBrowserSwitcher = nullptr;
 
       m_strAppId = "app/browser";
-      m_strAppName = "app/browser";
+      m_strAppName = "browser";
       m_strBaseSupportId = "ca2_flag";
       m_bLicense = false;
 

@@ -160,6 +160,9 @@ namespace experience
       m_bUseNc = false;
       m_bEnableMouse = true;
       m_bFullScreenEnable = false;
+      m_bFullScreenReturn = false;
+      m_bFullScreenAlt = false;
+      m_bFullScreenCtrl = false;
       m_bHoverModeOn = false;
       m_bHoverActive = false;
       m_bDockEnable = true;
@@ -188,6 +191,7 @@ namespace experience
 
    frame_window::~frame_window()
    {
+      if (m_pAutoHide) m_pAutoHide->detach();
 
    }
 
@@ -234,7 +238,8 @@ namespace experience
          return;
 
       }
-      else if (pmessage->m_eusermessage == ::user::e_message_key_down
+
+      if (pmessage->m_eusermessage == ::user::e_message_key_down
          || pmessage->m_eusermessage == ::user::e_message_key_up
          || pmessage->m_eusermessage == ::user::e_message_sys_key_down
          || pmessage->m_eusermessage == ::user::e_message_sys_key_up)
@@ -242,55 +247,49 @@ namespace experience
 
          auto pkey = pmessage->m_union.m_pkey;
 
-         
-
-         if(pkey->user_interaction() == this)
+         if (::is_set(pkey))
          {
 
-            if (pmessage->m_eusermessage == ::user::e_message_key_down || pmessage->m_eusermessage == ::user::e_message_sys_key_down)
+            if (pmessage->m_eusermessage == ::user::e_message_key_down
+               || pmessage->m_eusermessage == ::user::e_message_sys_key_down)
             {
 
                if (!m_bFullScreenOnMaximize)
                {
 
-                  if (pkey->m_ekey == ::user::e_key_alt || pkey->m_ekey == ::user::e_key_left_alt || pkey->m_ekey == ::user::e_key_right_alt)
+                  if (pkey->m_ekey == ::user::e_key_alt
+                     || pkey->m_ekey == ::user::e_key_left_alt
+                     || pkey->m_ekey == ::user::e_key_right_alt)
                   {
 
                      m_bFullScreenAlt = false;
 
                   }
-                  else if (pkey->m_ekey == ::user::e_key_control || pkey->m_ekey == ::user::e_key_left_control || pkey->m_ekey == ::user::e_key_right_control)
+                  else if (pkey->m_ekey == ::user::e_key_control
+                     || pkey->m_ekey == ::user::e_key_left_control
+                     || pkey->m_ekey == ::user::e_key_right_control)
                   {
 
                      m_bFullScreenCtrl = false;
 
                   }
-                  else if (pkey->m_ekey == ::user::e_key_return)
+                  else if (pkey->m_ekey == ::user::e_key_return
+                     && session()->is_key_pressed(::user::e_key_control)
+                     && session()->is_key_pressed(::user::e_key_alt))
                   {
 
-                     if (session()->is_key_pressed(::user::e_key_control) && session()->is_key_pressed(::user::e_key_alt))
+                     m_bFullScreenReturn = true;
+                     m_bFullScreenAlt = true;
+                     m_bFullScreenCtrl = true;
+                     pkey->m_bRet = true;
+
+                     if (!layout().is_full_screen())
                      {
 
-                        m_bFullScreenReturn = true;
-
-                        m_bFullScreenAlt = true;
-
-                        m_bFullScreenCtrl = true;
-
-                        pkey->m_bRet = true;
-
-                        if (!layout().is_full_screen())
-                        {
-
-                           display(e_display_full_screen);
-
-                           set_need_redraw();
-
-                           post_redraw();
-
-                           return;
-
-                        }
+                        display(e_display_full_screen);
+                        set_need_redraw();
+                        post_redraw();
+                        return;
 
                      }
 
@@ -299,35 +298,28 @@ namespace experience
                }
 
             }
-            else if (pmessage->m_eusermessage == ::user::e_message_key_up || pmessage->m_eusermessage == ::user::e_message_sys_key_up)
+            else
             {
 
-               if (pkey->m_ekey == ::user::e_key_return)
+               if (pkey->m_ekey == ::user::e_key_alt
+                  || pkey->m_ekey == ::user::e_key_left_alt
+                  || pkey->m_ekey == ::user::e_key_right_alt)
                {
 
-               }
-               else if (pkey->m_ekey == ::user::e_key_alt || pkey->m_ekey == ::user::e_key_left_alt || pkey->m_ekey == ::user::e_key_right_alt)
-               {
-
-                  if (layout().is_full_screen() && session()->is_key_pressed(::user::e_key_control) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
+                  if (layout().is_full_screen()
+                     && session()->is_key_pressed(::user::e_key_control)
+                     && !m_bFullScreenAlt
+                     && !m_bFullScreenCtrl)
                   {
 
                      pkey->m_bRet = true;
-
-                     good_move(&m_windowdisplayandlayout.m_rectangleNormal);
-
-                     display(e_display_normal);
-
+                     display_visible_trying_to_restore_last_visible(
+                        {::user::e_activation_default, pmessage->user_activation_token()});
                      set_reposition();
-
                      set_need_layout();
-
                      set_need_redraw();
-
                      post_redraw();
-
                      m_bFullScreenAlt = false;
-
                      return;
 
                   }
@@ -335,26 +327,25 @@ namespace experience
                   m_bFullScreenAlt = false;
 
                }
-               else if (pkey->m_ekey == ::user::e_key_control || pkey->m_ekey == ::user::e_key_left_control || pkey->m_ekey == ::user::e_key_right_control)
+               else if (pkey->m_ekey == ::user::e_key_control
+                  || pkey->m_ekey == ::user::e_key_left_control
+                  || pkey->m_ekey == ::user::e_key_right_control)
                {
 
-                  if (layout().is_full_screen() && session()->is_key_pressed(::user::e_key_alt) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
+                  if (layout().is_full_screen()
+                     && session()->is_key_pressed(::user::e_key_alt)
+                     && !m_bFullScreenAlt
+                     && !m_bFullScreenCtrl)
                   {
 
                      pkey->m_bRet = true;
-
-                     display_visible_trying_to_restore_last_visible({::user::e_activation_default, pmessage->user_activation_token()});
-
+                     display_visible_trying_to_restore_last_visible(
+                        {::user::e_activation_default, pmessage->user_activation_token()});
                      set_reposition();
-
                      set_need_layout();
-
                      set_need_redraw();
-
                      post_redraw();
-
                      m_bFullScreenAlt = false;
-
                      return;
 
                   }
@@ -849,6 +840,7 @@ namespace experience
 
    void frame_window::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
+      if (m_pAutoHide) m_pAutoHide->handle(ptopic, phandlercontext);
 
       if (ptopic->id() == ::id_click && m_pframe != nullptr
           && m_pframe
@@ -1288,6 +1280,9 @@ namespace experience
 
    void frame_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
+      // The coordinator must run even when all chrome children skip layout.
+      if (m_pAutoHide) m_pAutoHide->auto_hide_calculate_control_visibility();
+
 
       //::user::frame_window::on_perform_top_down_layout(pdraw2dgraphics);
 
@@ -1312,6 +1307,9 @@ namespace experience
 
             //information() << "experience::frame_experience::on_perform_top_down_layout m_pframe is_set";
 
+            // Full-screen entry clears these margins/masks. Restore them before
+            // deriving the client area, rather than waiting for a later pass.
+            m_pframe->sync_dock_grip_border();
             auto rectangleHosting = this->rectangle(::user::e_layout_lading);
 
             m_pframe->calculate_hosting_rectangle(&rectangleHosting, pdraw2dgraphics);
@@ -2045,6 +2043,11 @@ namespace experience
 
    void frame_window::_001OnNcMouseMove(::message::message * pmessage)
    {
+      // The physical top edge may be hit-tested as non-client chrome.
+      // Non-client LPARAM is the screen position recorded for this event.
+      if (m_pAutoHide)
+         m_pAutoHide->auto_hide_on_mouse_move(pmessage->m_lparam.point() - screen_origin());
+
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
@@ -2116,8 +2119,36 @@ namespace experience
    }
 
 
+   ::user::auto_hide * frame_window::full_screen_auto_hide()
+   {
+      if (!m_pAutoHide)
+      {
+         m_pAutoHide = create_newø<::user::auto_hide>();
+         m_pAutoHide->attach(this);
+         m_pAutoHide->m_iKeepOpenHeight = 0;
+      }
+      return m_pAutoHide;
+   }
+
+   bool frame_window::on_window_mouse_move(const ::i32_point & point, const ::i32_point & pointAbsolute)
+   {
+      // The native owner receives this before child routing or mouse capture.
+      // Preserve the event position even if the cursor has already moved away.
+      if (m_pAutoHide)
+         m_pAutoHide->auto_hide_on_mouse_move(point - host_origin());
+      return ::user::frame_window::on_window_mouse_move(point, pointAbsolute);
+   }
+
+   void frame_window::route_as_parent_mouse_message(::message::mouse * pmouse)
+   {
+      if (pmouse->m_eusermessage == ::user::e_message_mouse_move && m_pAutoHide)
+         m_pAutoHide->auto_hide_on_message_mouse_move(pmouse);
+      ::user::frame_window::route_as_parent_mouse_message(pmouse);
+   }
+
    void frame_window::operator()(::timer * ptimer)
    {
+      if (m_pAutoHide) m_pAutoHide->operator()(ptimer);
 
       //if(!is_frame_experience_enabled())
       //{
@@ -2999,6 +3030,11 @@ namespace experience
 
    void frame_window::destroy()
    {
+      if (m_pAutoHide)
+      {
+         m_pAutoHide->detach();
+         m_pAutoHide.release();
+      }
 
       m_pmovemanager.defer_destroy_and_release();
       m_psizemanager.defer_destroy_and_release();

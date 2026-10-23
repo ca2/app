@@ -107,6 +107,8 @@ namespace acme
 
          virtual bool is_wayland();
 
+         virtual ::string get_desktop_theme_name();
+
 
       };
 

@@ -5,6 +5,7 @@
 resource_exception::resource_exception(const ::scoped_string & scopedstrMessage) :
    ::exception(error_resource, scopedstrMessage)
 {
+   log_constructor("resource_exception");
 
 }
 

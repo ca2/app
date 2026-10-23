@@ -5,12 +5,18 @@ project(_app_just_acme_message_box CXX)
 list(APPEND application_source main.cpp)
 
 
-if(MSVC)
+if(WIN32)
     list(APPEND application_source ../deployment.rc main.rc)
 endif()
 
 
 add_executable(${PROJECT_NAME} ${application_source})
+
+if(__HAIKU__)
+   haiku_set_application_icon(${PROJECT_NAME}
+      "app/just_acme_message_box"
+      "../../_matter/just_acme_message_box/_std/_std/main/icon.png")
+endif()
 
 
 
@@ -20,7 +26,7 @@ list(APPEND executable_references
         )
 
 
-if(${LINUX} OR ${__BSD__})
+if(${LINUX} OR ${__BSD__} OR ${__SUNOS__} OR ${__HAIKU__})
 
    target_sources(${PROJECT_NAME} PRIVATE .link_object/_matter.zip.o)
 
@@ -30,13 +36,39 @@ endif()
 if(${WIN32})
 
 
-    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
+
+
+
+
+   if(MSVC)
+      target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
+      target_link_options(${PROJECT_NAME} PRIVATE "/bigobj")
+      #target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+      #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+   else()
+
+
+      target_link_options(${PROJECT_NAME} PRIVATE "-mwindows")
+
+
+      if(MINGW)
+         target_link_options(${PROJECT_NAME} PRIVATE "-municode")
+      endif()
+
+
+      #target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   endif()
+
+
+
     target_link_libraries(${PROJECT_NAME} PRIVATE ${executable_references})
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

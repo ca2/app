@@ -27,6 +27,7 @@ namespace draw2d
       ::f64_point               m_point;
       ::f64_size                m_size;
       ::image::image_pointer         m_pimage;
+      ::image::image_pointer         m_pimageResized;
       ::f64                  m_dRadius;
 
 

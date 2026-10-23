@@ -1254,7 +1254,7 @@ namespace apex
 
       virtual string as_string(const ::payload& payload) override;
 
-#if defined(LINUX) || defined(__BSD__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 
       virtual string get_wm_class() const override;
 

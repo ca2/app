@@ -169,10 +169,13 @@ template < typename T >
 concept prototype_character =
    ::is_same < ::non_const<T>, ::i8> || 
    ::is_same < ::non_const<T>, char8_t> ||
+   ::is_same < ::non_const<T>, char16_t> ||
+   ::is_same < ::non_const<T>, char32_t> ||
    ::is_same < ::non_const<T>, wchar_t> ||
    ::is_same < ::non_const<T>, ::ansi_character> ||
    ::is_same < ::non_const<T>, ::wd16_character> || 
-   ::is_same < ::non_const<T>, ::wd32_character>;
+   ::is_same < ::non_const<T>, ::wd32_character> ||
+   ::is_same < ::non_const<T>, ::wide_character>;
 
 template<typename T>
 concept const_pointer_to_prototype_character =

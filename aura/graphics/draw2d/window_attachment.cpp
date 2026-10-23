@@ -109,6 +109,15 @@ namespace draw2d
    }
 
 
+
+   void window_attachment::start_frame()
+   {
+
+
+
+   }
+
+
 } // namespace draw2d
 
 

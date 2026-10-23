@@ -20,6 +20,10 @@ CLASS_DECL_ACME ::string get_operating_system_name()
    return "netbsd";
 #elif defined(OPENBSD)
    return "openbsd";
+#elif defined(__SUNOS__)
+   return "sunos";
+#elif defined(__HAIKU__)
+   return "haiku";
 #elif defined(UNIVERSAL_WINDOWS)
    return "universal_windows";
 #elif defined(__ANDROID__)

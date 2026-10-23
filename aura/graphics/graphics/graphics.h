@@ -4,6 +4,7 @@
 #include "acme/parallelization/manual_reset_happening.h"
 #include "acme/prototype/geometry2d/point.h"
 #include "acme/prototype/geometry2d/size.h"
+#include "aura/graphics/draw2d/domain_consumer.h"
 #include "aura/graphics/draw2d/graphics_lease.h"
 //#include "aura/graphics/draw2d/graphics_pointer.h"
 
@@ -13,7 +14,8 @@ namespace graphics
 
 
    class CLASS_DECL_AURA graphics :
-      virtual public ::object
+      virtual public ::object,
+      virtual public ::draw2d::domain_consumer
    {
    public:
 

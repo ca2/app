@@ -2,6 +2,9 @@
 #include "draw2d.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
+#include "acme/platform/system.h"
+#include "acme/graphics/image/_configuration.h"
+#include <bit>
 #include "acme/prototype/prototype/memory.h"
 
 
@@ -65,6 +68,23 @@ return g_pdraw2dcairo;
 
    void draw2d::initialize(::particle * pparticle)
    {
+
+      // Cairo ARGB32 stores native-endian 0xAARRGGBB words.
+      // Select pixel byte indexes here, independently of the operating system.
+      if constexpr (::std::endian::native == ::std::endian::little)
+      {
+
+         set_common_system_image_color_indexes({2, 1, 0, 3});
+
+      }
+      else
+      {
+
+         set_common_system_image_color_indexes({1, 2, 3, 0});
+
+      }
+      ::system()->m_bDefaultRedLower =
+         common_system_image_color_indexes().red() < common_system_image_color_indexes().blue();
 
       //auto estatus = 
       

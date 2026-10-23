@@ -20,7 +20,7 @@ namespace helloworld
       m_ptemplateHelloWorldView = nullptr;
       m_ptemplateHelloWorldSwitcher = nullptr;
 
-      m_strAppName = "app/helloworld";
+      m_strAppName = "helloworld";
       m_strLibraryName = "app/helloworld";
       m_strBaseSupportId = "ca2_flag";
       m_bLicense = false;

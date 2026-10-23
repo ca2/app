@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/image/list.h"
@@ -27,8 +28,10 @@ namespace filemanager
    }
 
 
-   bool file_list_callback::initialize_file_list_callback()
+   bool file_list_callback::initialize_file_list_callback(::draw2d::domain * pdraw2ddomain)
    {
+      
+      set_draw2d_domain(pdraw2ddomain);
 
       m_pimagelistSubItemHover = create_newø < ::image::image_list >();
 
@@ -40,7 +43,7 @@ namespace filemanager
 
       //spgraphics->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
 
-      m_pimagelistSubItemHover->create(16, 16, 0, 10, 10);
+      m_pimagelistSubItemHover->create(16, 16, draw2d_domain(), 0, 10, 10);
 
       m_pimagelistSubItemHover->add(::image::image_payload(this, "matter://filemanager/execute_16.png"));
       m_pimagelistSubItemHover->add(::image::image_payload(this, "matter://filemanager/check_off_16.png"));

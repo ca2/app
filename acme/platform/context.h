@@ -187,6 +187,7 @@ namespace platform
       virtual ::file::path defer_process_path(::file::path path) override;
       virtual ::file::path _defer_process_path(::file::path path) override;
       virtual ::file::path __defer_process_path(::file::path path) override;
+      bool is_finally_processed_path(const ::file::path & path);
 
 
       virtual void fork_count(::collection::count iCount, const ::function < void(::collection::index, ::collection::index, ::collection::index, ::collection::index) > & function, const ::procedure & procedureCompletion, ::collection::index iStart = 0) override;

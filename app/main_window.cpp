@@ -5,13 +5,16 @@
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/user/user/tool.h"
+#include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/user/control_box_button.h"
+#include "aura/graphics/write_text/font.h"
 #include "aura/message/user.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "aura/platform/application.h"
 #include "aura/user/user/style.h"
+#include "startup_delay_debug.h"
 
 
 #define STEPPY_DEBUG 0
@@ -24,7 +27,10 @@ namespace app_app
    main_window::main_window()
    {
 
+      m_iFrameSerial = 0;
+
       m_bTransparent = true;
+      m_dDrawControlBox = true;
 
       m_rectangleInitialRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
 
@@ -59,6 +65,9 @@ namespace app_app
    void main_window::on_message_create(::message::message * pmessage)
    {
 
+      // The inherited handler creates the default control-box items.
+      pmessage->previous();
+
 #if !STEPPY_DEBUG
 
       if (is_sandboxed())
@@ -83,6 +92,15 @@ namespace app_app
 
    void main_window::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
+
+      if (m_iFrameSerial == 0)
+      {
+         
+         m_timeFirstFrame.Now();
+
+      }
+
+      m_iFrameSerial++;
 
       m_iCloseButtonDraw = 0;
 
@@ -280,6 +298,42 @@ namespace app_app
       }
 
       ::user::interaction::_001OnDraw(pdraw2dgraphics);
+      if (m_dDrawControlBox)
+      {
+         informationf("CONTROL_BOX first draw: enabled=%d platform=%d items=%lld close=%p zoom=%p minimize=%p closeDraws=%d",
+            (int)m_bEnableDefaultControlBox, (int)should_show_platform_control_box(),
+            (long long)tool().item_count(), tool().item(::e_element_close_button),
+            tool().item(::e_element_maximize_button), tool().item(::e_element_minimize_button),
+            m_iCloseButtonDraw);
+         m_dDrawControlBox = false;
+      }
+
+
+#if STARTUP_DELAY_DEBUG
+
+      auto timeElapsed = m_timeFirstFrame - ::system()->m_timeStart;
+
+      auto dSeconds = timeElapsed.floating_second();
+
+      ::string str;
+
+      str.formatf("Startup delay: %.3f seconds", dSeconds);
+
+      auto pbrush = createø < ::draw2d::brush >();
+
+      pbrush->create_solid(argb(255, 255, 255, 255));
+
+      pdraw2dgraphics->set(pbrush);
+
+      auto pfont = createø < ::write_text::font >();
+
+      pfont->create_font(e_font_sans_ui, 16.0_pt);
+
+      pdraw2dgraphics->set(pfont);
+
+      pdraw2dgraphics->text_out({10, 10}, str);
+
+#endif
 
    }
 

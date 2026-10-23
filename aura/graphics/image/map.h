@@ -37,80 +37,52 @@ namespace image
 {
 
 
-   class CLASS_DECL_AURA image_map_base :
-      public map_base < enum_image, ::image::image_pointer >
-   {
-   public:
-
-
-      using BASE_MAP = map_base < enum_image, ::image::image_pointer >;
-
-
-      using BASE_MAP::BASE_MAP;
-      using BASE_MAP::operator =;
-
-
-   };
-
-
    class CLASS_DECL_AURA image_map :
-      virtual public map_particle < image_map_base >
+      public ::map < enum_image, ::image::image_pointer >
    {
    public:
 
 
-      using BASE_MAP = map_particle < image_map_base >;
+      using BASE_MAP = ::map < enum_image, ::image::image_pointer >;
 
-
-      using BASE_MAP::BASE_MAP;
-      using BASE_MAP::operator =;
 
 
    };
 
 
-   class CLASS_DECL_AURA size_image_base :
-      public map_base < i32_size, ::image::image_pointer >
+
+   class CLASS_DECL_AURA size_image :
+      public ::map < i32_size, ::image::image_pointer >
    {
    public:
 
+      
+      ::pointer< ::draw2d::domain > m_pdraw2ddomain;
+      
 
       ::image::image_pointer & operator[](const i32_size & size);
       ::image::image_pointer & get(const i32_size & size, bool & bExists);
 
-
    };
 
 
-   class CLASS_DECL_AURA size_image :
-      virtual public map_particle < size_image_base >
+
+
+
+   class CLASS_DECL_AURA image_descriptor_map :
+      public ::map < image_header, ::image::image_pointer >
    {
    public:
 
 
-      using BASE_MAP = map_particle < size_image_base >;
-
-
-      using BASE_MAP::BASE_MAP;
-      using BASE_MAP::operator =;
-
-
-   };
-
-
-   class CLASS_DECL_AURA image_descriptor_map_base :
-      public map_base < image_header, ::image::image_pointer >
-   {
-   public:
-
-
-      using BASE_PAIR_MAP = map_base < image_header, ::image::image_pointer >;
+      using BASE_PAIR_MAP = ::map < image_header, ::image::image_pointer >;
 
 
       ::i32 m_iLimitCount;
+      ::pointer< ::draw2d::domain > m_pdraw2ddomain;
 
 
-      image_descriptor_map_base(::i32 iLimitCount = 500)
+      image_descriptor_map(::i32 iLimitCount = 500)
       {
 
          m_iLimitCount = iLimitCount;
@@ -127,24 +99,7 @@ namespace image
    };
 
 
-   class CLASS_DECL_AURA image_descriptor_map :
-      virtual public map_particle < image_descriptor_map_base >
-   {
-   public:
-
-
-      using BASE_MAP = map_particle < image_descriptor_map_base >;
-
-
-      using BASE_MAP::BASE_MAP;
-      using BASE_MAP::operator =;
-
-
-   };
-
-
-
-
 } // namespace image
+
 
 

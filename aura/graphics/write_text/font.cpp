@@ -371,16 +371,18 @@ namespace write_text
    ::f64 font::get_pixel_font_height(::draw2d::graphics * pdraw2dgraphics)
    {
 
+      ::f64 fFontSize = 0.0;
+
       if (m_fontsize.eunit() == ::e_unit_point)
       {
 
-         return m_fontsize.as_f64() * pdraw2dgraphics->get_dpiy() / 72.0;
+         fFontSize = (::f32)pdraw2dgraphics->point_pixel(m_fontsize.as_f64());
 
       }
       else if (m_fontsize.eunit() == ::e_unit_pixel)
       {
 
-         return m_fontsize.as_f64();
+         fFontSize = m_fontsize.as_f64();
 
       }
       else
@@ -389,6 +391,8 @@ namespace write_text
          throw ::bad_unit_exception< enum_unit >(m_fontsize.eunit());
 
       }
+
+      return fFontSize;
 
    }
 
@@ -933,45 +937,54 @@ namespace write_text
    //}
 
 
-   ::f64 font::get_ascent(::draw2d::graphics * pdraw2dgraphics)
+//   ::f64 font::get_ascent(::draw2d::graphics * pdraw2dgraphics)
+//   {
+//
+//      defer_update(pdraw2dgraphics);
+//
+//      return m_textmetric2.m_dAscent;
+//
+//   }
+//
+//
+//   ::f64 font::get_height(::draw2d::graphics * pdraw2dgraphics)
+//   {
+//
+//      defer_update(pdraw2dgraphics);
+//
+//      return m_textmetric2.m_dHeight;
+//
+//   }
+//
+//
+//   ::f64 font::get_leading(::draw2d::graphics * pdraw2dgraphics)
+//   {
+//
+//      defer_update(pdraw2dgraphics);
+//
+//      return m_textmetric2.m_dInternalLeading + m_textmetric2.m_dExternalLeading;
+//
+//   }
+//
+//
+//   ::f64 font::get_descent(::draw2d::graphics * pdraw2dgraphics)
+//   {
+//
+//      defer_update(pdraw2dgraphics);
+//
+//      return m_textmetric2.m_dDescent;
+//
+//   }
+
+
+   ::write_text::text_metric & font::text_metric(::draw2d::graphics * pdraw2dgraphics)
    {
-
+      
       defer_update(pdraw2dgraphics);
-
-      return m_textmetric2.m_dAscent;
-
+      
+      return m_textmetric4;
+      
    }
-
-
-   ::f64 font::get_height(::draw2d::graphics * pdraw2dgraphics)
-   {
-
-      defer_update(pdraw2dgraphics);
-
-      return m_textmetric2.m_dHeight;
-
-   }
-
-
-   ::f64 font::get_leading(::draw2d::graphics * pdraw2dgraphics)
-   {
-
-      defer_update(pdraw2dgraphics);
-
-      return m_textmetric2.m_dInternalLeading + m_textmetric2.m_dExternalLeading;
-
-   }
-
-
-   ::f64 font::get_descent(::draw2d::graphics * pdraw2dgraphics)
-   {
-
-      defer_update(pdraw2dgraphics);
-
-      return m_textmetric2.m_dDescent;
-
-   }
-
 
    //void font::_get_text_metric(::draw2d::graphics * pdraw2dgraphics, text_metric & tm)
    //{

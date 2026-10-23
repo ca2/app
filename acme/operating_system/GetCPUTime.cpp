@@ -9,6 +9,9 @@
 #if defined(_WIN32)
 // #include aaa_<windows.h>
 
+#elif defined(__HAIKU__)
+#include <OS.h>
+#include "GetCPUTime.h"
 #elif defined(__unix__) || defined(__unix) || defined(unix) || (defined(__APPLE__) && defined(__MACH__))
 #include <unistd.h>
 #include <sys/resource.h>
@@ -36,6 +39,11 @@
 		ULARGE_INTEGER li = {{userTime.dwLowDateTime, userTime.dwHighDateTime }};
         return li.QuadPart / 10000000.;
 	}
+
+#elif defined(__HAIKU__)
+   team_usage_info usage = {};
+   if (::get_team_usage_info(B_CURRENT_TEAM, B_TEAM_USAGE_SELF, &usage) == B_OK)
+      return (::f64)usage.user_time / 1000000.0;
 
 #elif defined(__unix__) || defined(__unix) || defined(unix) || (defined(__APPLE__) && defined(__MACH__))
 	/* AIX, BSD, Cygwin, HP-UX, Linux, OSX, and Solaris --------- */
@@ -95,7 +103,11 @@
 
 ::f64 getKernelTime()
 {
-#if defined(_WIN32)
+#if defined(__HAIKU__)
+  team_usage_info usage = {};
+  if (::get_team_usage_info(B_CURRENT_TEAM, B_TEAM_USAGE_SELF, &usage) == B_OK)
+    return (::f64)usage.kernel_time / 1000000.0;
+#elif defined(_WIN32)
   /* Windows -------------------------------------------------- */
   FILETIME createTime;
   FILETIME exitTime;

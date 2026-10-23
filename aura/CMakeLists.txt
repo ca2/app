@@ -59,6 +59,9 @@ list(APPEND library_source
         graphics/draw2d/draw2d.h
         graphics/draw2d/drawing.cpp
         graphics/draw2d/drawing.h
+        graphics/draw2d/domain.cpp
+        graphics/draw2d/domain_consumer.cpp
+        graphics/draw2d/frame.cpp
         graphics/draw2d/graphics.cpp
         graphics/draw2d/graphics.h
    graphics/draw2d/graphics_context.cpp
@@ -345,7 +348,7 @@ list(APPEND library_source
         #        operating_system/http.cpp
         #        #operating_system/operating_system.h
         #        #operating_system/os_windowing2.h
-        #        #operating_system/process.h
+        #        #operating_system/process_process.h
         #        #operating_system/text.h
         #        operating_system/thread.cpp
         #        operating_system/time.h
@@ -785,7 +788,7 @@ endif ()
 #            operating_system/universal_windows/multithreading.h
 #            operating_system/universal_windows/multithreading_winrt.h
 #            operating_system/universal_windows/oswindow.h
-#            #operating_system/universal_windows/process.h
+#            #operating_system/universal_windows/process_process.h
 #            operating_system/universal_windows/simple_hold_handle.h
 #            operating_system/universal_windows/simple_ui.h
 #            operating_system/universal_windows/sockets.h
@@ -885,12 +888,35 @@ set_target_properties(aura PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if(${WIN32})
-    target_compile_options(aura PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(aura PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(aura PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/aura.lib")
-    target_link_options(aura PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aura.def")
-    target_link_libraries(aura PRIVATE acme apex aqua zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
+
+
+   if(MSVC)
+
+
+      target_compile_options(${PROJECT_NAME} PRIVATE    "/MD$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/SUBSYSTEM:WINDOWS")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/bigobj")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   else()
+
+
+      target_link_options(${PROJECT_NAME} PRIVATE "-mwindows")
+      target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   endif()
+
+
+   ##target_link_options(${PROJECT_NAME}   PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+   ##target_link_options(${PROJECT_NAME}   PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
     target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
     #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
@@ -907,9 +933,9 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
     target_link_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS})
 
     if(${__ANDROID__})
-        target_link_libraries(aura PRIVATE ${system_dl_references})
+        target_link_libraries(${PROJECT_NAME} PRIVATE ${system_dl_references})
     else()
-        target_link_libraries(aura PRIVATE ${system_dl_references} pthread)
+        target_link_libraries(${PROJECT_NAME} PRIVATE ${system_dl_references} pthread)
     endif()
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
     target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES} ${global_library_references})
@@ -926,6 +952,9 @@ endif ()
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+
+# NanoSVG is header-only; both Aura variants compile its implementation.
+list(APPEND library_include_directories "${WORKSPACE_FOLDER}/port/common/nanosvg")
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})

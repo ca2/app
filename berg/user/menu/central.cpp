@@ -179,7 +179,7 @@ namespace user
 //         throw ::exception(::exception("resource exception menu_central constructor"));
 //      }
 //#else
-      if (!MenuV033GetImageList()->create(16, 16, 0, 0, 10))
+      if (!MenuV033GetImageList()->create(16, 16, draw2d_domain(), 0, 0, 10))
       {
          
          throw ::exception(::error_failed, "resource exception menu_central constructor");

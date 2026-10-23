@@ -2,6 +2,8 @@
 // camilo on 2025-07-31 14:17 <3ThomasBorregaardSørensen!!
 #define CLASS_DECL_APPLICATION_NAMESPACE CLASS_DECL_IMPORT
 #include "acme/inline/application/main.h"
+#include "startup_diagnostics.h"
+#include "acme/platform/std_trace_output.h"
 
 
 #ifdef CUBE
@@ -107,10 +109,15 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #endif
 
 
-#if defined(LINUX) || defined(__BSD__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 
 extern char _binary__matter_zip_start[];
 extern char _binary__matter_zip_end[];
+
+#elif defined(__HAIKU__)
+
+extern char _binary__matter_zip_start[] __attribute__((weak));
+extern char _binary__matter_zip_end[] __attribute__((weak));
 
 #endif
 
@@ -122,7 +129,22 @@ int main(int argc, char* argv[], char* envp[])
 #endif
 {
 
+#if defined(WINDOWS)
+   // Capture the executable translation unit's build time, rather than acme's build time.
+   ca2_set_application_build_timestamp(__DATE__ " " __TIME__);
+#endif
+#if defined(WINDOWS) && (CA2_STARTUP_TRACE || CA2_ATTACH_PARENT_CONSOLE)
+   ca2_startup_diagnostics::attach_console();
+#endif
+#if defined(WINDOWS) && CA2_STARTUP_TRACE
+   ca2_startup_diagnostics::write("entry point reached; creating system");
+   try
+   {
+#endif
    APPLICATION_NAMESPACE_MAIN(create_system)();
+#if defined(WINDOWS) && CA2_STARTUP_TRACE
+   ca2_startup_diagnostics::write("system created; initializing system");
+#endif
 
 #if defined(WINDOWS)
    APPLICATION_NAMESPACE_MAIN(initialize_system)(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
@@ -130,9 +152,15 @@ int main(int argc, char* argv[], char* envp[])
    const char * p1 = nullptr; //_todo_begin;
    const char * p2 = nullptr; //_todo_end;
    APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp, p1, p2);
-#elif defined(LINUX) || defined(__BSD__)
+#elif defined(LINUX) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
    const char * p1 = _binary__matter_zip_start;
    const char * p2 = _binary__matter_zip_end;
+   printf("_binary__matter_zip_start = %p\n", p1);
+   printf("_binary__matter_zip_end = %p\n", p2);
+   char sz[8];
+   memcpy(sz, p1, 7);
+   sz[7]='\0';
+   printf("_binary__matter_zip_start beginning = %s\n", sz);
    APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp, p1, p2);
 #else
    const char * p1 = nullptr; //_todo_begin;
@@ -140,9 +168,64 @@ int main(int argc, char* argv[], char* envp[])
    APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp, p1, p2);
 #endif
 
+#if defined(WINDOWS) && CA2_STARTUP_TRACE
+   ca2_startup_diagnostics::write("system initialized; entering application main");
+#endif
    auto iExitCode = APPLICATION_NAMESPACE_MAIN(main)();
+#if defined(WINDOWS) && CA2_STARTUP_TRACE
+   ca2_startup_diagnostics::returned(iExitCode);
+#endif
 
    return iExitCode;
+#if defined(WINDOWS) && CA2_STARTUP_TRACE
+   }
+   catch (const ::exception &error)
+   {
+      ca2_startup_diagnostics::write("ca2 exception escaped startup");
+      ca2_startup_diagnostics::write(error.m_strMessage.c_str());
+      ca2_startup_diagnostics::write(error.m_strDetails.c_str());
+      ca2_startup_diagnostics::write(error.m_strCallStackTrace.c_str());
+      // Preserve the escaping exception even if normal trace routing fails.
+      try
+      {
+         if (::system() && error.m_strCallStackTrace.has_character())
+         {
+            ::system()->error() << error.m_strCallStackTrace;
+         }
+      }
+      catch (...)
+      {
+      }
+
+      throw;
+   }
+   catch (const std::exception &error)
+   {
+      ca2_startup_diagnostics::write("std::exception escaped startup");
+      ca2_startup_diagnostics::write(error.what());
+      throw;
+   }
+   catch (int code)
+   {
+      ca2_startup_diagnostics::write("integer exception escaped startup");
+      char description[80];
+      _snprintf(description, sizeof(description), "integer exception value=%d", code);
+      description[sizeof(description)-1] = 0;
+      ca2_startup_diagnostics::write(description);
+      throw;
+   }
+   catch (const char *error)
+   {
+      ca2_startup_diagnostics::write("string exception escaped startup");
+      ca2_startup_diagnostics::write(error);
+      throw;
+   }
+   catch (...)
+   {
+      ca2_startup_diagnostics::write("unknown C++ exception escaped startup");
+      throw;
+   }
+#endif
 
 }
 

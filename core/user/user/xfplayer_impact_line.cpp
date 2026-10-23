@@ -912,16 +912,31 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pdraw
 
       m_iaPosition[0] = 0;
 
-      for (i = 1; i <= m_str.length(); i++)
+      auto iStringLength= m_str.length();
+      for (i = 0; i < iStringLength;)
       {
+
+         int iStart = i;
+         auto psz = m_str.c_str() + iStart;
+         auto iUtf8Length = get_utf8_char_length(psz);
+         int iEnd = i + iUtf8Length;
+         
+         iEnd = minimum(iEnd, iStringLength);
 
          m_pgraphicsextension->get_text_extent(
          pdraw2dgraphics,
-         m_str(0, i),
+         m_str(0, iEnd),
          size);
 
-         m_iaPosition[i] = (::i32) (size.cx);
+         for(int iPos = i + 1; iPos < iEnd; iPos++)
+         {
+            m_iaPosition[iPos] = m_iaPosition[iPos-1];
+         }
+         
+         m_iaPosition[iEnd] = (::i32) (size.cx);
 
+         i = iEnd;
+         
       }
 
    }

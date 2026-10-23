@@ -43,6 +43,7 @@
 #include "aura/graphics/image/aaa_target.h"
 #include "aura/platform/application.h"
 #include <chrono>
+#include <exception>
 #include <thread>
 #include "acme/prototype/geometry/quaternion.h"
 
@@ -174,7 +175,7 @@ namespace graphics3d
 
          constructø(m_pimageOutput);
 
-         m_pimageOutput->m_pdraw2ddomain = pusergraphics3d->draw2d_domain();
+         m_pimageOutput->set_draw2d_domain(pusergraphics3d->draw2d_domain());
 
       }
 
@@ -268,7 +269,7 @@ namespace graphics3d
 
                }
 
-               m_pimageOutput->create_as_descriptor(pgpucontext->m_sizeRaw);
+               m_pimageOutput->create_as_descriptor(pgpucontext->m_sizeRaw, pgpucontext->m_pgpudevice->draw2d_domain());
 
                auto ppixmapImageOutput = m_pimageOutput->map(::image::e_map_discard, rectangleTarget);
 
@@ -975,6 +976,14 @@ namespace graphics3d
 
          auto pgpucontextNew = pgpudevice->allocate_gpu_context();
 
+         if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+         {
+
+            construct_newø(pgpucontextNew->m_pgpuwindowattachmentOffscreen);
+            pgpucontextNew->m_pgpuwindowattachmentOffscreen->initialize_offscreen_frame(pgpucontextNew);
+
+         }
+
          pgpucontextNew->create_gpu_context(
             pgpudevice,
             get_engine_gpu_eoutput(),
@@ -1251,7 +1260,86 @@ namespace graphics3d
 
          on_update_frame();
 
+         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         {
+
+            on_render_layer();
+
+         }
+         else
+         {
+
+            render_offscreen_frame();
+
+         }
+
+      }
+
+   }
+
+
+   void engine_instance::render_offscreen_frame()
+   {
+
+      auto pcontext = gpu_context();
+      auto pattachment = pcontext->m_pgpuwindowattachmentOffscreen;
+
+      if (!pattachment)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      ::gpu::context_lock contextlock(pcontext);
+      ::pointer<::gpu::layer> playerPrevious = ::gpu::current_layer();
+      ::std::exception_ptr exceptionRender;
+      bool bFrameStarted = false;
+
+      try
+      {
+
+         pattachment->start_frame();
+         bFrameStarted = true;
          on_render_layer();
+
+      }
+      catch (...)
+      {
+
+         exceptionRender = ::std::current_exception();
+
+      }
+
+      if (bFrameStarted)
+      {
+
+         try
+         {
+
+            pattachment->end_frame();
+
+         }
+         catch (...)
+         {
+
+            if (!exceptionRender)
+            {
+
+               exceptionRender = ::std::current_exception();
+
+            }
+
+         }
+
+      }
+
+      ::gpu::set_current_layer(playerPrevious);
+
+      if (exceptionRender)
+      {
+
+         ::std::rethrow_exception(exceptionRender);
 
       }
 

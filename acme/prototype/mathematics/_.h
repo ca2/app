@@ -1,3 +1,8 @@
+#if defined(__MINGW32__) && !defined(_MSC_VER)
+#define CA2_MATH_INLINE_DECL
+#else
+#define CA2_MATH_INLINE_DECL CLASS_DECL_ACME
+#endif
 #pragma once
 
 
@@ -583,28 +588,28 @@ CLASS_DECL_ACME ::i32 max_cvt_dup(char_pointer buf,::i32 nchar,::f64 arg,::i32 n
 namespace degree
 {
 
-   inline CLASS_DECL_ACME ::f64 to_radian(::f64 dAngleDegrees)
+   inline CA2_MATH_INLINE_DECL ::f64 to_radian(::f64 dAngleDegrees)
    {
 
       return dAngleDegrees * DEGREE_RADIAN;
 
    }
 
-   inline CLASS_DECL_ACME ::f64 sin(::f64 dAngleDegrees)
+   inline CA2_MATH_INLINE_DECL ::f64 sin(::f64 dAngleDegrees)
    {
 
       return ::sin(to_radian(dAngleDegrees));
 
    }
 
-   inline CLASS_DECL_ACME ::f64 cos(::f64 dAngleDegrees)
+   inline CA2_MATH_INLINE_DECL ::f64 cos(::f64 dAngleDegrees)
    {
 
       return ::cos(to_radian(dAngleDegrees));
 
    }
 
-   inline CLASS_DECL_ACME ::f64 tan(::f64 dAngleDegrees)
+   inline CA2_MATH_INLINE_DECL ::f64 tan(::f64 dAngleDegrees)
    {
 
       return ::tan(to_radian(dAngleDegrees));
@@ -777,3 +782,5 @@ namespace mathematics
 
 
 
+
+#undef CA2_MATH_INLINE_DECL

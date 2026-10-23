@@ -10,6 +10,7 @@ assert_exception::assert_exception(const ::scoped_string & scopedstrFile, long l
 {
 
    m_strMessage.append_formatf("Assert File=\"%s\" Line=\"%d\"", scopedstrFile.as_string().c_str(), lLine);
+   log_constructor("assert_exception");
 
 }
 

@@ -7,6 +7,7 @@
 #include "aura/graphics/image/image_pixmap_lease.h"
 //#include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction.h"
+#include "aura/windowing/window.h"
 
 
 namespace graphics
@@ -37,6 +38,8 @@ namespace graphics
       //auto bOk =
          
       on_update_screen(get_screen_item());
+
+      m_pwindow->record_output_frame();
 
       // 
       // 
@@ -104,7 +107,7 @@ namespace graphics
 
          information() << "::graphics::buffer_graphics::update_buffer going to create image : " << pitem->m_sizeBufferItem;
 
-         m_pimageBuffer->create_as_descriptor(pitem->m_sizeBufferItem);
+         m_pimageBuffer->create_as_descriptor(pitem->m_sizeBufferItem, draw2d_domain());
 
          information() << "::graphics::buffer_graphics::update_buffer going after create image : " << pitem->m_sizeBufferItem;
 

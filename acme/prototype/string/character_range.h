@@ -332,7 +332,7 @@ public:
 
    template < typename SAME_ITERATOR_TYPE >
    void construct_string(SAME_ITERATOR_TYPE start, SAME_ITERATOR_TYPE end, enum_range erange = e_range_none, typename ::character_range<SAME_ITERATOR_TYPE>::BASE_DATA * pbasedata = nullptr)
-   requires (sizeof(get_iterator_item < SAME_ITERATOR_TYPE >) == sizeof(CHARACTER))
+   requires (std::same_as<std::remove_cvref_t<get_iterator_item<SAME_ITERATOR_TYPE>>, std::remove_cvref_t<CHARACTER>>)
    {
 
       auto length = end - start;
@@ -378,7 +378,7 @@ public:
 
    template < typename OTHER_ITERATOR_TYPE >
    void construct_string(OTHER_ITERATOR_TYPE start, OTHER_ITERATOR_TYPE end, enum_range erange = e_range_none)
-   requires (sizeof(get_iterator_item < OTHER_ITERATOR_TYPE >) != sizeof(CHARACTER))
+   requires (!std::same_as<std::remove_cvref_t<get_iterator_item<OTHER_ITERATOR_TYPE>>, std::remove_cvref_t<CHARACTER>>)
    {
 
       auto srclen = end - start;

@@ -151,7 +151,7 @@ namespace image
    public:
 
 
-      image_payload(::particle * pparticle, const ::payload & payload);
+      image_payload(::draw2d::domain_container * pdraw2ddomaincontainer, const ::payload & payload);
 
 
    };

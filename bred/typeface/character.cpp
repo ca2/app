@@ -32,7 +32,7 @@ namespace typeface
          if (::is_set(m_ppixmapOptional))
          {
 
-            m_ppixmapOptional->set_pixels(m_memory.data());
+            m_ppixmapOptional->set_pixels(m_memory.data(), m_bTopDown);
 
          }
 

@@ -293,7 +293,7 @@ inline auto angle(const ::point_type < NUMBER1 > & center, const ::point_type < 
 }
 
 
-inline f64_angle operator""_π(::u64 degree)
+inline f64_angle operator USER_DEFINED_LITERAL(_π)(::u64 degree)
 {
 
    return { radian_t{}, (::f64) (degree * π) };
@@ -302,7 +302,7 @@ inline f64_angle operator""_π(::u64 degree)
 
 
 
-inline f32_angle operator""_πf(::u64 degree)
+inline f32_angle operator USER_DEFINED_LITERAL(_πf)(::u64 degree)
 {
 
    return { radian_t{}, (::f32)(degree * π) };
@@ -311,7 +311,7 @@ inline f32_angle operator""_πf(::u64 degree)
 
 
 
-inline f64_angle operator""_π(long double degrees)
+inline f64_angle operator USER_DEFINED_LITERAL(_π)(long double degrees)
 {
 
    return { radian_t{}, (::f64) (degrees * π) };
@@ -319,7 +319,7 @@ inline f64_angle operator""_π(long double degrees)
 }
 
 
-inline f32_angle operator""_πf(long double degrees)
+inline f32_angle operator USER_DEFINED_LITERAL(_πf)(long double degrees)
 {
 
    return { radian_t{}, (::f32) (degrees * π) };

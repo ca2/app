@@ -1,5 +1,6 @@
 // Created by camilo on 2021-08-24 23:41 <3ThomasBS_!!
 #include "platform.h"
+#include "fps_debug.h"
 #include "load_image.h"
 #include "context.h"
 #include "acme/graphics/image/frame_array.h"
@@ -29,7 +30,7 @@ namespace image
 
       auto ppixmap = ::as_pointer(ppixmapCallback);
 
-      m_loadoptions.functionLoaded = [ppixmap](::image::load_image * ploadimage)
+      m_loadoptions.functionaLoaded.insert_at(0, [ppixmap](::image::load_image * ploadimage)
       {
 
          if (ploadimage->is_ok())
@@ -65,7 +66,7 @@ namespace image
 
          }
 
-      };
+      });
 
       m_pimagecontext = pimagecontext;
 
@@ -104,12 +105,12 @@ namespace image
    }
 
 
-   pixmap * load_image::get_pixmap_from_data(const ::i32_size & size, const image32_t *pimage32, ::i32 iScan)
+   pixmap * load_image::get_pixmap_from_data(const ::i32_size & size, const image32_t *pimage32, ::i32 iScan, bool bTopDown)
    {
 
       auto ppixmap = get_pixmap();
 
-      ppixmap->create_from_data(size, pimage32, iScan, DEFAULT_CREATE_IMAGE_FLAG);
+      ppixmap->create_from_data(size, pimage32, iScan, bTopDown, DEFAULT_CREATE_IMAGE_FLAG);
 
       //on_image_loaded(success);
 
@@ -118,7 +119,72 @@ namespace image
    }
 
 
+   void load_image::set_pixmap(::pixmap * ppixmap)
+   {
 
+      if (m_pimageframearray)
+      {
+
+         auto ppixmapSource = m_pimageframearray->get_pixmap();
+
+         ppixmap->copy_from(ppixmapSource);
+
+      }
+
+   }
+
+
+   void load_image::set_image(::image::image * pimage)
+   {
+
+      m_pimage = pimage;
+
+      if (pimage && m_payload.as_file_path().has_character())
+      {
+
+         pimage->set_image_source_path(m_payload.as_file_path());
+
+      }
+
+      if (m_pimageframearray)
+      {
+
+         auto ppixmap = m_pimageframearray->get_pixmap();
+
+         if (ppixmap)
+         {
+
+            pimage->on_load_image(ppixmap);
+
+         }
+         else
+         {
+
+            pimage->on_load_image_frame_array(m_pimageframearray);
+
+         }
+
+      }
+
+      // A completed single-frame image load is a stable pixel source. Publish
+      // its alpha snapshot here so draw backends can safely use static-image
+      // optimizations without scanning pixels during rendering.
+      if (pimage && pimage->get_image_count() == 1)
+      {
+
+         pimage->publish_static_pixels();
+
+      }
+
+   }
+
+
+   ::image::image * load_image::get_image()
+   {
+
+      return m_pimage;
+
+   }
 
 
    void load_image::run()
@@ -162,10 +228,38 @@ namespace image
    }
 
 
-   void load_image::on_load_image(const ::i32_size &size, const image32_t *pimage32, int iScan)
+   void load_image::on_load_image(const ::i32_size &size, const image32_t *pimage32, int iScan, bool bTopDown)
    {
+      
+      {
+         
+         {
+            
+#if FPS_DEBUG
+            ::string strImageDiagnostics = _001_image32_diagnostics_t(size, pimage32, iScan).as_string();
+            
+            information("do_render_base stretch source pimageImage(B): {}", strImageDiagnostics);
+#endif
+            
+         }
+         
+      }
 
-      auto ppixmap = get_pixmap_from_data(size, pimage32, iScan);
+      auto ppixmap = get_pixmap_from_data(size, pimage32, iScan, bTopDown);
+      
+      defer_constructø(m_pimageframearray);
+      
+      m_pimageframearray->m_ppixmap = ppixmap;
+      
+      {
+         
+#if FPS_DEBUG
+         ::string strImageDiagnostics = _001_image32_diagnostics_t(ppixmap).as_string();
+         
+         information("do_render_base stretch source pimageImage(B): {}", strImageDiagnostics);
+#endif
+         
+      }
 
       on_image_loaded(success);
 
@@ -190,7 +284,7 @@ namespace image
 
       }
 
-      if (m_loadoptions.functionLoaded)
+      if (m_loadoptions.functionaLoaded.has_element())
       {
 
          // if (!m_pimageframearray && m_ppixmap)
@@ -204,22 +298,35 @@ namespace image
 
          //m_functionLoaded(m_pimageframearray);
 
-         try
+         for (auto & functionLoaded : m_loadoptions.functionaLoaded)
          {
-            m_loadoptions.functionLoaded(this);
-         }
-         catch (const ::exception & exception)
-         {
-            throw ::exception(exception.m_estatus,
-               "image load: completion callback failed: " + exception.get_message(), exception.m_strDetails);
-         }
-         catch (const ::std::exception & exception)
-         {
-            throw ::exception(error_failed, "image load: completion callback failed: " + ::string(exception.what()));
-         }
-         catch (...)
-         {
-            throw ::exception(error_failed, "image load: completion callback failed with an unknown exception");
+
+            try
+            {
+
+               functionLoaded(this);
+
+            }
+            catch (const ::exception & exception)
+            {
+
+               throw ::exception(exception.m_estatus,
+                  "image load: completion callback failed: " + exception.get_message(), exception.m_strDetails);
+
+            }
+            catch (const ::std::exception & exception)
+            {
+
+               throw ::exception(error_failed, "image load: completion callback failed: " + ::string(exception.what()));
+
+            }
+            catch (...)
+            {
+
+               throw ::exception(error_failed, "image load: completion callback failed with an unknown exception");
+
+            }
+
          }
 
       }

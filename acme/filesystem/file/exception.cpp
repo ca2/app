@@ -1,6 +1,9 @@
 #include "platform.h"
 //#include "text_stream.h"
 #include "exception.h"
+#if defined(__HAIKU__)
+#include <errno.h>
+#endif
 
 
 CLASS_DECL_ACME void get_message(::string & strMessage, const ::error_code & errorcode);
@@ -104,6 +107,7 @@ namespace file
          //m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0 && !(m_eopen & ::file::e_open_no_callstack);
 
          construct_file_exception();
+         log_constructor("file::exception");
 
          /*const_char_pointer psz = ::file::status_short_description(estatus);
 
@@ -149,6 +153,8 @@ namespace file
          // m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0 && !(m_eopen & ::file::e_open_no_callstack);
 
          construct_file_exception();
+
+         log_constructor("file::exception");
 
       }
 
@@ -390,6 +396,7 @@ namespace file
 
    /* Error Codes */
 
+#if !defined(__HAIKU__)
 #define EPERM           1
 #define ENOENT          2
 #define ESRCH           3
@@ -424,6 +431,7 @@ namespace file
 #define EPIPE           32
 #define EDOM            33
 #define ERANGE          34
+#endif // !defined(__HAIKU__)
 
 #if defined(WINDOWS)
 

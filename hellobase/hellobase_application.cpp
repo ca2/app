@@ -17,7 +17,7 @@ namespace hellobase
 
       m_ptemplateHelloBaseMain = nullptr;
 
-      m_strAppName = "app/hellobase";
+      m_strAppName = "hellobase";
       m_strLibraryName = "app/hellobase";
       m_strBaseSupportId = "ca2_flag";
       m_bLicense = false;

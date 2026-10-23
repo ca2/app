@@ -39,14 +39,13 @@ namespace heap
    void * malloc_allocator::allocate(memsize s, memsize * psizeAllocated, const_char_pointer pszAnnotation)
    {
 
-#ifdef WINDOWS
+#if defined(_MSC_VER) && !defined(__clang__)
 
       auto p = _malloc_base((size_t)s);
 
 #else
 
       auto p = ::malloc(s);
-
 
 #endif
 
@@ -77,7 +76,8 @@ namespace heap
 
    void * malloc_allocator::reallocate(void * p, memsize s, const_char_pointer pszAnnotation)
    {
-#ifdef WINDOWS
+
+#if defined(_MSC_VER) && !defined(__clang__)
 
       return _realloc_base(p, (size_t)s);
 
@@ -86,13 +86,14 @@ namespace heap
       return ::realloc(p, s);
 
 #endif
+
    }
 
 
    void malloc_allocator::free(void * p)
    {
 
-#ifdef WINDOWS
+#if defined(_MSC_VER) && !defined(__clang__)
 
       return _free_base(p);
 
@@ -110,7 +111,7 @@ namespace heap
 
       //{
 
-#if defined(OPENBSD) || defined(NETBSD)
+#if defined(OPENBSD) || defined(NETBSD) || defined(__SUNOS__) || defined(__HAIKU__)
 
       return 0;
 
@@ -213,3 +214,9 @@ namespace heap
 
 
 
+
+
+void * cpp_malloc(memsize size)
+{
+   return ::malloc(size);
+}

@@ -24,7 +24,7 @@ namespace sphere
 
       m_ppaneimpact = nullptr;
 
-      m_strAppName = "app/sphere";
+      m_strAppName = "sphere";
 
 
    }

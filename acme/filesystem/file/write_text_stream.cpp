@@ -325,9 +325,11 @@ write_text_stream & write_text_stream::operator <<(unichar wch)
 
    ::i8 sz[10];
 
-   wd16_to_ansi(sz, &wch, 1);
+   auto length = utf_to_utf_length1((const_char_pointer) nullptr, &wch, 1);
 
-   print(as_range(sz));
+   utf_to_utf(sz, &wch, 1);
+
+   write(sz, length);
 
    if (this->fmtflags() & ::file::separated)
    {

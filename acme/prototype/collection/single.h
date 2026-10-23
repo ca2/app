@@ -26,7 +26,7 @@ SINGLE(ARG_TYPE t) : MEMBER(t) {} \
 
 
 template < typename T >
-MAKE_SINGLE(single, T, m_element);
+MAKE_SINGLE(single_element, T, m_element);
 
 
 template < typename SINGLE >

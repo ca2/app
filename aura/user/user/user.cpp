@@ -22,10 +22,12 @@
 #include "acme/prototype/collection/_container.h"
 #include "acme/user/user/keyboard_state.h"
 #include "apex/message/simple_command.h"
+#include "aura/graphics/draw2d/domain.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/write_text/font_list.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/desktop_environment.h"
-#include "aura/graphics/write_text/font_list.h"
 #include "aura/message/user.h"
 #include "aura/platform/system.h"
 #include "aura/platform/session.h"
@@ -766,6 +768,8 @@ namespace user
          //estatus = constructø(m_pshell, allocateø ::windows::shell());
          //estatus =
          constructø(m_pshell);
+         
+         m_pshell->set_draw2d_domain(draw2d()->main_draw2d_domain());
 
          //if (!estatus)
          //{

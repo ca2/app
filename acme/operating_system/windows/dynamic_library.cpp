@@ -375,7 +375,7 @@ namespace windows
 
       string strPath(pathParam);
 
-      ::u32 uiError;
+      ::u32 uiError = 0;
 
       void* plibrary = nullptr;
 
@@ -406,22 +406,33 @@ namespace windows
       ::file::path path;
 
       path = strPath;
-
-      try
+      auto loadPath = [&](const ::file::path &candidate) -> void *
       {
+         try
+         {
+            wstring nativePath(candidate);
+#if defined(__REACTOS__)
+            // Extended paths must not be normalized to forward slashes.
+            auto characters = nativePath.get_buffer(nativePath.length());
+            for (auto cursor = characters; *cursor; ++cursor)
+               if (*cursor == L'/')
+                  *cursor = L'\\';
+            nativePath.release_buffer();
+#endif
+            SetLastError(ERROR_SUCCESS);
+            void *result = LoadLibraryW(nativePath.c_str());
+            uiError = result ? ERROR_SUCCESS : GetLastError();
+            return result;
+         }
+         catch (...)
+         {
+            uiError = ERROR_DLL_INIT_FAILED;
+            return nullptr;
+         }
+      };
 
-         wstring wstr(path);
 
-         auto pwsz = wstr.c_str();
-
-         plibrary = ::LoadLibraryW(pwsz);
-
-      }
-      catch (...)
-      {
-
-
-      }
+      plibrary = loadPath(path);
 
       if (plibrary != nullptr)
       {
@@ -432,24 +443,16 @@ namespace windows
 
       }
 
-      uiError = ::GetLastError();
+
 
       strError = "\n (1) LoadLibraryW " + path + " failed with (" + ::as_string(uiError) + ") " + ::windows::last_error_message(uiError);
 
       strMessage += strError;
 
+#if !defined(__REACTOS__)
       path = "\\\\?\\" + strPath;
 
-      try
-      {
-
-         plibrary = ::LoadLibraryW(wstring(path));
-
-      }
-      catch (...)
-      {
-
-      }
+      plibrary = loadPath(path);
 
       if (plibrary != nullptr)
       {
@@ -458,43 +461,31 @@ namespace windows
 
       }
 
-      uiError = ::GetLastError();
+
 
       strError = "\n (2) LoadLibraryW " + path + " failed with (" + ::as_string(uiError) + ") " + ::windows::last_error_message(uiError);
 
       strMessage += strError;
 
+#endif
+
       path = application()->get_module_folder() / strPath;
 
-      try
-      {
+      plibrary = loadPath(path);
 
-         plibrary = ::LoadLibraryW(wstring(path));
 
-      }
-      catch (...)
-      {
 
-      }
-
-      uiError = ::GetLastError();
+      if (plibrary != nullptr)
+         goto finished;
 
       strError = "\n (3) LoadLibraryW " + path + " failed with (" + ::as_string(uiError) + ") " + ::windows::last_error_message(uiError);
 
       strMessage += strError;
 
+#if !defined(__REACTOS__)
       path = "\\\\?\\" + string(application()->get_module_folder() / strPath);
 
-      try
-      {
-
-         plibrary = ::LoadLibraryW(wstring(path));
-
-      }
-      catch (...)
-      {
-
-      }
+      plibrary = loadPath(path);
 
       if (plibrary != nullptr)
       {
@@ -503,11 +494,11 @@ namespace windows
 
       }
 
-      uiError = ::GetLastError();
+
 
       strError = "\n (4) LoadLibraryW " + path + " failed with (" + ::as_string(uiError) + ") " + ::windows::last_error_message(uiError);
 
-      //strMessage += strError;
+      strMessage += strError;
 
       //path = ::dir_base_module() / strPath;
 
@@ -561,14 +552,20 @@ namespace windows
 
       //strMessage += strError;
 
+#endif
+
    finished:
 
       if (::is_null(plibrary))
       {
 
-         strMessage = "LoadLibraryW Failed opening " + strPath;
+         string strDetails(strMessage);
 
-         throw library_not_loaded(strMessage, strError);
+         auto strError = "LoadLibraryW Failed opening " + strPath;
+
+         warning() << strError << ": " << strMessage;
+
+         throw library_not_loaded(strError, strDetails);
 
          return nullptr;
 
@@ -641,7 +638,7 @@ namespace windows
    void* dynamic_library::raw_get(library_t* plibrary, const ::scoped_string& scopedstrEntryName)
    {
 
-      return ::GetProcAddress((HINSTANCE)plibrary, scopedstrEntryName);
+      return reinterpret_cast<void *>(::GetProcAddress((HINSTANCE)plibrary, scopedstrEntryName));
 
 
    }

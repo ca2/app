@@ -9,7 +9,7 @@
 #include "acme/parallelization/manual_reset_happening.h"
 #include "acme/user/interface/dialog.h"
 #include "acme/user/micro/main_window.h"
-#include "user/implementation/dialog_implementation.h"
+#include "acme/user/implementation/dialog_implementation.h"
 
 
 namespace micro

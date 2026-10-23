@@ -61,8 +61,14 @@ namespace axis
 
    void application::initialize(::particle * pparticle)
    {
+      information() << "startup: axis::application::initialize: enter";
 
+
+      information() << "startup: axis::application::initialize: before ::aura::application::initialize(pparticle)";
       ::aura::application::initialize(pparticle);
+      information() << "startup: axis::application::initialize: after ::aura::application::initialize(pparticle)";
+
+      information() << "startup: axis::application::initialize: leave";
 
    }
 
@@ -700,25 +706,39 @@ namespace axis
 
    void application::process_init()
    {
+      information() << "startup: axis::application::process_init: enter";
 
+
+      information() << "startup: axis::application::process_init: before ::aura::application::process_init()";
       ::aura::application::process_init();
+      information() << "startup: axis::application::process_init: after ::aura::application::process_init()";
 
       information() << "axis::application::process_init";
 
+      information() << "startup: axis::application::process_init: before factory()->add_factory_item < ::database::field_array >()";
       factory()->add_factory_item < ::database::field_array >();
+      information() << "startup: axis::application::process_init: after factory()->add_factory_item < ::database::field_array >()";
+      information() << "startup: axis::application::process_init: before factory()->add_factory_item < ::database::row >()";
       factory()->add_factory_item < ::database::row >();
+      information() << "startup: axis::application::process_init: after factory()->add_factory_item < ::database::row >()";
+      information() << "startup: axis::application::process_init: before factory()->add_factory_item < ::database::row_array >()";
       factory()->add_factory_item < ::database::row_array >();
+      information() << "startup: axis::application::process_init: after factory()->add_factory_item < ::database::row_array >()";
 
       information() << "axis::application::process_init";
 
       if (m_psimpledb.is_null())
       {
 
+         information() << "startup: axis::application::process_init: before construct_newø(m_psimpledb)";
          construct_newø(m_psimpledb);
+         information() << "startup: axis::application::process_init: after construct_newø(m_psimpledb)";
 
       }
 
       //information() << "success";
+
+      information() << "startup: axis::application::process_init: leave";
 
    }
 
@@ -913,8 +933,18 @@ namespace axis
 
    void application::init1()
    {
+      information() << "startup: axis::application::init1: enter";
 
+
+      information() << "startup: axis::application::init1: before ::aura::application::init1()";
       ::aura::application::init1();
+      information() << "startup: axis::application::init1: after ::aura::application::init1()";
+
+      ::file::path pathDatabase;
+      const char * pszStage = "resolving application database path";
+
+      information() << "startup: axis::application::init1: app=" << m_strAppId
+         << ", initialize data central=" << (bool) m_bInitializeDataCentral;
 
       try
       {
@@ -929,11 +959,11 @@ namespace axis
 
             }
 
-            ::file::path pathDatabase;
-
             // auto pcontext = get_context();
 
+            information() << "startup: axis::application::init1: before ::file::path pathFolder = directory()->appdata(m_strDatabaseAppId)";
             ::file::path pathFolder = directory()->appdata(m_strDatabaseAppId);
+            information() << "startup: axis::application::init1: after ::file::path pathFolder = directory()->appdata(m_strDatabaseAppId)";
 
             if (is_system())
             {
@@ -954,17 +984,52 @@ namespace axis
 
             }
 
-            m_psimpledb->initialize_simpledb_server(this, pathDatabase);
+            information() << "axis::application::init1: initializing database for " << m_strAppId << " at " << pathDatabase;
 
+            pszStage = "initializing simpledb server (database_sqlite3)";
+
+            if (!m_psimpledb)
+            {
+
+               throw ::exception(error_wrong_state, "simpledb server was not constructed during process_init");
+
+            }
+
+            information() << "startup: axis::application::init1: before m_psimpledb->initialize_simpledb_server(this, pathDatabase)";
+            m_psimpledb->initialize_simpledb_server(this, pathDatabase);
+            information() << "startup: axis::application::init1: after m_psimpledb->initialize_simpledb_server(this, pathDatabase)";
+
+            pszStage = "creating and registering database client stream";
+
+            information() << "startup: axis::application::init1: before initialize_data_client(m_psimpledb)";
             initialize_data_client(m_psimpledb);
+            information() << "startup: axis::application::init1: after initialize_data_client(m_psimpledb)";
+
+            information() << "axis::application::init1: database client stream ready for " << m_strAppId;
 
          }
+
+      }
+      catch (const ::exception & e)
+      {
+
+         information() << "axis::application::init1: " << pszStage << " failed for " << m_strAppId
+            << " at " << pathDatabase << ": " << e.get_message() << " " << e.m_strDetails;
+
+         throw;
 
       }
       catch (...)
       {
 
+         information() << "axis::application::init1: " << pszStage << " failed for " << m_strAppId
+            << " at " << pathDatabase << " (unknown exception)";
+
+         throw;
+
       }
+
+      information() << "startup: axis::application::init1: leave";
 
    }
 

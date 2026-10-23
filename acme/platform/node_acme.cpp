@@ -1861,7 +1861,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    //      //bool acme_node_layer::process_contains_module(string & strImage, ::process_identifier processidentifier, const ::scoped_string & scopedstrLibrary){}
    //      //void acme_node_layer::shared_library_process(dword_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrLibrary){}
    //#endif
-#if defined(__BSD__) || defined(__APPLE__)
+#if defined(__BSD__) || defined(__APPLE__) || defined(__SUNOS__)
 
       void acme_node_layer::arp_a(void *p, void(*callback)(void * p, ::u32 uIp, const_char_pointer status)){}
 

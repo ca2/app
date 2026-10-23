@@ -396,7 +396,7 @@ public:
    template < prototype_payload PAYLOAD  >
    atom(const PAYLOAD & payload);
    
-   atom(::atom && atom);
+   inline atom(::atom && atom);
    ~atom()
    {
 
@@ -651,7 +651,7 @@ public:
    //inline bool operator >= (::enum_happening ehappening) const;
 
 
-   atom & operator = (const atom & atom);
+   inline atom & operator = (const atom & atom);
    //atom & operator = (const ::scoped_string & scopedstr);
 
 //#ifndef NO_TEMPLATE

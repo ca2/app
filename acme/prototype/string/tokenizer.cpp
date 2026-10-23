@@ -530,7 +530,7 @@ bool tokenizer::_01ReadHex(::i32 &i)
 
    }
 
-#ifdef WINDOWS
+#if defined(WINDOWS) && !defined(__REACTOS__)
 
    sscanf_s(str, "%x", &i);
 

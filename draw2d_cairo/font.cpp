@@ -3,8 +3,8 @@
 #include "draw2d.h"
 #include "graphics.h"
 #include "acme/parallelization/synchronous_lock.h"
-//#include "aura/graphics/draw2d/host.h"
 #include "acme/platform/application.h"
+#include "aura/user/user/interaction.h"
 
 
 
@@ -95,10 +95,12 @@ namespace draw2d_cairo
 
 #if defined(USE_PANGO)
 
-      if (m_ppangofontdescription == nullptr)
+      if (m_ppangofontdescription != nullptr)
       {
 
-         pango_font_description_free(m_ppangofontdescription);
+         auto pdescription = m_ppangofontdescription;
+         m_ppangofontdescription = nullptr;
+         pango_font_description_free(pdescription);
 
       }
 
@@ -107,7 +109,9 @@ namespace draw2d_cairo
       if (::is_set(m_pcairofontface))
       {
 
-         cairo_font_face_destroy(m_pcairofontface);
+         auto pfontface = m_pcairofontface;
+         m_pcairofontface = nullptr;
+         cairo_font_face_destroy(pfontface);
 
       }
 
@@ -180,7 +184,8 @@ namespace draw2d_cairo
 
          auto pfontface = pdraw2d->private_ftface_from_file(pdraw2dgraphics->m_papplication, m_pathFontFile);
 
-         m_pcairofontface = pfontface;
+         // The private-font cache owns its reference; this font needs its own.
+         m_pcairofontface = pfontface ? cairo_font_face_reference(pfontface) : nullptr;
 
          //m_osdata[1] = m_pcairofontface;
 
@@ -211,10 +216,10 @@ namespace draw2d_cairo
 
       ::f64 dFontScaler = 1.0;
 
-      if(::is_set(pdraw2dgraphics->m_pacmeuserinteractionTopic))
+      if(::is_set(pdraw2dgraphics->m_puserinteractionTopic))
       {
 
-         dFontScaler = pdraw2dgraphics->m_pacmeuserinteractionTopic->font_scaler();
+         dFontScaler = pdraw2dgraphics->m_puserinteractionTopic->scaler();
 
       }
       else
@@ -253,7 +258,7 @@ namespace draw2d_cairo
 
 #else
 
-      auto pcairographics = __graphics(pdraw2dgraphics);
+      ::cast < ::draw2d_cairo::graphics > pcairographics = pdraw2dgraphics;
 
       FT_Face ftface = pcairographics->ftface(
          m_pfontfamily->family_name(pdraw2dgraphics),
@@ -334,17 +339,17 @@ namespace draw2d_cairo
 
          ::i32 iAscent = pango_font_metrics_get_ascent(pfontmetrics);
 
-         m_textmetric2.m_dAscent = iAscent / PANGO_SCALE;
+         m_textmetric4.m_dAscent = iAscent / PANGO_SCALE;
 
          ::i32 iDescent = pango_font_metrics_get_descent(pfontmetrics);
 
-         m_textmetric2.m_dDescent = iDescent / PANGO_SCALE;
+         m_textmetric4.m_dDescent = iDescent / PANGO_SCALE;
 
-         m_textmetric2.m_dHeight = (::i32)iHeight;
+         m_textmetric4.m_dHeight = (::i32)iHeight;
 
-         m_textmetric2.m_dExternalLeading = (m_textmetric2.m_dHeight - (m_textmetric2.m_dAscent + m_textmetric2.m_dDescent));
+         m_textmetric4.m_dExternalLeading = (m_textmetric4.m_dHeight - (m_textmetric4.m_dAscent + m_textmetric4.m_dDescent));
 
-         m_textmetric2.m_dInternalLeading = (::i32)0;
+         m_textmetric4.m_dInternalLeading = (::i32)0;
 
          pango_font_metrics_unref(pfontmetrics);
 
@@ -365,15 +370,15 @@ namespace draw2d_cairo
 
          cairo_font_extents(pdraw2dcairographics->m_pcairo, &fontextents);
 
-         m_textmetric2.m_dAscent = fontextents.ascent;
+         m_textmetric4.m_dAscent = fontextents.ascent;
 
-         m_textmetric2.m_dDescent = fontextents.descent;
+         m_textmetric4.m_dDescent = fontextents.descent;
 
-         m_textmetric2.m_dHeight = fontextents.height;
+         m_textmetric4.m_dHeight = fontextents.height;
 
-         m_textmetric2.m_dInternalLeading = 0.;
+         m_textmetric4.m_dInternalLeading = 0.;
 
-         m_textmetric2.m_dExternalLeading = 0.;
+         m_textmetric4.m_dExternalLeading = 0.;
 
          //lpMetrics->m_dInternalLeading = lpMetrics->m_dAscent * 0.2;
 

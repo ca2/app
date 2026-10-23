@@ -12,6 +12,10 @@
 #include "acme/platform/trace.h"
 #include "acme/prototype/prototype/memory.h"
 
+#ifdef __REACTOS__
+#include <share.h>
+#endif
+
 
 
 stdio_file::stdio_file()
@@ -592,7 +596,7 @@ memory file_system::__safe_get_memory(const ::file::path& pathParam, character_c
    if (iRead != size)
    {
 
-      warningf("read %lld bytes from reported size %lld", iRead, size);
+      warningf("read %zu bytes from reported size %ld", iRead, size);
 
    }
    //str.release_buffer(size);
@@ -739,7 +743,19 @@ void __cdecl __clearerr_s(FILE * stream)
 
    c_errno cerrno;
 
-#ifdef WINDOWS
+#if defined(__REACTOS__)
+
+   if (!stream)
+   {
+      cerrno.m_iErrNo = EINVAL;
+   }
+   else
+   {
+      ::clearerr(stream);
+      cerrno.m_iErrNo = 0;
+   }
+
+#elif defined(WINDOWS)
 
    cerrno.m_iErrNo = ::clearerr_s(stream);
 
@@ -967,7 +983,7 @@ void file_system::append_wait(const ::file::path & pathFile, const block & block
    while (true)
    {
 
-#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
+#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 
       pfile = fopen(pathFile, "ab");
 
@@ -1117,7 +1133,7 @@ void file_system::append_wait(const ::scoped_string & scopedstrFile, const block
    while (true)
    {
 
-#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
+#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 
       pfile = fopen(scopedstrFile.as_string().c_str(), "ab");
 

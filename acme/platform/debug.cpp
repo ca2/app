@@ -7,7 +7,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 #endif
-#include "trace_category.h"
 
 
 void debug_object_event_promisse_predicate()

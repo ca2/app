@@ -512,7 +512,7 @@ inline ::hash32 as_hash32 < pointer_key >(const pointer_key& key)
 inline ::string type_raw_name(const ::std::type_info & typeinfo)
 {
 
-#ifdef WINDOWS
+#if defined(_MSC_VER) && !defined(__clang__)
 
    return (::string_literal) typeinfo.raw_name();
 
@@ -621,11 +621,11 @@ namespace platform
 
 
       const ::string &raw_name() const;
-      const ::string &name() const;
+      inline const ::string &name() const;
       const_char_pointer c_str() const;
       const ::string & text() const;
       bool is_set() const;
-      bool is_empty() const;
+      inline bool is_empty() const;
       explicit operator bool() const;
       
       bool operator==(const ::platform::type &type) const;

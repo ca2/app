@@ -3,6 +3,7 @@
 
 #include "core/user/userex/_.h"
 #include "berg/user/user/split_impact.h"
+#include "berg/user/user/auto_hide.h"
 
 
 namespace userex
@@ -17,6 +18,22 @@ namespace userex
 
       top_edit_impact *                     m_peditimpact;
       top_toggle_impact *                   m_ptoggleimpact;
+      bool m_bAutoHideOnFullScreen = false;
+      bool m_bFullScreenEditorRevealed = false;
+      bool m_bWasAutoHiddenFullScreen = false;
+      ::i32 m_iFullScreenRevealHeight = 5;
+      ::i32 m_iNormalEditorHeight = 31;
+      ::i32 m_iFullScreenOverlaySpacing = 0;
+      ::pointer<::user::auto_hide> m_pAutoHideCoordinator;
+      bool m_bCoordinatedFullScreenAutoHide = false;
+      bool m_bCoordinatedFullScreenVisible = false;
+
+      void set_auto_hide_on_full_screen(bool bEnable = true);
+      void set_auto_hide_coordinator(::user::auto_hide * pcoordinator,
+         ::user::interaction * pprevious = nullptr);
+      void update_full_screen_auto_hide();
+      void destroy() override;
+      void operator()(::timer * ptimer) override;
 
 
       top_impact();

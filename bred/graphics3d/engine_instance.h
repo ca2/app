@@ -131,6 +131,7 @@ namespace graphics3d
 
 		//virtual void on_render_layer(::graphics::context * pgraphicscontext);
       virtual void on_render_layer();
+      virtual void render_offscreen_frame();
 
 		//virtual floating_sequence3 camera_pole_up();
 

@@ -47,20 +47,58 @@ endif ()
 
 set_target_properties(database_sqlite3 PROPERTIES LINKER_LANGUAGE CXX)
 
+
+#if(${USE_PORT_SQLITE} AND __SUNOS__)
+#   set(database_sqlite3_USE_PORT TRUE)
+#   if(NOT TARGET sqlite OR NOT TARGET static_sqlite)
+#     message(FATAL_ERROR "USE_PORT_SQLITE requires the port/base/sqlite targets")
+#   endif()
+#   target_link_libraries(${PROJECT_NAME} PRIVATE sqlite)
+#   target_link_libraries(static_${PROJECT_NAME} PRIVATE static_sqlite)
+#   message(STATUS "database_sqlite3: using internal port/base/sqlite")
+#endif()
+
 if(${WIN32})
 
 
-   target_compile_options(database_sqlite3 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(database_sqlite3 PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(database_sqlite3 PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/database_sqlite3.lib")
-   target_link_options(database_sqlite3 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/database_sqlite3.def")
-   target_link_libraries(database_sqlite3 PRIVATE ${library_references} ${global_library_references} sqlite)
 
 
-elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
 
-   if(${USE_PKGCONFIG})
+   if(MSVC)
+
+
+      target_compile_options(${PROJECT_NAME} PRIVATE    "/MD$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/SUBSYSTEM:WINDOWS")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/bigobj")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+      target_link_options(${PROJECT_NAME} PRIVATE    "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   else()
+
+
+      target_link_options(${PROJECT_NAME} PRIVATE "-mwindows")
+      target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+
+
+   endif()
+
+
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} sqlite)
+
+
+elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
+
+
+   if(${USE_PORT_SQLITE})
+      # The port targets supply matching headers and libraries. Do not add
+      # system SQLite pkg-config flags to either adapter target.
+      set(${PROJECT_NAME}_PKGCONFIG_CFLAGS "")
+      set(${PROJECT_NAME}_PKGCONFIG_LDFLAGS "")
+      set(${PROJECT_NAME}_PKGCONFIG_LIBRARIES "")
+   elseif(${USE_PKGCONFIG})
       pkg_check_modules(${PROJECT_NAME}_PKGCONFIG sqlite3)
    else()
       list(APPEND library_references

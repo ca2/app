@@ -1690,7 +1690,7 @@ namespace experience_anthill
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleHosting.left = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.right : rectangleX.left;
+         ptab->get_data()->m_rectangleHosting.left = ptab->m_pAutoHide->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.right : rectangleX.left;
          ptab->get_data()->m_rectangleHosting.top = ptab->get_data()->m_rectangleTab.top;
          ptab->get_data()->m_rectangleHosting.right = rectangleX.right;
          ptab->get_data()->m_rectangleHosting.bottom = ptab->get_data()->m_rectangleTab.bottom;
@@ -1830,7 +1830,7 @@ namespace experience_anthill
          auto & rectangleHosting = ptab->get_data()->m_rectangleHosting;
 
          rectangleHosting.left = ptab->get_data()->m_rectangleTab.left;
-         rectangleHosting.top = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.bottom : rectangleX.top;
+         rectangleHosting.top = ptab->m_pAutoHide->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.bottom : rectangleX.top;
          rectangleHosting.right = ptab->get_data()->m_rectangleTab.right;
          rectangleHosting.bottom = rectangleX.bottom;
 

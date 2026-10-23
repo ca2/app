@@ -1329,6 +1329,7 @@ public:
    inline string_base & append_character(::wd32_character wch);
    inline string_base & append_character(::ansi_character ch);
    inline string_base & append_character(::wd16_character wch);
+   inline string_base & append_character(::wide_character wch);
 
 
    //inline string_base & append(const ::const_ansi_range & range);

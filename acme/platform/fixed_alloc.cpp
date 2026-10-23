@@ -2,7 +2,7 @@
 #include "fixed_alloc.h"
 #include "fixed_alloc_impl.h"
 #include "acme/memory/plex.h"
-#include "acme/operating_system/process.h"
+#include "acme/operating_system/process_process.h"
 //#define HEAP_NAMESPACE_PREFIX main
 //#include "acme/memory/_____heap_namespace.h"
 
@@ -101,6 +101,13 @@ void fixed_alloc_sync::FreeAll()
    for(::i32 i = 0; i < m_allocptra.get_count(); i++)
    {
 
+#ifdef __REACTOS__
+
+      critical_section_lock lock(&m_criticalsectiona[i]);
+      m_allocptra[i]->FreeAll();
+
+#else
+
       m_criticalsectiona[i].lock();
 
 #ifdef WINDOWS
@@ -126,6 +133,8 @@ void fixed_alloc_sync::FreeAll()
 
       m_criticalsectiona[i].unlock();
       
+#endif
+
 #endif
 
    }
@@ -196,7 +205,9 @@ void fixed_alloc::FreeAll()
 
    for(::i32 i = 0; i < m_allocptra.get_count(); i++)
    {
-#ifdef WINDOWS
+#ifdef __REACTOS__
+      m_allocptra[i]->FreeAll();
+#elif defined(WINDOWS)
       __try
       {
          m_allocptra[i]->FreeAll();

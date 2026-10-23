@@ -12,6 +12,10 @@
 #define __BSD_VISIBLE 1
 #endif
 #include <pthread.h>
+#if defined(__HAIKU__)
+#include <OS.h>
+#include <errno.h>
+#endif
 #if defined(__BSD__)
 #include <stdio.h>
 #if defined(NETBSD)
@@ -35,12 +39,32 @@
 #endif
 #endif
 
+
+#if defined(__SUNOS__)
+
+#include <sys/types.h>
+#include <sys/processor.h>
+#include <sys/procset.h>
+#include <sys/lwp.h>
+
+//lwpid_t id = _lwp_self();
+
+#endif
+
 #ifdef __APPLE__
 #include <mach/thread_act.h>
 #include <errno.h>
 #endif
 
-#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD) || defined(__ANDROID__)
+#if defined(__HAIKU__)
+
+::i32 SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
+{
+   // Haiku has no public API for assigning a CPU affinity mask.
+   return 0;
+}
+
+#elif defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD) || defined(__ANDROID__) || defined(__SUNOS__)
 
 ::i32 SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
 {
@@ -142,7 +166,58 @@
 
     ::i32 iRet = sched_setaffinity(pid, sizeof(c), &c);
 
-    return iRet != 0;
+    return iRet == 0;
+#elif defined(__SUNOS__)
+
+   ::i32 iProcessor = -1;
+   ::i32 iSetCount = 0;
+
+   for(::i32 i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
+   {
+
+      if((1U << i) & dwThreadAffinityMask)
+      {
+
+         iProcessor = i;
+
+         iSetCount++;
+
+      }
+
+   }
+   
+   /// todo: get lwpid in the thread and associate with pthread when the thread is current
+   auto lwpid = (::lwpid_t) ::literal_cast < pthread_t >(h);
+   
+   if(iSetCount == 0)
+   {
+
+      return processor_bind(
+         P_LWPID,
+         (::id_t) lwpid,
+         PBIND_NONE,
+         nullptr) == 0;
+
+   }
+
+   if(iSetCount != 1)
+   {
+
+      //
+      // illumos cannot represent an arbitrary multi-CPU mask
+      // using processor_bind().
+      //
+
+      return 0;
+
+   }
+
+   return processor_bind(
+      P_LWPID,
+      (::id_t) lwpid,
+      (::processorid_t) iProcessor,
+      nullptr) == 0;
+
 
 #else
     cpuset_t c;
@@ -204,6 +279,13 @@ string task_get_name(htask htask)
 
    ::i8 szThreadName[32];
 
+#if defined(__HAIKU__)
+   thread_info info = {};
+   const auto id = ::get_pthread_thread_id(::literal_cast<pthread_t>(htask.m_h));
+   if (id < B_OK || ::get_thread_info(id, &info) != B_OK)
+      return "";
+   return info.name;
+#else
 #if defined(FREEBSD) || defined(OPENBSD)
 
    pthread_get_name_np(::literal_cast < pthread_t >( htask.m_h), szThreadName, sizeof(szThreadName));
@@ -224,6 +306,7 @@ string task_get_name(htask htask)
    }
 
    return szThreadName;
+#endif
 
 }
 
@@ -253,6 +336,13 @@ void task_set_name(htask htask, const ::scoped_string & scopedstr)
 
 #endif
 
+#if defined(__HAIKU__)
+   thread_name_abbreviate(strName, B_OS_NAME_LENGTH - 1);
+   const auto id = ::get_pthread_thread_id(::literal_cast<pthread_t>(htask.m_h));
+   if (id < B_OK || ::rename_thread(id, strName.c_str()) != B_OK)
+      throw ::exception(error_failed);
+   return;
+#else
 #if defined(__APPLE__)
    
    if(htask != current_htask())
@@ -323,6 +413,7 @@ void task_set_name(htask htask, const ::scoped_string & scopedstr)
 
    //return ::success;
 
+#endif // __HAIKU__
 
 }
 

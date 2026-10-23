@@ -144,7 +144,7 @@ namespace coding
       virtual void install_browser();
       virtual void install_google_chrome();
 
-#if defined(LINUX) || defined(__BSD__)
+#if defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
 
       virtual void defer_install_gnome_extensions();
       virtual void _install_gnome_extensions();
@@ -163,6 +163,9 @@ namespace coding
       virtual void install_visual_studio_code();
       virtual void install_git_credential_manager();
       virtual void install_deps();
+#endif
+#if defined(__SUNOS__)
+	  virtual void install_deps();
 #endif
 
 #ifdef MACOS
@@ -187,6 +190,10 @@ namespace coding
 
 #endif
 #ifdef __BSD__
+      virtual void _install_pkg();
+      virtual void install_pkg();
+#endif
+#ifdef __SUNOS__
       virtual void _install_pkg();
       virtual void install_pkg();
 #endif

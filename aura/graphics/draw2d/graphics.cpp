@@ -1,5 +1,6 @@
 #include "platform.h"
 #include "graphics.h"
+#include "bitmap.h"
 #include "brush.h"
 #include "clip.h"
 #include "pen.h"
@@ -14,8 +15,10 @@
 #include "apex/gpu/window_attachment.h"
 #include "aura/platform/aura.h"
 #include "aura/graphics/draw2d/domain.h"
+#include "aura/graphics/draw2d/frame.h"
 #include "aura/graphics/graphics/buffer_item.h"
 #include "aura/graphics/image/array.h"
+#include "aura/graphics/draw2d/window_attachment.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/context.h"
@@ -28,7 +31,7 @@
 #include "acme/prototype/string/str.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/style.h"
-#include "nanosvg.h"
+#include <nanosvg/nanosvg.h>
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "aura/graphics/write_text/_defer_geometry2d_item.h"
 
@@ -93,6 +96,7 @@ namespace draw2d
       //_m_bYFlip = false;
       m_bForWindowDraw2d = false;
       m_bDraw = true;
+      m_bHasCurrentPoint = false;
 //      m_puserinteraction = nullptr;
       m_bUseImageMipMapsOrResizedImages = false;
 
@@ -139,6 +143,37 @@ namespace draw2d
    }
 
 
+   enum_image_opacity_policy graphics::get_effective_image_opacity_policy() const
+   {
+
+      if (m_eimageopacitypolicy != e_image_opacity_policy_inherit)
+      {
+
+         return m_eimageopacitypolicy;
+
+      }
+
+      if (!system())
+      {
+
+         return e_image_opacity_policy_disabled;
+
+      }
+
+      auto pdraw2d = system()->draw2d();
+
+      if (!pdraw2d)
+      {
+
+         return e_image_opacity_policy_disabled;
+
+      }
+
+      return pdraw2d->get_image_opacity_policy();
+
+   }
+
+
    void graphics::on_initialize_particle()
    {
 
@@ -149,10 +184,10 @@ namespace draw2d
    }
 
 
-   ::draw2d::domain * graphics::draw2d_domain()
+   ::acme::draw2d::domain * graphics::acme_draw2d_domain()
    {
       
-      if(!m_pdraw2ddomain)
+      if(!m_pacmedraw2ddomain)
       {
          
          ::cast < ::user::interaction > puserinteractionTopic = m_puserinteractionTopic;
@@ -160,22 +195,61 @@ namespace draw2d
          if(puserinteractionTopic)
          {
           
-            m_pdraw2ddomain = puserinteractionTopic->draw2d_domain();
+            m_pacmedraw2ddomain = puserinteractionTopic->acme_draw2d_domain();
             
          }
          
       }
       
-      return m_pdraw2ddomain;
+      return m_pacmedraw2ddomain;
       
    }
 
 
    ::draw2d::frame * graphics::draw2d_frame()
    {
-      
+
+      if (!m_pdraw2dframe)
+      {
+
+         initialize_draw2d_frame();
+
+      }
+
       return m_pdraw2dframe;
       
+   }
+
+
+   void graphics::initialize_draw2d_frame()
+   {
+      
+      if (m_pdraw2dframe)
+      {
+
+         return;
+
+      }
+
+      if (!m_puserinteractionTopic)
+      {
+
+         ::string strErrorMessage;
+
+         strErrorMessage = "m_puserinteractionTopic is null";
+
+         error(strErrorMessage);
+
+         throw ::exception(error_wrong_state, strErrorMessage);
+
+      }
+
+      construct_newø(m_pdraw2dframe);
+
+      m_pdraw2dframe->initialize_draw2d_frame(draw2d_domain());
+
+      m_pdraw2dframe->m_pdraw2dwindowattachment = m_puserinteractionTopic->window()->m_pdraw2dwindowattachment;
+
    }
 
 
@@ -335,51 +409,52 @@ namespace draw2d
    void graphics::start_frame()
    {
 
-      auto pacmeuserinteraction = m_puserinteractionTopic;
+      //auto pacmeuserinteraction = m_puserinteractionTopic;
 
-      if (::is_null(pacmeuserinteraction))
+      //if (::is_null(pacmeuserinteraction))
+      //{
+
+      //   //return nullptr;
+
+      //   throw ::exception(error_wrong_state);
+
+      //   return;
+
+      //}
+
+      //auto pacmewindowingwindow = pacmeuserinteraction->acme_windowing_window();
+
+      //if (::is_null(pacmewindowingwindow))
+      //{
+
+      //   //return nullptr;
+
+      //   throw ::exception(error_wrong_state);
+
+      //   return;
+
+      //}
+
+      //::cast < ::windowing::window > pwindow = pacmewindowingwindow;
+
+      //if (!pwindow)
+      //{
+
+      //   //return nullptr;
+
+      //   throw ::exception(error_wrong_state);
+
+      //   return;
+
+      //}
+
+      // Offscreen engines manage their own GPU frames; CPU window drawing does not.
+      if (m_papplication->m_bGpu && m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         //return nullptr;
+         auto pwindowattachment = draw2d_frame()->window_attachment();
 
-         throw ::exception(error_wrong_state);
-
-         return;
-
-      }
-
-      auto pacmewindowingwindow = pacmeuserinteraction->acme_windowing_window();
-
-      if (::is_null(pacmewindowingwindow))
-      {
-
-         //return nullptr;
-
-         throw ::exception(error_wrong_state);
-
-         return;
-
-      }
-
-      ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
-
-      if (!pwindow)
-      {
-
-         //return nullptr;
-
-         throw ::exception(error_wrong_state);
-
-         return;
-
-      }
-
-      if (m_papplication->m_bGpu)
-      {
-
-         auto pgpuwindowattachment = pwindow->m_papexgpuwindowattachment;
-
-         if (!pgpuwindowattachment)
+         if (!pwindowattachment)
          {
 
             //return nullptr;
@@ -393,7 +468,7 @@ namespace draw2d
 
          //      auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontext);
 
-         pgpuwindowattachment->start_frame();
+         pwindowattachment->start_frame();
 
       }
 
@@ -459,7 +534,8 @@ namespace draw2d
 
       }
 
-      if (m_papplication->m_bGpu)
+      // Offscreen engines manage their own GPU frames; CPU window drawing does not.
+      if (m_papplication->m_bGpu && m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
          auto pgpuwindowattachment = pwindow->m_papexgpuwindowattachment;
@@ -692,17 +768,17 @@ namespace draw2d
 //   }
 
 
-
    void graphics::update_as_image_render_target(::image::image* pimageTarget)
    {
 
       m_pimageTarget = pimageTarget;
 
-      auto pdraw2dbitmap = pimageTarget->get_bitmap_as_target();
+      auto pdraw2dbitmap = pimageTarget->get_bitmap_as_target(this);
 
       create_bitmap_graphics(pdraw2dbitmap, draw2d_domain());
 
    }
+
 
    void graphics::create_device_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * pInitData)
    {
@@ -791,7 +867,7 @@ namespace draw2d
       ::draw2d::domain * pdraw2ddomain) const
    {
 
-      return m_pdraw2ddomain == pdraw2ddomain;
+      return ((graphics *)this)->draw2d_domain() == pdraw2ddomain;
 
    }
 
@@ -814,10 +890,10 @@ namespace draw2d
       if(::is_set(pdraw2ddomain))
       {
          
-         if(!m_pdraw2ddomain)
+         if(::is_null(draw2d_domain()))
          {
             
-            m_pdraw2ddomain = pdraw2ddomain;
+            set_draw2d_domain(pdraw2ddomain);
             
          }
 
@@ -848,7 +924,7 @@ namespace draw2d
 
          defer_constructø(m_pimageTarget);
 
-         m_pimageTarget->create_as_descriptor(size);
+         m_pimageTarget->create_as_descriptor(size, draw2d_domain());
 
       }
 
@@ -2588,7 +2664,7 @@ namespace draw2d
 
       m_pwritetextfont->defer_update(this);
 
-      *pMetrics = m_pwritetextfont->m_textmetric2;
+      *pMetrics = m_pwritetextfont->text_metric(this);
       //m_pwritetextfont->get_os_data(this);
 
       //memory_copy(pMetrics, &m_pwritetextfont->m_textmetric2, sizeof(*pMetrics));
@@ -3485,6 +3561,27 @@ namespace draw2d
    }
 
 
+   ::f32 graphics::get_density_dpi()
+   {
+
+      if (!m_puserinteractionTopic)
+      {
+
+         return 96.0f;
+
+      }
+
+      return m_puserinteractionTopic->get_density_dpi_for_window();
+
+   }
+
+
+   ::f32 graphics::point_pixel(::f32 fSize)
+   {
+
+      return get_density_dpi() * fSize / 72.0f;
+
+   }
 
 
    void graphics::send(const ::procedure & procedure)
@@ -5266,20 +5363,20 @@ namespace draw2d
    //}
 
 
-   ::f64 graphics::get_dpix()
-   {
+   //::f64 graphics::get_dpix()
+   //{
 
-      return 96.0;
+   //   return 96.0;
 
-   }
+   //}
 
 
-   ::f64 graphics::get_dpiy()
-   {
+   //::f64 graphics::get_dpiy()
+   //{
 
-      return 96.0;
+   //   return 96.0;
 
-   }
+   //}
 
 
    void graphics::set_fill_mode(::draw2d::enum_fill_mode efillmode)
@@ -6798,7 +6895,7 @@ namespace draw2d
 
          //estatus =
 
-         pimage->create_as_descriptor({ (::i32)w, 6 });
+         pimage->create_as_descriptor({ (::i32)w, 6 }, draw2d_domain());
 
          //if (!estatus || pimage->area() <= 0)
          if (pimage->area() <= 0)
@@ -7304,7 +7401,8 @@ namespace draw2d
       if (bExternalRendering || m_pgraphicsbufferitem)
       {
 
-         m_pointTarget = rectangleFrame.origin();
+         m_pointTarget = !bExternalRendering && m_pgraphicsbufferitem && m_pgraphicsbufferitem->m_bTightRawBuffer
+            ? ::i32_point{} : rectangleFrame.origin();
 
          m_sizeTarget = rectangleFrame.size();
 
@@ -7321,6 +7419,47 @@ namespace draw2d
       m_bTargetRectangleModified = false;
 
       update_matrix();
+
+#if defined(__REACTOS__)
+      if (!bExternalRendering && m_pgraphicsbufferitem && m_pimageTarget
+         && system()->draw2d()->graphics_context_does_full_redraw())
+      {
+         // Clear once at the frame boundary, including frames painted through
+         // a separate drawable. Do not depend on a transparent GDI+ primitive
+         // or on an interaction's parent/drawing flags to replace old pixels.
+         // Partial-redraw backends must retain their undamaged backing pixels.
+         auto pbitmap = m_pimageTarget->m_pdraw2dbitmap;
+         if (pbitmap)
+         {
+            const auto size = pbitmap->size();
+            if (size.cx > 0 && size.cy > 0 && size.cx <= INT_MAX / 4)
+            {
+               sync_flush();
+               const auto stride = size.cx * 4;
+               auto & transparentPixels = m_memoryTransparentFrame;
+               const auto byteCount = (::u64)stride * (::u64)size.cy;
+               if (byteCount > (::u64)::numeric_info<::memsize>::maximum())
+               {
+                  throw ::exception(error_bad_argument);
+               }
+               if (transparentPixels.size() != (::memsize)byteCount)
+               {
+                  transparentPixels.set_size((::memsize)byteCount);
+                  ::memory_set(transparentPixels.data(), 0, transparentPixels.size());
+               }
+               pbitmap->write_pixels(size, {},
+                  (const ::image32_t *)transparentPixels.data(), stride, true);
+               if (!payload("reactos_frame_clear_traced").is_true())
+               {
+                  informationf("ReactOSFrameClear bitmap=%p size=(%d,%d) raw pixels replaced",
+                     pbitmap.m_p, size.cx, size.cy);
+                  payload("reactos_frame_clear_traced") = true;
+               }
+            }
+         }
+      }
+#endif
+
 
 
 
@@ -7631,7 +7770,8 @@ namespace draw2d
    void graphics::clear_current_point()
    {
 
-      throw ::exception(todo);
+      m_bHasCurrentPoint = false;
+      //throw ::exception(todo);
 
       //return ::success_none;
 

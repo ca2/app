@@ -271,7 +271,7 @@ void _001TestSlashedPath()
    ASSERT(pathB == "C:/Users/camilo/test");
 
 
-   ::file::path pathUrl = "https://camilothomas.com/download/storage/weather.zip"_ansi;
+   ::file::path pathUrl = "https://camilothomas.com/download/weather.zip"_ansi;
 
    //::print_line(pathUrl);
 

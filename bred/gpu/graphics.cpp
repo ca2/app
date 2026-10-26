@@ -508,7 +508,7 @@ namespace gpu
       }
 
       auto pdraw2ddomainContext =
-         pgpucontext->m_pgpudevice->m_pdraw2domain;
+         pgpucontext->m_pgpudevice->draw2d_domain();
 
       return pdraw2ddomain == pdraw2ddomainContext;
 

@@ -135,7 +135,7 @@ namespace gpu
 
       m_pgpuapproach = pgpuapproach;
    
-      m_pdraw2domain = pdraw2ddomain;
+      set_draw2d_domain(pdraw2ddomain);
 
 //      m_pwindow = pwindow;
 //

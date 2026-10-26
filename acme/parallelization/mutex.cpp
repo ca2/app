@@ -128,7 +128,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn) :
 }
 
 
-mutex::mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pszName) :
+mutex::mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pszName, security_attributes * psecurityattributes) :
    mutex()
 {
 
@@ -175,7 +175,9 @@ mutex::mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pszN
 #elif defined(WINDOWS)
 
    ::wstring wstrName(pszName);
-   HANDLE handle = ::CreateMutexExW(nullptr, pszName ? wstrName.c_str() : nullptr, 0, MUTEX_ALL_ACCESS);
+   HANDLE handle = ::CreateMutexExW(
+    ::is_null(psecurityattributes)?
+   (LPSECURITY_ATTRIBUTES)nullptr : (LPSECURITY_ATTRIBUTES)psecurityattributes->get_os_security_attributes(), pszName ? wstrName.c_str() : nullptr, 0, MUTEX_ALL_ACCESS);
    if (!handle)
    {
       throw ::exception(error_resource);

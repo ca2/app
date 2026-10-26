@@ -39,7 +39,7 @@
 #include "acme/windowing/windowing.h"
 #include "filesystem/filesystem/listing.h"
 #include "windowing/display.h"
-
+#include "acme/parallelization/mutex.h"
 CLASS_DECL_ACME ::string friendly_byte_count(::u64 ul, const_char_pointer pszFormat = nullptr);
 
 #ifdef WINDOWS_DESKTOP
@@ -882,18 +882,79 @@ namespace platform
 
    //allocateø < ::pointer < ::mutex > >(this, false, "Local\\ca2-appmatter")
 
-   ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   // ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
+   //
+   //
+   // ::pointer < ::mutex > node::create_global_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
+   //
+   //
+   // ::pointer < ::mutex > node::open_local_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
+   //
+   //
+   // ::pointer < ::mutex > node::open_global_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
+   //
+   //
+   // ::pointer < ::mutex > node::get_install_mutex(::particle *pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix)
+   // {
+   //
+   //    string strName = "::ca2::account::ccwarehouse::install::" + scopedstrPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + scopedstrSuffix;
+   //
+   //    return open_global_named_mutex(pparticleContext, strName);
+   //
+   // //allocateø< ::install::pointer < ::mutex > >(this, process_platform_name()
+   //
+   // }
+
+
+   ::pointer < ::mutex > node::create_named_mutex(::particle * pparticleContext, bool bInitiallyOwn, const_char_pointer pszName, security_attributes * psecurityattributes)
    {
 
-      return nullptr;
+      //return allocateø mutex(pparticleContext, bInitiallyOwn, pszName ADD_PARAM_SEC_ATTRS);
+      return allocateø ::mutex(pparticleContext, bInitiallyOwn, pszName, psecurityattributes);
 
    }
 
 
-   ::pointer < ::mutex > node::create_global_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
    {
 
-      return nullptr;
+      ::string strLocalName;
+
+      strLocalName = "Local\\" + scopedstrName;
+
+      return create_named_mutex(pparticleContext, bInitiallyOwned, strLocalName, psecurityattributes);
+
+   }
+
+
+   ::pointer < ::mutex > node::create_global_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   {
+
+      ::string strGlobalName;
+
+      strGlobalName = "Global\\" + scopedstrName;
+
+      return create_named_mutex(pparticleContext, bInitiallyOwned, strGlobalName, psecurityattributes);
 
    }
 
@@ -914,14 +975,10 @@ namespace platform
    }
 
 
-   ::pointer < ::mutex > node::get_install_mutex(::particle *pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix)
+   ::pointer < ::mutex > node::get_install_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix)
    {
 
-      string strName = "::ca2::account::ccwarehouse::install::" + scopedstrPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + scopedstrSuffix;
-
-      return open_global_named_mutex(pparticleContext, strName);
-
-   //allocateø< ::install::pointer < ::mutex > >(this, process_platform_name()
+      return nullptr;
 
    }
 

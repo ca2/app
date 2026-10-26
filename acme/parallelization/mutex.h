@@ -24,7 +24,7 @@ public:
 
    mutex();
    mutex(enum_create_new, bool bInitiallyOwn = false);
-   mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pszName);
+   mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pszName, security_attributes * psecurityattributes);
 #ifdef PARALLELIZATION_PTHREAD
    mutex(enum_create_new, const_char_pointer pszName, int iFd, bool bOwner = true);
 #elif defined(WINDOWS)

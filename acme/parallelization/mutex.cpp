@@ -180,8 +180,8 @@ mutex::mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pszN
    {
       throw ::exception(error_resource);
    }
-   ::CloseHandle(m_pimplementation->m_handle);
-   m_pimplementation->m_handle = handle;
+   ::CloseHandle(m_handle);
+   m_handle = handle;
 
 #endif
 
@@ -218,9 +218,9 @@ mutex::mutex(enum_create_new, const_char_pointer, void * handle, bool bOwner) :
    {
       throw ::exception(error_resource);
    }
-   ::CloseHandle(m_pimplementation->m_handle);
-   m_pimplementation->m_handle = handle;
-   m_pimplementation->m_bOwner = bOwner;
+   ::CloseHandle(m_handle);
+   m_handle = handle;
+   m_bOwner = bOwner;
    set_own_synchronization_flag(bOwner);
 
 }
@@ -249,7 +249,7 @@ hsynchronization mutex::get_synchronization_handle()
 #if defined(PARALLELIZATION_PTHREAD)
    return this;
 #else
-   return m_pimplementation->m_handle;
+   return m_handle;
 #endif
 
 }
@@ -290,7 +290,7 @@ void mutex::_wait()
 
 #elif defined(WINDOWS)
 
-   auto dwResult = ::WaitForSingleObject(m_pimplementation->m_handle, INFINITE);
+   auto dwResult = ::WaitForSingleObject(m_handle, INFINITE);
    if (dwResult != WAIT_OBJECT_0 && dwResult != WAIT_ABANDONED)
    {
       throw ::exception(error_failed);
@@ -404,7 +404,7 @@ bool mutex::_wait(const class ::time & timeWait)
    auto milliseconds = timeWait.integral_millisecond();
    DWORD dwMilliseconds = milliseconds <= 0 ? 0 :
       (milliseconds >= INFINITE ? INFINITE - 1 : static_cast<DWORD>(milliseconds));
-   auto dwResult = ::WaitForSingleObject(m_pimplementation->m_handle, dwMilliseconds);
+   auto dwResult = ::WaitForSingleObject(m_handle, dwMilliseconds);
    if (dwResult == WAIT_TIMEOUT)
    {
       return false;
@@ -447,7 +447,7 @@ void mutex::unlock()
 
 #elif defined(WINDOWS)
 
-   if (!::ReleaseMutex(m_pimplementation->m_handle))
+   if (!::ReleaseMutex(m_handle))
    {
       throw ::exception(error_failed);
    }

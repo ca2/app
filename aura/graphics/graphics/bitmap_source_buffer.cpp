@@ -92,7 +92,7 @@ namespace graphics
       for (auto & path : listing)
       {
          auto strName = path.name();
-         if (strName.begins("_") || !strName.ends(".txt"))
+         if (!strName.case_insensitive_ends(".txt"))
             continue;
          ::file_pointer pfile;
          try
@@ -107,14 +107,17 @@ namespace graphics
          }
          try
          {
+            // Probe the consumer's byte-range lock without modifying or
+            // removing its declaration. Only a lock conflict signals interest.
             pfile->lock(0x7ffffffe, 1);
-            pfile->unlock(0x7ffffffe, 1);
          }
          catch (const ::exception & exception)
          {
             if (exception.m_estatus == error_file_lock_violation)
                return true;
+            continue;
          }
+         pfile->unlock(0x7ffffffe, 1);
       }
       return false;
 #else
@@ -212,7 +215,15 @@ namespace graphics
 
          //estatus = 
          
-         set_bitmap_source(pwindow->m_strBitmapSource);
+         if (pwindow->m_strBitmapSourceAppId.has_character())
+         {
+            set_bitmap_source(pwindow->m_strBitmapSourceAppId,
+               pwindow->m_strBitmapSource, pwindow->m_bBitmapSourceCreate);
+         }
+         else
+         {
+            set_bitmap_source(pwindow->m_strBitmapSource);
+         }
 
          //if (!estatus)
          //{

@@ -2516,6 +2516,8 @@ namespace user
       virtual bool is_window_docking();
 
       virtual void set_bitmap_source(const ::scoped_string & scopedstrBitmapFileTitle) override;
+      virtual void set_bitmap_source(const ::scoped_string & scopedstrAppId,
+         const ::scoped_string & scopedstrBitmapSource, bool bCreate = true);
       virtual void clear_bitmap_source() override;
 
 

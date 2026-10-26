@@ -14190,12 +14190,24 @@ namespace windowing
    void window::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
+      set_bitmap_source(application()->m_strAppId, scopedstrBitmapSource, true);
+
+   }
+
+
+   void window::set_bitmap_source(const ::scoped_string & scopedstrAppId,
+      const ::scoped_string & scopedstrBitmapSource, bool bCreate)
+   {
+
+      m_strBitmapSourceAppId = scopedstrAppId;
       m_strBitmapSource = scopedstrBitmapSource;
+      m_bBitmapSourceCreate = bCreate;
 
       if (m_pgraphicsgraphics)
       {
 
-         m_pgraphicsgraphics->set_bitmap_source(scopedstrBitmapSource);
+         m_pgraphicsgraphics->set_bitmap_source(
+            m_strBitmapSourceAppId, m_strBitmapSource, m_bBitmapSourceCreate);
 
       }
 
@@ -14207,7 +14219,9 @@ namespace windowing
    void window::clear_bitmap_source()
    {
 
+      m_strBitmapSourceAppId.empty();
       m_strBitmapSource.empty();
+      m_bBitmapSourceCreate = true;
 
       if (m_pgraphicsgraphics)
       {
@@ -14241,7 +14255,15 @@ namespace windowing
          if (m_strBitmapSource.has_character())
          {
 
-            m_pgraphicsgraphics->set_bitmap_source(m_strBitmapSource);
+            if (m_strBitmapSourceAppId.has_character())
+            {
+               m_pgraphicsgraphics->set_bitmap_source(
+                  m_strBitmapSourceAppId, m_strBitmapSource, m_bBitmapSourceCreate);
+            }
+            else
+            {
+               m_pgraphicsgraphics->set_bitmap_source(m_strBitmapSource);
+            }
 
          }
 

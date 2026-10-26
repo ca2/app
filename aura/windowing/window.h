@@ -69,6 +69,8 @@ namespace windowing
       class ::time                              m_timeLastMouseMove;
       ::cast < ::windowing::window >            m_pwindowParent;
       ::string                                  m_strBitmapSource;
+      ::string                                  m_strBitmapSourceAppId;
+      bool                                      m_bBitmapSourceCreate = true;
       mouse_reposition_throttling               m_mouserepositionthrottling;
       bool                                      m_bNewFrame;
       ::pointer<::windowing::icon>              m_picon;
@@ -655,6 +657,8 @@ namespace windowing
 
 
       void set_bitmap_source(const ::scoped_string & scopedstrBitmapSource) override;
+      virtual void set_bitmap_source(const ::scoped_string & scopedstrAppId,
+         const ::scoped_string & scopedstrBitmapSource, bool bCreate = true);
       void clear_bitmap_source() override;
 
 

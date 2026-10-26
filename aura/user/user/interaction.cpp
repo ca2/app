@@ -25780,6 +25780,22 @@ void interaction::on_control_box_zoom(){
    }
 
 
+   void interaction::set_bitmap_source(const ::scoped_string & scopedstrAppId,
+      const ::scoped_string & scopedstrBitmapSource, bool bCreate)
+   {
+
+      if (!window())
+      {
+
+         throw ::exception(error_null_pointer);
+
+      }
+
+      window()->set_bitmap_source(scopedstrAppId, scopedstrBitmapSource, bCreate);
+
+   }
+
+
    void interaction::clear_bitmap_source()
    {
 

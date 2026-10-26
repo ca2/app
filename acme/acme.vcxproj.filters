@@ -4539,6 +4539,9 @@
     <ClInclude Include="prototype\string\c\encoding\_impl.h">
       <Filter>Header Files\prototype\string\c\encoding</Filter>
     </ClInclude>
+    <ClInclude Include="parallelization\synchronization_object.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6535,6 +6538,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\call_stack.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\synchronization_object.cpp">
+      <Filter>Source Files\parallelization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

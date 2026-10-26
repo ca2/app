@@ -49,7 +49,10 @@ namespace graphics
          / "bitmap-source" / strBitmapSourceName;
       directory()->create(pathFolder);
       auto pathLease = pathFolder / (strConsumerAppId + ".lock");
+<<<<<<< HEAD
       directory()->create(pathLease.folder());
+=======
+>>>>>>> origin/main
       auto pfile = file()->get_file(pathLease,
          ::file::e_open_read_write | ::file::e_open_create | ::file::e_open_no_truncate
          | ::file::e_open_share_deny_none | ::file::e_open_no_inherit

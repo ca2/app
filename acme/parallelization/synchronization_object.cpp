@@ -27,6 +27,8 @@ CLASS_DECL_ACME bool _hsynchronization_wait(::hsynchronization h, const class ::
    synchronization_object::~synchronization_object()
    {
 
+#if defined(WINDOWS)
+
       if (m_bOwner && m_handle != nullptr)
       {
 
@@ -49,6 +51,8 @@ CLASS_DECL_ACME bool _hsynchronization_wait(::hsynchronization h, const class ::
          m_handle = nullptr;
 
       }
+
+#endif
 
    }
 

@@ -203,7 +203,7 @@ mutex::mutex(enum_create_new, const_char_pointer, int iFd, bool bOwner) :
    {
       throw ::exception(error_resource);
    }
-   m_pimplementation->m_iFd = iFd;
+   m_iFd = iFd;
    set_own_synchronization_flag(bOwner);
 
 }
@@ -230,8 +230,15 @@ mutex::mutex(enum_create_new, const_char_pointer, void * handle, bool bOwner) :
 
 mutex::~mutex()
 {
-
-   delete m_pimplementation;
+#if defined(PARALLELIZATION_PTHREAD)
+      if (m_pPthreadMutexT)
+      {
+         auto ppthreadmutext = (pthread_mutex_t*)m_pPthreadMutexT;
+         m_pPthreadMutexT = nullptr;
+      delete_pthread_mutex_t(ppthreadmutext);
+      }
+#endif
+   //delete m_pimplementation;
 
 }
 
@@ -253,31 +260,31 @@ void mutex::_wait()
 
 #if defined(PARALLELIZATION_PTHREAD)
 
-   auto & implementation = *m_pimplementation;
-   if (pthread_mutex_lock(&implementation.m_mutex) != 0)
+   auto ppthreadmutext = (pthread_mutex_t*)m_pPthreadMutexT;
+   if (pthread_mutex_lock(ppthreadmutext) != 0)
    {
       throw ::exception(error_failed);
    }
 
-   if (implementation.m_iFd >= 0)
+   if (m_iFd >= 0)
    {
 
-      if (implementation.m_count == 0)
+      if (m_uCount == 0)
       {
          int iResult;
          do
          {
-            iResult = ::lockf(implementation.m_iFd, F_LOCK, 0);
+            iResult = ::lockf(m_iFd, F_LOCK, 0);
          }
          while (iResult < 0 && errno == EINTR);
 
          if (iResult < 0)
          {
-            pthread_mutex_unlock(&implementation.m_mutex);
+            pthread_mutex_unlock(ppthreadmutext);
             throw ::exception(error_failed);
          }
       }
-      implementation.m_count++;
+      m_uCount++;
 
    }
 
@@ -305,13 +312,14 @@ bool mutex::_wait(const class ::time & timeWait)
 
 #if defined(PARALLELIZATION_PTHREAD)
 
-   auto & implementation = *m_pimplementation;
+   //auto & implementation = *m_pimplementation;
+      auto ppthreadmutext = (pthread_mutex_t*)m_pPthreadMutexT;
    auto timeStart = ::time::now();
    const timespec timespecSleep{0, 1'000'000};
 
 #if defined(LINUX) || defined(__ANDROID__)
 
-   int iError = pthread_mutex_trylock(&implementation.m_mutex);
+   int iError = pthread_mutex_trylock(ppthreadmutext);
    if (iError == EBUSY)
    {
       if (timeWait <= 0_s)
@@ -331,7 +339,7 @@ bool mutex::_wait(const class ::time & timeWait)
          deadline.tv_sec++;
          deadline.tv_nsec -= 1'000'000'000;
       }
-      iError = pthread_mutex_timedlock(&implementation.m_mutex, &deadline);
+      iError = pthread_mutex_timedlock(ppthreadmutext, &deadline);
    }
    if (iError == ETIMEDOUT)
    {
@@ -347,7 +355,7 @@ bool mutex::_wait(const class ::time & timeWait)
    // Some pthread platforms, including macOS, have no mutex_timedlock.
    while (true)
    {
-      int iError = pthread_mutex_trylock(&implementation.m_mutex);
+      int iError = pthread_mutex_trylock(ppthreadmutext);
       if (iError == 0)
       {
          break;
@@ -365,28 +373,28 @@ bool mutex::_wait(const class ::time & timeWait)
 
 #endif
 
-   if (implementation.m_iFd >= 0)
+   if (m_iFd >= 0)
    {
 
-      if (implementation.m_count == 0)
+      if (m_uCount == 0)
       {
-         while (::lockf(implementation.m_iFd, F_TLOCK, 0) < 0)
+         while (::lockf(m_iFd, F_TLOCK, 0) < 0)
          {
             int iError = errno;
             if (iError != EACCES && iError != EAGAIN && iError != EINTR)
             {
-               pthread_mutex_unlock(&implementation.m_mutex);
+               pthread_mutex_unlock(ppthreadmutext);
                throw ::exception(error_failed);
             }
             if (timeStart.elapsed() >= timeWait)
             {
-               pthread_mutex_unlock(&implementation.m_mutex);
+               pthread_mutex_unlock(ppthreadmutext);
                return false;
             }
             ::nanosleep(&timespecSleep, nullptr);
          }
       }
-      implementation.m_count++;
+      m_uCount++;
 
    }
    return true;
@@ -417,21 +425,22 @@ void mutex::unlock()
 
 #if defined(PARALLELIZATION_PTHREAD)
 
-   auto & implementation = *m_pimplementation;
-   if (implementation.m_iFd >= 0)
+   //auto & implementation = *m_pimplementation;
+      auto ppthreadmutext = (pthread_mutex_t*)m_pPthreadMutexT;
+   if (m_iFd >= 0)
    {
-      if (implementation.m_count == 0)
+      if (m_uCount == 0)
       {
          throw ::exception(error_wrong_state);
       }
-      if (implementation.m_count == 1 && ::lockf(implementation.m_iFd, F_ULOCK, 0) < 0)
+      if (m_uCount == 1 && ::lockf(m_iFd, F_ULOCK, 0) < 0)
       {
          throw ::exception(error_failed);
       }
-      implementation.m_count--;
+      m_uCount--;
    }
 
-   if (pthread_mutex_unlock(&implementation.m_mutex) != 0)
+   if (pthread_mutex_unlock(ppthreadmutext) != 0)
    {
       throw ::exception(error_failed);
    }

@@ -17,18 +17,20 @@
 #endif
 
 
-class mutex_implementation
-{
-public:
+//class mutex_implementation
+//{
+//public:
 
 #if defined(PARALLELIZATION_PTHREAD)
 
-   pthread_mutex_t m_mutex;
-   int m_iFd = -1;
-   unsigned int m_count = 0;
+   //pthread_mutex_t m_mutex;
+   //int m_iFd = -1;
+   //unsigned int m_count = 0;
 
-   mutex_implementation()
+   pthread_mutex_t * new_pthread_mutex_t()
    {
+
+      auto pmutex = new pthread_mutex_t;
 
       pthread_mutexattr_t attr;
       int iError = pthread_mutexattr_init(&attr);
@@ -40,7 +42,7 @@ public:
       iError = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
       if (iError == 0)
       {
-         iError = pthread_mutex_init(&m_mutex, &attr);
+         iError = pthread_mutex_init(pmutex, &attr);
       }
       pthread_mutexattr_destroy(&attr);
 
@@ -48,54 +50,66 @@ public:
       {
          throw ::exception(error_resource);
       }
-
+      return pmutex;
    }
 
-   ~mutex_implementation()
+   void delete_pthread_mutex_t(pthread_mutex_t * pmutex)
    {
 
-      if (m_iFd >= 0)
-      {
-         ::close(m_iFd);
-      }
-      pthread_mutex_destroy(&m_mutex);
+      //if (m_iFd >= 0)
+      //{
+        // ::close(m_iFd);
+      //}
+      pthread_mutex_destroy(pmutex);
+      delete pmutex;
 
    }
 
 #elif defined(WINDOWS)
 
-   HANDLE m_handle;
-   bool m_bOwner = true;
+   //HANDLE m_handle;
+  // bool m_bOwner = true;
 
-   mutex_implementation()
-   {
+   //mutex_implementation()
+   //{
 
-      m_handle = ::CreateMutexExW(nullptr, nullptr, 0, MUTEX_ALL_ACCESS);
-      if (!m_handle)
-      {
-         throw ::exception(error_resource);
-      }
+   //   m_handle = ::CreateMutexExW(nullptr, nullptr, 0, MUTEX_ALL_ACCESS);
+   //   if (!m_handle)
+   //   {
+   //      throw ::exception(error_resource);
+   //   }
 
-   }
+   //}
 
-   ~mutex_implementation()
-   {
+   //~mutex_implementation()
+   //{
 
-      if (m_bOwner && m_handle)
-      {
-         ::CloseHandle(m_handle);
-      }
+   //   if (m_bOwner && m_handle)
+   //   {
+   //      ::CloseHandle(m_handle);
+   //   }
 
-   }
+   //}
 
 #endif
 
-};
+//};
 
 
-mutex::mutex() :
-   m_pimplementation(___new mutex_implementation)
+mutex::mutex() //:
+   //m_pimplementation(___new mutex_implementation)
 {
+
+#if defined(WINDOWS)
+   m_handle = ::CreateMutexExW(nullptr, nullptr, 0, MUTEX_ALL_ACCESS);
+   if (!m_handle)
+   {
+      throw ::exception(error_resource);
+   }
+
+#elif defined(PARALLELIZATION_PTHREAD)
+   m_pPthreadMutexT = new_pthread_mutex_t();
+#endif
 
    set_own_synchronization_flag();
 

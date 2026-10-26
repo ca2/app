@@ -1,14 +1,26 @@
 #pragma once
 
-#include "acme/prototype/prototype/particle.h"
+//#include "acme/prototype/prototype/particle.h"
+#include "acme/parallelization/synchronization_object.h"
 
 class mutex_implementation;
 
 
 class CLASS_DECL_ACME mutex :
-   virtual public ::particle
+   virtual public ::synchronization_object
 {
 public:
+
+
+#if defined(PARALLELIZATION_PTHREAD)
+
+   void * m_pPthreadMutexT;
+   int m_iFd;
+   ::u32 m_uCount;
+   //int m_iFd = -1;
+   //unsigned int m_count = 0;
+
+#endif
 
    mutex();
    mutex(enum_create_new, bool bInitiallyOwn = false);
@@ -30,9 +42,9 @@ public:
    using ::particle::unlock;
    void unlock() override;
 
-private:
-
-   mutex_implementation * m_pimplementation;
+//private:
+//
+//   mutex_implementation * m_pimplementation;
 
 };
 

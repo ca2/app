@@ -58,6 +58,7 @@ namespace acme
          m_bUsesGraphicsThread = false;
          m_bPerformingEntireRepositionProcess = false;
          m_bPerformingEntireResizingProcess = false;
+         m_lX11NativeVisualId = -1;
          //m_ebias = e_bias_unknown;
          m_bRepositioningWindowFromCenter = false;
          m_bResizingWindowFromBottomRight = false;
@@ -76,8 +77,6 @@ namespace acme
          //m_bCapture = false;
 
          //m_uAcmeWindowingWindowFlags = 0;
-
-         //m_lX11NativeVisualId = -1;
 
       }
 
@@ -2380,7 +2379,7 @@ void window::on_control_box_zoom()
       ::f32 window::get_density_for_window()
       {
 
-         return ::user::element::get_density_for_window();
+         return get_density_dpi_for_window() / 96.0f;
 
       }
 
@@ -2396,7 +2395,7 @@ void window::on_control_box_zoom()
       ::f32 window::get_text_scale_for_window()
       {
 
-         return ::user::element::get_text_scale_for_window();
+         return get_density_for_window() * get_font_scale_for_window();
 
       }
 
@@ -2404,7 +2403,7 @@ void window::on_control_box_zoom()
       ::f32 window::scaler()
       {
 
-         return ::user::element::scaler();
+         return get_text_scale_for_window();
 
       }
 

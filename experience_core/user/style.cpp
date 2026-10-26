@@ -6,9 +6,10 @@
 #include "acme/prototype/mathematics/mathematics.h"
 #include "acme/user/user/content.h"
 #include "apex/platform/savings.h"
-#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
+#include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
@@ -1055,14 +1056,16 @@ namespace experience_core
 
       }
 
+      auto fDensity = pdraw2dgraphics->draw2d_domain()->get_density();
+
       if (pdata->m_bVertical)
       {
 
-         pdata->m_rectangleMargin.set(2, 3, 1, 0);
+         pdata->m_rectangleMargin.set(2 * fDensity, 3 * fDensity, 1 * fDensity, 0 * fDensity);
 
-         pdata->m_rectangleBorder.set(11, 1, 6, 0);
+         pdata->m_rectangleBorder.set(11 * fDensity, 1 * fDensity, 6 * fDensity, 0 * fDensity);
 
-         pdata->m_rectangleTextMargin.set(3, 0, 1, 0);
+         pdata->m_rectangleTextMargin.set(3 * fDensity, 0 * fDensity, 1 * fDensity, 0 * fDensity);
 
          pdata->m_iTabHeight += pdata->m_rectangleBorder.top + pdata->m_rectangleBorder.bottom +
             pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom;
@@ -1074,11 +1077,11 @@ namespace experience_core
       else
       {
 
-         pdata->m_rectangleMargin.set(3, 2, 0, 1);
+         pdata->m_rectangleMargin.set(3 * fDensity, 2 * fDensity, 0 * fDensity, 1 * fDensity);
 
-         pdata->m_rectangleBorder.set(0, 1, 11, 6);
+         pdata->m_rectangleBorder.set(0 * fDensity, 1 * fDensity, 11 * fDensity, 6 * fDensity);
 
-         pdata->m_rectangleTextMargin.set(3, 0, 1, 0);
+         pdata->m_rectangleTextMargin.set(3 * fDensity, 0 * fDensity, 1 * fDensity, 0 * fDensity);
 
          pdata->m_iTabHeight += pdata->m_rectangleBorder.top + pdata->m_rectangleBorder.bottom +
             pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom;
@@ -1100,8 +1103,8 @@ namespace experience_core
       
       if (pdata->m_bVertical)
       {
-         ::i32 iTabWidth = 16;
-         ::i32 iTabHeight = 8;
+         ::i32 iTabWidth = 16 * fDensity;
+         ::i32 iTabHeight = 8 * fDensity;
          ::i32 cx;
          ::i32 cy;
          for (::i32 iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
@@ -1129,12 +1132,12 @@ namespace experience_core
 
             }
 
-            cx = (::i32) (size.cx + 2);
+            cx = (::i32) (size.cx + 2 * fDensity);
 
             if (!ppane->m_bPermanent)
             {
                
-               cx += 2 + 16 + 2;
+               cx += 2 * fDensity + 16 * fDensity + 2 * fDensity;
 
             }
 
@@ -1145,7 +1148,7 @@ namespace experience_core
 
             }
 
-            cy = (::i32) ( size.cy + 2);
+            cy = (::i32) ( size.cy + 2 * fDensity);
 
             if (cy > iTabHeight)
             {
@@ -1202,7 +1205,7 @@ namespace experience_core
       else
       {
 
-         ::i32 iTabHeight = 16;
+         ::i32 iTabHeight = 16 * fDensity;
 
          ::i32 cy;
 
@@ -1242,7 +1245,7 @@ namespace experience_core
 
             }
 
-            cy = (::i32)(size.cy + 2);
+            cy = (::i32)(size.cy + 2 * fDensity);
 
             if (cy > iTabHeight)
             {
@@ -1262,12 +1265,12 @@ namespace experience_core
             if (ppane->m_pimage.ok())
             {
                //::image::image_list::info ii;
-               ixAdd += ppane->m_pimage->width() + 2;
+               ixAdd += ppane->m_pimage->width() + 2 * fDensity;
             }
 
             if (!ppane->m_bPermanent)
             {
-               ixAdd += 2 + 16 + 2;
+               ixAdd += 2 * fDensity + 16 * fDensity + 2 * fDensity;
             }
 
 
@@ -1282,7 +1285,7 @@ namespace experience_core
          }
 
          // close tab button
-         cy = 2 + 16 + 2;
+         cy = 2 * fDensity + 16  * fDensity+ 2 * fDensity;
          if (cy > iTabHeight)
          {
             iTabHeight = cy;

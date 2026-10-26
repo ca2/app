@@ -915,6 +915,14 @@ namespace platform
          create_os_node(papplication);
       }
 
+      if (!m_bConsole)
+      {
+
+         STARTUP_DELAY_TRACE_SCOPE("system::application_main: select operating ambient");
+         do_operating_ambient_factory();
+
+      }
+
 
       {
          STARTUP_DELAY_TRACE_SCOPE("system::application_main: system construct");
@@ -1151,76 +1159,27 @@ namespace platform
 
       }
 
-      //information() <<"::platform::system create_os_node";
+      // Bootstrap the node and base services from the operating-system factory.
+      auto pfactory = node_factory();
 
-      if (m_bConsole)
+      if (!pfactory)
       {
 
-         auto pfactory = node_factory();
-
-         if (!pfactory)
-         {
-
-            fatal() << "node_factory has failed";
-
-            throw ::exception(error_resource);
-
-         }
-
-      }
-      else
-      {
-
-         do_operating_ambient_factory();
-         //do_graphics_and_windowing_factory();
+         fatal() << "node_factory has failed";
+         throw ::exception(error_resource);
 
       }
 
 #if !defined(WINDOWS)
 
-      constructø(m_pexceptiontranslator);
-
+      constructø(m_pexceptiontranslator, pfactory);
       m_pexceptiontranslator->attach();
 
 #endif
 
-      //information() << "create_os_node going to create node";
+      papplication->constructø(m_pnode, pfactory);
 
-      papplication->constructø(m_pnode);
-
-      m_pnode = m_pnode;
-
-      // if (m_psession)
-      // {
-      //
-      //    m_psession->m_pnode = m_pnode;
-      //
-      // }
-
-      //constructø(m_pmutexTask);
-
-      //if(!estatus)
-      //{
-
-      //   fatal() <<"Failed to construct node " << estatus;
-
-      //   return estatus;
-
-      //}
-
-      //estatus = m_pnode->initialize_matter(this);
-      //m_pnode->initialize_matter(this);
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //::acme::g_pengine;
-
-      //return estatus;
+      ensure_file_system_components();
 
    }
 
@@ -5575,7 +5534,24 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       ::string strOperatingAmbientNew;
 
-      ::string strWindowing = ::get_appconfig("windowing");
+      // Read the same application setting used by graphics3d_output.txt. In
+      // particular, user overrides live under cloud-app:// and aren't visible
+      // through get_appconfig(), which only checks the local appconfig folder.
+      ::string strWindowing;
+
+      if (m_papplication)
+      {
+
+         strWindowing = m_papplication->application_file_setting("windowing.txt");
+
+      }
+
+      if (strWindowing.is_empty())
+      {
+
+         strWindowing = ::get_appconfig("windowing");
+
+      }
 
       strWindowing.trim();
 
@@ -5600,7 +5576,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          strWindowing = straLines.last();
 
-         ::information() << "appconfig : windowing : " << strWindowing;
+         ::information() << "application setting : windowing : " << strWindowing;
 
          if (strWindowing.ends_eat("_windowing"))
          {

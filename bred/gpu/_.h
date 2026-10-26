@@ -84,6 +84,8 @@ namespace gpu
 
    class graphics;
 
+   class face;
+
    class renderer;
    class render;
 

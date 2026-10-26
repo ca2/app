@@ -6,6 +6,7 @@
 #include "scroll_state.h"
 #include "alpha_source.h"
 #include "interaction.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "interaction_graphics_thread.h"
 #include "interaction_scaler.h"
 #include "interaction_thread.h"
@@ -19974,7 +19975,18 @@ if(get_parent())
          return nullptr;
       }
 
-      return pwindowThis->draw2d_domain();
+      auto pdraw2ddomain = pwindowThis->draw2d_domain();
+
+      if (pdraw2ddomain)
+      {
+
+         pdraw2ddomain->initialize_density(
+            get_density_dpi_for_window(),
+            get_density_base_dpi_for_window());
+
+      }
+
+      return pdraw2ddomain;
       
    }
 

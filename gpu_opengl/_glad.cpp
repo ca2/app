@@ -41,7 +41,9 @@ void insert_debug_message(const_char_pointer pszMessage)
    }
 }
 
-CLASS_DECL_GPU_OPENGL void *operating_system_current_context() { 
+#if defined(WINDOWS_DESKTOP)
+
+CLASS_DECL_GPU_OPENGL void *operating_system_current_context() {
    
    HGLRC hglrc = wglGetCurrentContext();
 
@@ -50,6 +52,8 @@ CLASS_DECL_GPU_OPENGL void *operating_system_current_context() {
 
 
 }
+
+#endif
 
 } // namespace opengl
 

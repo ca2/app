@@ -260,8 +260,6 @@ namespace gpu
 
       auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pdraw2ddomain);
 
-      _synchronous_lock synchronouslock(pgpudevice->synchronization());
-
       if (!bTopDraw2d)
       {
 

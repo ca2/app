@@ -2,6 +2,7 @@
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "platform.h"
+#include "acme/parallelization/mutex.h"
 #include "startup_delay_debug.h"
 #include "node.h"
 //#include "sequencer.h"
@@ -317,7 +318,7 @@ namespace platform
    ::particle_pointer node::create_mutex()
    {
 
-      return createø < ::mutex >();
+      return create_newø < ::mutex >();
 
    }
   
@@ -463,6 +464,12 @@ namespace platform
       }
 
       on_start_system();
+
+      // Finish the generic node startup before entering the windowing main
+      // loop. This posts the application's initial request through the
+      // generic windowing interface, allowing the app task to create its
+      // first window while the main thread pumps native events.
+      psystem->node_did_finish_launching();
 
       on_system_main();
 

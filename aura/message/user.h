@@ -283,7 +283,7 @@ namespace message
 
       ::acme::windowing::window * m_pacmewindowingwindowNew;
 
-      kill_keyboard_focus() { }
+      kill_keyboard_focus() : m_pacmewindowingwindowNew(nullptr) { }
 
       // using ::user::message::set;
 

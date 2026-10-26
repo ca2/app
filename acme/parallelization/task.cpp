@@ -1334,8 +1334,9 @@ void task::main()
    catch (::exception & exception)
    {
 
-      
-      
+      error() << "Exception caught in task::main: " << exception;
+      error() << "Exception call stack: " << exception.m_strCallStackTrace;
+
       auto pmessagebox = createø < ::user_interface::message_box >();
       pmessagebox->initialize_message_box(exception, application()->m_strAppId, exception.m_strDetails);
       

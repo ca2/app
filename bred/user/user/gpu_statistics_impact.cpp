@@ -163,7 +163,7 @@ namespace user
 
          auto pwritetext = pnode->write_text();
 
-         auto fontsize = ::write_text::font_size(48.0 * rectangleX.height() / 1'080, e_unit_pixel);
+         auto fontsize = ::write_text::font_size(24.0 * rectangleX.height() / 1'080, e_unit_pixel);
 
          if (!m_pfontThomasBS_)
          {

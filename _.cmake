@@ -163,7 +163,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(ROOT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(WORKSPACE_FOLDER ${ROOT_SOURCE_DIR})
-set(APPLICATION_BUILD_HELPER_BINARY "${HOME_DIR}/code/operating_system/tool/bin/application_build_helper")
 
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
@@ -274,6 +273,8 @@ endif()
 message(STATUS "going to include \"operating_system/_.cmake\"")
 include(operating_system/_.cmake)
 
+
+set(APPLICATION_BUILD_HELPER_BINARY "${HOME_DIR}/code/operating_system/tool/bin/${__TARGET_SYSTEM_ARCHITECTURE}/application_build_helper")
 
 
 

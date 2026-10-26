@@ -118,8 +118,8 @@ namespace acme
 
          ::pointer < ::acme::windowing::display >                    m_pacmewindowingdisplayWindow;
          class ::time m_timeLastPresentRequest;
-//         long                                                      m_lX11NativeVisualId;
-//         ::i32                                                     m_lX11MapNotify = -1;
+         long                                                        m_lX11NativeVisualId;
+         ::i32                                                       m_lX11MapNotify = -1;
 
          //::pointer < ::acme::draw2d::domain >         m_pacmedraw2ddomain;
 //enum_bias m_ebias;

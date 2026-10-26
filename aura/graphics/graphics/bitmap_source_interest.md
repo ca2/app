@@ -1,31 +1,25 @@
 # Bitmap source interest
 
-On Windows, `set_bitmap_source(name)` registers the existing shared bitmap and
-monitors the producer application's `appdata://bitmap_source/` folder. There is
-no additional source-name directory. Publishing starts only while a consumer
-holds a lease; this is independent of `FPS_DEBUG`.
+On Windows, `set_bitmap_source(appid, name, bCreate)` addresses a named bitmap
+under the producer application's roaming data. The producer monitors the
+source-specific folder for active consumer leases. Publishing starts only while
+a consumer holds a lease; this is independent of `FPS_DEBUG`.
 
 ## Consumer integration
 
-Include `aura/graphics/graphics/bitmap_source_buffer.h`. Keep a
-`::pointer<::graphics::bitmap_source_interest>` member in the consuming object:
+Pass the producer app ID and source name when opening the bitmap as a consumer:
 
 ```cpp
-constructø(m_pBitmapInterest);
-m_pBitmapInterest->acquire(
-   directory()->appdata("app-core/hello_multiverse"),
-   "app_graphics3d_hello_space.<unique-instance-id>.txt");
+bitmapSource->set_bitmap_source(
+   "app-core/hello_multiverse", "HelloMultiverse!!", false);
 ```
 
-Replace `<unique-instance-id>` with a unique value for each simultaneous consumer
-instance. Acquire before opening/reading the shared bitmap; retry opening the
-bitmap if the producer is not running yet. Keep the lease alive while consuming,
-and call `release_interest()` or destroy/release the object when finished. Its
-context must be initialized, as `constructø` does. `acquire` throws on errors or
-when another consumer already owns that exact declaration.
-
-The app-data path must resolve to the producer's application data directory.
-Do not use the consumer's own `appdata://` folder.
+The consumer app ID comes from the current application. The declaration path is
+`roaming/<producer-app-id>/bitmap-source/<source-name>/<consumer-app-id>.txt`;
+for hello_space this is
+`roaming/app-core/hello_multiverse/bitmap-source/HelloMultiverse!!/app-core/hello_space.txt`.
+The shared bitmap is stored as `buffer.bin` beside that declaration. The
+consumer holds the declaration's lock for as long as its bitmap source is open.
 
 ## Protocol
 
@@ -33,7 +27,7 @@ Do not use the consumer's own `appdata://` folder.
 - Hold an exclusive, nonblocking byte-range lock at offset `0x7ffffffe`, length 1.
   Locking beyond EOF does not grow the file and leaves its contents available for
   future request metadata. The initial declaration may be empty.
-- The producer probes that same byte range on each `.txt` declaration. Only a
+- The producer recursively probes that same byte range on each `.txt` declaration. Only a
   lock-conflict result establishes interest. Other open/lock failures do not.
 - Files beginning with `_` are ignored. An unlocked file is inactive, regardless
   of its filename. Stale files are left in place; they need no cleanup for correct
@@ -52,6 +46,3 @@ both recent Windows and the ReactOS/XP build without newer API imports. The POSI
 adapter currently implements byte-range locks as no-ops, so demand control is
 not enabled there: publishing retains its prior behavior and acquiring this
 lease reports `error_not_supported`.
-
-The hello_space source is not present in this checkout; its bitmap reader still
-needs to acquire this lease using the integration above.

@@ -21,14 +21,14 @@
 #include <OpenGL/gl3.h>
 #include <OpenGL/glext.h>
 #endif
-#include "cpu_buffer.h"
 #include "context_egl.h"
 //#include "opengl.h"
 #include "acme/platform/application.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/image/target.h"
 #include "aura/platform/system.h"
 #include "aura/windowing/window.h"
+#include "acme_windowing_x11/_.h"
+#include "acme_windowing_x11/window.h"
 const_char_pointer eglErrorString(EGLint error);
 #ifdef WITH_X11
 #include <X11/Xlib.h>
@@ -62,7 +62,7 @@ namespace gpu_opengl
    bool is_glad_gl_loaded();
 
    // should be called within a currently selected egl context
-   void load_glad_gl();
+   void load_glad_gl(::gpu::context * pgpucontext);
 
 
 
@@ -190,37 +190,47 @@ namespace gpu_opengl
 
       defer_bind_egl_api();
 
-      // EGLint contextAttribs[] = {
-      //    EGL_CONTEXT_MAJOR_VERSION, 3,
-      //    EGL_CONTEXT_MINOR_VERSION, 3,
-      //    //EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
-      //    // optional debug flag:
-      //    //EGL_CONTEXT_FLAGS_KHR, EGL_CONTEXT_OPENGL_DEBUG_BIT_KHR,
-      //    EGL_NONE
-      // };      // Step 7 - Create a context.
-
       auto eglcontextPrimary = pegldevice->m_eglcontextPrimary;
 
-      EGLint *ctx_attrib_list = nullptr;
-
-#ifdef _DEBUG
-
-      EGLint ctx_attribs[] = {
-         EGL_CONTEXT_OPENGL_DEBUG, EGL_TRUE,
+      EGLint ctx_attribs45[] = {
+         EGL_CONTEXT_MAJOR_VERSION, 4,
+         EGL_CONTEXT_MINOR_VERSION, 5,
+         EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
          EGL_NONE
-     };
+      };
 
-      ctx_attrib_list = ctx_attribs;
+      EGLint ctx_attribs33[] = {
+         EGL_CONTEXT_MAJOR_VERSION, 3,
+         EGL_CONTEXT_MINOR_VERSION, 3,
+         EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
+         EGL_NONE
+      };
 
-#endif
+      EGLint ctx_attribsDefault[] = { EGL_NONE };
 
-      //EGLContext eglContext;
-      //m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, contextAttribs);
-      m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary,
-         ctx_attrib_list);
-      //m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, nullptr);
-      //m_eglcontext = eglCreateContext(egldisplay, eglconfig, nullptr, nullptr);
-      //qDebug() << "egl error" << eglGetError();
+      EGLint error33 = EGL_SUCCESS;
+      EGLint error45 = EGL_SUCCESS;
+
+      // Match the OpenGL 3.3 core profile requested by the WGL backend.
+      m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, ctx_attribs33);
+
+      if (m_eglcontext == EGL_NO_CONTEXT)
+      {
+
+         error33 = eglGetError();
+
+         m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, ctx_attribs45);
+
+      }
+
+      if (m_eglcontext == EGL_NO_CONTEXT)
+      {
+
+         error45 = eglGetError();
+
+         m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, ctx_attribsDefault);
+
+      }
 
       if (m_eglcontext == EGL_NO_CONTEXT)
       {
@@ -231,7 +241,13 @@ namespace gpu_opengl
 
          ::string strError;
 
-         strError.formatf("Failed to create context (eglError: %s : 0x%x)", ::string(scopedstrError).c_str(), iError);
+         strError.formatf(
+            "Failed to create an OpenGL context (4.5 error=0x%x, 3.3 error=0x%x, default error=0x%x; final eglError: %s : 0x%x)",
+            error45,
+            error33,
+            iError,
+            ::string(scopedstrError).c_str(),
+            iError);
 
          warning() << strError;
 
@@ -259,7 +275,7 @@ namespace gpu_opengl
 
          //_context_lock();
 
-         load_glad_gl();
+         load_glad_gl(this);
 
          auto pszGlVersion = glGetString(GL_VERSION);
 
@@ -314,7 +330,16 @@ namespace gpu_opengl
 
       }
 
-      auto window = (EGLNativeWindowType) pacmewindowingwindow->__x11_Window();
+      ::cast < ::x11::acme::windowing::window > px11window = pacmewindowingwindow;
+
+      if (!px11window)
+      {
+
+         throw ::exception(error_wrong_type);
+
+      }
+
+      auto window = (EGLNativeWindowType) px11window->__x11_window();
 
       if (window == None)
       {
@@ -331,7 +356,7 @@ namespace gpu_opengl
       information("EGL config visual ID: {}", visualId);
 
       // Get the X11 window's visual
-      auto display = (Display*)pacmewindowingwindow->__x11_Display();
+      auto display = px11window->__x11_display();
       XWindowAttributes attrs;
       XGetWindowAttributes(display, window, &attrs);
       information("X11 window visual ID: {}", attrs.visual->visualid);
@@ -370,7 +395,7 @@ namespace gpu_opengl
 
       m_bEGLWindowSurface = true;
 
-//      m_pacmewindowingwindowWindowSurface = pacmewindowingwindow;
+      m_pwindowSurface = pacmewindowingwindow;
 
    }
 
@@ -387,6 +412,61 @@ namespace gpu_opengl
       __create_egl_window_surface(pacmewindowingwindow);
 
       __on_after_egl_context_and_surface_creation();
+
+   }
+
+
+   void context_egl::_create_gpu_context(
+      ::gpu::device * pgpudevice,
+      const ::gpu::enum_output & eoutput,
+      const ::gpu::enum_scene & escene,
+      ::draw2d::domain * pdraw2ddomain,
+      ::draw2d::graphics * pdraw2dgraphics,
+      const ::i32_point & pointInput,
+      const ::i32_point & pointOutput,
+      const ::i32_size & size,
+      const ::i32_size & sizeRaw)
+   {
+
+      ::gpu_opengl::context::_create_gpu_context(
+         pgpudevice,
+         eoutput,
+         escene,
+         pdraw2ddomain,
+         pdraw2dgraphics,
+         pointInput,
+         pointOutput,
+         size,
+         sizeRaw);
+
+      if (eoutput == ::gpu::e_output_swap_chain)
+      {
+
+         if (!m_puserinteractionTopic)
+         {
+
+            throw ::exception(error_wrong_state, "An EGL window context requires its owning interaction");
+
+         }
+
+         auto pacmewindowingwindow = m_puserinteractionTopic->acme_windowing_window();
+
+         if (!pacmewindowingwindow)
+         {
+
+            throw ::exception(error_wrong_state, "An EGL window context requires an X11 window");
+
+         }
+
+         _create_window_context(pacmewindowingwindow);
+
+      }
+      else
+      {
+
+         _create_cpu_buffer(size);
+
+      }
 
    }
 
@@ -1037,6 +1117,77 @@ namespace gpu_opengl
    }
 
 
+   void context_egl::ensure_context_current_for_glad()
+   {
+
+      auto eglcontextCurrent = eglGetCurrentContext();
+
+      if (eglcontextCurrent == m_eglcontext && m_eglcontext != EGL_NO_CONTEXT)
+      {
+
+         if (m_taskindexLock == -1)
+         {
+
+            m_taskindexLock = ::current_task_index();
+
+         }
+
+         return;
+
+      }
+
+      if (eglcontextCurrent != EGL_NO_CONTEXT)
+      {
+
+         throw ::exception(error_wrong_state, "A different EGL context is current while initializing OpenGL");
+
+      }
+
+      if (m_eglcontext == EGL_NO_CONTEXT || m_eglsurface == EGL_NO_SURFACE)
+      {
+
+         throw ::exception(error_wrong_state, "The EGL context or surface is not ready for OpenGL initialization");
+
+      }
+
+      auto taskindex = ::current_task_index();
+
+      if (m_taskindexLock != -1 && m_taskindexLock != taskindex)
+      {
+
+         throw ::exception(error_wrong_state, "The EGL context is locked by a different task");
+
+      }
+
+      ::cast < ::gpu_opengl::device_egl > pegldevice = m_pgpudevice;
+
+      auto egldisplay = pegldevice->m_egldisplay;
+
+      if (!eglMakeCurrent(egldisplay, m_eglsurface, m_eglsurface, m_eglcontext))
+      {
+
+         auto iError = eglGetError();
+
+         ::string strError;
+
+         strError.formatf("Failed to restore EGL context before GLAD initialization (eglError=0x%x)", iError);
+
+         throw ::exception(error_wrong_state, strError);
+
+      }
+
+      m_taskindexLock = taskindex;
+
+      if (eglGetCurrentContext() != m_eglcontext)
+      {
+
+         throw ::exception(error_wrong_state, "eglMakeCurrent succeeded but did not select the expected EGL context");
+
+      }
+
+   }
+
+
    void context_egl::swap_buffers()
    {
 
@@ -1054,7 +1205,7 @@ namespace gpu_opengl
 
       }
 
-      if (!m_pacmewindowingwindowWindowSurface)
+      if (!m_pwindowSurface)
       {
 
          information("context_egl::swap_buffers No gpu::context");
@@ -1063,7 +1214,7 @@ namespace gpu_opengl
 
       }
 
-      if (m_pacmewindowingwindowWindowSurface->m_lX11MapNotify != 1)
+      if (m_pwindowSurface->m_lX11MapNotify != 1)
       {
 
          information("context_egl::swap_buffers m_lX11MapNotify != 1");

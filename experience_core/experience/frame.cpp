@@ -1,5 +1,6 @@
 #include "platform.h"
 #include "frame.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/context.h"
@@ -75,12 +76,14 @@ namespace experience_core
 
       auto pointLastBottomRight = m_pframewindow->const_layout().window().raw_rectangle().bottom_right();
 
+      auto fDensity = pdraw2dgraphics->draw2d_domain()->get_density();
+
       if (pointBottomRight != pointLastBottomRight)
       {
 
-         auto pointInnerBottomRight = pointBottomRight - ::i32_size(9, 9);
+         auto pointInnerBottomRight = pointBottomRight - ::i32_size(9 * fDensity, 9 * fDensity);
 
-         auto pointInnerLastBottomRight = pointLastBottomRight - ::i32_size(9, 9);
+         auto pointInnerLastBottomRight = pointLastBottomRight - ::i32_size(9 * fDensity, 9 * fDensity);
 
          auto pointMinimumInnerBottomRight = pointInnerBottomRight.minimum(pointInnerLastBottomRight);
 
@@ -89,14 +92,14 @@ namespace experience_core
          rectangleLeft.left = 0;
          rectangleLeft.right = pointBottomRight.x;
          rectangleLeft.top = 0;
-         rectangleLeft.bottom = 7;
+         rectangleLeft.bottom = 7 * fDensity;
 
          pdraw2dgraphics->user_redraw()->set_need_redraw(rectangleLeft);
 
          ::i32_rectangle rectangleTop;
 
          rectangleTop.left = 0;
-         rectangleTop.right = 7;
+         rectangleTop.right = 7 * fDensity;
          rectangleTop.top = 0;
          rectangleTop.bottom = pointBottomRight.y;
 
@@ -376,10 +379,12 @@ namespace experience_core
 
          }
 
+         auto fDensity = m_pframewindow->draw2d_domain()->get_density();
+
          rectangle.left = m_pointWindowIcon.x;
          rectangle.top = m_pointWindowIcon.y;
-         rectangle.right = rectangle.left + m_sizeIcon.cx;
-         rectangle.bottom = rectangle.top + m_sizeIcon.cy;
+         rectangle.right = rectangle.left + m_sizeIcon.cx * fDensity;
+         rectangle.bottom = rectangle.top + m_sizeIcon.cy * fDensity;
 
          //rectangle.right = rectangle.left + pdrawicon->get_size().cx;
          //rectangle.bottom = rectangle.top + pdrawicon->get_size().cy;

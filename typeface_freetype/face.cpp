@@ -331,8 +331,8 @@ namespace typeface_freetype
    // Configuration (match GDI+ behavior)
    // -----------------------------------------
 
-    ::f64 fontSizePt = m_iPixelSize;     // same value you passed to GDI+ Font
-    ::f64 dpiY       = 96.0;             // or get from system if you prefer
+    ::f64 fontSizePixels = m_iPixelSize;     // same value you passed to GDI+ Font
+    //::f64 dpiY       = 72.0;             // or get from system if you prefer
    //
    // // Set character size in points (26.6 format)
    // FT_Error err = FT_Set_Char_Size(
@@ -359,26 +359,37 @@ namespace typeface_freetype
    ::f64 cellAscent   = (::f64)m_face->ascender;
    ::f64 cellDescent  = (::f64)(-m_face->descender);
    ::f64 lineSpacing  = (::f64)m_face->height;
+   ::f64 cellHeight   = (::f64)m_face->height;
 
    // -----------------------------------------
    // Convert to pixels (match your math)
    // -----------------------------------------
 
-   ::f64 ascentPx =
-      fontSizePt * cellAscent * dpiY / (emHeight * 72.0 + 0.5);
+   // ::f64 ascentPx =
+   //    fontSizePt * cellAscent * dpiY / (emHeight * 72.0 + 0.5);
+   //
+   // ::f64 descentPx =
+   //    fontSizePt * cellDescent * dpiY / (emHeight * 72.0 + 0.5);
 
-   ::f64 descentPx =
-      fontSizePt * cellDescent * dpiY / (emHeight * 72.0 + 0.5);
 
-   // FreeType font height (already scaled)
-   ::f64 fontHeightPx =
-      metrics.height / 64.0;
+      //::f64 lineSpacingPx =
+        // fontSizePt * lineSpacing * dpiY / (emHeight * 72.0 + 0.5);
 
-   ::f64 lineSpacingPx =
-      fontSizePt * lineSpacing * dpiY / (emHeight * 72.0 + 0.5);
+      //::f64 effectiveLineSpacing =
+        // std::max(fontHeightPx, lineSpacingPx);
+      // FreeType font height (already scaled)
+   //::f64 fontHeightPixels = metrics.height / 64.0;
 
-   ::f64 effectiveLineSpacing =
-      std::max(fontHeightPx, lineSpacingPx);
+   ::f64 fontHeightPixels = m_iPixelSize;
+
+   ::f64 ascentPx = fontHeightPixels * cellAscent / cellHeight;
+
+   ::f64 descentPx = fontHeightPixels * cellDescent / cellHeight;
+
+   ::f64 lineSpacingPx = fontHeightPixels * 0.25;
+
+   //::f64 effectiveLineSpacing =
+     // std::max(fontHeightPx, lineSpacingPx);
 
    // -----------------------------------------
    // Fill output
@@ -386,12 +397,12 @@ namespace typeface_freetype
 
    ptextmetrics->m_dAscent  = ascentPx;
    ptextmetrics->m_dDescent = descentPx;
-   ptextmetrics->m_dHeight  = fontHeightPx;
+   ptextmetrics->m_dHeight  = fontHeightPixels;
 
-   ptextmetrics->m_dInternalLeading = 0.0;
+   ptextmetrics->m_dInternalLeading = fontHeightPixels * 0.25 * 0.5;
 
-   ptextmetrics->m_dExternalLeading =
-      effectiveLineSpacing - (ascentPx + descentPx);
+   ptextmetrics->m_dExternalLeading = fontHeightPixels * 0.25 * 0.5;
+
 //}
 
    }

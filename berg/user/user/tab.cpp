@@ -1020,7 +1020,9 @@ namespace user
          if (get_data()->m_bVertical)
          {
 
-            ptOffset.y += 4;
+            fDensity = get_density_for_window();
+
+            ptOffset.y += 4 * fDensity;
 
             ptOffset.y += m_pointBarDragScroll.y;
 
@@ -1028,7 +1030,9 @@ namespace user
          else
          {
 
-            ptOffset.x += 4;
+            fDensity = get_density_for_window();
+
+            ptOffset.x += 4 * fDensity;
 
             ptOffset.x += m_pointBarDragScroll.x;
 

@@ -21,8 +21,9 @@ namespace graphics
       ::file_pointer m_pfileLease;
 
       ~bitmap_source_interest() override;
-      void acquire(const ::file::path & pathProducerAppData,
-         const ::scoped_string & scopedstrInstanceName);
+      void acquire(const ::scoped_string & scopedstrProducerAppId,
+         const ::scoped_string & scopedstrBitmapSourceName,
+         const ::scoped_string & scopedstrConsumerAppId);
       void release_interest();
       void destroy() override;
    };
@@ -60,6 +61,8 @@ namespace graphics
 
 
       ::pointer<file::memory_map>        m_pmemorymap;
+      ::pointer<bitmap_source_interest>  m_pbitmapsourceinterest;
+      string                              m_strAppId;
       string                              m_strBitmapSource;
       ::pointer < ::mutex >                 m_pmutexBitmapSource;
       std::atomic<bool> m_bBitmapSourceInterested{false};
@@ -85,6 +88,9 @@ namespace graphics
       bool ipc_copy(const pixmap * ppixmap) override;
 
       void set_bitmap_source(const ::scoped_string & scopedstrBitmapSource, bool bCreate = true) override;
+      void set_bitmap_source(const ::scoped_string & scopedstrAppId,
+         const ::scoped_string & scopedstrBitmapSource,
+         bool bCreate = true) override;
 
       void clear_bitmap_source() override;
 

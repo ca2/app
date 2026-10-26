@@ -108,11 +108,11 @@ namespace experience
 
       void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      virtual void layout_control_box_buttons();
+      virtual void layout_control_box_buttons(::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual ::i32_size get_button_size(enum_button ebutton);
+      virtual ::i32_size get_button_size(enum_button ebutton, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
-      virtual ::i32_rectangle get_button_margin(enum_button ebutton);
+      virtual ::i32_rectangle get_button_margin(enum_button ebutton, ::draw2d::graphics_pointer & pdraw2dgraphics);
 
       virtual ::i32 calculate_button_size(::draw2d::graphics_pointer & pdraw2dgraphics);
 
@@ -122,7 +122,7 @@ namespace experience
 
       ::i32 auto_hide_threshold_height();
 
-      virtual void _layout_button(enum_button ebutton, ::i32_rectangle & rectangle);
+      virtual void _layout_button(enum_button ebutton, ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual bool should_show_button(enum_button ebutton) const;
 
       virtual item * get_item(enum_button ebutton, bool bCreate = false);
@@ -154,6 +154,9 @@ namespace experience
 
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
+
+
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
    };

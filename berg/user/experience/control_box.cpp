@@ -13,6 +13,7 @@
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/windowing/windowing.h"
 #include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/message/user.h"
@@ -446,7 +447,7 @@ namespace experience
    }
 
 
-   void control_box::_layout_button(enum_button ebutton, ::i32_rectangle & rectangle)
+   void control_box::_layout_button(enum_button ebutton, ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pbutton = get_box_button(ebutton);
@@ -454,9 +455,9 @@ namespace experience
       if (should_show_button(ebutton))
       {
 
-         auto sizeButton = get_button_size(ebutton);
+         auto sizeButton = get_button_size(ebutton, pdraw2dgraphics);
 
-         auto rectangleMargin = get_button_margin(ebutton);
+         auto rectangleMargin = get_button_margin(ebutton, pdraw2dgraphics);
 
          rectangle.right = rectangle.left - rectangleMargin.right;
 
@@ -546,14 +547,14 @@ namespace experience
 
 //      reset_layout(pdraw2dgraphics);
 
-      layout_control_box_buttons();
+      layout_control_box_buttons(pdraw2dgraphics);
 
       order(e_zorder_top);
 
    }
 
 
-   void control_box::layout_control_box_buttons()
+   void control_box::layout_control_box_buttons(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangle = this->rectangle(::user::e_layout_layout);
@@ -562,23 +563,23 @@ namespace experience
 //
       rectangle.left = rectangle.right;
 
-      _layout_button(e_button_close, rectangle);
+      _layout_button(e_button_close, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_up, rectangle);
+      _layout_button(e_button_up, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_down, rectangle);
+      _layout_button(e_button_down, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_maximize, rectangle);
+      _layout_button(e_button_maximize, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_restore, rectangle);
+      _layout_button(e_button_restore, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_minimize, rectangle);
+      _layout_button(e_button_minimize, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_notify_icon, rectangle);
+      _layout_button(e_button_notify_icon, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_transparent_frame, rectangle);
+      _layout_button(e_button_transparent_frame, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_dock, rectangle);
+      _layout_button(e_button_dock, rectangle, pdraw2dgraphics);
 
    }
 
@@ -946,7 +947,7 @@ namespace experience
 //   }
 
 
-   i32_size control_box::get_button_size(enum_button ebutton)
+   i32_size control_box::get_button_size(enum_button ebutton, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       return m_sizeButtonDefault;
@@ -954,15 +955,18 @@ namespace experience
    }
 
 
-   i32_rectangle control_box::get_button_margin(enum_button ebutton)
+   i32_rectangle control_box::get_button_margin(enum_button ebutton, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::i32_rectangle rectangleMargin;
 
+      auto fDensity = pdraw2dgraphics->draw2d_domain()->get_density();
+      auto iMargin = (::i32) (m_iDefaultButtonMargin * fDensity + 0.5f);
+
       rectangleMargin.left = 0;
-      rectangleMargin.top = m_iDefaultButtonMargin;
-      rectangleMargin.right = m_iDefaultButtonMargin;
-      rectangleMargin.bottom = m_iDefaultButtonMargin;
+      rectangleMargin.top = iMargin;
+      rectangleMargin.right = iMargin;
+      rectangleMargin.bottom = iMargin;
 
       return rectangleMargin;
 
@@ -974,7 +978,10 @@ namespace experience
 
       auto dFontHeight = m_pfontMarlett->text_metric(pdraw2dgraphics).get_line_height();
 
-      ::i32 iButtonSize = (::i32) (dFontHeight + m_iDefaultButtonMargin * 3);
+      auto fDensity = pdraw2dgraphics->draw2d_domain()->get_density();
+      auto iMargin = (::i32) (m_iDefaultButtonMargin * fDensity + 0.5f);
+
+      ::i32 iButtonSize = (::i32) (dFontHeight + iMargin * 3);
 
       m_sizeButtonDefault = ::i32_size(iButtonSize, iButtonSize);
 
@@ -1024,7 +1031,8 @@ namespace experience
 
             iWidth += m_iDefaultButtonSize;
 
-            iWidth += m_iDefaultButtonMargin;
+            auto fDensity = m_pframewindow ? m_pframewindow->get_density_for_window() : get_density_for_window();
+            iWidth += (::i32) (m_iDefaultButtonMargin * fDensity + 0.5f);
 
          }
 
@@ -1286,6 +1294,16 @@ namespace experience
             post_redraw();
          }
       }
+
+   }
+
+
+   void control_box::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
+   {
+
+      ::user::box::on_layout(pdraw2dgraphics);
+
+      layout_control_box_buttons(pdraw2dgraphics);
 
    }
 

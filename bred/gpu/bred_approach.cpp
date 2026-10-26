@@ -178,7 +178,23 @@ namespace gpu
    {
 
       ::gpu::approach::gpu_on_create_window(pacmewindowingwindow);
-      
+
+      ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
+
+      if (!pwindow)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (pwindow->m_papexgpuwindowattachment)
+      {
+
+         return;
+
+      }
+
       ::string strType;
 
       strType = ::type(pacmewindowingwindow->m_pacmeuserinteraction).name();
@@ -186,41 +202,19 @@ namespace gpu
       const_char_pointer pszType = strType.c_str();
 
       information("gpu::approach::gpu_on_create_window for type {}", pszType);
-      
-      ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
 
-      auto pgpudevice = get_gpu_device(pwindow->draw2d_domain());
+      auto pgpuwindowattachment = allocate_gpu_window_attachment(pacmewindowingwindow);
 
-      auto pgpucontext = pgpudevice->allocate_gpu_context();
-
-      ::gpu::enum_output eoutput = ::gpu::e_output_none;
-
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!pgpuwindowattachment)
       {
 
-         eoutput = ::gpu::e_output_swap_chain;
-
-      }
-      else
-      {
-
-         eoutput = ::gpu::e_output_gpu_buffer;
+         throw ::exception(error_wrong_state);
 
       }
 
-      auto sizeWindow = pacmewindowingwindow->m_sizeWindow;
+      pwindow->m_papexgpuwindowattachment = pgpuwindowattachment;
 
-      auto rectangleTarget = pacmewindowingwindow->get_window_rectangle();
-
-      auto pointTarget = rectangleTarget.origin();
-
-      auto size = rectangleTarget.size();
-
-      auto sizeRaw = pacmewindowingwindow->get_raw_buffer_size();
-
-      ::gpu::enum_scene escene = ::gpu::e_scene_2d;
-
-      pgpucontext->create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, nullptr, {}, pointTarget, size, sizeRaw);
+      pgpuwindowattachment->initialize_gpu_window_attachment(pacmewindowingwindow);
 
       //::cast<::gpu_opengl::approach> papproach = m_papplication->get_gpu_approach();
       _gpu_on_create_window(pacmewindowingwindow);

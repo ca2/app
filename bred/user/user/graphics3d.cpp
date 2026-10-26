@@ -28,11 +28,13 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/aaa_target.h"
 #include "aura/message/user.h"
+#include "aura/windowing/window.h"
 #include "bred/graphics3d/types.h"
 #include "aura/platform/application.h"
 #include "bred/gpu/graphics.h"
 #include "bred/gpu/renderer.h"
 #include "bred/prodevian/immersion.h"
+#include <atomic>
 
 
 namespace user
@@ -530,6 +532,16 @@ namespace user
    //void graphics3d::_000OnDraw(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
 
+      static std::atomic_bool s_bLoggedFirstDraw = false;
+
+      if (!s_bLoggedFirstDraw.exchange(true))
+      {
+
+         informationf("user::graphics3d first _001OnDraw interaction=%p engine=%p",
+            this, m_pgraphics3dengineinstance.m_p);
+
+      }
+
       if (!m_pgraphics3dengineinstance)
       {
 
@@ -662,12 +674,19 @@ namespace user
 
          auto rectanglePlacement = this->host_rectangle();
 
-         rectanglePlacement.offset(-rectanglePlacement.top_left());
-
          if (m_papplication->m_gpu.m_bUseSwapChainWindow)
          {
 
-            client_to_screen()(rectanglePlacement);
+            // The interaction's cached screen origin can lag an X11 window
+            // move. Compose in the current native window's coordinates.
+            auto pwindow = this->window();
+            rectanglePlacement.offset(pwindow->get_window_rectangle().origin());
+
+         }
+         else
+         {
+
+            rectanglePlacement.offset(-rectanglePlacement.top_left());
 
          }
 

@@ -1,5 +1,6 @@
 // From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSorensen!!
 #include "platform.h"
+#include "acme/parallelization/mutex.h"
 #include "communication.h"
 #include "target.h"
 #include "caller.h"
@@ -327,7 +328,7 @@ namespace interprocess
       if (pmutex.is_null())
       {
 
-         constructø(pmutex);
+         pmutex = create_newø<::mutex>();
 
       }
 

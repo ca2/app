@@ -408,7 +408,7 @@ namespace gpu
       virtual void set_input_placement(const ::i32_rectangle & rectangle);
       virtual void set_output_placement(const ::i32_rectangle & rectangle);
       virtual void set_size(const ::i32_size & size);
-      virtual void on_resize(const ::i32_size & size);
+      virtual void on_resize(const ::i32_size & sizes, ::draw2d::domain * pdraw2ddomain, ::draw2d::graphics * pdraw2dgraphics);
 
       virtual string _001GetIntroProjection();
       virtual string _001GetIntroFragment();

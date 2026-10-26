@@ -1509,7 +1509,7 @@ namespace draw2d_cairo
       if (m_pdraw2dpen->m_epenalign == ::draw2d::e_pen_align_inset)
       {
 
-         cairo_scale(m_pcairo, radiusx - m_pdraw2dpen->m_dWidth / 2.0, radiusy - m_pdraw2dpen->m_dWidth / 2.0);
+         cairo_scale(m_pcairo, radiusx - m_pdraw2dpen->m_dWidth * draw2d_domain()->get_density() / 2.0, radiusy - m_pdraw2dpen->m_dWidth * draw2d_domain()->get_density() / 2.0);
 
       }
       else
@@ -5832,7 +5832,7 @@ namespace draw2d_cairo
 
       }
 
-      cairo_set_line_width(m_pcairo, pdraw2dpen->m_dWidth);
+      cairo_set_line_width(m_pcairo, pdraw2dpen->m_dWidth * draw2d_domain()->get_density());
 
       return true;
 

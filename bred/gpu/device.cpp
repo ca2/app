@@ -434,11 +434,11 @@ namespace gpu
       {
 
          pcontext->send(
-            [pcontext, size]()
+            [pcontext, size, pdraw2dgraphics]()
             {
 
                //pcontext->m_pgpucompositor = nullptr;
-               pcontext->on_resize(size);
+               pcontext->on_resize(size, nullptr, pdraw2dgraphics);
 
             });
 

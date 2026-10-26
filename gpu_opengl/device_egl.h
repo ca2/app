@@ -33,11 +33,8 @@ namespace gpu_opengl
       device_egl();
       ~device_egl() override;
 
-      ::gpu::context_pointer allocate_context() override;
-      //void create_context() override;
-      //void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::i32_size& size);
-      void initialize_gpu_device_for_swap_chain(::gpu::approach* papproach, ::windowing::window* pwindow) override;
-      void initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::i32_rectangle& rectanglePlacement) override;
+      void initialize_gpu_device(::gpu::approach * papproach, ::draw2d::domain * pdraw2ddomain) override;
+      ::gpu::context_pointer allocate_gpu_context() override;
 
 
       //void _create_offscreen_buffer(const ::i32_size& size) override;

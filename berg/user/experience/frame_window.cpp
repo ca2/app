@@ -3059,7 +3059,7 @@ namespace experience
 
          m_pframe->m_pcontrolbox->hide_button(e_button_maximize);
 
-         m_pframe->m_pcontrolbox->layout_control_box_buttons();
+         m_pframe->m_pcontrolbox->set_need_layout();
 
       }
 
@@ -3076,7 +3076,7 @@ namespace experience
 
          m_pframe->m_pcontrolbox->hide_button(e_button_maximize, false);
 
-         m_pframe->m_pcontrolbox->layout_control_box_buttons();
+         m_pframe->m_pcontrolbox->set_need_layout();
 
       }
 

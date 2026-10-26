@@ -1613,7 +1613,8 @@ namespace windowing
 
          auto sizeMaximumRestore = sizeMin.maximum(rectangleWorkspace.size() * 9 / 10);
 
-         if (!(rectangleNormal.size() >= sizeMin)
+         if (rectangleNormal.is_empty()
+            || !(rectangleNormal.size() >= sizeMin)
             || !(rectangleNormal.size() <= sizeMaximumRestore))
          {
 

@@ -4,13 +4,14 @@
 
 #include "subsystem/platform/subsystem.h"
 
-
+namespace subsystem
+{
 
    //template<typename PARTICLE_INTERFACE, typename BASE>
    //PARTICLE_INTERFACE *get_implementation(const particle_interface<PARTICLE_INTERFACE, BASE> *pinterface);
 
    template< typename TYPE>
-   ::Particle *_get_implementation1(const TYPE *pinterface);
+   Particle *_get_implementation1(const TYPE *pinterface);
 
    template<typename PARTICLE_INTERFACE, typename TYPE>
    PARTICLE_INTERFACE *_get_implementation(const TYPE *pinterface);
@@ -28,7 +29,7 @@
    PARTICLE_INTERFACE *get_implementation(const Implementation<PARTICLE_INTERFACE, BASE> *pimplementation);
 
    template<typename AGGREGATE>
-   ::Particle *get_implementation(const Object<AGGREGATE> * pobject);
+   Particle *get_implementation(const Object<AGGREGATE> * pobject);
 
    class CLASS_DECL_SUBSYSTEM Particle : virtual public ::particle
    {
@@ -43,16 +44,16 @@
       ~Particle() override;
 
       // weaker, it may return something that behaves like the implementation (e.g. proxies)
-      virtual ::Particle * _get_implementation();
+      virtual Particle * _get_implementation();
 
       // weaker, it may return something that behaves like a callback (e.g. implementation)
-      virtual ::Particle * _get_callback();
+      virtual Particle * _get_callback();
 
       // strict/precise, should only return it if its assured to be a implemention
-      virtual ::Particle * _get_implementation1();
+      virtual Particle * _get_implementation1();
 
       // strict/precise, should only return it if its assured to be a callback
-      virtual ::Particle * _get_callback1();
+      virtual Particle * _get_callback1();
 
       template<typename IMPL>
       IMPL *impl();
@@ -60,7 +61,7 @@
       template<typename CALLBACK_TYPE>
       CALLBACK_TYPE *get_callback();
 
-      //virtual operator ::particle* () { return get_implementation();
+      //virtual operator Particle* () { return get_implementation();
       //}
 
 
@@ -103,7 +104,7 @@
    //public:
 
    //   using class_type = interface_t;
-   //   using BASE_TYPE = ::particle_base;
+   //   using BASE_TYPE = Particle_base;
    //   using INTERFACE_TYPE = PARTICLE_SLICE;
    //   using BASE_INTERFACE_TYPE = typename BASE_TYPE::INTERFACE_TYPE;
 
@@ -138,8 +139,8 @@
 
    #define ImplementCompositeø(Name, name) \
    ::pointer<Name##Interface> m_p##name; \
-   ::Particle * _get_implementation() override {return m_p##name.m_p;} \
-   ::Particle * _get_implementation1() override {return m_p##name.m_p;} \
+   Particle * _get_implementation() override {return m_p##name.m_p;} \
+   Particle * _get_implementation1() override {return m_p##name.m_p;} \
    Name##Interface * get_implementation() {return m_p##name.m_p;} \
    virtual void set##Name##Implementation(Name##Interface * pinterfaceImplementation) \
    { \
@@ -149,8 +150,8 @@
 
  #define ImplementCallbackø(Name, name) \
  ::pointer<Composite<Name##Interface>> m_p##name##Callback; \
- ::Particle *_get_callback() override { return m_p##name##Callback.m_p; } \
-::Particle *_get_callback1() override { return m_p##name##Callback.m_p; } \
+ Particle *_get_callback() override { return m_p##name##Callback.m_p; } \
+Particle *_get_callback1() override { return m_p##name##Callback.m_p; } \
  void set##Name##Composite(Composite < Name##Interface > * pcompositeCallback) \
  { \
  m_p##name##Callback = pcompositeCallback; \
@@ -158,8 +159,8 @@
 
 #define ImplementCompositeWithCallbackø(Name, name)                                                                             \
 ::pointer<Name##Interface> m_p##name;                                                                            \
-virtual ::Particle *get_implementation() { return m_p##name.m_p; }                                                       \
-::Particle *_get_implementation1() override{ return m_p##name.m_p; }                                                       \
+virtual Particle *get_implementation() { return m_p##name.m_p; }                                                       \
+Particle *_get_implementation1() override{ return m_p##name.m_p; }                                                       \
 virtual void set##Name##Implementation(Name##Interface *pinterfaceImplementation)                                \
 {                                                                                                                \
    m_p##name = pinterfaceImplementation;                                                                         \
@@ -214,7 +215,7 @@ virtual void set##Name##Implementation(Name##Interface *pinterfaceImplementation
       IMPL * impl()
       {
 
-         ::cast < IMPL > pimp = ::_get_implementation1(this);
+         ::cast < IMPL > pimp = ::subsystem::_get_implementation1(this);
 
          return pimp;
 
@@ -255,7 +256,7 @@ virtual void set##Name##Implementation(Name##Interface *pinterfaceImplementation
 
 
    //template<typename PARTICLE_INTERFACE>
-   //class composite<PARTICLE_INTERFACE, ::particle_base > :
+   //class composite<PARTICLE_INTERFACE, Particle_base > :
    //   virtual public PARTICLE_INTERFACE
    //{
    //public:
@@ -388,7 +389,7 @@ virtual void set##Name##Implementation(Name##Interface *pinterfaceImplementation
 
 
 #define Implement1Defaultø(MAIN_CLASS)            \
-::Particle * _get_implementation1()           \
+Particle * _get_implementation1()           \
 {           \
    \
              return this;           \
@@ -398,21 +399,21 @@ virtual void set##Name##Implementation(Name##Interface *pinterfaceImplementation
 
 
 #define Implement1Callbackø(MAIN_CLASS)            \
-::Particle * _get_implementation1()           \
+Particle * _get_implementation1()           \
 {           \
 \
 return this;           \
 \
 }           \
 \
-::Particle * _get_callback()  override          \
+Particle * _get_callback()  override          \
 {           \
 \
 return MAIN_CLASS::_get_callback();           \
 \
 }           \
 \
-::Particle * _get_callback1()           \
+Particle * _get_callback1()           \
 {           \
 \
 return MAIN_CLASS::_get_callback1();           \
@@ -496,7 +497,7 @@ return MAIN_CLASS::_get_callback1();           \
       }
 
 
-      ::Particle * _get_implementation1() override
+      Particle * _get_implementation1() override
       {
 
          return this;
@@ -520,7 +521,7 @@ return MAIN_CLASS::_get_callback1();           \
 
 #define ImplementAggregateø(Name, Base) \
 using MAIN_AGGREGATE_INTERFACE_TYPE = typename Aggregate<Name##Composite, Base##Aggregate>::MAIN_AGGREGATE_INTERFACE_TYPE; \
-::Particle * _get_implementation1() override\
+Particle * _get_implementation1() override\
 {\
 \
 return Name##Composite::_get_implementation1();\
@@ -552,7 +553,7 @@ void set##Name##Implementation(MAIN_AGGREGATE_INTERFACE_TYPE * pimpl)   override
 
 #define ImplementBaseø(Name)                                                                                       \
 using MAIN_AGGREGATE_INTERFACE_TYPE = typename Aggregate<Name##Composite>::MAIN_AGGREGATE_INTERFACE_TYPE; \
-::Particle * _get_implementation1() override\
+Particle * _get_implementation1() override\
 {\
 \
 return Name##Composite::_get_implementation1();\
@@ -580,12 +581,12 @@ Name##Composite::set##Name##Implementation(pimpl);                              
 
       using MAIN_AGGREGATE_INTERFACE_TYPE = typename COMPOSITE::INTERFACE_TYPE;
 
-      ::Particle * _get_implementation() override
+      Particle * _get_implementation() override
       {
          return COMPOSITE::_get_implementation();
       }
 
-      ::Particle * _get_implementation1() override
+      Particle * _get_implementation1() override
       {
          return COMPOSITE::_get_implementation();
       }
@@ -595,7 +596,7 @@ Name##Composite::set##Name##Implementation(pimpl);                              
 
 
    template<typename COMPOSITE >
-   class Aggregate< COMPOSITE, ::Particle > :
+   class Aggregate< COMPOSITE, Particle > :
       virtual public COMPOSITE
    {
    public:
@@ -661,7 +662,7 @@ Name##Composite::set##Name##Implementation(pimpl);                              
 
 
    template < typename TYPE >
-   ::Particle * _get_implementation1(const TYPE * pinterfaceConst)
+   Particle * _get_implementation1(const TYPE * pinterfaceConst)
    {
 
       if (::is_null(pinterfaceConst))
@@ -688,7 +689,7 @@ Name##Composite::set##Name##Implementation(pimpl);                              
 
 
    template < typename TYPE >
-   ::Particle * _get_callback1(const TYPE * pinterfaceConst)
+   Particle * _get_callback1(const TYPE * pinterfaceConst)
    {
 
       if (::is_null(pinterfaceConst))
@@ -781,7 +782,7 @@ Name##Composite::set##Name##Implementation(pimpl);                              
    }
 
    template < typename AGGREGATE >
-   inline ::Particle * get_implementation(const Object<AGGREGATE> * pobject)
+   inline Particle * get_implementation(const Object<AGGREGATE> * pobject)
    {
 
       return _get_implementation<AGGREGATE>(pobject);
@@ -845,7 +846,7 @@ template<typename IMPL>
 IMPL *Particle::impl()
    {
 
-      ::cast<IMPL> pimp = ::_get_implementation<IMPL>(_get_implementation());
+      ::cast<IMPL> pimp = ::subsystem::_get_implementation<IMPL>(_get_implementation());
 
       return pimp;
 
@@ -856,7 +857,7 @@ template<typename CALLBACK_TYPE>
 CALLBACK_TYPE *Particle::get_callback()
    {
 
-      ::cast<CALLBACK_TYPE> pimp = ::_get_callback1(this);
+      ::cast<CALLBACK_TYPE> pimp = ::subsystem::_get_callback1(this);
 
       return pimp;
 
@@ -865,7 +866,7 @@ CALLBACK_TYPE *Particle::get_callback()
 
 #define ImplementObjectø(Name)                                                                                       \
 using MAIN_AGGREGATE_INTERFACE_TYPE = typename Name##Aggregate::MAIN_AGGREGATE_INTERFACE_TYPE;                       \
-::Particle * _get_implementation1() override\
+Particle * _get_implementation1() override\
 {\
 \
    return Name##Aggregate::_get_implementation1();\
@@ -887,7 +888,7 @@ operator MAIN_AGGREGATE_INTERFACE_TYPE *() { return this->impl<MAIN_AGGREGATE_IN
       using INTERFACE_TYPE = AGGREGATE::MAIN_AGGREGATE_INTERFACE_TYPE;
 
 
-      ::Particle *_get_callback() override
+      Particle *_get_callback() override
       {
 
          return this;
@@ -895,7 +896,7 @@ operator MAIN_AGGREGATE_INTERFACE_TYPE *() { return this->impl<MAIN_AGGREGATE_IN
       }
 
 
-      ::Particle * _get_callback1() override
+      Particle * _get_callback1() override
       {
 
          return this;
@@ -906,7 +907,7 @@ operator MAIN_AGGREGATE_INTERFACE_TYPE *() { return this->impl<MAIN_AGGREGATE_IN
       IMPL * impl()
       {
 
-         ::cast < IMPL > pimp = ::get_implementation(this);
+         ::cast < IMPL > pimp = ::subsystem::get_implementation(this);
 
          return pimp;
 
@@ -915,7 +916,7 @@ operator MAIN_AGGREGATE_INTERFACE_TYPE *() { return this->impl<MAIN_AGGREGATE_IN
 
    };
 
-//} // namespace subsystem
+} // namespace subsystem
 
 
 

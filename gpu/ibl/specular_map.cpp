@@ -110,7 +110,7 @@ namespace gpu
          constructø(m_ptexturesitePrefilteredEnvMapCubemap->m_pgputextureSite);
 
          ::gpu::texture_attributes textureattributesPrefilteredEnvMap(
-            { (::i32)m_uPrefilteredEnvMapWidth,(::i32) m_uPrefilteredEnvMapHeight });
+           ::i32_size(m_uPrefilteredEnvMapWidth, m_uPrefilteredEnvMapHeight ));
 
          textureattributesPrefilteredEnvMap.set_cubemap_all_mips();
 
@@ -143,7 +143,7 @@ namespace gpu
          constructø(m_ptexturesiteBrdfConvolutionMap->m_pgputextureSite);
 
          ::gpu::texture_attributes textureattributesBrdfConvMap(
-            { (::i32)m_uBrdfConvolutionMapWidth,(::i32) m_uBrdfConvolutionMapHeight });
+            ::i32_size(m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight ));
          textureattributesBrdfConvMap.m_iBitsPerChannel = 16;
          textureattributesBrdfConvMap.m_iChannelCount = 2;
          textureattributesBrdfConvMap.m_iFloat = 1;

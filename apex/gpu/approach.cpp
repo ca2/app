@@ -186,6 +186,63 @@ namespace gpu
 
          }
 
+#elif defined(LINUX)
+
+         if (strGpu == "opengl")
+         {
+
+            iStep = iSwapChain ? 1 : 0;
+
+            if (iSwapChain)
+            {
+
+               if (strDraw2d == "nanovg")
+               {
+
+                  iStep++;
+
+               }
+               else if (strDraw2d != "opengl")
+               {
+
+                  goto error;
+
+               }
+
+            }
+
+         }
+         else if (strGpu == "vulkan")
+         {
+
+            iStep = iSwapChain ? 4 : 3;
+
+            if (iSwapChain)
+            {
+
+               if (strDraw2d == "vkvg")
+               {
+
+                  iStep++;
+
+               }
+               else if (strDraw2d != "vulkan")
+               {
+
+                  goto error;
+
+               }
+
+            }
+
+         }
+         else
+         {
+
+            goto error;
+
+         }
+
 #endif
 
          m_iGraphicsModeStep = iStep + 1;
@@ -212,6 +269,10 @@ namespace gpu
 #ifdef WINDOWS_DESKTOP
 
          m_iGraphicsModeStepCount = 16;
+
+#elif defined(LINUX)
+
+         m_iGraphicsModeStepCount = 6;
 
 #endif
 

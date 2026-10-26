@@ -1163,6 +1163,15 @@ namespace graphics
    }
 
 
+   void graphics::set_bitmap_source(const ::scoped_string & scopedstrAppId,
+      const ::scoped_string & scopedstrBitmapSource, bool bCreate)
+   {
+
+      set_bitmap_source(scopedstrBitmapSource, bCreate);
+
+   }
+
+
    void graphics::clear_bitmap_source()
    {
 

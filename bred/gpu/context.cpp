@@ -40,6 +40,7 @@
 #include "bred/platform/timer.h"
 #include "bred/graphics3d/engine_instance.h"
 #include "bred/graphics3d/immersion_layer.h"
+#include <atomic>
 #include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/types.h"
@@ -1692,6 +1693,15 @@ namespace gpu
 
                   auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
 
+                  if (!pgpuwindowattachment)
+                  {
+
+                     error() << "Window swap-chain context has no GPU window attachment";
+
+                     throw ::exception(error_wrong_state);
+
+                  }
+
                   auto pgpucontextWindow = pgpuwindowattachment->m_pgpucontextWindow;
 
                   if (pgpucontextWindow != this)
@@ -2457,7 +2467,7 @@ namespace gpu
    }
 
 
-   void context::on_resize(const ::i32_size& size)
+   void context::on_resize(const ::i32_size& size, ::draw2d::domain * pdraw2ddomain, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       set_size(size);
@@ -2476,8 +2486,8 @@ namespace gpu
             m_pointOutput,
             m_pointInput,
             size,
-            m_puserinteractionTopic->draw2d_domain(),
-            nullptr);
+            pdraw2ddomain,
+            pdraw2dgraphics);
 
       }
 
@@ -2595,6 +2605,13 @@ namespace gpu
       {
 
          auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
+
+         if (!pgpuwindowattachment || !pgpuwindowattachment->m_pgpucontextWindow)
+         {
+
+            return nullptr;
+
+         }
 
          if (pgpuwindowattachment->m_pgpucontextWindow == this)
          {
@@ -4238,6 +4255,22 @@ float4 main(PS_INPUT input) : SV_TARGET
 
       ::gpu::context_lock contextlock(this);
 
+      static std::atomic_bool s_bLoggedLayerPlacement{false};
+      const bool bLogLayerPlacement = pgpulayera && pgpulayera->has_element()
+         && ptexturesiteOutput->width() > 100
+         && !s_bLoggedLayerPlacement.exchange(true);
+
+      if (bLogLayerPlacement)
+      {
+
+         auto rectangleOutput = ptexturesiteOutput->output_placement();
+         auto sizeRaw = ptexturesiteOutput->raw_size();
+         informationf("GPU layer placement target output=(%d,%d %dx%d) raw=%dx%d layers=%d",
+            rectangleOutput.left, rectangleOutput.top, rectangleOutput.width(), rectangleOutput.height(),
+            sizeRaw.cx, sizeRaw.cy, static_cast<int>(pgpulayera->get_count()));
+
+      }
+
       merge_layers_dummy_model_buffer();
 
       merge_layers_shader();
@@ -4464,6 +4497,19 @@ float4 main(PS_INPUT input) : SV_TARGET
 
                   ::f32_size sizeSrcRaw = ptexturesiteSrc->raw_size();
 
+                  auto sizeTargetRaw = ptexturesiteOutput->raw_size();
+
+                  if (bLogLayerPlacement)
+                  {
+
+                     informationf("GPU layer placement layer=%d input=(%d,%d %dx%d) output=(%d,%d %dx%d) raw=%.0fx%.0f",
+                        iLayer, rectangleInput.left, rectangleInput.top, rectangleInput.width(), rectangleInput.height(),
+                        rectangleSourceOutput.left, rectangleSourceOutput.top,
+                        rectangleSourceOutput.width(), rectangleSourceOutput.height(),
+                        sizeSrcRaw.cx, sizeSrcRaw.cy);
+
+                  }
+
                   //::i32 h = r.height();
 
                   //::i32 iH = ptextureDst->height();
@@ -4472,9 +4518,9 @@ float4 main(PS_INPUT input) : SV_TARGET
 
                   //r.bottom = r.top + h;
 
-                  pgpucommandbuffer->set_viewport(rectangleSourceOutput, sizeSrcRaw);
+                  pgpucommandbuffer->set_viewport(rectangleSourceOutput, sizeTargetRaw);
 
-                  pgpucommandbuffer->set_scissor(rectangleSourceOutput, sizeSrcRaw);
+                  pgpucommandbuffer->set_scissor(rectangleSourceOutput, sizeTargetRaw);
 
                   
 

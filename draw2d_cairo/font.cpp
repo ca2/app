@@ -46,6 +46,8 @@ namespace draw2d_cairo
    font::font()
    {
 
+      m_dFontScalerUsed = -1.0;
+
       //m_pthis = this;
 
 #if defined(USE_PANGO)
@@ -225,9 +227,11 @@ namespace draw2d_cairo
       else
       {
 
-         informationf("Warning: No ::user::interaction font scaler!\n");
+         dFontScaler = pdraw2dgraphics->get_density_dpi() / 96.0f;
 
       }
+
+      m_dFontScalerUsed = dFontScaler;
 
       pango_font_description_set_family(m_ppangofontdescription, family_name());
 
@@ -235,18 +239,18 @@ namespace draw2d_cairo
 
       pango_font_description_set_weight(m_ppangofontdescription, (PangoWeight)m_fontweight.as_i32());
 
-      if (m_fontsize.eunit() == ::e_unit_pixel)
+      // Use device pixels for both font units so drawing and Pango text extents
+      // use the same window density. Pixel fonts are logical UI pixels here.
+      auto dPixelSize = m_fontsize.as_f64() * dFontScaler;
+
+      if (m_fontsize.eunit() == ::e_unit_point)
       {
 
-         pango_font_description_set_absolute_size(m_ppangofontdescription, m_fontsize.as_f64() * PANGO_SCALE);
+         dPixelSize *= 96.0 / 72.0;
 
       }
-      else
-      {
 
-         pango_font_description_set_size(m_ppangofontdescription, m_fontsize.as_f64() * PANGO_SCALE);
-
-      }
+      pango_font_description_set_absolute_size(m_ppangofontdescription, dPixelSize * PANGO_SCALE);
 
       //m_osdata[0] = m_ppangofontdescription;
 
@@ -392,6 +396,36 @@ namespace draw2d_cairo
 
 
       //return m_osdata[0];
+
+   }
+
+
+   void font::defer_update(::draw2d::graphics * pdraw2dgraphics)
+   {
+
+      auto dFontScaler = 1.0;
+
+      if (::is_set(pdraw2dgraphics->m_puserinteractionTopic))
+      {
+
+         dFontScaler = pdraw2dgraphics->m_puserinteractionTopic->scaler();
+
+      }
+      else
+      {
+
+         dFontScaler = pdraw2dgraphics->get_density_dpi() / 96.0;
+
+      }
+
+      if (::abs(m_dFontScalerUsed - dFontScaler) > 0.001)
+      {
+
+         set_modified();
+
+      }
+
+      ::draw2d::object::defer_update(pdraw2dgraphics);
 
    }
 

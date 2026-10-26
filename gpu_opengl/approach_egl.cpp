@@ -21,39 +21,19 @@ namespace gpu_opengl
 {
 
 
-   void approach::_on_before_create_window(::acme::windowing::window* pwindowParam)
+   void approach::gpu_on_before_create_window(::acme::windowing::window* pwindowParam)
    {
 
-      ::cast < ::gpu_opengl::device_egl > pegldevice = get_gpu_device(pwindowParam);
-
-      if (::is_null(pegldevice))
-      {
-
-         throw ::exception(error_failed);
-
-      }
-
-      //if (pegldevice->m_lX11NativeVisualId < 0)
-      //{
-
-        // throw ::exception(error_wrong_state);
-
-      //}
-
-      //pwindowParam->m_lX11NativeVisualId = pegldevice->m_lX11NativeVisualId;
+      ::gpu::bred_approach::gpu_on_before_create_window(pwindowParam);
 
 
    }
 
 
-   void approach::_on_create_window(::acme::windowing::window* pacmewindowingwindow)
+   void approach::gpu_on_create_window(::acme::windowing::window* pacmewindowingwindow)
    {
 
-      //auto pgpucontextMain = m_pgpudevice->main_context(pwindowParam);
-
-      auto pgpudevice = get_gpu_device(pacmewindowingwindow);
-
-      pgpudevice->create_main_context(pacmewindowingwindow);
+      ::gpu::bred_approach::gpu_on_create_window(pacmewindowingwindow);
 
       // if (!pgpudevice->m_pgpucontextMain)
       // {
@@ -83,6 +63,12 @@ namespace gpu_opengl
       // DwmEnableBlurBehindWindow(hwnd, &bb);
       //
       // //#endif
+
+   }
+
+
+   void approach::_gpu_on_create_window(::acme::windowing::window* pacmewindowingwindow)
+   {
 
    }
 

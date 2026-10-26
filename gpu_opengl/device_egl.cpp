@@ -9,10 +9,14 @@
 #include "acme/platform/application.h"
 #include "acme/windowing/display.h"
 #include "acme/windowing/windowing.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/platform/system.h"
 #include "aura/windowing/window.h"
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <atomic>
+#include <dlfcn.h>
+#include <mutex>
 
 ::i32 rotating_cube();
 
@@ -47,51 +51,179 @@ const_char_pointer eglErrorString(EGLint error) {
 namespace gpu_opengl
 {
 
+
+   bool has_required_gl_entry_points()
+   {
+
+      return glad_glGenTextures
+         && glad_glBindTexture
+         && glad_glTexParameteri
+         && glad_glTexImage2D
+         && glad_glDeleteTextures
+         && glad_glCreateShader
+         && glad_glShaderSource
+         && glad_glCompileShader
+         && glad_glGetShaderiv
+         && glad_glGetShaderInfoLog
+         && glad_glDeleteShader
+         && glad_glCreateProgram
+         && glad_glAttachShader
+         && glad_glLinkProgram
+         && glad_glGetProgramiv
+         && glad_glGetProgramInfoLog
+         && glad_glUseProgram
+         && glad_glGenBuffers
+         && glad_glBindBuffer
+         && glad_glBufferData
+         && glad_glBindBufferBase
+         && glad_glMapBufferRange
+         && glad_glUnmapBuffer;
+
+   }
+
+   // eglGetProcAddress is not required to return addresses for the original
+   // OpenGL 1.0 entry points. GLAD needs glGetString to bootstrap, so fall
+   // back to the OpenGL client library for core symbols when EGL has no
+   // address for a name.
+   void * get_egl_gl_proc(const char * pszName)
+   {
+
+      // libOpenGL provides the GLVND dispatch stubs shared by EGL and GLX.
+      // Prefer it for core functions so an EGL context is not routed through
+      // a GLX-only entry point from libGL.
+      static void * s_hLibOpenGL = dlopen("libOpenGL.so.0", RTLD_NOW | RTLD_LOCAL);
+
+      if (s_hLibOpenGL)
+      {
+
+         if (auto p = dlsym(s_hLibOpenGL, pszName))
+         {
+
+            return p;
+
+         }
+
+      }
+
+      auto pfn = eglGetProcAddress(pszName);
+
+      if (pfn)
+      {
+
+         return reinterpret_cast<void *>(pfn);
+
+      }
+
+      static void * s_hLibGL = dlopen("libGL.so.1", RTLD_NOW | RTLD_LOCAL);
+
+      if (s_hLibGL)
+      {
+
+         if (auto p = dlsym(s_hLibGL, pszName))
+         {
+
+            return p;
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
+
    //bool g_bEglOpened = false;
    //EGLDisplay g_egldisplay = nullptr;
    //EGLConfig  g_eglconfig;
    thread_local bool t_bEglApiBound = false;
-   bool g_bGladGL = false;
+   ::std::atomic_bool g_bGladGL{false};
+   ::std::mutex g_mutexGladGL;
    //critical_section g_criticalsectionEgl;
 
    bool is_glad_gl_loaded()
    {
 
-      return g_bGladGL;
+      return g_bGladGL.load(::std::memory_order_acquire);
 
    }
 
    // should be called within a currently selected egl context
-   void load_glad_gl()
+   void load_glad_gl(::gpu::context * pgpucontext)
    {
 
-      if (g_bGladGL)
+      ::cast < ::gpu_opengl::context_egl > pcontextegl = pgpucontext;
+
+      if (!pcontextegl)
       {
 
-          return;
+         throw ::exception(error_wrong_type, "OpenGL/EGL initialization requires an EGL context");
 
       }
 
-      g_bGladGL = true;
+      pcontextegl->ensure_context_current_for_glad();
 
-      auto gl_version = gladLoadGLLoader((GLADloadproc)eglGetProcAddress);
+      if (g_bGladGL.load(::std::memory_order_acquire)
+         && has_required_gl_entry_points())
+      {
 
-      if (!gl_version)
+         return;
+
+      }
+
+      const ::std::lock_guard<::std::mutex> lock(g_mutexGladGL);
+
+      if (g_bGladGL.load(::std::memory_order_relaxed)
+         && has_required_gl_entry_points())
+      {
+
+         return;
+
+      }
+
+      auto gl_version = gladLoadGLLoader((GLADloadproc)get_egl_gl_proc);
+
+      auto pszGlVersion = glad_glGetString
+         ? (const_char_pointer) glad_glGetString(GL_VERSION)
+         : nullptr;
+
+      auto bRequiredEntryPoints = has_required_gl_entry_points();
+
+      // GLAD can finish loading the core functions and still return zero if
+      // optional extension enumeration fails. The renderer only needs the
+      // core version and the entry points checked above.
+      if ((!gl_version || !pszGlVersion || GLVersion.major == 0)
+         && (!pszGlVersion || GLVersion.major == 0 || !bRequiredEntryPoints))
       {
 
          printf("Unable to reload GL.\n");
 
-         throw ::exception(::error_failed);
+         ::string strError;
+         strError.formatf(
+            "Unable to initialize OpenGL for the current EGL context (current=%p, version=%s, required_entry_points=%s)",
+            eglGetCurrentContext(),
+            pszGlVersion ? pszGlVersion : "(unavailable)",
+            bRequiredEntryPoints ? "yes" : "no");
+
+         throw ::exception(::error_failed, strError);
 
       }
 
-      auto pszGlVersion = glGetString(GL_VERSION);
+      if (!bRequiredEntryPoints)
+      {
+
+         throw ::exception(
+            ::error_failed,
+            "GLAD did not resolve the OpenGL texture, shader, and buffer entry points required by gpu_opengl");
+
+      }
 
       auto pszGlRenderer = glGetString(GL_RENDERER);
 
-      printf("GL_VERSION = %s\n", pszGlVersion);
+      printf("GL_VERSION = %s\n", pszGlVersion ? (const_char_pointer) pszGlVersion : "(unknown)");
 
-      printf("GL_RENDERER = %s\n", pszGlRenderer);
+      printf("GL_RENDERER = %s\n", pszGlRenderer ? (const_char_pointer) pszGlRenderer : "(unknown)");
+
+      g_bGladGL.store(true, ::std::memory_order_release);
 
 
       //printf("has GLES3: %d\n", GLAD_GL_ES_VERSION_3_0);
@@ -291,45 +423,15 @@ namespace gpu_opengl
    }
 
 
-   void device_egl::initialize_gpu_device_for_swap_chain(::gpu::approach* papproach, ::windowing::window* pwindow)
+   void device_egl::initialize_gpu_device(::gpu::approach * papproach, ::draw2d::domain * pdraw2ddomain)
    {
 
-      ::gpu::device::initialize_gpu_device_for_swap_chain(papproach, pwindow);
+      ::gpu::device::initialize_gpu_device(papproach, pdraw2ddomain);
 
       m_pgpuapproach = papproach;
-      m_pwindow = pwindow;
-      //m_bAddSwapChainSupport = true;
-      //m_hwnd = (HWND) m_pwindow->operating_system_window();
-
-      //auto size = m_pwindow->get_window_rectangle().size();
+      set_draw2d_domain(pdraw2ddomain);
 
       _create_device({});
-
-
-   }
-
-
-   void device_egl::initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::i32_rectangle& rectanglePlacement)
-   {
-
-      ::gpu::device::initialize_gpu_device_for_off_screen(papproach, rectanglePlacement);
-
-      m_pgpuapproach = papproach;
-      m_pwindow = m_pacmeuserinteractionMain->window();
-      //m_bAddSwapChainSupport = false;
-      //::cast < ::windowing_win32::window > pwin32window = m_pwindow;
-      //m_hwnd = pwin32window->m_hwnd;
-
-      _create_device(rectanglePlacement.size());
-
-
-      // fork([]()
-      // {
-      //
-      //
-      //    rotating_cube();
-      //
-      // });
 
    }
 
@@ -386,7 +488,7 @@ namespace gpu_opengl
 
 
 
-   ::gpu::context_pointer device_egl::allocate_context()
+   ::gpu::context_pointer device_egl::allocate_gpu_context()
    {
 
       ::gpu::context_pointer pgpucontext;
@@ -1269,7 +1371,7 @@ namespace gpu_opengl
          EGL_BLUE_SIZE,  8,
          EGL_ALPHA_SIZE, 8,
 
-         EGL_NATIVE_VISUAL_ID, argbVisual.visualid,
+         EGL_NATIVE_VISUAL_ID, (EGLint) argbVisual.visualid,
          EGL_NONE
      };
 

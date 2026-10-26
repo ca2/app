@@ -201,7 +201,7 @@ namespace user
 
 #endif
 
-         constructø(m_pmutexDraw);
+         m_pmutexDraw = create_newø<::mutex>();
 
       }
 
@@ -7903,7 +7903,7 @@ namespace user
       if (m_pmutexRedraw == nullptr)
       {
 
-         constructø(m_pmutexRedraw);
+         m_pmutexRedraw = create_newø<::mutex>();
 
       }
 

@@ -12,6 +12,7 @@
 #include "acme/platform/system.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/message/user.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/window.h"
@@ -935,7 +936,7 @@ namespace experience
    void frame::calculate_caption_height(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto rectangleMargin = get_control_box()->get_button_margin(e_button_close);
+      auto rectangleMargin = get_control_box()->get_button_margin(e_button_close, pdraw2dgraphics);
 
       auto iButtonSize = get_control_box()->calculate_button_size(pdraw2dgraphics);
 
@@ -951,7 +952,6 @@ namespace experience
          iCaptionHeight =maximum(iCaptionHeight, iZoomedCaptionHeightHint);
          
       }
-
 
       m_iCaptionHeight = iCaptionHeight;
       

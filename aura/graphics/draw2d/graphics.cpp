@@ -31,7 +31,7 @@
 #include "acme/prototype/string/str.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/style.h"
-#include <nanosvg/nanosvg.h>
+#include "nanosvg/nanosvg.h"
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "aura/graphics/write_text/_defer_geometry2d_item.h"
 
@@ -3567,7 +3567,9 @@ namespace draw2d
       if (!m_puserinteractionTopic)
       {
 
-         return 96.0f;
+         auto pdraw2ddomain = acme_draw2d_domain();
+
+         return pdraw2ddomain ? pdraw2ddomain->get_density_dpi() : 96.0f;
 
       }
 
@@ -5782,6 +5784,8 @@ namespace draw2d
 
       //pwritetextfont->get_os_data(this);
 
+      pwritetextfont->defer_update(this);
+
       string str(strParam);
 
       bool bParamBilboRaspiEtc = strParam.case_insensitive_begins("bilbo-raspi-");
@@ -6081,7 +6085,7 @@ namespace draw2d
 
       }
 
-      //::f64 dLineSpacing = pwritetextfont->m_textmetric2.get_line_spacing();
+      ::f64 dLineSpacing = pwritetextfont->m_textmetric4.get_line_height();
 
       //::draw2d::graphics * pdraw2dgraphics = this;
 
@@ -6092,8 +6096,8 @@ namespace draw2d
       rectangle.left = 0;
       rectangle.top = 0;
       rectangle.right = sz.cx;
-      rectangle.bottom = sz.cy;
-      //rectangle.bottom = (::i32) (dLineSpacing);
+      //rectangle.bottom = sz.cy;
+      rectangle.bottom = (::i32) (dLineSpacing);
 
       //::e_align ealign;
 
@@ -6220,7 +6224,7 @@ namespace draw2d
          //
          // }
 
-         text_out(rectangle.left, rectangle.top, { str.c_str(), (::i32)minimum(iUnderline, str.length()) });
+         text_out(rectangle.left, rectangle.top + pwritetextfont->m_textmetric4.m_dInternalLeading, { str.c_str(), (::i32)minimum(iUnderline, str.length()) });
          /*::TextOutU(
          (HDC)pdraw2dgraphics->get_os_data(),
          rectangle.left,
@@ -6260,7 +6264,7 @@ namespace draw2d
 
                character_count iCount = str.length() - iUnderline - 1;
 
-               text_out(rectangle.left + sz.cx, (::f64)rectangle.top, { ::string(str.right(iCount)).c_str(), (::i32)iCount });
+               text_out(rectangle.left + sz.cx, (::f64)rectangle.top + pwritetextfont->m_textmetric4.m_dInternalLeading, { ::string(str.right(iCount)).c_str(), (::i32)iCount });
 
                /*::TextOutU(
                (HDC)pdraw2dgraphics->get_os_data(),
@@ -6292,7 +6296,7 @@ namespace draw2d
          // else
          {
 
-            text_out(rectangle.left, rectangle.top, str);
+            text_out(rectangle.left, rectangle.top + pwritetextfont->m_textmetric4.m_dInternalLeading, str);
 
          }
 

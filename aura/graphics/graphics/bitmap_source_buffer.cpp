@@ -28,20 +28,29 @@ namespace graphics
       release_interest();
    }
 
-   void bitmap_source_interest::acquire(const ::file::path & pathProducerAppData,
-      const ::scoped_string & scopedstrInstanceName)
+   void bitmap_source_interest::acquire(const ::scoped_string & scopedstrProducerAppId,
+      const ::scoped_string & scopedstrBitmapSourceName,
+      const ::scoped_string & scopedstrConsumerAppId)
    {
 #if defined(WINDOWS)
-      string strName(scopedstrInstanceName);
-      if (strName.is_empty() || strName.begins("_") || strName.contains("/")
-         || strName.contains("\\") || strName.contains(":") || !strName.ends(".txt"))
+      string strProducerAppId(scopedstrProducerAppId);
+      string strBitmapSourceName(scopedstrBitmapSourceName);
+      string strConsumerAppId(scopedstrConsumerAppId);
+      if (strProducerAppId.is_empty() || strProducerAppId.begins("/") || strProducerAppId.contains("..")
+         || strProducerAppId.contains("\\") || strProducerAppId.contains(":")
+         || strBitmapSourceName.is_empty() || strBitmapSourceName.contains("..")
+         || strBitmapSourceName.contains("/") || strBitmapSourceName.contains("\\")
+         || strConsumerAppId.is_empty() || strConsumerAppId.begins("/") || strConsumerAppId.contains("..")
+         || strConsumerAppId.contains("\\") || strConsumerAppId.contains(":"))
       {
          throw ::exception(error_bad_argument);
       }
       release_interest();
-      auto pathFolder = pathProducerAppData / "bitmap_source";
+      auto pathFolder = directory_system()->roaming() / strProducerAppId
+         / "bitmap-source" / strBitmapSourceName;
       directory()->create(pathFolder);
-      auto pfile = file()->get_file(pathFolder / strName,
+      auto pathLease = pathFolder / (strConsumerAppId + ".txt");
+      auto pfile = file()->get_file(pathLease,
          ::file::e_open_read_write | ::file::e_open_create | ::file::e_open_no_truncate
          | ::file::e_open_share_deny_none | ::file::e_open_no_inherit
          | ::file::e_open_no_share_violation_wait);
@@ -75,7 +84,10 @@ namespace graphics
    {
 #if defined(WINDOWS)
       ::file::listing_base listing;
-      listing.set_file_listing(directory()->appdata() / "bitmap_source");
+      auto pathInterestFolder = directory_system()->roaming() / m_strAppId
+         / "bitmap-source" / m_strBitmapSource;
+      listing.set_file_listing(pathInterestFolder);
+      listing.m_bRecursive = true;
       directory()->enumerate(listing);
       for (auto & path : listing)
       {
@@ -115,7 +127,8 @@ namespace graphics
    void bitmap_source_buffer_graphics::start_interest_monitor()
    {
 #if defined(WINDOWS)
-      directory()->create(directory()->appdata() / "bitmap_source");
+      directory()->create(directory_system()->roaming() / m_strAppId
+         / "bitmap-source" / m_strBitmapSource);
       m_bStopBitmapSourceInterest = false;
       m_threadBitmapSourceInterest = std::thread([this]()
       {
@@ -219,8 +232,30 @@ namespace graphics
 
    void bitmap_source_buffer_graphics::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource, bool bCreate)
    {
+      string strAppId;
+      if (application())
+         strAppId = application()->m_strAppId;
+      set_bitmap_source(strAppId, scopedstrBitmapSource, bCreate);
+   }
 
-      if (m_strBitmapSource == scopedstrBitmapSource)
+
+   void bitmap_source_buffer_graphics::set_bitmap_source(
+      const ::scoped_string & scopedstrAppId,
+      const ::scoped_string & scopedstrBitmapSource,
+      bool bCreate)
+   {
+
+      string strAppId(scopedstrAppId);
+      string strBitmapSource(scopedstrBitmapSource);
+      if (strAppId.is_empty() || strAppId.begins("/") || strAppId.contains("..")
+         || strAppId.contains("\\") || strAppId.contains(":")
+         || strBitmapSource.is_empty() || strBitmapSource.contains("..")
+         || strBitmapSource.contains("/") || strBitmapSource.contains("\\"))
+      {
+         throw ::exception(error_bad_argument);
+      }
+
+      if (m_strAppId == strAppId && m_strBitmapSource == strBitmapSource)
       {
 
          return;
@@ -229,13 +264,28 @@ namespace graphics
 
       clear_bitmap_source();
 
-      m_strBitmapSource = scopedstrBitmapSource;
+      m_strAppId = strAppId;
+      m_strBitmapSource = strBitmapSource;
 
-      ::i8 szName[] = "Local\\bitmap-source:%s";
+      if (!bCreate)
+      {
+
+#if defined(WINDOWS)
+         constructø(m_pbitmapsourceinterest);
+         string strConsumerAppId;
+         if (application())
+            strConsumerAppId = application()->m_strAppId;
+         m_pbitmapsourceinterest->acquire(
+            m_strAppId, m_strBitmapSource, strConsumerAppId);
+#endif
+
+      }
+
+      ::i8 szName[] = "Local\\bitmap-source:%s:%s";
 
       string strMutexName;
 
-      strMutexName.formatf(szName, scopedstrBitmapSource.as_string().c_str());
+      strMutexName.formatf(szName, m_strAppId.c_str(), scopedstrBitmapSource.as_string().c_str());
 
       if (bCreate)
       {
@@ -258,7 +308,8 @@ namespace graphics
 
       ::file::path path;
 
-      path = pathFolder / "bitmap-source" / scopedstrBitmapSource;
+      path = pathFolder / m_strAppId / "bitmap-source" / scopedstrBitmapSource / "buffer.bin";
+      directory()->create(path.folder());
 
       //auto estatus = 
       
@@ -306,6 +357,7 @@ namespace graphics
       stop_interest_monitor();
 
       m_strBitmapSource.empty();
+      m_strAppId.empty();
 
       if (m_pmemorymap)
       {
@@ -315,6 +367,8 @@ namespace graphics
          auto estatus = m_pmemorymap.release();
 
       }
+
+      m_pbitmapsourceinterest.release();
 
       m_pmutexBitmapSource.release();
       

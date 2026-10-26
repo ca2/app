@@ -1,5 +1,6 @@
 // Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSorensen!!
 #include "platform.h"
+#include "acme/parallelization/mutex.h"
 #include "acme/operating_system/windows/printf_format.h"
 #include "call.h"
 #include "type.h"
@@ -173,7 +174,7 @@ void particle::defer_create_synchronization()
       //
       //#endif
 
-      set_synchronization(createø< ::mutex >(nullptr));
+      set_synchronization(create_newø< ::mutex >());
 
    }
 

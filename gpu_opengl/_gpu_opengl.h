@@ -250,6 +250,21 @@
 CLASS_DECL_GPU_OPENGL const_char_pointer opengl_error_string(::i32 iError);
 
 
+#if defined(LINUX) || defined(__BSD__)
+
+namespace gpu_opengl
+{
+
+
+   CLASS_DECL_GPU_OPENGL void load_glad_gl(::gpu::context * pgpucontext);
+   CLASS_DECL_GPU_OPENGL bool is_glad_gl_loaded();
+
+
+} // namespace gpu_opengl
+
+#endif
+
+
 
 namespace opengl
 {

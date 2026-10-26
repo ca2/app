@@ -83,10 +83,12 @@ list(APPEND library_source
         assimp.h
    block.cpp
    block.h
+        buffer.cpp
+        buffer.h
         command_buffer.cpp
    command_buffer.h
-        cpu_buffer.cpp
-        cpu_buffer.h
+        #cpu_buffer.cpp
+        #cpu_buffer.h
         context.cpp
         context.h
    context_egl.cpp
@@ -96,6 +98,8 @@ list(APPEND library_source
    #cube.h
         device.cpp
         device.h
+        fence.cpp
+        fence.h
         frame.h
         frame_buffer.cpp
         frame_buffer.h
@@ -133,12 +137,16 @@ list(APPEND library_source
         render_target.h
         renderer.cpp
         renderer.h
+        semaphore.cpp
+        semaphore.h
         shader.cpp
         shader.h
         swap_chain.cpp
         swap_chain.h
         texture.cpp
         texture.h
+        window_attachment.cpp
+        window_attachment.h
 
 )
 
@@ -196,6 +204,7 @@ if(${LINUX} OR ${__BSD__})
 
     list(APPEND library_references
             aura_posix
+       acme_windowing_x11
        glad
        ktx
        #windowing_system_x11

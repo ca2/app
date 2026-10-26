@@ -50,6 +50,8 @@ list(APPEND library_source
    gpu/draw2d.h
    gpu/empty_texture_source.cpp
    gpu/empty_texture_source.h
+        gpu/font.cpp
+        gpu/font.h
    gpu/frame.cpp
    gpu/frame.h
    gpu/frame_ephemeral.cpp
@@ -119,6 +121,8 @@ list(APPEND library_source
    #graphics3d/render_systems/scene_render_system.h
    graphics3d/render_system/skybox_render_system.cpp
    graphics3d/render_system/skybox_render_system.h
+        graphics3d/render_system/texture_render_system.cpp
+        graphics3d/render_system/texture_render_system.h
    graphics3d/render_system/wavefront_obj_render_system.cpp
    graphics3d/render_system/wavefront_obj_render_system.h
    graphics3d/_.h
@@ -233,6 +237,8 @@ list(APPEND library_source
    typeface/typeface.h
    user/user/graphics3d.cpp
    user/user/graphics3d.h
+        user/user/gpu_statistics_impact.cpp
+        user/user/gpu_statistics_impact.h
    user/user/user.cpp
    user/user/user.h
    _.cpp

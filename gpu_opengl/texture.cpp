@@ -709,7 +709,7 @@ namespace gpu_opengl
          m_textureattributes == textureattributes)
       {
 
-         m_pgpucontext = nullptr;
+         m_pgpucontext.release();
 
       }
 
@@ -733,7 +733,20 @@ namespace gpu_opengl
 
       }
 
+      if (!m_pgpucontext)
+      {
+
+         throw ::exception(error_wrong_state, "OpenGL texture creation requires a GPU context");
+
+      }
+
       ::gpu::context_lock contextlock(m_pgpucontext);
+
+#if defined(LINUX) || defined(__BSD__)
+
+      load_glad_gl(m_pgpucontext);
+
+#endif
 
       auto gluDesiredType =
          m_textureattributes.m_etexture == ::gpu::e_texture_cube_map

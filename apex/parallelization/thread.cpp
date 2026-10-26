@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "acme/parallelization/mutex.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
 #include "acme/handler/request.h"
@@ -4968,7 +4969,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(::i32 iOrder)
       if (m_pmutexThreadUiPtra == nullptr)
       {
 
-         constructø(m_pmutexThreadUiPtra);
+         m_pmutexThreadUiPtra = create_newø<::mutex>();
 
       }
 

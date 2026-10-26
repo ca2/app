@@ -1,6 +1,7 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "platform.h"
+#include "acme/parallelization/mutex.h"
 #include "fps_debug.h"
 #include "cursor.h"
 #include "display.h"
@@ -3963,7 +3964,7 @@ namespace windowing
 
 #endif
 
-         constructø(m_pmutexDraw);
+         m_pmutexDraw = create_newø<::mutex>();
 
       }
 
@@ -14862,18 +14863,6 @@ namespace windowing
 
       //user_interaction()->m_ewindowflag -= e_window_flag_focus;
 
-      if (pkillkeyboardfocus->m_operatingsystemwindow
-         == pkillkeyboardfocus->m_operatingsystemwindow)
-      {
-
-         pkillkeyboardfocus->m_bRet = true;
-
-         ::output_debug_string("kill keyboard focus that isn't killing keyboard focus");
-
-         return;
-
-      }
-
       ::cast < ::user::interaction > puserinteractionFocus = m_pacmeuserinteractionKeyboardFocus;
 
       if (puserinteractionFocus)
@@ -15349,7 +15338,7 @@ namespace windowing
       if (m_pmutexRedraw == nullptr)
       {
 
-         constructø(m_pmutexRedraw);
+         m_pmutexRedraw = create_newø<::mutex>();
 
       }
 

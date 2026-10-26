@@ -111,7 +111,20 @@ namespace gpu_opengl
    void shader::on_initialize_shader()
    {
 
-      //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+      if (!m_pgpurenderer || !m_pgpurenderer->m_pgpucontext)
+      {
+
+         throw ::exception(error_wrong_state, "OpenGL shader creation requires a GPU context");
+
+      }
+
+      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+
+#if defined(LINUX) || defined(__BSD__)
+
+      load_glad_gl(m_pgpurenderer->m_pgpucontext);
+
+#endif
 
       if (m_memoryVertex.is_empty())
       {

@@ -142,6 +142,7 @@ namespace micro
       pgraphicscontext->set_font(micro_theme()->m_pwritetextfont);
 
       ::string strMessage = get_message();
+      information("micro::message_box::on_draw message length={} text={}", strMessage.length(), strMessage);
       pgraphicscontext->draw_text123(
          strMessage,
          rectangleText,

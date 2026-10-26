@@ -102,11 +102,11 @@ namespace gpu_opengl
       //::memory_set(m_pixmap.m_pimage32Raw, 127, cx * cy * 4);
 #elif defined(LINUX) || defined(__BSD__)
 
-      auto targeting = m_pimagetarget->no_padded_targeting(::image::e_copy_disposition_y_swap);
+      auto ppixmapPixmap = m_ppixmap->map();
 
-      auto w = targeting.width();
-      auto h = targeting.height();
-      auto p = targeting.data();
+      auto w = ppixmapPixmap->width();
+      auto h = ppixmapPixmap->height();
+      auto p = ppixmapPixmap->data();
       glReadPixels(
          0, 0,
          w, h,

@@ -10,6 +10,7 @@
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/memory.h"
 #include "acme/windowing/windowing.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/image/image.h"
 #include "bred/platform/system.h"
 #include "bred/typeface/character.h"
@@ -39,7 +40,7 @@ namespace gpu
    }
 
 
-   ::typeface::face* draw2d::_get_face(::write_text::font* pwritetextfont)
+   ::typeface::face* draw2d::_get_face(::write_text::font* pwritetextfont, ::draw2d::domain * pdraw2ddomain)
    {
 
       ::i32 iPixelSize = 0;
@@ -52,6 +53,17 @@ namespace gpu
       {
          iPixelSize = pwritetextfont->m_fontsize.as_i32();
       }
+
+      auto fDensity = pdraw2ddomain ? pdraw2ddomain->get_density() : 1.0f;
+
+      if (!::std::isfinite(fDensity) || fDensity <= 0.0f)
+      {
+
+         fDensity = 1.0f;
+
+      }
+
+      iPixelSize = maximum(1, (::i32) ::round(iPixelSize * fDensity));
 
       ::i32 iFontWeight = pwritetextfont->m_fontweight.as_i32();
 

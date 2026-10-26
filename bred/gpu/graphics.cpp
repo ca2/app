@@ -1870,7 +1870,7 @@ namespace gpu
 
       auto radius = rectangleParam.minimum_dimension() / 2.0;
 
-      auto thickness = m_pdraw2dpen->m_dWidth;
+      auto thickness = m_pdraw2dpen->m_dWidth * draw2d_domain()->get_density();
 
       auto extent = radius + thickness / 2.0f + 2.0f;
 
@@ -2277,9 +2277,22 @@ namespace gpu
 
          auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
 
+         if (!pgpuwindowattachment)
+         {
+
+            throw ::exception(error_wrong_state,
+               "GPU graphics model buffers require a window or offscreen frame attachment");
+
+         }
+
          ::i32 iFrameIndex = pgpuwindowattachment->get_frame_index3();
 
          auto ppoolgroupFrame = pgpuwindowattachment->frame_pool_group(iFrameIndex);
+
+         // Offscreen image drawing can request a model buffer before the
+         // renderer's begin-frame path initializes this frame's pool group.
+         ppoolgroupFrame->m_pallocator = pgpudevice;
+         ppoolgroupFrame->m_pongoingparticlearraysource = prenderer;
 
          pool.m_ppoolgroup = ppoolgroupFrame;
 
@@ -3240,7 +3253,7 @@ namespace gpu
 
       ::f64_point_array pointa;
 
-      ::f64_point pointPen(pdraw2dpen->m_dWidth, pdraw2dpen->m_dWidth);
+      ::f64_point pointPen(pdraw2dpen->m_dWidth * draw2d_domain()->get_density(), pdraw2dpen->m_dWidth * draw2d_domain()->get_density());
 
       ::draw2d::make_line_triangles_cap_butt_square(
          pointa,
@@ -3464,7 +3477,7 @@ namespace gpu
 
       ::cast < gpu::draw2d>pdraw2d = draw2d();
 
-      auto pface = pdraw2d->_get_face(pwritetextfont);
+      auto pface = pdraw2d->_get_face(pwritetextfont, draw2d_domain());
 
       // if (!pface->m_pgpurenderer)
       // {

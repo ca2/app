@@ -45,6 +45,7 @@
 #include <chrono>
 #include <exception>
 #include <thread>
+#include <atomic>
 #include "acme/prototype/geometry/quaternion.h"
 
 //
@@ -184,6 +185,28 @@ namespace graphics3d
 
    void engine_instance::on_render_layer()
    {
+
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow && m_pusergraphics3d)
+      {
+
+         auto pwindow = m_pusergraphics3d->window();
+
+         if (pwindow)
+         {
+
+            auto rectanglePlacement = m_pusergraphics3d->host_rectangle();
+            rectanglePlacement.offset(pwindow->get_window_rectangle().origin());
+
+            if (rectanglePlacement.has_area())
+            {
+
+               m_rectanglePlacementNew = rectanglePlacement;
+
+            }
+
+         }
+
+      }
 
       if (m_rectanglePlacementNew.is_empty())
       {
@@ -797,12 +820,16 @@ namespace graphics3d
 
       ::i32_rectangle rectangleWindow = rectanglePlacement;
 
-      rectangleWindow.offset(-rectangleWindow.top_left());
-
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         pusergraphics3d->client_to_screen()(rectangleWindow);
+         rectangleWindow.offset(pwindow->get_window_rectangle().origin());
+
+      }
+      else
+      {
+
+         rectangleWindow.offset(-rectangleWindow.top_left());
 
       }
 
@@ -1032,6 +1059,18 @@ namespace graphics3d
    void engine_instance::do_draw_layer()
    {
 
+      static std::atomic_bool s_bLoggedFirstDispatch = false;
+
+      if (!s_bLoggedFirstDispatch.exchange(true))
+      {
+
+         informationf("graphics3d first do_draw_layer dispatch engine=%p context=%p placement=(%d,%d %dx%d)",
+            this, gpu_context(),
+            m_rectanglePlacementNew.left, m_rectanglePlacementNew.top,
+            m_rectanglePlacementNew.width(), m_rectanglePlacementNew.height());
+
+      }
+
       if (m_rectanglePlacementNew.is_empty())
       {
 
@@ -1045,6 +1084,15 @@ namespace graphics3d
 
       pcontext->sendø() << [this]()
          {
+
+            static std::atomic_bool s_bLoggedFirstExecution = false;
+
+            if (!s_bLoggedFirstExecution.exchange(true))
+            {
+
+               informationf("graphics3d first GPU draw-layer execution engine=%p", this);
+
+            }
 
             auto pcontext = gpu_context();
 

@@ -1,1758 +1,433 @@
 #include "platform.h"
+#include "mutex.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/platform/system.h"
-////#include "acme/exception/exception.h"
+
+#if defined(PARALLELIZATION_PTHREAD)
+#include <pthread.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <time.h>
+#include <unistd.h>
+#elif defined(WINDOWS)
+#include "acme/_operating_system.h"
+#else
+#error "mutex requires pthreads or Windows synchronization"
+#endif
 
 
-//#ifdef MACOS
-//void utc_timespec(timespec * ptimespec);
-//#endif
-//
-//
-//
-//#ifdef PARALLELIZATION_PTHREAD
-//
-//
-//#include "acme/operating_system/ansi/_pthread.h"
-//
-//
-//#endif
-//
-//
-//#ifdef RASPBERRYPIOS
-//#include <sys/types.h>
-//#include <unistd.h>
-//#endif
-//
-//
-//#if defined(LINUX) || defined(SOLARIS) || defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
-//#include <sys/ipc.h>
-//#include <sys/sem.h>
-//#include <fcntl.h>
-//#include "acme/operating_system/ansi/_pthread.h"
-//#undef USE_MISC
-//
-//
-//#elif defined(__ANDROID__)
-//#include <sys/types.h>
-//#include <sys/stat.h>
-//#include <fcntl.h>
-//#include "acme/operating_system/ansi/_pthread.h"
-//#endif
-//
-//#if defined(FREEBSD) || defined(OPENBSD)
-//
-//#include	<sys/types.h>
-//#include	<sys/stat.h>
-//#include    <unistd.h>
-//#endif
-//
-//
-//static ::i32 g_iMutex = 0;
-//
-//
-//
-//mutex::mutex(enum_create_new, bool bInitiallyOwn)
-//{
-//
-//#ifdef _DEBUG
-//   m_itask = -1;
-//#endif
-//
-//   set_own_synchronization();
-//
-//   //m_bAlreadyExists = false;
-//
-//#ifdef WINDOWS
-//
-//   m_hsync = ::CreateMutexExW(nullptr, nullptr, bInitiallyOwn ? CREATE_MUTEX_INITIAL_OWNER : 0, MUTEX_ALL_ACCESS);
-//
-//   auto lasterror = ::windows::get_last_error();
-//
-//   set_already_exists(dwLastError == ERROR_ALREADY_EXISTS);
-//
-//#else
-//
-//#if defined(MUTEX_NAMED_POSIX)
-//
-//   m_psem = SEM_FAILED;
-//
-//#elif defined(MUTEX_NAMED_FD)
-//
-//   //m_count = 0;
-//   m_count = 0;
-//
-//#elif defined(MUTEX_NAMED_POSIX)
-//
-//   m_key = 0;
-//
-//   m_semid = -1;
-//
-//#endif
-//
-//   {
-//
-//      pthread_mutexattr_t attr;
-//
-//      pthread_mutexattr_init(&attr);
-//
-//      pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-//
-//      pthread_mutex_init(m_pmutex, &attr);
-//
-//#ifdef MUTEX_COND_TIMED
-//
-//      pthread_cond_init(&m_cond, nullptr);
-//
-//      m_count = 0;
-//
-//      m_thread = 0;
-//
-//#endif
-//
-//   }
-//
-//#endif
-//
-//}
-//
-//
-//mutex::mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pstrName ARG_SEC_ATTRS)
-//{
-//
-//#ifdef _DEBUG
-//   m_itask = -1;
-//#endif
-//
-//   initialize(pparticle);
-//
-//   m_bAlreadyExists = false;
-//
-//#ifdef WINDOWS
-//
-//   wstring wstrName(pstrName);
-//
-//   const wide_character * pwszName = pstrName == nullptr ? nullptr : (const wide_character * )wstrName;
-//
-//   auto psa = (LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS;
-//
-//   m_hsync = ::CreateMutexExW(psa, pwszName, bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, MUTEX_ALL_ACCESS);
-//
-//   auto lasterror = ::windows::get_last_error();
-//
-//   m_bAlreadyExists = dwLastError == ERROR_ALREADY_EXISTS;
-//
-//   if(m_hsync == nullptr)
-//   {
-//
-//      DWORD dwError1 = ::GetLastError();
-//
-//      if(pstrName != nullptr)
-//      {
-//
-//         m_hsync = ::OpenMutexW(SYNCHRONIZE,false,utf8_to_unicode(pstrName));
-//
-//      }
-//
-//      if(m_hsync == nullptr)
-//      {
-//
-//         DWORD dwError2 = ::GetLastError();
-//
-//         throw ::exception(error_resource);
-//
-//      }
-//
-//   }
-//
-//#else
-//
-//#if defined(MUTEX_NAMED_POSIX)
-//
-//   m_psem = SEM_FAILED;
-//
-//   if(pstrName != nullptr && *pstrName != '\0')
-//   {
-//
-//      mutex() = nullptr;
-//
-//      m_psem = nullptr;
-//
-//      string strName(pstrName);
-//
-//      strName.replace("/", "_");
-//      strName.replace(":", "_");
-//      strName.replace("/", "_");
-//
-//      if(case_insensitive_string_begins(pstrName, "Global"))
-//      {
-//
-//#ifdef __ANDROID__
-//
-//         strName = ::file::path(system()->m_pandroidinitdata->m_pszCacheDir) / "var/tmp" / strName;
-//
-//#else
-//
-//         strName = "/var/tmp" / strName;
-//
-//#endif
-//
-//      }
-//      else
-//      {
-//
-//         strName = ::file::path(getenv("HOME")) / strName;
-//
-//      }
-//
-//               auto psystem = system();
-//
-//         auto pdirectorysystem = psystem->m_pdirectorysystem;
-//
-//pdirectorysystem->create(::file::path(strName).folder());
-//
-//      ::file_system()->put_contents(strName, strName);
-//
-//      string strTest = file_system()->as_string(strName);
-//
-//      //::i32 isCreator = 0;
-//
-//      if ((m_psem = sem_open(strName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
-//      {
-//
-//         // We got here first
-//
-//         //isCreator = 1;
-//
-//      }
-//      else
-//      {
-//
-//         ::i32 err = errno;
-//
-//         if (err != EEXIST)
-//         {
-//
-//            throw ::exception(error_resource);
-//
-//         }
-//
-//         // We're not first.  Try again
-//
-//         m_psem = sem_open(strName, 0);
-//
-//         if (m_psem == SEM_FAILED)
-//         {
-//
-//            throw ::exception(resource_exception(););
-//
-//         }
-//
-//         m_pszName = strdup(strName);
-//
-//      }
-//
-//   }
-//   else
-//
-//#elif defined(MUTEX_NAMED_FD)
-//
-//   //m_count = 0;
-//   m_count = 0;
-//
-//   if(pstrName != nullptr && *pstrName != '\0')
-//   {
-//
-//      set_last_status(::success);
-//
-//      ::file::path path;
-//
-//      if(case_insensitive_string_begins(pstrName, "Global"))
-//      {
-//
-//#ifdef __ANDROID__
-//
-//         path = system()->m_pdirectorysystem->system() / "tmp/ca2/lock/mutex" / string(pstrName);
-//
-//#else
-//
-//         path = ::file::path("/var/tmp/ca2/lock/mutex") / pstrName;
-//
-//#endif
-//
-//      }
-//      else
-//      {
-//
-//#ifdef __ANDROID__
-//
-//         path =  system()->m_pdirectorysystem->system() / "home/user/ca2/lock/mutex" / string(pstrName);
-//
-//#elif defined __APPLE__
-//
-//         path = getenv("HOME");
-//
-//         path /= "Library/ca2/lock/mutex/named";
-//
-//#else
-//
-//         path = getenv("HOME");
-//
-//         path /= ".config/ca2/lock/mutex/named";
-//
-//#endif
-//
-//
-//      }
-//
-//      path /= pstrName;
-//
-//      system()->m_pdirectorysystem->create(path.folder());
-//
-//      m_iFd = open(path, O_RDWR | O_CREAT, S_IRWXU);
-//
-//      if(m_iFd < 0)
-//      {
-//
-//         ::i32 iErr = errno;
-//
-//         const ::scoped_string & scopedstrError = strerror(iErr);
-//
-//         throw ::exception(error_resource);
-//
-//      }
-//
-//      m_strName = path;
-//
-//      pthread_mutexattr_t attr;
-//
-//      pthread_mutexattr_init(&attr);
-//
-//      pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-//
-//      pthread_mutex_init(m_pmutex, &attr);
-//
-//   }
-//   else
-//
-//#elif defined(MUTEX_NAMED_POSIX)
-//
-//   m_key = 0;
-//
-//   m_semid = -1;
-//
-//   if(pstrName != nullptr && *pstrName != '\0')
-//   {
-//
-//      mutex() = nullptr;
-//
-//      ::file::path path;
-//
-//      if(case_insensitive_string_begins(pstrName, "Global"))
-//      {
-//
-//         path = "/::payload/lock/ca2/mutex/named";
-//
-//      }
-//      else
-//      {
-//
-//         path = getenv("HOME");
-//
-//         path /= ".config/ca2/lock/mutex/named";
-//
-//      }
-//
-//      path /= pstrName;
-//
-//               auto psystem = system();
-//
-//         auto pdirectorysystem = psystem->m_pdirectorysystem;
-//
-//pdirectorysystem->create(path.folder());
-//
-//      ::file_system()->put_contents(path, m_pszName);
-//
-//      m_key = ftok(path, 1); //Generate a unique key or supply a value
-//
-//      bool bAlreadyExists;
-//
-//get_existing:
-//
-//      set_last_error(0);
-//
-//      m_semid = semget(
-//                m_key, // a unique identifier to identify semaphore set
-//                1,  // number of semaphore in the semaphore set
-//                0// permissions (rwxrwxrwx) on the ___new
-//                //semaphore set and creation flag
-//                );
-//
-//      if(m_semid >= 0)
-//      {
-//
-//         m_bOwner = false;
-//
-//         bAlreadyExists = true;
-//
-//         if(bAlreadyExists)
-//         {
-//            set_last_error(ERROR_ALREADY_EXISTS);
-//
-//         }
-//
-//      }
-//      else
-//      {
-//
-//         bAlreadyExists = false;
-//
-//         m_semid = semget(
-//                   m_key, // a unique identifier to identify semaphore set
-//                   1,  // number of semaphore in the semaphore set
-//                   0777 | IPC_CREAT | IPC_EXCL// permissions (rwxrwxrwx) on the ___new
-//                   //semaphore set and creation flag
-//                   );
-//
-//         if(m_semid == -1 && errno == EEXIST)
-//         {
-//
-//            goto get_existing;
-//
-//         }
-//
-//      }
-//
-//      if(m_semid < 0)
-//      {
-//
-//         throw ::exception(error_resource);
-//
-//      }
-//
-//      m_pszName = strdup(path);
-//
-//      semun semctl_arg;
-//
-//      //set Initial value for the resource
-//      semctl_arg.val = 1; //Setting semval to 1
-//
-//      semctl(m_semid, 0, SETVAL, semctl_arg);
-//
-//   }
-//   else
-//
-//#endif
-//
-//   {
-//
-//      pthread_mutexattr_t attr;
-//
-//      pthread_mutexattr_init(&attr);
-//
-//      pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-//
-//      pthread_mutex_init(m_pmutex, &attr);
-//
-//#ifdef MUTEX_COND_TIMED
-//
-//      pthread_cond_init(&m_cond, nullptr);
-//
-//      m_count = 0;
-//
-//      m_thread = 0;
-//
-//#endif
-//
-//   }
-//
-//#endif
-//
-//}
-//
-//
-//#ifdef WINDOWS
-//
-//mutex::mutex(enum_create_new, const_char_pointer pstrName, void * h, bool bOwner)
-//{
-//
-//#ifdef _DEBUG
-//   m_itask = -1;
-//#endif
-//
-//   m_bOwner = bOwner;
-//   m_hsync = h;
-//
-//}
-//
-////mutexmutex(const mutex & m):
-////   synchronization(m.m_pszName)
-////{
-////   m_bOwner = false;
-////   m_hsync = m.m_hsync;
-////
-////}
-//
-//#else
-//
-//#if defined(MUTEX_NAMED_POSIX)
-//
-//mutexmutex(const_char_pointer pstrName, sem_t * psem, bool bOwner) :
-//   ::matter(pparticle),
-//   synchronization(pstrName)
-//{
-//
-//   m_itask = -1;
-//
-//   m_bOwner       = bOwner;
-//   m_pszName      = strdup(pstrName);
-//
-//#ifdef __ANDROID__
-//
-//   m_psem         = psem;
-//
-//#endif
-//
-//}
-//
-//mutexmutex(const mutex & m):
-//   matter(m.get_app()),
-//   synchronization(m.m_pszName)
-//{
-//
-//   m_bOwner       = false;
-//
-//#ifdef __ANDROID__
-//
-//   m_psem         = m.m_psem;
-//
-//#endif
-//
-//   m_pmutex        = m.m_pmutex;
-//
-//}
-//
-//#elif defined(MUTEX_NAMED_FD)
-//
-//
-//mutex::mutex(enum_create_new, const_char_pointer pszName, ::i32 iFd, bool bOwner)
-//{
-//#ifdef _DEBUG
-////   m_itask = -1;
-////#endif
-////
-////   m_strName = pszName;
-////   set_own_synchronization(bOwner);
-////   m_iFd = iFd;
-////
-////}
-////
-//////mutexmutex(const mutex & m) :
-//////   matter(m.get_app()),
-//////   synchronization(m.m_pszName)
-//////{
-//////
-//////   m_bOwner = false;
-//////   m_iFd = m.m_iFd;
-//////   m_pmutex = m.m_pmutex;
-//////
-//////}
-////
-////
-////
-////#elif defined(MUTEX_NAMED_VSEM)
-////
-////mutexmutex(e_create_new enew, const_char_pointer pstrName, key_t key, ::i32 semid, bool bOwner):
-////   ::matter(pparticle),
-////   synchronization(pstrName)
-////{
-////
-////   m_bOwner       = bOwner;
-////   m_key          = key;
-////   m_semid        = semid;
-////
-////}
-////
-////
-//////mutexmutex(const mutex & m):
-//////   matter(m.get_app()),
-//////   synchronization(m.m_pszName)
-//////{
-//////
-//////   m_bOwner       = false;
-//////   m_semid        = m.m_semid;
-//////   m_pmutex        = m.m_pmutex;
-//////
-//////}
-////
-////#endif
-////
-////#endif
-////
+class mutex_implementation
+{
+public:
+
+#if defined(PARALLELIZATION_PTHREAD)
+
+   pthread_mutex_t m_mutex;
+   int m_iFd = -1;
+   unsigned int m_count = 0;
+
+   mutex_implementation()
+   {
+
+      pthread_mutexattr_t attr;
+      int iError = pthread_mutexattr_init(&attr);
+      if (iError != 0)
+      {
+         throw ::exception(error_resource);
+      }
+
+      iError = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+      if (iError == 0)
+      {
+         iError = pthread_mutex_init(&m_mutex, &attr);
+      }
+      pthread_mutexattr_destroy(&attr);
+
+      if (iError != 0)
+      {
+         throw ::exception(error_resource);
+      }
+
+   }
+
+   ~mutex_implementation()
+   {
+
+      if (m_iFd >= 0)
+      {
+         ::close(m_iFd);
+      }
+      pthread_mutex_destroy(&m_mutex);
+
+   }
+
+#elif defined(WINDOWS)
+
+   HANDLE m_handle;
+   bool m_bOwner = true;
+
+   mutex_implementation()
+   {
+
+      m_handle = ::CreateMutexExW(nullptr, nullptr, 0, MUTEX_ALL_ACCESS);
+      if (!m_handle)
+      {
+         throw ::exception(error_resource);
+      }
+
+   }
+
+   ~mutex_implementation()
+   {
+
+      if (m_bOwner && m_handle)
+      {
+         ::CloseHandle(m_handle);
+      }
+
+   }
+
+#endif
+
+};
 
 
-mutex::mutex()
+mutex::mutex() :
+   m_pimplementation(___new mutex_implementation)
 {
 
+   set_own_synchronization_flag();
 
 }
+
+
+mutex::mutex(enum_create_new, bool bInitiallyOwn) :
+   mutex()
+{
+
+   if (bInitiallyOwn)
+   {
+      _wait();
+   }
+
+}
+
+
+mutex::mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pszName) :
+   mutex()
+{
+
+   initialize(pparticle);
+
+#if defined(PARALLELIZATION_PTHREAD)
+
+   if (pszName && *pszName)
+   {
+
+      ::string strName(pszName);
+      ::file::path path;
+      if (strName.begins("Global"))
+      {
+#ifdef __ANDROID__
+         path = directory_system()->roaming() / "tmp/ca2/lock/mutex";
+#else
+         path = "/var/tmp/ca2/lock/mutex";
+#endif
+      }
+      else
+      {
+#ifdef __ANDROID__
+         path = directory_system()->roaming() / "home/user/ca2/lock/mutex";
+#elif defined(__APPLE__)
+         path = ::file::path(getenv("HOME")) / "Library/ca2/lock/mutex/named";
+#else
+         path = ::file::path(getenv("HOME")) / ".config/ca2/lock/mutex/named";
+#endif
+      }
+
+      path /= strName;
+      directory_system()->create(path.folder());
+      int iFd = ::open(path, O_RDWR | O_CREAT | O_CLOEXEC, S_IRWXU);
+      if (iFd < 0)
+      {
+         throw ::exception(error_resource, "Failed to create named mutex");
+      }
+      m_pimplementation->m_iFd = iFd;
+
+   }
+
+#elif defined(WINDOWS)
+
+   ::wstring wstrName(pszName);
+   HANDLE handle = ::CreateMutexExW(nullptr, pszName ? wstrName.c_str() : nullptr, 0, MUTEX_ALL_ACCESS);
+   if (!handle)
+   {
+      throw ::exception(error_resource);
+   }
+   ::CloseHandle(m_pimplementation->m_handle);
+   m_pimplementation->m_handle = handle;
+
+#endif
+
+   if (bInitiallyOwn)
+   {
+      _wait();
+   }
+
+}
+
+
+#if defined(PARALLELIZATION_PTHREAD)
+
+mutex::mutex(enum_create_new, const_char_pointer, int iFd, bool bOwner) :
+   mutex()
+{
+
+   if (iFd < 0)
+   {
+      throw ::exception(error_resource);
+   }
+   m_pimplementation->m_iFd = iFd;
+   set_own_synchronization_flag(bOwner);
+
+}
+
+#elif defined(WINDOWS)
+
+mutex::mutex(enum_create_new, const_char_pointer, void * handle, bool bOwner) :
+   mutex()
+{
+
+   if (!handle || handle == INVALID_HANDLE_VALUE)
+   {
+      throw ::exception(error_resource);
+   }
+   ::CloseHandle(m_pimplementation->m_handle);
+   m_pimplementation->m_handle = handle;
+   m_pimplementation->m_bOwner = bOwner;
+   set_own_synchronization_flag(bOwner);
+
+}
+
+#endif
 
 
 mutex::~mutex()
 {
 
-//#ifndef WINDOWS
-//
-//#if defined(MUTEX_NAMED_POSIX)
-//
-//   if (m_psem != SEM_FAILED)
-//   {
-//
-//      //if(m_bOwner)
-//      {
-//         sem_close(m_psem);
-//         sem_unlink(m_pszName);
-//
-//      }
-//
-//   }
-//
-//#elif defined(MUTEX_NAMED_FD)
-//
-//   if(m_strName.has_character())
-//   {
-//
-//      if(m_iFd >= 0)
-//      {
-//
-//         close(m_iFd);
-//
-//      }
-//
-//      pthread_mutex_destroy(m_pmutex);
-//
-//   }
-//
-//#elif defined(MUTEX_NAMED_VSEM)
-//
-//   if(m_semid >= 0)
-//   {
-//
-//      if(m_bOwner)
-//      {
-//
-//         semun ignored_argument;
-//
-//         semctl(m_semid, 1, IPC_RMID, ignored_argument);
-//
-//      }
-//
-//   }
-//
-//#endif
-//
-//   else
-//   {
-//
-//      pthread_mutex_destroy(m_pmutex);
-//
-//#ifdef MUTEX_COND_TIMED
-//
-//      pthread_cond_destroy(&m_cond);
-//
-//#endif
-//
-//   }
-//
-//#endif
+   delete m_pimplementation;
 
 }
 
 
-//bool mutex::already_exists()
-//{
-//
-//   return m_bAlreadyExists;
-//
-//}
+hsynchronization mutex::get_synchronization_handle()
+{
 
-//      __ANDROID__
-//      ::i32 irc = pthread_mutex_lock_timeout_np(m_pmutex, time.get_total_milliseconds());
-//
-//      if (!irc)
-//      {
-//
-//         return synchronization_result(synchronization_result::Event0);
-//
-//      }
-//      else if (irc != EBUSY)
-//      {
-//
-//         return synchronization_result(synchronization_result::Failure);
-//
-//      }
-//
+#if defined(PARALLELIZATION_PTHREAD)
+   return this;
+#else
+   return m_pimplementation->m_handle;
+#endif
+
+}
 
 
-//#if !defined(WINDOWS)
-//
-//
-//bool mutex::_wait(const class time & timeWait)
-//{
-//
-//   if(wait.is_infinite())
-//   {
-//
-//      _wait();
-//
-//      return true;
-//
-//   }
-//
-//#if defined(MUTEX_NAMED_POSIX)
-//
-//   if (m_psem != SEM_FAILED)
-//   {
-//
-//      timespec delay;
-//
-//      delay.tv_sec = time.m_i32;
-//
-//      delay.tv_nsec = time.m_i32;
-//
-//      ::i32 ret = sem_timedwait(m_psem, &delay);
-//
-//      if(ret == 0)
-//      {
-//
-//         return synchronization_result(synchronization_result::Event0);
-//
-//      }
-//      else
-//      {
-//
-//         if (errno == ETIMEDOUT)
-//         {
-//
-//            return synchronization_result(synchronization_result::time_out);
-//
-//         }
-//
-//      }
-//
-//      return synchronization_result(synchronization_result::Failure);
-//
-//
-//   }
-//   else
-//
-//#elif defined(MUTEX_NAMED_FD)
-//
-//   if (m_strName.has_character())
-//   {
-//
-//      ::i32 rc = pthread_mutex_lock(m_pmutex);
-//
-//      if (rc < 0)
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//      auto tickStart = ::time::now();
-//
-//      while (true)
-//      {
-//
-//         if (m_count > 0)
-//         {
-//
-//            if (pthread_equal(m_thread, pthread_self()))
-//            {
-//
-//               m_count++;
-//
-//               ::i32 iError = pthread_mutex_unlock(m_pmutex);
-//
-//               ASSERT(iError == 0);
-//
-//               return true;
-//
-//            }
-//
-//         }
-//         else
-//         {
-//
-//            ::i32 rc = lockf(m_iFd, F_LOCK, 0);
-//
-//            if (rc == 0)
-//            {
-//
-//               m_count++;
-//
-//               m_thread = pthread_self();
-//
-//               ::i32 iError = pthread_mutex_unlock(m_pmutex);
-//
-//               ASSERT(iError == 0);
-//
-//               return true;
-//
-//            }
-//            else
-//            {
-//
-//               rc = errno;
-//
-//               if (rc != EAGAIN && rc != EACCES)
-//               {
-//
-//                  ::i32 iError = pthread_mutex_unlock(m_pmutex);
-//
-//                  ASSERT(iError == 0);
-//
-//                  throw ::exception(error_failed);
-//
-//               }
-//
-//            }
-//
-//            ::i32 iError = pthread_mutex_unlock(m_pmutex);
-//
-//            if (iError < 0)
-//            {
-//
-//               ASSERT(false);
-//
-//               throw ::exception(error_failed);
-//
-//            }
-//
-//            auto tickElapsed = tickStart.elapsed();
-//
-//            if (tickElapsed >= wait)
-//            {
-//
-//               return false;
-//
-//            }
-//
-//            preempt(minimum_maximum((wait - tickElapsed) / 50, 1, 1000));
-//
-//            rc = pthread_mutex_lock(m_pmutex);
-//
-//            if (rc < 0)
-//            {
-//
-//               throw ::exception(error_failed);
-//
-//            }
-//
-//         }
-//
-//      }
-//
-////      ::i32 iError = pthread_mutex_unlock(m_pmutex);
-////
-////      ASSERT(iError == 0);
-////
-////      return synchronization_result(synchronization_result::Failure);
-//
-//      return true;
-//
-//   }
-//   else
-//
-//#elif defined(MUTEX_NAMED_VSEM)
-//
-//   if(m_semid >= 0)
-//   {
-//
-//      timespec timeout;
-//
-//      timeout.tv_sec = time.m_i32;
-//
-//      timeout.tv_nsec = time.m_i32;
-//
-//      struct sembuf operation[1] ;
-//
-//      operation[0].sem_op = -1; // Wait
-//      operation[0].sem_num = 0;
-//      operation[0].sem_flg = 0;
-//
-//      ::i32 ret = semtimedop(m_semid, operation, 1, &timeout);
-//
-//      if(ret == 0)
-//      {
-//
-//         return synchronization_result(synchronization_result::Event0);
-//
-//      }
-//      else if(ret == -1)
-//      {
-//
-//         if(errno == EAGAIN)
-//         {
-//
-//            return synchronization_result(synchronization_result::time_out);
-//
-//         }
-//
-//      }
-//
-//      return synchronization_result(synchronization_result::Failure);
-//
-//   }
-//   else
-//
-//#endif
-//
-//#if defined(MUTEX_COND_TIMED)
-//   {
-//
-//      ::i32 iErrorLock = pthread_mutex_lock(m_pmutex);
-//
-//      if(iErrorLock != 0)
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//      bool bFirst = true;
-//
-//      timespec abs_time;
-//
-//      while((m_thread != 0) && !pthread_equal(m_thread, pthread_self()))
-//      {
-//
-//         if (bFirst)
-//         {
-//
-//#ifdef __ANDROID__
-//
-//            clock_gettime(CLOCK_MONOTONIC, &abs_time);
-//
-//#elif defined(MACOS)
-//
-//            if (__builtin_available(macOS 10.12, *))
-//            {
-//
-//               clock_gettime(CLOCK_REALTIME, &abs_time);
-//
-//            }
-//            else
-//            {
-//
-//               struct timeval tm;
-//
-//               gettimeofday(&tm, nullptr);
-//
-//               abs_time.tv_sec = tm.tv_sec;
-//
-//               abs_time.tv_nsec = tm.tv_usec * 1000;
-//
-//
-//            }
-//
-//
-//#elif defined(LINUX)
-//
-//         clock_gettime(CLOCK_REALTIME, &abs_time);
-//
-//#else
-//
-//            struct timeval tm;
-//
-//            gettimeofday(&tm, nullptr);
-//
-//            abs_time.tv_sec = tm.tv_sec;
-//
-//            abs_time.tv_nsec = tm.tv_usec * 1000;
-//
-//#endif
-//
-//            ::time d;
-//
-//            d.m_iSecond = abs_time.tv_sec + wait.m_f64;
-//
-//            d.m_iNanosecond = abs_time.tv_nsec + fmod(wait.m_f64, 1.0) * 1'000'000'000;
-//
-//            d.normalize();
-//
-//            abs_time.tv_sec = d.m_iSecond;
-//
-//            abs_time.tv_nsec = d.m_iNanosecond;
-//
-//            bFirst = false;
-//
-//         }
-//
-//#ifdef __ANDROID__
-//
-//         ::i32 iErrorCondTimedWait = pthread_cond_timedwait_monotonic_np(&m_cond, m_pmutex, &abs_time);
-//
-//#else
-//
-//         ::i32 iErrorCondTimedWait = pthread_cond_timedwait(&m_cond, m_pmutex, &abs_time);
-//
-//#endif
-//
-//         if(iErrorCondTimedWait == ETIMEDOUT)
-//         {
-//
-//            ::i32 iErrorUnlock1 = pthread_mutex_unlock(m_pmutex);
-//
-//            if(iErrorUnlock1 != 0)
-//            {
-//
-//               throw ::exception(error_failed);
-//
-//            }
-//
-//            return false;
-//
-//         }
-//         else if(iErrorCondTimedWait != 0)
-//         {
-//
-//            ::i32 iErrorUnlock2 = pthread_mutex_unlock(m_pmutex);
-//
-//            ASSERT(iErrorUnlock2 == 0);
-//
-//            throw ::exception(error_failed);
-//
-//         }
-//
-//      }
-//
-//      if (m_count == 0)
-//      {
-//
-//         m_thread = pthread_self();
-//
-//      }
-//
-//      m_count++;
-//
-//      ::i32 iErrorUnlock3 = pthread_mutex_unlock(m_pmutex);
-//
-//      if(iErrorUnlock3 != 0)
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//      return true;
-//
-//   }
-//
-//#else
-//
-//   {
-//
-//      timespec abs_time;
-//
-//      clock_gettime(CLOCK_REALTIME, &abs_time);
-//
-//      ::time d;
-//
-//      d.m_iSecond = abs_time.tv_sec + (::i64) (wait.m_f64);
-//
-//      d.m_iNanosecond = abs_time.tv_nsec + (fmod(wait.m_f64, 1.0) * 1'000'000'000);
-//
-//      d.normalize();
-//
-//      abs_time.tv_sec = d.m_iSecond;
-//
-//      abs_time.tv_nsec = d.m_iNanosecond;
-//
-//      ::i32 rc = pthread_mutex_timedlock (m_pmutex, &abs_time);
-//
-//      if (!rc)
-//      {
-//
-//         return true;
-//
-//      }
-//      else if(rc == EINVAL)
-//      {
-//
-//         return false;
-//
-//      }
-//      else if(rc == ETIMEDOUT)
-//      {
-//
-//         return false;
-//
-//      }
-//      else
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//   }
-//
-//#endif
-//
-//}
-//
-//
-//void mutex::_wait()
-//{
-//
-//#if defined(MUTEX_NAMED_POSIX)
-//
-//   if (m_psem != SEM_FAILED)
-//   {
-//
-//      timespec delay;
-//
-//      ::i32 ret = sem_wait(m_psem);
-//
-//      if (ret == 0)
-//      {
-//
-//         return true;
-//
-//      }
-//      else
-//      {
-//
-//         if (errno == ETIMEDOUT)
-//         {
-//
-//            return false;
-//
-//         }
-//
-//      }
-//
-//      return false;
-//
-//   }
-//   else
-//
-//#elif defined(MUTEX_NAMED_FD)
-//
-//   if (m_strName.has_character())
-//   {
-//
-//      ::i32 rc = pthread_mutex_lock(m_pmutex);
-//
-//      if (rc < 0)
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//      if (m_count > 0 && pthread_equal(m_thread, pthread_self()))
-//      {
-//
-//         m_count++;
-//
-//         ::i32 rc = pthread_mutex_unlock(m_pmutex);
-//
-//         if (rc < 0)
-//         {
-//
-//            throw ::exception(error_failed);
-//
-//         }
-//
-//         //return ::success;
-//
-//      }
-//
-//      while (true)
-//      {
-//
-//         if (m_count > 0)
-//         {
-//
-//            if (pthread_equal(m_thread, pthread_self()))
-//            {
-//
-//               m_count++;
-//
-//               ::i32 rc = pthread_mutex_unlock(m_pmutex);
-//
-//               if (rc < 0)
-//               {
-//
-//                  throw ::exception(error_failed);
-//
-//               }
-//
-//               //return ::success;
-//
-//            }
-//
-//         }
-//         else
-//         {
-//
-//            rc = lockf(m_iFd, F_LOCK, 0);
-//
-//            if (rc == 0)
-//            {
-//
-//               m_count++;
-//
-//               m_thread = pthread_self();
-//
-//               ::i32 rc = pthread_mutex_unlock(m_pmutex);
-//
-//               if (rc < 0)
-//               {
-//
-//                  throw ::exception(error_failed);
-//
-//               }
-//
-//               //return ::success;
-//
-//            }
-//            else
-//            {
-//
-//               rc = errno;
-//
-//               if (rc != EAGAIN && rc != EACCES)
-//               {
-//
-//                  ::i32 rc = pthread_mutex_unlock(m_pmutex);
-//
-//                  if(rc < 0)
-//                  {
-//
-//                     throw ::exception(error_failed);
-//
-//                  }
-//
-//                  throw ::exception(error_failed);
-//
-//               }
-//
-//            }
-//
-//         }
-//
-//         ::i32 rc = pthread_mutex_unlock(m_pmutex);
-//
-//         if (rc < 0)
-//         {
-//
-//            throw ::exception(error_failed);
-//
-//         }
-//
-//         preempt(100_ms);
-//
-//         rc = pthread_mutex_lock(m_pmutex);
-//
-//         if (rc < 0)
-//         {
-//
-//            throw ::exception(error_failed);
-//
-//         }
-//
-//      }
-//
-//      //return ::success;
-//
-//   }
-//   else
-//
-//#elif defined(MUTEX_NAMED_VSEM)
-//
-//   if(m_semid >= 0)
-//   {
-//
-//      struct sembuf operation[1] ;
-//
-//      operation[0].sem_op = -1; // Wait
-//      operation[0].sem_num = 0;
-//      operation[0].sem_flg = 0;
-//
-//      ::i32 ret = semop(m_semid, operation, 1);
-//
-//      if(ret < 0)
-//      {
-//
-//         return false;
-//
-//      }
-//
-//   }
-//   else
-//
-//#endif
-//
-//#ifdef MUTEX_COND_TIMED
-//   {
-//
-//      ::i32 iErrorLock = pthread_mutex_lock(m_pmutex);
-//
-//      if(iErrorLock != 0)
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//      while ((m_thread != 0) && !pthread_equal(m_thread, pthread_self()))
-//      {
-//
-//         ::i32 iErrorCondWait = pthread_cond_wait(&m_cond, m_pmutex);
-//
-//         if(iErrorCondWait != 0)
-//         {
-//
-//            ::i32 iErrorUnlock1 = pthread_mutex_unlock(m_pmutex);
-//
-//            throw ::exception(error_failed);
-//
-//         }
-//
-//      }
-//
-//      if(m_count == 0)
-//      {
-//
-//         m_thread = pthread_self();
-//
-//      }
-//
-//      m_count++;
-//
-//      ::i32 iErrorUnlock2 = pthread_mutex_unlock(m_pmutex);
-//
-//      if(iErrorUnlock2 != 0)
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//   }
-//
-//#else
-//
-//   {
-//
-//      ::i32 irc = pthread_mutex_lock(m_pmutex);
-//
-//      if (irc)
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//   }
-//
-//#endif
-//
-//}
-//
-//
-//#endif
-//
-//
-//void mutex::unlock()
-//{
-//
-//#ifdef WINDOWS
-//
-//#ifdef _DEBUG
-//
-//   m_strThread.empty();
-//   m_itask = -1;
-//   informationf("");
-//
-//#endif
-//
-//
-//   if (!::ReleaseMutex(m_hsync))
-//   {
-//
-//      auto last_error = GetLastError();
-//
-//      auto estatus = failed_errno_status(last_error);
-//
-//      //throw ::exception(estatus);
-//
-//   }
-//
-//#else
-//
-//#if defined(MUTEX_NAMED_POSIX)
-//
-//   if (m_psem != SEM_FAILED)
-//   {
-//
-//      return sem_post(m_psem) == 0;
-//
-//   }
-//   else
-//
-//#elif defined(MUTEX_NAMED_FD)
-//
-//   if (m_strName.has_character())
-//   {
-//
-//      ::i32 rc = pthread_mutex_lock(m_pmutex);
-//
-//      if (rc < 0)
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//      if (!pthread_equal(m_thread, pthread_self()))
-//      {
-//
-//         ASSERT(false);
-//
-//         ::i32 iError = pthread_mutex_unlock(m_pmutex);
-//
-//         ASSERT(iError == 0);
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//      rc = 0;
-//
-//      if (m_count > 1)
-//      {
-//
-//         m_count--;
-//
-//      }
-//      else if (m_count == 1)
-//      {
-//
-//         rc = lockf(m_iFd, F_ULOCK, 0);
-//
-//         if (rc == 0)
-//         {
-//
-//            m_count = 0;
-//
-//         }
-//
-//      }
-//
-//      ::i32 iError = pthread_mutex_unlock(m_pmutex);
-//
-//      ASSERT(iError == 0);
-//
-//      if(rc != 0)
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//   }
-//   else
-//
-//#elif defined(NAMED_MUTEX_VSEM)
-//
-//   if(m_semid >= 0)
-//   {
-//
-//      struct sembuf operation[1] ;
-//
-//      operation[0].sem_op = 1; //Release the resource
-//      operation[0].sem_num = 0;
-//      operation[0].sem_flg = SEM_UNDO;
-//
-//      return semop(m_semid, operation, 1) == 0;
-//
-//   }
-//   else
-//
-//#endif
-//
-//#ifdef MUTEX_COND_TIMED
-//
-//   {
-//
-//      ::i32 iErrorLock = pthread_mutex_lock(m_pmutex);
-//
-//      if(iErrorLock != 0)
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//      if(!pthread_equal(m_thread, pthread_self()))
-//      {
-//
-//         ASSERT(false);
-//
-//         ::i32 iErrorUnlock1 = pthread_mutex_unlock(m_pmutex);
-//
-//         ASSERT(iErrorUnlock1 == 0);
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//      if(m_count > 1)
-//      {
-//
-//         m_count--;
-//
-//      }
-//      else if(m_count == 1)
-//      {
-//
-//         ::i32 iErrorSignal = pthread_cond_signal(&m_cond);
-//
-//         if(iErrorSignal != 0)
-//         {
-//
-//            ::i32 iErrorUnlock2 = pthread_mutex_unlock(m_pmutex);
-//
-//            throw ::exception(error_failed);
-//
-//         }
-//
-//         m_thread = 0;
-//
-//         m_count = 0;
-//
-//      }
-//
-//      ::i32 iErrorUnlock3 = pthread_mutex_unlock(m_pmutex);
-//
-//      if(iErrorUnlock3 != 0)
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//   }
-//
-//#else
-//
-//   {
-//
-//      ::i32 iError = pthread_mutex_unlock(m_pmutex);
-//
-//      if(iError != 0)
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//   }
-//
-//#endif
-//
-//#endif // _WIN32
-//
-//}
+void mutex::_wait()
+{
 
-//
-//
-//::pointer<mutex>open_mutex(::matter * pmatter, const_char_pointer pszName)
-//{
-//
-//#ifdef WINDOWS
-//
-//   HANDLE h = ::OpenMutexW(SYNCHRONIZE, false, utf8_to_unicode(pszName));
-//
-//   if (h == nullptr || h == INVALID_HANDLE_VALUE)
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   auto pmutex  = allocateø mutex(e_create_new, pszName, h);
-//
-//   return pmutex;
-//
-//#elif defined(MUTEX_NAMED_POSIX)
-//
-//   string strName = pstrName;
-//
-//   sem_t * psem;
-//
-//   ::i32 isCreator = 0;
-//
-//   if ((psem = sem_open(strName, O_CREAT | O_EXCL, 0666, 1)) != SEM_FAILED)
-//   {
-//
-//      isCreator = 1;
-//
-//   }
-//   else
-//   {
-//
-//      psem = sem_open(strName, 0);
-//
-//      if (psem == SEM_FAILED)
-//      {
-//
-//         //throw ::exception(resource_exception(papp,"failed to create named mutex"));
-//         throw ::exception(error_resource);
-//
-//      }
-//
-//   }
-//
-//   auto pmutex = allocateø mutex(strName, psem, isCreator);
-//
-//   return pmutex;
-//
-//#elif defined(MUTEX_NAMED_FD)
-//
-//   if (pszName == nullptr || *pszName == '\0')
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   set_last_status(::success);
-//
-//   ::file::path path;
-//
-//   if (case_insensitive_string_begins(pszName, "Global"))
-//   {
-//
-//      path = "/payload/tmp/ca2/lock/mutex/named";
-//
-//   }
-//   else
-//   {
-//
-//#ifdef __APPLE__
-//
-//      path = getenv("HOME");
-//
-//      path /= "Library/ca2/lock/mutex/named";
-//
-//#else
-//
-//      path = getenv("HOME");
-//
-//      path /= ".config/ca2/lock/mutex/named";
-//
-//#endif
-//
-//   }
-//
-//   path /= pszName;
-//
-//   auto pdirectorysystem = pmatter->directory_system();
-//
-//   pdirectorysystem->create(path.folder());
-//
-//   ::i32 iFd = open(path, O_RDWR, S_IRWXU);
-//
-//   if (iFd < 0)
-//   {
-//
-//      throw ::exception(error_resource);
-//
-//   }
-//
-//   //m_pszName = strdup(path);
-//
-//   //pthread_mutexattr_t attr;
-//
-//   //pthread_mutexattr_init(&attr);
-//
-//   //pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-//
-//   //pthread_mutex_init(m_pmutex, &attr);
-//
-//   auto pmutex = allocateø mutex(e_create_new, pszName, iFd, false);
-//
-//   return pmutex;
-//
-//#elif defined(POSIX_NAMED_VSEM)
-//
-//   if(pstrName == nullptr || *pstrName == '\0')
-//      return nullptr;
-//
-//   string strName = pstrName;
-//
-//   key_t key = ftok(strName, 0); //Generate a unique key or supply a value
-//
-//   ::i32 semid = semget(
-//               key, // a unique identifier to identify semaphore set
-//               1,  // number of semaphore in the semaphore set
-//               0666 // permissions (rwxrwxrwx) on the ___new
-//               //semaphore set and creation flag
-//               );
-//   if(semid < 0)
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   auto pmutex = allocateø mutex(strName, key, semid);
-//
-//   return pmutex;
-//
-//#endif
-//
-//}
-//
-//
-//void wait_until_mutex_does_not_exist(::particle * pparticle,  const_char_pointer pszName)
-//{
-//
-//   ::pointer<mutex>pmutex = allocateø mutex(pparticle, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
-//
-//   if(::get_last_status() == ::error_already_exists)
-//   {
-//
-//      while(::get_last_status() == ::error_already_exists && ::task_get_run())
-//      {
-//
-//         pmutex.release();
-//
-//         preempt(200_ms);
-//
-//         pmutex = allocateø mutex(pparticle, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
-//
-//      }
-//
-//   }
-//
-//}
-//
-//
-//mutex * g_pmutexUiDestroyed = nullptr;
-//
-//CLASS_DECL_ACME mutex * get_ui_destroyed_mutex()
-//{
-//
-//   return g_pmutexUiDestroyed;
-//
-//}
-//
-//
-//
+#if defined(PARALLELIZATION_PTHREAD)
+
+   auto & implementation = *m_pimplementation;
+   if (pthread_mutex_lock(&implementation.m_mutex) != 0)
+   {
+      throw ::exception(error_failed);
+   }
+
+   if (implementation.m_iFd >= 0)
+   {
+
+      if (implementation.m_count == 0)
+      {
+         int iResult;
+         do
+         {
+            iResult = ::lockf(implementation.m_iFd, F_LOCK, 0);
+         }
+         while (iResult < 0 && errno == EINTR);
+
+         if (iResult < 0)
+         {
+            pthread_mutex_unlock(&implementation.m_mutex);
+            throw ::exception(error_failed);
+         }
+      }
+      implementation.m_count++;
+
+   }
+
+#elif defined(WINDOWS)
+
+   auto dwResult = ::WaitForSingleObject(m_pimplementation->m_handle, INFINITE);
+   if (dwResult != WAIT_OBJECT_0 && dwResult != WAIT_ABANDONED)
+   {
+      throw ::exception(error_failed);
+   }
+
+#endif
+
+}
+
+
+bool mutex::_wait(const class ::time & timeWait)
+{
+
+   if (timeWait.is_infinite())
+   {
+      _wait();
+      return true;
+   }
+
+#if defined(PARALLELIZATION_PTHREAD)
+
+   auto & implementation = *m_pimplementation;
+   auto timeStart = ::time::now();
+   const timespec timespecSleep{0, 1'000'000};
+
+#if defined(LINUX) || defined(__ANDROID__)
+
+   int iError = pthread_mutex_trylock(&implementation.m_mutex);
+   if (iError == EBUSY)
+   {
+      if (timeWait <= 0_s)
+      {
+         return false;
+      }
+
+      timespec deadline{};
+      if (::clock_gettime(CLOCK_REALTIME, &deadline) != 0)
+      {
+         throw ::exception(error_failed);
+      }
+      deadline.tv_sec += timeWait.m_iSecond;
+      deadline.tv_nsec += timeWait.m_iNanosecond;
+      if (deadline.tv_nsec >= 1'000'000'000)
+      {
+         deadline.tv_sec++;
+         deadline.tv_nsec -= 1'000'000'000;
+      }
+      iError = pthread_mutex_timedlock(&implementation.m_mutex, &deadline);
+   }
+   if (iError == ETIMEDOUT)
+   {
+      return false;
+   }
+   if (iError != 0)
+   {
+      throw ::exception(error_failed);
+   }
+
+#else
+
+   // Some pthread platforms, including macOS, have no mutex_timedlock.
+   while (true)
+   {
+      int iError = pthread_mutex_trylock(&implementation.m_mutex);
+      if (iError == 0)
+      {
+         break;
+      }
+      if (iError != EBUSY)
+      {
+         throw ::exception(error_failed);
+      }
+      if (timeStart.elapsed() >= timeWait)
+      {
+         return false;
+      }
+      ::nanosleep(&timespecSleep, nullptr);
+   }
+
+#endif
+
+   if (implementation.m_iFd >= 0)
+   {
+
+      if (implementation.m_count == 0)
+      {
+         while (::lockf(implementation.m_iFd, F_TLOCK, 0) < 0)
+         {
+            int iError = errno;
+            if (iError != EACCES && iError != EAGAIN && iError != EINTR)
+            {
+               pthread_mutex_unlock(&implementation.m_mutex);
+               throw ::exception(error_failed);
+            }
+            if (timeStart.elapsed() >= timeWait)
+            {
+               pthread_mutex_unlock(&implementation.m_mutex);
+               return false;
+            }
+            ::nanosleep(&timespecSleep, nullptr);
+         }
+      }
+      implementation.m_count++;
+
+   }
+   return true;
+
+#elif defined(WINDOWS)
+
+   auto milliseconds = timeWait.integral_millisecond();
+   DWORD dwMilliseconds = milliseconds <= 0 ? 0 :
+      (milliseconds >= INFINITE ? INFINITE - 1 : static_cast<DWORD>(milliseconds));
+   auto dwResult = ::WaitForSingleObject(m_pimplementation->m_handle, dwMilliseconds);
+   if (dwResult == WAIT_TIMEOUT)
+   {
+      return false;
+   }
+   if (dwResult != WAIT_OBJECT_0 && dwResult != WAIT_ABANDONED)
+   {
+      throw ::exception(error_failed);
+   }
+   return true;
+
+#endif
+
+}
+
+
+void mutex::unlock()
+{
+
+#if defined(PARALLELIZATION_PTHREAD)
+
+   auto & implementation = *m_pimplementation;
+   if (implementation.m_iFd >= 0)
+   {
+      if (implementation.m_count == 0)
+      {
+         throw ::exception(error_wrong_state);
+      }
+      if (implementation.m_count == 1 && ::lockf(implementation.m_iFd, F_ULOCK, 0) < 0)
+      {
+         throw ::exception(error_failed);
+      }
+      implementation.m_count--;
+   }
+
+   if (pthread_mutex_unlock(&implementation.m_mutex) != 0)
+   {
+      throw ::exception(error_failed);
+   }
+
+#elif defined(WINDOWS)
+
+   if (!::ReleaseMutex(m_pimplementation->m_handle))
+   {
+      throw ::exception(error_failed);
+   }
+
+#endif
+
+}

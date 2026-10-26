@@ -44,9 +44,10 @@ list(APPEND library_references acme)
 list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
-if(${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
+#if(${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
+if(${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
     list(APPEND library_references z)
-else()
+elseif(${WIN32})
     list(APPEND library_references zlib)
 endif()
 
@@ -147,7 +148,7 @@ if(BUILD_TESTING)
     add_test(NAME resource_file_context_test COMMAND resource_file_context_test)
 
     add_executable(folder_zip_session_concurrency_test test/concurrent_folder_reads.cpp)
-    target_link_libraries(${PROJECT_NAME} PRIVATE static_folder_zip static_acme zlib)
+    target_link_libraries(${PROJECT_NAME} PRIVATE static_folder_zip static_acme)
     add_test(NAME folder_zip_session_concurrency_test COMMAND folder_zip_session_concurrency_test)
 
 endif()

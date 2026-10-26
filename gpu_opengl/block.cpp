@@ -34,6 +34,11 @@ namespace gpu_opengl
 
       ::gpu::context_lock contextlock(pgpucontext);
 
+#if defined(LINUX) || defined(__BSD__)
+
+      load_glad_gl(pgpucontext);
+
+#endif
 
       ::gpu::block::create_gpu_block(pgpucontext);
 

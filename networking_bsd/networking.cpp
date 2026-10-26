@@ -1,5 +1,6 @@
 // Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
 #include "platform.h"
+#include "acme/parallelization/mutex.h"
 #include "networking.h"
 #include "sockets/ssl/initializer.h"
 #include "acme/exception/interface_only.h"
@@ -175,7 +176,7 @@ namespace networking_bsd
 
       m_psslinit = create_newø<::sockets_bsd::SSLInitializer>();
 
-      constructø(m_pmutexCert);
+      m_pmutexCert = create_newø<::mutex>();
 
       //estatus = construct_newø(m_pnet);
 

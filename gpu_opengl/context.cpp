@@ -3000,7 +3000,7 @@ void main() {
 
    ::memory context::circle_shader_vert()
    {
-      const ::i8 proto_vert[] = R"vert(
+      const ::i8 proto_vert[] = R"vert(#version 330 core
 layout(location = 0) in vec2 inputPosition;
 layout(location = 1) in vec2 inputLocalPosition;
 
@@ -3021,7 +3021,7 @@ void main()
 
    ::memory context::circle_shader_frag()
    {
-      const ::i8 proto_frag[] = R"frag(
+      const ::i8 proto_frag[] = R"frag(#version 330 core
 in vec2 fragmentLocalPosition;
 
 uniform vec4 uniformFragmentColor;

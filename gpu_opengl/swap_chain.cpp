@@ -18,6 +18,10 @@
 #include "bred/gpu/texture_site.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/window.h"
+#include <atomic>
+
+// Temporary presentation probe. Define this to bypass the normal texture blit.
+// #define GPU_DEBUG_SWAP_CHAIN_CLEAR 1
 
 
 namespace gpu_opengl
@@ -249,6 +253,36 @@ FragColor = texture(uTexture, TexCoord);
          ::opengl::check_error("");
          glDepthMask(GL_FALSE);
          ::opengl::check_error("");
+
+#if defined(GPU_DEBUG_SWAP_CHAIN_CLEAR)
+
+         auto pcommandbuffer = pgpucommandbuffer;
+
+         auto sizeContext = m_pgpurenderer->m_pgpucontext->size();
+
+         pcommandbuffer->begin_render(m_pshaderPresent, m_ptexturesitePresent);
+
+         pcommandbuffer->set_viewport(sizeContext, sizeContext);
+
+         glClearColor(0.86f, 0.93f, 1.00f, 0.88f);
+         ::opengl::check_error("debug swap-chain clear color");
+         glClear(GL_COLOR_BUFFER_BIT);
+         ::opengl::check_error("debug swap-chain clear");
+         glFinish();
+         ::opengl::check_error("debug swap-chain clear finish");
+
+         pcommandbuffer->end_render();
+
+         m_pgpurenderer->m_pgpucontext->defer_unbind_shader(pcommandbuffer);
+
+         informationf("GPU_DEBUG_SWAP_CHAIN_CLEAR submitted size=%dx%d",
+            sizeContext.cx, sizeContext.cy);
+
+         return;
+
+#endif
+
+#if !defined(GPU_DEBUG_SWAP_CHAIN_CLEAR)
 //#if 0
 #if 1
 
@@ -318,17 +352,29 @@ FragColor = texture(uTexture, TexCoord);
 
             m_pshaderPresent->bind_source(pcommandbuffer, pgputexturesite);
 
-            auto rectangleImpact = m_pgpurenderer->m_pgpucontext->output_placement();
+            // The composed texture is desktop-sized. Sample only the window's
+            // rectangle within it, then present that region across the window.
+            auto sizeSource = pgputexturesite->raw_size();
 
-            auto sizeRaw = m_pgpurenderer->m_pgpucontext->raw_size();
+            auto rectangleSource = pgputexturesite->output_placement();
 
-            auto size = rectangleImpact.size();
+            static std::atomic_bool s_bLoggedPresentPlacement{false};
 
-            pgpucommandbuffer->set_viewport(size, size);
+            if (sizeContext.cx > 100 && sizeContext.cy > 100
+               && !s_bLoggedPresentPlacement.exchange(true))
+            {
 
-            pgpucommandbuffer->set_scissor(size, size);
+               informationf("GPU present placement source=(%d,%d %dx%d) raw=%dx%d window=%dx%d",
+                  rectangleSource.left, rectangleSource.top, rectangleSource.width(), rectangleSource.height(),
+                  sizeSource.cx, sizeSource.cy, sizeContext.cx, sizeContext.cy);
 
-            m_pshaderPresent->set_impact_quad(rectangleImpact, sizeRaw);
+            }
+
+            pgpucommandbuffer->set_viewport(sizeContext, sizeContext);
+
+            pgpucommandbuffer->set_scissor(sizeContext, sizeContext);
+
+            m_pshaderPresent->set_impact_quad(rectangleSource, sizeSource);
 
             m_pshaderPresent->push_properties(pgpucommandbuffer);
 
@@ -358,6 +404,8 @@ FragColor = texture(uTexture, TexCoord);
 #endif
          
 #endif
+
+#endif // !GPU_DEBUG_SWAP_CHAIN_CLEAR
 
 #if 0
 
@@ -740,7 +788,7 @@ void swap_chain::defer_update_swap_chain_textures(const ::i32_size & size)
       || ::is_null(m_pshaderRender))
    {
       
-      m_pgpurenderer->m_pgpucontext->on_resize(size);
+      m_pgpurenderer->m_pgpucontext->on_resize(size, nullptr, nullptr);
       
       m_pgpurenderer->m_pgpucontext->set_size(size);
       

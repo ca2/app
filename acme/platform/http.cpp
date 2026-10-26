@@ -2,6 +2,7 @@
 // Created by camilo on 2024-10-24 21:31 <3ThomasBorregaardSorensen!!
 //
 #include "platform.h"
+#include "acme/parallelization/mutex.h"
 #include "http.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/file_system.h"
@@ -33,7 +34,7 @@ namespace platform
       
       ::platform::department::initialize(pparticle);
       
-      constructø(m_pmutexHttpDownload);
+      m_pmutexHttpDownload = create_newø<::mutex>();
 
 
       

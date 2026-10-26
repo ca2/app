@@ -50,6 +50,8 @@ namespace gpu_opengl
    approach::~approach()
    {
 
+#ifdef WINDOWS_DESKTOP
+
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_hglrcShare)
@@ -69,6 +71,8 @@ namespace gpu_opengl
          m_hglrcShare = nullptr;
 
       }
+
+#endif
 
    }
 

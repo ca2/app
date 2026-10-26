@@ -50,6 +50,7 @@
 #elif defined(LINUX) || defined(__BSD__)
 
 #include "device_egl.h"
+#include "context_egl.h"
 
 #else
 
@@ -92,6 +93,7 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
 #elif defined(LINUX) || defined(__BSD__)
 
    pfactory->add_factory_item < ::gpu_opengl::device_egl, ::gpu::device >();
+   pfactory->add_factory_item < ::gpu_opengl::context_egl, ::gpu::context >();
 
 #else
 

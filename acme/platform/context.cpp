@@ -845,11 +845,15 @@ namespace platform
    ::file::path context::__defer_process_path(::file::path path)
    {
       // cloud-app:// addresses this application's directory under the selected
-      // cloud root. Resolve it to cloud:// so provider selection stays central.
-      if (path.case_insensitive_begins("cloud-app://"))
+      // cloud root. Keep provider selection centralized in directory_system.
+      if (path.case_insensitive_begins("cloud-app://")
+         || path.case_insensitive_begins("cloud-app:/"))
       {
          auto pathCloudAppOriginal = path;
-         path.case_insensitive_begins_eat("cloud-app://");
+         if (!path.case_insensitive_begins_eat("cloud-app://"))
+         {
+            path.case_insensitive_begins_eat("cloud-app:/");
+         }
          auto flags = path.flags();
 
          while (path.begins("/") || path.begins("\\"))
@@ -879,10 +883,14 @@ namespace platform
 
       // cloud:// is the portable cloud-storage root. The configured provider
       // comes from directory_system and may be overridden in roaming/user/cloud.txt.
-      if (path.case_insensitive_begins("cloud://"))
+      if (path.case_insensitive_begins("cloud://")
+         || path.case_insensitive_begins("cloud:/"))
       {
          auto pathCloudOriginal = path;
-         path.case_insensitive_begins_eat("cloud://");
+         if (!path.case_insensitive_begins_eat("cloud://"))
+         {
+            path.case_insensitive_begins_eat("cloud:/");
+         }
          auto flags = path.flags();
 
          while (path.begins("/") || path.begins("\\"))
@@ -902,7 +910,6 @@ namespace platform
          pathCloud.flags() = flags;
 
          return pathCloud;
-
       }
 
       // appdata is local per-application storage, independent of cloud providers.

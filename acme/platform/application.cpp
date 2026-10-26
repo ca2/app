@@ -3312,7 +3312,7 @@ namespace platform
    string application::app_roaming_application_file_setting(const ::scoped_string& scopedstrFileName)
    {
 
-      auto path = directory_system()->roaming() / m_strAppName / scopedstrFileName;
+      auto path = directory_system()->roaming() / m_strAppId / scopedstrFileName;
 
       auto str = file()->safe_get_string(path);
 
@@ -3419,15 +3419,11 @@ namespace platform
       if (str.is_empty())
       {
 
-         str = app_roaming_application_file_setting(strFilename);
+         str = app_roaming_application_file_setting(strFilenameWithOperatingSystem);
 
       }
 
       return str;
-
-
-
-      return application_file_setting(strFilename);
 
    }
 

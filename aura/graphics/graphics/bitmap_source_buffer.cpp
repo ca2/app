@@ -32,7 +32,6 @@ namespace graphics
       const ::scoped_string & scopedstrBitmapSourceName,
       const ::scoped_string & scopedstrConsumerAppId)
    {
-#if defined(WINDOWS)
       string strProducerAppId(scopedstrProducerAppId);
       string strBitmapSourceName(scopedstrBitmapSourceName);
       string strConsumerAppId(scopedstrConsumerAppId);
@@ -49,17 +48,17 @@ namespace graphics
       auto pathFolder = directory_system()->roaming() / strProducerAppId
          / "bitmap-source" / strBitmapSourceName;
       directory()->create(pathFolder);
-      auto pathLease = pathFolder / (strConsumerAppId + ".txt");
+      auto pathLease = pathFolder / (strConsumerAppId + ".lock");
+      directory()->create(pathLease.folder());
       auto pfile = file()->get_file(pathLease,
          ::file::e_open_read_write | ::file::e_open_create | ::file::e_open_no_truncate
          | ::file::e_open_share_deny_none | ::file::e_open_no_inherit
          | ::file::e_open_no_share_violation_wait);
+#if defined(WINDOWS)
       // Lock beyond the declaration contents so readers can inspect metadata.
       pfile->lock(0x7ffffffe, 1);
-      m_pfileLease = pfile;
-#else
-      throw ::exception(error_not_supported);
 #endif
+      m_pfileLease = pfile;
    }
 
    void bitmap_source_interest::release_interest()
@@ -92,7 +91,7 @@ namespace graphics
       for (auto & path : listing)
       {
          auto strName = path.name();
-         if (!strName.case_insensitive_ends(".txt"))
+         if (!strName.case_insensitive_ends(".lock"))
             continue;
          ::file_pointer pfile;
          try
@@ -281,14 +280,12 @@ namespace graphics
       if (!bCreate)
       {
 
-#if defined(WINDOWS)
-         constructø(m_pbitmapsourceinterest);
+         construct_newø(m_pbitmapsourceinterest);
          string strConsumerAppId;
          if (application())
             strConsumerAppId = application()->m_strAppId;
          m_pbitmapsourceinterest->acquire(
             m_strAppId, m_strBitmapSource, strConsumerAppId);
-#endif
 
       }
 
@@ -308,7 +305,19 @@ namespace graphics
       {
 
          m_pmutexBitmapSource = node()->open_local_named_mutex(this, strMutexName);
+         if (!m_pmutexBitmapSource)
+         {
+            // The consumer can start before the producer creates its mutex.
+            // Create the same named mutex so either process can initialize first.
+            m_pmutexBitmapSource = node()->create_local_named_mutex(
+               this, false, strMutexName, nullptr);
+         }
 
+      }
+
+      if (!m_pmutexBitmapSource)
+      {
+         throw ::exception(error_wrong_state, "Could not open or create bitmap source mutex");
       }
 
       synchronous_lock synchronouslock(m_pmutexBitmapSource, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

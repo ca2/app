@@ -589,6 +589,7 @@ list(APPEND library_source
         parallelization/signalization.h
         parallelization/single_lock.cpp
         parallelization/socket_event.cpp
+        parallelization/sync
         parallelization/synchronizer.cpp
         parallelization/synchronizer.h
         parallelization/task.cpp

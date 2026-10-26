@@ -415,7 +415,8 @@ namespace image
 
       }
 
-      constructø(pimage2);
+      pimage2 = get_image(pathProcessed,
+         {.draw2d_domain = system()->draw2d()->main_draw2d_domain()});
 
       pimage = pimage2;
 
@@ -476,7 +477,8 @@ namespace image
          if (pimage2.nok())
          {
 
-            pimage2 = get_image(path);
+            pimage2 = get_image(pathProcessed,
+               {.draw2d_domain = system()->draw2d()->main_draw2d_domain()});
 
          }
         

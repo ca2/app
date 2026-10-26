@@ -15,9 +15,9 @@ bitmapSource->set_bitmap_source(
 ```
 
 The consumer app ID comes from the current application. The declaration path is
-`roaming/<producer-app-id>/bitmap-source/<source-name>/<consumer-app-id>.txt`;
+`roaming/<producer-app-id>/bitmap-source/<source-name>/<consumer-app-id>.lock`;
 for hello_space this is
-`roaming/app-core/hello_multiverse/bitmap-source/HelloMultiverse!!/app-core/hello_space.txt`.
+`roaming/app-core/hello_multiverse/bitmap-source/HelloMultiverse!!/app-graphics3d/hello_space.lock`.
 The shared bitmap is stored as `buffer.bin` beside that declaration. The
 consumer holds the declaration's lock for as long as its bitmap source is open.
 
@@ -27,7 +27,7 @@ consumer holds the declaration's lock for as long as its bitmap source is open.
 - Hold an exclusive, nonblocking byte-range lock at offset `0x7ffffffe`, length 1.
   Locking beyond EOF does not grow the file and leaves its contents available for
   future request metadata. The initial declaration may be empty.
-- The producer recursively probes that same byte range on each `.txt` declaration. Only a
+- The producer recursively probes that same byte range on each `.lock` declaration. Only a
   lock-conflict result establishes interest. Other open/lock failures do not.
 - Files beginning with `_` are ignored. An unlocked file is inactive, regardless
   of its filename. Stale files are left in place; they need no cleanup for correct
@@ -43,6 +43,6 @@ consumer holds the declaration's lock for as long as its bitmap source is open.
 
 The implementation uses the existing Windows `LockFile` adapter, which supports
 both recent Windows and the ReactOS/XP build without newer API imports. The POSIX
-adapter currently implements byte-range locks as no-ops, so demand control is
-not enabled there: publishing retains its prior behavior and acquiring this
-lease reports `error_not_supported`.
+adapter currently implements byte-range locks as no-ops, so the declaration
+file is created but demand control is not enabled there; publishing retains its
+prior behavior.

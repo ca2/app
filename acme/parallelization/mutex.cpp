@@ -13,7 +13,7 @@
 #elif defined(WINDOWS)
 #include "acme/_operating_system.h"
 #else
-#error "mutex requires pthreads or Windows synchronization"
+#error "not implemented by here/now in this era/epoch/age"
 #endif
 
 
@@ -167,7 +167,8 @@ mutex::mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pszN
       {
          throw ::exception(error_resource, "Failed to create named mutex");
       }
-      m_pimplementation->m_iFd = iFd;
+      //m_pimplementation->m_iFd = iFd;
+      m_iFd = iFd;
 
    }
 

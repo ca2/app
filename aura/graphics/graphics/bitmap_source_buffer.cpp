@@ -49,7 +49,7 @@ namespace graphics
       auto pathFolder = directory_system()->roaming() / strProducerAppId
          / "bitmap-source" / strBitmapSourceName;
       directory()->create(pathFolder);
-      auto pathLease = pathFolder / (strConsumerAppId + ".txt");
+      auto pathLease = pathFolder / (strConsumerAppId + ".lock");
       auto pfile = file()->get_file(pathLease,
          ::file::e_open_read_write | ::file::e_open_create | ::file::e_open_no_truncate
          | ::file::e_open_share_deny_none | ::file::e_open_no_inherit
@@ -92,7 +92,7 @@ namespace graphics
       for (auto & path : listing)
       {
          auto strName = path.name();
-         if (!strName.case_insensitive_ends(".txt"))
+         if (!strName.case_insensitive_ends(".lock"))
             continue;
          ::file_pointer pfile;
          try

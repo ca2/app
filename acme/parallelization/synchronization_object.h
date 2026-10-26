@@ -27,8 +27,9 @@
 
 
       hsynchronization        m_handle;
+#if defined(WINDOWS)
       bool                    m_bOwner;
-
+#endif
 
       synchronization_object();
       ~synchronization_object();

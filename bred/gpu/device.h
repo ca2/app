@@ -5,7 +5,6 @@
 #pragma once
 
 
-////#include "acme/exception/exception.h"
 #include "acme/constant/gpu.h"
 #include "acme/graphics/image/image32_t.h"
 #include "acme/prototype/geometry2d/size.h"
@@ -48,7 +47,7 @@ namespace gpu
 
 
       itask									                     m_itaskCurrentGpuContext;
-      ::pointer < ::draw2d::domain >                     m_pdraw2domain;
+      //::pointer < ::draw2d::domain >                     m_pdraw2domain;
       ::pointer < ::gpu::approach >                      m_pgpuapproach;
       ::pointer < ::windowing::window >                  m_pwindow;
       ::gpu::context_pointer                             m_pgpucontextCurrent4;

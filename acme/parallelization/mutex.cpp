@@ -146,7 +146,7 @@ mutex::mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pszN
 #ifdef __ANDROID__
          path = directory_system()->roaming() / "tmp/ca2/lock/mutex";
 #else
-         path = "/var/tmp/ca2/lock/mutex";
+         path = "/var/tmp/ca2/lock/mutex/named";
 #endif
       }
       else
@@ -160,6 +160,7 @@ mutex::mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pszN
 #endif
       }
 
+      strName.find_replace(":", "_");
       path /= strName;
       directory_system()->create(path.folder());
       int iFd = ::open(path, O_RDWR | O_CREAT | O_CLOEXEC, S_IRWXU);
@@ -233,11 +234,17 @@ mutex::mutex(enum_create_new, const_char_pointer, void * handle, bool bOwner) :
 mutex::~mutex()
 {
 #if defined(PARALLELIZATION_PTHREAD)
+   if (m_iFd >= 0)
+   {
+      ::close(m_iFd);
+      m_iFd = -1;
+   }
+
       if (m_pPthreadMutexT)
       {
          auto ppthreadmutext = (pthread_mutex_t*)m_pPthreadMutexT;
          m_pPthreadMutexT = nullptr;
-      delete_pthread_mutex_t(ppthreadmutext);
+         delete_pthread_mutex_t(ppthreadmutext);
       }
 #endif
    //delete m_pimplementation;

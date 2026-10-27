@@ -14,11 +14,9 @@ public:
 
 #if defined(PARALLELIZATION_PTHREAD)
 
-   void * m_pPthreadMutexT;
-   int m_iFd;
-   ::u32 m_uCount;
-   //int m_iFd = -1;
-   //unsigned int m_count = 0;
+   void * m_pPthreadMutexT = nullptr;
+   int m_iFd = -1;
+   ::u32 m_uCount = 0;
 
 #endif
 

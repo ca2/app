@@ -17,7 +17,7 @@ namespace file
 
    class watch;
    class watcher;
-   class listener;
+   //class listener;
 
    //using watch_id = ::i64;
 

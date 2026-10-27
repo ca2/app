@@ -3583,7 +3583,7 @@ meth = SSLv23_client_method();
 
       ::X509* cert = nullptr;
 
-      ::X509_name_st* topic = nullptr;
+      const ::X509_name_st* topic = nullptr;
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000L
 

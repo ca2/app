@@ -444,6 +444,15 @@ namespace acme
       }
 
 
+      void windowing::post_after_windowing_ready(const ::procedure & procedure)
+      {
+
+         // Preserve current behavior for backends that are already ready.
+         procedure();
+
+      }
+
+
       // void windowing::on_start_windowing_application()
       // {
       //
@@ -803,7 +812,14 @@ namespace acme
 
          //post_start_application_request_and_process_command_line_options();
 
-         m_papplication->post_request(nullptr);
+         auto papplication = m_papplication;
+
+         post_after_windowing_ready([papplication]()
+         {
+
+            papplication->post_request(nullptr);
+
+         });
 
          // run();
 

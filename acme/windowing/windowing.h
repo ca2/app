@@ -224,6 +224,10 @@ namespace acme
 
          virtual void windowing_application_on_system_start();
 
+         // Backends whose native loop starts later can defer startup work
+         // until that loop is ready.
+         virtual void post_after_windowing_ready(const ::procedure & procedure);
+
          //virtual void windowing_application_on_start();
 
          //virtual void post_start_application_request_and_process_command_line_options();

@@ -660,7 +660,7 @@ inline character_count ansi_to_wide_len(const_char_pointer pcsz, character_count
 }
 
 
-inline ::wide_character * ansi_to_wide_alloc(const_char_pointer pcsz, character_count input_size, MALLOC_FUNCTION * malloc_function)
+inline ::wide_character * ansi_to_wide_alloc(const_char_pointer pcsz, character_count input_size, MALLOC_FUNCTION * malloc_function )
 {
 
    return (::wide_character *) ansi_to_wd32_alloc(pcsz, input_size, malloc_function);

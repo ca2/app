@@ -328,10 +328,10 @@ namespace parallelization
 //} // namespace parallelization
 //
 //
-//::pointer< ::mutex > s_pmutexMessageDispatch = nullptr;
+//::pointer< ::parallelization::mutex > s_pmutexMessageDispatch = nullptr;
 //
 //
-//::pointer < ::mutex > & message_dispatch_mutex()
+//::pointer < ::parallelization::mutex > & message_dispatch_mutex()
 //{
 //
 //

@@ -189,7 +189,7 @@ namespace user
    //}
 
 
-   ::pointer<::mutex> interaction_impl::draw_mutex()
+   ::pointer<::parallelization::mutex> interaction_impl::draw_mutex()
    {
 
       if (m_pmutexDraw == nullptr)
@@ -201,7 +201,7 @@ namespace user
 
 #endif
 
-         m_pmutexDraw = create_newø<::mutex>();
+         m_pmutexDraw = create_newø<::parallelization::mutex>();
 
       }
 
@@ -7903,7 +7903,7 @@ namespace user
       if (m_pmutexRedraw == nullptr)
       {
 
-         m_pmutexRedraw = create_newø<::mutex>();
+         m_pmutexRedraw = create_newø<::parallelization::mutex>();
 
       }
 

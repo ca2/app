@@ -10,7 +10,7 @@
 
 //extern string_map < ::pointer<::acme::library >> g_pmapLibrary ;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
-//extern ::pointer < ::mutex >* ::auraacmesystem()->m_pmutexLibrary;
+//extern ::pointer < ::parallelization::mutex >* ::auraacmesystem()->m_pmutexLibrary;
 
 
 #ifdef RASPBERRYPIOS
@@ -2065,8 +2065,8 @@ bool app_core::has_aura_application_factory() const
    if (!papp->is_serviceable() || papp->is_user_service())
    {
 
-      ::auraacmesystem()->m_spmutexUserAppData = allocateø ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
-      ::auraacmesystem()->m_spmutexSystemAppData = allocateø ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
+      ::auraacmesystem()->m_spmutexUserAppData = allocateø ::pointer < ::parallelization::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
+      ::auraacmesystem()->m_spmutexSystemAppData = allocateø ::pointer < ::parallelization::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
 
    }
 

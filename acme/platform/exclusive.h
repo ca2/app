@@ -28,7 +28,7 @@ namespace acme
 
 // #endif
 
-      // ::pointer < ::mutex >     m_pmutex;
+      // ::pointer < ::parallelization::mutex >     m_pmutex;
 
 
       //exclusive(::particle * pparticle, const ::scoped_string & scopedstr ARG_SEC_ATTRS_DEF);

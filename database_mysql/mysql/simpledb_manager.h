@@ -25,15 +25,15 @@ namespace simpledb
 
       critical_section              m_csPersistentStr;
       critical_section              m_csUiRedir;
-      ::pointer < ::mutex >                         m_pmutexTagId;
+      ::pointer < ::parallelization::mutex >                         m_pmutexTagId;
       string_to_string_base          m_tagid;
       string_to_string_base          m_usersecuretagid;
-      ::pointer < ::mutex >                         m_pmutexTagName;
+      ::pointer < ::parallelization::mutex >                         m_pmutexTagName;
       string_to_string_base          m_tagname;
 
       ::i64                       m_iDatabaseWaitTimeOut;
 
-      ::pointer < ::mutex >                         m_pmutexSession;
+      ::pointer < ::parallelization::mutex >                         m_pmutexSession;
       string_map_base < ::simpledb::session * >      m_mapSession;
 
 

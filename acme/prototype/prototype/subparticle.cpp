@@ -926,7 +926,7 @@ bool subparticle::_wait(const class time& timeWait)
    //
    //#ifdef _DEBUG
    //
-   //      auto pmutex = dynamic_cast < ::pointer< ::mutex >> (this);
+   //      auto pmutex = dynamic_cast < ::pointer< ::parallelization::mutex >> (this);
    //
    //      if (::is_set(pmutex))
    //      {

@@ -16,7 +16,7 @@ namespace calculator
       {
       public:
 
-         virtual ::pointer< ::mutex > get_mutex()
+         virtual ::pointer< ::parallelization::mutex > get_mutex()
          {
             return mutex();
          }

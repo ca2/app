@@ -1869,7 +1869,7 @@ namespace user
 
       bool bDuplicate = true;
 
-      //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+      //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children());
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -4363,7 +4363,7 @@ namespace user
       //   if (!window()->has_destroying_flag())
       //   {
 
-      //      //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+      //      //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children());
 
       //      auto children = synchronized_get_children();
 
@@ -4988,7 +4988,7 @@ namespace user
          try
          {
 
-            //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+            //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children());
 
             puserinteractionParent->on_erase_child(this);
 
@@ -5153,7 +5153,7 @@ namespace user
       if (this == psession->get_user_interaction_host())
       {
 
-         //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+         //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children());
 
          //auto children = synchronized_get_children();
 
@@ -9168,7 +9168,7 @@ if(get_parent())
    //void interaction::_000OnMouse(::message::mouse * pmouse)
    //{
 
-   //   // must lock ::user::pointer < ::mutex >_children() at top stack chain
+   //   // must lock ::user::pointer < ::parallelization::mutex >_children() at top stack chain
    //   // and only at top stack chain.
 
    //   bool bThisCapture = false;
@@ -9270,7 +9270,7 @@ if(get_parent())
    //void interaction::_000OnChildrenMouse(::message::mouse * pmouse)
    //{
 
-   //   // must lock ::user::pointer < ::mutex >_children() at top stack chain
+   //   // must lock ::user::pointer < ::parallelization::mutex >_children() at top stack chain
    //   // and only at top stack chain.
 
    //   // these try catchs are needed for multi threading : multi threaded windows: the hell
@@ -10869,7 +10869,7 @@ if(get_parent())
 
       //}
 
-      //_synchronous_lock synchronouslock(::user::pointer < ::mutex >_children());
+      //_synchronous_lock synchronouslock(::user::pointer < ::parallelization::mutex >_children());
 
       //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -10956,7 +10956,7 @@ if(get_parent())
 
       // {
 
-      //    //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+      //    //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children());
 
 
 
@@ -18876,7 +18876,7 @@ if(get_parent())
 
       ::pointer<::user::interaction> puiThis = this;
 
-      //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+      //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children());
 
       try
       {
@@ -26054,10 +26054,10 @@ void interaction::on_control_box_zoom(){
    //   }
 
 
-   //   ::pointer< ::mutex > g_pmutexChildren;
+   //   ::pointer< ::parallelization::mutex > g_pmutexChildren;
    //
    //
-   //   CLASS_DECL_AURA::pointer< ::mutex > mutex_children()
+   //   CLASS_DECL_AURA::pointer< ::parallelization::mutex > mutex_children()
    //   {
    //
    //      return g_pmutexChildren;

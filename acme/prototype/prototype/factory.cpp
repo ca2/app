@@ -275,7 +275,7 @@ namespace factory
 
 
 
-//CLASS_DECL_ACME ::pointer< ::mutex > g_pmutexFactory = nullptr;
+//CLASS_DECL_ACME ::pointer< ::parallelization::mutex > g_pmutexFactory = nullptr;
 
 
 

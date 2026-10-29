@@ -96,7 +96,7 @@ namespace image
 } // namespace image
 
 
-using mutex_pointer = ::pointer<::mutex>;
+using mutex_pointer = ::pointer<::parallelization::mutex>;
 
 
 namespace write_text

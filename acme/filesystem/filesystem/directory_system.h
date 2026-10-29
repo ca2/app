@@ -115,7 +115,7 @@ public:
 
    ::media_library::item_map                       m_medialibraryitemmap;
    
-   ::pointer < ::mutex >                           m_pmutexMediaLibrary;
+   ::pointer < ::parallelization::mutex >                           m_pmutexMediaLibrary;
     ::file::path                                                      m_pathFolder;
 
 

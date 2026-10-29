@@ -28,7 +28,7 @@ namespace apex
 
       bool                                m_bTrace;
       ::pointer<::platform::trace>        m_ptrace;
-      ::pointer < ::mutex >                             m_pmutexTrace;
+      ::pointer < ::parallelization::mutex >                             m_pmutexTrace;
       string_array_base                        m_straSeparator;
 //      FILE *                              m_pfile;
 //      ::file_pointer                      m_pfile;

@@ -72,7 +72,7 @@ namespace sockets_bsd
 {
 
 
-   //::pointer< ::mutex > base_socket::s_pmutex = nullptr;
+   //::pointer< ::parallelization::mutex > base_socket::s_pmutex = nullptr;
 
 
    base_socket::base_socket() :

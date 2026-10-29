@@ -329,7 +329,7 @@ bool synchronization::_wait(const class ::wait & wait)
 
 #ifdef _DEBUG
 
-      auto pmutex = dynamic_cast < ::pointer< ::mutex >> (this);
+      auto pmutex = dynamic_cast < ::pointer< ::parallelization::mutex >> (this);
 
       if (::is_set(pmutex))
       {

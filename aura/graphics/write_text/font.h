@@ -97,7 +97,7 @@ namespace write_text
 
       };
 
-      static ::mutex *s_pmutexFontTextMap;
+      static ::parallelization::mutex *s_pmutexFontTextMap;
 
       //bool                          m_bTextMetricCalculated;
       //string                        m_strFontFamilyName;

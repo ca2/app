@@ -2595,7 +2595,7 @@ file_pointer file_context::get(const ::file::path & path)
 
    ::i32 i = 0;
 
-   //static ::pointer < ::mutex > s_mutex(nullptr);
+   //static ::pointer < ::parallelization::mutex > s_mutex(nullptr);
 
    //single_lock synchronouslock(&s_mutex, true);
 

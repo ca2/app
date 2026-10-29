@@ -234,23 +234,23 @@ namespace platform
       //::file::path update_module_path();
 
 
-      virtual ::pointer<::mutex> create_local_named_mutex(::particle* pparticleContext, bool bInitiallyOwned,
+      virtual ::pointer<::parallelization::mutex> create_local_named_mutex(::particle* pparticleContext, bool bInitiallyOwned,
                                                           const ::scoped_string & scopedstrName,
                                                           security_attributes* psecurityattributes = nullptr);
 
 
-      virtual ::pointer<::mutex> create_global_named_mutex(::particle* pparticleContext, bool bInitiallyOwned,
+      virtual ::pointer<::parallelization::mutex> create_global_named_mutex(::particle* pparticleContext, bool bInitiallyOwned,
                                                            const ::scoped_string & scopedstrName,
                                                            security_attributes* psecurityattributes = nullptr);
 
 
-      virtual ::pointer<::mutex> open_local_named_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrName);
+      virtual ::pointer<::parallelization::mutex> open_local_named_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrName);
 
 
-      virtual ::pointer<::mutex> open_global_named_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrName);
+      virtual ::pointer<::parallelization::mutex> open_global_named_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrName);
 
 
-      virtual ::pointer<::mutex> get_install_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrPlatform,
+      virtual ::pointer<::parallelization::mutex> get_install_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrPlatform,
                                                    const ::scoped_string & scopedstrSuffix);
 
 

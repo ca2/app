@@ -94,7 +94,7 @@ namespace apex
       //
       //
       //       // apex commented
-      //       //::pointer < ::mutex >                                         m_pmutexFrame;
+      //       //::pointer < ::parallelization::mutex >                                         m_pmutexFrame;
       //       //::pointer<::user::interaction_pointer_array> m_puiptraFrame;
       //
       //       enum_thread_context                          m_ethreadcontextClose;
@@ -754,8 +754,8 @@ namespace apex
       virtual string get_global_mutex_id() override;
 
 
-      //virtual ::pointer< ::mutex > get_local_mutex();
-      //virtual ::pointer< ::mutex > get_global_mutex();
+      //virtual ::pointer< ::parallelization::mutex > get_local_mutex();
+      //virtual ::pointer< ::parallelization::mutex > get_global_mutex();
 
       virtual string get_local_mutex_name() override;
 

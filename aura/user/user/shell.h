@@ -173,7 +173,7 @@ namespace user
       ::collection::index                                              m_iMaxThreadCount;
       ::collection::index                                              m_iActiveThreadCount;
       ::collection::index                                              m_iThread;
-      ::pointer < ::mutex >                                            m_pmutexImage;
+      ::pointer < ::parallelization::mutex >                                            m_pmutexImage;
       //pointer_array < thread >                            m_threadptra;
       class ::time                                               m_timeLastMax;
       ::u32                                              m_bMax;

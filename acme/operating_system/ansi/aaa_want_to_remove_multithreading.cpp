@@ -188,7 +188,7 @@
 //
 //
 ////raw_array<::u32> * freeTlsIndices = NULL;
-////mutex * g_pmutexTlsData = NULL;
+////::parallelization::mutex * g_pmutexTlsData = NULL;
 //
 //
 ////map < htask,htask,htask,htask > * s_pmapHthreadHthread = NULL;
@@ -261,13 +261,13 @@
 //
 ////map < htask,htask,PendingThreadInfo,PendingThreadInfo > * g_ppendingThreads = NULL;
 ////
-////mutex * g_pmutexPendingThreadsLock = NULL;
+////::parallelization::mutex * g_pmutexPendingThreadsLock = NULL;
 ////
-////mutex * g_pmutexThreadHandleLock = NULL;
+////::parallelization::mutex * g_pmutexThreadHandleLock = NULL;
 ////
-////mutex * g_pmutexThreadIdHandleLock = NULL;
+////::parallelization::mutex * g_pmutexThreadIdHandleLock = NULL;
 ////
-////mutex * g_pmutexThreadIdLock = NULL;
+////::parallelization::mutex * g_pmutexThreadIdLock = NULL;
 ////
 ////map < htask,htask,PendingThreadInfo,PendingThreadInfo > & pendingThreads()
 ////{
@@ -314,7 +314,7 @@
 ////
 ////static ::u32 nextTlsIndex = 0;
 //
-////mutex * os_thread::s_pmutex = NULL;
+////::parallelization::mutex * os_thread::s_pmutex = NULL;
 ////comparable_raw_array < os_thread * >::type* os_thread::s_pptra = NULL;
 //
 //

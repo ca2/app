@@ -28,7 +28,7 @@ namespace parallelization
 
 void on_term_thread();
 
-//extern ::pointer< ::mutex > g_pmutexThreadDeferredCreation;
+//extern ::pointer< ::parallelization::mutex > g_pmutexThreadDeferredCreation;
 //extern ::array < ::pointer<thread >> g_pthreadaDeferredCreate;
 
 
@@ -83,7 +83,7 @@ void on_term_thread();
 ////   CLASS_DECL_APEX string_to_string_base * g_pmapFontFaceName = nullptr;
 ////
 //
-////   ::pointer< ::mutex > g_pmutexChildren;
+////   ::pointer< ::parallelization::mutex > g_pmutexChildren;
 //
 ////#if !defined(WINDOWS)
 ////
@@ -93,11 +93,11 @@ void on_term_thread();
 ////#endif
 //
 //
-//   //::pointer< ::mutex > psystem->g_mutexLibrary;
+//   //::pointer< ::parallelization::mutex > psystem->g_mutexLibrary;
 //
 //   //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 //
-//   //::pointer< ::mutex > get_globals_mutex();
+//   //::pointer< ::parallelization::mutex > get_globals_mutex();
 //
 //   //critical_section* g_pcsGlobal;
 //
@@ -120,12 +120,12 @@ void on_term_thread();
 ////#endif
 //
 //
-//   //::pointer< ::mutex > g_pmutexCred;
+//   //::pointer< ::parallelization::mutex > g_pmutexCred;
 //
 //
 //   //class ::exception_engine* g_pexceptionengine;
 //
-////   ::pointer< ::mutex > g_pmutexMessageDispatch;
+////   ::pointer< ::parallelization::mutex > g_pmutexMessageDispatch;
 //
 //
 ////   array < matter* >* g_paAura;
@@ -141,14 +141,14 @@ void on_term_thread();
 //   //plex_heap_alloc_array * g_pplexheapallocarray;
 //
 ////   ::i32 g_iMemoryCountersStartable;
-////   //::pointer< ::mutex > g_pmutexTrait;
-////   //::pointer< ::mutex > g_pmutexFactory;
+////   //::pointer< ::parallelization::mutex > g_pmutexTrait;
+////   //::pointer< ::parallelization::mutex > g_pmutexFactory;
 ////
-////   ::pointer< ::mutex > g_pmutexUiDestroyed;
+////   ::pointer< ::parallelization::mutex > g_pmutexUiDestroyed;
 //
 ////#ifdef __ANDROID__
 ////
-////   ::pointer< ::mutex > g_pmutexOutputDebugStringA;
+////   ::pointer< ::parallelization::mutex > g_pmutexOutputDebugStringA;
 ////
 ////#endif
 //
@@ -156,23 +156,23 @@ void on_term_thread();
 //
 //   // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 //
-//   // ::pointer< ::mutex > g_pmutexMq;
+//   // ::pointer< ::parallelization::mutex > g_pmutexMq;
 //
 //   // #endif
 ////
 ////#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 ////
-//////::pointer< ::mutex > g_pmutexThreadIdHandleLock;
+//////::pointer< ::parallelization::mutex > g_pmutexThreadIdHandleLock;
 ////
-//////::pointer< ::mutex > g_pmutexThreadIdLock;
+//////::pointer< ::parallelization::mutex > g_pmutexThreadIdLock;
 ////
 //////#if !defined(UNIVERSAL_WINDOWS)
 ////
-//////::pointer< ::mutex > g_pmutexPendingThreadsLock;
+//////::pointer< ::parallelization::mutex > g_pmutexPendingThreadsLock;
 ////
 //////#endif
 ////
-//////::pointer< ::mutex > g_pmutexTlsData;
+//////::pointer< ::parallelization::mutex > g_pmutexTlsData;
 ////
 ////#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
 ////
@@ -180,9 +180,9 @@ void on_term_thread();
 //////#if defined(LINUX) || defined(__APPLE__)
 ////
 ////
-////   ::pointer< ::mutex > g_pmutexTz;
+////   ::pointer< ::parallelization::mutex > g_pmutexTz;
 ////
-////   ::pointer< ::mutex > g_pmutexThreadHandleLock;
+////   ::pointer< ::parallelization::mutex > g_pmutexThreadHandleLock;
 ////
 ////
 ////#endif // defined(LINUX) || defined(__APPLE__)
@@ -191,7 +191,7 @@ void on_term_thread();
 ////#ifdef __APPLE__
 ////
 ////
-////   ::pointer< ::mutex > g_pmutexCvt;
+////   ::pointer< ::parallelization::mutex > g_pmutexCvt;
 ////
 ////
 ////#endif
@@ -266,8 +266,8 @@ void on_term_thread();
 ////      //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
 ////
 ////      g_iMemoryCountersStartable = 0;
-////      //::pointer< ::mutex > g_pmutexTrait;
-////      //::pointer< ::mutex > g_pmutexFactory;
+////      //::pointer< ::parallelization::mutex > g_pmutexTrait;
+////      //::pointer< ::parallelization::mutex > g_pmutexFactory;
 ////
 ////      g_pmutexUiDestroyed = 0;
 ////
@@ -281,23 +281,23 @@ void on_term_thread();
 ////
 ////      // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 ////
-////      // ::pointer< ::mutex > g_pmutexMq;
+////      // ::pointer< ::parallelization::mutex > g_pmutexMq;
 ////
 ////      // #endif
 ////
 ////#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 ////
-//////::pointer< ::mutex > g_pmutexThreadIdHandleLock;
+//////::pointer< ::parallelization::mutex > g_pmutexThreadIdHandleLock;
 ////
-//////::pointer< ::mutex > g_pmutexThreadIdLock;
+//////::pointer< ::parallelization::mutex > g_pmutexThreadIdLock;
 ////
 //////#if !defined(UNIVERSAL_WINDOWS)
 ////
-//////::pointer< ::mutex > g_pmutexPendingThreadsLock;
+//////::pointer< ::parallelization::mutex > g_pmutexPendingThreadsLock;
 ////
 //////#endif
 ////
-//////::pointer< ::mutex > g_pmutexTlsData;
+//////::pointer< ::parallelization::mutex > g_pmutexTlsData;
 ////
 ////#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
 ////
@@ -347,14 +347,14 @@ void on_term_thread();
 ////
 //////#ifdef BSD_STYLE_SOCKETS
 //////
-//////      ::sockets::base_socket::s_pmutex = ___new ::pointer < ::mutex > ();
+//////      ::sockets::base_socket::s_pmutex = ___new ::pointer < ::parallelization::mutex > ();
 //////
 //////#endif
 ////
 ////
 //////#ifdef __APPLE__
 //////
-//////      g_pmutexCvt = ___new ::pointer < ::mutex > ();
+//////      g_pmutexCvt = ___new ::pointer < ::parallelization::mutex > ();
 //////
 //////#endif
 ////
@@ -366,15 +366,15 @@ void on_term_thread();
 ////
 //////      g_paAura = aaa_memory_new array < matter * >;
 //////
-//////      g_pmutexUiDestroyed = ___new ::pointer < ::mutex > ();
+//////      g_pmutexUiDestroyed = ___new ::pointer < ::parallelization::mutex > ();
 //////
-//////      g_pmutexMessageDispatch = ___new ::pointer < ::mutex > ();
+//////      g_pmutexMessageDispatch = ___new ::pointer < ::parallelization::mutex > ();
 //////
-//////      g_pmutexCred = ___new ::pointer < ::mutex > ();
+//////      g_pmutexCred = ___new ::pointer < ::parallelization::mutex > ();
 //////
 //////#if defined(LINUX) || defined(__APPLE__)
 //////
-//////      g_pmutexTz = ___new ::pointer < ::mutex > ();
+//////      g_pmutexTz = ___new ::pointer < ::parallelization::mutex > ();
 //////
 //////#endif // defined(LINUX) || defined(__APPLE__)
 ////
@@ -427,7 +427,7 @@ void on_term_thread();
 //////
 //////      g_pmapFontFaceName = ___new string_to_string_base();
 ////
-////      //g_pmutexThreadDeferredCreation = aaa_memory_new ::pointer < ::mutex >;
+////      //g_pmutexThreadDeferredCreation = aaa_memory_new ::pointer < ::parallelization::mutex >;
 ////
 ////      //g_pthreadaDeferredCreate = aaa_memory_new ::array < ::pointer<thread >>);
 ////
@@ -780,9 +780,9 @@ void on_term_thread();
 //} // namespace apex
 //
 
-//static ::pointer< ::mutex > s_pmutexDraw2d = nullptr;
+//static ::pointer< ::parallelization::mutex > s_pmutexDraw2d = nullptr;
 //
-//CLASS_DECL_APEX ::pointer< ::mutex > draw2d_mutex()
+//CLASS_DECL_APEX ::pointer< ::parallelization::mutex > draw2d_mutex()
 //{
 //
 //   return s_pmutexDraw2d;
@@ -793,7 +793,7 @@ void on_term_thread();
 //CLASS_DECL_APEX void init_draw2d_mutex()
 //{
 //
-//   s_pmutexDraw2d = ___new ::pointer < ::mutex > ();
+//   s_pmutexDraw2d = ___new ::pointer < ::parallelization::mutex > ();
 //
 //}
 
@@ -807,7 +807,7 @@ void on_term_thread();
 
 
 //
-//CLASS_DECL_APEX ::pointer< ::mutex > get_cred_mutex()
+//CLASS_DECL_APEX ::pointer< ::parallelization::mutex > get_cred_mutex()
 //{
 //
 //   return ::apex::g_pmutexCred;
@@ -876,11 +876,11 @@ void on_term_thread();
 //         //
 //         //         oswindow_data::s_pdataptra = ___new oswindow_dataptra();
 //         //
-//         //         oswindow_data::s_pmutex = aaa_memory_new ::pointer < ::mutex >;
+//         //         oswindow_data::s_pmutex = aaa_memory_new ::pointer < ::parallelization::mutex >;
 //         //
 //         //         osdisplay_data::s_pdataptra = ___new osdisplay_dataptra();
 //         //
-//         //         osdisplay_data::s_pmutex = aaa_memory_new ::pointer < ::mutex >;
+//         //         osdisplay_data::s_pmutex = aaa_memory_new ::pointer < ::parallelization::mutex >;
 //
 //#endif // defined(LINUX)
 //
@@ -1003,7 +1003,7 @@ void on_term_thread();
 ////         //
 ////         //         //oswindow_data::s_pdataptra = ___new oswindow_dataptra();
 ////         //
-////         //         //oswindow_data::s_pmutex = aaa_memory_new ::pointer < ::mutex >;
+////         //         //oswindow_data::s_pmutex = aaa_memory_new ::pointer < ::parallelization::mutex >;
 ////         //
 ////         //#endif
 ////

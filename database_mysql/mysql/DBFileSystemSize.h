@@ -79,7 +79,7 @@ public:
    oswindow                    m_oswindowServer;
    ::happening *               m_pevExec;
    ::happening *               m_pevDone;
-   ::pointer< ::mutex >               mutex();
+   ::pointer< ::parallelization::mutex >               mutex();
 
 
 

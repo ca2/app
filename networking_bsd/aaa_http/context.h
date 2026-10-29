@@ -53,12 +53,12 @@ namespace http
 
       ::property_set                         m_setHttp;
 
-      ::pointer< ::mutex >                              m_pmutexPac;
+      ::pointer< ::parallelization::mutex >                              m_pmutexPac;
       string_map < ::pointer<pac >>       m_mapPac;
-      ::pointer< ::mutex >                              m_pmutexProxy;
+      ::pointer< ::parallelization::mutex >                              m_pmutexProxy;
       string_map < ::pointer<proxy >>     m_mapProxy;
 
-      ::pointer< ::mutex >                              m_pmutexDownload;
+      ::pointer< ::parallelization::mutex >                              m_pmutexDownload;
       string_array_base                           m_straDownloading;
       string_array_base                           m_straExists;
       //::sockets::socket_handler *          m_phandler;

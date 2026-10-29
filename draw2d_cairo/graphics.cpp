@@ -81,7 +81,7 @@ CLASS_DECL_ACME bool is_first_multi_frame_loaded();
 
 #include <pango/pangocairo.h>
 
-//::pointer< ::mutex > g_pmutexFc = nullptr;
+//::pointer< ::parallelization::mutex > g_pmutexFc = nullptr;
 
 FcBool g_fcResult;
 

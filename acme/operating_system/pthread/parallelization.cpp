@@ -57,7 +57,7 @@ namespace parallelization
    }
 
 
-   class mutex_impl
+   class fast_critical_section_impl
    {
 
    public:
@@ -69,10 +69,10 @@ namespace parallelization
    };
 
 
-   mutex::mutex() noexcept
+   fast_critical_section::fast_critical_section() noexcept
    {
 
-      m_pimpl = new mutex_impl;
+      m_pimpl = new fast_critical_section_impl;
 
       int iError = pthread_mutex_init(
          &m_pimpl->m_lock,
@@ -92,7 +92,7 @@ namespace parallelization
    }
 
 
-   mutex::~mutex() noexcept
+   fast_critical_section::~fast_critical_section() noexcept
    {
 
       if (m_pimpl == nullptr)
@@ -121,7 +121,7 @@ namespace parallelization
    }
 
 
-   void mutex::lock() noexcept
+   void fast_critical_section::lock() noexcept
    {
 
       int iError = pthread_mutex_lock(
@@ -137,7 +137,7 @@ namespace parallelization
    }
 
 
-   bool mutex::try_lock() noexcept
+   bool fast_critical_section::try_lock() noexcept
    {
 
       int iError = pthread_mutex_trylock(
@@ -162,7 +162,7 @@ namespace parallelization
    }
 
 
-   void mutex::unlock() noexcept
+   void fast_critical_section::unlock() noexcept
    {
 
       int iError = pthread_mutex_unlock(

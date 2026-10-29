@@ -46,9 +46,9 @@ namespace geo
       //bool                                                            m_bInitialCountryTimeZoneInit;
       bool                                                  m_bInitialLocalityTimeZoneInit;
 
-      ::pointer < ::mutex >                                               m_pmutexOpenweatherCity;
+      ::pointer < ::parallelization::mutex >                                               m_pmutexOpenweatherCity;
 
-      ::pointer < ::mutex >                                               m_pmutexCityTimeZone;
+      ::pointer < ::parallelization::mutex >                                               m_pmutexCityTimeZone;
       index_map_base < ::datetime::time_zone >                   m_cityTimeZone;
       bool                                                  m_bLoadedCityTimeZoneFromFile;
       ::file::path                                          m_pathCityTimeZoneFile;
@@ -57,7 +57,7 @@ namespace geo
 
 
 
-      ::pointer < ::mutex >                                               m_pmutexLocalityTimeZone;
+      ::pointer < ::parallelization::mutex >                                               m_pmutexLocalityTimeZone;
       f64_map < f64_map < ::datetime::time_zone > >   m_localityTimeZone;
       bool                                                  m_bLoadedLocalityTimeZoneFromFile;
       ::file::path                                          m_pathLocalityTimeZoneFile;
@@ -65,7 +65,7 @@ namespace geo
       bool                                                  m_bLocalityTimeZoneModified;
 
 
-      ::pointer < ::mutex >                                               m_pmutexCityWeather;
+      ::pointer < ::parallelization::mutex >                                               m_pmutexCityWeather;
       index_map_base < string_timeout >                          m_cityWeather;
       bool                                                  m_bLoadedCityWeatherFromFile;
       ::file::path                                          m_pathCityWeatherFile;
@@ -93,7 +93,7 @@ namespace geo
 
       virtual void defer_check_openweather_city_list();
 
-      ::pointer< ::mutex > get_openweather_city_mutex() { return m_pmutexOpenweatherCity; }
+      ::pointer< ::parallelization::mutex > get_openweather_city_mutex() { return m_pmutexOpenweatherCity; }
 
       virtual openweather_city* openweather_find_city(const ::scoped_string & scopedstrQuery);
       virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string& strCit, ::i64& iId, ::f64& dLat, ::f64& dLon);

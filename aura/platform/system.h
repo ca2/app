@@ -29,7 +29,7 @@ namespace aura
       //
       // ::f64                                            m_dDpi;
       //
-      // ::pointer < ::mutex >                             m_pmutexUserChildren;
+      // ::pointer < ::parallelization::mutex >                             m_pmutexUserChildren;
       // ::pointer<class ::image::imaging>                 m_pimaging;
       //
       // ::pointer<::gpu::approach>                        m_pgpu;
@@ -311,7 +311,7 @@ namespace aura
 
       virtual void on_allocation_error(const ::scoped_string & scopedstrName, ::object * pobjectSometimes) override;
 
-      //::pointer< ::mutex > get_openweather_city_mutex();
+      //::pointer< ::parallelization::mutex > get_openweather_city_mutex();
 
 
       template < typename T >
@@ -814,7 +814,7 @@ namespace aura
    };
 
 
-   //CLASS_DECL_AURA ::pointer< ::mutex > get_image_mutex();
+   //CLASS_DECL_AURA ::pointer< ::parallelization::mutex > get_image_mutex();
 
 
 } // namespace aura

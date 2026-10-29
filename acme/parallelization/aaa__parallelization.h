@@ -250,7 +250,7 @@ class synchronous_lock;
 //CLASS_DECL_ACME void thread_name_abbreviate(string & strName, ::i32 len);
 //
 //
-//CLASS_DECL_ACME::pointer < ::mutex >& message_dispatch_mutex();
+//CLASS_DECL_ACME::pointer < ::parallelization::mutex >& message_dispatch_mutex();
 //
 //
 //

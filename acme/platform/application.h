@@ -154,9 +154,9 @@ namespace platform
       ::text::text                                    m_textAppTitle;
       ::text::text                                    m_textAppName;
 
-      ::pointer < ::mutex >                                      m_pmutexMatterLocator;
+      ::pointer < ::parallelization::mutex >                                      m_pmutexMatterLocator;
 
-      ::pointer < ::mutex >                                      m_pmutexStr;
+      ::pointer < ::parallelization::mutex >                                      m_pmutexStr;
 
 
       //
@@ -225,9 +225,9 @@ namespace platform
       //       ::text::text                                    m_textAppTitle;
       //       ::text::text                                    m_textAppName;
       //
-      //       ::pointer < ::mutex >                                      m_pmutexMatterLocator;
+      //       ::pointer < ::parallelization::mutex >                                      m_pmutexMatterLocator;
       //
-      //       ::pointer < ::mutex >                                      m_pmutexStr;
+      //       ::pointer < ::parallelization::mutex >                                      m_pmutexStr;
                //struct apex_application_layer_t
                //{
                   //__creatable(application);
@@ -300,7 +300,7 @@ namespace platform
 
 
       // apex commented
-      //::pointer < ::mutex >                                         m_pmutexFrame;
+      //::pointer < ::parallelization::mutex >                                         m_pmutexFrame;
       //::pointer<::user::interaction_pointer_array> m_puiptraFrame;
 
       enum_thread_context m_ethreadcontextClose;
@@ -446,7 +446,7 @@ namespace platform
 
       //particle_address_array                         m_particleaddressaEventHook;
 
-      ::pointer < ::mutex >                                           m_pmutexFrame;
+      ::pointer < ::parallelization::mutex >                                           m_pmutexFrame;
       ::pointer<::user::interaction_array>           m_puserinteractiona;
       ::pointer<::user::interaction_array>           m_puserinteractionaFrame;
 
@@ -462,9 +462,9 @@ namespace platform
 
       ::user::interaction* m_puiMainContainer;
 
-      //::pointer < ::mutex >                                           m_pmutexMatterLocator;
+      //::pointer < ::parallelization::mutex >                                           m_pmutexMatterLocator;
 
-      //::pointer < ::mutex >                                         m_pmutexStr;
+      //::pointer < ::parallelization::mutex >                                         m_pmutexStr;
       //string_table_base                                    m_stringtable;
       //string_table_base                                    m_stringtableStd;
       //map_base < atom, atom, string, string >                  m_stringmap;

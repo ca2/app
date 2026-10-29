@@ -3810,7 +3810,7 @@ retry_license:
 
       //_synchronous_lock synchronouslock(m_pmutexFrame, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //_synchronous_lock slChildren(::user::pointer < ::mutex >_children2());
+      //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children2());
 
       auto puserinteractionFrame = m_puserinteractionaFrame;
 
@@ -5674,9 +5674,9 @@ retry_license:
 //
 //      {
 //
-//         ::installpointer< class ::pointer < ::mutex > > ::pointer < ::mutex >(process_platform_name());
+//         ::installpointer< class ::pointer < ::parallelization::mutex > > ::pointer < ::parallelization::mutex >(process_platform_name());
 //
-//         if (::pointer < ::mutex >.already_exists())
+//         if (::pointer < ::parallelization::mutex >.already_exists())
 //         {
 //
 //            //            output_error_message("Could not launch spa installer. It is already running.", ::user::e_message_box_ok);

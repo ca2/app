@@ -206,7 +206,7 @@ namespace acme
 
 
 
-   mutex* get_global_mutex();
+   ::parallelization::mutex* get_global_mutex();
 
 
 

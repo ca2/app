@@ -29,12 +29,12 @@
 
 typedef struct _mutex_t mutex_t;
 
-/* ::pointer < ::mutex > functions */
+/* ::pointer < ::parallelization::mutex > functions */
 
 mutex_t *mutex_create(const xmpp_ctx_t *ctx);
-::i32 mutex_destroy(mutex_t *::pointer < ::mutex >);
-::i32 mutex_lock(mutex_t *::pointer < ::mutex >);
-::i32 mutex_trylock(mutex_t *::pointer < ::mutex >);
-::i32 mutex_unlock(mutex_t *::pointer < ::mutex >);
+::i32 mutex_destroy(mutex_t *::pointer < ::parallelization::mutex >);
+::i32 mutex_lock(mutex_t *::pointer < ::parallelization::mutex >);
+::i32 mutex_trylock(mutex_t *::pointer < ::parallelization::mutex >);
+::i32 mutex_unlock(mutex_t *::pointer < ::parallelization::mutex >);
 
 #endif /* __LIBSTROPHE_THREAD_H__ */

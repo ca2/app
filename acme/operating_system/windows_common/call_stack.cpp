@@ -47,7 +47,7 @@ CLASS_DECL_ACME void defer_initialize_callstack()
 //
 //
 //
-////extern ::pointer< ::mutex > g_pmutexSymDbgHelp;
+////extern ::pointer< ::parallelization::mutex > g_pmutexSymDbgHelp;
 //
 //
 //CLASS_DECL_ACME void defer_initialize_callstack()

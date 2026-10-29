@@ -8,12 +8,12 @@
 //bool apple_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::scoped_string & scopedstr)
 //{
 //
-//   static ::pointer< ::mutex > pmutex = nullptr;
+//   static ::pointer< ::parallelization::mutex > pmutex = nullptr;
 //
 //   if(pmutex == nullptr)
 //   {
 //
-//      pmutex = ___new ::pointer < ::mutex > ();
+//      pmutex = ___new ::pointer < ::parallelization::mutex > ();
 //
 //   }
 //

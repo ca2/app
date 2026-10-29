@@ -64,7 +64,7 @@ namespace graphics
       ::pointer<bitmap_source_interest>  m_pbitmapsourceinterest;
       string                              m_strAppId;
       string                              m_strBitmapSource;
-      ::pointer < ::mutex >                 m_pmutexBitmapSource;
+      ::pointer < ::parallelization::mutex >                 m_pmutexBitmapSource;
       std::atomic<bool> m_bBitmapSourceInterested{false};
       std::thread m_threadBitmapSourceInterest;
       std::mutex m_mutexBitmapSourceInterest;

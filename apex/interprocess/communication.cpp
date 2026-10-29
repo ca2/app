@@ -328,7 +328,7 @@ namespace interprocess
       if (pmutex.is_null())
       {
 
-         pmutex = create_newø<::mutex>();
+         pmutex = create_newø<::parallelization::mutex>();
 
       }
 

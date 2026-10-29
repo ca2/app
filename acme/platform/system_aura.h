@@ -57,7 +57,7 @@ namespace platform
 
       ::f64                                            m_dDpi;
 
-      ::pointer < ::mutex >                             m_pmutexUserChildren;
+      ::pointer < ::parallelization::mutex >                             m_pmutexUserChildren;
       ::pointer<class ::image::imaging>                 m_pimaging;
 
       bool                                              m_bProdevianMouse;
@@ -330,7 +330,7 @@ namespace platform
 
       virtual void on_allocation_error(const ::scoped_string & scopedstrName, ::object * pobjectSometimes);
 
-      //::pointer< ::mutex > get_openweather_city_mutex();
+      //::pointer< ::parallelization::mutex > get_openweather_city_mutex();
 
 
       template < typename T >

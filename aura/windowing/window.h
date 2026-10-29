@@ -140,8 +140,8 @@ namespace windowing
       ::pointer<::graphics::graphics>           m_pgraphicsgraphics;
       ::draw2d::graphics_pointer                m_pdraw2dgraphics;
       //::pointer<::draw2d::domain>               m_pdraw2ddomain;
-      ::pointer < ::mutex >                     m_pmutexDraw;
-      ::pointer < ::mutex >                     m_pmutexRedraw;
+      ::pointer < ::parallelization::mutex >                     m_pmutexDraw;
+      ::pointer < ::parallelization::mutex >                     m_pmutexRedraw;
 
       ::user::interaction_ptra                  m_userinteractionaMouseHover;
 
@@ -161,7 +161,7 @@ namespace windowing
 
       ::i32_size                                m_sizeDrawnBuffer;
 
-      ::pointer < ::mutex >                     m_pmutexRedrawItem;
+      ::pointer < ::parallelization::mutex >                     m_pmutexRedrawItem;
       ::pointer_array < ::user::redraw_item >   m_redrawitema;
 
       ::pointer < ::user::interaction >         m_puiLastLButtonDown;
@@ -649,7 +649,7 @@ namespace windowing
 
       virtual void on_tsf_activate(bool bActivate);
 
-      virtual ::pointer< ::mutex > draw_mutex();
+      virtual ::pointer< ::parallelization::mutex > draw_mutex();
 
       //::windowing::window * get_user_interaction_impl() override;
 

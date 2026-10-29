@@ -56,7 +56,7 @@ namespace networking_bsd
       bool           m_bInitialized;
 
       string_map_base<::pointer <cert>>m_certmap;
-      ::pointer < ::mutex >                              m_pmutexCert;
+      ::pointer < ::parallelization::mutex >                              m_pmutexCert;
 
 
       class CLASS_DECL_NETWORKING_BSD dns_cache_item :
@@ -114,14 +114,14 @@ namespace networking_bsd
          }
       };
 
-      ::pointer < ::mutex >                              m_pmutexCache;
-      ::pointer < ::mutex >                              m_pmutexReverseCache;
+      ::pointer < ::parallelization::mutex >                              m_pmutexCache;
+      ::pointer < ::parallelization::mutex >                              m_pmutexReverseCache;
       string_map_base < dns_cache_item >                      m_mapCache;
       string_map_base < ::pointer<reverse_cache_item >>       m_mapReverseCache;
       ::pointer_array <reverse_cache_item >              m_reversecacheaRequest;
       ::task_pointer                                     m_pthreadReverse;
       ::i64                                          m_iListenSocket;
-      /*::pointer < ::mutex > m_pmutexPool;*/
+      /*::pointer < ::parallelization::mutex > m_pmutexPool;*/
 
       interlocked_int                                    m_lListenSocket;
 
@@ -134,17 +134,17 @@ namespace networking_bsd
 #endif
 
       ::collection::count                                m_countHttpPostBoundary;
-      ::pointer < ::mutex >                              m_pmutexHttpPostBoundary;
+      ::pointer < ::parallelization::mutex >                              m_pmutexHttpPostBoundary;
 
       ::sockets_bsd::resolv_cache_t                      m_resolvcache;
       ::sockets_bsd::resolv_timeout_t                    m_resolvtimeout;
-      ::pointer < ::mutex >                              m_pmutexResolvCache;
+      ::pointer < ::parallelization::mutex >                              m_pmutexResolvCache;
       //::pointer<::sockets::net>                        m_pnet;
 #ifdef WINDOWS
       ::net::port_forward_pointer                        m_pportforward;
 #endif
 
-      ::pointer < ::mutex >                              m_pmutexPool;
+      ::pointer < ::parallelization::mutex >                              m_pmutexPool;
       ::sockets_bsd::socket_map                          m_pool; ///< Active sockets map_base
 
 

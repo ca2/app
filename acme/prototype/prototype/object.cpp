@@ -1631,7 +1631,7 @@ void object::delete_this()
 //}
 //
 
-CLASS_DECL_ACME::pointer < ::mutex >* get_children_mutex();
+CLASS_DECL_ACME::pointer < ::parallelization::mutex >* get_children_mutex();
 
 
 ///// tells if pparticle is dependant of this object or of any dependant objects

@@ -15,7 +15,7 @@ namespace write_text
 {
 
 
-   ::mutex *font::s_pmutexFontTextMap = nullptr;
+   ::parallelization::mutex *font::s_pmutexFontTextMap = nullptr;
 
 
             font::text::text()

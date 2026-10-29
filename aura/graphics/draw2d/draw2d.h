@@ -117,9 +117,9 @@ namespace draw2d
          ::draw2d::domain * pdraw2ddomain,
          const ::i32_size & size,
          ::image::image * pimage);
-      //::pointer< ::mutex > get_object_list_mutex();
-      //::pointer< ::mutex > get_image_list_mutex();
-      //::pointer< ::mutex > get_graphics_context_list_mutex();
+      //::pointer< ::parallelization::mutex > get_object_list_mutex();
+      //::pointer< ::parallelization::mutex > get_image_list_mutex();
+      //::pointer< ::parallelization::mutex > get_graphics_context_list_mutex();
       virtual ::draw2d::graphics_pointer
       do_allocation_strategy(::draw2d::domain * pdraw2ddomain, ::image::image *pimage, const ::i32_size &size);
       virtual void do_release_to_pool_strategy(::draw2d::graphics_pointer &pdraw2dgraphics, ::image::image *pimage);

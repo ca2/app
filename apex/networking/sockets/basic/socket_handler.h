@@ -25,7 +25,7 @@ namespace sockets
       //socket_map                 m_socketmap; ///< Active sockets map
       //socket_map                 m_socketmapAdd; ///< Sockets to be added to sockets map
       //socket_pointer_list        m_delete; ///< Sockets to be deleted (failed when add)
-      bool                       m_b_use_mutex; ///< ::pointer < ::mutex > correctly initialized
+      bool                       m_b_use_mutex; ///< ::pointer < ::parallelization::mutex > correctly initialized
       //socket_id                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list_base
       //::collection::count                    m_countR;
       //::collection::count                    m_countW;

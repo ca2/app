@@ -55,7 +55,7 @@ namespace helloworld
       //::user::button_impact *                          m_ptoggleimpactFontSel;
       //::user::plain_edit_impact *              m_peditFontSel;
 
-      ::pointer < ::mutex >                                  m_pmutexAiFont;
+      ::pointer < ::parallelization::mutex >                                  m_pmutexAiFont;
       ::i32                                m_iErrorAiFont;
       bool                                   m_bLoadAiFont;
       void *                                 m_faceAi; // FT_Face m_faceAi;

@@ -124,7 +124,7 @@ struct xf_context
    ::i32 current_desktop;
    BOOL remote_app;
    BOOL disconnect;
-   HANDLE ::pointer < ::mutex >;
+   HANDLE ::pointer < ::parallelization::mutex >;
    BOOL UseXThreads;
    BOOL cursorHidden;
    ::u8* palette;

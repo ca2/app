@@ -176,7 +176,7 @@ namespace networking_bsd
 
       m_psslinit = create_newø<::sockets_bsd::SSLInitializer>();
 
-      m_pmutexCert = create_newø<::mutex>();
+      m_pmutexCert = create_newø<::parallelization::mutex>();
 
       //estatus = construct_newø(m_pnet);
 

@@ -318,7 +318,7 @@ namespace platform
    ::particle_pointer node::create_mutex()
    {
 
-      return create_newø < ::mutex >();
+      return create_newø < ::parallelization::mutex >();
 
    }
   
@@ -880,9 +880,9 @@ namespace platform
    }
 
 
-   //allocateø < ::pointer < ::mutex > >(this, false, "Local\\ca2-appmatter")
+   //allocateø < ::pointer < ::parallelization::mutex > >(this, false, "Local\\ca2-appmatter")
 
-   // ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   // ::pointer < ::parallelization::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
    // {
    //
    //    return nullptr;
@@ -890,7 +890,7 @@ namespace platform
    // }
    //
    //
-   // ::pointer < ::mutex > node::create_global_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   // ::pointer < ::parallelization::mutex > node::create_global_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
    // {
    //
    //    return nullptr;
@@ -898,7 +898,7 @@ namespace platform
    // }
    //
    //
-   // ::pointer < ::mutex > node::open_local_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
+   // ::pointer < ::parallelization::mutex > node::open_local_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
    // {
    //
    //    return nullptr;
@@ -906,7 +906,7 @@ namespace platform
    // }
    //
    //
-   // ::pointer < ::mutex > node::open_global_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
+   // ::pointer < ::parallelization::mutex > node::open_global_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
    // {
    //
    //    return nullptr;
@@ -914,28 +914,28 @@ namespace platform
    // }
    //
    //
-   // ::pointer < ::mutex > node::get_install_mutex(::particle *pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix)
+   // ::pointer < ::parallelization::mutex > node::get_install_mutex(::particle *pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix)
    // {
    //
    //    string strName = "::ca2::account::ccwarehouse::install::" + scopedstrPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + scopedstrSuffix;
    //
    //    return open_global_named_mutex(pparticleContext, strName);
    //
-   // //allocateø< ::install::pointer < ::mutex > >(this, process_platform_name()
+   // //allocateø< ::install::pointer < ::parallelization::mutex > >(this, process_platform_name()
    //
    // }
 
 
-   ::pointer < ::mutex > node::create_named_mutex(::particle * pparticleContext, bool bInitiallyOwn, const_char_pointer pszName, security_attributes * psecurityattributes)
+   ::pointer < ::parallelization::mutex > node::create_named_mutex(::particle * pparticleContext, bool bInitiallyOwn, const_char_pointer pszName, security_attributes * psecurityattributes)
    {
 
       //return allocateø mutex(pparticleContext, bInitiallyOwn, pszName ADD_PARAM_SEC_ATTRS);
-      return allocateø ::mutex(pparticleContext, bInitiallyOwn, pszName, psecurityattributes);
+      return allocateø ::parallelization::mutex(pparticleContext, bInitiallyOwn, pszName, psecurityattributes);
 
    }
 
 
-   ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   ::pointer < ::parallelization::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
    {
 
       ::string strLocalName;
@@ -947,7 +947,7 @@ namespace platform
    }
 
 
-   ::pointer < ::mutex > node::create_global_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   ::pointer < ::parallelization::mutex > node::create_global_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
    {
 
       ::string strGlobalName;
@@ -959,7 +959,7 @@ namespace platform
    }
 
 
-   ::pointer < ::mutex > node::open_local_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
+   ::pointer < ::parallelization::mutex > node::open_local_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
    {
 
       return nullptr;
@@ -967,7 +967,7 @@ namespace platform
    }
 
 
-   ::pointer < ::mutex > node::open_global_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
+   ::pointer < ::parallelization::mutex > node::open_global_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
    {
 
       return nullptr;
@@ -975,7 +975,7 @@ namespace platform
    }
 
 
-   ::pointer < ::mutex > node::get_install_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix)
+   ::pointer < ::parallelization::mutex > node::get_install_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix)
    {
 
       return nullptr;

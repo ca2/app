@@ -63,7 +63,7 @@ public:
    bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;
    ::pointer < ::user::interaction_base_array >       m_puserinteractionbaseaThread;
-   ::pointer< ::mutex >                               m_pmutexThreadUiPtra;
+   ::pointer< ::parallelization::mutex >                               m_pmutexThreadUiPtra;
    single_lock *                                      m_pslUser;
    static bool                                        s_bAllocReady;
 

@@ -39,7 +39,7 @@ namespace sockets
 
 #endif
 
-      ::pointer < ::mutex >                          m_pmutexData;
+      ::pointer < ::parallelization::mutex >                          m_pmutexData;
       ::memory_file                    m_memoryfile;
       ::file::file *                   m_pfile;
       ::i64                              m_iFinalSize;

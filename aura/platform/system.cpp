@@ -101,7 +101,7 @@ CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level el
 
 void os_post_quit();
 
-//extern ::pointer< ::mutex > m_pmutexLibrary;
+//extern ::pointer< ::parallelization::mutex > m_pmutexLibrary;
 
 
 
@@ -936,7 +936,7 @@ namespace aura
 //      //add_factory_item < application_bias >();
 //      add_factory_item < command_line >();
 //      add_factory_item < http::context >();
-//      //add_factory_item < ::pointer < ::mutex > >();
+//      //add_factory_item < ::pointer < ::parallelization::mutex > >();
 //      //add_factory_item < happening >();
 //
 //      //if (!::aura::application::process_init())
@@ -1177,7 +1177,7 @@ namespace aura
 
          p->increment_reference_count();
 
-         ::write_text::font::s_pmutexFontTextMap = dynamic_cast < ::mutex *>( p.m_p);
+         ::write_text::font::s_pmutexFontTextMap = dynamic_cast < ::parallelization::mutex *>( p.m_p);
 
          information() << "creating write_text::font";
 
@@ -2638,7 +2638,7 @@ namespace aura
    //}
 
 
-//   ::pointer< ::mutex > system::get_openweather_city_mutex()
+//   ::pointer< ::parallelization::mutex > system::get_openweather_city_mutex()
 //   {
 //
 //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -2648,11 +2648,11 @@ namespace aura
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//         m_spmutexOpenweatherCity = allocateø ::pointer < ::mutex > ();
+//         m_spmutexOpenweatherCity = allocateø ::pointer < ::parallelization::mutex > ();
 //
 //#else
 //
-//         m_spmutexOpenweatherCity = allocateø ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
+//         m_spmutexOpenweatherCity = allocateø ::pointer < ::parallelization::mutex > (e_create_new, false, "Global\\ca2_weather_city");
 //
 //#endif
 //
@@ -2884,7 +2884,7 @@ namespace aura
 //      if(string(scopedstrId).has_character())
 //      {
 //         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(scopedstrAppName, pszId));
-//         ::pointer< ::mutex > pmutex = ::pointer < ::mutex >::open_mutex(get_global_id_mutex_name(scopedstrAppName,pszId));
+//         ::pointer< ::parallelization::mutex > pmutex = ::pointer < ::parallelization::mutex >::open_mutex(get_global_id_mutex_name(scopedstrAppName,pszId));
 //         if(pmutex == nullptr)
 //         {
 //
@@ -2921,7 +2921,7 @@ namespace aura
 //      else
 //      {
 //         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_mutex_name(scopedstrAppName));
-//         ::pointer< ::mutex > pmutex = ::pointer < ::mutex >::open_mutex(get_global_mutex_name(scopedstrAppName));
+//         ::pointer< ::parallelization::mutex > pmutex = ::pointer < ::parallelization::mutex >::open_mutex(get_global_mutex_name(scopedstrAppName));
 //         if(pmutex == nullptr)
 //         {
 //            string strApp = pszAppName;
@@ -2960,7 +2960,7 @@ namespace aura
 //      if(strId.has_character())
 //      {
 //         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_id_mutex_name(scopedstrAppName, strId));
-//         ::pointer< ::mutex > pmutex = ::pointer < ::mutex >::open_mutex(get_local_id_mutex_name(scopedstrAppName,strId));
+//         ::pointer< ::parallelization::mutex > pmutex = ::pointer < ::parallelization::mutex >::open_mutex(get_local_id_mutex_name(scopedstrAppName,strId));
 //         if(pmutex == nullptr)
 //         {
 //            string strApp;
@@ -2996,7 +2996,7 @@ namespace aura
 //      else
 //      {
 //         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_mutex_name(scopedstrAppName));
-//         ::pointer< ::mutex > pmutex = ::pointer < ::mutex >::open_mutex(get_local_mutex_name(scopedstrAppName));
+//         ::pointer< ::parallelization::mutex > pmutex = ::pointer < ::parallelization::mutex >::open_mutex(get_local_mutex_name(scopedstrAppName));
 //         if(pmutex == nullptr)
 //         {
 //            string strApp;

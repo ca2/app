@@ -48,12 +48,12 @@ namespace graphics
 
       construct_newø(m_bufferitema[0]);
       constructø(m_bufferitema[0]->m_pimageBufferItem);
-      m_bufferitema[0]->m_pmutex = create_newø<::mutex>();
+      m_bufferitema[0]->m_pmutex = create_newø<::parallelization::mutex>();
       m_bufferitema[0]->m_pimageBufferItem->id() = 0;
 
       construct_newø(m_bufferitema[1]);
       constructø(m_bufferitema[1]->m_pimageBufferItem);
-      m_bufferitema[1]->m_pmutex = create_newø<::mutex>();
+      m_bufferitema[1]->m_pmutex = create_newø<::parallelization::mutex>();
       m_bufferitema[1]->m_pimageBufferItem->id() = 1;
 
       //return estatus;

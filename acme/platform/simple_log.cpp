@@ -139,7 +139,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
 //::i32 g_iMemoryCounters = -1;
 //
-//CLASS_DECL_ACME::pointer< ::mutex > g_pmutexMemoryCounters = nullptr;
+//CLASS_DECL_ACME::pointer< ::parallelization::mutex > g_pmutexMemoryCounters = nullptr;
 //
 //::i32 g_iMemoryCountersStartable = 0;
 //
@@ -158,7 +158,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 //      if (g_iMemoryCounters)
 //      {
 //
-//         g_pmutexMemoryCounters = ___new ::pointer < ::mutex > (e_create_new, nullptr, false, "Global\\ca2_memory_counters");
+//         g_pmutexMemoryCounters = ___new ::pointer < ::parallelization::mutex > (e_create_new, nullptr, false, "Global\\ca2_memory_counters");
 //
 //      }
 //

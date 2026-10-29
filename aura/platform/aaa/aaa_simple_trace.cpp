@@ -115,7 +115,7 @@ CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::scoped_string & scop
 
 ::i32 g_iMemoryCounters = -1;
 
-CLASS_DECL_AURA::pointer< ::mutex > g_pmutexMemoryCounters = nullptr;
+CLASS_DECL_AURA::pointer< ::parallelization::mutex > g_pmutexMemoryCounters = nullptr;
 
 ::i32 g_iMemoryCountersStartable = 0;
 
@@ -134,7 +134,7 @@ pdirectorysystem->config() / "system/memory_counters.txt") ? 1 : 0;
       if (g_iMemoryCounters)
       {
 
-         g_pmutexMemoryCounters = aaa_primitive_new ::pointer < ::mutex >(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
+         g_pmutexMemoryCounters = aaa_primitive_new ::pointer < ::parallelization::mutex >(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
 
       }
 

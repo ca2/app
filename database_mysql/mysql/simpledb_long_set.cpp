@@ -47,7 +47,7 @@ class CLASS_DECL_AURA db_long_set_core:
 public:
 
 
-   ::pointer < ::mutex >                                     m_pmutex;
+   ::pointer < ::parallelization::mutex >                                     m_pmutex;
    sockets::socket_handler                   m_handler;
    sockets::http_session *                   m_phttpsession;
 
@@ -86,7 +86,7 @@ class CLASS_DECL_AURA db_long_sync_queue:
 public:
 
 
-   ::pointer < ::mutex >                                                    m_pmutex;
+   ::pointer < ::parallelization::mutex >                                                    m_pmutex;
    db_long_set *                                            m_ppropertyset;
    sockets::socket_handler                                  m_handler;
    sockets::http_session *                                  m_phttpsession;

@@ -16,19 +16,19 @@ struct CLASS_DECL_AXIS_RDPCLIENT rdp_event_item
 
 typedef array < rdp_event_item > rdp_event_itema;
 
-::pointer< ::mutex > g_pmutexRdpEvent = nullptr;
+::pointer< ::parallelization::mutex > g_pmutexRdpEvent = nullptr;
 
 map_base < void *,void *,rdp_event_itema> g_eventmap;
 
 CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,::i32 bKey,::i32 down,::u32 scancode,const ::atom & atom,::i32_point pt);
 
-::pointer< ::mutex > ca2rdp_get_event_queue_mutex()
+::pointer< ::parallelization::mutex > ca2rdp_get_event_queue_mutex()
 {
 
    if(g_pmutexRdpEvent == nullptr)
    {
 
-      g_pmutexRdpEvent = ___new ::pointer < ::mutex > ();
+      g_pmutexRdpEvent = ___new ::pointer < ::parallelization::mutex > ();
 
    }
 

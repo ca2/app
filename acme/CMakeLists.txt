@@ -2036,6 +2036,7 @@ list(APPEND library_source
         parallelization/common.h
         parallelization/condition.h
         parallelization/critical_section.h
+        parallelization/fast_critical_section.h
         parallelization/initial_single_lock.h
         #parallelization/manual_reset_event.h
         parallelization/message_queue.cpp

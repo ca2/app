@@ -44,10 +44,10 @@ namespace crypto_openssl
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 
-   map_base < ::i32, ::pointer < ::mutex > > * g_pmapMutex = nullptr;
+   map_base < ::i32, ::pointer < ::parallelization::mutex > > * g_pmapMutex = nullptr;
 
 
-   ::pointer < ::mutex > g_pmutexMap = nullptr;
+   ::pointer < ::parallelization::mutex > g_pmutexMap = nullptr;
 
 
 #endif
@@ -60,7 +60,7 @@ namespace crypto_openssl
 
       m_rand_size = 1024;
 
-      g_pmapMutex = system()->create_newø< ::map < ::i32, ::pointer < ::mutex > > >();
+      g_pmapMutex = system()->create_newø< ::map < ::i32, ::pointer < ::parallelization::mutex > > >();
 
       g_pmutexMap = system()->node()->create_mutex();
 
@@ -159,7 +159,7 @@ extern "C" void crypto_initializer_locking_function(::i32 mode, ::i32 n, const_c
 
    synchronous_lock synchronouslock(::crypto_openssl::g_pmutexMap);
 
-   ::pointer < ::mutex > pmutex;
+   ::pointer < ::parallelization::mutex > pmutex;
 
    if (::crypto_openssl::g_pmapMutex != nullptr && !::crypto_openssl::g_pmapMutex->find(n, pmutex))
    {

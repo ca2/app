@@ -75,7 +75,7 @@ namespace aura
 //
 //       particle_address_array                         m_particleaddressaEventHook;
 //
-//       ::pointer < ::mutex >                                           m_pmutexFrame;
+//       ::pointer < ::parallelization::mutex >                                           m_pmutexFrame;
 //       ::pointer<::user::interaction_array>           m_puserinteractiona;
 //       ::pointer<::user::interaction_array>           m_puserinteractionaFrame;
 //
@@ -91,9 +91,9 @@ namespace aura
 //
 //       ::user::interaction *                              m_puiMainContainer;
 //
-//       ::pointer < ::mutex >                                           m_pmutexMatterLocator;
+//       ::pointer < ::parallelization::mutex >                                           m_pmutexMatterLocator;
 //
-//       //::pointer < ::mutex >                                         m_pmutexStr;
+//       //::pointer < ::parallelization::mutex >                                         m_pmutexStr;
 //       //string_table_base                                    m_stringtable;
 //       //string_table_base                                    m_stringtableStd;
 //       //map_base < atom, atom, string, string >                  m_stringmap;
@@ -685,8 +685,8 @@ namespace aura
       //virtual string get_local_mutex_id() override;
       //virtual string get_global_mutex_id() override;
 
-      //virtual ::pointer< ::mutex > get_local_mutex();
-      //virtual ::pointer< ::mutex > get_global_mutex();
+      //virtual ::pointer< ::parallelization::mutex > get_local_mutex();
+      //virtual ::pointer< ::parallelization::mutex > get_global_mutex();
 
       //virtual string get_local_mutex_name() override;
       //virtual string get_local_id_mutex_name() override;

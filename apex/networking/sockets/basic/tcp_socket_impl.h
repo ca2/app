@@ -121,7 +121,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 //      ::file::circular_file ibuf; ///< Circular input buffer
 //      string m_strUrl;
-//      ::pointer< ::mutex > m_pmutexSslCtx;
+//      ::pointer< ::parallelization::mutex > m_pmutexSslCtx;
 //      //
 //      //bool m_b_input_buffer_disabled;
 //      //::u64 m_bytes_sent;

@@ -15,7 +15,7 @@
 
 oswindow_dataptra * g_poswindowdataptra = nullptr;
 
-::pointer< ::mutex > g_pmutexOsWindowData = nullptr;
+::pointer< ::parallelization::mutex > g_pmutexOsWindowData = nullptr;
          
 void ns_main_async(dispatch_block_t block);
 
@@ -645,7 +645,7 @@ void ns_main_async(dispatch_block_t block);
 //
 ////   set_DispatchMessage(&axis_DispatchMessage);
 //
-//   g_pmutexOsWindowData = aaa_primitive_new ::pointer < ::mutex >();
+//   g_pmutexOsWindowData = aaa_primitive_new ::pointer < ::parallelization::mutex >();
 //
 //   g_poswindowdataptra = aaa_primitive_new oswindow_dataptra;
 //

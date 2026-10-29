@@ -4969,7 +4969,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(::i32 iOrder)
       if (m_pmutexThreadUiPtra == nullptr)
       {
 
-         m_pmutexThreadUiPtra = create_newø<::mutex>();
+         m_pmutexThreadUiPtra = create_newø<::parallelization::mutex>();
 
       }
 
@@ -5091,7 +5091,7 @@ thread_ptra::~thread_ptra()
 }
 
 
-//::pointer< ::mutex > g_pmutexThreadDeferredCreation = nullptr;
+//::pointer< ::parallelization::mutex > g_pmutexThreadDeferredCreation = nullptr;
 //
 //
 //::array < ::pointer<thread >>* g_pthreadaDeferredCreate = nullptr;

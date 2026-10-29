@@ -115,7 +115,7 @@ LPFN_RegGetValueW g_pfnRegGetValueW = nullptr;
 bool os_initialize()
 {
 
-   ::os_thread::s_pmutex = ___new ::pointer < ::mutex > ();
+   ::os_thread::s_pmutex = ___new ::pointer < ::parallelization::mutex > ();
 
    ::os_thread::s_pptra = ___new simple_array < os_thread * >  ();
 

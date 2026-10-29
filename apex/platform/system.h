@@ -39,8 +39,8 @@ namespace apex
       //
       //       ::pointer<class machine_event_central>           m_pmachinehappeningcentral;
       //
-      //       ::pointer < ::mutex >                                m_pmutexUserAppData;
-      //       ::pointer < ::mutex >                                m_pmutexSystemAppData;
+      //       ::pointer < ::parallelization::mutex >                                m_pmutexUserAppData;
+      //       ::pointer < ::parallelization::mutex >                                m_pmutexSystemAppData;
       //
       //       ::pointer<::operating_system::department>       m_poperatingsystem;
       //
@@ -521,7 +521,7 @@ namespace apex
    };
 
 
-   //CLASS_DECL_APEX ::pointer< ::mutex > get_image_mutex();
+   //CLASS_DECL_APEX ::pointer< ::parallelization::mutex > get_image_mutex();
 
 } // namespace apex
 

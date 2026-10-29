@@ -49,7 +49,7 @@ namespace hotplugin
       bool                          m_bInstalling;
       const_char_pointer m_pszReloadCommandLine;
 
-      ::pointer< ::mutex >                       m_pmutexBitmap;
+      ::pointer< ::parallelization::mutex >                       m_pmutexBitmap;
       ::i32_size                          m_sizeBitmapData;
       string                        m_strBitmapChannel;
       ::i32_point                         m_pointCursorPhase;

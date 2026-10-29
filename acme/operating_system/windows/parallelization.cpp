@@ -8,7 +8,7 @@ namespace parallelization
 {
 
 
-   class mutex_impl
+   class fast_critical_section_impl
    {
    public:
 
@@ -20,10 +20,10 @@ namespace parallelization
    };
 
 
-   mutex::mutex() noexcept
+   fast_critical_section::fast_critical_section() noexcept
    {
 
-      m_pimpl = new mutex_impl;
+      m_pimpl = new fast_critical_section_impl;
 #ifdef __REACTOS__
       if (!InitializeCriticalSectionAndSpinCount(&m_pimpl->m_lock, 0))
          std::terminate();
@@ -32,7 +32,7 @@ namespace parallelization
 #endif
    }
 
-   mutex::~mutex() noexcept
+   fast_critical_section::~fast_critical_section() noexcept
    {
 #ifdef __REACTOS__
       DeleteCriticalSection(&m_pimpl->m_lock);
@@ -42,17 +42,17 @@ namespace parallelization
 
 
 #ifdef __REACTOS__
-   void mutex::lock() noexcept { EnterCriticalSection(&m_pimpl->m_lock); }
+   void fast_critical_section::lock() noexcept { EnterCriticalSection(&m_pimpl->m_lock); }
 
-   bool mutex::try_lock() noexcept { return TryEnterCriticalSection(&m_pimpl->m_lock) != FALSE; }
+   bool fast_critical_section::try_lock() noexcept { return TryEnterCriticalSection(&m_pimpl->m_lock) != FALSE; }
 
-   void mutex::unlock() noexcept { LeaveCriticalSection(&m_pimpl->m_lock); }
+   void fast_critical_section::unlock() noexcept { LeaveCriticalSection(&m_pimpl->m_lock); }
 #else
-   void mutex::lock() noexcept { AcquireSRWLockExclusive(&m_pimpl->m_lock); }
+   void fast_critical_section::lock() noexcept { AcquireSRWLockExclusive(&m_pimpl->m_lock); }
 
-   bool mutex::try_lock() noexcept { return TryAcquireSRWLockExclusive(&m_pimpl->m_lock) != FALSE; }
+   bool fast_critical_section::try_lock() noexcept { return TryAcquireSRWLockExclusive(&m_pimpl->m_lock) != FALSE; }
 
-   void mutex::unlock() noexcept { ReleaseSRWLockExclusive(&m_pimpl->m_lock); }
+   void fast_critical_section::unlock() noexcept { ReleaseSRWLockExclusive(&m_pimpl->m_lock); }
 #endif
 
 
@@ -103,7 +103,7 @@ namespace parallelization
          LeaveCriticalSection(&m_lock);
       }
 
-      BOOL sleep(mutex & mutex, DWORD timeout)
+      BOOL sleep(::parallelization::fast_critical_section & mutex, DWORD timeout)
       {
          waiter current{CreateEventW(nullptr, FALSE, FALSE, nullptr), nullptr, false};
          if (!current.event)

@@ -118,7 +118,7 @@ public:
 
    virtual bool is_ready_to_quit() const;
 
-   // synchronization/::pointer < ::mutex >
+   // synchronization/::pointer < ::parallelization::mutex >
 
    //void branch();
 

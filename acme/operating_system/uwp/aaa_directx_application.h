@@ -32,7 +32,7 @@ namespace universal_windows
 
       bool                                      m_bFontopusShift;
 
-      ::pointer < ::mutex >                                     m_pmutex;
+      ::pointer < ::parallelization::mutex >                                     m_pmutex;
 
       //::platform::system *                          system();
 

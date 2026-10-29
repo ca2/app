@@ -842,8 +842,8 @@ void apex_application_layer::setResourceName(::i32 iId
    }
 
 
-   //virtual ::pointer< ::mutex > get_local_mutex(){}
-   //virtual ::pointer< ::mutex > get_global_mutex(){}
+   //virtual ::pointer< ::parallelization::mutex > get_local_mutex(){}
+   //virtual ::pointer< ::parallelization::mutex > get_global_mutex(){}
 
    ::string apex_application_layer::apex_application_layer::get_local_mutex_name()
    {

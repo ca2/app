@@ -1,6 +1,8 @@
 // Created by camilo on 2026-07-10 08:19 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
 #pragma once
 
+#include "fast_critical_section.h"
+
 
 namespace parallelization
 {
@@ -12,44 +14,20 @@ namespace parallelization
    {
    };
 
-   class mutex_impl;
-
-   class CLASS_DECL_ACME mutex
-   {
-   public:
-
-            mutex_impl *m_pimpl;
-      // SRWLOCK m_lock{};
-
-      mutex() noexcept;
-
-      mutex(const mutex &) = delete;
-      mutex &operator=(const mutex &) = delete;
-
-      ~mutex() noexcept;
-
-      void lock() noexcept;
-
-      bool try_lock() noexcept;
-      void unlock() noexcept;
-
-   };
-
-
    class unique_lock
    {
    public:
 
 
-      ::parallelization::mutex *m_pmutex{};
+      ::parallelization::fast_critical_section *m_pmutex{};
       bool m_bOwnsLock{};
 
 
-      explicit unique_lock(::parallelization::mutex &mutex) noexcept : m_pmutex(&mutex) { lock(); }
+      explicit unique_lock(::parallelization::fast_critical_section &mutex) noexcept : m_pmutex(&mutex) { lock(); }
 
-      unique_lock(::parallelization::mutex &mutex, defer_lock_t) noexcept : m_pmutex(&mutex) {}
+      unique_lock(::parallelization::fast_critical_section &mutex, defer_lock_t) noexcept : m_pmutex(&mutex) {}
 
-      unique_lock(::parallelization::mutex &mutex, adopt_lock_t) noexcept : m_pmutex(&mutex), m_bOwnsLock(true) {}
+      unique_lock(::parallelization::fast_critical_section &mutex, adopt_lock_t) noexcept : m_pmutex(&mutex), m_bOwnsLock(true) {}
 
       unique_lock(const unique_lock &) = delete;
       unique_lock &operator=(const unique_lock &) = delete;
@@ -140,7 +118,7 @@ namespace parallelization
       explicit operator bool() const noexcept { return owns_lock(); }
 
       [[nodiscard]]
-      ::parallelization::mutex *mutex() const noexcept
+      ::parallelization::fast_critical_section *mutex() const noexcept
       {
          return m_pmutex;
       }

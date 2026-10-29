@@ -11,7 +11,7 @@
 //
 ////extern string_map < ::pointer<::acme::library >> g_pmapLibrary;
 //
-////extern ::pointer< ::mutex > psystem->m_pmutexLibrary;
+////extern ::pointer< ::parallelization::mutex > psystem->m_pmutexLibrary;
 //
 //
 ////extern "C"

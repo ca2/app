@@ -57,10 +57,10 @@ file_size_table::file_size_table(::particle * pparticle) :
             // Make the security attributes i32_point
             // to the security descriptor
             MutexAttributes.lpSecurityDescriptor = &SD;*/
-   //mutex() = ___new ::pointer < ::mutex > (false, "Global\\::draw2d::account::file_system_size::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
+   //mutex() = ___new ::pointer < ::parallelization::mutex > (false, "Global\\::draw2d::account::file_system_size::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
    //m_pevExec = ___new happening(false, false, "Global\\::draw2d::account::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
    //m_pevDone = ___new happening(false, false, "Global\\::draw2d::account::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
-   //mutex() = ___new ::pointer < ::mutex > (false, "Local\\::draw2d::account::file_system_size::7807e510-5579-11dd-ae16-0800200c7784");
+   //mutex() = ___new ::pointer < ::parallelization::mutex > (false, "Local\\::draw2d::account::file_system_size::7807e510-5579-11dd-ae16-0800200c7784");
    //m_pevExec = ___new happening(false, false, "Local\\::draw2d::account::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784");
    //m_pevDone = ___new happening(false, false, "Local\\::draw2d::account::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784");
    /*      }
@@ -246,7 +246,7 @@ bool DBFileSystemSizeSet::get_cache_fs_size(::i64 & i64Size, const ::scoped_stri
 {
    return false;
    single_lock synchronouslock(m_table.mutex(), false);
-   // Wait for ::pointer < ::mutex >. Once it is obtained, no other client may
+   // Wait for ::pointer < ::parallelization::mutex >. Once it is obtained, no other client may
    // communicate with the server
    if(!synchronouslock.lock(time::zero()))
       return false;

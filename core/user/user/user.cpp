@@ -114,7 +114,7 @@ CLASS_DECL_BERG ::platform::type __form_document_type();
 ////
 //#endif
 
-CLASS_DECL_CORE::pointer< ::mutex > get_cred_mutex();
+CLASS_DECL_CORE::pointer< ::parallelization::mutex > get_cred_mutex();
 
 
 namespace core

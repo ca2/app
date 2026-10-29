@@ -52,7 +52,7 @@ return g_pdraw2dcairo;
       g_pdraw2dcairo = this;
       //defer_create_synchronization();
 
-      //m_pmutexFont = allocateø ::pointer < ::mutex > ();
+      //m_pmutexFont = allocateø ::pointer < ::parallelization::mutex > ();
 
       //add_factory_item < e_cursor_set >();
 

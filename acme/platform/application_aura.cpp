@@ -499,8 +499,8 @@ namespace platform
    //::string aura_application_layer::get_local_mutex_id() override{}
    //::string aura_application_layer::get_global_mutex_id() override{}
 
-   //virtual ::pointer< ::mutex > get_local_mutex(){}
-   //virtual ::pointer< ::mutex > get_global_mutex(){}
+   //virtual ::pointer< ::parallelization::mutex > get_local_mutex(){}
+   //virtual ::pointer< ::parallelization::mutex > get_global_mutex(){}
 
    //::string aura_application_layer::get_local_mutex_name() override{}
    //::string aura_application_layer::get_local_id_mutex_name() override{}

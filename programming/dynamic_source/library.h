@@ -15,7 +15,7 @@ namespace dynamic_source
    public:
 
 
-      ::pointer < ::mutex >                                     m_pmutex;
+      ::pointer < ::parallelization::mutex >                                     m_pmutex;
       string                                    m_strError;
       ::string_stream                               m_memfileError;
       ::string_stream                               m_memfileLibError;

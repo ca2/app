@@ -1,3 +1,14 @@
+
+
+# Single-configuration generators (such as Ninja) need an explicit build type.
+# Preserve a type supplied by the user or IDE, and default an empty value to Debug.
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Build type (Debug, Release, RelWithDebInfo, MinSizeRel)" FORCE)
+endif()
+set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS Debug Release RelWithDebInfo MinSizeRel)
+
+
+
 # Refresh the entry-point compilation timestamp whenever this application is built.
 # Only the entry point is recompiled; the remaining application objects stay incremental.
 function(ca2_refresh_application_build_timestamp target entry_source)

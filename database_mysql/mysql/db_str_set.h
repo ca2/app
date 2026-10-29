@@ -6,7 +6,7 @@ class CLASS_DECL_CA2_DATA db_str_set :
 {
 public:
 
-   ::pointer < ::mutex >                         m_pmutex;
+   ::pointer < ::parallelization::mutex >                         m_pmutex;
    class db_str_set_core *       m_pcore;
 
    db_str_set(db_server * pserver);

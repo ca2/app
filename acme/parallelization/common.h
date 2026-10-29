@@ -19,7 +19,7 @@ class single_lock;
 
 //class sync_object;
 class semaphore;
-class mutex;
+namespace parallelization { class mutex; }
 class happening;
 class critical_section;
 class manual_reset_happening;

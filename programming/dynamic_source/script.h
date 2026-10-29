@@ -34,7 +34,7 @@ namespace dynamic_source
 
       ::i32_map < ::string_map < ::pointer < folder_enumerate > > > m_mapFolderEnumerate;
       ::i32_map < ::pointer < particle > >               m_mapParticle;
-      ::pointer < ::mutex >                              m_pmutexFolderEnumerate;
+      ::pointer < ::parallelization::mutex >                              m_pmutexFolderEnumerate;
       ::pointer < script_manager >                       m_pscriptmanager1;
       //string                                             m_strName;
       //::file::path                                       m_path1;

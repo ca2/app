@@ -11,7 +11,7 @@ namespace draw2d
 {
 
 
-   //::pointer< ::mutex > lock::s_pmutex = nullptr;
+   //::pointer< ::parallelization::mutex > lock::s_pmutex = nullptr;
 
    //::interlocked_count lock::s_countReference;
 
@@ -24,7 +24,7 @@ namespace draw2d
    //   if (count == 0)
    //   {
 
-   //      s_pmutex = ___new ::pointer < ::mutex > ();
+   //      s_pmutex = ___new ::pointer < ::parallelization::mutex > ();
 
    //   }
 

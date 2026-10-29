@@ -174,7 +174,7 @@ void particle::defer_create_synchronization()
       //
       //#endif
 
-      set_synchronization(create_newø< ::mutex >());
+      set_synchronization(create_newø< ::parallelization::mutex >());
 
    }
 

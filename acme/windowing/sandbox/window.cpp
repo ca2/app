@@ -479,7 +479,7 @@ void windowing::finalize_windowing()
 //   oswindow_dataptra *window::s_pdataptra = nullptr;
 //
 //
-//   ::pointer< ::mutex >window::s_pmutex = nullptr;
+//   ::pointer< ::parallelization::mutex >window::s_pmutex = nullptr;
 
 
 //   ::i32 oswindow_find_message_only_window(::windowing::window *pimpl)

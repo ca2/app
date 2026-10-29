@@ -26,7 +26,7 @@ public:
 
    ::file::path                                                   m_pathExecutable;
 
-   ::pointer < ::mutex >                                          m_pmutexFileSystemItem;
+   ::pointer < ::parallelization::mutex >                                          m_pmutexFileSystemItem;
    string_map_base < ::pointer < ::file_system_item > >           m_mapFileSystemItem;
 
 

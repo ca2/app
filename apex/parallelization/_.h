@@ -63,7 +63,7 @@
 //
 //class synchronization;
 //class semaphore;
-////class ::pointer < ::mutex >;
+////class ::pointer < ::parallelization::mutex >;
 //class happening;
 //class critical_section;
 //class single_lock;
@@ -195,7 +195,7 @@ class thread_startup;
 //#include "synchronization.h"
 //#include "synchronization_array.h"
 //#include "semaphore.h"
-//#include "::pointer < ::mutex >.h"
+//#include "::pointer < ::parallelization::mutex >.h"
 //#include "happening.h"
 //#include "set_event_on_exit.h"
 //#include "condition.h"

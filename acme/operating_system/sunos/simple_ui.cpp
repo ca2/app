@@ -201,7 +201,7 @@ namespace os
          XStoreName(m_window->display(), m_window->window(), m_strText);
       }
 
-      m_pmutexGraphics = ___new ::pointer < ::mutex > ();
+      m_pmutexGraphics = ___new ::pointer < ::parallelization::mutex > ();
 
       //on_size(width(lpcrect), height(lpcrect));
 

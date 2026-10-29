@@ -9,7 +9,7 @@
 
 Display * x11_get_display();
 osdisplay_dataptra * osdisplay_data::s_pdataptra = ___new osdisplay_dataptra();
-::pointer< ::mutex > osdisplay_data::s_pmutex = ___new ::pointer < ::mutex > (nullptr);
+::pointer< ::parallelization::mutex > osdisplay_data::s_pmutex = ___new ::pointer < ::parallelization::mutex > (nullptr);
 
 osdisplay_data::osdisplay_data()
 {

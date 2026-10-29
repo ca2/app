@@ -227,7 +227,7 @@ void oswindow_data::set_wm_class(const ::scoped_string & scopedstr)
 oswindow_dataptra * oswindow_data::s_pdataptra = nullptr;
 
 
-::pointer< ::mutex > oswindow_data::s_pmutex = nullptr;
+::pointer< ::parallelization::mutex > oswindow_data::s_pmutex = nullptr;
 
 
 ::i32 oswindow_find_message_only_window(::windowing::window * pimpl)

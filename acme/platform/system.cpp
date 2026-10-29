@@ -391,7 +391,7 @@ namespace platform
       factory()->add_factory_item < ::nano::http::get>();
       factory()->add_factory_item < ::component >();
       factory()->add_factory_item < ::micro::message_box, ::user_interface::message_box >();
-      factory()->add_factory_item < ::mutex >();
+      factory()->add_factory_item < ::parallelization::mutex >();
 
       color_indexes bgra_indexes{2, 1, 0, 3 };
       color_indexes rgba_indexes{0, 1, 2, 3 };

@@ -14,11 +14,11 @@ class CLASS_DECL_ACME file_system_cache :
 public:
 
 
-   //::pointer < ::mutex >                                 m_pmutexIncludeMatches;
-   //::pointer < ::mutex >                                 m_pmutexIncludeHasScript;
-   //::pointer < ::mutex >                                 m_pmutexIncludeExpandMd5;
+   //::pointer < ::parallelization::mutex >                                 m_pmutexIncludeMatches;
+   //::pointer < ::parallelization::mutex >                                 m_pmutexIncludeHasScript;
+   //::pointer < ::parallelization::mutex >                                 m_pmutexIncludeExpandMd5;
 
-   ::pointer < ::mutex >                                    m_pmutexFileSystemItem;
+   ::pointer < ::parallelization::mutex >                                    m_pmutexFileSystemItem;
    string_map_base < ::pointer < ::file_system_item > >     m_mapFileSystemItem;
    //string_map_base < ::logic::boolean >                  m_mapIncludeMatchesFileExists2;
    //string_map_base < ::logic::boolean >                  m_mapIncludeMatchesIsDir2;

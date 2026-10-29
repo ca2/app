@@ -407,7 +407,7 @@ pdirectorysystem->localconfig() / "user.component";
 
          {
 
-            ::pointer < ::mutex > m(e_create_new, "Local\\ca2-filemanagers");
+            ::pointer < ::parallelization::mutex > m(e_create_new, "Local\\ca2-filemanagers");
 
             synchronous_lock synchronouslock(&m);
 
@@ -568,7 +568,7 @@ pdirectorysystem->localconfig() / "user.component";
 
       //{
 
-      //   ::pointer < ::mutex > m(e_create_new, "Local\\ca2-filemanagers");
+      //   ::pointer < ::parallelization::mutex > m(e_create_new, "Local\\ca2-filemanagers");
 
       //   synchronous_lock synchronouslock(&m);
 

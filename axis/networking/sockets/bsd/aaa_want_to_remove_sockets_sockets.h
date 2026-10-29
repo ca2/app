@@ -24,15 +24,15 @@ namespace sockets
       AjpBaseSocket::Initializer *                 m_pajpaxissocketinit;
 
       ::collection::count m_countHttpPostBoundary;
-      ::pointer < ::mutex >                                        m_pmutexHttpPostBoundary;
+      ::pointer < ::parallelization::mutex >                                        m_pmutexHttpPostBoundary;
 
       resolv_socket::cache_t                       m_resolvcache;
       resolv_socket::timeout_t                     m_resolvtimeout;
-      ::pointer < ::mutex >                                        m_pmutexResolvCache;
+      ::pointer < ::parallelization::mutex >                                        m_pmutexResolvCache;
       ::pointer<::sockets::net>                          m_spnet;
       ::net::port_forward_sp                       m_spportforward;
 
-      ::pointer < ::mutex >                                        m_pmutexPool;
+      ::pointer < ::parallelization::mutex >                                        m_pmutexPool;
       socket_map                                   m_pool; ///< Active sockets map
 
 

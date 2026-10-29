@@ -53,7 +53,7 @@ namespace sockets
       ::i32         m_i32;
       ::u8        m_maskingkey[4];
       ::i32         m_iLastPos;
-      ::pointer < ::mutex >       m_pmutexWebsocketWrite;
+      ::pointer < ::parallelization::mutex >       m_pmutexWebsocketWrite;
       string            m_strOrigin;
       
       ::pointer < ::sockets::http_socket > m_phttpsocket;

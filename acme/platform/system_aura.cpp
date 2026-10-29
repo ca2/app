@@ -304,7 +304,7 @@ namespace platform
    }
 
 
-   //::pointer< ::mutex > get_openweather_city_mutex(){}
+   //::pointer< ::parallelization::mutex > get_openweather_city_mutex(){}
 
 
    // template<typename T>

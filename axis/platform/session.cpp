@@ -49,7 +49,7 @@ void defer_term_ui();
 //bool is_verbose();
 
 //extern string_map_base < ::pointer<::acme::library >> g_pmapLibrary;
-//extern ::pointer< ::mutex > psystem->m_pmutexLibrary;
+//extern ::pointer< ::parallelization::mutex > psystem->m_pmutexLibrary;
 //extern string_map_base < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 ::i32_bool point_is_window_origin(::i32_point ptHitTest, ::acme::windowing::window * pwindow, ::i32 iMargin);
@@ -515,8 +515,8 @@ namespace axis
 //      if (!papp->is_serviceable() || papp->is_user_service())
 //      {
 //
-//         psystem->m_spmutexUserAppData = allocateø ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
-//         psystem->m_spmutexSystemAppData = allocateø ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
+//         psystem->m_spmutexUserAppData = allocateø ::pointer < ::parallelization::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
+//         psystem->m_spmutexSystemAppData = allocateø ::pointer < ::parallelization::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
 //
 //      }
 //

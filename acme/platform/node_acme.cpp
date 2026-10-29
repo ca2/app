@@ -216,7 +216,7 @@ namespace platform
    //::file::path update_module_path(){}
 
 
-   ::pointer<::mutex> acme_node_layer::create_local_named_mutex(::particle* pparticleContext, bool bInitiallyOwned,
+   ::pointer<::parallelization::mutex> acme_node_layer::create_local_named_mutex(::particle* pparticleContext, bool bInitiallyOwned,
                                                                 const ::scoped_string & scopedstrName,
                                                                 security_attributes* psecurityattributes)
    {
@@ -225,7 +225,7 @@ namespace platform
    }
 
 
-   ::pointer<::mutex> acme_node_layer::create_global_named_mutex(::particle* pparticleContext, bool bInitiallyOwned,
+   ::pointer<::parallelization::mutex> acme_node_layer::create_global_named_mutex(::particle* pparticleContext, bool bInitiallyOwned,
                                                                  const ::scoped_string & scopedstrName,
                                                                  security_attributes* psecurityattributes)
    {
@@ -234,21 +234,21 @@ namespace platform
    }
 
 
-   ::pointer<::mutex> acme_node_layer::open_local_named_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrName)
+   ::pointer<::parallelization::mutex> acme_node_layer::open_local_named_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrName)
    {
       return{};
 
    }
 
 
-   ::pointer<::mutex> acme_node_layer::open_global_named_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrName)
+   ::pointer<::parallelization::mutex> acme_node_layer::open_global_named_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrName)
    {
       return{};
 
    }
 
 
-   ::pointer<::mutex> acme_node_layer::get_install_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrPlatform,
+   ::pointer<::parallelization::mutex> acme_node_layer::get_install_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrPlatform,
                                                          const ::scoped_string & scopedstrSuffix)
    {
       return{};

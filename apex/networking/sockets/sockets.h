@@ -39,17 +39,17 @@ namespace sockets
 ////#endif
 //
 //      ::collection::count                          m_countHttpPostBoundary;
-//      ::pointer < ::mutex >                          m_pmutexHttpPostBoundary;
+//      ::pointer < ::parallelization::mutex >                          m_pmutexHttpPostBoundary;
 //
 //      //resolv_cache_t                   m_resolvcache;
 //      //resolv_timeout_t                 m_resolvtimeout;
-//      ::pointer < ::mutex >                          m_pmutexResolvCache;
+//      ::pointer < ::parallelization::mutex >                          m_pmutexResolvCache;
         ::pointer<::networking::networking>       m_pnetworking;
 //#ifdef WINDOWS
 //      ::net::port_forward_pointer      m_pportforward;
 //#endif
 //
-//      ::pointer < ::mutex >                          m_pmutexPool;
+//      ::pointer < ::parallelization::mutex >                          m_pmutexPool;
 //      socket_map                       m_pool; ///< Active sockets map
 //
 

@@ -119,7 +119,7 @@ void interprocess_intercommunication::start(const ::scoped_string & scopedstrApp
    if(pmutex.is_null())
    {
 
-      pmutex = allocateø ::pointer < ::mutex > ();
+      pmutex = allocateø ::pointer < ::parallelization::mutex > ();
 
    }
 

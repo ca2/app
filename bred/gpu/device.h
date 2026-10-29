@@ -70,7 +70,7 @@ namespace gpu
 
       //::image32_callback                     m_callbackImage32CpuBuffer;
 
-      //::pointer < ::mutex >                  m_pmutexOffscreen;
+      //::pointer < ::parallelization::mutex >                  m_pmutexOffscreen;
       //::i32_size                             m_sizeOffscreen;
       //::i32                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;

@@ -462,7 +462,7 @@ class critical_section;
 class thread;
 class channel;
 class critical_section;
-class mutex;
+namespace parallelization { class mutex; }
 class atom;
 
 namespace colorertake5

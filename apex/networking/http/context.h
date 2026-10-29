@@ -17,9 +17,9 @@ namespace http
    public:
 
 
-      ::pointer < ::mutex >                  m_pmutexPac;
+      ::pointer < ::parallelization::mutex >                  m_pmutexPac;
       string_map_base < ::pointer<pac >>          m_mapPac;
-      ::pointer < ::mutex >                  m_pmutexProxy;
+      ::pointer < ::parallelization::mutex >                  m_pmutexProxy;
       string_map_base < ::pointer<proxy >>        m_mapProxy;
 
       // ::property_set                         m_setHttp;

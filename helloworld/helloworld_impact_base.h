@@ -32,7 +32,7 @@ namespace helloworld
       e_effect                m_eeffect;
 
 
-      ::pointer < ::mutex >                   m_pmutexText;
+      ::pointer < ::parallelization::mutex >                   m_pmutexText;
       string                  m_strNewHelloWorld;
       string                  m_strHelloWorld;
 

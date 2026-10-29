@@ -53,7 +53,7 @@ class CLASS_DECL_AURA db_str_set_core:
 public:
 
 
-   ::pointer < ::mutex >                                        m_pmutex;
+   ::pointer < ::parallelization::mutex >                                        m_pmutex;
    sockets::socket_handler                      m_handler;
    sockets::http_session *                      m_phttpsession;
    string_map_base < db_str_set_item >               m_map;
@@ -94,7 +94,7 @@ class CLASS_DECL_AURA db_str_sync_queue:
 {
 public:
 
-   ::pointer < ::mutex >                                              m_pmutex;
+   ::pointer < ::parallelization::mutex >                                              m_pmutex;
    db_str_set *                                       m_ppropertyset;
    sockets::socket_handler                            m_handler;
    sockets::http_session *                            m_phttpsession;

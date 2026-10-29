@@ -79,9 +79,9 @@ namespace platform
 //      ::text::text                                    m_textAppTitle;
 //      ::text::text                                    m_textAppName;
 //
-//      ::pointer < ::mutex >                                      m_pmutexMatterLocator;
+//      ::pointer < ::parallelization::mutex >                                      m_pmutexMatterLocator;
 //
-//      ::pointer < ::mutex >                                      m_pmutexStr;
+//      ::pointer < ::parallelization::mutex >                                      m_pmutexStr;
 //
 //
 //   };

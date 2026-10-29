@@ -34,7 +34,7 @@ namespace platform
       
       ::platform::department::initialize(pparticle);
       
-      m_pmutexHttpDownload = create_newø<::mutex>();
+      m_pmutexHttpDownload = create_newø<::parallelization::mutex>();
 
 
       

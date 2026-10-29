@@ -327,7 +327,7 @@ namespace aura
       if(pmutex.is_null())
       {
 
-         pmutex = allocateø ::pointer < ::mutex > ();
+         pmutex = allocateø ::pointer < ::parallelization::mutex > ();
 
       }
 

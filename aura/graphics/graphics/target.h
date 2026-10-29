@@ -16,7 +16,7 @@ namespace graphics
    public:
 
 
-      //::pointer < ::mutex >     m_pmutex;
+      //::pointer < ::parallelization::mutex >     m_pmutex;
       //::image::image_pointer         m_pimage;
       //::i32                   o  m_cx;
       //::i32                     m_cy;

@@ -100,7 +100,7 @@ namespace sockets_bsd
       ::file::circular_file m_ibuf; ///< Circular input buffer
       string m_strUrl;
 
-      ::pointer< ::mutex >        m_pmutexSslCtx;
+      ::pointer< ::parallelization::mutex >        m_pmutexSslCtx;
       //
       bool m_b_input_buffer_disabled;
       ::u64 m_bytes_sent;

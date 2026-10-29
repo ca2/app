@@ -43,7 +43,7 @@ namespace interprocess
       //rx_private *                         m_pp;
       //pointer_array < dispatch_item >      m_dispatchitema;
       //manual_reset_happening                   m_happeningDispatchItemNew;
-      //::pointer < ::mutex >                              m_pmutexDispatch;
+      //::pointer < ::parallelization::mutex >                              m_pmutexDispatch;
 
 
 //#ifndef WINDOWS

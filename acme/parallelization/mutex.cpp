@@ -17,6 +17,9 @@
 #endif
 
 
+namespace parallelization
+{
+
 //class mutex_implementation
 //{
 //public:
@@ -464,3 +467,6 @@ void mutex::unlock()
 #endif
 
 }
+
+
+} // namespace parallelization

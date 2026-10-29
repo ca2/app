@@ -3966,7 +3966,7 @@ namespace windowing
    //}
 
 
-   ::pointer<::mutex> window::draw_mutex()
+   ::pointer<::parallelization::mutex> window::draw_mutex()
    {
 
       if (m_pmutexDraw == nullptr)
@@ -3978,7 +3978,7 @@ namespace windowing
 
 #endif
 
-         m_pmutexDraw = create_newø<::mutex>();
+         m_pmutexDraw = create_newø<::parallelization::mutex>();
 
       }
 
@@ -15392,7 +15392,7 @@ namespace windowing
       if (m_pmutexRedraw == nullptr)
       {
 
-         m_pmutexRedraw = create_newø<::mutex>();
+         m_pmutexRedraw = create_newø<::parallelization::mutex>();
 
       }
 

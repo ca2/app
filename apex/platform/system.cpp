@@ -799,7 +799,7 @@ namespace apex
 
       //add_factory_item < application_bias >();
 
-      //add_factory_item < ::pointer < ::mutex > >();
+      //add_factory_item < ::pointer < ::parallelization::mutex > >();
       //add_factory_item < happening >();
 
       //if (!::application::process_init())
@@ -2150,7 +2150,7 @@ pdirectorysystem->create("/ca2core");
    //}
 
 
-   //   ::pointer< ::mutex > system::get_openweather_city_mutex()
+   //   ::pointer< ::parallelization::mutex > system::get_openweather_city_mutex()
    //   {
    //
    //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -2160,11 +2160,11 @@ pdirectorysystem->create("/ca2core");
    //
    //#ifdef UNIVERSAL_WINDOWS
    //
-   //         m_spmutexOpenweatherCity = allocateø ::pointer < ::mutex > ();
+   //         m_spmutexOpenweatherCity = allocateø ::pointer < ::parallelization::mutex > ();
    //
    //#else
    //
-   //         m_spmutexOpenweatherCity = allocateø ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
+   //         m_spmutexOpenweatherCity = allocateø ::pointer < ::parallelization::mutex > (e_create_new, false, "Global\\ca2_weather_city");
    //
    //#endif
    //

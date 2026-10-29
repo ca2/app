@@ -134,7 +134,7 @@ namespace platform
       ::pointer<::apex::system>                                               m_psystemParent;
 
       ::pointer < ::prototype::prototype >                                    m_pprototype;
-      //::pointer < ::mutex >                                                 m_pmutexFactory;
+      //::pointer < ::parallelization::mutex >                                                 m_pmutexFactory;
       //string_map_base < ::pointer<::factory::factory >>                          m_mapFactory;
       //string_map_base < ::pointer<::factory::factory >>                          m_mapFactory;
 
@@ -200,7 +200,7 @@ namespace platform
       //::pointer<::file_system>                                              m_pfilesystem;
 
 
-      ::pointer < ::mutex >                                                   m_pmutexMatter;
+      ::pointer < ::parallelization::mutex >                                                   m_pmutexMatter;
 
          //::pointer < ::windowing::windowing_base > m_pwindowingbase;
 //#if defined(WITH_X11) || defined(WITH_XCB)

@@ -31,7 +31,7 @@ namespace turboc
       ::user::single_document_template *     m_ptemplateHelloMultiverseImpact;
       ::user::single_document_template *     m_ptemplateHelloMultiverseSwitcher;
 
-      ::pointer < ::mutex >                                  m_pmutexAiFont;
+      ::pointer < ::parallelization::mutex >                                  m_pmutexAiFont;
 
       ::i32                                m_iErrorAiFont;
       bool                                   m_bLoadAiFont;

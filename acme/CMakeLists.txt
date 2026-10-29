@@ -2936,32 +2936,33 @@ if (${__ANDROID__})
 endif ()
 
 
-if (SOLARIS)
+if (${SOLARIS})
 
 
     list(APPEND library_source
-            operating_system/sunos/solaris.cpp
-            operating_system/sunos/cairo_keep.cpp
-            operating_system/sunos/cross_win_file.cpp
-            operating_system/sunos/cross_win_gdi.cpp
-            operating_system/sunos/display.cpp
-            operating_system/sunos/file.cpp
-            operating_system/sunos/file_watcher.cpp
-            operating_system/sunos/http.cpp
-            operating_system/sunos/http_lib.cpp
-            operating_system/sunos/launcher.cpp
-            operating_system/sunos/library.cpp
-            operating_system/sunos/lock.cpp
-            operating_system/sunos/message_loop.cpp
-            operating_system/sunos/process_process.cpp
-            operating_system/sunos/process_pid.cpp
-            operating_system/sunos/simple_shell_launcher.cpp
-            operating_system/sunos/simple_ui.cpp
-            operating_system/sunos/small_ipca_channel.cpp
-            operating_system/sunos/thread.cpp
-            operating_system/sunos/win_base.cpp
-            operating_system/sunos/window.cpp
-            operating_system/sunos/window_xlib.cpp)
+            #operating_system/sunos/solaris.cpp
+            #operating_system/sunos/cairo_keep.cpp
+            #operating_system/sunos/cross_win_file.cpp
+            #operating_system/sunos/cross_win_gdi.cpp
+            #operating_system/sunos/display.cpp
+            #operating_system/sunos/file.cpp
+            #operating_system/sunos/file_watcher.cpp
+            #operating_system/sunos/http.cpp
+            #operating_system/sunos/http_lib.cpp
+            #operating_system/sunos/launcher.cpp
+            #operating_system/sunos/library.cpp
+            #operating_system/sunos/lock.cpp
+            #operating_system/sunos/message_loop.cpp
+            #operating_system/sunos/process_process.cpp
+            #operating_system/sunos/process_pid.cpp
+            #operating_system/sunos/simple_shell_launcher.cpp
+            #operating_system/sunos/simple_ui.cpp
+            #operating_system/sunos/small_ipca_channel.cpp
+            #operating_system/sunos/thread.cpp
+            #operating_system/sunos/win_base.cpp
+            #operating_system/sunos/window.cpp
+            #operating_system/sunos/window_xlib.cpp
+    )
 
 
 endif ()
@@ -3236,6 +3237,7 @@ if (${__SUNOS__})
             #operating_system/freebsd/user.cpp
             #operating_system/freebsd/
             operating_system/sunos/_.cpp
+            operating_system/sunos/call_stack.cpp
             #operating_system/freebsd/_.cpp
             #operating_system/freebsd/_.h
             #operating_system/freebsd/_.h
@@ -3389,7 +3391,7 @@ if (${LINUX} OR ${__BSD__} OR ${__SUNOS__})
 endif ()
 
 
-if (${LINUX} OR ${__BSD__})
+if (${LINUX} OR ${__BSD__} OR ${__SUNOS__})
 
 
     list(APPEND library_source

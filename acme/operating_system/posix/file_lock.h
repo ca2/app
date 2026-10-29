@@ -9,6 +9,9 @@ namespace file_lock
 {
 
 
+   /// Cross-process advisory lock for a whole lock file.
+   /// Solaris locks are process-associated: same-process requests do not
+   /// conflict, and closing any descriptor for the file releases its locks.
    class CLASS_DECL_ACME file_lock
    {
    public:

@@ -5276,7 +5276,7 @@ namespace user
       //
       //#endif
 
-#if defined(WINDOWS_DESKTOP) || defined(HAS_GTK3)
+#if defined(WINDOWS_DESKTOP) || defined(HAS_GTK3) || defined(HAS_Q6) || defined(HAS_Q5) || defined(HAS_KDE6) || defined(HAS_KDE5)
 
                                                                                                                               //auto pwindowingicon = get_windowing_icon();
 

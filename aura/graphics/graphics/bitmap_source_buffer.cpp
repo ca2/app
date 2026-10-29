@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "acme/accessibility/accessibility.h"
 #include "buffer_item.h"
 #include "bitmap_source_buffer.h"
 #include "acme/parallelization/mutex.h"
@@ -9,6 +10,7 @@
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "apex/platform/context.h"
 #include "aura/graphics/image/image.h"
+#include "aura/graphics/image/image_pixmap_lease.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/window.h"
@@ -439,9 +441,11 @@ namespace graphics
       try
       {
 
-         auto sizeBitmap = ppixmap->raw_size();
-
-         auto iScan = ppixmap->m_iScan;
+         // Publish the mapped window image tightly packed at the bitmap origin.
+         // Desktop placement is metadata, never a pixel-buffer offset.
+         auto sizeBitmap = ppixmap->size();
+         if (sizeBitmap.is_empty() || sizeBitmap.cx > 0x1fffffff) return false;
+         auto iScan = sizeBitmap.cx * (::i32)sizeof(::image32_t);
 
          ::memsize sRequired = (::memsize)sizeof(bitmap_source_buffer_header)
             + (::memsize)iScan * (::memsize)sizeBitmap.cy;
@@ -474,14 +478,33 @@ namespace graphics
 
          }
 
+         ::i32_rectangle rectangleWindow(m_pwindow->m_pointWindow, m_pwindow->m_sizeWindow);
+         if (!system()->windowing()->has_readily_gettable_absolute_coordinates())
+         {
+            // Accessibility supplies compositor geometry when the native API cannot.
+            // Cache misses during bridge startup leave the last published frame intact.
+            ::accessibility::window_geometry geometry;
+            try
+            {
+               if (!system()->accessibility()->get_window_geometry(
+                  node()->current_process_identifier(), {}, geometry)) return false;
+            }
+            catch (...)
+            {
+               return false;
+            }
+            rectangleWindow = geometry.m_rectangleClient;
+            rectangleMainMonitor = geometry.m_rectangleOutput;
+         }
+
          auto pheader = (::graphics::bitmap_source_buffer_header *)pdata;
 
          pheader->m_iMagic = BITMAP_SOURCE_BUFFER_MAGIC;
          pheader->m_iVersion = BITMAP_SOURCE_BUFFER_VERSION;
-         pheader->m_xWindow = m_pwindow->m_pointWindow.x;
-         pheader->m_yWindow = m_pwindow->m_pointWindow.y;
-         pheader->m_cxWindow = m_pwindow->m_sizeWindow.cx;
-         pheader->m_cyWindow = m_pwindow->m_sizeWindow.cy;
+         pheader->m_xWindow = rectangleWindow.left;
+         pheader->m_yWindow = rectangleWindow.top;
+         pheader->m_cxWindow = rectangleWindow.width();
+         pheader->m_cyWindow = rectangleWindow.height();
          pheader->m_xMonitor = rectangleMainMonitor.left;
          pheader->m_yMonitor = rectangleMainMonitor.top;
          pheader->m_cxMonitor = rectangleMainMonitor.width();
@@ -497,14 +520,14 @@ namespace graphics
          {
 
             pimage32Target->copy(
-               sizeBitmap, iScan, ppixmap->m_pimage32Raw, ppixmap->m_iScan);
+               sizeBitmap, iScan, ppixmap->data(), ppixmap->m_iScan);
 
          }
          else
          {
 
             pimage32Target->y_swap_copy(
-               sizeBitmap, iScan, ppixmap->m_pimage32Raw, ppixmap->m_iScan);
+               sizeBitmap, iScan, ppixmap->data(), ppixmap->m_iScan);
 
          }
 
@@ -561,14 +584,20 @@ namespace graphics
 
          }
 
-         //auto ppixmapImageBufferItem = get_screen_item()->m_pimageBufferItem->map();
-
-         //if (!ipc_copy(ppixmapImageBufferItem))
-         //{
-
-         //   return false;
-
-         //}
+         // Image-backed backends (including Qt) have no native window pixmap.
+         // The backend has already swapped the completed image into the screen slot.
+         synchronous_lock lockGraphics(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         auto pitemScreen = get_screen_item();
+         if (pitemScreen)
+         {
+            synchronous_lock lockScreen(pitemScreen->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            lockGraphics.unlock();
+            if (pitemScreen->m_pimageBufferItem.ok())
+            {
+               auto pixmapScreen = pitemScreen->m_pimageBufferItem->map();
+               ipc_copy(pixmapScreen);
+            }
+         }
 
       }
 

@@ -11,6 +11,12 @@
 namespace accessibility
 {
 
+   bool accessibility::get_window_geometry(::process_identifier,
+      const ::scoped_string &, window_geometry &, const ::scoped_string &)
+   {
+      return false;
+   }
+
    automation::element_pointer accessibility::automation_desktop()
    {
       throw ::exception(error_interface_only);

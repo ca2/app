@@ -5924,7 +5924,8 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 #if (defined(LINUX) || defined(__BSD__)) && !defined(ANDROID)
 
-         strOperatingAmbientName = "gtk4";
+         if (strOperatingAmbientName != "kde6")
+            strOperatingAmbientName = "gtk4";
 
 #endif
 

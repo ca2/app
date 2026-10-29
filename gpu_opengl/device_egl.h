@@ -19,6 +19,7 @@ namespace gpu_opengl
 
 
       EGLDisplay                       m_egldisplay;
+      bool                             m_bWayland = false;
       //EGLConfig                        m_eglconfigPrimary;
       //EGLConfig                        m_eglconfigSwapChainWindow;
       EGLConfig                        m_eglconfigPBuffer;

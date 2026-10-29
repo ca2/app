@@ -500,7 +500,9 @@ namespace gpu
 
       auto pgpucontext = m_pgpucontextOwned;
 
-      if (!pgpucontext || !pgpucontext->m_puserinteractionTopic)
+      // Offscreen image graphics have no owning interaction. Their GPU
+      // context is reusable within the same draw2d domain nonetheless.
+      if (!pgpucontext || !pgpucontext->m_pgpudevice)
       {
 
          return false;

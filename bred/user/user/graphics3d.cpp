@@ -35,6 +35,7 @@
 #include "bred/gpu/renderer.h"
 #include "bred/prodevian/immersion.h"
 #include <atomic>
+#include <cstdlib>
 
 
 namespace user
@@ -83,11 +84,29 @@ namespace user
 
    }
 
+   void graphics3d::on_kill_keyboard_focus()
+   {
+      if (m_pgraphics3dengineinstance && m_pgraphics3dengineinstance->m_pinput)
+         m_pgraphics3dengineinstance->m_pinput->reset_keyboard_input();
+      ::user::box::on_kill_keyboard_focus();
+   }
+
+   void graphics3d::_on_show_window()
+   {
+      ::user::box::_on_show_window();
+      if (!is_window_screen_visible(::user::e_layout_layout) && m_pgraphics3dengineinstance && m_pgraphics3dengineinstance->m_pinput)
+         m_pgraphics3dengineinstance->m_pinput->reset_keyboard_input();
+   }
+
 
    void graphics3d::on_message_key_down(::message::message* pmessage)
    {
 
-      //auto pkey = pmessage->m_union.m_pkey;
+      if (std::getenv("CA2_TRACE_INPUT"))
+         informationf("CA2_INPUT view key=%d down=1", (int)pmessage->m_union.m_pkey->m_ekey);
+
+      if (m_pgraphics3dengineinstance && m_pgraphics3dengineinstance->m_pinput)
+         m_pgraphics3dengineinstance->m_pinput->on_key_event(pmessage->m_union.m_pkey->m_ekey, true);
 
       pmessage->m_bRet = true;
 
@@ -97,7 +116,11 @@ namespace user
    void graphics3d::on_message_key_up(::message::message* pmessage)
    {
 
-      //auto pkey = pmessage->m_union.m_pkey;
+      if (std::getenv("CA2_TRACE_INPUT"))
+         informationf("CA2_INPUT view key=%d down=0", (int)pmessage->m_union.m_pkey->m_ekey);
+
+      if (m_pgraphics3dengineinstance && m_pgraphics3dengineinstance->m_pinput)
+         m_pgraphics3dengineinstance->m_pinput->on_key_event(pmessage->m_union.m_pkey->m_ekey, false);
 
       pmessage->m_bRet = true;
 
@@ -279,6 +302,8 @@ namespace user
       auto pmouse = pmessage->m_union.m_pmouse;
 
       pmessage->m_bRet = true;
+
+      set_keyboard_focus();
 
       auto point = pmouse->m_pointHost;
 

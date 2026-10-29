@@ -179,6 +179,7 @@ namespace gpu_opengl
       //
       // #endif
 
+      m_uniformLocations.clear();
       glLinkProgram(m_ProgramID);
 
       // Validate program
@@ -1175,6 +1176,18 @@ namespace gpu_opengl
 
 
 
+   GLint shader::_cached_uniform_location(const_char_pointer name) const
+   {
+      const auto found = m_uniformLocations.find(name);
+      if (found != m_uniformLocations.end()) return found->second;
+      const auto location = glGetUniformLocation(m_ProgramID, name);
+      ::opengl::check_error("");
+      // Locations, including optimized-out uniforms, remain valid until the
+      // program is linked again. Avoid driver queries for every glyph/property.
+      m_uniformLocations.emplace(name, location);
+      return location;
+   }
+
    GLint shader::_get_uniform_location(const_char_pointer pszName, const_char_pointer debug) const
    {
 
@@ -1187,8 +1200,7 @@ namespace gpu_opengl
 
       }
       
-      GLint location = glGetUniformLocation(m_ProgramID, pszName);
-      ::opengl::check_error("");
+      GLint location = _cached_uniform_location(pszName);
 
       if (location == -1)
       {
@@ -1340,8 +1352,7 @@ namespace gpu_opengl
          // shader variant. OpenGL removes them when linking; skip the upload
          // while still advancing the data offset below.
          auto location = strName.case_insensitive_begins("padding") ? -1
-            : glGetUniformLocation(m_ProgramID, strName);
-         ::opengl::check_error("");
+            : _cached_uniform_location(strName);
 
          if (location >= 0)
          {

@@ -1,11 +1,13 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "platform.h"
+#include <cstdlib>
 #include "acme/parallelization/mutex.h"
 #include "fps_debug.h"
 #include "cursor.h"
 #include "display.h"
 #include "apex/gpu/approach.h"
+#include "apex/gpu/window_attachment.h"
 #include "aura/user/user/frame_interaction.h"
 #include "placement_log.h"
 #include "acme/constant/user_message.h"
@@ -211,6 +213,9 @@ namespace windowing
 
    void window::destroy()
    {
+      // Release graphics before the native surface owner goes away.
+      m_papexgpuwindowattachment.defer_destroy_and_release();
+
 
       if (::is_set(m_puserthread))
       {
@@ -1023,6 +1028,15 @@ namespace windowing
    {
 
       auto puserinteraction = user_interaction();
+
+      // Graphics initialization belongs to the common lifecycle, not native backends.
+      // Existing toolkit backends may already have attached graphics during creation.
+      if (puserinteraction && puserinteraction->is_graphical() && m_papplication->m_bGpu
+         && !m_papexgpuwindowattachment)
+      {
+         m_papplication->get_gpu_approach()->gpu_on_create_window(this);
+      }
+
 
       if (puserinteraction)
       {
@@ -12035,6 +12049,15 @@ namespace windowing
 
       time1.Now();
 
+      const bool traceFrame = std::getenv("CA2_TRACE_FRAME") != nullptr;
+      double traceLayoutMs = 0., traceDrawMs = 0., traceEndMs = 0., tracePaceMs = 0., tracePresentMs = 0.;
+      at_end_of_scope
+      {
+         if (traceFrame)
+            informationf("CA2_FRAME total=%.3f layout=%.3f draw=%.3f compose=%.3f pace=%.3f present=%.3f ms",
+               time1.elapsed().floating_millisecond(), traceLayoutMs, traceDrawMs, traceEndMs, tracePaceMs, tracePresentMs);
+      };
+
       if (m_bDoingGraphics)
       {
 
@@ -12157,7 +12180,9 @@ namespace windowing
                      pbufferitem->m_presentationTrace = {};
                      pbufferitem->m_presentationTrace.frame_start_ns = traceFrameStart;
 #endif
+                     auto traceLayoutStart = ::time::now();
                      auto pdraw2dgraphics = pgraphicsgraphics->on_begin_layout();
+                     traceLayoutMs += traceLayoutStart.elapsed().floating_millisecond();
 
                      //                     if (!pbufferitem)
                      //                     {
@@ -12389,6 +12414,7 @@ namespace windowing
                               pdraw2dgraphics->flush();
 
                               auto elapsed42 = time42.elapsed();
+                              traceDrawMs += elapsed42.floating_millisecond();
                               // informationf("draw_frame elapsed4.2 %0.2f", elapsed42.floating_millisecond());
 
                               //m_sizeLastBuffer = pbufferitem->m_sizeBufferItem;
@@ -12420,7 +12446,9 @@ namespace windowing
                   if (pbufferitem->m_presentationTrace.trace)
                      pbufferitem->m_presentationTrace.render_end_ns = ::graphics::presentation_trace::now_ns();
 #endif
+                  auto traceEndStart = ::time::now();
                   pgraphicsgraphics->on_end_draw();
+                  traceEndMs += traceEndStart.elapsed().floating_millisecond();
 
                }
 
@@ -12428,12 +12456,14 @@ namespace windowing
 
                // Rendering is complete and its locks have been released. The
                // graphics thread owns the continuous-output presentation clock.
+               auto tracePaceStart = ::time::now();
                if (m_pgraphicsthread && !m_pgraphicsthread->wait_for_fps_presentation())
                {
 
                   return;
 
                }
+               tracePaceMs += tracePaceStart.elapsed().floating_millisecond();
 
                auto puserinteractionPresent = user_interaction();
 
@@ -12488,7 +12518,9 @@ namespace windowing
                if (bPresentFrame)
                {
 
+                  auto tracePresentStart = ::time::now();
                   pgraphicsgraphics->update_screen();
+                  tracePresentMs += tracePresentStart.elapsed().floating_millisecond();
 
                }
 

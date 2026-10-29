@@ -440,7 +440,12 @@ namespace graphics
 
       }
 
-      on_update_screen(pitemScreen);
+      // A GPU swap chain presents the completed frame itself. Calling the
+      // native CPU-image path here can force a full GPU readback only to have
+      // its buffer rejected by the external presentation owner. Bitmap-source
+      // publication remains in the completed-buffer swap path.
+      if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+         on_update_screen(pitemScreen);
 
       m_pwindow->record_output_frame();
 

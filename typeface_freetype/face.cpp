@@ -67,70 +67,28 @@ namespace typeface_freetype
    }
 
 
+   void face::defer_create_face()
+   {
+      // Called with the face synchronization held, from metrics or glyph paths.
+      if (m_bFace) return;
+      defer_initialize_freetype();
+      ::cast<::bred::system> psystem = system();
+      auto path = psystem->typeface()->get_font_file_path_by_font_name(m_strFontName);
+      m_memoryFace = file()->as_memory(path);
+      if (FT_New_Memory_Face(g_freetype, m_memoryFace.data(),
+            (FT_Long)m_memoryFace.size(), 0, &m_face))
+         throw ::exception(error_failed, "Failed to load font");
+      m_bFace = true;
+   }
+
+
    void face::create_character(::typeface::character& ch, const ::scoped_string& scopedstr)
       //Character& face::get_character(const ::scoped_string& scopedstr)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto pszFontName = m_strFontName.c_str();
-
-      if (!m_bFace)
-      {
-         //return ch;
-
-         defer_initialize_freetype();
-
-         //::file::path path;
-
-         ::cast < ::bred::system > psystem = system();
-
-         auto ptypeface = psystem->typeface();
-
-         auto path = ptypeface->get_font_file_path_by_font_name(m_strFontName);
-
-         //{
-
-         //   FcPattern* pat = FcNameParse((FcChar8*)m_strFontName.c_str());
-         //   FcConfigSubstitute(NULL, pat, FcMatchPattern);
-         //   FcDefaultSubstitute(pat);
-
-         //   FcResult result;
-         //   FcPattern* font = FcFontMatch(NULL, pat, &result);
-
-         //   FcChar8* file;
-         //   FcPatternGetString(font, FC_FILE, 0, &file);
-
-         //   if (file)
-         //   {
-
-         //      path = (const_char_pointer ) file;
-
-         //   }
-         //   else
-         //   {
-
-         //      path = "matter://font/truetype/Roboto-Regular.ttf";
-
-         //   }
-
-         //}
-
-         m_memoryFace = file()->as_memory(path);
-         // Roboto - Regular.ttf
-            // load font as face
-
-         if (FT_New_Memory_Face(g_freetype, m_memoryFace.data(),(FT_Long) m_memoryFace.size(), 0, &m_face))
-         {
-            error() << "ERROR::FREETYPE: Failed to load font";
-            throw ::exception(error_failed, "Failed to load font");
-         }
-
-         //create_draw_buffers();
-         m_bFace = true;
-
-      }
-
+      defer_create_face();
 
       //FT_Set_Pixel_Sizes(m_face, 0, 48);
       FT_Set_Pixel_Sizes(m_face, 0, m_iPixelSize);
@@ -322,10 +280,8 @@ namespace typeface_freetype
       throw ::exception(error_null_pointer);
    }
 
-   if (!m_face)
-   {
-      throw ::exception(error_null_pointer);
-   }
+   _synchronous_lock synchronouslock(this->synchronization());
+   defer_create_face();
 
    // -----------------------------------------
    // Configuration (match GDI+ behavior)

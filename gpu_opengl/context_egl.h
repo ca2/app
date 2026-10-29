@@ -17,6 +17,9 @@
 #include <EGL/eglext.h>
 
 
+struct wl_egl_window;
+namespace acme::windowing { class native_surface_provider; }
+
 namespace gpu_opengl
 {
 
@@ -33,11 +36,14 @@ namespace gpu_opengl
       EGLContext                       m_eglcontext;
       EGLSurface                       m_eglsurface;
       bool                             m_bEGLWindowSurface;
+      ::wl_egl_window *                 m_pwaylandEglWindow = nullptr;
+      ::acme::windowing::native_surface_provider * m_pnativeSurfaceProvider = nullptr;
       task_index                       m_taskindexLock;
       ::pointer < ::acme::windowing::window > m_pwindowSurface;
 
       context_egl();
       ~context_egl() override;
+      void on_resize(const ::i32_size & size, ::draw2d::domain * domain, ::draw2d::graphics * graphics) override;
 
 
       virtual void __create_egl_context(bool bForWindow);

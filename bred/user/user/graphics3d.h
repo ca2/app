@@ -59,6 +59,8 @@ namespace user
       //virtual ::block global_ubo_block();
 
       void install_message_routing(::channel * pchannel) override;
+      void on_kill_keyboard_focus() override;
+      void _on_show_window() override;
 
 
       virtual void on_mouse_move(const i32_point& point);

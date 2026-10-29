@@ -7,6 +7,11 @@
 #include "acme/platform/application.h"
 #include "acme/user/user/interaction.h"
 #include "acme/windowing/window.h"
+#if defined(LINUX) || defined(__BSD__)
+#include "acme/windowing/display.h"
+#include "acme/windowing/windowing.h"
+#include "aura/platform/system.h"
+#endif
 #include "bred/gpu/context.h"
 #if defined(WINDOWS_DESKTOP)
 #include "wgl_context.h"
@@ -97,6 +102,20 @@ namespace gpu_opengl
       ::object::initialize(pparticle);
 
       defer_create_synchronization();
+
+#if defined(LINUX) || defined(__BSD__)
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+         // Native EGL window surfaces in this backend currently require X11.
+         // Qt/Wayland presents the offscreen result through its image buffers.
+         auto pdisplay = system()->acme_windowing()->acme_display();
+         if (!pdisplay || (!pdisplay->native_wayland_display() && !pdisplay->_get_x11_display()))
+         {
+            warning("Native EGL window presentation requires a supported native display; using offscreen presentation");
+            m_papplication->m_gpu.m_bUseSwapChainWindow = false;
+         }
+      }
+#endif
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {

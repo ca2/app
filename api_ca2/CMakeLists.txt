@@ -19,6 +19,8 @@ list(APPEND library_source
    _.h
    api.cpp
    api.h
+   html_page.cpp
+   html_page.h
    _factory.cpp
    platform.cpp
    platform.h

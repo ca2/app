@@ -1,3 +1,6 @@
+#include <wayland-egl.h>
+#include <chrono>
+#include <thread>
 //
 //  context_egl.cpp
 //  gpu_opengl
@@ -22,6 +25,7 @@
 #include <OpenGL/glext.h>
 #endif
 #include "context_egl.h"
+#include "acme/windowing/native_surface_provider.h"
 //#include "opengl.h"
 #include "acme/platform/application.h"
 #include "aura/graphics/image/image.h"
@@ -88,8 +92,25 @@ namespace gpu_opengl
 
    context_egl::~context_egl()
    {
+      ::cast<::gpu_opengl::device_egl> device = m_pgpudevice;
+      if (device && device->m_bWayland)
+      {
+         {
+            if (eglGetCurrentContext() == m_eglcontext)
+               eglMakeCurrent(device->m_egldisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
+            if (m_eglsurface != EGL_NO_SURFACE) eglDestroySurface(device->m_egldisplay, m_eglsurface);
+            if (m_eglcontext != EGL_NO_CONTEXT) eglDestroyContext(device->m_egldisplay, m_eglcontext);
+         }
+         if (m_pwaylandEglWindow) wl_egl_window_destroy(m_pwaylandEglWindow);
+      }
+      if (m_pnativeSurfaceProvider) m_pnativeSurfaceProvider->release_external_presentation();
+   }
 
-
+   void context_egl::on_resize(const ::i32_size & size, ::draw2d::domain * domain, ::draw2d::graphics * graphics)
+   {
+      if (m_pwaylandEglWindow && size.cx > 0 && size.cy > 0)
+         wl_egl_window_resize(m_pwaylandEglWindow, size.cx, size.cy, 0, 0);
+      ::gpu::context::on_resize(size, domain, graphics);
    }
 
 
@@ -134,7 +155,11 @@ namespace gpu_opengl
 
       EGLConfig eglconfig;
 
-      if (bForWindow)
+      if (bForWindow && pegldevice->m_bWayland)
+      {
+         eglconfig = pegldevice->m_eglconfigWindow;
+      }
+      else if (bForWindow)
       {
 
          if (!pegldevice->_simplified_find_config_for_x11_window4(
@@ -144,12 +169,12 @@ namespace gpu_opengl
 
             warning("Couldn't find window config with transparent visual");
 
-            if (pegldevice->_simplified_find_config_for_x11_window4(
+            if (!pegldevice->_simplified_find_config_for_x11_window4(
                pegldevice->m_eglconfigWindow,
                pegldevice->m_lX11NativeVisualId, true))
             {
 
-               warning("An couldn't find window config with opaque visual");
+               warning("Couldn't find window config with opaque visual");
 
                throw ::exception(::error_failed);
 
@@ -330,6 +355,28 @@ namespace gpu_opengl
 
       }
 
+      if (pegldevice->m_bWayland)
+      {
+         auto surface = static_cast<::wl_surface *>(pacmewindowingwindow->native_wayland_surface());
+         if (!surface) throw ::exception(error_wrong_state, "Native Wayland surface is unavailable");
+         m_pwindowSurface = pacmewindowingwindow;
+         m_pnativeSurfaceProvider = dynamic_cast<::acme::windowing::native_surface_provider *>(pacmewindowingwindow);
+         if (m_pnativeSurfaceProvider) m_pnativeSurfaceProvider->acquire_external_presentation();
+         const auto size = pacmewindowingwindow->m_sizeWindow;
+         m_pwaylandEglWindow = wl_egl_window_create(surface, maximum(1, size.cx), maximum(1, size.cy));
+         if (!m_pwaylandEglWindow) throw ::exception(error_failed, "Cannot create Wayland EGL window");
+         m_eglsurface = eglCreateWindowSurface(egldisplay, eglconfig,
+            reinterpret_cast<EGLNativeWindowType>(m_pwaylandEglWindow), nullptr);
+         if (m_eglsurface == EGL_NO_SURFACE)
+         {
+            wl_egl_window_destroy(m_pwaylandEglWindow); m_pwaylandEglWindow = nullptr;
+            throw ::exception(error_failed, "Cannot create native Wayland EGL surface");
+         }
+         m_bEGLWindowSurface = true;
+         m_pwindowSurface = pacmewindowingwindow;
+         return;
+      }
+
       ::cast < ::x11::acme::windowing::window > px11window = pacmewindowingwindow;
 
       if (!px11window)
@@ -358,7 +405,7 @@ namespace gpu_opengl
       // Get the X11 window's visual
       auto display = px11window->__x11_display();
       XWindowAttributes attrs;
-      XGetWindowAttributes(display, window, &attrs);
+      XGetWindowAttributes(display, static_cast<Window>(px11window->__x11_window()), &attrs);
       information("X11 window visual ID: {}", attrs.visual->visualid);
 
       // They should match!
@@ -404,6 +451,17 @@ namespace gpu_opengl
    {
 
       ::cast < ::gpu_opengl::device_egl > pegldevice = m_pgpudevice;
+
+      if (pegldevice->m_bWayland)
+      {
+         const auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(3);
+         while (!pacmewindowingwindow->native_surface_configured())
+         {
+            if (std::chrono::steady_clock::now() >= deadline)
+               throw ::exception(error_timeout, "Wayland initial configure did not arrive");
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+         }
+      }
 
       pegldevice->m_lX11NativeVisualId = pacmewindowingwindow->m_lX11NativeVisualId;
 
@@ -1214,7 +1272,14 @@ namespace gpu_opengl
 
       }
 
-      if (m_pwindowSurface->m_lX11MapNotify != 1)
+      // A hidden Wayland surface is unmapped and must complete a new
+      // configure handshake before another buffer may be committed.
+      if (m_pwaylandEglWindow && !m_pwindowSurface->native_surface_configured())
+      {
+         return;
+      }
+
+      if (!m_pwaylandEglWindow && m_pwindowSurface->m_lX11MapNotify != 1)
       {
 
          information("context_egl::swap_buffers m_lX11MapNotify != 1");
@@ -1227,29 +1292,14 @@ namespace gpu_opengl
 
       auto egldisplay = pegldevice->m_egldisplay;
 
-      EGLint width, height;
-      eglQuerySurface(egldisplay, m_eglsurface, EGL_WIDTH, &width);
-      eglQuerySurface(egldisplay, m_eglsurface, EGL_HEIGHT, &height);
-      debug("EGL surface created: {}x{}", width, height);
-
-      // Check what pframebuffer is currently bound
-      GLint currentFB = 0;
-      glGetIntegerv(GL_FRAMEBUFFER_BINDING, &currentFB);
-      debug("Current pframebuffer bound: {}", currentFB);
-
-      // Read a pixel from the center to see what's actually there
-      GLubyte pixel[4];
-      glReadPixels(width/2, height/2, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
-      debug("Center pixel color: R={} G={} B={} A={}", pixel[0], pixel[1], pixel[2], pixel[3]);
-
       // Check for GL errors
       GLenum glError = glGetError();
       if (glError != GL_NO_ERROR) {
          warning("OpenGL error before swap: 0x{:x}", glError);
       }
 
-      eglWaitGL();
-
+      // eglSwapBuffers flushes the current context. A readback or eglWaitGL
+      // here would unnecessarily wait for every frame on the CPU.
       if (!eglSwapBuffers(egldisplay, m_eglsurface))
       {
 
@@ -1280,7 +1330,7 @@ namespace gpu_opengl
       XSync(display, False);
 
       XWindowAttributes attrs;
-      XGetWindowAttributes(display, window, &attrs);
+      XGetWindowAttributes(display, static_cast<Window>(px11window->__x11_window()), &attrs);
       debug("Window map state: {}", attrs.map_state); // Should be 2 (IsViewable)
 
 #endif

@@ -194,6 +194,9 @@ namespace acme
 
          void set_cursor(enum_cursor ecursor) override;
 
+         // Borrowed surface. The windowing backend owns its lifetime; no GPU objects.
+         virtual void * native_wayland_surface() { return nullptr; }
+         virtual bool native_surface_configured() const { return true; }
          virtual bool _is_window();
 
          

@@ -1,6 +1,7 @@
 // Created by camilo on 2021-11-05 16:34 PM <3ThomasBorregaardSorensen!!
 #include "platform.h"
 #include "api.h"
+#include "html_page.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "acme/prototype/prototype/memory.h"
@@ -277,23 +278,17 @@ namespace api_ca2
             _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
             m_timeLastNotifyOnPreLoginScreen.Now();
 
-            strHtml = "Waiting for Authentication";
+            html_page::append_document_start(strHtml, "Waiting for authentication");
+            html_page::append_title(strHtml, "ca2 account", "Waiting for authentication");
+            html_page::append_paragraph(strHtml, "Complete the sign-in flow in your browser. This page will refresh when authentication finishes.");
+            html_page::append_footer(strHtml);
+            html_page::append_document_end(strHtml);
 
             return ::success;
 
          }
 
       }
-
-      strHtml += "<html>";
-      strHtml += "<html>";
-      strHtml += "<head>";
-      strHtml += "<meta charset=\"UTF-8\">";
-      // <from https://thomasbs.com/ <3tbs!!>
-      strHtml += "<link href=\"https://fonts.ca2apis.com/css?family=Fira+Code&display=swap\" rel=\"stylesheet\">";
-      // </from https://thomasbs.com/ <3tbs!!>
-      strHtml += "</head>";
-      strHtml += "<body style=\"font-family:'Fira Code', monospace;\">";
 
       string strAppState = ::url::get_parameter(scopedstrUrl, "appstate");
 
@@ -303,7 +298,13 @@ namespace api_ca2
       if (!m_bWaitingResponseFromUser || strAppState != m_strState
          || m_timeAuthenticationStarted.elapsed() >= 5_min)
       {
-         strHtml += "Authentication attempt is no longer pending.</body></html>";
+         strHtml = html_page::message_page(
+            "Authentication expired",
+            "ca2 account",
+            "Sign-in link expired",
+            "This authentication attempt is no longer pending.",
+            "Return to the application and start sign-in again.",
+            false);
          information() << "ca2_auth: ignored_callback app=" << get_app()->m_strAppId;
          return ::success;
       }
@@ -335,27 +336,24 @@ namespace api_ca2
 
       if (bAuthenticated)
       {
-
-         strHtml += "<h1>";
-         strHtml += "Login successful";
-         strHtml += "</h1>";
-         strHtml += "<h4>The login process has completed successfully.</h4>";
-         strHtml += "<h5>You can return to the application.</h5>";
-
+         strHtml = html_page::message_page(
+            "Login successful",
+            "ca2 account",
+            "Login successful",
+            "The login process has completed successfully.",
+            "You can return to the application.",
+            true);
       }
       else
       {
-
-         strHtml += "<h1>";
-         strHtml += "Login failed";
-         strHtml += "</h1>";
-         strHtml += "<h4>The login process has failed.</h4>";
-         strHtml += "<h5>You should be redirected to the login page.</h5>";
-
+         strHtml = html_page::message_page(
+            "Login failed",
+            "ca2 account",
+            "Login failed",
+            "The login process could not be completed.",
+            "Return to the application and try signing in again.",
+            false);
       }
-
-      strHtml += "</body>";
-      strHtml += "</html>";
 
       // Retain the API until its waiting caller has observed success/failure.
       // The caller owns failure recovery; the callback must not release it.

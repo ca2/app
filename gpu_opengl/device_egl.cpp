@@ -563,7 +563,11 @@ namespace gpu_opengl
 
       //m_display = eglGetDisplay((EGLNativeDisplayType)0);
       //auto egldisplay = eglGetDisplay(EGL_DEFAULT_DISPLAY);
-      auto egldisplay = eglGetDisplay(pDisplay);
+      auto pWaylandDisplay = pdisplay->native_wayland_display();
+      m_bWayland = pWaylandDisplay != nullptr;
+      auto egldisplay = m_bWayland
+         ? eglGetPlatformDisplay(EGL_PLATFORM_WAYLAND_KHR, pWaylandDisplay, nullptr)
+         : eglGetDisplay(pDisplay);
 
       if (egldisplay == EGL_NO_DISPLAY)
       {
@@ -684,12 +688,24 @@ namespace gpu_opengl
 
       //long l = -1;
 
+      if (m_bWayland)
+      {
+         const EGLint attributes[] = {
+            EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
+            EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT,
+            EGL_RED_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_BLUE_SIZE, 8,
+            EGL_ALPHA_SIZE, 8, EGL_DEPTH_SIZE, 24, EGL_STENCIL_SIZE, 8, EGL_NONE};
+         EGLint count = 0;
+         if (!eglChooseConfig(m_egldisplay, attributes, &m_eglconfigWindow, 1, &count) || count != 1)
+            throw ::exception(error_failed, "No compatible native Wayland EGL window configuration");
+      }
+
       if (!_find_config_for_pbuffer(m_eglconfigPBuffer, false))
       {
 
          warning("Couldn't find p-buffer config with transparent visual");
 
-         if (_find_config_for_pbuffer(m_eglconfigPBuffer, true))
+         if (!_find_config_for_pbuffer(m_eglconfigPBuffer, true))
          {
 
             warning("An couldn't find p-buffer config with opaque visual");
@@ -894,6 +910,13 @@ namespace gpu_opengl
       auto pdisplay = pwindowing->acme_display();
 
       auto pDisplay = (Display *) pdisplay->_get_x11_display();
+
+      eglconfig = EGL_NO_CONFIG_KHR;
+      if (!pDisplay || lX11VisualId <= 0)
+      {
+         warning("Cannot select an X11 EGL window config without a display and valid visual ID");
+         return false;
+      }
 
       auto egldisplay = m_egldisplay;
 

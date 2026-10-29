@@ -5282,6 +5282,13 @@ namespace user
 
       if (get_parent() == nullptr)
       {
+#if defined(LINUX) || defined(__BSD__)
+         // Desktop identity and the icon cache are application services; neither
+         // KDE nor a native Wayland backend should duplicate this registration.
+         try { node()->defer_create_app_shortcut(application()); }
+         catch (...) { warning("Could not update the application's desktop icon registration"); }
+#endif
+
 
          if (application()->m_bImaging)
             //if (!window()->defer_set_icon())
@@ -5302,8 +5309,6 @@ namespace user
          }
 
       }
-
-#endif
 
    }
 

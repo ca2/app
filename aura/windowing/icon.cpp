@@ -4,7 +4,11 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "aura/graphics/image/image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/windowing/icon.h"
+#include "aura/platform/system.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/domain.h"
 
 
 namespace windowing
@@ -90,9 +94,9 @@ namespace windowing
    ::image::image_pointer icon::get_image(const ::i32_size & size)
    {
 
-      throw ::interface_only();
-      
-      return nullptr;
+      // File-backed icons are common across native windowing backends.
+      return image()->get_image(m_payload,
+         {.draw2d_domain = system()->draw2d()->main_draw2d_domain()});
 
    }
 
@@ -108,8 +112,10 @@ namespace windowing
 
    void icon::get_sizes(::i32_size_array & a)
    {
-
-
+      a.erase_all();
+      auto pimage = get_image({});
+      if (pimage && pimage->width() > 0 && pimage->height() > 0)
+         a.add(pimage->size());
    }
 
 

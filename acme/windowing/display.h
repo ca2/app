@@ -46,6 +46,8 @@ namespace acme
 
          ::collection::count get_monitor_count();
 
+         // Borrowed native connection; null when this protocol is not active.
+         virtual void * native_wayland_display() { return nullptr; }
          virtual void * _get_x11_display();
 
          virtual ::i64 _get_x11_root_window();

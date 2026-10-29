@@ -2,6 +2,8 @@
 
 
 #include "bred/gpu/shader.h"
+#include <string>
+#include <unordered_map>
 
 
 namespace gpu_opengl
@@ -16,6 +18,7 @@ namespace gpu_opengl
 
       //::gpu::texture * m_ptextureBound = nullptr;
       GLuint m_ProgramID;
+      mutable std::unordered_map<std::string, GLint> m_uniformLocations;
 
       //__creatable_from_base(shader, ::gpu::shader);
       
@@ -90,6 +93,7 @@ namespace gpu_opengl
 
 
       virtual GLint _get_uniform_location(const_char_pointer pszName, const_char_pointer debug) const;
+      GLint _cached_uniform_location(const_char_pointer name) const;
 
 
       void _set_bool(const_char_pointer pszName, bool bSet) const;

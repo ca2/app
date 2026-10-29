@@ -32,6 +32,8 @@ namespace typeface_freetype
       void initialize(::particle * pparticle) override;
 
 
+      void defer_create_face();
+
       void create_character(::typeface::character& ch, const ::scoped_string& scopedstr) override;
 
 

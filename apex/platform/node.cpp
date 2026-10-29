@@ -542,6 +542,22 @@ namespace apex
    void node::defer_create_app_shortcut(::platform::application* papplication)
    {
 
+#if defined(LINUX) || defined(__BSD__)
+      // Refresh the managed icon even when the user's desktop entry exists.
+      // Compare bytes so opening extra windows does not rewrite identical files.
+      try
+      {
+         const auto pathIcon = directory_system()->roaming() / papplication->m_strAppId / "icon-256.png";
+         auto icon = papplication->file()->as_memory("matter://main/icon-256.png");
+         if (icon.has_data())
+         {
+            auto previous = (file()->exists(pathIcon) ? file()->as_memory(pathIcon) : ::memory{});
+            if (icon != previous) file()->put_memory(pathIcon, icon);
+         }
+      }
+      catch (...) { warning("Could not refresh the application's desktop icon cache"); }
+#endif
+
       auto pathShortcut = app_shortcut_path(papplication);
 
       if (!file()->exists(pathShortcut))

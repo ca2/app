@@ -1413,6 +1413,8 @@ list(APPEND library_source
         user/implementation/dialog_implementation.h
         user/implementation/message_box_implementation.cpp
         user/implementation/message_box_implementation.h
+        user/html/page.cpp
+        user/html/page.h
         user/interface/dialog.cpp
         user/interface/dialog.h
         user/interface/message_box.cpp

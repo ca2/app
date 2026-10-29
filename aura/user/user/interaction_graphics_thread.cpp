@@ -1379,6 +1379,18 @@ namespace user
 
       //information() << "graphics_thread_iteration (A1)";
 
+      // Apply an explicit hide before waiting for another presentation. Once
+      // layout becomes hidden there may be no drawable frame to wake that
+      // wait, leaving the native window visible and close teardown pending.
+      const auto requestedDisplay = puserinteraction->const_layout().sketch().display();
+      if ((requestedDisplay == e_display_hide || requestedDisplay == e_display_none)
+         && pwindow->is_window_visible())
+      {
+         ::pointer<::windowing::window> hold(pwindow);
+         hold->main_post([hold] { hold->show_window(::user_interface::e_show_window_hide); });
+         return true;
+      }
+
       if (m_puserinteraction->has_graphical_output_purpose())
       {
 

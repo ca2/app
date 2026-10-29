@@ -458,6 +458,10 @@ namespace bred
 
       ::string strOutput = application_file_setting("graphics3d_output.txt");
 
+      strOutput.trim();
+      strOutput.make_lower();
+      if (strOutput == "swap_chain") strOutput = "on_screen";
+
       if (!m_optionaGraphics3dOutput.find(strOutput))
       {
 

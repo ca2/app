@@ -62,6 +62,7 @@
 #include "acme/windowing/sandbox/host_interaction.h"
 #include "acme/windowing/window.h"
 #include "acme/windowing/windowing.h"
+#include "acme/windowing/windowing_policy.h"
 #include "graphics/image/pixmap.h"
 #include "prototype/string/_str.h"
 #include "user/micro/message_box.h"
@@ -5526,112 +5527,52 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    ::string system::get_operating_ambient()
    {
-
-      ::string strOperatingAmbientToolkit;
-
-      strOperatingAmbientToolkit = ::windowing::get_eoperating_ambient_name();
-
-      ::string strOperatingAmbient;
-
-      ::string strOperatingAmbientNew;
-
-      // Read the same application setting used by graphics3d_output.txt. In
-      // particular, user overrides live under cloud-app:// and aren't visible
-      // through get_appconfig(), which only checks the local appconfig folder.
-      ::string strWindowing;
-
+      // Retire the old override in every location it used to be read from.
+      // Its contents are deliberately not promoted to the new forced setting.
       if (m_papplication)
       {
-
-         strWindowing = m_papplication->application_file_setting("windowing.txt");
-
-      }
-
-      if (strWindowing.is_empty())
-      {
-
-         strWindowing = ::get_appconfig("windowing");
-
-      }
-
-      strWindowing.trim();
-
-      ::string_array straLines;
-
-      straLines.add_lines(strWindowing);
-
-      straLines.trim();
-
-      straLines.erase_empty();
-
-      straLines.erase_prefixed("#");
-
-      straLines.truncate_on_find_character('#');
-
-      straLines.trim();
-
-      straLines.erase_empty();
-
-      if (straLines.has_element())
-      {
-
-         strWindowing = straLines.last();
-
-         ::information() << "application setting : windowing : " << strWindowing;
-
-         if (strWindowing.ends_eat("_windowing"))
+         auto deactivate = [this](const ::file::path & path)
          {
-
-            if (strWindowing == "toolkit")
-            {
-
-               strOperatingAmbientNew = strOperatingAmbientToolkit;
-
-            }
-            else if (strWindowing == "raw")
-            {
-
-               if (::is_wayland())
-               {
-
-                  strOperatingAmbientNew = "wayland";
-
-               }
-               else if (::is_x11())
-               {
-
-                  strOperatingAmbientNew = "x11";
-
-               }
-
-            }
-            else
-            {
-
-               strOperatingAmbientNew = strWindowing;
-
-            }
-
-         }
-
+            if (path.is_empty() || path.contains("://")) return;
+            std::error_code error;
+            const auto backup = ::native_windowing_policy::deactivate_legacy(
+               std::filesystem::u8path(path.c_str()), error);
+            if (error)
+               warningf("Could not deactivate legacy windowing setting %s: %s", path.c_str(), error.message().c_str());
+            else if (!backup.empty())
+               informationf("Deactivated legacy windowing setting %s -> %s", path.c_str(), backup.filename().string().c_str());
+         };
+         try { deactivate(m_papplication->defer_process_path("cloud-app://windowing.txt")); }
+         catch (...) { warningf("Could not resolve the legacy cloud windowing setting"); }
+         deactivate(directory_system()->roaming() / m_papplication->m_strAppId / "windowing.txt");
+         deactivate(::get_appconfig_folder_path() / "windowing.txt");
       }
 
-      if (strOperatingAmbientNew.has_character())
-      {
-
-         strOperatingAmbient = strOperatingAmbientNew;
-
-      }
-
-      if (strOperatingAmbientNew.is_empty())
-      {
-
-         strOperatingAmbient = strOperatingAmbientToolkit;
-
-      }
-
-      return strOperatingAmbient;
-
+      const auto desktop = ::windowing::get_eoperating_ambient_name();
+#if defined(LINUX) && !defined(__ANDROID__)
+      const auto output = m_papplication
+         ? m_papplication->application_file_setting("graphics3d_output.txt") : ::string();
+      const auto forced = m_papplication
+         ? m_papplication->application_file_setting("forced_raw_windowing.txt") : ::string();
+      const auto forcedOnScreen = m_papplication
+         ? m_papplication->application_file_setting("forced_raw_windowing_for_on_screen.txt") : ::string();
+      const auto forcedOffScreen = m_papplication
+         ? m_papplication->application_file_setting("forced_raw_windowing_for_off_screen.txt") : ::string();
+      const auto effectiveForced = ::native_windowing_policy::effective_override(
+         output.c_str(), forced.c_str(), forcedOnScreen.c_str(), forcedOffScreen.c_str());
+      const auto selected = ::native_windowing_policy::select(true, desktop.c_str(),
+         output.c_str(), effectiveForced, ::is_wayland(), ::is_x11());
+      if (selected.invalid_override)
+         warningf("Ignoring raw windowing override: expected x11, xcb or wayland");
+      if (selected.missing_raw_session)
+         throw ::exception(error_wrong_state,
+            "Linux on-screen output requires a Wayland/X11 session or a valid forced_raw_windowing.txt");
+      // XCB uses its own windowing factories with the shared X11 ambient.
+      payload("linux_selected_windowing_toolkit") = selected.toolkit.c_str();
+      return selected.ambient.c_str();
+#else
+      return desktop;
+#endif
    }
 
 
@@ -5641,6 +5582,11 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       ::string strUserToolkit = ::windowing::get_user_toolkit_id();
 
       ::string strOperatingAmbient = get_operating_ambient();
+
+#if defined(LINUX) && !defined(__ANDROID__)
+      auto selected = payload("linux_selected_windowing_toolkit").as_string();
+      if (selected.has_character()) return selected;
+#endif
 
       if (strOperatingAmbient.has_character())
       {

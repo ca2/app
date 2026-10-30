@@ -69,14 +69,13 @@ namespace parallelization
    //   timeout
    //};
 
+#ifdef __REACTOS__
 
    class condition_payload_impl
    {
 
    public:
 
-
-#ifdef __REACTOS__
       struct waiter
       {
          HANDLE event;
@@ -140,13 +139,9 @@ namespace parallelization
             SetLastError(error);
          return result == WAIT_OBJECT_0;
       }
-#else
-      CONDITION_VARIABLE m_conditionvariable{};
-#endif
    };
 
-
-
+#endif
    
    static void condition_payload_validate_lock(const unique_lock &lock)
    {
@@ -191,9 +186,11 @@ namespace parallelization
 
    condition_payload::condition_payload() noexcept
    {
-      m_pimpl = new condition_payload_impl();
-#ifndef __REACTOS__
-      InitializeConditionVariable(&m_pimpl->m_conditionvariable);
+#ifdef __REACTOS__
+      m_pconditionpayloadimpl = new condition_payload_impl();
+#else
+      m_pCONDITIONVARIABLE = new CONDITION_VARIABLE;
+      InitializeConditionVariable((CONDITION_VARIABLE * )m_pCONDITIONVARIABLE);
 #endif
    }
 
@@ -201,16 +198,16 @@ namespace parallelization
    // condition_payload &operator=(const condition_payload &) = delete;
 
    // CONDITION_VARIABLE does not require destruction.
-   condition_payload::~condition_payload() { delete m_pimpl; }
+   condition_payload::~condition_payload() { delete (CONDITION_VARIABLE *)m_pCONDITIONVARIABLE; }
 
 #ifdef __REACTOS__
-   void condition_payload::notify_one() noexcept { m_pimpl->notify(false); }
+   void condition_payload::notify_one() noexcept { m_pconditionpayloadimpl->notify(false); }
 
-   void condition_payload::notify_all() noexcept { m_pimpl->notify(true); }
+   void condition_payload::notify_all() noexcept { m_pconditionpayloadimpl->notify(true); }
 #else
-   void condition_payload::notify_one() noexcept { WakeConditionVariable(&m_pimpl->m_conditionvariable); }
+   void condition_payload::notify_one() noexcept { WakeConditionVariable((CONDITION_VARIABLE *)m_pCONDITIONVARIABLE); }
 
-   void condition_payload::notify_all() noexcept { WakeAllConditionVariable(&m_pimpl->m_conditionvariable); }
+   void condition_payload::notify_all() noexcept { WakeAllConditionVariable((CONDITION_VARIABLE *)m_pCONDITIONVARIABLE); }
 #endif
 
    void condition_payload::wait(unique_lock &lock)
@@ -220,7 +217,7 @@ namespace parallelization
 #ifdef __REACTOS__
       BOOL bResult = m_pimpl->sleep(*lock.m_pcriticalsection, INFINITE);
 #else
-      BOOL bResult = SleepConditionVariableSRW(&m_pimpl->m_conditionvariable, (SRWLOCK*) lock.m_pcriticalsection->m_pSRWLock, INFINITE, 0);
+      BOOL bResult = SleepConditionVariableSRW((CONDITION_VARIABLE *)m_pCONDITIONVARIABLE, (SRWLOCK*) lock.m_pcriticalsection->m_pSRWLock, INFINITE, 0);
 #endif
 
       if (!bResult)
@@ -247,7 +244,7 @@ namespace parallelization
 #ifdef __REACTOS__
       BOOL bResult = m_pimpl->sleep(*lock.m_pcriticalsection, dwTimeout);
 #else
-      BOOL bResult = SleepConditionVariableSRW(&m_pimpl->m_conditionvariable, (SRWLOCK *) lock.m_pcriticalsection->m_pSRWLock, dwTimeout, 0);
+      BOOL bResult = SleepConditionVariableSRW((CONDITION_VARIABLE *)m_pCONDITIONVARIABLE, (SRWLOCK *) lock.m_pcriticalsection->m_pSRWLock, dwTimeout, 0);
 #endif
 
       if (bResult)

@@ -125,6 +125,12 @@ namespace parallelization
    };
 
 
+#ifdef __REACTOS__
+
+   class condition_payload_impl;
+
+#endif
+
    //enum class enum_condition_variable
    //{
    //   e_condition_variable_nno_timeout,
@@ -136,9 +142,24 @@ namespace parallelization
    {
    public:
       //condition_payload_impl *m_pimpl;
+#if defined(WINDOWS)
 
 
-#if defined(PARALLELIZATION_PTHREAD)
+#ifdef __REACTOS__
+
+      condition_payload_impl * m_pconditionpayloadimpl;
+
+#else
+
+      //CONDITION_VARIABLE m_conditionvariable;
+
+      void * m_pCONDITIONVARIABLE;
+
+
+#endif 
+
+
+#elif defined(PARALLELIZATION_PTHREAD)
 
       //pthread_cond_t m_condition{};
       void * m_pThreadCondT;

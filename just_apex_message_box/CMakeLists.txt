@@ -88,7 +88,9 @@ endif ()
 
 
 
-add_dependencies(${PROJECT_NAME} ${default_nano_graphics})
+if(default_nano_graphics)
+   add_dependencies(${PROJECT_NAME} ${default_nano_graphics})
+endif()
 if(default_nano_idn)
     add_dependencies(${PROJECT_NAME} ${default_nano_idn})
 endif()

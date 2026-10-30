@@ -85,9 +85,13 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
 endif ()
 
 
-add_dependencies(${PROJECT_NAME} ${app_common_dependencies})
+if(app_common_dependencies)
+   add_dependencies(${PROJECT_NAME} ${app_common_dependencies})
+endif()
 add_dependencies(${PROJECT_NAME} apex_${OPERATING_SYSTEM_NAME})
-add_dependencies(${PROJECT_NAME} ${default_node})
+if(default_node)
+   add_dependencies(${PROJECT_NAME} ${default_node})
+endif()
 add_dependencies(${PROJECT_NAME} ${default_draw2d})
 add_dependencies(${PROJECT_NAME} ${default_write_text})
 add_dependencies(${PROJECT_NAME} folder_zip)

@@ -1538,6 +1538,9 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
       list(APPEND this_system_libraries dl pthread z)
    elseif (${__ANDROID__})
       list(APPEND this_system_libraries dl z)
+   elseif (__SUNOS__)
+      # IDN conversion is provided by nano_idn_libidn.
+      list(APPEND this_system_libraries dl pthread z)
    else ()
       if(__HAIKU__)
          list(APPEND this_system_libraries pthread idn z)

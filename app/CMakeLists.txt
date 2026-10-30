@@ -102,7 +102,9 @@ endif ()
 
 
 add_dependencies(${PROJECT_NAME} apex_${OPERATING_SYSTEM_NAME})
-add_dependencies(${PROJECT_NAME} ${default_node})
+if(default_node)
+   add_dependencies(${PROJECT_NAME} ${default_node})
+endif()
 add_dependencies(${PROJECT_NAME} ${default_draw2d})
 
 

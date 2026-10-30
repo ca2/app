@@ -3526,6 +3526,10 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
     elseif (${__HAIKU__})
         list(APPEND this_system_libraries z pthread idn iconv)
         list(APPEND static_this_system_libraries pthread iconv)
+    elseif (__SUNOS__)
+        # IDN conversion belongs to nano_idn_libidn; acme uses its interface.
+        list(APPEND this_system_libraries z pthread)
+        list(APPEND static_this_system_libraries pthread)
     else ()
         list(APPEND this_system_libraries z pthread idn)
         list(APPEND static_this_system_libraries pthread)

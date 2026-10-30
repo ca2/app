@@ -349,8 +349,6 @@ namespace dynamic_source
 
       m_bShouldCalcTempError     = true;
 
-      m_bShouldBuild             = false;
-
       m_bHasTempOsError          = false;
 
       m_textstreamError.m_pfile->set_size(0);
@@ -835,8 +833,6 @@ namespace dynamic_source
          return;
 
       }
-
-      m_bShouldBuild = false;
 
       {
 

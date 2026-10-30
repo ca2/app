@@ -122,7 +122,9 @@ namespace nano
          , const ::e_draw_text & edrawtext, const ::e_align & ealign)
       {
 
-         if (ealign & e_align_bottom_right_bias)
+         // Let the backend lay out wrapped lines and explicit newlines together.
+         // Unwrapped text extents do not account for the height of wrapped lines.
+         if ((ealign & e_align_bottom_right_bias) || (edrawtext & e_draw_text_word_break))
          {
 
             _draw_text(scopedstr, rectangleText, edrawtext, ealign);

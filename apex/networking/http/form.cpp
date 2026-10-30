@@ -1,4 +1,5 @@
 #include "platform.h"
+#include <string>
 #include "form.h"
 //#include "acme/filesystem/file/text_stream.h"
 #include "acme/filesystem/file/file.h"
@@ -61,8 +62,6 @@ namespace http
 
       __UNREFERENCED_PARAMETER(sizeContentLength);
 
-      character_count extra = 2;
-
       string strContentType(scopedstrContentType);
 
       infil->seek_to_begin();
@@ -72,9 +71,6 @@ namespace http
          
          ::parse pa(strContentType,";="_ansi);
 
-         memory tempcmp;
-         ::collection::index tc = 0;
-         character_count iBoundaryLength = 0;
          string str = pa.getword();
          m_strBoundary = "";
          while (!str.is_empty())
@@ -82,8 +78,6 @@ namespace http
             if (!ansi_cmp(str,"boundary"))
             {
                m_strBoundary = pa.getword();
-               iBoundaryLength = m_strBoundary.length();
-               tempcmp.set_size(iBoundaryLength + extra);
             }
             //
             str = pa.getword();
@@ -245,83 +239,68 @@ namespace http
                   else // current_filename.length() > 0
                   {
 
-                     // read until m_strBoundary...
-//                     FILE *fil;
-
-                     ::i32 out = 0;
-
-                     ::i8 ca;
-
-                     //string strFormat;
-
-                     //::earth::time t = ::earth::time::now();
-
-                     //string strTime;
-
-                     //string strIndex;
-
                      auto pfileUpload = pcontext->file()->get_temporary_upload_file(current_filename);
 
                      if(pfileUpload.ok())
                      {
 
-                        while (infil -> read(&ca))
+                        // Compare multipart framing as bytes. C string comparisons
+                        // can mistake NUL-containing binary data for a boundary.
+                        const std::string marker = "\r\n" + std::string(m_strBoundary.c_str());
+                        std::string pending;
+                        std::string output;
+                        pending.reserve(marker.size() + 2);
+                        output.reserve(65536);
+                        bool bComplete = false;
+                        bool bFinalBoundary = false;
+                        char ca;
+                        while (infil->read(&ca, 1) == 1)
                         {
+                           pending.push_back(ca);
+                           if (pending.size() < marker.size() + 2)
+                              continue;
 
-                           if (out)
+                           if (pending.compare(0, marker.size(), marker) == 0 &&
+                              (pending.compare(marker.size(), 2, "\r\n") == 0 ||
+                               pending.compare(marker.size(), 2, "--") == 0))
                            {
-
-                              pfileUpload->write(tempcmp[tc]); // %! ??? should we write value of 'ca' here?
-
+                              bComplete = true;
+                              bFinalBoundary = pending.compare(marker.size(), 2, "--") == 0;
+                              break;
                            }
 
-                           tempcmp[tc] = ca;
-
-                           tc++;
-
-                           if (tc >= iBoundaryLength + extra)
+                           output.push_back(pending[0]);
+                           pending.erase(0, 1);
+                           if (output.size() == 65536)
                            {
-
-                              tc = 0;
-
-                              out = 1;
-
+                              pfileUpload->write(output.data(), output.size());
+                              output.clear();
                            }
-
-                           if (tc)
-                           {
-
-                              if (!ansi_count_compare((const_char_pointer )tempcmp.data() + tc + extra, m_strBoundary, iBoundaryLength - tc) &&
-                                    !ansi_count_compare((const_char_pointer )tempcmp.data(), m_strBoundary.substr(iBoundaryLength - tc), tc))
-                              {
-
-                                 break;
-
-                              }
-
-                           }
-                           else
-                           {
-
-                              if (!ansi_count_compare((const_char_pointer )tempcmp.data() + extra, m_strBoundary, iBoundaryLength))
-                              {
-
-                                 break;
-
-                              }
-
-                           }
-
                         }
+                        if (!output.empty())
+                           pfileUpload->write(output.data(), output.size());
+
+                        // Closing a native file clears its path. Keep the upload
+                        // location before closing so handlers can read the file.
+                        const ::string strUploadPath = pfileUpload->m_path;
 
                         pfileUpload->close();
+
+                        if (!bComplete)
+                        {
+                           pcontext->file()->erase(strUploadPath);
+                           return;
+                        }
 
                         //cgi = ___new CGI(current_name,fn,fn);
                         //m_cgi.add(cgi);
 
                         m_setPost[current_name]["name"]           = current_filename;
-                        m_setPost[current_name]["tmp_name"]       = pfileUpload->m_path;
+                        m_setPost[current_name]["tmp_name"]       = strUploadPath;
                         m_setPost[current_name]["content-type"]   = content_type;
+
+                        if (bFinalBoundary)
+                           break;
 
                         slask = m_strBoundary;
 

@@ -1406,6 +1406,16 @@ namespace dynamic_source
 
       ::file::path path = paction->m_pathFolder / paction->m_pathFile;
 
+      // Git creates and removes temporary objects while the watcher is running.
+      // They are not dynamic sources and must not invalidate scripts or sync.
+      if (path.case_insensitive_contains("\\.git\\") || path.case_insensitive_contains("/.git/")
+         || path.case_insensitive_ends("\\.git") || path.case_insensitive_ends("/.git"))
+      {
+
+         return;
+
+      }
+
       string strTransfer = path;
 
       // does not transfer
@@ -1445,8 +1455,8 @@ namespace dynamic_source
       else
       {
 
-         auto pathReal = m_pscriptmanager2->real_path(path);
-
+         // The changed file may already have been renamed or deleted. Cache
+         // invalidation only needs its reported path, not an open file handle.
          m_pscriptmanager2->m_pcache->set_out_of_date(path);
 
       }

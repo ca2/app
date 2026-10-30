@@ -457,9 +457,34 @@ namespace dynamic_source
          if (pscript->m_bBuilding)
          {
 
-            throw ::heating_up_exception("script is building");
+            slScript.unlock();
 
-            return nullptr;
+            auto timeWaitStart = ::time::now();
+
+            while (true)
+            {
+
+               if (timeWaitStart.elapsed() > 30_s)
+               {
+
+                  throw ::heating_up_exception("script is still building " + pfilesystemcacheitem->path());
+
+               }
+
+               preempt(10_ms);
+
+               slScript._lock();
+
+               if (!pscript->m_bBuilding)
+               {
+
+                  break;
+
+               }
+
+               slScript.unlock();
+
+            }
 
          }
 
@@ -484,6 +509,8 @@ namespace dynamic_source
             }
 
             pscript->defer_build();
+
+            slScript._lock();
 
             pscript->m_bBuilding = false;
 

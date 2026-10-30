@@ -77,6 +77,8 @@ void file_system_cache::clear_file_system_cache_item(const ::scoped_string & sco
 void file_system_cache::clear_file_system_cache()
 {
 
+   critical_section_lock criticalsectionlock(&m_criticalsectionFileSystemCacheItem);
+
    try
    {
 
@@ -86,6 +88,7 @@ void file_system_cache::clear_file_system_cache()
       {
 
          m_mapFileSystemItem.erase_all();
+         m_mapFileSystemCacheItem.erase_all();
 
       }
       catch (...)

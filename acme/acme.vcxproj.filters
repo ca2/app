@@ -6603,4 +6603,21 @@
       <Filter>Header Files</Filter>
     </Natvis>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="user\html\page.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\styling.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClInclude Include="user\html\page.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="user\html\styling.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\fast_critical_section.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

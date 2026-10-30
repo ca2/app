@@ -194,7 +194,7 @@ namespace parallelization
       const unique_lock & lock)
    {
 
-      if (lock.m_pmutex == nullptr || !lock.m_bOwnsLock)
+      if (lock.m_pcriticalsection == nullptr || !lock.m_bOwnsLock)
       {
 
          throw ::exception(
@@ -465,7 +465,7 @@ namespace parallelization
 
       int iError = pthread_cond_wait(
          &m_pimpl->m_condition,
-         &lock.m_pmutex->m_pimpl->m_lock);
+         &lock.m_pcriticalsection->m_pimpl->m_lock);
 
       if (iError != 0)
       {
@@ -507,7 +507,7 @@ namespace parallelization
 #endif
 
          &m_pimpl->m_condition,
-         &lock.m_pmutex->m_pimpl->m_lock,
+         &lock.m_pcriticalsection->m_pimpl->m_lock,
          &waitTime);
 
       if (iError == 0)

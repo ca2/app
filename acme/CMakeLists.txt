@@ -1415,6 +1415,8 @@ list(APPEND library_source
         user/implementation/message_box_implementation.h
         user/html/page.cpp
         user/html/page.h
+        user/html/styling.cpp
+        user/html/styling.h
         user/interface/dialog.cpp
         user/interface/dialog.h
         user/interface/message_box.cpp
@@ -2042,6 +2044,7 @@ list(APPEND library_source
         parallelization/message_queue.cpp
         parallelization/message_queue.h
         parallelization/message_queue_global.cpp
+        parallelization/fast_critical_section.h
         parallelization/mutex.h
         parallelization/pool.h
         parallelization/queue.cpp

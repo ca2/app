@@ -6275,6 +6275,13 @@
   <ItemGroup>
     <Natvis Include="_.natvis" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="user\html\page.cpp" />
+    <ClCompile Include="user\html\styling.cpp" />
+    <ClInclude Include="user\html\page.h" />
+    <ClInclude Include="user\html\styling.h" />
+    <ClInclude Include="parallelization\fast_critical_section.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

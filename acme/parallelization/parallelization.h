@@ -19,22 +19,22 @@ namespace parallelization
    public:
 
 
-      ::parallelization::fast_critical_section *m_pmutex{};
+      ::parallelization::fast_critical_section *m_pcriticalsection{};
       bool m_bOwnsLock{};
 
 
-      explicit unique_lock(::parallelization::fast_critical_section &mutex) noexcept : m_pmutex(&mutex) { lock(); }
+      explicit unique_lock(::parallelization::fast_critical_section &criticalsection) noexcept : m_pcriticalsection(&criticalsection) { lock(); }
 
-      unique_lock(::parallelization::fast_critical_section &mutex, defer_lock_t) noexcept : m_pmutex(&mutex) {}
+      unique_lock(::parallelization::fast_critical_section &criticalsection, defer_lock_t) noexcept : m_pcriticalsection(&criticalsection) {}
 
-      unique_lock(::parallelization::fast_critical_section &mutex, adopt_lock_t) noexcept : m_pmutex(&mutex), m_bOwnsLock(true) {}
+      unique_lock(::parallelization::fast_critical_section &criticalsection, adopt_lock_t) noexcept : m_pcriticalsection(&criticalsection), m_bOwnsLock(true) {}
 
       unique_lock(const unique_lock &) = delete;
       unique_lock &operator=(const unique_lock &) = delete;
 
-      unique_lock(unique_lock &&other) noexcept : m_pmutex(other.m_pmutex), m_bOwnsLock(other.m_bOwnsLock)
+      unique_lock(unique_lock &&other) noexcept : m_pcriticalsection(other.m_pcriticalsection), m_bOwnsLock(other.m_bOwnsLock)
       {
-         other.m_pmutex = nullptr;
+         other.m_pcriticalsection = nullptr;
          other.m_bOwnsLock = false;
       }
 
@@ -47,10 +47,10 @@ namespace parallelization
                unlock();
             }
 
-            m_pmutex = other.m_pmutex;
+            m_pcriticalsection = other.m_pcriticalsection;
             m_bOwnsLock = other.m_bOwnsLock;
 
-            other.m_pmutex = nullptr;
+            other.m_pcriticalsection = nullptr;
             other.m_bOwnsLock = false;
          }
 
@@ -67,7 +67,7 @@ namespace parallelization
 
       void lock()
       {
-         if (m_pmutex == nullptr)
+         if (m_pcriticalsection == nullptr)
          {
             throw ::exception(error_operation_not_permitted);
          }
@@ -77,13 +77,13 @@ namespace parallelization
             throw ::exception(error_resource_deadlock_would_occur);
          }
 
-         m_pmutex->lock();
+         m_pcriticalsection->lock();
          m_bOwnsLock = true;
       }
 
       bool try_lock()
       {
-         if (m_pmutex == nullptr)
+         if (m_pcriticalsection == nullptr)
          {
             throw ::exception(error_operation_not_permitted);
          }
@@ -93,19 +93,19 @@ namespace parallelization
             throw ::exception(error_resource_deadlock_would_occur);
          }
 
-         m_bOwnsLock = m_pmutex->try_lock();
+         m_bOwnsLock = m_pcriticalsection->try_lock();
 
          return m_bOwnsLock;
       }
 
       void unlock()
       {
-         if (m_pmutex == nullptr || !m_bOwnsLock)
+         if (m_pcriticalsection == nullptr || !m_bOwnsLock)
          {
             throw ::exception(error_operation_not_permitted);
          }
 
-         m_pmutex->unlock();
+         m_pcriticalsection->unlock();
          m_bOwnsLock = false;
       }
 
@@ -120,7 +120,7 @@ namespace parallelization
       [[nodiscard]]
       ::parallelization::fast_critical_section *mutex() const noexcept
       {
-         return m_pmutex;
+         return m_pcriticalsection;
       }
    };
 
@@ -166,7 +166,7 @@ namespace parallelization
 
       //   DWORD dwTimeout = duration_to_timeout(duration);
 
-      //   BOOL bResult = SleepConditionVariableSRW(&m_conditionvariable, &lock.m_pmutex->m_lock, dwTimeout, 0);
+      //   BOOL bResult = SleepConditionVariableSRW(&m_conditionvariable, &lock.m_pcriticalsection->m_lock, dwTimeout, 0);
 
       //   if (bResult)
       //   {

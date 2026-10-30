@@ -113,7 +113,7 @@ namespace parallelization
          EnterCriticalSection(&m_lock);
          current.next = m_first;
          m_first = &current;
-         mutex.unlock();
+         criticalsection.unlock();
          LeaveCriticalSection(&m_lock);
 
          const auto result = WaitForSingleObject(current.event, timeout);
@@ -128,7 +128,7 @@ namespace parallelization
          CloseHandle(current.event);
 
          // A condition-variable wait returns owning the same mutex, even on timeout.
-         mutex.lock();
+         criticalsection.lock();
          if (result != WAIT_OBJECT_0)
             SetLastError(error);
          return result == WAIT_OBJECT_0;
@@ -143,7 +143,7 @@ namespace parallelization
    
    static void condition_payload_validate_lock(const unique_lock &lock)
    {
-      if (lock.m_pmutex == nullptr || !lock.m_bOwnsLock)
+      if (lock.m_pcriticalsection == nullptr || !lock.m_bOwnsLock)
       {
          throw ::exception(error_operation_not_permitted,
                                  "condition-variable wait requires an owned lock");
@@ -211,9 +211,9 @@ namespace parallelization
       condition_payload_validate_lock(lock);
 
 #ifdef __REACTOS__
-      BOOL bResult = m_pimpl->sleep(*lock.m_pmutex, INFINITE);
+      BOOL bResult = m_pimpl->sleep(*lock.m_pcriticalsection, INFINITE);
 #else
-      BOOL bResult = SleepConditionVariableSRW(&m_pimpl->m_conditionvariable, &lock.m_pmutex->m_pimpl->m_lock, INFINITE, 0);
+      BOOL bResult = SleepConditionVariableSRW(&m_pimpl->m_conditionvariable, &lock.m_pcriticalsection->m_pimpl->m_lock, INFINITE, 0);
 #endif
 
       if (!bResult)
@@ -238,9 +238,9 @@ namespace parallelization
       DWORD dwTimeout = condition_payload_duration_to_timeout(duration);
 
 #ifdef __REACTOS__
-      BOOL bResult = m_pimpl->sleep(*lock.m_pmutex, dwTimeout);
+      BOOL bResult = m_pimpl->sleep(*lock.m_pcriticalsection, dwTimeout);
 #else
-      BOOL bResult = SleepConditionVariableSRW(&m_pimpl->m_conditionvariable, &lock.m_pmutex->m_pimpl->m_lock, dwTimeout, 0);
+      BOOL bResult = SleepConditionVariableSRW(&m_pimpl->m_conditionvariable, &lock.m_pcriticalsection->m_pimpl->m_lock, dwTimeout, 0);
 #endif
 
       if (bResult)

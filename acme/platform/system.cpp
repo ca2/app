@@ -5535,8 +5535,14 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          {
             if (path.is_empty() || path.contains("://")) return;
             std::error_code error;
+#if defined(WINDOWS)
+            // Use the native UTF-16 path on both Windows and ReactOS/XP.
+            const std::filesystem::path pathLegacy(::wstring(path.c_str()).c_str());
+#else
+            const std::filesystem::path pathLegacy(path.c_str());
+#endif
             const auto backup = ::native_windowing_policy::deactivate_legacy(
-               std::filesystem::u8path(path.c_str()), error);
+               pathLegacy, error);
             if (error)
                warningf("Could not deactivate legacy windowing setting %s: %s", path.c_str(), error.message().c_str());
             else if (!backup.empty())

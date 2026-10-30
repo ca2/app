@@ -46,4 +46,12 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="html_page.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClInclude Include="html_page.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

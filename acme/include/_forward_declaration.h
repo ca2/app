@@ -2611,6 +2611,8 @@ class manager_room;
 
 namespace parallelization
 {
+   class mutex;
+   class fast_critical_section;
    class threading;
 
 

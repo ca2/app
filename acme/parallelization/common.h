@@ -27,6 +27,13 @@ class single_lock;
 class multiple_lock;
 
 
+namespace parallelization
+{
+   class mutex;
+   class fast_critical_section;
+}
+
+
 
 
 

@@ -24,6 +24,14 @@ namespace parallelization
 
 #endif
 
+#elif defined(PARALLELIZATION_PTHREAD)
+
+      void * m_pPthreadMutexT;
+
+#else
+
+      #error "Not implemented"
+
 #endif
 
       fast_critical_section() noexcept;

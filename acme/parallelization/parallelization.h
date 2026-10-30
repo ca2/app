@@ -130,12 +130,24 @@ namespace parallelization
    //   e_condition_variable_nno_timeout,
    //   e_condition_variable_timeout
    //};
-   class condition_payload_impl;
+   //class condition_payload_impl;
 
    class CLASS_DECL_ACME condition_payload
    {
    public:
-      condition_payload_impl *m_pimpl;
+      //condition_payload_impl *m_pimpl;
+
+
+#if defined(PARALLELIZATION_PTHREAD)
+
+      //pthread_cond_t m_condition{};
+      void * m_pThreadCondT;
+
+#else
+
+#error "Not implemented"
+
+#endif
 
       condition_payload() noexcept;
 

@@ -8,51 +8,58 @@ namespace parallelization
 {
 
 
-   class fast_critical_section_impl
-   {
-   public:
+//   class fast_critical_section_impl
+//   {
+//   public:
+//
+//#ifdef __REACTOS__
+//      CRITICAL_SECTION m_lock{};
+//#else
+//      SRWLOCK m_lock{};
+//#endif
+//   };
 
-#ifdef __REACTOS__
-      CRITICAL_SECTION m_lock{};
-#else
-      SRWLOCK m_lock{};
-#endif
-   };
+
+
 
 
    fast_critical_section::fast_critical_section() noexcept
    {
-
-      m_pimpl = new fast_critical_section_impl;
 #ifdef __REACTOS__
-      if (!InitializeCriticalSectionAndSpinCount(&m_pimpl->m_lock, 0))
+      m_pCriticalSection = new CRITICAL_SECTION;
+      if (!InitializeCriticalSectionAndSpinCount((CRITICAL_SECTION *)m_pCriticalSection, 0))
          std::terminate();
 #else
-      InitializeSRWLock(&m_pimpl->m_lock);
+      m_pSRWLock = new SRWLOCK;
+      InitializeSRWLock((SRWLOCK *) m_pSRWLock);
 #endif
    }
 
    fast_critical_section::~fast_critical_section() noexcept
    {
+
 #ifdef __REACTOS__
-      DeleteCriticalSection(&m_pimpl->m_lock);
+      DeleteCriticalSection((CRITICAL_SECTION *)m_pCriticalSection);
+      delete m_pCriticalSection;
+#else
+      delete m_pSRWLock;
 #endif
-      delete m_pimpl;
+      
    }
 
 
 #ifdef __REACTOS__
-   void fast_critical_section::lock() noexcept { EnterCriticalSection(&m_pimpl->m_lock); }
+   void fast_critical_section::lock() noexcept { EnterCriticalSection((CRITICAL_SECTION *)m_pCriticalSection); }
 
-   bool fast_critical_section::try_lock() noexcept { return TryEnterCriticalSection(&m_pimpl->m_lock) != FALSE; }
+   bool fast_critical_section::try_lock() noexcept { return TryEnterCriticalSection((CRITICAL_SECTION *)m_pCriticalSectionk) != FALSE; }
 
-   void fast_critical_section::unlock() noexcept { LeaveCriticalSection(&m_pimpl->m_lock); }
+   void fast_critical_section::unlock() noexcept { LeaveCriticalSection((CRITICAL_SECTION *)m_pCriticalSection); }
 #else
-   void fast_critical_section::lock() noexcept { AcquireSRWLockExclusive(&m_pimpl->m_lock); }
+   void fast_critical_section::lock() noexcept { AcquireSRWLockExclusive((SRWLOCK *)m_pSRWLock); }
 
-   bool fast_critical_section::try_lock() noexcept { return TryAcquireSRWLockExclusive(&m_pimpl->m_lock) != FALSE; }
+   bool fast_critical_section::try_lock() noexcept { return TryAcquireSRWLockExclusive((SRWLOCK *)m_pSRWLock) != FALSE; }
 
-   void fast_critical_section::unlock() noexcept { ReleaseSRWLockExclusive(&m_pimpl->m_lock); }
+   void fast_critical_section::unlock() noexcept { ReleaseSRWLockExclusive((SRWLOCK *)m_pSRWLock); }
 #endif
 
 
@@ -213,7 +220,7 @@ namespace parallelization
 #ifdef __REACTOS__
       BOOL bResult = m_pimpl->sleep(*lock.m_pcriticalsection, INFINITE);
 #else
-      BOOL bResult = SleepConditionVariableSRW(&m_pimpl->m_conditionvariable, &lock.m_pcriticalsection->m_pimpl->m_lock, INFINITE, 0);
+      BOOL bResult = SleepConditionVariableSRW(&m_pimpl->m_conditionvariable, (SRWLOCK*) lock.m_pcriticalsection->m_pSRWLock, INFINITE, 0);
 #endif
 
       if (!bResult)
@@ -240,7 +247,7 @@ namespace parallelization
 #ifdef __REACTOS__
       BOOL bResult = m_pimpl->sleep(*lock.m_pcriticalsection, dwTimeout);
 #else
-      BOOL bResult = SleepConditionVariableSRW(&m_pimpl->m_conditionvariable, &lock.m_pcriticalsection->m_pimpl->m_lock, dwTimeout, 0);
+      BOOL bResult = SleepConditionVariableSRW(&m_pimpl->m_conditionvariable, (SRWLOCK *) lock.m_pcriticalsection->m_pSRWLock, dwTimeout, 0);
 #endif
 
       if (bResult)

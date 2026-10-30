@@ -514,6 +514,12 @@
     <Filter Include="Header Files\prototype\string\c\encoding">
       <UniqueIdentifier>{b2a8fb40-527e-41ef-b3f5-200a55a699fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\html">
+      <UniqueIdentifier>{579c3392-1c01-4416-8640-a03b3f9d1aa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\html">
+      <UniqueIdentifier>{d895320f-d16a-4c5b-ae7e-c95d12baf6f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -4542,6 +4548,15 @@
     <ClInclude Include="parallelization\synchronization_object.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
+    <ClInclude Include="parallelization\fast_critical_section.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="user\html\styling.h">
+      <Filter>Header Files\user\html</Filter>
+    </ClInclude>
+    <ClInclude Include="user\html\page.h">
+      <Filter>Header Files\user\html</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6542,6 +6557,12 @@
     <ClCompile Include="parallelization\synchronization_object.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
+    <ClCompile Include="user\html\page.cpp">
+      <Filter>Source Files\user\html</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\styling.cpp">
+      <Filter>Source Files\user\html</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="prototype\string\_defer.h">
@@ -6602,22 +6623,5 @@
     <Natvis Include="_.natvis">
       <Filter>Header Files</Filter>
     </Natvis>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="user\html\page.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="user\html\styling.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClInclude Include="user\html\page.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="user\html\styling.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="parallelization\fast_critical_section.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

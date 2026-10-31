@@ -261,7 +261,9 @@ namespace bred
    ::string application::get_gpu_api()
    { 
       
-      ::string strGpuApi = application_file_setting_by_operating_system("graphics3d.txt");
+      ::string strGpuApi = graphics3d_get_implementation_setting();
+      strGpuApi.trim();
+      strGpuApi.make_lower();
 
       //::string_array straOk;
 
@@ -456,7 +458,7 @@ namespace bred
    ::string application::get_graphics3d_output()
    {
 
-      ::string strOutput = application_file_setting("graphics3d_output.txt");
+      ::string strOutput = graphics3d_get_output_setting();
 
       strOutput.trim();
       strOutput.make_lower();

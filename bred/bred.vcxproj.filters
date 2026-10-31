@@ -498,6 +498,9 @@
     <ClInclude Include="gpu\scoped_texture_state.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\font.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -785,6 +788,9 @@
     <ClCompile Include="gpu\scoped_texture_state.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
+    <ClCompile Include="gpu\font.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">
@@ -792,8 +798,12 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="gpu\brush_fill_geometry.h"><Filter>Header Files\gpu</Filter></ClInclude>
-    <ClInclude Include="gpu\brush_fill_shader_source.h"><Filter>Header Files\gpu</Filter></ClInclude>
+    <ClInclude Include="gpu\brush_fill_geometry.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\brush_fill_shader_source.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
     <None Include="gpu\tests\brush_fill_tests.cpp" />
     <None Include="gpu\tests\validate_brush_fill_shaders.py" />
     <None Include="gpu\tests\render_brush_fill_tests.py" />

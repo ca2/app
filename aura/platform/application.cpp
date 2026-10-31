@@ -1800,6 +1800,18 @@ namespace aura
    //}
 
 
+   ::string application::graphics3d_get_implementation_setting()
+   {
+      return application_file_setting_by_operating_system("graphics3d.txt");
+   }
+
+
+   ::string application::graphics3d_get_output_setting()
+   {
+      return application_file_setting("graphics3d_output.txt");
+   }
+
+
    void application::defer_initialize_graphics_configuration()
    {
 
@@ -1966,7 +1978,9 @@ namespace aura
 
       {
 
-         ::string strImplementation = application_file_setting_by_operating_system("graphics3d.txt");
+         ::string strImplementation = graphics3d_get_implementation_setting();
+
+         strImplementation.trim();
 
          strImplementation.make_lower();
 
@@ -2016,7 +2030,7 @@ namespace aura
 
       {
 
-         ::string strOutput = application_file_setting("graphics3d_output.txt");
+         ::string strOutput = graphics3d_get_output_setting();
 
          strOutput.trim();
 

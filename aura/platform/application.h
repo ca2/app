@@ -167,6 +167,10 @@ namespace aura
       
 
       virtual void initialize(::particle * pparticle) override;
+      // Applications may override these before graphics/windowing initialization.
+      virtual ::string graphics3d_get_implementation_setting();
+      virtual ::string graphics3d_get_output_setting();
+
       void defer_initialize_graphics_configuration();
 
 

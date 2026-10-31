@@ -48,16 +48,6 @@ endif ()
 set_target_properties(database_sqlite3 PROPERTIES LINKER_LANGUAGE CXX)
 
 
-#if(${USE_PORT_SQLITE} AND __SUNOS__)
-#   set(database_sqlite3_USE_PORT TRUE)
-#   if(NOT TARGET sqlite OR NOT TARGET static_sqlite)
-#     message(FATAL_ERROR "USE_PORT_SQLITE requires the port/base/sqlite targets")
-#   endif()
-#   target_link_libraries(${PROJECT_NAME} PRIVATE sqlite)
-#   target_link_libraries(static_${PROJECT_NAME} PRIVATE static_sqlite)
-#   message(STATUS "database_sqlite3: using internal port/base/sqlite")
-#endif()
-
 if(${WIN32})
 
 
@@ -92,14 +82,19 @@ if(${WIN32})
 elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
 
-   if(${USE_PORT_SQLITE})
+   if(USE_PORT_SQLITE)
+      if(NOT TARGET sqlite OR NOT TARGET static_sqlite)
+         message(FATAL_ERROR "USE_PORT_SQLITE requires the port/base/sqlite targets")
+      endif()
+      target_link_libraries(${PROJECT_NAME} PRIVATE sqlite)
+      target_link_libraries(static_${PROJECT_NAME} PRIVATE static_sqlite)
       # The port targets supply matching headers and libraries. Do not add
       # system SQLite pkg-config flags to either adapter target.
       set(${PROJECT_NAME}_PKGCONFIG_CFLAGS "")
       set(${PROJECT_NAME}_PKGCONFIG_LDFLAGS "")
       set(${PROJECT_NAME}_PKGCONFIG_LIBRARIES "")
    elseif(${USE_PKGCONFIG})
-      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG sqlite3)
+      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG REQUIRED sqlite3)
    else()
       list(APPEND library_references
               sqlite)

@@ -615,6 +615,7 @@
     <ClInclude Include="gpu\command_buffer_lease.h" />
     <ClInclude Include="gpu\context1.h" />
     <ClInclude Include="gpu\context2.h" />
+    <ClInclude Include="gpu\font.h" />
     <ClInclude Include="gpu\renderer_layer_cache.h" />
     <ClInclude Include="gpu\scoped_texture_state.h" />
     <ClInclude Include="gpu\texture_site.h" />
@@ -773,6 +774,7 @@
   <ItemGroup>
     <ClCompile Include="const\idpool.cpp" />
     <ClCompile Include="gpu\command_buffer_lease.cpp" />
+    <ClCompile Include="gpu\font.cpp" />
     <ClCompile Include="gpu\scoped_texture_state.cpp" />
     <ClCompile Include="graphics3d\graphics3d.cpp" />
     <ClCompile Include="platform.cpp">

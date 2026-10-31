@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="ASanDbgWithInlOpt|ARM64">
@@ -6285,4 +6285,12 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <PropertyGroup>
+    <StorageRoot Condition="'$(StorageRoot)' == ''">$(ProjectDir)..\..\..\..\operating_system\storage-windows</StorageRoot>
+    <ApplicationBuildHelperExe Condition="'$(ApplicationBuildHelperExe)' == ''">$(ProjectDir)..\..\..\..\operating_system\tool\bin\x64\application_build_helper.exe</ApplicationBuildHelperExe>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+  </PropertyGroup>
+  <Target Name="SyncStorageLibraries" BeforeTargets="PrepareForBuild" Condition="'$(DesignTimeBuild)' != 'true'">
+    <Exec Command="&quot;$(ApplicationBuildHelperExe)&quot; --sync-storage-libraries --storage-root &quot;$(StorageRoot)&quot; --platform &quot;$(Platform)&quot; --configuration &quot;$(Configuration)&quot; --destination &quot;$([System.IO.Path]::GetFullPath('$(TargetDir).'))&quot;" IgnoreExitCode="false" />
+  </Target>
 </Project>

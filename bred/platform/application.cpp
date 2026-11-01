@@ -1,5 +1,6 @@
 #include "platform.h"
 #include "application.h"
+#include "aura/platform/graphics_configuration.h"
 #include "system.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/directory_system.h"
@@ -34,6 +35,7 @@ namespace bred
 #endif
 #if defined(__APPLE__)
       m_optionaDraw2dApi.main_add("quartz2d", "Quartz 2D");
+      m_optionaDraw2dApi.main_add("metal", "Metal");
 #endif
       m_optionaDraw2dApi.main_add("cairo", "cairo");
       m_optionaDraw2dApi.main_add("opengl", "OpenGL");
@@ -46,6 +48,8 @@ namespace bred
       m_optionaDraw2dApi.main_add("vkvg", "vkvg");
 #ifdef WINDOWS_DESKTOP
       m_optionaDraw2dApi.main_add("direct2d", "Direct2D");
+      m_optionaDraw2dApi.main_add("direct2d_for_directx11", "Direct2D for DirectX 11");
+      m_optionaDraw2dApi.main_add("direct2d_for_directx12", "Direct2D for DirectX 12");
 #endif
 
       m_optionaGraphics3dOutput.main_add("off_screen", "Off-Screen");
@@ -148,6 +152,8 @@ namespace bred
    void application::set_gpu_api(const ::scoped_string &scopedstrGpuApi) 
    {
 
+      if (graphics3d_get_implementation_override().has_character()) return;
+
       try
       {
 
@@ -177,7 +183,7 @@ namespace bred
       {
          if (poption->m_strId != strGpuApi)
          {
-            if (poption->checkbox()->is_checked())
+            if (poption->checkbox() && poption->checkbox()->is_checked())
             {
                poption->checkbox()->set_check(::e_check_unchecked, ::e_source_sync);
             }
@@ -186,7 +192,7 @@ namespace bred
       auto poption = gpu_api(strGpuApi);
       if (poption->checkbox())
       {
-         if (!poption->checkbox()->is_checked())
+         if (poption->checkbox() && !poption->checkbox()->is_checked())
          {
             poption->checkbox()->set_check(::e_check_checked, ::e_source_sync);
          }
@@ -198,32 +204,9 @@ namespace bred
    void application::on_change_gpu_api()
    {
 
-      auto strGpuApi = get_gpu_api();
-      auto strDraw2dApi = get_draw2d_api();
-      auto strOutput = get_graphics3d_output();
+      update_gpu_api_checkboxes();
+      enable_draw2d_api_checkboxes(get_ok_draw2d_api());
 
-      ::string_array straOkDraw2dApi = get_ok_draw2d_api();
-
-      //::string_array straOkGpuApi = get_ok_gpu_api();
-
-      if (!straOkDraw2dApi.contains(strDraw2dApi))
-      {
-
-         if (!m_optionaDraw2dApi.find(strDraw2dApi))
-         {
-
-            if (strDraw2dApi != strGpuApi)
-            {
-
-               set_gpu_api(strDraw2dApi);
-
-            }
-
-         }
-
-      }
-
-      enable_draw2d_api_checkboxes(straOkDraw2dApi);
 
    }
 
@@ -237,14 +220,14 @@ namespace bred
       {
          if (poption->m_strId == strDraw2dApi)
          {
-            if (!poption->checkbox()->is_checked())
+            if (poption->checkbox() && !poption->checkbox()->is_checked())
             {
                poption->checkbox()->set_check(::e_check_checked, ::e_source_sync);
             }
          }
          else
          {
-            if (poption->checkbox()->is_checked())
+            if (poption->checkbox() && poption->checkbox()->is_checked())
             {
                poption->checkbox()->set_check(::e_check_unchecked, ::e_source_sync);
             }
@@ -273,14 +256,9 @@ namespace bred
       //straOk.add("directx12");
 
       if (!m_optionaGpuApi.find(strGpuApi))
-      {
-         
-         //strGpuApi = "opengl";
          strGpuApi = m_optionaGpuApi.first()->m_strId;
-
-      }
-
       return strGpuApi;
+
 
    }
 
@@ -333,105 +311,24 @@ namespace bred
    ::string_array application::get_ok_draw2d_api()
    {
 
-      ::string strGpuApi = get_gpu_api();
-
-      ::string strOutput = get_graphics3d_output();
-
+      auto strGpuApi = get_gpu_api();
+      auto strOutput = get_graphics3d_output();
+#ifdef WINDOWS_DESKTOP
+      constexpr bool windows = true;
+#else
+      constexpr bool windows = false;
+#endif
+#ifdef __APPLE__
+      constexpr bool apple = true;
+#else
+      constexpr bool apple = false;
+#endif
+      auto available = ::aura::graphics_configuration::draw2d_apis(
+         strGpuApi.c_str(), strOutput == "off_screen", windows, apple);
       ::string_array straOk;
+      for (auto & value : available) straOk.add(value.c_str());
+      return straOk;
 
-      if (strGpuApi == "opengl")
-      {
-
-         if (strOutput == "on_screen")
-         {
-
-            straOk.add("opengl");
-            straOk.add("nanovg");
-
-         }
-         else if (strOutput == "off_screen")
-         {
-            
-#ifdef WINDOWS_DESKTOP
-            straOk.add("gdiplus");
-            straOk.add("direct2d");
-#elif defined(__APPLE__)
-            straOk.add("quartz2d");
-#else
-            straOk.add("cairo");
-#endif
-            
-         }
-
-      }
-      else if (strGpuApi == "vulkan")
-      {
-
-         if (strOutput == "on_screen")
-         {
-
-            straOk.add("vulkan");
-            straOk.add("vkvg");
-
-         }
-         else if (strOutput == "off_screen")
-         {
-
-#ifdef WINDOWS_DESKTOP
-            straOk.add("gdiplus");
-            straOk.add("direct2d");
-#elif defined(__APPLE__)
-            straOk.add("quartz2d");
-#else
-            straOk.add("cairo");
-#endif
-
-         }
-
-      }
-#ifdef WINDOWS_DESKTOP
-      else if (strGpuApi == "directx11")
-      {
-         
-         if (strOutput == "on_screen")
-         {
-
-            straOk.add("directx11");
-            straOk.add("direct2d");
-
-         }
-         else if (strOutput == "off_screen")
-         {
-
-            straOk.add("gdiplus");
-            straOk.add("direct2d");
-
-         }
-
-      }
-      else if (strGpuApi == "directx12")
-      {
-
-         if (strOutput == "on_screen")
-         {
-
-            straOk.add("directx12");
-            straOk.add("direct2d");
-
-         }
-         else if (strOutput == "off_screen")
-         {
-
-            straOk.add("gdiplus");
-            straOk.add("direct2d");
-
-         }
-
-      }
-
-#endif
-
-      return ::transfer(straOk);
 
    }
 
@@ -439,18 +336,12 @@ namespace bred
    ::string application::get_draw2d_api()
    {
 
-      ::string strDraw2dApi = application_file_setting_by_operating_system("draw2d.txt");
-
+      auto strSetting = application_file_setting_by_operating_system("draw2d.txt");
       auto straOk = get_ok_draw2d_api();
+      ::std::vector<::std::string> available;
+      for (auto & value : straOk) available.emplace_back(value.c_str());
+      return ::aura::graphics_configuration::draw2d_api(strSetting.c_str(), available).c_str();
 
-      if (!straOk.contains(strDraw2dApi))
-      {
-
-         strDraw2dApi = straOk.first();
-
-      }
-
-      return strDraw2dApi;
 
    }
 
@@ -500,6 +391,8 @@ namespace bred
    void application::set_graphics3d_output(const ::scoped_string &scopedstrOutput)
    {
 
+      if (graphics3d_get_output_override().has_character()) return;
+
       try
       {
 
@@ -527,7 +420,7 @@ namespace bred
       {
          if (poption->m_strId != strOutput)
          {
-            if (poption->checkbox()->is_checked())
+            if (poption->checkbox() && poption->checkbox()->is_checked())
             {
                poption->checkbox()->set_check(::e_check_unchecked, ::e_source_sync);
             }
@@ -536,7 +429,7 @@ namespace bred
       auto poption = graphics3d_output(strOutput);
       if (poption->checkbox())
       {
-         if (!poption->checkbox()->is_checked())
+         if (poption->checkbox() && !poption->checkbox()->is_checked())
          {
             poption->checkbox()->set_check(::e_check_checked, ::e_source_sync);
          }
@@ -547,77 +440,33 @@ namespace bred
    }
 
 
-   void application::enable_draw2d_api_checkboxes(const ::string_array &stra)
+   void application::enable_draw2d_api_checkboxes(const ::string_array & stra)
    {
 
       auto strCurrentDraw2dApi = get_draw2d_api();
-
-      for (auto& poption : m_optionaDraw2dApi)
+      for (auto & poption : m_optionaDraw2dApi)
       {
 
-         if (!stra.contains(poption->m_strId))
-         {
-
-            if (poption->checkbox()->is_this_screen_visible(::user::e_layout_sketch))
-            {
-
-               poption->hide();
-
-            }
-
-         }
-
-         if (poption->m_strId == strCurrentDraw2dApi)
-         {
-
-            if (!poption->checkbox()->is_checked())
-            {
-
-               poption->checkbox()->set_check(::e_check_checked, ::e_source_sync);
-
-            }
-
-         }
-         else
-         {
-
-            if (poption->checkbox()->is_checked())
-            {
-
-               poption->checkbox()->set_check(::e_check_unchecked, ::e_source_sync);
-
-            }
-
-         }
-
-      }
-
-      for (auto& strDraw2dApi : stra)
-      {
-
-         auto poptionDraw2dApi = draw2d_api(strDraw2dApi);
-
-         auto pcheckbox = poptionDraw2dApi->checkbox();
-
+         // Hide incompatible choices even while the parent form is not yet visible.
+         if (stra.contains(poption->m_strId)) poption->show();
+         else poption->hide();
+         auto pcheckbox = poption->checkbox();
          if (pcheckbox)
          {
-
-            if (!pcheckbox->is_this_screen_visible(::user::e_layout_sketch))
-            {
-
-               poptionDraw2dApi->show();
-
-            }
-
+            auto echeck = poption->m_strId == strCurrentDraw2dApi ? e_check_checked : e_check_unchecked;
+            if (pcheckbox->is_checked() != (echeck == e_check_checked))
+               pcheckbox->set_check(echeck, ::e_source_sync);
          }
 
       }
+      if (m_plinelayoutDraw2dApiSelection)
+      {
+         m_plinelayoutDraw2dApiSelection->set_need_layout();
+         m_plinelayoutDraw2dApiSelection->set_need_perform_layout();
+      }
 
-      m_plinelayoutDraw2dApiSelection->set_need_layout();
+   }
 
-      m_plinelayoutDraw2dApiSelection->set_need_perform_layout();
-
-   }  
 
 
    void application::create_options_impact(const ::atom &atom, ::user::interaction *puserinteractionParent)
@@ -695,10 +544,11 @@ namespace bred
             {
                poption->checkbox()->set_check(e_check_checked, ::e_source_initialize);
             }
+            poption->checkbox()->enable_window(graphics3d_get_implementation_override().is_empty());
             poption->checkbox()->check_changed(this) += [this, poption](auto &check)
             {
                auto bSet = check.payload().as_bool();
-               if (bSet)
+               if (bSet && poption->m_strId != get_gpu_api())
                {
                   set_gpu_api(poption->m_strId);
                }
@@ -767,7 +617,7 @@ namespace bred
             pcheckbox->check_changed(this) += [this, poption](auto &check)
             {
                auto bSet = check.payload().as_bool();
-               if (bSet)
+               if (bSet && poption->m_strId != get_draw2d_api())
                {
                   set_draw2d_api(poption->m_strId);
                }
@@ -812,10 +662,11 @@ namespace bred
             {
                poption->checkbox()->set_check(e_check_checked, ::e_source_initialize);
             }
+            poption->checkbox()->enable_window(graphics3d_get_output_override().is_empty());
             poption->checkbox()->check_changed(this) += [this, poption](auto &check)
             {
                auto bSet = check.payload().as_bool();
-               if (bSet)
+               if (bSet && poption->m_strId != get_graphics3d_output())
                {
                   set_graphics3d_output(poption->m_strId);
                }
@@ -839,7 +690,7 @@ namespace bred
             return true;
             };
 
-      //on_change_graphics3d_output();
+      on_change_graphics3d_output();
 
    }
 
@@ -857,7 +708,19 @@ namespace bred
 
       //load_library("gpu_opengl");
 
-      auto pfactoryGpu = component_factory("gpu");
+      // A fixed application GPU must also win over a component factory that
+      // another draw2d implementation may already have registered.
+      auto strGpuOverride = graphics3d_get_implementation_override();
+      ::factory::factory_pointer pfactoryGpu;
+      if (strGpuOverride.has_character())
+      {
+         pfactoryGpu = factory("gpu", get_gpu_api());
+         pfactoryGpu->merge_to_global_factory();
+      }
+      else
+      {
+         pfactoryGpu = component_factory("gpu");
+      }
 
       if (!pfactoryGpu)
       {

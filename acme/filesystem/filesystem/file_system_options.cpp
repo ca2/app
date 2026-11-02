@@ -7,6 +7,7 @@
 //
 #include "platform.h"
 #include "file_system_options.h"
+#include "acme/platform/operating_system.h"
 
 
 namespace filesystem
@@ -16,7 +17,7 @@ namespace filesystem
    file_system_options::file_system_options()
    {
       
-      if constexpr(IS_DESKTOP_SYSTEM())
+      if constexpr(::operating_system::is_desktop_system())
       {
          
          m_bOperatingSystemRootOnes = true;

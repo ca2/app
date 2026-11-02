@@ -549,7 +549,7 @@ namespace windows
 
       wide_character * psz = pszRoot;
 
-      for (; *psz != '\0'; psz = _wcsinc(psz))
+      for (; *psz != '\0'; psz = psz + 1)
       {
 
          // find first ::f64 slash and stop
@@ -575,21 +575,21 @@ namespace windows
          while (*psz != '\0' && (!IsDirSep(*psz)))
          {
 
-            psz = _wcsinc(psz);
+            psz = psz + 1;
 
          }
 
          if (*psz != '\0')
          {
 
-            psz = _wcsinc(psz);
+            psz = psz + 1;
 
          }
 
          while (*psz != '\0' && (!IsDirSep(*psz)))
          {
 
-            psz = _wcsinc(psz);
+            psz = psz + 1;
 
          }
 
@@ -611,7 +611,7 @@ namespace windows
          while (*psz != '\0' && (!IsDirSep(*psz)))
          {
 
-            psz = _wcsinc(psz);
+            psz = psz + 1;
 
          }
 

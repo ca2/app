@@ -78,7 +78,7 @@ namespace platform
 
       m_bIsService = false;
       m_bUseCloudStorageForAppData = true;
-      m_gpu.m_bUseSwapChainWindow = false;
+      //m_gpu.m_bUseSwapChainWindow = false;
       m_gpu.m_eoutputDraw2d = ::gpu::e_output_none;
       m_gpu.m_eoutputEngine = ::gpu::e_output_none;
 
@@ -3532,8 +3532,6 @@ void application_handle_command(::platform::application * papplication, const_ch
 }
 
 
-
-
 bool platform_application_is_swap_chain(::platform::application * papplication)
 {
    
@@ -3544,8 +3542,8 @@ bool platform_application_is_swap_chain(::platform::application * papplication)
       
    }
    
-   
-   bool bSwapChainWindow =papplication->m_gpu.m_bUseSwapChainWindow;
+   bool bSwapChainWindow =papplication->use_gpu_swap_chain();
+
    return bSwapChainWindow;
    
 }

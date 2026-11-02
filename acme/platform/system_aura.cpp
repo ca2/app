@@ -402,10 +402,16 @@ namespace platform
    }
 
 
-   ::string aura_system_layer::draw2d_get_default_implementation_name()
+   //::string aura_system_layer::draw2d_get_implementation_name()
+   //{
+   //   return {};
+   //}
+
+
+   void aura_system_layer::initialize_imaging()
    {
-      return {};
    }
+
 
 
     ::factory::factory * aura_system_layer::imaging_factory()
@@ -416,10 +422,10 @@ namespace platform
    }
 
 
-   ::string aura_system_layer::imaging_get_default_implementation_name()
-   {
-      return {};
-   }
+   //::string aura_system_layer::imaging_get_implementation_name()
+   //{
+   //   return {};
+   //}
 
 
    //void aura_system_layer::init_task() override{}
@@ -847,11 +853,11 @@ namespace platform
    }
 
 
-   string aura_system_layer::typeface_get_default_implementation_name()
-   {
+   //string aura_system_layer::typeface_get_implementation_name()
+   //{
 
-      return {};
-   }
+   //   return {};
+   //}
 
 
    //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override{}

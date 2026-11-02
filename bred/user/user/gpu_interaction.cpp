@@ -346,9 +346,14 @@ namespace user
 
       host_to_client()(point);
 
-      m_pgraphics3dinput->m_mousestate.m_position.x = (::f32)point.x;
-      m_pgraphics3dinput->m_mousestate.m_position.y = (::f32)point.y;
-      m_pgraphics3dinput->m_mousestate.m_buttons.left = false;
+      if (m_pgraphics3dinput)
+      {
+
+         m_pgraphics3dinput->m_mousestate.m_position.x = (::f32)point.x;
+         m_pgraphics3dinput->m_mousestate.m_position.y = (::f32)point.y;
+         m_pgraphics3dinput->m_mousestate.m_buttons.left = false;
+
+      }
 
    }
 

@@ -32,6 +32,23 @@ namespace apex
       ::i32_map<string > m_mapResourceName;
       ::string_map<::i32 > m_mapResourceId;
 
+
+      ::string                                           m_strGpuImplementation;
+      // Set in the derived application constructor; empty means use settings.
+      //::string                                           m_strGraphics3DImplementationOverride;
+      ::string                                           m_strGraphics3dOutput;
+      ::string                                           m_strDraw2dImplementation;
+      ::string                                           m_strTypefaceImplementation;
+
+      ::string                                           m_strImagingImplementation;
+
+      ::logic::boolean                                   m_bGpuImplementation;
+      ::logic::boolean                                   m_bGraphics3dOutput;
+      ::logic::boolean                                   m_bDraw2dImplementation;
+      ::logic::boolean                                   m_bTypefaceImplementation;
+
+      ::logic::boolean                                   m_bImagingImplementation;
+
       //       //__creatable(application);
       //
       //       void * m_pnativeapp;
@@ -207,6 +224,25 @@ namespace apex
 
       //virtual void process_command_line(command_line* pcommandline);
 
+      ::string _draw2d_get_implementation_name() override;
+
+      ::string _imaging_get_implementation_name() override;
+
+      ::string _typeface_get_implementation_name() override;
+
+      ::string _gpu_get_implementation_name() override;
+
+      ::string draw2d_get_implementation_name() override;
+
+      ::string imaging_get_implementation_name() override;
+
+      ::string typeface_get_implementation_name() override;
+
+      ::string gpu_get_implementation_name() override;
+
+      ::string get_graphics3d_output() override;
+
+      bool use_gpu_swap_chain() override;
 
       //virtual ::user::style* get_user_style() const;
       //virtual bool app_data_get(const ::atom & atom, stream & os) override;

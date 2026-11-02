@@ -507,7 +507,10 @@
     <ClInclude Include="user\user\gpu_interaction.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\gpu_render.h">
+    <ClInclude Include="user\user\gpu_shader_render.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\gpu_shader_list.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
@@ -806,7 +809,10 @@
     <ClCompile Include="user\user\gpu_interaction.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\gpu_render.cpp">
+    <ClCompile Include="user\user\gpu_shader_render.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\gpu_shader_list.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>

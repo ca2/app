@@ -48,6 +48,10 @@ enum enum_operating_system
    e_operating_system_android,
    e_operating_system_unix,
    e_operating_system_freebsd,
+   e_operating_system_haiku,
 
+
+   e_operating_system_desktop_system = 2048,
+   e_operating_system_sandboxed,
 
 };

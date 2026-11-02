@@ -1,9 +1,9 @@
 #include "platform.h"
 #include "application.h"
 #include "main_window.h"
-#include "render.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/filesystem/filesystem/directory_context.h"
+#include "bred/user/user/gpu_shader_render.h"
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(app_shader);
@@ -113,58 +113,6 @@ namespace app_shader
 #endif
 
 
-   string application::get_next_shader_path(const ::scoped_string & scopedstrPath)
-   {
-
-      ::file::listing_base listing;
-
-      get_shader_listing(listing);
-
-      auto next = listing.get_next(scopedstrPath);
-
-      return ::transfer(next);
-
-   }
-
-
-   void application::get_shader_listing(::file::listing_base & listing)
-   {
-
-      string_array_base folders;
-
-      if (!is_sandboxed())
-      {
-
-         // Prefer the user's local shader collection before cloud-provider defaults.
-         folders.add(directory()->home() / "dropbox" / "shader" / "simple shader");
-         folders.add("cloud://shader/simple shader/");
-
-      }
-
-      folders.add("matter://shader/simple shader/");
-
-      for (const auto & folder : folders)
-      {
-
-         listing.clear();
-         listing.set_pattern_file_listing(folder, { "*.frag", "*.shader" });
-         directory()->enumerate(listing);
-
-         information() << "app_shader: shader folder: " << folder
-            << "; files found: " << listing.size();
-
-         if (listing.has_elements())
-         {
-
-            break;
-
-         }
-
-      }
-
-      listing.order();
-
-   }
 
 
 } // namespace app_shader

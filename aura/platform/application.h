@@ -154,15 +154,6 @@ namespace aura
 //
 
       ::pointer<::gpu::approach>                         m_pgpu;
-      ::string                                           m_strGraphics3DImplementation;
-      // Set in the derived application constructor; empty means use settings.
-      ::string                                           m_strGraphics3DImplementationOverride;
-      ::string                                           m_strGraphics3DOutputOverride;
-      ::string                                           m_strDraw2dImplementation;
-
-      ::string                                           m_strTypefaceImplementation;
-
-      ::string                                           m_strImagingImplementation;
 
 
       application();
@@ -171,10 +162,10 @@ namespace aura
 
       virtual void initialize(::particle * pparticle) override;
       // Applications may override these before graphics/windowing initialization.
-      virtual ::string graphics3d_get_implementation_setting();
-      virtual ::string graphics3d_get_output_setting();
+      //virtual ::string graphics3d_get_implementation_setting();
+      //virtual ::string graphics3d_get_output_setting();
 
-      void defer_initialize_graphics_configuration();
+      //void defer_initialize_graphics_configuration();
 
 
       //virtual string application_file_setting(const ::scoped_string& scopedstrFileName);
@@ -183,7 +174,7 @@ namespace aura
       void on_set_platform() override;
 
 
-         ::user::user * user() override;
+      ::user::user * user() override;
 
 
 //      // void assert_ok() const override;
@@ -1085,11 +1076,11 @@ void initialize_context() override;
 //
 //#endif
 
-      string draw2d_get_default_implementation_name() override;
+      string draw2d_get_implementation_name() override;
 
-      string typeface_get_default_implementation_name() override;
+      string typeface_get_implementation_name() override;
 
-      string imaging_get_default_implementation_name() override;
+      string imaging_get_implementation_name() override;
 
 
       void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override;
@@ -1128,11 +1119,11 @@ void initialize_context() override;
 
       //::string draw2d_get_default_implementation_name() override;
 
-      virtual ::string graphics3d_get_implementation_name();
+      //virtual ::string graphics3d_get_implementation_name();
 
 
-      virtual ::string graphics3d_get_implementation_override();
-      virtual ::string graphics3d_get_output_override();
+      //virtual ::string get_gpu_implementation_name();
+      //virtual ::string get_graphics3d_output();
 
    };
 

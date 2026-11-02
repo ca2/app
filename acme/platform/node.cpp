@@ -1870,14 +1870,14 @@ namespace platform
 //      
 //#endif
 
-   enum_operating_system node::get_operating_system() const
-   {
+   //enum_operating_system node::get_operating_system() const
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      return e_operating_system_unknown;
+   //   return e_operating_system_unknown;
 
-   }
+   //}
 
 
 

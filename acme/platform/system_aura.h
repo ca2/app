@@ -411,14 +411,15 @@ namespace platform
       virtual void initialize_draw2d();
       //virtual void initialize_write_text();
       virtual ::factory::factory * draw2d_factory();
-      virtual ::string draw2d_get_default_implementation_name();
+      //virtual ::string draw2d_get_implementation_name();
 
+      virtual void initialize_imaging();
       virtual ::factory::factory * imaging_factory();
-      virtual ::string imaging_get_default_implementation_name();
+      //virtual ::string imaging_get_implementation_name();
 
       virtual void initialize_typeface();
       virtual ::factory::factory* typeface_factory();
-      virtual ::string typeface_get_default_implementation_name();
+      //virtual ::string typeface_get_implementation_name();
 
       //virtual void init_task() override;
       //virtual void term_task() override;

@@ -1,7 +1,6 @@
 #include "platform.h"
 #include "main_window.h"
 #include "application.h"
-#include "render.h"
 #include <math.h>
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
@@ -19,6 +18,7 @@
 #include "aura/message/user.h"
 #include "aura/platform/system.h"
 #include "bred/user/user/gpu_shader_host.h"
+#include "bred/user/user/gpu_shader_render.h"
 
 
 namespace app_shader
@@ -312,7 +312,7 @@ namespace app_shader
       //rectangleShader.bottom -= 48;
       m_pappshaderhost->place(rectangleX);
 
-      auto & prender = m_pappshaderhost->m_maprender[m_pappshaderhost->m_strCurrentShaderPath];
+      auto & prender = m_pappshaderhost->m_mapusergpushaderrender[m_pappshaderhost->m_strCurrentShaderPath];
 
       if(::is_set(prender))
       {

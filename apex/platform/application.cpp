@@ -33,6 +33,7 @@
 #include "apex/filesystem/fs/folder_sync.h"
 #include "apex/filesystem/fs/native.h"
 #include "apex/filesystem/fs/raw_folder_protocol.h"
+#include "apex/graphics/early_configuration.h"
 #include "apex/filesystem/fs/set.h"
 #include "apex/innate_ui/button.h"
 #include "apex/innate_ui/dialog.h"
@@ -10864,6 +10865,357 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          }
 
       }
+
+   }
+
+
+   string application::_draw2d_get_implementation_name()
+   {
+
+       string strImplementationName;
+
+       strImplementationName = m_strDraw2dImplementation;
+
+       if (strImplementationName.has_character())
+       {
+
+           return strImplementationName;
+
+       }
+
+       auto pdirectorysystem = directory_system();
+
+       ::file::path path = "cloud://application" / m_strAppId / "draw2d.txt";
+
+       strImplementationName = file()->safe_get_string(path);
+
+       //      throw ::exception(todo);
+
+       if (strImplementationName.has_character())
+       {
+
+           return implementation_name("draw2d", strImplementationName);
+
+       }
+
+       path = directory_system()->roaming() / m_strAppId / "draw2d.txt";
+
+       strImplementationName = file_system()->as_string(path);
+
+       if (strImplementationName.has_character())
+       {
+
+           return implementation_name("draw2d", strImplementationName);
+
+       }
+
+       return {};
+
+   }
+
+
+   string application::draw2d_get_implementation_name()
+   { 
+
+       ::graphics::early_configuration earlyconfiguration;
+
+       bool bGpu = m_bGpu;
+
+       bool bUseSwapChain = use_gpu_swap_chain();
+
+       auto strGpu = gpu_get_implementation_name();
+
+       auto strDraw2d = _draw2d_get_implementation_name();
+
+       auto eoperatingsystem = ::operating_system::get();
+
+//#ifdef WINDOWS_DESKTOP
+//
+//       constexpr bool bWindows = true;
+//
+//#else
+//
+//       constexpr bool bWindows = false;
+//
+//#endif
+//
+//#ifdef __APPLE__
+//
+//       constexpr bool bApple = true;
+//
+//#else
+//
+//       constexpr bool bApple = false;
+//
+//#endif
+//
+//#ifdef UNIVERSAL_WINDOWS
+//
+//       constexpr bool bUniversalWindows = true;
+//
+//#else
+//
+//       constexpr bool bUniversalWindows = false;
+//
+//#endif
+//
+//#ifdef __HAIKU___
+//
+//       constexpr bool bUniversalWindows = true;
+//
+//#else
+//
+//       constexpr bool bUniversalWindows = false;
+//
+//#endif
+
+       if (bGpu || bUseSwapChain || strGpu.has_character())
+       {
+
+           auto straDraw2dApis = earlyconfiguration.draw2d_apis(strGpu, bUseSwapChain, eoperatingsystem);
+
+           auto strDraw2dApi = earlyconfiguration.draw2d_api(strDraw2d, straDraw2dApis);
+
+           return system()->implementation_name("draw2d", strDraw2dApi.c_str());
+
+       }
+
+       auto straDraw2dApis = earlyconfiguration.draw2d_apis(strGpu, false, eoperatingsystem);
+
+       auto strDraw2dApi = earlyconfiguration.draw2d_api(strDraw2d, straDraw2dApis);
+
+       return system()->implementation_name("draw2d", strDraw2dApi.c_str());
+
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      return implementation_name("draw2d", "gdiplus");
+//
+//#elif __APPLE__
+//
+//      return implementation_name("draw2d", "quartz2d");
+//
+//#elif defined(UNIVERSAL_WINDOWS)
+//
+//      return implementation_name("draw2d", "direct2d");
+//
+//#elif defined(__HAIKU__)
+//
+//      return implementation_name("draw2d", "haiku");
+//
+//#else
+//
+//      return implementation_name("draw2d", "cairo");
+//
+//#endif
+
+   }
+
+
+   string application::imaging_get_implementation_name()
+   {
+   
+      string strImplementationName;
+   
+      strImplementationName = m_strImagingImplementation;
+   
+      if (strImplementationName.has_character())
+      {
+   
+         return strImplementationName;
+   
+      }
+
+      auto pdirectorysystem = directory_system();
+
+      ::file::path path = "cloud://application" / m_strAppId / "imaging.txt";
+
+      strImplementationName = file()->safe_get_string(path);
+
+      //      throw ::exception(todo);
+
+      if (strImplementationName.has_character())
+      {
+
+         return implementation_name("imaging", strImplementationName);
+
+      }
+
+      path = directory_system()->roaming() / m_strAppId / "imaging.txt";
+
+      strImplementationName = file_system()->as_string(path);
+
+      if (strImplementationName.has_character())
+      {
+
+         return implementation_name("draw2d", strImplementationName);
+
+      }
+   
+#if defined(WINDOWS) && defined(__REACTOS__)
+   
+      return implementation_name("imaging", "freeimage");
+   
+#elif defined(WINDOWS)
+   
+      return implementation_name("imaging", "wic");
+   
+#elif defined(__APPLE__)
+   
+      return implementation_name("imaging", "coreimage");
+   
+#else
+   
+      return implementation_name("imaging", "freeimage");
+   
+#endif
+   
+   }
+   
+
+
+   string application::typeface_get_implementation_name()
+   {
+
+      string strImplementationName;
+
+      strImplementationName = m_strTypefaceImplementation;
+
+      if (strImplementationName.has_character())
+      {
+
+         return strImplementationName;
+
+      }
+
+      ::file::path path = directory_system()->roaming() / "system/typeface.txt";
+
+      strImplementationName = file_system()->safe_get_string(path);
+
+      if (strImplementationName.has_character())
+      {
+
+         return implementation_name("typeface", strImplementationName);
+
+      }
+
+      path = directory_system()->roaming() / m_strAppId / "typeface.txt";
+
+      strImplementationName = file_system()->as_string(path);
+
+      if (strImplementationName.has_character())
+      {
+
+         return implementation_name("typeface", strImplementationName);
+
+      }
+
+#ifdef WINDOWS_DESKTOP
+
+      return implementation_name("typeface", "gdiplus");
+
+#elif __APPLE__
+
+      return implementation_name("typeface", "quartz2d");
+
+#elif defined(UNIVERSAL_WINDOWS)
+
+      return implementation_name("typeface", "direct2d");
+
+#else
+
+      return implementation_name("typeface", "freetype");
+
+#endif
+
+   }
+
+
+   ::string application::gpu_get_implementation_name()
+   {
+
+      string strImplementationName;
+
+      strImplementationName = m_strTypefaceImplementation;
+
+      if (strImplementationName.has_character())
+      {
+
+         return strImplementationName;
+
+      }
+
+      
+      return application_file_setting_by_operating_system("graphics3d.txt");
+
+   }
+
+
+   ::string application::get_graphics3d_output()
+   {
+
+       if (m_bGraphics3dOutput.undefined())
+       {
+
+           if (m_strGraphics3dOutput.is_empty())
+           {
+
+               m_strGraphics3dOutput = application_file_setting("graphics3d_output.txt");
+
+           }
+
+           m_strGraphics3dOutput.trim();
+
+           m_strGraphics3dOutput.make_lower();
+
+           auto strOutput = m_strGraphics3dOutput;
+
+           if (strOutput == "on_screen" || strOutput == "swap_chain" || strOutput == "onscreen")
+           {
+
+               m_strGraphics3dOutput = "on_screen";
+
+           }
+           else
+           {
+
+               m_strGraphics3dOutput = "off_screen";
+
+           }
+
+           m_bGraphics3dOutput = true;
+
+       }
+      
+       return m_strGraphics3dOutput;
+
+   }
+
+
+   bool application::use_swap_chain_window()
+   {
+
+       if (m_gpu.m_bUseSwapChainWindow2.undefined())
+       {
+
+           ::string strOutput = get_graphics3d_output();
+
+           if(strOutput == "on_screen" || strOutput == "swap_chain" || strOutput == "onscreen")
+           { 
+           
+               m_gpu.m_bUseSwapChainWindow2 = true;
+           
+           }
+           else
+           {
+
+               m_gpu.m_bUseSwapChainWindow2 = false;
+
+           }
+
+       }
+
+       return m_gpu.m_bUseSwapChainWindow2;
 
    }
 

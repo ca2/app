@@ -13,7 +13,9 @@ namespace user
 
    class gpu_interaction;
 
-   class gpu_render;
+   class gpu_shader_render;
+
+   class gpu_shader_list;
 
 
 } // namespace user

@@ -2551,6 +2551,7 @@
     <ClCompile Include="filesystem\fs\folder_sync.cpp" />
     <ClCompile Include="filesystem\fs\raw_folder.cpp" />
     <ClCompile Include="filesystem\fs\raw_folder_protocol.cpp" />
+    <ClCompile Include="graphics\early_configuration.cpp" />
     <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">Create</PrecompiledHeader>
@@ -2711,6 +2712,7 @@
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="gpu\approach.h" />
     <ClInclude Include="gpu\_.h" />
+    <ClInclude Include="graphics\early_configuration.h" />
     <ClInclude Include="handler\context.h" />
     <ClInclude Include="handler\manager.h" />
     <ClInclude Include="handler\aaa_predicate.h" />

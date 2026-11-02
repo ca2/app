@@ -41,9 +41,9 @@ namespace app_shader
 #endif
 
 
-      virtual string get_next_shader_path(const ::scoped_string & scopedstrPath);
+      //virtual string get_next_shader_path(const ::scoped_string & scopedstrPath);
 
-      virtual void get_shader_listing(::file::listing_base& listing);
+      //virtual void get_shader_listing(::file::listing_base& listing);
 
 
    };

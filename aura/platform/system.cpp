@@ -1268,69 +1268,69 @@ namespace aura
    }
 
 
-   string system::draw2d_get_default_implementation_name()
-   {
-
-      string strImplementationName;
-
-      strImplementationName = application()->draw2d_get_default_implementation_name();
-
-      if (strImplementationName.has_character())
-      {
-
-         return strImplementationName;
-
-      }
-
-      auto pdirectorysystem = directory_system();
-
-      ::file::path path = "cloud://application" / application()->m_strAppId / "draw2d.txt";
-
-      strImplementationName = file()->safe_get_string(path);
-
-//      throw ::exception(todo);
-
-      if(strImplementationName.has_character())
-      {
-
-         return implementation_name("draw2d", strImplementationName);
-
-      }
-
-      path = directory_system()->roaming()/application()->m_strAppId / "draw2d.txt";
-
-      strImplementationName = file_system()->as_string(path);
-
-      if(strImplementationName.has_character())
-      {
-
-         return implementation_name("draw2d", strImplementationName);
-
-      }
-
-#ifdef WINDOWS_DESKTOP
-
-      return implementation_name("draw2d", "gdiplus");
-
-#elif __APPLE__
-      
-      return implementation_name("draw2d", "quartz2d");
-
-#elif defined(UNIVERSAL_WINDOWS)
-      
-      return implementation_name("draw2d", "direct2d");
-
-#elif defined(__HAIKU__)
-
-      return implementation_name("draw2d", "haiku");
-
-#else
-      
-      return implementation_name("draw2d", "cairo");
-
-#endif
-
-   }
+//   string system::draw2d_get_implementation_name()
+//   {
+//
+//      string strImplementationName;
+//
+//      strImplementationName = application()->draw2d_get_implementation_name();
+//
+//      if (strImplementationName.has_character())
+//      {
+//
+//         return strImplementationName;
+//
+//      }
+//
+//      auto pdirectorysystem = directory_system();
+//
+//      ::file::path path = "cloud://application" / application()->m_strAppId / "draw2d.txt";
+//
+//      strImplementationName = file()->safe_get_string(path);
+//
+////      throw ::exception(todo);
+//
+//      if(strImplementationName.has_character())
+//      {
+//
+//         return implementation_name("draw2d", strImplementationName);
+//
+//      }
+//
+//      path = directory_system()->roaming()/application()->m_strAppId / "draw2d.txt";
+//
+//      strImplementationName = file_system()->as_string(path);
+//
+//      if(strImplementationName.has_character())
+//      {
+//
+//         return implementation_name("draw2d", strImplementationName);
+//
+//      }
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      return implementation_name("draw2d", "gdiplus");
+//
+//#elif __APPLE__
+//      
+//      return implementation_name("draw2d", "quartz2d");
+//
+//#elif defined(UNIVERSAL_WINDOWS)
+//      
+//      return implementation_name("draw2d", "direct2d");
+//
+//#elif defined(__HAIKU__)
+//
+//      return implementation_name("draw2d", "haiku");
+//
+//#else
+//      
+//      return implementation_name("draw2d", "cairo");
+//
+//#endif
+//
+//   }
 
 
    ::factory::factory * system::draw2d_factory()
@@ -1361,7 +1361,7 @@ namespace aura
 
       }
 
-      strImplementationName = draw2d_get_default_implementation_name();
+      strImplementationName = application()->draw2d_get_implementation_name();
 
       if (strImplementationName.is_empty())
       {
@@ -1501,61 +1501,61 @@ namespace aura
    }
 
 
-   string system::typeface_get_default_implementation_name()
-   {
-
-      string strImplementationName;
-
-      strImplementationName = application()->typeface_get_default_implementation_name();
-
-      if (strImplementationName.has_character())
-      {
-
-         return strImplementationName;
-
-      }
-
-      ::file::path path = directory_system()->roaming() / "system/typeface.txt";
-
-      strImplementationName = file_system()->safe_get_string(path);
-
-      if (strImplementationName.has_character())
-      {
-
-         return implementation_name("typeface", strImplementationName);
-
-      }
-
-      path = directory_system()->roaming() / application()->m_strAppId / "typeface.txt";
-
-      strImplementationName = file_system()->as_string(path);
-
-      if (strImplementationName.has_character())
-      {
-
-         return implementation_name("typeface", strImplementationName);
-
-      }
-
-#ifdef WINDOWS_DESKTOP
-
-      return implementation_name("typeface", "gdiplus");
-
-#elif __APPLE__
-
-      return implementation_name("typeface", "quartz2d");
-
-#elif defined(UNIVERSAL_WINDOWS)
-
-      return implementation_name("typeface", "direct2d");
-
-#else
-
-      return implementation_name("typeface", "freetype");
-
-#endif
-
-   }
+//   string system::typeface_get_default_implementation_name()
+//   {
+//
+//      string strImplementationName;
+//
+//      strImplementationName = application()->typeface_get_default_implementation_name();
+//
+//      if (strImplementationName.has_character())
+//      {
+//
+//         return strImplementationName;
+//
+//      }
+//
+//      ::file::path path = directory_system()->roaming() / "system/typeface.txt";
+//
+//      strImplementationName = file_system()->safe_get_string(path);
+//
+//      if (strImplementationName.has_character())
+//      {
+//
+//         return implementation_name("typeface", strImplementationName);
+//
+//      }
+//
+//      path = directory_system()->roaming() / application()->m_strAppId / "typeface.txt";
+//
+//      strImplementationName = file_system()->as_string(path);
+//
+//      if (strImplementationName.has_character())
+//      {
+//
+//         return implementation_name("typeface", strImplementationName);
+//
+//      }
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      return implementation_name("typeface", "gdiplus");
+//
+//#elif __APPLE__
+//
+//      return implementation_name("typeface", "quartz2d");
+//
+//#elif defined(UNIVERSAL_WINDOWS)
+//
+//      return implementation_name("typeface", "direct2d");
+//
+//#else
+//
+//      return implementation_name("typeface", "freetype");
+//
+//#endif
+//
+//   }
 
 
    ::factory::factory * system::imaging_factory()
@@ -1588,7 +1588,7 @@ namespace aura
 
       }
 
-      strImplementationName = imaging_get_default_implementation_name();
+      strImplementationName = application()->imaging_get_implementation_name();
 
       if (strImplementationName.is_empty())
       {
@@ -1711,7 +1711,7 @@ namespace aura
 
       }
 
-      strImplementationName = typeface_get_default_implementation_name();
+      strImplementationName = application()->typeface_get_implementation_name();
 
       if (strImplementationName.is_empty())
       {
@@ -1825,41 +1825,41 @@ namespace aura
 
    }
 
-
-   string system::imaging_get_default_implementation_name()
-   {
-
-      string strImplementationName;
-
-      strImplementationName = application()->imaging_get_default_implementation_name();
-
-      if (strImplementationName.has_character())
-      {
-
-         return strImplementationName;
-
-      }
-
-#if defined(WINDOWS) && defined(__REACTOS__)
-
-      return implementation_name("imaging", "freeimage");
-
-#elif defined(WINDOWS)
-
-      return implementation_name("imaging", "wic");
-
-#elif defined(__APPLE__)
-
-      return implementation_name("imaging", "coreimage");
-
-#else
-
-      return implementation_name("imaging", "freeimage");
-
-#endif
-
-   }
-
+//
+//   string system::imaging_get_default_implementation_name()
+//   {
+//
+//      string strImplementationName;
+//
+//      strImplementationName = application()->imaging_get_default_implementation_name();
+//
+//      if (strImplementationName.has_character())
+//      {
+//
+//         return strImplementationName;
+//
+//      }
+//
+//#if defined(WINDOWS) && defined(__REACTOS__)
+//
+//      return implementation_name("imaging", "freeimage");
+//
+//#elif defined(WINDOWS)
+//
+//      return implementation_name("imaging", "wic");
+//
+//#elif defined(__APPLE__)
+//
+//      return implementation_name("imaging", "coreimage");
+//
+//#else
+//
+//      return implementation_name("imaging", "freeimage");
+//
+//#endif
+//
+//   }
+//
 
    //void system::init_task()
    //{

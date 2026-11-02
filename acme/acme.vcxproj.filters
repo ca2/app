@@ -4557,6 +4557,15 @@
     <ClInclude Include="user\html\page.h">
       <Filter>Header Files\user\html</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\operating_system.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\operating_system.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\operating_system.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6562,6 +6571,12 @@
     </ClCompile>
     <ClCompile Include="user\html\styling.cpp">
       <Filter>Source Files\user\html</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\operating_system.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\operating_system.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

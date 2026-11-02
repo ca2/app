@@ -2688,6 +2688,7 @@
     <ClCompile Include="graphics\image\frame_array.cpp" />
     <ClCompile Include="graphics\image\image32_t.cpp" />
     <ClCompile Include="graphics\image\image32_t_array.cpp" />
+    <ClCompile Include="operating_system\operating_system.cpp" />
     <ClCompile Include="operating_system\windows\top_level_enum.cpp" />
     <ClCompile Include="operating_system\windows\window_util.cpp" />
     <ClCompile Include="operating_system\windows_common\call_stack.cpp" />
@@ -2783,6 +2784,7 @@
     <ClCompile Include="operating_system\windows_common\task.cpp" />
     <ClCompile Include="operating_system\windows_common\threading.cpp" />
     <ClCompile Include="platform\ini.cpp" />
+    <ClCompile Include="platform\operating_system.cpp" />
     <ClCompile Include="platform\profile_logger.cpp" />
     <ClCompile Include="platform\registry.cpp" />
     <ClCompile Include="platform\remoting.cpp" />
@@ -2825,6 +2827,7 @@
     <ClInclude Include="constant\call.h" />
     <ClInclude Include="constant\key_state.h" />
     <ClInclude Include="constant\message.h" />
+    <ClInclude Include="constant\operating_system.h" />
     <ClInclude Include="constant\read_file.h" />
     <ClInclude Include="constant\user_message.h" />
     <ClInclude Include="filesystem\filesystem\aaa_dir_system.h" />
@@ -2863,6 +2866,7 @@
     <ClInclude Include="operating_system\dos_time1.h" />
     <ClInclude Include="operating_system\environment.h" />
     <ClInclude Include="operating_system\GetCPUtime.h" />
+    <ClInclude Include="operating_system\operating_system.h" />
     <ClInclude Include="operating_system\message_box.h" />
     <ClInclude Include="operating_system\networking.h" />
     <ClInclude Include="operating_system\shared_posix\time1.h" />
@@ -2891,6 +2895,7 @@
     <ClInclude Include="platform\node_apex.h" />
     <ClInclude Include="platform\node_aqua.h" />
     <ClInclude Include="platform\node_aura.h" />
+    <ClInclude Include="platform\operating_system.h" />
     <ClInclude Include="platform\profile_logger.h" />
     <ClInclude Include="platform\registry.h" />
     <ClInclude Include="platform\remoting.h" />

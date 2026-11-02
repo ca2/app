@@ -3,6 +3,7 @@
 
 
 #include "acme/_operating_system.h"
+#include <Psapi.h>
 
 
 namespace windows

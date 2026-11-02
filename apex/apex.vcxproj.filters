@@ -204,6 +204,12 @@
     <Filter Include="Source Files\gpu">
       <UniqueIdentifier>{def1e6ac-fcbf-40c1-8ef8-5312128d3e3b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{2f671c4f-7da7-4008-940a-ff58db60f16d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{f76eda88-5099-46dd-b375-137904e54824}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1088,6 +1094,9 @@
     <ClInclude Include="gpu\window_attachment.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\early_configuration.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1578,6 +1587,9 @@
     </ClCompile>
     <ClCompile Include="gpu\window_attachment.cpp">
       <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\early_configuration.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

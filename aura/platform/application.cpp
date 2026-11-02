@@ -1,7 +1,6 @@
 #include "platform.h"
 #include "application.h"
 #include "startup_delay_debug.h"
-#include "graphics_configuration.h"
 #include "shell_open.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
@@ -20,6 +19,7 @@
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "apex/graphics/early_configuration.h"
 #include "apex/handler/signal.h"
 #include "apex/platform/node.h"
 #include "apex/interprocess/communication.h"
@@ -1801,283 +1801,283 @@ namespace aura
    //}
 
 
-   ::string application::graphics3d_get_implementation_override()
-   {
-      return m_strGraphics3DImplementationOverride;
-   }
-
-   ::string application::graphics3d_get_output_override()
-   {
-      return m_strGraphics3DOutputOverride;
-   }
-
-   ::string application::graphics3d_get_implementation_setting()
-   {
-      auto value = graphics3d_get_implementation_override();
-      if (value.has_character()) return value;
-      return application_file_setting_by_operating_system("graphics3d.txt");
-   }
-
-
-   ::string application::graphics3d_get_output_setting()
-   {
-      auto value = graphics3d_get_output_override();
-      if (value.has_character()) return value;
-      return application_file_setting("graphics3d_output.txt");
-   }
-
-
-   void application::defer_initialize_graphics_configuration()
-   {
-
-      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      if (payload("graphics_configuration_initialized").is_true())
-      {
-
-         return;
-
-      }
-
-      {
-
-         ::string strImplementation = application_file_setting_by_operating_system("draw2d.txt");
-
-         strImplementation.make_lower();
-
-         strImplementation.case_insensitive_begins_eat("draw2d_");
-
-         if (strImplementation == "directx11")
-         {
-
-            strImplementation = "directx11";
-
-         }
-         else if (strImplementation == "directx12")
-         {
-
-            strImplementation = "directx12";
-
-         }
-         else if (strImplementation == "opengl")
-         {
-
-            strImplementation = "opengl";
-
-         }
-         else if (strImplementation == "vulkan")
-         {
-
-            strImplementation = "vulkan";
-
-         }
-         else if (strImplementation == "vkvg")
-         {
-
-             strImplementation = "vkvg";
-
-         }
-         else if (strImplementation == "nanovg")
-         {
-
-            strImplementation = "nanovg";
-
-         }
-         else if (strImplementation == "direct2d_for_directx11"
-            || strImplementation == "direct2d_for_directx12"
-            || strImplementation == "gdiplus" || strImplementation == "quartz2d")
-         {
-
-            // Keep the explicit GPU-compatible Direct2D implementation.
-
-         }
-         else if (strImplementation == "direct2d")
-         {
-
-            strImplementation = "direct2d";
-
-         }
-         else if (strImplementation == "cairo")
-         {
-
-            strImplementation = "cairo";
-
-         }
-         else
-         {
-
-            strImplementation.empty();
-
-         }
-
-         m_strDraw2dImplementation = strImplementation;
-
-      }
-
-
-      {
-
-         ::string strImplementation = application_file_setting("typeface.txt");
-
-         strImplementation.make_lower();
-
-         if (strImplementation == "directx11")
-         {
-
-            strImplementation = "directx11";
-
-         }
-         else if (strImplementation == "directx12")
-         {
-
-            strImplementation = "directx12";
-
-         }
-         else if (strImplementation == "opengl")
-         {
-
-            strImplementation = "opengl";
-
-         }
-         else if (strImplementation == "vulkan")
-         {
-
-            strImplementation = "vulkan";
-
-         }
-         else if (strImplementation == "direct2d")
-         {
-
-            strImplementation = "direct2d";
-
-         }
-         else
-         {
-
-            strImplementation.empty();
-
-         }
-
-         m_strTypefaceImplementation = strImplementation;
-
-      }
-
-
-      {
-
-         ::string strImplementation = application_file_setting("imaging.txt");
-
-         strImplementation.make_lower();
-
-         if (strImplementation == "wic")
-         {
-
-            strImplementation = "wic";
-
-         }
-         else if (strImplementation == "freeimage")
-         {
-
-            strImplementation = "freeimage";
-
-         }
-         else if (strImplementation == "quartz2d")
-         {
-
-            strImplementation = "quartz2d";
-
-         }
-         else
-         {
-
-            strImplementation.empty();
-
-         }
-
-         m_strImagingImplementation = strImplementation;
-
-      }
-
-
-      {
-
-         ::string strImplementation = graphics3d_get_implementation_setting();
-
-         strImplementation.trim();
-
-         strImplementation.make_lower();
-
-         if (strImplementation == "directx11")
-         {
-
-#if defined(WIN32)
-
-            strImplementation = "directx11";
-            
-#else
-            
-            throw ::exception(error_wrong_state);
-            
-#endif
-
-
-         }
-         else if (strImplementation == "directx12")
-         {
-
-            strImplementation = "directx12";
-
-         }
-         else if (strImplementation == "opengl")
-         {
-
-            strImplementation = "opengl";
-
-         }
-         else if (strImplementation == "vulkan")
-         {
-
-            strImplementation = "vulkan";
-
-         }
-         else
-         {
-
-            strImplementation = "opengl";
-
-         }
-
-         m_strGraphics3DImplementation = strImplementation;
-
-      }
-
-      {
-
-         ::string strOutput = graphics3d_get_output_setting();
-
-         strOutput.trim();
-
-         strOutput.make_lower();
-
-         if (strOutput.equals("swap_chain") || strOutput.equals("on_screen"))
-         {
-
-            m_gpu.m_bUseSwapChainWindow = true;
-
-         }
-         else
-         {
-
-            m_gpu.m_bUseSwapChainWindow = false;
-
-         }
-
-      }
-
-      payload("graphics_configuration_initialized") = true;
-
-   }
-
+   //::string application::graphics3d_get_implementation_override()
+   //{
+   //   return m_strGraphics3DImplementationOverride;
+   //}
+
+   //::string application::graphics3d_get_output_override()
+   //{
+   //   return m_strGraphics3DOutputOverride;
+   //}
+
+   //::string application::graphics3d_get_implementation_setting()
+   //{
+   //   auto value = graphics3d_get_implementation_override();
+   //   if (value.has_character()) return value;
+   //   return application_file_setting_by_operating_system("graphics3d.txt");
+   //}
+
+
+   //::string application::graphics3d_get_output_setting()
+   //{
+   //   auto value = graphics3d_get_output_override();
+   //   if (value.has_character()) return value;
+   //   return application_file_setting("graphics3d_output.txt");
+   //}
+
+
+//   void application::defer_initialize_graphics_configuration()
+//   {
+//
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//      if (payload("graphics_configuration_initialized").is_true())
+//      {
+//
+//         return;
+//
+//      }
+//
+//      {
+//
+//         ::string strImplementation = application_file_setting_by_operating_system("draw2d.txt");
+//
+//         strImplementation.make_lower();
+//
+//         strImplementation.case_insensitive_begins_eat("draw2d_");
+//
+//         if (strImplementation == "directx11")
+//         {
+//
+//            strImplementation = "directx11";
+//
+//         }
+//         else if (strImplementation == "directx12")
+//         {
+//
+//            strImplementation = "directx12";
+//
+//         }
+//         else if (strImplementation == "opengl")
+//         {
+//
+//            strImplementation = "opengl";
+//
+//         }
+//         else if (strImplementation == "vulkan")
+//         {
+//
+//            strImplementation = "vulkan";
+//
+//         }
+//         else if (strImplementation == "vkvg")
+//         {
+//
+//             strImplementation = "vkvg";
+//
+//         }
+//         else if (strImplementation == "nanovg")
+//         {
+//
+//            strImplementation = "nanovg";
+//
+//         }
+//         else if (strImplementation == "direct2d_for_directx11"
+//            || strImplementation == "direct2d_for_directx12"
+//            || strImplementation == "gdiplus" || strImplementation == "quartz2d")
+//         {
+//
+//            // Keep the explicit GPU-compatible Direct2D implementation.
+//
+//         }
+//         else if (strImplementation == "direct2d")
+//         {
+//
+//            strImplementation = "direct2d";
+//
+//         }
+//         else if (strImplementation == "cairo")
+//         {
+//
+//            strImplementation = "cairo";
+//
+//         }
+//         else
+//         {
+//
+//            strImplementation.empty();
+//
+//         }
+//
+//         m_strDraw2dImplementation = strImplementation;
+//
+//      }
+//
+//
+//      {
+//
+//         ::string strImplementation = application_file_setting("typeface.txt");
+//
+//         strImplementation.make_lower();
+//
+//         if (strImplementation == "directx11")
+//         {
+//
+//            strImplementation = "directx11";
+//
+//         }
+//         else if (strImplementation == "directx12")
+//         {
+//
+//            strImplementation = "directx12";
+//
+//         }
+//         else if (strImplementation == "opengl")
+//         {
+//
+//            strImplementation = "opengl";
+//
+//         }
+//         else if (strImplementation == "vulkan")
+//         {
+//
+//            strImplementation = "vulkan";
+//
+//         }
+//         else if (strImplementation == "direct2d")
+//         {
+//
+//            strImplementation = "direct2d";
+//
+//         }
+//         else
+//         {
+//
+//            strImplementation.empty();
+//
+//         }
+//
+//         m_strTypefaceImplementation = strImplementation;
+//
+//      }
+//
+//
+//      {
+//
+//         ::string strImplementation = application_file_setting("imaging.txt");
+//
+//         strImplementation.make_lower();
+//
+//         if (strImplementation == "wic")
+//         {
+//
+//            strImplementation = "wic";
+//
+//         }
+//         else if (strImplementation == "freeimage")
+//         {
+//
+//            strImplementation = "freeimage";
+//
+//         }
+//         else if (strImplementation == "quartz2d")
+//         {
+//
+//            strImplementation = "quartz2d";
+//
+//         }
+//         else
+//         {
+//
+//            strImplementation.empty();
+//
+//         }
+//
+//         m_strImagingImplementation = strImplementation;
+//
+//      }
+//
+//
+//      {
+//
+//         ::string strImplementation = graphics3d_get_implementation_setting();
+//
+//         strImplementation.trim();
+//
+//         strImplementation.make_lower();
+//
+//         if (strImplementation == "directx11")
+//         {
+//
+//#if defined(WIN32)
+//
+//            strImplementation = "directx11";
+//            
+//#else
+//            
+//            throw ::exception(error_wrong_state);
+//            
+//#endif
+//
+//
+//         }
+//         else if (strImplementation == "directx12")
+//         {
+//
+//            strImplementation = "directx12";
+//
+//         }
+//         else if (strImplementation == "opengl")
+//         {
+//
+//            strImplementation = "opengl";
+//
+//         }
+//         else if (strImplementation == "vulkan")
+//         {
+//
+//            strImplementation = "vulkan";
+//
+//         }
+//         else
+//         {
+//
+//            strImplementation = "opengl";
+//
+//         }
+//
+//         m_strGraphics3DImplementation = strImplementation;
+//
+//      }
+//
+//      {
+//
+//         ::string strOutput = graphics3d_get_output_setting();
+//
+//         strOutput.trim();
+//
+//         strOutput.make_lower();
+//
+//         if (strOutput.equals("swap_chain") || strOutput.equals("on_screen"))
+//         {
+//
+//            m_gpu.m_bUseSwapChainWindow = true;
+//
+//         }
+//         else
+//         {
+//
+//            m_gpu.m_bUseSwapChainWindow = false;
+//
+//         }
+//
+//      }
+//
+//      payload("graphics_configuration_initialized") = true;
+//
+//   }
+//
 
    void application::init_instance()
    {
@@ -2088,7 +2088,7 @@ namespace aura
 
 
 
-      defer_initialize_graphics_configuration();
+      //defer_initialize_graphics_configuration();
 
       ::cast < ::manager > pmanager = system();
  
@@ -10028,37 +10028,37 @@ namespace aura
    //}
 
 
-   ::string application::draw2d_get_default_implementation_name()
-   {
-
-      // Windowing can request draw2d before application::init_instance().
-      defer_initialize_graphics_configuration();
-
-      if (m_bGpu || m_gpu.m_bUseSwapChainWindow || graphics3d_get_implementation_override().has_character())
-      {
-
-         auto strGpuApi = graphics3d_get_implementation_name();
-#ifdef WINDOWS_DESKTOP
-         constexpr bool windows = true;
-#else
-         constexpr bool windows = false;
-#endif
-#ifdef __APPLE__
-         constexpr bool apple = true;
-#else
-         constexpr bool apple = false;
-#endif
-         auto available = ::aura::graphics_configuration::draw2d_apis(
-            strGpuApi.c_str(), !m_gpu.m_bUseSwapChainWindow, windows, apple);
-         auto strDraw2dApi = ::aura::graphics_configuration::draw2d_api(
-            m_strDraw2dImplementation.c_str(), available);
-         return system()->implementation_name("draw2d", strDraw2dApi.c_str());
-
-      }
-
-      return m_strDraw2dImplementation;
-
-   }
+//   ::string application::draw2d_get_default_implementation_name()
+//   {
+//
+//      // Windowing can request draw2d before application::init_instance().
+//      defer_initialize_graphics_configuration();
+//
+//      if (m_bGpu || m_gpu.m_bUseSwapChainWindow || graphics3d_get_implementation_override().has_character())
+//      {
+//
+//         auto strGpuApi = graphics3d_get_implementation_name();
+//#ifdef WINDOWS_DESKTOP
+//         constexpr bool windows = true;
+//#else
+//         constexpr bool windows = false;
+//#endif
+//#ifdef __APPLE__
+//         constexpr bool apple = true;
+//#else
+//         constexpr bool apple = false;
+//#endif
+//         auto available = ::aura::graphics_configuration::draw2d_apis(
+//            strGpuApi.c_str(), !m_gpu.m_bUseSwapChainWindow, windows, apple);
+//         auto strDraw2dApi = ::aura::graphics_configuration::draw2d_api(
+//            m_strDraw2dImplementation.c_str(), available);
+//         return system()->implementation_name("draw2d", strDraw2dApi.c_str());
+//
+//      }
+//
+//      return m_strDraw2dImplementation;
+//
+//   }
 
 
 

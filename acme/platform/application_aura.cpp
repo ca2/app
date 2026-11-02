@@ -9,996 +9,1048 @@ namespace platform
 {
 
 
-   //      // void assert_ok() const override{}
-   //      // void dump(dump_context & dumpcontext) const override{}
+    //      // void assert_ok() const override{}
+    //      // void dump(dump_context & dumpcontext) const override{}
 
 
-   void aura_application_layer::enumerate_composite(matter_array& a)
-   {
-   }
+    void aura_application_layer::enumerate_composite(matter_array & a)
+    {
+    }
 
 
-   ::aura::game* aura_application_layer::game()
-   {
-      return nullptr;
-   }
+    ::aura::game * aura_application_layer::game()
+    {
+        return nullptr;
+    }
 
 
-   //void aura_application_layer::_001CloseApplication() override{}
+    //void aura_application_layer::_001CloseApplication() override{}
 
 
-   //virtual ::user::style* get_user_style() const{}
-   //bool aura_application_layer::app_data_get(const ::atom & atom, stream & os) override{}
-   //bool aura_application_layer::app_data_set(const ::atom & atom, stream & is) override{}
+    //virtual ::user::style* get_user_style() const{}
+    //bool aura_application_layer::app_data_get(const ::atom & atom, stream & os) override{}
+    //bool aura_application_layer::app_data_set(const ::atom & atom, stream & is) override{}
 
-   //bool aura_application_layer::app_data_set(const ::atom & atom, object & obj) override{}
-   //bool aura_application_layer::app_data_get(const ::atom & atom, object & obj) override{}
+    //bool aura_application_layer::app_data_set(const ::atom & atom, object & obj) override{}
+    //bool aura_application_layer::app_data_get(const ::atom & atom, object & obj) override{}
 
-   //      void aura_application_layer::    interactive_credentials(::account::credentials * pcredentials) override{}
+    //      void aura_application_layer::    interactive_credentials(::account::credentials * pcredentials) override{}
 
-   //virtual ::database::key calc_data_key() override{}
+    //virtual ::database::key calc_data_key() override{}
 
 
-   //::string aura_application_layer::load_podata(const ::scoped_string & scopedstrLang, bool bOnlyHeader){}
+    //::string aura_application_layer::load_podata(const ::scoped_string & scopedstrLang, bool bOnlyHeader){}
 
-   //::string aura_application_layer::load_string(const ::atom & atom) override{}
-   //bool aura_application_layer::load_string(string & str, const ::atom & atom) override{}
-   //void aura_application_layer::load_string_table() override{}
-   //bool aura_application_layer::load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable) override{}
-   //bool aura_application_layer::load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable) override{}
-   //void aura_application_layer::load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId) override{}
+    //::string aura_application_layer::load_string(const ::atom & atom) override{}
+    //bool aura_application_layer::load_string(string & str, const ::atom & atom) override{}
+    //void aura_application_layer::load_string_table() override{}
+    //bool aura_application_layer::load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable) override{}
+    //bool aura_application_layer::load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable) override{}
+    //void aura_application_layer::load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId) override{}
 
 
-   //bool aura_application_layer::is_system() const override{}
-   //bool aura_application_layer::is_session() const override{}
-   //bool aura_application_layer::is_serviceable() const override{}
-   ::string aura_application_layer::get_window_class_name(::user::enum_control_type econtroltype)
-   {
-      return {};
-   }
+    //bool aura_application_layer::is_system() const override{}
+    //bool aura_application_layer::is_session() const override{}
+    //bool aura_application_layer::is_serviceable() const override{}
+    ::string aura_application_layer::get_window_class_name(::user::enum_control_type econtroltype)
+    {
+        return {};
+    }
 
 
-   //virtual ::simpledb::server * simpledb(){}
-   //virtual ::database::server * dataserver() override{}
-   //inline ::image_context& image() { return *m_pimagecontext{} }
+    //virtual ::simpledb::server * simpledb(){}
+    //virtual ::database::server * dataserver() override{}
+    //inline ::image_context& image() { return *m_pimagecontext{} }
 
 
-   //void aura_application_layer::verb() override{}
+    //void aura_application_layer::verb() override{}
 
 
-   //::aura::session* get_session(){}
-   //::aura::system* system(){}
+    //::aura::session* get_session(){}
+    //::aura::system* system(){}
 
 
-   // bool aura_application_layer::Ex2OnAppInstall() override{}
-   // bool aura_application_layer::Ex2OnAppUninstall() override{}
+    // bool aura_application_layer::Ex2OnAppInstall() override{}
+    // bool aura_application_layer::Ex2OnAppUninstall() override{}
 
-   //void aura_application_layer::init_application() override{}
-   //
-   // void aura_application_layer::init1() override{}
-   // void aura_application_layer::init2() override{}
-   // void aura_application_layer::init3() override{}
-   //
-   //
-   // void aura_application_layer::init() override{}
-   //
-   //
-   // void aura_application_layer::init_instance() override{}
-   //
+    //void aura_application_layer::init_application() override{}
+    //
+    // void aura_application_layer::init1() override{}
+    // void aura_application_layer::init2() override{}
+    // void aura_application_layer::init3() override{}
+    //
+    //
+    // void aura_application_layer::init() override{}
+    //
+    //
+    // void aura_application_layer::init_instance() override{}
+    //
 
-   //void aura_application_layer::    run() override{}
-   //void aura_application_layer::    main() override{}
-   //void aura_application_layer::    on_run(){}
+    //void aura_application_layer::    run() override{}
+    //void aura_application_layer::    main() override{}
+    //void aura_application_layer::    on_run(){}
 
-   //void aura_application_layer::application_pre_run(){}
-   //bool aura_application_layer::initial_check_directrix() override{}
-   //void aura_application_layer::os_native_bergedge_start(){}
+    //void aura_application_layer::application_pre_run(){}
+    //bool aura_application_layer::initial_check_directrix() override{}
+    //void aura_application_layer::os_native_bergedge_start(){}
 
 
-   //
-   //
-   // void aura_application_layer::term() override{}
-   //
-   //
-   // void aura_application_layer::term_application() override{}
-   //
-   //
+    //
+    //
+    // void aura_application_layer::term() override{}
+    //
+    //
+    // void aura_application_layer::term_application() override{}
+    //
+    //
 
 
-   //bool aura_application_layer::InitApplication(){}
+    //bool aura_application_layer::InitApplication(){}
 
-   //
-   // void aura_application_layer::do_install() override{}
-   // void aura_application_layer::do_uninstall() override{}
-   //
-   //
-   // void aura_application_layer::on_install() override{}
-   // void aura_application_layer::on_uninstall() override{}
-   //
+    //
+    // void aura_application_layer::do_install() override{}
+    // void aura_application_layer::do_uninstall() override{}
+    //
+    //
+    // void aura_application_layer::on_install() override{}
+    // void aura_application_layer::on_uninstall() override{}
+    //
 
-   //void aura_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative) override{}
-   //void aura_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle) override{}
+    //void aura_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative) override{}
+    //void aura_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle) override{}
 
-   //void aura_application_layer::SetCurrentHandles() override{}
+    //void aura_application_layer::SetCurrentHandles() override{}
 
 
-   //void aura_application_layer::process_exception(const ::exception & e) override{}
+    //void aura_application_layer::process_exception(const ::exception & e) override{}
 
 
-   //virtual ::pointer<::aura::application>assert_running(const ::scoped_string & scopedstrAppId) override{}
+    //virtual ::pointer<::aura::application>assert_running(const ::scoped_string & scopedstrAppId) override{}
 
-   //bool aura_application_layer::is_running() override{}
+    //bool aura_application_layer::is_running() override{}
 
 
-   //void aura_application_layer::on_request(::request * prequest) override{}
+    //void aura_application_layer::on_request(::request * prequest) override{}
 
 
-   //bool aura_application_layer::assert_user_logged_in() override{}
+    //bool aura_application_layer::assert_user_logged_in() override{}
 
-   //::string aura_application_layer::matter_as_string(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2 = nullptr) override{}
+    //::string aura_application_layer::matter_as_string(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2 = nullptr) override{}
 
 
-   //bool aura_application_layer::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument){}
-   //bool aura_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
-   //user bool aura_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
+    //bool aura_application_layer::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument){}
+    //bool aura_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
+    //user bool aura_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
 
 
-   //void aura_application_layer::process_message_filter(::i32 code, ::message::message * pmessage) override{}
+    //void aura_application_layer::process_message_filter(::i32 code, ::message::message * pmessage) override{}
 
 
-   //void aura_application_layer::DoWaitCursor(::i32 nCode) override{} // 0 => restore, 1=> begin, -1=> end
+    //void aura_application_layer::DoWaitCursor(::i32 nCode) override{} // 0 => restore, 1=> begin, -1=> end
 
-   // void aura_application_layer::_001PostTryCloseApplication() override{}
+    // void aura_application_layer::_001PostTryCloseApplication() override{}
 
 
-   //::string aura_application_layer::get_license_id() override{}
+    //::string aura_application_layer::get_license_id() override{}
 
 
-   //void aura_application_layer::process_init() override{}
+    //void aura_application_layer::process_init() override{}
 
 
-   //#ifdef WINDOWS_DESKTOP
-   //      void aura_application_layer::TermThread(HINSTANCE hInstTerm) override{}
-   //#endif
+    //#ifdef WINDOWS_DESKTOP
+    //      void aura_application_layer::TermThread(HINSTANCE hInstTerm) override{}
+    //#endif
 
-   //void aura_application_layer::set_env_var(const string & payload, const string & value) override{}
+    //void aura_application_layer::set_env_var(const string & payload, const string & value) override{}
 
 
-   ::draw2d::printer* aura_application_layer::get_printer(const ::scoped_string & scopedstrDeviceName)
-   {
-      return nullptr;
-   }
+    ::draw2d::printer * aura_application_layer::get_printer(const ::scoped_string & scopedstrDeviceName)
+    {
+        return nullptr;
+    }
 
 
-   ::image::icon* aura_application_layer::set_icon(::object* pobject, ::image::icon* picon, bool bBigIcon)
-   {
-      return nullptr;
-   }
+    ::image::icon * aura_application_layer::set_icon(::object * pobject, ::image::icon * picon, bool bBigIcon)
+    {
+        return nullptr;
+    }
 
 
-    ::image::icon* aura_application_layer:: get_icon(::object* pobject, bool bBigIcon) const
-   {
-      return nullptr;
-   }
+    ::image::icon * aura_application_layer::get_icon(::object * pobject, bool bBigIcon) const
+    {
+        return nullptr;
+    }
 
 
-   //void aura_application_layer::on_service_request(::request * prequest) override{}
+    //void aura_application_layer::on_service_request(::request * prequest) override{}
 
-   //::string aura_application_layer::get_mutex_name_gen() override{}
+    //::string aura_application_layer::get_mutex_name_gen() override{}
 
-   //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow){}
+    //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow){}
 
 
-   //virtual ::i32 hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
-   //virtual ::i32 hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
+    //virtual ::i32 hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
+    //virtual ::i32 hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
 
-   //void aura_application_layer::on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint){}
+    //void aura_application_layer::on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint){}
 
-   //void handle(::topic * ptopic, ::handler_context * phandlercontext) override{}
-   //void aura_application_layer::on_notify_control_event(::user::control_event* phappening){}
-   //void aura_application_layer::route(::topic * ptopic, ::handler_context * phandlercontext){}
+    //void handle(::topic * ptopic, ::handler_context * phandlercontext) override{}
+    //void aura_application_layer::on_notify_control_event(::user::control_event* phappening){}
+    //void aura_application_layer::route(::topic * ptopic, ::handler_context * phandlercontext){}
 
 
-   //user bool aura_application_layer::on_open_document(::user::document * pdocument, ::payload payloadFile){}
-   //user bool aura_application_layer::on_save_document(::user::document * pdocument, ::payload payloadFile){}
+    //user bool aura_application_layer::on_open_document(::user::document * pdocument, ::payload payloadFile){}
+    //user bool aura_application_layer::on_save_document(::user::document * pdocument, ::payload payloadFile){}
 
 
-   //inline ::html::html * html() { return puser->m_phtml{} }
+    //inline ::html::html * html() { return puser->m_phtml{} }
 
-   //virtual ::html::html * create_html(){}
+    //virtual ::html::html * create_html(){}
 
-   //::string aura_application_layer::http_get(const ::scoped_string & scopedstrUrl, ::property_set & set) override{}
+    //::string aura_application_layer::http_get(const ::scoped_string & scopedstrUrl, ::property_set & set) override{}
 
-   //bool aura_application_layer::compress_ungz(const ::stream & os, const ::stream & is) override{}
+    //bool aura_application_layer::compress_ungz(const ::stream & os, const ::stream & is) override{}
 
-   ///bool aura_application_layer::compress_ungz(memory_base & mem) override{}
-   //bool aura_application_layer::compress_gz(const ::stream& os, const ::stream& is, ::i32 iLevel = 6) override{}
+    ///bool aura_application_layer::compress_ungz(memory_base & mem) override{}
+    //bool aura_application_layer::compress_gz(const ::stream& os, const ::stream& is, ::i32 iLevel = 6) override{}
 
-   //bool aura_application_layer::compress_gz(::file::file * pfileOut, ::file::file * pfileIn, ::i32 iLevel = 6) override{}
+    //bool aura_application_layer::compress_gz(::file::file * pfileOut, ::file::file * pfileIn, ::i32 iLevel = 6) override{}
 
 
-   //bool aura_application_layer::is_local_data() override{}
+    //bool aura_application_layer::is_local_data() override{}
 
 
-   //application(){}
-   //~ application() override{}
+    //application(){}
+    //~ application() override{}
 
-   //void aura_application_layer::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema){}
-   //::string aura_application_layer::get_locale_schema_dir(){}
+    //void aura_application_layer::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema){}
+    //::string aura_application_layer::get_locale_schema_dir(){}
 
 
-   //void aura_application_layer::initialize(::particle * pparticle) override{}
+    //void aura_application_layer::initialize(::particle * pparticle) override{}
 
 
-   //::application_menu & applicationmenu(){}
+    //::application_menu & applicationmenu(){}
 
 
-   //virtual ::file::path appconfig_folder() override{}
+    //virtual ::file::path appconfig_folder() override{}
 
 
-   //// void assert_ok() const override{}
-   //// void dump(dump_context & dumpcontext) const override{}
+    //// void assert_ok() const override{}
+    //// void dump(dump_context & dumpcontext) const override{}
 
 
-   //virtual ::file::path get_app_localconfig_folder() override{}
-   //virtual ::handle::ini get_ini() override{}
+    //virtual ::file::path get_app_localconfig_folder() override{}
+    //virtual ::handle::ini get_ini() override{}
 
 
-   //bool aura_application_layer::app_data_set(const ::atom & atom, stream & os) override{}
-   //bool aura_application_layer::app_data_get(const ::atom & atom, stream & is) override{}
+    //bool aura_application_layer::app_data_set(const ::atom & atom, stream & os) override{}
+    //bool aura_application_layer::app_data_get(const ::atom & atom, stream & is) override{}
 
-   //bool aura_application_layer::app_data_set(const ::atom & atom, ::object & obj) override{}
-   //bool aura_application_layer::app_data_get(const ::atom & atom, ::object & obj) override{}
+    //bool aura_application_layer::app_data_set(const ::atom & atom, ::object & obj) override{}
+    //bool aura_application_layer::app_data_get(const ::atom & atom, ::object & obj) override{}
 
-   //void install_message_routing(::channel * pchannel) override{}
+    //void install_message_routing(::channel * pchannel) override{}
 
-   //::string aura_application_layer::dialog_box(const ::scoped_string & scopedstrMatter, ::property_set & propertyset) override{}
+    //::string aura_application_layer::dialog_box(const ::scoped_string & scopedstrMatter, ::property_set & propertyset) override{}
 
-   //void aura_application_layer::application_menu_update() override{}
+    //void aura_application_layer::application_menu_update() override{}
 
 
-   //::string aura_application_layer::calc_data_key(){}
+    //::string aura_application_layer::calc_data_key(){}
 
 
-   //void aura_application_layer::notify_changed(const ::atom & atom, const ::action_context & action_context){}
+    //void aura_application_layer::notify_changed(const ::atom & atom, const ::action_context & action_context){}
 
 
-   //virtual ::file::path local_application_path() override{}
+    //virtual ::file::path local_application_path() override{}
 
-   //virtual ::file::path local_application_home_path() override{}
+    //virtual ::file::path local_application_home_path() override{}
 
 
-   //void aura_application_layer::destroy() override{}
+    //void aura_application_layer::destroy() override{}
 
 
-   //void aura_application_layer::release_parents() override{}
-   //::property_object * parent_property_set_holder() const override{}
+    //void aura_application_layer::release_parents() override{}
+    //::property_object * parent_property_set_holder() const override{}
 
 
-   //bool aura_application_layer::is_set_finish() const override{}
+    //bool aura_application_layer::is_set_finish() const override{}
 
 
-   //void aura_application_layer::on_change_theme() override{}
-   //::string aura_application_layer::get_theme() override{}
+    //void aura_application_layer::on_change_theme() override{}
+    //::string aura_application_layer::get_theme() override{}
 
 
-   //virtual ::pointer<::acme::exclusive>get_exclusive(const ::scoped_string & scopedstr, LPSECURITY_ATTRIBUTES psa) override{}
-   //bool aura_application_layer::exclusive_fails(const ::scoped_string & scopedstr, LPSECURITY_ATTRIBUTES psa) override{}
+    //virtual ::pointer<::acme::exclusive>get_exclusive(const ::scoped_string & scopedstr, LPSECURITY_ATTRIBUTES psa) override{}
+    //bool aura_application_layer::exclusive_fails(const ::scoped_string & scopedstr, LPSECURITY_ATTRIBUTES psa) override{}
 
 
-   //bool aura_application_layer::start_application(bool bSynch, ::request * prequest) override{}
+    //bool aura_application_layer::start_application(bool bSynch, ::request * prequest) override{}
 
 
-   //void aura_application_layer::release_children() override{}
-   //void aura_application_layer::merge_command_line(::create * pcommand){}
+    //void aura_application_layer::release_children() override{}
+    //void aura_application_layer::merge_command_line(::create * pcommand){}
 
-   //   void aura_application_layer::merge(::handler * phandler){}
+    //   void aura_application_layer::merge(::handler * phandler){}
 
-   //void aura_application_layer::record(::create * pcommand){}
+    //void aura_application_layer::record(::create * pcommand){}
 
-   //void aura_application_layer::on_event(::u64 u, ::particle * pparticle) override{}
-   //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool){}
+    //void aura_application_layer::on_event(::u64 u, ::particle * pparticle) override{}
+    //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool){}
 
 
-   //// ca2verses
-   //// os_* functions generally
-   //// reserves a lot of surprises from each
-   //// operating system specific behavior
-   //void aura_application_layer::auto pmessageboxpayload = __initialize_new ::message_box_payload(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+    //// ca2verses
+    //// os_* functions generally
+    //// reserves a lot of surprises from each
+    //// operating system specific behavior
+    //void aura_application_layer::auto pmessageboxpayload = __initialize_new ::message_box_payload(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
-   //pmessagebox->sync(){}
+    //pmessagebox->sync(){}
 
 
-   //void aura_application_layer::ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
-   //void aura_application_layer::ui_message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+    //void aura_application_layer::ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+    //void aura_application_layer::ui_message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
 
-   //using ::aura::context_thread::message_box{}
-   //void aura_application_layer::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
-   //void aura_application_layer::message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+    //using ::aura::context_thread::message_box{}
+    //void aura_application_layer::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+    //void aura_application_layer::message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
 
-   //void aura_application_layer::on_file_new() override{}
+    //void aura_application_layer::on_file_new() override{}
 
 
-   //::string aura_application_layer::get_title() override{}
-   //virtual string_array_base get_categories() override{}
+    //::string aura_application_layer::get_title() override{}
+    //virtual string_array_base get_categories() override{}
 
-   //void aura_application_layer::defer_create_keyboard() override{}
-   //bool aura_application_layer::set_keyboard_layout(const ::scoped_string & scopedstrPath, const ::action_context & action_context){}
+    //void aura_application_layer::defer_create_keyboard() override{}
+    //bool aura_application_layer::set_keyboard_layout(const ::scoped_string & scopedstrPath, const ::action_context & action_context){}
 
 
-   //bool aura_application_layer::enable_application_events(::particle * pparticle, bool bEnable) override{}
+    //bool aura_application_layer::enable_application_events(::particle * pparticle, bool bEnable) override{}
 
-   //bool aura_application_layer::is_equal_file_path(const ::file::path & path1, const ::file::path & path2) override{}
+    //bool aura_application_layer::is_equal_file_path(const ::file::path & path1, const ::file::path & path2) override{}
 
 
-   //bool aura_application_layer::process_exception(const ::exception & e) override{}
+    //bool aura_application_layer::process_exception(const ::exception & e) override{}
 
 
-   //bool aura_application_layer::is_system() const override{}
-   //bool aura_application_layer::is_session() const override{}
-   //bool aura_application_layer::is_serviceable() const{}
-   //bool aura_application_layer::is_user_service() const override{}
+    //bool aura_application_layer::is_system() const override{}
+    //bool aura_application_layer::is_session() const override{}
+    //bool aura_application_layer::is_serviceable() const{}
+    //bool aura_application_layer::is_user_service() const override{}
 
-   //void set_has_installer(bool bSet){}
+    //void set_has_installer(bool bSet){}
 
 
-   //virtual ::file::path defer_process_path(::file::path path){}
-   //virtual ::file::path full_process_path(::file::path path){}
+    //virtual ::file::path defer_process_path(::file::path path){}
+    //virtual ::file::path full_process_path(::file::path path){}
 
-   //void aura_application_layer::DoWaitCursor(::i32 nCode){} // 0 => restore, 1=> begin, -1=> end
-   //void aura_application_layer::show_wait_cursor(bool bShow = true) override{}
+    //void aura_application_layer::DoWaitCursor(::i32 nCode){} // 0 => restore, 1=> begin, -1=> end
+    //void aura_application_layer::show_wait_cursor(bool bShow = true) override{}
 
 
-   //void aura_application_layer::process_message_filter(::i32 code,::message::message * pmessage) override{}
+    //void aura_application_layer::process_message_filter(::i32 code,::message::message * pmessage) override{}
 
-   //void aura_application_layer::on_thread_on_idle(::thread * pthread,::i32 lCount) override{}
+    //void aura_application_layer::on_thread_on_idle(::thread * pthread,::i32 lCount) override{}
 
 
-   //bool aura_application_layer::app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue) override{}
-   //::string aura_application_layer::app_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault = "") override{}
+    //bool aura_application_layer::app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue) override{}
+    //::string aura_application_layer::app_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault = "") override{}
 
 
-   //bool aura_application_layer::Ex2OnAppInstall(){}
-   //bool aura_application_layer::Ex2OnAppUninstall(){}
+    //bool aura_application_layer::Ex2OnAppInstall(){}
+    //bool aura_application_layer::Ex2OnAppUninstall(){}
 
-   //bool on_application_menu_action(const ::atom & atom) override{}
-   //void aura_application_layer::_001CloseApplication(){}
+    //bool on_application_menu_action(const ::atom & atom) override{}
+    //void aura_application_layer::_001CloseApplication(){}
 
-   //::string aura_application_layer::get_license_id(){}
+    //::string aura_application_layer::get_license_id(){}
 
-   //::string aura_application_layer::get_version() override{}
+    //::string aura_application_layer::get_version() override{}
 
-   //      virtual ::pointer<::interprocess::communication>create_interprocess_communication() override{}
+    //      virtual ::pointer<::interprocess::communication>create_interprocess_communication() override{}
 
-   //void aura_application_layer::process_init(){}
-   //void aura_application_layer::process_term() override{}
+    //void aura_application_layer::process_init(){}
+    //void aura_application_layer::process_term() override{}
 
-   //void aura_application_layer::impl_process_init(){}
-   //void aura_application_layer::impl_init1(){}
-   //void aura_application_layer::impl_init2(){}
-   //void aura_application_layer::impl_init3(){}
+    //void aura_application_layer::impl_process_init(){}
+    //void aura_application_layer::impl_init1(){}
+    //void aura_application_layer::impl_init2(){}
+    //void aura_application_layer::impl_init3(){}
 
-   //void aura_application_layer::impl_process_term(){}
-   //void aura_application_layer::impl_term1(){}
-   //void aura_application_layer::impl_term2(){}
-   //void aura_application_layer::impl_term3(){}
+    //void aura_application_layer::impl_process_term(){}
+    //void aura_application_layer::impl_term1(){}
+    //void aura_application_layer::impl_term2(){}
+    //void aura_application_layer::impl_term3(){}
 
-   //void aura_application_layer::init1(){}
-   //void aura_application_layer::init2(){}
-   //void aura_application_layer::init3(){}
+    //void aura_application_layer::init1(){}
+    //void aura_application_layer::init2(){}
+    //void aura_application_layer::init3(){}
 
-   // void aura_application_layer::term1() override{}
-   // void aura_application_layer::term2() override{}
-   // void aura_application_layer::term3() override{}
-   //
-   // //void aura_application_layer::init_thread() override{}
-   // //void aura_application_layer::init_application(){}
-   // //void aura_application_layer::term_application(){}
-   // //void aura_application_layer::term_thread() override{}
-   //
-   // //void aura_application_layer::init_instance() override{}
-   // void aura_application_layer::term_instance() override{}
+    // void aura_application_layer::term1() override{}
+    // void aura_application_layer::term2() override{}
+    // void aura_application_layer::term3() override{}
+    //
+    // //void aura_application_layer::init_thread() override{}
+    // //void aura_application_layer::init_application(){}
+    // //void aura_application_layer::term_application(){}
+    // //void aura_application_layer::term_thread() override{}
+    //
+    // //void aura_application_layer::init_instance() override{}
+    // void aura_application_layer::term_instance() override{}
 
-   //void aura_application_layer::init(){}
-   //void aura_application_layer::term(){}
+    //void aura_application_layer::init(){}
+    //void aura_application_layer::term(){}
 
-   //void aura_application_layer::notify_process_init(){}
-   //void aura_application_layer::notify_init1(){}
-   //void aura_application_layer::notify_init2(){}
-   //void aura_application_layer::notify_init3(){}
+    //void aura_application_layer::notify_process_init(){}
+    //void aura_application_layer::notify_init1(){}
+    //void aura_application_layer::notify_init2(){}
+    //void aura_application_layer::notify_init3(){}
 
-   //void aura_application_layer::notify_term3(){}
-   //void aura_application_layer::notify_term2(){}
-   //void aura_application_layer::notify_term1(){}
-   //void aura_application_layer::notify_process_term(){}
+    //void aura_application_layer::notify_term3(){}
+    //void aura_application_layer::notify_term2(){}
+    //void aura_application_layer::notify_term1(){}
+    //void aura_application_layer::notify_process_term(){}
 
-   // bool aura_application_layer::is_installing(){}
-   // bool aura_application_layer::is_unstalling(){}
+    // bool aura_application_layer::is_installing(){}
+    // bool aura_application_layer::is_unstalling(){}
 
-   //::string aura_application_layer::get_version(){}
-   //void aura_application_layer::    run() override{}
-   //void aura_application_layer::    main() override{}
-   //void aura_application_layer::    on_run(){}
+    //::string aura_application_layer::get_version(){}
+    //void aura_application_layer::    run() override{}
+    //void aura_application_layer::    main() override{}
+    //void aura_application_layer::    on_run(){}
 
-   //void aura_application_layer::on_before_launching() override{}
-   //void aura_application_layer::os_native_bergedge_start(){}
+    //void aura_application_layer::on_before_launching() override{}
+    //void aura_application_layer::os_native_bergedge_start(){}
 
-   //void aura_application_layer::pre_run() override{}
-   //void aura_application_layer::application_pre_run(){}
+    //void aura_application_layer::pre_run() override{}
+    //void aura_application_layer::application_pre_run(){}
 
-   // void aura_application_layer::on_pos_run_thread() override{}
-   // void aura_application_layer::pos_run() override{}
-   // void aura_application_layer::application_pos_run() override{}
+    // void aura_application_layer::on_pos_run_thread() override{}
+    // void aura_application_layer::pos_run() override{}
+    // void aura_application_layer::application_pos_run() override{}
 
-   //bool aura_application_layer::InitApplication(){}
-   //void aura_application_layer::TermApplication() override{}
+    //bool aura_application_layer::InitApplication(){}
+    //void aura_application_layer::TermApplication() override{}
 
-   //bool aura_application_layer::on_install(){}
-   //bool aura_application_layer::on_uninstall(){}
+    //bool aura_application_layer::on_install(){}
+    //bool aura_application_layer::on_uninstall(){}
 
-   //bool aura_application_layer::system_add_app_install(const ::scoped_string & scopedstrId, const ::scoped_string & scopedstrBuild) override{}
+    //bool aura_application_layer::system_add_app_install(const ::scoped_string & scopedstrId, const ::scoped_string & scopedstrBuild) override{}
 
-   //void aura_application_layer::TermThread(HINSTANCE hInstTerm){}
+    //void aura_application_layer::TermThread(HINSTANCE hInstTerm){}
 
-   //void aura_application_layer::SetCurrentHandles(){}
+    //void aura_application_layer::SetCurrentHandles(){}
 
-   //void aura_application_layer::set_env_var(const string & payload,const string & value){}
-   //virtual itask get_thread_id(){}
+    //void aura_application_layer::set_env_var(const string & payload,const string & value){}
+    //virtual itask get_thread_id(){}
 
 
-   //bool aura_application_layer::_001OnDDECommand(const ::scoped_string & scopedstr) override{}
+    //bool aura_application_layer::_001OnDDECommand(const ::scoped_string & scopedstr) override{}
 
-   // void aura_application_layer::_001InitializeShellOpen() override{}
-   // void aura_application_layer::_001OnFileNew(::message::message * pmessage) override{}
+    // void aura_application_layer::_001InitializeShellOpen() override{}
+    // void aura_application_layer::_001OnFileNew(::message::message * pmessage) override{}
 
 
-   //::string aura_application_layer::multimedia_audio_get_default_implementation_name() override{}
-   //::string aura_application_layer::multimedia_audio_mixer_get_default_implementation_name() override{}
-   //::string aura_application_layer::veriwell_multimedia_music_midi_get_default_implementation_name() override{}
+    //::string aura_application_layer::multimedia_audio_get_default_implementation_name() override{}
+    //::string aura_application_layer::multimedia_audio_mixer_get_default_implementation_name() override{}
+    //::string aura_application_layer::veriwell_multimedia_music_midi_get_default_implementation_name() override{}
 
-   //bool aura_application_layer::get_temp_file_name_template(string & str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate) override{}
+    //bool aura_application_layer::get_temp_file_name_template(string & str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate) override{}
 
-   //bool aura_application_layer::get_temp_file_name(string & str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension) override{}
+    //bool aura_application_layer::get_temp_file_name(string & str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension) override{}
 
-   //service_base * get_service(){}
-   //virtual service_base * allocate_new_service() override{}
-   //bool aura_application_layer::init_service() override{}
+    //service_base * get_service(){}
+    //virtual service_base * allocate_new_service() override{}
+    //bool aura_application_layer::init_service() override{}
 
-   //bool aura_application_layer::os_create_service() override{}
-   //bool aura_application_layer::os_erase_service() override{}
+    //bool aura_application_layer::os_create_service() override{}
+    //bool aura_application_layer::os_erase_service() override{}
 
-   //bool aura_application_layer::os_start_service() override{}
-   //bool aura_application_layer::os_stop_service() override{}
+    //bool aura_application_layer::os_start_service() override{}
+    //bool aura_application_layer::os_stop_service() override{}
 
-   //void aura_application_layer::on_service_request(::request * prequest){}
+    //void aura_application_layer::on_service_request(::request * prequest){}
 
-   //bool aura_application_layer::is_running(){}
+    //bool aura_application_layer::is_running(){}
 
-   //::string aura_application_layer::get_mutex_name_gen(){}
+    //::string aura_application_layer::get_mutex_name_gen(){}
 
-   /// return true if this instance might continue execution
-   /// bHandled true if some action was done in response to this ___new additional instance creation
-   //void aura_application_layer::on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId) override{}
+    /// return true if this instance might continue execution
+    /// bHandled true if some action was done in response to this ___new additional instance creation
+    //void aura_application_layer::on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId) override{}
 
-   /// return true if this instance might continue execution
-   /// bHandled true if some action was done in response to this ___new additional instance creation
-   //      bool aura_application_layer::on_exclusive_instance_local_conflict(bool & bHandled) override{}
+    /// return true if this instance might continue execution
+    /// bHandled true if some action was done in response to this ___new additional instance creation
+    //      bool aura_application_layer::on_exclusive_instance_local_conflict(bool & bHandled) override{}
 
-   /// return true if this instance might continue execution
-/// bHandled true if some action was done in response to this ___new additional instance creation
-   //bool aura_application_layer::on_exclusive_instance_local_conflict_id(bool & bHandled, const ::scoped_string & scopedstrId) override{}
+    /// return true if this instance might continue execution
+ /// bHandled true if some action was done in response to this ___new additional instance creation
+    //bool aura_application_layer::on_exclusive_instance_local_conflict_id(bool & bHandled, const ::scoped_string & scopedstrId) override{}
 
-   /// return true if the external additional instance might continue execution
-   /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
-   //void aura_application_layer::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override{}
+    /// return true if the external additional instance might continue execution
+    /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
+    //void aura_application_layer::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override{}
 
-   //void aura_application_layer::on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & idPid) override{}
+    //void aura_application_layer::on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & idPid) override{}
 
-   //::string aura_application_layer::get_local_mutex_id() override{}
-   //::string aura_application_layer::get_global_mutex_id() override{}
+    //::string aura_application_layer::get_local_mutex_id() override{}
+    //::string aura_application_layer::get_global_mutex_id() override{}
 
-   //virtual ::pointer< ::parallelization::mutex > get_local_mutex(){}
-   //virtual ::pointer< ::parallelization::mutex > get_global_mutex(){}
+    //virtual ::pointer< ::parallelization::mutex > get_local_mutex(){}
+    //virtual ::pointer< ::parallelization::mutex > get_global_mutex(){}
 
-   //::string aura_application_layer::get_local_mutex_name() override{}
-   //::string aura_application_layer::get_local_id_mutex_name() override{}
-   //::string aura_application_layer::get_global_mutex_name() override{}
-   //::string aura_application_layer::get_global_id_mutex_name() override{}
+    //::string aura_application_layer::get_local_mutex_name() override{}
+    //::string aura_application_layer::get_local_id_mutex_name() override{}
+    //::string aura_application_layer::get_global_mutex_name() override{}
+    //::string aura_application_layer::get_global_id_mutex_name() override{}
 
-   //bool aura_application_layer::check_exclusive(bool & bHandled) override{}
-   //bool aura_application_layer::release_exclusive() override{}
+    //bool aura_application_layer::check_exclusive(bool & bHandled) override{}
+    //bool aura_application_layer::release_exclusive() override{}
 
-   //void aura_application_layer::on_set_scalar(e_scalar escalar,::i64 iValue,::i32 iFlags) override{}
-   //void aura_application_layer::get_scalar_minimum(e_scalar escalar,::i64 & i) override{}
-   //void aura_application_layer::get_scalar(e_scalar escalar,::i64 & i) override{}
-   //void aura_application_layer::get_scalar_maximum(e_scalar escalar,::i64 & i) override{}
+    //void aura_application_layer::on_set_scalar(e_scalar escalar,::i64 iValue,::i32 iFlags) override{}
+    //void aura_application_layer::get_scalar_minimum(e_scalar escalar,::i64 & i) override{}
+    //void aura_application_layer::get_scalar(e_scalar escalar,::i64 & i) override{}
+    //void aura_application_layer::get_scalar_maximum(e_scalar escalar,::i64 & i) override{}
 
 
-   //bool safe_is_running(){}
+    //bool safe_is_running(){}
 
 
-   //void aura_application_layer::on_request(::request * prequest) override{}
+    //void aura_application_layer::on_request(::request * prequest) override{}
 
-   //// name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
-   //// get/set serializables to user directory
-   //template < typename TYPE >
-   //bool gudo_get(const ::scoped_string & scopedstrKey, TYPE & t){}
+    //// name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
+    //// get/set serializables to user directory
+    //template < typename TYPE >
+    //bool gudo_get(const ::scoped_string & scopedstrKey, TYPE & t){}
 
-   //template < typename TYPE >
-   //bool gudo_set(const ::scoped_string & scopedstrKey, const TYPE & t){}
+    //template < typename TYPE >
+    //bool gudo_set(const ::scoped_string & scopedstrKey, const TYPE & t){}
 
 
-   //bool aura_application_layer::assert_user_logged_in(){}
+    //bool aura_application_layer::assert_user_logged_in(){}
 
-   //void aura_application_layer::    do_request(::request * prequest) override{}
-   //void aura_application_layer::call_request(::request * prequest) override{}
+    //void aura_application_layer::    do_request(::request * prequest) override{}
+    //void aura_application_layer::call_request(::request * prequest) override{}
 
 
-   //void aura_application_layer::process_message(::user::message * base) override{}
+    //void aura_application_layer::process_message(::user::message * base) override{}
 
-   //void aura_application_layer::message_handler(::user::message * pusermessage) override{}
+    //void aura_application_layer::message_handler(::user::message * pusermessage) override{}
 
 
-   //::string aura_application_layer::http_get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
+    //::string aura_application_layer::http_get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
 
-   //void aura_application_layer::on_update_matter_locator() override{}
+    //void aura_application_layer::on_update_matter_locator() override{}
 
-   //void aura_application_layer::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
-   //void aura_application_layer::matter_locator_locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
+    //void aura_application_layer::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
+    //void aura_application_layer::matter_locator_locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
 
-   //::string aura_application_layer::get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
-   //::string aura_application_layer::get_locale_schema_dir(const ::scoped_string & scopedstrLocale) override{}
-   //::string aura_application_layer::get_locale_schema_dir() override{}
+    //::string aura_application_layer::get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
+    //::string aura_application_layer::get_locale_schema_dir(const ::scoped_string & scopedstrLocale) override{}
+    //::string aura_application_layer::get_locale_schema_dir() override{}
 
-   //void aura_application_layer::set_locale(const ::scoped_string & scopedstr, const ::action_context & action_context) override{}
+    //void aura_application_layer::set_locale(const ::scoped_string & scopedstr, const ::action_context & action_context) override{}
 
-   //void aura_application_layer::set_schema(const ::scoped_string & scopedstr, const ::action_context & action_context) override{}
+    //void aura_application_layer::set_schema(const ::scoped_string & scopedstr, const ::action_context & action_context) override{}
 
-   //void aura_application_layer::on_set_locale(const ::scoped_string & scopedstr, const ::action_context & action_context) override{}
+    //void aura_application_layer::on_set_locale(const ::scoped_string & scopedstr, const ::action_context & action_context) override{}
 
-   //void aura_application_layer::on_set_schema(const ::scoped_string & scopedstr, const ::action_context & action_context) override{}
+    //void aura_application_layer::on_set_schema(const ::scoped_string & scopedstr, const ::action_context & action_context) override{}
 
 
-   //void aura_application_layer::fill_locale_schema(::text::international::locale_schema & localeschema) override{}
-   //void aura_application_layer::fill_locale_schema(::text::international::locale_schema & localeschema,const ::scoped_string & scopedstrLocale,const ::scoped_string & scopedstrSchema) override{}
+    //void aura_application_layer::fill_locale_schema(::text::international::locale_schema & localeschema) override{}
+    //void aura_application_layer::fill_locale_schema(::text::international::locale_schema & localeschema,const ::scoped_string & scopedstrLocale,const ::scoped_string & scopedstrSchema) override{}
 
-   //bool aura_application_layer::platform_open_by_file_extension(::collection::index iEdge, const ::scoped_string & scopedstrPathName, ::request * prequest = nullptr) override{}
-   //bool aura_application_layer::platform_open_by_file_extension(::collection::index iEdge,::create * pcc) override{}
+    //bool aura_application_layer::platform_open_by_file_extension(::collection::index iEdge, const ::scoped_string & scopedstrPathName, ::request * prequest = nullptr) override{}
+    //bool aura_application_layer::platform_open_by_file_extension(::collection::index iEdge,::create * pcc) override{}
 
 
-   //bool aura_application_layer::on_start_application() override{}
+    //bool aura_application_layer::on_start_application() override{}
 
-   //bool aura_application_layer::os_on_start_application() override{}
+    //bool aura_application_layer::os_on_start_application() override{}
 
-   //bool aura_application_layer::is_application() const override{}
+    //bool aura_application_layer::is_application() const override{}
 
 
-   //DECLARE_MESSAGE_HANDLER(on_message_app_exit){}
-   //bool aura_application_layer::_001OnAgreeExit() override{}
-   //void aura_application_layer::france_exit() override{}
-   //void aura_application_layer::_001FranceExit() override{}
+    //DECLARE_MESSAGE_HANDLER(on_message_app_exit){}
+    //bool aura_application_layer::_001OnAgreeExit() override{}
+    //void aura_application_layer::france_exit() override{}
+    //void aura_application_layer::_001FranceExit() override{}
 
 
-   //::string aura_application_layer::lstr(const ::atom & atom, const ::scoped_string & scopedstrDefault = "") override{}
+    //::string aura_application_layer::lstr(const ::atom & atom, const ::scoped_string & scopedstrDefault = "") override{}
 
 
-   //bool aura_application_layer::do_install(){}
-   //bool aura_application_layer::do_uninstall(){}
+    //bool aura_application_layer::do_install(){}
+    //bool aura_application_layer::do_uninstall(){}
 
 
-   //void request(::create * pcommand) override{}
-   //void on_create(::request * prequest) override{}
+    //void request(::create * pcommand) override{}
+    //void on_create(::request * prequest) override{}
 
-   //      void aura_application_layer::dispatch_user_message(::user::message * pusermessage){}
+    //      void aura_application_layer::dispatch_user_message(::user::message * pusermessage){}
 
-   //void aura_application_layer::throw_not_installed(){}
+    //void aura_application_layer::throw_not_installed(){}
 
-   //void aura_application_layer::play_audio(::payload payloadFile, bool bSynch){}
+    //void aura_application_layer::play_audio(::payload payloadFile, bool bSynch){}
 
-   //void aura_application_layer::post_critical_error_message(const ::scoped_string & scopedstrMessage, bool bShowLog = true) override{}
+    //void aura_application_layer::post_critical_error_message(const ::scoped_string & scopedstrMessage, bool bShowLog = true) override{}
 
-   //void aura_application_layer::show_critical_error_log() override{}
+    //void aura_application_layer::show_critical_error_log() override{}
 
-   //::string aura_application_layer::get_app_user_friendly_task_bar_name() override{}
+    //::string aura_application_layer::get_app_user_friendly_task_bar_name() override{}
 
-   //void handle(::topic * ptopic, ::handler_context * phandlercontext) override{}
+    //void handle(::topic * ptopic, ::handler_context * phandlercontext) override{}
 
-   //bool aura_application_layer::compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed){}
+    //bool aura_application_layer::compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed){}
 
-   //bool aura_application_layer::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, ::i32 iLevel = 6){}
+    //bool aura_application_layer::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, ::i32 iLevel = 6){}
 
-   //void aura_application_layer::interactive_credentials(::account::credentials * pcredentials) override{}
+    //void aura_application_layer::interactive_credentials(::account::credentials * pcredentials) override{}
 
-   //virtual ::file::path get_executable_path() override{}
-   //::string aura_application_layer::get_executable_extension() override{}
-   //::string aura_application_layer::get_executable_title() override{}
-   //::string aura_application_layer::get_executable_appid() override{}
+    //virtual ::file::path get_executable_path() override{}
+    //::string aura_application_layer::get_executable_extension() override{}
+    //::string aura_application_layer::get_executable_title() override{}
+    //::string aura_application_layer::get_executable_appid() override{}
 
 
-   //bool aura_application_layer::on_open_document_file(::payload payloadFile) override{}
+    //bool aura_application_layer::on_open_document_file(::payload payloadFile) override{}
 
-   //::string aura_application_layer::get_app_id(string wstr) override{}
+    //::string aura_application_layer::get_app_id(string wstr) override{}
 
 
-   //void aura_application_layer::install_trace(const ::scoped_string & scopedstr) override{}
-   //void aura_application_layer::install_trace(::f64 dRate) override{}
-   //bool aura_application_layer::register_spa_file_type() override{}
+    //void aura_application_layer::install_trace(const ::scoped_string & scopedstr) override{}
+    //void aura_application_layer::install_trace(::f64 dRate) override{}
+    //bool aura_application_layer::register_spa_file_type() override{}
 
-   //bool aura_application_layer::low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override{}
-   //void aura_application_layer::defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override{}
-   //void aura_application_layer::start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override{}
+    //bool aura_application_layer::low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override{}
+    //void aura_application_layer::defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override{}
+    //void aura_application_layer::start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override{}
 
 
-   // bool aura_application_layer::keyboard_focus_is_focusable(const ::user::interaction_base * pue) override{}
-   // bool aura_application_layer::keyboard_focus_OnSetFocus(::user::interaction_base * pue) override{}
+    // bool aura_application_layer::keyboard_focus_is_focusable(const ::user::interaction_base * pue) override{}
+    // bool aura_application_layer::keyboard_focus_OnSetFocus(::user::interaction_base * pue) override{}
 
-   ::user::interaction*  aura_application_layer::main_window()
-   {
-      return nullptr;
-   }
+    ::user::interaction * aura_application_layer::main_window()
+    {
+        return nullptr;
+    }
 
 
-   bool aura_application_layer::is_sandboxed()
-   {
-      return false;
-   }
+    bool aura_application_layer::is_sandboxed()
+    {
+        
+        return false;
 
+    }
 
-   ///virtual ::pointer<::user::message>get_user_message(MESSAGE * pmsg){}
 
-   bool aura_application_layer::get_frame(::pointer<::user::interaction>& pinteraction)
-   {
-      return false;
-   }
+    ///virtual ::pointer<::user::message>get_user_message(MESSAGE * pmsg){}
 
+    bool aura_application_layer::get_frame(::pointer<::user::interaction> & pinteraction)
+    {
+        
+        return false;
 
-   void aura_application_layer::add_user_interaction(::user::interaction* puserinteraction)
-   {
-      
-   }
+    }
 
 
-   void aura_application_layer::erase_user_interaction(::user::interaction* puserinteraction)
-   {
-   }
+    void aura_application_layer::add_user_interaction(::user::interaction * puserinteraction)
+    {
 
+    }
 
-   // bool aura_application_layer::send_message_to_windows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override{} // with tbs in <3
-   //
-   // bool aura_application_layer::route_message_to_windows(::message::message * pmessage) override{} // with tbs in <3
 
+    void aura_application_layer::erase_user_interaction(::user::interaction * puserinteraction)
+    {
+    }
 
-   //void aura_application_layer::send_language_change_message() override{}
 
+    // bool aura_application_layer::send_message_to_windows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override{} // with tbs in <3
+    //
+    // bool aura_application_layer::route_message_to_windows(::message::message * pmessage) override{} // with tbs in <3
 
-   //
-   // ::string aura_application_layer::preferred_experience() override{}
-   //
-   //
-   // // user virtual ::user::document * place_hold(::user::interaction * pinteraction){}
-   //
-   //
-   // void aura_application_layer::post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override{}
-   //
-   //
-   //virtual ::image::icon * set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon){}
 
-   //virtual ::image::icon * get_icon(object * pparticle, bool bBigIcon) const{}
+    //void aura_application_layer::send_language_change_message() override{}
 
-   //void aura_application_layer::handle(::topic * ptopic, ::handler_context * phandlercontext){}
 
+    //
+    // ::string aura_application_layer::preferred_experience() override{}
+    //
+    //
+    // // user virtual ::user::document * place_hold(::user::interaction * pinteraction){}
+    //
+    //
+    // void aura_application_layer::post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override{}
+    //
+    //
+    //virtual ::image::icon * set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon){}
 
-   //      virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch, bool bInteractive = true){}
-   //
-   ////      virtual ::account::user * interactive_get_user(::file::path pathUrl = nullptr){}
-   //
-   //      virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr){}
+    //virtual ::image::icon * get_icon(object * pparticle, bool bBigIcon) const{}
 
-   void aura_application_layer::on_initial_frame_position(::user::frame_interaction* pframe)
-   {
-   }
+    //void aura_application_layer::handle(::topic * ptopic, ::handler_context * phandlercontext){}
 
 
-   void aura_application_layer::on_graphics_ready()
-   {
-   }
+    //      virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch, bool bInteractive = true){}
+    //
+    ////      virtual ::account::user * interactive_get_user(::file::path pathUrl = nullptr){}
+    //
+    //      virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr){}
 
+    void aura_application_layer::on_initial_frame_position(::user::frame_interaction * pframe)
+    {
+    }
 
-   //virtual ::platform::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype){}
-   ::platform::type aura_application_layer::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
-   {
-      return {};
-   }
 
+    void aura_application_layer::on_graphics_ready()
+    {
+    }
 
-   //virtual ::atom translate_property_id(const ::atom & atom) override{}
-   //virtual property fetch_property(const ::atom & atom) override{}
 
-   //void aura_application_layer::get_time(struct timeval *i32_point) override{}
-   //
-   // void aura_application_layer::close(::enum_exit eexit) override{}
+    //virtual ::platform::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype){}
+    ::platform::type aura_application_layer::control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype)
+    {
+        return {};
+    }
 
 
-   //user virtual ::pointer<::user::document>defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr){}
+    //virtual ::atom translate_property_id(const ::atom & atom) override{}
+    //virtual property fetch_property(const ::atom & atom) override{}
 
-   //
-   // void aura_application_layer::HideApplication() override{}
-   //
+    //void aura_application_layer::get_time(struct timeval *i32_point) override{}
+    //
+    // void aura_application_layer::close(::enum_exit eexit) override{}
 
-   //void aura_application_layer::initialize(::particle * pparticle) override{}
 
-   //void aura_application_layer::process_init() override{}
+    //user virtual ::pointer<::user::document>defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr){}
 
-   //void aura_application_layer::init1() override{} // first initialization
-   //void aura_application_layer::init2() override{} // second initialization
-   //void aura_application_layer::init3() override{} // third initialization and so on...
+    //
+    // void aura_application_layer::HideApplication() override{}
+    //
 
-   //void aura_application_layer::init() override{} // last initialization
+    //void aura_application_layer::initialize(::particle * pparticle) override{}
 
-   //void aura_application_layer::bergedge_start(){}
-   //void aura_application_layer::os_native_bergedge_start() override{}
+    //void aura_application_layer::process_init() override{}
 
-   //void aura_application_layer::term_application() override{}
+    //void aura_application_layer::init1() override{} // first initialization
+    //void aura_application_layer::init2() override{} // second initialization
+    //void aura_application_layer::init3() override{} // third initialization and so on...
 
-   //void aura_application_layer::term() override{}
+    //void aura_application_layer::init() override{} // last initialization
 
-   //void aura_application_layer::    main() override{}
+    //void aura_application_layer::bergedge_start(){}
+    //void aura_application_layer::os_native_bergedge_start() override{}
 
-   //virtual ::aura::application * get_app() const override{}
+    //void aura_application_layer::term_application() override{}
 
-   //bool aura_application_layer::is_system() const override{}
-   //bool aura_application_layer::is_session() const override{}
+    //void aura_application_layer::term() override{}
 
-   //virtual ::u32 guess_code_page(const ::scoped_string & scopedstr) override{}
+    //void aura_application_layer::    main() override{}
 
-   //virtual ::i32 _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 fuStyle) override{}
+    //virtual ::aura::application * get_app() const override{}
 
-   //bool aura_application_layer::is_serviceable() const override{}
-   //
-   //
-   // void aura_application_layer::pre_translate_message(::message::message* pmessage) override{}
-   //
+    //bool aura_application_layer::is_system() const override{}
+    //bool aura_application_layer::is_session() const override{}
 
-   //void aura_application_layer::EnableShellOpen() override{}
+    //virtual ::u32 guess_code_page(const ::scoped_string & scopedstr) override{}
 
+    //virtual ::i32 _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 fuStyle) override{}
 
-   //bool aura_application_layer::base_support() override{}
+    //bool aura_application_layer::is_serviceable() const override{}
+    //
+    //
+    // void aura_application_layer::pre_translate_message(::message::message* pmessage) override{}
+    //
 
-   //bool aura_application_layer::on_run_install() override{}
-   //bool aura_application_layer::on_run_uninstall() override{}
+    //void aura_application_layer::EnableShellOpen() override{}
 
-   //DECLARE_MESSAGE_HANDLER(on_application_signal){}
-   //DECLARE_MESSAGE_HANDLER(_001OnSwitchContextTheme){}
 
+    //bool aura_application_layer::base_support() override{}
 
-   //bool aura_application_layer::on_idle(::i32 lCount) override{} // return true if more idle processing
-   //void aura_application_layer::process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override{}
+    //bool aura_application_layer::on_run_install() override{}
+    //bool aura_application_layer::on_run_uninstall() override{}
 
-   //      void EnableModelessEx(bool bEnable){}
-   //      bool GetResourceData(::u32 nID, const ::scoped_string & scopedstrType, memory& storage){}
+    //DECLARE_MESSAGE_HANDLER(on_application_signal){}
+    //DECLARE_MESSAGE_HANDLER(_001OnSwitchContextTheme){}
 
-   //#ifdef WINDOWS
-   //      bool aura_application_layer::OnMessageWindowMessage(MESSAGE * pmsg){}
-   //
-   //#elif defined(LINUX)
-   //      bool aura_application_layer::OnX11WindowMessage(void* pev){}
-   //#endif
 
-   bool  aura_application_layer::CreateFileFromRawResource(::u32 nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath)
-   {
-      return false;
-   }
+    //bool aura_application_layer::on_idle(::i32 lCount) override{} // return true if more idle processing
+    //void aura_application_layer::process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override{}
 
+    //      void EnableModelessEx(bool bEnable){}
+    //      bool GetResourceData(::u32 nID, const ::scoped_string & scopedstrType, memory& storage){}
 
-   void aura_application_layer:: OnUpdateRecentFileMenu(::message::command* pcommand)
-   {
-   }
+    //#ifdef WINDOWS
+    //      bool aura_application_layer::OnMessageWindowMessage(MESSAGE * pmsg){}
+    //
+    //#elif defined(LINUX)
+    //      bool aura_application_layer::OnX11WindowMessage(void* pev){}
+    //#endif
 
+    bool  aura_application_layer::CreateFileFromRawResource(::u32 nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath)
+    {
+        return false;
+    }
 
-   // void aura_application_layer::route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override{}
-   //
-   // //void aura_application_layer::EnableHtmlHelp(){}
 
-   // set regsitry key name to be used by application's
-   // profile member functions{} prevents writing to an INI spfile->
-   void aura_application_layer::SetRegistryKey(const ::scoped_string & scopedstrRegistryKey)
-   {
-   }
+    void aura_application_layer::OnUpdateRecentFileMenu(::message::command * pcommand)
+    {
+    }
 
 
-   void aura_application_layer::SetRegistryKey(::u32 nIDRegistryKey)
-   {
-   }
+    // void aura_application_layer::route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override{}
+    //
+    // //void aura_application_layer::EnableHtmlHelp(){}
 
+    // set regsitry key name to be used by application's
+    // profile member functions{} prevents writing to an INI spfile->
+    void aura_application_layer::SetRegistryKey(const ::scoped_string & scopedstrRegistryKey)
+    {
+    }
 
-   void aura_application_layer::RegisterShellFileTypes(bool bCompat)
-   {
-   }
 
+    void aura_application_layer::SetRegistryKey(::u32 nIDRegistryKey)
+    {
+    }
 
-   // call after all doc templates are registered
-   void  aura_application_layer::UnregisterShellFileTypes()
-   {
-   }
 
+    void aura_application_layer::RegisterShellFileTypes(bool bCompat)
+    {
+    }
 
-   // run this cast as an embedded object.
-   // bool aura_application_layer::RunEmbedded(){}
 
-   // run this cast as an OLE automation server.
-   //bool aura_application_layer::RunAutomated(){}
+    // call after all doc templates are registered
+    void  aura_application_layer::UnregisterShellFileTypes()
+    {
+    }
 
-   // exiting
-   // bool save_all_modified() override{} // save before exit
 
-   void aura_application_layer::_001OnFileNew()
-   {
-   }
+    // run this cast as an embedded object.
+    // bool aura_application_layer::RunEmbedded(){}
 
+    // run this cast as an OLE automation server.
+    //bool aura_application_layer::RunAutomated(){}
 
-   void aura_application_layer::on_file_open()
-   {
-   }
+    // exiting
+    // bool save_all_modified() override{} // save before exit
 
+    void aura_application_layer::_001OnFileNew()
+    {
+    }
 
-   // Finds number of opened document items owned by templates
-   // registered with the doc manager.
-   //virtual ::collection::count get_open_document_count(){}
 
-   //static const ::i8 gen_FileSection[]{}
-   //static const ::i8 gen_FileEntry[]{}
-   //static const ::i8 gen_ThumbnailSection[]{}
-   //static const ::i8 gen_ThumbnailEntry[]{}
+    void aura_application_layer::on_file_open()
+    {
+    }
 
 
-   //
-   //
-   // bool aura_application_layer::does_launch_window_on_startup() override{}
-   // bool aura_application_layer::activate_app() override{}
-   //
-   //
+    // Finds number of opened document items owned by templates
+    // registered with the doc manager.
+    //virtual ::collection::count get_open_document_count(){}
 
+    //static const ::i8 gen_FileSection[]{}
+    //static const ::i8 gen_FileEntry[]{}
+    //static const ::i8 gen_ThumbnailSection[]{}
+    //static const ::i8 gen_ThumbnailEntry[]{}
 
-   ::user::interaction* aura_application_layer::get_request_parent_ui(::user::interaction* pinteraction, ::user::system* pusersystem)
-   {
-      return nullptr;
-   }
 
+    //
+    //
+    // bool aura_application_layer::does_launch_window_on_startup() override{}
+    // bool aura_application_layer::activate_app() override{}
+    //
+    //
 
-   ::aura::theme*  aura_application_layer::theme()
-   {
-      return nullptr;
-   }
 
+    ::user::interaction * aura_application_layer::get_request_parent_ui(::user::interaction * pinteraction, ::user::system * pusersystem)
+    {
+        return nullptr;
+    }
 
-   // void aura_application_layer::initialize_contextualized_theme() override{}
-   //
 
+    ::aura::theme * aura_application_layer::theme()
+    {
+        return nullptr;
+    }
 
-    ::i32 aura_application_layer::track_popup_menu(::menu::track_popup* ptrackpopup)
-   {
-      return 0;
-   }
 
+    // void aura_application_layer::initialize_contextualized_theme() override{}
+    //
 
-   // bool aura_application_layer::get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending) override{}
-   // bool aura_application_layer::get_fs_size(::i64& i64Size, const ::scoped_string & scopedstrPath, bool& bPending) override{}
-   //
-   // void aura_application_layer::set_title(const ::scoped_string & scopedstrTitle) override{}
 
+    ::i32 aura_application_layer::track_popup_menu(::menu::track_popup * ptrackpopup)
+    {
+        return 0;
+    }
 
-   bool aura_application_layer::_001CloseApplicationByUser(::pointer<::user::interaction> puserinteractionExcept)
-   {
-      return false;
-   }
 
+    // bool aura_application_layer::get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending) override{}
+    // bool aura_application_layer::get_fs_size(::i64& i64Size, const ::scoped_string & scopedstrPath, bool& bPending) override{}
+    //
+    // void aura_application_layer::set_title(const ::scoped_string & scopedstrTitle) override{}
 
-   void aura_application_layer:: update_app_interest()
-   {
-   }
 
+    bool aura_application_layer::_001CloseApplicationByUser(::pointer<::user::interaction> puserinteractionExcept)
+    {
+        return false;
+    }
 
-   void  aura_application_layer::ensure_app_interest()
-   {
-   }
 
+    void aura_application_layer::update_app_interest()
+    {
+    }
 
-   // bool aura_application_layer::is_system() const override{}
-   // bool aura_application_layer::is_session() const override{}
-   //
 
-   //      virtual ::pointer<::apex::application>create_platform(::apex::session* psession) override{}
+    void  aura_application_layer::ensure_app_interest()
+    {
+    }
 
-   //void data_on_after_change(::database::client* pclient, const ::scoped_string & scopedstr, ::topic * ptopic) override{}
 
+    // bool aura_application_layer::is_system() const override{}
+    // bool aura_application_layer::is_session() const override{}
+    //
 
-   ::i32  aura_application_layer::GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction> puserinteractionExcept)
-   {
-      return 0;
-   }
+    //      virtual ::pointer<::apex::application>create_platform(::apex::session* psession) override{}
+
+    //void data_on_after_change(::database::client* pclient, const ::scoped_string & scopedstr, ::topic * ptopic) override{}
+
+
+    ::i32  aura_application_layer::GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction> puserinteractionExcept)
+    {
+        return 0;
+    }
 
 
     ::i32  aura_application_layer::GetVisibleFrameCount()
-   {
-      return 0;
-   }
+    {
+        return 0;
+    }
 
 
-   void aura_application_layer::prepare_form(atom atom, ::form_document* pformdocument)
-   {
-   }
+    void aura_application_layer::prepare_form(atom atom, ::form_document * pformdocument)
+    {
+    }
 
 
-   // void report_error(const ::exception & exception, ::i32 iMessageFlags, const ::scoped_string & scopedstrTopic) override{}
-   //
-   //
-   // bool can_close_application() override{}
+    // void report_error(const ::exception & exception, ::i32 iMessageFlags, const ::scoped_string & scopedstrTopic) override{}
+    //
+    //
+    // bool can_close_application() override{}
 
 
-   bool aura_application_layer::on_close_frame_window(::user::frame_interaction* pframe)
-   {
-      return false;
-   }
+    bool aura_application_layer::on_close_frame_window(::user::frame_interaction * pframe)
+    {
+
+        return false;
+
+    }
 
 
-   //void create_impact_system() override{}
+    //void create_impact_system() override{}
 
-    ::user::interaction*  aura_application_layer::create_menu_interaction()
-   {
+    ::user::interaction * aura_application_layer::create_menu_interaction()
+    {
 
-      return nullptr;
-   }
+        return nullptr;
 
-
-   // void on_song_added(const ::scoped_string & scopedstr) override{}
-   //
-   //
-   // ::string aura_application_layer::get_visual_studio_build() override{}
-   //
-   //
-   // string sound_path(const ::scoped_string & scopedstr) override{}
-   // string get_default_playlist_path() override{}
+    }
 
 
-   //#if defined(FREEBSD) || defined(OPENBSD)
-   //
-   //      bool os_on_start_application() override{}
-   //
-   //#endif
-
-   ::string aura_application_layer::draw2d_get_default_implementation_name()
-   {
-      return {};
-   }
-
-   ::string aura_application_layer::typeface_get_default_implementation_name()
-   {
-      return {};
-   }
-
-   ::string aura_application_layer::imaging_get_default_implementation_name()
-   {
-      return {};
-   }
-
-   //void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override{}
+    // void on_song_added(const ::scoped_string & scopedstr) override{}
+    //
+    //
+    // ::string aura_application_layer::get_visual_studio_build() override{}
+    //
+    //
+    // string sound_path(const ::scoped_string & scopedstr) override{}
+    // string get_default_playlist_path() override{}
 
 
-   //virtual ::user::user * user(){}
-   // ::axis::user * axisuser() override{}
-   // ::berg::user * user() override{}
-   // ::bred::user * breduser() override{}
-   // ::core::user * coreuser() override{}
+    //#if defined(FREEBSD) || defined(OPENBSD)
+    //
+    //      bool os_on_start_application() override{}
+    //
+    //#endif
 
-   // void pick_browse(const ::function < void(const ::file::path & path) > & callback) override{}
-   //
-   // void pick_media(const_char_pointer pszMediaType) override{}
-   //
-   // void on_prompt_write_file(::user::controller * pusercontroller) override{}
 
-   //::pointer < ::innate_ui::icon > innate_ui_icon(const ::i32_size & size) override{}
+    ::string aura_application_layer::_draw2d_get_implementation_name()
+    {
+        return {};
+    }
+
+
+    ::string aura_application_layer::_typeface_get_implementation_name()
+    {
+        return {};
+    }
+
+
+    ::string aura_application_layer::_imaging_get_implementation_name()
+    {
+        return {};
+    }
+
+
+    ::string aura_application_layer::_gpu_get_implementation_name()
+    {
+        return {};
+    }
+
+
+    ::string aura_application_layer::draw2d_get_implementation_name()
+    {
+        return _draw2d_get_implementation_name();
+    }
+
+
+    ::string aura_application_layer::typeface_get_implementation_name()
+    {
+        return _typeface_get_implementation_name();
+    }
+
+
+    ::string aura_application_layer::imaging_get_implementation_name()
+    {
+        return _imaging_get_implementation_name();
+    }
+
+
+    ::string aura_application_layer::gpu_get_implementation_name()
+    {
+        return _gpu_get_implementation_name();
+    }
+
+
+    bool aura_application_layer::use_gpu_swap_chain()
+    {
+        return false;
+    }
+
+
+    ::string aura_application_layer::get_graphics3d_output()
+    {
+        return {};
+    }
+
+    //void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override{}
+
+
+    //virtual ::user::user * user(){}
+    // ::axis::user * axisuser() override{}
+    // ::berg::user * user() override{}
+    // ::bred::user * breduser() override{}
+    // ::core::user * coreuser() override{}
+
+    // void pick_browse(const ::function < void(const ::file::path & path) > & callback) override{}
+    //
+    // void pick_media(const_char_pointer pszMediaType) override{}
+    //
+    // void on_prompt_write_file(::user::controller * pusercontroller) override{}
+
+    //::pointer < ::innate_ui::icon > innate_ui_icon(const ::i32_size & size) override{}
 
 
 }

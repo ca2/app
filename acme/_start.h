@@ -34,7 +34,7 @@
 
 
 #include "__standard_type.h"
-#include "acme/include/_operating_system.h"
+//#include "acme/include/_operating_system.h"
 #include "acme/constant/memory_heap.h"
 #include "operating_system/system.h"
 //#ifdef	_STDIO_H_

@@ -1033,9 +1033,22 @@ namespace platform
 //
 //#endif
 
-      virtual string draw2d_get_default_implementation_name();
-      virtual string typeface_get_default_implementation_name();
-      virtual string imaging_get_default_implementation_name();
+
+      virtual string _draw2d_get_implementation_name();
+      virtual string _typeface_get_implementation_name();
+      virtual string _imaging_get_implementation_name();
+      virtual string _gpu_get_implementation_name();
+
+      virtual string draw2d_get_implementation_name();
+      virtual string typeface_get_implementation_name();
+      virtual string imaging_get_implementation_name();
+      virtual string gpu_get_implementation_name();
+      
+
+      virtual bool use_gpu_swap_chain();
+
+      
+      virtual string get_graphics3d_output();
 
 
       //void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override;

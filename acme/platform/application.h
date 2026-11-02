@@ -116,8 +116,8 @@ namespace platform
       struct gpu_t
       {
          
-         bool                                         m_bUseSwapChainWindow;
-         bool                                         m_bMultisample;
+         ::logic::boolean                             m_bUseSwapChainWindow2;
+         ::logic::boolean                             m_bMultisample2;
          int                                          m_iSampleCount;
          ::gpu::enum_output                           m_eoutputDraw2d;
          ::gpu::enum_output                           m_eoutputEngine;

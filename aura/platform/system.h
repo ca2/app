@@ -388,18 +388,18 @@ namespace aura
 
       //virtual void process_init();
 
-      virtual void initialize_draw2d() override;
-         virtual void initialize_imaging();
+      void initialize_draw2d() override;
       //virtual void initialize_write_text();
-      virtual ::factory::factory * draw2d_factory() override;
-      virtual ::string draw2d_get_default_implementation_name() override;
+      ::factory::factory * draw2d_factory() override;
+      //::string draw2d_get_implementation_name() override;
 
-      virtual ::factory::factory * imaging_factory() override;
-      virtual ::string imaging_get_default_implementation_name() override;
+      void initialize_imaging() override;
+      ::factory::factory * imaging_factory() override;
+      //::string imaging_get_implementation_name() override;
 
-      virtual void initialize_typeface() override;
-      virtual ::factory::factory* typeface_factory() override;
-      virtual ::string typeface_get_default_implementation_name() override;
+      void initialize_typeface() override;
+      ::factory::factory* typeface_factory() override;
+      //::string typeface_get_implementation_name() override;
 
       //virtual void init_task() override;
       //virtual void term_task() override;

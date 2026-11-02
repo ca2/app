@@ -30043,9 +30043,9 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
 
          auto puseritem = user_item(pitem);
 
-         if (!(puseritem->m_ezorder & ezorder || 
-            (puseritem->m_ezorder == ::user::e_zorder_none
-               && ezorder == ::user::e_zorder_none)))
+         if (!(puseritem->m_ezorder & ezorder) && 
+            !(puseritem->m_ezorder == ::user::e_zorder_none
+               && ezorder == ::user::e_zorder_none))
          {
             
             continue;

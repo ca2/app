@@ -27,11 +27,11 @@ namespace user
    public:
 
 
-      string                                 m_strCurrentShaderPath;
+      string                                                         m_strCurrentShaderPath;
       // map_base : shader path - render
-      string_map_base < ::pointer<::user::gpu_render > >      m_mapusergpurender;
-      bool                                   m_bSaveFrame = false;
-
+      string_map_base < ::pointer<::user::gpu_shader_render > >      m_mapusergpushaderrender;
+      bool                                                           m_bSaveFrame = false;
+      ::pointer < ::user::gpu_shader_list >                          m_pusergpushaderlist;  
 
       //memory m_memory;
       //::i32 m_i32;
@@ -65,8 +65,12 @@ namespace user
       ~gpu_shader_host() override;
 
 
+#ifdef _DEBUG
+
       ::i64 increment_reference_count() override;
       ::i64 decrement_reference_count() override;
+
+#endif
 
 
       //      // void assert_ok() const override;
@@ -90,6 +94,8 @@ namespace user
       //void _001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       //void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
+
+      virtual ::user::gpu_shader_list * user_gpu_shader_list();
 
       //void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
@@ -116,7 +122,7 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
 
-      void operator()(::timer * ptimer) override;
+      //void operator()(::timer * ptimer) override;
 
       //void reset_mouse_last_position();
 
@@ -136,7 +142,7 @@ namespace user
             //virtual void initWindow();
 
 
-      virtual void defer_initialize_gpu_shader_host(const ::i32_rectangle & rectangle);
+      //virtual void defer_initialize_user_gpu_shader_host(const ::i32_rectangle & rectangle);
 
       //virtual ::pointer < ::prodevian::immersion > create_immersion();
 
@@ -181,7 +187,7 @@ namespace user
 
       //virtual void update_shader(const ::scoped_string & scopedstrShaderPath);
 
-      virtual ::user::gpu_render * get_current_render();
+      virtual ::user::gpu_shader_render * get_current_render();
 
       bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 

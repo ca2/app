@@ -18,6 +18,7 @@
 ////#include "acme/exception/exception.h"
 #include "../user/interface/message_box.h"
 #include "acme/_operating_system.h"
+#include "acme/operating_system/operating_system.h"
 #include "acme/parallelization/task.h"
 //
 //
@@ -172,7 +173,7 @@ namespace platform
    bool platform::is_desktop_system() const
    {
 
-      return IS_DESKTOP_SYSTEM();
+      return ::operating_system::is_desktop_system();
 
    }
 
@@ -180,15 +181,7 @@ namespace platform
    bool platform::is_sandboxed() const
    {
 
-#if defined(APPLE_IOS)
-      return true;
-#elif defined(__ANDROID__)
-      return true;
-#elif defined(UNIVERSAL_WINDOWS)
-      return true;
-#else
-      return false;
-#endif
+       return ::operating_system::is_sandboxed();
 
    }
 

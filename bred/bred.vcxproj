@@ -745,7 +745,8 @@
     <ClInclude Include="typeface\allocator.h" />
     <ClInclude Include="typeface\_.h" />
     <ClInclude Include="user\user\gpu_interaction.h" />
-    <ClInclude Include="user\user\gpu_render.h" />
+    <ClInclude Include="user\user\gpu_shader_list.h" />
+    <ClInclude Include="user\user\gpu_shader_render.h" />
     <ClInclude Include="user\user\gpu_shader_host.h" />
     <ClInclude Include="user\user\graphics3d_engine_host.h" />
     <ClInclude Include="user\user\gpu_statistics_interaction.h" />
@@ -885,7 +886,8 @@
     <ClCompile Include="typeface\typeface.cpp" />
     <ClCompile Include="typeface\allocator.cpp" />
     <ClCompile Include="user\user\gpu_interaction.cpp" />
-    <ClCompile Include="user\user\gpu_render.cpp" />
+    <ClCompile Include="user\user\gpu_shader_list.cpp" />
+    <ClCompile Include="user\user\gpu_shader_render.cpp" />
     <ClCompile Include="user\user\gpu_shader_host.cpp" />
     <ClCompile Include="user\user\graphics3d_engine_host.cpp" />
     <ClCompile Include="user\user\gpu_statistics_impact.cpp" />

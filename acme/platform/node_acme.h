@@ -447,7 +447,7 @@ namespace platform
       virtual string file_memory_map_path_from_name(const ::scoped_string & scopedstrName);
 
 
-      virtual enum_operating_system get_operating_system() const;
+      //virtual enum_operating_system get_operating_system() const;
 
 
       virtual void launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, ::i32 iFlags);

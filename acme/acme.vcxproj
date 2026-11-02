@@ -2784,7 +2784,6 @@
     <ClCompile Include="operating_system\windows_common\task.cpp" />
     <ClCompile Include="operating_system\windows_common\threading.cpp" />
     <ClCompile Include="platform\ini.cpp" />
-    <ClCompile Include="platform\operating_system.cpp" />
     <ClCompile Include="platform\profile_logger.cpp" />
     <ClCompile Include="platform\registry.cpp" />
     <ClCompile Include="platform\remoting.cpp" />
@@ -6295,7 +6294,7 @@
     <ApplicationBuildHelperExe Condition="'$(ApplicationBuildHelperExe)' == ''">application_build_helper</ApplicationBuildHelperExe>
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
-  <Target Name="SyncStorageLibraries" BeforeTargets="PrepareForBuild" Condition="'$(DesignTimeBuild)' != 'true'">
+  <Target Name="SyncStorageLibraries" BeforeTargets="PrepareForBuild" Condition="'$(DesignTimeBuild)' != 'true' And !$([System.String]::Copy('$(Configuration)').StartsWith('StaticMeta'))">
     <Exec Command="&quot;$(ApplicationBuildHelperExe)&quot; --sync-storage-libraries --storage-root &quot;$(StorageRoot)&quot; --platform &quot;$(Platform)&quot; --configuration &quot;$(Configuration)&quot; --destination &quot;$([System.IO.Path]::GetFullPath('$(TargetDir).'))&quot;" IgnoreExitCode="false" />
   </Target>
 </Project>

@@ -6286,7 +6286,7 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <PropertyGroup>
-    <StorageRoot Condition="'$(StorageRoot)' == ''">$(ProjectDir)..\..\..\..\operating_system\storage-windows</StorageRoot>
+    <StorageRoot Condition="'$(StorageRoot)' == ''">$(USERPROFILE)\code\operating_system\storage-windows</StorageRoot>
     <ApplicationBuildHelperExe Condition="'$(ApplicationBuildHelperExe)' == ''">application_build_helper</ApplicationBuildHelperExe>
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>

@@ -219,7 +219,7 @@
     <ClInclude Include="graphics3d\utilities.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\graphics3d.h">
+    <ClInclude Include="user\user\graphics3d_engine_host.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="gpu\compositor.h">
@@ -477,7 +477,7 @@
     <ClInclude Include="graphics3d\graphics3d.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\gpu_statistics_impact.h">
+    <ClInclude Include="user\user\gpu_statistics_interaction.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\_.h">
@@ -500,6 +500,15 @@
     </ClInclude>
     <ClInclude Include="gpu\font.h">
       <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\gpu_shader_host.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\gpu_interaction.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\gpu_render.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -599,7 +608,7 @@
     <ClCompile Include="gpu\texture.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\graphics3d.cpp">
+    <ClCompile Include="user\user\graphics3d_engine_host.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="gpu\_.cpp">
@@ -790,6 +799,15 @@
     </ClCompile>
     <ClCompile Include="gpu\font.cpp">
       <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\gpu_shader_host.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\gpu_interaction.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\gpu_render.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -151,8 +151,14 @@ namespace user
 
 #endif
 
-      if (m_bEnableDefaultControlBox && should_show_platform_control_box()
-          && (!bMacOS || !should_use_desktop_ambient_like_control_box()))
+      auto bEnableDefaultControlBox = m_bEnableDefaultControlBox;
+
+      auto bShouldShowPlatformControlBox = should_show_platform_control_box();
+
+      auto bShouldUseDesktopAmbientLikeControlBox = should_use_desktop_ambient_like_control_box();
+
+      if (bEnableDefaultControlBox && bShouldShowPlatformControlBox
+          && (!bMacOS || !bShouldUseDesktopAmbientLikeControlBox))
       {
 
          {

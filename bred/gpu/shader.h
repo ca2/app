@@ -29,6 +29,7 @@ namespace gpu
 
          e_flag_none = 0,
          e_flag_clear_default_bindings_and_attributes_descriptions = 1,
+         e_flag_optional_uniforms = 2,
 
       };
 

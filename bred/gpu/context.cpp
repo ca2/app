@@ -3562,7 +3562,7 @@ namespace gpu
 
       string strFragment =
          "uniform floating_sequence2 resolution;\n"
-         "uniform ::f32 time;\n"
+         "uniform float time;\n"
          "uniform floating_sequence2 mouse;\n"
          "uniform sampler2D backbuffer;\n"
          "\n"
@@ -3606,9 +3606,9 @@ namespace gpu
             //"\n"
             //"precision highp ::f32;\n"
             "\n"
-            "uniform floating_sequence2 iResolution;\n"
-            "uniform ::f32 iTime;\n"
-            "uniform floating_sequence2 iMouse;\n"
+            "uniform vec3 iResolution;\n"
+            "uniform float iTime;\n"
+            "uniform vec4 iMouse;\n"
             "uniform sampler2D backbuffer;\n"
             "\n"
             "\n"

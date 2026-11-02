@@ -6287,7 +6287,7 @@
   </ImportGroup>
   <PropertyGroup>
     <StorageRoot Condition="'$(StorageRoot)' == ''">$(ProjectDir)..\..\..\..\operating_system\storage-windows</StorageRoot>
-    <ApplicationBuildHelperExe Condition="'$(ApplicationBuildHelperExe)' == ''">$(ProjectDir)..\..\..\..\operating_system\tool\bin\x64\application_build_helper.exe</ApplicationBuildHelperExe>
+    <ApplicationBuildHelperExe Condition="'$(ApplicationBuildHelperExe)' == ''">application_build_helper</ApplicationBuildHelperExe>
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
   <Target Name="SyncStorageLibraries" BeforeTargets="PrepareForBuild" Condition="'$(DesignTimeBuild)' != 'true'">

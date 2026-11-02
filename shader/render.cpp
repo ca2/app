@@ -5,13 +5,26 @@
 #include "bred/gpu/shader.h"
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/context.h"
+#include "acme/graphics/image/image32_t.h"
+#include "bred/gpu/context_lock.h"
+#include "bred/gpu/command_buffer.h"
+#include "bred/gpu/layer.h"
+#include "bred/gpu/model_buffer.h"
+#include "bred/gpu/renderer.h"
+#include "bred/gpu/texture_site.h"
+#include <exception>
+#include "bred/gpu/device.h"
+#include "bred/gpu/window_attachment.h"
+#include "bred/user/user/gpu_interaction.h"
+#include "aura/windowing/window.h"
 #include "bred/gpu/program.h"
-#include "bred/gpu/cpu_buffer.h"
+//#include "bred/gpu/cpu_buffer.h"
 #include <math.h>
 #include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
-#include "aura/graphics/image/target.h"
+//#include "aura/graphics/image/target.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/user/user/interaction.h"
 #include "aura/platform/system.h"
@@ -66,6 +79,63 @@ namespace app_shader
 #endif
 
 
+   void render::initialize_app_shader_render(::user::gpu_interaction * pusergpuinteraction)
+   {
+
+      if (!pusergpuinteraction)
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      m_puserinteraction = pusergpuinteraction;
+
+      if (m_pgpucontext)
+      {
+
+         return;
+
+      }
+
+      m_rectangle = pusergpuinteraction->rectangle();
+
+      if (m_rectangle.is_empty())
+      {
+
+         return;
+
+      }
+
+      auto pacmewindowingwindow = pusergpuinteraction->acme_windowing_window();
+
+      if (!pacmewindowingwindow)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto pgpudevice = get_app()->get_gpu_approach()->get_gpu_device(pusergpuinteraction->draw2d_domain());
+
+      auto pgpucontext = pgpudevice->allocate_gpu_context();
+
+      construct_newø(pgpucontext->m_pgpuwindowattachmentOffscreen);
+
+      pgpucontext->m_pgpuwindowattachmentOffscreen->initialize_offscreen_frame(pgpucontext);
+
+      auto size = m_rectangle.size();
+
+      auto sizeRaw = size;
+
+      pgpucontext->create_gpu_context(pgpudevice, ::gpu::e_output_aaa_cpu_buffer,
+         ::gpu::e_scene_2d, pacmewindowingwindow, nullptr, {}, {}, size, sizeRaw);
+
+      m_pgpucontext = pgpucontext;
+
+   }
+
+
    void render::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
@@ -79,7 +149,16 @@ namespace app_shader
       if (m_pgpucontext)
       {
 
-         m_pgpucontext->on_resize(m_rectangle.size());
+         auto size = m_rectangle.size();
+
+         m_pgpucontext->sendø() << [this, size]
+            {
+
+               m_pgpucontext->m_sizeRaw = size;
+               m_pgpucontext->set_output_placement(::i32_rectangle(size));
+               m_pgpucontext->get_gpu_renderer()->on_resize(size);
+
+            };
 
       }
       
@@ -89,8 +168,12 @@ namespace app_shader
    void render::defer_load_fragment(const ::scoped_string & scopedstrPathPrefix)
    {
 
+      information() << "app_shader: loading shader path: " << scopedstrPathPrefix;
+
       if (string(scopedstrPathPrefix) == "default")
       {
+
+         information() << "app_shader: using built-in default shader";
 
          m_strProjection.empty();
 
@@ -115,6 +198,9 @@ namespace app_shader
       //   {
 
       m_strFragment = m_pgpucontext->load_fragment(scopedstrPathPrefix, m_eshadersource);
+
+      information() << "app_shader: loaded shader path: " << scopedstrPathPrefix
+         << "; source bytes: " << m_strFragment.length();
 
       //      break;
 
@@ -160,7 +246,14 @@ namespace app_shader
       if(m_strProjection.is_empty())
       {
 
-         m_strProjection = m_pgpucontext->_001GetIntroProjection();
+         // A fullscreen triangle needs no vertex buffers or input layout.
+         m_strProjection =
+            "out vec3 ourPosition;\n"
+            "void main() {\n"
+            "  vec2 p = vec2(float((gl_VertexID << 1) & 2), float(gl_VertexID & 2));\n"
+            "  ourPosition = vec3(p * 2.0 - 1.0, 0.0);\n"
+            "  gl_Position = vec4(ourPosition, 1.0);\n"
+            "}\n";
 
       }
 
@@ -198,7 +291,14 @@ namespace app_shader
       //{
 
          //estatus = 
-         m_pshader->initialize_shader(m_pgpucontext->m_pgpurenderer, strProjection, strFragment);
+         m_pshader->m_bDisableDepthTest = true;
+         m_pshader->m_bEnableBlend = false;
+         m_pshader->m_etopology = ::gpu::e_topology_triangle_list;
+         m_pshader->m_ecullmode = ::gpu::e_cull_mode_none;
+
+         m_pshader->initialize_shader_with_block(m_pgpucontext->get_gpu_renderer(),
+            strProjection.as_block(), strFragment.as_block(), nullptr,
+            ::gpu::shader::e_flag_optional_uniforms);
 
       //}
 
@@ -210,11 +310,8 @@ namespace app_shader
 
       //pgpucontext->m_pgpuprogram = m_pgpuprogram;
 
-      m_pgpushader->bind(nullptr, nullptr);
-
-      m_pgpushader->draw();
-
-      m_pgpushader->unbind(nullptr);
+      // Shader initialization does not have a command buffer or render target.
+      // Binding and drawing belong to the frame rendering pass.
 
       //::u32 texture1;
 
@@ -235,118 +332,171 @@ namespace app_shader
    }
 
 
-   void render::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
+   ::image::image * render::drawn_frame_image()
    {
       
-      if(!m_pgpucontext)
-      {
-         
-         return;
-         
-      }
+      on_gpu_draw(m_pgpucontext);
       
-      if(!m_pgpucontext->m_bCreated)
+      return m_pimageFromGpu;
+
+   }
+
+
+   void render::on_gpu_draw(::gpu::context * pgpucontext)
+   {
+
+      if (!pgpucontext || m_rectangle.is_empty())
       {
-       
+
          return;
-         
+
       }
-      
-      m_pgpucontext->sendø() << [this]
-                                    {
-         
-         //::gpu::context_lock lock(m_pgpucontext);
-         
-         defer_update_shader();
-         
-         if (m_pgpucontext &&
-             ::is_set(m_pgpushader) &&
-             m_pgpucontext->m_pcpubuffer &&
-            m_pgpucontext->m_pcpubuffer->m_pimagetarget &&
-            m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage.ok())
+
+      pgpucontext->sendø() << [this, pgpucontext]
          {
-            
+
+            auto pcontext = pgpucontext;
+            ::gpu::context_lock contextlock(pcontext);
+            auto pattachment = pcontext->m_pgpuwindowattachmentOffscreen;
+            ::pointer<::gpu::layer> playerPrevious = ::gpu::current_layer();
+            ::std::exception_ptr exceptionRender;
+            bool bFrameStarted = false;
+            bool bLayerStarted = false;
+
+            try
             {
-               
-               //::gpu::context_lock lock(m_pgpucontext);
-               
-               //m_pgpucontext->make_current();
-               
-               m_pgpucontext->start_drawing();
-               
+
+               auto size = m_rectangle.size();
+               pcontext->m_sizeRaw = size;
+               pcontext->set_output_placement(::i32_rectangle(size));
+               pcontext->get_gpu_renderer()->on_resize(size);
+               defer_update_shader();
+
+               if (!m_pmodelbufferFullscreen)
                {
-                  
-                  //::pointer<::aura::session>psession = get_session();
-                  
-                  //auto puser = user();
-                  
-                  auto pointCursor = m_puserinteraction->mouse_cursor_position();
-                  
-                  ::f32 x = (::f32)pointCursor.x;
-                  
-                  ::f32 y = (::f32)pointCursor.y;
-                  
-                  m_pgpushader->set_sequence2("mouse", x, y);
-                  m_pgpushader->set_sequence2("iMouse", x, y);
-                  
-               }
-               
-               {
-                  
-                  ::f32 cx = (::f32)m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage->width();
-                  
-                  ::f32 cy = (::f32)m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage->height();
-                  
-                  m_pgpushader->set_sequence2("resolution", cx, cy);
-                  m_pgpushader->set_sequence2("iResolution", cx, cy);
-                  
-               }
-               
-               {
-                  
-                  auto dTime = m_timeStart.elapsed().floating_second();
-                  
-                  ::f32 time = (::f32)dTime;
-                  
-                  m_pgpushader->set_f32("time", time);
-                  m_pgpushader->set_f32("iTime", time);
-                  
+
+                  constructø(m_pmodelbufferFullscreen);
+                  m_pmodelbufferFullscreen->initialize_dummy_model(pcontext, 3);
+
                }
 
-               m_pgpucontext->render();
-               
-               read_to_cpu_buffer();
+               pattachment->start_frame();
+               bFrameStarted = true;
+               pcontext->start_layer(false, ::gpu::e_start_layer_none);
+               bLayerStarted = true;
+
+               ::pointer<::gpu::texture_site> ptarget =
+                  pcontext->current_target_texture(::gpu::current_layer());
+               auto pcommands = ::gpu::current_layer()->getCurrentCommandBuffer4();
+               pcommands->begin_render(m_pshader, ptarget);
+               pcommands->set_viewport(::i32_rectangle(size), ptarget->raw_size());
+               pcommands->set_scissor(::i32_rectangle(size), ptarget->raw_size());
+
+               auto pointCursor = m_puserinteraction->mouse_cursor_position();
+               m_puserinteraction->screen_to_client()(pointCursor);
+               auto x = (::f32)pointCursor.x;
+               auto y = (::f32)(size.cy - pointCursor.y);
+               m_pshader->set_sequence2("mouse", x, y);
+               m_pshader->set_sequence4("iMouse", x, y, 0.f, 0.f);
+               m_pshader->set_sequence2("resolution", (::f32)size.cx, (::f32)size.cy);
+               m_pshader->set_sequence3("iResolution", (::f32)size.cx, (::f32)size.cy, 1.f);
+               auto time = (::f32)m_timeStart.elapsed().floating_second();
+               m_pshader->set_f32("time", time);
+               m_pshader->set_f32("iTime", time);
+               pcommands->draw(m_pmodelbufferFullscreen);
+               pcommands->end_render();
+               bLayerStarted = false;
+               pcontext->end_layer();
+
+               // Read the finished layer, rather than the legacy CPU buffer.
+               defer_constructø(m_pimageFromGpu);
+               m_pimageFromGpu->create_as_descriptor(ptarget->raw_size(),
+                  pcontext->m_pgpudevice->draw2d_domain());
+               {
+
+                  auto ppixmap = m_pimageFromGpu->map(::image::e_map_discard, ptarget->output_placement());
+                  auto pread = pcontext->beginSingleTimeCommands(pcontext->m_pgpudevice->graphics_queue());
+                  auto ptexture = ptarget->gpu_texture()->resolved_texture(ptarget->output_placement());
+                  ptexture->read_pixels(pread, ppixmap, ptarget->m_pointOutput);
+                  if (!m_bLoggedReadback)
+                  {
+
+                     auto pcenter = (const ::image32_t *)((const ::u8 *)ppixmap->m_pimage32
+                        + (size.cy / 2) * ppixmap->m_iScan) + size.cx / 2;
+                     informationf("app_shader readback: path=%s size=%dx%d center=0x%08x",
+                        m_strShaderPath.c_str(), size.cx, size.cy, pcenter->m_u32);
+                     m_bLoggedReadback = true;
+
+                  }
+                  if (pread.is_pending())
+                  {
+
+                     pread.commit();
+
+                  }
+
+               }
+               m_pimageFromGpu->set_ok_flag();
+               m_pimageFromGpu->m_estatus = success;
 
             }
-            
-            
-            
-         }
-      }
-                                    );
+            catch (...)
+            {
 
-         
-         {
-            
-            to_draw2d_graphics(pdraw2dgraphics);
-            
-            
+               exceptionRender = ::std::current_exception();
+
+            }
+
+            if (bLayerStarted)
+            {
+
+               try { pcontext->end_layer(); }
+               catch (...) { if (!exceptionRender) exceptionRender = ::std::current_exception(); }
+
+            }
+            if (bFrameStarted)
+            {
+
+               try { pattachment->end_frame(); }
+               catch (...) { if (!exceptionRender) exceptionRender = ::std::current_exception(); }
+
+            }
+            ::gpu::set_current_layer(playerPrevious);
+            if (exceptionRender)
+            {
+
+               ::std::rethrow_exception(exceptionRender);
+
+            }
+
          };
-      ::i32_rectangle rectangle;
+
+      //if (m_pimageFromGpu.ok())
+      //{
+
+      //   ::image::image_source source(m_pimageFromGpu, ::i32_rectangle(m_rectangle.size()));
+      //   ::image::image_drawing_options options(m_rectangle);
+      //   ::image::image_drawing drawing(options, source);
+      //   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      //   try
+      //   {
+
+      //      pdraw2dgraphics->draw(drawing);
 
 
-      //rectangle.left = rectangle.right - 48;
-      //rectangle.top = rectangle.bottom - 48;
+      //   }
+      //   catch (const ::exception & e)
+      //   {
 
-      //pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      //      error() << "app_shader: draw2d image transfer failed: " << e.get_message();
+      //      throw;
 
-      //pdraw2dgraphics->fill_rectangle(rectangle, argb(128, 128, 128, 128));
+      //   }
 
-      //_001OnDraw1Through3(pdraw2dgraphics);
 
-      _001OnDrawLabel(pdraw2dgraphics);
+      //}
 
-      _001OnDrawError(pdraw2dgraphics);
+      // The host presents only shader output; window UI belongs to main_window.
 
    }
 
@@ -358,7 +508,7 @@ namespace app_shader
 
       auto strLabel = ::file::path(pathShader).name();
 
-      auto pinteraction = pdraw2dgraphics->m_puserinteraction;
+      auto pinteraction = m_puserinteraction;
 
       ::color::color colorBackground = argb(127, 255, 255, 255);
 
@@ -396,14 +546,14 @@ namespace app_shader
 
             defer_constructø(m_pimageLabel);
 
-            if (m_pgraphicsImageLabel-> == nullptr)
+            if (m_pimageLabel->size().is_empty())
             {
 
-               m_pimageLabel->create_as_descriptor({ 16, 16 });
+               m_pimageLabel->create_as_descriptor({ 16, 16 }, pdraw2dgraphics->draw2d_domain());
 
             }
 
-            auto pgraphicsLabel = m_pgraphicsImageLabel->;
+            auto pgraphicsLabel = m_pimageLabel->acquire_graphics();
 
             pgraphicsLabel->set(pfont);
 
@@ -415,9 +565,11 @@ namespace app_shader
 
             rect.move_to(0, 0);
 
-            m_pimageLabel->create_as_descriptor(rect.size());
+            pgraphicsLabel.close();
 
-            pgraphicsLabel = m_pgraphicsImageLabel->;
+            m_pimageLabel->create_as_descriptor(rect.size(), pdraw2dgraphics->draw2d_domain());
+
+            pgraphicsLabel = m_pimageLabel->acquire_graphics();
 
             pgraphicsLabel->set(pfont);
 
@@ -427,7 +579,9 @@ namespace app_shader
 
             pgraphicsLabel->fill_rectangle(rect);
 
-            pgraphicsLabel->set_text_color({});
+            pbrush->create_solid(argb(255, 0, 0, 0));
+
+            pgraphicsLabel->set(pbrush);
 
             pgraphicsLabel->text_out({ 4,4 }, strLabel);
 
@@ -464,7 +618,7 @@ namespace app_shader
    void render::_001OnDrawError(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
       
-      auto pgpushader = m_pgpushader;
+      auto pgpushader = m_pshader;
 
       if (!pgpushader)
       {
@@ -492,7 +646,7 @@ namespace app_shader
          if(strError.has_character())
          {
 
-            auto pinteraction = pdraw2dgraphics->m_puserinteraction;
+            auto pinteraction = m_puserinteraction;
 
             auto colorBackground = argb(127, 255, 255, 255);
 
@@ -527,14 +681,14 @@ namespace app_shader
 
             defer_constructø(m_pimageError);
 
-            if(m_pgraphicsImageError-> == nullptr)
+            if(m_pimageError->size().is_empty())
             {
 
-               m_pimageError->create_as_descriptor({ 16 });
+               m_pimageError->create_as_descriptor({ 16, 16 }, pdraw2dgraphics->draw2d_domain());
 
             }
 
-            auto pgraphicsError = m_pgraphicsImageLabel->;
+            auto pgraphicsError = m_pimageError->acquire_graphics();
 
             pgraphicsError->set(pfont);
 
@@ -545,9 +699,11 @@ namespace app_shader
             rect.move_to(10, 10);
             rect.inflate(4);
 
-            m_pimageError->create_as_descriptor(rect.size());
+            pgraphicsError.close();
 
-            pgraphicsError = m_pgraphicsImageError->;
+            m_pimageError->create_as_descriptor(rect.size(), pdraw2dgraphics->draw2d_domain());
+
+            pgraphicsError = m_pimageError->acquire_graphics();
 
             pgraphicsError->set(pfont);
 
@@ -556,7 +712,8 @@ namespace app_shader
             pgraphicsError->set_alpha_mode(::draw2d::e_alpha_mode_set);
             pgraphicsError->set(pbrush);
             pgraphicsError->fill_rectangle(rect);
-            pgraphicsError->set_text_color(::color::transparent);
+            pbrush->create_solid(argb(255, 0, 0, 0));
+            pgraphicsError->set(pbrush);
 
 
             pgraphicsError->text_out({ 4,4 }, strError);

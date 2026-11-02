@@ -58,7 +58,7 @@ namespace graphics3d
    {
    public:
 
-      ::pointer < ::user::graphics3d > m_pimpact;
+      ::pointer < ::user::gpu_interaction > m_pgpuinteraction;
 
 
       ::key::e_state key_state(::graphics3d::enum_key ekey);

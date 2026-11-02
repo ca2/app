@@ -20,6 +20,8 @@ namespace app_shader
    application::application() 
    {
 
+      m_bGpu = true;
+
       m_strAppId = "app-graphics3d/shader";
 
       m_strAppName = "Shader";
@@ -128,36 +130,35 @@ namespace app_shader
    void application::get_shader_listing(::file::listing_base & listing)
    {
 
-      auto pcontext = m_papplication;
+      string_array_base folders;
 
-      bool bUseOwnResources = is_sandboxed();
-
-      for (;;)
+      if (!is_sandboxed())
       {
 
-         if (bUseOwnResources)
-         {
+         // Prefer the user's local shader collection before cloud-provider defaults.
+         folders.add(directory()->home() / "dropbox" / "shader" / "simple shader");
+         folders.add("cloud://shader/simple shader/");
 
-            listing.set_pattern_file_listing("matter://shader/simple shader/", { "*.frag" });
+      }
 
-         }
-         else
-         {
+      folders.add("matter://shader/simple shader/");
 
-            listing.set_pattern_file_listing("cloud://shader/simple shader/", { "*.frag" });
+      for (const auto & folder : folders)
+      {
 
-         }
+         listing.clear();
+         listing.set_pattern_file_listing(folder, { "*.frag", "*.shader" });
+         directory()->enumerate(listing);
 
-         pcontext->directory()->enumerate(listing);
+         information() << "app_shader: shader folder: " << folder
+            << "; files found: " << listing.size();
 
-         if (listing.has_elements() || bUseOwnResources)
+         if (listing.has_elements())
          {
 
             break;
 
          }
-
-         bUseOwnResources = true;
 
       }
 

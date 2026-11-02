@@ -480,6 +480,14 @@ namespace gpu
 
       _tidy_map(rectangle);
 
+      if (!rectangle.is_null())
+      {
+
+         m_point = rectangle.origin();
+         m_size = rectangle.size();
+
+      }
+
       // if (has_active_destination_graphics_lease())
       // {
       //
@@ -520,8 +528,11 @@ namespace gpu
 
       pthis->m_ppixmapOwned->m_pimage32Raw = (::image32_t *)pthis->m_ppixmapOwned->m_memoryPixmap.data();
 
-      pthis->m_ppixmapOwned->m_pimage32 = pthis->m_ppixmapOwned->m_pimage32Raw;
+      pthis->m_ppixmapOwned->m_point = m_point;
+      pthis->m_ppixmapOwned->pixmap_map();
 
+      // Read directly into the mapped subrectangle. The returned image lease
+      // exposes this same region, rather than remapping pixels written at (0,0).
       if (emap != ::image::e_map_discard)
       {
 
@@ -620,9 +631,16 @@ namespace gpu
 
                auto pgpucommandbuffer = pgpucontext->beginSingleTimeCommands(pgpuqueueGraphics);
 
-               auto ptexturesite = ::gpu::current_layer()->texture(false);
+               // Mapping an image is independent of the calling thread's current
+               // layer (which may belong to another offscreen image or frame).
+               auto ptextureRead = pgputexture;
+               ptextureRead->read_pixels(pgpucommandbuffer, pthis->m_ppixmapOwned, pthis->m_point);
+               if (pgpucommandbuffer.is_pending())
+               {
 
-               pgputexture->read_pixels(pgpucommandbuffer, pthis->m_ppixmapOwned, ptexturesite->m_pointOutput);
+                  pgpucommandbuffer.commit();
+
+               }
 
                auto uMicroseconds = (::u64)0;
 

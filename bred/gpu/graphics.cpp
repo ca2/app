@@ -939,6 +939,24 @@ namespace gpu
 
       m_pgputexturesiteTarget = pgputexturesite;
 
+      if (bFirstLayer && m_pgraphicsbufferitem
+         && !m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+
+         // Software window presentation must read the layer that receives UI
+         // drawing, rather than the separate blank bitmap allocated at resize.
+         auto pimageBuffer = m_pgraphicsbufferitem->m_pimageBufferItem;
+         pimageBuffer->update_as_backed_by_gpu_texture(
+            pgputexturesite->size(), pgputexturesite->gpu_texture(), this);
+         pimageBuffer->m_point = pgputexturesite->m_pointOutput;
+         pimageBuffer->m_size = pgputexturesite->size();
+         pimageBuffer->m_sizeRaw = pgputexturesite->raw_size();
+         pimageBuffer->m_iScan = pimageBuffer->m_sizeRaw.cx * (::i32)sizeof(::image32_t);
+         pimageBuffer->m_bGraphicsWasAcquiredAfterLastMap = true;
+         pimageBuffer->m_bWasMappedAfterLastGraphicsAcquisition = false;
+
+      }
+
       auto sizeRaw = pcontext->raw_size();
 
       auto pointTarget = pcontext->m_pointInput;

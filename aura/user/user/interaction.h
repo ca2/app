@@ -2590,9 +2590,9 @@ namespace user
 
 //      virtual ::item_pointer add_user_item(::item * pitem);
 
-      virtual void _001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, const ::user::e_zorder & ezorder);
 
-      virtual void _001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iIdContainer, ::item_array * pitema);
+      virtual void _001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iIdContainer, ::item_array * pitema, const ::user::e_zorder & ezorder);
 
       virtual void _001DrawItem(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::item & item, const ::user::e_state & estate);
 

@@ -5,7 +5,7 @@
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "apex/platform/app_consumer.h"
-#include "bred/gpu/render.h"
+#include "bred/user/user/gpu_render.h"
 
 
 namespace app_shader
@@ -13,18 +13,17 @@ namespace app_shader
 
 
    class CLASS_DECL_APP_SHADER render :
-      virtual public app_consumer < application, ::gpu::render >
+      virtual public app_consumer < application, ::user::gpu_render >
    {
    public:
 
 
       string                              m_strShaderPath;
       bool                                m_bUpdateShader;
+      bool                                m_bLoggedReadback = false;
       string                              m_strProjection;
       string                              m_strFragment;
-      ::pointer<::gpu::context>           m_pgpucontext;
-      ::pointer<::gpu::shader>            m_pgpushader;
-      ::image::image_pointer                     m_pimageFromGpu;
+      ::pointer<::gpu::model_buffer>       m_pmodelbufferFullscreen;
       //i32_rectangle                       m_rectangle;
       string                              m_strFont1;
       string_map_base < ::image::image_pointer >      m_pimagemap;
@@ -46,7 +45,7 @@ namespace app_shader
       ~render() override;
 
 
-      //virtual void initialize_render(::user::interaction * puserinteraction);
+      virtual void initialize_app_shader_render(::user::gpu_interaction * pusergpuinteraction);
 
 #ifdef _DEBUG
       virtual ::i64 increment_reference_count() override;
@@ -57,7 +56,9 @@ namespace app_shader
       virtual void defer_update_shader();
       virtual void _update_shader();
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual ::image::image * drawn_frame_image();
+
+      virtual void on_gpu_draw(::gpu::context * pgpucontext);
 
       virtual void _001OnDrawLabel(::draw2d::graphics_pointer & pdraw2dgraphics);
 

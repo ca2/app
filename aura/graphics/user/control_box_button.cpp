@@ -31,10 +31,6 @@ namespace user
 
       ::color::color colorPen = puserinteraction->get_color(pstyle, ::e_element_text);
 
-      pdraw2dbrush->create_solid(color);
-
-      pdraw2dgraphics->set(pdraw2dbrush);
-
       if (::is_element(puserinteraction->m_pitemHover, ::e_element_close_button))
       {
 
@@ -49,6 +45,10 @@ namespace user
          colorPen.m_u8Opacity = 89;
 
       }
+
+      pdraw2dbrush->create_solid(color);
+
+      pdraw2dgraphics->set(pdraw2dbrush);
 
       pdraw2dpen->create_solid(rectangle.minimum_dimension() / 10.0, colorPen);
 
@@ -105,10 +105,6 @@ namespace user
 
       //::color::color colorPen = puserinteraction->get_color(pstyle, ::e_element_text);
 
-      pdraw2dbrush->create_solid(color);
-
-      pdraw2dgraphics->set(pdraw2dbrush);
-
       if (estate & ::user::e_state_hover)
       {
 
@@ -123,6 +119,10 @@ namespace user
          //colorPen.m_u8Opacity = 89;
 
       }
+
+      pdraw2dbrush->create_solid(color);
+
+      pdraw2dgraphics->set(pdraw2dbrush);
 
       pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
@@ -150,10 +150,6 @@ namespace user
 
       ::color::color colorPen = puserinteraction->get_color(pstyle, ::e_element_text);
 
-      pdraw2dbrush->create_solid(color);
-
-      pdraw2dgraphics->set(pdraw2dbrush);
-
       if (estate & ::user::e_state_hover)
       {
 
@@ -168,6 +164,10 @@ namespace user
          colorPen.m_u8Opacity = 89;
 
       }
+
+      pdraw2dbrush->create_solid(color);
+
+      pdraw2dgraphics->set(pdraw2dbrush);
 
       pdraw2dgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
@@ -227,10 +227,6 @@ namespace user
 
       ::color::color colorPen = puserinteraction->get_color(pstyle, ::e_element_text);
 
-      pdraw2dbrush->create_solid(color);
-
-      pdraw2dgraphics->set(pdraw2dbrush);
-
       if (estate & ::user::e_state_hover)
       {
 
@@ -245,6 +241,10 @@ namespace user
          colorPen.m_u8Opacity = 89;
 
       }
+
+      pdraw2dbrush->create_solid(color);
+
+      pdraw2dgraphics->set(pdraw2dbrush);
 
       pdraw2dpen->create_solid(rectangle.minimum_dimension() / 10.0, colorPen);
 

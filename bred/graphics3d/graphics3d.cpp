@@ -38,7 +38,7 @@
 #include "bred/graphics3d/_functions.h"
 #include "bred/graphics3d/camera.h"
 #include "bred/graphics3d/shape_factory.h"
-#include "bred/user/user/graphics3d.h"
+#include "bred/user/user/graphics3d_engine_host.h"
 #include "aura/graphics/image/aaa_target.h"
 #include "aura/platform/application.h"
 #include <chrono>

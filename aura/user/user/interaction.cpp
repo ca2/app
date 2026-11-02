@@ -29926,6 +29926,8 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
 
       //}
 
+      _001DrawItems(pdraw2dgraphics, ::user::e_zorder_front);
+
    }
 
 
@@ -29954,7 +29956,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
       //if (m_pitema && m_pitema->has_element())
       //{
 
-      _001DrawItems(pdraw2dgraphics);
+      _001DrawItems(pdraw2dgraphics, ::user::e_zorder_back);
 
       //}
 
@@ -30007,7 +30009,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    //}
 
 
-   void interaction::_001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics)
+   void interaction::_001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, const ::user::e_zorder & ezorder)
    {
 
       //return;
@@ -30015,14 +30017,14 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
       for (auto & [iIndex, pitemcontainer] : m_itemcontainermap)
       {
 
-         _001DrawItems(pdraw2dgraphics, iIndex, pitemcontainer->m_pitema);
+         _001DrawItems(pdraw2dgraphics, iIndex, pitemcontainer->m_pitema, ezorder);
 
       }
 
    }
 
 
-   void interaction::_001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iIdContainer, ::item_array * pitema)
+   void interaction::_001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iIdContainer, ::item_array * pitema, const ::user::e_zorder & ezorder)
    {
 
       if (::is_null(pitema))
@@ -30037,7 +30039,18 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
       for (auto & pitem : *pitema)
       {
 
+         auto eelement = pitem->m_item.m_eelement;
+
          auto puseritem = user_item(pitem);
+
+         if (!(puseritem->m_ezorder & ezorder || 
+            (puseritem->m_ezorder == ::user::e_zorder_none
+               && ezorder == ::user::e_zorder_none)))
+         {
+            
+            continue;
+
+         }
 
          ::user::e_state estate = ::user::e_state_none;
 

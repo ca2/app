@@ -1009,13 +1009,13 @@ namespace gpu_opengl
       if(iFindPrecision >= 0)
       {
 
-         stra[iFindPrecision] = "precision highp ::f32;";
+         stra[iFindPrecision] = "precision highp float;";
 
       }
       else
       {
 
-         stra.insert_at(1, "precision highp ::f32;");
+         stra.insert_at(1, "precision highp float;");
 
          iFindPrecision = 1;
 

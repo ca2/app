@@ -1,7 +1,7 @@
 // Created by camilo on 2026-09-05 03:23 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
 #include "platform.h"
-#include "gpu_statistics_impact.h"
-#include "graphics3d.h"
+#include "gpu_statistics_interaction.h"
+#include "graphics3d_engine_host.h"
 #include "acme/constant/message.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -25,7 +25,7 @@ namespace user
 {
 
 
-   gpu_statistics_impact::gpu_statistics_impact()
+   gpu_statistics_interaction::gpu_statistics_interaction()
    {
 
       m_enonclient -= ::user::e_non_client_background;
@@ -39,7 +39,7 @@ namespace user
    }
 
 
-   gpu_statistics_impact::~gpu_statistics_impact()
+   gpu_statistics_interaction::~gpu_statistics_interaction()
    {
 
    }
@@ -48,18 +48,18 @@ namespace user
 #ifdef _DEBUG
 
 
-   long long gpu_statistics_impact::increment_reference_count()
+   long long gpu_statistics_interaction::increment_reference_count()
    {
 
-      return ::user::box::increment_reference_count();
+      return ::user::interaction::increment_reference_count();
 
    }
 
 
-   long long gpu_statistics_impact::decrement_reference_count()
+   long long gpu_statistics_interaction::decrement_reference_count()
    {
 
-      return ::user::box::decrement_reference_count();
+      return ::user::interaction::decrement_reference_count();
 
    }
 
@@ -68,20 +68,20 @@ namespace user
 
 
 
-   void gpu_statistics_impact::install_message_routing(::channel * psender)
+   void gpu_statistics_interaction::install_message_routing(::channel * psender)
    {
 
-      ::user::show < ::user::box >::install_message_routing(psender);
+      ::user::interaction::install_message_routing(psender);
 
-      USER_MESSAGE_LINK(::user::e_message_create, psender, this, &gpu_statistics_impact::on_message_create);
-      USER_MESSAGE_LINK(::user::e_message_destroy, psender, this, &gpu_statistics_impact::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, psender, this, &gpu_statistics_interaction::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, psender, this, &gpu_statistics_interaction::on_message_destroy);
 
    }
 
 
 
 
-   void gpu_statistics_impact::on_message_create(::message::message * pmessage)
+   void gpu_statistics_interaction::on_message_create(::message::message * pmessage)
    {
 
       ::pointer<::message::create>pcreate(pmessage);
@@ -95,41 +95,41 @@ namespace user
 
       }
 
-      m_papp->m_pusergpustatisticsimpact = this;
+      m_papp->m_pusergpustatisticsinteraction = this;
 
    }
 
 
-   void gpu_statistics_impact::on_message_destroy(::message::message * pmessage)
+   void gpu_statistics_interaction::on_message_destroy(::message::message * pmessage)
    {
 
    }
 
 
-   void gpu_statistics_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
+   void gpu_statistics_interaction::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::user::show < ::user::box >::handle(ptopic, phandlercontext);
+      ::user::interaction::handle(ptopic, phandlercontext);
 
    }
 
 
-   document * gpu_statistics_impact::get_document()
+   //document * gpu_statistics_interaction::get_document()
+   //{
+
+   //   return dynamic_cast <document *>(::user::interaction::get_document());
+
+   //}
+
+
+   void gpu_statistics_interaction::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      return dynamic_cast <document *>(::user::show <::user::box>::get_document());
 
    }
 
 
-   void gpu_statistics_impact::_001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics)
-   {
-
-
-   }
-
-
-   void gpu_statistics_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
+   void gpu_statistics_interaction::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -286,7 +286,7 @@ namespace user
    }
 
 
-   void gpu_statistics_impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
+   void gpu_statistics_interaction::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -298,14 +298,14 @@ namespace user
 
       }
 
-      ::user::show< ::user::box >::on_layout(pdraw2dgraphics);
+      ::user::interaction::on_layout(pdraw2dgraphics);
 
       setup_default_client_area_user_item();
 
    }
 
 
-   bool gpu_statistics_impact::on_click(::item * pitem, ::user::mouse * pmouse)
+   bool gpu_statistics_interaction::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       if (::is_set(pitem))
@@ -350,7 +350,7 @@ namespace user
 
       }
 
-      return ::user::show < ::user::box >::on_click(pitem, pmouse);
+      return ::user::interaction::on_click(pitem, pmouse);
 
    }
 

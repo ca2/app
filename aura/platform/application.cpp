@@ -1801,14 +1801,28 @@ namespace aura
    //}
 
 
+   ::string application::graphics3d_get_implementation_override()
+   {
+      return m_strGraphics3DImplementationOverride;
+   }
+
+   ::string application::graphics3d_get_output_override()
+   {
+      return m_strGraphics3DOutputOverride;
+   }
+
    ::string application::graphics3d_get_implementation_setting()
    {
+      auto value = graphics3d_get_implementation_override();
+      if (value.has_character()) return value;
       return application_file_setting_by_operating_system("graphics3d.txt");
    }
 
 
    ::string application::graphics3d_get_output_setting()
    {
+      auto value = graphics3d_get_output_override();
+      if (value.has_character()) return value;
       return application_file_setting("graphics3d_output.txt");
    }
 

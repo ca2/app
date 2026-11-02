@@ -8,7 +8,7 @@
 #include "aura/graphics/write_text/font.h"
 #include "bred/gpu/bred_approach.h"
 #include "bred/graphics3d/graphics3d.h"
-#include "bred/user/user/graphics3d.h"
+#include "bred/user/user/graphics3d_engine_host.h"
 #include "acme/platform/node.h"
 
 
@@ -865,12 +865,12 @@ namespace bred
    }
 
 
-   void application::register_user_graphics3d(::collection::index i, ::user::graphics3d * pusergraphics3d)
+   void application::register_user_graphics3d(::collection::index i, ::user::graphics3d_engine_host * pusergraphics3denginehost)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_usergraphics3da.atø(i) = pusergraphics3d;
+      m_usergraphics3denginehosta.atø(i) = pusergraphics3denginehost;
 
    }
 

@@ -1205,6 +1205,15 @@ namespace gpu_opengl
       if (location == -1)
       {
 
+         // Viewer shaders may omit or optimize away the supplied uniforms.
+         // OpenGL treats writes to location -1 as a no-op.
+         if ((m_eflag & e_flag_optional_uniforms) != 0)
+         {
+
+            return -1;
+
+         }
+
          ::string strMessage;
 
          strMessage << "Uniform " << pszName << " not found (to get an " << debug << ")!";

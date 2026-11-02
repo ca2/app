@@ -5,9 +5,15 @@
 namespace user
 {
 
+   class gpu_shader_host;
 
-   class graphics3d;
-   class gpu_statistics_impact;
+   class gpu_statistics_interaction;
+
+   class graphics3d_engine_host;
+
+   class gpu_interaction;
+
+   class gpu_render;
 
 
 } // namespace user

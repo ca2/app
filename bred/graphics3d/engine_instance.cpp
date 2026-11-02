@@ -39,7 +39,7 @@
 #include "bred/graphics3d/camera.h"
 #include "bred/graphics3d/graphics3d.h"
 #include "bred/graphics3d/shape_factory.h"
-#include "bred/user/user/graphics3d.h"
+#include "bred/user/user/graphics3d_engine_host.h"
 #include "aura/graphics/image/aaa_target.h"
 #include "aura/platform/application.h"
 #include <chrono>
@@ -155,14 +155,14 @@ namespace graphics3d
    //}
 
 
-   void engine_instance::initialize_graphics3d_engine_instance(::user::graphics3d * pusergraphics3d)
+   void engine_instance::initialize_graphics3d_engine_instance(::user::graphics3d_engine_host * pusergraphics3denginehost)
    {
 
-      m_pusergraphics3d = pusergraphics3d;
+      m_pusergraphics3denginehost = pusergraphics3denginehost;
 
-      m_pusergraphics3d->m_pgraphics3dengineinstance = this;
+      m_pusergraphics3denginehost->m_pgraphics3dengineinstance = this;
 
-      m_pgraphics3d = pusergraphics3d->m_papp->graphics3d();
+      m_pgraphics3d = pusergraphics3denginehost->m_papp->graphics3d();
 
       //m_papproach = m_papplication->get_gpu_approach();
       // set_gpu_performance_diagnostics(true);
@@ -176,7 +176,7 @@ namespace graphics3d
 
          constructø(m_pimageOutput);
 
-         m_pimageOutput->set_draw2d_domain(pusergraphics3d->draw2d_domain());
+         m_pimageOutput->set_draw2d_domain(pusergraphics3denginehost->draw2d_domain());
 
       }
 
@@ -186,15 +186,15 @@ namespace graphics3d
    void engine_instance::on_render_layer()
    {
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow && m_pusergraphics3d)
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow && m_pusergraphics3denginehost)
       {
 
-         auto pwindow = m_pusergraphics3d->window();
+         auto pwindow = m_pusergraphics3denginehost->window();
 
          if (pwindow)
          {
 
-            auto rectanglePlacement = m_pusergraphics3d->host_rectangle();
+            auto rectanglePlacement = m_pusergraphics3denginehost->host_rectangle();
             rectanglePlacement.offset(pwindow->get_window_rectangle().origin());
 
             if (rectanglePlacement.has_area())
@@ -259,7 +259,7 @@ namespace graphics3d
             bool bDontKnowIfFirstLayerBut = false;
 
             pgpucontext->start_layer(bDontKnowIfFirstLayerBut, ::gpu::e_start_layer_none,
-               m_pusergraphics3d);
+               m_pusergraphics3denginehost);
 
             pscene->on_render(pgpucontext);
 
@@ -489,13 +489,15 @@ namespace graphics3d
 
       //m_fFrameTime = fFrameTime;
 
-      m_pinput->prepare_mouse_input();
+      auto pinput = get_input();
 
-      m_pinput->process_mouse_input();
+      pinput->prepare_mouse_input();
 
-      //m_pinput->updateLook(m_pinput->getX(), m_pinput->getY(), transform);
+      pinput->process_mouse_input();
 
-      m_pinput->process_keyboard_input();
+      //pinput->updateLook(pinput->getX(), pinput->getY(), transform);
+
+      pinput->process_keyboard_input();
 
       //cameraController.moveInPlaneXZ(m_pimpact, frameTime, viewerObject);
 
@@ -807,16 +809,16 @@ namespace graphics3d
    }
 
 
-   void engine_instance::defer_start(::user::graphics3d * pusergraphics3d, const ::i32_rectangle & rectanglePlacement)
+   void engine_instance::defer_start(::user::graphics3d_engine_host * pusergraphics3denginehost, const ::i32_rectangle & rectanglePlacement)
    {
 
-      m_pusergraphics3d = pusergraphics3d;
+      m_pusergraphics3denginehost = pusergraphics3denginehost;
 
       auto papp = get_app();
 
       auto pgpuapproach = papp->get_gpu_approach();
 
-      auto pwindow = m_pusergraphics3d->window();
+      auto pwindow = m_pusergraphics3denginehost->window();
 
       ::i32_rectangle rectangleWindow = rectanglePlacement;
 
@@ -920,7 +922,7 @@ namespace graphics3d
             //}
 
 
-            m_pusergraphics3d->on_load_engine();
+            m_pusergraphics3denginehost->on_load_engine();
 
             pcontext->m_pgraphics3dengineinstance = this;
 
@@ -989,7 +991,7 @@ namespace graphics3d
 
          }
 
-         auto pacmewindowingwindow = m_pusergraphics3d->acme_windowing_window();
+         auto pacmewindowingwindow = m_pusergraphics3denginehost->acme_windowing_window();
          
          ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
 
@@ -1033,6 +1035,21 @@ namespace graphics3d
       }
 
       return pcontext;
+
+   }
+
+
+   ::graphics3d::input * engine_instance::get_input()
+   {
+
+      if (!m_pusergraphics3denginehost)
+      {
+
+         return nullptr;
+
+      }
+
+      return m_pusergraphics3denginehost->get_input();
 
    }
 
@@ -1111,7 +1128,7 @@ namespace graphics3d
                if (detail != lastError.as_string())
                {
                   errorf("graphics3d draw_layer failed: impact_serial=%d engine=%p placement=(%d,%d %dx%d): %s",
-                     m_pusergraphics3d ? m_pusergraphics3d->m_iImpactSerial : -1, this,
+                     m_pusergraphics3denginehost ? m_pusergraphics3denginehost->m_iImpactSerial : -1, this,
                      m_rectanglePlacementNew.left, m_rectanglePlacementNew.top,
                      m_rectanglePlacementNew.width(), m_rectanglePlacementNew.height(), detail.c_str());
                   lastError = detail;

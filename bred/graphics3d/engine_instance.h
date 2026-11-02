@@ -32,10 +32,9 @@ namespace graphics3d
 		//::gpu::context_pointer					      m_pgpucontext;
 		//::gpu::context_pointer					      m_pgpucontextGraphics3D;
       ::pointer < ::graphics3d::graphics3d >             m_pgraphics3d;
-		::pointer < ::user::graphics3d >				         m_pusergraphics3d;
+		::pointer < ::user::graphics3d_engine_host >		   m_pusergraphics3denginehost;
 
 	   ::pointer < ::graphics3d::immersion_layer >        m_pimmersionlayer;
-	   ::pointer < ::graphics3d::input >			         m_pinput;
 
 		::graphics3d::transform					               m_transform;
 		::f32													         m_fFrameTime;
@@ -60,7 +59,7 @@ namespace graphics3d
 		~engine_instance() override;
 
 
-		virtual void initialize_graphics3d_engine_instance(::user::graphics3d* pimpact);
+		virtual void initialize_graphics3d_engine_instance(::user::graphics3d_engine_host* pimpact);
 
       //void set_gpu_performance_diagnostics(bool bEnabled);
       //bool gpu_performance_diagnostics_enabled() const;
@@ -75,7 +74,7 @@ namespace graphics3d
 
 		virtual ::gpu::enum_output get_engine_gpu_eoutput();
 
-		virtual void defer_start(::user::graphics3d * pusergraphics3d, const ::i32_rectangle& rectangle);
+		virtual void defer_start(::user::graphics3d_engine_host * pusergraphics3denginehost, const ::i32_rectangle& rectangle);
 
 		virtual void on_begin_frame();
 		virtual void on_end_frame();
@@ -90,7 +89,7 @@ namespace graphics3d
 
 		virtual ::gpu::context* get_gpu_context();
 
-
+      virtual ::graphics3d::input * get_input();
 
 		virtual void engine_on_after_load_scene(::graphics3d::scene_base* pscene);
 

@@ -57,11 +57,8 @@ namespace gpu_opengl
           throw ::exception(error_wrong_state);
 
        }
-       if (!m_pgpudevice->m_pwindow)
-       {
-
-          throw ::exception(error_wrong_state);
-       }
+       // Offscreen contexts own their WGL window; the shared device is
+       // initialized for a draw2d domain and need not have a window.
        //_create_offscreen_window(size);
 
       //_create_window_buffer();
@@ -237,9 +234,6 @@ namespace gpu_opengl
          // set_ok_flag();
 
          //scoped_dummy_wgl_context wglcontextDummy(this);
-
-         ::cast<::gpu_opengl::device_win32> pdevice = m_pgpudevice;
-         ::cast<::win32::acme::windowing::window> pwindow = m_pgpudevice->m_pwindow;
 
          create_offscreen_wgl_context();
 

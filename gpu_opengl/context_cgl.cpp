@@ -482,13 +482,13 @@ void context_cgl::_defer_update_render_frame_buffer_unlocked()
       if(iFindPrecision >= 0)
       {
 
-         stra[iFindPrecision] = "precision highp ::f32;";
+         stra[iFindPrecision] = "precision highp float;";
 
       }
       else
       {
 
-         stra.insert_at(1, "precision highp ::f32;");
+         stra.insert_at(1, "precision highp float;");
 
          iFindPrecision = 1;
 

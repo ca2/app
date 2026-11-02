@@ -801,17 +801,17 @@ namespace gpu_opengl
 
       string strFragment =
          "uniform vec2 resolution;\n"
-         "uniform ::f32 time;\n"
+         "uniform float time;\n"
          "uniform vec2 mouse;\n"
          "uniform sampler2D backbuffer;\n"
          "\n"
          "void main(void) {\n"
-         "::f32 base_res = min(resolution.x, resolution.y);\n"
+         "float base_res = min(resolution.x, resolution.y);\n"
          "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / base_res;\n"
          "\n"
          //"gl_FragColor = vec4(uv, (uv.x * uv.x) / 2.0, ((uv.x + (base_res - uv.y)) *(uv.x + (base_res - uv.y))) / 2.0);\n"
-         "::f32 posx = max(0.f, uv.x);\n"
-         "::f32 posy = max(0.f, uv.y);\n"
+         "float posx = max(0.f, uv.x);\n"
+         "float posy = max(0.f, uv.y);\n"
          "gl_FragColor = vec4(uv, (posx * posx) / 4.0, ((posx + posy) * (posx + posy)) / 4.0);\n"
          "}\n";
 
@@ -2885,13 +2885,13 @@ namespace gpu_opengl
       if (iFindPrecision >= 0)
       {
 
-         stra[iFindPrecision] = "precision highp ::f32;";
+         stra[iFindPrecision] = "precision highp float;";
 
       }
       else
       {
 
-         stra.insert_at(1, "precision highp ::f32;");
+         stra.insert_at(1, "precision highp float;");
 
          iFindPrecision = 1;
 

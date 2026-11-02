@@ -1866,10 +1866,20 @@ namespace gpu_opengl
 
       auto sizePixmap = ppixmap->size();
 
-      auto sizeThis = this->size();
+      auto sizeRaw = raw_size();
+
+      if (sizePixmap.is_empty() || pointOutput.x < 0 || pointOutput.y < 0
+         || sizePixmap.cx > sizeRaw.cx || sizePixmap.cy > sizeRaw.cy
+         || pointOutput.x > sizeRaw.cx - sizePixmap.cx
+         || pointOutput.y > sizeRaw.cy - sizePixmap.cy)
+      {
+
+         throw ::exception(error_bad_argument, "OpenGL readback rectangle is outside the texture.");
+
+      }
 
       if (!ppixmap || ppixmap->raw_size() != raw_size() ||
-          ppixmap->m_iScan < width() * (int)sizeof(::image32_t) ||
+          ppixmap->m_iScan < sizePixmap.cx * (int)sizeof(::image32_t) ||
           !ppixmap->m_pimage32 || !m_gluTextureID ||
           (m_gluType != GL_TEXTURE_2D && m_gluType != GL_TEXTURE_2D_MULTISAMPLE))
       {
@@ -1916,9 +1926,9 @@ namespace gpu_opengl
 
       auto x = pointOutput.x;
 
-      auto w = m_textureattributes.m_size.width();
+      auto w = sizePixmap.cx;
 
-      auto h = m_textureattributes.m_size.height();
+      auto h = sizePixmap.cy;
 
       auto y = raw_height() - pointOutput.y - h;
 

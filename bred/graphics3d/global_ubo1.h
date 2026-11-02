@@ -4,7 +4,7 @@
 
 
 #include "bred/graphics3d/point_light.h"
-#include "bred/user/user/graphics3d.h"
+// #include "bred/user/user/graphics3d_engine_host.h"
 
 
 namespace graphics3d

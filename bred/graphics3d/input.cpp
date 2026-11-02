@@ -5,7 +5,7 @@
 #include "engine_instance.h"
 #include "acme/platform/application.h"
 #include "aura/platform/session.h"
-#include "bred/user/user/graphics3d.h"
+#include "bred/user/user/graphics3d_engine_host.h"
 #include "bred/graphics3d/scene_base.h"
 #include <cstdlib>
 
@@ -71,7 +71,7 @@ namespace graphics3d
    ::key::e_state input::key_state(::graphics3d::enum_key ekey)
    {
       
-      return m_pgraphics3dengineinstance->m_pusergraphics3d->m_pkeymap->key_state(ekey);
+      return m_pgraphics3dengineinstance->m_pusergraphics3denginehost->m_pgraphics3dkeymap->key_state(ekey);
 
    }
 

@@ -2402,7 +2402,9 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
          information() << "cache map_base path: " << pathCache;
 
-         path = file()->as_string(pathCache);
+         // Cache mappings are optional, particularly on an application's first
+         // launch. A missing mapping must fall through to normal matter lookup.
+         path = file()->safe_get_string(pathCache);
 
          if (path.case_insensitive_begins_eat("itdoesntexist."))
          {

@@ -333,173 +333,181 @@ namespace user
    //}
 
 
-   //::image::image * gpu_render::drawn_frame_image()
-   //{
+   ::image::image * gpu_render::drawn_frame_image()
+   {
 
-   //   on_gpu_draw(m_pgpucontext);
+      on_gpu_draw(m_pgpucontext);
 
-   //   return m_pimageFromGpu;
+      return m_pimageFromGpu;
 
-   //}
-
-
-   //void gpu_render::on_gpu_draw(::gpu::context * pgpucontext)
-   //{
-
-   //   if (!pgpucontext || m_rectangle.is_empty())
-   //   {
-
-   //      return;
-
-   //   }
-
-   //   pgpucontext->sendø() << [this, pgpucontext]
-   //      {
-
-   //         auto pcontext = pgpucontext;
-   //         ::gpu::context_lock contextlock(pcontext);
-   //         auto pattachment = pcontext->m_pgpuwindowattachmentOffscreen;
-   //         ::pointer<::gpu::layer> playerPrevious = ::gpu::current_layer();
-   //         ::std::exception_ptr exceptionRender;
-   //         bool bFrameStarted = false;
-   //         bool bLayerStarted = false;
-
-   //         try
-   //         {
-
-   //            auto size = m_rectangle.size();
-   //            pcontext->m_sizeRaw = size;
-   //            pcontext->set_output_placement(::i32_rectangle(size));
-   //            pcontext->get_gpu_renderer()->on_resize(size);
-   //            defer_update_shader();
-
-   //            if (!m_pmodelbufferFullscreen)
-   //            {
-
-   //               constructø(m_pmodelbufferFullscreen);
-   //               m_pmodelbufferFullscreen->initialize_dummy_model(pcontext, 3);
-
-   //            }
-
-   //            pattachment->start_frame();
-   //            bFrameStarted = true;
-   //            pcontext->start_layer(false, ::gpu::e_start_layer_none);
-   //            bLayerStarted = true;
-
-   //            ::pointer<::gpu::texture_site> ptarget =
-   //               pcontext->current_target_texture(::gpu::current_layer());
-   //            auto pcommands = ::gpu::current_layer()->getCurrentCommandBuffer4();
-   //            pcommands->begin_render(m_pshader, ptarget);
-   //            pcommands->set_viewport(::i32_rectangle(size), ptarget->raw_size());
-   //            pcommands->set_scissor(::i32_rectangle(size), ptarget->raw_size());
-
-   //            auto pointCursor = m_puserinteraction->mouse_cursor_position();
-   //            m_puserinteraction->screen_to_client()(pointCursor);
-   //            auto x = (::f32)pointCursor.x;
-   //            auto y = (::f32)(size.cy - pointCursor.y);
-   //            m_pshader->set_sequence2("mouse", x, y);
-   //            m_pshader->set_sequence4("iMouse", x, y, 0.f, 0.f);
-   //            m_pshader->set_sequence2("resolution", (::f32)size.cx, (::f32)size.cy);
-   //            m_pshader->set_sequence3("iResolution", (::f32)size.cx, (::f32)size.cy, 1.f);
-   //            auto time = (::f32)m_timeStart.elapsed().floating_second();
-   //            m_pshader->set_f32("time", time);
-   //            m_pshader->set_f32("iTime", time);
-   //            pcommands->draw(m_pmodelbufferFullscreen);
-   //            pcommands->end_render();
-   //            bLayerStarted = false;
-   //            pcontext->end_layer();
-
-   //            // Read the finished layer, rather than the legacy CPU buffer.
-   //            defer_constructø(m_pimageFromGpu);
-   //            m_pimageFromGpu->create_as_descriptor(ptarget->raw_size(),
-   //               pcontext->m_pgpudevice->draw2d_domain());
-   //            {
-
-   //               auto ppixmap = m_pimageFromGpu->map(::image::e_map_discard, ptarget->output_placement());
-   //               auto pread = pcontext->beginSingleTimeCommands(pcontext->m_pgpudevice->graphics_queue());
-   //               auto ptexture = ptarget->gpu_texture()->resolved_texture(ptarget->output_placement());
-   //               ptexture->read_pixels(pread, ppixmap, ptarget->m_pointOutput);
-   //               if (!m_bLoggedReadback)
-   //               {
-
-   //                  auto pcenter = (const ::image32_t *)((const ::u8 *)ppixmap->m_pimage32
-   //                     + (size.cy / 2) * ppixmap->m_iScan) + size.cx / 2;
-   //                  informationf("app_shader readback: path=%s size=%dx%d center=0x%08x",
-   //                     m_strShaderPath.c_str(), size.cx, size.cy, pcenter->m_u32);
-   //                  m_bLoggedReadback = true;
-
-   //               }
-   //               if (pread.is_pending())
-   //               {
-
-   //                  pread.commit();
-
-   //               }
-
-   //            }
-   //            m_pimageFromGpu->set_ok_flag();
-   //            m_pimageFromGpu->m_estatus = success;
-
-   //         }
-   //         catch (...)
-   //         {
-
-   //            exceptionRender = ::std::current_exception();
-
-   //         }
-
-   //         if (bLayerStarted)
-   //         {
-
-   //            try { pcontext->end_layer(); }
-   //            catch (...) { if (!exceptionRender) exceptionRender = ::std::current_exception(); }
-
-   //         }
-   //         if (bFrameStarted)
-   //         {
-
-   //            try { pattachment->end_frame(); }
-   //            catch (...) { if (!exceptionRender) exceptionRender = ::std::current_exception(); }
-
-   //         }
-   //         ::gpu::set_current_layer(playerPrevious);
-   //         if (exceptionRender)
-   //         {
-
-   //            ::std::rethrow_exception(exceptionRender);
-
-   //         }
-
-   //      };
-
-   //   //if (m_pimageFromGpu.ok())
-   //   //{
-
-   //   //   ::image::image_source source(m_pimageFromGpu, ::i32_rectangle(m_rectangle.size()));
-   //   //   ::image::image_drawing_options options(m_rectangle);
-   //   //   ::image::image_drawing drawing(options, source);
-   //   //   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-   //   //   try
-   //   //   {
-
-   //   //      pdraw2dgraphics->draw(drawing);
+   }
 
 
-   //   //   }
-   //   //   catch (const ::exception & e)
-   //   //   {
+   void gpu_render::on_gpu_draw(::gpu::context * pgpucontext)
+   {
 
-   //   //      error() << "app_shader: draw2d image transfer failed: " << e.get_message();
-   //   //      throw;
+      if (!pgpucontext || m_rectangle.is_empty())
+      {
 
-   //   //   }
+         return;
+
+      }
+
+      pgpucontext->sendø() << [this, pgpucontext]
+         {
+
+            on_gpu_render(pgpucontext);
+            //auto pcontext = pgpucontext;
+            //::gpu::context_lock contextlock(pcontext);
+            //auto pattachment = pcontext->m_pgpuwindowattachmentOffscreen;
+            //::pointer<::gpu::layer> playerPrevious = ::gpu::current_layer();
+            //::std::exception_ptr exceptionRender;
+            //bool bFrameStarted = false;
+            //bool bLayerStarted = false;
+
+            //try
+            //{
+
+            //   auto size = m_rectangle.size();
+            //   pcontext->m_sizeRaw = size;
+            //   pcontext->set_output_placement(::i32_rectangle(size));
+            //   pcontext->get_gpu_renderer()->on_resize(size);
+            //   defer_update_shader();
+
+            //   if (!m_pmodelbufferFullscreen)
+            //   {
+
+            //      constructø(m_pmodelbufferFullscreen);
+            //      m_pmodelbufferFullscreen->initialize_dummy_model(pcontext, 3);
+
+            //   }
+
+            //   pattachment->start_frame();
+            //   bFrameStarted = true;
+            //   pcontext->start_layer(false, ::gpu::e_start_layer_none);
+            //   bLayerStarted = true;
+
+            //   ::pointer<::gpu::texture_site> ptarget =
+            //      pcontext->current_target_texture(::gpu::current_layer());
+            //   auto pcommands = ::gpu::current_layer()->getCurrentCommandBuffer4();
+            //   pcommands->begin_render(m_pshader, ptarget);
+            //   pcommands->set_viewport(::i32_rectangle(size), ptarget->raw_size());
+            //   pcommands->set_scissor(::i32_rectangle(size), ptarget->raw_size());
+
+            //   auto pointCursor = m_puserinteraction->mouse_cursor_position();
+            //   m_puserinteraction->screen_to_client()(pointCursor);
+            //   auto x = (::f32)pointCursor.x;
+            //   auto y = (::f32)(size.cy - pointCursor.y);
+            //   m_pshader->set_sequence2("mouse", x, y);
+            //   m_pshader->set_sequence4("iMouse", x, y, 0.f, 0.f);
+            //   m_pshader->set_sequence2("resolution", (::f32)size.cx, (::f32)size.cy);
+            //   m_pshader->set_sequence3("iResolution", (::f32)size.cx, (::f32)size.cy, 1.f);
+            //   auto time = (::f32)m_timeStart.elapsed().floating_second();
+            //   m_pshader->set_f32("time", time);
+            //   m_pshader->set_f32("iTime", time);
+            //   pcommands->draw(m_pmodelbufferFullscreen);
+            //   pcommands->end_render();
+            //   bLayerStarted = false;
+            //   pcontext->end_layer();
+
+            //   // Read the finished layer, rather than the legacy CPU buffer.
+            //   defer_constructø(m_pimageFromGpu);
+            //   m_pimageFromGpu->create_as_descriptor(ptarget->raw_size(),
+            //      pcontext->m_pgpudevice->draw2d_domain());
+            //   {
+
+            //      auto ppixmap = m_pimageFromGpu->map(::image::e_map_discard, ptarget->output_placement());
+            //      auto pread = pcontext->beginSingleTimeCommands(pcontext->m_pgpudevice->graphics_queue());
+            //      auto ptexture = ptarget->gpu_texture()->resolved_texture(ptarget->output_placement());
+            //      ptexture->read_pixels(pread, ppixmap, ptarget->m_pointOutput);
+            //      if (!m_bLoggedReadback)
+            //      {
+
+            //         auto pcenter = (const ::image32_t *)((const ::u8 *)ppixmap->m_pimage32
+            //            + (size.cy / 2) * ppixmap->m_iScan) + size.cx / 2;
+            //         informationf("app_shader readback: path=%s size=%dx%d center=0x%08x",
+            //            m_strShaderPath.c_str(), size.cx, size.cy, pcenter->m_u32);
+            //         m_bLoggedReadback = true;
+
+            //      }
+            //      if (pread.is_pending())
+            //      {
+
+            //         pread.commit();
+
+            //      }
+
+            //   }
+            //   m_pimageFromGpu->set_ok_flag();
+            //   m_pimageFromGpu->m_estatus = success;
+
+            //}
+            //catch (...)
+            //{
+
+            //   exceptionRender = ::std::current_exception();
+
+            //}
+
+            //if (bLayerStarted)
+            //{
+
+            //   try { pcontext->end_layer(); }
+            //   catch (...) { if (!exceptionRender) exceptionRender = ::std::current_exception(); }
+
+            //}
+            //if (bFrameStarted)
+            //{
+
+            //   try { pattachment->end_frame(); }
+            //   catch (...) { if (!exceptionRender) exceptionRender = ::std::current_exception(); }
+
+            //}
+            //::gpu::set_current_layer(playerPrevious);
+            //if (exceptionRender)
+            //{
+
+            //   ::std::rethrow_exception(exceptionRender);
+
+            //}
+
+         };
+
+      //if (m_pimageFromGpu.ok())
+      //{
+
+      //   ::image::image_source source(m_pimageFromGpu, ::i32_rectangle(m_rectangle.size()));
+      //   ::image::image_drawing_options options(m_rectangle);
+      //   ::image::image_drawing drawing(options, source);
+      //   pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      //   try
+      //   {
+
+      //      pdraw2dgraphics->draw(drawing);
 
 
-   //   //}
+      //   }
+      //   catch (const ::exception & e)
+      //   {
 
-   //   // The host presents only shader output; window UI belongs to main_window.
+      //      error() << "app_shader: draw2d image transfer failed: " << e.get_message();
+      //      throw;
 
-   //}
+      //   }
+
+
+      //}
+
+      // The host presents only shader output; window UI belongs to main_window.
+
+   }
+
+
+   void render::on_gpu_render(::gpu::context * pgpucontext)
+   {
+
+
+   }
 
 
    //void gpu_render::_001OnDrawLabel(::draw2d::graphics_pointer & pdraw2dgraphics)

@@ -46,7 +46,7 @@ namespace user
       ~gpu_render() override;
 
 
-      //virtual void initialize_app_shader_render(::user::gpu_interaction * pusergpuinteraction);
+      virtual void initialize_user_gpu_render(::user::gpu_interaction * pusergpuinteraction);
 
 #ifdef _DEBUG
       virtual ::i64 increment_reference_count() override;
@@ -57,9 +57,11 @@ namespace user
       //virtual void defer_update_shader();
       //virtual void _update_shader();
 
-      //virtual ::image::image * drawn_frame_image();
+      virtual ::image::image * drawn_frame_image();
 
-      //virtual void on_gpu_draw(::gpu::context * pgpucontext);
+      virtual void on_gpu_draw(::gpu::context * pgpucontext);
+
+      virtual void on_gpu_render(::gpu::context *pgpucontext);
 
       //virtual void _001OnDrawLabel(::draw2d::graphics_pointer & pdraw2dgraphics);
 

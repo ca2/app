@@ -232,7 +232,7 @@ namespace user
 
          }
 
-         prender->initialize_app_shader_render(this);
+         prender->initialize_user_gpu_render(this);
 
          auto pimageTarget = prender->drawn_frame_image();
 

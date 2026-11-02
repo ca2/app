@@ -5,13 +5,16 @@
 #include "bred/gpu/shader.h"
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/program.h"
-#include "bred/gpu/cpu_buffer.h"
+#include "bred/gpu/texture_site.h"
+//#include "bred/gpu/cpu_buffer.h"
 #include <math.h>
 #include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
-#include "aura/graphics/image/target.h"
+//#include "aura/graphics/image/target.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/user/user/interaction.h"
 #include "aura/platform/system.h"
@@ -79,7 +82,7 @@ namespace app_shader
       if (m_pgpucontext)
       {
 
-         m_pgpucontext->on_resize(m_rectangle.size());
+         m_pgpucontext->on_resize(m_rectangle.size(), pdraw2dgraphics->draw2d_domain(), pdraw2dgraphics);
 
       }
       
@@ -252,7 +255,7 @@ namespace app_shader
          
       }
       
-      m_pgpucontext->sendø() << [this]
+      m_pgpucontext->sendø() << [this, &pdraw2dgraphics]
                                     {
          
          //::gpu::context_lock lock(m_pgpucontext);
@@ -260,10 +263,10 @@ namespace app_shader
          defer_update_shader();
          
          if (m_pgpucontext &&
-             ::is_set(m_pgpushader) &&
-             m_pgpucontext->m_pcpubuffer &&
-            m_pgpucontext->m_pcpubuffer->m_pimagetarget &&
-            m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage.ok())
+             ::is_set(m_pgpushader) )
+            //&& m_pgpucontext->m_pcpubuffer &&
+            //m_pgpucontext->m_pcpubuffer->m_pimagetarget &&
+            //m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage.ok())
          {
             
             {
@@ -271,8 +274,10 @@ namespace app_shader
                //::gpu::context_lock lock(m_pgpucontext);
                
                //m_pgpucontext->make_current();
+
+               auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands();
                
-               m_pgpucontext->start_drawing();
+               m_pgpucontext->begin_render(pgpucommandbuffer);
                
                {
                   
@@ -291,16 +296,20 @@ namespace app_shader
                   
                }
                
-               {
+               //{
                   
-                  ::f32 cx = (::f32)m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage->width();
+                  ::f32 cx = (::f32)m_pgpucontext->width();
                   
-                  ::f32 cy = (::f32)m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage->height();
+                  ::f32 cy = (::f32)m_pgpucontext->height();
                   
                   m_pgpushader->set_sequence2("resolution", cx, cy);
                   m_pgpushader->set_sequence2("iResolution", cx, cy);
                   
-               }
+               //}
+
+               defer_constructø(m_pimageTarget);
+
+               m_pimageTarget->create_as_descriptor({ (::i32)cx,(::i32) cy }, pdraw2dgraphics->draw2d_domain());
                
                {
                   
@@ -315,7 +324,12 @@ namespace app_shader
 
                m_pgpucontext->render();
                
-               read_to_cpu_buffer();
+               //read_to_cpu_buffer();
+
+               auto ppixmap = m_pimageTarget->map();
+
+               m_pgpucontext->current_target_texture(::gpu::current_layer())->m_pgputextureSite->read_pixels(
+                  pgpucommandbuffer, ppixmap, {});
 
             }
             
@@ -323,7 +337,7 @@ namespace app_shader
             
          }
       }
-                                    );
+                                    ;
 
          
          {
@@ -358,7 +372,7 @@ namespace app_shader
 
       auto strLabel = ::file::path(pathShader).name();
 
-      auto pinteraction = pdraw2dgraphics->m_puserinteraction;
+      auto pinteraction = pdraw2dgraphics->m_puserinteractionTopic;
 
       ::color::color colorBackground = argb(127, 255, 255, 255);
 
@@ -396,14 +410,14 @@ namespace app_shader
 
             defer_constructø(m_pimageLabel);
 
-            if (m_pgraphicsImageLabel-> == nullptr)
+            if (!m_pimageLabel)
             {
 
-               m_pimageLabel->create_as_descriptor({ 16, 16 });
+               m_pimageLabel->create_as_descriptor({ 16, 16 }, pdraw2dgraphics->draw2d_domain());
 
             }
 
-            auto pgraphicsLabel = m_pgraphicsImageLabel->;
+            auto pgraphicsLabel = m_pimageLabel->acquire_graphics();
 
             pgraphicsLabel->set(pfont);
 
@@ -415,9 +429,9 @@ namespace app_shader
 
             rect.move_to(0, 0);
 
-            m_pimageLabel->create_as_descriptor(rect.size());
+            m_pimageLabel->create_as_descriptor(rect.size(), pdraw2dgraphics->draw2d_domain());
 
-            pgraphicsLabel = m_pgraphicsImageLabel->;
+            pgraphicsLabel = m_pimageLabel->acquire_graphics();
 
             pgraphicsLabel->set(pfont);
 
@@ -427,7 +441,7 @@ namespace app_shader
 
             pgraphicsLabel->fill_rectangle(rect);
 
-            pgraphicsLabel->set_text_color({});
+            //pgraphicsLabel->set_text_color({});
 
             pgraphicsLabel->text_out({ 4,4 }, strLabel);
 
@@ -492,7 +506,7 @@ namespace app_shader
          if(strError.has_character())
          {
 
-            auto pinteraction = pdraw2dgraphics->m_puserinteraction;
+            auto pinteraction = pdraw2dgraphics->m_puserinteractionTopic;
 
             auto colorBackground = argb(127, 255, 255, 255);
 
@@ -527,14 +541,14 @@ namespace app_shader
 
             defer_constructø(m_pimageError);
 
-            if(m_pgraphicsImageError-> == nullptr)
+            if(!m_pimageError)
             {
 
-               m_pimageError->create_as_descriptor({ 16 });
+               m_pimageError->create_as_descriptor({ 16 }, pdraw2dgraphics->draw2d_domain());
 
             }
 
-            auto pgraphicsError = m_pgraphicsImageLabel->;
+            auto pgraphicsError = m_pimageError->acquire_graphics();
 
             pgraphicsError->set(pfont);
 
@@ -545,9 +559,9 @@ namespace app_shader
             rect.move_to(10, 10);
             rect.inflate(4);
 
-            m_pimageError->create_as_descriptor(rect.size());
+            m_pimageError->create_as_descriptor(rect.size(), pdraw2dgraphics->draw2d_domain());
 
-            pgraphicsError = m_pgraphicsImageError->;
+            pgraphicsError = m_pimageError->acquire_graphics();
 
             pgraphicsError->set(pfont);
 
@@ -556,7 +570,7 @@ namespace app_shader
             pgraphicsError->set_alpha_mode(::draw2d::e_alpha_mode_set);
             pgraphicsError->set(pbrush);
             pgraphicsError->fill_rectangle(rect);
-            pgraphicsError->set_text_color(::color::transparent);
+            //pgraphicsError->set_text_color(::color::transparent);
 
 
             pgraphicsError->text_out({ 4,4 }, strError);

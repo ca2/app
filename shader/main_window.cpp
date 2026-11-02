@@ -11,10 +11,11 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/datetime/datetime.h"
 #include "acme/user/user/tool.h"
-#include "aura/graphics/user/control_box_icon.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/encoding_options.h"
 #include "aura/graphics/image/context.h"
+#include "aura/graphics/user/control_box_icon.h"
 #include "aura/message/user.h"
 #include "aura/platform/system.h"
 
@@ -222,9 +223,9 @@ namespace app_shader
 
             m_bSaveFrame = false;
 
-            auto pimage = image()->create_image(rectangleX.size());
+            auto pimage = image()->create_image(rectangleX.size(), draw2d_domain());
 
-            ::draw2d::graphics_pointer pdraw2dgraphics = pdraw2dgraphicsImage;
+            auto pdraw2dgraphics = pimage->acquire_graphics();
 
             prender->_001OnDraw(pdraw2dgraphics);
 

@@ -29,6 +29,7 @@ namespace app_shader
       string_map_base < ::image::image_pointer >      m_pimagemap;
       ::image::image_pointer                     m_pimage1;
       ::image::image_pointer                     m_pimage2;
+      ::image::image_pointer                     m_pimageTarget;
       ::color::hls                        m_hlsText;
       class ::time                        m_timeStart;
       ::gpu::enum_shader_source           m_eshadersource;

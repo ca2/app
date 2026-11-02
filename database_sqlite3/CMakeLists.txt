@@ -82,7 +82,7 @@ if(${WIN32})
 elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
 
-   if(USE_PORT_SQLITE)
+   if(${USE_PORT_SQLITE})
       if(NOT TARGET sqlite OR NOT TARGET static_sqlite)
          message(FATAL_ERROR "USE_PORT_SQLITE requires the port/base/sqlite targets")
       endif()

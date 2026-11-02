@@ -155,6 +155,9 @@ namespace aura
 
       ::pointer<::gpu::approach>                         m_pgpu;
       ::string                                           m_strGraphics3DImplementation;
+      // Set in the derived application constructor; empty means use settings.
+      ::string                                           m_strGraphics3DImplementationOverride;
+      ::string                                           m_strGraphics3DOutputOverride;
       ::string                                           m_strDraw2dImplementation;
 
       ::string                                           m_strTypefaceImplementation;
@@ -1127,6 +1130,9 @@ void initialize_context() override;
 
       virtual ::string graphics3d_get_implementation_name();
 
+
+      virtual ::string graphics3d_get_implementation_override();
+      virtual ::string graphics3d_get_output_override();
 
    };
 

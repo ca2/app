@@ -422,7 +422,7 @@ namespace operating_system
    //      node()->set_environment_variable("__SYSTEM_DISTRO_FAMILY", m_strDistroFamily);
    //      node()->set_environment_variable("__SYSTEM_DISTRO_BRANCH", m_strDistroBranch);
    //      node()->set_environment_variable("__SYSTEM_DISTRO_RELEASE", m_strDistroRelease);
-   //      node()->set_environment_variable("__SYSTEM_DESKTOP_ENVIRONMENT", m_strDesktopEnvironment);
+   //      node()->set_environment_variable("__SYSTEM_AMBIENT", m_strDesktopEnvironment);
    //      node()->set_environment_variable("__SYSTEM_SLASHED_OPERATING_SYSTEM", m_strSlashedSystem);
    //      node()->set_environment_variable("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM", m_strUnderscoreSystem);
    //      node()->set_environment_variable("__SYSTEM_SUDO_INSTALL", m_strSudoInstall);

@@ -30,7 +30,7 @@ distro__release_and_desktop_environment::~distro__release_and_desktop_environmen
    strSummary.append_format("__SYSTEM_DISTRO_FAMILY is %s", m_strDistroFamily);
    strSummary.append_format("__SYSTEM_DISTRO_BRANCH is %s", m_strDistroBranch);
    strSummary.append_format("__SYSTEM_DISTRO_RELEASE is %s", m_strDistroRelease);
-   strSummary.append_format("__SYSTEM_DESKTOP_ENVIRONMENT is %s", m_strDesktopEnvironment);
+   strSummary.append_format("__SYSTEM_AMBIENT is %s", m_strDesktopEnvironment);
    strSummary.append_format("__SYSTEM_SLASHED_OPERATING_SYSTEM is %s", m_strSlashedOperatingSystem);
    strSummary.append_format("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM is %s", m_strUnderscoreOperatingSystem);
    strSummary.append_format("__SYSTEM_SUDO_INSTALL is %s", m_strSudoInstall);
@@ -350,7 +350,7 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
       acmenode()->set_environment_variable("__SYSTEM_DISTRO_FAMILY", m_strDistroFamily);
       acmenode()->set_environment_variable("__SYSTEM_DISTRO_BRANCH", m_strDistroBranch);
       acmenode()->set_environment_variable("__SYSTEM_DISTRO_RELEASE", m_strDistroRelease);
-      acmenode()->set_environment_variable("__SYSTEM_DESKTOP_ENVIRONMENT", m_strDesktopEnvironment);
+      acmenode()->set_environment_variable("__SYSTEM_AMBIENT", m_strDesktopEnvironment);
       acmenode()->set_environment_variable("__SYSTEM_SLASHED_OPERATING_SYSTEM", m_strSlashedOperatingSystem);
       acmenode()->set_environment_variable("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM", m_strUnderscoreOperatingSystem);
       acmenode()->set_environment_variable("__SYSTEM_SUDO_INSTALL", m_strSudoInstall);

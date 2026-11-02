@@ -1,6 +1,7 @@
 #include "platform.h"
 #include "application.h"
 #include "startup_delay_debug.h"
+#include "graphics_configuration.h"
 #include "shell_open.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
@@ -1866,6 +1867,14 @@ namespace aura
          {
 
             strImplementation = "nanovg";
+
+         }
+         else if (strImplementation == "direct2d_for_directx11"
+            || strImplementation == "direct2d_for_directx12"
+            || strImplementation == "gdiplus" || strImplementation == "quartz2d")
+         {
+
+            // Keep the explicit GPU-compatible Direct2D implementation.
 
          }
          else if (strImplementation == "direct2d")
@@ -10011,88 +10020,29 @@ namespace aura
       // Windowing can request draw2d before application::init_instance().
       defer_initialize_graphics_configuration();
 
-      if (m_gpu.m_bUseSwapChainWindow)
+      if (m_bGpu || m_gpu.m_bUseSwapChainWindow || graphics3d_get_implementation_override().has_character())
       {
 
-         ::string strGraphics3DImplementation = graphics3d_get_implementation_name();
-
-         if (strGraphics3DImplementation == "vulkan")
-         {
-
-             ::string strImpl = m_strDraw2dImplementation;
-
-             strImpl.trim();
-
-             strImpl.begins_eat("draw2d_");
-
-             if (strImpl.case_insensitive_equals("vkvg"))
-             {
-
-                 return system()->implementation_name("draw2d", "vkvg");
-
-             }
-
-             return system()->implementation_name("draw2d", "vulkan");
-
-         }
-         else if (strGraphics3DImplementation == "opengl")
-         {
-
-            ::string strImpl = m_strDraw2dImplementation;
-
-            strImpl.trim();
-
-            strImpl.begins_eat("draw2d_");
-
-            if (strImpl.case_insensitive_equals("nanovg"))
-            {
-
-               return system()->implementation_name("draw2d", "nanovg");
-
-            }
-
-            return system()->implementation_name("draw2d", "opengl");
-
-         }
-         else if (strGraphics3DImplementation.begins("directx"))
-         {
-
-            if (m_strDraw2dImplementation.case_insensitive_equals(strGraphics3DImplementation))
-            {
-
-               return m_strDraw2dImplementation;
-
-            }
-            else if (strGraphics3DImplementation.equals("directx11"))
-            {
-
-               return system()->implementation_name("draw2d", "direct2d_for_directx11");
-
-            }
-            else if (strGraphics3DImplementation.equals("directx12"))
-            {
-
-               return system()->implementation_name("draw2d", "direct2d_for_directx12");
-
-            }
-
-            return system()->implementation_name("draw2d", "direct2d");
-
-         }
-         else
-         {
-
-            return system()->implementation_name("draw2d", strGraphics3DImplementation);
-
-         }
+         auto strGpuApi = graphics3d_get_implementation_name();
+#ifdef WINDOWS_DESKTOP
+         constexpr bool windows = true;
+#else
+         constexpr bool windows = false;
+#endif
+#ifdef __APPLE__
+         constexpr bool apple = true;
+#else
+         constexpr bool apple = false;
+#endif
+         auto available = ::aura::graphics_configuration::draw2d_apis(
+            strGpuApi.c_str(), !m_gpu.m_bUseSwapChainWindow, windows, apple);
+         auto strDraw2dApi = ::aura::graphics_configuration::draw2d_api(
+            m_strDraw2dImplementation.c_str(), available);
+         return system()->implementation_name("draw2d", strDraw2dApi.c_str());
 
       }
-      else
-      {
 
-         return m_strDraw2dImplementation;
-
-      }
+      return m_strDraw2dImplementation;
 
    }
 

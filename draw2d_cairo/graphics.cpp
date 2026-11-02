@@ -4393,6 +4393,18 @@ namespace draw2d_cairo
    }
 
 
+   ::i32 graphics::_DrawText(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangle,
+                            const ::e_align & ealign, const ::e_draw_text & edrawtext,
+                            ::write_text::font * pfontUnderline)
+   {
+      // The shared text layout takes the font-cache lock and calls back into
+      // Cairo. Take Cairo first, matching internal_draw_text -> font::on_changed,
+      // so concurrent caption and impact rendering cannot invert these locks.
+      _synchronous_lock lock(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      return ::draw2d::graphics::_DrawText(scopedstr, rectangle, ealign, edrawtext, pfontUnderline);
+   }
+
+
    void graphics::internal_draw_text(const block & block, const ::f64_rectangle & rectangle, const ::e_align & ealign,
                                      const ::e_draw_text & edrawtext)
    {

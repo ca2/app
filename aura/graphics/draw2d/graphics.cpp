@@ -7102,7 +7102,12 @@ namespace draw2d
 
       auto penumeration = system()->draw2d()->write_text()->fonts()->enumeration("system");
 
-      penumeration->m_happeningReady.wait(30_s);
+      // Called with backend/render locks held. Pumping the task loop here can
+      // reenter rendering or wait on the task's own synchronization locks.
+      if (!penumeration->m_happeningReady._wait(30_s))
+      {
+         return {};
+      }
 
       critical_section_lock synchronouslock(&system()->draw2d()->write_text()->m_csFont);
 

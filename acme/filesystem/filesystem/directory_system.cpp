@@ -188,7 +188,7 @@ void directory_system::initialize(::particle * pparticle)
 
          m_pathCloudProtocol = "onedrive://";
 
-#elif defined(LINUX)
+#elif defined(LINUX) || defined(__SUNOS__)
 
          m_pathCloudProtocol = "dropbox://";
 

@@ -1,0 +1,158 @@
+// Created by camilo on 2026-11-01 <3ThomasBorregaardSorensen!! Mummi!! bilbo!!
+#pragma once
+
+
+#include "aura/user/user/box.h"
+#include "bred/graphics3d/engine_instance.h"
+#include "bred/graphics3d/immersion_layer.h"
+#include "bred/graphics3d/key_map.h"
+#include "bred/graphics3d/types.h"
+#include "apex/platform/app_consumer.h"
+#include "bred/platform/application.h"
+#include "apex/platform/session.h"
+#include "bred/platform/fps_counter.h"
+
+
+namespace user
+{
+
+
+
+   class CLASS_DECL_BRED gpu_interaction :
+      virtual public ::app_consumer < ::bred::application, ::user::box>
+   {
+   public:
+
+      //memory m_memory;
+      //::i32 m_i32;
+
+      ::i32                                           m_iFrameCounter = 0;
+      ::write_text::font_pointer                      m_pfontThomasBS_;
+      ::string_array                                  m_straLineStats;
+      int                                             m_iImpactSerial;
+      ::string                                        m_strGpuStatisticsTitle;
+
+      //::graphics3d::enum_mouse                      m_emouse;
+      //::graphics3d::enum_keyboard                   m_ekeyboard;
+      //bool                                          m_bAbsoluteMousePosition;
+      fps_counter                                     m_fpscounter;
+      //::pointer < ::gpu::shader >                     m_pgpushader;
+      ::pointer < ::graphics3d::key_map >			      m_pgraphics3dkeymap;
+      //::pointer < ::graphics3d::key_map >			      m_pkeymap;
+      //::task_pointer                                m_ptaskEngine;
+      //::pointer < ::image::target >                 m_pimagetarget;
+      ::pointer < ::graphics3d::input >			      m_pgraphics3dinput;
+
+//      ::image::image_pointer                          m_pimageTarget;
+
+
+      //bool		m_bShouldClose;
+      ::i32		m_iWidth;
+      ::i32		m_iHeight;
+      bool		m_bFramebufferResized;
+
+      ::platform::session * m_psession;
+
+
+      gpu_interaction();
+      ~gpu_interaction() override;
+
+
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
+     
+      //      // void assert_ok() const override;
+      //      // void dump(dump_context & dumpgpucontext) const override;
+            //::i32_size size() override;
+
+            //virtual ::block global_ubo_block();
+
+      void install_message_routing(::channel * pchannel) override;
+      void on_kill_keyboard_focus() override;
+      void _on_show_window() override;
+
+
+      virtual void on_mouse_move(const i32_point & point);
+      virtual void on_mouse_out();
+
+      //virtual ::user::enum_key_state get_key_state(const ::user::e_key & ekey) ;
+      ::key::e_state get_key_state(const ::user::e_key & ekey) {
+         return m_psession->_key_state(ekey);
+      }
+      void _001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+
+
+      virtual ::image::image * drawn_frame_image();
+      void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnNcPostDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      virtual void on_user_gpu_interaction_draw(::draw2d::graphics_pointer & pdraw2dgraphics);
+
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
+
+      //::user::document * get_document();
+
+      virtual void draw_gpu_statistics(::i32 y, const ::scoped_string & scopedstrTitle, ::draw2d::graphics_pointer & pdraw2dgraphics);
+
+      //virtual ::pointer < ::graphics3d::application > start_graphics3d_application();
+
+
+      void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
+      DECLARE_MESSAGE_HANDLER(on_message_key_down);
+      DECLARE_MESSAGE_HANDLER(on_message_key_up);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
+      DECLARE_MESSAGE_HANDLER(on_message_switch);
+
+      void operator()(::timer * ptimer) override;
+
+      //void reset_mouse_last_position();
+
+
+      virtual void on_user_interface_switch();
+
+      bool keyboard_focus_is_focusable() override;
+
+
+      //virtual bool is_absolute_mouse_position();
+
+      //virtual bool shouldClose();
+      //virtual ::i32_size size();
+      virtual bool wasWindowResized();
+      virtual void resetWindowResizedFlag();
+      //
+        //    virtual ::user::enum_key_state get_key_state(const ::user::e_key & ekey);
+
+            //virtual void initWindow();
+
+
+      virtual void defer_initialize_gpu_interaction(const ::i32_rectangle & rectangle);
+
+      //virtual ::pointer < ::prodevian::immersion > create_immersion();
+
+      //virtual void on_load_engine();
+
+
+      virtual ::graphics3d::input * get_input();
+      virtual ::pointer < ::graphics3d::key_map > get_default_key_map();
+      virtual ::f32 getAspectRatio();
+
+      //virtual void prepare_mouse_input();
+      //virtual void process_mouse_input();
+
+      //virtual void process_keyboard_input();
+
+
+   };
+
+
+} // namespace graphics3d
+
+
+

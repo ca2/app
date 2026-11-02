@@ -10,6 +10,7 @@
 #include "bred/platform/application.h"
 #include "apex/platform/session.h"
 #include "bred/platform/fps_counter.h"
+#include "bred/user/user/gpu_interaction.h"
 
 
 namespace user
@@ -17,19 +18,19 @@ namespace user
 
   
 
-   class CLASS_DECL_BRED graphics3d :
-      virtual public ::app_consumer < ::bred::application, ::user::box>
+   class CLASS_DECL_BRED graphics3d_engine_host :
+      virtual public ::app_consumer < ::bred::application, ::user::box, ::user::gpu_interaction>
    {
    public:
 
       //memory m_memory;
       //::i32 m_i32;
 
-      ::i32                                           m_iFrameCounter = 0;
-      ::write_text::font_pointer                      m_pfontThomasBS_;
-      ::string_array                                  m_straLineStats;
-      int                                             m_iImpactSerial;
-      ::string                                        m_strGpuStatisticsTitle;
+      //::i32                                           m_iFrameCounter = 0;
+      //::write_text::font_pointer                      m_pfontThomasBS_;
+      //::string_array                                  m_straLineStats;
+      //int                                             m_iImpactSerial;
+      //::string                                        m_strGpuStatisticsTitle;
 
       //::graphics3d::enum_mouse                      m_emouse;
       //::graphics3d::enum_keyboard                   m_ekeyboard;
@@ -37,20 +38,26 @@ namespace user
       fps_counter                                     m_fpscounter;
       ::pointer < ::graphics3d::engine_instance >     m_pgraphics3dengineinstance;
 
-      ::pointer < ::graphics3d::key_map >			      m_pkeymap;
+      //::pointer < ::graphics3d::key_map >			      m_pkeymap;
       //::task_pointer                                m_ptaskEngine;
       //::pointer < ::image::target >                 m_pimagetarget;
 
       //bool		m_bShouldClose;
-      ::i32		m_iWidth;
-      ::i32		m_iHeight;
-      bool		m_bFramebufferResized;
+      //::i32		m_iWidth;
+      //::i32		m_iHeight;
+      //bool		m_bFramebufferResized;
 
-::platform::session * m_psession;
+//::platform::session * m_psession;
 
 
-      graphics3d();
-      ~graphics3d() override;
+      graphics3d_engine_host();
+      ~graphics3d_engine_host() override;
+
+
+
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
+
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpgpucontext) const override;
@@ -59,22 +66,22 @@ namespace user
       //virtual ::block global_ubo_block();
 
       void install_message_routing(::channel * pchannel) override;
-      void on_kill_keyboard_focus() override;
-      void _on_show_window() override;
+      //void on_kill_keyboard_focus() override;
+      //void _on_show_window() override;
 
 
-      virtual void on_mouse_move(const i32_point& point);
-      virtual void on_mouse_out();
+      //virtual void on_mouse_move(const i32_point& point);
+      //virtual void on_mouse_out();
 
       //virtual ::user::enum_key_state get_key_state(const ::user::e_key & ekey) ;
-       ::key::e_state get_key_state(const ::user::e_key & ekey) {
-           return m_psession->_key_state(ekey);
-       }
-      void _001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
-      void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+       //::key::e_state get_key_state(const ::user::e_key & ekey) {
+       //    return m_psession->_key_state(ekey);
+       //}
+      //void _001OnNcClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      //void _001OnClip(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
-      void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+       // void _001OnNcDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       void _001OnNcPostDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       //void _000OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
@@ -83,7 +90,7 @@ namespace user
 
       //::user::document * get_document();
 
-      virtual void draw_gpu_statistics(::i32 y, const ::scoped_string & scopedstrTitle, ::draw2d::graphics_pointer &pdraw2dgraphics);
+      //virtual void draw_gpu_statistics(::i32 y, const ::scoped_string & scopedstrTitle, ::draw2d::graphics_pointer &pdraw2dgraphics);
 
       //virtual ::pointer < ::graphics3d::application > start_graphics3d_application();
 
@@ -92,26 +99,17 @@ namespace user
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
-      DECLARE_MESSAGE_HANDLER(on_message_key_down);
-      DECLARE_MESSAGE_HANDLER(on_message_key_up);
-      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
-      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
-      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
-      DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
+      //DECLARE_MESSAGE_HANDLER(on_message_key_down);
+      //DECLARE_MESSAGE_HANDLER(on_message_key_up);
+      //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
 
       void operator()(::timer * ptimer) override;
 
       //void reset_mouse_last_position();
 
-
-      ::i64 increment_reference_count() override
-      {
-         return ::object::increment_reference_count();
-      }
-      ::i64 decrement_reference_count() override
-      {
-         return ::object::decrement_reference_count();
-      }
       bool keyboard_focus_is_focusable() override;
 
 

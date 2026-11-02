@@ -3,7 +3,6 @@
 
 
 #include "apex/platform/app_consumer.h"
-#include "berg/user/user/show.h"
 #include "bred/platform/application.h"
 #include "bred/platform/fps_counter.h"
 
@@ -12,8 +11,8 @@ namespace user
 {
 
 
-   class CLASS_DECL_BRED gpu_statistics_impact :
-      virtual public ::app_consumer < ::bred::application, ::user::show <::user::box> >
+   class CLASS_DECL_BRED gpu_statistics_interaction :
+      virtual public ::app_consumer < ::bred::application, ::user::interaction >
    {
    public:
 
@@ -24,8 +23,8 @@ namespace user
       fps_counter                      m_fpscounter;
 
 
-      gpu_statistics_impact();
-      ~gpu_statistics_impact() override;
+      gpu_statistics_interaction();
+      ~gpu_statistics_interaction() override;
 
 
 #ifdef _DEBUG
@@ -46,7 +45,7 @@ namespace user
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      document * get_document();
+      //document * get_document();
 
 
       //s::block global_ubo_block() override;

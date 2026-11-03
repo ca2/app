@@ -665,7 +665,12 @@ namespace gpu_opengl
       for (auto & pair : m_mapContextHandleObject)
       {
 
-         pair.element2().m_bBound = false;
+         auto & object = pair.element2();
+         object.m_bBound = false;
+         // Texture storage replacement detaches the old GL texture. Both FBO
+         // attachment paths must bind the replacement, even if the FBO survives.
+         object.m_bTargetBound = false;
+         object.m_bSourceBound = false;
 
       }
 

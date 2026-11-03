@@ -1031,7 +1031,7 @@ namespace windowing
 
       // Graphics initialization belongs to the common lifecycle, not native backends.
       // Existing toolkit backends may already have attached graphics during creation.
-      if (puserinteraction && puserinteraction->is_graphical() && m_papplication->m_bGpu2
+      if (puserinteraction && puserinteraction->is_graphical() && m_papplication->is_using_gpu()
          && !m_papexgpuwindowattachment)
       {
          m_papplication->get_gpu_approach()->gpu_on_create_window(this);

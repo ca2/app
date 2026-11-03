@@ -183,7 +183,7 @@ namespace graphics
       
       //information() << "::graphics::graphics::buffer_size_and_position (3) sizeRaw = " << m_pwindow->m_sizeRaw.cx << ", " << m_pwindow->m_sizeRaw.cy;
 
-      pbufferitem->m_bTightRawBuffer = puserinteraction->windowing()->m_bTightRawBuffer
+      pbufferitem->m_bTightRawBuffer = (puserinteraction->windowing()->m_bTightRawBuffer || m_papplication->is_using_gpu())
          && !m_papplication->use_gpu_swap_chain();
       auto rectangleBuffer = pbufferitem->m_bTightRawBuffer
          ? ::i32_rectangle(::i32_point{}, rectangleDesign.size()) : rectangleDesign;

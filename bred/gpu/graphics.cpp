@@ -358,33 +358,40 @@ namespace gpu
    {
 
       auto pcontext = gpu_context();
+      ::gpu::window_attachment * pgpuwindowattachment = nullptr;
 
       if (pcontext)
       {
 
          pcontext->m_escene = ::gpu::e_scene_2d;
 
-         auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
-
-         pgpuwindowattachment->start_frame();
+         pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
 
       }
       else
       {
 
-         auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pdraw2dframe);
-
-         pgpuwindowattachment->start_frame();
+         pgpuwindowattachment = ::gpu::window_attachment::get(m_puserinteractionTopic);
 
       }
+
+      pgpuwindowattachment->start_frame();
       //pcontext->start_frame();
    }
 
 
    void graphics::end_frame() {
       auto pcontext = gpu_context();
-      auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
-      pgpuwindowattachment->end_frame();
+      auto pgpuwindowattachment = pcontext
+         ? ::gpu::window_attachment::get(pcontext)
+         : ::gpu::window_attachment::get(m_puserinteractionTopic);
+
+      if (pgpuwindowattachment)
+      {
+
+         pgpuwindowattachment->end_frame();
+
+      }
    }
 
 
@@ -837,6 +844,18 @@ namespace gpu
 
       pcontext->set_output_placement(rectangleWindow);
 
+      if (bFirstLayer && m_pgraphicsbufferitem && !m_papplication->use_gpu_swap_chain())
+      {
+
+         // The software window buffer occupies a subrectangle of the raw bitmap.
+         // Render and read back at that same origin so buffer validation remains stable.
+         pcontext->m_sizeRaw = pwindow->m_sizeRaw;
+         pcontext->set_input_placement({ m_pgraphicsbufferitem->m_bTightRawBuffer
+            ? ::i32_point{} : m_pgraphicsbufferitem->m_pointBufferItem,
+            m_pgraphicsbufferitem->m_sizeBufferItem });
+
+      }
+
       auto rectangleThisContextOutput = pcontext->output_placement();
 
       information("rectangleThisContextOutput {}", rectangleThisContextOutput);
@@ -948,7 +967,10 @@ namespace gpu
          auto pimageBuffer = m_pgraphicsbufferitem->m_pimageBufferItem;
          pimageBuffer->update_as_backed_by_gpu_texture(
             pgputexturesite->size(), pgputexturesite->gpu_texture(), this);
-         pimageBuffer->m_point = pgputexturesite->m_pointOutput;
+         // The backed image maps source pixels from the layer input origin.
+         // The output origin is the window's screen position and is only for
+         // compositing; using it as the image origin offsets CPU readback.
+         pimageBuffer->m_point = pgputexturesite->m_pointInput;
          pimageBuffer->m_size = pgputexturesite->size();
          pimageBuffer->m_sizeRaw = pgputexturesite->raw_size();
          pimageBuffer->m_iScan = pimageBuffer->m_sizeRaw.cx * (::i32)sizeof(::image32_t);
@@ -995,7 +1017,12 @@ namespace gpu
 
       //::gpu::context_lock lock(pcontext);
 
-      m_pointTarget = puserinteraction->host_origin();
+      // Place window-local drawing in the same raw-bitmap region used by readback.
+      m_pointTarget = bFirstLayer && m_pgraphicsbufferitem
+         ? pointTarget : puserinteraction->host_origin();
+      m_sizeTarget = sizeTarget;
+      m_bTargetRectangleModified = true;
+      defer_on_target_rectangle_update();
 
 
       ::i32_rectangle rectangleFrame(
@@ -1107,6 +1134,9 @@ namespace gpu
 
       ::cast < ::gpu::image> pgpuimageSource = pimageSource;
 
+      // Source acquisition can use an offscreen layer/context. Keep this draw
+      // attached to its caller's destination layer across that work.
+      ::pointer<::gpu::layer> playerDestination = ::gpu::current_layer();
       ::cast <::gpu::bitmap > pgpubitmapSource = pgpuimageSource->get_bitmap_as_source(this);
 
       auto pgputextureSource = pgpubitmapSource->gpu_texture(m_pgpucontextOwned);
@@ -1121,6 +1151,7 @@ namespace gpu
       // An image may have just been rendered by a pooled offscreen context.
       // Wait for that producer before this context samples its texture.
       pgputextureSource->wait_fence();
+      ::gpu::set_current_layer(playerDestination);
 
       //bool bSingleTimeCommand = false;
       auto pgpucommandbuffer = get_gpu_command_buffer();
@@ -1234,6 +1265,8 @@ namespace gpu
 
       }
 
+      ::gpu::set_current_layer(playerDestination);
+      pgpucommandbuffer->set_render_target();
       set_gpu_shader(pgpucommandbuffer, pgpushaderImage);
 
          //
@@ -3592,6 +3625,15 @@ namespace gpu
       strMessage.formatf("bound text out shader '%s'", str.c_str());
       ::gpu::debug_scope debugscopeBoundTextOutShader(pcommandbuffer, strMessage);
       //pcontext->gpu_debug_message(strMessage);
+
+      // Text can be drawn before a caller selects a brush (for example after
+      // a frame resize). Use the default foreground color in that state.
+      if (!m_pdraw2dbrush)
+      {
+
+         set_solid_color(::color::black);
+
+      }
 
       auto color = m_pdraw2dbrush->m_color;
       //shader.use();

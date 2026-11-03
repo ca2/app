@@ -114,7 +114,7 @@ namespace bred
    ::gpu::approach* application::get_gpu_approach()
    {
 
-      if (!m_bGpu2)
+      if (!is_using_gpu())
       {
 
          throw ::exception(error_wrong_state, "Gpu application flag should be enabled to use gpu components.");

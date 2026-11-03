@@ -42,7 +42,7 @@ namespace gpu_opengl
            // hwndrendertargetproperties)
       }
 
-      if (m_papplication->m_bGpu2)
+      if (m_papplication->is_using_gpu())
       {
 
          auto pgpuapproach = m_papplication->get_gpu_approach();

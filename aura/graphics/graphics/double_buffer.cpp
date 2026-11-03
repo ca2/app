@@ -427,7 +427,7 @@ namespace graphics
       if (!pitemScreen->m_pimageBufferItem.ok())
       {
 
-         if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+         if (!m_papplication->use_gpu_swap_chain())
          {
 
             warning() << "pitemScreen->m_pimage2 not ok!";
@@ -444,7 +444,7 @@ namespace graphics
       // native CPU-image path here can force a full GPU readback only to have
       // its buffer rejected by the external presentation owner. Bitmap-source
       // publication remains in the completed-buffer swap path.
-      if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_papplication->use_gpu_swap_chain())
          on_update_screen(pitemScreen);
 
       m_pwindow->record_output_frame();

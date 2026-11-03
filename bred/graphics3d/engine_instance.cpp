@@ -167,7 +167,7 @@ namespace graphics3d
       //m_papproach = m_papplication->get_gpu_approach();
       // set_gpu_performance_diagnostics(true);
 
-      if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_papplication->use_gpu_swap_chain())
       {
 
          //::cast < ::windowing::window > pwindow = pusergraphics3d->acme_windowing_window();
@@ -186,7 +186,7 @@ namespace graphics3d
    void engine_instance::on_render_layer()
    {
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow && m_pusergraphics3denginehost)
+      if (m_papplication->use_gpu_swap_chain() && m_pusergraphics3denginehost)
       {
 
          auto pwindow = m_pusergraphics3denginehost->window();
@@ -322,7 +322,7 @@ namespace graphics3d
 
          //on_end_frame();
 
-         //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         //if (m_papplication->use_gpu_swap_chain())
          //{
 
          //   //m_pgpucontextCompositor->m_pgpurenderer->end_layer();
@@ -793,7 +793,7 @@ namespace graphics3d
    ::gpu::enum_output engine_instance::get_engine_gpu_eoutput()
    {
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
 
          return ::gpu::e_output_gpu_buffer;
@@ -822,7 +822,7 @@ namespace graphics3d
 
       ::i32_rectangle rectangleWindow = rectanglePlacement;
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
 
          rectangleWindow.offset(pwindow->get_window_rectangle().origin());
@@ -871,7 +871,7 @@ namespace graphics3d
 
          //auto callbackImage32CpuBuffer = m_callbackImage32CpuBuffer;
 
-      //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      //if (m_papplication->use_gpu_swap_chain())
       //{
 
       //   pgpucontext = pgpudevice->start_gpu_output_context(this, ::gpu::e_output_gpu_buffer, rectanglePlacement);
@@ -902,7 +902,7 @@ namespace graphics3d
             auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
 
 
-            if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+            if (m_papplication->use_gpu_swap_chain())
             {
 
                auto prendererBackBuffer = pgpuwindowattachment->draw2d_context()->get_gpu_renderer();
@@ -1005,7 +1005,7 @@ namespace graphics3d
 
          auto pgpucontextNew = pgpudevice->allocate_gpu_context();
 
-         if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+         if (!m_papplication->use_gpu_swap_chain())
          {
 
             construct_newø(pgpucontextNew->m_pgpuwindowattachmentOffscreen);
@@ -1325,7 +1325,7 @@ namespace graphics3d
 
          on_update_frame();
 
-         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         if (m_papplication->use_gpu_swap_chain())
          {
 
             on_render_layer();

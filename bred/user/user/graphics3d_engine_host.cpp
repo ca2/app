@@ -190,7 +190,7 @@ namespace user
       if (!m_pgraphics3dengineinstance)
       {
 
-         ::string strImplementation = get_app()->graphics3d_get_implementation_name();
+         ::string strImplementation = get_app()->gpu_get_implementation_name();
 
          auto pfactoryGpu = system()->factory("gpu", strImplementation);
 
@@ -599,7 +599,7 @@ namespace user
 
       //::gpu::layer* pgpulayer = nullptr;
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
 
          //auto pcommandbuffer = ::gpu::current_command_buffer();
@@ -640,7 +640,7 @@ namespace user
 
       }
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
 
          pdraw2dgraphics->start_layer(false);
@@ -711,7 +711,7 @@ namespace user
 
          auto rectanglePlacement = this->host_rectangle();
 
-         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         if (m_papplication->use_gpu_swap_chain())
          {
 
             // The interaction's cached screen origin can lag an X11 window

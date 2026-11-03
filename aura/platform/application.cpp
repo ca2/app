@@ -2062,13 +2062,13 @@ namespace aura
 //         if (strOutput.equals("swap_chain") || strOutput.equals("on_screen"))
 //         {
 //
-//            m_gpu.m_bUseSwapChainWindow = true;
+//            use_gpu_swap_chain() = true;
 //
 //         }
 //         else
 //         {
 //
-//            m_gpu.m_bUseSwapChainWindow = false;
+//            use_gpu_swap_chain() = false;
 //
 //         }
 //
@@ -10034,7 +10034,7 @@ namespace aura
 //      // Windowing can request draw2d before application::init_instance().
 //      defer_initialize_graphics_configuration();
 //
-//      if (m_bGpu || m_gpu.m_bUseSwapChainWindow || graphics3d_get_implementation_override().has_character())
+//      if (m_bGpu || use_gpu_swap_chain() || graphics3d_get_implementation_override().has_character())
 //      {
 //
 //         auto strGpuApi = graphics3d_get_implementation_name();
@@ -10049,7 +10049,7 @@ namespace aura
 //         constexpr bool apple = false;
 //#endif
 //         auto available = ::aura::graphics_configuration::draw2d_apis(
-//            strGpuApi.c_str(), !m_gpu.m_bUseSwapChainWindow, windows, apple);
+//            strGpuApi.c_str(), !use_gpu_swap_chain(), windows, apple);
 //         auto strDraw2dApi = ::aura::graphics_configuration::draw2d_api(
 //            m_strDraw2dImplementation.c_str(), available);
 //         return system()->implementation_name("draw2d", strDraw2dApi.c_str());
@@ -10062,50 +10062,50 @@ namespace aura
 
 
 
-   ::string application::typeface_get_default_implementation_name()
-   {
+   //::string application::typeface_get_default_implementation_name()
+   //{
 
-      if(m_strTypefaceImplementation)
-      {
+   //   if(m_strTypefaceImplementation)
+   //   {
 
-         return system()->implementation_name("typeface", m_strTypefaceImplementation);
+   //      return system()->implementation_name("typeface", m_strTypefaceImplementation);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         return ::aqua::application::draw2d_get_default_implementation_name();
+   //      return ::aqua::application::draw2d_get_default_implementation_name();
 
-      }
+   //   }
 
-   }
-
-
-   ::string application::imaging_get_default_implementation_name()
-   {
-
-      if(m_strImagingImplementation.has_character())
-      {
-
-         return system()->implementation_name("imaging", m_strImagingImplementation);
-
-      }
-      else
-      {
-
-         return ::aqua::application::imaging_get_default_implementation_name();
-
-      }
-
-   }
+   //}
 
 
-   ::string application::graphics3d_get_implementation_name()
-   {
+   //::string application::imaging_get_default_implementation_name()
+   //{
 
-      return m_strGraphics3DImplementation;
+   //   if(m_strImagingImplementation.has_character())
+   //   {
 
-   }
+   //      return system()->implementation_name("imaging", m_strImagingImplementation);
+
+   //   }
+   //   else
+   //   {
+
+   //      return ::aqua::application::imaging_get_default_implementation_name();
+
+   //   }
+
+   //}
+
+
+   //::string application::graphics3d_get_implementation_name()
+   //{
+
+   //   return m_strGraphics3DImplementation;
+
+   //}
 
 
    void application::on_set_main_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionMain)

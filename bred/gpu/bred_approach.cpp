@@ -100,7 +100,7 @@ namespace gpu
          
          //const_char_pointer pszType = strType.c_str();
 
-//         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+//         if (m_papplication->use_gpu_swap_chain())
 //         {
 //
 //            ///auto pwindow = m_pacmeuserinteractionMain->window();

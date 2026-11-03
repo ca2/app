@@ -650,7 +650,7 @@ namespace user
 
    //   //   auto rectanglePlacement = this->host_rectangle();
 
-   //   //   if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   //   if (m_papplication->use_gpu_swap_chain())
    //   //   {
 
    //   //      // The interaction's cached screen origin can lag an X11 window

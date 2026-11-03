@@ -15,6 +15,7 @@
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/path_system.h"
 #include "acme/handler/request.h"
+#include "acme/operating_system/operating_system.h"
 #include "acme/platform/http.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/prototype/prototype/url.h"
@@ -10869,6 +10870,48 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    }
 
 
+   string application::_draw2d_get_implementation_name_setting()
+   {
+
+      ::string strImplementationName;
+
+      // auto pdirectorysystem = directory_system();
+
+      //::file::path path = "cloud://application" / m_strAppId / "gpu.txt";
+
+      // strImplementationName = file()->safe_get_string(path);
+
+      strImplementationName = application_file_setting_by_operating_system("draw2d.txt");
+
+      if (strImplementationName.has_character())
+      {
+
+         return strImplementationName;
+
+      }
+
+      return {};
+
+   }
+
+
+   void application::_draw2d_set_implementation_name_setting(const ::string &strImplementationName)
+   {
+
+      set_application_file_setting_by_operating_system("draw2d.txt", strImplementationName);
+
+      _on_set_draw2d_implementation_name_setting();
+
+   }
+
+   
+   void application::_on_set_draw2d_implementation_name_setting()
+   {
+
+
+   }
+
+
    string application::_draw2d_get_implementation_name()
    {
 
@@ -10883,11 +10926,13 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
        }
 
-       auto pdirectorysystem = directory_system();
+       //auto pdirectorysystem = directory_system();
 
-       ::file::path path = "cloud://application" / m_strAppId / "draw2d.txt";
+       //::file::path path = "cloud://application" / m_strAppId / "draw2d.txt";
 
-       strImplementationName = file()->safe_get_string(path);
+       //strImplementationName = file()->safe_get_string(path);
+
+       strImplementationName = _draw2d_get_implementation_name_setting();
 
        //      throw ::exception(todo);
 
@@ -10898,7 +10943,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
        }
 
-       path = directory_system()->roaming() / m_strAppId / "draw2d.txt";
+       auto path = directory_system()->roaming() / m_strAppId / "draw2d.txt";
 
        strImplementationName = file_system()->as_string(path);
 
@@ -10911,6 +10956,171 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
        return {};
 
+   }
+
+
+   string application::_imaging_get_implementation_name()
+   {
+
+      string strImplementationName;
+
+      strImplementationName = m_strImagingImplementation;
+
+      if (strImplementationName.has_character())
+      {
+
+         return strImplementationName;
+
+      }
+
+      auto pdirectorysystem = directory_system();
+
+      ::file::path path = "cloud://application" / m_strAppId / "imaging.txt";
+
+      strImplementationName = file()->safe_get_string(path);
+
+      //      throw ::exception(todo);
+
+      if (strImplementationName.has_character())
+      {
+
+         return implementation_name("imaging", strImplementationName);
+
+      }
+
+      path = directory_system()->roaming() / m_strAppId / "imaging.txt";
+
+      strImplementationName = file_system()->as_string(path);
+
+      if (strImplementationName.has_character())
+      {
+
+         return implementation_name("imaging", strImplementationName);
+      }
+
+      return {};
+
+   }
+
+
+   string application::_typeface_get_implementation_name()
+   {
+
+      string strImplementationName;
+
+      strImplementationName = m_strTypefaceImplementation;
+
+      if (strImplementationName.has_character())
+      {
+
+         return strImplementationName;
+      }
+
+      auto pdirectorysystem = directory_system();
+
+      ::file::path path = "cloud://application" / m_strAppId / "typeface.txt";
+
+      strImplementationName = file()->safe_get_string(path);
+
+      //      throw ::exception(todo);
+
+      if (strImplementationName.has_character())
+      {
+
+         return implementation_name("typeface", strImplementationName);
+      }
+
+      path = directory_system()->roaming() / m_strAppId / "typeface.txt";
+
+      strImplementationName = file_system()->as_string(path);
+
+      if (strImplementationName.has_character())
+      {
+
+         return implementation_name("typeface", strImplementationName);
+      }
+
+      return {};
+
+   }
+
+
+   string application::_gpu_get_implementation_name_setting()
+   {
+
+      ::string strImplementationName;
+
+      //auto pdirectorysystem = directory_system();
+
+      //::file::path path = "cloud://application" / m_strAppId / "gpu.txt";
+
+      //strImplementationName = file()->safe_get_string(path);
+
+      strImplementationName = application_file_setting_by_operating_system("graphics3d.txt");
+
+      if (strImplementationName.has_character())
+      {
+
+         return strImplementationName;
+
+      }
+
+      return strImplementationName;
+
+   }
+
+   
+   void application::_gpu_set_implementation_name_setting(const ::string & strImplementationName)
+   {
+
+      set_application_file_setting_by_operating_system("graphics3d.txt", strImplementationName);
+
+      _on_set_gpu_implementation_name_setting();
+
+   }
+
+
+   void application::_on_set_gpu_implementation_name_setting()
+   {
+      
+
+   }
+
+
+   string application::_gpu_get_implementation_name()
+   {
+
+      string strImplementationName;
+
+      strImplementationName = m_strGpuImplementation;
+
+      if (strImplementationName.has_character())
+      {
+
+         return strImplementationName;
+      }
+
+      strImplementationName = _gpu_get_implementation_name_setting();
+
+      //      throw ::exception(todo);
+
+      if (strImplementationName.has_character())
+      {
+
+         return implementation_name("imaging", strImplementationName);
+      }
+
+      auto path = directory_system()->roaming() / m_strAppId / "imaging.txt";
+
+      strImplementationName = file_system()->as_string(path);
+
+      if (strImplementationName.has_character())
+      {
+
+         return implementation_name("imaging", strImplementationName);
+      }
+
+      return {};
    }
 
 
@@ -11136,7 +11346,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       string strImplementationName;
 
-      strImplementationName = m_strTypefaceImplementation;
+      strImplementationName = m_strGpuImplementation;
 
       if (strImplementationName.has_character())
       {
@@ -11145,8 +11355,54 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       }
 
+      m_strGpuImplementation = _gpu_get_implementation_name();
+
+      strImplementationName = m_strGpuImplementation;
       
-      return application_file_setting_by_operating_system("graphics3d.txt");
+      return strImplementationName;
+
+   }
+
+
+   ::string application::_get_graphics3d_output_setting()
+   {
+
+      ::string strOutput;
+
+      // auto pdirectorysystem = directory_system();
+
+      //::file::path path = "cloud://application" / m_strAppId / "graphics3d_output.txt";
+
+      // strOutput = file()->safe_get_string(path);
+
+      strOutput = application_file_setting("graphics3d_output.txt");
+
+      if (strOutput.has_character())
+      {
+
+         return strOutput;
+
+      }
+
+      return strOutput;
+
+
+   }
+
+   
+   void application::_set_graphics3d_output_setting(const ::string &strOutput)
+   {
+
+      set_application_file_setting("graphics3d_output.txt", strOutput);
+
+      _on_set_graphics3d_output_setting();
+
+   }
+
+
+   void application::_on_set_graphics3d_output_setting()
+   {
+
 
    }
 
@@ -11160,7 +11416,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
            if (m_strGraphics3dOutput.is_empty())
            {
 
-               m_strGraphics3dOutput = application_file_setting("graphics3d_output.txt");
+               m_strGraphics3dOutput = _get_graphics3d_output_setting();
 
            }
 
@@ -11192,7 +11448,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    }
 
 
-   bool application::use_swap_chain_window()
+   bool application::use_gpu_swap_chain()
    {
 
        if (m_gpu.m_bUseSwapChainWindow2.undefined())

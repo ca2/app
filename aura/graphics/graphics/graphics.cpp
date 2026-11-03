@@ -184,7 +184,7 @@ namespace graphics
       //information() << "::graphics::graphics::buffer_size_and_position (3) sizeRaw = " << m_pwindow->m_sizeRaw.cx << ", " << m_pwindow->m_sizeRaw.cy;
 
       pbufferitem->m_bTightRawBuffer = puserinteraction->windowing()->m_bTightRawBuffer
-         && !m_papplication->m_gpu.m_bUseSwapChainWindow;
+         && !m_papplication->use_gpu_swap_chain();
       auto rectangleBuffer = pbufferitem->m_bTightRawBuffer
          ? ::i32_rectangle(::i32_point{}, rectangleDesign.size()) : rectangleDesign;
       auto rectangleFixed = pbufferitem->m_bTightRawBuffer
@@ -496,7 +496,7 @@ namespace graphics
 
       }
 
-      //if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+      //if (!m_papplication->use_gpu_swap_chain())
       //{
 
       //   if (!double_buffer_graphics::_on_begin(pbufferitem))
@@ -594,13 +594,13 @@ namespace graphics
          ////m_bDibIsHostingBuffer = false;
 
          //if (playeredwindowbuffer
-         //   && !m_papplication->m_gpu.m_bUseSwapChainWindow)
+         //   && !m_papplication->use_gpu_swap_chain())
          //{
 
 
          //::pointer < layered_window_buffer > playeredwindowbuffer = m_pwindowbuffer;
 
-         //if (pwindowbuffer && !m_papplication->m_gpu.m_bUseSwapChainWindow)
+         //if (pwindowbuffer && !m_papplication->use_gpu_swap_chain())
          // Allocate in raw bitmap coordinates. The image still carries the
          // previous frame's mapped screen origin here; adding it to sizeRaw
          // would replace the bitmap on a restore/move even when the raw size
@@ -608,7 +608,7 @@ namespace graphics
          // Both branches restore the acquired frame's origin below.
          pbufferitem->m_pimageBufferItem->m_point.clear();
 
-         if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+         if (!m_papplication->use_gpu_swap_chain())
          {
 
             //if (m_bDibIsHostingBuffer)
@@ -618,7 +618,7 @@ namespace graphics
             //   //m_bDibIsHostingBuffer = false;
 
             //   //if (playeredwindowbuffer
-            //   //   && !m_papplication->m_gpu.m_bUseSwapChainWindow)
+            //   //   && !m_papplication->use_gpu_swap_chain())
             //   //{
 
             //   //   ppixmapPreviousWindowBuffer =
@@ -734,7 +734,7 @@ namespace graphics
               ////m_bDibIsHostingBuffer = false;
 
               ////if (playeredwindowbuffer
-              ////   && !m_papplication->m_gpu.m_bUseSwapChainWindow)
+              ////   && !m_papplication->use_gpu_swap_chain())
               ////{
 
               ////   ppixmapPreviousWindowBuffer =
@@ -884,7 +884,7 @@ namespace graphics
 
                m_pdraw2dgraphics->create_for_window_draw2d(m_pwindow->user_interaction(), m_pwindow->m_sizeRaw);
 
-               pbufferitem->m_pimageBufferItem->m_bHintCpuBackingEnabled = !m_papplication->m_gpu.m_bUseSwapChainWindow;
+               pbufferitem->m_pimageBufferItem->m_bHintCpuBackingEnabled = !m_papplication->use_gpu_swap_chain();
 
             }
 
@@ -946,7 +946,7 @@ namespace graphics
 
         //::pointer < layered_window_buffer > playeredwindowbuffer;
 
-        //if (bLayered && ! m_papplication->m_gpu.m_bUseSwapChainWindow)
+        //if (bLayered && ! m_papplication->use_gpu_swap_chain())
         //{
 
         //   auto & pwindowbuffer = m_pwindowbuffer;
@@ -1100,7 +1100,7 @@ namespace graphics
   //
   //            auto puserinteraction = dynamic_cast < ::user::interaction * >( m_pwindow->m_pacmeuserinteraction.m_p);
   //
-  //            ////if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+  //            ////if (m_papplication->use_gpu_swap_chain())
   //            ////{
   //
   //            ////   pbufferitem->m_pgraphics->create_offscreen_graphics_for_swap_chain_blitting(pbufferitem->m_sizeBufferItemDraw);

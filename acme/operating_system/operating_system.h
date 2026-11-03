@@ -143,10 +143,15 @@ namespace operating_system
 
     constexpr bool is(::enum_operating_system eoperatingsystem) noexcept
     {
-        if (eoperatingsystem == ::e_operating_system_windows) {
-            return is_windows();
+        if (eoperatingsystem == ::e_operating_system_windows_desktop) {
+            return is_windows_desktop();
         }
-        else if (eoperatingsystem == ::e_operating_system_linux) {
+        else if (eoperatingsystem == ::e_operating_system_windows)
+        {
+           return is_windows();
+        }
+        else if (eoperatingsystem == ::e_operating_system_linux)
+        {
             return is_linux();
         }
         else if (eoperatingsystem == ::e_operating_system_unix) {

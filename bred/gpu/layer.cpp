@@ -243,7 +243,7 @@ namespace gpu
 
 //      m_pgpurenderer->on_end_layer(this);
 
-      if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_papplication->use_gpu_swap_chain())
       {
 
          auto pgpufence = m_pgpufence;

@@ -80,7 +80,7 @@ namespace gpu
 //
 //      m_pwindow->m_ptaskUpdateScreen = this;
 //
-//      if (m_papplication->m_gpu.m_bMultisample)
+//      if (m_papplication->m_gpu.m_bMultisample2)
 //      {
 //
 //         m_bMultisample = true;
@@ -99,7 +99,7 @@ namespace gpu
 //
 //      m_pgpuapproach = pgpuapproach;
 //
-//      if (m_papplication->m_gpu.m_bMultisample)
+//      if (m_papplication->m_gpu.m_bMultisample2)
 //      {
 //
 //         m_bMultisample = true;
@@ -141,7 +141,7 @@ namespace gpu
 //
 //      m_pwindow->m_ptaskUpdateScreen = this;
 //
-//      if (m_papplication->m_gpu.m_bMultisample)
+//      if (m_papplication->m_gpu.m_bMultisample2)
 //      {
 //
 //         m_bMultisample = true;
@@ -1201,7 +1201,7 @@ namespace gpu
 //
 //      ::gpu::enum_output eoutput;
 //
-//      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+//      if (m_papplication->use_gpu_swap_chain())
 //      {
 //
 //         m_pgpucontextMain->m_etype = ::gpu::context::e_type_window;

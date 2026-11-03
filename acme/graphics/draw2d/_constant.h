@@ -174,6 +174,7 @@ namespace draw2d
       e_interpolation_mode_nearest_neighbor,
       e_interpolation_mode_low_quality,
       e_interpolation_mode_high_quality_bicubic,
+      e_interpolation_mode_bilinear,
 
    };
 

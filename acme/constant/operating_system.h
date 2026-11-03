@@ -41,7 +41,7 @@ enum enum_operating_system
    e_operating_system_unknown = -1,
    e_operating_system_none = 0,
    e_operating_system_current,
-   e_operating_system_windows,
+   e_operating_system_windows_desktop,
    e_operating_system_macos,
    e_operating_system_ios,
    e_operating_system_linux,
@@ -49,9 +49,11 @@ enum enum_operating_system
    e_operating_system_unix,
    e_operating_system_freebsd,
    e_operating_system_haiku,
+   e_operating_system_universal_windows,
 
 
    e_operating_system_desktop_system = 2048,
    e_operating_system_sandboxed,
+   e_operating_system_windows,
 
 };

@@ -64,7 +64,7 @@ namespace gpu
 
       //   constructø(m_pgpudevice);
 
-      //   if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      //   if (m_papplication->use_gpu_swap_chain())
       //   {
 
       //      m_pgpudevice->initialize_gpu_device_for_swap_chain(this, m_pacmeuserinteractionMain->window());
@@ -155,7 +155,7 @@ namespace gpu
 
          }
          
-         iSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow ? 1 : 0;
+         iSwapChain = m_papplication->use_gpu_swap_chain() ? 1 : 0;
 
 #ifdef WINDOWS
 

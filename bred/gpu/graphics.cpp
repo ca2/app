@@ -862,7 +862,7 @@ namespace gpu
       if (m_egraphics == e_graphics_draw)
       {
 
-         auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+         auto bUseSwapChain = m_papplication->use_gpu_swap_chain();
 
          auto etypeGpuContext = pcontext->m_etype;
 
@@ -900,7 +900,7 @@ namespace gpu
 
       ::i32_rectangle rectangle;
 
-      if (!m_puserinteractionTopic && m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_puserinteractionTopic && m_papplication->use_gpu_swap_chain())
       {
 
          auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
@@ -940,7 +940,7 @@ namespace gpu
       m_pgputexturesiteTarget = pgputexturesite;
 
       if (bFirstLayer && m_pgraphicsbufferitem
-         && !m_papplication->m_gpu.m_bUseSwapChainWindow)
+         && !m_papplication->use_gpu_swap_chain())
       {
 
          // Software window presentation must read the layer that receives UI
@@ -2073,7 +2073,7 @@ namespace gpu
    //   {
 
 
-   //      auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+   //      auto bUseSwapChain = m_papplication->use_gpu_swap_chain();
 
    //      auto etypeGpuContext = pcontext->m_etype;
 
@@ -2137,7 +2137,7 @@ namespace gpu
 
    //         ::i32_rectangle rectangle;
 
-   //   if (!m_puserinteractionDraw2dGraphics && m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   if (!m_puserinteractionDraw2dGraphics && m_papplication->use_gpu_swap_chain())
    //   {
 
    //      m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(m_pacmeuserinteractionMain.m_p);
@@ -2565,7 +2565,7 @@ namespace gpu
    void graphics::defer_create_swap_chain(::user::interaction* puserinteraction)
    {
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
 
          //auto pgpucontext = m_pgpucontextOwned;

@@ -78,7 +78,7 @@ namespace platform
 
       m_bIsService = false;
       m_bUseCloudStorageForAppData = true;
-      //m_gpu.m_bUseSwapChainWindow = false;
+      //use_gpu_swap_chain() = false;
       m_gpu.m_eoutputDraw2d = ::gpu::e_output_none;
       m_gpu.m_eoutputEngine = ::gpu::e_output_none;
 

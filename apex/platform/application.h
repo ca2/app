@@ -224,11 +224,23 @@ namespace apex
 
       //virtual void process_command_line(command_line* pcommandline);
 
+      virtual ::string _draw2d_get_implementation_name_setting();
+
+      virtual void _draw2d_set_implementation_name_setting(const ::string &strImplementationName);
+
+      virtual void _on_set_draw2d_implementation_name_setting();
+
       ::string _draw2d_get_implementation_name() override;
 
       ::string _imaging_get_implementation_name() override;
 
       ::string _typeface_get_implementation_name() override;
+
+      virtual ::string _gpu_get_implementation_name_setting();
+
+      virtual void _gpu_set_implementation_name_setting(const ::string & strImplementationName);
+
+      virtual void _on_set_gpu_implementation_name_setting();
 
       ::string _gpu_get_implementation_name() override;
 
@@ -239,6 +251,12 @@ namespace apex
       ::string typeface_get_implementation_name() override;
 
       ::string gpu_get_implementation_name() override;
+
+      virtual ::string _get_graphics3d_output_setting();
+
+      virtual void _set_graphics3d_output_setting(const ::string &strOutput);
+
+      virtual void _on_set_graphics3d_output_setting();
 
       ::string get_graphics3d_output() override;
 

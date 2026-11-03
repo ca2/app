@@ -70,7 +70,7 @@ namespace gpu
 
       pwindow->m_papexgpuwindowattachment = this;
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
          //::direct2d::get() -> d2d1_factory1()->CreateHwndRenderTarget(rendertargetproperties,
            // hwndrendertargetproperties)
@@ -117,7 +117,7 @@ namespace gpu
 
          ::gpu::enum_scene escene = ::gpu::e_scene_2d;
 
-         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         if (m_papplication->use_gpu_swap_chain())
          {
 
             eoutput = ::gpu::e_output_swap_chain;
@@ -594,7 +594,7 @@ sizeRaw
    void window_attachment::do_output(::gpu::texture_site * pgputexturesite)
    {
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
 
          ::cast<gpu::render_target> pgpurendertarget = m_pgpucontextWindow->output_render_target();
@@ -870,7 +870,7 @@ sizeRaw
 
          informationf("gpu::window_attachment first end_frame attachment=%p context=%p offscreen=%d swap_chain=%d",
             this, m_pgpucontextWindow.m_p, m_pgpucontextOffscreen != nullptr,
-            m_papplication ? m_papplication->m_gpu.m_bUseSwapChainWindow : false);
+            m_papplication ? m_papplication->use_gpu_swap_chain() : false);
 
       }
 
@@ -893,7 +893,7 @@ sizeRaw
 
       //pgpuwindowattachment->present();
 
-      if (!m_pgpucontextOffscreen && m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_pgpucontextOffscreen && m_papplication->use_gpu_swap_chain())
       {
 
          present();

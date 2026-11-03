@@ -138,24 +138,24 @@ namespace bred
 
       virtual ::graphics3d::graphics3d * graphics3d();
 
-      ::string draw2d_get_default_implementation_name() override;
+      //::string draw2d_get_implementation_name() override;
 
 
       virtual void enable_draw2d_api_checkboxes(const ::string_array &stra);
       void create_options_impact(const ::atom &atom, ::user::interaction *pparent) override;
       void on_after_create_form(const ::atom &atom, ::user::interaction *pparent) override;
       virtual void create_gpu_api_selection_options_body(::user::interaction *pparent);
-      virtual void set_gpu_api(const ::scoped_string &scopedstrGpuApi);
-      virtual void set_draw2d_api(const ::scoped_string &scopedstrDraw2dApi);
-      virtual void set_graphics3d_output(const ::scoped_string &scopedstrOutput);
-      virtual ::string get_gpu_api();
-      virtual ::string get_draw2d_api();
+      //virtual void set_gpu_api(const ::scoped_string &scopedstrGpuApi);
+      //virtual void set_draw2d_api(const ::scoped_string &scopedstrDraw2dApi);
+      //virtual void set_graphics3d_output(const ::scoped_string &scopedstrOutput);
+      //virtual ::string get_gpu_api();
+      //virtual ::string get_draw2d_api();
       //virtual ::string_array get_ok_gpu_api();
       virtual ::string_array get_ok_draw2d_api();
       virtual _001Option * gpu_api(const ::scoped_string &scopedstrGpuApi);
       virtual _001Option * draw2d_api(const ::scoped_string &scopedstrDraw2dApi);
       virtual _001Option * graphics3d_output(const ::scoped_string &scopedstrOuput);
-      virtual ::string get_graphics3d_output();
+      //virtual ::string get_graphics3d_output();
       virtual void update_gpu_api_checkboxes();
       virtual void on_change_gpu_api();
       virtual void on_change_draw2d_api();

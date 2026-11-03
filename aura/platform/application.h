@@ -1076,11 +1076,11 @@ void initialize_context() override;
 //
 //#endif
 
-      string draw2d_get_implementation_name() override;
+      //string draw2d_get_implementation_name() override;
 
-      string typeface_get_implementation_name() override;
+      //string typeface_get_implementation_name() override;
 
-      string imaging_get_implementation_name() override;
+      //string imaging_get_implementation_name() override;
 
 
       void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override;

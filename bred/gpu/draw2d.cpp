@@ -132,7 +132,7 @@ namespace gpu
    //void draw2d::on_create_window(::windowing::window* pwindow)
    //{
 
-   //   //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   //if (m_papplication->use_gpu_swap_chain())
    //   //{
 
    //   //   auto pgpuapproach = m_papplication->get_gpu_approach();

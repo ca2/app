@@ -192,7 +192,7 @@ namespace user
 
          ::collection::index iFrameSerial = -1;
 
-         if (m_papplication->m_gpu.m_bUseSwapChainWindow && pgpuwindowattachment)
+         if (m_papplication->use_gpu_swap_chain() && pgpuwindowattachment)
          {
 
             iFrameSerial = pgpuwindowattachment->m_iFrameSerial2;

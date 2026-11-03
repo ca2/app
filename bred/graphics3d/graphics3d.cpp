@@ -149,7 +149,7 @@ namespace graphics3d
       //m_papproach = m_papplication->get_gpu_approach();
       // set_gpu_performance_diagnostics(true);
 
-      //if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+      //if (!m_papplication->use_gpu_swap_chain())
       //{
 
       //   //::cast < ::windowing::window > pwindow = pusergraphics3d->acme_windowing_window();
@@ -309,7 +309,7 @@ namespace graphics3d
 
    //      //on_end_frame();
 
-   //      //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //      //if (m_papplication->use_gpu_swap_chain())
    //      //{
 
    //      //   //m_pgpucontextCompositor->m_pgpurenderer->end_layer();
@@ -778,7 +778,7 @@ namespace graphics3d
    //::gpu::enum_output graphics3d::get_engine_gpu_eoutput()
    //{
 
-   //   if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   if (m_papplication->use_gpu_swap_chain())
    //   {
 
    //      return ::gpu::e_output_gpu_buffer;
@@ -809,7 +809,7 @@ namespace graphics3d
 
    //   rectangleWindow.offset(-rectangleWindow.top_left());
 
-   //   if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   if (m_papplication->use_gpu_swap_chain())
    //   {
 
    //      pusergraphics3d->client_to_screen()(rectangleWindow);
@@ -852,7 +852,7 @@ namespace graphics3d
 
    //      //auto callbackImage32CpuBuffer = m_callbackImage32CpuBuffer;
 
-   //   //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   //if (m_papplication->use_gpu_swap_chain())
    //   //{
 
    //   //   pgpucontext = pgpudevice->start_gpu_output_context(this, ::gpu::e_output_gpu_buffer, rectanglePlacement);
@@ -883,7 +883,7 @@ namespace graphics3d
    //         auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
 
 
-   //         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //         if (m_papplication->use_gpu_swap_chain())
    //         {
 
    //            auto prendererBackBuffer = pgpuwindowattachment->draw2d_context()->get_gpu_renderer();

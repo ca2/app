@@ -1688,7 +1688,7 @@ namespace gpu
 
                _create_gpu_context(m_pgpudevice, eoutput, escene, m_puserinteractionTopic->draw2d_domain(), nullptr, {}, pointTarget, size, sizeRaw);
 
-               if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+               if (m_papplication->use_gpu_swap_chain())
                {
 
                   auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
@@ -2594,7 +2594,7 @@ namespace gpu
    ::gpu::swap_chain* context::get_swap_chain()
    {
 
-      if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_papplication->use_gpu_swap_chain())
       {
 
          return nullptr;

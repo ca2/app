@@ -14,9 +14,9 @@
 #include "acme/platform/_features.h"
 #include "debugbreak.h"
 //#include "configuration/debug.h"
-#include "operating_system/platform_setup.h"
-#include "operating_system/configuration.h"
-#include "operating_system/types.h"
+#include "system_software/platform_setup.h"
+#include "system_software/configuration.h"
+#include "system_software/types.h"
 #include "include/_setup.h"
 
 
@@ -36,7 +36,7 @@
 #include "__standard_type.h"
 //#include "acme/include/_operating_system.h"
 #include "acme/constant/memory_heap.h"
-#include "operating_system/system.h"
+#include "system_software/system.h"
 //#ifdef	_STDIO_H_
 //#error "already included?!?! _____ (After including operating_system/system.h)"
 //#endif

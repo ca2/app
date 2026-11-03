@@ -2,6 +2,7 @@
 // Changed by camilo (close to its creation day) on 2026-11-02 07:57 <3ThomasBorregaardSorensen!! Mummi!! bilbo!!
 #include "platform.h"
 #include "early_configuration.h"
+#include "acme/operating_system/operating_system.h"
 
 
 namespace graphics
@@ -72,12 +73,9 @@ namespace graphics
       }
       else if (::operating_system::is_apple(eoperatingsystem))
       {
-          straGpuApis.add("metal");
-      }
-      if (bApple)
-      {
-
+          
          straGpuApis.add("metal");
+
       }
 
       return straGpuApis;  
@@ -85,22 +83,10 @@ namespace graphics
    }
 
    
-   ::string_array_base early_configuration::ok_gpu_api()
+   ::string_array_base early_configuration::gpu_apis()
    {
 
-#if defined(WINDOWS_DESKTOP)
-
-      return ok_gpu_api(true, false);
-
-#elif defined(__APPLE__)
-
-      return ok_gpu_api(false, true);
-
-#else
-
-      return ok_gpu_api(false, false);
-
-#endif
+      return gpu_apis(::operating_system::get());
 
    }
 
@@ -141,7 +127,7 @@ namespace graphics
       if (bOffScreen)
       {
 
-         if (eoperatingsystem == ::e_operating_system_windows)
+         if (eoperatingsystem == ::e_operating_system_windows_desktop)
          {
 
             straDraw2dApis.add("gdiplus");
@@ -169,46 +155,48 @@ namespace graphics
          }
          else
          {
-             straDraw2dApis.add("cairo");
-         }
-         {
-
-#ifdef WINDOWS_DESKTOP
-
-             return implementation_name("draw2d", "gdiplus");
-
-#elif __APPLE__
-
-             return implementation_name("draw2d", "quartz2d");
-
-#elif defined(UNIVERSAL_WINDOWS)
-
-             return implementation_name("draw2d", "direct2d");
-
-#elif defined(__HAIKU__)
-
-             return implementation_name("draw2d", "haiku");
-
-#else
-
-             return implementation_name("draw2d", "cairo");
-
-#endif
-
-            if (bApple)
-            {
-
-               straDraw2dApis.add("quartz2d");
-
-            }
-            else
-            {
-
-               straDraw2dApis.add("cairo");
-
-            }
+             
+            straDraw2dApis.add("cairo");
 
          }
+//         {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//             return implementation_name("draw2d", "gdiplus");
+//
+//#elif __APPLE__
+//
+//             return implementation_name("draw2d", "quartz2d");
+//
+//#elif defined(UNIVERSAL_WINDOWS)
+//
+//             return implementation_name("draw2d", "direct2d");
+//
+//#elif defined(__HAIKU__)
+//
+//             return implementation_name("draw2d", "haiku");
+//
+//#else
+//
+//             return implementation_name("draw2d", "cairo");
+//
+//#endif
+//
+//            if (bApple)
+//            {
+//
+//               straDraw2dApis.add("quartz2d");
+//
+//            }
+//            else
+//            {
+//
+//               straDraw2dApis.add("cairo");
+//
+//            }
+//
+//         }
 
       }
       else
@@ -228,13 +216,13 @@ namespace graphics
             straDraw2dApis.add("vkvg");
 
          }
-         else if (bWindows && scopedstrGpu == "directx11")
+         else if (eoperatingsystem == ::e_operating_system_windows_desktop && scopedstrGpu == "directx11")
          {
 
             straDraw2dApis.add("direct2d_for_directx11");
 
          }
-         else if (bWindows && scopedstrGpu == "directx12")
+         else if (eoperatingsystem == ::e_operating_system_windows_desktop && scopedstrGpu == "directx12")
          {
 
             straDraw2dApis.add("direct2d_for_directx12");

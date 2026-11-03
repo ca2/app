@@ -1,6 +1,6 @@
 #include "platform.h"
 #include "application.h"
-#include "aura/platform/graphics_configuration.h"
+#include "apex/graphics/early_configuration.h"
 #include "system.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/directory_system.h"
@@ -9,7 +9,9 @@
 #include "bred/gpu/bred_approach.h"
 #include "bred/graphics3d/graphics3d.h"
 #include "bred/user/user/graphics3d_engine_host.h"
+#include "acme/operating_system/operating_system.h"
 #include "acme/platform/node.h"
+#include "apex/graphics/early_configuration.h"
 
 
 namespace bred
@@ -139,45 +141,53 @@ namespace bred
    }
 
 
-   ::string application::draw2d_get_default_implementation_name()
-   {
-      
-      auto strName = ::berg::application::draw2d_get_default_implementation_name();
+   //::string application::draw2d_get_default_implementation_name()
+   //{
+   //   
+   //   auto strName = ::berg::application::draw2d_get_default_implementation_name();
 
-      return strName;
+   //   return strName;
 
-   }
+   //}
 
 
-   void application::set_gpu_api(const ::scoped_string &scopedstrGpuApi) 
-   {
 
-      if (graphics3d_get_implementation_override().has_character()) return;
+   //void application::set_gpu_api(const ::scoped_string &scopedstrGpuApi) 
+   //{
 
-      try
-      {
+   //   if (m_strGpuImplementation.has_character()) return;
 
-         set_application_file_setting_by_operating_system("graphics3d.txt", scopedstrGpuApi);
+   //   try
+   //   {
 
-      }
-      catch (...)
-      {
+   //      set_application_file_setting_by_operating_system("graphics3d.txt", scopedstrGpuApi);
 
-         warning() << "Failed to set_gpu_api";
+   //   }
+   //   catch (...)
+   //   {
 
-      }
+   //      warning() << "Failed to set_gpu_api";
 
-      update_gpu_api_checkboxes();
+   //   }
 
-      on_change_gpu_api();
+   //   update_gpu_api_checkboxes();
 
-   }
+   //   on_change_gpu_api();
+
+   //}
 
 
    void application::update_gpu_api_checkboxes()
    {
 
-      auto strGpuApi = get_gpu_api();
+      auto strGpuApi = _gpu_get_implementation_name_setting();
+
+      if (strGpuApi.is_empty())
+      {
+
+         strGpuApi = gpu_get_implementation_name();
+
+      }
 
       for (auto &poption: m_optionaGpuApi)
       {
@@ -214,7 +224,14 @@ namespace bred
    void application::on_change_draw2d_api()
    {
 
-      auto strDraw2dApi = get_draw2d_api();
+      auto strDraw2dApi = _draw2d_get_implementation_name_setting();
+
+      if (strDraw2dApi.is_empty())
+      {
+
+         strDraw2dApi = draw2d_get_implementation_name();
+
+      }
 
       for (auto &poption: m_optionaDraw2dApi)
       {
@@ -241,26 +258,26 @@ namespace bred
    }
 
 
-   ::string application::get_gpu_api()
-   { 
-      
-      ::string strGpuApi = graphics3d_get_implementation_setting();
-      strGpuApi.trim();
-      strGpuApi.make_lower();
+   //::string application::get_gpu_api()
+   //{ 
+   //   
+   //   ::string strGpuApi = graphics3d_get_implementation_setting();
+   //   strGpuApi.trim();
+   //   strGpuApi.make_lower();
 
-      //::string_array straOk;
+   //   //::string_array straOk;
 
-      //straOk.add("opengl");
-      //straOk.add("vulkan");
-      //straOk.add("directx11");
-      //straOk.add("directx12");
+   //   //straOk.add("opengl");
+   //   //straOk.add("vulkan");
+   //   //straOk.add("directx11");
+   //   //straOk.add("directx12");
 
-      if (!m_optionaGpuApi.find(strGpuApi))
-         strGpuApi = m_optionaGpuApi.first()->m_strId;
-      return strGpuApi;
+   //   if (!m_optionaGpuApi.find(strGpuApi))
+   //      strGpuApi = m_optionaGpuApi.first()->m_strId;
+   //   return strGpuApi;
 
 
-   }
+   //}
 
 
 //   ::string_array application::get_ok_gpu_api()
@@ -311,20 +328,24 @@ namespace bred
    ::string_array application::get_ok_draw2d_api()
    {
 
-      auto strGpuApi = get_gpu_api();
+      auto strGpuApi = _gpu_get_implementation_name_setting();
       auto strOutput = get_graphics3d_output();
-#ifdef WINDOWS_DESKTOP
-      constexpr bool windows = true;
-#else
-      constexpr bool windows = false;
-#endif
-#ifdef __APPLE__
-      constexpr bool apple = true;
-#else
-      constexpr bool apple = false;
-#endif
-      auto available = ::aura::graphics_configuration::draw2d_apis(
-         strGpuApi.c_str(), strOutput == "off_screen", windows, apple);
+      auto eoperatingsystem = ::operating_system::get();
+         //#ifdef WINDOWS_DESKTOP
+//      constexpr bool windows = true;
+//#else
+//      constexpr bool windows = false;
+//#endif
+//#ifdef __APPLE__
+//      constexpr bool apple = true;
+//#else
+//      constexpr bool apple = false;
+//#endif
+
+      ::graphics::early_configuration earlyconfiguration;
+      auto available = earlyconfiguration.draw2d_apis(
+         //strGpuApi.c_str(), strOutput == "off_screen", windows, apple);
+         strGpuApi.c_str(), !use_gpu_swap_chain(), eoperatingsystem);
       ::string_array straOk;
       for (auto & value : available) straOk.add(value.c_str());
       return straOk;
@@ -333,82 +354,83 @@ namespace bred
    }
 
 
-   ::string application::get_draw2d_api()
-   {
+   //::string application::get_draw2d_api()
+   //{
 
-      auto strSetting = application_file_setting_by_operating_system("draw2d.txt");
-      auto straOk = get_ok_draw2d_api();
-      ::std::vector<::std::string> available;
-      for (auto & value : straOk) available.emplace_back(value.c_str());
-      return ::aura::graphics_configuration::draw2d_api(strSetting.c_str(), available).c_str();
-
-
-   }
+   //   auto strSetting = application_file_setting_by_operating_system("draw2d.txt");
+   //   auto straOk = get_ok_draw2d_api();
+   //   ::std::vector<::std::string> available;
+   //   for (auto & value : straOk) available.emplace_back(value.c_str());
+   //   return ::aura::graphics_configuration::draw2d_api(strSetting.c_str(), available).c_str();
 
 
-   ::string application::get_graphics3d_output()
-   {
-
-      ::string strOutput = graphics3d_get_output_setting();
-
-      strOutput.trim();
-      strOutput.make_lower();
-      if (strOutput == "swap_chain") strOutput = "on_screen";
-
-      if (!m_optionaGraphics3dOutput.find(strOutput))
-      {
-
-         strOutput = m_optionaGraphics3dOutput.first()->m_strId;
-
-      }
-
-      return strOutput;
-
-   }
+   //}
 
 
-   void application::set_draw2d_api(const ::scoped_string &scopedstrDraw2dApi)
-   {
+   //::string application::get_graphics3d_output()
+   //{
 
-      try
-      {
+   //   ::string strOutput = graphics3d_get_output_setting();
 
-         set_application_file_setting_by_operating_system("draw2d.txt", scopedstrDraw2dApi);
+   //   strOutput.trim();
+   //   strOutput.make_lower();
+   //   if (strOutput == "swap_chain") strOutput = "on_screen";
 
-      }
-      catch (...)
-      {
+   //   if (!m_optionaGraphics3dOutput.find(strOutput))
+   //   {
 
-         warning() << "Failed to set_get";
+   //      strOutput = m_optionaGraphics3dOutput.first()->m_strId;
 
-      }
+   //   }
 
-      on_change_draw2d_api();
+   //   return strOutput;
 
-   }
+   //}
 
 
-   void application::set_graphics3d_output(const ::scoped_string &scopedstrOutput)
-   {
+   //void application::set_draw2d_api(const ::scoped_string &scopedstrDraw2dApi)
+   //{
 
-      if (graphics3d_get_output_override().has_character()) return;
+   //   try
+   //   {
 
-      try
-      {
+   //      set_application_file_setting_by_operating_system("draw2d.txt", scopedstrDraw2dApi);
 
-         set_application_file_setting("graphics3d_output.txt", scopedstrOutput);
+   //   }
+   //   catch (...)
+   //   {
 
-      }
-      catch (...)
-      {
+   //      warning() << "Failed to set_get";
 
-         warning() << "Failed to set_graphics3d_output";
+   //   }
 
-      }
+   //   on_change_draw2d_api();
 
-      on_change_graphics3d_output();
+   //}
 
-   }
+
+   //void application::set_graphics3d_output(const ::scoped_string &scopedstrOutput)
+   //{
+
+   //   if (m_strGpuImplementation.has_character())
+   //      return;
+
+   //   try
+   //   {
+
+   //      set_application_file_setting("graphics3d_output.txt", scopedstrOutput);
+
+   //   }
+   //   catch (...)
+   //   {
+
+   //      warning() << "Failed to set_graphics3d_output";
+
+   //   }
+
+   //   on_change_graphics3d_output();
+
+   //}
 
 
    void application::on_change_graphics3d_output()
@@ -443,7 +465,15 @@ namespace bred
    void application::enable_draw2d_api_checkboxes(const ::string_array & stra)
    {
 
-      auto strCurrentDraw2dApi = get_draw2d_api();
+      auto strCurrentDraw2dApi = _draw2d_get_implementation_name_setting();
+
+      if (strCurrentDraw2dApi.is_empty())
+      {
+
+         strCurrentDraw2dApi = draw2d_get_implementation_name();
+
+      }
+
       for (auto & poption : m_optionaDraw2dApi)
       {
 
@@ -518,7 +548,7 @@ namespace bred
 
          playoutLine->m_atomMatterId = "::user::line_layout(1)";
 
-         ::string strGpuApi = get_gpu_api();
+         ::string strGpuApi = _gpu_get_implementation_name_setting();
 
          //::string_array straGpuApiItem;
          //::string_array straGpuApiName;
@@ -544,13 +574,13 @@ namespace bred
             {
                poption->checkbox()->set_check(e_check_checked, ::e_source_initialize);
             }
-            poption->checkbox()->enable_window(graphics3d_get_implementation_override().is_empty());
+            poption->checkbox()->enable_window(m_strGpuImplementation.is_empty());
             poption->checkbox()->check_changed(this) += [this, poption](auto &check)
             {
                auto bSet = check.payload().as_bool();
-               if (bSet && poption->m_strId != get_gpu_api())
+               if (bSet && poption->m_strId != _gpu_get_implementation_name_setting())
                {
-                  set_gpu_api(poption->m_strId);
+                  _gpu_set_implementation_name_setting(poption->m_strId);
                }
             };
             poption->m_puserinteractionLabel = create_label<::user::still>(playoutLine, poption->m_strName);
@@ -572,7 +602,7 @@ namespace bred
 
          playoutLine->m_atomMatterId = "::user::line_layout(1)";
 
-         ::string strDraw2dApi = get_draw2d_api();
+         ::string strDraw2dApi = _draw2d_get_implementation_name_setting();
 
 //         ::string_array straDraw2dApiItem;
 //         ::string_array straDraw2dApiName;
@@ -617,9 +647,9 @@ namespace bred
             pcheckbox->check_changed(this) += [this, poption](auto &check)
             {
                auto bSet = check.payload().as_bool();
-               if (bSet && poption->m_strId != get_draw2d_api())
+               if (bSet && poption->m_strId != _draw2d_get_implementation_name_setting())
                {
-                  set_draw2d_api(poption->m_strId);
+                  _draw2d_set_implementation_name_setting(poption->m_strId);
                }
             };
             poption->m_puserinteractionLabel=create_label<::user::still>(playoutLine, poption->m_strName);
@@ -662,13 +692,13 @@ namespace bred
             {
                poption->checkbox()->set_check(e_check_checked, ::e_source_initialize);
             }
-            poption->checkbox()->enable_window(graphics3d_get_output_override().is_empty());
+            poption->checkbox()->enable_window(m_strGpuImplementation.is_empty());
             poption->checkbox()->check_changed(this) += [this, poption](auto &check)
             {
                auto bSet = check.payload().as_bool();
-               if (bSet && poption->m_strId != get_graphics3d_output())
+               if (bSet && poption->m_strId != _get_graphics3d_output_setting())
                {
-                  set_graphics3d_output(poption->m_strId);
+                  _set_graphics3d_output_setting(poption->m_strId);
                }
             };
             poption->m_puserinteractionLabel=create_label<::user::still>(playoutLine, poption->m_strName);
@@ -710,11 +740,11 @@ namespace bred
 
       // A fixed application GPU must also win over a component factory that
       // another draw2d implementation may already have registered.
-      auto strGpuOverride = graphics3d_get_implementation_override();
+      auto strGpuOverride = m_strGpuImplementation;
       ::factory::factory_pointer pfactoryGpu;
       if (strGpuOverride.has_character())
       {
-         pfactoryGpu = factory("gpu", get_gpu_api());
+         pfactoryGpu = factory("gpu", gpu_get_implementation_name());
          pfactoryGpu->merge_to_global_factory();
       }
       else
@@ -727,7 +757,7 @@ namespace bred
 
          ::string strGpuImplementation;
 
-         ::string strDraw2dImplementation = m_papplication->draw2d_get_default_implementation_name();
+         ::string strDraw2dImplementation = m_papplication->draw2d_get_implementation_name();
 
          if (strDraw2dImplementation.is_empty())
          {
@@ -775,25 +805,25 @@ namespace bred
          else if (strDraw2dImplementation == "gdiplus")
          {
 
-            strGpuImplementation = graphics3d_get_implementation_name();
+            strGpuImplementation = gpu_get_implementation_name();
 
          }
          else if (strDraw2dImplementation == "cairo")
          {
 
-            strGpuImplementation = graphics3d_get_implementation_name();
+            strGpuImplementation = gpu_get_implementation_name();
 
          }
          else if (strDraw2dImplementation == "quartz2d")
          {
 
-            strGpuImplementation = graphics3d_get_implementation_name();
+            strGpuImplementation = gpu_get_implementation_name();
 
          }
          else if (strDraw2dImplementation.begins_eat("direct2d"))
          {
 
-            strGpuImplementation = graphics3d_get_implementation_name();
+            strGpuImplementation = gpu_get_implementation_name();
 
             //if(!strGpuImplementation.case_insensitive_begins("directx"))
             //{

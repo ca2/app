@@ -570,7 +570,7 @@ namespace gpu_opengl
 
          get_gpu_renderer();
 
-         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         if (m_papplication->use_gpu_swap_chain())
          {
 
             auto pgpuwindowattachment = ::gpu::window_attachment::get(this);

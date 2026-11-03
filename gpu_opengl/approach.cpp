@@ -104,7 +104,7 @@ namespace gpu_opengl
       defer_create_synchronization();
 
 #if defined(LINUX) || defined(__BSD__)
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
          // Native EGL window surfaces in this backend currently require X11.
          // Qt/Wayland presents the offscreen result through its image buffers.
@@ -112,12 +112,12 @@ namespace gpu_opengl
          if (!pdisplay || (!pdisplay->native_wayland_display() && !pdisplay->_get_x11_display()))
          {
             warning("Native EGL window presentation requires a supported native display; using offscreen presentation");
-            m_papplication->m_gpu.m_bUseSwapChainWindow = false;
+            m_papplication->use_gpu_swap_chain() = false;
          }
       }
 #endif
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
 
          m_papplication->m_gpu.m_eoutputDraw2d = ::gpu::e_output_gpu_buffer;

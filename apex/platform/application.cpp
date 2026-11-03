@@ -11124,12 +11124,77 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    }
 
 
+   bool application::is_using_gpu()
+   {
+
+      bool bGpu2 = m_bGpu2;
+
+      bool bUseSwapChain = use_gpu_swap_chain();
+
+      auto strGpu = gpu_get_implementation_name();
+
+      auto strDraw2d = _draw2d_get_implementation_name();
+
+      auto eoperatingsystem = ::operating_system::get();
+
+      // #ifdef WINDOWS_DESKTOP
+      //
+      //        constexpr bool bWindows = true;
+      //
+      // #else
+      //
+      //        constexpr bool bWindows = false;
+      //
+      // #endif
+      //
+      // #ifdef __APPLE__
+      //
+      //        constexpr bool bApple = true;
+      //
+      // #else
+      //
+      //        constexpr bool bApple = false;
+      //
+      // #endif
+      //
+      // #ifdef UNIVERSAL_WINDOWS
+      //
+      //        constexpr bool bUniversalWindows = true;
+      //
+      // #else
+      //
+      //        constexpr bool bUniversalWindows = false;
+      //
+      // #endif
+      //
+      // #ifdef __HAIKU___
+      //
+      //        constexpr bool bUniversalWindows = true;
+      //
+      // #else
+      //
+      //        constexpr bool bUniversalWindows = false;
+      //
+      // #endif
+
+      if (bGpu2 || bUseSwapChain || strGpu.has_character())
+      {
+         
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
    string application::draw2d_get_implementation_name()
    { 
 
        ::graphics::early_configuration earlyconfiguration;
 
-       bool bGpu = m_bGpu;
+       bool bGpu2 = m_bGpu2;
 
        bool bUseSwapChain = use_gpu_swap_chain();
 
@@ -11179,7 +11244,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 //
 //#endif
 
-       if (bGpu || bUseSwapChain || strGpu.has_character())
+       if (bGpu2 || bUseSwapChain || strGpu.has_character())
        {
 
            auto straDraw2dApis = earlyconfiguration.draw2d_apis(strGpu, bUseSwapChain, eoperatingsystem);

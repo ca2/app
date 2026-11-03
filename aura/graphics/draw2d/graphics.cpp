@@ -449,7 +449,7 @@ namespace draw2d
       //}
 
       // Offscreen engines manage their own GPU frames; CPU window drawing does not.
-      if (m_papplication->m_bGpu && m_papplication->use_gpu_swap_chain())
+      if (m_papplication->m_bGpu2 && m_papplication->use_gpu_swap_chain())
       {
 
          auto pwindowattachment = draw2d_frame()->window_attachment();
@@ -535,7 +535,7 @@ namespace draw2d
       }
 
       // Offscreen engines manage their own GPU frames; CPU window drawing does not.
-      if (m_papplication->m_bGpu && m_papplication->use_gpu_swap_chain())
+      if (m_papplication->m_bGpu2 && m_papplication->use_gpu_swap_chain())
       {
 
          auto pgpuwindowattachment = pwindow->m_papexgpuwindowattachment;

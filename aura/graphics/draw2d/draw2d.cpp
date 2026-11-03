@@ -294,7 +294,7 @@ namespace draw2d
       ::acme::windowing::window* pacmewindowingwindow)
    {
 
-      if (m_papplication->m_bGpu)
+      if (m_papplication->m_bGpu2)
       {
 
          return allocate_draw2d_window_attachment_for_gpu(pacmewindowingwindow);
@@ -310,7 +310,7 @@ namespace draw2d
       ::acme::windowing::window* pacmewindowingwindow)
    {
 
-      if (!m_papplication->m_bGpu)
+      if (!m_papplication->m_bGpu2)
       {
 
          throw ::exception(error_wrong_state);

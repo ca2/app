@@ -10034,7 +10034,7 @@ namespace aura
 //      // Windowing can request draw2d before application::init_instance().
 //      defer_initialize_graphics_configuration();
 //
-//      if (m_bGpu || use_gpu_swap_chain() || graphics3d_get_implementation_override().has_character())
+//      if (m_bGpu2 || use_gpu_swap_chain() || graphics3d_get_implementation_override().has_character())
 //      {
 //
 //         auto strGpuApi = graphics3d_get_implementation_name();

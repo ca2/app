@@ -400,7 +400,7 @@ namespace draw2d_opengl
 
       }
 
-      bool bYSwap = m_papplication->m_gpu.m_bUseSwapChainWindow;
+      bool bYSwap = m_papplication->use_gpu_swap_chain();
 
       //::opengl::resize(recta, bYSwap);
 
@@ -679,7 +679,7 @@ namespace draw2d_opengl
       //m_hglrc = hglrc;
       //m_size = size;
 
-      bool bYSwap = m_papplication->m_gpu.m_bUseSwapChainWindow;
+      bool bYSwap = m_papplication->use_gpu_swap_chain();
 
       ::opengl::resize(size, bYSwap);
 
@@ -994,7 +994,7 @@ namespace draw2d_opengl
 
       //}
 
-      bool bYSwap = m_papplication->m_gpu.m_bUseSwapChainWindow;
+      bool bYSwap = m_papplication->use_gpu_swap_chain();
 
       ::opengl::resize(pdraw2dbitmap->size(), bYSwap);
 
@@ -3392,7 +3392,7 @@ namespace draw2d_opengl
 
       m_sizeWindow = sizeWindow;
 
-      bool bYSwap = m_papplication->m_gpu.m_bUseSwapChainWindow;
+      bool bYSwap = m_papplication->use_gpu_swap_chain();
 
       ::opengl::resize(sizeWindow, bYSwap);
 
@@ -7721,7 +7721,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    void graphics::on_present()
    {
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
 
          //m_pgpucontextCompositor->swap_buffers();

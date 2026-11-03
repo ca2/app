@@ -1315,7 +1315,7 @@ namespace gpu_opengl
    //void context::draw2d_on_end_draw(::gpu::graphics * pgpugraphics)
    //{
 
-   //   //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   //if (m_papplication->use_gpu_swap_chain())
    //   //{
 
    //   //   auto pgpuwindowattachment = ::gpu::window_attachment::get(this);

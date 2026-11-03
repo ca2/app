@@ -76,7 +76,7 @@ namespace gpu
            // hwndrendertargetproperties)
       }
 
-      if (m_papplication->m_bGpu)
+      if (m_papplication->m_bGpu2)
       {
 
          auto pgpuapproach = m_papplication->get_gpu_approach();

@@ -135,6 +135,15 @@ void apex_application_layer::setResourceName(::i32 iId
    }
 
 
+   bool apex_application_layer::is_using_gpu()
+   {
+
+      throw ::exception(error_failed);
+
+      return false;
+   }
+
+
    // bool apex_application_layer::is_application() const override{}
    //
    //

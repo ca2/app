@@ -374,6 +374,9 @@ namespace platform
       virtual void on_service_request(::request* prequest);
 
 
+      virtual bool is_using_gpu();
+
+
       //virtual ::simpledb::server * simpledb();
       virtual ::database::server* dataserver();
 

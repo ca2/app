@@ -303,6 +303,9 @@ namespace apex
       virtual bool is_session() const override;
 
 
+      bool is_using_gpu() override;
+
+
       bool is_service() const override;
 
 

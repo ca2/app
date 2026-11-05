@@ -34,7 +34,7 @@ namespace subsystem
 
 
    class ClipboardInterface :
-    virtual public ::Particle
+    virtual public ::subsystem::Particle
     {
        public:
 

@@ -39,6 +39,7 @@ namespace api_ca2
 
       string get_name_for_profile() override;
       void load_configuration() override;
+      void clear_profile() override;
       
 
       //void api_login(const ::scoped_string & scopedstrConfig, const ::scoped_string & scopedstrProfile) override;

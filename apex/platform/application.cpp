@@ -23,6 +23,7 @@
 #include "acme/parallelization/happening.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "apex/platform/api.h"
 #include "acme/platform/profiler.h"
 #include "acme/prototype/collection/_array_binary_stream.h"
 #include "acme/prototype/datetime/datetime.h"
@@ -510,6 +511,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    void application::destroy()
    {
 
+      m_papiCa2Authentication.release();
       m_puserlanguagemap.release();
 
       //auto estatus = 

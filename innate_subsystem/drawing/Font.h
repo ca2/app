@@ -58,7 +58,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM FontComposite :
-virtual public Composite<FontInterface>
+virtual public ::subsystem::Composite <FontInterface>
    {
    public:
 
@@ -94,7 +94,7 @@ virtual public Composite<FontInterface>
 
 
     class CLASS_DECL_SUBSYSTEM FontAggregate :
-    virtual public Aggregate< FontComposite >
+    virtual public ::subsystem::Aggregate< FontComposite >
     {
     public:
 
@@ -104,7 +104,7 @@ virtual public Composite<FontInterface>
 
 
    class CLASS_DECL_SUBSYSTEM Font :
-      virtual public Object< FontAggregate >
+      virtual public ::subsystem::Object< FontAggregate >
    {
    public:
 

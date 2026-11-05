@@ -34,7 +34,7 @@ namespace subsystem
 
    // This class get info for a windows desktop.
    class ScreenInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -100,7 +100,7 @@ namespace subsystem
 
    // This class get info for a windows desktop.
    class CLASS_DECL_SUBSYSTEM ScreenComposite :
-      virtual public Composite<ScreenInterface >
+      virtual public ::subsystem::Composite <ScreenInterface >
    {
    public:
 
@@ -197,7 +197,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM ScreenAggregate :
-    virtual public Aggregate< ScreenComposite >
+    virtual public ::subsystem::Aggregate< ScreenComposite >
     {
     public:
 

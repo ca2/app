@@ -33,7 +33,7 @@ namespace innate_subsystem
 
 
    class CheckBoxInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -48,7 +48,7 @@ namespace innate_subsystem
    //using CheckBoxInterface = ::particle_interface<CheckBoxInterface, ControlInterface>;
 
    class CLASS_DECL_INNATE_SUBSYSTEM CheckBoxComposite :
-      virtual public Composite<CheckBoxInterface>
+      virtual public ::subsystem::Composite <CheckBoxInterface>
    {
    public:
 
@@ -64,7 +64,7 @@ namespace innate_subsystem
 
    
    class CLASS_DECL_INNATE_SUBSYSTEM CheckBoxAggregate : 
-      virtual public Aggregate< CheckBoxComposite, ControlAggregate>
+      virtual public ::subsystem::Aggregate< CheckBoxComposite, ControlAggregate>
 
    {
    public:
@@ -79,7 +79,7 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM CheckBox : 
-      virtual public Object<CheckBoxAggregate>
+      virtual public ::subsystem::Object<CheckBoxAggregate>
 
    {
    public:

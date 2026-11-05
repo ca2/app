@@ -39,7 +39,7 @@ namespace subsystem
    // void getLocalIPAddrString(char_pointer buffer, ::i32 buflen);
 
    class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Interface :
-   virtual public ::Particle
+   virtual public ::subsystem::Particle
    {
    public:
 
@@ -80,7 +80,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Composite :
-   virtual public Composite<SocketAddressIPv4Interface>
+   virtual public ::subsystem::Composite <SocketAddressIPv4Interface>
    {
    public:
 
@@ -157,7 +157,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Aggregate : 
-       virtual public Aggregate<SocketAddressIPv4Composite>
+       virtual public ::subsystem::Aggregate<SocketAddressIPv4Composite>
     {
     public:
 
@@ -169,7 +169,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM SocketAddressIPv4 : 
-       virtual public Object<SocketAddressIPv4Aggregate>
+       virtual public ::subsystem::Object<SocketAddressIPv4Aggregate>
     {
     public:
 

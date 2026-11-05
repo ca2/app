@@ -35,7 +35,7 @@ namespace innate_subsystem
 
 
    class DialogInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 

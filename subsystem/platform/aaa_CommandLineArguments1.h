@@ -34,7 +34,7 @@ namespace subsystem
    // This class produce initial parse of a command line.
    // Each word or expression will be saved at self index.
    class CommandLineArgumentsInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -58,7 +58,7 @@ namespace subsystem
    // This class produce initial parse of a command line.
    // Each word or expression will be saved at self index.
    class CLASS_DECL_SUBSYSTEM CommandLineArgumentsComposite :
-      virtual public Composite<CommandLineArgumentsInterface>
+      virtual public ::subsystem::Composite <CommandLineArgumentsInterface>
    {
    public:
 

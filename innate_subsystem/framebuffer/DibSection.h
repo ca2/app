@@ -40,7 +40,7 @@ namespace innate_subsystem
 
       // This clas is a primitive wrapper to a DIB section.
    class  DibSectionInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
       // Note that if the compatibleWin doesn't specify or is zero the class will create an
@@ -120,7 +120,7 @@ namespace innate_subsystem
 
    // This clas is a primitive wrapper to a DIB section.
    class CLASS_DECL_INNATE_SUBSYSTEM DibSectionComposite :
-   virtual public Composite < DibSectionInterface >
+   virtual public ::subsystem::Composite < DibSectionInterface >
    {
    public:
 
@@ -237,7 +237,7 @@ namespace innate_subsystem
 
    // This clas is a primitive wrapper to a DIB section.
    class CLASS_DECL_INNATE_SUBSYSTEM DibSectionAggregate :
-   virtual public Composite < DibSectionComposite >
+   virtual public ::subsystem::Composite < DibSectionComposite >
    {
    public:
 
@@ -246,7 +246,7 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM DibSection :
-   virtual public Object < DibSectionAggregate >
+   virtual public ::subsystem::Object <DibSectionAggregate >
    {
    public:
 

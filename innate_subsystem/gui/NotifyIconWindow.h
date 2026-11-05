@@ -35,7 +35,7 @@ namespace innate_subsystem
 {
 
 
-   class NotifyIconWindowInterface : virtual public ::Particle
+   class NotifyIconWindowInterface : virtual public ::subsystem::Particle
    {
    public:
 
@@ -74,7 +74,7 @@ namespace innate_subsystem
    //using NotifyIconWindowInterface = particle_interface<NotifyIconWindowInterface, WindowInterface>;
 
    class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconWindowComposite :
-      virtual public Composite<NotifyIconWindowInterface >
+      virtual public ::subsystem::Composite <NotifyIconWindowInterface >
    {
    public:
 
@@ -116,7 +116,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconWindow :
-virtual public Object<NotifyIconWindowAggregate>
+virtual public ::subsystem::Object<NotifyIconWindowAggregate>
    {
    public:
 

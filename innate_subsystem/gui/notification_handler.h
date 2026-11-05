@@ -9,7 +9,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM notification_handler :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -38,7 +38,7 @@ namespace innate_subsystem
 
 
    template<typename AGGREGATE >
-   class WindowObject : virtual public Object < AGGREGATE >,
+   class WindowObject : virtual public ::subsystem::Object <AGGREGATE >,
    virtual public ::innate_subsystem::notification_handler
    {
    public:

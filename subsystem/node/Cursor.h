@@ -33,7 +33,7 @@ namespace subsystem
 
 
    class CursorInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -50,7 +50,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM CursorComposite :
-   virtual public Composite<CursorInterface>
+   virtual public ::subsystem::Composite <CursorInterface>
    {
    public:
 
@@ -69,7 +69,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM CursorAggregate :
-      virtual public Aggregate<CursorComposite>
+      virtual public ::subsystem::Aggregate<CursorComposite>
    {
    public:
 

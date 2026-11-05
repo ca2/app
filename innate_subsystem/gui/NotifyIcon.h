@@ -37,7 +37,7 @@ namespace innate_subsystem
 
    // FIXME: Add documentation to class.
    class NotifyIconInterface
-       : virtual public ::Particle
+       : virtual public ::subsystem::Particle
    {
    public:
       
@@ -68,7 +68,7 @@ namespace innate_subsystem
 
    // FIXME: Add documentation to class.
    class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconComposite :
-      virtual public Composite<NotifyIconInterface>
+      virtual public ::subsystem::Composite <NotifyIconInterface>
    {
    public:
 
@@ -98,7 +98,7 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconAggregate :
-      virtual public Aggregate< NotifyIconComposite, NotifyIconWindow >
+      virtual public ::subsystem::Aggregate< NotifyIconComposite, NotifyIconWindow >
    {
    public:
 
@@ -107,7 +107,7 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM NotifyIcon :
-      virtual public Object<NotifyIconAggregate>
+      virtual public ::subsystem::Object<NotifyIconAggregate>
    {
    public:
 

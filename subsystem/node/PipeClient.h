@@ -35,7 +35,7 @@ namespace subsystem
     * Pipe client factory.
     */
    class PipeClientInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -59,7 +59,7 @@ namespace subsystem
  * Pipe client factory.
  */
    class CLASS_DECL_SUBSYSTEM PipeClientComposite :
-   virtual public Composite<PipeClientInterface>
+   virtual public ::subsystem::Composite <PipeClientInterface>
    {
    public:
 
@@ -84,7 +84,7 @@ namespace subsystem
    };
 
     class CLASS_DECL_SUBSYSTEM PipeClientAggregate :
-    virtual public Aggregate< PipeClientComposite >
+    virtual public ::subsystem::Aggregate< PipeClientComposite >
     {
     public:
 
@@ -94,7 +94,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM PipeClient :
- virtual public Object < PipeClientAggregate >
+ virtual public ::subsystem::Object <PipeClientAggregate >
    {
    public:
 

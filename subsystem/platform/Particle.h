@@ -26,7 +26,7 @@ namespace subsystem
    PARTICLE_INTERFACE *get_implementation(const Composite<PARTICLE_INTERFACE> *pcomposite);
 
    template<typename PARTICLE_INTERFACE, typename BASE>
-   PARTICLE_INTERFACE *get_implementation(const Implementation<PARTICLE_INTERFACE, BASE> *pimplementation);
+   PARTICLE_INTERFACE *get_implementation(const ::subsystem::Implementation<PARTICLE_INTERFACE, BASE> *pimplementation);
 
    template<typename AGGREGATE>
    Particle *get_implementation(const Object<AGGREGATE> * pobject);
@@ -463,7 +463,7 @@ return MAIN_CLASS::_get_callback1();           \
 
 
    template<typename PARTICLE_INTERFACE>
-   class Implementation<PARTICLE_INTERFACE, Particle >  :
+   class ::subsystem::Implementation<PARTICLE_INTERFACE, Particle >  :
       virtual public PARTICLE_INTERFACE
    {
    public:
@@ -774,7 +774,7 @@ Name##Composite::set##Name##Implementation(pimpl);                              
 
 
    template < typename PARTICLE_INTERFACE, typename BASE >
-   inline PARTICLE_INTERFACE * get_implementation(const Implementation< PARTICLE_INTERFACE, BASE > * pimplementation)
+   inline PARTICLE_INTERFACE * get_implementation(const ::subsystem::Implementation< PARTICLE_INTERFACE, BASE > * pimplementation)
    {
 
       return _get_implementation<PARTICLE_INTERFACE>(pimplementation);

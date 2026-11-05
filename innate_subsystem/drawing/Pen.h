@@ -60,7 +60,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM PenComposite :
-virtual public Composite<PenInterface>
+virtual public ::subsystem::Composite <PenInterface>
    {
    public:
 
@@ -99,7 +99,7 @@ virtual public Composite<PenInterface>
 
 
     class CLASS_DECL_INNATE_SUBSYSTEM PenAggregate :
-    virtual public Aggregate< PenComposite >
+    virtual public ::subsystem::Aggregate< PenComposite >
     {
     public:
 
@@ -108,7 +108,7 @@ virtual public Composite<PenInterface>
     };
 
    class CLASS_DECL_INNATE_SUBSYSTEM Pen :
-   virtual public Object< PenAggregate >
+   virtual public ::subsystem::Object< PenAggregate >
    {
    public:
 

@@ -33,7 +33,7 @@ namespace innate_subsystem
 {
    class IconInterface :
    //virtual public particle_interface<IconInterface>
-   virtual public ::Particle
+   virtual public ::subsystem::Particle
    {
    public:
       // Icon();
@@ -60,7 +60,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM IconComposite :
-virtual public Composite<IconInterface>
+virtual public ::subsystem::Composite <IconInterface>
    {
    public:
 
@@ -106,7 +106,7 @@ virtual public Composite<IconInterface>
 
 
     class CLASS_DECL_INNATE_SUBSYSTEM IconAggregate :
-    virtual public Aggregate< IconComposite >
+    virtual public ::subsystem::Aggregate< IconComposite >
     {
     public:
 
@@ -115,7 +115,7 @@ virtual public Composite<IconInterface>
     };
 
    class CLASS_DECL_INNATE_SUBSYSTEM Icon :
-   virtual public Object< IconAggregate >
+   virtual public ::subsystem::Object< IconAggregate >
    {
    public:
 

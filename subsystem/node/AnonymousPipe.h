@@ -40,7 +40,7 @@ namespace subsystem
 
    class AnonymousPipeInterface :
    virtual public Channel,
-   virtual public ::Particle
+   virtual public ::subsystem::Particle
    {
    public:
       // @param hWrite is a write handle getting by the CreatePipe()
@@ -117,7 +117,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM AnonymousPipeComposite :
-   virtual public Composite < AnonymousPipeInterface >
+   virtual public ::subsystem::Composite < AnonymousPipeInterface >
    {
    public:
 
@@ -228,7 +228,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM AnonymousPipe :
-    virtual public Object < AnonymousPipeAggregate >
+    virtual public ::subsystem::Object <AnonymousPipeAggregate >
    {
    public:
 

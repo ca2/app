@@ -33,7 +33,7 @@ namespace subsystem
    // The AnonymousPipeFactory class generates the ::pair of the AnonymousPipe
    // objects that connected to each other.
    class AnonymousPipeFactoryInterface :
-   virtual public ::Particle
+   virtual public ::subsystem::Particle
    {
    public:
       //AnonymousPipeFactory(::u32 bufferSize, LogWriter *plogwriter);
@@ -70,7 +70,7 @@ namespace subsystem
    // The AnonymousPipeFactory class generates the ::pair of the AnonymousPipe
    // objects that connected to each other.
    class CLASS_DECL_SUBSYSTEM AnonymousPipeFactoryComposite :
-   virtual public Composite< AnonymousPipeFactoryInterface >
+   virtual public ::subsystem::Composite < AnonymousPipeFactoryInterface >
    {
    public:
 
@@ -128,7 +128,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM AnonymousPipeFactory :
- virtual public Object < AnonymousPipeFactoryAggregate >
+ virtual public ::subsystem::Object <AnonymousPipeFactoryAggregate >
    {
    public:
 

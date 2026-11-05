@@ -51,7 +51,7 @@ namespace subsystem
     };
 
    class DesktopSelectorInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
       
@@ -234,7 +234,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM DesktopSelectorAggregate :
-    virtual public Aggregate< DesktopSelectorComposite >
+    virtual public ::subsystem::Aggregate< DesktopSelectorComposite >
     {
     public:
 
@@ -244,7 +244,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM DesktopSelector :
-   virtual public Object< DesktopSelectorAggregate >
+   virtual public ::subsystem::Object< DesktopSelectorAggregate >
    {
    public:
 

@@ -37,7 +37,7 @@ namespace innate_subsystem
 
 
    class GraphicsInterface :
-   virtual public ::Particle
+   virtual public ::subsystem::Particle
    {
    public:
       // Creates graphics object with specified device context.
@@ -103,7 +103,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM GraphicsComposite :
-      virtual public Composite<GraphicsInterface>
+      virtual public ::subsystem::Composite <GraphicsInterface>
    {
    public:
 
@@ -282,7 +282,7 @@ namespace innate_subsystem
 
 
     class CLASS_DECL_INNATE_SUBSYSTEM GraphicsAggregate :
-    virtual public Aggregate< GraphicsComposite >
+    virtual public ::subsystem::Aggregate< GraphicsComposite >
     {
     public:
 
@@ -291,7 +291,7 @@ namespace innate_subsystem
     };
 
    class CLASS_DECL_INNATE_SUBSYSTEM Graphics :
-   virtual public Object< GraphicsAggregate >
+   virtual public ::subsystem::Object< GraphicsAggregate >
    {
    public:
 

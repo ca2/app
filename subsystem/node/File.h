@@ -9,7 +9,7 @@ namespace subsystem
 {
 
    class CLASS_DECL_SUBSYSTEM FileInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -27,7 +27,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM FileComposite :
-   virtual public Composite<FileInterface >
+   virtual public ::subsystem::Composite <FileInterface >
    {
    public:
 
@@ -41,7 +41,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM FileAggregate :
-    virtual public Aggregate< FileComposite >
+    virtual public ::subsystem::Aggregate< FileComposite >
     {
     public:
 
@@ -51,7 +51,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM File :
- virtual public Object < FileAggregate >
+ virtual public ::subsystem::Object <FileAggregate >
    {
    public:
 

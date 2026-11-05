@@ -39,7 +39,7 @@ namespace subsystem
 {
 
 
-   class Task : virtual public ::Particle
+   class Task : virtual public ::subsystem::Particle
    {
    public:
 
@@ -162,7 +162,7 @@ namespace subsystem
     * @author enikey.
     */
    class CLASS_DECL_SUBSYSTEM ServiceComposite :
-   virtual public Composite< ServiceInterface >
+   virtual public ::subsystem::Composite < ServiceInterface >
    {
    public:
 
@@ -284,7 +284,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM ServiceAggregate :
-    virtual public Aggregate< ServiceComposite >
+    virtual public ::subsystem::Aggregate< ServiceComposite >
     {
     public:
 
@@ -294,7 +294,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM Service :
- virtual public Object < ServiceAggregate >
+ virtual public ::subsystem::Object <ServiceAggregate >
    {
    public:
 

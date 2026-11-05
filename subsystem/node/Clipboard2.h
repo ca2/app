@@ -34,7 +34,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM Clipboard2 : 
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 

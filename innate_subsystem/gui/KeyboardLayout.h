@@ -46,7 +46,7 @@ namespace innate_subsystem
     };
 
    class KeyboardLayoutInterface :
-       virtual public ::Particle
+       virtual public ::subsystem::Particle
    {
    public:
 
@@ -63,7 +63,7 @@ namespace innate_subsystem
    //   ImplementCallbackø(KeyboardLayout, keyboardlayout)
    //};
 
-   class CLASS_DECL_INNATE_SUBSYSTEM KeyboardLayoutComposite : virtual public Composite<KeyboardLayoutInterface>
+   class CLASS_DECL_INNATE_SUBSYSTEM KeyboardLayoutComposite : virtual public ::subsystem::Composite <KeyboardLayoutInterface>
    {
    public:
 
@@ -81,7 +81,7 @@ namespace innate_subsystem
 
    };
 
-   class CLASS_DECL_INNATE_SUBSYSTEM KeyboardLayoutAggregate : virtual public Aggregate<KeyboardLayoutComposite>
+   class CLASS_DECL_INNATE_SUBSYSTEM KeyboardLayoutAggregate : virtual public ::subsystem::Aggregate<KeyboardLayoutComposite>
    {
    public:
 
@@ -89,7 +89,7 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM KeyboardLayout : virtual public Object<KeyboardLayoutAggregate>
+   class CLASS_DECL_INNATE_SUBSYSTEM KeyboardLayout : virtual public ::subsystem::Object<KeyboardLayoutAggregate>
    {
    public:
    };

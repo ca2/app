@@ -6290,11 +6290,10 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <PropertyGroup>
-    <StorageRoot Condition="'$(StorageRoot)' == ''">$(USERPROFILE)\code\operating_system\storage-windows</StorageRoot>
     <ApplicationBuildHelperExe Condition="'$(ApplicationBuildHelperExe)' == ''">application_build_helper</ApplicationBuildHelperExe>
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
   <Target Name="SyncStorageLibraries" BeforeTargets="PrepareForBuild" Condition="'$(DesignTimeBuild)' != 'true' And !$([System.String]::Copy('$(Configuration)').StartsWith('StaticMeta'))">
-    <Exec Command="&quot;$(ApplicationBuildHelperExe)&quot; --sync-storage-libraries --storage-root &quot;$(StorageRoot)&quot; --platform &quot;$(Platform)&quot; --configuration &quot;$(Configuration)&quot; --destination &quot;$([System.IO.Path]::GetFullPath('$(TargetDir).'))&quot;" IgnoreExitCode="false" />
+    <Exec WorkingDirectory="$(ProjectDir)." Command="&quot;$(ApplicationBuildHelperExe)&quot; --sync-storage-libraries --architecture=&quot;$(Platform)&quot; --configuration=&quot;$(Configuration)&quot;" IgnoreExitCode="false" />
   </Target>
 </Project>

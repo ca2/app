@@ -36,6 +36,7 @@ namespace file
       e_flag_final_path = 1 << 12,
       e_flag_file_ex001 = 1 << 13,
       e_flag_file_ex001_calc = 1 << 14,
+      e_flag_no_exception = 1 << 15,
 
    };
 

@@ -697,13 +697,13 @@ public:
       return INTERNAL_INFO::maximum();
    }
    template < typename T2 >
-   static consteval auto natural(const T2 & t2)
+   static constexpr auto natural(const T2 & t2)
    {
       return (T) ::minimum(maximum(), ::maximum(null(), t2));
    }
 
    template < typename T2 >
-   static consteval auto clip(const T2& t2)
+   static constexpr auto clip(const T2& t2)
    {
       return (T) ::minimum(maximum(), ::maximum(minimum(), t2));
    }

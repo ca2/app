@@ -34,6 +34,7 @@ enum enum_show_window
    
    e_show_window_hide = 0,
    e_show_window_show_normal = 1,
+   e_show_window_minimize = 6, 
    
    
 };

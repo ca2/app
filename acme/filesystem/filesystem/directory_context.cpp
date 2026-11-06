@@ -2726,6 +2726,8 @@ ret:
 
       ::file::path pathMeta = pathCache + ".meta_information";
 
+      pathMeta.flags() = patha[0].flags();
+
       file()->erase(pathMeta);
 
       path.flags() = patha[0].flags();

@@ -96,7 +96,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM ParentProcessAggregate :
-      virtual public Aggregate < ParentProcessComposite >
+      virtual public ::subsystem::Aggregate < ParentProcessComposite >
    {
    public:
 

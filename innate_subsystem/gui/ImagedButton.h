@@ -159,7 +159,7 @@ namespace innate_subsystem
 
    class CLASS_DECL_INNATE_SUBSYSTEM ImagedButtonAggregate :
 
-virtual public Aggregate <ImagedButtonComposite, Control>
+virtual public ::subsystem::Aggregate <ImagedButtonComposite, Control>
    {
    public:
 

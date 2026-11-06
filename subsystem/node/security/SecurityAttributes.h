@@ -124,7 +124,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM SecurityAttributesAggregate :
-    virtual public Aggregate < SecurityAttributesComposite >
+    virtual public ::subsystem::Aggregate < SecurityAttributesComposite >
    {
    public:
 

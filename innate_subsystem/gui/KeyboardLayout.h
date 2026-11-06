@@ -56,7 +56,7 @@ namespace innate_subsystem
 
    };
 
-   //class CLASS_DECL_INNATE_SUBSYSTEM KeyboardLayoutCallback : virtual public Callback<KeyboardLayoutInterface>
+   //class CLASS_DECL_INNATE_SUBSYSTEM KeyboardLayoutCallback : virtual public ::subsystem::Callback<KeyboardLayoutInterface>
    //{
    //public:
 

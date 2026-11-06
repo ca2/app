@@ -141,7 +141,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM ClipboardAggregate :
-      virtual public Aggregate < ClipboardComposite >
+      virtual public ::subsystem::Aggregate < ClipboardComposite >
    {
    public:
 

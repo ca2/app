@@ -147,7 +147,7 @@ namespace subsystem
    };
 
     class CLASS_DECL_SUBSYSTEM SecurityDescriptorAggregate :
-    virtual public Aggregate < SecurityDescriptorComposite >
+    virtual public ::subsystem::Aggregate < SecurityDescriptorComposite >
     {
     public:
 

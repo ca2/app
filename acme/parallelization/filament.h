@@ -155,7 +155,7 @@ public:
 //   };
 //
 ////
-////      class CLASS_DECL_SUBSYSTEM ThreadCallback : virtual public Callback<ThreadInterface>
+////      class CLASS_DECL_SUBSYSTEM ThreadCallback : virtual public ::subsystem::Callback<ThreadInterface>
 ////   {
 ////   public:
 ////

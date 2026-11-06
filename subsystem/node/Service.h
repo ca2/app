@@ -147,7 +147,7 @@ namespace subsystem
    //     */
    //    static Service *g_service;
    };
-   class CLASS_DECL_SUBSYSTEM ServiceCallback : virtual public Callback<ServiceInterface>
+   class CLASS_DECL_SUBSYSTEM ServiceCallback : virtual public ::subsystem::Callback<ServiceInterface>
    {
    public:
       ImplementCallbackø(Service, service)

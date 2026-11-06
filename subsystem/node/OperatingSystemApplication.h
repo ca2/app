@@ -158,7 +158,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM OperatingSystemApplicationCallback
-       : virtual public Callback<OperatingSystemApplicationInterface>
+       : virtual public ::subsystem::Callback<OperatingSystemApplicationInterface>
    {
    public:
 

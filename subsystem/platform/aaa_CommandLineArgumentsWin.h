@@ -33,7 +33,7 @@ namespace subsystem_windows
 
 
    class CLASS_DECL_SUBSYSTEM_WINDOWS CommandLineArguments :
-   virtual public ::Implementation<::subsystem::CommandLineArgumentsInterface >
+   virtual public ::subsystem::Implementation<::subsystem::CommandLineArgumentsInterface >
    {
    public:
 

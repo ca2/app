@@ -221,7 +221,7 @@ namespace innate_subsystem
    };
 
 
-      class CLASS_DECL_INNATE_SUBSYSTEM ListViewCallback : virtual public Callback<ListViewInterface>
+      class CLASS_DECL_INNATE_SUBSYSTEM ListViewCallback : virtual public ::subsystem::Callback<ListViewInterface>
    {
    public:
 

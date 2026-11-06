@@ -148,7 +148,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM TabAggregate :
-   virtual public Aggregate <TabComposite>
+   virtual public ::subsystem::Aggregate <TabComposite>
    {
    public:
 

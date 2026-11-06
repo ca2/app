@@ -66,7 +66,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM SolidBrushAggregate :
-      virtual public Aggregate < SolidBrushComposite, BrushAggregate >
+      virtual public ::subsystem::Aggregate < SolidBrushComposite, BrushAggregate >
    {
    public:
 

@@ -47,7 +47,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM SystemMetricsAggregate:
-       virtual public Aggregate <SystemMetricsComposite>
+       virtual public ::subsystem::Aggregate <SystemMetricsComposite>
    {
    public:
 

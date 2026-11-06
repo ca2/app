@@ -100,7 +100,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM TooltipAggregate :
-   virtual public Aggregate <TooltipComposite, ControlAggregate>
+   virtual public ::subsystem::Aggregate <TooltipComposite, ControlAggregate>
    {
    public:
 

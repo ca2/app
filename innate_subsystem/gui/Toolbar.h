@@ -162,7 +162,7 @@ namespace innate_subsystem
    //using ToolbarInterface = particle_interface<ToolbarInterface, ControlInterface>;
    
    class CLASS_DECL_INNATE_SUBSYSTEM ToolbarComposite :
-      virtual  public Composite<ToolbarInterface>
+      virtual  public ::subsystem::Composite<ToolbarInterface>
    {
    public:
 
@@ -289,7 +289,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM ToolbarAggregate :
-   virtual  public Aggregate< ToolbarComposite, ControlAggregate >
+   virtual public ::subsystem::Aggregate< ToolbarComposite, ControlAggregate >
    {
    public:
 

@@ -340,7 +340,7 @@ namespace innate_subsystem
    //    bool m_bWndCreated;
    };
 
-      class CLASS_DECL_INNATE_SUBSYSTEM WindowCallback : virtual public Callback<WindowInterface>
+      class CLASS_DECL_INNATE_SUBSYSTEM WindowCallback : virtual public ::subsystem::Callback<WindowInterface>
    {
    public:
 
@@ -676,7 +676,7 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM WindowAggregate :
-   virtual public Aggregate < WindowComposite >
+   virtual public ::subsystem::Aggregate < WindowComposite >
    {
    public:
 

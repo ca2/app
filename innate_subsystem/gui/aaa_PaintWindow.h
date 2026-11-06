@@ -57,7 +57,7 @@ namespace innate_subsystem
       //HDC m_hdc;
 
    };
-   class CLASS_DECL_INNATE_SUBSYSTEM PaintWindowCallback : virtual public Callback<PaintWindowInterface>
+   class CLASS_DECL_INNATE_SUBSYSTEM PaintWindowCallback : virtual public ::subsystem::Callback<PaintWindowInterface>
    {
    public:
 

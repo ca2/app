@@ -137,7 +137,7 @@ virtual public ::subsystem::Composite <DisplaysInterface>
 
 
    class CLASS_DECL_SUBSYSTEM DisplaysAggregate :
- virtual public Aggregate < DisplaysComposite >
+ virtual public ::subsystem::Aggregate < DisplaysComposite >
    {
    public:
 

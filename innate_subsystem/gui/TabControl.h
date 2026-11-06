@@ -124,7 +124,7 @@ virtual       ::i32 getSelectedTabIndex()= 0;
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM TabControlAggregate :
-      virtual public Aggregate < TabControlComposite, ControlAggregate >
+      virtual public ::subsystem::Aggregate < TabControlComposite, ControlAggregate >
    {
    public:
 

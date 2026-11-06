@@ -62,7 +62,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconWindowCallback
-       : virtual public Callback<NotifyIconWindowInterface>
+       : virtual public ::subsystem::Callback<NotifyIconWindowInterface>
    {
    public:
 
@@ -105,7 +105,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconWindowAggregate :
-   virtual public Aggregate < NotifyIconWindowComposite, WindowAggregate >
+   virtual public ::subsystem::Aggregate < NotifyIconWindowComposite, WindowAggregate >
    {
    public:
 

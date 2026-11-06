@@ -118,7 +118,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM AnonymousPipeFactoryAggregate :
-      virtual public Aggregate < AnonymousPipeFactoryComposite >
+      virtual public ::subsystem::Aggregate < AnonymousPipeFactoryComposite >
    {
    public:
 

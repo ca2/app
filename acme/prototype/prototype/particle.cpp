@@ -2688,6 +2688,25 @@ void particle::task_post(const ::procedure& procedure)
 }
 
 
+void particle::user_call(::enum_parallelization eparallelization, const ::procedure& procedure)
+{
+
+   if (eparallelization == e_parallelization_synchronous)
+   {
+
+      user_send(procedure);
+
+   }
+   else
+   {
+
+      user_post(procedure);
+
+   }
+
+}
+
+
 void particle::user_send(const ::procedure& procedure)
 {
 
@@ -2723,6 +2742,25 @@ void particle::user_post(const ::procedure& procedure)
 {
 
    node()->user_post(procedure);
+
+}
+
+
+void particle::main_call(::enum_parallelization eparallelization, const ::procedure& procedure)
+{
+
+   if (eparallelization == e_parallelization_synchronous)
+   {
+
+      main_send(procedure);
+
+   }
+   else
+   {
+
+      main_post(procedure);
+
+   }
 
 }
 

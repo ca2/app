@@ -47,19 +47,19 @@ namespace subsystem
    void Deflater::deflate()
    {
       memsize reserve = m_inputSize / 100 + 1024;
-      memsize avaliableOutput = m_inputSize + reserve;
+      memsize availableOutput = m_inputSize + reserve;
       ulong prevTotalOut = m_zlibStream.total_out;
 
-      ::u32 constrainedValue = (::u32)avaliableOutput;
-      ASSERT(avaliableOutput == constrainedValue);
+      ::u32 constrainedValue = (::u32)availableOutput;
+      ASSERT(availableOutput == constrainedValue);
 
-      m_output.set_size(avaliableOutput);
+      m_output.set_size(availableOutput);
 
       m_zlibStream.next_in = (Bytef *)m_input;
       m_zlibStream.avail_in = (::u32)m_inputSize;
 
       m_zlibStream.next_out = (Bytef *)m_output.data();
-      m_zlibStream.avail_out = (::u32)avaliableOutput;
+      m_zlibStream.avail_out = (::u32)availableOutput;
 
       if (::deflate(&m_zlibStream, Z_SYNC_FLUSH) != Z_OK)
       {

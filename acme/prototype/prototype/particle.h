@@ -763,6 +763,7 @@ public:
    virtual ::task_pointer task_fork(const ::procedure & procedure);
 
    
+   virtual void user_call(::enum_parallelization eparallelization, const ::procedure& procedure);
    virtual void user_send(const ::procedure & procedure);
    //virtual void user_send(const ::procedure & procedure);
    inline dispatch_arrayø user_sendø();
@@ -775,6 +776,7 @@ public:
    //inline sequence_continuation user_async();
 
 
+   virtual void main_call(::enum_parallelization eparallelization, const ::procedure& procedure);
    virtual void main_send(const ::procedure & procedure);
    //virtual void  main_send(const ::procedure & procedure);
    inline dispatch_arrayø main_sendø();

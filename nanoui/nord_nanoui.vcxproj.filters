@@ -41,6 +41,7 @@
     <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="platform_platform.cpp" />
     <ClCompile Include="main_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

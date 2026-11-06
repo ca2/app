@@ -4,7 +4,7 @@
 "/xcore/app-core/hellomultiverse/hellomultiverse_frame.h"
 "/xcore/app-core/hellomultiverse/hellomultiverse_pane_impact.cpp"
 "/xcore/app-core/hellomultiverse/hellomultiverse_impact.cpp"
-"/xcore/app-core/hellomultiverse/framework.h"
+"/xcore/app-core/hellomultiverse/platform.h"
 "/xcore/app-core/hellomultiverse/aaa_want_to_erase_hellomultiverse_impact_update_hint.h"
 "/xcore/app-core/hellomultiverse/hellomultiverse_render.h"
 "/xcore/app-core/hellomultiverse/hellomultiverse_application.cpp"

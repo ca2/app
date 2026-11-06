@@ -4,6 +4,7 @@
     <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="platform_platform.cpp" />
     <ClCompile Include="simple_drawing_application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

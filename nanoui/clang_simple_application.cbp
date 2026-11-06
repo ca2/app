@@ -117,6 +117,7 @@
 		<Unit filename="frame.cpp" />
 		<Unit filename="frame.h" />
 		<Unit filename="platform.cpp" />
+		<Unit filename="platform_platform.cpp" />
 		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />

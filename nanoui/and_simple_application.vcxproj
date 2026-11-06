@@ -694,6 +694,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="platform_platform.cpp" />
     <ClCompile Include=".\simple_drawing_impact.cpp" />
     <ClCompile Include="simple_drawing_edit_impact.cpp" />
     <ClCompile Include="simple_drawing_lite_impact.cpp" />

@@ -2678,7 +2678,7 @@ namespace acme
       }
 
 
-      void interaction::set_window_style(::i32 iStyle)
+      void interaction::set_window_style(::i64 iStyle)
       {
 
          m_pacmewindowingwindow->set_window_style(iStyle);

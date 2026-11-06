@@ -699,8 +699,15 @@ public:
    template < typename T2 >
    static consteval auto natural(const T2 & t2)
    {
-      return minimum(maximum(), maximum(null(), (T) t2));
+      return (T) minimum(maximum(), maximum(null(), t2));
    }
+
+   template < typename T2 >
+   static consteval auto clip(const T2& t2)
+   {
+      return (T) minimum(maximum(), maximum(minimum(), t2));
+   }
+
 
 };
 

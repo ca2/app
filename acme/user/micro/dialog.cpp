@@ -29,7 +29,7 @@ namespace micro
    }
 
 
-   bool dialog::on_window_create(void *pCREATESTRUCT)
+   bool dialog::on_window_create(::user::window_create_t * pwindowcreate)
    {
 
       on_initialize_dialog();

@@ -179,7 +179,8 @@ namespace subsystem_bsd_sockets
       /**
        * WinSock socket.
        */
-      ::i32 m_socket;
+      //::i32 m_socket;
+      SOCKET m_socket;
       bool m_isClosed;
 
       ::pointer < ::subsystem::SocketAddressIPv4Interface >m_localAddr;

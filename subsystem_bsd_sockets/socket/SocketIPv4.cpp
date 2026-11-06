@@ -410,7 +410,7 @@ namespace subsystem_bsd_sockets
    {
 
       struct timeval tv;
-      tv.tv_sec = timeTimeout.m_iSecond;
+      tv.tv_sec = ::numeric_info<long>::clip(timeTimeout.m_iSecond);
       tv.tv_usec = timeTimeout.m_iNanosecond / 1'000;
       setSocketOptions(SOL_SOCKET, SO_RCVTIMEO, (char_pointer )&tv, sizeof tv);
       

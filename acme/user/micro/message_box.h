@@ -45,7 +45,7 @@ namespace micro
          ~message_box() override;
 
 
-         void create_window() override;
+         void create_window(::enum_parallelization eparallelization) override;
 
          void destroy() override;
 

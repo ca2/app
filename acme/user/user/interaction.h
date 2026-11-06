@@ -114,7 +114,7 @@ namespace acme
 
          //virtual enum_font nano_user_font();
 
-         void create_window() override;
+         void create_window(::enum_parallelization eparallelization) override;
 
          void _create_window() override;
 

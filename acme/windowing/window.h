@@ -359,7 +359,7 @@ namespace acme
 
          //virtual void nano_window_on_create();
 
-         void create_window() override;
+         void create_window(::enum_parallelization eparallelization) override;
          void _create_window() override;
 
          //void on_create_window() override;

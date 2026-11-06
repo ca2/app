@@ -38,7 +38,7 @@ window::~window()
 }
 
 
-void window::create_window()
+void window::create_window(enum_parallelization eparallelization)
 {
    
    bool bOk = true;

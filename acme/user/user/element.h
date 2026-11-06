@@ -115,7 +115,7 @@ namespace user
 
 
 
-      virtual void create_window();
+      virtual void create_window(::enum_parallelization eparallelization);
       virtual void _create_window();
 
 

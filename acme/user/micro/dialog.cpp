@@ -42,7 +42,12 @@ namespace micro
    ::payload dialog::wait_for_dialog_response(const class time & timeTimeout)
    {
 
-      m_pmanualresethappeningDialogResponse->wait(timeTimeout);
+      user_send([this, timeTimeout]()
+         {
+
+            m_pmanualresethappeningDialogResponse->wait(timeTimeout);
+
+         });
 
       return get_dialog_response();
 

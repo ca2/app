@@ -79,11 +79,10 @@ namespace micro
    }
 
 
-   void main_window::create_window()
+   void main_window::create_window(enum_parallelization eparallelization)
    {
 
-      ::micro::elemental::create_window();
-
+      ::micro::elemental::create_window(eparallelization);
 
    }
 

@@ -231,7 +231,7 @@ namespace acme
 
 
 
-      void window::create_window()
+      void window::create_window(enum_parallelization eparallelization)
       {
 
          //m_pacmeuserinteraction->create_window();

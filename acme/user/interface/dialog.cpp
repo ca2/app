@@ -384,12 +384,12 @@ class ::time dialog::dialog_timeout() const
 
 }
 
- void dialog::wait_dialog_response(const class ::time & timeTimeout)
+ ::payload dialog::wait_for_dialog_response(const class ::time & timeTimeout)
 {
     
     //m_pmanualresethappeningDialogResponse->wait(timeTimeout);
 
-   m_pdialog->wait_dialog_response(timeTimeout);
+   return m_pdialog->wait_for_dialog_response(timeTimeout);
     
  }
 

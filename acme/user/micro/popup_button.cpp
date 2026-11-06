@@ -75,10 +75,10 @@ namespace micro
    }
 
 
-   void popup_button::create_window()
+   void popup_button::create_window(enum_parallelization eparallelization)
    {
 
-      ::micro::main_window::create_window();
+      ::micro::main_window::create_window(eparallelization);
 
       m_bTopMost = true;
 

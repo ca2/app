@@ -785,5 +785,27 @@ constexpr ::i32 most_significant_bit_index(N n)
 }
 
 
+namespace numeric
+{
 
+   
+   template < typename T, typename T2 >
+   constexpr T & natural_assign(T & t, const T2& t2)
+   {
+      
+      return t = numeric_info<T>::natural(t2);
+
+   }
+
+
+   template < typename T, typename T2 >
+   constexpr T & clip_assign(T & t, const T2& t2)
+   {
+      
+      return t = numeric_info<T>::natural(t2);
+
+   }
+
+
+} // namespace numeric
 

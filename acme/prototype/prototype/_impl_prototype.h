@@ -4,6 +4,42 @@
 #pragma once
 
 
+inline ::i64 subparticle::_increment_reference_count()
+{
+
+   auto c = ++m_countReference;
+
+   return c;
+
+}
+
+
+inline ::i64 subparticle::_decrement_reference_count()
+{
+
+   auto c = --m_countReference;
+
+   return c;
+
+}
+
+
+inline ::i64 subparticle::_release()
+{
+
+   ::i64 i = _decrement_reference_count();
+
+   if (i == 0)
+   {
+
+      delete_this();
+
+   }
+
+   return i;
+
+}
+
 
 
 #if !defined(_DEBUG)
@@ -12,7 +48,9 @@
 inline ::i64 subparticle::increment_reference_count()
 {
 
-   auto c = ++m_countReference;
+   return _increment_reference_count();
+
+   //auto c = ++m_countReference;
 
 //#if REFERENCING_DEBUGGING
 //
@@ -20,7 +58,7 @@ inline ::i64 subparticle::increment_reference_count()
 //
 //#endif
 
-   return c;
+   //return c;
 
 }
 
@@ -28,20 +66,22 @@ inline ::i64 subparticle::increment_reference_count()
 inline ::i64 subparticle::decrement_reference_count()
 {
 
-   auto c = --m_countReference;
+   return _decrement_reference_count();
 
-//#if REFERENCING_DEBUGGING
+//   auto c = --m_countReference;
 //
-//   if (c > 0)
-//   {
+////#if REFERENCING_DEBUGGING
+////
+////   if (c > 0)
+////   {
+////
+////      dec_ref_history(pReferer, pszObjRefDbg);
+////
+////   }
+////
+////#endif
 //
-//      dec_ref_history(pReferer, pszObjRefDbg);
-//
-//   }
-//
-//#endif
-
-   return c;
+//   return c;
 
 }
 

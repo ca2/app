@@ -3513,7 +3513,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
         list(APPEND static_this_system_libraries z pthread iconv execinfo elf)
         message(STATUS "FREEBSD acme this_system_libraries ${this_system_libraries}")
     elseif (${NETBSD})
-        message(SEND_ERROR "test is really netbsd?!")
+        #message(SEND_ERROR "test is really netbsd?!")
         list(APPEND this_system_libraries util z pthread iconv execinfo c)
         #list(APPEND static_this_system_libraries util z pthread iconv execinfo elf)
         list(APPEND static_this_system_libraries util z pthread iconv execinfo elf)

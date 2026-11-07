@@ -63,7 +63,7 @@ enum enum_test_increment
 
 //pmessagebox->display(e_display_normal, {});
 
-//pmessagebox->wait_dialog_response();
+//pmessagebox->wait_for_dialog_response();
 //
 //      if (result == e_dialog_result_yes)
 //      {
@@ -76,7 +76,7 @@ enum enum_test_increment
 
 //pmessagebox->display(e_display_normal, {});
 
-//pmessagebox->wait_dialog_response();
+//pmessagebox->wait_for_dialog_response();
 //
 //         break;
 //
@@ -144,7 +144,7 @@ enum enum_test_increment
 
 //pmessagebox->display(e_display_normal, {});
 
-//pmessagebox->wait_dialog_response();
+//pmessagebox->wait_for_dialog_response();
 //
 //      }
 //      else if (result == e_dialog_result_cancel)
@@ -158,7 +158,7 @@ enum enum_test_increment
 
 //pmessagebox->display(e_display_normal, {});
 
-//pmessagebox->wait_dialog_response();
+//pmessagebox->wait_for_dialog_response();
 //
 //      }
 //
@@ -1098,7 +1098,7 @@ namespace console_hello
 
          pmessagebox->display(e_display_normal, {});
 
-         pmessagebox->wait_dialog_response();
+         pmessagebox->wait_for_dialog_response();
 
          auto result = pmessagebox->get_dialog_response();
 
@@ -1113,7 +1113,7 @@ namespace console_hello
 
             pmessagebox->display(e_display_normal, {});
 
-            pmessagebox->wait_dialog_response();
+            pmessagebox->wait_for_dialog_response();
 
             break;
 
@@ -1200,7 +1200,7 @@ namespace console_hello
 
             pmessagebox->display(e_display_normal, {});
 
-            pmessagebox->wait_dialog_response();
+            pmessagebox->wait_for_dialog_response();
 
          }
          else if (result == e_dialog_result_cancel)
@@ -1214,7 +1214,7 @@ namespace console_hello
 
             pmessagebox->display(e_display_normal, {});
 
-            pmessagebox->wait_dialog_response();
+            pmessagebox->wait_for_dialog_response();
 
          }
 

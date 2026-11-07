@@ -182,8 +182,11 @@ namespace operating_system
 
     constexpr ::enum_operating_system get() noexcept
     {
-        if (is_windows()) {
-            return ::e_operating_system_windows;
+        if (is_windows_desktop()) {
+            return ::e_operating_system_windows_desktop;
+        }
+        else if (is_universal_windows()) {
+           return ::e_operating_system_universal_windows;
         }
         else if (is_linux()) {
             return ::e_operating_system_linux;

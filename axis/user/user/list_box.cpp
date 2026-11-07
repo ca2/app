@@ -1457,7 +1457,7 @@ namespace user
 
             window()->m_rectanglePointingTo = m_pcombo->window_rectangle();
 
-            create_window();
+            create_window(e_parallelization_asynchronous);
 
          }
          else

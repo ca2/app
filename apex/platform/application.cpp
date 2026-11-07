@@ -16,6 +16,7 @@
 #include "acme/filesystem/filesystem/path_system.h"
 #include "acme/handler/request.h"
 #include "acme/operating_system/operating_system.h"
+#include "acme/platform/_trace_message.h"
 #include "acme/platform/http.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/prototype/prototype/url.h"
@@ -11100,6 +11101,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       {
 
          return strImplementationName;
+
       }
 
       strImplementationName = _gpu_get_implementation_name_setting();
@@ -11109,20 +11111,23 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       if (strImplementationName.has_character())
       {
 
-         return implementation_name("imaging", strImplementationName);
+         return implementation_name("gpu", strImplementationName);
+
       }
 
-      auto path = directory_system()->roaming() / m_strAppId / "imaging.txt";
+      auto path = directory_system()->roaming() / m_strAppId / "graphics3d.txt";
 
       strImplementationName = file_system()->as_string(path);
 
       if (strImplementationName.has_character())
       {
 
-         return implementation_name("imaging", strImplementationName);
+         return implementation_name("gpu", strImplementationName);
+
       }
 
       return {};
+
    }
 
 
@@ -11249,7 +11254,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
        if (bGpu2 || bUseSwapChain || strGpu.has_character())
        {
 
-           auto straDraw2dApis = earlyconfiguration.draw2d_apis(strGpu, bUseSwapChain, eoperatingsystem);
+           auto straDraw2dApis = earlyconfiguration.draw2d_apis(strGpu, !bUseSwapChain, eoperatingsystem);
 
            auto strDraw2dApi = earlyconfiguration.draw2d_api(strDraw2d, straDraw2dApis);
 
@@ -11411,22 +11416,37 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    ::string application::gpu_get_implementation_name()
    {
 
-      string strImplementationName;
+      //string strImplementationName;
 
-      strImplementationName = m_strGpuImplementation;
+      //strImplementationName = m_strGpuImplementation;
 
-      if (strImplementationName.has_character())
+      //if (strImplementationName.has_character())
+      //{
+
+      //   return strImplementationName;
+
+      //}
+
+      auto strGpuImplementation = _gpu_get_implementation_name();
+
+      strGpuImplementation.begins_eat("gpu_");
+
+      ::graphics::early_configuration earlyconfiguration;
+
+      auto straGpuApis = earlyconfiguration.gpu_apis();
+
+      auto strMessage = _001Message("gpu_get_implementation_name gpu_apis", straGpuApis);
+
+      information(strMessage);
+
+      if (!straGpuApis.contains(strGpuImplementation))
       {
 
-         return strImplementationName;
+         return implementation_name("gpu", straGpuApis.first());
 
       }
 
-      m_strGpuImplementation = _gpu_get_implementation_name();
-
-      strImplementationName = m_strGpuImplementation;
-      
-      return strImplementationName;
+      return implementation_name("gpu", strGpuImplementation);
 
    }
 

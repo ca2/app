@@ -794,9 +794,6 @@
     <ClCompile Include="graphics3d\graphics3d.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\gpu_statistics_impact.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="gpu\scoped_texture_state.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
@@ -813,6 +810,9 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\gpu_shader_list.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\gpu_statistics_interaction.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>

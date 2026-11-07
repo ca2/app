@@ -4566,6 +4566,9 @@
     <ClInclude Include="platform\operating_system.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="platform\_trace_message.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6574,6 +6577,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\operating_system.cpp">
       <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\_trace_message.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

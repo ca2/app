@@ -1022,7 +1022,7 @@ namespace user
 
             fDensity = get_density_for_window();
 
-            ptOffset.y += 4 * fDensity;
+            ptOffset.y += (::i32) ( 4.f * fDensity);
 
             ptOffset.y += m_pointBarDragScroll.y;
 
@@ -1032,7 +1032,7 @@ namespace user
 
             fDensity = get_density_for_window();
 
-            ptOffset.x += 4 * fDensity;
+            ptOffset.x += (::i32) (4.f * fDensity);
 
             ptOffset.x += m_pointBarDragScroll.x;
 

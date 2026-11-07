@@ -785,7 +785,7 @@ namespace windowing
    //
    //
 
-   void window::create_window()
+   void window::create_window(::enum_parallelization eparallelization)
    {
 
       //      if(!user_interaction())
@@ -4121,7 +4121,7 @@ namespace windowing
 
          //create_host(pinteraction, e_parallelization_synchronous);
          //create_host(pinteraction);
-         create_window();
+         create_window(e_parallelization_asynchronous);
 
       }
 

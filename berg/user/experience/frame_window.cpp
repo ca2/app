@@ -401,7 +401,14 @@ namespace experience
 
       }
 
-      auto pframe = pexperience->frame_experience(this, scopedstrExperience, scopedstrFrame);
+      auto pframe = pexperience->frame_experience(this, strExperienceRequest, scopedstrFrame);
+
+      if (!pframe)
+      {
+
+         throw ::exception(error_not_found, "The selected experience does not provide the requested frame schema");
+
+      }
 
       pframe->m_pframewindow = this;
 

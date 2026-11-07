@@ -112,6 +112,9 @@ list(APPEND apex_source
         gpu/approach.h
    gpu/window_attachment.cpp
    gpu/window_attachment.h
+        graphics/early_configuration.cpp
+graphics/early_configuration.h
+
    handler/manager.cpp
    handler/manager.h
    handler/manager_room.cpp

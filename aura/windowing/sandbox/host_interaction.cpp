@@ -68,12 +68,10 @@ namespace sandbox_windowing
    }
 
 
-   void host_interaction::create_window()
+   void host_interaction::create_window(::enum_parallelization eparallelization)
    {
       
-      ::user::interaction::create_window();
-      
-      
+      ::user::interaction::create_window(eparallelization);
 
    }
 

@@ -11134,64 +11134,9 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    bool application::is_using_gpu()
    {
 
-      bool bGpu2 = m_bGpu2;
-
-      bool bUseSwapChain = use_gpu_swap_chain();
-
-      auto strGpu = gpu_get_implementation_name();
-
-      auto strDraw2d = _draw2d_get_implementation_name();
-
-      auto eoperatingsystem = ::operating_system::get();
-
-      // #ifdef WINDOWS_DESKTOP
-      //
-      //        constexpr bool bWindows = true;
-      //
-      // #else
-      //
-      //        constexpr bool bWindows = false;
-      //
-      // #endif
-      //
-      // #ifdef __APPLE__
-      //
-      //        constexpr bool bApple = true;
-      //
-      // #else
-      //
-      //        constexpr bool bApple = false;
-      //
-      // #endif
-      //
-      // #ifdef UNIVERSAL_WINDOWS
-      //
-      //        constexpr bool bUniversalWindows = true;
-      //
-      // #else
-      //
-      //        constexpr bool bUniversalWindows = false;
-      //
-      // #endif
-      //
-      // #ifdef __HAIKU___
-      //
-      //        constexpr bool bUniversalWindows = true;
-      //
-      // #else
-      //
-      //        constexpr bool bUniversalWindows = false;
-      //
-      // #endif
-
-      if (bGpu2 || bUseSwapChain || strGpu.has_character())
-      {
-         
-         return true;
-
-      }
-
-      return false;
+      // Selecting a default API must not enable GPU support for a CPU-rendered application.
+      return m_bGpu2 || use_gpu_swap_chain()
+         || _gpu_get_implementation_name().has_character();
 
    }
 
@@ -11200,8 +11145,6 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    { 
 
        ::graphics::early_configuration earlyconfiguration;
-
-       bool bGpu2 = m_bGpu2;
 
        bool bUseSwapChain = use_gpu_swap_chain();
 
@@ -11251,7 +11194,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 //
 //#endif
 
-       if (bGpu2 || bUseSwapChain || strGpu.has_character())
+       if (is_using_gpu())
        {
 
            auto straDraw2dApis = earlyconfiguration.draw2d_apis(strGpu, !bUseSwapChain, eoperatingsystem);
@@ -11262,7 +11205,8 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
        }
 
-       auto straDraw2dApis = earlyconfiguration.draw2d_apis(strGpu, false, eoperatingsystem);
+       // CPU rendering uses the off-screen draw2d backends (for example, Cairo).
+       auto straDraw2dApis = earlyconfiguration.draw2d_apis(strGpu, true, eoperatingsystem);
 
        auto strDraw2dApi = earlyconfiguration.draw2d_api(strDraw2d, straDraw2dApis);
 

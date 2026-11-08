@@ -3161,6 +3161,8 @@ if (${NETBSD})
             operating_system/netbsd/_netbsd2.h
             operating_system/netbsd/application.h
             operating_system/netbsd/call_stack.cpp
+            operating_system/netbsd/console.cpp
+            operating_system/netbsd/cpu_features.cpp
             operating_system/netbsd/debug.cpp
             operating_system/netbsd/debug.h
             operating_system/netbsd/dumpinit.cpp
@@ -3198,6 +3200,12 @@ if (${NETBSD})
             operating_system/netbsd/util.cpp
             operating_system/netbsd/win_base.cpp
     )
+
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "^(x86_64|amd64|AMD64|i.86)$")
+    list(APPEND library_source operating_system/netbsd/cpu_features_amd64.cpp)
+else()
+    message(FATAL_ERROR "NetBSD CPU feature detection is not implemented for this architecture")
+endif()
 
 endif ()
 
@@ -3512,9 +3520,9 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
         message(STATUS "FREEBSD acme this_system_libraries ${this_system_libraries}")
     elseif (${NETBSD})
         #message(SEND_ERROR "test is really netbsd?!")
-        list(APPEND this_system_libraries util z pthread iconv execinfo c)
-        #list(APPEND static_this_system_libraries util z pthread iconv execinfo elf)
-        list(APPEND static_this_system_libraries util z pthread iconv execinfo elf)
+        list(APPEND this_system_libraries util z pthread iconv execinfo rt c)
+        #list(APPEND static_this_system_libraries util z pthread iconv execinfo elf rt)
+        list(APPEND static_this_system_libraries util z pthread iconv execinfo elf rt)
         message(STATUS "NETBSD acme this_system_libraries ${this_system_libraries}")
     elseif (${__ANDROID__})
 

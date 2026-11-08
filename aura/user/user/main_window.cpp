@@ -312,7 +312,7 @@ namespace user
       
       //create_host(e_parallelization_asynchronous);
 
-      create_window();
+      create_window(e_parallelization_asynchronous);
 
       //if (!bOk)
       //{

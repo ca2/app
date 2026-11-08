@@ -463,7 +463,7 @@ return MAIN_CLASS::_get_callback1();           \
 
 
    template<typename PARTICLE_INTERFACE>
-   class ::subsystem::Implementation<PARTICLE_INTERFACE, Particle >  :
+   class Implementation<PARTICLE_INTERFACE, Particle >  :
       virtual public PARTICLE_INTERFACE
    {
    public:

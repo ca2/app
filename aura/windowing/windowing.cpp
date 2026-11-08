@@ -709,7 +709,7 @@ namespace windowing
 
       auto pwindow = get_new_window();
 
-      pwindow->create_window();
+      pwindow->create_window(::e_parallelization_asynchronous);
 
       return pwindow;
 

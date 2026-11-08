@@ -376,7 +376,7 @@ namespace write_text
       if (m_fontsize.eunit() == ::e_unit_point)
       {
 
-         fFontSize = (::f32)pdraw2dgraphics->point_pixel(m_fontsize.as_f64());
+         fFontSize = (::f32)pdraw2dgraphics->point_pixel((::f32) m_fontsize.as_f64());
 
       }
       else if (m_fontsize.eunit() == ::e_unit_pixel)

@@ -177,6 +177,10 @@ public:
    inline ::collection::count reference_count() const { return m_countReference; }
 
 
+   inline ::i64 _increment_reference_count();
+   inline ::i64 _decrement_reference_count();
+   inline ::i64 _release();
+
 #ifdef _DEBUG
 
 
@@ -185,9 +189,7 @@ public:
    virtual ::i64 replace_reference();
    virtual ::i64 release();
 
-
 #else
-
 
    inline ::i64 increment_reference_count();
    inline ::i64 decrement_reference_count();
@@ -230,7 +232,6 @@ public:
          memset(&referencingdebugging, 0, sizeof(referencingdebugging));
 
       }
-
 
 
       ::subparticle* get_top_track() const;

@@ -20,7 +20,7 @@ namespace app_shader
    application::application() 
    {
 
-      m_bGpu = true;
+      m_bGpu2 = true;
 
       m_strAppId = "app-graphics3d/shader";
 

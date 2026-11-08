@@ -889,8 +889,8 @@
     <ClCompile Include="user\user\gpu_shader_list.cpp" />
     <ClCompile Include="user\user\gpu_shader_render.cpp" />
     <ClCompile Include="user\user\gpu_shader_host.cpp" />
+    <ClCompile Include="user\user\gpu_statistics_interaction.cpp" />
     <ClCompile Include="user\user\graphics3d_engine_host.cpp" />
-    <ClCompile Include="user\user\gpu_statistics_impact.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>

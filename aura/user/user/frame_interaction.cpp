@@ -51,7 +51,7 @@ namespace user
    }
 
 
-   void frame_interaction::create_window()
+   void frame_interaction::create_window(::enum_parallelization eparallelization)
    {
 
       //constructø(windowing_window());
@@ -203,7 +203,7 @@ namespace user
 
          //windowing_window()->create_window();
          // 
-         ::user::box::create_window();
+         ::user::box::create_window(eparallelization);
          //if (!pprimitiveimplNew->create_host(this))
          //{
 
@@ -1187,7 +1187,7 @@ namespace user
 
          //pprimitiveimplNew->create_host(this, e_parallelization_synchronous);
 
-         create_window();
+         create_window(e_parallelization_asynchronous);
 
          on_after_set_parent();
 

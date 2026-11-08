@@ -39,7 +39,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app_just_message_box.def">
+    <None Include="just_message_box.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

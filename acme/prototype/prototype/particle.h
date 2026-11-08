@@ -1460,9 +1460,9 @@ CLASS_DECL_ACME void fatal(const ::scoped_string& scopedstr);
 
 
 template <typename... Args>
-void debug(std::string_view fmt, Args&&... args)
+void debug(const std::format_string<Args...> fmt, Args&&... args)
 {
-   ::debug(::format(fmt, std::make_format_args(args...)));
+   ::debug(::format<Args...>(fmt, std::forward<Args>(args)...));
 }
 template <typename... Args>
 void information(const std::format_string<Args...> fmt, Args&&... args)

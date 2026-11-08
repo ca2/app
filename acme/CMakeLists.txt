@@ -606,6 +606,8 @@ list(APPEND library_source
         platform/_main_hold_base.cpp
         platform/_synchronization.cpp
         platform/_synchronization.h
+        platform/_trace_message.cpp
+        platform/_trace_message.h
         platform/acme.cpp
         platform/acme.h
    platform/acme_message.cpp

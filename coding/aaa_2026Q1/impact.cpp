@@ -1346,7 +1346,7 @@ namespace coding
    
                pmessagebox->display(e_display_normal, {});
 
-               pmessagebox->wait_dialog_response();
+               pmessagebox->wait_for_dialog_response();
    
             }
             catch (...)

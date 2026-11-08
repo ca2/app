@@ -13,8 +13,8 @@ list(APPEND library_source
    application.cpp
    application.h
    platform.h
-   render.cpp
-   render.h
+   #render.cpp
+   #render.h
    main_window.cpp
    main_window.h)
 

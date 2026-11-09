@@ -343,8 +343,57 @@ namespace user
    }
 
 
+   void place_holder::set_borrow_child_layout_properties(bool bBorrow)
+   {
+      payload("borrow_child_layout_properties") = bBorrow;
+      set_need_perform_layout();
+      set_need_layout();
+      set_need_redraw();
+      post_redraw();
+   }
+
+
+   ::pointer<::user::interaction> place_holder::borrowed_layout_child() const
+   {
+      _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      if (!payload("borrow_child_layout_properties").as_bool()
+         || !m_pacmeuserinteractionaChildren || m_pacmeuserinteractionaChildren->count() != 1)
+         return nullptr;
+      ::cast<::user::interaction> pchild = m_pacmeuserinteractionaChildren->first();
+      return pchild;
+   }
+
+
+   bool place_holder::should_extend_on_parent() const
+   {
+      auto pchild = borrowed_layout_child();
+      return pchild ? pchild->should_extend_on_parent() : ::user::interaction::should_extend_on_parent();
+   }
+
+
+   bool place_holder::should_extend_on_parent_if_only_client() const
+   {
+      auto pchild = borrowed_layout_child();
+      return pchild ? pchild->should_extend_on_parent_if_only_client()
+         : ::user::interaction::should_extend_on_parent_if_only_client();
+   }
+
+
+   bool place_holder::should_extend_on_parent_hosting_area() const
+   {
+      auto pchild = borrowed_layout_child();
+      return pchild ? pchild->should_extend_on_parent_hosting_area()
+         : ::user::interaction::should_extend_on_parent_hosting_area();
+   }
+
+
    void place_holder::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
+
+      // The generic layout path queries the virtual policy. It does not need
+      // to know whether this interaction borrows from a contained child.
+      if (payload("borrow_child_layout_properties").as_bool())
+         ::user::interaction::on_perform_top_down_layout(pdraw2dgraphics);
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 

@@ -14820,8 +14820,8 @@ if(get_parent())
 
                   if (::is_set(pinteraction)
                   && (
-                        pinteraction->m_bExtendOnParent
-                        || pinteraction->m_bExtendOnParentIfOnlyClient
+                        pinteraction->should_extend_on_parent()
+                        || pinteraction->should_extend_on_parent_if_only_client()
                      )
                      )
                   {
@@ -15782,6 +15782,24 @@ if(get_parent())
    }
 
 
+   bool interaction::should_extend_on_parent() const
+   {
+      return m_bExtendOnParent;
+   }
+
+
+   bool interaction::should_extend_on_parent_if_only_client() const
+   {
+      return m_bExtendOnParentIfOnlyClient;
+   }
+
+
+   bool interaction::should_extend_on_parent_hosting_area() const
+   {
+      return m_bExtendOnParentHostingArea;
+   }
+
+
    void interaction::_extend_on_parent(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
@@ -16121,14 +16139,14 @@ if(get_parent())
 
       }
 
-      if (m_bExtendOnParent)
+      if (should_extend_on_parent())
       {
 
          _extend_on_parent(pdraw2dgraphics);
 
       }
 
-      if (m_bExtendOnParentHostingArea)
+      if (should_extend_on_parent_hosting_area())
       {
 
          _extend_on_parent_hosting_area(pdraw2dgraphics);

@@ -52,6 +52,15 @@ namespace user
 
       void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
+      // Opt in to applying the sole child's parent-extension policy to this
+      // wrapper too. Multiple children retain the normal placeholder layout.
+      void set_borrow_child_layout_properties(bool bBorrow);
+
+      bool should_extend_on_parent() const override;
+      bool should_extend_on_parent_if_only_client() const override;
+      bool should_extend_on_parent_hosting_area() const override;
+      ::pointer<::user::interaction> borrowed_layout_child() const;
+
       ::user::interaction * get_hold();
 
       virtual bool is_place_holder() override;

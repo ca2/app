@@ -36,18 +36,26 @@ namespace
       GLint m_iPackRowLength = 0;
       GLint m_iUnpackAlignment = 0;
       GLint m_iUnpackRowLength = 0;
+      bool m_bUploadOnly = false;
 
 
-      scoped_pixel_transfer_state()
+      scoped_pixel_transfer_state(bool bUploadOnly = false) : m_bUploadOnly(bUploadOnly)
       {
 
-         glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &m_iReadFramebuffer);
-         glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &m_iDrawFramebuffer);
-         glGetIntegerv(GL_RENDERBUFFER_BINDING, &m_iRenderbuffer);
-         glGetIntegerv(GL_READ_BUFFER, &m_iReadBuffer);
-         glGetIntegerv(GL_TEXTURE_BINDING_2D, &m_iTexture2d);
-         glGetIntegerv(GL_PACK_ALIGNMENT, &m_iPackAlignment);
-         glGetIntegerv(GL_PACK_ROW_LENGTH, &m_iPackRowLength);
+         if (!m_bUploadOnly)
+         {
+            glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &m_iReadFramebuffer);
+            glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &m_iDrawFramebuffer);
+            glGetIntegerv(GL_RENDERBUFFER_BINDING, &m_iRenderbuffer);
+            glGetIntegerv(GL_READ_BUFFER, &m_iReadBuffer);
+            glGetIntegerv(GL_TEXTURE_BINDING_2D, &m_iTexture2d);
+            glGetIntegerv(GL_PACK_ALIGNMENT, &m_iPackAlignment);
+            glGetIntegerv(GL_PACK_ROW_LENGTH, &m_iPackRowLength);
+         }
+         else
+         {
+            glGetIntegerv(GL_TEXTURE_BINDING_2D, &m_iTexture2d);
+         }
          glGetIntegerv(GL_UNPACK_ALIGNMENT, &m_iUnpackAlignment);
          glGetIntegerv(GL_UNPACK_ROW_LENGTH, &m_iUnpackRowLength);
 
@@ -57,13 +65,16 @@ namespace
       ~scoped_pixel_transfer_state() noexcept
       {
 
-         glBindFramebuffer(GL_READ_FRAMEBUFFER, m_iReadFramebuffer);
-         glReadBuffer(m_iReadBuffer);
-         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iDrawFramebuffer);
-         glBindRenderbuffer(GL_RENDERBUFFER, m_iRenderbuffer);
+         if (!m_bUploadOnly)
+         {
+            glBindFramebuffer(GL_READ_FRAMEBUFFER, m_iReadFramebuffer);
+            glReadBuffer(m_iReadBuffer);
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iDrawFramebuffer);
+            glBindRenderbuffer(GL_RENDERBUFFER, m_iRenderbuffer);
+            glPixelStorei(GL_PACK_ALIGNMENT, m_iPackAlignment);
+            glPixelStorei(GL_PACK_ROW_LENGTH, m_iPackRowLength);
+         }
          glBindTexture(GL_TEXTURE_2D, m_iTexture2d);
-         glPixelStorei(GL_PACK_ALIGNMENT, m_iPackAlignment);
-         glPixelStorei(GL_PACK_ROW_LENGTH, m_iPackRowLength);
          glPixelStorei(GL_UNPACK_ALIGNMENT, m_iUnpackAlignment);
          glPixelStorei(GL_UNPACK_ROW_LENGTH, m_iUnpackRowLength);
 
@@ -123,6 +134,17 @@ namespace gpu_opengl
 
    texture::~texture()
    {
+
+      // FBOs retain their attached texture/renderbuffer storage until deleted.
+      // Their names belong to individual native contexts, unlike textures.
+      for (auto & pair : m_mapContextHandleObject)
+         defer_delete_context_handle(pair.element1(), e_handle_fbo, pair.element2().m_handle);
+
+      if (m_glsyncGpuCommandsCompleteFence)
+      {
+         glDeleteSync(m_glsyncGpuCommandsCompleteFence);
+         m_glsyncGpuCommandsCompleteFence = nullptr;
+      }
 
       if (m_gluTextureID)
       {
@@ -392,7 +414,7 @@ namespace gpu_opengl
    //
    //
    //          ::i32 samples = 0;
-   //          glGetIntegerv(GL_SAMPLES, &samples);
+   //             glGetIntegerv(GL_SAMPLES, &samples);
    //          printf("MSAA samples: %d\n", samples);
    //
    //
@@ -1955,6 +1977,11 @@ namespace gpu_opengl
    void texture::write_pixels(bool bSync, const ::pixmap_t * ppixmap, const ::i32_point & pointInput)
    {
 
+      if (!ppixmap)
+      {
+         throw ::exception(error_bad_argument);
+      }
+
       auto sizePixmap = ppixmap->size();
 
       auto iRequiredScan = ppixmap->width() * (int)sizeof(::image32_t);
@@ -1990,7 +2017,9 @@ namespace gpu_opengl
       int cx = p->width();
       int cy = p->height();
 
-      scoped_pixel_transfer_state state;
+      // Uploads only change texture/unpack state. In particular, do not replay
+      // framebuffer read-buffer state in the producer context on every frame.
+      scoped_pixel_transfer_state state(true);
 
       glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
       ::opengl::check_error("");
@@ -2419,6 +2448,10 @@ namespace gpu_opengl
 
    void texture::defer_fence()
    {
+
+      // Report errors left by upload state restoration at their actual stage,
+      // before creating a sync object that would otherwise be blamed for them.
+      ::opengl::check_error("texture upload/state restoration before glFenceSync");
 
       if (m_glsyncGpuCommandsCompleteFence)
       {

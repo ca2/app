@@ -26,7 +26,7 @@ namespace subsystem
    PARTICLE_INTERFACE *get_implementation(const Composite<PARTICLE_INTERFACE> *pcomposite);
 
    template<typename PARTICLE_INTERFACE, typename BASE>
-   PARTICLE_INTERFACE *get_implementation(const Implementation<PARTICLE_INTERFACE, BASE> *pimplementation);
+   PARTICLE_INTERFACE *get_implementation(const ::subsystem::Implementation<PARTICLE_INTERFACE, BASE> *pimplementation);
 
    template<typename AGGREGATE>
    Particle *get_implementation(const Object<AGGREGATE> * pobject);
@@ -139,8 +139,8 @@ namespace subsystem
 
    #define ImplementCompositeø(Name, name) \
    ::pointer<Name##Interface> m_p##name; \
-   Particle * _get_implementation() override {return m_p##name.m_p;} \
-   Particle * _get_implementation1() override {return m_p##name.m_p;} \
+   ::subsystem::Particle * _get_implementation() override {return m_p##name.m_p;} \
+   ::subsystem::Particle * _get_implementation1() override {return m_p##name.m_p;} \
    Name##Interface * get_implementation() {return m_p##name.m_p;} \
    virtual void set##Name##Implementation(Name##Interface * pinterfaceImplementation) \
    { \
@@ -149,18 +149,18 @@ namespace subsystem
 
 
  #define ImplementCallbackø(Name, name) \
- ::pointer<Composite<Name##Interface>> m_p##name##Callback; \
- Particle *_get_callback() override { return m_p##name##Callback.m_p; } \
-Particle *_get_callback1() override { return m_p##name##Callback.m_p; } \
- void set##Name##Composite(Composite < Name##Interface > * pcompositeCallback) \
+ ::pointer<::subsystem::Composite<Name##Interface>> m_p##name##Callback; \
+ ::subsystem::Particle *_get_callback() override { return m_p##name##Callback.m_p; } \
+::subsystem::Particle *_get_callback1() override { return m_p##name##Callback.m_p; } \
+ void set##Name##Composite(::subsystem::Composite < Name##Interface > * pcompositeCallback) \
  { \
  m_p##name##Callback = pcompositeCallback; \
  }
 
 #define ImplementCompositeWithCallbackø(Name, name)                                                                             \
 ::pointer<Name##Interface> m_p##name;                                                                            \
-virtual Particle *get_implementation() { return m_p##name.m_p; }                                                       \
-Particle *_get_implementation1() override{ return m_p##name.m_p; }                                                       \
+virtual ::subsystem::Particle *get_implementation() { return m_p##name.m_p; }                                                       \
+::subsystem::Particle *_get_implementation1() override{ return m_p##name.m_p; }                                                       \
 virtual void set##Name##Implementation(Name##Interface *pinterfaceImplementation)                                \
 {                                                                                                                \
    m_p##name = pinterfaceImplementation;                                                                         \
@@ -389,7 +389,7 @@ virtual void set##Name##Implementation(Name##Interface *pinterfaceImplementation
 
 
 #define Implement1Defaultø(MAIN_CLASS)            \
-Particle * _get_implementation1()           \
+::subsystem::Particle * _get_implementation1()           \
 {           \
    \
              return this;           \
@@ -399,21 +399,21 @@ Particle * _get_implementation1()           \
 
 
 #define Implement1Callbackø(MAIN_CLASS)            \
-Particle * _get_implementation1()           \
+::subsystem::Particle * _get_implementation1()           \
 {           \
 \
 return this;           \
 \
 }           \
 \
-Particle * _get_callback()  override          \
+::subsystem::Particle * _get_callback()  override          \
 {           \
 \
 return MAIN_CLASS::_get_callback();           \
 \
 }           \
 \
-Particle * _get_callback1()           \
+::subsystem::Particle * _get_callback1()           \
 {           \
 \
 return MAIN_CLASS::_get_callback1();           \
@@ -520,8 +520,8 @@ return MAIN_CLASS::_get_callback1();           \
 //       }
 
 #define ImplementAggregateø(Name, Base) \
-using MAIN_AGGREGATE_INTERFACE_TYPE = typename Aggregate<Name##Composite, Base##Aggregate>::MAIN_AGGREGATE_INTERFACE_TYPE; \
-Particle * _get_implementation1() override\
+using MAIN_AGGREGATE_INTERFACE_TYPE = typename ::subsystem::Aggregate<Name##Composite, Base##Aggregate>::MAIN_AGGREGATE_INTERFACE_TYPE; \
+::subsystem::Particle * _get_implementation1() override\
 {\
 \
 return Name##Composite::_get_implementation1();\
@@ -552,8 +552,8 @@ void set##Name##Implementation(MAIN_AGGREGATE_INTERFACE_TYPE * pimpl)   override
 // }
 
 #define ImplementBaseø(Name)                                                                                       \
-using MAIN_AGGREGATE_INTERFACE_TYPE = typename Aggregate<Name##Composite>::MAIN_AGGREGATE_INTERFACE_TYPE; \
-Particle * _get_implementation1() override\
+using MAIN_AGGREGATE_INTERFACE_TYPE = typename ::subsystem::Aggregate<Name##Composite>::MAIN_AGGREGATE_INTERFACE_TYPE; \
+::subsystem::Particle * _get_implementation1() override\
 {\
 \
 return Name##Composite::_get_implementation1();\
@@ -774,7 +774,7 @@ Name##Composite::set##Name##Implementation(pimpl);                              
 
 
    template < typename PARTICLE_INTERFACE, typename BASE >
-   inline PARTICLE_INTERFACE * get_implementation(const Implementation< PARTICLE_INTERFACE, BASE > * pimplementation)
+   inline PARTICLE_INTERFACE * get_implementation(const ::subsystem::Implementation< PARTICLE_INTERFACE, BASE > * pimplementation)
    {
 
       return _get_implementation<PARTICLE_INTERFACE>(pimplementation);
@@ -866,7 +866,7 @@ CALLBACK_TYPE *Particle::get_callback()
 
 #define ImplementObjectø(Name)                                                                                       \
 using MAIN_AGGREGATE_INTERFACE_TYPE = typename Name##Aggregate::MAIN_AGGREGATE_INTERFACE_TYPE;                       \
-Particle * _get_implementation1() override\
+::subsystem::Particle * _get_implementation1() override\
 {\
 \
    return Name##Aggregate::_get_implementation1();\

@@ -42,14 +42,14 @@ target_link_directories(build PRIVATE ${library_link_directories})
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 endif ()
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 endif ()
 

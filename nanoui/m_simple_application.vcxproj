@@ -151,6 +151,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="platform_platform.cpp" />
     <ClCompile Include="simple_drawing.cpp" />
     <ClCompile Include="simple_drawing_application.cpp" />
     <ClCompile Include="simple_drawing_document.cpp" />

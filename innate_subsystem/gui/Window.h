@@ -236,7 +236,7 @@ namespace innate_subsystem
       virtual ::operating_system::window dialog_item_operating_system_window(::i32 iDlgItem) = 0;
 
 
-      virtual void subclassControlById(::Particle * pWindowControl, ::u32 id) = 0;
+      virtual void subclassControlById(::subsystem::Particle * pWindowControl, ::u32 id) = 0;
       virtual void subclassWindow(const ::operating_system::window & operatingsystemwindow) = 0;
       virtual void unsubclassWindow() = 0;
 
@@ -340,7 +340,7 @@ namespace innate_subsystem
    //    bool m_bWndCreated;
    };
 
-      class CLASS_DECL_INNATE_SUBSYSTEM WindowCallback : virtual public Callback<WindowInterface>
+      class CLASS_DECL_INNATE_SUBSYSTEM WindowCallback : virtual public ::subsystem::Callback<WindowInterface>
    {
    public:
 
@@ -348,7 +348,7 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM WindowComposite :
-      virtual public Composite<WindowInterface>,
+      virtual public ::subsystem::Composite <WindowInterface>,
       virtual public ::micro::elemental
    {
    public:
@@ -534,7 +534,7 @@ namespace innate_subsystem
 
 
       ::operating_system::window dialog_item_operating_system_window(::i32 iDlgItem) override { return m_pwindow->dialog_item_operating_system_window(iDlgItem); }
-      void subclassControlById(::Particle * pWindowControl, ::u32 id) override { m_pwindow->subclassControlById(pWindowControl, id); }
+      void subclassControlById(::subsystem::Particle * pWindowControl, ::u32 id) override { m_pwindow->subclassControlById(pWindowControl, id); }
       void subclassWindow(const ::operating_system::window & operatingsystemwindow)override { m_pwindow->subclassWindow(operatingsystemwindow); }
       void unsubclassWindow() override { m_pwindow->unsubclassWindow(); }
 
@@ -676,7 +676,7 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM WindowAggregate :
-   virtual public Aggregate < WindowComposite >
+   virtual public ::subsystem::Aggregate < WindowComposite >
    {
    public:
 
@@ -686,7 +686,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM Window :
-virtual public Object<WindowAggregate>
+virtual public ::subsystem::Object<WindowAggregate>
    {
    public:
 

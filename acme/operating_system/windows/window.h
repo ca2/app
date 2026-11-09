@@ -216,7 +216,7 @@ namespace windows
 
 
       void show_window(::user_interface::enum_show_window eshowwindow) override;
-      void set_window_style(::i32 iStyle) override;
+      void set_window_style(::i64 iStyle) override;
       ::i64 get_window_style() override;
 
       void post_message(user::enum_message eusermessage, wparam wparam = {}, lparam lparam = {}) override;

@@ -42,7 +42,7 @@ namespace subsystem
    @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
    */
    class ImpersonatorInterface :
-   virtual public ::Particle
+   virtual public ::subsystem::Particle
    {
    public:
       //Impersonator(LogWriter *plogwriter);
@@ -89,7 +89,7 @@ namespace subsystem
    @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
    */
    class CLASS_DECL_SUBSYSTEM ImpersonatorComposite :
-   virtual public Composite<ImpersonatorInterface>
+   virtual public ::subsystem::Composite <ImpersonatorInterface>
    {
    public:
 
@@ -156,7 +156,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM ImpersonatorAggregate :
-    virtual public Aggregate< ImpersonatorComposite >
+    virtual public ::subsystem::Aggregate< ImpersonatorComposite >
     {
     public:
 
@@ -167,7 +167,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM Impersonator :
- virtual public Object < ImpersonatorAggregate >
+ virtual public ::subsystem::Object <ImpersonatorAggregate >
    {
    public:
 

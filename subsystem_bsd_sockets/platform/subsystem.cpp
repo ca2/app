@@ -112,7 +112,7 @@ s_p = this;
       ::i8 digtxt[5];
       for (::i32 i = 0; ph->h_addr_list[i]; i++) {
          for (::i32 j = 0; j < ph->h_length; j++) {
-            sprintf(digtxt, "{}.", (::u8) ph->h_addr_list[i][j]);
+            sprintf(digtxt, "%d.", (::u8) ph->h_addr_list[i][j]);
             strNameBuf += digtxt;
          }
          if (ph->h_addr_list[i+1] != 0)

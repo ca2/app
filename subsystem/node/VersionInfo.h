@@ -34,7 +34,7 @@ namespace subsystem
     * Contains information about executable file version info.
     */
    class VersionInfoInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -69,7 +69,7 @@ namespace subsystem
  * Contains information about executable file version info.
  */
    class CLASS_DECL_SUBSYSTEM VersionInfoComposite :
-      virtual public Composite<VersionInfoInterface >
+      virtual public ::subsystem::Composite <VersionInfoInterface >
    {
    public:
 
@@ -112,7 +112,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM VersionInfoAggregate :
-    virtual public Aggregate< VersionInfoComposite >
+    virtual public ::subsystem::Aggregate< VersionInfoComposite >
     {
     public:
 
@@ -122,7 +122,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM VersionInfo :
-    virtual public Object < VersionInfoAggregate >
+    virtual public ::subsystem::Object <VersionInfoAggregate >
    {
    public:
 

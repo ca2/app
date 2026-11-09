@@ -55,23 +55,23 @@ namespace subsystem
 
    void Inflater::inflate()
    {
-      //memsize avaliableOutput = m_unpackedSize + m_unpackedSize / 100 + 1024;
-      memsize avaliableOutput = m_unpackedSize;
+      //memsize availableOutput = m_unpackedSize + m_unpackedSize / 100 + 1024;
+      memsize availableOutput = m_unpackedSize;
       ulong prevTotalOut = m_zlibStream.total_out;
 
       // Check to overflow.
-      ::u32 constrainedValue = (::u32)avaliableOutput;
-      ASSERT(avaliableOutput == constrainedValue);
+      ::u32 constrainedValue = (::u32)availableOutput;
+      ASSERT(availableOutput == constrainedValue);
       constrainedValue = (::u32)m_inputSize;
       ASSERT(m_inputSize == constrainedValue);
 
-      m_output.set_size(avaliableOutput);
+      m_output.set_size(availableOutput);
 
       m_zlibStream.next_in = (Bytef *)m_input;
       m_zlibStream.avail_in = (::u32)m_inputSize;
 
       m_zlibStream.next_out = (Bytef *)m_output.data();
-      m_zlibStream.avail_out = (::u32)avaliableOutput;
+      m_zlibStream.avail_out = (::u32)availableOutput;
 
       ::i32 r = ::inflate(&m_zlibStream, Z_SYNC_FLUSH);
       informationf(
@@ -100,8 +100,6 @@ namespace subsystem
 
       //m_outputSize = m_zlibStream.total_out - prevTotalOut;
       
-      m_outputSize =
-          avaliableOutput -
-          m_zlibStream.avail_out;
+      m_outputSize = (ulong) (availableOutput - m_zlibStream.avail_out);
    }
 }// namespace subsystem

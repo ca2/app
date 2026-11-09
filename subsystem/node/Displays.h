@@ -33,7 +33,7 @@
 namespace  subsystem
 {
    class DisplaysInterface :
-   virtual public ::Particle
+   virtual public ::subsystem::Particle
    {
    public:
       //Displays();
@@ -72,7 +72,7 @@ namespace  subsystem
    //using DisplaysInterface = particle_interface<DisplaysInterface>;
 
    class CLASS_DECL_SUBSYSTEM DisplaysComposite:
-virtual public Composite<DisplaysInterface>
+virtual public ::subsystem::Composite <DisplaysInterface>
    {
    public:
 
@@ -137,7 +137,7 @@ virtual public Composite<DisplaysInterface>
 
 
    class CLASS_DECL_SUBSYSTEM DisplaysAggregate :
- virtual public Aggregate < DisplaysComposite >
+ virtual public ::subsystem::Aggregate < DisplaysComposite >
    {
    public:
 
@@ -146,7 +146,7 @@ virtual public Composite<DisplaysInterface>
    };
 
    class CLASS_DECL_SUBSYSTEM Displays :
- virtual public Object < DisplaysAggregate >
+ virtual public ::subsystem::Object <DisplaysAggregate >
    {
    public:
 

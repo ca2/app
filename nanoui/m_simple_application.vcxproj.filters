@@ -59,6 +59,7 @@
     <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="platform_platform.cpp" />
     <ClCompile Include="simple_drawing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

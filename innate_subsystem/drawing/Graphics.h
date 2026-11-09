@@ -37,7 +37,7 @@ namespace innate_subsystem
 
 
    class GraphicsInterface :
-   virtual public ::Particle
+   virtual public ::subsystem::Particle
    {
    public:
       // Creates graphics object with specified device context.
@@ -95,7 +95,8 @@ namespace innate_subsystem
       virtual void drawText(const ::scoped_string & scopedstr, ::f64_rectangle &rect, const ::e_draw_text & edrawtext = {}, enum_align ealign = e_align_top_left) = 0;
 
 
-      virtual void doPath(PathInterface *ppath) = 0;
+      virtual void doPath(::innate_subsystem::PathInterface* ppath, ::innate_subsystem::BrushInterface* pbrush,
+         ::innate_subsystem::PenInterface* ppen) = 0;
 
    //protected:
      //::pointer < DeviceContext > m_pdevicecontext;
@@ -103,7 +104,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM GraphicsComposite :
-      virtual public Composite<GraphicsInterface>
+      virtual public ::subsystem::Composite <GraphicsInterface>
    {
    public:
 
@@ -269,10 +270,11 @@ namespace innate_subsystem
 
       }
 
-      void doPath(PathInterface* ppath) override
+      void doPath(::innate_subsystem::PathInterface* ppath, ::innate_subsystem::BrushInterface* pbrush,
+         ::innate_subsystem::PenInterface* ppen) override
       {
 
-         m_pgraphics->doPath(ppath);
+         m_pgraphics->doPath(ppath, pbrush, ppen);
 
       }
       //protected:
@@ -282,7 +284,7 @@ namespace innate_subsystem
 
 
     class CLASS_DECL_INNATE_SUBSYSTEM GraphicsAggregate :
-    virtual public Aggregate< GraphicsComposite >
+    virtual public ::subsystem::Aggregate< GraphicsComposite >
     {
     public:
 
@@ -291,7 +293,7 @@ namespace innate_subsystem
     };
 
    class CLASS_DECL_INNATE_SUBSYSTEM Graphics :
-   virtual public Object< GraphicsAggregate >
+   virtual public ::subsystem::Object< GraphicsAggregate >
    {
    public:
 

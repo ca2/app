@@ -60,12 +60,12 @@ namespace micro
    // }
 
 
-   void message_box::create_window()
+   void message_box::create_window(enum_parallelization eparallelization)
    {
 
       system()->nano()->graphics();
 
-      ::micro::main_window::create_window();
+      ::micro::main_window::create_window(eparallelization);
 
    }
 

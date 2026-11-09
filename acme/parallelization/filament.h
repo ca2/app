@@ -155,7 +155,7 @@ public:
 //   };
 //
 ////
-////      class CLASS_DECL_SUBSYSTEM ThreadCallback : virtual public Callback<ThreadInterface>
+////      class CLASS_DECL_SUBSYSTEM ThreadCallback : virtual public ::subsystem::Callback<ThreadInterface>
 ////   {
 ////   public:
 ////
@@ -172,7 +172,7 @@ public:
 ////    * @fixme member of HDESK type in THREAD class???
 ////    */
 ////   class CLASS_DECL_SUBSYSTEM ThreadComposite :
-////      virtual public Composite < ThreadInterface >
+////      virtual public ::subsystem::Composite < ThreadInterface >
 ////   {
 ////   public:
 ////
@@ -353,7 +353,7 @@ public:
 //
 //
 ////    class CLASS_DECL_SUBSYSTEM ThreadAggregate :
-////    virtual public Aggregate< ThreadComposite >
+////    virtual public ::subsystem::Aggregate< ThreadComposite >
 ////    {
 ////    public:
 ////
@@ -362,7 +362,7 @@ public:
 ////    };
 ////
 ////   class CLASS_DECL_SUBSYSTEM Thread :
-////   virtual public Object< ThreadAggregate >
+////   virtual public ::subsystem::Object< ThreadAggregate >
 ////   {
 ////   public:
 ////

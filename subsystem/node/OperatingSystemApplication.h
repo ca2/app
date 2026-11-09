@@ -40,7 +40,7 @@ namespace subsystem
     * Have hidden main window and main scopedstrMessage loop.
     */
    class OperatingSystemApplicationInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -158,7 +158,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM OperatingSystemApplicationCallback
-       : virtual public Callback<OperatingSystemApplicationInterface>
+       : virtual public ::subsystem::Callback<OperatingSystemApplicationInterface>
    {
    public:
 
@@ -173,7 +173,7 @@ namespace subsystem
     * Have hidden main window and main scopedstrMessage loop.
     */
    class CLASS_DECL_SUBSYSTEM OperatingSystemApplicationComposite :
-      virtual public Composite < OperatingSystemApplicationInterface >
+      virtual public ::subsystem::Composite < OperatingSystemApplicationInterface >
    {
    public:
 
@@ -338,7 +338,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM OperatingSystemApplicationAggregate :
-    virtual public Aggregate< OperatingSystemApplicationComposite >
+    virtual public ::subsystem::Aggregate< OperatingSystemApplicationComposite >
     {
     public:
 
@@ -348,7 +348,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM OperatingSystemApplication :
- virtual public Object < OperatingSystemApplicationAggregate >
+ virtual public ::subsystem::Object <OperatingSystemApplicationAggregate >
    {
    public:
 

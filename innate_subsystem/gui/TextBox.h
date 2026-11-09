@@ -35,7 +35,7 @@ namespace innate_subsystem
 
 
    class TextBoxInterface :
-   virtual public ::Particle
+   virtual public ::subsystem::Particle
    {
    public:
 
@@ -83,7 +83,7 @@ namespace innate_subsystem
    //using TextBoxInterface = particle_interface<TextBoxInterface, ControlInterface>;
 
    class CLASS_DECL_INNATE_SUBSYSTEM TextBoxComposite :
-      virtual public Composite<TextBoxInterface>
+      virtual public ::subsystem::Composite <TextBoxInterface>
     {
     public:
 
@@ -128,7 +128,7 @@ namespace innate_subsystem
     };
 
    class CLASS_DECL_INNATE_SUBSYSTEM TextBoxAggregate :
-   virtual public Aggregate< TextBoxComposite, ControlAggregate >
+   virtual public ::subsystem::Aggregate< TextBoxComposite, ControlAggregate >
    {
    public:
 
@@ -138,7 +138,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM TextBox :
-virtual public Object<TextBoxAggregate>
+virtual public ::subsystem::Object<TextBoxAggregate>
    {
    public:
 

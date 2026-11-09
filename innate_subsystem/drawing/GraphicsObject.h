@@ -8,7 +8,7 @@ namespace innate_subsystem
 {
 
    class CLASS_DECL_INNATE_SUBSYSTEM GraphicsObject :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 

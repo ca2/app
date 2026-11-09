@@ -370,14 +370,18 @@ class ::time dialog_implementation::dialog_timeout() const
 }
 
 
- void dialog_implementation::wait_dialog_response(const class ::time & timeTimeout)
-{
+   ::payload dialog_implementation::wait_for_dialog_response(const class ::time & timeTimeout)
+   {
 
-   defer_construct_newø(m_pmanualresethappeningDialogResponse);
+      defer_construct_newø(m_pmanualresethappeningDialogResponse);
+
+      m_payloadResult = ::error_timeout;
     
-    m_pmanualresethappeningDialogResponse->wait(timeTimeout);
+      m_pmanualresethappeningDialogResponse->wait(timeTimeout);
+
+      return m_payloadResult;
     
- }
+   }
 
 
    bool dialog_implementation::is_waiting_for_dialog_response()

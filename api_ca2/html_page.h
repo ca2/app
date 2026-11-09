@@ -46,7 +46,10 @@ namespace api_ca2
          const ::scoped_string & scopedstrHeading,
          const ::scoped_string & scopedstrMessage,
          const ::scoped_string & scopedstrDetail,
-         bool bSuccess);
+         bool bSuccess,
+         const ::scoped_string & scopedstrAppId = {},
+         const ::scoped_string & scopedstrAppName = {},
+         const ::scoped_string & scopedstrIcon = {});
 
 
    };

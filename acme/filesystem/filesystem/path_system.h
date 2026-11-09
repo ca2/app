@@ -113,6 +113,9 @@ public:
 
    virtual void symbolic_link(const ::file::path & pathTarget, const ::file::path & pathSource);
 
+   virtual ::file::path expand_environment_variables(const ::file::path& path);
+
+
 };
 
 

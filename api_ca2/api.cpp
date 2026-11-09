@@ -3,6 +3,7 @@
 #include "api.h"
 #include "html_page.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "acme/prototype/prototype/memory.h"
 #include "acme/prototype/prototype/url.h"
@@ -55,6 +56,25 @@ namespace api_ca2
       // ca2 obtains its redirect identity from the application and credentials
       // from the saved login profile; no OAuth provider configuration is needed.
       m_setConfiguration.erase_all();
+      ::pointer<::apex::application> papplication = get_app();
+      papplication->m_papiCa2Authentication = this;
+   }
+
+
+   void api::clear_profile()
+   {
+      _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      // Invalidate waiters and callbacks from the previous browser attempt.
+      ++m_uAuthenticationAttempt;
+      m_bAuthenticated = false;
+      m_bAuthenticating = false;
+      m_bWaitingResponseFromUser = false;
+      m_strState.empty();
+      m_strAppLogin.empty();
+      m_strToken.empty();
+      m_happeningResponse.set_happening();
+      // Clear the saved token as well as appstate/applogin credentials.
+      ::api::clear_profile();
    }
 
 
@@ -105,6 +125,10 @@ namespace api_ca2
          if (bOwner)
          {
             _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            if (uAttempt != m_uAuthenticationAttempt || !m_bWaitingResponseFromUser)
+            {
+               throw ::exception(error_failed);
+            }
             m_strAppLogin = get_app_login();
             if (m_strAppLogin.is_empty())
             {
@@ -295,6 +319,19 @@ namespace api_ca2
       string strAppCode = ::url::get_parameter(scopedstrUrl, "appcode");
 
       _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      string strAppId = get_app()->m_strAppId;
+      string strAppName = get_app()->application_title();
+      string strAppIcon;
+      try
+      {
+         auto memoryIcon = get_app()->file()->as_memory("matter://main/icon.png");
+         strAppIcon = memoryIcon.to_base64();
+      }
+      catch (...)
+      {
+         // An unavailable icon must not prevent completing authentication.
+      }
+
       if (!m_bWaitingResponseFromUser || strAppState != m_strState
          || m_timeAuthenticationStarted.elapsed() >= 5_min)
       {
@@ -304,7 +341,7 @@ namespace api_ca2
             "Sign-in link expired",
             "This authentication attempt is no longer pending.",
             "Return to the application and start sign-in again.",
-            false);
+            false, strAppId, strAppName, strAppIcon);
          information() << "ca2_auth: ignored_callback app=" << get_app()->m_strAppId;
          return ::success;
       }
@@ -342,7 +379,7 @@ namespace api_ca2
             "Login successful",
             "The login process has completed successfully.",
             "You can return to the application.",
-            true);
+            true, strAppId, strAppName, strAppIcon);
       }
       else
       {
@@ -352,7 +389,7 @@ namespace api_ca2
             "Login failed",
             "The login process could not be completed.",
             "Return to the application and try signing in again.",
-            false);
+            false, strAppId, strAppName, strAppIcon);
       }
 
       // Retain the API until its waiting caller has observed success/failure.

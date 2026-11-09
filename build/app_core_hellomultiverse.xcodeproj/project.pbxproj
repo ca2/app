@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8419F5B364E0B236F2FB33E7 /* libgcom.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AB89E26119D171ED2B39F4 /* libgcom.dylib */; };
-		BB419E1850EBF0677EEA71A9 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A2F98EFF1816939B78C0A344 /* framework.cpp */; };
+		BB419E1850EBF0677EEA71A9 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A2F98EFF1816939B78C0A344 /* platform.cpp */; };
 		9C3FC22CD3D529E860D2271A /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A75F794826977F90B61EE482 /* libaxis.dylib */; };
 		0675344975A68E00CC2D1A97 /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 635A96F1D366946945FD6485 /* libberg.dylib */; };
 		3225CC96ABE96BD6D1F82D92 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CB1E373475E9BF8B8DAD2E /* libcore.dylib */; };
@@ -52,8 +52,8 @@
 		2E4A2AF36DC71A8B6F094F7C /* libapp_core_hellomultiverse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01A61D2C934C916429465DC1 /* libapp_core_hellomultiverse.a */; };
 		C21E4E486B7808C0B446C261 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F21EA8E41D3CE1E760DD67E2 /* InfoPlist.strings */; };
 		2F25F128FA5B20FCCD7EAC85 /* app_core_hellomultiverse_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D1C27B31F1AB59F9C74B9BE4 /* app_core_hellomultiverse_iosTests.m */; };
-		35E2D51E1B8193C30CFC36DE /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A2F98EFF1816939B78C0A344 /* framework.cpp */; };
-		515D04AF5167BBE9945671BC /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = F5134037883DF4050362F42A /* framework.h */; };
+		35E2D51E1B8193C30CFC36DE /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A2F98EFF1816939B78C0A344 /* platform.cpp */; };
+		515D04AF5167BBE9945671BC /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = F5134037883DF4050362F42A /* platform.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,8 +172,8 @@
 		EC470F9124AE418E3789A670 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D1C27B31F1AB59F9C74B9BE4 /* app_core_hellomultiverse_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_hellomultiverse_iosTests.m; sourceTree = "<group>"; };
 		987CDAB82BFC7AD94CFF92A5 /* libapp_core_hellomultiverse.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_core_hellomultiverse.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2F98EFF1816939B78C0A344 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		F5134037883DF4050362F42A /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		A2F98EFF1816939B78C0A344 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		F5134037883DF4050362F42A /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,8 +299,8 @@
 				0CC2740388241571EFE29AE6 /* document.h */,
 				9532F55A3E64FE8ACF59A231 /* frame.cpp */,
 				EABDE6ADA1AF8447BF7B76F1 /* frame.h */,
-				A2F98EFF1816939B78C0A344 /* framework.cpp */,
-				F5134037883DF4050362F42A /* framework.h */,
+				A2F98EFF1816939B78C0A344 /* platform.cpp */,
+				F5134037883DF4050362F42A /* platform.h */,
 				F8A70BA1E799EEBCE26A83EE /* gcom.cpp */,
 				4F807DB9FA2065B9B6EF7ACE /* gcom.h */,
 				11B6438933DC4602A2BAEAF3 /* image_show.cpp */,
@@ -338,7 +338,7 @@
 				532C75DFF7DC45A70F166577 /* frame.h in Headers */,
 				C85E72BFE2E66D10BE6354FA /* image_show.h in Headers */,
 				DC827C9868A9BFA0FF46A7BE /* yee_socket.h in Headers */,
-				515D04AF5167BBE9945671BC /* framework.h in Headers */,
+				515D04AF5167BBE9945671BC /* platform.h in Headers */,
 				4E0FB5A86FD9A7C90C670D32 /* yee.h in Headers */,
 				D5B88DC593827A1DA0044579 /* _hellomultiverse.h in Headers */,
 				5AA480FCD545045C5EF3A55C /* pane_impact.h in Headers */,
@@ -503,7 +503,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB419E1850EBF0677EEA71A9 /* framework.cpp in Sources */,
+				BB419E1850EBF0677EEA71A9 /* platform.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,7 +521,7 @@
 			files = (
 				1AFB636AAAA6C7A1BD988BCF /* switcher_impact.cpp in Sources */,
 				7024830A33FA17FDEF6296F5 /* _.cpp in Sources */,
-				35E2D51E1B8193C30CFC36DE /* framework.cpp in Sources */,
+				35E2D51E1B8193C30CFC36DE /* platform.cpp in Sources */,
 				47DC2431E16EE9D74B1A4DC2 /* image_show.cpp in Sources */,
 				E32813823EB3854CB9A59880 /* yee_socket.cpp in Sources */,
 				D42A05329B137C099F438AAF /* impact_base.cpp in Sources */,
@@ -698,7 +698,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 				);
@@ -769,7 +769,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

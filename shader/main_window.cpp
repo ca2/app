@@ -109,11 +109,11 @@ namespace app_shader
 
       {
 
-         // Controls are initialized and laid out by main_window::on_layout.
+         auto pitemSwitch = allocateø ::item(::e_element_switch_button, ::id_switch);
 
-//         auto pitem = user_item(::e_element_switch_button);
-//
-//         *pitem = ::e_element_switch_button;
+         tool().add_item(pitemSwitch);
+
+         user_item(pitemSwitch)->m_ezorder = ::user::e_zorder_front;
 
       }
 

@@ -47,7 +47,7 @@ namespace subsystem_bsd_sockets
     * @fixme refactor this class to avoid usage of SocketAddressIPv4 class.
     */
    class CLASS_DECL_SUBSYSTEM_BSD_SOCKETS SocketIPv4 :
-   virtual public Implementation<::subsystem::SocketIPv4Interface>
+   virtual public ::subsystem::Implementation<::subsystem::SocketIPv4Interface>
    {
    public:
       /**
@@ -179,7 +179,8 @@ namespace subsystem_bsd_sockets
       /**
        * WinSock socket.
        */
-      ::i32 m_socket;
+      //::i32 m_socket;
+      SOCKET m_socket;
       bool m_isClosed;
 
       ::pointer < ::subsystem::SocketAddressIPv4Interface >m_localAddr;

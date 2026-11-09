@@ -24,7 +24,7 @@ namespace app_app
       virtual void on_request(::request * prequest) override;
 
 
-      string draw2d_get_default_implementation_name() override;
+      string draw2d_get_implementation_name() override;
 
 
    };

@@ -104,6 +104,10 @@ list(APPEND library_source
         #task_group.h
         )
 
+if(${NETBSD})
+    list(APPEND library_source install_netbsd.cpp)
+endif()
+
 if(${FREEBSD})
     list(APPEND library_source
             install_freebsd.cpp

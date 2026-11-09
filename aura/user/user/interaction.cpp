@@ -2945,7 +2945,7 @@ namespace user
 
          //pwindowNew->create_host(this);
 
-         create_window();
+         create_window(e_parallelization_asynchronous);
 
          on_after_set_parent();
 
@@ -11229,7 +11229,7 @@ if(get_parent())
       if (!puserinteractionParent)
       {
 
-         create_window();
+         create_window(e_parallelization_asynchronous);
 
       }
       else
@@ -23182,7 +23182,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
    }
 
 
-   void interaction::create_window()
+   void interaction::create_window(enum_parallelization eparallelization)
    {
 
       ::pointer < ::user::thread > puserthread;
@@ -23317,7 +23317,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
       else
       {
 
-         pwindow->create_window();
+         pwindow->create_window(::e_parallelization_asynchronous);
 
       }
 
@@ -23417,7 +23417,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
       m_strName = scopedstrName;
 
-      create_window();
+      create_window(::e_parallelization_asynchronous);
 
       //window()->m_puserinteraction = this;
 

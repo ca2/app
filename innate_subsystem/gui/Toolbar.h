@@ -40,7 +40,7 @@ namespace innate_subsystem
       static const ::i32 TB_Style_gap = 1;
 
    class ToolbarInterface :
-      virtual  public ::Particle
+      virtual  public ::subsystem::Particle
    {
    public:
       //Toolbar();
@@ -162,7 +162,7 @@ namespace innate_subsystem
    //using ToolbarInterface = particle_interface<ToolbarInterface, ControlInterface>;
    
    class CLASS_DECL_INNATE_SUBSYSTEM ToolbarComposite :
-      virtual  public Composite<ToolbarInterface>
+      virtual  public ::subsystem::Composite<ToolbarInterface>
    {
    public:
 
@@ -289,7 +289,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM ToolbarAggregate :
-   virtual  public Aggregate< ToolbarComposite, ControlAggregate >
+   virtual public ::subsystem::Aggregate< ToolbarComposite, ControlAggregate >
    {
    public:
 
@@ -299,7 +299,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM Toolbar :
-virtual public Object<ToolbarAggregate>
+virtual public ::subsystem::Object<ToolbarAggregate>
    {
    public:
 

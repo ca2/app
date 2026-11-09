@@ -41,7 +41,7 @@ namespace subsystem
     * @author enikey.
     */
    class ShellInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -84,7 +84,7 @@ namespace subsystem
  * @author enikey.
  */
    class CLASS_DECL_SUBSYSTEM ShellComposite :
-   virtual public Composite<ShellInterface >
+   virtual public ::subsystem::Composite <ShellInterface >
    {
    public:
 
@@ -133,7 +133,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM ShellAggregate :
-    virtual public Aggregate< ShellComposite >
+    virtual public ::subsystem::Aggregate< ShellComposite >
     {
     public:
 
@@ -142,7 +142,7 @@ namespace subsystem
     };
 
    class CLASS_DECL_SUBSYSTEM Shell :
-    virtual public Object < ShellAggregate >
+    virtual public ::subsystem::Object <ShellAggregate >
    {
    public:
 

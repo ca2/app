@@ -65,7 +65,11 @@ namespace windowing
    void icon::set_matter(const ::scoped_string & scopedstrMatter)
    {
 
-      string strPath = directory()->matter(scopedstrMatter);
+      ::file::path pathMatter = scopedstrMatter;
+
+      pathMatter.flags() += ::file::e_flag_no_exception;
+
+      string strPath = directory()->matter(pathMatter);
 
       set_file(strPath);
 

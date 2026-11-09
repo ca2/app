@@ -105,12 +105,12 @@ auto iSize = argContainer.size();
 
    bool CommandLine::getOption(::i32 index, string *key, string *arg) const
    {
-      if (index < 0 || (size_t)index >= m_foundKeys.size())
+      if (index < 0 || index >= m_foundKeys.size())
       {
          return false;
       }
 
-      const KeyContainer *foundKey = &m_foundKeys[(size_t)index];
+      const KeyContainer *foundKey = &m_foundKeys[index];
 
       *key = foundKey->m_strKey;
 

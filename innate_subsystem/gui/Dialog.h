@@ -35,7 +35,7 @@ namespace innate_subsystem
 
 
    class DialogInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -143,7 +143,7 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM DialogCallback : virtual public Callback<DialogInterface>
+   class CLASS_DECL_INNATE_SUBSYSTEM DialogCallback : virtual public ::subsystem::Callback<DialogInterface>
    {
    public:
 
@@ -323,7 +323,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM DialogAggregate :
-   virtual public Aggregate < DialogComposite, ControlAggregate >
+   virtual public ::subsystem::Aggregate < DialogComposite, ControlAggregate >
    {
    public:
 
@@ -393,7 +393,7 @@ namespace innate_subsystem
 
 
    // class CLASS_DECL_INNATE_SUBSYSTEM DialogImplementation1 :
-   // virtual public Implementation1<DialogInterface>
+   // virtual public ::subsystem::Implementation1<DialogInterface>
    // {
    // public:
    //

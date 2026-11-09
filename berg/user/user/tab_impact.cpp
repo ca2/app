@@ -515,7 +515,7 @@ namespace user
 
       //m_pdroptargetwindow->create_host(e_parallelization_synchronous);
 
-      m_pdroptargetwindow->create_window();
+      m_pdroptargetwindow->create_window(::e_parallelization_synchronous);
 
       m_pdroptargetwindow->order(e_zorder_top_most);
 

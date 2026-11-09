@@ -180,7 +180,7 @@
     <ClCompile Include="application.cpp" />
     <ClCompile Include="document.cpp" />
     <ClCompile Include="frame.cpp" />
-    <ClCompile Include="framework.cpp" />
+    <ClCompile Include="platform.cpp" />
     <ClCompile Include="gcom.cpp" />
     <ClCompile Include="image_show.cpp" />
     <ClCompile Include="impact_base.cpp" />
@@ -198,7 +198,7 @@
     <ClInclude Include="application.h" />
     <ClInclude Include="document.h" />
     <ClInclude Include="frame.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="gcom.h" />
     <ClInclude Include="main_frame.h" />
     <ClInclude Include="main_impact.h" />

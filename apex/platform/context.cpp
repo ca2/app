@@ -367,6 +367,8 @@ namespace apex
    ::file::path context::defer_process_path(::file::path path)
    {
 
+      path.flags() += ::file::e_flag_no_exception;
+
       return ::platform::context::defer_process_path(path);
    //
    //    if (path.flags() & ::file::e_flag_final_path)

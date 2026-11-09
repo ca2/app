@@ -34,7 +34,7 @@ namespace innate_subsystem
    // Object that creates bitmap with specified size and allow to
    // draw into in through Graphics class methods.
    class BitmapGraphicsInterface :
-   virtual public ::Particle
+   virtual public ::subsystem::Particle
    {
    public:
       // Creates BitmapGraphics object with bitmap complatible with specified dc and
@@ -65,7 +65,7 @@ namespace innate_subsystem
    // Object that creates bitmap with specified size and allow to
    // draw into in through Graphics class methods.
    class CLASS_DECL_INNATE_SUBSYSTEM BitmapGraphicsComposite :
-    virtual public Composite<BitmapGraphicsInterface>
+    virtual public ::subsystem::Composite <BitmapGraphicsInterface>
    {
    public:
 
@@ -111,7 +111,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM BitmapGraphicsAggregate :
-    virtual public Aggregate<BitmapGraphicsComposite, Graphics>
+    virtual public ::subsystem::Aggregate<BitmapGraphicsComposite, Graphics>
    {
    public:
 
@@ -123,7 +123,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM BitmapGraphics :
-    virtual public Object<BitmapGraphicsAggregate>
+    virtual public ::subsystem::Object<BitmapGraphicsAggregate>
    {
    public:
 

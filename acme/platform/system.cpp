@@ -4319,7 +4319,21 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          ::file::e_open_write | ::file::e_open_defer_create_directory |
          ::file::e_open_binary);
 
-      auto pfileSource = file_system()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
+      if (!pfileTarget.ok())
+      {
+
+         throw ::io_exception(error_io, "zlib_compress: Failure opening target file");
+
+      }
+
+      auto pfileSource = file_system()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_write);
+
+      if (!pfileSource.ok())
+      {
+
+         throw ::io_exception(error_io, "zlib_compress: Failure opening source file");
+
+      }
 
       /*estatus = */
       pcompress->transfer(pfileTarget, pfileSource);

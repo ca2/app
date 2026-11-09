@@ -763,6 +763,7 @@ public:
    virtual ::task_pointer task_fork(const ::procedure & procedure);
 
    
+   virtual void user_call(::enum_parallelization eparallelization, const ::procedure& procedure);
    virtual void user_send(const ::procedure & procedure);
    //virtual void user_send(const ::procedure & procedure);
    inline dispatch_arrayø user_sendø();
@@ -775,6 +776,7 @@ public:
    //inline sequence_continuation user_async();
 
 
+   virtual void main_call(::enum_parallelization eparallelization, const ::procedure& procedure);
    virtual void main_send(const ::procedure & procedure);
    //virtual void  main_send(const ::procedure & procedure);
    inline dispatch_arrayø main_sendø();
@@ -1458,9 +1460,9 @@ CLASS_DECL_ACME void fatal(const ::scoped_string& scopedstr);
 
 
 template <typename... Args>
-void debug(std::string_view fmt, Args&&... args)
+void debug(const std::format_string<Args...> fmt, Args&&... args)
 {
-   ::debug(::format(fmt, std::make_format_args(args...)));
+   ::debug(::format<Args...>(fmt, std::forward<Args>(args)...));
 }
 template <typename... Args>
 void information(const std::format_string<Args...> fmt, Args&&... args)

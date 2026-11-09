@@ -90,6 +90,17 @@ body {
   font-weight: 900;
   line-height: 28px;
 }
+.application-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding: 20px 24px 0;
+  color: var(--muted);
+  font-size: 16px;
+}
+.application-header img { width: 48px; height: 48px; object-fit: contain; }
+.application-name { font-weight: 600; }
 .page { width: 91%; margin: 0 auto; }
 .card {
   background: #fff;

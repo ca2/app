@@ -2064,7 +2064,7 @@ void object::handle_exception(const ::exception& e)
 
       pmessagebox->display(e_display_normal, {});
       
-      pmessagebox->wait_dialog_response();
+      pmessagebox->wait_for_dialog_response();
 
    }
 

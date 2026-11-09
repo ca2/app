@@ -45,7 +45,7 @@ namespace innate_subsystem
    //using SolidBrushInterface = particle_interface<SolidBrushInterface, BrushInterface>;
 
    class CLASS_DECL_INNATE_SUBSYSTEM SolidBrushComposite :
-   virtual public Composite < SolidBrushInterface >
+   virtual public ::subsystem::Composite < SolidBrushInterface >
    {
    public:
 
@@ -66,7 +66,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM SolidBrushAggregate :
-      virtual public Aggregate < SolidBrushComposite, BrushAggregate >
+      virtual public ::subsystem::Aggregate < SolidBrushComposite, BrushAggregate >
    {
    public:
 
@@ -82,7 +82,7 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM SolidBrush :
-   virtual public Object < SolidBrushAggregate >
+   virtual public ::subsystem::Object <SolidBrushAggregate >
    {
    public:
 

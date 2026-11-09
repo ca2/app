@@ -139,7 +139,7 @@ class ::time os_get_system_update_poll_time(const ::atom & atom)
       //return 300_ms;
 
       //return 300_ms;
-      return zero_t{};
+      return {};
 
    }
    else if(atom == id_operating_system_user_color_change)
@@ -149,11 +149,11 @@ class ::time os_get_system_update_poll_time(const ::atom & atom)
       // ... hook to the gtk-theme-name property change happening of GTK Settings default object
       //return 300_ms;
 
-      return zero_t{};
+      return {};
 
    }
 
-   return zero_t{};
+   return {};
 
 }
 

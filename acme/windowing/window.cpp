@@ -231,7 +231,7 @@ namespace acme
 
 
 
-      void window::create_window()
+      void window::create_window(enum_parallelization eparallelization)
       {
 
          //m_pacmeuserinteraction->create_window();
@@ -1172,13 +1172,13 @@ namespace acme
       }
 
 
-      bool window::on_window_create(void * pCREATESTRUCT)
+      bool window::on_window_create(::user::window_create_t * pwindowcreate)
       {
 
          if (m_pacmeuserinteraction)
          {
 
-            return m_pacmeuserinteraction->on_window_create(pCREATESTRUCT);
+            return m_pacmeuserinteraction->on_window_create(pwindowcreate);
 
          }
 
@@ -1284,7 +1284,7 @@ namespace acme
       }
 
 
-      void window::set_window_style(::i32 iShowFlags)
+      void window::set_window_style(::i64 iStyle)
       {
 
 

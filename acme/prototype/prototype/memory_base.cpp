@@ -1425,7 +1425,7 @@ void memory_base::to_base64(string & str, memsize pos, memsize count)
 
    ::base64 base64;
 
-   str = base64.encode({&data()[pos], minimum(this->size() - pos, count)});
+   str = base64.encode({&data()[pos], minimum_non_negative(this->size() - pos, count)});
 
 }
 

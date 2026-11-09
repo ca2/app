@@ -1149,3 +1149,21 @@ void path_system::symbolic_link(const ::file::path & pathTarget, const ::file::p
    throw ::interface_only();
 
 }
+
+
+
+::file::path path_system::expand_environment_variables(const ::file::path& path)
+{
+
+   auto str = node()->expand_environment_variables(path);
+
+   auto pathResult = path;
+
+   pathResult.flags() = path.flags();
+
+   return ::transfer(pathResult);
+
+}
+
+
+

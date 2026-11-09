@@ -47,7 +47,7 @@ namespace subsystem
  * @fixme rename it.
  */
    class CLASS_DECL_SUBSYSTEM CurrentConsoleProcessInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
       /**
@@ -141,7 +141,7 @@ namespace subsystem
    //
 
    class CLASS_DECL_SUBSYSTEM CurrentConsoleProcessComposite :
-      virtual public Composite < CurrentConsoleProcessInterface >
+      virtual public ::subsystem::Composite < CurrentConsoleProcessInterface >
    {
    public:
 
@@ -159,7 +159,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM CurrentConsoleProcessAggregate :
-      virtual public Aggregate<CurrentConsoleProcessComposite, ProcessAggregate>
+      virtual public ::subsystem::Aggregate<CurrentConsoleProcessComposite, ProcessAggregate>
    {
    public:
 
@@ -169,7 +169,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM CurrentConsoleProcess :
-      virtual public Object<CurrentConsoleProcessAggregate>
+      virtual public ::subsystem::Object<CurrentConsoleProcessAggregate>
    {
    public:
 

@@ -700,7 +700,7 @@ namespace platform
 
       }
 
-      path = node()->expand_environment_variables(path);
+      path = path_system()->expand_environment_variables(path);
 
       auto deferUntilFinallyProcessed = [this](::file::path pathToProcess)
       {

@@ -85,7 +85,7 @@ namespace subsystem
     * of service.
     */
    class ServiceControlManagerClientInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -165,7 +165,7 @@ namespace subsystem
  * of service.
  */
    class CLASS_DECL_SUBSYSTEM ServiceControlManagerClientComposite :
-   virtual public Composite<ServiceControlManagerClientInterface >
+   virtual public ::subsystem::Composite <ServiceControlManagerClientInterface >
    {
    public:
 
@@ -267,7 +267,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM ServiceControlManagerClientAggregate :
-    virtual public Aggregate< ServiceControlManagerClientComposite >
+    virtual public ::subsystem::Aggregate< ServiceControlManagerClientComposite >
     {
     public:
 
@@ -275,7 +275,7 @@ namespace subsystem
 
     };
    class CLASS_DECL_SUBSYSTEM ServiceControlManagerClient :
-    virtual public Object < ServiceControlManagerClientAggregate >
+    virtual public ::subsystem::Object <ServiceControlManagerClientAggregate >
    {
    public:
 

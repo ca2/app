@@ -3819,11 +3819,10 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 
    }
 
-   if (path.flags().is_clear(::file::e_flag_bypass_cache)
-         && ((eopen & ::file::e_open_no_cache) || payloadFile.is_property_true("nocache")))
+   if (eopen & ::file::e_open_no_exception_on_open)
    {
 
-      path.flags().set(::file::e_flag_bypass_cache);
+      path.flags().set(::file::e_flag_no_exception);
 
    }
 

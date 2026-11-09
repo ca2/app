@@ -732,7 +732,7 @@ namespace acme
       }
 
 
-      void interaction::create_window()
+      void interaction::create_window(::enum_parallelization eparallelization)
       {
 
          auto pwindowHost = system()->acme_windowing()->get_application_host_window();
@@ -775,7 +775,7 @@ namespace acme
                    pwindow->m_sizeWindow.cx, pwindow->m_sizeWindow.cy);
             fflush(stdout);
 
-            pwindow->create_window();
+            pwindow->create_window(eparallelization);
 
          }
 
@@ -1820,7 +1820,7 @@ namespace acme
          if(!is_window())
          {
             
-            create_window();
+            create_window(e_parallelization_asynchronous);
             
          }
 
@@ -2678,7 +2678,7 @@ namespace acme
       }
 
 
-      void interaction::set_window_style(::i32 iStyle)
+      void interaction::set_window_style(::i64 iStyle)
       {
 
          m_pacmewindowingwindow->set_window_style(iStyle);

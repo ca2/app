@@ -2431,7 +2431,9 @@ return false;
                                             , const ::scoped_string & scopedstrTarget)
    {
 
-      open_internet_link(scopedstrUrl, scopedstrProfile, scopedstrTarget);
+      // Use the platform shell when no browser-specific implementation exists.
+      // Calling open_internet_link here recurses through its base fallback.
+      shell_open(scopedstrUrl, {}, {});
 
    }
 
@@ -2511,7 +2513,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
       
       pmessagebox->display(e_display_normal, {});
       
-      pmessagebox->wait_dialog_response();
+      pmessagebox->wait_for_dialog_response();
 
    }
 

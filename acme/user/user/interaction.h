@@ -114,7 +114,7 @@ namespace acme
 
          //virtual enum_font nano_user_font();
 
-         void create_window() override;
+         void create_window(::enum_parallelization eparallelization) override;
 
          void _create_window() override;
 
@@ -569,7 +569,7 @@ namespace acme
 
          void set_active_window() override;
          void set_window_text(const ::scoped_string & scopedstrString) override;
-         void set_window_style(::i32 iStyle) override;
+         void set_window_style(::i64 iStyle) override;
          ::i64 get_window_style() override;
          void show_window(::user_interface::enum_show_window eshowwindow) override;
          void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, ::i32 iSetWindowPosFlags) override;

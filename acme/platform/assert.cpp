@@ -172,7 +172,7 @@ CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const_char_pointer pszFileNam
 
    pmessagebox->display(e_display_normal, {});
 
-   pmessagebox->wait_dialog_response();
+   pmessagebox->wait_for_dialog_response();
 
    return pmessagebox->get_dialog_response();
 

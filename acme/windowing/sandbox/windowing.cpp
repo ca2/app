@@ -213,7 +213,7 @@ void windowing::initialize(::particle * pparticle)
    
    auto puserinteraction = m_phostinteraction;
    
-   puserinteraction->create_window();
+   puserinteraction->create_window(e_parallelization_asynchronous);
    
    //puserinteraction->add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
    

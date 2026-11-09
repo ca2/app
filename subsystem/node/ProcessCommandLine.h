@@ -33,7 +33,7 @@ namespace subsystem
 
    // This class is an interface for a primitive command line parser
    class ProcessCommandLineInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -77,7 +77,7 @@ namespace subsystem
 
       // This class is an interface for a primitive command line parser
    class CLASS_DECL_SUBSYSTEM ProcessCommandLineComposite :
-      virtual public Composite < ProcessCommandLineInterface >
+      virtual public ::subsystem::Composite < ProcessCommandLineInterface >
    {
    public:
 
@@ -136,7 +136,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM ProcessCommandLineAggregate :
-    virtual public Aggregate< ProcessCommandLineComposite >
+    virtual public ::subsystem::Aggregate< ProcessCommandLineComposite >
     {
     public:
 
@@ -146,7 +146,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM ProcessCommandLine :
- virtual public Object < ProcessCommandLineAggregate >
+ virtual public ::subsystem::Object <ProcessCommandLineAggregate >
    {
    public:
 

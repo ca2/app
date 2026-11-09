@@ -5,44 +5,28 @@
 #include "subsystem/platform/Particle.h"
 
 
-   Particle::Particle(enum_particle eparticle):
-           m_eparticle(eparticle)
-   {
-
-   }
-
-   Particle::~Particle()
-   {}
+namespace subsystem
+{
 
 
-   ::Particle * Particle::_get_implementation()
-   {
+   Particle::Particle(enum_particle eparticle) : m_eparticle(eparticle) {}
 
-      return this;
-
-   }
+   Particle::~Particle() {}
 
 
-   Particle *Particle::_get_callback()
-   {
-
-      return this;
-
-   }
+   ::subsystem::Particle *Particle::_get_implementation() { return this; }
 
 
-
-   ::Particle * Particle::_get_implementation1()
-   {
-
-      return nullptr;
-
-   }
+   Particle *Particle::_get_callback() { return this; }
 
 
-   ::Particle *Particle::_get_callback1()
-   {
+   ::subsystem::Particle *Particle::_get_implementation1() { return nullptr; }
 
-      return nullptr;
 
-   }
+   ::subsystem::Particle *Particle::_get_callback1() { return nullptr; }
+
+
+} // namespace subsystem
+ 
+
+

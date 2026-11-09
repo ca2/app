@@ -48,7 +48,7 @@ namespace innate_subsystem
    // that view data as report.
    //
 
-   class ListViewInterface : virtual public ::Particle
+   class ListViewInterface : virtual public ::subsystem::Particle
    {
    public:
 
@@ -221,7 +221,7 @@ namespace innate_subsystem
    };
 
 
-      class CLASS_DECL_INNATE_SUBSYSTEM ListViewCallback : virtual public Callback<ListViewInterface>
+      class CLASS_DECL_INNATE_SUBSYSTEM ListViewCallback : virtual public ::subsystem::Callback<ListViewInterface>
    {
    public:
 
@@ -235,7 +235,7 @@ namespace innate_subsystem
    //
 
    class CLASS_DECL_INNATE_SUBSYSTEM ListViewComposite :
-   virtual public Composite<ListViewInterface>
+   virtual public ::subsystem::Composite <ListViewInterface>
    {
    public:
 
@@ -410,14 +410,14 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM ListViewAggregate :
-      virtual public Aggregate< ListViewComposite, Control >
+      virtual public ::subsystem::Aggregate< ListViewComposite, Control >
    {
 
    };
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM ListView :
-virtual public Object<ListViewAggregate>
+virtual public ::subsystem::Object<ListViewAggregate>
    {
    public:
 

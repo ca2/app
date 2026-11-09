@@ -97,12 +97,12 @@ namespace app_app
    }
 
 
-   string application::draw2d_get_default_implementation_name()
+   string application::draw2d_get_implementation_name()
    {
 
       //return system()->implementation_name("draw2d", "opengl");
       //return system()->implementation_name("draw2d", "gdiplus");
-      return ::aura::application::draw2d_get_default_implementation_name();
+      return ::aura::application::draw2d_get_implementation_name();
 
    }
 

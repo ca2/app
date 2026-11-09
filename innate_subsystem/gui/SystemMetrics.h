@@ -8,7 +8,7 @@ namespace innate_subsystem
 {
 
     class SystemMetricsInterface :
-        virtual public ::Particle
+        virtual public ::subsystem::Particle
     {
     public:
         //virtual ~SystemMetricsInterface() = 0;
@@ -22,7 +22,7 @@ namespace innate_subsystem
 
 
     class CLASS_DECL_INNATE_SUBSYSTEM SystemMetricsComposite :
-        virtual public Composite <SystemMetricsInterface>
+        virtual public ::subsystem::Composite <SystemMetricsInterface>
     {
     public:
 
@@ -47,7 +47,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM SystemMetricsAggregate:
-       virtual public Aggregate <SystemMetricsComposite>
+       virtual public ::subsystem::Aggregate <SystemMetricsComposite>
    {
    public:
 
@@ -57,7 +57,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM  SystemMetrics:
-virtual public Object<SystemMetricsAggregate>
+virtual public ::subsystem::Object<SystemMetricsAggregate>
    {
    public:
 

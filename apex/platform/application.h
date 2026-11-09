@@ -14,6 +14,9 @@
 #include "apex/progress/real.h"
 
 
+class api;
+
+
 namespace apex
 {
 
@@ -27,6 +30,9 @@ namespace apex
    {
    public:
 
+
+      // The active ca2 login profile exposed to the shared Options footer.
+      ::pointer<::api> m_papiCa2Authentication;
 
       ::string m_strPreferredExperience;
       ::i32_map<string > m_mapResourceName;

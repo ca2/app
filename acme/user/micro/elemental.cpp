@@ -2122,7 +2122,7 @@ namespace micro
    }
 
 
-   bool elemental::on_window_create(void * pCREATESTRUCT)
+   bool elemental::on_window_create(::user::window_create_t * pwindowcreate)
    {
 
       return true;

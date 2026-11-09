@@ -13,7 +13,7 @@ namespace innate_subsystem
 
 
    class CursorInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -47,7 +47,7 @@ namespace innate_subsystem
     
     
    class CLASS_DECL_INNATE_SUBSYSTEM CursorComposite :
-      virtual public Composite<::innate_subsystem::CursorInterface>
+      virtual public ::subsystem::Composite <::innate_subsystem::CursorInterface>
    {
    public:
 
@@ -107,7 +107,7 @@ namespace innate_subsystem
 
 
     class CLASS_DECL_SUBSYSTEM CursorAggregate :
-    virtual public Aggregate< CursorComposite >
+    virtual public ::subsystem::Aggregate< CursorComposite >
     {
     public:
 
@@ -117,7 +117,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_SUBSYSTEM Cursor :
-   virtual public Object< CursorAggregate >
+   virtual public ::subsystem::Object< CursorAggregate >
    {
    public:
 

@@ -2,7 +2,6 @@
 #include "task.h"
 #include "startup_delay_debug.h"
 #include "shutdown_delay_debug.h"
-#include "../user/interface/message_box.h"
 #include "acme/_operating_system.h"
 #include "acme/exception/_text_stream.h"
 #include "acme/exception/exit.h"
@@ -21,6 +20,7 @@
 #include "acme/platform/node.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/platform/system.h"
+#include "acme/user/interface/message_box.h"
 #include "acme/user/user/interaction.h"
 #include "acme/windowing/window.h"
 #include "manual_reset_happening.h"
@@ -1342,7 +1342,7 @@ void task::main()
       
       pmessagebox->display(e_display_normal, {});
       
-      pmessagebox->wait_dialog_response();
+      pmessagebox->wait_for_dialog_response();
 
    }
    catch (...)
@@ -1503,7 +1503,7 @@ void task::run_main_loop()
       
       pmessagebox->display(e_display_normal, {});
       
-      pmessagebox->wait_dialog_response();
+      pmessagebox->wait_for_dialog_response();
       
    }
 

@@ -834,8 +834,8 @@ namespace user
 
 
 //      virtual bool add_control(arguments arguments);
-      virtual void create_window() override;
-       virtual void _create_window() override;
+      void create_window(::enum_parallelization eparallelization) override;
+      void _create_window() override;
       void create_window_object() override;
       void on_create_window_object() override;
 

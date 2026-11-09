@@ -1678,7 +1678,20 @@ namespace image
       if (::is_null(psz) || size <= 0)
       {
 
-         throw ::image::load_exception(error_failed, "image load: file read returned no bytes: " + path);
+         //throw ::image::load_exception(error_failed, "image load: file read returned no bytes: " + path);
+
+         ::string strError;
+
+         strError = "image load: file read returned no bytes: " + path;
+
+         warning(strError);
+
+         ploadimage->set_nok();
+
+         ploadimage->m_estatus = ::error_failed;
+
+         return;
+
 
       }
 

@@ -208,7 +208,7 @@ void subparticle::destroy()
 
 #endif
 
-   auto c = ++m_countReference;
+   auto c = _increment_reference_count();
 
 #if REFERENCING_DEBUGGING
 
@@ -230,7 +230,7 @@ void subparticle::destroy()
 
 #endif
 
-   auto c = --m_countReference;
+   auto c = _decrement_reference_count();
 
 #if REFERENCING_DEBUGGING
 

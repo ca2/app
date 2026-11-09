@@ -37,7 +37,7 @@ namespace innate_subsystem
 
     const ::i32 SCROLL_STEP = 5;
    class ScrollBarInterface :
-   virtual public ::Particle
+   virtual public ::subsystem::Particle
    {
    public:
       
@@ -83,7 +83,7 @@ namespace innate_subsystem
    //using ScrollBarInterface = particle_interface<ScrollBarInterface, WindowInterface>;
    
    class CLASS_DECL_INNATE_SUBSYSTEM ScrollBarComposite :
-      virtual public Composite<ScrollBarInterface>
+      virtual public ::subsystem::Composite <ScrollBarInterface>
    {
    public:
 
@@ -130,7 +130,7 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM ScrollBarAggregate :
-   virtual public Aggregate< ScrollBarComposite, WindowAggregate >
+   virtual public ::subsystem::Aggregate< ScrollBarComposite, WindowAggregate >
 
    {
    public:
@@ -141,7 +141,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM ScrollBar :
-virtual public Object<ScrollBarAggregate>
+virtual public ::subsystem::Object<ScrollBarAggregate>
    {
    public:
 

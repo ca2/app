@@ -673,6 +673,8 @@ namespace file
       const_ansi_range _get_count_parts_from_beginning(::collection::count iPathPartCountToConsume) const;
 
       const_ansi_range get_count_parts_from_beginning(::collection::count iPathPartCountToConsume) const;
+
+
       
    };
 

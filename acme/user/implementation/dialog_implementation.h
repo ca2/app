@@ -94,7 +94,7 @@ public:
    //virtual void display_dialog(::dialog * pdialog);
    //virtual void display_dialog_and_wait_dialog_response(::dialog * pdialog);
    //virtual void display_dialog(::dialog * pdialog);
-   virtual void wait_dialog_response(const class ::time & timeTimeout = ::time::infinity()) override;
+   ::payload wait_for_dialog_response(const class ::time & timeTimeout = ::time::infinity()) override;
    bool is_waiting_for_dialog_response() override;
    
    virtual void set_dialog_response(const ::payload & payloadResult) override;

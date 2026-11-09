@@ -2798,6 +2798,10 @@ namespace user
          if (bVisible != m_bAutoHideLastVisible)
          {
             m_bAutoHideLastVisible = bVisible;
+            // The strip changes the client area without resizing the tab.
+            // set_need_layout alone only schedules traversal; force the layout
+            // callbacks for this tab and its placeholders/child views as well.
+            set_need_perform_layout();
             set_need_layout();
             set_need_redraw();
             post_redraw();

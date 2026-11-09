@@ -6459,7 +6459,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    ::gpu::enum_topology graphics::image_draw_topology() const
    {
 
-      return ::gpu::e_topology_triangle_strip;
+      return ::gpu::e_topology_triangle_list;
 
    }
 
@@ -6467,7 +6467,9 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    ::i32 graphics::image_draw_vertex_count() const
    {
 
-      return 4;
+      // _001Image.vert indexes three positions/UVs with gl_VertexID.
+      // A fourth vertex reads past both arrays and emits a spurious triangle.
+      return 3;
 
    }
 

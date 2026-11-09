@@ -114,6 +114,7 @@ void clock_getrealtime(struct timespec * pts)
 
 ::i32 g_iHappeningSerialId = 1;
 
+
 #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__) || defined(__SUNOS__) || defined(__HAIKU__)
 
 
@@ -185,6 +186,7 @@ happening::happening(const ::scoped_string & scopedstrName, bool bInitiallyOwn, 
       throw ::exception(error_resource);
 
    }
+
 
 #elif defined(UNIVERSAL_WINDOWS)
 
@@ -365,6 +367,14 @@ happening::happening(const ::scoped_string & scopedstrName, bool bInitiallyOwn, 
 
 happening::~happening()
 {
+
+#if defined(WINDOWS)
+   if (m_handle)
+   {
+      ::CloseHandle(m_handle);
+      m_handle = nullptr;
+   }
+#endif
 
 // #if defined(LINUX)
 //

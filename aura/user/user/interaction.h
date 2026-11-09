@@ -1449,6 +1449,10 @@ namespace user
       virtual void _extend_on_parent(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual void _extend_on_parent_hosting_area(::draw2d::graphics_pointer & pdraw2dgraphics);
 
+      virtual bool should_extend_on_parent() const;
+      virtual bool should_extend_on_parent_if_only_client() const;
+      virtual bool should_extend_on_parent_hosting_area() const;
+
 
       //virtual void top_sketch_to_lading();
       virtual void top_down_prefix();

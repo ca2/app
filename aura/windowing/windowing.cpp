@@ -88,6 +88,15 @@ namespace windowing
    }
 
 
+   bool windowing::has_notify_icon_interface()
+   {
+
+      // Preserve the existing behavior until a backend supplies a runtime check.
+      return true;
+
+   }
+
+
    bool windowing::has_mouse_capture_capability()
    {
 

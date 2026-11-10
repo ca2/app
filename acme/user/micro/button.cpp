@@ -1,6 +1,7 @@
 // Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSorensen
 #include "platform.h"
 #include "button.h"
+#include "main_window.h"
 #include "popup_button.h"
 #include "acme/nano/graphics/context.h"
 #include "acme/user/micro/theme.h"
@@ -66,7 +67,10 @@ namespace micro
       
       rectangle -= rectangle.top_left();
       
-      pgraphicscontext->set_brush(micro_theme()->m_pbrushWindow);
+      auto pmain = micro_main_window();
+      bool bPressed = m_bHover && pmain && pmain->m_atomLeftButtonDown == id();
+      pgraphicscontext->set_brush(bPressed ? micro_theme()->m_pbrushButtonPressed
+         : m_bHover ? micro_theme()->m_pbrushButtonHover : micro_theme()->m_pbrushWindow);
       
       pgraphicscontext->set_pen(ppenBorder);
 
@@ -79,7 +83,8 @@ namespace micro
       rectangleText.deflate(4);
 
       
-      pgraphicscontext->set_brush(micro_theme()->m_pbrushText);
+      pgraphicscontext->set_brush(bPressed ? micro_theme()->m_pbrushButtonPressedText
+         : m_bHover ? micro_theme()->m_pbrushButtonHoverText : micro_theme()->m_pbrushText);
       
       pgraphicscontext->set_font(micro_theme()->m_pwritetextfont);
       

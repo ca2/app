@@ -145,16 +145,17 @@ namespace micro
 
       ::user_interface::dialog_implementation::on_dialog_finished();
 
-      destroy_window();
-
-      //   on_dialog_finished();
-
-      if(system()->acme_windowing()->get_application_host_window())
+      // GTK still uses the event controller/widget after a click callback.
+      // Keep the dialog alive and destroy its native window on the next GUI turn.
+      ::pointer<dialog> hold = this;
+      main_post([hold]()
       {
+         hold->destroy_window();
+         hold->information() << "Micro dialog native window destroyed";
 
-         system()->acme_windowing()->get_application_host_window()->redraw();
-
-      }
+         auto pwindowHost = hold->system()->acme_windowing()->get_application_host_window();
+         if (pwindowHost) pwindowHost->redraw();
+      });
 
    }
 

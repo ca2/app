@@ -9,6 +9,7 @@
 #include "context_win32.h"
 #include "device.h"
 #include "device_win32.h"
+#include "model_buffer.h"
 #include "windowing_win32/window.h"
 
 
@@ -426,6 +427,9 @@ namespace gpu_opengl
       if (m_hglrc)
       {
 
+         // Destroying the native context frees its objects. Drop queued names
+         // so a subsequently reused HGLRC cannot receive stale deletions.
+         discard_pending_context_handles(m_hglrc);
          ::wglDeleteContext(m_hglrc);
 
          m_hglrc = nullptr;
@@ -528,6 +532,8 @@ namespace gpu_opengl
             throw ::exception(error_failed);
          }
       }
+
+      delete_pending_context_handles(m_hglrc);
 
       m_taskindex = current_task_index();
       m_itask = current_itask();

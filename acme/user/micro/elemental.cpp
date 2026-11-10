@@ -26,6 +26,7 @@
 //
 #include "platform.h"
 #include "button.h"
+#include "acme/platform/scoped_restore.h"
 #include "elemental.h"
 #include "main_window.h"
 #include "user.h"
@@ -1066,6 +1067,14 @@ namespace micro
          }
 
       }
+      else if (acme_windowing_window()->m_pacmeuserinteractionHover != this)
+      {
+         auto pprevious = acme_windowing_window()->m_pacmeuserinteractionHover;
+         if (pprevious) pprevious->on_mouse_leave();
+         acme_windowing_window()->m_pacmeuserinteractionHover = this;
+         on_mouse_enter();
+      }
+
 
       //return false;
 
@@ -1086,6 +1095,7 @@ namespace micro
          {
 
             pmainwindow->m_atomLeftButtonDown = pchild->id();
+            pmainwindow->redraw();
 
          }
 
@@ -1146,6 +1156,7 @@ namespace micro
          {
 
             pmainwindow->m_atomLeftButtonDown = pchild->id();
+            pmainwindow->redraw();
 
          }
 
@@ -1218,6 +1229,8 @@ namespace micro
                && pmainwindow->m_atomLeftButtonUp != e_dialog_result_none)
             {
 
+               pmainwindow->m_atomLeftButtonDown = e_dialog_result_none;
+               pmainwindow->redraw();
                pmainwindow->on_click(pmainwindow->m_atomLeftButtonUp, pmouse);
 
                if (pmouse->m_bRet)
@@ -1271,6 +1284,16 @@ namespace micro
 
    void elemental::back_on_left_button_up(::user::mouse * pmouse)
    {
+      at_end_of_scope
+      {
+         auto pmain = micro_main_window();
+         if (pmain)
+         {
+            pmain->m_atomLeftButtonDown = e_dialog_result_none;
+            pmain->redraw();
+         }
+      };
+
 
       release_mouse_capture();
 
@@ -1297,6 +1320,8 @@ namespace micro
                && pmainwindow->m_atomLeftButtonUp != e_dialog_result_none)
             {
 
+               pmainwindow->m_atomLeftButtonDown = e_dialog_result_none;
+               pmainwindow->redraw();
                pmainwindow->on_click(pmainwindow->m_atomLeftButtonUp, pmouse);
 
             }

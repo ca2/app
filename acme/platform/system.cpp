@@ -878,8 +878,6 @@ namespace platform
       //m_pdirectorysystem = nullptr;
       //m_ppathsystem = nullptr;
 
-      defer_construct_newø(m_pmathematics);
-
       defer_construct_newø(m_pprototype);
 
       RUN_SELF_TEST(main);
@@ -1097,6 +1095,20 @@ namespace platform
 
    class ::mathematics::mathematics* system::mathematics()
    {
+
+      if (!m_pmathematics)
+      {
+
+         _synchronous_lock synchronouslock(this->synchronization());
+
+         if (!m_pmathematics)
+         {
+
+            defer_construct_newø(m_pmathematics);
+
+         }
+
+      }
 
       return m_pmathematics;
 

@@ -6,14 +6,20 @@
 #include "std_trace_output.h"
 #include <mutex>
 
-static std::recursive_mutex g_tracerFlushMutex;
+// Shutdown can still emit traces from other translation units' destructors.
+// Keep the lock alive until process exit, independent of static destruction order.
+static std::recursive_mutex &tracer_flush_mutex()
+{
+   static auto *mutex = new std::recursive_mutex;
+   return *mutex;
+}
 #if defined(WINDOWS)
 static bool g_standardTraceFileEnabled = CA2_TRACE_TO_FILE != 0;
 static wchar_t g_standardTracePath[32768] = {};
 static char g_applicationBuildTimestamp[128] = "Application build timestamp: unavailable (not registered by entry point).";
 
-// Access is serialized by g_tracerFlushMutex, including path changes and disable.
-static struct standard_trace_file
+// Access is serialized by tracer_flush_mutex(), including path changes and disable.
+struct standard_trace_file
 {
    HANDLE handle = INVALID_HANDLE_VALUE;
    wchar_t path[32768] = {};
@@ -21,40 +27,46 @@ static struct standard_trace_file
    void close()
    {
       const DWORD savedError = GetLastError();
-      if (handle != INVALID_HANDLE_VALUE)
-      {
-         CloseHandle(handle);
-         handle = INVALID_HANDLE_VALUE;
-      }
+      const HANDLE closingHandle = handle;
+      handle = INVALID_HANDLE_VALUE;
+      if (closingHandle != INVALID_HANDLE_VALUE && closingHandle != nullptr)
+         CloseHandle(closingHandle);
       path[0] = L'\0';
       SetLastError(savedError);
    }
 
-   ~standard_trace_file() { close(); }
-} g_standardTraceFile;
+};
+
+static standard_trace_file &standard_trace_file_state()
+{
+   // Late shutdown traces must not access an already-destroyed file object.
+   // Disable/path changes close it explicitly; Windows reclaims it at process exit.
+   static auto *file = new standard_trace_file;
+   return *file;
+}
 
 void ca2_write_standard_trace_file(const char *text, const wchar_t *path)
 {
    const int savedErrno = errno;
    const DWORD savedError = GetLastError();
    {
-      std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
+      std::lock_guard<std::recursive_mutex> lock(tracer_flush_mutex());
       if (g_standardTraceFileEnabled && text && path && *path
-         && wcslen(path) < sizeof(g_standardTraceFile.path) / sizeof(wchar_t))
+         && wcslen(path) < sizeof(standard_trace_file_state().path) / sizeof(wchar_t))
       {
-         if (wcscmp(path, g_standardTraceFile.path) != 0)
-            g_standardTraceFile.close();
+         if (wcscmp(path, standard_trace_file_state().path) != 0)
+            standard_trace_file_state().close();
 
-         if (g_standardTraceFile.handle == INVALID_HANDLE_VALUE)
+         if (standard_trace_file_state().handle == INVALID_HANDLE_VALUE)
          {
-            g_standardTraceFile.handle = CreateFileW(path, FILE_APPEND_DATA,
+            standard_trace_file_state().handle = CreateFileW(path, FILE_APPEND_DATA,
                FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_ALWAYS,
                FILE_ATTRIBUTE_NORMAL, nullptr);
-            if (g_standardTraceFile.handle != INVALID_HANDLE_VALUE)
-               wcscpy(g_standardTraceFile.path, path);
+            if (standard_trace_file_state().handle != INVALID_HANDLE_VALUE)
+               wcscpy(standard_trace_file_state().path, path);
          }
 
-         if (g_standardTraceFile.handle != INVALID_HANDLE_VALUE)
+         if (standard_trace_file_state().handle != INVALID_HANDLE_VALUE)
          {
             size_t left = strlen(text);
             const char *cursor = text;
@@ -63,7 +75,7 @@ void ca2_write_standard_trace_file(const char *text, const wchar_t *path)
             {
                DWORD written = 0;
                const DWORD chunk = left > 65536 ? 65536 : (DWORD)left;
-               if (!WriteFile(g_standardTraceFile.handle, cursor, chunk, &written, nullptr)
+               if (!WriteFile(standard_trace_file_state().handle, cursor, chunk, &written, nullptr)
                   || !written)
                {
                   complete = false;
@@ -74,11 +86,11 @@ void ca2_write_standard_trace_file(const char *text, const wchar_t *path)
             }
             DWORD written = 0;
             if (complete)
-               complete = WriteFile(g_standardTraceFile.handle, "\r\n", 2, &written, nullptr)
+               complete = WriteFile(standard_trace_file_state().handle, "\r\n", 2, &written, nullptr)
                   && written == 2;
             // Keep crash diagnostics durable. Only handle acquisition is cached.
-            if (!FlushFileBuffers(g_standardTraceFile.handle) || !complete)
-               g_standardTraceFile.close(); // Allow a later statement to retry opening.
+            if (!FlushFileBuffers(standard_trace_file_state().handle) || !complete)
+               standard_trace_file_state().close(); // Allow a later statement to retry opening.
          }
       }
    }
@@ -88,7 +100,7 @@ void ca2_write_standard_trace_file(const char *text, const wchar_t *path)
 
 void ca2_set_application_build_timestamp(const char *timestamp)
 {
-   std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
+   std::lock_guard<std::recursive_mutex> lock(tracer_flush_mutex());
    if (timestamp && *timestamp)
       snprintf(g_applicationBuildTimestamp, sizeof(g_applicationBuildTimestamp),
          "Application built: %s (compiler local time)", timestamp);
@@ -96,25 +108,25 @@ void ca2_set_application_build_timestamp(const char *timestamp)
 
 void ca2_enable_standard_trace_file(bool enable)
 {
-   std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
+   std::lock_guard<std::recursive_mutex> lock(tracer_flush_mutex());
    g_standardTraceFileEnabled = enable;
    if (!enable)
-      g_standardTraceFile.close();
+      standard_trace_file_state().close();
 }
 
 bool ca2_standard_trace_file_enabled()
 {
-   std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
+   std::lock_guard<std::recursive_mutex> lock(tracer_flush_mutex());
    return g_standardTraceFileEnabled;
 }
 
 bool ca2_set_standard_trace_path(const wchar_t *path)
 {
-   std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
+   std::lock_guard<std::recursive_mutex> lock(tracer_flush_mutex());
    if (!path || wcslen(path) >= sizeof(g_standardTracePath) / sizeof(wchar_t))
       return false;
    if (wcscmp(path, g_standardTracePath) != 0)
-      g_standardTraceFile.close();
+      standard_trace_file_state().close();
    wcscpy(g_standardTracePath, path);
    // Write the header under the same lock as trace flushing, before any log records.
    if (g_standardTraceFileEnabled && *path)
@@ -294,7 +306,7 @@ namespace platform
    void tracer::flush(trace_statement & tracestatement)
    {
 
-      std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
+      std::lock_guard<std::recursive_mutex> lock(tracer_flush_mutex());
 
 #if defined(WINDOWS) || CA2_STD_TRACE || CA2_TRACE_TO_FILE
       // Severity increases as the numeric trace level decreases.

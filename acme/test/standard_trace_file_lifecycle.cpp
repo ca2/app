@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <cerrno>
 #include <cstdio>
+#include <cstdlib>
 #include <filesystem>
 #include <fstream>
 #include <iterator>
@@ -47,6 +48,27 @@ struct test_logs
       DeleteFileW(moved.c_str());
    }
 };
+
+// Exercise logging after main has returned, while static objects are unwinding.
+static struct shutdown_trace_test
+{
+   ~shutdown_trace_test()
+   {
+      try
+      {
+         test_logs logs;
+         ca2_enable_standard_trace_file(true);
+         ca2_write_standard_trace_file("shutdown", logs.first.c_str());
+         ca2_enable_standard_trace_file(false);
+         require(read_file(logs.first) == "shutdown\r\n", "shutdown trace incomplete");
+      }
+      catch (const std::exception &error)
+      {
+         fprintf(stderr, "FAIL: late shutdown trace: %s\n", error.what());
+         std::abort();
+      }
+   }
+} shutdown_trace_check;
 
 int main()
 {

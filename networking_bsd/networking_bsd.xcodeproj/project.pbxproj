@@ -7,68 +7,68 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C9C12F16E0CE564B64A2C287 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 250C28D29D107769B0AFA6BD /* networking.cpp */; };
-		820B800604C6330ECD32F9CE /* ip_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8379954F392C6BA9E428F41 /* ip_enum.cpp */; };
-		826ED1C3707ACD583A93ADB7 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF43955DACD802D0FB032376 /* _.cpp */; };
-		C166200F005198BF9679F6C7 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D0DA8C871E2DDED1101F4F /* libapex.dylib */; };
-		1B2C61E03A7FB2BBF8FE1B1C /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DF95C8F626133E2BDBB1 /* networking_bsd.cpp */; };
-		F1E96AAB69E82656E2E7B320 /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DF95C8F626133E2BDBB1 /* networking_bsd.cpp */; };
-		F12DB4C0B3FBECD3D62C0DDD /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1831D98D72091E328E8B2635 /* libssl.dylib */; };
-		66245674747F2D55B3CF151C /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E094E36BA521C23BA2D767 /* libcrypto.dylib */; };
-		4A79C6143EFDAADA2532FD42 /* listen_socket_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C15AC2D1B2655A23DF9A933 /* listen_socket_impl.cpp */; };
-		2DED2AA56D0BD9F7EA79077E /* list_computers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3691D571DC1F988ED9B3FBF6 /* list_computers.cpp */; };
-		E2C122A4C1BD3C07A04CE370 /* list_network_interfaces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD40222A678CA08F53A565 /* list_network_interfaces.cpp */; };
-		625EA40B79E590022AF9AB21 /* bsd_list_computers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C6A14B3D08F970A6244EB5E /* bsd_list_computers.cpp */; };
-		3EC6D70E82B00DA520C981E2 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 250C28D29D107769B0AFA6BD /* networking.cpp */; };
-		46B8978A4BE44CDC7B0A40E4 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF43955DACD802D0FB032376 /* _.cpp */; };
-		1D39D7ADA46D4985BE4CA74A /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AD870E8C430A201485D1C47 /* socket_handler.cpp */; };
-		BB95827276AEA9818814527E /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24A9A576D7B3A118AA395F5A /* initializer.cpp */; };
-		96AF3EE3659564A0A1FF817B /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F479B798B06C3A0750315B2 /* context.cpp */; };
-		C729D2AF5137F961885675AA /* base_socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216AA9E7E8ED3C6DF58AB6B1 /* base_socket_handler.cpp */; };
-		D1EEA6321518919E7233AB97 /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9A41BB4FE2BB631D8BA52 /* socket.cpp */; };
-		97143934EEAA70FB1F2D7DA8 /* stream_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA6F29CD49A791DDB9DEE42F /* stream_socket.cpp */; };
-		2D3C2FCD1CF59297882CAD8E /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EFEFCE369AAFC8AFC607DD8 /* _factory.cpp */; };
-		11FCD538D3E46D4134B10CA7 /* base_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0920F12A1A9A9005714844E8 /* base_socket.cpp */; };
-		28F797BC8E84BB1577198131 /* tcp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDC19DFF3CDA66B1D9F53D13 /* tcp_socket.cpp */; };
-		53F19A7B71E6C55BBE64A684 /* client_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03DBC4158BC290094CEF81F9 /* client_context.cpp */; };
-		1C9DAE9EFEA6D5B407C13662 /* address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B78E48B13C1A972965B0C2D /* address.cpp */; };
-		A416838596B6E3E6F5E32726 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF43955DACD802D0FB032376 /* _.cpp */; };
-		EAA25EB224ECBD34A5BAD096 /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DF95C8F626133E2BDBB1 /* networking_bsd.cpp */; };
-		6BEDFE2D724CBD1C3FE2A977 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 250C28D29D107769B0AFA6BD /* networking.cpp */; };
-		635035677831F19E39B53736 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7818A4FC0F2C2E4215ABACB /* _.cpp */; };
-		87E0F954874971F485F790A9 /* ip_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8379954F392C6BA9E428F41 /* ip_enum.cpp */; };
-		EEA88C5E501DA1739DEE3369 /* client_context_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27D0A191EBD885E087750734 /* client_context_map.cpp */; };
-		7CA415E94FECB3FE5A841595 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AE3EFBF16023CB8203E7B97 /* libacme.dylib */; };
-		AE408C4B9DCEB06687255375 /* list_network_interfaces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD40222A678CA08F53A565 /* list_network_interfaces.cpp */; };
-		E891B5DFB1B19C3FAA0724DD /* list_computers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3691D571DC1F988ED9B3FBF6 /* list_computers.cpp */; };
-		6250A69243B87B8C306DB3E6 /* bsd_list_computers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C6A14B3D08F970A6244EB5E /* bsd_list_computers.cpp */; };
-		99165A6643AD3436447EC7F4 /* listen_socket_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C15AC2D1B2655A23DF9A933 /* listen_socket_impl.cpp */; };
-		4821123BDCA80849BA623A82 /* address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B78E48B13C1A972965B0C2D /* address.cpp */; };
-		1BF3284334C3E94162619C74 /* address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B78E48B13C1A972965B0C2D /* address.cpp */; };
-		6D56701128119ED82AAF2FF1 /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24A9A576D7B3A118AA395F5A /* initializer.cpp */; };
-		1D6CC5232D25F2AB324B1BA7 /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24A9A576D7B3A118AA395F5A /* initializer.cpp */; };
-		4F52E249738426B21CADF9CA /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F479B798B06C3A0750315B2 /* context.cpp */; };
-		D83007AD26B49D0AAB47FBC8 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F479B798B06C3A0750315B2 /* context.cpp */; };
-		DDAD8F9FA30D4DB7C900591F /* client_context_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27D0A191EBD885E087750734 /* client_context_map.cpp */; };
-		86624620815A0FFAD7BEC20D /* client_context_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27D0A191EBD885E087750734 /* client_context_map.cpp */; };
-		6A64A4DAA002BA836DFAB2C9 /* client_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03DBC4158BC290094CEF81F9 /* client_context.cpp */; };
-		A2B4AFE9B6380CD34479EDE0 /* client_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03DBC4158BC290094CEF81F9 /* client_context.cpp */; };
-		DED76644843E5D29F171A42B /* tcp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDC19DFF3CDA66B1D9F53D13 /* tcp_socket.cpp */; };
-		D81210A5263D6931548B61A3 /* tcp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDC19DFF3CDA66B1D9F53D13 /* tcp_socket.cpp */; };
-		B95029F586D2DA0CE88A6B96 /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AD870E8C430A201485D1C47 /* socket_handler.cpp */; };
-		470AE3A265F6DA1B91F4695D /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AD870E8C430A201485D1C47 /* socket_handler.cpp */; };
-		D4E487E7708E38344F6A18E7 /* base_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0920F12A1A9A9005714844E8 /* base_socket.cpp */; };
-		BF1F770715077C1B9FA2D189 /* base_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0920F12A1A9A9005714844E8 /* base_socket.cpp */; };
-		567817CBBBE93574C597CAD3 /* base_socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216AA9E7E8ED3C6DF58AB6B1 /* base_socket_handler.cpp */; };
-		B72B3387963B7861A5BDA478 /* base_socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216AA9E7E8ED3C6DF58AB6B1 /* base_socket_handler.cpp */; };
-		C74C85691A9391ED647E9675 /* stream_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA6F29CD49A791DDB9DEE42F /* stream_socket.cpp */; };
-		4368C2852A058A7E048B04BB /* stream_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA6F29CD49A791DDB9DEE42F /* stream_socket.cpp */; };
-		84A6A3E5CEFC64E5D935438F /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9A41BB4FE2BB631D8BA52 /* socket.cpp */; };
-		2F088939651E42C8B1A81508 /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9A41BB4FE2BB631D8BA52 /* socket.cpp */; };
 		00EE0A07FEC2496B3693855A /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7818A4FC0F2C2E4215ABACB /* _.cpp */; };
-		F7F33FD771F31E2C0930AF4D /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7818A4FC0F2C2E4215ABACB /* _.cpp */; };
+		11FCD538D3E46D4134B10CA7 /* base_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0920F12A1A9A9005714844E8 /* base_socket.cpp */; };
+		1B2C61E03A7FB2BBF8FE1B1C /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DF95C8F626133E2BDBB1 /* networking_bsd.cpp */; };
+		1BF3284334C3E94162619C74 /* address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B78E48B13C1A972965B0C2D /* address.cpp */; };
+		1C9DAE9EFEA6D5B407C13662 /* address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B78E48B13C1A972965B0C2D /* address.cpp */; };
+		1D39D7ADA46D4985BE4CA74A /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AD870E8C430A201485D1C47 /* socket_handler.cpp */; };
+		1D6CC5232D25F2AB324B1BA7 /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24A9A576D7B3A118AA395F5A /* initializer.cpp */; };
+		28F797BC8E84BB1577198131 /* tcp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDC19DFF3CDA66B1D9F53D13 /* tcp_socket.cpp */; };
+		2D3C2FCD1CF59297882CAD8E /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EFEFCE369AAFC8AFC607DD8 /* _factory.cpp */; };
+		2DED2AA56D0BD9F7EA79077E /* list_computers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3691D571DC1F988ED9B3FBF6 /* list_computers.cpp */; };
+		2F088939651E42C8B1A81508 /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9A41BB4FE2BB631D8BA52 /* socket.cpp */; };
+		3EC6D70E82B00DA520C981E2 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 250C28D29D107769B0AFA6BD /* networking.cpp */; };
+		4368C2852A058A7E048B04BB /* stream_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA6F29CD49A791DDB9DEE42F /* stream_socket.cpp */; };
+		46B8978A4BE44CDC7B0A40E4 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF43955DACD802D0FB032376 /* _.cpp */; };
+		470AE3A265F6DA1B91F4695D /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AD870E8C430A201485D1C47 /* socket_handler.cpp */; };
+		4821123BDCA80849BA623A82 /* address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B78E48B13C1A972965B0C2D /* address.cpp */; };
+		4A79C6143EFDAADA2532FD42 /* listen_socket_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C15AC2D1B2655A23DF9A933 /* listen_socket_impl.cpp */; };
+		4F52E249738426B21CADF9CA /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F479B798B06C3A0750315B2 /* context.cpp */; };
+		53F19A7B71E6C55BBE64A684 /* client_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03DBC4158BC290094CEF81F9 /* client_context.cpp */; };
+		567817CBBBE93574C597CAD3 /* base_socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216AA9E7E8ED3C6DF58AB6B1 /* base_socket_handler.cpp */; };
+		6250A69243B87B8C306DB3E6 /* bsd_list_computers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C6A14B3D08F970A6244EB5E /* bsd_list_computers.cpp */; };
+		625EA40B79E590022AF9AB21 /* bsd_list_computers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C6A14B3D08F970A6244EB5E /* bsd_list_computers.cpp */; };
+		635035677831F19E39B53736 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7818A4FC0F2C2E4215ABACB /* _.cpp */; };
+		66245674747F2D55B3CF151C /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E094E36BA521C23BA2D767 /* libcrypto.dylib */; };
+		6A64A4DAA002BA836DFAB2C9 /* client_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03DBC4158BC290094CEF81F9 /* client_context.cpp */; };
+		6BEDFE2D724CBD1C3FE2A977 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 250C28D29D107769B0AFA6BD /* networking.cpp */; };
+		6D56701128119ED82AAF2FF1 /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24A9A576D7B3A118AA395F5A /* initializer.cpp */; };
 		76B52383087897A8F8DD2286 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EFEFCE369AAFC8AFC607DD8 /* _factory.cpp */; };
 		789BDBFC4CD92D7279E4B9FB /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EFEFCE369AAFC8AFC607DD8 /* _factory.cpp */; };
+		7CA415E94FECB3FE5A841595 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AE3EFBF16023CB8203E7B97 /* libacme.dylib */; };
+		820B800604C6330ECD32F9CE /* ip_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8379954F392C6BA9E428F41 /* ip_enum.cpp */; };
+		826ED1C3707ACD583A93ADB7 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF43955DACD802D0FB032376 /* _.cpp */; };
+		84A6A3E5CEFC64E5D935438F /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9A41BB4FE2BB631D8BA52 /* socket.cpp */; };
+		86624620815A0FFAD7BEC20D /* client_context_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27D0A191EBD885E087750734 /* client_context_map.cpp */; };
+		87E0F954874971F485F790A9 /* ip_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8379954F392C6BA9E428F41 /* ip_enum.cpp */; };
+		96AF3EE3659564A0A1FF817B /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F479B798B06C3A0750315B2 /* context.cpp */; };
+		97143934EEAA70FB1F2D7DA8 /* stream_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA6F29CD49A791DDB9DEE42F /* stream_socket.cpp */; };
+		99165A6643AD3436447EC7F4 /* listen_socket_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C15AC2D1B2655A23DF9A933 /* listen_socket_impl.cpp */; };
+		A2B4AFE9B6380CD34479EDE0 /* client_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03DBC4158BC290094CEF81F9 /* client_context.cpp */; };
+		A416838596B6E3E6F5E32726 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF43955DACD802D0FB032376 /* _.cpp */; };
+		AE408C4B9DCEB06687255375 /* list_network_interfaces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD40222A678CA08F53A565 /* list_network_interfaces.cpp */; };
+		B72B3387963B7861A5BDA478 /* base_socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216AA9E7E8ED3C6DF58AB6B1 /* base_socket_handler.cpp */; };
+		B95029F586D2DA0CE88A6B96 /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AD870E8C430A201485D1C47 /* socket_handler.cpp */; };
+		BB95827276AEA9818814527E /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24A9A576D7B3A118AA395F5A /* initializer.cpp */; };
+		BF1F770715077C1B9FA2D189 /* base_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0920F12A1A9A9005714844E8 /* base_socket.cpp */; };
+		C166200F005198BF9679F6C7 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D0DA8C871E2DDED1101F4F /* libapex.dylib */; };
+		C729D2AF5137F961885675AA /* base_socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216AA9E7E8ED3C6DF58AB6B1 /* base_socket_handler.cpp */; };
+		C74C85691A9391ED647E9675 /* stream_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA6F29CD49A791DDB9DEE42F /* stream_socket.cpp */; };
+		C9C12F16E0CE564B64A2C287 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 250C28D29D107769B0AFA6BD /* networking.cpp */; };
+		D1EEA6321518919E7233AB97 /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9A41BB4FE2BB631D8BA52 /* socket.cpp */; };
+		D4E487E7708E38344F6A18E7 /* base_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0920F12A1A9A9005714844E8 /* base_socket.cpp */; };
+		D81210A5263D6931548B61A3 /* tcp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDC19DFF3CDA66B1D9F53D13 /* tcp_socket.cpp */; };
+		D83007AD26B49D0AAB47FBC8 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F479B798B06C3A0750315B2 /* context.cpp */; };
+		DDAD8F9FA30D4DB7C900591F /* client_context_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27D0A191EBD885E087750734 /* client_context_map.cpp */; };
+		DED76644843E5D29F171A42B /* tcp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDC19DFF3CDA66B1D9F53D13 /* tcp_socket.cpp */; };
+		E2C122A4C1BD3C07A04CE370 /* list_network_interfaces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD40222A678CA08F53A565 /* list_network_interfaces.cpp */; };
+		E891B5DFB1B19C3FAA0724DD /* list_computers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3691D571DC1F988ED9B3FBF6 /* list_computers.cpp */; };
+		EAA25EB224ECBD34A5BAD096 /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DF95C8F626133E2BDBB1 /* networking_bsd.cpp */; };
+		EEA88C5E501DA1739DEE3369 /* client_context_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27D0A191EBD885E087750734 /* client_context_map.cpp */; };
+		F12DB4C0B3FBECD3D62C0DDD /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1831D98D72091E328E8B2635 /* libssl.dylib */; };
+		F1E96AAB69E82656E2E7B320 /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DF95C8F626133E2BDBB1 /* networking_bsd.cpp */; };
+		F7F33FD771F31E2C0930AF4D /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7818A4FC0F2C2E4215ABACB /* _.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,11 +79,46 @@
 			remoteGlobalIDString = 322D0E62CE15140CD4F7930A;
 			remoteInfo = apex;
 		};
+		34F619A052772D9BC14F079D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F0C331BA55B86B851801E73 /* apex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4B0B84AA79B28A52109F92CA;
+			remoteInfo = ios_apex;
+		};
+		43DB3D50C3856F9A588227E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F0C331BA55B86B851801E73 /* apex.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F1861E4FD495D4A812A1FDDB;
+			remoteInfo = ios_apex;
+		};
+		6642A6E26732E2D1BDC09132 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F0C331BA55B86B851801E73 /* apex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93435C3FC5978B757D47E3CB;
+			remoteInfo = apex;
+		};
+		AA227B4F97C49FAE127F13DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D6F7349C5019893A4CF1253 /* nano_idn_libidn.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 39E3745D810E798369E11A71;
+			remoteInfo = ios_nano_idn_libidn;
+		};
 		D18C78F8F73D1D5BFE6AD9A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0D6F7349C5019893A4CF1253 /* nano_idn_libidn.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 7909B00F3B81CA2CA77E5001;
+			remoteInfo = nano_idn_libidn;
+		};
+		D91382C42340EB973A638F0C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D6F7349C5019893A4CF1253 /* nano_idn_libidn.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F447ACB9CDBD5A659503D454;
 			remoteInfo = nano_idn_libidn;
 		};
 		EEE39E68832FD891C98BEB7D /* PBXContainerItemProxy */ = {
@@ -100,156 +135,121 @@
 			remoteGlobalIDString = 7DF3028EAE71F89590D062D2;
 			remoteInfo = static_apex;
 		};
-		43DB3D50C3856F9A588227E3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8F0C331BA55B86B851801E73 /* apex.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F1861E4FD495D4A812A1FDDB;
-			remoteInfo = ios_apex;
-		};
-		6642A6E26732E2D1BDC09132 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8F0C331BA55B86B851801E73 /* apex.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 93435C3FC5978B757D47E3CB;
-			remoteInfo = apex;
-		};
-		34F619A052772D9BC14F079D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8F0C331BA55B86B851801E73 /* apex.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4B0B84AA79B28A52109F92CA;
-			remoteInfo = ios_apex;
-		};
-		D91382C42340EB973A638F0C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0D6F7349C5019893A4CF1253 /* nano_idn_libidn.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F447ACB9CDBD5A659503D454;
-			remoteInfo = nano_idn_libidn;
-		};
-		AA227B4F97C49FAE127F13DF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0D6F7349C5019893A4CF1253 /* nano_idn_libidn.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 39E3745D810E798369E11A71;
-			remoteInfo = ios_nano_idn_libidn;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8E6B580BF6FAFAA58FFC9B57 /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
-		6E86924E03538BB798AB8BA4 /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
-		7F9AB621F27F0ABC8692D063 /* ip_enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ip_enum.h; sourceTree = "<group>"; };
-		7A4B9314A5A5A52019E5328B /* port_forward.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = port_forward.cpp; sourceTree = "<group>"; };
-		E7D1DCCB3C067A1811A19C26 /* _impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
-		24A9A576D7B3A118AA395F5A /* initializer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = initializer.cpp; sourceTree = "<group>"; };
-		1F479B798B06C3A0750315B2 /* context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
-		94B2E8A30239DFD852FA2404 /* context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
-		27D0A191EBD885E087750734 /* client_context_map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = client_context_map.cpp; sourceTree = "<group>"; };
-		E59E58DC9C9AC87F6AAA0C15 /* client_context_map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = client_context_map.h; sourceTree = "<group>"; };
-		95987989CC466FD982124184 /* initializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = initializer.h; sourceTree = "<group>"; };
-		03DBC4158BC290094CEF81F9 /* client_context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = client_context.cpp; sourceTree = "<group>"; };
-		4D732A88C1A183CF45F173F7 /* ticket_key.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ticket_key.h; sourceTree = "<group>"; };
-		C45B3CDCEB45375F61D44BC3 /* client_context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = client_context.h; sourceTree = "<group>"; };
-		107737079A17D2899F0B1928 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		1E9FBA6778481247816EB274 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
-		7469E5A3CF981412F115A197 /* _strconv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _strconv.h; sourceTree = "<group>"; };
-		1D48204F54126E0BFCBD4660 /* transfer_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transfer_socket.h; sourceTree = "<group>"; };
-		F7FC195618DB1D90AB619693 /* tls_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tls_socket.h; sourceTree = "<group>"; };
-		CB1F5808D7606F74318521E9 /* sctp_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sctp_socket.cpp; sourceTree = "<group>"; };
-		557357CD00C92B56F5A23E76 /* tcp_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tcp_socket.h; sourceTree = "<group>"; };
-		6DC9A41BB4FE2BB631D8BA52 /* socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = socket.cpp; sourceTree = "<group>"; };
-		EDC19DFF3CDA66B1D9F53D13 /* tcp_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tcp_socket.cpp; sourceTree = "<group>"; };
-		59008673AE82967452931CA4 /* socket_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = socket_handler.h; sourceTree = "<group>"; };
-		FF09E4E9675A60483DF3AF18 /* udp_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = udp_socket.cpp; sourceTree = "<group>"; };
-		2AD870E8C430A201485D1C47 /* socket_handler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = socket_handler.cpp; sourceTree = "<group>"; };
-		33A0DC69A8D987C8B6441DCD /* stream_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stream_socket.h; sourceTree = "<group>"; };
-		9FA71034020F7C4CBC5FD4A6 /* tls_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tls_socket.cpp; sourceTree = "<group>"; };
-		EA6F29CD49A791DDB9DEE42F /* stream_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stream_socket.cpp; sourceTree = "<group>"; };
-		A1352E2E9DE4F3B03DEF2F6D /* aaa_net.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_net.h; sourceTree = "<group>"; };
-		03B23768B637712FD4CAF935 /* udp_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = udp_socket.h; sourceTree = "<group>"; };
-		696D05B960190CC4FB983B5A /* socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
-		78DB265B0BAA179C0DE276ED /* sctp_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sctp_socket.h; sourceTree = "<group>"; };
-		EC5274359FAD8C9CC465EE3F /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		FD40B4E3F04AD23675586D3C /* _sockets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _sockets.h; sourceTree = "<group>"; };
-		4AD97658B856B098206E9D1B /* link_in_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = link_in_socket.h; sourceTree = "<group>"; };
-		D46B78820EB90FB46E4DCC31 /* http_batch_buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_batch_buffer.h; sourceTree = "<group>"; };
-		912D7252AFF9B748BA9540E0 /* sockets_base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sockets_base.h; sourceTree = "<group>"; };
-		D53C607513855913ADCCE64D /* websocket_client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = websocket_client.h; sourceTree = "<group>"; };
-		EBDE640602149561F9E5623C /* sockets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sockets.h; sourceTree = "<group>"; };
-		E2F3A057D063930A7C3DF40A /* link_out_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = link_out_socket.h; sourceTree = "<group>"; };
-		D5F5F52207AE288C12E5D78C /* http_buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_buffer.h; sourceTree = "<group>"; };
-		408FC02CBA8040288D77ADBA /* post_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = post_socket.cpp; sourceTree = "<group>"; };
-		7417E1541F3E3A83D0765861 /* debug_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = debug_socket.cpp; sourceTree = "<group>"; };
-		E4C8CBCAF108B5F1DB22E6C1 /* listener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = listener.h; sourceTree = "<group>"; };
-		409D234E12BFF8FC85F3312F /* put_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = put_socket.cpp; sourceTree = "<group>"; };
-		F8D8CE8E76CD478AC2D8FD58 /* socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = socket.cpp; sourceTree = "<group>"; };
-		5E6162A9E842BDFC58EA1E67 /* tunnel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tunnel.h; sourceTree = "<group>"; };
-		373C15E8EEB2B4B6481C33B0 /* client_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = client_socket.h; sourceTree = "<group>"; };
-		57ED754F8E718C92A301D07F /* post_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = post_socket.h; sourceTree = "<group>"; };
-		17B8330596719AB81630C63D /* debug_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debug_socket.h; sourceTree = "<group>"; };
-		4913422827297B2588AAD825 /* tunnel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tunnel.cpp; sourceTree = "<group>"; };
-		BFA9D665E7E09454AECF8A4D /* http_base_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = http_base_socket.cpp; sourceTree = "<group>"; };
-		524DCCB5BFC098A8CF3A5F3D /* http_base_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_base_socket.h; sourceTree = "<group>"; };
-		05A37DA040621F906D863618 /* session.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = session.h; sourceTree = "<group>"; };
-		7BBCC2AA29546BB5C29E367F /* session.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = session.cpp; sourceTree = "<group>"; };
-		A28C74B2CD12D2A2F493B2BE /* listener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = listener.cpp; sourceTree = "<group>"; };
-		4515B04F04423D88AF3A59DF /* put_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = put_socket.h; sourceTree = "<group>"; };
-		2080B1695603C3FC107ED29F /* get_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = get_socket.h; sourceTree = "<group>"; };
-		222222FDFBE209540F57E912 /* client_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = client_socket.cpp; sourceTree = "<group>"; };
-		8EDA3CE3A9CC3821B460BCFE /* get_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = get_socket.cpp; sourceTree = "<group>"; };
-		5EEF3F43316D19FCFA72AEA1 /* socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
-		DAA8CFEB711B35202848896E /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		5680E21EBD1D324103D0E9BA /* ref_Anders_Hedstrom_sockets_library.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ref_Anders_Hedstrom_sockets_library.txt; sourceTree = "<group>"; };
-		5D83F2E0146EE018743F1AAE /* socket_id_list.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = socket_id_list.h; sourceTree = "<group>"; };
-		A3207D830F5CE133CFE91D64 /* logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = logger.h; sourceTree = "<group>"; };
-		B75FDBC2357BE9F2670C8CAF /* resolv_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = resolv_socket.cpp; sourceTree = "<group>"; };
-		2E6773C44586B7611F1BE1C1 /* resolv_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resolv_socket.h; sourceTree = "<group>"; };
-		4705589C96F8DD25FF6D57BA /* resolv_server.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resolv_server.h; sourceTree = "<group>"; };
-		83211FE9D64D37E4967F87A8 /* resolv_server.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = resolv_server.cpp; sourceTree = "<group>"; };
-		660EF5BEE45496568FB6FEED /* _1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _1.h; sourceTree = "<group>"; };
-		0920F12A1A9A9005714844E8 /* base_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = base_socket.cpp; sourceTree = "<group>"; };
-		76123057F8E9D391085204B4 /* base_socket_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base_socket_handler.h; sourceTree = "<group>"; };
-		216AA9E7E8ED3C6DF58AB6B1 /* base_socket_handler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = base_socket_handler.cpp; sourceTree = "<group>"; };
-		B67ADA4B8793DB0D7FD1518C /* base_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base_socket.h; sourceTree = "<group>"; };
-		D76857856B6226A9192ADEDD /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		4195BAFBB52C34B28FDB9191 /* _system_sockets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _system_sockets.cpp; sourceTree = "<group>"; };
-		C6A914CB6DCE7237EEF20FD2 /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
-		98181006BF73B0A5671F8D23 /* address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = address.h; sourceTree = "<group>"; };
-		EC9F85F0042F2BABBC5E01EF /* _operating_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _operating_system.h; sourceTree = "<group>"; };
-		F2EC58CF1A8D7144D6DB6D04 /* port_forward.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = port_forward.h; sourceTree = "<group>"; };
-		C8379954F392C6BA9E428F41 /* ip_enum.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ip_enum.cpp; sourceTree = "<group>"; };
-		C7818A4FC0F2C2E4215ABACB /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
-		3B78E48B13C1A972965B0C2D /* address.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = address.cpp; sourceTree = "<group>"; };
-		33657B14D25C1E279BF6A6C1 /* resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
-		9DF690D8474CD1559A774429 /* _references.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = _references.txt; sourceTree = "<group>"; };
-		3405E4CF6136A519999A9725 /* _byte_order.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _byte_order.h; sourceTree = "<group>"; };
-		2EA665C25AF6BC5B11FB75C2 /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		004237AC93A21E06543E1C52 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
-		6A58BC3B027B0E02493FB5F9 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		EDB235FDAEE85E69F1314480 /* networking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = networking.h; sourceTree = "<group>"; };
-		250C28D29D107769B0AFA6BD /* networking.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = networking.cpp; sourceTree = "<group>"; };
-		8EFEFCE369AAFC8AFC607DD8 /* _factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
-		904145E21567629443742420 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		BF43955DACD802D0FB032376 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
-		40397AEDC587A748E4BA492F /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		E8B5DF95C8F626133E2BDBB1 /* networking_bsd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = networking_bsd.cpp; sourceTree = "<group>"; };
+		03B23768B637712FD4CAF935 /* udp_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = udp_socket.h; sourceTree = "<group>"; };
+		03DBC4158BC290094CEF81F9 /* client_context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = client_context.cpp; sourceTree = "<group>"; };
+		05A37DA040621F906D863618 /* session.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = session.h; sourceTree = "<group>"; };
+		0920F12A1A9A9005714844E8 /* base_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = base_socket.cpp; sourceTree = "<group>"; };
+		0D6F7349C5019893A4CF1253 /* nano_idn_libidn.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nano_idn_libidn.xcodeproj; path = ../nano_idn_libidn/nano_idn_libidn.xcodeproj; sourceTree = SOURCE_ROOT; };
+		107737079A17D2899F0B1928 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		17B8330596719AB81630C63D /* debug_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debug_socket.h; sourceTree = "<group>"; };
 		1831D98D72091E328E8B2635 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = "../../../../operating_system/storage-macos/Debug/library/libssl.dylib"; sourceTree = "<group>"; };
-		C9E094E36BA521C23BA2D767 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "../../../../operating_system/storage-macos/Debug/library/libcrypto.dylib"; sourceTree = "<group>"; };
-		81D487F09DF8C24F05D226A1 /* libstatic_networking_bsd.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libstatic_networking_bsd.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB35FC04D8435B57CFC31434 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D48204F54126E0BFCBD4660 /* transfer_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transfer_socket.h; sourceTree = "<group>"; };
+		1E9FBA6778481247816EB274 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		1F479B798B06C3A0750315B2 /* context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
+		2080B1695603C3FC107ED29F /* get_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = get_socket.h; sourceTree = "<group>"; };
+		216AA9E7E8ED3C6DF58AB6B1 /* base_socket_handler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = base_socket_handler.cpp; sourceTree = "<group>"; };
+		222222FDFBE209540F57E912 /* client_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = client_socket.cpp; sourceTree = "<group>"; };
+		24A9A576D7B3A118AA395F5A /* initializer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = initializer.cpp; sourceTree = "<group>"; };
+		250C28D29D107769B0AFA6BD /* networking.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = networking.cpp; sourceTree = "<group>"; };
+		27D0A191EBD885E087750734 /* client_context_map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = client_context_map.cpp; sourceTree = "<group>"; };
+		2AD870E8C430A201485D1C47 /* socket_handler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = socket_handler.cpp; sourceTree = "<group>"; };
+		2E6773C44586B7611F1BE1C1 /* resolv_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resolv_socket.h; sourceTree = "<group>"; };
+		2EA665C25AF6BC5B11FB75C2 /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		33657B14D25C1E279BF6A6C1 /* resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
+		33A0DC69A8D987C8B6441DCD /* stream_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stream_socket.h; sourceTree = "<group>"; };
+		3405E4CF6136A519999A9725 /* _byte_order.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _byte_order.h; sourceTree = "<group>"; };
+		3691D571DC1F988ED9B3FBF6 /* list_computers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list_computers.cpp; sourceTree = "<group>"; };
+		373C15E8EEB2B4B6481C33B0 /* client_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = client_socket.h; sourceTree = "<group>"; };
 		3AE3EFBF16023CB8203E7B97 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		A43AAFB266F57EFF4B8CD559 /* libios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B78E48B13C1A972965B0C2D /* address.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = address.cpp; sourceTree = "<group>"; };
+		40397AEDC587A748E4BA492F /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		408FC02CBA8040288D77ADBA /* post_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = post_socket.cpp; sourceTree = "<group>"; };
+		409D234E12BFF8FC85F3312F /* put_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = put_socket.cpp; sourceTree = "<group>"; };
+		4195BAFBB52C34B28FDB9191 /* _system_sockets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _system_sockets.cpp; sourceTree = "<group>"; };
+		4515B04F04423D88AF3A59DF /* put_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = put_socket.h; sourceTree = "<group>"; };
+		4705589C96F8DD25FF6D57BA /* resolv_server.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resolv_server.h; sourceTree = "<group>"; };
+		4913422827297B2588AAD825 /* tunnel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tunnel.cpp; sourceTree = "<group>"; };
+		4922D430F20CCE5E8AA074AD /* listen_socket_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = listen_socket_impl.h; sourceTree = "<group>"; };
+		4AD97658B856B098206E9D1B /* link_in_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = link_in_socket.h; sourceTree = "<group>"; };
+		4D732A88C1A183CF45F173F7 /* ticket_key.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ticket_key.h; sourceTree = "<group>"; };
+		524DCCB5BFC098A8CF3A5F3D /* http_base_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_base_socket.h; sourceTree = "<group>"; };
+		557357CD00C92B56F5A23E76 /* tcp_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tcp_socket.h; sourceTree = "<group>"; };
+		5680E21EBD1D324103D0E9BA /* ref_Anders_Hedstrom_sockets_library.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ref_Anders_Hedstrom_sockets_library.txt; sourceTree = "<group>"; };
+		57ED754F8E718C92A301D07F /* post_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = post_socket.h; sourceTree = "<group>"; };
+		59008673AE82967452931CA4 /* socket_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = socket_handler.h; sourceTree = "<group>"; };
+		5C15AC2D1B2655A23DF9A933 /* listen_socket_impl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = listen_socket_impl.cpp; sourceTree = "<group>"; };
+		5D83F2E0146EE018743F1AAE /* socket_id_list.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = socket_id_list.h; sourceTree = "<group>"; };
+		5E6162A9E842BDFC58EA1E67 /* tunnel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tunnel.h; sourceTree = "<group>"; };
+		5EEF3F43316D19FCFA72AEA1 /* socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
+		660EF5BEE45496568FB6FEED /* _1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _1.h; sourceTree = "<group>"; };
+		696D05B960190CC4FB983B5A /* socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
+		6A58BC3B027B0E02493FB5F9 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		6DC9A41BB4FE2BB631D8BA52 /* socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = socket.cpp; sourceTree = "<group>"; };
+		6E86924E03538BB798AB8BA4 /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
+		7417E1541F3E3A83D0765861 /* debug_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = debug_socket.cpp; sourceTree = "<group>"; };
+		7469E5A3CF981412F115A197 /* _strconv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _strconv.h; sourceTree = "<group>"; };
+		76123057F8E9D391085204B4 /* base_socket_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base_socket_handler.h; sourceTree = "<group>"; };
+		78DB265B0BAA179C0DE276ED /* sctp_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sctp_socket.h; sourceTree = "<group>"; };
+		7A4B9314A5A5A52019E5328B /* port_forward.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = port_forward.cpp; sourceTree = "<group>"; };
+		7BBCC2AA29546BB5C29E367F /* session.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = session.cpp; sourceTree = "<group>"; };
+		7C6A14B3D08F970A6244EB5E /* bsd_list_computers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bsd_list_computers.cpp; sourceTree = "<group>"; };
+		7F9AB621F27F0ABC8692D063 /* ip_enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ip_enum.h; sourceTree = "<group>"; };
+		81D487F09DF8C24F05D226A1 /* libstatic_networking_bsd.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libstatic_networking_bsd.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		83211FE9D64D37E4967F87A8 /* resolv_server.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = resolv_server.cpp; sourceTree = "<group>"; };
+		8E6B580BF6FAFAA58FFC9B57 /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
+		8EDA3CE3A9CC3821B460BCFE /* get_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = get_socket.cpp; sourceTree = "<group>"; };
+		8EFEFCE369AAFC8AFC607DD8 /* _factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
+		8F0C331BA55B86B851801E73 /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = SOURCE_ROOT; };
+		904145E21567629443742420 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		912D7252AFF9B748BA9540E0 /* sockets_base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sockets_base.h; sourceTree = "<group>"; };
+		94B2E8A30239DFD852FA2404 /* context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
+		95987989CC466FD982124184 /* initializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = initializer.h; sourceTree = "<group>"; };
+		98181006BF73B0A5671F8D23 /* address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = address.h; sourceTree = "<group>"; };
 		9A41C1AE6C60995CFF947B60 /* libios_networking_bsd.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_networking_bsd.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CCD40222A678CA08F53A565 /* list_network_interfaces.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list_network_interfaces.cpp; sourceTree = "<group>"; };
-		3691D571DC1F988ED9B3FBF6 /* list_computers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list_computers.cpp; sourceTree = "<group>"; };
-		7C6A14B3D08F970A6244EB5E /* bsd_list_computers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bsd_list_computers.cpp; sourceTree = "<group>"; };
-		4922D430F20CCE5E8AA074AD /* listen_socket_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = listen_socket_impl.h; sourceTree = "<group>"; };
-		5C15AC2D1B2655A23DF9A933 /* listen_socket_impl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = listen_socket_impl.cpp; sourceTree = "<group>"; };
+		9DF690D8474CD1559A774429 /* _references.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = _references.txt; sourceTree = "<group>"; };
+		9FA71034020F7C4CBC5FD4A6 /* tls_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tls_socket.cpp; sourceTree = "<group>"; };
+		A1352E2E9DE4F3B03DEF2F6D /* aaa_net.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_net.h; sourceTree = "<group>"; };
+		A28C74B2CD12D2A2F493B2BE /* listener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = listener.cpp; sourceTree = "<group>"; };
+		A3207D830F5CE133CFE91D64 /* logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = logger.h; sourceTree = "<group>"; };
+		A43AAFB266F57EFF4B8CD559 /* libios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB35FC04D8435B57CFC31434 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		B67ADA4B8793DB0D7FD1518C /* base_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base_socket.h; sourceTree = "<group>"; };
+		B75FDBC2357BE9F2670C8CAF /* resolv_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = resolv_socket.cpp; sourceTree = "<group>"; };
+		BF43955DACD802D0FB032376 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
+		BFA9D665E7E09454AECF8A4D /* http_base_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = http_base_socket.cpp; sourceTree = "<group>"; };
+		C45B3CDCEB45375F61D44BC3 /* client_context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = client_context.h; sourceTree = "<group>"; };
+		C6A914CB6DCE7237EEF20FD2 /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		C7818A4FC0F2C2E4215ABACB /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
+		C8379954F392C6BA9E428F41 /* ip_enum.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ip_enum.cpp; sourceTree = "<group>"; };
+		C9E094E36BA521C23BA2D767 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "../../../../operating_system/storage-macos/Debug/library/libcrypto.dylib"; sourceTree = "<group>"; };
+		CB1F5808D7606F74318521E9 /* sctp_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sctp_socket.cpp; sourceTree = "<group>"; };
+		D46B78820EB90FB46E4DCC31 /* http_batch_buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_batch_buffer.h; sourceTree = "<group>"; };
+		D53C607513855913ADCCE64D /* websocket_client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = websocket_client.h; sourceTree = "<group>"; };
+		D5F5F52207AE288C12E5D78C /* http_buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_buffer.h; sourceTree = "<group>"; };
+		D76857856B6226A9192ADEDD /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		DAA8CFEB711B35202848896E /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		E2F3A057D063930A7C3DF40A /* link_out_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = link_out_socket.h; sourceTree = "<group>"; };
+		E4C8CBCAF108B5F1DB22E6C1 /* listener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = listener.h; sourceTree = "<group>"; };
+		E59E58DC9C9AC87F6AAA0C15 /* client_context_map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = client_context_map.h; sourceTree = "<group>"; };
+		E7D1DCCB3C067A1811A19C26 /* _impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
+		E8B5DF95C8F626133E2BDBB1 /* networking_bsd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = networking_bsd.cpp; sourceTree = "<group>"; };
+		EA6F29CD49A791DDB9DEE42F /* stream_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stream_socket.cpp; sourceTree = "<group>"; };
+		EBDE640602149561F9E5623C /* sockets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sockets.h; sourceTree = "<group>"; };
+		EC5274359FAD8C9CC465EE3F /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		EC9F85F0042F2BABBC5E01EF /* _operating_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _operating_system.h; sourceTree = "<group>"; };
+		EDB235FDAEE85E69F1314480 /* networking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = networking.h; sourceTree = "<group>"; };
+		EDC19DFF3CDA66B1D9F53D13 /* tcp_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tcp_socket.cpp; sourceTree = "<group>"; };
+		F2EC58CF1A8D7144D6DB6D04 /* port_forward.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = port_forward.h; sourceTree = "<group>"; };
+		F7FC195618DB1D90AB619693 /* tls_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tls_socket.h; sourceTree = "<group>"; };
+		F8D8CE8E76CD478AC2D8FD58 /* socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = socket.cpp; sourceTree = "<group>"; };
 		F97A45ABBE8FD35A639A24EC /* libnetworking_bsd.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnetworking_bsd.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F0C331BA55B86B851801E73 /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = SOURCE_ROOT; };
-		0D6F7349C5019893A4CF1253 /* nano_idn_libidn.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nano_idn_libidn.xcodeproj; path = ../nano_idn_libidn/nano_idn_libidn.xcodeproj; sourceTree = SOURCE_ROOT; };
+		FD40B4E3F04AD23675586D3C /* _sockets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _sockets.h; sourceTree = "<group>"; };
+		FF09E4E9675A60483DF3AF18 /* udp_socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = udp_socket.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,35 +267,141 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EA6DECC59222E6031943105B /* networking_bsd */ = {
+		0974F839E0CB68CED2DD0E9F /* base */ = {
 			isa = PBXGroup;
 			children = (
-				277C62BE51902AA12362C66B /* bsd */,
-				E6A247E69FA8B8F9B12136C0 /* sockets */,
-				92ED1F34E0CC8ADB58EB5696 /* winsock2 */,
-				8E6B580BF6FAFAA58FFC9B57 /* _____debug.xcconfig */,
-				6E86924E03538BB798AB8BA4 /* _____release.xcconfig */,
-				C7818A4FC0F2C2E4215ABACB /* _.cpp */,
-				904145E21567629443742420 /* _.h */,
-				3405E4CF6136A519999A9725 /* _byte_order.h */,
-				8EFEFCE369AAFC8AFC607DD8 /* _factory.cpp */,
-				E7D1DCCB3C067A1811A19C26 /* _impl.h */,
-				EC9F85F0042F2BABBC5E01EF /* _operating_system.h */,
-				9DF690D8474CD1559A774429 /* _references.txt */,
-				3B78E48B13C1A972965B0C2D /* address.cpp */,
-				98181006BF73B0A5671F8D23 /* address.h */,
-				C6A914CB6DCE7237EEF20FD2 /* platform.cpp */,
-				2EA665C25AF6BC5B11FB75C2 /* platform.h */,
-				C8379954F392C6BA9E428F41 /* ip_enum.cpp */,
-				7F9AB621F27F0ABC8692D063 /* ip_enum.h */,
-				250C28D29D107769B0AFA6BD /* networking.cpp */,
-				EDB235FDAEE85E69F1314480 /* networking.h */,
-				E8B5DF95C8F626133E2BDBB1 /* networking_bsd.cpp */,
-				7A4B9314A5A5A52019E5328B /* port_forward.cpp */,
-				F2EC58CF1A8D7144D6DB6D04 /* port_forward.h */,
-				33657B14D25C1E279BF6A6C1 /* resource.h */,
+				216AA9E7E8ED3C6DF58AB6B1 /* base_socket_handler.cpp */,
+				76123057F8E9D391085204B4 /* base_socket_handler.h */,
+				0920F12A1A9A9005714844E8 /* base_socket.cpp */,
+				B67ADA4B8793DB0D7FD1518C /* base_socket.h */,
 			);
-			name = networking_bsd;
+			path = base;
+			sourceTree = "<group>";
+		};
+		0B798232BF31A702E6DE4B7E /* http */ = {
+			isa = PBXGroup;
+			children = (
+				408FC02CBA8040288D77ADBA /* post_socket.cpp */,
+				7417E1541F3E3A83D0765861 /* debug_socket.cpp */,
+				E4C8CBCAF108B5F1DB22E6C1 /* listener.h */,
+				409D234E12BFF8FC85F3312F /* put_socket.cpp */,
+				F8D8CE8E76CD478AC2D8FD58 /* socket.cpp */,
+				5E6162A9E842BDFC58EA1E67 /* tunnel.h */,
+				373C15E8EEB2B4B6481C33B0 /* client_socket.h */,
+				57ED754F8E718C92A301D07F /* post_socket.h */,
+				17B8330596719AB81630C63D /* debug_socket.h */,
+				4913422827297B2588AAD825 /* tunnel.cpp */,
+				BFA9D665E7E09454AECF8A4D /* http_base_socket.cpp */,
+				524DCCB5BFC098A8CF3A5F3D /* http_base_socket.h */,
+				05A37DA040621F906D863618 /* session.h */,
+				7BBCC2AA29546BB5C29E367F /* session.cpp */,
+				A28C74B2CD12D2A2F493B2BE /* listener.cpp */,
+				4515B04F04423D88AF3A59DF /* put_socket.h */,
+				2080B1695603C3FC107ED29F /* get_socket.h */,
+				222222FDFBE209540F57E912 /* client_socket.cpp */,
+				8EDA3CE3A9CC3821B460BCFE /* get_socket.cpp */,
+				5EEF3F43316D19FCFA72AEA1 /* socket.h */,
+				DAA8CFEB711B35202848896E /* _.h */,
+			);
+			path = http;
+			sourceTree = "<group>";
+		};
+		101423000BA2276B0DBCF6CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F97A45ABBE8FD35A639A24EC /* libnetworking_bsd.dylib */,
+				9A41C1AE6C60995CFF947B60 /* libios_networking_bsd.a */,
+				81D487F09DF8C24F05D226A1 /* libstatic_networking_bsd.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		277C62BE51902AA12362C66B /* bsd */ = {
+			isa = PBXGroup;
+			children = (
+				7C6A14B3D08F970A6244EB5E /* bsd_list_computers.cpp */,
+				3691D571DC1F988ED9B3FBF6 /* list_computers.cpp */,
+				9CCD40222A678CA08F53A565 /* list_network_interfaces.cpp */,
+				BF43955DACD802D0FB032376 /* _.cpp */,
+				40397AEDC587A748E4BA492F /* _.h */,
+			);
+			path = bsd;
+			sourceTree = "<group>";
+		};
+		54A64A9FB880BB0E76BBCDC9 /* dns */ = {
+			isa = PBXGroup;
+			children = (
+				B75FDBC2357BE9F2670C8CAF /* resolv_socket.cpp */,
+				2E6773C44586B7611F1BE1C1 /* resolv_socket.h */,
+				4705589C96F8DD25FF6D57BA /* resolv_server.h */,
+				83211FE9D64D37E4967F87A8 /* resolv_server.cpp */,
+			);
+			path = dns;
+			sourceTree = "<group>";
+		};
+		69F4FC9A531316B43EF49E48 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07D0DA8C871E2DDED1101F4F /* libapex.dylib */,
+				40BA86813F680769DC0DA514 /* libios_apex.a */,
+				FDCBAD3DED1150DD5E73527C /* libstatic_apex.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		906036C9633282BCAF40843E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1831D98D72091E328E8B2635 /* libssl.dylib */,
+				C9E094E36BA521C23BA2D767 /* libcrypto.dylib */,
+				A43AAFB266F57EFF4B8CD559 /* libios_acme.a */,
+				3AE3EFBF16023CB8203E7B97 /* libacme.dylib */,
+				AB35FC04D8435B57CFC31434 /* libacme.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		92ED1F34E0CC8ADB58EB5696 /* winsock2 */ = {
+			isa = PBXGroup;
+			children = (
+				004237AC93A21E06543E1C52 /* _.cpp */,
+				6A58BC3B027B0E02493FB5F9 /* _.h */,
+			);
+			path = winsock2;
+			sourceTree = "<group>";
+		};
+		BB8FB348156D42281A3A7099 /* basic */ = {
+			isa = PBXGroup;
+			children = (
+				EC5274359FAD8C9CC465EE3F /* _.h */,
+				A1352E2E9DE4F3B03DEF2F6D /* aaa_net.h */,
+				5C15AC2D1B2655A23DF9A933 /* listen_socket_impl.cpp */,
+				4922D430F20CCE5E8AA074AD /* listen_socket_impl.h */,
+				CB1F5808D7606F74318521E9 /* sctp_socket.cpp */,
+				78DB265B0BAA179C0DE276ED /* sctp_socket.h */,
+				2AD870E8C430A201485D1C47 /* socket_handler.cpp */,
+				59008673AE82967452931CA4 /* socket_handler.h */,
+				6DC9A41BB4FE2BB631D8BA52 /* socket.cpp */,
+				696D05B960190CC4FB983B5A /* socket.h */,
+				EA6F29CD49A791DDB9DEE42F /* stream_socket.cpp */,
+				33A0DC69A8D987C8B6441DCD /* stream_socket.h */,
+				EDC19DFF3CDA66B1D9F53D13 /* tcp_socket.cpp */,
+				557357CD00C92B56F5A23E76 /* tcp_socket.h */,
+				9FA71034020F7C4CBC5FD4A6 /* tls_socket.cpp */,
+				F7FC195618DB1D90AB619693 /* tls_socket.h */,
+				FF09E4E9675A60483DF3AF18 /* udp_socket.cpp */,
+				03B23768B637712FD4CAF935 /* udp_socket.h */,
+			);
+			path = basic;
+			sourceTree = "<group>";
+		};
+		CD119A48BC8311934A60BB36 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8F273D657E29C140F97DB9E1 /* libnano_idn_libidn.dylib */,
+				6586056BD1A982CB3FAE47A0 /* libios_nano_idn_libidn.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E6A247E69FA8B8F9B12136C0 /* sockets */ = {
@@ -327,6 +433,48 @@
 			path = sockets;
 			sourceTree = "<group>";
 		};
+		EA6DECC59222E6031943105B /* networking_bsd */ = {
+			isa = PBXGroup;
+			children = (
+				277C62BE51902AA12362C66B /* bsd */,
+				E6A247E69FA8B8F9B12136C0 /* sockets */,
+				92ED1F34E0CC8ADB58EB5696 /* winsock2 */,
+				8E6B580BF6FAFAA58FFC9B57 /* _____debug.xcconfig */,
+				6E86924E03538BB798AB8BA4 /* _____release.xcconfig */,
+				C7818A4FC0F2C2E4215ABACB /* _.cpp */,
+				904145E21567629443742420 /* _.h */,
+				3405E4CF6136A519999A9725 /* _byte_order.h */,
+				8EFEFCE369AAFC8AFC607DD8 /* _factory.cpp */,
+				E7D1DCCB3C067A1811A19C26 /* _impl.h */,
+				EC9F85F0042F2BABBC5E01EF /* _operating_system.h */,
+				9DF690D8474CD1559A774429 /* _references.txt */,
+				3B78E48B13C1A972965B0C2D /* address.cpp */,
+				98181006BF73B0A5671F8D23 /* address.h */,
+				C6A914CB6DCE7237EEF20FD2 /* platform.cpp */,
+				2EA665C25AF6BC5B11FB75C2 /* platform.h */,
+				C8379954F392C6BA9E428F41 /* ip_enum.cpp */,
+				7F9AB621F27F0ABC8692D063 /* ip_enum.h */,
+				250C28D29D107769B0AFA6BD /* networking.cpp */,
+				EDB235FDAEE85E69F1314480 /* networking.h */,
+				E8B5DF95C8F626133E2BDBB1 /* networking_bsd.cpp */,
+				7A4B9314A5A5A52019E5328B /* port_forward.cpp */,
+				F2EC58CF1A8D7144D6DB6D04 /* port_forward.h */,
+				33657B14D25C1E279BF6A6C1 /* resource.h */,
+			);
+			name = networking_bsd;
+			sourceTree = "<group>";
+		};
+		EB451E0D03F899C7F118174F = {
+			isa = PBXGroup;
+			children = (
+				8F0C331BA55B86B851801E73 /* apex.xcodeproj */,
+				0D6F7349C5019893A4CF1253 /* nano_idn_libidn.xcodeproj */,
+				EA6DECC59222E6031943105B /* networking_bsd */,
+				101423000BA2276B0DBCF6CB /* Products */,
+				906036C9633282BCAF40843E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
 		F41A5663E098E12D0C79FA5F /* ssl */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,158 +492,10 @@
 			path = ssl;
 			sourceTree = "<group>";
 		};
-		BB8FB348156D42281A3A7099 /* basic */ = {
-			isa = PBXGroup;
-			children = (
-				EC5274359FAD8C9CC465EE3F /* _.h */,
-				A1352E2E9DE4F3B03DEF2F6D /* aaa_net.h */,
-				5C15AC2D1B2655A23DF9A933 /* listen_socket_impl.cpp */,
-				4922D430F20CCE5E8AA074AD /* listen_socket_impl.h */,
-				CB1F5808D7606F74318521E9 /* sctp_socket.cpp */,
-				78DB265B0BAA179C0DE276ED /* sctp_socket.h */,
-				2AD870E8C430A201485D1C47 /* socket_handler.cpp */,
-				59008673AE82967452931CA4 /* socket_handler.h */,
-				6DC9A41BB4FE2BB631D8BA52 /* socket.cpp */,
-				696D05B960190CC4FB983B5A /* socket.h */,
-				EA6F29CD49A791DDB9DEE42F /* stream_socket.cpp */,
-				33A0DC69A8D987C8B6441DCD /* stream_socket.h */,
-				EDC19DFF3CDA66B1D9F53D13 /* tcp_socket.cpp */,
-				557357CD00C92B56F5A23E76 /* tcp_socket.h */,
-				9FA71034020F7C4CBC5FD4A6 /* tls_socket.cpp */,
-				F7FC195618DB1D90AB619693 /* tls_socket.h */,
-				FF09E4E9675A60483DF3AF18 /* udp_socket.cpp */,
-				03B23768B637712FD4CAF935 /* udp_socket.h */,
-			);
-			path = basic;
-			sourceTree = "<group>";
-		};
-		0B798232BF31A702E6DE4B7E /* http */ = {
-			isa = PBXGroup;
-			children = (
-				408FC02CBA8040288D77ADBA /* post_socket.cpp */,
-				7417E1541F3E3A83D0765861 /* debug_socket.cpp */,
-				E4C8CBCAF108B5F1DB22E6C1 /* listener.h */,
-				409D234E12BFF8FC85F3312F /* put_socket.cpp */,
-				F8D8CE8E76CD478AC2D8FD58 /* socket.cpp */,
-				5E6162A9E842BDFC58EA1E67 /* tunnel.h */,
-				373C15E8EEB2B4B6481C33B0 /* client_socket.h */,
-				57ED754F8E718C92A301D07F /* post_socket.h */,
-				17B8330596719AB81630C63D /* debug_socket.h */,
-				4913422827297B2588AAD825 /* tunnel.cpp */,
-				BFA9D665E7E09454AECF8A4D /* http_base_socket.cpp */,
-				524DCCB5BFC098A8CF3A5F3D /* http_base_socket.h */,
-				05A37DA040621F906D863618 /* session.h */,
-				7BBCC2AA29546BB5C29E367F /* session.cpp */,
-				A28C74B2CD12D2A2F493B2BE /* listener.cpp */,
-				4515B04F04423D88AF3A59DF /* put_socket.h */,
-				2080B1695603C3FC107ED29F /* get_socket.h */,
-				222222FDFBE209540F57E912 /* client_socket.cpp */,
-				8EDA3CE3A9CC3821B460BCFE /* get_socket.cpp */,
-				5EEF3F43316D19FCFA72AEA1 /* socket.h */,
-				DAA8CFEB711B35202848896E /* _.h */,
-			);
-			path = http;
-			sourceTree = "<group>";
-		};
-		54A64A9FB880BB0E76BBCDC9 /* dns */ = {
-			isa = PBXGroup;
-			children = (
-				B75FDBC2357BE9F2670C8CAF /* resolv_socket.cpp */,
-				2E6773C44586B7611F1BE1C1 /* resolv_socket.h */,
-				4705589C96F8DD25FF6D57BA /* resolv_server.h */,
-				83211FE9D64D37E4967F87A8 /* resolv_server.cpp */,
-			);
-			path = dns;
-			sourceTree = "<group>";
-		};
-		0974F839E0CB68CED2DD0E9F /* base */ = {
-			isa = PBXGroup;
-			children = (
-				216AA9E7E8ED3C6DF58AB6B1 /* base_socket_handler.cpp */,
-				76123057F8E9D391085204B4 /* base_socket_handler.h */,
-				0920F12A1A9A9005714844E8 /* base_socket.cpp */,
-				B67ADA4B8793DB0D7FD1518C /* base_socket.h */,
-			);
-			path = base;
-			sourceTree = "<group>";
-		};
-		92ED1F34E0CC8ADB58EB5696 /* winsock2 */ = {
-			isa = PBXGroup;
-			children = (
-				004237AC93A21E06543E1C52 /* _.cpp */,
-				6A58BC3B027B0E02493FB5F9 /* _.h */,
-			);
-			path = winsock2;
-			sourceTree = "<group>";
-		};
-		277C62BE51902AA12362C66B /* bsd */ = {
-			isa = PBXGroup;
-			children = (
-				7C6A14B3D08F970A6244EB5E /* bsd_list_computers.cpp */,
-				3691D571DC1F988ED9B3FBF6 /* list_computers.cpp */,
-				9CCD40222A678CA08F53A565 /* list_network_interfaces.cpp */,
-				BF43955DACD802D0FB032376 /* _.cpp */,
-				40397AEDC587A748E4BA492F /* _.h */,
-			);
-			path = bsd;
-			sourceTree = "<group>";
-		};
-		EB451E0D03F899C7F118174F = {
-			isa = PBXGroup;
-			children = (
-				8F0C331BA55B86B851801E73 /* apex.xcodeproj */,
-				0D6F7349C5019893A4CF1253 /* nano_idn_libidn.xcodeproj */,
-				EA6DECC59222E6031943105B /* networking_bsd */,
-				101423000BA2276B0DBCF6CB /* Products */,
-				906036C9633282BCAF40843E /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		101423000BA2276B0DBCF6CB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F97A45ABBE8FD35A639A24EC /* libnetworking_bsd.dylib */,
-				9A41C1AE6C60995CFF947B60 /* libios_networking_bsd.a */,
-				81D487F09DF8C24F05D226A1 /* libstatic_networking_bsd.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		906036C9633282BCAF40843E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1831D98D72091E328E8B2635 /* libssl.dylib */,
-				C9E094E36BA521C23BA2D767 /* libcrypto.dylib */,
-				A43AAFB266F57EFF4B8CD559 /* libios_acme.a */,
-				3AE3EFBF16023CB8203E7B97 /* libacme.dylib */,
-				AB35FC04D8435B57CFC31434 /* libacme.dylib */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		69F4FC9A531316B43EF49E48 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07D0DA8C871E2DDED1101F4F /* libapex.dylib */,
-				40BA86813F680769DC0DA514 /* libios_apex.a */,
-				FDCBAD3DED1150DD5E73527C /* libstatic_apex.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		CD119A48BC8311934A60BB36 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8F273D657E29C140F97DB9E1 /* libnano_idn_libidn.dylib */,
-				6586056BD1A982CB3FAE47A0 /* libios_nano_idn_libidn.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		BFB6EBE02713C9280FF3E5E4 /* Headers */ = {
+		0E3FBB45DBDC23156C7CB145 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -509,7 +509,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0E3FBB45DBDC23156C7CB145 /* Headers */ = {
+		BFB6EBE02713C9280FF3E5E4 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -519,23 +519,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		854C35DC554431189A1AD5B4 /* static_networking_bsd */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 53203A48B2A5D4F3B14702E4 /* Build configuration list for PBXNativeTarget "static_networking_bsd" */;
-			buildPhases = (
-				BFB6EBE02713C9280FF3E5E4 /* Headers */,
-				B8D68DC687AF73CD54ABCFA5 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A4AFA7BA7DB32A5CECE556D4 /* PBXTargetDependency */,
-			);
-			name = static_networking_bsd;
-			productName = crypto_openssl;
-			productReference = 81D487F09DF8C24F05D226A1 /* libstatic_networking_bsd.a */;
-			productType = "com.apple.product-type.library.dynamic";
-		};
 		38B5C707BC31CE53D7C90EB0 /* ios_networking_bsd */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B968EE541E6BB75B11B557AE /* Build configuration list for PBXNativeTarget "ios_networking_bsd" */;
@@ -551,6 +534,23 @@
 			name = ios_networking_bsd;
 			productName = crypto_openssl;
 			productReference = 9A41C1AE6C60995CFF947B60 /* libios_networking_bsd.a */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		854C35DC554431189A1AD5B4 /* static_networking_bsd */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53203A48B2A5D4F3B14702E4 /* Build configuration list for PBXNativeTarget "static_networking_bsd" */;
+			buildPhases = (
+				BFB6EBE02713C9280FF3E5E4 /* Headers */,
+				B8D68DC687AF73CD54ABCFA5 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A4AFA7BA7DB32A5CECE556D4 /* PBXTargetDependency */,
+			);
+			name = static_networking_bsd;
+			productName = crypto_openssl;
+			productReference = 81D487F09DF8C24F05D226A1 /* libstatic_networking_bsd.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		C28F9735175451903826BC82 /* networking_bsd */ = {
@@ -619,13 +619,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		FDCBAD3DED1150DD5E73527C /* libstatic_apex.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libstatic_apex.a;
-			remoteRef = F3918BA4AB3A4FDA6BDFAE3C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		07D0DA8C871E2DDED1101F4F /* libapex.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -640,6 +633,13 @@
 			remoteRef = 34F619A052772D9BC14F079D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		6586056BD1A982CB3FAE47A0 /* libios_nano_idn_libidn.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_nano_idn_libidn.a;
+			remoteRef = AA227B4F97C49FAE127F13DF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		8F273D657E29C140F97DB9E1 /* libnano_idn_libidn.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -647,11 +647,11 @@
 			remoteRef = D91382C42340EB973A638F0C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6586056BD1A982CB3FAE47A0 /* libios_nano_idn_libidn.a */ = {
+		FDCBAD3DED1150DD5E73527C /* libstatic_apex.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_nano_idn_libidn.a;
-			remoteRef = AA227B4F97C49FAE127F13DF /* PBXContainerItemProxy */;
+			path = libstatic_apex.a;
+			remoteRef = F3918BA4AB3A4FDA6BDFAE3C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -680,30 +680,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B8D68DC687AF73CD54ABCFA5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1D39D7ADA46D4985BE4CA74A /* socket_handler.cpp in Sources */,
-				BB95827276AEA9818814527E /* initializer.cpp in Sources */,
-				96AF3EE3659564A0A1FF817B /* context.cpp in Sources */,
-				C729D2AF5137F961885675AA /* base_socket_handler.cpp in Sources */,
-				D1EEA6321518919E7233AB97 /* socket.cpp in Sources */,
-				97143934EEAA70FB1F2D7DA8 /* stream_socket.cpp in Sources */,
-				2D3C2FCD1CF59297882CAD8E /* _factory.cpp in Sources */,
-				11FCD538D3E46D4134B10CA7 /* base_socket.cpp in Sources */,
-				28F797BC8E84BB1577198131 /* tcp_socket.cpp in Sources */,
-				53F19A7B71E6C55BBE64A684 /* client_context.cpp in Sources */,
-				1C9DAE9EFEA6D5B407C13662 /* address.cpp in Sources */,
-				A416838596B6E3E6F5E32726 /* _.cpp in Sources */,
-				EAA25EB224ECBD34A5BAD096 /* networking_bsd.cpp in Sources */,
-				6BEDFE2D724CBD1C3FE2A977 /* networking.cpp in Sources */,
-				635035677831F19E39B53736 /* _.cpp in Sources */,
-				87E0F954874971F485F790A9 /* ip_enum.cpp in Sources */,
-				EEA88C5E501DA1739DEE3369 /* client_context_map.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4254BE5DA5C72482296E1829 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -728,6 +704,30 @@
 				46B8978A4BE44CDC7B0A40E4 /* _.cpp in Sources */,
 				A2B4AFE9B6380CD34479EDE0 /* client_context.cpp in Sources */,
 				3EC6D70E82B00DA520C981E2 /* networking.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8D68DC687AF73CD54ABCFA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D39D7ADA46D4985BE4CA74A /* socket_handler.cpp in Sources */,
+				BB95827276AEA9818814527E /* initializer.cpp in Sources */,
+				96AF3EE3659564A0A1FF817B /* context.cpp in Sources */,
+				C729D2AF5137F961885675AA /* base_socket_handler.cpp in Sources */,
+				D1EEA6321518919E7233AB97 /* socket.cpp in Sources */,
+				97143934EEAA70FB1F2D7DA8 /* stream_socket.cpp in Sources */,
+				2D3C2FCD1CF59297882CAD8E /* _factory.cpp in Sources */,
+				11FCD538D3E46D4134B10CA7 /* base_socket.cpp in Sources */,
+				28F797BC8E84BB1577198131 /* tcp_socket.cpp in Sources */,
+				53F19A7B71E6C55BBE64A684 /* client_context.cpp in Sources */,
+				1C9DAE9EFEA6D5B407C13662 /* address.cpp in Sources */,
+				A416838596B6E3E6F5E32726 /* _.cpp in Sources */,
+				EAA25EB224ECBD34A5BAD096 /* networking_bsd.cpp in Sources */,
+				6BEDFE2D724CBD1C3FE2A977 /* networking.cpp in Sources */,
+				635035677831F19E39B53736 /* _.cpp in Sources */,
+				87E0F954874971F485F790A9 /* ip_enum.cpp in Sources */,
+				EEA88C5E501DA1739DEE3369 /* client_context_map.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,15 +762,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5C804A88D1475439DC2F4E2F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = apex;
-			targetProxy = 09D098A90C48C65BBA3F831F /* PBXContainerItemProxy */;
-		};
 		158C66326304D81199D7B6FF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = nano_idn_libidn;
 			targetProxy = D18C78F8F73D1D5BFE6AD9A5 /* PBXContainerItemProxy */;
+		};
+		5C804A88D1475439DC2F4E2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = apex;
+			targetProxy = 09D098A90C48C65BBA3F831F /* PBXContainerItemProxy */;
 		};
 		A4AFA7BA7DB32A5CECE556D4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -785,35 +785,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		86BC163B76E3EB8BE81271C1 /* Debug */ = {
+		114EB74318C55ACE0400CFBF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEAD_CODE_STRIPPING = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_EXTENSION = a;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					CUBE,
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				MACH_O_TYPE = staticlib;
+				ENABLE_HARDENED_RUNTIME = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				MACH_O_TYPE = mh_dylib;
 				PLATFORM_MODIFIER = macos;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		44E6300FAEB0CBADE7A260B6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEAD_CODE_STRIPPING = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_EXTENSION = a;
-				GCC_PREPROCESSOR_DEFINITIONS = CUBE;
-				MACH_O_TYPE = staticlib;
-				PLATFORM_MODIFIER = macos;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -828,14 +808,17 @@
 			};
 			name = Debug;
 		};
-		C2A47E09602BAA8AC3E9AE9B /* Release */ = {
+		44E6300FAEB0CBADE7A260B6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
-				EXECUTABLE_PREFIX = lib;
+				DEAD_CODE_STRIPPING = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = a;
+				GCC_PREPROCESSOR_DEFINITIONS = CUBE;
 				MACH_O_TYPE = staticlib;
-				PLATFORM_MODIFIER = ios;
-				SDKROOT = iphoneos;
+				PLATFORM_MODIFIER = macos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -894,7 +877,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path",
+					"@loader_path",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/library",
@@ -927,6 +913,24 @@
 				);
 				USE_HEADERMAP = NO;
 				WorkspaceDir = "$(SRCROOT)/../../..";
+			};
+			name = Debug;
+		};
+		86BC163B76E3EB8BE81271C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = a;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					CUBE,
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = macos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
@@ -983,7 +987,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path",
+					"@loader_path",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/library",
@@ -1018,6 +1025,17 @@
 			};
 			name = Release;
 		};
+		C2A47E09602BAA8AC3E9AE9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
 		C9CB24C0293EDF5D088E91BB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1030,35 +1048,23 @@
 			};
 			name = Debug;
 		};
-		114EB74318C55ACE0400CFBF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_HARDENED_RUNTIME = YES;
-				EXECUTABLE_EXTENSION = dylib;
-				MACH_O_TYPE = mh_dylib;
-				PLATFORM_MODIFIER = macos;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4D296BEEBDB918EC20E5CFC7 /* Build configuration list for PBXNativeTarget "networking_bsd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9CB24C0293EDF5D088E91BB /* Debug */,
+				114EB74318C55ACE0400CFBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		53203A48B2A5D4F3B14702E4 /* Build configuration list for PBXNativeTarget "static_networking_bsd" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				86BC163B76E3EB8BE81271C1 /* Debug */,
 				44E6300FAEB0CBADE7A260B6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B968EE541E6BB75B11B557AE /* Build configuration list for PBXNativeTarget "ios_networking_bsd" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				275C81D061798838B908F661 /* Debug */,
-				C2A47E09602BAA8AC3E9AE9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1072,11 +1078,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4D296BEEBDB918EC20E5CFC7 /* Build configuration list for PBXNativeTarget "networking_bsd" */ = {
+		B968EE541E6BB75B11B557AE /* Build configuration list for PBXNativeTarget "ios_networking_bsd" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C9CB24C0293EDF5D088E91BB /* Debug */,
-				114EB74318C55ACE0400CFBF /* Release */,
+				275C81D061798838B908F661 /* Debug */,
+				C2A47E09602BAA8AC3E9AE9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

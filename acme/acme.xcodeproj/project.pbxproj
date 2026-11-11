@@ -3212,6 +3212,12 @@
 		9A7DF33130A150CC00F8AA65 /* synchronization_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DF32D30A150CC00F8AA65 /* synchronization_object.cpp */; };
 		9A7DF33230A150CC00F8AA65 /* synchronization_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DF32D30A150CC00F8AA65 /* synchronization_object.cpp */; };
 		9A7DF33330A150CC00F8AA65 /* synchronization_object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7DF32C30A150CC00F8AA65 /* synchronization_object.h */; };
+		9A7DF95E30A419C700F8AA65 /* _trace_message.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7DF95C30A419C700F8AA65 /* _trace_message.h */; };
+		9A7DF95F30A419C700F8AA65 /* _trace_message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DF95D30A419C700F8AA65 /* _trace_message.cpp */; };
+		9A7DF96030A419C700F8AA65 /* _trace_message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DF95D30A419C700F8AA65 /* _trace_message.cpp */; };
+		9A7DF96130A419C700F8AA65 /* _trace_message.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7DF95C30A419C700F8AA65 /* _trace_message.h */; };
+		9A7DF96230A419C700F8AA65 /* _trace_message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DF95D30A419C700F8AA65 /* _trace_message.cpp */; };
+		9A7DF96330A419C700F8AA65 /* _trace_message.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7DF95C30A419C700F8AA65 /* _trace_message.h */; };
 		9A88A8CD3065118F002270A2 /* domain_consumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A8CB3065118F002270A2 /* domain_consumer.h */; };
 		9A88A8CE3065118F002270A2 /* domain_consumer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A8CC3065118F002270A2 /* domain_consumer.cpp */; };
 		9A88A8CF3065118F002270A2 /* domain_consumer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A8CC3065118F002270A2 /* domain_consumer.cpp */; };
@@ -6846,6 +6852,8 @@
 		9A7DF32C30A150CC00F8AA65 /* synchronization_object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = synchronization_object.h; sourceTree = "<group>"; };
 		9A7DF32D30A150CC00F8AA65 /* synchronization_object.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = synchronization_object.cpp; sourceTree = "<group>"; };
 		9A7DF8DE45A99AFB3BCC9EB3 /* _compare_swap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _compare_swap.h; sourceTree = "<group>"; };
+		9A7DF95C30A419C700F8AA65 /* _trace_message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _trace_message.h; sourceTree = "<group>"; };
+		9A7DF95D30A419C700F8AA65 /* _trace_message.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _trace_message.cpp; sourceTree = "<group>"; };
 		9A88A8CB3065118F002270A2 /* domain_consumer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = domain_consumer.h; sourceTree = "<group>"; };
 		9A88A8CC3065118F002270A2 /* domain_consumer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = domain_consumer.cpp; sourceTree = "<group>"; };
 		9AA392933063554B00B9551A /* _exif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _exif.h; sourceTree = "<group>"; };
@@ -8753,6 +8761,8 @@
 		822FFC67A6D0B7F88F2C7C42 /* platform */ = {
 			isa = PBXGroup;
 			children = (
+				9A7DF95C30A419C700F8AA65 /* _trace_message.h */,
+				9A7DF95D30A419C700F8AA65 /* _trace_message.cpp */,
 				487545BD756567BF18115DB2 /* _.h */,
 				263BC1DA59AEA7C4ABE4A1B3 /* _.cpp */,
 				939E67D9166CA9B5A447D5C1 /* __string.h */,
@@ -11771,6 +11781,7 @@
 				7253D8A337EA058420539080 /* message.h in Headers */,
 				E2001E5ADF5243D1B8FBD2BC /* exit_status.h in Headers */,
 				7DB1E754D3C1DB6F6BF3CB87 /* library_not_loaded.h in Headers */,
+				9A7DF96130A419C700F8AA65 /* _trace_message.h in Headers */,
 				885EAB41F5DCAED61B3E1961 /* _.h in Headers */,
 				7473BCB31DEAC0D5F2F695C3 /* initializer.h in Headers */,
 				FA35D434245D99B3D72A61F5 /* _common.h in Headers */,
@@ -12641,6 +12652,7 @@
 				8DCEA54D03E10DD733BC1F76 /* list.h in Headers */,
 				7D65742E5322ACA8F337A4D4 /* time.h in Headers */,
 				68597808447DE815D87B7107 /* file_time_span.h in Headers */,
+				9A7DF96330A419C700F8AA65 /* _trace_message.h in Headers */,
 				7EC1208094E53217FE13E73B /* condition_variable.h in Headers */,
 				6AD7CFFBF158D060D23B0144 /* watch.h in Headers */,
 				230AEC4C5452D27ED39CF400 /* impact.h in Headers */,
@@ -14186,6 +14198,7 @@
 				182DB0705A8F774E2BF76EC0 /* targeted_unit.h in Headers */,
 				D224E13130906FDA82B1B012 /* translator.h in Headers */,
 				F994BCC5DA022348990DC063 /* pool.h in Headers */,
+				9A7DF95E30A419C700F8AA65 /* _trace_message.h in Headers */,
 				9AA3945D3064BEA400B9551A /* domain.h in Headers */,
 				7B729731CE63C6EC90129FDF /* counter.h in Headers */,
 				B2F85096957286A010341B1A /* file_system_options.h in Headers */,
@@ -14742,6 +14755,7 @@
 				5138A382B1435C68E87A3400 /* activation.cpp in Sources */,
 				4C2D390393516A59B8384FA9 /* c_errno.cpp in Sources */,
 				6E83A76BFC6EDB69DB695283 /* debug.cpp in Sources */,
+				9A7DF95F30A419C700F8AA65 /* _trace_message.cpp in Sources */,
 				3FE341A406AAE7E933A04CFA /* earth_time_shift.cpp in Sources */,
 				A215B30F3E302857AF77178F /* errno.cpp in Sources */,
 				8D8F33C9D21BDEE3FC439387 /* stdio_file.cpp in Sources */,
@@ -15393,6 +15407,7 @@
 				232ABC97C6A39489D293DC5E /* system_apex.cpp in Sources */,
 				0F5FC9AAB1BE36A86C44A967 /* context_aura.cpp in Sources */,
 				EE8D45A25A034032BACACB86 /* acme_message.cpp in Sources */,
+				9A7DF96030A419C700F8AA65 /* _trace_message.cpp in Sources */,
 				2412099C7987198F5F8A22FD /* string_stream.cpp in Sources */,
 				D45D5398343FE7B1C128933B /* subparticle.cpp in Sources */,
 				105A979AB2672376A3AF4FEF /* time.cpp in Sources */,
@@ -15935,6 +15950,7 @@
 				78E1BFF52940C076F4656AB3 /* output_purpose.cpp in Sources */,
 				A2786914340F9070ED868A01 /* compress.cpp in Sources */,
 				FF5DEA8F0CFF558CB91E4FC3 /* sort.cpp in Sources */,
+				9A7DF96230A419C700F8AA65 /* _trace_message.cpp in Sources */,
 				72C7FD75CB8F0F6E491287C0 /* speech.cpp in Sources */,
 				18A0529FB738FAD95F151256 /* dialog.cpp in Sources */,
 				8BFCFF03D0B772734979FA2F /* lock.cpp in Sources */,

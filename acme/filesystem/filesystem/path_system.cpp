@@ -162,7 +162,15 @@ void path_system::defer_get_icloud_container_path_name(::string & strName, ::str
 {
    
    str_iCloudContainerIdentifier = icloud_container_identifier(str_iCloudContainerIdentifier);
-   
+
+   // The application alias names a directory inside the configured container.
+   strName = path;
+   if (strName.begins_eat("icloud://application/"))
+   {
+      strName = "application/" + strName;
+      return;
+   }
+
    if(!directory_system()->is_icloud_container(path, str_iCloudContainerIdentifier))
    {
       

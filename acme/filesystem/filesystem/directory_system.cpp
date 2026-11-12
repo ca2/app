@@ -121,19 +121,7 @@ void directory_system::initialize(::particle * pparticle)
 ::file::path directory_system::appdata()
 {
 
-   critical_section_lock synchronouslock(&m_criticalsectionLazyPaths);
-
-   if (!m_bRoamingAppDataPathCalculated)
-   {
-
-      m_pathAppData = system()->has_property("app_folder")
-         ? ::file::path(system()->payload("app_folder"))
-         : roaming() / appid();
-      m_bRoamingAppDataPathCalculated = true;
-
-   }
-
-   return m_pathAppData;
+   return application_app_data_path();
 
 }
 
@@ -298,11 +286,14 @@ void directory_system::initialize(::particle * pparticle)
 
    critical_section_lock synchronouslock(&m_criticalsectionLazyPaths);
 
-   if (!m_bAppDataPathCalculated)
+   ::file::path pathOverride = system()->has_property("app_folder")
+      ? ::file::path(system()->payload("app_folder")) : ::file::path();
+
+   if (!m_bAppDataPathCalculated || m_pathAppDataOverride != pathOverride)
    {
 
-      m_pathAppData = default_app_data_path();
-
+      m_pathAppData = pathOverride.has_character() ? pathOverride : default_app_data_path();
+      m_pathAppDataOverride = pathOverride;
       m_bAppDataPathCalculated = true;
 
    }
@@ -315,30 +306,36 @@ void directory_system::initialize(::particle * pparticle)
 ::file::path directory_system::application_app_data_path()
 {
 
+   return application_app_data_path(appid());
+
+}
+
+
+::file::path directory_system::application_app_data_path(const ::scoped_string & scopedstrAppId)
+{
+
    critical_section_lock synchronouslock(&m_criticalsectionLazyPaths);
 
-   if (!m_bRoamingAppDataPathCalculated)
+   ::string strAppId(scopedstrAppId);
+   ::file::path pathOverride = system()->has_property("app_folder")
+      ? ::file::path(system()->payload("app_folder")) : ::file::path();
+
+   // The application id and override may become available after early startup.
+   if (!m_bRoamingAppDataPathCalculated
+      || m_strApplicationAppDataAppId != strAppId
+      || m_pathApplicationAppDataOverride != pathOverride)
    {
 
-      if (system()->has_property("app_folder"))
-      {
+      auto pathAppData = pathOverride.has_character() ? pathOverride : roaming() / strAppId;
 
-         m_pathAppData = system()->payload("app_folder");
-
-      }
-
-      if (m_pathAppData.is_empty())
-      {
-
-         m_pathAppData = roaming() / appid();
-
-      }
-
+      m_pathApplicationAppData = pathAppData;
+      m_strApplicationAppDataAppId = strAppId;
+      m_pathApplicationAppDataOverride = pathOverride;
       m_bRoamingAppDataPathCalculated = true;
 
    }
 
-   return m_pathAppData;
+   return m_pathApplicationAppData;
 
 }
 

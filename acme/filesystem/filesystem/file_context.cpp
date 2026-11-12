@@ -432,7 +432,7 @@ void file_context::set_length(const ::file::path & path, filesize size)
 
    auto pfilesystem = psystem->file_system();
 
-   return pfilesystem->m_pathModule;
+   return pfilesystem->module();
 
 }
 
@@ -1472,6 +1472,8 @@ void file_context::calculate_main_resource_memory()
 ::block file_context::get_main_resource_block()
 {
 
+   critical_section_lock synchronouslock(&m_criticalsectionMainResource);
+
    if (::system()->m_blockMatter.is_set())
    {
 
@@ -1482,9 +1484,9 @@ void file_context::calculate_main_resource_memory()
    if (!m_bMainResourceMemoryCalculated)
    {
 
-      m_bMainResourceMemoryCalculated = true;
-
       calculate_main_resource_memory();
+
+      m_bMainResourceMemoryCalculated = true;
 
    }
 

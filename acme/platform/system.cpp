@@ -1875,6 +1875,8 @@ namespace platform
          m_pdirectorysystem.release();
          m_pfilesystem.release();
          m_ppathsystem.release();
+         m_bDirectorySystemInitialized = false;
+         m_bFileSystemComponentsInitialized = false;
          m_bFileSystemComponentsInitializing = false;
 
          throw;

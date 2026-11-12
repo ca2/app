@@ -380,6 +380,10 @@
 		9A7DF96630A41A5400F8AA65 /* render_lines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = render_lines.h; sourceTree = "<group>"; };
 		9A7DF96730A41A5400F8AA65 /* render_lines.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = render_lines.cpp; sourceTree = "<group>"; };
 		9A90570A495B0E5CE17A414A /* frame_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = frame_window.cpp; sourceTree = "<group>"; };
+		9AFBC18B309463B7007C8773 /* fps_statistics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fps_statistics.h; sourceTree = "<group>"; };
+		9AFBC18C309463B7007C8773 /* fps_statistics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fps_statistics.cpp; sourceTree = "<group>"; };
+		9AFBC18D309463B7007C8773 /* render_lines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = render_lines.h; sourceTree = "<group>"; };
+		9AFBC18E309463B7007C8773 /* render_lines.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = render_lines.cpp; sourceTree = "<group>"; };
 		9DAD7C9E4410E04CF88D30DF /* toolbar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = toolbar.h; sourceTree = "<group>"; };
 		9EC73239D7C7C8D6570A0519 /* picture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = picture.cpp; sourceTree = "<group>"; };
 		9FFC053F1DE58095FD46B74B /* main_frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main_frame.h; sourceTree = "<group>"; };
@@ -868,6 +872,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D345A7AF4EF3851B12ED4AE /* options_impact_handler.h in Headers */,
+				9AFBC18F309463B7007C8773 /* render_lines.h in Headers */,
+				9AFBC190309463B7007C8773 /* fps_statistics.h in Headers */,
 				3822D868980EB978B5120B6F /* impact_kit.h in Headers */,
 				18AAF80F1E0DC07C1E881AD5 /* handler_impact.h in Headers */,
 				9A7DF96E30A41A5400F8AA65 /* fps_statistics.h in Headers */,

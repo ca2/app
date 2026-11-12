@@ -130,6 +130,8 @@ void file_system::overwrite_if_different(const ::file::path& pathTarget, const :
 ::file::path file_system::module()
 {
 
+   critical_section_lock synchronouslock(&m_criticalsectionModule);
+
    if (m_pathExecutable.is_empty())
    {
 
@@ -138,6 +140,7 @@ void file_system::overwrite_if_different(const ::file::path& pathTarget, const :
       auto pathModule = pnode->module_path_source();
 
       m_pathExecutable = pathModule;
+      m_pathModule = pathModule;
 
    }
 
@@ -1786,9 +1789,7 @@ void file_system::initialize(::particle* pparticle)
    //
    //}
 
-   ::file::path pathModule = this->module();
-
-   m_pathModule = pathModule;
+   // The executable path is resolved and cached by module() on first use.
 
    //return estatus;
 

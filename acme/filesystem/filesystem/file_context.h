@@ -5,6 +5,7 @@
 #include "acme/filesystem/file/plain_text_file_options.h"
 #include "file_context_interface.h"
 #include "resource_folder_pool.h"
+#include "acme/parallelization/critical_section.h"
 ////#include "acme/prototype/prototype/object.h"
 //#include "acme/prototype/collection/string_array.h"
 class CLASS_DECL_ACME file_system_time_path : virtual public ::file::path
@@ -26,7 +27,8 @@ public:
 
 
    ::pointer<memory_base>        m_pmemoryResource;
-   bool                          m_bMainResourceMemoryCalculated;
+   bool                          m_bMainResourceMemoryCalculated = false;
+   critical_section              m_criticalsectionMainResource;
    ::memory                      m_memoryMainResource;
 
 

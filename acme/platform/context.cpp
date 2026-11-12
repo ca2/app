@@ -257,116 +257,57 @@ namespace platform
    void context::initialize_context()
    {
 
-      construct_newø(m_ptexttranslator);
+      critical_section_lock lock(&m_criticalsectionFileContexts);
+
+      if (!m_ptexttranslator)
+      {
+
+         construct_newø(m_ptexttranslator);
+
+      }
+
+      ensure_file_contexts();
+
+   }
 
 
-      //auto estatus =
+   void context::ensure_file_contexts()
+   {
 
+      critical_section_lock lock(&m_criticalsectionFileContexts);
 
-      //if(!estatus)
-      //{
+      if (m_bFileContextsInitialized || m_bFileContextsInitializing)
+      {
 
-      //   return estatus;
+         return;
 
-      //}
+      }
 
-      /*estatus = */
-      constructø(m_pfilecontext);
+      m_bFileContextsInitializing = true;
 
-      //if (!estatus)
-      //{
+      try
+      {
 
-      //   return estatus;
+         // Create both before initialization so recursive access sees the pair.
+         øraw_construct(m_pfilecontext);
+         øraw_construct(m_pdirectorycontext);
+         m_pfilecontext->initialize(this);
+         m_pdirectorycontext->initialize(this);
+         m_pfilecontext->init_context();
+         m_pdirectorycontext->init_context();
+         m_bFileContextsInitialized = true;
+         m_bFileContextsInitializing = false;
 
-      //}
+      }
+      catch (...)
+      {
 
-      //estatus =
-      constructø(m_pdirectorycontext);
+         m_pdirectorycontext.release();
+         m_pfilecontext.release();
+         m_bFileContextsInitializing = false;
+         throw;
 
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //m_papexsystem = system();
-      //m_paurasystem = system();
-      //m_pbasesystem = system();
-      //m_pbredsystem = system()->m_pbredsystem;
-      //m_pcoresystem = system();
-
-      // if (is_system())
-      // {
-      //
-      //    auto psystem = system();
-      //
-      //    //m_papexsession->initialize(psystem);
-      //
-      //    ////estatus = m_papexsession->initialize_context();
-      //
-      //    //if (!estatus)
-      //    //{
-      //
-      //    //   return estatus;
-      //
-      //    //}
-      //
-      //    //estatus =
-      //    m_pfilecontext->init_system();
-      //
-      //    //if (!estatus)
-      //    //{
-      //
-      //    //   return estatus;
-      //
-      //    //}
-      //
-      //    //estatus =
-      //    m_pdirectorycontext->init_system();
-      //
-      //    //if (!estatus)
-      //    //{
-      //
-      //    //   return estatus;
-      //
-      //    //}
-      //
-      // }
-
-      //estatus =
-      m_pfilecontext->init_context();
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus =
-      m_pdirectorycontext->init_context();
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus =
-
-      /*    if (!estatus)
-          {
-
-             return estatus;
-
-          }*/
-
-      //on_update_matter_locator();
-
-      //return ::success;
-
+      }
 
    }
 
@@ -380,6 +321,8 @@ namespace platform
 
    void context::finalize_context()
    {
+
+      critical_section_lock lock(&m_criticalsectionFileContexts);
 
       try
       {
@@ -465,6 +408,8 @@ namespace platform
       m_pfilecontext.release();
 
       m_ptexttranslator.release();
+      m_bFileContextsInitialized = false;
+      m_bFileContextsInitializing = false;
 
    }
 
@@ -495,7 +440,9 @@ namespace platform
    ::directory_context* context::directory()
    {
 
-      if (!m_pdirectorycontext)
+      critical_section_lock lock(&m_criticalsectionFileContexts);
+
+      if (!m_bFileContextsInitialized && !m_bFileContextsInitializing)
       {
 
          initialize_context();
@@ -510,7 +457,9 @@ namespace platform
    ::file_context* context::file()
    {
 
-      if (!m_pfilecontext)
+      critical_section_lock lock(&m_criticalsectionFileContexts);
+
+      if (!m_bFileContextsInitialized && !m_bFileContextsInitializing)
       {
 
          initialize_context();

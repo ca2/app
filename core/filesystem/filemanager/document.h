@@ -8,6 +8,8 @@
 #include "aura/filesystem/filemanager/callback.h"
 
 
+namespace userex { class dialog; }
+
 namespace filemanager
 {
 
@@ -25,6 +27,7 @@ namespace filemanager
       ::file::path                        m_strTopic;
       string                              m_strManagerId;
       bool                                m_bInitialized;
+      ::pointer < ::userex::dialog > m_pdialogNewFolder;
 ///      ::pointer < ::user::document >         m_pdocumentTopic;
       ::i32 m_iIconSize;
 

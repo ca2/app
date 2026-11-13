@@ -2044,6 +2044,14 @@ void directory_context::create(const ::file::path& path)
 
    auto pathProcessed = application()->defer_process_path(path);
 
+   if (pathProcessed.case_insensitive_begins("google-drive://"))
+   {
+      auto & pfactory = system()->factory("folder", "google_drive");
+      auto pfolder = createø < ::folder >(pfactory);
+      pfolder->create_folder(pathProcessed.folder(), pathProcessed.name());
+      return;
+   }
+
    directory_system()->create(pathProcessed);
 
 }

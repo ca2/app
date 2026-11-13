@@ -360,6 +360,11 @@ namespace user
 
       ::i32_rectangle hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 
+      void RepositionBars(::draw2d::graphics_pointer & pgraphics, ::u32 nIDFirst = 0,
+         ::u32 nIDLast = 0xffff, ::user::interaction * pleftover = nullptr,
+         ::u32 nFlags = reposDefault, ::i32_rectangle * prectParam = nullptr,
+         const ::i32_rectangle & rectangle = {}, bool bStretch = true) override;
+
 
    };
 

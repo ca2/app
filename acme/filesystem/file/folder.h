@@ -64,6 +64,9 @@ public:
 
    virtual void add_file(const ::file::path & pathRelative, ::file::file* pfile);
 
+   // Returns the provider path, which may use an opaque ID instead of the name.
+   virtual ::file::path create_folder(const ::file::path & pathParent, const ::scoped_string & scopedstrName);
+
 
 };
 

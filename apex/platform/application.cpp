@@ -1660,6 +1660,21 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       }
 
+      if (m_bEnableFsRawFolderProtocols && !is_fs_raw_folder_protocol_installed("google-drive")
+         && !is_fs_raw_folder_protocol_installed("google_drive"))
+      {
+         try
+         {
+            auto & pfactory = system()->factory("folder", "google_drive");
+            auto pdrive = createø < ::fs::data >(pfactory);
+            pfsset->m_spafsdata.add(pdrive);
+         }
+         catch (...)
+         {
+            warning() << "Google Drive virtual folder provider is unavailable";
+         }
+      }
+
    }
 
 

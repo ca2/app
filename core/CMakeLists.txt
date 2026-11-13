@@ -929,6 +929,18 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 
+if(BUILD_TESTING)
+    enable_testing()
+    add_executable(filemanager_path_impact_test test/filemanager_path_impact.cpp)
+    target_compile_features(filemanager_path_impact_test PRIVATE cxx_std_20)
+    target_include_directories(filemanager_path_impact_test PRIVATE ${library_include_directories})
+    target_link_libraries(filemanager_path_impact_test PRIVATE core bred berg axis aura aqua apex acme)
+    if(MSVC)
+        target_compile_options(filemanager_path_impact_test PRIVATE /bigobj)
+    endif()
+    add_test(NAME filemanager_path_impact_test COMMAND filemanager_path_impact_test)
+endif()
+
 
 
 

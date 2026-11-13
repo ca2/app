@@ -309,6 +309,12 @@ namespace fs
    //}
 
 
+   ::file::path data::create_folder(const ::file::path & pathParent, const ::scoped_string & scopedstrName)
+   {
+      throw ::exception(error_not_supported, "This filesystem does not support creating folders");
+   }
+
+
 } // namespace fs
 
 

@@ -596,7 +596,7 @@ namespace fs_raw_folder_protocol_google_drive
 {
 
 
-   return "google_drive";
+   return "google-drive";
 
 
 }

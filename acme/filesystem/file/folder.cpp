@@ -204,6 +204,14 @@ void folder::add_file(const ::file::path & pathRelative, ::file::file* pfile)
 }
 
 
+::file::path folder::create_folder(const ::file::path &, const ::scoped_string &)
+{
+
+   throw ::exception(error_not_supported, "This folder provider does not support creating folders");
+
+}
+
+
 ::file::enum_type folder::type(const ::file::path & pathItem)
 {
 

@@ -393,4 +393,16 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 
+if(BUILD_TESTING)
+    enable_testing()
+    add_executable(frame_control_bar_layout_test test/frame_control_bar_layout.cpp)
+    target_compile_features(frame_control_bar_layout_test PRIVATE cxx_std_20)
+    target_include_directories(frame_control_bar_layout_test PRIVATE ${library_include_directories})
+    target_link_libraries(frame_control_bar_layout_test PRIVATE berg axis aura aqua apex acme)
+    if(MSVC)
+        target_compile_options(frame_control_bar_layout_test PRIVATE /bigobj)
+    endif()
+    add_test(NAME frame_control_bar_layout_test COMMAND frame_control_bar_layout_test)
+endif()
+
 

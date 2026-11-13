@@ -1,6 +1,9 @@
 #include "platform.h"
 #include "document.h"
 #include "impact.h"
+#include "core/user/userex/dialog.h"
+#include "berg/user/form/impact.h"
+#include "acme/user/interface/message_box.h"
 #include "tab_impact.h"
 #include "data.h"
 #include "child_frame.h"
@@ -26,6 +29,85 @@
 
 namespace filemanager
 {
+
+
+   class new_folder_dialog : public ::userex::dialog
+   {
+   public:
+      ::filemanager::document * m_pdocument = nullptr;
+      ::file::path m_pathParent;
+      bool m_bCreating = false;
+
+      void show_error(const ::scoped_string & scopedstrMessage)
+      {
+         auto pmessagebox = m_pdocument->createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box(scopedstrMessage, "New Folder");
+         pmessagebox->display(e_display_normal, {});
+      }
+
+      void handle(::topic * ptopic, ::handler_context * pcontext) override
+      {
+         ::userex::dialog::handle(ptopic, pcontext);
+         if (ptopic->id() != ::id_click || !ptopic->user_interaction() || !m_pform) return;
+         auto atom = ptopic->user_interaction()->id();
+         if (atom == "cancel" && !m_bCreating)
+         {
+            EndModalLoop("cancel");
+            ptopic->m_bRet = true;
+            return;
+         }
+         if (atom != "submit" || m_bCreating) return;
+         ptopic->m_bRet = true;
+         auto pedit = m_pform->get_child_by_id("name");
+         if (!pedit) pedit = m_pform->get_child_by_name("name");
+         if (!pedit) { show_error("The folder name field could not be loaded."); return; }
+         auto strName = pedit->get_text();
+         strName.trim();
+         if (strName.is_empty() || strName == "." || strName == ".." || strName.contains("/") || strName.contains("\\"))
+         {
+            show_error("Enter a folder name without path separators.");
+            return;
+         }
+         m_bCreating = true;
+         ptopic->user_interaction()->enable_window(false);
+         auto pcancel = m_pform->get_child_by_id("cancel");
+         if (pcancel) pcancel->enable_window(false);
+         ::pointer < new_folder_dialog > pdialog = this;
+         ::pointer < ::filemanager::document > pdocument = m_pdocument;
+         auto pathParent = m_pathParent;
+         pdocument->fork([pdialog, pdocument, pathParent, strName]()
+         {
+            ::string strError;
+            bool bCreated = false;
+            try
+            {
+               pdocument->filemanager_data()->fs_data()->create_folder(pathParent, strName);
+               bCreated = true;
+            }
+            catch (const ::exception & exception) { strError = exception.get_message(); }
+            catch (...) { strError = "Could not create the folder."; }
+            pdialog->m_pform->user_post([pdialog, pdocument, strError, bCreated]()
+            {
+               if (!pdialog->m_pform || !pdialog->m_pform->is_window()) return;
+               pdialog->m_bCreating = false;
+               if (bCreated)
+               {
+                  pdialog->EndModalLoop("ok");
+                  try { pdocument->_001Refresh(); }
+                  catch (...) { pdialog->show_error("The folder was created, but the listing could not be refreshed."); }
+               }
+               else
+               {
+                  auto psubmit = pdialog->m_pform->get_child_by_id("submit");
+                  if (psubmit) psubmit->enable_window(true);
+                  auto pcancel = pdialog->m_pform->get_child_by_id("cancel");
+                  if (pcancel) pcancel->enable_window(true);
+                  pdialog->show_error(strError);
+               }
+            });
+         });
+      }
+   };
 
 
    document::document()
@@ -1038,7 +1120,8 @@ namespace filemanager
 
       ::pointer<::message::command>pcommand(pmessage);
 
-      pcommand->enable(true);
+      auto pitem = filemanager_item();
+      pcommand->enable(pitem && pitem->user_path().has_character());
 
       pmessage->m_bRet = true;
 
@@ -1048,11 +1131,21 @@ namespace filemanager
    void document::_001OnNewFolder(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
-
-      id_update_all_impacts(id_new_folder);
-
       pmessage->m_bRet = true;
+      if (m_pdialogNewFolder && m_pdialogNewFolder->m_pframe
+         && m_pdialogNewFolder->m_pframe->is_this_visible())
+      {
+         m_pdialogNewFolder->m_pframe->ActivateFrame();
+         return;
+      }
+      auto pitem = filemanager_item();
+      if (!pitem || pitem->user_path().is_empty()) return;
+      auto pdialog = create_newø < new_folder_dialog >();
+      pdialog->m_pdocument = this;
+      pdialog->m_pathParent = pitem->user_path();
+      m_pdialogNewFolder = pdialog;
+      if (!pdialog->show("filemanager/new_folder.html"))
+         throw ::exception(error_failed, "Could not display the New Folder dialog");
 
    }
 

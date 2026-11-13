@@ -50,6 +50,8 @@ namespace fs
       virtual void destroy() override;
 
 
+      ::file::path create_folder(const ::file::path & pathParent, const ::scoped_string & scopedstrName) override;
+
    };
 
 

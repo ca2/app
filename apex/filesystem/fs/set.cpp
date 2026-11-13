@@ -96,7 +96,7 @@ namespace fs
          for(::i32 j = 0; j < listingFsPath.get_size(); j++)
          {
 
-            auto p = listing[j];
+            auto p = listingFsPath[j];
 
             m_fsdatamap[p] = m_spafsdata[i];
 
@@ -486,6 +486,14 @@ namespace fs
 
       return ::fs::data::is_zero_latency(path);
 
+   }
+
+
+   ::file::path set::create_folder(const ::file::path & pathParent, const ::scoped_string & scopedstrName)
+   {
+      auto pdata = path_data(pathParent);
+      if (!pdata || pdata == this) throw ::exception(error_not_supported, "No filesystem provider for this folder");
+      return pdata->create_folder(pathParent, scopedstrName);
    }
 
 

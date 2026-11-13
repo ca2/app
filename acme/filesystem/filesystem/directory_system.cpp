@@ -6,6 +6,7 @@
 #include "path_system.h"
 //#include "path_array.h"
 #include "listing.h"
+#include "acme/filesystem/file/folder.h"
 #include "acme/exception/interface_only.h"
 #include "acme/operating_system/process_process.h"
 #include "acme/platform/application.h"
@@ -1245,6 +1246,17 @@ bool directory_system::defer_enumerate_media_library(::file::listing_base& listi
 
 bool directory_system::defer_enumerate_protocol(::file::listing_base& listing)
 {
+
+   if (listing.m_pathUser.case_insensitive_begins("google-drive://"))
+   {
+      auto path = application()->defer_process_path(listing.m_pathUser);
+      if (path.case_insensitive_begins("google-drive://"))
+      {
+         auto & pfactory = system()->factory("folder", "google_drive");
+         auto pfolder = createø < ::folder >(pfactory);
+         return pfolder->enumerate(listing);
+      }
+   }
    
    return node()->defer_enumerate_protocol(listing);
    

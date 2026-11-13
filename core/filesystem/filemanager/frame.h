@@ -15,6 +15,7 @@ namespace filemanager
 
 
       atom m_atomTab;
+      ::pointer < ::user::toolbar > m_ptoolbarFileManager;
 
 
       frame();
@@ -22,6 +23,9 @@ namespace filemanager
 
 
       void on_create_bars() override;
+      void ensure_filemanager_toolbar();
+      void hide_control_bar(::user::control_bar * pcontrolbar) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
       void install_message_routing(::channel * pchannel) override;

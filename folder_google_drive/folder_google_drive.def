@@ -1,0 +1,3 @@
+LIBRARY "folder_google_drive"
+EXPORTS
+folder_google_drive_factory

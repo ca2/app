@@ -2969,7 +2969,7 @@ ret:
    if (strAppId == application()->m_strAppId)
    {
 
-      return directory_system()->application_app_data_path();
+      return directory_system()->application_app_data_path(strAppId);
 
    }
 

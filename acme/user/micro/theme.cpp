@@ -111,6 +111,10 @@ namespace micro
          m_pbrushWindow = nano()->graphics()->create_solid_brush(m_colorWindow);
 
          m_pbrushText = nano()->graphics()->create_solid_brush(m_colorText);
+         m_pbrushButtonHover = nano()->graphics()->create_solid_brush(argb(255, 0, 102, 204));
+         m_pbrushButtonPressed = nano()->graphics()->create_solid_brush(argb(255, 102, 178, 255));
+         m_pbrushButtonHoverText = nano()->graphics()->create_solid_brush(argb(255, 255, 255, 255));
+         m_pbrushButtonPressedText = nano()->graphics()->create_solid_brush(argb(255, 0, 32, 64));
 
          m_pbrushHyperlink = nano()->graphics()->create_solid_brush(m_colorHyperlink);
 
@@ -143,6 +147,10 @@ namespace micro
       {
 
          m_pbrushWindow.release();
+         m_pbrushButtonHover.release();
+         m_pbrushButtonPressed.release();
+         m_pbrushButtonHoverText.release();
+         m_pbrushButtonPressedText.release();
 
          m_ppenBorder.release();
 

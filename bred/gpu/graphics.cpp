@@ -678,6 +678,23 @@ namespace gpu
 
          pgpucontext->_endSingleTimeCommands(m_pgpucommandbufferGpuGraphics);
 
+         // No-layer image drawing does not enter renderer::start_layer(),
+         // which normally returns completed frame models to their pools.
+         // Recycle after the single-time submission has completed; otherwise
+         // every refreshed text bitmap retains another set of glyph models.
+         auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontext);
+         if (pgpuwindowattachment && pgpuwindowattachment->get_frame_index3() >= 0)
+         {
+            auto iFrameIndex = pgpuwindowattachment->get_frame_index3();
+            auto ppoolgroup = pgpuwindowattachment->frame_pool_group(iFrameIndex);
+            auto pparticlea = pgpucontext->get_gpu_renderer()->current_frame_particle_array();
+            if (pparticlea && pparticlea->has_elements())
+            {
+               ppoolgroup->call_ongoing(e_call_off_to_pool);
+               pparticlea->clear();
+            }
+         }
+
          m_pgpucommandbufferGpuGraphics = nullptr;
 
          m_pgraphicslease = nullptr;
@@ -836,6 +853,15 @@ namespace gpu
 
       auto rectangleWindow = pwindow->get_window_rectangle();
 
+      if (rectangleWindow.is_empty() && m_egraphics == e_graphics_layout)
+      {
+
+         // Popup menus measure their contents before assigning a window size.
+         // Layout still needs a valid GPU target for its graphics lease.
+         rectangleWindow = {rectangleWindow.origin(), ::i32_size(1, 1)};
+
+      }
+
       pgpucontextWindow->set_output_placement(rectangleWindow);
 
       auto pcontext = gpu_context();
@@ -952,6 +978,15 @@ namespace gpu
       //pcontext->on_begin_draw_attach(this);
 
       pcontext->start_layer(bFirstLayer, m_estartlayer, puserinteraction);
+
+      if (bFirstLayer && m_papplication->use_gpu_swap_chain())
+      {
+
+         // Pure draw2d windows do not load a 3D engine to attach the compositor
+         // target. Present the render target that receives this window's layers.
+         pgpuwindowattachment->set_render_target(prenderer->render_target());
+
+      }
 
 
       auto pgputexturesite = pcontext->m_pgpurenderer->m_pgpurendertarget2->current_texture(::gpu::current_layer(), true);

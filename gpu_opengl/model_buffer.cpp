@@ -9,6 +9,7 @@
 #include "model_buffer.h"
 #include "acme/prototype/geometry2d/matrix.h"
 #include "acme/prototype/prototype/call.h"
+#include "acme/parallelization/critical_section.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/renderer.h"
@@ -18,6 +19,46 @@
 
 namespace gpu_opengl
 {
+
+   namespace
+   {
+      struct pending_context_handle
+      {
+         enum_handle m_ehandle;
+         GLuint m_handle;
+      };
+      ::critical_section g_csHandleDeletion;
+      ::map<void *, ::array<pending_context_handle>> g_mapPendingHandles;
+   }
+
+   void defer_delete_context_handle(void * pNativeContext, enum_handle ehandle, GLuint handle)
+   {
+      if (!pNativeContext || !handle) return;
+      ::critical_section_lock lock(&g_csHandleDeletion);
+      g_mapPendingHandles[pNativeContext].add({ehandle, handle});
+   }
+
+   void delete_pending_context_handles(void * pNativeContext)
+   {
+      if (!pNativeContext) return;
+      ::critical_section_lock lock(&g_csHandleDeletion);
+      auto p = g_mapPendingHandles.find(pNativeContext);
+      if (!p) return;
+      for (auto & object : p->payload())
+      {
+         if (object.m_ehandle == e_handle_buffer)
+            glDeleteVertexArrays(1, &object.m_handle);
+         else if (object.m_ehandle == e_handle_fbo)
+            glDeleteFramebuffers(1, &object.m_handle);
+      }
+      g_mapPendingHandles.erase(pNativeContext);
+   }
+
+   void discard_pending_context_handles(void * pNativeContext)
+   {
+      ::critical_section_lock lock(&g_csHandleDeletion);
+      g_mapPendingHandles.erase(pNativeContext);
+   }
 
 
    model_buffer::model_buffer()
@@ -30,8 +71,10 @@ namespace gpu_opengl
 
    model_buffer::~model_buffer()
    {
-
-
+      for (auto & pair : m_mapContextHandleObject)
+      {
+         defer_delete_context_handle(pair.element1(), e_handle_buffer, pair.element2().m_handle);
+      }
    }
 
 

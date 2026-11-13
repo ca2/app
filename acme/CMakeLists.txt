@@ -1442,6 +1442,7 @@ list(APPEND library_source
         user/micro/main_window.h
         user/micro/message_box.cpp
         user/micro/message_box.h
+        user/micro/command_message_box.h
         user/micro/popup_button.cpp
         user/micro/popup_button.h
         user/micro/still.cpp

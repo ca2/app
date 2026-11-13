@@ -2721,7 +2721,9 @@ void particle::user_send(const ::procedure& procedure)
 
    auto pacmewindowing = psystem->m_pacmewindowing;
 
-   if (::is_set(pacmewindowing))
+   // The windowing object may inherit this dispatcher. Do not route it
+   // back to itself; use the node dispatcher below in that case.
+   if (::is_set(pacmewindowing) && pacmewindowing.m_p != this)
    {
 
       pacmewindowing->user_send(procedure);

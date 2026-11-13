@@ -18,6 +18,7 @@ time-macos/libcore_foundation.dylib
 time-macos/libdarwin.dylib
 time-macos/libnano_graphics_quartz2d.dylib
 time-macos/libnano_idn_libidn.dylib
+time-macos/libfs_raw_folder_protocol_dropbox.dylib
 time-macos/libcrypto.dylib
 time-macos/libssl.dylib
 time-macos/libapex_macos.dylib
@@ -37,11 +38,13 @@ time-macos/libcrypto_openssl.dylib
 time-macos/libfolder_zip.dylib
 time-macos/libdraw2d_quartz2d.dylib
 time-macos/libgpu_opengl.dylib
+time-macos/libgpu.dylib
+time-macos/libbred.dylib
+time-macos/libberg.dylib
+time-macos/libaxis.dylib
+time-macos/libnano2d.dylib
+time-macos/libunac.dylib
+time-macos/libdatabase_sqlite3.dylib
 time-macos/libassimp.dylib
-time-macos/libminizip.dylib
-time-macos/libopenddlparser.dylib
-time-macos/libpugixml.dylib
-time-macos/libclipper.dylib
-time-macos/libpoly2tri.dylib
 time-macos/libktx.dylib
 time-macos/libwrite_text_quartz2d.dylib

@@ -18,6 +18,9 @@ namespace gpu_opengl
       command_buffer();
       ~command_buffer() override;
 
+      void begin_command_buffer(bool bOneTime) override;
+      void reset() override;
+
 
       void set_viewport(const ::i32_rectangle & rectangle, const ::i32_size & sizeRaw = {}) override;
 

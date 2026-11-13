@@ -59,6 +59,9 @@ public:
    virtual void open_for_writing(file_pointer pfile);
 
 
+   // Reports input bytes successfully written to the compressor for this entry.
+   ::function<void(const ::file::path &, filesize, filesize)> m_functionAddFileProgress;
+
    virtual void add_file(const ::file::path & pathRelative, ::file::file* pfile);
 
 

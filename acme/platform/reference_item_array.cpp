@@ -70,66 +70,43 @@ reference_item_array::reference_item_array(::subparticle* psubparticle, ::subpar
 reference_item_array::~reference_item_array()
 {
 
-   ::i32 i = 1;
-   ::i32 b = 2;
-   ::i32 c = i + b;
-#if REFERENCING_DEBUGGING
+   auto pacme = ::acme::get();
+   auto preferencingdebugging = pacme ? pacme->m_preferencingdebugging : nullptr;
 
-   for (auto & preferenceitema : m_item2a)
+   if (!g_bDefaultEnableObjectReferenceCountDebug || !preferencingdebugging)
    {
 
-      //::platform::allocator::__delete(preferenceitema);
-
-      //delete preferenceitema;
+      return;
 
    }
 
-   if (g_bDefaultEnableObjectReferenceCountDebug)
+   critical_section_lock criticalsectionlock(&preferencingdebugging->m_criticalsection);
+
+   // An event or other child allocation can outlive the object that created it.
+   // Keep its tracking record alive without retaining a pointer to that parent.
+   for (auto preferenceitema : m_item2a)
    {
-      
-      auto psubparticleParent = m_psubparticleParent;
 
-      if (::is_set(psubparticleParent))
-      {
-         
-         auto preferenceitema = psubparticleParent->m_referencingdebugging.m_preferenceitema;
-         
-         if (::is_set(preferenceitema))
-         {
-
-            preferenceitema->erase_item_array(this);
-
-         }
-
-      }
-      else
-      {
-
-         auto pacme = ::acme::get();
-
-         if (!pacme)
-         {
-
-            warningf("Something has gone wrong... acme doesn't exist");
-
-         }
-
-         auto preferencingdebugging = ::acme::get()->m_preferencingdebugging;
-
-         if (!preferencingdebugging)
-         {
-
-            warningf("Something is wrong... referencing debugging doesn't exist (anymore)?");
-
-         }
-
-         preferencingdebugging->erase_item_array(this);
-
-      }
+      preferenceitema->m_psubparticleParent = nullptr;
+      preferenceitema->m_preferenceitemarrayParent = nullptr;
+      preferencingdebugging->add_item_array(preferenceitema);
 
    }
 
-#endif // REFERENCING_DEBUGGING
+   m_item2a.clear();
+
+   if (m_preferenceitemarrayParent)
+   {
+
+      m_preferenceitemarrayParent->erase_item_array(this);
+
+   }
+   else
+   {
+
+      preferencingdebugging->erase_item_array(this);
+
+   }
 
 }
 
@@ -140,6 +117,8 @@ void reference_item_array::add_item_array(::reference_item_array * pitema)
    critical_section_lock criticalsectionlock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
 
    m_item2a.add(pitema);
+
+   pitema->m_preferenceitemarrayParent = this;
 
 }
 
@@ -159,6 +138,8 @@ bool reference_item_array::erase_item_array(::reference_item_array * pitema)
       return false;
 
    }
+
+   pitema->m_preferenceitemarrayParent = nullptr;
 
    return true;
 

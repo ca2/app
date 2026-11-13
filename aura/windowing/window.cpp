@@ -12474,6 +12474,18 @@ namespace windowing
 
                }
 
+#ifdef WINDOWS_DESKTOP
+               if (m_papplication->use_gpu_swap_chain())
+               {
+
+                  // Swap-chain presentation bypasses the software buffer's
+                  // configure step. Commit native geometry independently so a
+                  // resize/full-screen request cannot wait on the old buffer.
+                  set_window_position_unlocked();
+
+               }
+#endif
+
                bool bPresentFrame;
 
                {

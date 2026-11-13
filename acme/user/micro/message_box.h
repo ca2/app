@@ -18,7 +18,7 @@ namespace micro
       class icon;
 
 
-      class message_box :
+      class CLASS_DECL_ACME message_box :
          virtual public ::micro::dialog,
          virtual public ::user_interface::message_box_implementation
       {

@@ -201,6 +201,8 @@ APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)()
 
    netbsd_cleanup(0);
 
+   return iExitCode;
+
 #else
 
    return iExitCode;

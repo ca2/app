@@ -35,6 +35,7 @@ add_library(static_${PROJECT_NAME} STATIC ${library_source})
 if(USE_PORT_FREEIMAGE)
     target_compile_definitions(${PROJECT_NAME} PRIVATE USE_PORT_FREEIMAGE)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE USE_PORT_FREEIMAGE)
+    add_dependencies(${PROJECT_NAME} port_freeimage)
 endif()
 
 

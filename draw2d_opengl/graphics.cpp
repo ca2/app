@@ -2841,7 +2841,7 @@ namespace draw2d_opengl
       contextmatrix.transform(pointa);
 
 
-      auto color = m_pdraw2dpen->m_color;
+      auto color = pdraw2dpen->m_color;
 
       float fA = color.f32_opacity();
       float fR = color.f32_red() * fA;

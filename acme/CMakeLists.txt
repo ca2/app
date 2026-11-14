@@ -195,6 +195,8 @@ list(APPEND library_source
         filesystem/file/file.cpp
         filesystem/file/folder.cpp
         filesystem/file/folder.h
+        filesystem/file/folder_download.cpp
+        filesystem/file/folder_download.h
         filesystem/file/item.cpp
         filesystem/file/item_array.cpp
         filesystem/file/memory_file.cpp

@@ -3,322 +3,126 @@
 #include "document.h"
 #include "data.h"
 #include "acme/constant/id.h"
+#include "acme/constant/user_message.h"
 #include "acme/filesystem/file/item.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/application.h"
-#include "acme/platform/keep.h"
-#include "apex/filesystem/fs/data.h"
-#include "apex/platform/context.h"
 #include "apex/filesystem/fs/set.h"
-
+#include "aura/message/user.h"
 
 namespace filemanager
 {
-
-
    path_impact::path_impact()
    {
-
       m_bVoidSync = false;
-
+      m_bMultiLine = false;
    }
-
 
    void path_impact::install_message_routing(::channel * pchannel)
    {
-
       ::filemanager_impact_base::install_message_routing(pchannel);
       ::user::plain_edit::install_message_routing(pchannel);
-
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &path_impact::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &path_impact::on_message_kill_focus);
    }
 
-
-   void path_impact::browse_sync(const ::action_context & context)
+   void path_impact::browse_sync(const ::action_context &)
    {
-
-      if (m_bVoidSync)
-      {
-
-         return;
-
-      }
-
-      if (filemanager_document() == nullptr)
-      {
-
-         return;
-
-      }
-
-      string strOld;
-
-      strOld = as_text();
-
-      string strPath = filemanager_item()->user_path();
-
-      if (strOld == strPath)
-      {
-
-         return;
-
-      }
-
-      set_text(filemanager_item()->user_path(), ::e_source_sync);
-
+      if (m_bVoidSync || !filemanager_document()) return;
+      auto pitem = filemanager_item();
+      if (!pitem) return;
+      auto strPath = pitem->user_path();
+      if (get_text() != strPath) set_text(strPath, ::e_source_sync);
    }
 
-
-   //void path_impact::_001OnAfterChangeText(const ::action_context & context)
-   //{
-
-   //   //if (!context.is_user_source())
-   //   //{
-
-   //   //   return;
-
-   //   //}
-
-   //   //string str;
-
-   //   //get_text(str);
-
-   //   //::pointer<document>pdocument = filemanager_document();
-
-   //   //if (pdocument == nullptr)
-   //   //{
-
-   //   //   return;
-
-   //   //}
-
-   //   //::fs::data * pfsdata = pdocument->fs_data();
-
-   //   //if (pfsdata->is_dir(str))
-   //   //{
-
-   //   //   ::file::path strPreviousPath = filemanager_path();
-
-   //   //   ::file::path strPath = str;
-
-   //   //   if (strPreviousPath != strPath)
-   //   //   {
-
-   //   //      filemanager_data()->browse(str, context + ::e_source_sync);
-
-   //   //   }
-
-   //   //}
-   //   //else
-   //   //{
-
-   //   //   // auto pcontext = get_context();
-
-   //   //   ::file::path pathAddress = str;
-
-   //   //   while (true)
-   //   //   {
-
-   //   //      bool bIsDir = false;
-
-   //   //      ::file::path path = m_papplication->defer_process_matter_path(pathAddress | ::file::e_flag_resolve_alias);
-
-   //   //      bIsDir = filemanager_document()->fs_data()->is_dir(path);
-
-   //   //      if (bIsDir)
-   //   //      {
-
-   //   //         if (filemanager_item()->m_filepathFinal != path)
-   //   //         {
-
-   //   //            KEEP(m_bVoidSync);
-
-   //   //            filemanager_data()->browse(pathAddress, context + ::e_source_sync);
-
-   //   //         }
-
-   //   //         break;
-
-   //   //      }
-
-   //   //      if (pathAddress.is_empty())
-   //   //      {
-
-   //   //         break;
-
-   //   //      }
-
-   //   //      pathAddress = pathAddress.folder();
-
-   //   //   }
-
-   //   //}
-
-   //   //get_document()->m_strTopic = str;
-
-
-   //}
-
-
-   void path_impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
+   ::file::path path_impact::resolve_folder(const ::scoped_string & scopedstrText, bool bFindParent)
    {
-
-      //::color::color crBackground = 0;
-
-      //get_color(crBackground, ::user::color_background);
-
-      //if ((crBackground & argb(255, 0, 0, 0)) != 0)
-      //{
-
-      //   ::i32_rectangle rectangleX;
-
-      //   this->rectangle(rectangleX);
-
-      //   pdraw2dgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
-
-      ::user::plain_edit::_001OnDraw(pdraw2dgraphics);
-
-      //}
-
-   }
-
-
-   void path_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
-   {
-
-      ::filemanager_impact_base::handle(ptopic, phandlercontext);
-
-      if (ptopic->id() == id_initialize)
+      ::string str(scopedstrText);
+      str.trim();
+      if (str.length() >= 2 && str.begins("\"") && str.ends("\""))
+         str = str.substr(1, str.length() - 2);
+      if (str.is_empty() || !filemanager_document() || !filemanager_item()) return {};
+      ::file::path path;
+      if (str == "~") path = directory_system()->home();
+      else if (str.begins_eat("~/") || str.begins_eat("~\\")) path = directory_system()->home() / str;
+      else path = str;
+      if (path.is_relative() && !path.contains("://"))
       {
-
-         //            filemanager_document() = pupdate->filemanager_document();
-         /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
-                     AddClient(this);
-                     SetDataInterface(&m_datainterface);
-                     AddClient(&m_datainterface);
-                     string str;
-                     str.formatf("::filemanager::file_list(%d,%d)", get_document()->m_iTemplate, get_document()->m_iDocument);
-                     if(get_document()->m_bTransparentBackground)
-                     {
-                     ::user::list::m_etranslucency = ::user::list::e_translucency_present;
-                     }
-                     DISetSection(str);
-                     _001UpdateColumns();*/
+         if (!bFindParent) return {};
+         path = filemanager_item()->user_path() / path;
       }
-      else if (ptopic->id() == id_filter)
+      auto pfsdata = filemanager_data()->fs_data();
+      while (path.has_character())
       {
-         /*if(ptopic->payload(id_filter).is_empty())
+         try
          {
-         FilterClose();
-         }
-         else
-         {
-         FilterBegin();
-         Filter1(ptopic->payload(id_filter));
-         FilterApply();
-         }*/
-      }
-      else if(ptopic->id() == id_after_change_text)
-      {
-
-      if (!ptopic->m_actioncontext.is_user_source())
-      {
-
-         return;
-
-      }
-
-      string str;
-
-      str = as_text();
-
-      ::pointer<document>pdocument = filemanager_document();
-
-      if (pdocument == nullptr)
-      {
-
-         return;
-
-      }
-
-      auto pfilemanagerdata = filemanager_data();
-
-      auto pfsdata = pfilemanagerdata->fs_data();
-
-      //::fs::data * pfsdata = pdocument->filemanager_data();
-
-      if (pfsdata->is_dir(str))
-      {
-
-         ::file::path strPreviousPath = filemanager_path();
-
-         ::file::path strPath = str;
-
-         if (strPreviousPath != strPath)
-         {
-
-            filemanager_document()->browse(str, ptopic->m_actioncontext + ::e_source_sync);
-
-         }
-
-      }
-      else
-      {
-
-         // auto pcontext = get_context();
-
-         ::file::path pathAddress = str;
-
-         while (true)
-         {
-
-            bool bIsDir = false;
-
-            auto pathToProcess = pathAddress;
-
+            auto pathToProcess = path;
             pathToProcess.flags() += ::file::e_flag_resolve_alias;
-
-            ::file::path path = m_papplication->defer_process_matter_path(pathToProcess);
-
-            bIsDir = filemanager_data()->fs_data()->is_dir(path);
-
-            if (bIsDir)
-            {
-
-               if (filemanager_item()->final_path() != path)
-               {
-
-                  KEEP(m_bVoidSync);
-
-                  filemanager_document()->browse(pathAddress, ptopic->m_actioncontext + ::e_source_sync);
-
-               }
-
-               break;
-
-            }
-
-            if (pathAddress.is_empty())
-            {
-
-               break;
-
-            }
-
-            pathAddress = pathAddress.folder();
-
+            auto pathFinal = application()->defer_process_path(pathToProcess);
+            // is_dir returns -1 for an unknown provider, which is not a directory.
+            if (pathFinal.has_character() && pfsdata->is_dir(pathFinal) > 0) return path;
          }
-
+         catch (...) {}
+         if (!bFindParent) break;
+         auto pathParent = path.folder();
+         if (pathParent == path) break;
+         path = pathParent;
       }
-
-      //get_document()->m_strTopic = str;
-      get_document()->m_strTopic = str;
-
+      return {};
    }
 
+   bool path_impact::browse_typed_path(bool bFindParent)
+   {
+      auto path = resolve_folder(get_text(), bFindParent);
+      if (path.is_empty()) return false;
+      auto pitem = filemanager_item();
+      if (!pitem || pitem->user_path() != path)
+      {
+         try { filemanager_document()->browse(path, ::e_source_user); }
+         catch (...) { return false; }
+      }
+      if (bFindParent && get_text() != path) set_text(path, ::e_source_sync);
+      return true;
    }
 
+   void path_impact::on_message_key_down(::message::message * pmessage)
+   {
+      auto pkey = pmessage->m_union.m_pkey;
+      if (pkey && pkey->m_ekey == ::user::e_key_return)
+      {
+         m_bVoidSync = false;
+         if (!browse_typed_path(true)) browse_sync(::e_source_sync);
+         pmessage->m_bRet = true;
+         pmessage->m_lresult = 1;
+         return;
+      }
+      pmessage->previous();
+   }
 
-} // namespace filemanager
+   void path_impact::on_message_kill_focus(::message::message * pmessage)
+   {
+      pmessage->previous();
+      m_bVoidSync = false;
+      browse_sync(::e_source_sync);
+   }
 
+   void path_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+      ::user::plain_edit::_001OnDraw(pgraphics);
+   }
 
-
+   void path_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   {
+      ::filemanager_impact_base::handle(ptopic, pcontext);
+      ::user::plain_edit::handle(ptopic, pcontext);
+      if (ptopic->id() == id_initialize || ptopic->id() == id_browse)
+         browse_sync(ptopic->m_actioncontext);
+      else if (ptopic->id() == id_after_change_text && ptopic->m_actioncontext.is_user_source())
+      {
+         // Do not let a queued browse completion overwrite newer in-progress input.
+         m_bVoidSync = true;
+         browse_typed_path(false);
+      }
+   }
+}

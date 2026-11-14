@@ -557,6 +557,8 @@ namespace user
       if (ekey == ::user::e_key_return || ekey == ::user::e_key_space)
       {
 
+         if (!is_window_enabled()) return;
+
          auto ptopic = create_topic(::id_click);
 
          ptopic->m_puserelement = this;
@@ -567,7 +569,7 @@ namespace user
 
          route(ptopic);
 
-         pmessage->m_bRet = ptopic->m_bRet;
+         pmessage->m_bRet = ptopic->m_bRet || on_action();
 
          if (pmessage->m_bRet)
          {

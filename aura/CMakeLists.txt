@@ -965,3 +965,25 @@ target_compile_definitions(static_${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_proje
 
 
 
+
+if(BUILD_TESTING)
+    add_executable(dialog_tab_navigation_test test/dialog_tab_navigation.cpp)
+    target_compile_features(dialog_tab_navigation_test PRIVATE cxx_std_20)
+    target_include_directories(dialog_tab_navigation_test PRIVATE ${library_include_directories})
+    target_link_libraries(dialog_tab_navigation_test PRIVATE aura aqua apex acme)
+    if(MSVC)
+        target_compile_options(dialog_tab_navigation_test PRIVATE /bigobj)
+    endif()
+    add_test(NAME dialog_tab_navigation_test COMMAND dialog_tab_navigation_test)
+endif()
+
+if(BUILD_TESTING)
+    add_executable(range_clear_item_test test/range_clear_item.cpp)
+    target_compile_features(range_clear_item_test PRIVATE cxx_std_20)
+    target_include_directories(range_clear_item_test PRIVATE ${library_include_directories})
+    target_link_libraries(range_clear_item_test PRIVATE aura aqua apex acme)
+    if(MSVC)
+        target_compile_options(range_clear_item_test PRIVATE /bigobj)
+    endif()
+    add_test(NAME range_clear_item_test COMMAND range_clear_item_test)
+endif()

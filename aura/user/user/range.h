@@ -97,6 +97,8 @@ namespace user
       bool OnRemoveItem(::collection::index iItem);
       void clear();
       void add_item(const item_range& itemrange);
+      void clear_item(const item_range& itemrange);
+      bool intersects(const item_range& itemrange) const;
       item_range& ItemAt(::collection::index iIndex);
       ::collection::index get_current_item();
       ::collection::count get_item_count() const;

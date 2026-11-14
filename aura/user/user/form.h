@@ -14,7 +14,7 @@ namespace user
    protected:
 
 
-      ::pointer<form_callback>m_pcallback;
+      ::pointer<form_callback>m_pformcallback;
       ::pointer<form> m_pformParent;
 
 

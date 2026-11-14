@@ -354,12 +354,6 @@
 		9AA393DF306367C400B9551A /* texture_synchronization.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA393AA306367C400B9551A /* texture_synchronization.h */; };
 		9AA393E0306367C400B9551A /* image.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA393A2306367C400B9551A /* image.h */; };
 		9AA393E1306367C400B9551A /* context_lease.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA3939A306367C400B9551A /* context_lease.h */; };
-		9AFBC1853094635A007C8773 /* gpu_statistics_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFBC1833094635A007C8773 /* gpu_statistics_impact.h */; };
-		9AFBC1863094635A007C8773 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFBC1823094635A007C8773 /* _.h */; };
-		9AFBC1873094635A007C8773 /* gpu_statistics_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AFBC1843094635A007C8773 /* gpu_statistics_impact.cpp */; };
-		9AFBC1883094635A007C8773 /* gpu_statistics_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AFBC1843094635A007C8773 /* gpu_statistics_impact.cpp */; };
-		9AFBC1893094635A007C8773 /* gpu_statistics_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFBC1833094635A007C8773 /* gpu_statistics_impact.h */; };
-		9AFBC18A3094635A007C8773 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFBC1823094635A007C8773 /* _.h */; };
 		9BEB6BDB3233C01858EF8247 /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D972F2BFEACCB79FE12FC92C /* system.cpp */; };
 		9BFA975FFAA696C5A6141134 /* pbr_with_ibl_render_system_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17FA483CB94CC4F019EACC14 /* pbr_with_ibl_render_system_base.cpp */; };
 		9C1705CAA48C8F6DC2C56F09 /* object.h in Headers */ = {isa = PBXBuildFile; fileRef = D440B204C898BCA48F70614D /* object.h */; };
@@ -744,9 +738,6 @@
 		9AA393AB306367C400B9551A /* texture_synchronization.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = texture_synchronization.cpp; sourceTree = "<group>"; };
 		9AA393AC306367C400B9551A /* window_attachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = window_attachment.h; sourceTree = "<group>"; };
 		9AA393AD306367C400B9551A /* window_attachment.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = window_attachment.cpp; sourceTree = "<group>"; };
-		9AFBC1823094635A007C8773 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9AFBC1833094635A007C8773 /* gpu_statistics_impact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gpu_statistics_impact.h; sourceTree = "<group>"; };
-		9AFBC1843094635A007C8773 /* gpu_statistics_impact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gpu_statistics_impact.cpp; sourceTree = "<group>"; };
 		9BB0BEE9C10E2F93E01A4D64 /* device.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = device.h; sourceTree = "<group>"; };
 		9BB6B4896F3EB0F8F5E0E109 /* texture_data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = texture_data.h; sourceTree = "<group>"; };
 		9E6F0FAF680E5EF8626A1752 /* graphics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = graphics.cpp; sourceTree = "<group>"; };
@@ -1229,7 +1220,6 @@
 				9A7DFA0230A4205600F8AA65 /* gpu_statistics_interaction.cpp */,
 				9A7DFA0330A4205600F8AA65 /* graphics3d_engine_host.h */,
 				9A7DFA0430A4205600F8AA65 /* graphics3d_engine_host.cpp */,
-				A6956E940970D32293909F26 /* user.cpp */,
 				4CCA80D60125F629C14B38CD /* user.h */,
 				A6956E940970D32293909F26 /* user.cpp */,
 			);
@@ -1384,8 +1374,6 @@
 				F9820D89716929ECB5468F84 /* system.h in Headers */,
 				E6DCA7F4E3F5069745CDA514 /* console_common.h in Headers */,
 				1308A88A4EE6A228E0F8BB33 /* command_buffer.h in Headers */,
-				9AFBC1853094635A007C8773 /* gpu_statistics_impact.h in Headers */,
-				9AFBC1863094635A007C8773 /* _.h in Headers */,
 				2E9C962E4C177EF6E96609D6 /* _types.h in Headers */,
 				E64795151C3CA3B97C454E4F /* _model.h in Headers */,
 				9C1705CAA48C8F6DC2C56F09 /* object.h in Headers */,
@@ -1549,8 +1537,6 @@
 				E3FD514101A864484C834758 /* _constant.h in Headers */,
 				71F9E7079BF04B19AC7B3507 /* debug_scope.h in Headers */,
 				46B8752E82EF1435083491C8 /* context.h in Headers */,
-				9AFBC1893094635A007C8773 /* gpu_statistics_impact.h in Headers */,
-				9AFBC18A3094635A007C8773 /* _.h in Headers */,
 				BA6A2866BFA5EBE1EC8412FE /* frame_storage.h in Headers */,
 				10432BC934ECA2776CAC8BCD /* shader.h in Headers */,
 				20FD2D66AA83C647859F3E40 /* renderer.h in Headers */,
@@ -1824,7 +1810,6 @@
 				1FA00F54AA8F020C64A49496 /* memory_buffer.cpp in Sources */,
 				109304FA045022A6A935FE0E /* compositor.cpp in Sources */,
 				3C268206E113D574D0891CC5 /* model_buffer.cpp in Sources */,
-				9AFBC1883094635A007C8773 /* gpu_statistics_impact.cpp in Sources */,
 				59914F855C188AF0F4599D0B /* renderable.cpp in Sources */,
 				6F28165A38F772773294E26D /* object.cpp in Sources */,
 				0D13F21BAAD593FD3A979D4F /* swap_chain.cpp in Sources */,
@@ -1929,7 +1914,6 @@
 				C885EAFBD8BD5F31A9D7C67B /* memory_buffer.cpp in Sources */,
 				FB29072E7A031F4F5A8E7A19 /* compositor.cpp in Sources */,
 				00AE9CEA5D2BD62E778B7449 /* model_buffer.cpp in Sources */,
-				9AFBC1873094635A007C8773 /* gpu_statistics_impact.cpp in Sources */,
 				58571C51E158F51FE1A948A2 /* renderable.cpp in Sources */,
 				754E993118BF74D3923E2CAF /* object.cpp in Sources */,
 				C79255BAB077DE68552F8FCE /* swap_chain.cpp in Sources */,

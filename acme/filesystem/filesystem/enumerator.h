@@ -9,6 +9,30 @@ namespace file
 {
 
 
+   
+   // Cached presentation hints. Providers must not authenticate, download, or perform remote I/O here.
+   struct image_info
+   {
+      bool m_bFolder = false;
+      ::string m_strName;
+      // Existing local image only; an empty path requests a generic type icon.
+      ::string m_strLocalThumbnailPath;
+      ::particle_array m_particleaNotify;
+      image_info()
+      {
+
+
+      }
+   };
+
+   // Optional capability: querying it must not change the enumerator vtable.
+   class CLASS_DECL_ACME image_info_provider : virtual public ::particle
+   {
+   public:
+      ~image_info_provider() override;
+      virtual bool get_file_image_info(const ::file::path & path, ::file::image_info & info) = 0;
+   };
+
    class CLASS_DECL_ACME enumerator :
       virtual public ::particle
    {
@@ -38,6 +62,8 @@ namespace file
       // source m_pathUser member in the listing.
       // throws exception if listing enumeration fails for some reason.
       virtual bool enumerate(listing_base & listing);
+      // Nonvirtual adapter; older providers need not implement the optional capability.
+      bool get_file_image_info(const ::file::path & path, ::file::image_info & info);
 
       virtual bool list_base(string_array_base & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag = ::file::e_flag_file_or_folder);
 

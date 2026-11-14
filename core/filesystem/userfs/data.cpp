@@ -289,73 +289,23 @@ namespace userfs
    }
 
 
-   void data::__browse(::pointer<::file::item>pitem, const ::action_context & context)
+   void data::__browse(::pointer<::file::item> pitem, const ::action_context & context)
+   {
+      if (m_listingRoot2.is_empty()) fs_data()->root_ones(m_listingRoot2);
+      ::file::listing_base listing;
+      if (pitem->user_path().has_character())
+      {
+         listing.set_listing(pitem->user_path(), e_depth_none, ::file::e_flag_file_or_folder);
+         directory()->enumerate(listing);
+      }
+      apply_browse(pitem, context, listing);
+   }
+
+   void data::apply_browse(::pointer<::file::item>pitem, const ::action_context & context, ::file::listing_base listingUser)
    {
 
-      if (m_bFullBrowse)
-      {
-
-         return;
-
-      }
-
-      at_end_of_scope
-      {
-
-         m_bFullBrowse = false;
-
-      };
-
-      {
-
-         _synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-         m_pathFolder = pitem->user_path();
-
-      }
-
-      information() << "::userfs::document::browse pitem user path : " << m_pathFolder;
-
-      if(m_listingRoot2.is_empty())
-      {
-
-         information() << "::userfs::document getting root listing";
-
-         ::file::listing_base listing;
-
-         fs_data()->root_ones(listing);
-
-         {
-
-            _synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-            m_listingRoot2 = listing;
-
-         }
-
-         for(auto & path : m_listingRoot2)
-         {
-
-            information() << "::userfs::document root listing : " << path;
-
-
-         }
-
-      }
-
-      ::file::listing_base listingUser;
-
-      auto papp = get_app();
-
-      listingUser.clear();
-
-      listingUser.m_straTitle.clear();
-
-      ::file::path pathItemUserPath;
-
-      pathItemUserPath = pitem->user_path();
-
-      //construct_newø(m_puserfslistdata);
+      m_pathFolder = pitem->user_path();
+      auto pathItemUserPath = pitem->user_path();
 
       if(pathItemUserPath.is_empty())
       {
@@ -373,12 +323,6 @@ namespace userfs
       }
       else
       {
-
-         auto pathParent = pitem->user_path();
-
-         listingUser.set_listing(pathParent, e_depth_none, ::file::e_flag_file_or_folder);
-
-         directory()->enumerate(listingUser);
 
          listingUser.m_pathUser = pitem->user_path();
 
@@ -415,11 +359,13 @@ namespace userfs
                }
 
                pathUser.set_type(item.type());
+               pathUser.m_iSize = item.m_iSize;
 
                listingUserFormatted.defer_add(pathUser);
 
             }
 
+            listingUserFormatted.m_straTitle = listingUser.m_straTitle;
             listingUser = listingUserFormatted;
 
          }
@@ -457,6 +403,7 @@ namespace userfs
          ::file::path pathFinal = m_papplication->defer_process_path(pathToProcess);
 
          pathFinal.set_type(pathItem.type());
+         pathFinal.m_iSize = pathItem.m_iSize;
 
          listingFinal.defer_add(pathFinal);
 
@@ -525,7 +472,7 @@ namespace userfs
             && listingUser.m_straTitle[i].has_character())
          {
           
-            listingFolderUser.m_straTitle.insert_at(i2, listingUser.m_straTitle[i]);
+            listingFolderUser.m_straTitle.set_at_grow(i2 - 1, listingUser.m_straTitle[i]);
             
          }
 
@@ -586,34 +533,63 @@ namespace userfs
    
 }
 
+   void data::complete_browse(::u64 uRequest, ::pointer<::file::item> pitem, const ::action_context & context,
+      ::file::listing_base listing, ::file::listing_base listingRoot)
+   {
+      if (uRequest != m_uBrowseRequest) return;
+      try
+      {
+         m_listingRoot2 = listingRoot;
+         apply_browse(pitem, context, listing);
+      }
+      catch (...) { browse_failed(uRequest, context); }
+   }
+
+   void data::browse_failed(::u64 uRequest, const ::action_context & context)
+   {
+      if (uRequest != m_uBrowseRequest) return;
+      auto ptopic = create_topic("filemanager_browse_failed");
+      m_pusercontroller->update_all_impacts(ptopic);
+   }
+
    void data::browse(::pointer<::file::item>pitem, const ::action_context & context)
    {
-
-      information() << "::userfs::data::browse pitem";
-
-      if (!fs_data()->is_zero_latency(pitem->final_path()))
+      auto pdocument = get_document();
+      if (!pdocument || pdocument->m_impacta.is_empty()) return;
+      auto pimpact = pdocument->m_impacta.first();
+      auto uRequest = ++m_uBrowseRequest;
+      auto ptopic = create_topic("filemanager_browse_started");
+      m_pusercontroller->update_all_impacts(ptopic);
+      try
       {
-
-         information() << "::userfs::data::browse !is_zero_latency";
-
-         auto ptopic = create_topic(id_synchronize_path);
-
-         ptopic->m_actioncontext = context + ::e_source_sync + ::e_source_system;
-
-         ptopic->_extended_topic()->m_pfileitem = pitem;
-
-         m_pusercontroller->update_all_impacts(ptopic);
-
+         // Resolve/create providers on the UI thread before starting the worker.
+         fs_data();
+         auto listingRoot = m_listingRoot2;
+         ::pointer < data > pdata = this;
+         pdocument->fork([pdata, pimpact, pitem, context, uRequest, listingRoot]() mutable
+         {
+            try
+            {
+               if (listingRoot.is_empty()) pdata->fs_data()->root_ones(listingRoot);
+               ::file::listing_base listing;
+               if (pitem->user_path().has_character())
+               {
+                  listing.set_listing(pitem->user_path(), e_depth_none, ::file::e_flag_file_or_folder);
+                  if (!pdata->directory()->enumerate(listing))
+                     throw ::exception(error_failed, "Folder enumeration failed");
+               }
+               pimpact->user_post([pdata, pitem, context, uRequest, listing, listingRoot]()
+               {
+                  pdata->complete_browse(uRequest, pitem, context, listing, listingRoot);
+               });
+            }
+            catch (...)
+            {
+               pimpact->user_post([pdata, uRequest, context]() { pdata->browse_failed(uRequest, context); });
+            }
+         });
       }
-
-      get_document()->m_impacta.first()->postø()
-         << [this, pitem, context]()
-      {
-
-         __browse(pitem, context);
-
-      };
-
+      catch (...) { browse_failed(uRequest, context); }
    }
 
 

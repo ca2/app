@@ -3295,10 +3295,29 @@ namespace user
    }
 
 
+   void frame_window::RepositionBars(::draw2d::graphics_pointer & pgraphics,
+      ::u32 nIDFirst, ::u32 nIDLast, ::user::interaction * pleftover,
+      ::u32 nFlags, ::i32_rectangle * prectParam, const ::i32_rectangle & rectangle, bool bStretch)
+   {
+      ::user::main_window::RepositionBars(pgraphics, nIDFirst, nIDLast,
+         pleftover, nFlags, prectParam, rectangle, bStretch);
+
+      if (_is_window() && pleftover && pleftover == m_pimpactMain
+         && pleftover->get_parent() == this
+         && (nFlags & ~reposNoPosLeftOver) != reposQuery
+         && !(nFlags & reposNoPosLeftOver))
+      {
+         // Impacts extend to hosting_rectangle during their own layout pass.
+         // Publish the space left by the bars so that pass preserves the inset.
+         m_rectangleHosting = pleftover->parent_client_rectangle(e_layout_sketch);
+      }
+   }
+
+
    ::i32_rectangle frame_window::hosting_rectangle(::user::enum_layout elayout)
    {
       
-      if(m_bWindowFrame)
+      if(m_bWindowFrame || m_controlbara.has_element())
       {
          
          return m_rectangleHosting;

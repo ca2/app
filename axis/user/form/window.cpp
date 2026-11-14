@@ -718,9 +718,9 @@ throw_todo();
 
    void form_window::_001InitializeFormPreData()
    {
-      if(m_pcallback != nullptr)
+      if(m_pformcallback != nullptr)
       {
-         m_pcallback->_001InitializeFormPreData(this);
+         m_pformcallback->_001InitializeFormPreData(this);
       }
 
       /*
@@ -980,10 +980,10 @@ throw_todo();
    void form_window::_001OnInitializeControl(::user::interaction * pinteraction)
    {
 
-      if (m_pcallback)
+      if (m_pformcallback)
       {
 
-         m_pcallback->_001OnInitializeControl(pinteraction);
+         m_pformcallback->_001OnInitializeControl(pinteraction);
 
       }
 
@@ -1009,10 +1009,10 @@ throw_todo();
    void form_window::_001OnInitializeForm()
    {
 
-      if (m_pcallback)
+      if (m_pformcallback)
       {
 
-         m_pcallback->_001OnInitializeForm();
+         m_pformcallback->_001OnInitializeForm();
 
       }
 

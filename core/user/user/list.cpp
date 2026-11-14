@@ -3770,8 +3770,8 @@ namespace user
 
             if (m_bMeshSelect && m_bHoverSelect2 &&
                (m_iSubItemEnter != iSubItemEnter ||
-                  m_iItemEnter != iItemEnter)
-               && !m_rangeSelection.has_item(iItemEnter))
+                  m_iItemEnter != iItemEnter))
+               //&& !m_rangeSelection.has_item(iItemEnter))
             {
 
                m_keystateMouseEnter = session();//pmouse->m_ekeystate;

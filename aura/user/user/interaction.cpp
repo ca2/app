@@ -8477,6 +8477,54 @@ if(get_parent())
    }
 
 
+   namespace
+   {
+      void collect_tab_controls(::user::interaction * root, ::pointer_array<::user::interaction> & controls)
+      {
+         for_user_interaction_children(child, root)
+         {
+            if (!child->is_this_visible(::user::e_layout_sketch) || !child->is_window_enabled()) continue;
+            if (child->keyboard_focus_is_focusable()) controls.add(child);
+            collect_tab_controls(child, controls);
+         }
+      }
+   }
+
+   ::user::interaction * interaction::next_tab_focus(::user::interaction * current, bool backwards)
+   {
+      ::pointer_array<::user::interaction> controls;
+      collect_tab_controls(this, controls);
+      if (controls.is_empty()) return nullptr;
+      for (::collection::index i = 0; i < controls.size(); ++i)
+      {
+         if (controls[i] == current)
+         {
+            auto next = backwards ? (i + controls.size() - 1) % controls.size() : (i + 1) % controls.size();
+            return controls[next];
+         }
+      }
+      return backwards ? controls.last().m_p : controls.first().m_p;
+   }
+
+   bool interaction::handle_tab_key(::message::message * pmessage)
+   {
+      auto pkey = pmessage->m_union.m_pkey;
+      if (!pkey || pkey->m_ekey != ::user::e_key_tab) return false;
+      auto psession = session();
+      if (psession && (psession->is_key_pressed(::user::e_key_control) || psession->is_key_pressed(::user::e_key_alt)))
+         return false;
+      for (auto scope = this; scope; scope = scope->get_parent())
+      {
+         if (!scope->is_true("tab_focus_scope")) continue;
+         auto next = scope->next_tab_focus(this, psession && psession->is_key_pressed(::user::e_key_shift));
+         if (next) next->set_keyboard_focus();
+         pmessage->m_bRet = true;
+         pmessage->m_lresult = 1;
+         return true;
+      }
+      return false;
+   }
+
    element * interaction::keyboard_set_focus_next(bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
    {
 
@@ -9573,6 +9621,7 @@ if(get_parent())
 
    void interaction::on_message_key_down(::message::message * pmessage)
    {
+      if (handle_tab_key(pmessage)) return;
 
       if (m_ekeyboardmode == e_keyboard_mode_reposition
          || m_ekeyboardmode == e_keyboard_mode_resize)
@@ -23268,7 +23317,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
       ::pointer< ::exception > pexception;
 
-      main_send([this, &pexception]()
+      user_send([this, &pexception]()
          {
 
             try
@@ -23317,7 +23366,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
       else
       {
 
-         pwindow->create_window(::e_parallelization_asynchronous);
+         pwindow->create_window(::e_parallelization_synchronous);
 
       }
 
@@ -25438,6 +25487,13 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
    }
 
 
+   bool interaction::on_action(::item * pitem, ::user::activation_token * puseractivationtoken)
+   {
+      if (!is_window_enabled()) return false;
+      return m_callbackOnAction && m_callbackOnAction(this, pitem, puseractivationtoken);
+   }
+
+
    bool interaction::on_click_generation(::item * pitem, ::user::mouse * pmouse)
    {
 
@@ -25492,7 +25548,8 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
       information() << "interaction::on_click_generation going to call on_click";
 
-      return on_click(pitem, pmouse);
+      if (on_click(pitem, pmouse)) return true;
+      return on_action(pitem, pmouse ? pmouse->user_activation_token() : nullptr);
 
    }
 

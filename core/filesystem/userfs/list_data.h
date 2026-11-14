@@ -22,6 +22,7 @@ namespace userfs
       class ::time                 m_timeLastFileSizeGet;
 
       ::pointer<list_item_array>m_pitema;
+      ::pointer<::fs::data> m_pfsImageProvider;
 
 
 

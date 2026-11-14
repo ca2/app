@@ -1,14 +1,17 @@
 #pragma once
 #include "acme/filesystem/file/folder.h"
+#include "acme/filesystem/file/folder_importer.h"
 #include "apex/filesystem/fs/data.h"
 #include "apex/platform/api_client.h"
 
 namespace folder_google_drive
 {
-   // Drive folder provider. File contents are read-only; URI components are Drive IDs.
+   // Drive folder provider. URI components are Drive IDs; uploads use the folder-import capability.
    class CLASS_DECL_FOLDER_GOOGLE_DRIVE folder :
       virtual public ::folder,
-      virtual public ::fs::data
+      virtual public ::fs::data,
+      virtual public ::file::image_info_provider,
+      virtual public ::file::folder_importer
    {
    public:
       ::pointer < ::api_client > m_papiclient;
@@ -22,8 +25,14 @@ namespace folder_google_drive
       ::payload request(const ::scoped_string & scopedstrUrl);
       ::payload api_request(::api_client * pclient, const ::scoped_string & scopedstrUrl, ::property_set & set);
       ::file::path create_folder(const ::file::path & pathParent, const ::scoped_string & scopedstrName) override;
+      ::api_client * write_api();
+      ::file::path import_file(const ::file::path & destination, const ::file::path & source,
+         const ::function<bool(::f64)> & progress) override;
       ::payload metadata(const ::file::path & path);
+      bool get_file_image_info(const ::file::path & path, ::file::image_info & info) override;
       bool enumerate(::file::listing_base & listing) override;
+      void append_listing_page(::file::listing_base & listing, ::payload & result,
+         const ::string_array_base & straPatterns);
       ::file::listing_base & root_ones(::file::listing_base & listing) override;
       ::file::e_type file_type(const ::file::path & path) override;
       ::i32 is_dir(const ::file::path & path) override;

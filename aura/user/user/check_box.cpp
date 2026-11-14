@@ -676,6 +676,11 @@ namespace user
    }
 
 
+   bool check_box::keyboard_focus_is_focusable()
+   {
+      return is_window_enabled() && is_window_visible(::user::e_layout_sketch);
+   }
+
    void check_box::on_message_key_down(::message::message * pmessage)
    {
 

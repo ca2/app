@@ -2997,8 +2997,8 @@ namespace user
 
             if (m_bMeshSelect && m_bHoverSelect2 &&
                   (m_iSubItemEnter != iSubItemEnter ||
-                   m_iItemEnter != iItemEnter)
-                  && !m_rangeSelection.has_item((::collection::index) iItemEnter))
+                   m_iItemEnter != iItemEnter))
+                  //&& !m_rangeSelection.has_item((::collection::index) iItemEnter))
             {
 
                m_keystateMouseEnter = session();
@@ -3848,7 +3848,22 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
                         -1,
                         -1);
 
-                     _001AddSelection(itemrange);
+                     ::user::range rangeCurrentSelection;
+
+                     get_selection(rangeCurrentSelection);
+
+                     if (!rangeCurrentSelection.intersects(itemrange))
+                     {
+
+                        _001AddSelection(itemrange);
+
+                     }
+                     else
+                     {
+
+                        _001ClearSelection(itemrange);
+
+                     }
 
                   }
                   else
@@ -3894,7 +3909,23 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
                      -1,
                      -1);
 
-                  _001AddSelection(itemrange);
+
+                  ::user::range rangeCurrentSelection;
+
+                  get_selection(rangeCurrentSelection);
+
+                  if (!rangeCurrentSelection.intersects(itemrange))
+                  {
+
+                     _001AddSelection(itemrange);
+
+                  }
+                  else
+                  {
+
+                     _001ClearSelection(itemrange);
+
+                  }
 
                }
                else
@@ -4246,6 +4277,15 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
       on_select();
       on_selection_change();
    }
+
+
+   void mesh::_001ClearSelection(const item_range& itemrange)
+   {
+      m_rangeSelection.clear_item(itemrange);
+      on_select();
+      on_selection_change();
+   }
+
 
    void mesh::_001SetHighlightRange(range & range)
    {

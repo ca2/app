@@ -31,6 +31,9 @@ namespace filemanager
 //      IShellFolder *                   m_pshellfolder;
 //#endif
       bool                             m_bStatic;
+      bool                             m_bFolderLoading = false;
+      bool                             m_bFolderLoadFailed = false;
+      int                              m_iLoadingDots = 0;
 
 
       file_list();

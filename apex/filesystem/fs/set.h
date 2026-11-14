@@ -12,7 +12,8 @@ namespace fs
 
    class CLASS_DECL_APEX set :
       virtual public ::fs::data,
-      virtual public ::file::enumerator
+      virtual public ::file::enumerator,
+      virtual public ::file::image_info_provider
    {
    public:
 
@@ -50,6 +51,7 @@ namespace fs
       virtual void destroy() override;
 
 
+      bool get_file_image_info(const ::file::path & path, ::file::image_info & info) override;
       ::file::path create_folder(const ::file::path & pathParent, const ::scoped_string & scopedstrName) override;
 
    };

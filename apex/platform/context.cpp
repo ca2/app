@@ -570,13 +570,6 @@ namespace apex
             && pfsrawfolderprotocol->is_installed())
          {
 
-            if (strProtocol == "google-drive" && path.case_insensitive_begins("google_drive:"))
-            {
-               ::string strLegacy(path);
-               strLegacy.case_insensitive_begins_eat("google_drive:");
-               path = "google-drive:" + strLegacy;
-            }
-
             if (_001IsProtocol(path, strProtocol + ":/"))
             {
 

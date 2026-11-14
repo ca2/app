@@ -23,6 +23,7 @@
 #include "aura/platform/node.h"
 #include "aura/user/user/shell.h"
 #include "aura/windowing/icon.h"
+#include "acme/filesystem/filesystem/enumerator.h"
 
 
 #include "acme/prototype/collection/_array.h"
@@ -53,6 +54,8 @@ namespace user
       m_eattribute = key.m_eattribute;
       m_eicon = key.m_eicon;
       m_strExtension = key.m_strExtension;
+      m_bProviderImage = key.m_bProviderImage;
+      m_strLocalThumbnailPath = key.m_strLocalThumbnailPath;
       m_strShellThemePrefix = key.m_strShellThemePrefix;
 
    }
@@ -221,12 +224,16 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (contains_image(getfileimage.m_imagekey, getfileimage.m_iImage))
+      if (contains_image(getfileimage.m_imagekey, getfileimage.m_iImage)
+         && getfileimage.m_iImage != (::i32)0x80000001)
       {
 
          return false;
 
       }
+
+      // A queued placeholder is not an allocated atlas slot.
+      // The worker must replace it before drawing a provider's generic icon.
 
       getfileimage.m_iImage = _reserve_image(getfileimage.m_imagekey);
 
@@ -345,6 +352,8 @@ namespace user
    {
 
       auto pimagecontext = image();
+      auto pathThumbnail = getfileimage.m_imagekey.m_strLocalThumbnailPath;
+      if (pathThumbnail.is_empty()) pathThumbnail = getfileimage.m_imagekey.m_strPath;
 
 #if defined(__REACTOS__)
       // The shell already caches completed thumbnails. Decode the current file
@@ -353,14 +362,14 @@ namespace user
       options.sync = true;
       options.cache = false;
       options.draw2d_domain = draw2d_domain();
-      auto pathThumbnail = final_path(getfileimage);
-      if (pathThumbnail.is_empty())
-         pathThumbnail = getfileimage.m_imagekey.m_strPath;
+      if (!getfileimage.m_imagekey.m_bProviderImage)
+         pathThumbnail = final_path(getfileimage);
+      if (pathThumbnail.is_empty()) pathThumbnail = getfileimage.m_imagekey.m_strPath;
       auto pimageTemplate = pimagecontext->load_image(pathThumbnail, options);
       if (pimageTemplate.nok())
          warningf("[shell.thumbnail] decode failed path=%s", getfileimage.m_imagekey.m_strPath.c_str());
 #else
-      auto pimageTemplate = image()->load_image(getfileimage.m_imagekey.m_strPath);
+      auto pimageTemplate = image()->load_image(pathThumbnail);
 #endif
 
       if (pimageTemplate.ok())
@@ -506,6 +515,10 @@ namespace user
 
    void shell::on_add_default_file_image(_get_file_image_ & getfileimage)
    {
+
+      create_file_icon_image("google-drive://", e_file_attribute_directory, e_icon_normal, "matter://google-drive.ico", getfileimage);
+
+      create_file_icon_image("google-drive://", e_file_attribute_directory, e_icon_open, "matter://google-drive.ico", getfileimage);
 
       create_file_icon_image("bookmark://", e_file_attribute_directory, e_icon_normal, "icon://quickaccess", getfileimage);
 
@@ -712,6 +725,62 @@ namespace user
 
    }
 
+
+   ::i32 shell::get_file_image(const ::file::path& path, enum_file_attribute eattribute, enum_icon eicon,
+      ::file::enumerator* pprovider, const ::particle_array & particleaNotify)
+   {
+      image_key key(path, m_strShellThemePrefix, eattribute, eicon);
+      try
+      {
+         
+         if (pprovider)
+         {
+
+            ::file::image_info info;
+
+            info.m_particleaNotify = particleaNotify;
+
+            if (pprovider->get_file_image_info(path, info))
+            {
+               key.m_bProviderImage = true;
+               key.m_eattribute = info.m_bFolder ? e_file_attribute_directory : e_file_attribute_normal;
+               key.set_extension(info.m_strName);
+               auto psz = info.m_strLocalThumbnailPath.c_str();
+               if (info.m_strLocalThumbnailPath.has_character())
+               {
+                  if (1)
+                  {
+                     pprovider->get_file_image_info(path, info);
+                  }
+                  key.m_strLocalThumbnailPath = info.m_strLocalThumbnailPath;
+               }
+               else
+               {
+                  key.m_strLocalThumbnailPath.empty();
+               }
+            }
+         }
+      }
+      catch (...) { /* Missing or stale cached metadata falls back to the ordinary icon. */ }
+      return get_file_image(key);
+   }
+
+   bool shell::defer_get_provider_image(_get_file_image_ & getfileimage)
+   {
+      if (!getfileimage.m_imagekey.m_bProviderImage) return false;
+      if (getfileimage.m_imagekey.m_strLocalThumbnailPath.has_character()
+         && getfileimage.m_imagekey.m_eattribute != e_file_attribute_directory)
+      {
+         // Explicitly use our decoder, bypassing OS thumbnail providers.
+         try
+         {
+            if (::user::shell::defer_set_thumbnail(getfileimage)) return true;
+         }
+         catch (...) { /* A cached image can disappear or fail to decode. Use a type icon. */ }
+      }
+      get_image_by_file_extension(getfileimage);
+      return true; // Do not fall through to a remote URI or an OS thumbnail handler.
+   }
 
    ::i32 shell::get_file_image(const image_key & imagekey)
    {
@@ -1720,9 +1789,8 @@ namespace user
             
             m_pgetfileimage->m_pathFinal.empty();
 
-            auto strPath = m_pgetfileimage->m_imagekey.m_strPath;
-
-            auto eicon = m_pgetfileimage->m_imagekey.m_eicon;
+            auto imagekeyRequest = m_pgetfileimage->m_imagekey;
+            auto strPath = imagekeyRequest.m_strPath;
 
             if (strPath == "C:/Users/camilo/OneDrive/Pictures/_")
             {
@@ -1737,15 +1805,11 @@ namespace user
 
             }
 
-            _get_file_image(*m_pgetfileimage);
+            m_pgetfileimage->m_iImage = I32_MINIMUM;
+            if (!defer_get_provider_image(*m_pgetfileimage))
+               _get_file_image(*m_pgetfileimage);
 
-            m_pgetfileimage->m_imagekey.m_strPath = strPath;
-
-            m_pgetfileimage->m_imagekey.m_strExtension.empty();
-
-            m_pgetfileimage->m_imagekey.m_iIcon = 0;
-
-            m_pgetfileimage->m_imagekey.m_eicon = eicon;
+            m_pgetfileimage->m_imagekey = imagekeyRequest;
 
             _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -1803,15 +1867,16 @@ namespace user
 
       pdraw2dicon->initialize_with_windowing_icon(pwindowingicon);
 
-      for (auto iSize : m_iaSize)
+      for (auto iSize : iaSize)
       {
 
          auto pimage = pdraw2dicon->image_source_image(::f64_size(iSize, iSize));
 
-         if (::is_null(pimage))
+         if (!::is_ok(pimage))
          {
 
             information("error loading image: \"" + path + "\"\n");
+            continue;
 
          }
 
@@ -1937,6 +2002,8 @@ namespace user
    ::i32 shell::_create_file_icon_image(const ::scoped_string & scopedstrPath, enum_file_attribute eattribute, enum_icon eicon, const ::scoped_string & scopedstrIconParam, _get_file_image_ & getfileimage)
    {
 
+      getfileimage.m_imagekey.m_bProviderImage = false;
+      getfileimage.m_imagekey.m_strLocalThumbnailPath.empty();
       getfileimage.m_imagekey.set_path(scopedstrIconParam, false);
       getfileimage.m_imagekey.m_strShellThemePrefix = m_strShellThemePrefix;
       getfileimage.m_imagekey.m_eattribute = eattribute;

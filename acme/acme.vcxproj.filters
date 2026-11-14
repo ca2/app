@@ -4569,6 +4569,12 @@
     <ClInclude Include="platform\_trace_message.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filesystem\folder_background_download.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\folder_download.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6580,6 +6586,9 @@
     </ClCompile>
     <ClCompile Include="platform\_trace_message.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\folder_download.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -85,12 +85,12 @@ namespace user
 
       }
 
-      if(m_pcallback != nullptr)
+      if(m_pformcallback != nullptr)
       {
 
          ptopic->payload(id_form) = this;
 
-         m_pcallback->handle(ptopic, phandlercontext);
+         m_pformcallback->handle(ptopic, phandlercontext);
 
       }
 
@@ -160,10 +160,10 @@ namespace user
 
             pformNew->set_parent_form(this);
 
-            if (m_pcallback)
+            if (m_pformcallback)
             {
 
-               pformNew->set_form_callback(m_pcallback);
+               pformNew->set_form_callback(m_pformcallback);
 
             }
 

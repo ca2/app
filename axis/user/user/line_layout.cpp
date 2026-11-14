@@ -149,6 +149,30 @@ namespace user
    }
 
 
+   ::f64_size line_layout::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
+   {
+      ::f64_size result;
+      for_user_interaction_children(pchild, this)
+      {
+         if (!pchild->is_this_visible(e_layout_sketch)) continue;
+         auto size = pchild->get_preferred_size(pgraphics);
+         const auto & margin = pchild->m_rectangleMargin1;
+         size.cx += margin.left + margin.right;
+         size.cy += margin.top + margin.bottom;
+         if (m_eorientation == e_orientation_horizontal)
+         {
+            result.cx += size.cx + m_iPadding;
+            result.cy = maximum(result.cy, size.cy);
+         }
+         else
+         {
+            result.cy += size.cy + m_iPadding;
+            result.cx = maximum(result.cx, size.cx);
+         }
+      }
+      return result;
+   }
+
    bool line_layout::on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 

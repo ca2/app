@@ -174,12 +174,12 @@ namespace user
    }
 
 
-   void form::set_form_callback(::user::form_callback *pcallback)
+   void form::set_form_callback(::user::form_callback *pformcallback)
    {
 
       //auto estatus = 
 
-      m_pcallback = pcallback;
+      m_pformcallback = pformcallback;
 
       /*     if (!estatus)
            {
@@ -213,7 +213,7 @@ namespace user
    ::user::form_callback *form::get_form_callback()
    {
 
-      return m_pcallback.get();
+      return m_pformcallback.get();
 
    }
 

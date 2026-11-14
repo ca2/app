@@ -748,6 +748,19 @@ namespace user
    }
 
 
+   ::f64_size still::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
+   {
+      if (!m_sizeFixed.is_empty()) return m_sizeFixed;
+      if (m_estill == e_still_text)
+      {
+         pgraphics->set_font(this, ::e_element_none);
+         auto size = pgraphics->get_text_extent(get_window_text());
+         return { (::i32)(size.cx * 1.6), (::i32)(size.cy * 1.4) };
+      }
+      if (m_estill == e_still_image && m_pimage) return m_pimage->size();
+      return get_adjusted_fitting_size(pgraphics);
+   }
+
    bool still::on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 

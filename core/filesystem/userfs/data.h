@@ -30,6 +30,12 @@ namespace userfs
       ::pointer<::file::item>                   m_pitem;
 
       bool                                m_bFullBrowse;
+      ::u64                               m_uBrowseRequest = 0;
+      void apply_browse(::pointer<::file::item> pitem, const ::action_context & context,
+         ::file::listing_base listingUser);
+      void complete_browse(::u64 uRequest, ::pointer<::file::item> pitem, const ::action_context & context,
+         ::file::listing_base listing, ::file::listing_base listingRoot);
+      void browse_failed(::u64 uRequest, const ::action_context & context);
 
 
       data();

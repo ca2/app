@@ -1660,8 +1660,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       }
 
-      if (m_bEnableFsRawFolderProtocols && !is_fs_raw_folder_protocol_installed("google-drive")
-         && !is_fs_raw_folder_protocol_installed("google_drive"))
+      if (m_bEnableFsRawFolderProtocols && !is_fs_raw_folder_protocol_installed("google-drive"))
       {
          try
          {

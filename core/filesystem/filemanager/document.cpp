@@ -3,6 +3,7 @@
 #include "impact.h"
 #include "core/user/userex/dialog.h"
 #include "berg/user/form/impact.h"
+#include "berg/user/form/document.h"
 #include "acme/user/interface/message_box.h"
 #include "tab_impact.h"
 #include "data.h"
@@ -38,6 +39,130 @@ namespace filemanager
       ::file::path m_pathParent;
       bool m_bCreating = false;
 
+      ::pointer < ::user::plain_edit > m_peditFolderName;
+      ::pointer < ::user::button > m_pbuttonOk;
+      ::pointer < ::user::button > m_pbuttonCancel;
+
+
+      new_folder_dialog()
+      {
+         m_bResizable = false;
+      }
+      ~new_folder_dialog() override
+      {
+
+
+      }
+
+
+      ::i32_bool on_init_dialog() override
+      {
+
+         if (!::userex::dialog::on_init_dialog())
+         {
+
+            return false;
+
+         }
+
+         m_pformdocument->set_title("New Folder");
+         auto playoutMainColumn = create_line_layout(m_pform, ::e_orientation_vertical);
+         playoutMainColumn->set_position({16, 16});
+
+         //auto playoutLine1 = create_line_layout(this, ::e_orientation_horizontal);
+
+         create_label<::user::still>(playoutMainColumn, "New Folder");
+         create_label<::user::still>(playoutMainColumn, "Name:");
+         m_peditFolderName = create_edit<::user::plain_edit>(playoutMainColumn);
+         m_peditFolderName->m_bMultiLine = false;
+         m_peditFolderName->set_size({360, 32});
+
+         auto playoutLine1 = create_line_layout(playoutMainColumn, ::e_orientation_horizontal);
+
+         m_pbuttonOk = create_button(playoutLine1, "OK");
+
+         m_pbuttonCancel = create_button(playoutLine1, "Cancel");
+         set_action_button(m_pbuttonOk);
+
+         m_callbackOnAction = [this](::user::interaction* puserinteraction, ::item* pitem, ::user::activation_token* puseractivationtoken) -> bool
+            {
+
+
+               //auto pedit = get_child_by_id("name");
+               //if (!pedit) pedit = m_pform->get_child_by_name("name");
+               //if (!pedit) { show_error("The folder name field could not be loaded."); return; }
+               if (m_bCreating) return true;
+               auto strFolderName = m_peditFolderName->get_text();
+               strFolderName.trim();
+               if (strFolderName.is_empty() || strFolderName == "." || strFolderName == ".." ||
+                  strFolderName.contains("/") || strFolderName.contains("\\"))
+               {
+                  show_error("Enter a folder name without path separators.");
+                  return true;
+               }
+               m_bCreating = true;
+               m_pbuttonOk->enable_window(false);
+               m_pbuttonCancel->enable_window(false);
+               ::pointer < new_folder_dialog > pdialog = this;
+               ::pointer < ::filemanager::document > pdocument = m_pdocument;
+               auto pathParent = m_pathParent;
+               pdocument->fork([pdialog, pdocument, pathParent, strFolderName]()
+                  {
+                     ::string strError;
+                     bool bCreated = false;
+                     try
+                     {
+                        pdocument->filemanager_data()->fs_data()->create_folder(pathParent, strFolderName);
+                        bCreated = true;
+                     }
+                     catch (const ::exception& exception) { strError = exception.get_message(); }
+                     catch (...) { strError = "Could not create the folder."; }
+                     pdialog->m_pform->user_post([pdialog, pdocument, strError, bCreated]()
+                        {
+                           if (!pdialog->m_pform || !pdialog->m_pform->is_window()) return;
+                           pdialog->m_bCreating = false;
+                           if (bCreated)
+                           {
+                              pdialog->EndModalLoop("ok");
+                              try { pdocument->_001Refresh(); }
+                              catch (...) { pdialog->show_error("The folder was created, but the listing could not be refreshed."); }
+                           }
+                           else
+                           {
+                              pdialog->m_pbuttonOk->enable_window(true);
+                              pdialog->m_pbuttonCancel->enable_window(true);
+                              pdialog->show_error(strError);
+                           }
+                        });
+                  });
+
+               return true;
+            };
+
+         m_pbuttonCancel->m_callbackOnAction = [this](::user::interaction* puserinteraction, ::item* pitem, ::user::activation_token* puseractivationtoken) -> bool
+            {
+
+               if (!m_bCreating) EndModalLoop("cancel");
+
+               return true;
+
+            };
+
+      
+
+
+         return true;
+
+      
+
+      }
+
+      void on_show(const ::scoped_string & scopedstrMatter) override
+      {
+         ::userex::dialog::on_show(scopedstrMatter);
+         if (m_peditFolderName) m_peditFolderName->set_keyboard_focus();
+      }
+
       void show_error(const ::scoped_string & scopedstrMessage)
       {
          auto pmessagebox = m_pdocument->createø < ::user_interface::message_box >();
@@ -48,64 +173,16 @@ namespace filemanager
       void handle(::topic * ptopic, ::handler_context * pcontext) override
       {
          ::userex::dialog::handle(ptopic, pcontext);
-         if (ptopic->id() != ::id_click || !ptopic->user_interaction() || !m_pform) return;
-         auto atom = ptopic->user_interaction()->id();
-         if (atom == "cancel" && !m_bCreating)
-         {
-            EndModalLoop("cancel");
-            ptopic->m_bRet = true;
-            return;
-         }
-         if (atom != "submit" || m_bCreating) return;
-         ptopic->m_bRet = true;
-         auto pedit = m_pform->get_child_by_id("name");
-         if (!pedit) pedit = m_pform->get_child_by_name("name");
-         if (!pedit) { show_error("The folder name field could not be loaded."); return; }
-         auto strName = pedit->get_text();
-         strName.trim();
-         if (strName.is_empty() || strName == "." || strName == ".." || strName.contains("/") || strName.contains("\\"))
-         {
-            show_error("Enter a folder name without path separators.");
-            return;
-         }
-         m_bCreating = true;
-         ptopic->user_interaction()->enable_window(false);
-         auto pcancel = m_pform->get_child_by_id("cancel");
-         if (pcancel) pcancel->enable_window(false);
-         ::pointer < new_folder_dialog > pdialog = this;
-         ::pointer < ::filemanager::document > pdocument = m_pdocument;
-         auto pathParent = m_pathParent;
-         pdocument->fork([pdialog, pdocument, pathParent, strName]()
-         {
-            ::string strError;
-            bool bCreated = false;
-            try
-            {
-               pdocument->filemanager_data()->fs_data()->create_folder(pathParent, strName);
-               bCreated = true;
-            }
-            catch (const ::exception & exception) { strError = exception.get_message(); }
-            catch (...) { strError = "Could not create the folder."; }
-            pdialog->m_pform->user_post([pdialog, pdocument, strError, bCreated]()
-            {
-               if (!pdialog->m_pform || !pdialog->m_pform->is_window()) return;
-               pdialog->m_bCreating = false;
-               if (bCreated)
-               {
-                  pdialog->EndModalLoop("ok");
-                  try { pdocument->_001Refresh(); }
-                  catch (...) { pdialog->show_error("The folder was created, but the listing could not be refreshed."); }
-               }
-               else
-               {
-                  auto psubmit = pdialog->m_pform->get_child_by_id("submit");
-                  if (psubmit) psubmit->enable_window(true);
-                  auto pcancel = pdialog->m_pform->get_child_by_id("cancel");
-                  if (pcancel) pcancel->enable_window(true);
-                  pdialog->show_error(strError);
-               }
-            });
-         });
+         //if (ptopic->id() != ::id_click || !ptopic->user_interaction() || !m_pform) return;
+         //auto atom = ptopic->user_interaction()->id();
+         //if (atom == "cancel" && !m_bCreating)
+         //{
+         //   EndModalLoop("cancel");
+         //   ptopic->m_bRet = true;
+         //   return;
+         //}
+         //if (atom != "submit" || m_bCreating) return;
+         //ptopic->m_bRet = true;
       }
    };
 
@@ -1140,12 +1217,33 @@ namespace filemanager
       }
       auto pitem = filemanager_item();
       if (!pitem || pitem->user_path().is_empty()) return;
-      auto pdialog = create_newø < new_folder_dialog >();
-      pdialog->m_pdocument = this;
-      pdialog->m_pathParent = pitem->user_path();
-      m_pdialogNewFolder = pdialog;
-      if (!pdialog->show("filemanager/new_folder.html"))
-         throw ::exception(error_failed, "Could not display the New Folder dialog");
+
+      if (m_bNewFolderDialogPending || m_impacta.is_empty()) return;
+      m_bNewFolderDialogPending = true;
+      ::pointer < ::filemanager::document > pdocument = this;
+      auto pathParent = pitem->user_path();
+      ::pointer<::user::interaction> powner = m_impacta.first()->parent_frame();
+      m_impacta.first()->user_post([this, pdocument, pathParent, powner]()
+      {
+         try
+         {
+            auto pdialog = create_newø < new_folder_dialog >();
+            pdialog->m_pdocument = pdocument;
+            pdialog->m_pathParent = pathParent;
+            pdialog->m_pdialogOwner = powner;
+            pdocument->m_pdialogNewFolder = pdialog;
+            if (!pdialog->show())
+               throw ::exception(error_failed, "Could not display the New Folder dialog");
+         }
+         catch (...)
+         {
+            pdocument->m_pdialogNewFolder.release();
+            auto pmessagebox = createø < ::user_interface::message_box >();
+            pmessagebox->initialize_message_box("Could not display the New Folder dialog.", "New Folder");
+            pmessagebox->display(e_display_normal, {});
+         }
+         pdocument->m_bNewFolderDialogPending = false;
+      });
 
    }
 

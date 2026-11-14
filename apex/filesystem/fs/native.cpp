@@ -100,6 +100,21 @@ namespace fs
       
       node()->root_ones(listing);
 
+      // An unresolved Drive URI belongs to the virtual provider, not the native filesystem.
+      for (::collection::index i = listing.size(); i > 0;)
+      {
+         --i;
+         if (listing[i].case_insensitive_begins("google-drive://"))
+         {
+            auto path = application()->defer_process_path(listing[i]);
+            if (path.case_insensitive_begins("google-drive://"))
+            {
+               listing.erase_at(i);
+               if (i < listing.m_straTitle.size()) listing.m_straTitle.erase_at(i);
+            }
+         }
+      }
+
       return listing;
 
    }

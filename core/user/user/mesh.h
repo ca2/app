@@ -572,6 +572,7 @@ namespace user
       virtual void  set_selection(const range&range);
 
       virtual void  _001AddSelection(const item_range & itemrange);
+      virtual void  _001ClearSelection(const item_range& itemrange);
 
       void set_current_item(::item * pitem, const ::action_context & action_context) override;
 

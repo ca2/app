@@ -35,7 +35,7 @@ namespace fs_raw_folder_protocol_google_drive
 //
 //      m_iLastExitCode = 0;
 //
-//      m_pathProtocol = "google_drive://";
+//      m_pathProtocol = "google-drive://";
 //
 //   }
 //

@@ -391,6 +391,7 @@ namespace user
 
 
       ::function < bool(::user::interaction *, ::item *, ::user::activation_token * puseractivationtoken) > m_callbackOnClick;
+      ::function < bool(::user::interaction *, ::item *, ::user::activation_token *) > m_callbackOnAction;
 
       
       //class draw_select
@@ -1429,6 +1430,9 @@ namespace user
       ::user::element * get_keyboard_focus() override;
 
 
+      // Creation-order traversal within this subtree, with wrapping in either direction.
+      ::user::interaction * next_tab_focus(::user::interaction * current, bool backwards = false);
+      bool handle_tab_key(::message::message * pmessage);
       element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual prototype * keyboard_set_focus_next(prototype * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       
@@ -2491,6 +2495,9 @@ namespace user
       virtual ::e_status is_edit_delete_enabled();
       virtual bool on_edit_delete(const ::action_context& action_context);
 
+
+      // Primary action, independent of mouse or keyboard input. A null token is allowed.
+      bool on_action(::item * pitem = nullptr, ::user::activation_token * puseractivationtoken = nullptr);
 
       virtual bool on_click_generation(::item * pitem, ::user::mouse * pmouse);
       virtual bool on_right_click_generation(::item * pitem, ::user::mouse * pmouse);

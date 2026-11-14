@@ -28,6 +28,7 @@ namespace filemanager
       string                              m_strManagerId;
       bool                                m_bInitialized;
       ::pointer < ::userex::dialog > m_pdialogNewFolder;
+      bool m_bNewFolderDialogPending = false;
 ///      ::pointer < ::user::document >         m_pdocumentTopic;
       ::i32 m_iIconSize;
 

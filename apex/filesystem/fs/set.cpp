@@ -212,6 +212,12 @@ namespace fs
    }
 
    
+   bool set::get_file_image_info(const ::file::path & path, ::file::image_info & info)
+   {
+      auto pdata = path_data(path);
+      return pdata && pdata != this && pdata->get_file_image_info(path, info);
+   }
+
    bool set::enumerate(::file::listing_base & listing)
    {
 

@@ -7,6 +7,9 @@
 #include "acme/prototype/collection/bool_array.h"
 
 
+class folder_download;
+
+
 class CLASS_DECL_ACME folder :
    virtual public ::file::enumerator,
    virtual public ::object
@@ -14,11 +17,14 @@ class CLASS_DECL_ACME folder :
 public:
 
 
-   filesize             m_iFilePosition;
-   ::string             m_strCurrent;
-   ::file::enum_type    m_etypeCurrent;
-   ::i32                  m_iConsumeFromPathBeginningWhenExtracting;
 
+
+   filesize                                        m_iFilePosition;
+   ::string                                        m_strCurrent;
+   ::file::enum_type                               m_etypeCurrent;
+   ::i32                                           m_iConsumeFromPathBeginningWhenExtracting;
+   ::pointer < folder_download >                   m_pfolderdownloadBackground;
+   
 
    folder();
    ~folder() override;
@@ -28,6 +34,9 @@ public:
 
 
    virtual bool is_reading() const;
+
+
+   virtual void background_download_add(const ::file::path& path, const ::particle_array & particleaNotify);
 
 
    virtual void open_for_reading(file_pointer pfile, ::i32 iBufferLevel = 2);

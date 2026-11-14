@@ -1,7 +1,10 @@
 // Created by camilo on 2021-11-10 10:40 BRT <3ThomasBorregaardSorensen!!
 #include "platform.h"
 #include "folder.h"
+#include "folder_download.h"
 #include "acme/exception/interface_only.h"
+#include "acme/parallelization/manual_reset_happening.h"
+#include "acme/platform/application.h"
 
 
 folder::folder()
@@ -38,6 +41,24 @@ bool folder::is_reading() const
    return false;
 
 }
+
+
+void folder::background_download_add(const ::file::path& path, const ::particle_array & particleaNotify)
+{
+
+   if (!m_pfolderdownloadBackground)
+   {
+
+      construct_newø(m_pfolderdownloadBackground);
+
+      m_pfolderdownloadBackground->m_pfolder = this;
+
+   }
+
+   m_pfolderdownloadBackground->add_download_path(path, particleaNotify);
+
+}
+
 
 
 void folder::open_for_reading(file_pointer pfile, ::i32 iBufferLevel)

@@ -1061,11 +1061,11 @@ namespace experience_core
       if (pdata->m_bVertical)
       {
 
-         pdata->m_rectangleMargin.set(2 * fDensity, 3 * fDensity, 1 * fDensity, 0 * fDensity);
+         pdata->m_rectangleMargin.set((::i32)(2 * fDensity), (::i32)(3 * fDensity), (::i32)(1 * fDensity), (::i32)(0 * fDensity));
 
-         pdata->m_rectangleBorder.set(11 * fDensity, 1 * fDensity, 6 * fDensity, 0 * fDensity);
+         pdata->m_rectangleBorder.set((::i32)(11 * fDensity), (::i32)(1 * fDensity), (::i32)(6 * fDensity), (::i32)(0 * fDensity));
 
-         pdata->m_rectangleTextMargin.set(3 * fDensity, 0 * fDensity, 1 * fDensity, 0 * fDensity);
+         pdata->m_rectangleTextMargin.set((::i32)(3 * fDensity), (::i32)(0 * fDensity), (::i32)(1 * fDensity), (::i32)(0 * fDensity));
 
          pdata->m_iTabHeight += pdata->m_rectangleBorder.top + pdata->m_rectangleBorder.bottom +
             pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom;
@@ -1077,11 +1077,11 @@ namespace experience_core
       else
       {
 
-         pdata->m_rectangleMargin.set(3 * fDensity, 2 * fDensity, 0 * fDensity, 1 * fDensity);
+         pdata->m_rectangleMargin.set((::i32) (3 * fDensity), (::i32)( 2 * fDensity),(::i32)( 0 * fDensity), (::i32) (1 * fDensity));
 
-         pdata->m_rectangleBorder.set(0 * fDensity, 1 * fDensity, 11 * fDensity, 6 * fDensity);
+         pdata->m_rectangleBorder.set((::i32) (0 * fDensity), (::i32) (1 * fDensity), (::i32) (11 * fDensity), (::i32) (6 * fDensity));
 
-         pdata->m_rectangleTextMargin.set(3 * fDensity, 0 * fDensity, 1 * fDensity, 0 * fDensity);
+         pdata->m_rectangleTextMargin.set((::i32) (3 * fDensity), (::i32) (0 * fDensity), (::i32) (1 * fDensity), (::i32) (0 * fDensity));
 
          pdata->m_iTabHeight += pdata->m_rectangleBorder.top + pdata->m_rectangleBorder.bottom +
             pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom;
@@ -1103,8 +1103,8 @@ namespace experience_core
       
       if (pdata->m_bVertical)
       {
-         ::i32 iTabWidth = 16 * fDensity;
-         ::i32 iTabHeight = 8 * fDensity;
+         ::i32 iTabWidth = (::i32) (16 * fDensity);
+         ::i32 iTabHeight = (::i32) (8 * fDensity);
          ::i32 cx;
          ::i32 cy;
          for (::i32 iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
@@ -1137,7 +1137,7 @@ namespace experience_core
             if (!ppane->m_bPermanent)
             {
                
-               cx += 2 * fDensity + 16 * fDensity + 2 * fDensity;
+               cx += (::i32) (2 * fDensity + 16 * fDensity + 2 * fDensity);
 
             }
 
@@ -1205,7 +1205,7 @@ namespace experience_core
       else
       {
 
-         ::i32 iTabHeight = 16 * fDensity;
+         ::i32 iTabHeight = (::i32) (16 * fDensity);
 
          ::i32 cy;
 
@@ -1265,12 +1265,12 @@ namespace experience_core
             if (ppane->m_pimage.ok())
             {
                //::image::image_list::info ii;
-               ixAdd += ppane->m_pimage->width() + 2 * fDensity;
+               ixAdd += (::i32) (ppane->m_pimage->width() + 2 * fDensity);
             }
 
             if (!ppane->m_bPermanent)
             {
-               ixAdd += 2 * fDensity + 16 * fDensity + 2 * fDensity;
+               ixAdd += (::i32) ( 2 * fDensity + 16 * fDensity + 2 * fDensity);
             }
 
 
@@ -1285,7 +1285,7 @@ namespace experience_core
          }
 
          // close tab button
-         cy = 2 * fDensity + 16  * fDensity+ 2 * fDensity;
+         cy = (::i32) (2 * fDensity + 16  * fDensity+ 2 * fDensity);
          if (cy > iTabHeight)
          {
             iTabHeight = cy;

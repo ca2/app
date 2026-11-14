@@ -277,11 +277,18 @@ namespace user
 
       }
 
-      if (m_puserinteractionOwner != nullptr)
+      auto pdialogOwner = prequest->m_payloadArguments["dialog_owner"].cast < ::user::interaction >();
+      if (pdialogOwner)
       {
-
+         // Owned dialogs reuse their owner's UI thread. Creating a second UI thread
+         // while the owner waits can block CreateWindowEx activation/initialization.
+         pframe->set_owner(pdialogOwner);
+         pframe->m_ewindowflag += e_window_flag_satellite_window;
+         pframe->m_bAppWindow = false;
+      }
+      else if (m_puserinteractionOwner != nullptr)
+      {
          pframe->set_owner(m_puserinteractionOwner);
-
       }
 
       //if (prequest->m_bMakeVisible)

@@ -48,10 +48,10 @@ namespace user
    //::form_property_set * form_control::get_form_property_set()
    //{
    //
-   //   if(::is_set(m_pcallback))
+   //   if(::is_set(m_pformcallback))
    //   {
    //
-   //      auto pset = m_pcallback->get_form_property_set();
+   //      auto pset = m_pformcallback->get_form_property_set();
    //
    //      if(pset)
    //      {
@@ -429,10 +429,10 @@ namespace user
 
       }
 
-      //if(m_pcallback != nullptr)
+      //if(m_pformcallback != nullptr)
       //{
 
-      //   m_pcallback->handle(ptopic, phandlercontext);
+      //   m_pformcallback->handle(ptopic, phandlercontext);
 
       //   if(ptopic->m_bRet)
       //   {
@@ -553,10 +553,10 @@ namespace user
 
       }
 
-      if (::is_set(m_pcallback))
+      if (::is_set(m_pformcallback))
       {
 
-         m_pcallback->handle(ptopic, phandlercontext);
+         m_pformcallback->handle(ptopic, phandlercontext);
 
          if (ptopic->m_bRet)
          {
@@ -785,9 +785,9 @@ namespace user
 
    void form_control::_001InitializeFormPreData()
    {
-      if(m_pcallback != nullptr)
+      if(m_pformcallback != nullptr)
       {
-         m_pcallback->_001InitializeFormPreData(this);
+         m_pformcallback->_001InitializeFormPreData(this);
       }
 
       /*
@@ -1404,10 +1404,10 @@ namespace user
 
    //   }
 
-   //   //if(m_pcallback != nullptr)
+   //   //if(m_pformcallback != nullptr)
    //   //{
 
-   //   //   m_pcallback->handle(ptopic, phandlercontext);
+   //   //   m_pformcallback->handle(ptopic, phandlercontext);
 
    //   //   if(ptopic->m_bRet)
    //   //   {
@@ -1526,10 +1526,10 @@ namespace user
 
    //   }
 
-   //   if (::is_set(m_pcallback))
+   //   if (::is_set(m_pformcallback))
    //   {
 
-   //      m_pcallback->handle(ptopic, phandlercontext);
+   //      m_pformcallback->handle(ptopic, phandlercontext);
 
    //      if (ptopic->m_bRet)
    //      {
@@ -1706,7 +1706,7 @@ namespace user
 
       ::user::form::operator()(ptimer);
 
-      if(m_pcallback != nullptr)
+      if(m_pformcallback != nullptr)
       {
          
          auto pextendedtopic = allocateø ::extended_topic(id_timer);
@@ -1728,7 +1728,7 @@ namespace user
             
          }
          
-         //m_pcallback->route(pextendedtopic);
+         //m_pformcallback->route(pextendedtopic);
          route(pextendedtopic);
          
       }
@@ -1771,9 +1771,9 @@ namespace user
 
 #endif
 
-      //if(m_pcallback != nullptr)
+      //if(m_pformcallback != nullptr)
       //{
-      //   m_pcallback->OnUser123(pusermessage->m_wparam,pusermessage->m_lparam);
+      //   m_pformcallback->OnUser123(pusermessage->m_wparam,pusermessage->m_lparam);
       //}
    }
 

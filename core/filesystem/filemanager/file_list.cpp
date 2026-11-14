@@ -21,6 +21,7 @@
 //#include "apex/platform/os_context.h"
 
 #include "aura/graphics/image/list.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/copydesk.h"
@@ -43,6 +44,7 @@
 
 namespace filemanager
 {
+   constexpr ::enum_timer e_timer_folder_loading = (::enum_timer)0x67646c;
 
 
    file_list::file_list()
@@ -364,6 +366,13 @@ namespace filemanager
    {
 
       ::userfs::list::operator()(ptimer);
+      if (ptimer->m_etimer == e_timer_folder_loading)
+      {
+         if (!m_bFolderLoading) { ptimer->cancel(); return; }
+         m_iLoadingDots = (m_iLoadingDots + 1) % 4;
+         post_redraw();
+         return;
+      }
 
       if (ptimer->m_etimer == e_timer_update_bergedge_topic_file)
       {
@@ -1571,7 +1580,19 @@ namespace filemanager
    void file_list::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::form_list::_001OnDraw(pdraw2dgraphics);
+      if (!m_bFolderLoading && !m_bFolderLoadFailed)
+         ::user::form_list::_001OnDraw(pdraw2dgraphics);
+      if (m_bFolderLoading || m_bFolderLoadFailed)
+      {
+         ::string str = m_bFolderLoading ? "Loading" : "Could not load this folder.";
+         if (m_bFolderLoading) for (int i = 0; i < m_iLoadingDots; ++i) str += ".";
+         auto rectangle = this->rectangle();
+         rectangle.top += 40;
+         auto pstyle = get_style(pdraw2dgraphics);
+         pdraw2dgraphics->set_solid_color(get_color(pstyle, ::e_element_text));
+         pdraw2dgraphics->set_font(this);
+         pdraw2dgraphics->draw_text(str, rectangle, e_align_center);
+      }
 
    }
 
@@ -2073,6 +2094,31 @@ namespace filemanager
    void file_list::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
+      if (!m_bStatic && ptopic->id() == "filemanager_browse_started")
+      {
+         m_bFolderLoading = true;
+         m_bFolderLoadFailed = false;
+         m_iLoadingDots = 1;
+         clear_selection();
+         auto pdata = fs_list();
+         if (pdata)
+         {
+            synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            if (pdata->m_pitema) pdata->m_pitema->erase_all();
+         }
+         update_impact();
+         set_timer(e_timer_folder_loading, 300_ms);
+         post_redraw();
+         return;
+      }
+      if (ptopic->id() == "filemanager_browse_failed" || ptopic->id() == id_browse)
+      {
+         m_bFolderLoading = false;
+         m_bFolderLoadFailed = ptopic->id() == "filemanager_browse_failed";
+         kill_timer(e_timer_folder_loading);
+         post_redraw();
+         if (m_bFolderLoadFailed) return;
+      }
       ::filemanager_impact_base::handle(ptopic, phandlercontext);
 
       ::userfs::list::handle(ptopic, phandlercontext);

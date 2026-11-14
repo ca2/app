@@ -2,8 +2,8 @@
 
 This `folder` and `fs::data` provider advertises **Google Drive** at
 `google-drive://` when no installed Google Drive filesystem mirror is available.
-An installed mirror keeps priority. Legacy `google_drive://` mirror URLs remain
-accepted by the native protocol resolver.
+An installed mirror keeps priority. Both providers use the single `google-drive://`
+URI scheme.
 
 The first browse uses `api_google` with the existing
 `matter://api/google.network_payload` OAuth client configuration and the
@@ -57,3 +57,23 @@ Recursive enumeration is also not implemented; the provider reports it explicitl
 Build `folder_google_drive`, `api_google`, and the affected `acme`/`apex` modules,
 then rebuild/prepare `_app_core_hello_multiverse`. Its dependency list includes both
 plugins. Select Google Drive in the file browser to begin login.
+
+## Icons and cached thumbnails
+
+`file::enumerator::get_file_image_info` is a nonvirtual adapter inherited by both
+`fs::data` and `folder`. It queries the optional `file::image_info_provider`
+capability through RTTI. This preserves the existing enumerator vtable, so older
+providers safely return false instead of dispatching through an incompatible
+virtual slot. `fs::set` routes requests to the owning provider.
+It supplies folder status, the display filename (for extension icons), and an
+optional existing local thumbnail path. It must not authenticate or perform
+remote I/O. Returning false preserves the ordinary shell behavior.
+
+The file manager passes its filesystem provider to the shell. Provider hints
+travel with the queued image request. The shell requests generic folder/type
+icons from its OS adapter and decodes cached images through ca2's image loader,
+without using OS thumbnail handlers. Thumbnail cache paths participate in icon
+cache identity, so a newly cached version can replace a generic icon.
+
+Drive enumeration caches per-file metadata. Icon queries read that metadata and
+only advertise an image cache file when its version and byte size match.

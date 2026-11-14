@@ -300,9 +300,17 @@ namespace filemanager
 
          strDir = pathUser;
 
-         listing.set_listing(pathUser);
-
-         directory()->enumerate(listing);
+         auto pdata = filemanager_data();
+         if (pdata->m_pitem && pdata->m_pitem->user_path() == pathUser)
+         {
+            // The browse worker already fetched this folder. Do not fetch it again while drawing/updating the tree.
+            listing = pdata->m_listingFolderUser2;
+         }
+         else
+         {
+            listing.set_listing(pathUser);
+            directory()->enumerate(listing);
+         }
 
       }
 
@@ -903,7 +911,7 @@ return;
 
             auto pfsdata = pfilemanagerdata->fs_data();
 
-            if (pfsdata->is_dir(pitemNew->final_path()))
+            if (pathFinal.is_folder() || (pathFinal.not_file_or_folder() && pfsdata->is_dir(pathFinal) > 0))
             {
 
                pitemNew->m_flags |= ::file::e_flag_folder;

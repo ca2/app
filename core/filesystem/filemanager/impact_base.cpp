@@ -1,4 +1,15 @@
 #include "platform.h"
+#include "core/user/userex/dialog.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
+#include "berg/user/form/document.h"
+#include "berg/user/form/impact.h"
+#include "berg/user/simple/frame_window.h"
+#include "berg/user/experience/frame.h"
+#include "acme/filesystem/file/folder_importer.h"
+#include "acme/filesystem/filesystem/file_context.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "apex/filesystem/fs/set.h"
 #include "impact_base.h"
 #include "document.h"
 #include "tab_impact.h"
@@ -18,6 +29,103 @@
 #include "aura/user/user/frame_interaction.h"
 #include "core/platform/application.h"
 
+
+namespace
+{
+   class paste_progress_bar : public ::user::interaction
+   {
+   public:
+      ::f64 m_rate = 0.0;
+      ::f64_size get_preferred_size(::draw2d::graphics_pointer &) override { return {420, 18}; }
+      void resize_to_fit(::draw2d::graphics_pointer &) override { set_size({420, 18}); }
+      void _001OnDraw(::draw2d::graphics_pointer & graphics) override
+      {
+         auto bounds = rectangle();
+         graphics->fill_rectangle(bounds, argb(255, 220, 220, 220));
+         bounds.right = bounds.left + bounds.width() * m_rate;
+         graphics->fill_rectangle(bounds, argb(255, 40, 130, 220));
+      }
+   };
+   class paste_progress_dialog : public ::userex::dialog
+   {
+   public:
+      ::pointer<::user::still> m_status;
+      ::pointer<::user::button> m_cancel;
+      ::pointer<paste_progress_bar> m_progress;
+      bool m_bCancelled = false;
+      bool m_bFinished = false;
+      paste_progress_dialog() { m_bResizable = false; defer_create_synchronization(); }
+      ::i32_bool on_init_dialog() override
+      {
+         if (!::userex::dialog::on_init_dialog()) return false;
+         m_pformdocument->set_title("Paste files");
+         // Keep the active transfer visible; cancellation goes through the Cancel button.
+         m_pframe->m_ebuttonaHide.add_unique(::experience::e_button_close);
+         auto column = create_line_layout(m_pform, ::e_orientation_vertical);
+         column->set_position({16, 16});
+         m_status = create_label<::user::still>(column, "Preparing to paste files into the selected folder...");
+         m_progress = create_newø<paste_progress_bar>();
+         m_progress->create_child(column);
+         m_progress->display();
+         m_cancel = create_button(column, "Cancel");
+         m_cancel->m_callbackOnAction = [this](::user::interaction *, ::item *, ::user::activation_token *)
+         {
+            ::pointer<paste_progress_dialog> keepAlive = this;
+            bool finished;
+            {
+               _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+               finished = m_bFinished;
+               if (!finished) m_bCancelled = true;
+            }
+            if (finished) EndModalLoop("close");
+            else
+            {
+               m_status->set_window_text("Cancelling the transfer...");
+               m_cancel->enable_window(false);
+               m_status->set_need_redraw();
+               m_status->post_redraw();
+            }
+            return true;
+         };
+         return true;
+      }
+      bool cancelled()
+      {
+         _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         return m_bCancelled;
+      }
+      void update(const ::string & text, ::f64 rate)
+      {
+         ::pointer<paste_progress_dialog> dialog = this;
+         m_pform->user_post([dialog, text, rate]()
+         {
+            if (dialog->cancelled()) return;
+            dialog->m_progress->m_rate = rate;
+            dialog->m_progress->set_need_redraw();
+            dialog->m_progress->post_redraw();
+            dialog->m_status->set_window_text(text);
+            dialog->m_status->set_need_redraw();
+            dialog->m_status->post_redraw();
+         });
+      }
+      void finish(const ::string & text)
+      {
+         ::pointer<paste_progress_dialog> dialog = this;
+         m_pform->user_post([dialog, text]()
+         {
+            {
+               _synchronous_lock lock(dialog->synchronization());
+               dialog->m_bFinished = true;
+            }
+            dialog->m_status->set_window_text(text);
+            dialog->m_status->set_need_redraw();
+            dialog->m_status->post_redraw();
+            dialog->m_cancel->set_window_text("Close");
+            dialog->m_cancel->enable_window(true);
+         });
+      }
+   };
+}
 
 filemanager_impact_base::filemanager_impact_base()
 {
@@ -244,6 +352,56 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
    string strDir;
 
    strDir = filemanager_item()->user_path();
+
+   auto provider = fs_data()->path_data(strDir);
+   ::cast<::file::folder_importer> importer = provider;
+   if (importer)
+   {
+      pmessage->m_bRet = true;
+      auto dialog = create_newø<paste_progress_dialog>();
+      dialog->m_pdialogOwner = parent_frame();
+      if (!dialog->show()) throw ::exception(error_failed, "Could not display paste progress");
+      ::pointer<filemanager_impact_base> impact = this;
+      get_document()->fork([impact, dialog, importer, listing, strDir, eop]()
+      {
+         ::collection::count completed = 0;
+         try
+         {
+            for (const auto & source : listing)
+            {
+               if (dialog->cancelled()) throw ::exception(error_cancelled, "Paste cancelled");
+               int lastPercent = -1;
+               importer->import_file(strDir, source, [&](::f64 rate)
+               {
+                  if (dialog->cancelled()) return false;
+                  int percent = (int)(rate * 100.0);
+                  if (percent != lastPercent)
+                  {
+                     lastPercent = percent;
+                     dialog->update("File " + ::as_string(completed + 1) + " of " + ::as_string(listing.size())
+                        + ": " + source.name() + " (" + ::as_string(percent) + "%)",
+                        (completed + rate) / (::f64)listing.size());
+                  }
+                  return true;
+               });
+               ++completed;
+               // Never delete a cut source until the provider confirms the upload.
+               if (eop == ::user::copydesk::e_op_cut) impact->file()->erase(source);
+            }
+            dialog->finish("Pasted " + ::as_string(completed) + " file(s).");
+         }
+         catch (const ::exception & exception)
+         {
+            dialog->finish(exception.get_message() + " (" + ::as_string(completed) + " file(s) completed)");
+         }
+         catch (...)
+         {
+            dialog->finish("Paste failed. " + ::as_string(completed) + " file(s) completed.");
+         }
+         impact->user_post([impact]() { impact->_001Refresh(); });
+      });
+      return;
+   }
 
    auto pimpact  = this;
 

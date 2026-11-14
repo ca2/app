@@ -957,6 +957,8 @@ namespace userfs
          {
 
             list_data * pdata = fs_list();
+            if (!pdata) return;
+            synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             //if (::is_null(pdata))
             //{
@@ -1011,45 +1013,13 @@ namespace userfs
 
             ::file::path pathProcessed = pfsitem->final_path();
 
-            if (!pathProcessed.flags().has(::file::e_flag_final_path))
-            {
-
-               pfsitem->set_final_path(pathProcessed = pcontext->defer_process_path(pathUser));
-
-            }
-
-            auto pset =m_pdocument->filemanager_data()->fs_data();
-
-            if (::is_null(pset))
-            {
-
-               return;
-
-            }
-
-            auto iImage = puser->shell()->get_file_image(
-               pathProcessed,
-               pset->is_dir(pfsitem->final_path()) ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
-               ::user::shell::e_icon_normal);
-
-            if (iImage < 0)
-            {
-
-               puser->shell()->warn_when_ok(pathProcessed, { this });
-
-               iImage = puser->shell()->get_file_image(
-                  pfsitem->final_path(),
-                  pset->is_dir(pfsitem->final_path()) ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
-                  ::user::shell::e_icon_normal);
-
-               if (iImage < 0)
-               {
-
-                  puser->shell()->warn_when_ok(pfsitem->final_path(), { this });
-
-               }
-
-            }
+            auto pset = m_pdocument->filemanager_data()->fs_data();
+            if (!pset) return;
+            auto eattribute = pfsitem->is_folder() ? ::user::shell::e_file_attribute_directory
+               : ::user::shell::e_file_attribute_normal;
+            auto iImage = puser->shell()->get_file_image(pathProcessed, eattribute,
+               ::user::shell::e_icon_normal, pset, {this});
+            if (iImage < 0) puser->shell()->warn_when_ok(pathProcessed, { this });
 
             pfsitem->m_iImage = iImage;
 

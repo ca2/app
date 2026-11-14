@@ -7826,6 +7826,19 @@ namespace user
 
                route(ptopic);
 
+               // Topic routing does not bubble through layout parents. Give the
+               // enclosing dialog form its default-action fallback explicitly.
+               if (!ptopic->m_bRet && ptopic->m_bOk && !m_bMultiLine)
+               {
+                  for (auto parent = static_cast<::user::interaction *>(this)->get_parent();
+                     parent; parent = parent->get_parent())
+                  {
+                     if (!parent->is_true("tab_focus_scope")) continue;
+                     parent->handle(ptopic, nullptr);
+                     break;
+                  }
+               }
+
                if (!ptopic->m_bRet && ptopic->m_bOk)
                {
 
@@ -7856,7 +7869,7 @@ namespace user
 
             if (!m_bMultiLine)
             {
-
+               if (handle_tab_key(pmessage)) return;
                pkey->previous();
 
                auto ptopic = create_topic(::id_tab_key);
@@ -10672,7 +10685,7 @@ namespace user
    bool plain_edit::keyboard_focus_is_focusable()
    {
 
-      return is_window_visible();
+      return is_window_enabled() && is_window_visible(::user::e_layout_sketch);
 
    }
 

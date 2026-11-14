@@ -1,6 +1,9 @@
 #include "platform.h"
 #include "item.h"
 #include "tree_data.h"
+#include "document.h"
+#include "data.h"
+#include "apex/filesystem/fs/set.h"
 #include "acme/constant/user_message.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/prototype/data/tree_item.h"
@@ -128,7 +131,9 @@ namespace userfs
 
       }
 
-      auto iImage = pshell->get_file_image(strPath, efileattribute, eicon);
+      auto pprovider = m_ptreedata->m_puserfsdocument && m_ptreedata->m_puserfsdocument->m_puserfsdata
+         ? m_ptreedata->m_puserfsdocument->m_puserfsdata->fs_data() : nullptr;
+      auto iImage = pshell->get_file_image(strPath, efileattribute, eicon, pprovider, m_ptreedata->m_usertreea);
 
       if (iImage >= 0)
       {
@@ -139,7 +144,7 @@ namespace userfs
 
       pshell->warn_when_ok(user_path(), m_ptreedata->m_usertreea);
 
-      iImage = pshell->get_file_image(final_path(), efileattribute, eicon);
+      iImage = pshell->get_file_image(final_path(), efileattribute, eicon, pprovider, m_ptreedata->m_usertreea);
 
       if(iImage < 0)
       {

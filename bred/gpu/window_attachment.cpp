@@ -226,9 +226,9 @@ namespace gpu
 
          m_pgpucontextDraw2d->m_pgpudevice = m_pgpucontextWindow->m_pgpudevice;
 
-         auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
+         auto pacmeuserinteractionWindow = m_pgpucontextWindow->m_puserinteractionTopic;
 
-         ::cast < ::user::interaction > puserinteraction = pacmeuserinteractionMain;
+         ::cast < ::user::interaction > puserinteraction = pacmeuserinteractionWindow;
 
          m_pgpucontextDraw2d->m_puserinteractionTopic = puserinteraction;
 

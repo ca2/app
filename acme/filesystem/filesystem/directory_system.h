@@ -40,6 +40,10 @@ public:
 
    ::file::path                  m_pathAppData;
    ::file::path                  m_pathDefaultAppData;
+   ::file::path                  m_pathAppDataOverride;
+   ::file::path                  m_pathApplicationAppData;
+   ::string                      m_strApplicationAppDataAppId;
+   ::file::path                  m_pathApplicationAppDataOverride;
 
    bool                          m_bAppDataPathCalculated = false;
    bool                          m_bDefaultAppDataPathCalculated = false;
@@ -149,6 +153,7 @@ public:
    virtual ::file::path local_app_matter_cache_folder();
    virtual ::file::path app_data_path();
    virtual ::file::path application_app_data_path();
+   virtual ::file::path application_app_data_path(const ::scoped_string & scopedstrAppId);
    virtual ::file::path default_app_data_path();
    virtual ::file::path home_path();
    virtual ::file::path ca2_config_path();

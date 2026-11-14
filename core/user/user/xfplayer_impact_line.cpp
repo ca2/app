@@ -921,7 +921,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pdraw
          auto iUtf8Length = get_utf8_char_length(psz);
          int iEnd = i + iUtf8Length;
          
-         iEnd = minimum(iEnd, iStringLength);
+         iEnd = minimum(iEnd, (int) iStringLength);
 
          m_pgraphicsextension->get_text_extent(
          pdraw2dgraphics,

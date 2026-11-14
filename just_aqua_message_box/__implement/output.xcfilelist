@@ -17,6 +17,7 @@ time-macos/libcore_foundation.dylib
 time-macos/libdarwin.dylib
 time-macos/libnano_graphics_quartz2d.dylib
 time-macos/libnano_idn_libidn.dylib
+time-macos/libfs_raw_folder_protocol_dropbox.dylib
 time-macos/libcrypto.dylib
 time-macos/libssl.dylib
 time-macos/libapex_macos.dylib

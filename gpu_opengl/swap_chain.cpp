@@ -490,7 +490,7 @@ void swap_chain::on_gpu_context_render_frame(::i32 w, ::i32 h)
    //glEnable(GL_BLEND);
    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
    glViewport(0, 0, w, h);
-   ::f32 alpha = 0.69;
+   ::f32 alpha = 0.69f;
    glClearColor(0.2f * alpha, fGreen * alpha, 0.5f * alpha, 1.0f * alpha);
    glClear(GL_COLOR_BUFFER_BIT);
 #endif

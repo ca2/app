@@ -4932,7 +4932,8 @@ float4 main(PS_INPUT input) : SV_TARGET
       if (::is_set(puserinteractionContext))
       {
 
-         m_sizeRaw = puserinteractionContext->window()->m_sizeRaw;
+         // The first popup layout may precede native buffer allocation.
+         m_sizeRaw = puserinteractionContext->window()->m_sizeRaw.maximum(size());
 
       }
       // aaaxyz

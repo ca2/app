@@ -82,6 +82,9 @@ namespace windowing
       virtual bool has_readily_gettable_absolute_coordinates() const;
       virtual bool has_mouse_capture_capability();
 
+      // Whether the desktop currently provides a host for notification icons.
+      virtual bool has_notify_icon_interface();
+
       void on_prepare_application() override;
 
       //virtual void initialize_windowing(::user::user * puser);

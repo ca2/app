@@ -474,6 +474,7 @@ namespace user
 
    void list_box::_001OnDrawComboList(::draw2d::graphics_pointer& pdraw2dgraphics)
    {
+      _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

@@ -2699,7 +2699,11 @@ bool task::pick_next_posted_procedure()
 
       }
 
-      auto procedure = ::transfer(m_procedurea2.pick_first());
+      // procedure has copy semantics. pick_first() assumes a destructive move
+      // and does not destroy the removed slot, leaking its captured owners.
+      // Copy then erase so the queued reference is released on every dispatch.
+      auto procedure = m_procedurea2.first();
+      m_procedurea2.erase_at(0);
 
       defer_reset_main_loop_happening();
 

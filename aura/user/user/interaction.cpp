@@ -8477,6 +8477,54 @@ if(get_parent())
    }
 
 
+   namespace
+   {
+      void collect_tab_controls(::user::interaction * root, ::pointer_array<::user::interaction> & controls)
+      {
+         for_user_interaction_children(child, root)
+         {
+            if (!child->is_this_visible(::user::e_layout_sketch) || !child->is_window_enabled()) continue;
+            if (child->keyboard_focus_is_focusable()) controls.add(child);
+            collect_tab_controls(child, controls);
+         }
+      }
+   }
+
+   ::user::interaction * interaction::next_tab_focus(::user::interaction * current, bool backwards)
+   {
+      ::pointer_array<::user::interaction> controls;
+      collect_tab_controls(this, controls);
+      if (controls.is_empty()) return nullptr;
+      for (::collection::index i = 0; i < controls.size(); ++i)
+      {
+         if (controls[i] == current)
+         {
+            auto next = backwards ? (i + controls.size() - 1) % controls.size() : (i + 1) % controls.size();
+            return controls[next];
+         }
+      }
+      return backwards ? controls.last().m_p : controls.first().m_p;
+   }
+
+   bool interaction::handle_tab_key(::message::message * pmessage)
+   {
+      auto pkey = pmessage->m_union.m_pkey;
+      if (!pkey || pkey->m_ekey != ::user::e_key_tab) return false;
+      auto psession = session();
+      if (psession && (psession->is_key_pressed(::user::e_key_control) || psession->is_key_pressed(::user::e_key_alt)))
+         return false;
+      for (auto scope = this; scope; scope = scope->get_parent())
+      {
+         if (!scope->is_true("tab_focus_scope")) continue;
+         auto next = scope->next_tab_focus(this, psession && psession->is_key_pressed(::user::e_key_shift));
+         if (next) next->set_keyboard_focus();
+         pmessage->m_bRet = true;
+         pmessage->m_lresult = 1;
+         return true;
+      }
+      return false;
+   }
+
    element * interaction::keyboard_set_focus_next(bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
    {
 
@@ -9573,6 +9621,7 @@ if(get_parent())
 
    void interaction::on_message_key_down(::message::message * pmessage)
    {
+      if (handle_tab_key(pmessage)) return;
 
       if (m_ekeyboardmode == e_keyboard_mode_reposition
          || m_ekeyboardmode == e_keyboard_mode_resize)
@@ -14820,8 +14869,8 @@ if(get_parent())
 
                   if (::is_set(pinteraction)
                   && (
-                        pinteraction->m_bExtendOnParent
-                        || pinteraction->m_bExtendOnParentIfOnlyClient
+                        pinteraction->should_extend_on_parent()
+                        || pinteraction->should_extend_on_parent_if_only_client()
                      )
                      )
                   {
@@ -15782,6 +15831,24 @@ if(get_parent())
    }
 
 
+   bool interaction::should_extend_on_parent() const
+   {
+      return m_bExtendOnParent;
+   }
+
+
+   bool interaction::should_extend_on_parent_if_only_client() const
+   {
+      return m_bExtendOnParentIfOnlyClient;
+   }
+
+
+   bool interaction::should_extend_on_parent_hosting_area() const
+   {
+      return m_bExtendOnParentHostingArea;
+   }
+
+
    void interaction::_extend_on_parent(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
@@ -16121,14 +16188,14 @@ if(get_parent())
 
       }
 
-      if (m_bExtendOnParent)
+      if (should_extend_on_parent())
       {
 
          _extend_on_parent(pdraw2dgraphics);
 
       }
 
-      if (m_bExtendOnParentHostingArea)
+      if (should_extend_on_parent_hosting_area())
       {
 
          _extend_on_parent_hosting_area(pdraw2dgraphics);
@@ -23250,7 +23317,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
       ::pointer< ::exception > pexception;
 
-      main_send([this, &pexception]()
+      user_send([this, &pexception]()
          {
 
             try
@@ -23299,7 +23366,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
       else
       {
 
-         pwindow->create_window(::e_parallelization_asynchronous);
+         pwindow->create_window(::e_parallelization_synchronous);
 
       }
 
@@ -25420,6 +25487,13 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
    }
 
 
+   bool interaction::on_action(::item * pitem, ::user::activation_token * puseractivationtoken)
+   {
+      if (!is_window_enabled()) return false;
+      return m_callbackOnAction && m_callbackOnAction(this, pitem, puseractivationtoken);
+   }
+
+
    bool interaction::on_click_generation(::item * pitem, ::user::mouse * pmouse)
    {
 
@@ -25474,7 +25548,8 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
       information() << "interaction::on_click_generation going to call on_click";
 
-      return on_click(pitem, pmouse);
+      if (on_click(pitem, pmouse)) return true;
+      return on_action(pitem, pmouse ? pmouse->user_activation_token() : nullptr);
 
    }
 
@@ -30012,12 +30087,15 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    void interaction::_001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, const ::user::e_zorder & ezorder)
    {
 
-      //return;
+      _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (auto & [iIndex, pitemcontainer] : m_itemcontainermap)
       {
 
-         _001DrawItems(pdraw2dgraphics, iIndex, pitemcontainer->m_pitema, ezorder);
+         if (pitemcontainer)
+         {
+            _001DrawItems(pdraw2dgraphics, iIndex, pitemcontainer->m_pitema, ezorder);
+         }
 
       }
 
@@ -30026,6 +30104,8 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
 
    void interaction::_001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iIdContainer, ::item_array * pitema, const ::user::e_zorder & ezorder)
    {
+
+      _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (::is_null(pitema))
       {
@@ -30039,9 +30119,14 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
       for (auto & pitem : *pitema)
       {
 
-         auto eelement = pitem->m_item.m_eelement;
+         // Indexed item arrays may have empty slots, just as in hit testing.
+         if (!pitem || pitem->is_hidden())
+         {
+            continue;
+         }
 
          auto puseritem = user_item(pitem);
+         if (!puseritem) continue;
 
          if (!(puseritem->m_ezorder & ezorder) && 
             !(puseritem->m_ezorder == ::user::e_zorder_none

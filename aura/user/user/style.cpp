@@ -118,6 +118,7 @@ namespace user
    {
 
       if (ptopic->id() == id_user_style_change 
+         || ptopic->id() == id_application_dark_mode_change
          || ptopic->id() == id_operating_system_user_theme_change
          || ptopic->id() == id_operating_system_user_color_change)
       {

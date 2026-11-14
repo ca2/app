@@ -101,7 +101,10 @@ namespace parallelization
                while (m_procedurea.has_element())
                {
 
-                  auto procedure = m_procedurea.pick_first();
+                  // Destroy the queued slot even when the callable copies
+                  // rather than destructively moving its captured owners.
+                  auto procedure = m_procedurea.first();
+                  m_procedurea.erase_at(0);
 
                   synchronouslock.unlock();
 

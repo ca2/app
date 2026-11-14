@@ -1,6 +1,8 @@
 #include "platform.h"
 #include "frame.h"
 #include "tab_impact.h"
+#include "document.h"
+#include "berg/user/user/toolbar.h"
 #include "acme/constant/user_message.h"
 
 
@@ -33,8 +35,40 @@ namespace filemanager
    void frame::on_create_bars()
    {
 
-      return simple_frame_window::on_create_bars();
+      ensure_filemanager_toolbar();
 
+   }
+
+
+   void frame::ensure_filemanager_toolbar()
+   {
+      ::cast < ::filemanager::document > pdocument = m_pimpactMain
+         ? m_pimpactMain->get_document() : get_active_document();
+      if (!pdocument || !pdocument->m_pfilemanagerdata) return;
+      if (!pdocument->has_toolbar())
+      {
+         if (m_ptoolbarFileManager) ::simple_frame_window::hide_control_bar(m_ptoolbarFileManager);
+         m_ptoolbarFileManager.release();
+         return;
+      }
+      auto ptoolbar = pdocument->get_toolbar(this, true);
+      if (m_ptoolbarFileManager && m_ptoolbarFileManager != ptoolbar)
+         ::simple_frame_window::hide_control_bar(m_ptoolbarFileManager);
+      m_ptoolbarFileManager = ptoolbar;
+      if (ptoolbar && !ptoolbar->is_this_visible()) show_control_bar(ptoolbar);
+   }
+
+   void frame::hide_control_bar(::user::control_bar * pcontrolbar)
+   {
+      // Child focus changes must not remove the frame's file-manager toolbar.
+      if (m_ptoolbarFileManager && pcontrolbar == m_ptoolbarFileManager) return;
+      ::simple_frame_window::hide_control_bar(pcontrolbar);
+   }
+
+   void frame::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+      ensure_filemanager_toolbar();
+      ::simple_frame_window::on_perform_top_down_layout(pgraphics);
    }
 
 

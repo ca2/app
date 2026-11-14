@@ -145,6 +145,8 @@ namespace folder_zip
 
       auto zipfile = zipOpen2("pad", APPEND_STATUS_CREATE, nullptr, (zlib_filefunc_def*)&g_filefunctiondefinitions, pfile.m_p);
 
+      if (!zipfile)
+         throw ::exception(error_failed, "Cannot open ZIP archive for writing");
       m_zipfile = zipfile;
 
    }
@@ -195,7 +197,21 @@ namespace folder_zip
 
 #endif
 
-      zipOpenNewFileInZip(m_zipfile, pathRelative, &zipfi, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, Z_DEFAULT_COMPRESSION);
+      auto check_zip_result = [&](int iResult, const char * pszOperation)
+      {
+         if (iResult != ZIP_OK)
+         {
+            ::string strMessage;
+            strMessage.formatf("ZIP %s failed for '%s' (code %d)", pszOperation, pathRelative.c_str(), iResult);
+            throw ::exception(error_failed, strMessage);
+         }
+      };
+      if (!m_zipfile)
+         throw ::exception(error_failed, "ZIP archive is not open for writing");
+      auto iResult = zipOpenNewFileInZip(m_zipfile, pathRelative, &zipfi, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, Z_DEFAULT_COMPRESSION);
+      check_zip_result(iResult, "open entry");
+      auto iTotal = pfile->size();
+      filesize iProcessed = 0;
 
       memory mem;
 
@@ -206,11 +222,14 @@ namespace folder_zip
       while ((uRead = pfile->read(mem)) > 0)
       {
 
-         zipWriteInFileInZip(m_zipfile, mem.begin(), (::u32)uRead);
+         check_zip_result(zipWriteInFileInZip(m_zipfile, mem.begin(), (::u32)uRead), "write entry");
+         iProcessed += uRead;
+         if (m_functionAddFileProgress)
+            m_functionAddFileProgress(pathRelative, iProcessed, iTotal);
 
       }
 
-      zipCloseFileInZip(m_zipfile);
+      check_zip_result(zipCloseFileInZip(m_zipfile), "close entry");
 
    }
 

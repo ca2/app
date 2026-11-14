@@ -63,6 +63,8 @@ namespace fs
       file_pointer get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * ppfileexception = nullptr) override;
 
 
+      ::file::path create_folder(const ::file::path & pathParent, const ::scoped_string & scopedstrName) override;
+
    };
 
 

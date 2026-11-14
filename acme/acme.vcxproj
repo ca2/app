@@ -2667,6 +2667,7 @@
     <ClCompile Include="filesystem\file\cpp.cpp" />
     <ClCompile Include="filesystem\file\exception.cpp" />
     <ClCompile Include="filesystem\file\folder.cpp" />
+    <ClCompile Include="filesystem\file\folder_download.cpp" />
     <ClCompile Include="filesystem\file\payload_stream.cpp" />
     <ClCompile Include="filesystem\file\print_formatting.cpp" />
     <ClCompile Include="filesystem\file\protocol_file.cpp" />
@@ -2842,10 +2843,12 @@
     <ClInclude Include="filesystem\filesystem\file_system_item.h" />
     <ClInclude Include="filesystem\filesystem\file_system_real_path_interface.h" />
     <ClInclude Include="filesystem\filesystem\file_system_real_path_interface_cache.h" />
+    <ClInclude Include="filesystem\filesystem\folder_background_download.h" />
     <ClInclude Include="filesystem\filesystem\path_system.h" />
     <ClInclude Include="filesystem\filesystem\real_and_logical_path.h" />
     <ClInclude Include="filesystem\filesystem\_format.h" />
     <ClInclude Include="filesystem\file\byte2_stream.h" />
+    <ClInclude Include="filesystem\file\folder_download.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
     <ClInclude Include="graphics\draw2d\domain.h" />
     <ClInclude Include="graphics\draw2d\domain_consumer.h" />

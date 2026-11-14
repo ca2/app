@@ -290,6 +290,68 @@ namespace user
       m_itemrangea.add(itemrange);
    }
 
+   void range::clear_item(const item_range& itemrange)
+   {
+      // Copy the bounds first: itemrange may refer to an element of m_itemrangea.
+      const auto lower = itemrange.get_lower_bound();
+      const auto upper = itemrange.get_upper_bound();
+      if (lower < 0 || upper < lower) return;
+
+      for (auto count = m_itemrangea.get_size(); count > 0; --count)
+      {
+         const auto index = count - 1;
+         auto & current = m_itemrangea[index];
+         const auto currentLower = current.get_lower_bound();
+         const auto currentUpper = current.get_upper_bound();
+         if (currentLower < 0 || currentUpper < currentLower
+            || currentUpper < lower || currentLower > upper) continue;
+
+         if (currentLower >= lower && currentUpper <= upper)
+         {
+            m_itemrangea.erase_at(index);
+         }
+         else if (currentLower < lower && currentUpper > upper)
+         {
+            item_range remainder(current);
+            remainder.set_lower_bound(upper + 1);
+            current.set_upper_bound(lower - 1);
+            m_itemrangea.insert_at(index + 1, remainder);
+         }
+         else if (currentLower < lower)
+         {
+            current.set_upper_bound(lower - 1);
+         }
+         else
+         {
+            current.set_lower_bound(upper + 1);
+         }
+      }
+   }
+
+   bool range::intersects(const item_range& itemrange) const
+   {
+      // Copy the bounds first: itemrange may refer to an element of m_itemrangea.
+      const auto lower = itemrange.get_lower_bound();
+      const auto upper = itemrange.get_upper_bound();
+      //if (lower < 0 || upper < lower) return;
+
+      for (auto count = m_itemrangea.get_size(); count > 0; --count)
+      {
+         const auto index = count - 1;
+         auto& current = m_itemrangea[index];
+         const auto currentLower = current.get_lower_bound();
+         const auto currentUpper = current.get_upper_bound();
+         if (currentLower < 0 || currentUpper < currentLower
+            || currentUpper < lower || currentLower > upper) continue;
+
+         return true;
+
+      }
+
+      return false;
+   }
+
+
    item_range::item_range()
    {
       m_iLowerBound = -1;

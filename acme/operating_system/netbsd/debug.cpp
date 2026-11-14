@@ -14,6 +14,10 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <stdio.h>
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#include <unistd.h>
+#include <errno.h>
 
 ::i32 gdb_check();
 
@@ -32,14 +36,66 @@
 // traced process when ordinary build commands create child processes.
 ::i32 gdb_check(void)
 {
-   struct kinfo_proc2 info = {};
-   size_t size = sizeof(info);
-   int mib[] = {CTL_KERN, KERN_PROC2, KERN_PROC_PID, (int)getpid(),
-                (int)sizeof(info), 1};
-   if (::sysctl(mib, 6, &info, &size, nullptr, 0) == -1 || size != sizeof(info))
-      return false;
+  ::i32 pid = fork();
+  ::i32 status;
+  ::i32 res;
 
-   return (info.p_flag & P_TRACED) != 0;
+  if (pid == -1)
+    {
+      fprintf(stderr, "fork");
+      return -1;
+    }
+
+  if (pid == 0)
+    {
+      ::i32 ppid = getppid();
+
+      // Child
+      if (ptrace(PTRACE_ATTACH, ppid, nullptr, nullptr) == 0)
+        {
+          // Wait for the parent to stop and continue it
+          waitpid(ppid, nullptr, 0);
+          ptrace(PTRACE_CONT, nullptr, nullptr);
+
+          // Detach
+          ptrace(PTRACE_DETACH, getppid(), nullptr, nullptr);
+
+          // We were the tracers, so gdb is not present
+          res = 0;
+        }
+      else
+        {
+  // Trace failed so gdb is present
+          res = 1;
+        }
+      exit(res);
+    }
+  else
+    {
+      waitpid(pid, &status, 0);
+      res = WEXITSTATUS(status);
+    }
+  return res;
+}
+*/
+
+::i32
+gdb_check(void)
+{
+   // PT_TRACE_ME changes process state and makes the desktop session its
+   // tracer. Read the exported process flags instead, without logging here:
+   // the logger itself calls this function.
+   const int saved_errno = errno;
+   struct kinfo_proc2 process = {};
+   int mib[] = { CTL_KERN, KERN_PROC2, KERN_PROC_PID, (int)getpid(),
+                 sizeof(process), 1 };
+   size_t size = sizeof(process);
+   const int result = sysctl(mib, 6, &process, &size, nullptr, 0);
+   const bool traced = result == 0 && size == sizeof(process)
+      && (process.p_flag & P_TRACED) != 0;
+   errno = saved_errno;
+   return traced;
+}
 }
 
 

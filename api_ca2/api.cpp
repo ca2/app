@@ -359,8 +359,18 @@ namespace api_ca2
             m_strToken.empty();
          }
       }
+      catch (const ::exception & exception)
+      {
+         information() << "ca2_auth: token_exchange_exception app=" << get_app()->m_strAppId
+            << " status=" << (::i64) exception.m_estatus
+            << " stack=" << exception.m_strCallStackTrace;
+         m_bAuthenticated = false;
+         m_strToken.empty();
+      }
       catch (...)
       {
+         information() << "ca2_auth: token_exchange_exception app=" << get_app()->m_strAppId
+            << " type=unknown";
          m_bAuthenticated = false;
          m_strToken.empty();
       }
@@ -439,7 +449,17 @@ namespace api_ca2
 
       string strGet = "https://ca2.site/account/token";
 
-      string strResponse = http()->get(strGet, set);
+      information() << "ca2_auth: token_exchange_started app=" << get_app()->m_strAppId;
+      // Use the same HTTP entry point as _api_get so the POST fields, transport
+      // status and response stay on the application's HTTP context.
+      string strResponse;
+      http()->get(strResponse, strGet, set);
+
+      information() << "ca2_auth: token_exchange_response app=" << get_app()->m_strAppId
+         << " http_status=" << set["http_status_code"].as_i32()
+         << " transport_status=" << set["get_status"].as_i64()
+         << " bytes=" << strResponse.length()
+         << " token_format=" << strResponse.case_insensitive_begins("token://");
 
       if (!strResponse.case_insensitive_begins_eat("token://"))
       {

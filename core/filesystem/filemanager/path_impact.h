@@ -24,7 +24,10 @@ namespace filemanager
 
       void install_message_routing(::channel * pchannel) override;
 
-      //virtual void _001OnAfterChangeText(const ::action_context & action_context);
+      ::file::path resolve_folder(const ::scoped_string & scopedstrText, bool bFindParent);
+      bool browse_typed_path(bool bFindParent);
+      DECLARE_MESSAGE_HANDLER(on_message_key_down);
+      DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

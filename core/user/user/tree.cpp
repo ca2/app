@@ -534,7 +534,7 @@ namespace user
       data.m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
 
-      if (m_iHoverAlpha > 0)
+      // Keep navigation controls visible even when the tree is not hovered.
       {
 
 
@@ -579,7 +579,23 @@ namespace user
 
             }
 
-            pimagelistTree->draw(data.m_pdc, iImage, rectangle.top_left(), 0, m_iHoverAlpha);
+            if (iImage >= 0)
+            {
+               pimagelistTree->draw(data.m_pdc, iImage, rectangle.top_left(), 0, 255);
+            }
+            else
+            {
+               // Navigation must remain visible when optional matter assets are missing.
+               auto color = get_color(pstyle, ::e_element_item_text);
+               auto center = rectangle.center();
+               data.m_pdc->fill_rectangle(
+                  ::i32_rectangle(center.x - 4, center.y, center.x + 5, center.y + 1), color);
+               if (!(data.m_pitem->m_etreeitemstate & ::data::e_tree_item_state_expanded))
+               {
+                  data.m_pdc->fill_rectangle(
+                     ::i32_rectangle(center.x, center.y - 4, center.x + 1, center.y + 5), color);
+               }
+            }
 
          }
 

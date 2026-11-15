@@ -9,9 +9,15 @@
 
 
 //#include <stdbool.h
-#include <sys/ptrace.h>
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#include <unistd.h>
 #include <sys/wait.h>
 #include <stdio.h>
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#include <unistd.h>
+#include <errno.h>
 
 ::i32 gdb_check();
 
@@ -25,8 +31,10 @@
 
 
 
-/*
-::i32 gdb_check()
+// Inspect tracing state without changing it. PT_TRACE_ME makes this process
+// traced by its parent and can lead to SIGCHLD termination or an orphaned
+// traced process when ordinary build commands create child processes.
+::i32 gdb_check(void)
 {
   ::i32 pid = fork();
   ::i32 status;
@@ -71,42 +79,24 @@
 }
 */
 
-static void*
-test_trace(void* ignored)
-{
-#ifdef NETBSD
-   // This is a guess
-   return (void *)(iptr)(::i32)ptrace(PT_TRACE_ME, 0, nullptr, 0);
-#else
-   return (void*)ptrace(PTRACE_TRACEME, 0, nullptr, nullptr);
-#endif
-}
-
-
 ::i32
 gdb_check(void)
 {
-
-   pthread_attr_t attr;
-   void* result;
-   pthread_t thread;
-
-   pthread_attr_init(&attr);
-   pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-   if (pthread_create(&thread, &attr, test_trace, nullptr) != 0)
-   {
-      pthread_attr_destroy(&attr);
-      return false;
-   }
-   pthread_attr_destroy(&attr);
-   if (pthread_join(thread, &result) != 0)
-   {
-      return false;
-   }
-
-   return result != nullptr;
+   // PT_TRACE_ME changes process state and makes the desktop session its
+   // tracer. Read the exported process flags instead, without logging here:
+   // the logger itself calls this function.
+   const int saved_errno = errno;
+   struct kinfo_proc2 process = {};
+   int mib[] = { CTL_KERN, KERN_PROC2, KERN_PROC_PID, (int)getpid(),
+                 sizeof(process), 1 };
+   size_t size = sizeof(process);
+   const int result = sysctl(mib, 6, &process, &size, nullptr, 0);
+   const bool traced = result == 0 && size == sizeof(process)
+      && (process.p_flag & P_TRACED) != 0;
+   errno = saved_errno;
+   return traced;
 }
-
+}
 
 
 //

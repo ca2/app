@@ -26,6 +26,10 @@
 #include <stdint.h>
 #endif
 #include <cxxabi.h>
+#if defined(NETBSD) || defined(__NetBSD__)
+#include <dlfcn.h>
+#include <stdint.h>
+#endif
 #if defined(__HAIKU__)
 struct haiku_call_stack_capture
 {
@@ -265,7 +269,7 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, ::i32 frames
 
    ::string strCallstack;
 
-#if defined(__HAIKU__)
+#if defined(__HAIKU__) || defined(NETBSD) || defined(__NetBSD__)
    if (!ppui || frames <= 0) return strCallstack;
    for (::i32 i = maximum(iSkip, 0); i < frames; ++i)
    {

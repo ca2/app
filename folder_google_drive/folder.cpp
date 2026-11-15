@@ -8,6 +8,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/prototype/url.h"
 #include "apex/platform/api.h"
+#include "apex/networking/http/context.h"
 #include "acme/platform/scoped_restore.h"
 
 namespace folder_google_drive
@@ -32,6 +33,82 @@ namespace folder_google_drive
       m_papiclient->initialize_api_client("google", "", "", m_pathMetadata / "profile");
       m_papiclient->m_papi = m_papiclient->create_api("google", "");
       m_papiclient->m_papi->m_strScope = "https://www.googleapis.com/auth/drive.readonly";
+   }
+
+   ::payload folder::poll_request(const ::scoped_string & url, ::property_set & options)
+   {
+      // Polling uses the existing login, never starts an interactive login.
+      if (!m_papiclient || !m_papiclient->m_papi
+         || !m_papiclient->m_papi->m_bAuthenticated)
+         throw ::exception(error_wrong_state, "Drive polling requires an authenticated session");
+      options["timeout"] = 15_s;
+      options["raw_http"] = true;
+      options["headers"]["Authorization"] = "Bearer " + m_papiclient->m_papi->m_strToken;
+      ::string response;
+      m_papiclient->m_papi->http()->get(response, url, options);
+      auto status = options["http_status_code"].as_i32();
+      if (status < 200 || status >= 300)
+         throw ::exception(error_failed, "Drive change polling failed (HTTP " + ::as_string(status) + ")");
+      ::payload result;
+      result.parse_network_payload(response);
+      if (result.has_property("error")) throw ::exception(error_failed, "Drive change polling returned an error");
+      return result;
+   }
+
+   bool folder::poll_folder_changes(const ::file::path & path, ::string & cursor)
+   {
+      file_id(path); // Validate provider URI without remote I/O.
+      ::property_set options;
+      if (cursor.is_empty())
+      {
+         auto result = poll_request("https://www.googleapis.com/drive/v3/changes/startPageToken"
+            "?supportsAllDrives=true&fields=startPageToken", options);
+         auto token = result["startPageToken"].as_string();
+         if (token.is_empty()) throw ::exception(error_failed, "Drive did not return a start token");
+         cursor = token;
+         // Close the gap between the initial enumeration and obtaining a token.
+         return true;
+      }
+      auto token = cursor;
+      bool changed = false;
+      ::string_array_base seen;
+      for (int page = 0; page < 10; ++page)
+      {
+         options.clear();
+         ::payload result;
+         try
+         {
+            result = poll_request("https://www.googleapis.com/drive/v3/changes?pageToken="
+               + ::url::encode(token) + "&pageSize=1000&spaces=drive&includeRemoved=true"
+                 "&supportsAllDrives=true&includeItemsFromAllDrives=true"
+                 "&fields=nextPageToken,newStartPageToken,changes(fileId,removed)", options);
+         }
+         catch (...)
+         {
+            if (options["http_status_code"].as_i32() == 410)
+            {
+               cursor.empty();
+               return true; // Resynchronize and obtain a fresh cursor next time.
+            }
+            throw;
+         }
+         changed = changed || result["changes"].payload_array_reference().has_element();
+         auto next = result["nextPageToken"].as_string();
+         if (next.is_empty())
+         {
+            next = result["newStartPageToken"].as_string();
+            if (next.is_empty()) throw ::exception(error_failed, "Drive did not return a continuation token");
+            cursor = next;
+            return changed;
+         }
+         if (next == token || seen.contains(next))
+            throw ::exception(error_failed, "Drive returned a repeated change token");
+         seen.add(token);
+         token = next;
+      }
+      // Bound work per poll. Remaining pages continue on the next iteration.
+      cursor = token;
+      return changed;
    }
 
    ::string folder::file_id(const ::file::path & path)

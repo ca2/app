@@ -42,12 +42,9 @@ namespace micro
    ::payload dialog::wait_for_dialog_response(const class time & timeTimeout)
    {
 
-      user_send([this, timeTimeout]()
-         {
-
-            m_pmanualresethappeningDialogResponse->wait(timeTimeout);
-
-         });
+      // The GUI thread must remain free to process the dialog response.
+      // Wait on the calling thread instead of dispatching the wait to it.
+      m_pmanualresethappeningDialogResponse->wait(timeTimeout);
 
       return get_dialog_response();
 

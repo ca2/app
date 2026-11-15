@@ -17,6 +17,13 @@ CLASS_DECL_ACME ::string get_operating_system_name();
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
+#if !defined(WINDOWS) && (defined(POSIX) || defined(HAVE_UNISTD_H))
+#include <unistd.h>
+#include <sys/stat.h>
+#include <errno.h>
+#include <stdio.h>
+#include "acme/prototype/prototype/memory.h"
+#endif
 
 path_system::path_system()
 {
@@ -454,23 +461,37 @@ void path_system::create_symbolic_link(const ::scoped_string & scopedstrLink, co
 
 bool path_system::is_symbolic_link(const ::scoped_string & scopedstrLink)
 {
-   
+#if !defined(WINDOWS) && (defined(POSIX) || defined(HAVE_UNISTD_H))
+   ::file::path path(scopedstrLink);
+   struct stat status{};
+   if (::lstat(path.c_str(), &status) != 0)
+   {
+      if (errno == ENOENT || errno == ENOTDIR) return false;
+      throw ::exception(error_failed, "Cannot inspect symbolic link: " + path);
+   }
+   return S_ISLNK(status.st_mode);
+#else
    throw ::interface_only();
-   
-   //throw ::interface_only();
-
-   return false;
-   
+#endif
 }
 
 
 ::file::path path_system::symbolic_link_destination(const ::scoped_string & scopedstrLink)
 {
-   
+#if !defined(WINDOWS) && (defined(POSIX) || defined(HAVE_UNISTD_H))
+   ::file::path path(scopedstrLink);
+   ::memory buffer;
+   for (memsize size = 256; size <= 1024 * 1024; size *= 2)
+   {
+      buffer.set_size(size);
+      auto count = ::readlink(path.c_str(), reinterpret_cast<char *>(buffer.data()), size);
+      if (count < 0) throw ::exception(error_failed, "Cannot read symbolic-link target: " + path);
+      if (count < size) return ::string(reinterpret_cast<const char *>(buffer.data()), count);
+   }
+   throw ::exception(error_overflow, "Symbolic-link target is too long: " + path);
+#else
    throw ::interface_only();
-   
-   return "";
-   
+#endif
 }
 
 
@@ -790,9 +811,12 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
 void path_system::rename(const ::file::path& pathNewName, const ::file::path& pathOldName)
 {
-
+#if !defined(WINDOWS) && (defined(POSIX) || defined(HAVE_UNISTD_H))
+   if (::rename(pathOldName.c_str(), pathNewName.c_str()) != 0)
+      throw ::exception(error_failed, "Cannot rename path: " + pathOldName);
+#else
    throw interface_only();
-
+#endif
 }
 
 
@@ -1153,9 +1177,12 @@ bool path_system::get_next_path(::scoped_string & scopedstr, ::string::BASE_RANG
 
 void path_system::symbolic_link(const ::file::path & pathTarget, const ::file::path & pathSource)
 {
-
+#if !defined(WINDOWS) && (defined(POSIX) || defined(HAVE_UNISTD_H))
+   if (::symlink(pathSource.c_str(), pathTarget.c_str()) != 0)
+      throw ::exception(error_failed, "Cannot create symbolic link: " + pathTarget);
+#else
    throw ::interface_only();
-
+#endif
 }
 
 

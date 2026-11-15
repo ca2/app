@@ -549,6 +549,7 @@ namespace userfs
    {
       if (uRequest != m_uBrowseRequest) return;
       auto ptopic = create_topic("filemanager_browse_failed");
+      m_pusercontroller->on_update_data(this, ptopic, context);
       m_pusercontroller->update_all_impacts(ptopic);
    }
 
@@ -592,6 +593,43 @@ namespace userfs
       catch (...) { browse_failed(uRequest, context); }
    }
 
+
+   string data::display_name(const ::file::path & path)
+   {
+      for (::collection::index i = 0; i < m_listingRoot2.size(); ++i)
+         if (m_listingRoot2[i] == path && i < m_listingRoot2.m_straTitle.size()
+            && m_listingRoot2.m_straTitle[i].has_character())
+            return m_listingRoot2.m_straTitle[i];
+      try
+      {
+         ::file::image_info info;
+         if (fs_data()->get_file_image_info(path, info) && info.m_strName.has_character())
+            return info.m_strName;
+      }
+      catch (...) {}
+      return path.name().has_character() ? path.name() : string(path);
+   }
+
+   string data::display_path(const ::file::path & path)
+   {
+      if (!path.contains("://")) return path;
+      ::file::path_array_base paths;
+      auto current = path;
+      while (current.has_character())
+      {
+         paths.add(current);
+         auto parent = current.folder();
+         if (parent == current || current.ends("://")) break;
+         current = parent;
+      }
+      string result;
+      for (::collection::index i = paths.get_upper_bound(); i >= 0; --i)
+      {
+         if (result.has_character()) result += " / ";
+         result += display_name(paths[i]);
+      }
+      return result;
+   }
 
    ::fs::set * data::fs_data()
    {

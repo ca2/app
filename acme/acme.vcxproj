@@ -2617,6 +2617,7 @@
     <ClCompile Include="exception\assert.cpp" />
     <ClCompile Include="exception\bad_file_format.cpp" />
     <ClCompile Include="exception\call_stack.cpp" />
+    <ClCompile Include="exception\exception_pointer.cpp" />
     <ClCompile Include="exception\no_memory.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
     <ClCompile Include="exception\interface_only.cpp" />
@@ -2831,6 +2832,7 @@
     <ClInclude Include="constant\operating_system.h" />
     <ClInclude Include="constant\read_file.h" />
     <ClInclude Include="constant\user_message.h" />
+    <ClInclude Include="exception\exception_pointer.h" />
     <ClInclude Include="filesystem\filesystem\aaa_dir_system.h" />
     <ClInclude Include="filesystem\filesystem\aaa_file_system.h" />
     <ClInclude Include="filesystem\filesystem\dialog_base.h" />

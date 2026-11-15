@@ -7,6 +7,7 @@
 //#include "os_context.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
+#include "acme/exception/exception_pointer.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/not_implemented.h"
@@ -1047,6 +1048,11 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
                exitexception.m_econsequenceUserDefault = ::e_consequence_workaroundable;
 
                throw exitexception;
+            }
+            if (bHandled && !has_property("install") && !has_property("uninstall"))
+            {
+               // The original process handled the launch. Never initialize a second UI.
+               øthrow <  ::exit_exception>(error_exit_system, this, "Launch forwarded to the existing instance", ::success);
             }
          }
       }
@@ -4409,6 +4415,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
             {
 
                auto pcall = m_pinterprocesscommunication2->create_call("application", "on_additional_local_instance");
+               pcall->exclude_pid(node()->current_process_identifier());
 
                (*pcall)["module"] = file()->module();
 

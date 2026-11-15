@@ -1,5 +1,8 @@
 // From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSorensen!!
 #include "platform.h"
+#if defined(WINDOWS_DESKTOP)
+#include "acme/_operating_system.h"
+#endif
 #include "task.h"
 #include "call.h"
 #include "caller.h"
@@ -30,6 +33,8 @@ namespace interprocess
 
    void task::do_task(const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, const ::property_set & propertyset)
    {
+      if (scopedstrObject == "application" && scopedstrMember == "on_additional_local_instance")
+         m_tristateHandled = false;
 
       try
       {
@@ -55,7 +60,19 @@ namespace interprocess
          string str = strApp + ":/" + scopedstrObject + "/" + scopedstrMember + "?" + strNetworkArguments + "&protocol.call_id=" + ::as_string(m_iTask) + "&" + strSource + "&protocol.target_pid=" + m_atomPid;
 
          //txc.send(str, m_pcall->m_time);
+#if defined(WINDOWS_DESKTOP)
+         if (scopedstrObject == "application" && scopedstrMember == "on_additional_local_instance")
+         {
+            // Transfer the launching process's foreground permission to the existing instance.
+            ::AllowSetForegroundWindow((DWORD)m_atomPid.as_i64());
+         }
+#endif
          caller.call(str, 1_min);
+         if (scopedstrObject == "application" && scopedstrMember == "on_additional_local_instance")
+         {
+            // A successful launch handoff must make the new process exit quietly.
+            m_tristateHandled = true;
+         }
 
       }
       catch (...)

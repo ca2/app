@@ -4,6 +4,7 @@
 #include "shutdown_delay_debug.h"
 #include "acme/_operating_system.h"
 #include "acme/exception/_text_stream.h"
+#include "acme/exception/exception_pointer.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/translator.h"
@@ -501,10 +502,15 @@ bool task::should_run() const
 
    }
 
-   if (m_procedurelistHandling.has_element())
+   if (!is_current_task())
    {
 
-      return true;
+      if (m_procedureHandling)
+      {
+
+         return true;
+
+      }
 
    }
 
@@ -1331,6 +1337,33 @@ void task::main()
       run();
 
    }
+   catch (const ::exception_pointer& pexception)
+   {
+
+      if (pexception.m_type == typeid(::exit_exception))
+      {
+
+         ::cast < ::exit_exception > pexitexception = pexception;
+
+         pexitexception->finish(this);
+
+      }
+      else
+      {
+
+         error() << "Exception caught in task::main: " << *pexception;
+         error() << "Exception call stack: " << pexception->m_strCallStackTrace;
+
+         auto pmessagebox = createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box(*pexception, application()->m_strAppId, pexception->m_strDetails);
+
+         pmessagebox->display(e_display_normal, {});
+
+         pmessagebox->wait_for_dialog_response();
+
+      }
+
+   }
    catch (::exception & exception)
    {
 
@@ -1839,7 +1872,7 @@ void task::destroy()
 
    m_procedurea2.clear();
 
-   m_procedurelistHandling.clear();
+   m_procedureHandling.release();
 
    m_plocale.release();
 
@@ -2589,7 +2622,7 @@ void task::send(const ::procedure & procedure)
 
    wait_for_end_of_sequence waitforendofsequence(pmanualresethappeningOnEndOfSequence, psequence, pwaitingcall);
 
-   ::pointer < ::exception > pexception;
+   ::exception_pointer pexception;
 
    if (pmanualresethappeningOnEndOfSequenceToSetInProcedure)
    {
@@ -2601,6 +2634,12 @@ void task::send(const ::procedure & procedure)
                {
 
                   procedure();
+
+               }
+               catch (::exception_pointer & pe)
+               {
+
+                  pexception = pe;
 
                }
                catch (::exception& e)
@@ -2675,14 +2714,14 @@ void task::send(const ::procedure & procedure)
    if (pexception)
    {
 
-      throw* pexception;
+      throw pexception;
 
    }
 
 }
 
 
-bool task::pick_next_posted_procedure()
+::procedure task::pick_next_posted_procedure()
 {
 
    ASSERT(is_current_task());
@@ -2695,7 +2734,7 @@ bool task::pick_next_posted_procedure()
       if (m_procedurea2.is_empty())
       {
 
-         return false;
+         return {};
 
       }
 
@@ -2703,6 +2742,7 @@ bool task::pick_next_posted_procedure()
       // and does not destroy the removed slot, leaking its captured owners.
       // Copy then erase so the queued reference is released on every dispatch.
       auto procedure = m_procedurea2.first();
+
       m_procedurea2.erase_at(0);
 
       defer_reset_main_loop_happening();
@@ -2721,9 +2761,9 @@ bool task::pick_next_posted_procedure()
 
       //}
 
-      m_procedurelistHandling.transfer_tail(::transfer(procedure));
+      m_procedureHandling = procedure;
 
-      return true;
+      return procedure;
 
    }
 
@@ -2756,13 +2796,22 @@ void task::handle_posted_procedures()
 
    ASSERT(is_current_task());
 
-   while (pick_next_posted_procedure())
+   while (true)
    {
+
+      auto procedure = pick_next_posted_procedure();
+
+      if (!procedure)
+      {
+
+         break;
+
+      }
 
       try
       {
 
-         m_procedurelistHandling.tail()();
+         procedure();
 
       }
       catch (...)
@@ -2771,7 +2820,18 @@ void task::handle_posted_procedures()
 
       }
 
-      m_procedurelistHandling.erase_tail();
+      {
+
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         if (procedure == m_procedureHandling)
+         {
+
+            m_procedureHandling.release();
+
+         }
+
+      }
 
    }
 

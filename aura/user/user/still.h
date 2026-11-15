@@ -28,6 +28,7 @@ namespace user
       ::image::icon_pointer              m_picon;
       ::pointer < ::write_text::text_out_array > m_ptextouta;
       ::i32_size                          m_sizeFixed;
+      bool m_bFillParentWidth = false;
       //::string                            m_strTextOutArray;
       ::status<::color::color>            m_statuscolorBackground;
       ::status<::color::color>            m_statuscolorText;

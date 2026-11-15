@@ -5,6 +5,8 @@
 #include "core/filesystem/userfs/document.h"
 #include "file_list_callback.h"
 #include "acme/filesystem/watcher/listener.h"
+#include <atomic>
+#include <memory>
 #include "aura/filesystem/filemanager/callback.h"
 
 
@@ -31,6 +33,22 @@ namespace filemanager
       bool m_bNewFolderDialogPending = false;
 ///      ::pointer < ::user::document >         m_pdocumentTopic;
       ::i32 m_iIconSize;
+
+      struct folder_poll_state
+      {
+         std::atomic_bool stopped{false};
+         std::atomic_bool refresh_posted{false};
+         std::atomic_bool refresh_needed{false};
+         ::file::path path;
+      };
+      std::shared_ptr<folder_poll_state> m_folderPoll;
+      std::atomic_bool m_bWatchRefreshPosted{false};
+      bool m_bWatchDirty = false;
+      ::u64 m_uWatchBrowseRequest = 0;
+      void synchronize_folder_watch();
+      void stop_folder_watch();
+      void destroy() override;
+      void on_close_document() override;
 
       document();
       ~document() override;

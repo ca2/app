@@ -2151,6 +2151,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       if (m_pacmewindowing)
       {
 
+         // Native event loops do not observe the task's finishing flag.
+         m_pacmewindowing->windowing_post_quit();
+
          m_pacmewindowing->set_finish();
 
          m_pacmewindowing->kick_idle();

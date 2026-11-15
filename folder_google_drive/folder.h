@@ -3,6 +3,7 @@
 #include "acme/filesystem/file/folder_importer.h"
 #include "apex/filesystem/fs/data.h"
 #include "apex/platform/api_client.h"
+#include "acme/filesystem/file/folder_change_poller.h"
 
 namespace folder_google_drive
 {
@@ -11,7 +12,8 @@ namespace folder_google_drive
       virtual public ::folder,
       virtual public ::fs::data,
       virtual public ::file::image_info_provider,
-      virtual public ::file::folder_importer
+      virtual public ::file::folder_importer,
+      virtual public ::file::folder_change_poller
    {
    public:
       ::pointer < ::api_client > m_papiclient;
@@ -21,6 +23,8 @@ namespace folder_google_drive
 
       ~folder() override;
       void initialize(::particle * pparticle) override;
+      bool poll_folder_changes(const ::file::path & path, ::string & cursor) override;
+      virtual ::payload poll_request(const ::scoped_string & url, ::property_set & options);
       ::string file_id(const ::file::path & path);
       ::payload request(const ::scoped_string & scopedstrUrl);
       ::payload api_request(::api_client * pclient, const ::scoped_string & scopedstrUrl, ::property_set & set);

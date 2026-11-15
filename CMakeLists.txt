@@ -34,6 +34,7 @@ if(${LINUX})
 endif()
 
 add_subdirectory(fs_raw_folder_protocol_dropbox)
+add_subdirectory(folder_google_drive)
 add_subdirectory(regular_expression_pcre2)
 
 #add_subdirectory(launch)

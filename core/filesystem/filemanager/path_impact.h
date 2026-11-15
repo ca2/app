@@ -17,6 +17,8 @@ namespace filemanager
 
 
       bool m_bVoidSync;
+      string m_strDisplayPath;
+      ::file::path m_pathDisplayTarget;
 
 
       path_impact();

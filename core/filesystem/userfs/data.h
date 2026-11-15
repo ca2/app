@@ -63,6 +63,8 @@ namespace userfs
 
 //      virtual void __full_browse(::pointer<::file::item>pitem, const ::action_context & action_context);
 
+      string display_name(const ::file::path & path);
+      string display_path(const ::file::path & path);
       virtual ::fs::set * fs_data();
 
 

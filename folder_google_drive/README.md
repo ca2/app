@@ -77,3 +77,19 @@ cache identity, so a newly cached version can replace a generic icon.
 
 Drive enumeration caches per-file metadata. Icon queries read that metadata and
 only advertise an image cache file when its version and byte size match.
+
+## Automatic refresh
+
+The provider implements the optional `file::folder_change_poller` capability.
+File Manager obtains the active provider through `fs::set::path_data` and calls
+that interface on a worker; it has no dependency on Google endpoints or tokens.
+Each displayed folder owns its cursor. Polling normally runs every 15 seconds,
+backs off to 120 seconds on failures, and stops on folder changes/document close.
+It uses an existing authenticated session and never opens a login prompt.
+
+The plugin uses Drive v3's `changes.getStartPageToken` and `changes.list` APIs.
+Because deletions and moves can lose their old parent metadata, account-wide
+changes conservatively invalidate the currently displayed folder. No change
+means no folder enumeration. Pages are bounded per poll; transient failures do
+not advance the cursor. Invalid cursors resynchronize, and the initial token
+causes one refresh to close the gap after the first enumeration.

@@ -32,8 +32,9 @@ namespace filemanager
       if (m_bVoidSync || !filemanager_document()) return;
       auto pitem = filemanager_item();
       if (!pitem) return;
-      auto strPath = pitem->user_path();
-      if (get_text() != strPath) set_text(strPath, ::e_source_sync);
+      m_pathDisplayTarget = pitem->user_path();
+      m_strDisplayPath = filemanager_data()->display_path(m_pathDisplayTarget);
+      if (get_text() != m_strDisplayPath) set_text(m_strDisplayPath, ::e_source_sync);
    }
 
    ::file::path path_impact::resolve_folder(const ::scoped_string & scopedstrText, bool bFindParent)
@@ -43,6 +44,7 @@ namespace filemanager
       if (str.length() >= 2 && str.begins("\"") && str.ends("\""))
          str = str.substr(1, str.length() - 2);
       if (str.is_empty() || !filemanager_document() || !filemanager_item()) return {};
+      if (str == m_strDisplayPath) return m_pathDisplayTarget;
       ::file::path path;
       if (str == "~") path = directory_system()->home();
       else if (str.begins_eat("~/") || str.begins_eat("~\\")) path = directory_system()->home() / str;
@@ -82,7 +84,7 @@ namespace filemanager
          try { filemanager_document()->browse(path, ::e_source_user); }
          catch (...) { return false; }
       }
-      if (bFindParent && get_text() != path) set_text(path, ::e_source_sync);
+      if (bFindParent) browse_sync(::e_source_sync);
       return true;
    }
 

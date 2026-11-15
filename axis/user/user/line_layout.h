@@ -26,6 +26,7 @@ namespace user
       enum_align_relative     m_ealignrelativeOrthogonal;
 
       ::i32 m_iPadding = 2;
+      bool m_bFillParentWidth = false;
 
 
       line_layout();

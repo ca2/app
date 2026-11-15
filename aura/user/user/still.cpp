@@ -505,6 +505,20 @@ namespace user
 
       pdraw2dgraphics->get_text_metrics(&tm);
 
+      if (m_bFillParentWidth && get_parent())
+      {
+         auto width = maximum(1, get_parent()->rectangle(::user::e_layout_layout).width()
+            - m_rectangleMargin1.left - m_rectangleMargin1.right);
+         ::write_text::text_out_array lines;
+         pdraw2dgraphics->create_simple_multiline_layout(lines, strWindowText,
+            ::i32_rectangle(0, 0, width, 100000), pdraw2dgraphics->get_current_font(),
+            e_align_top_left, m_etextwrap);
+         double height = tm.get_line_height();
+         for (auto & line : lines.text_outa())
+            height = maximum(height, line->m_point.y + line->m_size.cy);
+         return { ::f64_size(width, height + 4), tm.get_line_height() };
+      }
+
       return { size, tm.get_line_height() };
 
    }
@@ -751,6 +765,7 @@ namespace user
    ::f64_size still::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
    {
       if (!m_sizeFixed.is_empty()) return m_sizeFixed;
+      if (m_bFillParentWidth) return get_fitting_size(pgraphics).i32_size();
       if (m_estill == e_still_text)
       {
          pgraphics->set_font(this, ::e_element_none);
@@ -764,7 +779,7 @@ namespace user
    bool still::on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      if (m_bNeedAutoResizePerformLayout)
+      if (m_bNeedAutoResizePerformLayout || m_bFillParentWidth)
       {
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -838,9 +853,7 @@ namespace user
 
          //m_rectangleText = rectangle;
 
-         set_size(interactionmetrics.i32_size(), ::user::e_layout_layout, pdraw2dgraphics);
-
-         return true;
+         return set_size(interactionmetrics.i32_size(), ::user::e_layout_layout, pdraw2dgraphics);
 
       }
 

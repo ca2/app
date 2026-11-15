@@ -168,4 +168,39 @@ namespace user::html
    }
 
 
+   string page::branded_message_page(
+      const ::scoped_string & scopedstrTitle,
+      const ::scoped_string & scopedstrEyebrow,
+      const ::scoped_string & scopedstrHeading,
+      const ::scoped_string & scopedstrMessage,
+      const ::scoped_string & scopedstrDetail,
+      bool bSuccess,
+      const ::scoped_string & scopedstrAppId,
+      const ::scoped_string & scopedstrAppName,
+      const ::scoped_string & scopedstrIcon)
+   {
+      string strHtml;
+      append_document_start(strHtml, scopedstrTitle);
+      strHtml += "<div class=\"application-header\">";
+      if (scopedstrIcon.has_character())
+      {
+         strHtml += "<img width=\"48\" height=\"48\" alt=\"\" src=\"data:image/png;base64,";
+         strHtml += escape(scopedstrIcon);
+         strHtml += "\">";
+      }
+      strHtml += "<span class=\"application-id\">" + escape(scopedstrAppId) + "</span>";
+      strHtml += "<span class=\"application-name\">" + escape(scopedstrAppName) + "</span></div>";
+      append_title(strHtml, scopedstrEyebrow, scopedstrHeading);
+      append_status(strHtml, bSuccess ? "Completed" : "Needs attention", bSuccess);
+      append_paragraph(strHtml, scopedstrMessage);
+      if (scopedstrDetail.has_character())
+      {
+         append_paragraph(strHtml, scopedstrDetail);
+      }
+      append_footer(strHtml, "You may close this page and return to the application.");
+      append_document_end(strHtml);
+      return strHtml;
+   }
+
+
 } // namespace user::html

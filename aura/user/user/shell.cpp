@@ -778,7 +778,14 @@ namespace user
          }
          catch (...) { /* A cached image can disappear or fail to decode. Use a type icon. */ }
       }
-      get_image_by_file_extension(getfileimage);
+      // Drive paths contain opaque IDs. Resolve a local type icon using the
+      // metadata extension, without probing the remote URI or downloading it.
+      auto & key = getfileimage.m_imagekey;
+      getfileimage.m_pathFinal = key.m_eattribute == e_file_attribute_directory
+         ? directory_system()->home()
+         : ::file::path("file" + (key.m_strExtension.has_character() ? "." + key.m_strExtension : ""));
+      getfileimage.m_pathProcessed = getfileimage.m_pathFinal;
+      defer_get_file_image_by_icon_path(getfileimage);
       return true; // Do not fall through to a remote URI or an OS thumbnail handler.
    }
 
@@ -1401,154 +1408,21 @@ namespace user
 
          }
 
-         ::image::image_pointer pimage1 = m_papplication->m_pimagecontext->load_image(strIcon16);
-
-         if (pimage1.nok())
-         {
-
-            return false;
-
-         }
-
-         ::image::image_pointer pimage = image()->load_image(strIcon48);
-
+         // Decode synchronously in the shell's draw domain and populate every
+         // requested atlas size (the list and tree need different sizes).
+         auto pimage = image()->get_image(strIcon48,
+            { .sync = true, .draw2d_domain = draw2d_domain() });
          if (pimage.nok())
          {
-
+            warning() << "Could not decode filesystem icon: " << strIcon48;
             return false;
-
          }
-
-         ::image::image_pointer pimage16;
-
-         if(pimage1->get_size() == ::i32_size(16, 16))
+         for (auto iSize : m_iaSize)
          {
-
-            pimage16 = pimage1;
-
-         }
-         else
-         {
-
-            pimage16 = image()->create_image({16, 16}, draw2d_domain());
-
-            if (pimage16.nok())
-            {
-
-               return false;
-
-            }
-
-            auto pdraw2dgraphicsImage16 = pimage16->acquire_graphics();
-
-            pdraw2dgraphicsImage16->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
-
-            ::image::image_source imagesource(pimage1, pimage1->rectangle());
-
-            ::f64_rectangle rectangle(::i32_size(16, 16));
-
-            ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-            pdraw2dgraphicsImage16->draw(imagedrawing);
-
-         }
-
-         ::image::image_pointer pimage48;
-
-         if(pimage->get_size() == ::i32_size(48, 48))
-         {
-
-            pimage48 = pimage;
-
-         }
-         else
-         {
-
-            pimage48 = image()->create_image({48, 48}, draw2d_domain());
-
-            if (pimage48.nok())
-            {
-
-               return false;
-
-            }
-
-            auto pdraw2dgraphicsImage48 = pimage48->acquire_graphics();
-
-            pdraw2dgraphicsImage48->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
-
-            ::image::image_source imagesource(pimage, pimage->rectangle());
-
-            ::f64_rectangle rectangle(::i32_size(48, 48));
-
-            ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-            pdraw2dgraphicsImage48->draw(imagedrawing);
-
-         }
-
-         {
-
-            ::image::image_source imagesource(pimage1, pimage1->rectangle());
-
-            ::f64_rectangle rectangle(::i32_size(16, 16));
-
-            ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-            getfileimage.m_iImage = m_pimagelistUserShell[16]->set(getfileimage.m_iImage, imagedrawing);
-
-         }
-
-         {
-
-            ::image::image_source imagesource(pimage48, pimage48->rectangle());
-
-            ::f64_rectangle rectangle(::i32_size(48, 48));
-
-            ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-            getfileimage.m_iImage = m_pimagelistUserShell[48]->set(getfileimage.m_iImage, imagedrawing);
-
-         }
-
-         {
-
-            ::image::image_source imagesource(pimage16, pimage16->rectangle());
-
-            ::f64_rectangle rectangle(::i32_size(16, 16));
-
-            ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-            getfileimage.m_iImage = m_pimagelistUserShell[16]->set(getfileimage.m_iImage, imagedrawing);
-
-            m_pimagelistUserShellHover[16]->create_color_blend(m_pimagelistUserShell[16], rgb(255, 255, 240), 64);
-
-         }
-
-         {
-
-            ::image::image_source imagesource(pimage48, pimage48->rectangle());
-
-            ::f64_rectangle rectangle(::i32_size(48, 48));
-
-            ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-            getfileimage.m_iImage = m_pimagelistUserShell[48]->set(getfileimage.m_iImage, imagedrawing);
-
-            m_pimagelistUserShellHover[48]->create_color_blend(m_pimagelistUserShell[48], rgb(255, 255, 240), 64);
-
+            ::image::image_source source(pimage, pimage->rectangle());
+            ::image::image_drawing_options options(::f64_rectangle(::i32_size(iSize, iSize)));
+            set_image(getfileimage.m_iImage, iSize,
+               ::image::image_drawing(options, source), draw2d_domain());
          }
 
          return true;
@@ -1859,28 +1733,27 @@ namespace user
 
       ::file::path path = m_papplication->defer_process_matter_path(pathIcon);
 
-      auto pwindowingicon = createø < windowing::icon >();
+      // An optional matter icon may not be installed for this application.
+      // Keep the icon worker running instead of trying to open an empty path.
+      if (path.is_empty())
+      {
 
-      pwindowingicon->set_file(path);
+         warning() << "Optional shell icon is unavailable: " << pathIcon;
 
-      auto pdraw2dicon = createø < ::image::icon >();
+         // Keep a visible filesystem icon when the optional branded asset is absent.
+         path = node()->get_file_icon_path(directory_system()->home(), 48);
+         if (path.is_empty()) return;
 
-      pdraw2dicon->initialize_with_windowing_icon(pwindowingicon);
+      }
+
+      auto pimageIcon = image()->get_image(path,
+         { .sync = true, .draw2d_domain = pdraw2ddomain });
+      if (pimageIcon.nok()) return;
 
       for (auto iSize : iaSize)
       {
 
-         auto pimage = pdraw2dicon->image_source_image(::f64_size(iSize, iSize));
-
-         if (!::is_ok(pimage))
-         {
-
-            information("error loading image: \"" + path + "\"\n");
-            continue;
-
-         }
-
-         ::image::image_source imagesource(pimage);
+         ::image::image_source imagesource(pimageIcon, pimageIcon->rectangle());
 
          ::f64_rectangle rectangle(::f64_size(iSize, iSize));
 

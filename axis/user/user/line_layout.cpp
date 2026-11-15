@@ -139,6 +139,15 @@ namespace user
    void line_layout::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
+      if (m_bFillParentWidth && get_parent())
+      {
+         auto available = maximum(1, get_parent()->rectangle(e_layout_layout).width()
+            - m_rectangleMargin1.left - m_rectangleMargin1.right);
+         auto newSize = size(e_layout_layout);
+         newSize.cx = available;
+         set_size(newSize, e_layout_layout, pdraw2dgraphics);
+      }
+
       // if (m_bExtendOnParent || get_parent()->is_frame_window() || get_parent()->is_impact())
       // {
       //
@@ -170,6 +179,9 @@ namespace user
             result.cx = maximum(result.cx, size.cx);
          }
       }
+      if (m_bFillParentWidth && get_parent())
+         result.cx = maximum(1, get_parent()->rectangle(e_layout_layout).width()
+            - m_rectangleMargin1.left - m_rectangleMargin1.right);
       return result;
    }
 
@@ -408,6 +420,9 @@ namespace user
             size.set_orthogonal_dimension(m_eorientation, iMaximumNormal);
 
             size.set_dimension(m_eorientation, point.get_dimension(m_eorientation));
+            if (m_bFillParentWidth && m_eorientation == e_orientation_vertical && get_parent())
+               size.cx = maximum(1, get_parent()->rectangle(e_layout_layout).width()
+                  - m_rectangleMargin1.left - m_rectangleMargin1.right);
 
             if (set_size(size, ::user::e_layout_layout, pdraw2dgraphics))
             {

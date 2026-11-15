@@ -436,6 +436,19 @@ namespace filemanager
 
       }
 
+      // Remove vanished direct children while preserving surviving subtrees.
+      if (auto parent = find_item_by_user_path(filemanager_item()->user_path()))
+      {
+         ::data::tree_item_ptr_array<::userfs::item> children;
+         parent->get_children(children);
+         for (auto & child : children)
+         {
+            auto item = child->m_pitem;
+            if (item && !filemanager_data()->m_listingFolderUser2.contains(item->user_path()))
+               child->erase_item_from_parent();
+         }
+      }
+
       // add sibling folders
 
       {
@@ -927,7 +940,7 @@ return;
             else
             {
 
-               pitemNew->m_strName = path.name();
+               pitemNew->m_strName = filemanager_data()->display_name(path);
 
             }
 
@@ -942,6 +955,14 @@ return;
 
             }
 
+         }
+
+         if (pchild)
+         {
+            auto pfileitem = pchild->m_pitem.cast<::file::item>();
+            if (pfileitem)
+               pfileitem->m_strName = i == patha.get_upper_bound() && scopedstrName.has_character()
+                  ? string(scopedstrName) : filemanager_data()->display_name(path);
          }
 
          pparent = pchild;

@@ -9,6 +9,7 @@
 #include "acme/handler/sequence.h"
 #include "acme/nano/graphics/icon.h"
 #include "acme/parallelization/manual_reset_happening.h"
+#include "acme/parallelization/task.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/user/implementation/dialog_implementation.h"
@@ -375,9 +376,24 @@ class ::time dialog_implementation::dialog_timeout() const
 
       defer_construct_newø(m_pmanualresethappeningDialogResponse);
 
-      m_payloadResult = ::error_timeout;
-    
-      m_pmanualresethappeningDialogResponse->wait(timeTimeout);
+      // A response may arrive between display() and this call. Do not reset it.
+      auto caller = ::get_task();
+      if (caller && caller->m_bMessageThread)
+      {
+         auto started = ::time::now();
+         while (!m_pmanualresethappeningDialogResponse->lock(0_s))
+         {
+            if (started.elapsed() >= timeTimeout) return ::error_timeout;
+            // Assertions can enter here inside an existing message handler.
+            // Dispatch nested UI messages so the dialog can receive input.
+            if (!caller->handle_messages() || !caller->task_iteration()) return ::error_cancelled;
+            m_pmanualresethappeningDialogResponse->lock(10_ms);
+         }
+      }
+      else if (!m_pmanualresethappeningDialogResponse->lock(timeTimeout))
+      {
+         return ::error_timeout;
+      }
 
       return m_payloadResult;
     

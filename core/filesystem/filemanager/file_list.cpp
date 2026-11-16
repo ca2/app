@@ -11,6 +11,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
+#include "acme/user/interface/message_box.h"
 //#include "acme/platform/timer.h"
 #include "acme/prototype/collection/_array_binary_stream.h"
 #include "acme/prototype/collection/_container.h"
@@ -75,7 +76,9 @@ namespace filemanager
    void file_list::install_message_routing(::channel * pchannel)
    {
 
-      impact::install_message_routing(pchannel);
+      // The list overrides filemanager_show's routing setup, so install the
+      // File Manager commands explicitly (in particular edit_paste).
+      ::filemanager_impact_base::install_message_routing(pchannel);
 
       ::user::form_list::install_message_routing(pchannel);
 
@@ -647,9 +650,15 @@ namespace filemanager
 
       auto patha = get_selected_final_path();
 
+      information() << "File Manager Copy: " << patha.size() << " selected files";
       auto pcopydesk = copydesk();
 
-      pcopydesk->set_filea(patha, ::user::copydesk::e_op_copy);
+      if (patha.is_empty() || !pcopydesk->set_filea(patha, ::user::copydesk::e_op_copy))
+      {
+         auto message = create_newø<::user_interface::message_box>();
+         message->initialize_message_box(patha.is_empty() ? "Select files to copy." : "Could not put the selected files on the clipboard.", "Copy files");
+         message->display(e_display_normal, {});
+      }
 
       pmessage->m_bRet = true;
 
@@ -1586,6 +1595,11 @@ namespace filemanager
       {
          ::string str = m_bFolderLoading ? "Loading" : "Could not load this folder.";
          if (m_bFolderLoading) for (int i = 0; i < m_iLoadingDots; ++i) str += ".";
+         else
+         {
+            auto detail = payload("filemanager_browse_error").as_string();
+            if (detail.has_character()) str += "\n" + detail;
+         }
          auto rectangle = this->rectangle();
          rectangle.top += 40;
          auto pstyle = get_style(pdraw2dgraphics);
@@ -2080,6 +2094,9 @@ namespace filemanager
 
       informationf("filemanager::file_list::on_message_set_focus");
 
+      pmessage->previous();
+      if (auto frame = parent_frame()) frame->set_active_impact(this);
+
    }
 
 
@@ -2098,6 +2115,7 @@ namespace filemanager
       {
          m_bFolderLoading = true;
          m_bFolderLoadFailed = false;
+         payload("filemanager_browse_error") = "";
          m_iLoadingDots = 1;
          clear_selection();
          auto pdata = fs_list();
@@ -2115,9 +2133,17 @@ namespace filemanager
       {
          m_bFolderLoading = false;
          m_bFolderLoadFailed = ptopic->id() == "filemanager_browse_failed";
+         payload("filemanager_browse_error") = m_bFolderLoadFailed ? ptopic->payload("error_message").as_string() : "";
          kill_timer(e_timer_folder_loading);
          post_redraw();
-         if (m_bFolderLoadFailed) return;
+         if (m_bFolderLoadFailed)
+         {
+            if (!m_bStatic && ptopic->m_actioncontext.is_user_source())
+            {
+               set_keyboard_focus();
+            }
+            return;
+         }
       }
       ::filemanager_impact_base::handle(ptopic, phandlercontext);
 
@@ -2237,6 +2263,11 @@ namespace filemanager
          update_impact();
 
          post_redraw();
+
+         if (ptopic->m_actioncontext.is_user_source())
+         {
+            set_keyboard_focus();
+         }
 
       }
       else if (ptopic->id() == id_filter)

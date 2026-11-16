@@ -1,5 +1,6 @@
 #include "platform.h"
 #include "path_impact.h"
+#include "provider_path.h"
 #include "document.h"
 #include "data.h"
 #include "acme/constant/id.h"
@@ -33,7 +34,8 @@ namespace filemanager
       auto pitem = filemanager_item();
       if (!pitem) return;
       m_pathDisplayTarget = pitem->user_path();
-      m_strDisplayPath = filemanager_data()->display_path(m_pathDisplayTarget);
+      // The address editor must contain a round-trippable provider URI, not a breadcrumb label.
+      m_strDisplayPath = provider_display_folder(*filemanager_data()->fs_data(), m_pathDisplayTarget);
       if (get_text() != m_strDisplayPath) set_text(m_strDisplayPath, ::e_source_sync);
    }
 
@@ -54,6 +56,9 @@ namespace filemanager
          if (!bFindParent) return {};
          path = filemanager_item()->user_path() / path;
       }
+      // Cloud display names are resolved on the browse worker. Never fall back
+      // to a provider root merely because a component is not a provider ID.
+      if (is_provider_folder_path(path)) return path;
       auto pfsdata = filemanager_data()->fs_data();
       while (path.has_character())
       {
@@ -79,12 +84,19 @@ namespace filemanager
       auto path = resolve_folder(get_text(), bFindParent);
       if (path.is_empty()) return false;
       auto pitem = filemanager_item();
-      if (!pitem || pitem->user_path() != path)
+      if (bFindParent || !pitem || pitem->user_path() != path)
       {
          try { filemanager_document()->browse(path, ::e_source_user); }
          catch (...) { return false; }
       }
-      if (bFindParent) browse_sync(::e_source_sync);
+      if (bFindParent)
+      {
+         // Keep the submitted address visible while the worker resolves it.
+         // id_browse will replace it with the canonical provider URI on success.
+         m_pathDisplayTarget = path;
+         m_strDisplayPath = path;
+         if (get_text() != m_strDisplayPath) set_text(m_strDisplayPath, ::e_source_sync);
+      }
       return true;
    }
 
@@ -124,7 +136,7 @@ namespace filemanager
       {
          // Do not let a queued browse completion overwrite newer in-progress input.
          m_bVoidSync = true;
-         browse_typed_path(false);
+         // Commit on Enter; typing or pasting must not start intermediate browses.
       }
    }
 }

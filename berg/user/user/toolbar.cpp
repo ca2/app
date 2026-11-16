@@ -140,16 +140,16 @@ namespace user
    void toolbar::on_command_probe(::user::interaction * puserinteraction, bool bDisableIfNoHndler)
    {
 
-      user_toolbar_command command(this);
-
-      command.m_puiOther = (this);
-
-      command.m_iCount = tool_item_count();
-
-      for (command.m_iIndex = 0; command.m_iIndex < command.m_iCount; command.m_iIndex++)
+      auto count = tool_item_count();
+      for (::collection::index index = 0; index < count; ++index)
       {
+         // Each button needs its own handled-target list and result flags.
+         user_toolbar_command command(this);
+         command.m_puiOther = this;
+         command.m_iCount = count;
+         command.m_iIndex = index;
 
-         auto ptoolitem = tool_item_at(command.m_iIndex);
+         auto ptoolitem = tool_item_at(index);
 
          if (ptoolitem->is_hidden())
          {

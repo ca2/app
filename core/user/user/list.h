@@ -319,6 +319,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
+      bool handle_edit_shortcut(::user::e_key key, bool control, ::user::activation_token * token);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_create);
       void operator()(::timer * ptimer) override;

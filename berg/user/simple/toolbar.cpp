@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "aura/graphics/graphics/frame_trace.h"
 #include "toolbar.h"
 #include "acme/constant/user_message.h"
 #include "acme/exception/bad_unit_exception.h"
@@ -282,12 +283,14 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
 
    auto rectangleX = this->rectangle();
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
    informationf("simple_toolbar draw id=%s rectangle=%d,%d %dx%d",
       id().as_string().c_str(),
       rectangleX.left,
       rectangleX.top,
       rectangleX.width(),
       rectangleX.height());
+#endif
 
    pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

@@ -210,6 +210,7 @@ FragColor = texture(uTexture, TexCoord);
          {
          }
 
+#if defined(GPU_DEBUG_FRAME_TRACE)
          GLint drawFramebuffer = -1;
          GLint readFramebuffer = -1;
          GLint drawBuffer = -1;
@@ -221,6 +222,8 @@ FragColor = texture(uTexture, TexCoord);
                        //"currentDrawSurface=%p expectedWindowSurface=%p "
                        //"EGL_RENDER_BUFFER=0x%04x",
                        drawFramebuffer, readFramebuffer, drawBuffer);
+
+#endif
 
          //WGLSurface currentDrawSurface = eglGetCurrentSurface(EGL_DRAW);
          //EGLSurface currentReadSurface = eglGetCurrentSurface(EGL_READ);
@@ -295,6 +298,7 @@ FragColor = texture(uTexture, TexCoord);
 
          auto sizeContext = m_pgpurenderer->m_pgpucontext->size();
          
+#if defined(GPU_DEBUG_FRAME_TRACE)
          GLint framebufferBefore = -1;
 
          glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &framebufferBefore);
@@ -302,8 +306,11 @@ FragColor = texture(uTexture, TexCoord);
    "before begin_render draw framebuffer=%d",
    framebufferBefore);
 
+#endif
+
          pcommandbuffer->begin_render(m_pshaderPresent, m_ptexturesitePresent);
 
+#if defined(GPU_DEBUG_FRAME_TRACE)
          GLint framebufferAfter = -1;
 
          glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &framebufferAfter);
@@ -311,6 +318,8 @@ FragColor = texture(uTexture, TexCoord);
          informationf(
             "after begin_render draw framebuffer=%d",
             framebufferAfter);
+
+#endif
 
          pcommandbuffer->set_viewport(sizeContext, sizeContext);
 

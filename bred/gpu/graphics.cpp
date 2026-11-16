@@ -882,9 +882,10 @@ namespace gpu
 
       }
 
+#if defined(GPU_DEBUG_FRAME_TRACE)
       auto rectangleThisContextOutput = pcontext->output_placement();
-
       information("rectangleThisContextOutput {}", rectangleThisContextOutput);
+#endif
 
       //auto rectangleClient = rectangleWindow;
 

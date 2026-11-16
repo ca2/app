@@ -783,7 +783,7 @@ namespace user
       auto & key = getfileimage.m_imagekey;
       getfileimage.m_pathFinal = key.m_eattribute == e_file_attribute_directory
          ? directory_system()->home()
-         : ::file::path("file" + (key.m_strExtension.has_character() ? "." + key.m_strExtension : ""));
+         : ::file::path("file" + (key.m_strExtension.has_character() ? ::string("." + key.m_strExtension) : ::string()));
       getfileimage.m_pathProcessed = getfileimage.m_pathFinal;
       defer_get_file_image_by_icon_path(getfileimage);
       return true; // Do not fall through to a remote URI or an OS thumbnail handler.

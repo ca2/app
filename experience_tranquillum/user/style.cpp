@@ -97,6 +97,13 @@ namespace experience_tranquillum
             else if (eelement == ::e_element_text)
             {
 
+               if (estate & ::user::e_state_selected)
+               {
+
+                  return is_dark_mode() ? argb(255, 40, 40, 40) : argb(255, 255, 255, 255);
+
+               }
+
                if (estate & ::user::e_state_disabled)
                {
 
@@ -127,7 +134,7 @@ namespace experience_tranquillum
                   else
                   {
 
-                     return argb(255, 160, 160, 160);
+                     return argb(255, 80, 80, 80);
 
                   }
 

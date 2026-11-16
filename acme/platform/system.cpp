@@ -1648,7 +1648,7 @@ namespace platform
       //::acme::idpool::term();
 
       //m_pnode->user_post_quit();
-
+      m_pmicrouser.defer_destroy_and_release();
       m_pnode.release();
 
       //try
@@ -2150,6 +2150,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       if (m_pacmewindowing)
       {
+
+         // Native event loops do not observe the task's finishing flag.
+         m_pacmewindowing->windowing_post_quit();
 
          m_pacmewindowing->set_finish();
 

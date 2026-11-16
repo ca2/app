@@ -65,6 +65,9 @@ namespace fs
       //virtual bool perform_file_relative_name_listing(::file::listing_base & listing) override;
 
 
+      // Returns the provider-specific path; unsupported providers throw error_not_supported.
+      virtual ::file::path create_folder(const ::file::path & pathParent, const ::scoped_string & scopedstrName);
+
    };
 
 

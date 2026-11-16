@@ -52,6 +52,18 @@ namespace user::html
          enum_color_scheme ecolorscheme = e_color_scheme_automatic);
 
 
+      static string branded_message_page(
+         const ::scoped_string & scopedstrTitle,
+         const ::scoped_string & scopedstrEyebrow,
+         const ::scoped_string & scopedstrHeading,
+         const ::scoped_string & scopedstrMessage,
+         const ::scoped_string & scopedstrDetail,
+         bool bSuccess,
+         const ::scoped_string & scopedstrAppId,
+         const ::scoped_string & scopedstrAppName,
+         const ::scoped_string & scopedstrIcon);
+
+
       static string escape(const ::scoped_string & scopedstrText);
 
 

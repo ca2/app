@@ -1847,13 +1847,15 @@ namespace berg
    ::pointer<::user::impact_system> user::create_impact_system(const ::atom & atom)
    {
 
-      if (atom == "child_form")
+      if (atom == "form" || atom == "child_form")
       {
 
          initialize_html();
 
+         auto typeFrame = atom == "form" ? get_simple_frame_window_type_info() : get_simple_child_frame_type_info();
+
          auto pimpactsystem = allocateø::user::multiple_document_template("system/form", ::type<form_document>(),
-                                                                             get_simple_child_frame_type_info(),
+                                                                             typeFrame,
                                                                              ::type<::user::form_impact>());
 
          return pimpactsystem;

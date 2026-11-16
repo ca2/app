@@ -140,25 +140,14 @@ namespace gpu_opengl
       for (auto & pair : m_mapContextHandleObject)
          defer_delete_context_handle(pair.element1(), e_handle_fbo, pair.element2().m_handle);
 
-      if (m_glsyncGpuCommandsCompleteFence)
-      {
-         glDeleteSync(m_glsyncGpuCommandsCompleteFence);
-         m_glsyncGpuCommandsCompleteFence = nullptr;
-      }
-
-      if (m_gluTextureID)
-      {
-         glDeleteTextures(1, &m_gluTextureID);
-         m_gluTextureID = 0;
-      }
-
-      if (m_gluDepthStencilRBO)
-      {
-
-         glDeleteRenderbuffers(1, &m_gluDepthStencilRBO);
-         m_gluDepthStencilRBO = 0;
-
-      }
+      // Destruction can run on a UI/capture thread with no GL context current.
+      // Queue shared objects alongside their FBOs for a valid owning context.
+      defer_delete_context_sync(m_pNativeAllocationContext, m_glsyncGpuCommandsCompleteFence);
+      defer_delete_context_handle(m_pNativeAllocationContext, e_handle_texture, m_gluTextureID);
+      defer_delete_context_handle(m_pNativeAllocationContext, e_handle_renderbuffer, m_gluDepthStencilRBO);
+      m_glsyncGpuCommandsCompleteFence = nullptr;
+      m_gluTextureID = 0;
+      m_gluDepthStencilRBO = 0;
 
    }
 
@@ -200,6 +189,7 @@ namespace gpu_opengl
 
       m_gluType = GL_TEXTURE_2D;
 
+      m_pNativeAllocationContext = m_pgpucontext->m_pgpudevice->current_operating_system_gpu_context();
       glGenTextures(1, &m_gluTextureID);
       ::opengl::check_error("");
       glBindTexture(m_gluType, m_gluTextureID);
@@ -919,6 +909,7 @@ namespace gpu_opengl
       if (!m_gluTextureID)
       {
 
+         m_pNativeAllocationContext = m_pgpucontext->m_pgpudevice->current_operating_system_gpu_context();
          glGenTextures(1, &m_gluTextureID); // 1. Generate a texture ID
          ::opengl::check_error("");
       }
@@ -1998,24 +1989,20 @@ namespace gpu_opengl
 
       }
 
-      //::memory memoryFlipped = m_pixmapFlipped;
-      auto &pixmapFlipped = m_pixmapFlipped;
-      pixmapFlipped.m_bTopLeft = false;
-      pixmapFlipped.create_as_descriptor(ppixmap->raw_size(), DEFAULT_CREATE_IMAGE_FLAG, ppixmap->m_iScan);
-      pixmapFlipped.m_colorindexes = ppixmap->m_colorindexes;
-      pixmapFlipped.copy(ppixmap);
-
-      auto p = pixmapFlipped.map(ppixmap->rectangle());
-
-      //if (ppixmap->m_bTopLeft)
-      //{
-
-      //   pixmapFlipped.vertical_swap();
-
-      //}
-
-      int cx = p->width();
-      int cy = p->height();
+      // Bottom-up pixels already match GL row order. Upload them directly;
+      // only top-down sources need the reusable row-reversal buffer.
+      const ::pixmap_t * upload = ppixmap;
+      if (ppixmap->m_bTopLeft)
+      {
+         auto & flipped = m_pixmapFlipped;
+         flipped.m_bTopLeft = false;
+         flipped.create_as_descriptor(ppixmap->raw_size(), DEFAULT_CREATE_IMAGE_FLAG, ppixmap->m_iScan);
+         flipped.m_colorindexes = ppixmap->m_colorindexes;
+         flipped.copy(ppixmap);
+         upload = &flipped;
+      }
+      const int cx = ppixmap->width();
+      const int cy = ppixmap->height();
 
       // Uploads only change texture/unpack state. In particular, do not replay
       // framebuffer read-buffer state in the producer context on every frame.
@@ -2053,10 +2040,10 @@ namespace gpu_opengl
       ::opengl::check_error("");
       glPixelStorei(
          GL_UNPACK_ROW_LENGTH,
-         pixmapFlipped.m_iScan / (int)sizeof(::image32_t));
+         upload->m_iScan / (int)sizeof(::image32_t));
       ::opengl::check_error("");
 
-      auto iPixelFormatFlipped = pixmap_pixel_format(&pixmapFlipped);
+      auto iPixelFormatFlipped = pixmap_pixel_format(upload);
       glTexSubImage2D(
          GL_TEXTURE_2D,
          0,
@@ -2066,7 +2053,7 @@ namespace gpu_opengl
          cy,
          iPixelFormatFlipped,
          GL_UNSIGNED_BYTE,
-         p->m_pimage32);
+         upload->m_pimage32);
       ::opengl::check_error("");
 
       if (m_textureattributes.m_size.cx < requiredWidth)

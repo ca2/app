@@ -76,7 +76,8 @@ namespace parallelization
    //mutex_implementation()
    //{
 
-   //   m_handle = ::CreateMutexExW(nullptr, nullptr, 0, MUTEX_ALL_ACCESS);
+   //   m_bOwner = true;
+   //m_handle = ::CreateMutexExW(nullptr, nullptr, 0, MUTEX_ALL_ACCESS);
    //   if (!m_handle)
    //   {
    //      throw ::exception(error_resource);
@@ -179,6 +180,7 @@ mutex::mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pszN
 #elif defined(WINDOWS)
 
    ::wstring wstrName(pszName);
+   ::SetLastError(ERROR_SUCCESS);
    HANDLE handle = ::CreateMutexExW(
     ::is_null(psecurityattributes)?
    (LPSECURITY_ATTRIBUTES)nullptr : (LPSECURITY_ATTRIBUTES)psecurityattributes->get_os_security_attributes(), pszName ? wstrName.c_str() : nullptr, 0, MUTEX_ALL_ACCESS);
@@ -186,6 +188,9 @@ mutex::mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pszN
    {
       throw ::exception(error_resource);
    }
+   // Capture before CloseHandle or initialization can change the last-error value.
+   const auto lastError = ::GetLastError();
+   set_already_exists_flag(lastError == ERROR_ALREADY_EXISTS);
    ::CloseHandle(m_handle);
    m_handle = handle;
 

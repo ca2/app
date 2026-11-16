@@ -300,9 +300,17 @@ namespace filemanager
 
          strDir = pathUser;
 
-         listing.set_listing(pathUser);
-
-         directory()->enumerate(listing);
+         auto pdata = filemanager_data();
+         if (pdata->m_pitem && pdata->m_pitem->user_path() == pathUser)
+         {
+            // The browse worker already fetched this folder. Do not fetch it again while drawing/updating the tree.
+            listing = pdata->m_listingFolderUser2;
+         }
+         else
+         {
+            listing.set_listing(pathUser);
+            directory()->enumerate(listing);
+         }
 
       }
 
@@ -426,6 +434,19 @@ namespace filemanager
 
          add_path(true, filemanager_item()->user_path(), "");
 
+      }
+
+      // Remove vanished direct children while preserving surviving subtrees.
+      if (auto parent = find_item_by_user_path(filemanager_item()->user_path()))
+      {
+         ::data::tree_item_ptr_array<::userfs::item> children;
+         parent->get_children(children);
+         for (auto & child : children)
+         {
+            auto item = child->m_pitem;
+            if (item && !filemanager_data()->m_listingFolderUser2.contains(item->user_path()))
+               child->erase_item_from_parent();
+         }
       }
 
       // add sibling folders
@@ -903,7 +924,7 @@ return;
 
             auto pfsdata = pfilemanagerdata->fs_data();
 
-            if (pfsdata->is_dir(pitemNew->final_path()))
+            if (pathFinal.is_folder() || (pathFinal.not_file_or_folder() && pfsdata->is_dir(pathFinal) > 0))
             {
 
                pitemNew->m_flags |= ::file::e_flag_folder;
@@ -919,7 +940,7 @@ return;
             else
             {
 
-               pitemNew->m_strName = path.name();
+               pitemNew->m_strName = filemanager_data()->display_name(path);
 
             }
 
@@ -934,6 +955,14 @@ return;
 
             }
 
+         }
+
+         if (pchild)
+         {
+            auto pfileitem = pchild->m_pitem.cast<::file::item>();
+            if (pfileitem)
+               pfileitem->m_strName = i == patha.get_upper_bound() && scopedstrName.has_character()
+                  ? string(scopedstrName) : filemanager_data()->display_name(path);
          }
 
          pparent = pchild;

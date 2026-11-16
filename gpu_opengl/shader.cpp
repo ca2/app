@@ -49,9 +49,8 @@ namespace gpu_opengl
 
    shader::~shader()
    {
-      
-      
-      
+      defer_delete_context_handle(m_pNativeAllocationContext, e_handle_program, m_ProgramID);
+      m_ProgramID = 0;
    }
 
 
@@ -159,6 +158,8 @@ namespace gpu_opengl
       //
       // #endif
 
+      defer_delete_context_handle(m_pNativeAllocationContext, e_handle_program, m_ProgramID);
+      m_pNativeAllocationContext = m_pgpurenderer->m_pgpucontext->m_pgpudevice->current_operating_system_gpu_context();
       m_ProgramID = glCreateProgram();
       ::opengl::check_error("Couldn't create opengl program");
 

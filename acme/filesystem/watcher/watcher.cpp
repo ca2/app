@@ -203,9 +203,8 @@ namespace file
 
       }
 
-      manual_reset_happening happening;
-
       pwatch->m_functionDestroy = functionErased;
+      m_watchset.erase(pwatch);
 
    }
 

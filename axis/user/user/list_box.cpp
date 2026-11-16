@@ -502,9 +502,11 @@ namespace user
 
       ::i32_rectangle rectangleItem;
 
-      rectangleItem = rectangleX;
+      // Rows use content coordinates. rectangle() includes the scroll offset
+      // and would cancel the translation applied by on_context_offset().
+      rectangleItem = raw_rectangle();
 
-      rectangleItem.bottom = rectangleX.top;
+      rectangleItem.bottom = rectangleItem.top;
 
       if (m_pcombo && m_pcombo->m_bEdit)
       {
@@ -1193,7 +1195,8 @@ namespace user
 
       ::collection::count iItemCount = _001GetListCount();
 
-      auto rectangleX = this->rectangle();
+      // host_to_client() already converts the pointer to content coordinates.
+      auto rectangleX = raw_rectangle();
 
       ::i32_rectangle rectangleItem = rectangleX;
 

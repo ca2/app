@@ -26,6 +26,7 @@ namespace gpu_opengl
       {
          enum_handle m_ehandle;
          GLuint m_handle;
+         GLsync m_sync = nullptr;
       };
       ::critical_section g_csHandleDeletion;
       ::map<void *, ::array<pending_context_handle>> g_mapPendingHandles;
@@ -36,6 +37,13 @@ namespace gpu_opengl
       if (!pNativeContext || !handle) return;
       ::critical_section_lock lock(&g_csHandleDeletion);
       g_mapPendingHandles[pNativeContext].add({ehandle, handle});
+   }
+
+   void defer_delete_context_sync(void * pNativeContext, GLsync sync)
+   {
+      if (!pNativeContext || !sync) return;
+      ::critical_section_lock lock(&g_csHandleDeletion);
+      g_mapPendingHandles[pNativeContext].add({e_handle_sync, 0, sync});
    }
 
    void delete_pending_context_handles(void * pNativeContext)
@@ -50,6 +58,16 @@ namespace gpu_opengl
             glDeleteVertexArrays(1, &object.m_handle);
          else if (object.m_ehandle == e_handle_fbo)
             glDeleteFramebuffers(1, &object.m_handle);
+         else if (object.m_ehandle == e_handle_texture)
+            glDeleteTextures(1, &object.m_handle);
+         else if (object.m_ehandle == e_handle_renderbuffer)
+            glDeleteRenderbuffers(1, &object.m_handle);
+         else if (object.m_ehandle == e_handle_vertex_buffer)
+            glDeleteBuffers(1, &object.m_handle);
+         else if (object.m_ehandle == e_handle_sync)
+            glDeleteSync(object.m_sync);
+         else if (object.m_ehandle == e_handle_program)
+            glDeleteProgram(object.m_handle);
       }
       g_mapPendingHandles.erase(pNativeContext);
    }

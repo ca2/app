@@ -25,6 +25,7 @@ namespace gpu_opengl
       using base_context_handle = ::gpu_opengl::context_handle<GLuint, ::gpu_opengl::e_handle_fbo>;
       
 
+      void * m_pNativeAllocationContext = nullptr;
       GLuint            m_gluTextureID;
       GLuint            m_gluDepthStencilRBO;
       //GLuint            m_gluFbo;

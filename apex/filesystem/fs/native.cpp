@@ -100,6 +100,21 @@ namespace fs
       
       node()->root_ones(listing);
 
+      // An unresolved Drive URI belongs to the virtual provider, not the native filesystem.
+      for (::collection::index i = listing.size(); i > 0;)
+      {
+         --i;
+         if (listing[i].case_insensitive_begins("google-drive://"))
+         {
+            auto path = application()->defer_process_path(listing[i]);
+            if (path.case_insensitive_begins("google-drive://"))
+            {
+               listing.erase_at(i);
+               if (i < listing.m_straTitle.size()) listing.m_straTitle.erase_at(i);
+            }
+         }
+      }
+
       return listing;
 
    }
@@ -206,6 +221,18 @@ namespace fs
 
       return file()->exists(path);
 
+   }
+
+
+   ::file::path native::create_folder(const ::file::path & pathParent, const ::scoped_string & scopedstrName)
+   {
+      ::string strName(scopedstrName);
+      strName.trim();
+      if (strName.is_empty() || strName == "." || strName == ".." || strName.contains("/") || strName.contains("\\"))
+         throw ::exception(error_bad_argument, "Enter a folder name without path separators");
+      auto path = pathParent / strName;
+      directory()->create(path);
+      return path;
    }
 
 

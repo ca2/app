@@ -3972,6 +3972,16 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 ::file_pointer file_context::defer_get_protocol_file(const ::scoped_string & scopedstrProtocol, const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
+   if (scopedstrProtocol.case_insensitive_equals("google-drive"))
+   {
+      // Native mirrors have already been resolved by defer_process_path.
+      if (eopen & (::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate))
+         throw ::exception(error_not_supported, "Google Drive browsing is read-only");
+      auto & pfactory = system()->factory("folder", "google_drive");
+      auto pfolder = createø < ::folder >(pfactory);
+      return pfolder->get_file(path);
+   }
+
    if(scopedstrProtocol == "mediastore"
    || scopedstrProtocol == "gdrive-appdata")
    {

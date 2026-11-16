@@ -1822,6 +1822,8 @@ list(APPEND library_source
         exception/exception.cpp
         exception/exception.h
         exception/exception2.h
+        exception/exception_pointer.cpp
+        exception/exception_pointer.h
         exception/exit.cpp
         exception/exit.h
         exception/runtime_check.cpp

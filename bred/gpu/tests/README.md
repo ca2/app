@@ -65,3 +65,16 @@ Regenerate the emitted source with the C++ program first. The three embedded
 SPIR-V files are generated artifacts of the shared source, not independent brush
 implementations. Rebuild `bred` and the GPU and draw2d backend libraries after
 changing the shared classes.
+
+## Context lease move regression
+
+`context_lease_move_test.cpp` exercises the production `gpu::context_lease`
+against a test device that records pool returns; it does not create a native GPU
+context. It checks move construction, assignment between owned and borrowed
+leases, propagation of the damaged flag, and exactly-once pool returns.
+
+Build it as a console executable using the framework's Release x64 include paths
+and DLL runtime (`/MD`), with `UNICODE` and `_UNICODE` defined. Link against
+`bred.lib`, `axis.lib`, `aura.lib`, `aqua.lib`, `apex.lib`, and `acme.lib`, and place
+the executable beside the framework DLLs. Exit code zero means all cases passed;
+nonzero codes identify a failing check in the source.

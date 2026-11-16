@@ -34,10 +34,12 @@ namespace gpu
 
    context_lease::context_lease(context_lease && lease) :
        BASE_POINTER(::transfer(lease)),
+      m_pdevice(::transfer(lease.m_pdevice)),
       m_bDamaged(lease.m_bDamaged), m_bOwned(lease.m_bOwned)
    {
 
       lease.m_bDamaged = false;
+      lease.m_bOwned = false;
 
    }
 
@@ -53,8 +55,10 @@ namespace gpu
          m_pdevice = ::transfer(lease.m_pdevice);
          BASE_POINTER::operator= (::transfer(lease));
          m_bDamaged = lease.m_bDamaged;
+         m_bOwned = lease.m_bOwned;
 
          lease.m_bDamaged = false;
+         lease.m_bOwned = false;
 
       }
 

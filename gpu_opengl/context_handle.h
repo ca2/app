@@ -21,10 +21,16 @@ namespace gpu_opengl
       e_handle_none,
       e_handle_buffer,
       e_handle_fbo,
+      e_handle_texture,
+      e_handle_renderbuffer,
+      e_handle_vertex_buffer,
+      e_handle_sync,
+      e_handle_program,
    
    };
 
    void defer_delete_context_handle(void * pNativeContext, enum_handle ehandle, GLuint handle);
+   void defer_delete_context_sync(void * pNativeContext, GLsync sync);
    void delete_pending_context_handles(void * pNativeContext);
    void discard_pending_context_handles(void * pNativeContext);
 

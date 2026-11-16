@@ -1648,7 +1648,7 @@ namespace platform
       //::acme::idpool::term();
 
       //m_pnode->user_post_quit();
-
+      m_pmicrouser.defer_destroy_and_release();
       m_pnode.release();
 
       //try

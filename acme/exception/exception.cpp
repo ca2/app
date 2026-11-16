@@ -29,7 +29,6 @@ bool ::exception::s_bEnableCallStackBackTrace = true;
 exception::exception() : exception(error_exception)
 {
 
-
 }
 
 
@@ -37,7 +36,6 @@ exception::exception() : exception(error_exception)
 exception::exception(const ::e_status & estatus, const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrDetails, ::i32 iSkip, void * caller_address) :
 exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, scopedstrMessage, scopedstrDetails, iSkip, caller_address)
 {
-   
    
 }
 

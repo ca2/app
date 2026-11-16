@@ -9550,47 +9550,23 @@ namespace aura
 
    void application::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine)
    {
-
-      auto prequest = create_newø<::request >();
-
+      auto prequest = create_newø<::request>();
       prequest->_001ParseCommandLine(scopedstrCommandLine);
-
-      ::cast < ::user::interaction > puserinteraction = m_pacmeuserinteractionMain;
-      
-      if(puserinteraction)
+      ::cast<::user::interaction> main = m_pacmeuserinteractionMain;
+      if (main)
       {
-         
-         puserinteraction->frame_toggle_restore(nullptr);
-         
+         // IPC can arrive on a worker thread. Activation belongs to the window's UI thread.
+         main->user_post([main]()
+         {
+            if (!main->is_window_visible() || main->layout().is_iconic())
+               main->display(e_display_normal);
+            main->order(e_zorder_top);
+            main->bring_to_front();
+            main->set_foreground_window(nullptr);
+         });
       }
-
-      //::user::impact * pinteraction = m_ptemplateWeatherMain->get_document(0)->get_impact();
-
-      //if (pinteraction != nullptr)
-      //{
-
-      //   ::user::frame_interaction * pframe = pinteraction->top_level_frame();
-
-      //   if (pframe != nullptr)
-      //   {
-
-      //      pframe->frame_toggle_restore();
-
-      //      //if (pframe->is_window_visible() && !pframe->layout().is_iconic())
-      //      //{
-
-      //      //   pframe->order(e_zorder_top);
-
-      //      //}
-
-      //      //pframe->display(e_display_normal);
-
-      //   }
-
-      //}
-
+      post_request(prequest);
       bHandled = true;
-
    }
 
 

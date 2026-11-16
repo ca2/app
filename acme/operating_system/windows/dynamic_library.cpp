@@ -564,7 +564,9 @@ namespace windows
 
          auto strError = "LoadLibraryW Failed opening " + strPath;
 
-         warning() << strError << ": " << strMessage;
+         error() << strError << ": " << strMessage;
+
+         print_line(strError);
 
          throw library_not_loaded(strError, strDetails);
 

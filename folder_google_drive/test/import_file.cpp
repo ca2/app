@@ -95,6 +95,14 @@ int main()
    try { importer.import_file("google-drive://pictures-id", "local/photo.png", [](::f64) { return false; }); return 2; }
    catch (const ::exception & error) { if (error.m_estatus != error_cancelled) return 3; }
    if (api->m_starts != 1) return 4;
+   try
+   {
+      importer.import_file("google-drive://pictures-id", "local/photo.png", [](::f64 rate) { return rate == 0.0; });
+      return 9;
+   }
+   catch (const ::exception & error) { if (error.m_estatus != error_cancelled) return 10; }
+   if (api->m_uploads != 2) return 11;
+   api->m_uploads = 1;
    api->m_badSession = true;
    try { importer.import_file("google-drive://pictures-id", "local/photo.png", {}); return 5; }
    catch (const ::exception &) {}

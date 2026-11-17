@@ -15,6 +15,7 @@
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/file_system_options.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/handler/request.h"
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -3299,6 +3300,22 @@ namespace platform
       ::file::path path;
 
       path = "cloud-app://" / scopedstrFileName;
+
+#ifdef __APPLE__
+      // Startup settings must not wait for an iCloud metadata query or a
+      // dummy-file upload. Read the local container copy when it is available.
+      auto pathResolved = defer_process_path(path);
+      if (pathResolved.case_insensitive_begins("icloud://"))
+      {
+         ::string strName;
+         ::string strContainer;
+         path_system()->defer_get_icloud_container_path_name(strName, strContainer, pathResolved);
+         auto pathContainer = directory_system()->icloud_container2_final(strContainer);
+         if (pathContainer.is_empty())
+            return {};
+         path = pathContainer / strName;
+      }
+#endif
 
       ::string str = file()->safe_get_string(path);
 

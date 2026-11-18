@@ -80,7 +80,7 @@ namespace gpu
 //
 //      m_pwindow->m_ptaskUpdateScreen = this;
 //
-//      if (m_papplication->m_gpu.m_bMultisample)
+//      if (m_papplication->m_gpu.m_bMultisample2)
 //      {
 //
 //         m_bMultisample = true;
@@ -99,7 +99,7 @@ namespace gpu
 //
 //      m_pgpuapproach = pgpuapproach;
 //
-//      if (m_papplication->m_gpu.m_bMultisample)
+//      if (m_papplication->m_gpu.m_bMultisample2)
 //      {
 //
 //         m_bMultisample = true;
@@ -135,13 +135,13 @@ namespace gpu
 
       m_pgpuapproach = pgpuapproach;
    
-      m_pdraw2domain = pdraw2ddomain;
+      set_draw2d_domain(pdraw2ddomain);
 
 //      m_pwindow = pwindow;
 //
 //      m_pwindow->m_ptaskUpdateScreen = this;
 //
-//      if (m_papplication->m_gpu.m_bMultisample)
+//      if (m_papplication->m_gpu.m_bMultisample2)
 //      {
 //
 //         m_bMultisample = true;
@@ -434,11 +434,11 @@ namespace gpu
       {
 
          pcontext->send(
-            [pcontext, size]()
+            [pcontext, size, pdraw2dgraphics]()
             {
 
                //pcontext->m_pgpucompositor = nullptr;
-               pcontext->on_resize(size);
+               pcontext->on_resize(size, nullptr, pdraw2dgraphics);
 
             });
 
@@ -464,7 +464,7 @@ namespace gpu
 
          ::i32_size sizeRaw = pacmewindowingwindow->get_raw_buffer_size().maximum(size);
 
-         pcontext->create_draw2d_gpu_context(this, pacmewindowingwindow, pdraw2dgraphics, {}, {}, size, sizeRaw);
+         pcontext->create_draw2d_gpu_context(this, pdraw2dgraphics->draw2d_domain(), pdraw2dgraphics, {}, {}, size, sizeRaw);
 
 //>>>>>>> origin/main
          //pcontext->m_pgpucompositor = nullptr;
@@ -1201,7 +1201,7 @@ namespace gpu
 //
 //      ::gpu::enum_output eoutput;
 //
-//      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+//      if (m_papplication->use_gpu_swap_chain())
 //      {
 //
 //         m_pgpucontextMain->m_etype = ::gpu::context::e_type_window;

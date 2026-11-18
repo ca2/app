@@ -114,7 +114,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM GlobalMutexComposite :
-      virtual public Composite < GlobalMutexInterface >
+      virtual public ::subsystem::Composite < GlobalMutexInterface >
    {
    public:
 
@@ -164,7 +164,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM GlobalMutexAggregate :
-    virtual public Aggregate< GlobalMutexComposite >
+    virtual public ::subsystem::Aggregate< GlobalMutexComposite >
     {
     public:
 
@@ -174,7 +174,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM GlobalMutex :
-   virtual public Object< GlobalMutexAggregate >
+   virtual public ::subsystem::Object< GlobalMutexAggregate >
    {
    public:
 

@@ -462,7 +462,7 @@ namespace parallelization
 
 
 
-//::pointer < ::mutex > & message_dispatch_mutex()
+//::pointer < ::parallelization::mutex > & message_dispatch_mutex()
 //{
 //
 //

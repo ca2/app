@@ -64,9 +64,9 @@ namespace dynamic_source
       //::file::path                              m_strTime;
 
 
-      ::pointer < ::mutex >                                     m_pmutex;
+      ::pointer < ::parallelization::mutex >                                     m_pmutex;
 
-      ::pointer < ::mutex >                                     m_pmutexLibrary;
+      ::pointer < ::parallelization::mutex >                                     m_pmutexLibrary;
 
       //::pointer < ::integration::context >                        m_pintegrationcontext;
 

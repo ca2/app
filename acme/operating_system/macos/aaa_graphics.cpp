@@ -1142,12 +1142,12 @@ HFONT CreatePointBoldFont_dup(::i32 nPointSize, const ::scoped_string & scopedst
 bool macos1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::scoped_string & scopedstr)
 {
 
-   static ::pointer< ::mutex > pmutex = nullptr;
+   static ::pointer< ::parallelization::mutex > pmutex = nullptr;
 
    if(pmutex == nullptr)
    {
 
-      pmutex = aaa_primitive_new ::pointer < ::mutex >();
+      pmutex = aaa_primitive_new ::pointer < ::parallelization::mutex >();
 
    }
 

@@ -6,6 +6,7 @@
 
 
 #include "acme/graphics/image/pixmap.h"
+#include "acme/filesystem/filesystem/path.h"
 
 
 #include "aura/graphics/draw2d/bitmap.h"
@@ -19,6 +20,7 @@
 
 
 #include "aura/graphics/image/dynamic.h"
+#include "aura/graphics/image/alpha_statistics.h"
 
 
 // #define IMAGE_IMAGE_META_TRANSFER(a) \
@@ -30,6 +32,15 @@
 
 namespace image
 {
+
+
+   enum enum_image_derivation
+   {
+
+      e_image_derivation_none,
+      e_image_derivation_stretched,
+
+   };
 
 
    class CLASS_DECL_AURA image_meta :
@@ -68,6 +79,12 @@ namespace image
       ::pointer<::image::image_extension>       m_pextension;
       image_dynamic                             m_dynamic;
       bool                                      m_bImageGraphics;
+      ::image::alpha_statistics_cache          m_alphastatisticscache;
+      /// Original file or URI that supplied these pixels, when loaded from a path.
+      ::file::path                              m_pathImageSource;
+      /// Immediate input size for a derived image.
+      ::i32_size                                m_sizeImageSource;
+      enum_image_derivation                     m_eImageDerivation = e_image_derivation_none;
 
 
       image_meta()
@@ -91,6 +108,7 @@ namespace image
          m_bCreateHelperMaps = false;
          m_pdraw2dbitmap = nullptr;
          m_iExifOrientation = 0;
+         m_sizeImageSource = {};
          //m_pgraphics = nullptr;
 
       }
@@ -152,6 +170,10 @@ namespace image
       //inline ::pointer<::image::image_frame_array>frames();
 
       virtual void set_exif_orientation(::i32 iExifOrientation);
+
+      void set_image_source_path(const ::file::path & path);
+      void set_stretched_from(const image_meta & imagemetaSource);
+      ::string image_debug_provenance() const;
 
 
       inline image_frame_array * frames() { return m_pextension ? m_pextension->m_pframea : nullptr; }

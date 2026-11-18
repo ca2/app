@@ -22,7 +22,7 @@ namespace user
       bool                                m_bCreate;
       ::pointer<::user::interaction>      m_puserinteractionMessage;
       ::pointer<::user::interaction_base>        m_puserprimitiveOwner;
-      ::pointer < ::mutex >               m_pmutexLongPtr;
+      ::pointer < ::parallelization::mutex >               m_pmutexLongPtr;
       //iptr_to_iptr                      m_longptr;
       uptr                                m_uStyle;
       uptr                                m_uExStyle;

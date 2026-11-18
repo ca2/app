@@ -81,7 +81,7 @@ CLASS_DECL_ACME bool is_first_multi_frame_loaded();
 
 #include <pango/pangocairo.h>
 
-//::pointer< ::mutex > g_pmutexFc = nullptr;
+//::pointer< ::parallelization::mutex > g_pmutexFc = nullptr;
 
 FcBool g_fcResult;
 
@@ -1509,7 +1509,7 @@ namespace draw2d_cairo
       if (m_pdraw2dpen->m_epenalign == ::draw2d::e_pen_align_inset)
       {
 
-         cairo_scale(m_pcairo, radiusx - m_pdraw2dpen->m_dWidth / 2.0, radiusy - m_pdraw2dpen->m_dWidth / 2.0);
+         cairo_scale(m_pcairo, radiusx - m_pdraw2dpen->m_dWidth * draw2d_domain()->get_density() / 2.0, radiusy - m_pdraw2dpen->m_dWidth * draw2d_domain()->get_density() / 2.0);
 
       }
       else
@@ -4393,6 +4393,18 @@ namespace draw2d_cairo
    }
 
 
+   ::i32 graphics::_DrawText(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangle,
+                            const ::e_align & ealign, const ::e_draw_text & edrawtext,
+                            ::write_text::font * pfontUnderline)
+   {
+      // The shared text layout takes the font-cache lock and calls back into
+      // Cairo. Take Cairo first, matching internal_draw_text -> font::on_changed,
+      // so concurrent caption and impact rendering cannot invert these locks.
+      _synchronous_lock lock(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      return ::draw2d::graphics::_DrawText(scopedstr, rectangle, ealign, edrawtext, pfontUnderline);
+   }
+
+
    void graphics::internal_draw_text(const block & block, const ::f64_rectangle & rectangle, const ::e_align & ealign,
                                      const ::e_draw_text & edrawtext)
    {
@@ -5481,12 +5493,12 @@ namespace draw2d_cairo
    }
 
 
-   ::f64 graphics::get_dpix()
-   {
+   //::f64 graphics::get_dpix()
+   //{
 
-      return 72.0;
+   //   return 72.0;
 
-   }
+   //}
 
 
    bool graphics::_set(::draw2d::brush * pdraw2dbrush, ::f64 x, ::f64 y)
@@ -5832,7 +5844,7 @@ namespace draw2d_cairo
 
       }
 
-      cairo_set_line_width(m_pcairo, pdraw2dpen->m_dWidth);
+      cairo_set_line_width(m_pcairo, pdraw2dpen->m_dWidth * draw2d_domain()->get_density());
 
       return true;
 

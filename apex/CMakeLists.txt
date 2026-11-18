@@ -112,6 +112,9 @@ list(APPEND apex_source
         gpu/approach.h
    gpu/window_attachment.cpp
    gpu/window_attachment.h
+        graphics/early_configuration.cpp
+graphics/early_configuration.h
+
    handler/manager.cpp
    handler/manager.h
    handler/manager_room.cpp
@@ -1538,6 +1541,9 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
       list(APPEND this_system_libraries dl pthread z)
    elseif (${__ANDROID__})
       list(APPEND this_system_libraries dl z)
+   elseif (__SUNOS__)
+      # IDN conversion is provided by nano_idn_libidn.
+      list(APPEND this_system_libraries dl pthread z)
    else ()
       if(__HAIKU__)
          list(APPEND this_system_libraries pthread idn z)

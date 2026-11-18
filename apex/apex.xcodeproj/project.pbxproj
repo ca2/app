@@ -717,6 +717,12 @@
 		9A63F89D80B275214285F841 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = F585EEFED3023BBA52976BAD /* node.h */; };
 		9A6D83E382521F23AD93E23D /* message.h in Headers */ = {isa = PBXBuildFile; fileRef = E38628234F968C9E9F5DA976 /* message.h */; };
 		9A6E5732E174205EFDEF6223 /* websocket_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E56B706DA355F129ECB0BBDD /* websocket_client.cpp */; };
+		9A7DF95630A4198100F8AA65 /* early_configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DF95430A4198100F8AA65 /* early_configuration.cpp */; };
+		9A7DF95730A4198100F8AA65 /* early_configuration.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7DF95330A4198100F8AA65 /* early_configuration.h */; };
+		9A7DF95830A4198100F8AA65 /* early_configuration.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7DF95330A4198100F8AA65 /* early_configuration.h */; };
+		9A7DF95930A4198100F8AA65 /* early_configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DF95430A4198100F8AA65 /* early_configuration.cpp */; };
+		9A7DF95A30A4198100F8AA65 /* early_configuration.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7DF95330A4198100F8AA65 /* early_configuration.h */; };
+		9A7DF95B30A4198100F8AA65 /* early_configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DF95430A4198100F8AA65 /* early_configuration.cpp */; };
 		9A831A33001129C7CDA92258 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49B2504AD4BDA3D8A25D7530 /* context.cpp */; };
 		9AA3941F306381B100B9551A /* window_attachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA3941D306381B100B9551A /* window_attachment.h */; };
 		9AA39420306381B100B9551A /* window_attachment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA3941E306381B100B9551A /* window_attachment.cpp */; };
@@ -1486,6 +1492,8 @@
 		984AE368232576598946B41D /* manager_room.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = manager_room.cpp; sourceTree = "<group>"; };
 		98F45B7055C5495A0506478A /* key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = key.cpp; sourceTree = "<group>"; };
 		9A06A87AA72E206C0221FE4D /* websocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = websocket.h; sourceTree = "<group>"; };
+		9A7DF95330A4198100F8AA65 /* early_configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = early_configuration.h; sourceTree = "<group>"; };
+		9A7DF95430A4198100F8AA65 /* early_configuration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = early_configuration.cpp; sourceTree = "<group>"; };
 		9AA3941D306381B100B9551A /* window_attachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = window_attachment.h; sourceTree = "<group>"; };
 		9AA3941E306381B100B9551A /* window_attachment.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = window_attachment.cpp; sourceTree = "<group>"; };
 		9C8F4982B2CBADA56F4E5591 /* signal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signal.h; sourceTree = "<group>"; };
@@ -1700,6 +1708,7 @@
 				50B15F7406EB8B81AFFDBC71 /* constant */,
 				E0DDC1D9A79416FB8828DDC9 /* database */,
 				E02D4D0EB05907262F828368 /* filesystem */,
+				9A7DF95530A4198100F8AA65 /* graphics */,
 				573B54740B00B6B4C21303C4 /* handler */,
 				99C9026C32BAE25744F391A6 /* include */,
 				8D8A94E99DDB7C0413BD3C1E /* inline */,
@@ -2151,6 +2160,15 @@
 			path = include;
 			sourceTree = "<group>";
 		};
+		9A7DF95530A4198100F8AA65 /* graphics */ = {
+			isa = PBXGroup;
+			children = (
+				9A7DF95330A4198100F8AA65 /* early_configuration.h */,
+				9A7DF95430A4198100F8AA65 /* early_configuration.cpp */,
+			);
+			path = graphics;
+			sourceTree = "<group>";
+		};
 		9D0819CD41156F293950FA63 /* sockets */ = {
 			isa = PBXGroup;
 			children = (
@@ -2488,6 +2506,7 @@
 				B49F12AF5B59FDD24ABA1C97 /* predicate_handler.h in Headers */,
 				B1D4F7F70ACCE9F29725FC04 /* machine_event_central.h in Headers */,
 				12AD9AF3647233E3F2D4F68B /* windows.h in Headers */,
+				9A7DF95730A4198100F8AA65 /* early_configuration.h in Headers */,
 				5A035E828B9B12FC22097F84 /* _.h in Headers */,
 				DEAFD5B5AC769EF328A0D34B /* html_file.h in Headers */,
 				23565E850819FAA3C259C470 /* _c_bridge.h in Headers */,
@@ -2786,6 +2805,7 @@
 				AF8A50450F323B8571D33CEA /* port_forward.h in Headers */,
 				74AB815D55B9FBB3A393BCB5 /* promise1.h in Headers */,
 				812C509776DAD688B16EC156 /* tcp_socket.h in Headers */,
+				9A7DF95830A4198100F8AA65 /* early_configuration.h in Headers */,
 				3B1CF297C6B793DFC70D7B45 /* console_application.h in Headers */,
 				3C56F759113FEC3AB962FEF5 /* socket_id_list.h in Headers */,
 				B2EDBF0DFA46F5DFE0099D01 /* get_socket.h in Headers */,
@@ -3029,6 +3049,7 @@
 				A1C20D90035C1AF4DFDB7AAE /* dialog.h in Headers */,
 				532A429B1949E85808707014 /* still.h in Headers */,
 				FAB50E12BB9621CA9BEA727E /* _.h in Headers */,
+				9A7DF95A30A4198100F8AA65 /* early_configuration.h in Headers */,
 				9AA3CC76A5FE41DF8FCED072 /* _sockets.h in Headers */,
 				A6AA9A235DADAB9C87E45763 /* aaa_const_key.h in Headers */,
 				8260473E19B91B91042568E4 /* _constant.h in Headers */,
@@ -3327,6 +3348,7 @@
 				3D45DD108D7FB438A24B47B0 /* shared.cpp in Sources */,
 				05D0E3AB589BF4833360F93F /* email.cpp in Sources */,
 				69E88E8FE6F338B525B88EAB /* socket_thread.cpp in Sources */,
+				9A7DF95930A4198100F8AA65 /* early_configuration.cpp in Sources */,
 				40C51071E7105A0BD9C92264 /* component.cpp in Sources */,
 				C6E37C7780C7DFE24492B3E5 /* application_socket.cpp in Sources */,
 				98975B68F04EAA7E6453422D /* response.cpp in Sources */,
@@ -3500,6 +3522,7 @@
 				BF3813EC0B157397E8C3DF62 /* icon.cpp in Sources */,
 				E67927B6BFA9F26B1F650CE9 /* window.cpp in Sources */,
 				E2717DBACBE33197CA71F97F /* innate_ui.cpp in Sources */,
+				9A7DF95B30A4198100F8AA65 /* early_configuration.cpp in Sources */,
 				0E155105761DA86802196183 /* component.cpp in Sources */,
 				97DE5BB6D0F0CDAFA32F608D /* dialog.cpp in Sources */,
 				8A1C2D3FB46012FD596A3269 /* still.cpp in Sources */,
@@ -3813,6 +3836,7 @@
 				8EDFEB29CFCDDF5031DAA980 /* application_handler.cpp in Sources */,
 				50A04A1DA8E30B4252225858 /* selection.cpp in Sources */,
 				403913411749469B8F146650 /* ifs_file.cpp in Sources */,
+				9A7DF95630A4198100F8AA65 /* early_configuration.cpp in Sources */,
 				16FD027E8DD10613D05E0533 /* link.cpp in Sources */,
 				6899B9D0EEFE8492FE89B32F /* http_batch_buffer.cpp in Sources */,
 				93D381E9BC9D9E17556C8A82 /* real.cpp in Sources */,

@@ -24,37 +24,37 @@
    // CLASS_DECL_SUBSYSTEM void subsystem_factory(::factory::factory * pfactory);
 
 
-   enum enum_particle
-   {
-
-      e_particle_none,
-      e_particle_interface,
-      e_particle_implementation,
-
-   };
-
-   class Particle;
-
-//   template<typename PARTICLE_INTERFACE, typename BASE = particle_base>
-//   class particle_interface;
-
-   template<typename PARTICLE_INTERFACE>
-   class Composite;
-   //template<typename PARTICLE_INTERFACE>
-   //class composite;
-   template<typename PARTICLE_INTERFACE, typename BASE = Particle>
-   class Aggregate;
-
-   template<typename PARTICLE_INTERFACE, typename BASE = Particle>
-   class Implementation;
-
-   template<typename AGGREGATE>
-   class Object;
-
 // node
 namespace subsystem
 {
 
+
+ enum enum_particle
+ {
+
+  e_particle_none,
+  e_particle_interface,
+  e_particle_implementation,
+
+};
+
+ class Particle;
+
+ //   template<typename PARTICLE_INTERFACE, typename BASE = particle_base>
+ //   class particle_interface;
+
+ template<typename PARTICLE_INTERFACE>
+ class Composite;
+ //template<typename PARTICLE_INTERFACE>
+ //class composite;
+ template<typename PARTICLE_INTERFACE, typename BASE = Particle>
+ class Aggregate;
+
+ template<typename PARTICLE_INTERFACE, typename BASE = Particle>
+ class Implementation;
+
+  template<typename AGGREGATE>
+  class Object;
 
    class DynamicLibrary;
    class DynamicLibraryInterface;

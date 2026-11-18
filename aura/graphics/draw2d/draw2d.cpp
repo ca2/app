@@ -237,7 +237,7 @@ namespace draw2d
    }
 
 
-   //::pointer< ::mutex > draw2d::get_object_list_mutex()
+   //::pointer< ::parallelization::mutex > draw2d::get_object_list_mutex()
    //{
 
    //   return m_pmutexObjectList;
@@ -245,7 +245,7 @@ namespace draw2d
    //}
 
 
-   //::pointer< ::mutex > draw2d::get_image_list_mutex()
+   //::pointer< ::parallelization::mutex > draw2d::get_image_list_mutex()
    //{
 
    //   return m_pmutexImageList;
@@ -253,7 +253,7 @@ namespace draw2d
    //}
 
 
-   //::pointer< ::mutex > draw2d::get_graphics_context_list_mutex()
+   //::pointer< ::parallelization::mutex > draw2d::get_graphics_context_list_mutex()
    //{
 
    //   return m_pmutexGraphicsContextList;
@@ -294,7 +294,7 @@ namespace draw2d
       ::acme::windowing::window* pacmewindowingwindow)
    {
 
-      if (m_papplication->m_bGpu)
+      if (m_papplication->is_using_gpu())
       {
 
          return allocate_draw2d_window_attachment_for_gpu(pacmewindowingwindow);
@@ -310,7 +310,7 @@ namespace draw2d
       ::acme::windowing::window* pacmewindowingwindow)
    {
 
-      if (!m_papplication->m_bGpu)
+      if (!m_papplication->is_using_gpu())
       {
 
          throw ::exception(error_wrong_state);

@@ -260,8 +260,6 @@ namespace gpu
 
       auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pdraw2ddomain);
 
-      _synchronous_lock synchronouslock(pgpudevice->synchronization());
-
       if (!bTopDraw2d)
       {
 
@@ -482,6 +480,14 @@ namespace gpu
 
       _tidy_map(rectangle);
 
+      if (!rectangle.is_null())
+      {
+
+         m_point = rectangle.origin();
+         m_size = rectangle.size();
+
+      }
+
       // if (has_active_destination_graphics_lease())
       // {
       //
@@ -522,9 +528,12 @@ namespace gpu
 
       pthis->m_ppixmapOwned->m_pimage32Raw = (::image32_t *)pthis->m_ppixmapOwned->m_memoryPixmap.data();
 
-      pthis->m_ppixmapOwned->m_pimage32 = pthis->m_ppixmapOwned->m_pimage32Raw;
+      pthis->m_ppixmapOwned->m_point = m_point;
+      pthis->m_ppixmapOwned->pixmap_map();
 
-      if (emap == ::image::e_map_load)
+      // Read directly into the mapped subrectangle. The returned image lease
+      // exposes this same region, rather than remapping pixels written at (0,0).
+      if (emap != ::image::e_map_discard)
       {
 
          ::gpu::texture * pgputexture = nullptr;
@@ -615,16 +624,23 @@ namespace gpu
 
             }
 
-            if (emap == ::image::e_map_load)
+            if (emap != ::image::e_map_discard)
             {
 
                //auto pgpucommandbuffer = ::gpu::current_layer()->getCurrentCommandBuffer4();
 
                auto pgpucommandbuffer = pgpucontext->beginSingleTimeCommands(pgpuqueueGraphics);
 
-               auto ptexturesite = ::gpu::current_layer()->texture(false);
+               // Mapping an image is independent of the calling thread's current
+               // layer (which may belong to another offscreen image or frame).
+               auto ptextureRead = pgputexture;
+               ptextureRead->read_pixels(pgpucommandbuffer, pthis->m_ppixmapOwned, pthis->m_point);
+               if (pgpucommandbuffer.is_pending())
+               {
 
-               pgputexture->read_pixels(pgpucommandbuffer, pthis->m_ppixmapOwned, ptexturesite->m_pointOutput);
+                  pgpucommandbuffer.commit();
+
+               }
 
                auto uMicroseconds = (::u64)0;
 
@@ -705,8 +721,9 @@ namespace gpu
 
    void image::_unmap(::image_pixmap_lease * pimagepixmaplease)
    {
-
+      const bool readOnly = m_eActiveAlphaMap == ::image::e_map_read_only;
       ::image::image::_unmap(pimagepixmaplease);
+      if (readOnly) return; // Statistics readback must not upload/modify the texture.
       //_tidy_unmap(pimagepixmaplease);
       // if (!_on_unmap(bDoUnmap))
       // {

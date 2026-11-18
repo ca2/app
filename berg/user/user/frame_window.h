@@ -9,6 +9,9 @@
 namespace user
 {
 
+   class render_lines;
+   class fps_statistics;
+
 
    class CLASS_DECL_BERG frame_window :
       virtual public ::user::main_window,
@@ -37,6 +40,8 @@ namespace user
 
       pointer_array < ::user::control_bar >        m_controlbara; // array of all control bars that have this interaction_impl as their dock site
       ::pointer<::user::impact>                    m_pimpactMain;
+      ::pointer<::user::render_lines>              m_prenderlinesStatistics;
+      ::pointer<::user::fps_statistics>            m_pfpsstatistics;
       //bool                                       m_bAutoWindowFrame;
       ::logic::boolean                             m_bWindowFrame;
       bool                                         m_bLayered;
@@ -160,6 +165,7 @@ namespace user
 
       void _001OnNcDraw(::draw2d::graphics_pointer &pdraw2dgraphics) override;
       void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
+      void _001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       bool LoadAccelTable(const ::scoped_string & scopedstrResourceName);
 
@@ -353,6 +359,11 @@ namespace user
 
 
       ::i32_rectangle hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
+
+      void RepositionBars(::draw2d::graphics_pointer & pgraphics, ::u32 nIDFirst = 0,
+         ::u32 nIDLast = 0xffff, ::user::interaction * pleftover = nullptr,
+         ::u32 nFlags = reposDefault, ::i32_rectangle * prectParam = nullptr,
+         const ::i32_rectangle & rectangle = {}, bool bStretch = true) override;
 
 
    };

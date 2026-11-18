@@ -33,7 +33,7 @@
 //#endif
 //
 //
-////extern ::pointer < ::mutex > g_pmutexSymDbgHelp;
+////extern ::pointer < ::parallelization::mutex > g_pmutexSymDbgHelp;
 ////   if (iSkip >= 0)
 ////   {
 ////

@@ -17,6 +17,7 @@
 #include "acme/platform/node.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/prototype/datetime/datetime.h"
+#include "acme/prototype/mathematics/mathematics.h"
 #include "acme/prototype/string/str.h"
 #include "acme/prototype/string/utf8_character.h"
 #include "acme/prototype/text/context.h"
@@ -496,7 +497,10 @@ namespace dynamic_source
 
          ::file::path pathHelper1 = strTransformName.sibling(strScript.name());
 
-         string strHelper1 = pathHelper1 + "-" + m_pintegrationcontext->payload("sdk1").as_string() + ".pdb";
+         // A debugger or another build may still hold a previous compiler PDB.
+         // Keep each compilation independent, and append the script folder once.
+         string strHelper1 = pathHelper1.name() + "-" + strSDK1 + "-" +
+            mathematics()->random_alphanumeric(24) + ".pdb";
 
          auto pathDVP0 = pathDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / pathHelper1.folder() / strHelper1;
 
@@ -1406,6 +1410,16 @@ namespace dynamic_source
 
       ::file::path path = paction->m_pathFolder / paction->m_pathFile;
 
+      // Git creates and removes temporary objects while the watcher is running.
+      // They are not dynamic sources and must not invalidate scripts or sync.
+      if (path.case_insensitive_contains("\\.git\\") || path.case_insensitive_contains("/.git/")
+         || path.case_insensitive_ends("\\.git") || path.case_insensitive_ends("/.git"))
+      {
+
+         return;
+
+      }
+
       string strTransfer = path;
 
       // does not transfer
@@ -1445,8 +1459,8 @@ namespace dynamic_source
       else
       {
 
-         auto pathReal = m_pscriptmanager2->real_path(path);
-
+         // The changed file may already have been renamed or deleted. Cache
+         // invalidation only needs its reported path, not an open file handle.
          m_pscriptmanager2->m_pcache->set_out_of_date(path);
 
       }

@@ -229,7 +229,7 @@ namespace user
       flags < enum_flag >                          m_flags;
       ::pointer<icon_layout>                      m_piconlayout;
       ::pointer<mesh_layout>                      m_pmeshlayout;
-      //::pointer < ::mutex >                            m_pmutex;
+      //::pointer < ::parallelization::mutex >                            m_pmutex;
 
 
       ::collection::index                                        m_iTopDisplayIndex;
@@ -253,7 +253,7 @@ namespace user
 
       //draw_mesh_item *                 m_pdrawmeshitem;
 
-      ::pointer < ::mutex >                                      m_pmutexData;
+      ::pointer < ::parallelization::mutex >                                      m_pmutexData;
 
       bool                                         m_bAutoCreateMeshHeader;
       bool                                         m_bAutoCreateMeshData;
@@ -572,6 +572,7 @@ namespace user
       virtual void  set_selection(const range&range);
 
       virtual void  _001AddSelection(const item_range & itemrange);
+      virtual void  _001ClearSelection(const item_range& itemrange);
 
       void set_current_item(::item * pitem, const ::action_context & action_context) override;
 

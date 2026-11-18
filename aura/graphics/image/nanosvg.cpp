@@ -55,8 +55,6 @@ namespace image
 
          //ploadimage->on_load_image(pdata, {w, h}, iScan);
 
-         ploadimage->on_image_loaded(success);
-
          //, const ::e_status &estatus
 
 #ifdef UNIVERSAL_WINDOWS
@@ -95,6 +93,10 @@ namespace image
       }
 
       nsvgDeleteRasterizer(rast);
+
+      // Completion callbacks can map the image to publish alpha statistics.
+      // Release the rasterizer's pixel map before invoking them.
+      ploadimage->on_image_loaded(success);
 
       return true;
 

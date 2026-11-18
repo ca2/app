@@ -30,6 +30,14 @@ namespace file
    //}
 
 
+   image_info_provider::~image_info_provider() {}
+
+   bool enumerator::get_file_image_info(const ::file::path & path, ::file::image_info & info)
+   {
+      ::cast < ::file::image_info_provider > pprovider = this;
+      return pprovider && pprovider->get_file_image_info(path, info);
+   }
+
    bool enumerator::enumerate(listing_base & listing)
    {
 

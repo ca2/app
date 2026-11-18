@@ -47,7 +47,7 @@ class oswindow_dataptra;
 class happening;
 
 
-class ::pointer < ::mutex >;
+class ::pointer < ::parallelization::mutex >;
 
 
 class oswindow_data;
@@ -101,7 +101,7 @@ class oswindow_dataptra;
 class simple_event;
 
 
-class ::pointer < ::mutex >;
+class ::pointer < ::parallelization::mutex >;
 
 
 class CLASS_DECL_AURA oswindow_data
@@ -132,7 +132,7 @@ public:
 
 
    static oswindow_dataptra * s_pdataptra;
-   static ::pointer< ::mutex > s_pmutex;
+   static ::pointer< ::parallelization::mutex > s_pmutex;
 
    static Atom s_atomLongType;
    static Atom s_atomLongStyle;

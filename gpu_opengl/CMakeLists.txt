@@ -83,10 +83,12 @@ list(APPEND library_source
         assimp.h
    block.cpp
    block.h
+        buffer.cpp
+        buffer.h
         command_buffer.cpp
    command_buffer.h
-        cpu_buffer.cpp
-        cpu_buffer.h
+        #cpu_buffer.cpp
+        #cpu_buffer.h
         context.cpp
         context.h
    context_egl.cpp
@@ -96,6 +98,8 @@ list(APPEND library_source
    #cube.h
         device.cpp
         device.h
+        fence.cpp
+        fence.h
         frame.h
         frame_buffer.cpp
         frame_buffer.h
@@ -133,12 +137,16 @@ list(APPEND library_source
         render_target.h
         renderer.cpp
         renderer.h
+        semaphore.cpp
+        semaphore.h
         shader.cpp
         shader.h
         swap_chain.cpp
         swap_chain.h
         texture.cpp
         texture.h
+        window_attachment.cpp
+        window_attachment.h
 
 )
 
@@ -196,6 +204,7 @@ if(${LINUX} OR ${__BSD__})
 
     list(APPEND library_references
             aura_posix
+       acme_windowing_x11
        glad
        ktx
        #windowing_system_x11
@@ -287,7 +296,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
 
     #if (${USE_PKGCONFIG})
         #pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glew egl assimp ${extra_pkg_modules})
-   pkg_check_modules(${PROJECT_NAME}_PKGCONFIG REQUIRED x11 egl assimp ${extra_pkg_modules})
+   pkg_check_modules(${PROJECT_NAME}_PKGCONFIG REQUIRED x11 egl wayland-egl assimp ${extra_pkg_modules})
 
     #endif ()
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
@@ -299,7 +308,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
     target_link_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS})
     target_link_libraries(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${default_windowing})
+    # Native resources are obtained through the Acme windowing interface.
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
@@ -320,3 +329,10 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 
 
 
+
+if(CA2_NATIVE_WAYLAND_TESTS AND TARGET acme_windowing_wayland)
+   pkg_check_modules(NATIVE_WAYLAND_EGL REQUIRED IMPORTED_TARGET egl wayland-egl gl)
+   add_executable(native_wayland_egl_test test/native_wayland_egl_smoke.cpp)
+   target_include_directories(native_wayland_egl_test PRIVATE ${CMAKE_SOURCE_DIR}/operating_system/operating_system-posix)
+   target_link_libraries(native_wayland_egl_test PRIVATE acme_windowing_wayland PkgConfig::NATIVE_WAYLAND_EGL)
+endif()

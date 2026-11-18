@@ -60,7 +60,7 @@ namespace sockets
       //::pointer<base_socket_handler>  m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
       //socket_id                  m_socket; ///< File descriptor
 //
-//      static ::pointer< ::mutex >        s_pmutex;
+//      static ::pointer< ::parallelization::mutex >        s_pmutex;
 //
       //::networking::address_pointer          m_paddressRemote; ///< Remote end ::networking::address
       //::networking::address_pointer          m_paddressRemoteClient; ///< Address of last connect()

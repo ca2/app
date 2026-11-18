@@ -249,7 +249,11 @@ namespace windows
 
          }
 
-         if (!on_window_create(lparam.raw_cast<void *>()))
+         ::user::window_create_t windowcreate;
+
+         windowcreate.m_pCREATESTRUCT = lparam.raw_cast<void*>();
+
+         if (!on_window_create(&windowcreate))
          {
 
             lresult = -1;
@@ -1192,7 +1196,7 @@ namespace windows
    }
 
 
-   void window::set_window_style(::i32 iShowFlags)
+   void window::set_window_style(::i64 iShowFlags)
    {
 
       auto hwnd = m_windowswindow.as_HWND();

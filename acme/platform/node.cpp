@@ -2,7 +2,11 @@
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "platform.h"
+#include "acme/parallelization/mutex.h"
+#include "startup_delay_debug.h"
 #include "node.h"
+#include "acme/windowing/windowing.h"
+#include "acme/windowing/file_icon_provider.h"
 //#include "sequencer.h"
 #include "application.h"
 #include "session.h"
@@ -37,7 +41,7 @@
 #include "acme/windowing/windowing.h"
 #include "filesystem/filesystem/listing.h"
 #include "windowing/display.h"
-
+#include "acme/parallelization/mutex.h"
 CLASS_DECL_ACME ::string friendly_byte_count(::u64 ul, const_char_pointer pszFormat = nullptr);
 
 #ifdef WINDOWS_DESKTOP
@@ -316,7 +320,7 @@ namespace platform
    ::particle_pointer node::create_mutex()
    {
 
-      return createø < ::mutex >();
+      return create_newø < ::parallelization::mutex >();
 
    }
   
@@ -359,13 +363,21 @@ namespace platform
    void node::node_implement_main()
    {
 
+      STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main");
+
       //m_pparticleQuit = create_quit_particle(pnode);
 
       auto psystem = system();
       
-      psystem->m_papplication->__task_init();
+      {
+         STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main: application task setup");
+         psystem->m_papplication->__task_init();
+      }
 
-      psystem->init_task();
+      {
+         STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main: system task setup");
+         psystem->init_task();
+      }
 
       if (application()->m_bSession)
       {
@@ -374,7 +386,10 @@ namespace platform
 
       }
 
-      psystem->m_papplication->init_task();
+      {
+         STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main: application init_task");
+         psystem->m_papplication->init_task();
+      }
 
       if (psystem->m_pfnImplement)
       {
@@ -393,7 +408,10 @@ namespace platform
 
          psystem->m_papplication->property_set().merge(prequest->property_set());
 
-         psystem->m_papplication->main();
+         {
+            STARTUP_DELAY_TRACE_SCOPE("node::node_implement_main: application main");
+            psystem->m_papplication->main();
+         }
          
          if(psystem->m_iExitCode == 0)
          {
@@ -448,6 +466,12 @@ namespace platform
       }
 
       on_start_system();
+
+      // Finish the generic node startup before entering the windowing main
+      // loop. This posts the application's initial request through the
+      // generic windowing interface, allowing the app task to create its
+      // first window while the main thread pumps native events.
+      psystem->node_did_finish_launching();
 
       on_system_main();
 
@@ -858,9 +882,86 @@ namespace platform
    }
 
 
-   //allocateø < ::pointer < ::mutex > >(this, false, "Local\\ca2-appmatter")
+   //allocateø < ::pointer < ::parallelization::mutex > >(this, false, "Local\\ca2-appmatter")
 
-   ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   // ::pointer < ::parallelization::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
+   //
+   //
+   // ::pointer < ::parallelization::mutex > node::create_global_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
+   //
+   //
+   // ::pointer < ::parallelization::mutex > node::open_local_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
+   //
+   //
+   // ::pointer < ::parallelization::mutex > node::open_global_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
+   //
+   //
+   // ::pointer < ::parallelization::mutex > node::get_install_mutex(::particle *pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix)
+   // {
+   //
+   //    string strName = "::ca2::account::ccwarehouse::install::" + scopedstrPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + scopedstrSuffix;
+   //
+   //    return open_global_named_mutex(pparticleContext, strName);
+   //
+   // //allocateø< ::install::pointer < ::parallelization::mutex > >(this, process_platform_name()
+   //
+   // }
+
+
+   ::pointer < ::parallelization::mutex > node::create_named_mutex(::particle * pparticleContext, bool bInitiallyOwn, const_char_pointer pszName, security_attributes * psecurityattributes)
+   {
+
+      //return allocateø mutex(pparticleContext, bInitiallyOwn, pszName ADD_PARAM_SEC_ATTRS);
+      return allocateø ::parallelization::mutex(pparticleContext, bInitiallyOwn, pszName, psecurityattributes);
+
+   }
+
+
+   ::pointer < ::parallelization::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   {
+
+      ::string strLocalName;
+
+      strLocalName = "Local\\" + scopedstrName;
+
+      return create_named_mutex(pparticleContext, bInitiallyOwned, strLocalName, psecurityattributes);
+
+   }
+
+
+   ::pointer < ::parallelization::mutex > node::create_global_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   {
+
+      ::string strGlobalName;
+
+      strGlobalName = "Global\\" + scopedstrName;
+
+      return create_named_mutex(pparticleContext, bInitiallyOwned, strGlobalName, psecurityattributes);
+
+   }
+
+
+   ::pointer < ::parallelization::mutex > node::open_local_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
    {
 
       return nullptr;
@@ -868,7 +969,7 @@ namespace platform
    }
 
 
-   ::pointer < ::mutex > node::create_global_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
+   ::pointer < ::parallelization::mutex > node::open_global_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
    {
 
       return nullptr;
@@ -876,30 +977,10 @@ namespace platform
    }
 
 
-   ::pointer < ::mutex > node::open_local_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
+   ::pointer < ::parallelization::mutex > node::get_install_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix)
    {
 
       return nullptr;
-
-   }
-
-
-   ::pointer < ::mutex > node::open_global_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName)
-   {
-
-      return nullptr;
-
-   }
-
-
-   ::pointer < ::mutex > node::get_install_mutex(::particle *pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix)
-   {
-
-      string strName = "::ca2::account::ccwarehouse::install::" + scopedstrPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + scopedstrSuffix;
-
-      return open_global_named_mutex(pparticleContext, strName);
-
-   //allocateø< ::install::pointer < ::mutex > >(this, process_platform_name()
 
    }
 
@@ -1411,9 +1492,9 @@ namespace platform
 
    string node::get_file_icon_path(const ::scoped_string & scopedstrPath, ::i32 iSize)
    {
-
-      return "";
-
+      auto windowing = system()->acme_windowing();
+      auto provider = dynamic_cast<::acme::windowing::file_icon_provider *>(windowing);
+      return provider ? provider->file_icon_path(scopedstrPath, iSize) : ::string();
    }
 
 
@@ -1791,14 +1872,14 @@ namespace platform
 //      
 //#endif
 
-   enum_operating_system node::get_operating_system() const
-   {
+   //enum_operating_system node::get_operating_system() const
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      return e_operating_system_unknown;
+   //   return e_operating_system_unknown;
 
-   }
+   //}
 
 
 
@@ -2352,7 +2433,9 @@ return false;
                                             , const ::scoped_string & scopedstrTarget)
    {
 
-      open_internet_link(scopedstrUrl, scopedstrProfile, scopedstrTarget);
+      // Use the platform shell when no browser-specific implementation exists.
+      // Calling open_internet_link here recurses through its base fallback.
+      shell_open(scopedstrUrl, {}, {});
 
    }
 
@@ -2432,7 +2515,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
       
       pmessagebox->display(e_display_normal, {});
       
-      pmessagebox->wait_dialog_response();
+      pmessagebox->wait_for_dialog_response();
 
    }
 

@@ -615,6 +615,7 @@
     <ClInclude Include="gpu\command_buffer_lease.h" />
     <ClInclude Include="gpu\context1.h" />
     <ClInclude Include="gpu\context2.h" />
+    <ClInclude Include="gpu\font.h" />
     <ClInclude Include="gpu\renderer_layer_cache.h" />
     <ClInclude Include="gpu\scoped_texture_state.h" />
     <ClInclude Include="gpu\texture_site.h" />
@@ -743,8 +744,12 @@
     <ClInclude Include="typeface\typeface.h" />
     <ClInclude Include="typeface\allocator.h" />
     <ClInclude Include="typeface\_.h" />
-    <ClInclude Include="user\user\graphics3d.h" />
-    <ClInclude Include="user\user\gpu_statistics_impact.h" />
+    <ClInclude Include="user\user\gpu_interaction.h" />
+    <ClInclude Include="user\user\gpu_shader_list.h" />
+    <ClInclude Include="user\user\gpu_shader_render.h" />
+    <ClInclude Include="user\user\gpu_shader_host.h" />
+    <ClInclude Include="user\user\graphics3d_engine_host.h" />
+    <ClInclude Include="user\user\gpu_statistics_interaction.h" />
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\_.h" />
     <ClInclude Include="user\_.h" />
@@ -773,6 +778,7 @@
   <ItemGroup>
     <ClCompile Include="const\idpool.cpp" />
     <ClCompile Include="gpu\command_buffer_lease.cpp" />
+    <ClCompile Include="gpu\font.cpp" />
     <ClCompile Include="gpu\scoped_texture_state.cpp" />
     <ClCompile Include="graphics3d\graphics3d.cpp" />
     <ClCompile Include="platform.cpp">
@@ -879,13 +885,25 @@
     <ClCompile Include="typeface\face.cpp" />
     <ClCompile Include="typeface\typeface.cpp" />
     <ClCompile Include="typeface\allocator.cpp" />
-    <ClCompile Include="user\user\graphics3d.cpp" />
-    <ClCompile Include="user\user\gpu_statistics_impact.cpp" />
+    <ClCompile Include="user\user\gpu_interaction.cpp" />
+    <ClCompile Include="user\user\gpu_shader_list.cpp" />
+    <ClCompile Include="user\user\gpu_shader_render.cpp" />
+    <ClCompile Include="user\user\gpu_shader_host.cpp" />
+    <ClCompile Include="user\user\gpu_statistics_interaction.cpp" />
+    <ClCompile Include="user\user\graphics3d_engine_host.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gpu\brush_fill_geometry.h" />
+    <ClInclude Include="gpu\brush_fill_shader_source.h" />
+    <None Include="gpu\tests\brush_fill_tests.cpp" />
+    <None Include="gpu\tests\validate_brush_fill_shaders.py" />
+    <None Include="gpu\tests\render_brush_fill_tests.py" />
+    <None Include="gpu\tests\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

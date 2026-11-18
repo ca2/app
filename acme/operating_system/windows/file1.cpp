@@ -7,6 +7,7 @@
 #include "acme/prototype/string/adaptor.h"
 #include "acme/operating_system/windows/windowing.h"
 #include <ShlObj.h>
+#include <Psapi.h>
 
 
 string CLASS_DECL_ACME windows_get_short_file_name(const ::scoped_string & scopedstrPath)

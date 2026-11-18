@@ -51,14 +51,14 @@ namespace user
 
 
 
-      virtual void create_window() override;
+      void create_window(::enum_parallelization eparallelization) override;
 
 
-      virtual void install_message_routing(::channel* pchannel) override;
+      void install_message_routing(::channel* pchannel) override;
 
-      virtual ::task_pool  * taskpool() override;
+      ::task_pool  * taskpool() override;
 
-void on_before_create_window(acme::windowing::window* pacmewindowingwindow) override;
+      void on_before_create_window(acme::windowing::window* pacmewindowingwindow) override;
       void destroy() override;
 
 

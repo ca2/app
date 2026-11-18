@@ -66,7 +66,7 @@ namespace sockets
 
       void DeleteRandFile();
 
-      /** SSL; ::pointer < ::mutex > locking function callback. */
+      /** SSL; ::pointer < ::parallelization::mutex > locking function callback. */
       //static void SSL_locking_function(::i32 mode, ::i32 n, const_char_pointer file, ::i32 line);
 
       /** Return thread atom. */

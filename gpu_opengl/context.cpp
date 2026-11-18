@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "bred/gpu/brush_fill_shader_source.h"
 #define STB_USE_HUNTER
 #include "_gpu_opengl.h"
 #include "command_buffer.h"
@@ -800,17 +801,17 @@ namespace gpu_opengl
 
       string strFragment =
          "uniform vec2 resolution;\n"
-         "uniform ::f32 time;\n"
+         "uniform float time;\n"
          "uniform vec2 mouse;\n"
          "uniform sampler2D backbuffer;\n"
          "\n"
          "void main(void) {\n"
-         "::f32 base_res = min(resolution.x, resolution.y);\n"
+         "float base_res = min(resolution.x, resolution.y);\n"
          "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / base_res;\n"
          "\n"
          //"gl_FragColor = vec4(uv, (uv.x * uv.x) / 2.0, ((uv.x + (base_res - uv.y)) *(uv.x + (base_res - uv.y))) / 2.0);\n"
-         "::f32 posx = max(0.f, uv.x);\n"
-         "::f32 posy = max(0.f, uv.y);\n"
+         "float posx = max(0.f, uv.x);\n"
+         "float posy = max(0.f, uv.y);\n"
          "gl_FragColor = vec4(uv, (posx * posx) / 4.0, ((posx + posy) * (posx + posy)) / 4.0);\n"
          "}\n";
 
@@ -1314,7 +1315,7 @@ namespace gpu_opengl
    //void context::draw2d_on_end_draw(::gpu::graphics * pgpugraphics)
    //{
 
-   //   //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   //if (m_papplication->use_gpu_swap_chain())
    //   //{
 
    //   //   auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
@@ -2884,13 +2885,13 @@ namespace gpu_opengl
       if (iFindPrecision >= 0)
       {
 
-         stra[iFindPrecision] = "precision highp ::f32;";
+         stra[iFindPrecision] = "precision highp float;";
 
       }
       else
       {
 
-         stra.insert_at(1, "precision highp ::f32;");
+         stra.insert_at(1, "precision highp float;");
 
          iFindPrecision = 1;
 
@@ -2976,9 +2977,30 @@ void main() {
 
 
 
+   ::memory context::brush_fill_shader_vert()
+   {
+      auto source = ::gpu::brush_fill_source::source(false, false, false);
+      // The pointer/length memory constructor borrows the string's storage.
+      // Copy before the temporary source string is destroyed.
+      ::memory memory;
+      memory.assign(source.data(), source.size());
+      return memory;
+   }
+
+   ::memory context::brush_fill_shader_frag(bool bPattern)
+   {
+      auto source = ::gpu::brush_fill_source::source(false, true, bPattern);
+      // The pointer/length memory constructor borrows the string's storage.
+      // Copy before the temporary source string is destroyed.
+      ::memory memory;
+      memory.assign(source.data(), source.size());
+      return memory;
+   }
+
+
    ::memory context::circle_shader_vert()
    {
-      const ::i8 proto_vert[] = R"vert(
+      const ::i8 proto_vert[] = R"vert(#version 330 core
 layout(location = 0) in vec2 inputPosition;
 layout(location = 1) in vec2 inputLocalPosition;
 
@@ -2999,7 +3021,7 @@ void main()
 
    ::memory context::circle_shader_frag()
    {
-      const ::i8 proto_frag[] = R"frag(
+      const ::i8 proto_frag[] = R"frag(#version 330 core
 in vec2 fragmentLocalPosition;
 
 uniform vec4 uniformFragmentColor;

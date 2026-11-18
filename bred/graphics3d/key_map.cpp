@@ -3,7 +3,7 @@
 #include "platform.h"
 #include "key_map.h"
 #include "aura/platform/application.h"
-#include "bred/user/user/graphics3d.h"
+#include "bred/user/user/graphics3d_engine_host.h"
 
 
 namespace graphics3d
@@ -14,7 +14,7 @@ namespace graphics3d
    ::key::e_state key_map::key_state(::graphics3d::enum_key ekey)
    {
 
-      return m_pimpact->get_key_state(m_ekeya[ekey]);
+      return m_pgpuinteraction->get_key_state(m_ekeya[ekey]);
 
    }
 

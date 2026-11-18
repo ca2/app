@@ -99,17 +99,17 @@ namespace bred
       //};
 
 
-      ::pointer_map< _001Option >                        m_optionaGpuApi;
-      ::pointer_map< _001Option >                        m_optionaDraw2dApi;
-      ::pointer_map< _001Option >                        m_optionaGraphics3dOutput;
+      ::pointer_map< _001Option >                           m_optionaGpuApi;
+      ::pointer_map< _001Option >                           m_optionaDraw2dApi;
+      ::pointer_map< _001Option >                           m_optionaGraphics3dOutput;
 
-      ::pointer<::user::line_layout>                     m_plinelayoutDraw2dApiSelection;
-      ::pointer < ::graphics3d::graphics3d >             m_pgraphics3d;
-      ::pointer_array < ::user::graphics3d >             m_usergraphics3da;
+      ::pointer<::user::line_layout>                        m_plinelayoutDraw2dApiSelection;
+      ::pointer < ::graphics3d::graphics3d >                m_pgraphics3d;
+      ::pointer_array < ::user::graphics3d_engine_host >    m_usergraphics3denginehosta;
 
-      ::string_array                                     m_straSkybox;
-      ::string                                           m_strSkybox;
-      ::pointer < ::user::gpu_statistics_impact >        m_pusergpustatisticsimpact;
+      ::string_array                                        m_straSkybox;
+      ::string                                              m_strSkybox;
+      ::pointer < ::user::gpu_statistics_interaction >      m_pusergpustatisticsinteraction;
 
 
 
@@ -138,30 +138,30 @@ namespace bred
 
       virtual ::graphics3d::graphics3d * graphics3d();
 
-      ::string draw2d_get_default_implementation_name() override;
+      //::string draw2d_get_implementation_name() override;
 
 
       virtual void enable_draw2d_api_checkboxes(const ::string_array &stra);
       void create_options_impact(const ::atom &atom, ::user::interaction *pparent) override;
       void on_after_create_form(const ::atom &atom, ::user::interaction *pparent) override;
       virtual void create_gpu_api_selection_options_body(::user::interaction *pparent);
-      virtual void set_gpu_api(const ::scoped_string &scopedstrGpuApi);
-      virtual void set_draw2d_api(const ::scoped_string &scopedstrDraw2dApi);
-      virtual void set_graphics3d_output(const ::scoped_string &scopedstrOutput);
-      virtual ::string get_gpu_api();
-      virtual ::string get_draw2d_api();
+      //virtual void set_gpu_api(const ::scoped_string &scopedstrGpuApi);
+      //virtual void set_draw2d_api(const ::scoped_string &scopedstrDraw2dApi);
+      //virtual void set_graphics3d_output(const ::scoped_string &scopedstrOutput);
+      //virtual ::string get_gpu_api();
+      //virtual ::string get_draw2d_api();
       //virtual ::string_array get_ok_gpu_api();
       virtual ::string_array get_ok_draw2d_api();
       virtual _001Option * gpu_api(const ::scoped_string &scopedstrGpuApi);
       virtual _001Option * draw2d_api(const ::scoped_string &scopedstrDraw2dApi);
       virtual _001Option * graphics3d_output(const ::scoped_string &scopedstrOuput);
-      virtual ::string get_graphics3d_output();
+      //virtual ::string get_graphics3d_output();
       virtual void update_gpu_api_checkboxes();
       virtual void on_change_gpu_api();
       virtual void on_change_draw2d_api();
       virtual void on_change_graphics3d_output();
 
-      virtual void register_user_graphics3d(::collection::index i, ::user::graphics3d * pusergraphics3d);
+      virtual void register_user_graphics3d(::collection::index i, ::user::graphics3d_engine_host * pusergraphics3denginehost);
 
       
    };

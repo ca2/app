@@ -128,7 +128,7 @@ namespace acme
 //       ::pointer<::apex::system>                                       m_psystemParent;
 //
 //       ::pointer < ::prototype::prototype >                              m_pprototype;
-//       //::pointer < ::mutex >                                           m_pmutexFactory;
+//       //::pointer < ::parallelization::mutex >                                           m_pmutexFactory;
 //       //string_map < ::pointer<::factory::factory >>                  m_mapFactory;
 //       //string_map < ::pointer<::factory::factory >>                      m_mapFactory;
 //
@@ -185,9 +185,9 @@ namespace acme
 //       ::pointer<::file_system>                                          m_pfilesystem;
 //
 //
-//       ::pointer < ::mutex >                                m_pmutexMatter;
+//       ::pointer < ::parallelization::mutex >                                m_pmutexMatter;
 //
-//       ::pointer < ::mutex >                  m_pmutexHttpDownload;
+//       ::pointer < ::parallelization::mutex >                  m_pmutexHttpDownload;
 //       string_array_base                           m_straHttpDownloading;
 //       string_array_base                           m_straHttpExists;
 //          //::pointer < ::windowing::windowing_base > m_pwindowingbase;
@@ -1005,7 +1005,7 @@ namespace acme
 //
 //       virtual void on_allocation_error(const ::scoped_string & scopedstrName, ::object * pobjectSometimes) override;
 //
-//       //::pointer< ::mutex > get_openweather_city_mutex();
+//       //::pointer< ::parallelization::mutex > get_openweather_city_mutex();
 //
 //
 //       template < typename T >

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "operating_system/__/__bit.h"
+#include "system_software/__/__bit.h"
 
 
 #include "__/__stdint.h"

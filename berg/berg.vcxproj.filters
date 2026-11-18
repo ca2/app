@@ -158,6 +158,12 @@
     <ClInclude Include="user\user\frame_window.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\render_lines.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\fps_statistics.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
     <ClInclude Include="user\user\aaa_main_frame.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -557,6 +563,12 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\frame_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\render_lines.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\fps_statistics.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\hotplugin.cpp">

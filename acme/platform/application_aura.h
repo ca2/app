@@ -64,7 +64,7 @@ namespace platform
 //
 //      //particle_address_array                         m_particleaddressaEventHook;
 //
-//      ::pointer < ::mutex >                                           m_pmutexFrame;
+//      ::pointer < ::parallelization::mutex >                                           m_pmutexFrame;
 //      ::pointer<::user::interaction_array>           m_puserinteractiona;
 //      ::pointer<::user::interaction_array>           m_puserinteractionaFrame;
 //
@@ -80,9 +80,9 @@ namespace platform
 //
 //      ::user::interaction *                              m_puiMainContainer;
 //
-//      ::pointer < ::mutex >                                           m_pmutexMatterLocator;
+//      ::pointer < ::parallelization::mutex >                                           m_pmutexMatterLocator;
 //
-//      //::pointer < ::mutex >                                         m_pmutexStr;
+//      //::pointer < ::parallelization::mutex >                                         m_pmutexStr;
 //      //string_table_base                                    m_stringtable;
 //      //string_table_base                                    m_stringtableStd;
 //      //map_base < atom, atom, string, string >                  m_stringmap;
@@ -644,8 +644,8 @@ namespace platform
       //virtual string get_local_mutex_id() override;
       //virtual string get_global_mutex_id() override;
 
-      //virtual ::pointer< ::mutex > get_local_mutex();
-      //virtual ::pointer< ::mutex > get_global_mutex();
+      //virtual ::pointer< ::parallelization::mutex > get_local_mutex();
+      //virtual ::pointer< ::parallelization::mutex > get_global_mutex();
 
       //virtual string get_local_mutex_name() override;
       //virtual string get_local_id_mutex_name() override;
@@ -1033,9 +1033,22 @@ namespace platform
 //
 //#endif
 
-      virtual string draw2d_get_default_implementation_name();
-      virtual string typeface_get_default_implementation_name();
-      virtual string imaging_get_default_implementation_name();
+
+      virtual string _draw2d_get_implementation_name();
+      virtual string _typeface_get_implementation_name();
+      virtual string _imaging_get_implementation_name();
+      virtual string _gpu_get_implementation_name();
+
+      virtual string draw2d_get_implementation_name();
+      virtual string typeface_get_implementation_name();
+      virtual string imaging_get_implementation_name();
+      virtual string gpu_get_implementation_name();
+      
+
+      virtual bool use_gpu_swap_chain();
+
+      
+      virtual string get_graphics3d_output();
 
 
       //void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override;

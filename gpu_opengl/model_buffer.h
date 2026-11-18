@@ -16,6 +16,7 @@
 namespace gpu_opengl
 {
 
+
  
    class CLASS_DECL_GPU_OPENGL model_buffer :
       virtual public ::gpu::model_buffer,

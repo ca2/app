@@ -21,8 +21,18 @@ namespace gpu_opengl
       e_handle_none,
       e_handle_buffer,
       e_handle_fbo,
+      e_handle_texture,
+      e_handle_renderbuffer,
+      e_handle_vertex_buffer,
+      e_handle_sync,
+      e_handle_program,
    
    };
+
+   void defer_delete_context_handle(void * pNativeContext, enum_handle ehandle, GLuint handle);
+   void defer_delete_context_sync(void * pNativeContext, GLsync sync);
+   void delete_pending_context_handles(void * pNativeContext);
+   void discard_pending_context_handles(void * pNativeContext);
 
 
    template < typename HANDLE_TYPE, enum_handle t_ehandle >
@@ -36,7 +46,7 @@ namespace gpu_opengl
       struct object
       {
          
-         HANDLE_TYPE    m_handle;
+         HANDLE_TYPE    m_handle = 0;
          bool           m_bCreated = false;
          bool           m_bTargetBound = false;
          bool           m_bSourceBound = false;

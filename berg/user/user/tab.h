@@ -13,10 +13,13 @@ namespace user
 
 
    class CLASS_DECL_BERG tab :
-      virtual public place_holder_container,
-      virtual public ::user::auto_hide
+      virtual public place_holder_container
    {
    public:
+      ::pointer<::user::auto_hide> m_pAutoHide;
+      bool m_bAutoHideLastVisible = true;
+      void set_auto_hide_controller(::user::auto_hide * pcontroller);
+      bool should_draw() override;
 
 
       enum enum_state
@@ -152,7 +155,7 @@ namespace user
 
       bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 
-      ::i32 auto_hide_threshold_height() override;
+      ::i32 auto_hide_threshold_height();
 
       virtual ::user::interaction_array place_holders();
       virtual tab_pane * place_holder_pane(::user::place_holder * pplaceholder);

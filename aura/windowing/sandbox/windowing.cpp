@@ -214,7 +214,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
    
       ::cast < ::sandbox_windowing::host_interaction > phostinteraction = m_phostinteraction;
       
-      phostinteraction->create_window();
+      phostinteraction->create_window(::e_parallelization_asynchronous);
       
       phostinteraction->add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
 

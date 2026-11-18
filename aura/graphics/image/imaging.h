@@ -28,7 +28,7 @@ class CLASS_DECL_AURA imaging :
 public:
 
 
-   ::pointer < ::mutex >                             m_pmutexWork;
+   ::pointer < ::parallelization::mutex >                             m_pmutexWork;
 
    ::pointer<image_array>             m_pimageaWork;
 

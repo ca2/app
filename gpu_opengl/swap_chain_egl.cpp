@@ -2,7 +2,7 @@
 #include "platform.h"
 #include "_gpu_opengl.h"
 #include "swap_chain.h"
-
+#include "bred/gpu/renderer.h"
 
 
 namespace gpu_opengl
@@ -11,7 +11,7 @@ namespace gpu_opengl
    void swap_chain::swap_buffers() 
    {
    
-      m_pgpucontext->swap_buffers();
+      m_pgpurenderer->m_pgpucontext->swap_buffers();
    
    }
 

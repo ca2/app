@@ -28,8 +28,7 @@ enum enum_user_experience
 struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
 {
 
-   bool                             m_bFork;
-
+   bool                                   m_bFork;
    bool                                   m_bFetchFromNetnode = true;
    ::logic::boolean                       m_bResource;
    //::logic::boolean                       m_bCrypto;
@@ -45,11 +44,11 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
    ::logic::boolean                       m_bImaging;
    ::logic::boolean                       m_bAudio;
    ::logic::boolean                       m_bMidi;
-   ::logic::boolean                       m_bGpu;
+   ::logic::boolean                       m_bGpu2;
    ::logic::boolean                       m_bInitializeDataCentral;
 #ifdef WINDOWS_DESKTOP
    ::logic::boolean                       m_bGdiplus;
-#elif defined(LINUX) || defined(__BSD__)
+#elif defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
    ::logic::boolean                       m_bGtkApp;
 #endif
    ::logic::boolean                       m_bShowApplicationInformation;

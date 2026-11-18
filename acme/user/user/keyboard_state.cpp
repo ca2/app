@@ -13,7 +13,10 @@
 namespace user
 {
 
-   keyboard_state::keyboard_state() {} 
+   keyboard_state::keyboard_state()
+   {
+      for (auto & state : m_estateaKey) state = ::key::e_state_none;
+   }
 
 
    keyboard_state::~keyboard_state() {}   

@@ -39,11 +39,13 @@
 #include "bred/graphics3d/camera.h"
 #include "bred/graphics3d/graphics3d.h"
 #include "bred/graphics3d/shape_factory.h"
-#include "bred/user/user/graphics3d.h"
+#include "bred/user/user/graphics3d_engine_host.h"
 #include "aura/graphics/image/aaa_target.h"
 #include "aura/platform/application.h"
 #include <chrono>
+#include <exception>
 #include <thread>
+#include <atomic>
 #include "acme/prototype/geometry/quaternion.h"
 
 //
@@ -153,19 +155,19 @@ namespace graphics3d
    //}
 
 
-   void engine_instance::initialize_graphics3d_engine_instance(::user::graphics3d * pusergraphics3d)
+   void engine_instance::initialize_graphics3d_engine_instance(::user::graphics3d_engine_host * pusergraphics3denginehost)
    {
 
-      m_pusergraphics3d = pusergraphics3d;
+      m_pusergraphics3denginehost = pusergraphics3denginehost;
 
-      m_pusergraphics3d->m_pgraphics3dengineinstance = this;
+      m_pusergraphics3denginehost->m_pgraphics3dengineinstance = this;
 
-      m_pgraphics3d = pusergraphics3d->m_papp->graphics3d();
+      m_pgraphics3d = pusergraphics3denginehost->m_papp->graphics3d();
 
       //m_papproach = m_papplication->get_gpu_approach();
       // set_gpu_performance_diagnostics(true);
 
-      if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_papplication->use_gpu_swap_chain())
       {
 
          //::cast < ::windowing::window > pwindow = pusergraphics3d->acme_windowing_window();
@@ -174,7 +176,7 @@ namespace graphics3d
 
          constructø(m_pimageOutput);
 
-         m_pimageOutput->set_draw2d_domain(pusergraphics3d->draw2d_domain());
+         m_pimageOutput->set_draw2d_domain(pusergraphics3denginehost->draw2d_domain());
 
       }
 
@@ -183,6 +185,28 @@ namespace graphics3d
 
    void engine_instance::on_render_layer()
    {
+
+      if (m_papplication->use_gpu_swap_chain() && m_pusergraphics3denginehost)
+      {
+
+         auto pwindow = m_pusergraphics3denginehost->window();
+
+         if (pwindow)
+         {
+
+            auto rectanglePlacement = m_pusergraphics3denginehost->host_rectangle();
+            rectanglePlacement.offset(pwindow->get_window_rectangle().origin());
+
+            if (rectanglePlacement.has_area())
+            {
+
+               m_rectanglePlacementNew = rectanglePlacement;
+
+            }
+
+         }
+
+      }
 
       if (m_rectanglePlacementNew.is_empty())
       {
@@ -235,7 +259,7 @@ namespace graphics3d
             bool bDontKnowIfFirstLayerBut = false;
 
             pgpucontext->start_layer(bDontKnowIfFirstLayerBut, ::gpu::e_start_layer_none,
-               m_pusergraphics3d);
+               m_pusergraphics3denginehost);
 
             pscene->on_render(pgpucontext);
 
@@ -298,7 +322,7 @@ namespace graphics3d
 
          //on_end_frame();
 
-         //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         //if (m_papplication->use_gpu_swap_chain())
          //{
 
          //   //m_pgpucontextCompositor->m_pgpurenderer->end_layer();
@@ -465,13 +489,15 @@ namespace graphics3d
 
       //m_fFrameTime = fFrameTime;
 
-      m_pinput->prepare_mouse_input();
+      auto pinput = get_input();
 
-      m_pinput->process_mouse_input();
+      pinput->prepare_mouse_input();
 
-      //m_pinput->updateLook(m_pinput->getX(), m_pinput->getY(), transform);
+      pinput->process_mouse_input();
 
-      m_pinput->process_keyboard_input();
+      //pinput->updateLook(pinput->getX(), pinput->getY(), transform);
+
+      pinput->process_keyboard_input();
 
       //cameraController.moveInPlaneXZ(m_pimpact, frameTime, viewerObject);
 
@@ -767,7 +793,7 @@ namespace graphics3d
    ::gpu::enum_output engine_instance::get_engine_gpu_eoutput()
    {
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
 
          return ::gpu::e_output_gpu_buffer;
@@ -783,25 +809,29 @@ namespace graphics3d
    }
 
 
-   void engine_instance::defer_start(::user::graphics3d * pusergraphics3d, const ::i32_rectangle & rectanglePlacement)
+   void engine_instance::defer_start(::user::graphics3d_engine_host * pusergraphics3denginehost, const ::i32_rectangle & rectanglePlacement)
    {
 
-      m_pusergraphics3d = pusergraphics3d;
+      m_pusergraphics3denginehost = pusergraphics3denginehost;
 
       auto papp = get_app();
 
       auto pgpuapproach = papp->get_gpu_approach();
 
-      auto pwindow = m_pusergraphics3d->window();
+      auto pwindow = m_pusergraphics3denginehost->window();
 
       ::i32_rectangle rectangleWindow = rectanglePlacement;
 
-      rectangleWindow.offset(-rectangleWindow.top_left());
-
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
 
-         pusergraphics3d->client_to_screen()(rectangleWindow);
+         rectangleWindow.offset(pwindow->get_window_rectangle().origin());
+
+      }
+      else
+      {
+
+         rectangleWindow.offset(-rectangleWindow.top_left());
 
       }
 
@@ -841,7 +871,7 @@ namespace graphics3d
 
          //auto callbackImage32CpuBuffer = m_callbackImage32CpuBuffer;
 
-      //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      //if (m_papplication->use_gpu_swap_chain())
       //{
 
       //   pgpucontext = pgpudevice->start_gpu_output_context(this, ::gpu::e_output_gpu_buffer, rectanglePlacement);
@@ -872,7 +902,7 @@ namespace graphics3d
             auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
 
 
-            if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+            if (m_papplication->use_gpu_swap_chain())
             {
 
                auto prendererBackBuffer = pgpuwindowattachment->draw2d_context()->get_gpu_renderer();
@@ -892,7 +922,7 @@ namespace graphics3d
             //}
 
 
-            m_pusergraphics3d->on_load_engine();
+            m_pusergraphics3denginehost->on_load_engine();
 
             pcontext->m_pgraphics3dengineinstance = this;
 
@@ -961,7 +991,7 @@ namespace graphics3d
 
          }
 
-         auto pacmewindowingwindow = m_pusergraphics3d->acme_windowing_window();
+         auto pacmewindowingwindow = m_pusergraphics3denginehost->acme_windowing_window();
          
          ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
 
@@ -974,6 +1004,14 @@ namespace graphics3d
          auto size = m_rectanglePlacementNew.size();
 
          auto pgpucontextNew = pgpudevice->allocate_gpu_context();
+
+         if (!m_papplication->use_gpu_swap_chain())
+         {
+
+            construct_newø(pgpucontextNew->m_pgpuwindowattachmentOffscreen);
+            pgpucontextNew->m_pgpuwindowattachmentOffscreen->initialize_offscreen_frame(pgpucontextNew);
+
+         }
 
          pgpucontextNew->create_gpu_context(
             pgpudevice,
@@ -1001,6 +1039,21 @@ namespace graphics3d
    }
 
 
+   ::graphics3d::input * engine_instance::get_input()
+   {
+
+      if (!m_pusergraphics3denginehost)
+      {
+
+         return nullptr;
+
+      }
+
+      return m_pusergraphics3denginehost->get_input();
+
+   }
+
+
    void engine_instance::engine_on_after_load_scene(::graphics3d::scene_base * pscene)
    {
 
@@ -1023,6 +1076,18 @@ namespace graphics3d
    void engine_instance::do_draw_layer()
    {
 
+      static std::atomic_bool s_bLoggedFirstDispatch = false;
+
+      if (!s_bLoggedFirstDispatch.exchange(true))
+      {
+
+         informationf("graphics3d first do_draw_layer dispatch engine=%p context=%p placement=(%d,%d %dx%d)",
+            this, gpu_context(),
+            m_rectanglePlacementNew.left, m_rectanglePlacementNew.top,
+            m_rectanglePlacementNew.width(), m_rectanglePlacementNew.height());
+
+      }
+
       if (m_rectanglePlacementNew.is_empty())
       {
 
@@ -1036,6 +1101,15 @@ namespace graphics3d
 
       pcontext->sendø() << [this]()
          {
+
+            static std::atomic_bool s_bLoggedFirstExecution = false;
+
+            if (!s_bLoggedFirstExecution.exchange(true))
+            {
+
+               informationf("graphics3d first GPU draw-layer execution engine=%p", this);
+
+            }
 
             auto pcontext = gpu_context();
 
@@ -1054,7 +1128,7 @@ namespace graphics3d
                if (detail != lastError.as_string())
                {
                   errorf("graphics3d draw_layer failed: impact_serial=%d engine=%p placement=(%d,%d %dx%d): %s",
-                     m_pusergraphics3d ? m_pusergraphics3d->m_iImpactSerial : -1, this,
+                     m_pusergraphics3denginehost ? m_pusergraphics3denginehost->m_iImpactSerial : -1, this,
                      m_rectanglePlacementNew.left, m_rectanglePlacementNew.top,
                      m_rectanglePlacementNew.width(), m_rectanglePlacementNew.height(), detail.c_str());
                   lastError = detail;
@@ -1251,7 +1325,86 @@ namespace graphics3d
 
          on_update_frame();
 
+         if (m_papplication->use_gpu_swap_chain())
+         {
+
+            on_render_layer();
+
+         }
+         else
+         {
+
+            render_offscreen_frame();
+
+         }
+
+      }
+
+   }
+
+
+   void engine_instance::render_offscreen_frame()
+   {
+
+      auto pcontext = gpu_context();
+      auto pattachment = pcontext->m_pgpuwindowattachmentOffscreen;
+
+      if (!pattachment)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      ::gpu::context_lock contextlock(pcontext);
+      ::pointer<::gpu::layer> playerPrevious = ::gpu::current_layer();
+      ::std::exception_ptr exceptionRender;
+      bool bFrameStarted = false;
+
+      try
+      {
+
+         pattachment->start_frame();
+         bFrameStarted = true;
          on_render_layer();
+
+      }
+      catch (...)
+      {
+
+         exceptionRender = ::std::current_exception();
+
+      }
+
+      if (bFrameStarted)
+      {
+
+         try
+         {
+
+            pattachment->end_frame();
+
+         }
+         catch (...)
+         {
+
+            if (!exceptionRender)
+            {
+
+               exceptionRender = ::std::current_exception();
+
+            }
+
+         }
+
+      }
+
+      ::gpu::set_current_layer(playerPrevious);
+
+      if (exceptionRender)
+      {
+
+         ::std::rethrow_exception(exceptionRender);
 
       }
 

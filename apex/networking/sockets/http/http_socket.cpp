@@ -1037,7 +1037,45 @@ namespace sockets
    void http_socket::OnHeaderComplete()
    {
 
-      string strUrl = m_request.attr("http_protocol") + "://" + m_request.header("host") + m_request.attr("request_uri");
+      string strMethod = m_request.attr("http_method");
+      string strRequestUri = m_request.attr("request_uri");
+      string strProtocol = m_request.attr("http_protocol");
+      string strUrl;
+
+      if (strMethod.case_insensitive_equals("CONNECT"))
+      {
+
+         // CONNECT carries host:port rather than a path. Do not append it to Host.
+         strUrl = strProtocol + "://" + strRequestUri;
+
+      }
+      else if (strRequestUri.case_insensitive_begins("http://") ||
+               strRequestUri.case_insensitive_begins("https://"))
+      {
+
+         strUrl = strRequestUri;
+
+      }
+      else
+      {
+
+         strUrl = strProtocol + "://" + m_request.header("host");
+
+         // The asterisk-form target is not part of the authority either.
+         if (strRequestUri == "*")
+         {
+
+            strUrl += "/";
+
+         }
+         else
+         {
+
+            strUrl += strRequestUri;
+
+         }
+
+      }
 
       if (strUrl == "https://camilothomas.com/dk/calendar"_ansi)
       {

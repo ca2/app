@@ -95,7 +95,7 @@ class thread_implementation;
     */
    class CLASS_DECL_SUBSYSTEM Thread :
       virtual public ::task
-      //virtual public ::Particle,
+      //virtual public ::subsystem::Particle,
       //virtual public ::object
    {
       
@@ -118,7 +118,7 @@ class thread_implementation;
        * Creates new thread.
        * @remark thread is suspended by default.
        */
-      Thread(const char * pszThreadName);
+      Thread(const char * pszThreadName = nullptr);
       /**
        * Deletes thread.
        * @remark does not stops thread execution if it's still running.
@@ -236,7 +236,7 @@ class thread_implementation;
    };
 
 //
-//      class CLASS_DECL_SUBSYSTEM ThreadCallback : virtual public Callback<ThreadInterface>
+//      class CLASS_DECL_SUBSYSTEM ThreadCallback : virtual public ::subsystem::Callback<ThreadInterface>
 //   {
 //   public:
 //
@@ -253,7 +253,7 @@ class thread_implementation;
 //    * @fixme member of HDESK type in THREAD class???
 //    */
 //   class CLASS_DECL_SUBSYSTEM ThreadComposite :
-//      virtual public Composite < ThreadInterface >
+//      virtual public ::subsystem::Composite < ThreadInterface >
 //   {
 //   public:
 //
@@ -434,7 +434,7 @@ class thread_implementation;
 
 
 //    class CLASS_DECL_SUBSYSTEM ThreadAggregate :
-//    virtual public Aggregate< ThreadComposite >
+//    virtual public ::subsystem::Aggregate< ThreadComposite >
 //    {
 //    public:
 //
@@ -443,7 +443,7 @@ class thread_implementation;
 //    };
 //
 //   class CLASS_DECL_SUBSYSTEM Thread :
-//   virtual public Object< ThreadAggregate >
+//   virtual public ::subsystem::Object< ThreadAggregate >
 //   {
 //   public:
 //

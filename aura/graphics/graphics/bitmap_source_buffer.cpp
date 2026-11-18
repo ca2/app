@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "acme/accessibility/accessibility.h"
 #include "buffer_item.h"
 #include "bitmap_source_buffer.h"
 #include "acme/parallelization/mutex.h"
@@ -9,15 +10,164 @@
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "apex/platform/context.h"
 #include "aura/graphics/image/image.h"
+#include "aura/graphics/image/image_pixmap_lease.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/window_buffer.h"
 #include "aura/windowing/windowing.h"
+#include "acme/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/filesystem/listing.h"
+#include "acme/filesystem/file/file.h"
+#include <chrono>
 
 
 namespace graphics
 {
+
+   bitmap_source_interest::~bitmap_source_interest()
+   {
+      release_interest();
+   }
+
+   void bitmap_source_interest::acquire(const ::scoped_string & scopedstrProducerAppId,
+      const ::scoped_string & scopedstrBitmapSourceName,
+      const ::scoped_string & scopedstrConsumerAppId)
+   {
+      string strProducerAppId(scopedstrProducerAppId);
+      string strBitmapSourceName(scopedstrBitmapSourceName);
+      string strConsumerAppId(scopedstrConsumerAppId);
+      if (strProducerAppId.is_empty() || strProducerAppId.begins("/") || strProducerAppId.contains("..")
+         || strProducerAppId.contains("\\") || strProducerAppId.contains(":")
+         || strBitmapSourceName.is_empty() || strBitmapSourceName.contains("..")
+         || strBitmapSourceName.contains("/") || strBitmapSourceName.contains("\\")
+         || strConsumerAppId.is_empty() || strConsumerAppId.begins("/") || strConsumerAppId.contains("..")
+         || strConsumerAppId.contains("\\") || strConsumerAppId.contains(":"))
+      {
+         throw ::exception(error_bad_argument);
+      }
+      release_interest();
+      auto pathFolder = directory_system()->roaming() / strProducerAppId
+         / "bitmap-source" / strBitmapSourceName;
+      directory()->create(pathFolder);
+      auto pathLease = pathFolder / (strConsumerAppId + ".lock");
+//<<<<<<< HEAD
+      directory()->create(pathLease.folder());
+//=======
+//>>>>>>> origin/main
+      auto pfile = file()->get_file(pathLease,
+         ::file::e_open_read_write | ::file::e_open_create | ::file::e_open_no_truncate
+         | ::file::e_open_share_deny_none | ::file::e_open_no_inherit
+         | ::file::e_open_no_share_violation_wait);
+#if defined(WINDOWS)
+      // Lock beyond the declaration contents so readers can inspect metadata.
+      pfile->lock(0x7ffffffe, 1);
+#endif
+      m_pfileLease = pfile;
+   }
+
+   void bitmap_source_interest::release_interest()
+   {
+      // Closing the handle also releases the lock, including after a crash.
+      m_pfileLease.release();
+   }
+
+   void bitmap_source_interest::destroy()
+   {
+      release_interest();
+      object::destroy();
+   }
+
+   void bitmap_source_buffer_graphics::destroy()
+   {
+      stop_interest_monitor();
+      graphics::destroy();
+   }
+
+   bool bitmap_source_buffer_graphics::has_bitmap_source_interest()
+   {
+#if defined(WINDOWS)
+      ::file::listing_base listing;
+      auto pathInterestFolder = directory_system()->roaming() / m_strAppId
+         / "bitmap-source" / m_strBitmapSource;
+      listing.set_file_listing(pathInterestFolder);
+      listing.m_bRecursive = true;
+      directory()->enumerate(listing);
+      for (auto & path : listing)
+      {
+         auto strName = path.name();
+         if (!strName.case_insensitive_ends(".lock"))
+            continue;
+         ::file_pointer pfile;
+         try
+         {
+            pfile = file()->get_file(path, ::file::e_open_read_write
+               | ::file::e_open_share_deny_none | ::file::e_open_no_inherit
+               | ::file::e_open_no_share_violation_wait | ::file::e_open_no_callstack);
+         }
+         catch (...)
+         {
+            continue; // An open failure is not evidence of an active lease.
+         }
+         try
+         {
+            // Probe the consumer's byte-range lock without modifying or
+            // removing its declaration. Only a lock conflict signals interest.
+            pfile->lock(0x7ffffffe, 1);
+         }
+         catch (const ::exception & exception)
+         {
+            if (exception.m_estatus == error_file_lock_violation)
+               return true;
+            continue;
+         }
+         pfile->unlock(0x7ffffffe, 1);
+      }
+      return false;
+#else
+      // The POSIX file adapter currently has no lock implementation.
+      // Preserve publishing there until a real lease implementation is available.
+      return true;
+#endif
+   }
+
+   void bitmap_source_buffer_graphics::start_interest_monitor()
+   {
+#if defined(WINDOWS)
+      directory()->create(directory_system()->roaming() / m_strAppId
+         / "bitmap-source" / m_strBitmapSource);
+      m_bStopBitmapSourceInterest = false;
+      m_threadBitmapSourceInterest = std::thread([this]()
+      {
+         std::unique_lock<std::mutex> lock(m_mutexBitmapSourceInterest);
+         while (!m_bStopBitmapSourceInterest)
+         {
+            lock.unlock();
+            bool bInterested = false;
+            try { bInterested = has_bitmap_source_interest(); }
+            catch (...) { }
+            m_bBitmapSourceInterested.store(bInterested);
+            lock.lock();
+            m_conditionBitmapSourceInterest.wait_for(lock, std::chrono::milliseconds(500),
+               [this]() { return m_bStopBitmapSourceInterest; });
+         }
+      });
+#else
+      m_bBitmapSourceInterested.store(true);
+#endif
+   }
+
+   void bitmap_source_buffer_graphics::stop_interest_monitor()
+   {
+      {
+         std::lock_guard<std::mutex> lock(m_mutexBitmapSourceInterest);
+         m_bStopBitmapSourceInterest = true;
+      }
+      m_conditionBitmapSourceInterest.notify_all();
+      if (m_threadBitmapSourceInterest.joinable())
+         m_threadBitmapSourceInterest.join();
+      m_bBitmapSourceInterested.store(false);
+   }
 
 
    bitmap_source_buffer_graphics::bitmap_source_buffer_graphics()
@@ -69,7 +219,15 @@ namespace graphics
 
          //estatus = 
          
-         set_bitmap_source(pwindow->m_strBitmapSource);
+         if (pwindow->m_strBitmapSourceAppId.has_character())
+         {
+            set_bitmap_source(pwindow->m_strBitmapSourceAppId,
+               pwindow->m_strBitmapSource, pwindow->m_bBitmapSourceCreate);
+         }
+         else
+         {
+            set_bitmap_source(pwindow->m_strBitmapSource);
+         }
 
          //if (!estatus)
          //{
@@ -89,8 +247,30 @@ namespace graphics
 
    void bitmap_source_buffer_graphics::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource, bool bCreate)
    {
+      string strAppId;
+      if (application())
+         strAppId = application()->m_strAppId;
+      set_bitmap_source(strAppId, scopedstrBitmapSource, bCreate);
+   }
 
-      if (m_strBitmapSource == scopedstrBitmapSource)
+
+   void bitmap_source_buffer_graphics::set_bitmap_source(
+      const ::scoped_string & scopedstrAppId,
+      const ::scoped_string & scopedstrBitmapSource,
+      bool bCreate)
+   {
+
+      string strAppId(scopedstrAppId);
+      string strBitmapSource(scopedstrBitmapSource);
+      if (strAppId.is_empty() || strAppId.begins("/") || strAppId.contains("..")
+         || strAppId.contains("\\") || strAppId.contains(":")
+         || strBitmapSource.is_empty() || strBitmapSource.contains("..")
+         || strBitmapSource.contains("/") || strBitmapSource.contains("\\"))
+      {
+         throw ::exception(error_bad_argument);
+      }
+
+      if (m_strAppId == strAppId && m_strBitmapSource == strBitmapSource)
       {
 
          return;
@@ -99,13 +279,26 @@ namespace graphics
 
       clear_bitmap_source();
 
-      m_strBitmapSource = scopedstrBitmapSource;
+      m_strAppId = strAppId;
+      m_strBitmapSource = strBitmapSource;
 
-      ::i8 szName[] = "Local\\bitmap-source:%s";
+      if (!bCreate)
+      {
+
+         construct_newø(m_pbitmapsourceinterest);
+         string strConsumerAppId;
+         if (application())
+            strConsumerAppId = application()->m_strAppId;
+         m_pbitmapsourceinterest->acquire(
+            m_strAppId, m_strBitmapSource, strConsumerAppId);
+
+      }
+
+      ::i8 szName[] = "Local\\bitmap-source:%s:%s";
 
       string strMutexName;
 
-      strMutexName.formatf(szName, scopedstrBitmapSource.as_string().c_str());
+      strMutexName.formatf(szName, m_strAppId.c_str(), scopedstrBitmapSource.as_string().c_str());
 
       if (bCreate)
       {
@@ -117,7 +310,19 @@ namespace graphics
       {
 
          m_pmutexBitmapSource = node()->open_local_named_mutex(this, strMutexName);
+         if (!m_pmutexBitmapSource)
+         {
+            // The consumer can start before the producer creates its mutex.
+            // Create the same named mutex so either process can initialize first.
+            m_pmutexBitmapSource = node()->create_local_named_mutex(
+               this, false, strMutexName, nullptr);
+         }
 
+      }
+
+      if (!m_pmutexBitmapSource)
+      {
+         throw ::exception(error_wrong_state, "Could not open or create bitmap source mutex");
       }
 
       synchronous_lock synchronouslock(m_pmutexBitmapSource, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -128,7 +333,8 @@ namespace graphics
 
       ::file::path path;
 
-      path = pathFolder / "bitmap-source" / scopedstrBitmapSource;
+      path = pathFolder / m_strAppId / "bitmap-source" / scopedstrBitmapSource / "buffer.bin";
+      directory()->create(path.folder());
 
       //auto estatus = 
       
@@ -147,12 +353,14 @@ namespace graphics
       {
 
          m_pmemorymap->open_path(path, false, true, true, 128_MiB);
+         start_interest_monitor();
       }
 
       else
       {
 
          m_pmemorymap->open_path(path, false, true, false, 128_MiB);
+         m_bBitmapSourceInterested.store(true);
 
       }
 
@@ -171,7 +379,10 @@ namespace graphics
    void bitmap_source_buffer_graphics::clear_bitmap_source()
    {
 
+      stop_interest_monitor();
+
       m_strBitmapSource.empty();
+      m_strAppId.empty();
 
       if (m_pmemorymap)
       {
@@ -181,6 +392,8 @@ namespace graphics
          auto estatus = m_pmemorymap.release();
 
       }
+
+      m_pbitmapsourceinterest.release();
 
       m_pmutexBitmapSource.release();
       
@@ -192,7 +405,7 @@ namespace graphics
    string bitmap_source_buffer_graphics::get_bitmap_source() const
    {
 
-      if (!is_ipc_copy_enabled())
+      if (!m_pmemorymap || !m_pmemorymap->is_mapped())
       {
 
          return "";
@@ -228,9 +441,11 @@ namespace graphics
       try
       {
 
-         auto sizeBitmap = ppixmap->raw_size();
-
-         auto iScan = ppixmap->m_iScan;
+         // Publish the mapped window image tightly packed at the bitmap origin.
+         // Desktop placement is metadata, never a pixel-buffer offset.
+         auto sizeBitmap = ppixmap->size();
+         if (sizeBitmap.is_empty() || sizeBitmap.cx > 0x1fffffff) return false;
+         auto iScan = sizeBitmap.cx * (::i32)sizeof(::image32_t);
 
          ::memsize sRequired = (::memsize)sizeof(bitmap_source_buffer_header)
             + (::memsize)iScan * (::memsize)sizeBitmap.cy;
@@ -263,14 +478,33 @@ namespace graphics
 
          }
 
+         ::i32_rectangle rectangleWindow(m_pwindow->m_pointWindow, m_pwindow->m_sizeWindow);
+         if (!system()->windowing()->has_readily_gettable_absolute_coordinates())
+         {
+            // Accessibility supplies compositor geometry when the native API cannot.
+            // Cache misses during bridge startup leave the last published frame intact.
+            ::accessibility::window_geometry geometry;
+            try
+            {
+               if (!system()->accessibility()->get_window_geometry(
+                  node()->current_process_identifier(), {}, geometry)) return false;
+            }
+            catch (...)
+            {
+               return false;
+            }
+            rectangleWindow = geometry.m_rectangleClient;
+            rectangleMainMonitor = geometry.m_rectangleOutput;
+         }
+
          auto pheader = (::graphics::bitmap_source_buffer_header *)pdata;
 
          pheader->m_iMagic = BITMAP_SOURCE_BUFFER_MAGIC;
          pheader->m_iVersion = BITMAP_SOURCE_BUFFER_VERSION;
-         pheader->m_xWindow = m_pwindow->m_pointWindow.x;
-         pheader->m_yWindow = m_pwindow->m_pointWindow.y;
-         pheader->m_cxWindow = m_pwindow->m_sizeWindow.cx;
-         pheader->m_cyWindow = m_pwindow->m_sizeWindow.cy;
+         pheader->m_xWindow = rectangleWindow.left;
+         pheader->m_yWindow = rectangleWindow.top;
+         pheader->m_cxWindow = rectangleWindow.width();
+         pheader->m_cyWindow = rectangleWindow.height();
          pheader->m_xMonitor = rectangleMainMonitor.left;
          pheader->m_yMonitor = rectangleMainMonitor.top;
          pheader->m_cxMonitor = rectangleMainMonitor.width();
@@ -286,14 +520,14 @@ namespace graphics
          {
 
             pimage32Target->copy(
-               sizeBitmap, iScan, ppixmap->m_pimage32Raw, ppixmap->m_iScan);
+               sizeBitmap, iScan, ppixmap->data(), ppixmap->m_iScan);
 
          }
          else
          {
 
             pimage32Target->y_swap_copy(
-               sizeBitmap, iScan, ppixmap->m_pimage32Raw, ppixmap->m_iScan);
+               sizeBitmap, iScan, ppixmap->data(), ppixmap->m_iScan);
 
          }
 
@@ -350,14 +584,20 @@ namespace graphics
 
          }
 
-         //auto ppixmapImageBufferItem = get_screen_item()->m_pimageBufferItem->map();
-
-         //if (!ipc_copy(ppixmapImageBufferItem))
-         //{
-
-         //   return false;
-
-         //}
+         // Image-backed backends (including Qt) have no native window pixmap.
+         // The backend has already swapped the completed image into the screen slot.
+         synchronous_lock lockGraphics(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         auto pitemScreen = get_screen_item();
+         if (pitemScreen)
+         {
+            synchronous_lock lockScreen(pitemScreen->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            lockGraphics.unlock();
+            if (pitemScreen->m_pimageBufferItem.ok())
+            {
+               auto pixmapScreen = pitemScreen->m_pimageBufferItem->map();
+               ipc_copy(pixmapScreen);
+            }
+         }
 
       }
 

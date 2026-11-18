@@ -16,10 +16,10 @@ public:
    Atom                    m_atomaNetWmState[net_wm_state_count];
    iptr                    m_countReference;
    //array < MESSAGE >     m_messsageaInput;
-   //::pointer< ::mutex >               m_pmutexInput;
+   //::pointer< ::parallelization::mutex >               m_pmutexInput;
 
    static osdisplay_dataptra * s_pdataptra;
-   static ::pointer< ::mutex > s_pmutex;
+   static ::pointer< ::parallelization::mutex > s_pmutex;
 
    osdisplay_data();
    ~osdisplay_data();

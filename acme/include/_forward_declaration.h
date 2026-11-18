@@ -1622,9 +1622,7 @@ class channel;
 class critical_section;
 
 
-class mutex;
-
-
+namespace parallelization { class mutex; }
 class atom;
 
 
@@ -2613,6 +2611,8 @@ class manager_room;
 
 namespace parallelization
 {
+   class mutex;
+   class fast_critical_section;
    class threading;
 
 

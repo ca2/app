@@ -36,7 +36,7 @@ namespace innate_subsystem
     // Owner draw button, that displays button with image and text.
     //
 
-    class ImagedButtonInterface : virtual public ::Particle
+    class ImagedButtonInterface : virtual public ::subsystem::Particle
     {
     public:
        /// ImagedButton();
@@ -97,7 +97,7 @@ namespace innate_subsystem
 
    class CLASS_DECL_INNATE_SUBSYSTEM ImagedButtonComposite :
 
-   virtual public Composite<ImagedButtonInterface>
+   virtual public ::subsystem::Composite <ImagedButtonInterface>
    {
    public:
 
@@ -159,7 +159,7 @@ namespace innate_subsystem
 
    class CLASS_DECL_INNATE_SUBSYSTEM ImagedButtonAggregate :
 
-virtual public Aggregate <ImagedButtonComposite, Control>
+virtual public ::subsystem::Aggregate <ImagedButtonComposite, Control>
    {
    public:
 
@@ -168,7 +168,7 @@ virtual public Aggregate <ImagedButtonComposite, Control>
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM ImagedButton :
-   virtual public Object<ImagedButtonAggregate>
+   virtual public ::subsystem::Object<ImagedButtonAggregate>
    {
    public:
 

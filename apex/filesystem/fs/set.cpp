@@ -96,7 +96,7 @@ namespace fs
          for(::i32 j = 0; j < listingFsPath.get_size(); j++)
          {
 
-            auto p = listing[j];
+            auto p = listingFsPath[j];
 
             m_fsdatamap[p] = m_spafsdata[i];
 
@@ -212,6 +212,12 @@ namespace fs
    }
 
    
+   bool set::get_file_image_info(const ::file::path & path, ::file::image_info & info)
+   {
+      auto pdata = path_data(path);
+      return pdata && pdata != this && pdata->get_file_image_info(path, info);
+   }
+
    bool set::enumerate(::file::listing_base & listing)
    {
 
@@ -222,7 +228,10 @@ namespace fs
 
       }
 
-      ::fs::data * pdata = path_data(listing.m_pathFinal);
+      // Fresh listings have a user path but no resolved final path yet.
+      // Route those by their user URI instead of looking up an empty path.
+      auto path = listing.m_pathFinal.has_character() ? listing.m_pathFinal : listing.m_pathUser;
+      ::fs::data * pdata = path_data(path);
 
       if(pdata != nullptr)
       {
@@ -486,6 +495,14 @@ namespace fs
 
       return ::fs::data::is_zero_latency(path);
 
+   }
+
+
+   ::file::path set::create_folder(const ::file::path & pathParent, const ::scoped_string & scopedstrName)
+   {
+      auto pdata = path_data(pathParent);
+      if (!pdata || pdata == this) throw ::exception(error_not_supported, "No filesystem provider for this folder");
+      return pdata->create_folder(pathParent, scopedstrName);
    }
 
 

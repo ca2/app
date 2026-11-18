@@ -33,7 +33,7 @@ namespace subsystem
 
 
    class PipeImpersonatedThreadInterface :
-   virtual public ::Particle
+   virtual public ::subsystem::Particle
    {
    public:
       //PipeImpersonatedThread(HANDLE pipeHandle);
@@ -64,7 +64,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM PipeImpersonatedThreadComposite :
-      virtual public Composite < PipeImpersonatedThreadInterface>
+      virtual public ::subsystem::Composite < PipeImpersonatedThreadInterface>
    {
    public:
 
@@ -98,7 +98,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM PipeImpersonatedThreadAggregate
-       : virtual public Aggregate<PipeImpersonatedThreadComposite>
+       : virtual public ::subsystem::Aggregate<PipeImpersonatedThreadComposite>
    {
    public:
 
@@ -108,7 +108,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM PipeImpersonatedThread :
- virtual public Object < PipeImpersonatedThreadAggregate >
+ virtual public ::subsystem::Object <PipeImpersonatedThreadAggregate >
    {
    public:
 

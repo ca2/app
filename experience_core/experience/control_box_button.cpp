@@ -3,10 +3,12 @@
 #include "acme/handler/item.h"
 #include "acme/user/user/tool.h"
 #include "acme/prototype/geometry2d/ellipse.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/stock_icon.h"
@@ -235,9 +237,11 @@ namespace experience_core
 
       }
 
+      auto fDensity = pdraw2dgraphics->draw2d_domain()->get_density();
+
       ::i32_rectangle rectangleEllipse(rectangleX);
 
-      rectangleEllipse.deflate(0, 0, 2, 2);
+      rectangleEllipse.deflate(0, 0, 2 * fDensity, 2 * fDensity);
 
       pdraw2dgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

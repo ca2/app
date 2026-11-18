@@ -18,7 +18,7 @@ namespace micro
       class icon;
 
 
-      class message_box :
+      class CLASS_DECL_ACME message_box :
          virtual public ::micro::dialog,
          virtual public ::user_interface::message_box_implementation
       {
@@ -45,7 +45,7 @@ namespace micro
          ~message_box() override;
 
 
-         void create_window() override;
+         void create_window(::enum_parallelization eparallelization) override;
 
          void destroy() override;
 

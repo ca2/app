@@ -1,9 +1,9 @@
 #include "platform.h"
 #include "application.h"
 #include "main_window.h"
-#include "render.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/filesystem/filesystem/directory_context.h"
+#include "bred/user/user/gpu_shader_render.h"
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(app_shader);
@@ -19,6 +19,8 @@ namespace app_shader
 
    application::application() 
    {
+
+      m_bGpu2 = true;
 
       m_strAppId = "app-graphics3d/shader";
 
@@ -111,59 +113,6 @@ namespace app_shader
 #endif
 
 
-   string application::get_next_shader_path(const ::scoped_string & scopedstrPath)
-   {
-
-      ::file::listing_base listing;
-
-      get_shader_listing(listing);
-
-      auto next = listing.get_next(scopedstrPath);
-
-      return ::transfer(next);
-
-   }
-
-
-   void application::get_shader_listing(::file::listing_base & listing)
-   {
-
-      auto pcontext = m_papplication;
-
-      bool bUseOwnResources = is_sandboxed();
-
-      for (;;)
-      {
-
-         if (bUseOwnResources)
-         {
-
-            listing.set_pattern_file_listing("matter://shader/simple shader/", { "*.frag" });
-
-         }
-         else
-         {
-
-            listing.set_pattern_file_listing("dropbox://shader/simple shader/", { "*.frag" });
-
-         }
-
-         pcontext->directory()->enumerate(listing);
-
-         if (listing.has_elements() || bUseOwnResources)
-         {
-
-            break;
-
-         }
-
-         bUseOwnResources = true;
-
-      }
-
-      listing.order();
-
-   }
 
 
 } // namespace app_shader

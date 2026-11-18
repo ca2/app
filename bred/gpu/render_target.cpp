@@ -339,7 +339,7 @@ namespace gpu
       }
 
       auto pgpucontext = m_pgpurenderer->m_pgpucontext;
-      auto bMultisample = pgpucontext->m_papplication->m_gpu.m_bMultisample;
+      auto bMultisample = pgpucontext->m_papplication->m_gpu.m_bMultisample2.is_set();
       auto iRequestedSampleCount = bMultisample
          ? pgpucontext->m_papplication->m_gpu.m_iSampleCount
          : 1;
@@ -682,7 +682,7 @@ namespace gpu
       //   m_pgpurenderer->m_pgpucontext->m_pgpucompositor != nullptr;
 
       auto bMultisample =
-         m_pgpurenderer->m_pgpucontext->m_papplication->m_gpu.m_bMultisample;
+         m_pgpurenderer->m_pgpucontext->m_papplication->m_gpu.m_bMultisample2;
 
       auto iRequestedSampleCount = bMultisample
          ? m_pgpurenderer->m_pgpucontext->m_papplication->m_gpu.m_iSampleCount

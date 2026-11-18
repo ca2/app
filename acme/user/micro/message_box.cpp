@@ -60,12 +60,12 @@ namespace micro
    // }
 
 
-   void message_box::create_window()
+   void message_box::create_window(enum_parallelization eparallelization)
    {
 
       system()->nano()->graphics();
 
-      ::micro::main_window::create_window();
+      ::micro::main_window::create_window(eparallelization);
 
    }
 
@@ -142,6 +142,7 @@ namespace micro
       pgraphicscontext->set_font(micro_theme()->m_pwritetextfont);
 
       ::string strMessage = get_message();
+      information("micro::message_box::on_draw message length={} text={}", strMessage.length(), strMessage);
       pgraphicscontext->draw_text123(
          strMessage,
          rectangleText,
@@ -697,6 +698,23 @@ information("message_box::on_initialize_dialog");
 
          return;
 
+      }
+
+      // Hit testing may return the dialog or a label for a background click.
+      // Only a button can supply a dialog result.
+      bool bButton = false;
+      for (::collection::index i = 0; i < micro_button_count(); ++i)
+      {
+         if (payload == micro_button_at(i)->id())
+         {
+            bButton = true;
+            break;
+         }
+      }
+      if (!bButton)
+      {
+         if (pmouse) pmouse->m_bRet = true;
+         return;
       }
 
       set_dialog_response(payload);

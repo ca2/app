@@ -32,7 +32,7 @@ namespace browser
       e_effect                m_eeffect;
 
 
-      ::pointer < ::mutex >                   m_pmutexText;
+      ::pointer < ::parallelization::mutex >                   m_pmutexText;
       string                  m_strNewHelloBrowser;
       string                  m_strHelloBrowser;
 

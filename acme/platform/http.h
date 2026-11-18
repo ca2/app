@@ -25,7 +25,7 @@ namespace platform
 
       // ::property_set    m_setHttp;
       
-      ::pointer < ::mutex >                              m_pmutexHttpDownload;
+      ::pointer < ::parallelization::mutex >                              m_pmutexHttpDownload;
       string_array_base                                  m_straHttpDownloading;
       string_array_base                                  m_straHttpCheckingExistence;
 

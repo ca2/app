@@ -65,7 +65,7 @@ CLASS_DECL_AXIS void __simple_tracea(::particle * pparticle, enum_trace_level el
 
 void os_post_quit();
 
-//extern ::pointer< ::mutex > psystem->m_pmutexLibrary;
+//extern ::pointer< ::parallelization::mutex > psystem->m_pmutexLibrary;
 
 
 
@@ -86,9 +86,9 @@ namespace axis
 
 
 
-   // ::pointer< ::mutex > g_pmutexImage = nullptr;
+   // ::pointer< ::parallelization::mutex > g_pmutexImage = nullptr;
 
-   // ::pointer< ::mutex > get_image_mutex()
+   // ::pointer< ::parallelization::mutex > get_image_mutex()
    // {
 
    //    return g_pmutexImage;

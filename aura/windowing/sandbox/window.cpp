@@ -33,10 +33,10 @@ namespace sandbox_windowing
    }
 
 
-   void window::create_window()
+   void window::create_window(::enum_parallelization eparallelization)
 {
 
-      ::windowing::window::create_window();
+      ::windowing::window::create_window(eparallelization);
 
       return;
       
@@ -473,7 +473,7 @@ namespace sandbox_windowing
    //   oswindow_dataptra *window::s_pdataptra = nullptr;
    //
    //
-   //   ::pointer< ::mutex >window::s_pmutex = nullptr;
+   //   ::pointer< ::parallelization::mutex >window::s_pmutex = nullptr;
 
 
    //   ::i32 oswindow_find_message_only_window(::windowing::window *pimpl)

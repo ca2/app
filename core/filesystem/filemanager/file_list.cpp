@@ -11,6 +11,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
+#include "acme/user/interface/message_box.h"
 //#include "acme/platform/timer.h"
 #include "acme/prototype/collection/_array_binary_stream.h"
 #include "acme/prototype/collection/_container.h"
@@ -21,6 +22,7 @@
 //#include "apex/platform/os_context.h"
 
 #include "aura/graphics/image/list.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/copydesk.h"
@@ -43,6 +45,7 @@
 
 namespace filemanager
 {
+   constexpr ::enum_timer e_timer_folder_loading = (::enum_timer)0x67646c;
 
 
    file_list::file_list()
@@ -73,7 +76,9 @@ namespace filemanager
    void file_list::install_message_routing(::channel * pchannel)
    {
 
-      impact::install_message_routing(pchannel);
+      // The list overrides filemanager_show's routing setup, so install the
+      // File Manager commands explicitly (in particular edit_paste).
+      ::filemanager_impact_base::install_message_routing(pchannel);
 
       ::user::form_list::install_message_routing(pchannel);
 
@@ -364,6 +369,13 @@ namespace filemanager
    {
 
       ::userfs::list::operator()(ptimer);
+      if (ptimer->m_etimer == e_timer_folder_loading)
+      {
+         if (!m_bFolderLoading) { ptimer->cancel(); return; }
+         m_iLoadingDots = (m_iLoadingDots + 1) % 4;
+         post_redraw();
+         return;
+      }
 
       if (ptimer->m_etimer == e_timer_update_bergedge_topic_file)
       {
@@ -638,9 +650,15 @@ namespace filemanager
 
       auto patha = get_selected_final_path();
 
+      information() << "File Manager Copy: " << patha.size() << " selected files";
       auto pcopydesk = copydesk();
 
-      pcopydesk->set_filea(patha, ::user::copydesk::e_op_copy);
+      if (patha.is_empty() || !pcopydesk->set_filea(patha, ::user::copydesk::e_op_copy))
+      {
+         auto message = create_newø<::user_interface::message_box>();
+         message->initialize_message_box(patha.is_empty() ? "Select files to copy." : "Could not put the selected files on the clipboard.", "Copy files");
+         message->display(e_display_normal, {});
+      }
 
       pmessage->m_bRet = true;
 
@@ -1571,7 +1589,24 @@ namespace filemanager
    void file_list::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::user::form_list::_001OnDraw(pdraw2dgraphics);
+      if (!m_bFolderLoading && !m_bFolderLoadFailed)
+         ::user::form_list::_001OnDraw(pdraw2dgraphics);
+      if (m_bFolderLoading || m_bFolderLoadFailed)
+      {
+         ::string str = m_bFolderLoading ? "Loading" : "Could not load this folder.";
+         if (m_bFolderLoading) for (int i = 0; i < m_iLoadingDots; ++i) str += ".";
+         else
+         {
+            auto detail = payload("filemanager_browse_error").as_string();
+            if (detail.has_character()) str += "\n" + detail;
+         }
+         auto rectangle = this->rectangle();
+         rectangle.top += 40;
+         auto pstyle = get_style(pdraw2dgraphics);
+         pdraw2dgraphics->set_solid_color(get_color(pstyle, ::e_element_text));
+         pdraw2dgraphics->set_font(this);
+         pdraw2dgraphics->draw_text(str, rectangle, e_align_center);
+      }
 
    }
 
@@ -2059,6 +2094,9 @@ namespace filemanager
 
       informationf("filemanager::file_list::on_message_set_focus");
 
+      pmessage->previous();
+      if (auto frame = parent_frame()) frame->set_active_impact(this);
+
    }
 
 
@@ -2073,6 +2111,40 @@ namespace filemanager
    void file_list::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
+      if (!m_bStatic && ptopic->id() == "filemanager_browse_started")
+      {
+         m_bFolderLoading = true;
+         m_bFolderLoadFailed = false;
+         payload("filemanager_browse_error") = "";
+         m_iLoadingDots = 1;
+         clear_selection();
+         auto pdata = fs_list();
+         if (pdata)
+         {
+            synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            if (pdata->m_pitema) pdata->m_pitema->erase_all();
+         }
+         update_impact();
+         set_timer(e_timer_folder_loading, 300_ms);
+         post_redraw();
+         return;
+      }
+      if (ptopic->id() == "filemanager_browse_failed" || ptopic->id() == id_browse)
+      {
+         m_bFolderLoading = false;
+         m_bFolderLoadFailed = ptopic->id() == "filemanager_browse_failed";
+         payload("filemanager_browse_error") = m_bFolderLoadFailed ? ptopic->payload("error_message").as_string() : "";
+         kill_timer(e_timer_folder_loading);
+         post_redraw();
+         if (m_bFolderLoadFailed)
+         {
+            if (!m_bStatic && ptopic->m_actioncontext.is_user_source())
+            {
+               set_keyboard_focus();
+            }
+            return;
+         }
+      }
       ::filemanager_impact_base::handle(ptopic, phandlercontext);
 
       ::userfs::list::handle(ptopic, phandlercontext);
@@ -2191,6 +2263,11 @@ namespace filemanager
          update_impact();
 
          post_redraw();
+
+         if (ptopic->m_actioncontext.is_user_source())
+         {
+            set_keyboard_focus();
+         }
 
       }
       else if (ptopic->id() == id_filter)

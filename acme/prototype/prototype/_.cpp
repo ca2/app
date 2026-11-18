@@ -4,7 +4,7 @@
 #include "acme/prototype/string/str.h"
 
 
-//extern ::pointer< ::mutex > g_pmutexChildren;
+//extern ::pointer< ::parallelization::mutex > g_pmutexChildren;
 
 
 void _debug_debug_string_string()

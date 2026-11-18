@@ -43,7 +43,7 @@ namespace subsystem
  */
    class NamedPipeInterface :
       virtual public ::Channel,
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
       /**
@@ -108,7 +108,7 @@ namespace subsystem
     * @author yuri, enikey.
     */
    class CLASS_DECL_SUBSYSTEM NamedPipeComposite :
-      virtual public Composite< NamedPipeInterface >
+      virtual public ::subsystem::Composite < NamedPipeInterface >
    {
    public:
 
@@ -177,7 +177,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM NamedPipeAggregate :
-      virtual public Aggregate<NamedPipeComposite, PipeAggregate >
+      virtual public ::subsystem::Aggregate<NamedPipeComposite, PipeAggregate >
    {
    public:
 
@@ -187,7 +187,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM NamedPipe :
-    virtual public Object < NamedPipeAggregate >
+    virtual public ::subsystem::Object <NamedPipeAggregate >
    {
    public:
 

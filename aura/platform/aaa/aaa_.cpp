@@ -11,7 +11,7 @@
 
 //extern string_map < ::pointer<::acme::library >> g_pmapLibrary;
 
-//extern ::pointer < ::mutex >* ::auraacmesystem()->m_pmutexLibrary;
+//extern ::pointer < ::parallelization::mutex >* ::auraacmesystem()->m_pmutexLibrary;
 
 
 //extern "C"
@@ -215,7 +215,7 @@ void __post_quit_message(::i32 nExitCode)
 //string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
 
 
-//::pointer < ::mutex >* ::auraacmesystem()->m_pmutexLibrary = nullptr;
+//::pointer < ::parallelization::mutex >* ::auraacmesystem()->m_pmutexLibrary = nullptr;
 
 
 CLASS_DECL_AURA string_map < PFN_NEW_AURA_LIBRARY >& __get_new_aura_library()

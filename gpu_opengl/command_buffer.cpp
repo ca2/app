@@ -28,6 +28,23 @@ namespace gpu_opengl
    }
 
 
+   void command_buffer::begin_command_buffer(bool bOneTime)
+   {
+      // OpenGL issues draws immediately. Retained CPU owners from the previous
+      // recording are no longer needed when this reusable buffer starts again;
+      // GL itself preserves objects referenced by already-issued GPU commands.
+      m_particleaHold.clear();
+      ::gpu::command_buffer::begin_command_buffer(bOneTime);
+   }
+
+
+   void command_buffer::reset()
+   {
+      m_particleaHold.clear();
+      ::gpu::command_buffer::reset();
+   }
+
+
    void command_buffer::set_viewport(const ::i32_rectangle& rectangle, const ::i32_size & sizeRaw)
    {
 

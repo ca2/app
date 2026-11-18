@@ -20,7 +20,7 @@ namespace draw2d
       
       ::pointer < ::draw2d::domain >               m_pdraw2ddomain;
       ::pointer < ::user::interaction >            m_puserinteractionAffinity;
-      ::pointer < ::draw2d::window_attachment >    m_pdraw2dwindowattachemnt;
+      ::pointer < ::draw2d::window_attachment >    m_pdraw2dwindowattachment;
       
       
       frame();

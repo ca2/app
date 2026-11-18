@@ -553,6 +553,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|ARM64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="platform_platform.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="ImageImpact.cpp" />
     <ClCompile Include="ImagePanel.cpp" />

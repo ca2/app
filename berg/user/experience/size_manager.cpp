@@ -782,7 +782,8 @@ namespace experience
 
    e_grip size_manager::GetGripMask()
    {
-
+      // Painting and hit-testing must agree about whether resizing is available.
+      if (m_pframewindow && !m_pframewindow->is_sizing_enabled()) return e_grip_none;
       return m_egripMask;
 
    }

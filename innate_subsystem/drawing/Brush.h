@@ -50,7 +50,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM BrushComposite :
-      virtual public Composite<BrushInterface >
+      virtual public ::subsystem::Composite <BrushInterface >
    {
    public:
 
@@ -82,7 +82,7 @@ namespace innate_subsystem
 
 
     class CLASS_DECL_INNATE_SUBSYSTEM BrushAggregate :
-    virtual public Aggregate< BrushComposite >
+    virtual public ::subsystem::Aggregate< BrushComposite >
     {
     public:
 
@@ -91,7 +91,7 @@ namespace innate_subsystem
     };
 
    class CLASS_DECL_INNATE_SUBSYSTEM Brush :
-       virtual public Object< BrushAggregate >
+       virtual public ::subsystem::Object< BrushAggregate >
    {
    public:
 

@@ -17,6 +17,9 @@
 #include <EGL/eglext.h>
 
 
+struct wl_egl_window;
+namespace acme::windowing { class native_surface_provider; }
+
 namespace gpu_opengl
 {
 
@@ -33,22 +36,29 @@ namespace gpu_opengl
       EGLContext                       m_eglcontext;
       EGLSurface                       m_eglsurface;
       bool                             m_bEGLWindowSurface;
+      ::wl_egl_window *                 m_pwaylandEglWindow = nullptr;
+      ::acme::windowing::native_surface_provider * m_pnativeSurfaceProvider = nullptr;
       task_index                       m_taskindexLock;
+      ::pointer < ::acme::windowing::window > m_pwindowSurface;
 
       context_egl();
       ~context_egl() override;
+      void on_resize(const ::i32_size & size, ::draw2d::domain * domain, ::draw2d::graphics * graphics) override;
 
 
       virtual void __create_egl_context(bool bForWindow);
       virtual void __create_egl_window_surface(::acme::windowing::window* pacmewindowingwindow);
       virtual void __create_egl_pbuffer_surface(const ::i32_size & size);
       virtual void __on_after_egl_context_and_surface_creation();
+      void _create_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::draw2d::domain * pdraw2ddomain, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw) override;
       //void _create_window_buffer() override;
       //void _create_offscreen_window(const ::i32_size &size) override;
-      void _create_window_context(::acme::windowing::window* pacmewindwoingwindow) override;
+      void _create_window_context(::acme::windowing::window* pacmewindwoingwindow);
       void _create_cpu_buffer(const ::i32_size& size) override;
       //void resize_offscreen_buffer(const ::i32_size& size) override;
       void destroy_cpu_buffer() override;
+
+      void ensure_context_current_for_glad();
 
       //void defer_make_current() override;
       //void defer_release_current() override;

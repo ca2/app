@@ -6,6 +6,13 @@
 #include "draw2d.h"
 #include "frame.h"
 #include "graphics.h"
+#include "brush_fill_geometry.h"
+#include <limits>
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/path.h"
+#include "acme/prototype/geometry2d/item.h"
+#include "acme/prototype/geometry2d/_defer_item.h"
+#include "aura/graphics/image/image_pixmap_lease.h"
 #include "image.h"
 #include "layer.h"
 #include "pixmap.h"
@@ -16,6 +23,7 @@
 #include "aura/graphics/draw2d/_draw2d.h"
 #include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/window_attachment.h"
 #include "aura/graphics/graphics/buffer_item.h"
 #include "aura/graphics/graphics/context.h"
 #include "aura/graphics/graphics/graphics.h"
@@ -350,34 +358,65 @@ namespace gpu
    {
 
       auto pcontext = gpu_context();
+      ::gpu::window_attachment * pgpuwindowattachment = nullptr;
 
       if (pcontext)
       {
 
          pcontext->m_escene = ::gpu::e_scene_2d;
 
-         auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
-
-         pgpuwindowattachment->start_frame();
+         pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
 
       }
       else
       {
 
-         auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pdraw2dframe);
-
-         pgpuwindowattachment->start_frame();
+         pgpuwindowattachment = ::gpu::window_attachment::get(m_puserinteractionTopic);
 
       }
+
+      pgpuwindowattachment->start_frame();
       //pcontext->start_frame();
    }
 
 
    void graphics::end_frame() {
       auto pcontext = gpu_context();
-      auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
-      pgpuwindowattachment->end_frame();
+      auto pgpuwindowattachment = pcontext
+         ? ::gpu::window_attachment::get(pcontext)
+         : ::gpu::window_attachment::get(m_puserinteractionTopic);
+
+      if (pgpuwindowattachment)
+      {
+
+         pgpuwindowattachment->end_frame();
+
+      }
    }
+
+
+   //::draw2d::frame * graphics::draw2d_frame()
+   //{
+
+   //   return ::draw2d::graphics::draw2d_frame();
+
+   //}  
+
+
+   //void graphics::initialize_draw2d_frame(::user::interaction * puserinteractionTopic)
+   //{
+
+   //   if (m_pdraw2dframe)
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   ::draw2d::graphics::initialize_draw2d_frame(puserinteractionTopic);
+
+   //}
+
 
 
    ::gpu::context * graphics::gpu_context()
@@ -468,7 +507,9 @@ namespace gpu
 
       auto pgpucontext = m_pgpucontextOwned;
 
-      if (!pgpucontext || !pgpucontext->m_puserinteractionTopic)
+      // Offscreen image graphics have no owning interaction. Their GPU
+      // context is reusable within the same draw2d domain nonetheless.
+      if (!pgpucontext || !pgpucontext->m_pgpudevice)
       {
 
          return false;
@@ -476,7 +517,7 @@ namespace gpu
       }
 
       auto pdraw2ddomainContext =
-         pgpucontext->m_pgpudevice->m_pdraw2domain;
+         pgpucontext->m_pgpudevice->draw2d_domain();
 
       return pdraw2ddomain == pdraw2ddomainContext;
 
@@ -637,6 +678,23 @@ namespace gpu
 
          pgpucontext->_endSingleTimeCommands(m_pgpucommandbufferGpuGraphics);
 
+         // No-layer image drawing does not enter renderer::start_layer(),
+         // which normally returns completed frame models to their pools.
+         // Recycle after the single-time submission has completed; otherwise
+         // every refreshed text bitmap retains another set of glyph models.
+         auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontext);
+         if (pgpuwindowattachment && pgpuwindowattachment->get_frame_index3() >= 0)
+         {
+            auto iFrameIndex = pgpuwindowattachment->get_frame_index3();
+            auto ppoolgroup = pgpuwindowattachment->frame_pool_group(iFrameIndex);
+            auto pparticlea = pgpucontext->get_gpu_renderer()->current_frame_particle_array();
+            if (pparticlea && pparticlea->has_elements())
+            {
+               ppoolgroup->call_ongoing(e_call_off_to_pool);
+               pparticlea->clear();
+            }
+         }
+
          m_pgpucommandbufferGpuGraphics = nullptr;
 
          m_pgraphicslease = nullptr;
@@ -795,6 +853,15 @@ namespace gpu
 
       auto rectangleWindow = pwindow->get_window_rectangle();
 
+      if (rectangleWindow.is_empty() && m_egraphics == e_graphics_layout)
+      {
+
+         // Popup menus measure their contents before assigning a window size.
+         // Layout still needs a valid GPU target for its graphics lease.
+         rectangleWindow = {rectangleWindow.origin(), ::i32_size(1, 1)};
+
+      }
+
       pgpucontextWindow->set_output_placement(rectangleWindow);
 
       auto pcontext = gpu_context();
@@ -803,9 +870,22 @@ namespace gpu
 
       pcontext->set_output_placement(rectangleWindow);
 
-      auto rectangleThisContextOutput = pcontext->output_placement();
+      if (bFirstLayer && m_pgraphicsbufferitem && !m_papplication->use_gpu_swap_chain())
+      {
 
+         // The software window buffer occupies a subrectangle of the raw bitmap.
+         // Render and read back at that same origin so buffer validation remains stable.
+         pcontext->m_sizeRaw = pwindow->m_sizeRaw;
+         pcontext->set_input_placement({ m_pgraphicsbufferitem->m_bTightRawBuffer
+            ? ::i32_point{} : m_pgraphicsbufferitem->m_pointBufferItem,
+            m_pgraphicsbufferitem->m_sizeBufferItem });
+
+      }
+
+#if defined(GPU_DEBUG_FRAME_TRACE)
+      auto rectangleThisContextOutput = pcontext->output_placement();
       information("rectangleThisContextOutput {}", rectangleThisContextOutput);
+#endif
 
       //auto rectangleClient = rectangleWindow;
 
@@ -828,7 +908,7 @@ namespace gpu
       if (m_egraphics == e_graphics_draw)
       {
 
-         auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+         auto bUseSwapChain = m_papplication->use_gpu_swap_chain();
 
          auto etypeGpuContext = pcontext->m_etype;
 
@@ -866,7 +946,7 @@ namespace gpu
 
       ::i32_rectangle rectangle;
 
-      if (!m_puserinteractionTopic && m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_puserinteractionTopic && m_papplication->use_gpu_swap_chain())
       {
 
          auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
@@ -900,10 +980,40 @@ namespace gpu
 
       pcontext->start_layer(bFirstLayer, m_estartlayer, puserinteraction);
 
+      if (bFirstLayer && m_papplication->use_gpu_swap_chain())
+      {
+
+         // Pure draw2d windows do not load a 3D engine to attach the compositor
+         // target. Present the render target that receives this window's layers.
+         pgpuwindowattachment->set_render_target(prenderer->render_target());
+
+      }
+
 
       auto pgputexturesite = pcontext->m_pgpurenderer->m_pgpurendertarget2->current_texture(::gpu::current_layer(), true);
 
       m_pgputexturesiteTarget = pgputexturesite;
+
+      if (bFirstLayer && m_pgraphicsbufferitem
+         && !m_papplication->use_gpu_swap_chain())
+      {
+
+         // Software window presentation must read the layer that receives UI
+         // drawing, rather than the separate blank bitmap allocated at resize.
+         auto pimageBuffer = m_pgraphicsbufferitem->m_pimageBufferItem;
+         pimageBuffer->update_as_backed_by_gpu_texture(
+            pgputexturesite->size(), pgputexturesite->gpu_texture(), this);
+         // The backed image maps source pixels from the layer input origin.
+         // The output origin is the window's screen position and is only for
+         // compositing; using it as the image origin offsets CPU readback.
+         pimageBuffer->m_point = pgputexturesite->m_pointInput;
+         pimageBuffer->m_size = pgputexturesite->size();
+         pimageBuffer->m_sizeRaw = pgputexturesite->raw_size();
+         pimageBuffer->m_iScan = pimageBuffer->m_sizeRaw.cx * (::i32)sizeof(::image32_t);
+         pimageBuffer->m_bGraphicsWasAcquiredAfterLastMap = true;
+         pimageBuffer->m_bWasMappedAfterLastGraphicsAcquisition = false;
+
+      }
 
       auto sizeRaw = pcontext->raw_size();
 
@@ -943,7 +1053,12 @@ namespace gpu
 
       //::gpu::context_lock lock(pcontext);
 
-      m_pointTarget = puserinteraction->host_origin();
+      // Place window-local drawing in the same raw-bitmap region used by readback.
+      m_pointTarget = bFirstLayer && m_pgraphicsbufferitem
+         ? pointTarget : puserinteraction->host_origin();
+      m_sizeTarget = sizeTarget;
+      m_bTargetRectangleModified = true;
+      defer_on_target_rectangle_update();
 
 
       ::i32_rectangle rectangleFrame(
@@ -1055,6 +1170,9 @@ namespace gpu
 
       ::cast < ::gpu::image> pgpuimageSource = pimageSource;
 
+      // Source acquisition can use an offscreen layer/context. Keep this draw
+      // attached to its caller's destination layer across that work.
+      ::pointer<::gpu::layer> playerDestination = ::gpu::current_layer();
       ::cast <::gpu::bitmap > pgpubitmapSource = pgpuimageSource->get_bitmap_as_source(this);
 
       auto pgputextureSource = pgpubitmapSource->gpu_texture(m_pgpucontextOwned);
@@ -1069,6 +1187,7 @@ namespace gpu
       // An image may have just been rendered by a pooled offscreen context.
       // Wait for that producer before this context samples its texture.
       pgputextureSource->wait_fence();
+      ::gpu::set_current_layer(playerDestination);
 
       //bool bSingleTimeCommand = false;
       auto pgpucommandbuffer = get_gpu_command_buffer();
@@ -1182,6 +1301,8 @@ namespace gpu
 
       }
 
+      ::gpu::set_current_layer(playerDestination);
+      pgpucommandbuffer->set_render_target();
       set_gpu_shader(pgpucommandbuffer, pgpushaderImage);
 
          //
@@ -1293,6 +1414,493 @@ namespace gpu
 
 
 
+   ::gpu::shader * graphics::brush_fill_shader(bool bPattern)
+   {
+
+      auto pcontext = gpu_context();
+      auto & pshader = m_pshaderBrushFill[m_ealphamode == ::draw2d::e_alpha_mode_set ? 0 : 1][bPattern ? 1 : 0];
+
+      if (!pshader)
+      {
+
+         auto pshaderNew = createø<::gpu::shader>();
+         pshaderNew->m_bDisableDepthTest = true;
+         pshaderNew->m_bEnableBlend = m_ealphamode != ::draw2d::e_alpha_mode_set;
+         pshaderNew->m_etopology = ::gpu::e_topology_triangle_list;
+         pshaderNew->m_ecullmode = ::gpu::e_cull_mode_none;
+
+         if (bPattern)
+         {
+
+            auto pbinding = pshaderNew->binding();
+            pbinding->m_strUniform = "uTexture";
+            pbinding->m_ebinding = ::gpu::e_binding_sampler2d;
+            pbinding->m_iTextureUnit = 0;
+
+         }
+
+         pshaderNew->m_propertiesPushShared.set_properties(::gpu_properties<::gpu::brush_fill_uniform_set>());
+         pcontext->layout_push_constants(pshaderNew->m_propertiesPushShared, false);
+         pshaderNew->initialize_shader_with_block(pcontext->get_gpu_renderer(),
+            pcontext->brush_fill_shader_vert(), pcontext->brush_fill_shader_frag(bPattern),
+            pcontext->input_layout<::gpu::circle_vertex>());
+         pshader = pshaderNew;
+
+      }
+
+      return pshader;
+
+   }
+
+
+   void graphics::fill_brush_triangles(const ::f64_point * points, ::collection::count count,
+      ::draw2d::brush * pbrush)
+   {
+
+      _fill_brush_triangles(points, count, pbrush, nullptr);
+
+   }
+
+
+   void graphics::fill_ellipse(const ::f64_rectangle & rectangle)
+   {
+
+      if (rectangle.is_empty())
+      {
+
+         return;
+
+      }
+
+      // Leave room for derivative-based antialiasing, as draw_ellipse does.
+      auto r = rectangle;
+      r.inflate(2.0, 2.0);
+      const ::f64_point points[] = {
+         r.top_left(), r.top_right(), r.bottom_right(),
+         r.top_left(), r.bottom_right(), r.bottom_left()
+      };
+      _fill_brush_triangles(points, 6, m_pdraw2dbrush, &rectangle);
+
+   }
+
+
+   void graphics::fill_rectangle(const ::f64_rectangle & rectangle, ::draw2d::brush * pbrush)
+   {
+
+      if (rectangle.is_empty())
+      {
+
+         return;
+
+      }
+
+      const ::f64_point points[] = {
+         rectangle.top_left(), rectangle.top_right(), rectangle.bottom_right(),
+         rectangle.top_left(), rectangle.bottom_right(), rectangle.bottom_left()
+      };
+      fill_brush_triangles(points, 6, pbrush);
+
+   }
+
+
+   void graphics::fill_polygon(const ::f64_point * points, ::collection::count count)
+   {
+
+      if (count < 3)
+      {
+
+         return;
+
+      }
+
+      if (!points)
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      ::std::vector<::gpu::brush_fill_geometry::point> polygon;
+      polygon.reserve((size_t) count);
+      for (::collection::index i = 0; i < count; ++i)
+      {
+
+         polygon.push_back({points[i].x, points[i].y});
+
+      }
+
+      ::std::vector<::gpu::brush_fill_geometry::point> triangles;
+      try
+      {
+
+         triangles = ::gpu::brush_fill_geometry::triangulate(::std::move(polygon));
+
+      }
+      catch (const ::std::invalid_argument & e)
+      {
+
+         throw ::exception(error_bad_argument, e.what());
+
+      }
+
+      ::array<::f64_point> vertexa;
+      for (auto point : triangles)
+      {
+
+         vertexa.add({point.x, point.y});
+
+      }
+
+      fill_brush_triangles(vertexa.data(), vertexa.size(), m_pdraw2dbrush);
+
+   }
+
+
+   void graphics::fill(::draw2d::path * ppath)
+   {
+
+      fill(ppath, m_pdraw2dbrush);
+
+   }
+
+
+   void graphics::fill(::draw2d::path * ppath, ::draw2d::brush * pbrush)
+   {
+
+      if (!ppath)
+      {
+
+         throw ::exception(error_null_pointer);
+
+      }
+
+      if (ppath->is_empty() || !pbrush || pbrush->m_ebrush == ::draw2d::e_brush_null)
+      {
+
+         return;
+
+      }
+
+      ::gpu::brush_fill_geometry::linear_path path;
+      ::std::vector<::gpu::brush_fill_geometry::point> triangles;
+      try
+      {
+
+         // Validate and tessellate the whole path before submitting any draw.
+         // Graphics/target transforms are applied later by fill_brush_triangles;
+         // gradient coordinates remain in the original draw2d user space.
+         for (auto & pitem : ppath->m_itema)
+         {
+
+            switch (pitem->type())
+            {
+            case ::draw2d::e_item_begin_figure:
+               path.begin_figure();
+               break;
+            case ::draw2d::e_item_close_figure:
+            case ::draw2d::e_item_end_figure:
+               path.end_figure();
+               break;
+            case ::draw2d::e_item_line:
+            {
+               auto & line = pitem->cast<::geometry2d::line_item>()->m_item;
+               path.add_line({line.m_p1.x, line.m_p1.y}, {line.m_p2.x, line.m_p2.y});
+               break;
+            }
+            case ::draw2d::e_item_lines:
+            {
+               auto & lines = pitem->cast<::geometry2d::lines_item>()->m_item;
+               for (::collection::index i = 1; i < lines.size(); ++i)
+                  path.add_line({lines[i - 1].x, lines[i - 1].y}, {lines[i].x, lines[i].y});
+               break;
+            }
+            case ::draw2d::e_item_polygon:
+            {
+               path.begin_figure();
+               auto & polygon = pitem->cast<::geometry2d::polygon_item>()->m_polygon;
+               for (::collection::index i = 1; i < polygon.size(); ++i)
+                  path.add_line({polygon[i - 1].x, polygon[i - 1].y}, {polygon[i].x, polygon[i].y});
+               path.end_figure();
+               break;
+            }
+            case ::draw2d::e_item_rectangle:
+            {
+               path.begin_figure();
+               auto & r = pitem->cast<::geometry2d::rectangle_item>()->m_item;
+               path.add_line({r.left, r.top}, {r.right, r.top});
+               path.add_line({r.right, r.top}, {r.right, r.bottom});
+               path.add_line({r.right, r.bottom}, {r.left, r.bottom});
+               path.end_figure();
+               break;
+            }
+            default:
+               throw ::exception(error_not_supported, "GPU path fills currently support straight line contours");
+            }
+
+         }
+
+         triangles = path.triangles();
+
+      }
+      catch (const ::std::domain_error & e)
+      {
+
+         throw ::exception(error_not_supported, e.what());
+
+      }
+      catch (const ::std::invalid_argument & e)
+      {
+
+         throw ::exception(error_bad_argument, e.what());
+
+      }
+
+      ::array<::f64_point> vertexa;
+      for (auto point : triangles)
+      {
+
+         vertexa.add({point.x, point.y});
+
+      }
+
+      fill_brush_triangles(vertexa.data(), vertexa.size(), pbrush);
+
+   }
+
+
+   void graphics::_fill_brush_triangles(const ::f64_point * points, ::collection::count count,
+      ::draw2d::brush * pbrush, const ::f64_rectangle * pellipse)
+   {
+
+      if (count == 0 || !pbrush || pbrush->m_ebrush == ::draw2d::e_brush_null)
+      {
+
+         return;
+
+      }
+
+      if (!points || count < 0 || count % 3 != 0 || count > (::std::numeric_limits<::i32>::max)())
+      {
+
+         throw ::exception(error_bad_argument, "Brush fills require complete triangles");
+
+      }
+
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
+      auto pcontext = gpu_context();
+      ::gpu::context_lock contextlock(pcontext);
+      auto pshader = brush_fill_shader(pbrush->m_ebrush == ::draw2d::e_brush_pattern);
+      auto pcommandbuffer = get_gpu_command_buffer();
+      if (!pcommandbuffer)
+      {
+
+         throw ::exception(error_wrong_state, "Brush fill requires an active draw scope");
+
+      }
+
+      auto set_vector = [pshader](const char * name, double x, double y, double z, double w)
+      {
+
+         if (!::std::isfinite(x) || !::std::isfinite(y) || !::std::isfinite(z) || !::std::isfinite(w))
+         {
+
+            throw ::exception(error_bad_argument, "Non-finite brush parameter");
+
+         }
+
+         pshader->set_sequence4(name, ::floating_sequence4((::f32)x, (::f32)y, (::f32)z, (::f32)w));
+
+      };
+      auto set_color = [pshader](const char * name, const ::color::color & color)
+      {
+
+         const auto alpha = color.f32_opacity();
+         pshader->set_sequence4(name, ::floating_sequence4(color.f32_red() * alpha,
+            color.f32_green() * alpha, color.f32_blue() * alpha, alpha));
+
+      };
+
+      set_color("brushColor0", pbrush->m_color);
+      set_color("brushColor1", pbrush->m_color);
+      set_vector("brushData0", 0, 0, 0, 0);
+      set_vector("brushData1", 0, 0, 0, 0);
+      set_vector("textureInformation", 0, 0, 0, 0);
+      set_vector("fillShape", 0, 0, 1, 1);
+      int brushMode = 0;
+      ::pointer<::gpu::texture_site> ppattern;
+
+      switch (pbrush->m_ebrush)
+      {
+      case ::draw2d::e_brush_solid:
+         break;
+      case ::draw2d::e_brush_linear_gradient_point_color:
+         brushMode = 1;
+         set_vector("brushData0", pbrush->m_point1.x, pbrush->m_point1.y, pbrush->m_point2.x, pbrush->m_point2.y);
+         break;
+      case ::draw2d::e_brush_radial_gradient_color:
+         brushMode = 2;
+         set_vector("brushData0", pbrush->m_point.x, pbrush->m_point.y, pbrush->m_size.cx, pbrush->m_size.cy);
+         break;
+      case ::draw2d::e_brush_box_gradient:
+         brushMode = 4;
+         set_vector("brushData0", pbrush->m_point.x, pbrush->m_point.y, pbrush->m_size.cx, pbrush->m_size.cy);
+         break;
+      case ::draw2d::e_brush_pattern:
+      {
+         brushMode = 3;
+         if (!::is_ok(pbrush->m_pimage))
+         {
+
+            throw ::exception(error_bad_argument, "Pattern brush has no image");
+
+         }
+
+         auto pimage = pbrush->m_pimage->get_source_image();
+         if (!::is_ok(pimage) || pimage->size().is_empty())
+         {
+
+            throw ::exception(error_bad_argument, "Pattern brush image is empty");
+
+         }
+
+         ::pointer<::gpu::texture> ptexture;
+         ::i32_point sourceOrigin = pimage->origin();
+         ::cast<::gpu::bitmap> pbitmap = pimage->get_bitmap_as_source(this);
+         if (pbitmap)
+         {
+
+            ptexture = pbitmap->gpu_texture(pcontext);
+
+         }
+
+         // CPU-backed images and images from another GPU device are uploaded
+         // through the same texture_data path used by GPU bitmaps.
+         if (!ptexture || !ptexture->m_pgpucontext
+            || ptexture->m_pgpucontext->m_pgpudevice != pcontext->m_pgpudevice)
+         {
+
+            auto pixels = pimage->map(::image::e_map_load);
+            // Upload a tightly packed logical image. A mapped image can have
+            // a larger stride or be a subrectangle of a CPU backing image.
+            if (!pixels || !pixels->image32()
+               || pimage->width() > (::std::numeric_limits<::i32>::max)() / 4)
+               throw ::exception(error_bad_argument, "Invalid pattern image pixels");
+            auto stride = pimage->width() * 4;
+            ::memory packedMemory;
+            packedMemory.set_size((::memsize)stride * pimage->height());
+            auto data = (::image32_t *)packedMemory.data();
+            data->copy(pimage->size(), stride, pixels->image32(), pixels->m_iScan);
+            ::pixmap_t packed;
+            packed.initialize_pixmap(pimage->size(), data, stride);
+            packed.m_bTopLeft = pixels->m_bTopLeft;
+            packed.m_iRedLower = pixels->m_iRedLower;
+            packed.m_colorindexes = pixels->m_colorindexes;
+            ptexture = createø<::gpu::texture>();
+            ::gpu::texture_attributes attributes(pimage->size());
+            attributes.m_sizeRaw = pimage->size();
+            ::gpu::texture_flags flags;
+            flags.m_bShaderResource = true;
+            flags.m_bTransferTarget = true;
+            ptexture->create_texture(pcontext, attributes, flags, { packed });
+            sourceOrigin = {};
+
+         }
+
+         if (m_pgputexturesiteTarget && ptexture == m_pgputexturesiteTarget->gpu_texture())
+         {
+
+            throw ::exception(error_wrong_state, "Cannot use the active render target as a pattern");
+
+         }
+
+         ptexture->wait_fence();
+         // Resolve before binding the fill pipeline, and retain the sampled
+         // texture until the command buffer finishes. This also prevents a
+         // backend from resolving to a texture different from our UV sizes.
+         ptexture = ptexture->resolved_texture({sourceOrigin, pimage->size()});
+         if (!ptexture || ptexture->m_iSampleCount > 1)
+            throw ::exception(error_not_supported, "Pattern requires a resolved sampling texture");
+         auto tile = pbrush->m_size;
+         if (tile.cx <= 0.0) tile.cx = pimage->width();
+         if (tile.cy <= 0.0) tile.cy = pimage->height();
+         set_vector("brushData0", tile.cx, tile.cy, 0, 0);
+         set_vector("brushData1", sourceOrigin.x, sourceOrigin.y, pimage->width(), pimage->height());
+         auto rawSize = ptexture->raw_size();
+         if (rawSize.is_empty()) throw ::exception(error_wrong_state, "Pattern texture is empty");
+         set_vector("textureInformation", 1.0 / rawSize.cx, 1.0 / rawSize.cy, 0, 0);
+         ppattern = create_newø<::gpu::texture_site>();
+         ppattern->m_pgputextureSite = ptexture;
+         ppattern->m_pointOutput = sourceOrigin;
+         auto transition = pcontext->beginSingleTimeCommands(pcontext->m_pgpudevice->graphics_queue());
+         ptexture->set_state(transition, ::gpu::e_texture_state_shader_read);
+         transition.commit();
+         break;
+      }
+      default:
+         throw ::exception(error_not_supported, "Unsupported GPU brush type");
+      }
+
+      if (brushMode == 1 || brushMode == 2 || brushMode == 4)
+      {
+
+         set_color("brushColor0", pbrush->m_color1);
+         set_color("brushColor1", pbrush->m_color2);
+
+      }
+
+      set_vector("brushParameters", brushMode, pellipse ? 1 : 0,
+         brushMode == 4 ? pbrush->m_dRadius : 0, 0);
+      if (pellipse)
+      {
+
+         set_vector("fillShape", pellipse->center_x(), pellipse->center_y(),
+            pellipse->width() / 2.0, pellipse->height() / 2.0);
+
+      }
+
+      ::array<::gpu::circle_vertex> vertexa;
+      vertexa.set_size(count);
+      for (::collection::index i = 0; i < count; ++i)
+      {
+
+         if (!::std::isfinite(points[i].x) || !::std::isfinite(points[i].y))
+            throw ::exception(error_bad_argument, "Non-finite fill coordinate");
+         vertexa[i].position = {(::f32)points[i].x, (::f32)points[i].y};
+         vertexa[i].local_position = vertexa[i].position;
+
+      }
+
+      // Transform geometry only. Brush coordinates stay in user space, so
+      // affine transforms (including rotations/nonuniform scale) affect both.
+      __transform(vertexa);
+      context_matrix(e_transform_context_geometry).global_transform(vertexa);
+      auto pmodelbuffer = createø<::gpu::model_buffer>();
+      pmodelbuffer->initialize_gpu_context_object(pcontext);
+      pmodelbuffer->create_vertexes<::gpu::circle_vertex>((::i32)count);
+      pmodelbuffer->set_vertexes(vertexa);
+      set_gpu_shader(pcommandbuffer, pshader);
+      if (ppattern)
+      {
+
+         pshader->bind_source(pcommandbuffer, ppattern, 0);
+         pcommandbuffer->m_particleaHold.add(ppattern);
+         pcommandbuffer->m_particleaHold.add(ppattern->m_pgputextureSite);
+
+      }
+      pshader->push_properties(pcommandbuffer);
+      pcommandbuffer->draw(pmodelbuffer);
+      pcommandbuffer->m_particleaHold.add(pmodelbuffer);
+      pcontext->defer_unbind(pcommandbuffer, pshader);
+
+   }
+
+
    void graphics::draw_ellipse(const ::f64_rectangle & rectangleParam)
    {
 
@@ -1351,7 +1959,7 @@ namespace gpu
 
       auto radius = rectangleParam.minimum_dimension() / 2.0;
 
-      auto thickness = m_pdraw2dpen->m_dWidth;
+      auto thickness = m_pdraw2dpen->m_dWidth * draw2d_domain()->get_density();
 
       auto extent = radius + thickness / 2.0f + 2.0f;
 
@@ -1534,7 +2142,7 @@ namespace gpu
    //   {
 
 
-   //      auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+   //      auto bUseSwapChain = m_papplication->use_gpu_swap_chain();
 
    //      auto etypeGpuContext = pcontext->m_etype;
 
@@ -1598,7 +2206,7 @@ namespace gpu
 
    //         ::i32_rectangle rectangle;
 
-   //   if (!m_puserinteractionDraw2dGraphics && m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   if (!m_puserinteractionDraw2dGraphics && m_papplication->use_gpu_swap_chain())
    //   {
 
    //      m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(m_pacmeuserinteractionMain.m_p);
@@ -1758,9 +2366,22 @@ namespace gpu
 
          auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
 
+         if (!pgpuwindowattachment)
+         {
+
+            throw ::exception(error_wrong_state,
+               "GPU graphics model buffers require a window or offscreen frame attachment");
+
+         }
+
          ::i32 iFrameIndex = pgpuwindowattachment->get_frame_index3();
 
          auto ppoolgroupFrame = pgpuwindowattachment->frame_pool_group(iFrameIndex);
+
+         // Offscreen image drawing can request a model buffer before the
+         // renderer's begin-frame path initializes this frame's pool group.
+         ppoolgroupFrame->m_pallocator = pgpudevice;
+         ppoolgroupFrame->m_pongoingparticlearraysource = prenderer;
 
          pool.m_ppoolgroup = ppoolgroupFrame;
 
@@ -2013,7 +2634,7 @@ namespace gpu
    void graphics::defer_create_swap_chain(::user::interaction* puserinteraction)
    {
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
 
          //auto pgpucontext = m_pgpucontextOwned;
@@ -2721,7 +3342,7 @@ namespace gpu
 
       ::f64_point_array pointa;
 
-      ::f64_point pointPen(pdraw2dpen->m_dWidth, pdraw2dpen->m_dWidth);
+      ::f64_point pointPen(pdraw2dpen->m_dWidth * draw2d_domain()->get_density(), pdraw2dpen->m_dWidth * draw2d_domain()->get_density());
 
       ::draw2d::make_line_triangles_cap_butt_square(
          pointa,
@@ -2945,7 +3566,7 @@ namespace gpu
 
       ::cast < gpu::draw2d>pdraw2d = draw2d();
 
-      auto pface = pdraw2d->_get_face(pwritetextfont);
+      auto pface = pdraw2d->_get_face(pwritetextfont, draw2d_domain());
 
       // if (!pface->m_pgpurenderer)
       // {
@@ -3040,6 +3661,15 @@ namespace gpu
       strMessage.formatf("bound text out shader '%s'", str.c_str());
       ::gpu::debug_scope debugscopeBoundTextOutShader(pcommandbuffer, strMessage);
       //pcontext->gpu_debug_message(strMessage);
+
+      // Text can be drawn before a caller selects a brush (for example after
+      // a frame resize). Use the default foreground color in that state.
+      if (!m_pdraw2dbrush)
+      {
+
+         set_solid_color(::color::black);
+
+      }
 
       auto color = m_pdraw2dbrush->m_color;
       //shader.use();

@@ -39,7 +39,7 @@ namespace micro
 
       //virtual void do_modal();
 
-      bool on_window_create(void * pCREATESTRUCT) override;
+      bool on_window_create(::user::window_create_t * pwindowcreate) override;
 
       void run() override;
       //void complete_aggregation(::sequence * psequence) override;

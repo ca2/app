@@ -1,9 +1,14 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "platform.h"
+#include "aura/graphics/graphics/frame_trace.h"
+#include <cstdlib>
+#include "acme/parallelization/mutex.h"
+#include "fps_debug.h"
 #include "cursor.h"
 #include "display.h"
 #include "apex/gpu/approach.h"
+#include "apex/gpu/window_attachment.h"
 #include "aura/user/user/frame_interaction.h"
 #include "placement_log.h"
 #include "acme/constant/user_message.h"
@@ -209,6 +214,9 @@ namespace windowing
 
    void window::destroy()
    {
+      // Release graphics before the native surface owner goes away.
+      m_papexgpuwindowattachment.defer_destroy_and_release();
+
 
       if (::is_set(m_puserthread))
       {
@@ -778,7 +786,7 @@ namespace windowing
    //
    //
 
-   void window::create_window()
+   void window::create_window(::enum_parallelization eparallelization)
    {
 
       //      if(!user_interaction())
@@ -1021,6 +1029,15 @@ namespace windowing
    {
 
       auto puserinteraction = user_interaction();
+
+      // Graphics initialization belongs to the common lifecycle, not native backends.
+      // Existing toolkit backends may already have attached graphics during creation.
+      if (puserinteraction && puserinteraction->is_graphical() && m_papplication->is_using_gpu()
+         && !m_papexgpuwindowattachment)
+      {
+         m_papplication->get_gpu_approach()->gpu_on_create_window(this);
+      }
+
 
       if (puserinteraction)
       {
@@ -3950,7 +3967,7 @@ namespace windowing
    //}
 
 
-   ::pointer<::mutex> window::draw_mutex()
+   ::pointer<::parallelization::mutex> window::draw_mutex()
    {
 
       if (m_pmutexDraw == nullptr)
@@ -3962,7 +3979,7 @@ namespace windowing
 
 #endif
 
-         constructø(m_pmutexDraw);
+         m_pmutexDraw = create_newø<::parallelization::mutex>();
 
       }
 
@@ -4105,7 +4122,7 @@ namespace windowing
 
          //create_host(pinteraction, e_parallelization_synchronous);
          //create_host(pinteraction);
-         create_window();
+         create_window(e_parallelization_asynchronous);
 
       }
 
@@ -9195,7 +9212,7 @@ namespace windowing
       if (user_interaction()->is_graphical())
       {
 
-         //if (m_papplication->m_bGpu)
+         //if (m_papplication->m_bGpu2)
          //{
 
          //   auto pgpuapproach = m_papplication->get_gpu_approach();
@@ -12025,10 +12042,22 @@ namespace windowing
       };
 
       m_bWindowDrawingFrame = true;
+#if FPS_DEBUG
+      auto traceFrameStart = ::graphics::presentation_trace::now_ns();
+#endif
 
       class ::time time1;
 
       time1.Now();
+
+      const bool traceFrame = std::getenv("CA2_TRACE_FRAME") != nullptr;
+      double traceLayoutMs = 0., traceDrawMs = 0., traceEndMs = 0., tracePaceMs = 0., tracePresentMs = 0.;
+      at_end_of_scope
+      {
+         if (traceFrame)
+            informationf("CA2_FRAME total=%.3f layout=%.3f draw=%.3f compose=%.3f pace=%.3f present=%.3f ms",
+               time1.elapsed().floating_millisecond(), traceLayoutMs, traceDrawMs, traceEndMs, tracePaceMs, tracePresentMs);
+      };
 
       if (m_bDoingGraphics)
       {
@@ -12048,6 +12077,7 @@ namespace windowing
 
       m_bNewFrame = true;
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
       windowing_output_debug_string("windowing::window::do_graphics");
 
       string strType = ::platform::type(user_interaction()).name();
@@ -12058,6 +12088,8 @@ namespace windowing
          debug() << "not main_frame";
 
       }
+
+#endif
 
 #ifdef MORE_LOG
 
@@ -12105,7 +12137,9 @@ namespace windowing
                   };
 
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
                debug() << "windowing::window::do_graphics";
+#endif
 
                ::pointer<::graphics::buffer_item> pbufferitem;
 
@@ -12121,11 +12155,14 @@ namespace windowing
 
                   auto & bReposition = puserinteraction->m_bReposition;
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
                   if (!strType.case_insensitive_contains("main_frame"))
                   {
 
                      // information() << "not main_frame";
                   }
+
+#endif
 
                   {
 
@@ -12147,7 +12184,14 @@ namespace windowing
                      // Qt can map the shared image, including on early returns.
                      _synchronous_lock slBufferItem(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+#if FPS_DEBUG
+                     // Discard any trace belonging to the previous use of this buffer.
+                     pbufferitem->m_presentationTrace = {};
+                     pbufferitem->m_presentationTrace.frame_start_ns = traceFrameStart;
+#endif
+                     auto traceLayoutStart = ::time::now();
                      auto pdraw2dgraphics = pgraphicsgraphics->on_begin_layout();
+                     traceLayoutMs += traceLayoutStart.elapsed().floating_millisecond();
 
                      //                     if (!pbufferitem)
                      //                     {
@@ -12173,7 +12217,9 @@ namespace windowing
 
                         slGraphics.unlock();
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
                         windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+#endif
 
                         if (has_destroying_flag())
                         {
@@ -12237,7 +12283,13 @@ namespace windowing
                            //informationf("draw_frame elapsed2.1 %0.2f", elapsed21.floating_millisecond());
                            class ::time time22;
                            time22.Now();
+#if FPS_DEBUG
+                           pbufferitem->m_presentationTrace.layout_start_ns = ::graphics::presentation_trace::now_ns();
+#endif
                            frame_layout_stage(pdraw2dgraphics);
+#if FPS_DEBUG
+                           pbufferitem->m_presentationTrace.layout_end_ns = ::graphics::presentation_trace::now_ns();
+#endif
                            auto elapsed22 = time22.elapsed();
                            //informationf("draw_frame elapsed2.2 %0.2f", elapsed22.floating_millisecond());
 
@@ -12373,6 +12425,7 @@ namespace windowing
                               pdraw2dgraphics->flush();
 
                               auto elapsed42 = time42.elapsed();
+                              traceDrawMs += elapsed42.floating_millisecond();
                               // informationf("draw_frame elapsed4.2 %0.2f", elapsed42.floating_millisecond());
 
                               //m_sizeLastBuffer = pbufferitem->m_sizeBufferItem;
@@ -12400,13 +12453,49 @@ namespace windowing
 
                //}
 
+#if FPS_DEBUG
+                  if (pbufferitem->m_presentationTrace.trace)
+                     pbufferitem->m_presentationTrace.render_end_ns = ::graphics::presentation_trace::now_ns();
+#endif
+                  auto traceEndStart = ::time::now();
                   pgraphicsgraphics->on_end_draw();
+                  traceEndMs += traceEndStart.elapsed().floating_millisecond();
 
                }
 
                }
+
+               // Rendering is complete and its locks have been released. The
+               // graphics thread owns the continuous-output presentation clock.
+               auto tracePaceStart = ::time::now();
+               if (m_pgraphicsthread && !m_pgraphicsthread->wait_for_fps_presentation())
+               {
+
+                  return;
+
+               }
+               tracePaceMs += tracePaceStart.elapsed().floating_millisecond();
 
                auto puserinteractionPresent = user_interaction();
+
+               if (!puserinteractionPresent || has_finishing_flag() || has_destroying_flag())
+               {
+
+                  return;
+
+               }
+
+#ifdef WINDOWS_DESKTOP
+               if (m_papplication->use_gpu_swap_chain())
+               {
+
+                  // Swap-chain presentation bypasses the software buffer's
+                  // configure step. Commit native geometry independently so a
+                  // resize/full-screen request cannot wait on the old buffer.
+                  set_window_position_unlocked();
+
+               }
+#endif
 
                bool bPresentFrame;
 
@@ -12452,7 +12541,9 @@ namespace windowing
                if (bPresentFrame)
                {
 
+                  auto tracePresentStart = ::time::now();
                   pgraphicsgraphics->update_screen();
+                  tracePresentMs += tracePresentStart.elapsed().floating_millisecond();
 
                }
 
@@ -12860,7 +12951,9 @@ namespace windowing
       //pdraw2dgraphics->start_layer(true, user_interaction());
 
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
       windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+#endif
 
       if (has_destroying_flag())
       {
@@ -13956,7 +14049,56 @@ namespace windowing
    ::frequency window::get_output_per_second()
    {
 
+      critical_section_lock lock(&m_criticalsectionOutputFrames);
+
+      auto timeNow = std::chrono::steady_clock::now();
+
+      while (m_timeaOutputFrame.has_element()
+         && timeNow - m_timeaOutputFrame.first() > std::chrono::seconds(1))
+      {
+
+         m_timeaOutputFrame.erase_at(0);
+
+      }
+
+      m_frequencyOutputFramesPerSecond = 0.0;
+
+      if (m_timeaOutputFrame.get_size() >= 2)
+      {
+
+         auto duration = std::chrono::duration<double>(
+            m_timeaOutputFrame.last() - m_timeaOutputFrame.first()).count();
+
+         if (duration > 0.0)
+         {
+
+            m_frequencyOutputFramesPerSecond = (m_timeaOutputFrame.get_size() - 1) / duration;
+
+         }
+
+      }
+
       return m_frequencyOutputFramesPerSecond;
+
+   }
+
+
+   void window::record_output_frame()
+   {
+
+      critical_section_lock lock(&m_criticalsectionOutputFrames);
+
+      auto timeNow = std::chrono::steady_clock::now();
+
+      while (m_timeaOutputFrame.has_element()
+         && timeNow - m_timeaOutputFrame.first() > std::chrono::seconds(1))
+      {
+
+         m_timeaOutputFrame.erase_at(0);
+
+      }
+
+      m_timeaOutputFrame.add(timeNow);
 
    }
 
@@ -14105,12 +14247,24 @@ namespace windowing
    void window::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
+      set_bitmap_source(application()->m_strAppId, scopedstrBitmapSource, true);
+
+   }
+
+
+   void window::set_bitmap_source(const ::scoped_string & scopedstrAppId,
+      const ::scoped_string & scopedstrBitmapSource, bool bCreate)
+   {
+
+      m_strBitmapSourceAppId = scopedstrAppId;
       m_strBitmapSource = scopedstrBitmapSource;
+      m_bBitmapSourceCreate = bCreate;
 
       if (m_pgraphicsgraphics)
       {
 
-         m_pgraphicsgraphics->set_bitmap_source(scopedstrBitmapSource);
+         m_pgraphicsgraphics->set_bitmap_source(
+            m_strBitmapSourceAppId, m_strBitmapSource, m_bBitmapSourceCreate);
 
       }
 
@@ -14122,7 +14276,9 @@ namespace windowing
    void window::clear_bitmap_source()
    {
 
+      m_strBitmapSourceAppId.empty();
       m_strBitmapSource.empty();
+      m_bBitmapSourceCreate = true;
 
       if (m_pgraphicsgraphics)
       {
@@ -14156,7 +14312,15 @@ namespace windowing
          if (m_strBitmapSource.has_character())
          {
 
-            m_pgraphicsgraphics->set_bitmap_source(m_strBitmapSource);
+            if (m_strBitmapSourceAppId.has_character())
+            {
+               m_pgraphicsgraphics->set_bitmap_source(
+                  m_strBitmapSourceAppId, m_strBitmapSource, m_bBitmapSourceCreate);
+            }
+            else
+            {
+               m_pgraphicsgraphics->set_bitmap_source(m_strBitmapSource);
+            }
 
          }
 
@@ -14778,18 +14942,6 @@ namespace windowing
 
       //user_interaction()->m_ewindowflag -= e_window_flag_focus;
 
-      if (pkillkeyboardfocus->m_operatingsystemwindow
-         == pkillkeyboardfocus->m_operatingsystemwindow)
-      {
-
-         pkillkeyboardfocus->m_bRet = true;
-
-         ::output_debug_string("kill keyboard focus that isn't killing keyboard focus");
-
-         return;
-
-      }
-
       ::cast < ::user::interaction > puserinteractionFocus = m_pacmeuserinteractionKeyboardFocus;
 
       if (puserinteractionFocus)
@@ -15265,7 +15417,7 @@ namespace windowing
       if (m_pmutexRedraw == nullptr)
       {
 
-         constructø(m_pmutexRedraw);
+         m_pmutexRedraw = create_newø<::parallelization::mutex>();
 
       }
 

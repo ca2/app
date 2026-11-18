@@ -50,6 +50,10 @@ list(APPEND library_source
    gpu/draw2d.h
    gpu/empty_texture_source.cpp
    gpu/empty_texture_source.h
+        gpu/fence.cpp
+        gpu/fence.h
+        gpu/font.cpp
+        gpu/font.h
    gpu/frame.cpp
    gpu/frame.h
    gpu/frame_ephemeral.cpp
@@ -66,6 +70,7 @@ list(APPEND library_source
    gpu/input_layout.h
    gpu/layer.cpp
    gpu/layer.h
+
    gpu/memory_buffer.cpp
    gpu/memory_buffer.h
    gpu/model_buffer.cpp
@@ -92,7 +97,8 @@ list(APPEND library_source
    gpu/render_target.h
    gpu/renderer.cpp
    gpu/renderer.h
-   gpu/shader.cpp
+        gpu/semaphore.cpp
+        gpu/semaphore.h   gpu/shader.cpp
    gpu/shader.h
    gpu/swap_chain.cpp
    gpu/swap_chain.h
@@ -119,6 +125,8 @@ list(APPEND library_source
    #graphics3d/render_systems/scene_render_system.h
    graphics3d/render_system/skybox_render_system.cpp
    graphics3d/render_system/skybox_render_system.h
+        graphics3d/render_system/texture_render_system.cpp
+        graphics3d/render_system/texture_render_system.h
    graphics3d/render_system/wavefront_obj_render_system.cpp
    graphics3d/render_system/wavefront_obj_render_system.h
    graphics3d/_.h
@@ -226,13 +234,26 @@ list(APPEND library_source
    typeface/_.h
    typeface/allocator.cpp
    typeface/allocator.h
+        typeface/character.cpp
    typeface/character.h
    typeface/face.cpp
    typeface/face.h
    typeface/typeface.cpp
    typeface/typeface.h
-   user/user/graphics3d.cpp
-   user/user/graphics3d.h
+   #user/user/graphics3d.cpp
+   #user/user/graphics3d.h
+        user/user/gpu_interaction.cpp
+        user/user/gpu_interaction.h
+        user/user/gpu_shader_host.cpp
+        user/user/gpu_shader_list.cpp
+        user/user/gpu_shader_list.cpp
+        user/user/gpu_shader_list.h
+        user/user/gpu_shader_render.cpp
+        user/user/gpu_shader_render.h
+        user/user/gpu_statistics_interaction.cpp
+        user/user/gpu_statistics_interaction.h
+        user/user/graphics3d_engine_host.cpp
+        user/user/graphics3d_engine_host.h
    user/user/user.cpp
    user/user/user.h
    _.cpp
@@ -262,12 +283,7 @@ list(APPEND library_references
    berg)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   typeface/character.cpp
-   gpu/fence.cpp
-   gpu/fence.h
-   gpu/semaphore.cpp
-   gpu/semaphore.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

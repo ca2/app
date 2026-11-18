@@ -97,7 +97,7 @@ namespace gpu
 
          constructø(m_ptexturesiteCubemap->m_pgputextureSite);
 
-         ::gpu::texture_attributes textureattributes({(::i32)m_uCubemapWidth, (::i32) m_uCubemapHeight});
+         ::gpu::texture_attributes textureattributes(::i32_size(m_uCubemapWidth, m_uCubemapHeight));
 
          textureattributes.set_cubemap_all_mips();
 

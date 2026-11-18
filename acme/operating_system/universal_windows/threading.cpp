@@ -27,8 +27,8 @@ bool __os_term_thread();
 //#pragma pop_macro("::acmeacmesystem()")
 
 
-::pointer< ::mutex > g_pmutexThreadIdHandleLock = nullptr;
-::pointer< ::mutex > g_pmutexThreadIdLock = nullptr;
+::pointer< ::parallelization::mutex > g_pmutexThreadIdHandleLock = nullptr;
+::pointer< ::parallelization::mutex > g_pmutexThreadIdLock = nullptr;
 
 
 //thread_data::thread_data()

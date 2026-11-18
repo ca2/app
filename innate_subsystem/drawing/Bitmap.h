@@ -70,7 +70,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM BitmapComposite :
-      virtual public Composite < BitmapInterface >
+      virtual public ::subsystem::Composite < BitmapInterface >
    {
    public:
 
@@ -139,7 +139,7 @@ namespace innate_subsystem
 
    
     class CLASS_DECL_SUBSYSTEM BitmapAggregate :
-       virtual public Aggregate<BitmapComposite>
+       virtual public ::subsystem::Aggregate<BitmapComposite>
    {
    public:
 
@@ -147,7 +147,7 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_SUBSYSTEM Bitmap :
-          virtual public Object<BitmapAggregate>
+          virtual public ::subsystem::Object<BitmapAggregate>
    {
    public:
 

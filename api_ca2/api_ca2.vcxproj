@@ -1018,6 +1018,10 @@
   <ItemGroup>
     <ResourceCompile Include="deployment.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="html_page.cpp" />
+    <ClInclude Include="html_page.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

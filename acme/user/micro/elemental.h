@@ -375,7 +375,7 @@ namespace micro
       ::i32_rectangle get_rectangle() override;
 
 
-      bool on_window_create(void * pCREATESTRUCT) override;
+      bool on_window_create(::user::window_create_t * pwindowcreate) override;
       void on_window_position(const ::i32_point & point) override;
       void on_window_size(const ::i32_size & size) override;
 

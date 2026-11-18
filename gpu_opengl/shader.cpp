@@ -49,9 +49,8 @@ namespace gpu_opengl
 
    shader::~shader()
    {
-      
-      
-      
+      defer_delete_context_handle(m_pNativeAllocationContext, e_handle_program, m_ProgramID);
+      m_ProgramID = 0;
    }
 
 
@@ -111,7 +110,20 @@ namespace gpu_opengl
    void shader::on_initialize_shader()
    {
 
-      //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+      if (!m_pgpurenderer || !m_pgpurenderer->m_pgpucontext)
+      {
+
+         throw ::exception(error_wrong_state, "OpenGL shader creation requires a GPU context");
+
+      }
+
+      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+
+#if defined(LINUX) || defined(__BSD__)
+
+      load_glad_gl(m_pgpurenderer->m_pgpucontext);
+
+#endif
 
       if (m_memoryVertex.is_empty())
       {
@@ -146,6 +158,8 @@ namespace gpu_opengl
       //
       // #endif
 
+      defer_delete_context_handle(m_pNativeAllocationContext, e_handle_program, m_ProgramID);
+      m_pNativeAllocationContext = m_pgpurenderer->m_pgpucontext->m_pgpudevice->current_operating_system_gpu_context();
       m_ProgramID = glCreateProgram();
       ::opengl::check_error("Couldn't create opengl program");
 
@@ -166,6 +180,7 @@ namespace gpu_opengl
       //
       // #endif
 
+      m_uniformLocations.clear();
       glLinkProgram(m_ProgramID);
 
       // Validate program
@@ -1162,6 +1177,18 @@ namespace gpu_opengl
 
 
 
+   GLint shader::_cached_uniform_location(const_char_pointer name) const
+   {
+      const auto found = m_uniformLocations.find(name);
+      if (found != m_uniformLocations.end()) return found->second;
+      const auto location = glGetUniformLocation(m_ProgramID, name);
+      ::opengl::check_error("");
+      // Locations, including optimized-out uniforms, remain valid until the
+      // program is linked again. Avoid driver queries for every glyph/property.
+      m_uniformLocations.emplace(name, location);
+      return location;
+   }
+
    GLint shader::_get_uniform_location(const_char_pointer pszName, const_char_pointer debug) const
    {
 
@@ -1174,11 +1201,19 @@ namespace gpu_opengl
 
       }
       
-      GLint location = glGetUniformLocation(m_ProgramID, pszName);
-      ::opengl::check_error("");
+      GLint location = _cached_uniform_location(pszName);
 
       if (location == -1)
       {
+
+         // Viewer shaders may omit or optimize away the supplied uniforms.
+         // OpenGL treats writes to location -1 as a no-op.
+         if ((m_eflag & e_flag_optional_uniforms) != 0)
+         {
+
+            return -1;
+
+         }
 
          ::string strMessage;
 
@@ -1323,7 +1358,13 @@ namespace gpu_opengl
 
          strName.begins_eat("sampler:");
 
-         if (!strName.case_insensitive_begins("padding"))
+         // A shared properties layout can contain uniforms unused by this
+         // shader variant. OpenGL removes them when linking; skip the upload
+         // while still advancing the data offset below.
+         auto location = strName.case_insensitive_begins("padding") ? -1
+            : _cached_uniform_location(strName);
+
+         if (location >= 0)
          {
 
             switch (p->m_etype)

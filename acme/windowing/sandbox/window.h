@@ -40,7 +40,7 @@ public:
    
    
    //      void create_window(::windowing::window* pimpl) override;
-   void create_window() override;
+   void create_window(enum_parallelization eparallelization) override;
    
    
    

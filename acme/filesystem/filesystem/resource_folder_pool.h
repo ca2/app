@@ -60,7 +60,7 @@ class CLASS_DECL_ACME resource_folder_pool
 public:
 
 
-   ::parallelization::mutex m_mutex;
+   ::parallelization::fast_critical_section m_mutex;
    ::parallelization::condition_payload m_conditionpayload;
    ::std::vector < ::std::unique_ptr < resource_folder_pool_entry > > m_entrya;
    ::collection::count m_countActive = 0;

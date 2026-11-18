@@ -1,3 +1,6 @@
+#include <wayland-egl.h>
+#include <chrono>
+#include <thread>
 //
 //  context_egl.cpp
 //  gpu_opengl
@@ -21,14 +24,15 @@
 #include <OpenGL/gl3.h>
 #include <OpenGL/glext.h>
 #endif
-#include "cpu_buffer.h"
 #include "context_egl.h"
+#include "acme/windowing/native_surface_provider.h"
 //#include "opengl.h"
 #include "acme/platform/application.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/image/target.h"
 #include "aura/platform/system.h"
 #include "aura/windowing/window.h"
+#include "acme_windowing_x11/_.h"
+#include "acme_windowing_x11/window.h"
 const_char_pointer eglErrorString(EGLint error);
 #ifdef WITH_X11
 #include <X11/Xlib.h>
@@ -62,7 +66,7 @@ namespace gpu_opengl
    bool is_glad_gl_loaded();
 
    // should be called within a currently selected egl context
-   void load_glad_gl();
+   void load_glad_gl(::gpu::context * pgpucontext);
 
 
 
@@ -88,8 +92,25 @@ namespace gpu_opengl
 
    context_egl::~context_egl()
    {
+      ::cast<::gpu_opengl::device_egl> device = m_pgpudevice;
+      if (device && device->m_bWayland)
+      {
+         {
+            if (eglGetCurrentContext() == m_eglcontext)
+               eglMakeCurrent(device->m_egldisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
+            if (m_eglsurface != EGL_NO_SURFACE) eglDestroySurface(device->m_egldisplay, m_eglsurface);
+            if (m_eglcontext != EGL_NO_CONTEXT) eglDestroyContext(device->m_egldisplay, m_eglcontext);
+         }
+         if (m_pwaylandEglWindow) wl_egl_window_destroy(m_pwaylandEglWindow);
+      }
+      if (m_pnativeSurfaceProvider) m_pnativeSurfaceProvider->release_external_presentation();
+   }
 
-
+   void context_egl::on_resize(const ::i32_size & size, ::draw2d::domain * domain, ::draw2d::graphics * graphics)
+   {
+      if (m_pwaylandEglWindow && size.cx > 0 && size.cy > 0)
+         wl_egl_window_resize(m_pwaylandEglWindow, size.cx, size.cy, 0, 0);
+      ::gpu::context::on_resize(size, domain, graphics);
    }
 
 
@@ -134,7 +155,11 @@ namespace gpu_opengl
 
       EGLConfig eglconfig;
 
-      if (bForWindow)
+      if (bForWindow && pegldevice->m_bWayland)
+      {
+         eglconfig = pegldevice->m_eglconfigWindow;
+      }
+      else if (bForWindow)
       {
 
          if (!pegldevice->_simplified_find_config_for_x11_window4(
@@ -144,12 +169,12 @@ namespace gpu_opengl
 
             warning("Couldn't find window config with transparent visual");
 
-            if (pegldevice->_simplified_find_config_for_x11_window4(
+            if (!pegldevice->_simplified_find_config_for_x11_window4(
                pegldevice->m_eglconfigWindow,
                pegldevice->m_lX11NativeVisualId, true))
             {
 
-               warning("An couldn't find window config with opaque visual");
+               warning("Couldn't find window config with opaque visual");
 
                throw ::exception(::error_failed);
 
@@ -190,37 +215,47 @@ namespace gpu_opengl
 
       defer_bind_egl_api();
 
-      // EGLint contextAttribs[] = {
-      //    EGL_CONTEXT_MAJOR_VERSION, 3,
-      //    EGL_CONTEXT_MINOR_VERSION, 3,
-      //    //EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
-      //    // optional debug flag:
-      //    //EGL_CONTEXT_FLAGS_KHR, EGL_CONTEXT_OPENGL_DEBUG_BIT_KHR,
-      //    EGL_NONE
-      // };      // Step 7 - Create a context.
-
       auto eglcontextPrimary = pegldevice->m_eglcontextPrimary;
 
-      EGLint *ctx_attrib_list = nullptr;
-
-#ifdef _DEBUG
-
-      EGLint ctx_attribs[] = {
-         EGL_CONTEXT_OPENGL_DEBUG, EGL_TRUE,
+      EGLint ctx_attribs45[] = {
+         EGL_CONTEXT_MAJOR_VERSION, 4,
+         EGL_CONTEXT_MINOR_VERSION, 5,
+         EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
          EGL_NONE
-     };
+      };
 
-      ctx_attrib_list = ctx_attribs;
+      EGLint ctx_attribs33[] = {
+         EGL_CONTEXT_MAJOR_VERSION, 3,
+         EGL_CONTEXT_MINOR_VERSION, 3,
+         EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
+         EGL_NONE
+      };
 
-#endif
+      EGLint ctx_attribsDefault[] = { EGL_NONE };
 
-      //EGLContext eglContext;
-      //m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, contextAttribs);
-      m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary,
-         ctx_attrib_list);
-      //m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, nullptr);
-      //m_eglcontext = eglCreateContext(egldisplay, eglconfig, nullptr, nullptr);
-      //qDebug() << "egl error" << eglGetError();
+      EGLint error33 = EGL_SUCCESS;
+      EGLint error45 = EGL_SUCCESS;
+
+      // Match the OpenGL 3.3 core profile requested by the WGL backend.
+      m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, ctx_attribs33);
+
+      if (m_eglcontext == EGL_NO_CONTEXT)
+      {
+
+         error33 = eglGetError();
+
+         m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, ctx_attribs45);
+
+      }
+
+      if (m_eglcontext == EGL_NO_CONTEXT)
+      {
+
+         error45 = eglGetError();
+
+         m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, ctx_attribsDefault);
+
+      }
 
       if (m_eglcontext == EGL_NO_CONTEXT)
       {
@@ -231,7 +266,13 @@ namespace gpu_opengl
 
          ::string strError;
 
-         strError.formatf("Failed to create context (eglError: %s : 0x%x)", ::string(scopedstrError).c_str(), iError);
+         strError.formatf(
+            "Failed to create an OpenGL context (4.5 error=0x%x, 3.3 error=0x%x, default error=0x%x; final eglError: %s : 0x%x)",
+            error45,
+            error33,
+            iError,
+            ::string(scopedstrError).c_str(),
+            iError);
 
          warning() << strError;
 
@@ -259,7 +300,7 @@ namespace gpu_opengl
 
          //_context_lock();
 
-         load_glad_gl();
+         load_glad_gl(this);
 
          auto pszGlVersion = glGetString(GL_VERSION);
 
@@ -314,7 +355,38 @@ namespace gpu_opengl
 
       }
 
-      auto window = (EGLNativeWindowType) pacmewindowingwindow->__x11_Window();
+      if (pegldevice->m_bWayland)
+      {
+         auto surface = static_cast<::wl_surface *>(pacmewindowingwindow->native_wayland_surface());
+         if (!surface) throw ::exception(error_wrong_state, "Native Wayland surface is unavailable");
+         m_pwindowSurface = pacmewindowingwindow;
+         m_pnativeSurfaceProvider = dynamic_cast<::acme::windowing::native_surface_provider *>(pacmewindowingwindow);
+         if (m_pnativeSurfaceProvider) m_pnativeSurfaceProvider->acquire_external_presentation();
+         const auto size = pacmewindowingwindow->m_sizeWindow;
+         m_pwaylandEglWindow = wl_egl_window_create(surface, maximum(1, size.cx), maximum(1, size.cy));
+         if (!m_pwaylandEglWindow) throw ::exception(error_failed, "Cannot create Wayland EGL window");
+         m_eglsurface = eglCreateWindowSurface(egldisplay, eglconfig,
+            reinterpret_cast<EGLNativeWindowType>(m_pwaylandEglWindow), nullptr);
+         if (m_eglsurface == EGL_NO_SURFACE)
+         {
+            wl_egl_window_destroy(m_pwaylandEglWindow); m_pwaylandEglWindow = nullptr;
+            throw ::exception(error_failed, "Cannot create native Wayland EGL surface");
+         }
+         m_bEGLWindowSurface = true;
+         m_pwindowSurface = pacmewindowingwindow;
+         return;
+      }
+
+      ::cast < ::x11::acme::windowing::window > px11window = pacmewindowingwindow;
+
+      if (!px11window)
+      {
+
+         throw ::exception(error_wrong_type);
+
+      }
+
+      auto window = (EGLNativeWindowType) px11window->__x11_window();
 
       if (window == None)
       {
@@ -331,9 +403,9 @@ namespace gpu_opengl
       information("EGL config visual ID: {}", visualId);
 
       // Get the X11 window's visual
-      auto display = (Display*)pacmewindowingwindow->__x11_Display();
+      auto display = px11window->__x11_display();
       XWindowAttributes attrs;
-      XGetWindowAttributes(display, window, &attrs);
+      XGetWindowAttributes(display, static_cast<Window>(px11window->__x11_window()), &attrs);
       information("X11 window visual ID: {}", attrs.visual->visualid);
 
       // They should match!
@@ -370,7 +442,7 @@ namespace gpu_opengl
 
       m_bEGLWindowSurface = true;
 
-//      m_pacmewindowingwindowWindowSurface = pacmewindowingwindow;
+      m_pwindowSurface = pacmewindowingwindow;
 
    }
 
@@ -380,6 +452,17 @@ namespace gpu_opengl
 
       ::cast < ::gpu_opengl::device_egl > pegldevice = m_pgpudevice;
 
+      if (pegldevice->m_bWayland)
+      {
+         const auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(3);
+         while (!pacmewindowingwindow->native_surface_configured())
+         {
+            if (std::chrono::steady_clock::now() >= deadline)
+               throw ::exception(error_timeout, "Wayland initial configure did not arrive");
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+         }
+      }
+
       pegldevice->m_lX11NativeVisualId = pacmewindowingwindow->m_lX11NativeVisualId;
 
       __create_egl_context(true);
@@ -387,6 +470,61 @@ namespace gpu_opengl
       __create_egl_window_surface(pacmewindowingwindow);
 
       __on_after_egl_context_and_surface_creation();
+
+   }
+
+
+   void context_egl::_create_gpu_context(
+      ::gpu::device * pgpudevice,
+      const ::gpu::enum_output & eoutput,
+      const ::gpu::enum_scene & escene,
+      ::draw2d::domain * pdraw2ddomain,
+      ::draw2d::graphics * pdraw2dgraphics,
+      const ::i32_point & pointInput,
+      const ::i32_point & pointOutput,
+      const ::i32_size & size,
+      const ::i32_size & sizeRaw)
+   {
+
+      ::gpu_opengl::context::_create_gpu_context(
+         pgpudevice,
+         eoutput,
+         escene,
+         pdraw2ddomain,
+         pdraw2dgraphics,
+         pointInput,
+         pointOutput,
+         size,
+         sizeRaw);
+
+      if (eoutput == ::gpu::e_output_swap_chain)
+      {
+
+         if (!m_puserinteractionTopic)
+         {
+
+            throw ::exception(error_wrong_state, "An EGL window context requires its owning interaction");
+
+         }
+
+         auto pacmewindowingwindow = m_puserinteractionTopic->acme_windowing_window();
+
+         if (!pacmewindowingwindow)
+         {
+
+            throw ::exception(error_wrong_state, "An EGL window context requires an X11 window");
+
+         }
+
+         _create_window_context(pacmewindowingwindow);
+
+      }
+      else
+      {
+
+         _create_cpu_buffer(size);
+
+      }
 
    }
 
@@ -871,13 +1009,13 @@ namespace gpu_opengl
       if(iFindPrecision >= 0)
       {
 
-         stra[iFindPrecision] = "precision highp ::f32;";
+         stra[iFindPrecision] = "precision highp float;";
 
       }
       else
       {
 
-         stra.insert_at(1, "precision highp ::f32;");
+         stra.insert_at(1, "precision highp float;");
 
          iFindPrecision = 1;
 
@@ -1037,6 +1175,77 @@ namespace gpu_opengl
    }
 
 
+   void context_egl::ensure_context_current_for_glad()
+   {
+
+      auto eglcontextCurrent = eglGetCurrentContext();
+
+      if (eglcontextCurrent == m_eglcontext && m_eglcontext != EGL_NO_CONTEXT)
+      {
+
+         if (m_taskindexLock == -1)
+         {
+
+            m_taskindexLock = ::current_task_index();
+
+         }
+
+         return;
+
+      }
+
+      if (eglcontextCurrent != EGL_NO_CONTEXT)
+      {
+
+         throw ::exception(error_wrong_state, "A different EGL context is current while initializing OpenGL");
+
+      }
+
+      if (m_eglcontext == EGL_NO_CONTEXT || m_eglsurface == EGL_NO_SURFACE)
+      {
+
+         throw ::exception(error_wrong_state, "The EGL context or surface is not ready for OpenGL initialization");
+
+      }
+
+      auto taskindex = ::current_task_index();
+
+      if (m_taskindexLock != -1 && m_taskindexLock != taskindex)
+      {
+
+         throw ::exception(error_wrong_state, "The EGL context is locked by a different task");
+
+      }
+
+      ::cast < ::gpu_opengl::device_egl > pegldevice = m_pgpudevice;
+
+      auto egldisplay = pegldevice->m_egldisplay;
+
+      if (!eglMakeCurrent(egldisplay, m_eglsurface, m_eglsurface, m_eglcontext))
+      {
+
+         auto iError = eglGetError();
+
+         ::string strError;
+
+         strError.formatf("Failed to restore EGL context before GLAD initialization (eglError=0x%x)", iError);
+
+         throw ::exception(error_wrong_state, strError);
+
+      }
+
+      m_taskindexLock = taskindex;
+
+      if (eglGetCurrentContext() != m_eglcontext)
+      {
+
+         throw ::exception(error_wrong_state, "eglMakeCurrent succeeded but did not select the expected EGL context");
+
+      }
+
+   }
+
+
    void context_egl::swap_buffers()
    {
 
@@ -1054,7 +1263,7 @@ namespace gpu_opengl
 
       }
 
-      if (!m_pacmewindowingwindowWindowSurface)
+      if (!m_pwindowSurface)
       {
 
          information("context_egl::swap_buffers No gpu::context");
@@ -1063,7 +1272,14 @@ namespace gpu_opengl
 
       }
 
-      if (m_pacmewindowingwindowWindowSurface->m_lX11MapNotify != 1)
+      // A hidden Wayland surface is unmapped and must complete a new
+      // configure handshake before another buffer may be committed.
+      if (m_pwaylandEglWindow && !m_pwindowSurface->native_surface_configured())
+      {
+         return;
+      }
+
+      if (!m_pwaylandEglWindow && m_pwindowSurface->m_lX11MapNotify != 1)
       {
 
          information("context_egl::swap_buffers m_lX11MapNotify != 1");
@@ -1076,29 +1292,14 @@ namespace gpu_opengl
 
       auto egldisplay = pegldevice->m_egldisplay;
 
-      EGLint width, height;
-      eglQuerySurface(egldisplay, m_eglsurface, EGL_WIDTH, &width);
-      eglQuerySurface(egldisplay, m_eglsurface, EGL_HEIGHT, &height);
-      debug("EGL surface created: {}x{}", width, height);
-
-      // Check what pframebuffer is currently bound
-      GLint currentFB = 0;
-      glGetIntegerv(GL_FRAMEBUFFER_BINDING, &currentFB);
-      debug("Current pframebuffer bound: {}", currentFB);
-
-      // Read a pixel from the center to see what's actually there
-      GLubyte pixel[4];
-      glReadPixels(width/2, height/2, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
-      debug("Center pixel color: R={} G={} B={} A={}", pixel[0], pixel[1], pixel[2], pixel[3]);
-
       // Check for GL errors
       GLenum glError = glGetError();
       if (glError != GL_NO_ERROR) {
          warning("OpenGL error before swap: 0x{:x}", glError);
       }
 
-      eglWaitGL();
-
+      // eglSwapBuffers flushes the current context. A readback or eglWaitGL
+      // here would unnecessarily wait for every frame on the CPU.
       if (!eglSwapBuffers(egldisplay, m_eglsurface))
       {
 
@@ -1129,7 +1330,7 @@ namespace gpu_opengl
       XSync(display, False);
 
       XWindowAttributes attrs;
-      XGetWindowAttributes(display, window, &attrs);
+      XGetWindowAttributes(display, static_cast<Window>(px11window->__x11_window()), &attrs);
       debug("Window map state: {}", attrs.map_state); // Should be 2 (IsViewable)
 
 #endif

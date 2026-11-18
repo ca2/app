@@ -40,6 +40,7 @@
 #include "bred/platform/timer.h"
 #include "bred/graphics3d/engine_instance.h"
 #include "bred/graphics3d/immersion_layer.h"
+#include <atomic>
 #include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/types.h"
@@ -1685,12 +1686,21 @@ namespace gpu
 
                ::i32_size size(rectangleTarget.size());
 
-               _create_gpu_context(m_pgpudevice, eoutput, escene, pacmewindowingwindow, nullptr, {}, pointTarget, size, sizeRaw);
+               _create_gpu_context(m_pgpudevice, eoutput, escene, m_puserinteractionTopic->draw2d_domain(), nullptr, {}, pointTarget, size, sizeRaw);
 
-               if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+               if (m_papplication->use_gpu_swap_chain())
                {
 
                   auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
+
+                  if (!pgpuwindowattachment)
+                  {
+
+                     error() << "Window swap-chain context has no GPU window attachment";
+
+                     throw ::exception(error_wrong_state);
+
+                  }
 
                   auto pgpucontextWindow = pgpuwindowattachment->m_pgpucontextWindow;
 
@@ -1746,10 +1756,10 @@ namespace gpu
 
       //rear_guard guard(this);
 
-      sendø() <<[this, pgpudevice, eoutput, escene, pointInput, pointOutput, size, sizeRaw, pacmewindowingwindow, pdraw2dgraphics]()
+      sendø() <<[this, pgpudevice, eoutput, escene, pointInput, pointOutput, size, sizeRaw, pdraw2dgraphics]()
          {
 
-            _create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, pdraw2dgraphics, pointInput, pointOutput, size, sizeRaw);
+            _create_gpu_context(pgpudevice, eoutput, escene, m_puserinteractionTopic->draw2d_domain(), pdraw2dgraphics, pointInput, pointOutput, size, sizeRaw);
 
          };
 
@@ -1759,7 +1769,7 @@ namespace gpu
 //<<<<<<< HEAD
   // void context::create_draw2d_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size& size)
 //=======
-   void context::create_draw2d_gpu_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
+   void context::create_draw2d_gpu_context(::gpu::device* pgpudevice, ::draw2d::domain * pdraw2ddomain,  ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
 //>>>>>>> origin/main
    {
 
@@ -1788,7 +1798,12 @@ namespace gpu
 
       m_escene = e_scene_2d;
 
-      m_puserinteractionTopic = pacmewindowingwindow->m_pacmeuserinteraction;
+      if (pdraw2dgraphics)
+      {
+
+         m_puserinteractionTopic = pdraw2dgraphics->m_puserinteractionTopic;
+
+      }
 
       branch_synchronously();
 
@@ -1798,25 +1813,20 @@ namespace gpu
 
       auto pgpucontext = ::as_pointer(this);
 
-      sendø() << [pgpucontext, pgpudevice, pointInput, pointOutput, size, sizeRaw, pacmewindowingwindow, pdraw2dgraphics]()
+      sendø() << [this, pgpucontext, pdraw2ddomain,pgpudevice, pointInput, pointOutput, size, sizeRaw, pdraw2dgraphics]()
          {
 
-            pgpucontext->_create_gpu_context(pgpudevice, ::gpu::e_output_draw2d_bitmap, ::gpu::e_scene_2d, pacmewindowingwindow, pdraw2dgraphics, pointInput, pointOutput, size, sizeRaw);
+            pgpucontext->_create_gpu_context(pgpudevice, ::gpu::e_output_draw2d_bitmap, ::gpu::e_scene_2d, pdraw2ddomain, pdraw2dgraphics, pointInput, pointOutput, size, sizeRaw);
 
          };
 
    }
 
 
-   void context::_create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2graphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
+   void context::_create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::draw2d::domain * pdraw2ddomain, ::draw2d::graphics * pdraw2graphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
    {
 
-      if (m_sizeRaw.is_empty())
-      {
-
-         m_sizeRaw = pacmewindowingwindow->m_sizeRaw;
-
-      }
+      m_sizeRaw = sizeRaw.maximum(size);
 
       m_pointInput = pointInput;
 
@@ -1830,7 +1840,7 @@ namespace gpu
       
       m_escene = escene;
 
-      m_puserinteractionTopic = pacmewindowingwindow->m_pacmeuserinteraction;
+      //m_puserinteractionTopic = pacmewindowingwindow->m_pacmeuserinteraction;
 
       if (m_etype == e_type_window)
       {
@@ -2457,7 +2467,7 @@ namespace gpu
    }
 
 
-   void context::on_resize(const ::i32_size& size)
+   void context::on_resize(const ::i32_size& size, ::draw2d::domain * pdraw2ddomain, ::draw2d::graphics * pdraw2dgraphics)
    {
 
       set_size(size);
@@ -2476,8 +2486,8 @@ namespace gpu
             m_pointOutput,
             m_pointInput,
             size,
-            m_pgpudevice->m_pwindow, 
-            nullptr);
+            pdraw2ddomain,
+            pdraw2dgraphics);
 
       }
 
@@ -2584,7 +2594,7 @@ namespace gpu
    ::gpu::swap_chain* context::get_swap_chain()
    {
 
-      if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_papplication->use_gpu_swap_chain())
       {
 
          return nullptr;
@@ -2595,6 +2605,13 @@ namespace gpu
       {
 
          auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
+
+         if (!pgpuwindowattachment || !pgpuwindowattachment->m_pgpucontextWindow)
+         {
+
+            return nullptr;
+
+         }
 
          if (pgpuwindowattachment->m_pgpucontextWindow == this)
          {
@@ -3545,7 +3562,7 @@ namespace gpu
 
       string strFragment =
          "uniform floating_sequence2 resolution;\n"
-         "uniform ::f32 time;\n"
+         "uniform float time;\n"
          "uniform floating_sequence2 mouse;\n"
          "uniform sampler2D backbuffer;\n"
          "\n"
@@ -3589,9 +3606,9 @@ namespace gpu
             //"\n"
             //"precision highp ::f32;\n"
             "\n"
-            "uniform floating_sequence2 iResolution;\n"
-            "uniform ::f32 iTime;\n"
-            "uniform floating_sequence2 iMouse;\n"
+            "uniform vec3 iResolution;\n"
+            "uniform float iTime;\n"
+            "uniform vec4 iMouse;\n"
             "uniform sampler2D backbuffer;\n"
             "\n"
             "\n"
@@ -4238,6 +4255,22 @@ float4 main(PS_INPUT input) : SV_TARGET
 
       ::gpu::context_lock contextlock(this);
 
+      static std::atomic_bool s_bLoggedLayerPlacement{false};
+      const bool bLogLayerPlacement = pgpulayera && pgpulayera->has_element()
+         && ptexturesiteOutput->width() > 100
+         && !s_bLoggedLayerPlacement.exchange(true);
+
+      if (bLogLayerPlacement)
+      {
+
+         auto rectangleOutput = ptexturesiteOutput->output_placement();
+         auto sizeRaw = ptexturesiteOutput->raw_size();
+         informationf("GPU layer placement target output=(%d,%d %dx%d) raw=%dx%d layers=%d",
+            rectangleOutput.left, rectangleOutput.top, rectangleOutput.width(), rectangleOutput.height(),
+            sizeRaw.cx, sizeRaw.cy, static_cast<int>(pgpulayera->get_count()));
+
+      }
+
       merge_layers_dummy_model_buffer();
 
       merge_layers_shader();
@@ -4464,6 +4497,19 @@ float4 main(PS_INPUT input) : SV_TARGET
 
                   ::f32_size sizeSrcRaw = ptexturesiteSrc->raw_size();
 
+                  auto sizeTargetRaw = ptexturesiteOutput->raw_size();
+
+                  if (bLogLayerPlacement)
+                  {
+
+                     informationf("GPU layer placement layer=%d input=(%d,%d %dx%d) output=(%d,%d %dx%d) raw=%.0fx%.0f",
+                        iLayer, rectangleInput.left, rectangleInput.top, rectangleInput.width(), rectangleInput.height(),
+                        rectangleSourceOutput.left, rectangleSourceOutput.top,
+                        rectangleSourceOutput.width(), rectangleSourceOutput.height(),
+                        sizeSrcRaw.cx, sizeSrcRaw.cy);
+
+                  }
+
                   //::i32 h = r.height();
 
                   //::i32 iH = ptextureDst->height();
@@ -4472,9 +4518,9 @@ float4 main(PS_INPUT input) : SV_TARGET
 
                   //r.bottom = r.top + h;
 
-                  pgpucommandbuffer->set_viewport(rectangleSourceOutput, sizeSrcRaw);
+                  pgpucommandbuffer->set_viewport(rectangleSourceOutput, sizeTargetRaw);
 
-                  pgpucommandbuffer->set_scissor(rectangleSourceOutput, sizeSrcRaw);
+                  pgpucommandbuffer->set_scissor(rectangleSourceOutput, sizeTargetRaw);
 
                   
 
@@ -4882,6 +4928,14 @@ float4 main(PS_INPUT input) : SV_TARGET
 
       auto pgpurenderer = this->get_gpu_renderer();
 
+
+      if (::is_set(puserinteractionContext))
+      {
+
+         // The first popup layout may precede native buffer allocation.
+         m_sizeRaw = puserinteractionContext->window()->m_sizeRaw.maximum(size());
+
+      }
       // aaaxyz
       //pgpurenderer->frame_prefix();
       pgpurenderer->start_layer(bFirstLayer, estartlayer);
@@ -4918,6 +4972,8 @@ float4 main(PS_INPUT input) : SV_TARGET
             //puserinteractionContext->m_pointOutput = rectangleScreen.origin();
             pgputexturesite->m_pointOutput = rectangleScreen.origin();
          //}
+
+            //m_sizeRaw = puserinteractionContext->window()->m_sizeRaw;
 
       }
 
@@ -5019,6 +5075,10 @@ float4 main(PS_INPUT input) : SV_TARGET
       return {};
 
    }
+
+
+   ::memory context::brush_fill_shader_vert() { return {}; }
+   ::memory context::brush_fill_shader_frag(bool) { return {}; }
 
 
    ::memory context::circle_shader_vert()

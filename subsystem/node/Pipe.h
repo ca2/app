@@ -35,7 +35,7 @@ namespace subsystem
    // This class is not an interface but is a class that contain common
    // methods/source codes for derived classes to work with pipe handles.
    class PipeInterface :
-   virtual public ::Particle
+   virtual public ::subsystem::Particle
    {
    public:
 
@@ -81,7 +81,7 @@ namespace subsystem
    // This class is not an interface but is a class that contain common
    // methods/source codes for derived classes to work with pipe handles.
    class CLASS_DECL_SUBSYSTEM PipeComposite :
-      virtual public Composite< PipeInterface>
+      virtual public ::subsystem::Composite < PipeInterface>
    {
    public:
 
@@ -156,7 +156,7 @@ namespace subsystem
    };
 
    class CLASS_DECL_SUBSYSTEM PipeAggregate :
-   virtual public Aggregate< PipeComposite>
+   virtual public ::subsystem::Aggregate< PipeComposite>
    {
    public:
 
@@ -165,7 +165,7 @@ namespace subsystem
    };
 
    class CLASS_DECL_SUBSYSTEM Pipe :
-    virtual public Object < PipeAggregate >
+    virtual public ::subsystem::Object <PipeAggregate >
    {
    public:
 

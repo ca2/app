@@ -12,6 +12,7 @@
 #include "acme/platform/system.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/message/user.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/window.h"
@@ -935,7 +936,7 @@ namespace experience
    void frame::calculate_caption_height(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto rectangleMargin = get_control_box()->get_button_margin(e_button_close);
+      auto rectangleMargin = get_control_box()->get_button_margin(e_button_close, pdraw2dgraphics);
 
       auto iButtonSize = get_control_box()->calculate_button_size(pdraw2dgraphics);
 
@@ -951,7 +952,6 @@ namespace experience
          iCaptionHeight =maximum(iCaptionHeight, iZoomedCaptionHeightHint);
          
       }
-
 
       m_iCaptionHeight = iCaptionHeight;
       
@@ -980,7 +980,9 @@ namespace experience
          if (m_pframewindow->layout().is_full_screen(::user::e_layout_lading))
          {
 
-            bVisibleControlBox = false;
+            auto pcontroller = m_pframewindow->full_screen_auto_hide();
+            pcontroller->auto_hide_calculate_control_visibility();
+            bVisibleControlBox = pcontroller->m_bEffectiveVisibleControl;
 
          }
          else if (m_pframewindow->layout().is_this_screen_visible(::user::e_layout_lading))
@@ -1044,9 +1046,9 @@ namespace experience
 
       rectangleRaw.deflate(rectangleMargin);
 
-      auto eappearance = m_pframewindow->const_layout().design().appearance();
+      auto eappearance = m_pframewindow->const_layout().lading().appearance();
 
-      if (!m_pframewindow->layout().is_full_screen() &&
+      if (!m_pframewindow->layout().is_full_screen(::user::e_layout_lading) &&
          !(eappearance & ::e_appearance_transparent_frame))
       {
 
@@ -1243,13 +1245,21 @@ namespace experience
    bool frame::calculate_hosting_rectangle(::i32_rectangle * prectangle, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
+      // Hosting is computed before the requested display reaches design state.
+      // A full-screen client occupies the raw frame, without caption or borders.
+      if (m_pframewindow->layout().is_full_screen(::user::e_layout_lading))
+      {
+         *prectangle = m_pframewindow->raw_rectangle(::user::e_layout_lading);
+         return !prectangle->is_empty();
+      }
+
       ::i32_rectangle rectangleHosting(*prectangle);
 
       auto eappearance = m_pframewindow->const_layout().state(::user::e_layout_lading).appearance();
 
       calculate_caption_height(pdraw2dgraphics);
 
-      if (!m_pframewindow->layout().is_full_screen() &&
+      if (!m_pframewindow->layout().is_full_screen(::user::e_layout_lading) &&
          !(eappearance & ::e_appearance_transparent_frame))
       {
 
@@ -1257,7 +1267,10 @@ namespace experience
 
       }
 
-      i32_rectangle rectangleMargin = get_margin_rectangle();
+      // Use the same pending display state as the caption calculation. Design
+      // can still be full screen on the first restored layout pass.
+      auto rectangleMargin = m_pframewindow->layout().is_zoomed(::user::e_layout_lading)
+         ? m_rectangleMarginZoomed : m_rectangleMarginDock;
 
       rectangleHosting.deflate(rectangleMargin);
 
@@ -1418,13 +1431,15 @@ namespace experience
    i32_rectangle frame::get_margin_rectangle()
    {
 
-      if (m_pframewindow->layout().is_full_screen())
+      // Title-bar layout runs before design state catches up with restore.
+      // Select the same pending margins used by the hosting calculation.
+      if (m_pframewindow->layout().is_full_screen(::user::e_layout_lading))
       {
 
          return m_rectangleMarginFullScreen;
 
       }
-      else if (m_pframewindow->layout().is_zoomed())
+      else if (m_pframewindow->layout().is_zoomed(::user::e_layout_lading))
       {
 
          return m_rectangleMarginZoomed;

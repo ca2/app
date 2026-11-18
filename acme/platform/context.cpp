@@ -257,116 +257,57 @@ namespace platform
    void context::initialize_context()
    {
 
-      construct_newø(m_ptexttranslator);
+      critical_section_lock lock(&m_criticalsectionFileContexts);
+
+      if (!m_ptexttranslator)
+      {
+
+         construct_newø(m_ptexttranslator);
+
+      }
+
+      ensure_file_contexts();
+
+   }
 
 
-      //auto estatus =
+   void context::ensure_file_contexts()
+   {
 
+      critical_section_lock lock(&m_criticalsectionFileContexts);
 
-      //if(!estatus)
-      //{
+      if (m_bFileContextsInitialized || m_bFileContextsInitializing)
+      {
 
-      //   return estatus;
+         return;
 
-      //}
+      }
 
-      /*estatus = */
-      constructø(m_pfilecontext);
+      m_bFileContextsInitializing = true;
 
-      //if (!estatus)
-      //{
+      try
+      {
 
-      //   return estatus;
+         // Create both before initialization so recursive access sees the pair.
+         øraw_construct(m_pfilecontext);
+         øraw_construct(m_pdirectorycontext);
+         m_pfilecontext->initialize(this);
+         m_pdirectorycontext->initialize(this);
+         m_pfilecontext->init_context();
+         m_pdirectorycontext->init_context();
+         m_bFileContextsInitialized = true;
+         m_bFileContextsInitializing = false;
 
-      //}
+      }
+      catch (...)
+      {
 
-      //estatus =
-      constructø(m_pdirectorycontext);
+         m_pdirectorycontext.release();
+         m_pfilecontext.release();
+         m_bFileContextsInitializing = false;
+         throw;
 
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //m_papexsystem = system();
-      //m_paurasystem = system();
-      //m_pbasesystem = system();
-      //m_pbredsystem = system()->m_pbredsystem;
-      //m_pcoresystem = system();
-
-      // if (is_system())
-      // {
-      //
-      //    auto psystem = system();
-      //
-      //    //m_papexsession->initialize(psystem);
-      //
-      //    ////estatus = m_papexsession->initialize_context();
-      //
-      //    //if (!estatus)
-      //    //{
-      //
-      //    //   return estatus;
-      //
-      //    //}
-      //
-      //    //estatus =
-      //    m_pfilecontext->init_system();
-      //
-      //    //if (!estatus)
-      //    //{
-      //
-      //    //   return estatus;
-      //
-      //    //}
-      //
-      //    //estatus =
-      //    m_pdirectorycontext->init_system();
-      //
-      //    //if (!estatus)
-      //    //{
-      //
-      //    //   return estatus;
-      //
-      //    //}
-      //
-      // }
-
-      //estatus =
-      m_pfilecontext->init_context();
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus =
-      m_pdirectorycontext->init_context();
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus =
-
-      /*    if (!estatus)
-          {
-
-             return estatus;
-
-          }*/
-
-      //on_update_matter_locator();
-
-      //return ::success;
-
+      }
 
    }
 
@@ -380,6 +321,8 @@ namespace platform
 
    void context::finalize_context()
    {
+
+      critical_section_lock lock(&m_criticalsectionFileContexts);
 
       try
       {
@@ -465,6 +408,8 @@ namespace platform
       m_pfilecontext.release();
 
       m_ptexttranslator.release();
+      m_bFileContextsInitialized = false;
+      m_bFileContextsInitializing = false;
 
    }
 
@@ -495,7 +440,9 @@ namespace platform
    ::directory_context* context::directory()
    {
 
-      if (!m_pdirectorycontext)
+      critical_section_lock lock(&m_criticalsectionFileContexts);
+
+      if (!m_bFileContextsInitialized && !m_bFileContextsInitializing)
       {
 
          initialize_context();
@@ -510,7 +457,9 @@ namespace platform
    ::file_context* context::file()
    {
 
-      if (!m_pfilecontext)
+      critical_section_lock lock(&m_criticalsectionFileContexts);
+
+      if (!m_bFileContextsInitialized && !m_bFileContextsInitializing)
       {
 
          initialize_context();
@@ -664,6 +613,32 @@ namespace platform
    //   }
 
 
+   bool context::is_finally_processed_path(const ::file::path & path)
+   {
+
+      if (path.is_empty() || (path.flags() & ::file::e_flag_final_path))
+      {
+
+         return true;
+
+      }
+
+      if (path.case_insensitive_begins("http:")
+         || path.case_insensitive_begins("https:")
+         || path.case_insensitive_begins("zip:")
+         || path.case_insensitive_begins("matter:")
+         || path.case_insensitive_begins("appmatter:"))
+      {
+
+         return true;
+
+      }
+
+      return path_system()->is_absolute_path(path);
+
+   }
+
+
    ::file::path context::defer_process_path(::file::path path)
    {
 
@@ -674,9 +649,36 @@ namespace platform
 
       }
 
-      path = node()->expand_environment_variables(path);
+      path = path_system()->expand_environment_variables(path);
 
-      path = _defer_process_path(path);
+      auto deferUntilFinallyProcessed = [this](::file::path pathToProcess)
+      {
+
+         constexpr int maximumProcessingPasses = 16;
+
+         for (int pass = 0; pass < maximumProcessingPasses; pass++)
+         {
+
+            auto pathPrevious = pathToProcess;
+
+            pathToProcess = _defer_process_path(pathToProcess);
+
+            if (is_finally_processed_path(pathToProcess) || pathToProcess == pathPrevious)
+            {
+
+               return pathToProcess;
+
+            }
+
+         }
+
+         warning() << "defer_process_path reached its processing-pass limit for path=" << pathToProcess;
+
+         return pathToProcess;
+
+      };
+
+      path = deferUntilFinallyProcessed(path);
 
       if (path.flags() & ::file::e_flag_resolve_alias)
       {
@@ -707,7 +709,7 @@ namespace platform
 
             }
 
-            path = _defer_process_path(path);
+            path = deferUntilFinallyProcessed(path);
 
          }
 
@@ -791,6 +793,74 @@ namespace platform
 
    ::file::path context::__defer_process_path(::file::path path)
    {
+      // cloud-app:// addresses this application's directory under the selected
+      // cloud root. Keep provider selection centralized in directory_system.
+      if (path.case_insensitive_begins("cloud-app://")
+         || path.case_insensitive_begins("cloud-app:/"))
+      {
+         auto pathCloudAppOriginal = path;
+         if (!path.case_insensitive_begins_eat("cloud-app://"))
+         {
+            path.case_insensitive_begins_eat("cloud-app:/");
+         }
+         auto flags = path.flags();
+
+         while (path.begins("/") || path.begins("\\"))
+         {
+            path = path.substr(1);
+         }
+
+         auto papplication = application();
+
+         if (!papplication || papplication->m_strAppId.is_empty())
+         {
+            return pathCloudAppOriginal;
+         }
+
+         auto pathCloudApp = directory()->cloud_app(papplication->m_strAppId);
+
+         if (pathCloudApp.is_empty())
+         {
+            return pathCloudAppOriginal;
+         }
+
+         pathCloudApp /= path;
+         pathCloudApp.flags() = flags;
+         path = pathCloudApp;
+
+      }
+
+      // cloud:// is the portable cloud-storage root. The configured provider
+      // comes from directory_system and may be overridden in roaming/user/cloud.txt.
+      if (path.case_insensitive_begins("cloud://")
+         || path.case_insensitive_begins("cloud:/"))
+      {
+         auto pathCloudOriginal = path;
+         if (!path.case_insensitive_begins_eat("cloud://"))
+         {
+            path.case_insensitive_begins_eat("cloud:/");
+         }
+         auto flags = path.flags();
+
+         while (path.begins("/") || path.begins("\\"))
+         {
+            path = path.substr(1);
+         }
+
+         auto pathCloudRoot = directory_system()->cloud_protocol();
+
+         if (pathCloudRoot.is_empty())
+         {
+            return pathCloudOriginal;
+         }
+
+         auto pathCloud = pathCloudRoot / path;
+
+         pathCloud.flags() = flags;
+
+         return pathCloud;
+      }
+
       // appdata is local per-application storage, independent of cloud providers.
       // Resolve before relative-path handling and optional protocol adapters.
       if (path.case_insensitive_begins_eat("appdata:/"))
@@ -1022,7 +1092,7 @@ namespace platform
 
       auto pdirsystem = psystem->directory_system();
 
-      ::file::path pathResource = pdirsystem->m_pathInstall;
+      ::file::path pathResource = pdirsystem->installed_path();
 
 #ifdef __APPLE__
 
@@ -1043,7 +1113,7 @@ namespace platform
 
          auto psystem = system();
 
-         ::file::path pathCache = psystem->directory_system()->m_pathLocalAppMatterFolder / path;
+         ::file::path pathCache = psystem->directory_system()->local_app_matter_folder() / path;
 
          if (path.flags().has(::file::e_flag_get_local_path)
              || (path.flags().is_clear(::file::e_flag_bypass_cache)

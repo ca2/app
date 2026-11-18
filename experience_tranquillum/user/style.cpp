@@ -97,6 +97,13 @@ namespace experience_tranquillum
             else if (eelement == ::e_element_text)
             {
 
+               if (estate & ::user::e_state_selected)
+               {
+
+                  return is_dark_mode() ? argb(255, 40, 40, 40) : argb(255, 255, 255, 255);
+
+               }
+
                if (estate & ::user::e_state_disabled)
                {
 
@@ -127,7 +134,7 @@ namespace experience_tranquillum
                   else
                   {
 
-                     return argb(255, 160, 160, 160);
+                     return argb(255, 80, 80, 80);
 
                   }
 
@@ -929,7 +936,7 @@ namespace experience_tranquillum
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleHosting.left = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.right : rectangleX.left;
+         ptab->get_data()->m_rectangleHosting.left = ptab->m_pAutoHide->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.right : rectangleX.left;
          ptab->get_data()->m_rectangleHosting.top = ptab->get_data()->m_rectangleTab.top;
          ptab->get_data()->m_rectangleHosting.right = rectangleX.right;
          ptab->get_data()->m_rectangleHosting.bottom = ptab->get_data()->m_rectangleTab.bottom;
@@ -1060,7 +1067,7 @@ namespace experience_tranquillum
          // bool bTabbedClient = ptab->m_bEffectiveVisibleTabs;
 
          rectangleHosting.left = ptab->get_data()->m_rectangleTab.left;
-         rectangleHosting.top = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.bottom : rectangleX.top;
+         rectangleHosting.top = ptab->m_pAutoHide->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.bottom : rectangleX.top;
          rectangleHosting.right = ptab->get_data()->m_rectangleTab.right;
          rectangleHosting.bottom = rectangleX.bottom;
 

@@ -14,6 +14,9 @@
 #include "apex/progress/real.h"
 
 
+class api;
+
+
 namespace apex
 {
 
@@ -28,9 +31,29 @@ namespace apex
    public:
 
 
+      // The active ca2 login profile exposed to the shared Options footer.
+      ::pointer<::api> m_papiCa2Authentication;
+
       ::string m_strPreferredExperience;
       ::i32_map<string > m_mapResourceName;
       ::string_map<::i32 > m_mapResourceId;
+
+
+      ::string                                           m_strGpuImplementation;
+      // Set in the derived application constructor; empty means use settings.
+      //::string                                           m_strGraphics3DImplementationOverride;
+      ::string                                           m_strGraphics3dOutput;
+      ::string                                           m_strDraw2dImplementation;
+      ::string                                           m_strTypefaceImplementation;
+
+      ::string                                           m_strImagingImplementation;
+
+      ::logic::boolean                                   m_bGpuImplementation;
+      ::logic::boolean                                   m_bGraphics3dOutput;
+      ::logic::boolean                                   m_bDraw2dImplementation;
+      ::logic::boolean                                   m_bTypefaceImplementation;
+
+      ::logic::boolean                                   m_bImagingImplementation;
 
       //       //__creatable(application);
       //
@@ -94,7 +117,7 @@ namespace apex
       //
       //
       //       // apex commented
-      //       //::pointer < ::mutex >                                         m_pmutexFrame;
+      //       //::pointer < ::parallelization::mutex >                                         m_pmutexFrame;
       //       //::pointer<::user::interaction_pointer_array> m_puiptraFrame;
       //
       //       enum_thread_context                          m_ethreadcontextClose;
@@ -207,6 +230,43 @@ namespace apex
 
       //virtual void process_command_line(command_line* pcommandline);
 
+      virtual ::string _draw2d_get_implementation_name_setting();
+
+      virtual void _draw2d_set_implementation_name_setting(const ::string &strImplementationName);
+
+      virtual void _on_set_draw2d_implementation_name_setting();
+
+      ::string _draw2d_get_implementation_name() override;
+
+      ::string _imaging_get_implementation_name() override;
+
+      ::string _typeface_get_implementation_name() override;
+
+      virtual ::string _gpu_get_implementation_name_setting();
+
+      virtual void _gpu_set_implementation_name_setting(const ::string & strImplementationName);
+
+      virtual void _on_set_gpu_implementation_name_setting();
+
+      ::string _gpu_get_implementation_name() override;
+
+      ::string draw2d_get_implementation_name() override;
+
+      ::string imaging_get_implementation_name() override;
+
+      ::string typeface_get_implementation_name() override;
+
+      ::string gpu_get_implementation_name() override;
+
+      virtual ::string _get_graphics3d_output_setting();
+
+      virtual void _set_graphics3d_output_setting(const ::string &strOutput);
+
+      virtual void _on_set_graphics3d_output_setting();
+
+      ::string get_graphics3d_output() override;
+
+      bool use_gpu_swap_chain() override;
 
       //virtual ::user::style* get_user_style() const;
       //virtual bool app_data_get(const ::atom & atom, stream & os) override;
@@ -247,6 +307,9 @@ namespace apex
 
 
       virtual bool is_session() const override;
+
+
+      bool is_using_gpu() override;
 
 
       bool is_service() const override;
@@ -754,8 +817,8 @@ namespace apex
       virtual string get_global_mutex_id() override;
 
 
-      //virtual ::pointer< ::mutex > get_local_mutex();
-      //virtual ::pointer< ::mutex > get_global_mutex();
+      //virtual ::pointer< ::parallelization::mutex > get_local_mutex();
+      //virtual ::pointer< ::parallelization::mutex > get_global_mutex();
 
       virtual string get_local_mutex_name() override;
 

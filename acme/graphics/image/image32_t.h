@@ -133,8 +133,8 @@ struct CLASS_DECL_ACME image32_t
    {
       y_swap_copy(point.x, point.y, size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
    }
-   inline void copy(const ::pixmap_t *p);
-   inline void y_swap_copy(const ::pixmap_t * p);
+   void copy(const ::pixmap_t *p);
+   void y_swap_copy(const ::pixmap_t * p);
    void copy_swap_red_blue(::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc = -1);
    void swap_red_blue(::i32 cx, ::i32 cy, ::i32 iStride = 0);
    void _001ProperCopyColorref(::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc = -1);

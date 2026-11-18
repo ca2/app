@@ -314,7 +314,7 @@ bool semaphore::_wait(const class time & timeWait)
 
 #elif defined(__APPLE__)
 
-//::pointer< ::mutex > g_pmutexSemaphore = nullptr;
+//::pointer< ::parallelization::mutex > g_pmutexSemaphore = nullptr;
 //
 //comparable_array < pthread_t > * g_pthreadaSemaphore = nullptr;
 //

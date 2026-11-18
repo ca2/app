@@ -33,7 +33,7 @@ namespace ios
       delay_thread *                                                 m_pdelayRelease;
       address_array < image_key * >                                  m_keyptra;
       manual_reset_happening                                             m_happeningKey;
-      ::pointer < ::mutex >                                                        m_pmutexQueue;
+      ::pointer < ::parallelization::mutex >                                                        m_pmutexQueue;
       pointer_array < ::thread >                                      m_threadaGetImage;
 
       

@@ -921,6 +921,14 @@ namespace dynamic_source
 
                auto timeRun = ::time::now();
 
+               if (pinstance->m_pscriptmain1
+                  && pinstance->m_pscriptmain1->netnodesocket()->m_request.m_strRequestUri.contains(".env"))
+               {
+
+                  information(".env");
+
+               }
+
                payload = pinstance->run_script();
 
                pinstance->m_itemN40585.m_timeRunElapsed = timeRun.elapsed();

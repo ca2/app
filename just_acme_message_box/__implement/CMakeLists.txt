@@ -82,9 +82,13 @@ endif ()
 
 
 
-add_dependencies(${PROJECT_NAME} ${copy_libraries_dependency} ${acme_libraries})
+if(copy_libraries_dependency OR acme_libraries)
+   add_dependencies(${PROJECT_NAME} ${copy_libraries_dependency} ${acme_libraries})
+endif()
 add_dependencies(${PROJECT_NAME} folder_zip)
-add_dependencies(${PROJECT_NAME} ${acme_windowing_libraries})
+if(acme_windowing_libraries)
+   add_dependencies(${PROJECT_NAME} ${acme_windowing_libraries})
+endif()
 add_dependencies(${PROJECT_NAME} app_just_acme_message_box)
 
 message(STATUS "(${PROJECT_NAME} acme_windowing_libraries : ${acme_windowing_libraries}")

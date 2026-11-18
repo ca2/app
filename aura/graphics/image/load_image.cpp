@@ -1,5 +1,6 @@
 // Created by camilo on 2021-08-24 23:41 <3ThomasBS_!!
 #include "platform.h"
+#include "fps_debug.h"
 #include "load_image.h"
 #include "context.h"
 #include "acme/graphics/image/frame_array.h"
@@ -138,6 +139,13 @@ namespace image
 
       m_pimage = pimage;
 
+      if (pimage && m_payload.as_file_path().has_character())
+      {
+
+         pimage->set_image_source_path(m_payload.as_file_path());
+
+      }
+
       if (m_pimageframearray)
       {
 
@@ -155,6 +163,16 @@ namespace image
             pimage->on_load_image_frame_array(m_pimageframearray);
 
          }
+
+      }
+
+      // A completed single-frame image load is a stable pixel source. Publish
+      // its alpha snapshot here so draw backends can safely use static-image
+      // optimizations without scanning pixels during rendering.
+      if (pimage && pimage->get_image_count() == 1)
+      {
+
+         pimage->publish_static_pixels();
 
       }
 
@@ -217,9 +235,11 @@ namespace image
          
          {
             
+#if FPS_DEBUG
             ::string strImageDiagnostics = _001_image32_diagnostics_t(size, pimage32, iScan).as_string();
             
             information("do_render_base stretch source pimageImage(B): {}", strImageDiagnostics);
+#endif
             
          }
          
@@ -233,9 +253,11 @@ namespace image
       
       {
          
+#if FPS_DEBUG
          ::string strImageDiagnostics = _001_image32_diagnostics_t(ppixmap).as_string();
          
          information("do_render_base stretch source pimageImage(B): {}", strImageDiagnostics);
+#endif
          
       }
 

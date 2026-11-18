@@ -345,7 +345,7 @@ class ::time dialog::dialog_timeout() const
 //}
 
 
- void dialog::wait_dialog_response(const class ::time & timeTimeout)
+ void dialog::wait_for_dialog_response(const class ::time & timeTimeout)
 {
     
     m_pmanualresethappeningDialogResponse->wait(timeTimeout);

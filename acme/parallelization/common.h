@@ -19,12 +19,19 @@ class single_lock;
 
 //class sync_object;
 class semaphore;
-class mutex;
+namespace parallelization { class mutex; }
 class happening;
 class critical_section;
 class manual_reset_happening;
 class single_lock;
 class multiple_lock;
+
+
+namespace parallelization
+{
+   class mutex;
+   class fast_critical_section;
+}
 
 
 

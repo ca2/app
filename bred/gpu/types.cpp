@@ -82,3 +82,13 @@ GPU_PROPERTY("radius", ::gpu::e_type_f32)
 GPU_PROPERTY("thickness", ::gpu::e_type_f32)
 END_GPU_PROPERTIES()
 
+
+BEGIN_GPU_PROPERTIES(::gpu::brush_fill_uniform_set)
+GPU_PROPERTY("brushColor0", ::gpu::e_type_seq4)
+GPU_PROPERTY("brushColor1", ::gpu::e_type_seq4)
+GPU_PROPERTY("brushData0", ::gpu::e_type_seq4)
+GPU_PROPERTY("brushData1", ::gpu::e_type_seq4)
+GPU_PROPERTY("fillShape", ::gpu::e_type_seq4)
+GPU_PROPERTY("brushParameters", ::gpu::e_type_seq4)
+GPU_PROPERTY("textureInformation", ::gpu::e_type_seq4)
+END_GPU_PROPERTIES()

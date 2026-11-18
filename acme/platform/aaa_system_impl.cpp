@@ -4,6 +4,7 @@
 #include "acme.h"
 #include "system_setup.h"
 #include "system.h"
+#include "startup_delay_debug.h"
 #include "system_factory.h"
 //#include "sequencer.h"
 #include "application.h"
@@ -2382,7 +2383,11 @@ namespace platform
 
       information() << "::apex::system::on_request session = " << ::platform::type(psession).name() << "(" << ((iptr)psession) << ")";
 
-      psession->post_request(prequest);
+      {
+         STARTUP_DELAY_TRACE_SCOPE_IF("system::on_request - session::post_request",
+            prequest->m_strAppId == "app/app");
+         psession->post_request(prequest);
+      }
 
    }
 

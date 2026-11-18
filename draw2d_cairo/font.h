@@ -87,6 +87,7 @@ namespace draw2d_cairo
 
       cairo_font_face_t *        m_pcairofontface;
       bool                       m_bToyQuotedFontSelection;
+      ::f64                      m_dFontScalerUsed;
 
 
       font();
@@ -94,6 +95,7 @@ namespace draw2d_cairo
 
 
       void update(::draw2d::graphics * pdraw2dgraphics) override;
+      void defer_update(::draw2d::graphics * pdraw2dgraphics) override;
       void destroy() override;
       // void destroy_os_data() override;
 

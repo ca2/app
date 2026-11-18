@@ -83,15 +83,15 @@ namespace dynamic_source
       //::pointer<::user::message_window>                  m_pmessagequeue;
 
       ::i32                                                   m_iTunnelPluginCount;
-      ::pointer < ::mutex >                                 m_pmutexOutLink;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexOutLink;
       string_map_base < ::pointer<::sockets::link_out_socket > > m_mapOutLink;
-      ::pointer < ::mutex >                                 m_pmutexInLink;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexInLink;
       ::pointer<::sockets::in_link_map>                     m_pmapInLink;
-      ::pointer < ::mutex >                                 m_pmutexTunnel;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexTunnel;
       ::string_map < tunnel_map_item >                      m_mapTunnel;
 
 
-      ::pointer < ::mutex >                                 m_pmutexImageSize;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexImageSize;
       string_map_base < ::i32_size >                             m_mapImageSize;
 
 
@@ -103,25 +103,25 @@ namespace dynamic_source
       ::file::path                                          m_pathNetseedPath;
       ::file::path                                          m_pathNetseedDsCa2Path;
 
-      ::pointer < ::mutex >                                 m_pmutexSimage;
-      ::pointer < ::mutex >                                 m_pmutexSpider;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexSimage;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexSpider;
 
-      ::pointer < ::mutex >                                 m_pmutexRsa;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexRsa;
       
       ::crypto::rsaptra                                     m_rsaptra;
 
       class ::time                                          m_timeLastRsa;
 
-      ::pointer < ::mutex >                                 m_pmutexShouldBuild;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexShouldBuild;
       string_map_base < ::logic::boolean >                       m_mapShouldBuild2;
 
 
       class ::time                                          m_timeDatabaseWaitTimeOut;
 
-      ::pointer < ::mutex >                                 m_pmutexSession;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexSession;
       string_map_base < ::pointer<::dynamic_source::session > >  m_mapSession;
-      ::pointer < ::mutex >                                 m_pmutexMusicDbPool;
-      ::pointer < ::mutex >                                 m_pmutexWayDbPool;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexMusicDbPool;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexWayDbPool;
       ::pointer<script_cache>                               m_pcache;
       ::pointer<script_compiler>                            m_pcompiler;
       class ::time                                          m_timeBuildInterval;
@@ -131,12 +131,12 @@ namespace dynamic_source
 
       string                                                m_strPersistentError;
 
-      ::pointer < ::mutex >                                 m_pmutexPersistentStr;
-      ::pointer < ::mutex >                                 m_pmutexUiRedir;
-      ::pointer < ::mutex >                                 m_pmutexTagId;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexPersistentStr;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexUiRedir;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexTagId;
       string_to_string_base                                      m_tagid;
       string_to_string_base                                      m_usersecuretagid;
-      ::pointer < ::mutex >                                 m_pmutexTagName;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexTagName;
       string_to_string_base                                      m_tagname;
 
 

@@ -726,7 +726,7 @@ namespace filemanager
 
       //{
 
-      //   ::pointer < ::mutex > m(e_create_new, "Local\\ca2-filemanagers");
+      //   ::pointer < ::parallelization::mutex > m(e_create_new, "Local\\ca2-filemanagers");
 
       //   synchronous_lock synchronouslock(&m);
 

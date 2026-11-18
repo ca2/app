@@ -1,7 +1,9 @@
 // Created by camilo on 2021-11-05 16:34 PM <3ThomasBorregaardSorensen!!
 #include "platform.h"
 #include "api.h"
+#include "html_page.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "acme/prototype/prototype/memory.h"
 #include "acme/prototype/prototype/url.h"
@@ -54,6 +56,25 @@ namespace api_ca2
       // ca2 obtains its redirect identity from the application and credentials
       // from the saved login profile; no OAuth provider configuration is needed.
       m_setConfiguration.erase_all();
+      ::pointer<::apex::application> papplication = get_app();
+      papplication->m_papiCa2Authentication = this;
+   }
+
+
+   void api::clear_profile()
+   {
+      _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      // Invalidate waiters and callbacks from the previous browser attempt.
+      ++m_uAuthenticationAttempt;
+      m_bAuthenticated = false;
+      m_bAuthenticating = false;
+      m_bWaitingResponseFromUser = false;
+      m_strState.empty();
+      m_strAppLogin.empty();
+      m_strToken.empty();
+      m_happeningResponse.set_happening();
+      // Clear the saved token as well as appstate/applogin credentials.
+      ::api::clear_profile();
    }
 
 
@@ -104,6 +125,10 @@ namespace api_ca2
          if (bOwner)
          {
             _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            if (uAttempt != m_uAuthenticationAttempt || !m_bWaitingResponseFromUser)
+            {
+               throw ::exception(error_failed);
+            }
             m_strAppLogin = get_app_login();
             if (m_strAppLogin.is_empty())
             {
@@ -277,7 +302,11 @@ namespace api_ca2
             _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
             m_timeLastNotifyOnPreLoginScreen.Now();
 
-            strHtml = "Waiting for Authentication";
+            html_page::append_document_start(strHtml, "Waiting for authentication");
+            html_page::append_title(strHtml, "ca2 account", "Waiting for authentication");
+            html_page::append_paragraph(strHtml, "Complete the sign-in flow in your browser. This page will refresh when authentication finishes.");
+            html_page::append_footer(strHtml);
+            html_page::append_document_end(strHtml);
 
             return ::success;
 
@@ -285,25 +314,34 @@ namespace api_ca2
 
       }
 
-      strHtml += "<html>";
-      strHtml += "<html>";
-      strHtml += "<head>";
-      strHtml += "<meta charset=\"UTF-8\">";
-      // <from https://thomasbs.com/ <3tbs!!>
-      strHtml += "<link href=\"https://fonts.ca2apis.com/css?family=Fira+Code&display=swap\" rel=\"stylesheet\">";
-      // </from https://thomasbs.com/ <3tbs!!>
-      strHtml += "</head>";
-      strHtml += "<body style=\"font-family:'Fira Code', monospace;\">";
-
       string strAppState = ::url::get_parameter(scopedstrUrl, "appstate");
 
       string strAppCode = ::url::get_parameter(scopedstrUrl, "appcode");
 
       _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      string strAppId = get_app()->m_strAppId;
+      string strAppName = get_app()->application_title();
+      string strAppIcon;
+      try
+      {
+         auto memoryIcon = get_app()->file()->as_memory("matter://main/icon.png");
+         strAppIcon = memoryIcon.to_base64();
+      }
+      catch (...)
+      {
+         // An unavailable icon must not prevent completing authentication.
+      }
+
       if (!m_bWaitingResponseFromUser || strAppState != m_strState
          || m_timeAuthenticationStarted.elapsed() >= 5_min)
       {
-         strHtml += "Authentication attempt is no longer pending.</body></html>";
+         strHtml = html_page::message_page(
+            "Authentication expired",
+            "ca2 account",
+            "Sign-in link expired",
+            "This authentication attempt is no longer pending.",
+            "Return to the application and start sign-in again.",
+            false, strAppId, strAppName, strAppIcon);
          information() << "ca2_auth: ignored_callback app=" << get_app()->m_strAppId;
          return ::success;
       }
@@ -321,8 +359,18 @@ namespace api_ca2
             m_strToken.empty();
          }
       }
+      catch (const ::exception & exception)
+      {
+         information() << "ca2_auth: token_exchange_exception app=" << get_app()->m_strAppId
+            << " status=" << (::i64) exception.m_estatus
+            << " stack=" << exception.m_strCallStackTrace;
+         m_bAuthenticated = false;
+         m_strToken.empty();
+      }
       catch (...)
       {
+         information() << "ca2_auth: token_exchange_exception app=" << get_app()->m_strAppId
+            << " type=unknown";
          m_bAuthenticated = false;
          m_strToken.empty();
       }
@@ -335,27 +383,24 @@ namespace api_ca2
 
       if (bAuthenticated)
       {
-
-         strHtml += "<h1>";
-         strHtml += "Login successful";
-         strHtml += "</h1>";
-         strHtml += "<h4>The login process has completed successfully.</h4>";
-         strHtml += "<h5>You can return to the application.</h5>";
-
+         strHtml = html_page::message_page(
+            "Login successful",
+            "ca2 account",
+            "Login successful",
+            "The login process has completed successfully.",
+            "You can return to the application.",
+            true, strAppId, strAppName, strAppIcon);
       }
       else
       {
-
-         strHtml += "<h1>";
-         strHtml += "Login failed";
-         strHtml += "</h1>";
-         strHtml += "<h4>The login process has failed.</h4>";
-         strHtml += "<h5>You should be redirected to the login page.</h5>";
-
+         strHtml = html_page::message_page(
+            "Login failed",
+            "ca2 account",
+            "Login failed",
+            "The login process could not be completed.",
+            "Return to the application and try signing in again.",
+            false, strAppId, strAppName, strAppIcon);
       }
-
-      strHtml += "</body>";
-      strHtml += "</html>";
 
       // Retain the API until its waiting caller has observed success/failure.
       // The caller owns failure recovery; the callback must not release it.
@@ -404,7 +449,17 @@ namespace api_ca2
 
       string strGet = "https://ca2.site/account/token";
 
-      string strResponse = http()->get(strGet, set);
+      information() << "ca2_auth: token_exchange_started app=" << get_app()->m_strAppId;
+      // Use the same HTTP entry point as _api_get so the POST fields, transport
+      // status and response stay on the application's HTTP context.
+      string strResponse;
+      http()->get(strResponse, strGet, set);
+
+      information() << "ca2_auth: token_exchange_response app=" << get_app()->m_strAppId
+         << " http_status=" << set["http_status_code"].as_i32()
+         << " transport_status=" << set["get_status"].as_i64()
+         << " bytes=" << strResponse.length()
+         << " token_format=" << strResponse.case_insensitive_begins("token://");
 
       if (!strResponse.case_insensitive_begins_eat("token://"))
       {

@@ -34,7 +34,7 @@ namespace experience_core
 
 
       ::i32 calculate_button_size(::draw2d::graphics_pointer & pdraw2dgraphics) override;
-      ::i32_rectangle get_button_margin(::experience::enum_button ebutton) override;
+      ::i32_rectangle get_button_margin(::experience::enum_button ebutton, ::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
 
    };

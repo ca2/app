@@ -1,5 +1,6 @@
 // Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSorensen!!
 #include "platform.h"
+#include "acme/parallelization/mutex.h"
 #include "acme/operating_system/windows/printf_format.h"
 #include "call.h"
 #include "type.h"
@@ -173,7 +174,7 @@ void particle::defer_create_synchronization()
       //
       //#endif
 
-      set_synchronization(createø< ::mutex >(nullptr));
+      set_synchronization(create_newø< ::parallelization::mutex >());
 
    }
 
@@ -2687,6 +2688,25 @@ void particle::task_post(const ::procedure& procedure)
 }
 
 
+void particle::user_call(::enum_parallelization eparallelization, const ::procedure& procedure)
+{
+
+   if (eparallelization == e_parallelization_synchronous)
+   {
+
+      user_send(procedure);
+
+   }
+   else
+   {
+
+      user_post(procedure);
+
+   }
+
+}
+
+
 void particle::user_send(const ::procedure& procedure)
 {
 
@@ -2701,7 +2721,9 @@ void particle::user_send(const ::procedure& procedure)
 
    auto pacmewindowing = psystem->m_pacmewindowing;
 
-   if (::is_set(pacmewindowing))
+   // The windowing object may inherit this dispatcher. Do not route it
+   // back to itself; use the node dispatcher below in that case.
+   if (::is_set(pacmewindowing) && pacmewindowing.m_p != this)
    {
 
       pacmewindowing->user_send(procedure);
@@ -2722,6 +2744,25 @@ void particle::user_post(const ::procedure& procedure)
 {
 
    node()->user_post(procedure);
+
+}
+
+
+void particle::main_call(::enum_parallelization eparallelization, const ::procedure& procedure)
+{
+
+   if (eparallelization == e_parallelization_synchronous)
+   {
+
+      main_send(procedure);
+
+   }
+   else
+   {
+
+      main_post(procedure);
+
+   }
 
 }
 

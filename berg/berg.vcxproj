@@ -1889,6 +1889,8 @@
     <ClCompile Include="user\user\document_manager_container.cpp" />
     <ClCompile Include="user\user\form_handler.cpp" />
     <ClCompile Include="user\user\frame_window.cpp" />
+    <ClCompile Include="user\user\render_lines.cpp" />
+    <ClCompile Include="user\user\fps_statistics.cpp" />
     <ClCompile Include="user\user\hotplugin.cpp" />
     <ClCompile Include="user\user\impact.cpp" />
     <ClCompile Include="user\user\impact_creator.cpp" />
@@ -2042,6 +2044,8 @@
     <ClInclude Include="user\user\document_manager_container.h" />
     <ClInclude Include="user\user\edit_window.h" />
     <ClInclude Include="user\user\frame_window.h" />
+    <ClInclude Include="user\user\render_lines.h" />
+    <ClInclude Include="user\user\fps_statistics.h" />
     <ClInclude Include="user\user\impact.h" />
     <ClInclude Include="user\user\impact_creator.h" />
     <ClInclude Include="user\user\impact_host.h" />

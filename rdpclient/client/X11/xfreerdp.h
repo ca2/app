@@ -125,7 +125,7 @@ struct xf_context
    xfFullscreenMonitors fullscreenMonitors;
    ::i32 current_desktop;
    BOOL remote_app;
-   HANDLE ::pointer < ::mutex >;
+   HANDLE ::pointer < ::parallelization::mutex >;
    BOOL UseXThreads;
    BOOL cursorHidden;
 

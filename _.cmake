@@ -1,3 +1,14 @@
+
+
+# Single-configuration generators (such as Ninja) need an explicit build type.
+# Preserve a type supplied by the user or IDE, and default an empty value to Debug.
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Build type (Debug, Release, RelWithDebInfo, MinSizeRel)" FORCE)
+endif()
+set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS Debug Release RelWithDebInfo MinSizeRel)
+
+
+
 # Refresh the entry-point compilation timestamp whenever this application is built.
 # Only the entry point is recompiled; the remaining application objects stay incremental.
 function(ca2_refresh_application_build_timestamp target entry_source)
@@ -67,6 +78,7 @@ set(INCLUDE_OPENGL FALSE)
 set(HAS_SYSTEM_UNAC FALSE)
 set(HAS_APP_VERIWELL FALSE)
 set(USE_SYSTEM_JPEG TRUE)
+set(HAS_CHROMIUM_EMBEDDED_FRAMEWORK TRUE)
 #set(HAS_AUDIO_SYSTEM FALSE)
 set(CURL_NANO_HTTP FALSE)
 set(FREEBSD FALSE)
@@ -163,7 +175,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(ROOT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(WORKSPACE_FOLDER ${ROOT_SOURCE_DIR})
-set(APPLICATION_BUILD_HELPER_BINARY "${HOME_DIR}/code/operating_system/tool/bin/application_build_helper")
 
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
@@ -274,6 +285,8 @@ endif()
 message(STATUS "going to include \"operating_system/_.cmake\"")
 include(operating_system/_.cmake)
 
+
+set(APPLICATION_BUILD_HELPER_BINARY "${HOME_DIR}/code/operating_system/tool/bin/${__TARGET_SYSTEM_ARCHITECTURE}/application_build_helper")
 
 
 

@@ -35,7 +35,7 @@ namespace subsystem
 {
 
    class SecurityAttributesInterface :
-   virtual public ::Particle
+   virtual public ::subsystem::Particle
    {
    public:
       //SecurityAttributes();
@@ -70,7 +70,7 @@ namespace subsystem
    //using SecurityAttributesInterface = particle_interface<SecurityAttributesInterface>;
 
    class CLASS_DECL_SUBSYSTEM SecurityAttributesComposite :
-   virtual public Composite<SecurityAttributesInterface>
+   virtual public ::subsystem::Composite <SecurityAttributesInterface>
    {
    public:
 
@@ -124,7 +124,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM SecurityAttributesAggregate :
-    virtual public Aggregate < SecurityAttributesComposite >
+    virtual public ::subsystem::Aggregate < SecurityAttributesComposite >
    {
    public:
 
@@ -132,7 +132,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM SecurityAttributes :
-      virtual public Object < SecurityAttributesAggregate >
+      virtual public ::subsystem::Object <SecurityAttributesAggregate >
    {
    public:
 

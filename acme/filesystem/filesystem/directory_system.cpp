@@ -1,10 +1,12 @@
 // Create on 2021-03-20 23:59 <3ThomasBS_
 #include "platform.h"
+#include "startup_delay_debug.h"
 #include "directory_system.h"
 #include "file_system.h"
 #include "path_system.h"
 //#include "path_array.h"
 #include "listing.h"
+#include "acme/filesystem/file/folder.h"
 #include "acme/exception/interface_only.h"
 #include "acme/operating_system/process_process.h"
 #include "acme/platform/application.h"
@@ -35,11 +37,6 @@ void directory_system::initialize(::particle * pparticle)
 {
 
    ::particle::initialize(pparticle);
-
-   m_pathInstallFolder = default_install();
-
-   m_pathFolder = current();
-
 
 //   m_pathModuleFolder = dir_ca2_module();
 
@@ -125,7 +122,7 @@ void directory_system::initialize(::particle * pparticle)
 ::file::path directory_system::appdata()
 {
 
-   return roaming() / appid();
+   return application_app_data_path();
 
 }
 
@@ -146,6 +143,61 @@ void directory_system::initialize(::particle * pparticle)
 }
 
 
+::file::path directory_system::cloud_protocol()
+{
+
+   critical_section_lock synchronouslock(&m_criticalsectionCloudProtocol);
+
+   if (!m_bCloudProtocolCalculated)
+   {
+
+      auto pathCloudConfiguration = userconfig() / "cloud.txt";
+
+      if (file_system()->exists(pathCloudConfiguration))
+      {
+
+         ::string strCloudRoot = file_system()->as_string(pathCloudConfiguration);
+
+         strCloudRoot.trim();
+
+         if (strCloudRoot.has_character()
+            && !strCloudRoot.case_insensitive_begins("cloud://"))
+         {
+
+            m_pathCloudProtocol = strCloudRoot;
+
+         }
+
+      }
+
+      if (m_pathCloudProtocol.is_empty())
+      {
+
+#if defined(WINDOWS)
+
+         m_pathCloudProtocol = "onedrive://";
+
+#elif defined(LINUX) || defined(__SUNOS__)
+
+         m_pathCloudProtocol = "dropbox://";
+
+#elif defined(MACOS) || defined(APPLE_IOS)
+
+         m_pathCloudProtocol = "icloud://";
+
+#endif
+
+      }
+
+      m_bCloudProtocolCalculated = true;
+
+   }
+
+   return m_pathCloudProtocol;
+
+}
+
+
 ::file::path directory_system::config()
 {
 
@@ -158,6 +210,169 @@ void directory_system::initialize(::particle * pparticle)
 {
 
    return ca2roaming() / "local";
+
+}
+
+
+::file::path directory_system::local_app_matter_folder()
+{
+
+   critical_section_lock synchronouslock(&m_criticalsectionLazyPaths);
+
+   if (!m_bLocalAppMatterFolderCalculated)
+   {
+
+#if defined(__APPLE__) || defined(_DEBUG) || defined(__ANDROID__) || defined(UNIVERSAL_WINDOWS)
+      if (is(application()->side_get_matter_path("app/_matter/main")))
+      {
+
+         m_pathLocalAppMatterFolder = application()->side_get_matter_path("");
+
+      }
+      else
+#endif
+      {
+
+         m_pathLocalAppMatterFolder = system()->local_get_matter_path();
+
+      }
+
+      m_bLocalAppMatterFolderCalculated = true;
+
+   }
+
+   return m_pathLocalAppMatterFolder;
+
+}
+
+
+::file::path directory_system::local_app_matter_cache_folder()
+{
+
+   critical_section_lock synchronouslock(&m_criticalsectionLazyPaths);
+
+   if (!m_bLocalAppMatterCacheFolderCalculated)
+   {
+
+      m_pathLocalAppMatterCacheFolder = system()->local_get_matter_cache_path();
+      m_bLocalAppMatterCacheFolderCalculated = true;
+
+   }
+
+   return m_pathLocalAppMatterCacheFolder;
+
+}
+
+
+::file::path directory_system::default_app_data_path()
+{
+
+   critical_section_lock synchronouslock(&m_criticalsectionLazyPaths);
+
+   if (!m_bDefaultAppDataPathCalculated)
+   {
+
+      m_pathDefaultAppData = compute_default_app_data_path();
+      m_bDefaultAppDataPathCalculated = true;
+
+   }
+
+   return m_pathDefaultAppData;
+
+}
+
+
+::file::path directory_system::app_data_path()
+{
+
+   critical_section_lock synchronouslock(&m_criticalsectionLazyPaths);
+
+   ::file::path pathOverride = system()->has_property("app_folder")
+      ? ::file::path(system()->payload("app_folder")) : ::file::path();
+
+   if (!m_bAppDataPathCalculated || m_pathAppDataOverride != pathOverride)
+   {
+
+      m_pathAppData = pathOverride.has_character() ? pathOverride : default_app_data_path();
+      m_pathAppDataOverride = pathOverride;
+      m_bAppDataPathCalculated = true;
+
+   }
+
+   return m_pathAppData;
+
+}
+
+
+::file::path directory_system::application_app_data_path()
+{
+
+   return application_app_data_path(appid());
+
+}
+
+
+::file::path directory_system::application_app_data_path(const ::scoped_string & scopedstrAppId)
+{
+
+   critical_section_lock synchronouslock(&m_criticalsectionLazyPaths);
+
+   ::string strAppId(scopedstrAppId);
+   ::file::path pathOverride = system()->has_property("app_folder")
+      ? ::file::path(system()->payload("app_folder")) : ::file::path();
+
+   // The application id and override may become available after early startup.
+   if (!m_bRoamingAppDataPathCalculated
+      || m_strApplicationAppDataAppId != strAppId
+      || m_pathApplicationAppDataOverride != pathOverride)
+   {
+
+      auto pathAppData = pathOverride.has_character() ? pathOverride : roaming() / strAppId;
+
+      m_pathApplicationAppData = pathAppData;
+      m_strApplicationAppDataAppId = strAppId;
+      m_pathApplicationAppDataOverride = pathOverride;
+      m_bRoamingAppDataPathCalculated = true;
+
+   }
+
+   return m_pathApplicationAppData;
+
+}
+
+
+::file::path directory_system::home_path()
+{
+
+   critical_section_lock synchronouslock(&m_criticalsectionLazyPaths);
+
+   if (!m_bHomePathCalculated)
+   {
+
+      m_pathHome = home();
+      m_bHomePathCalculated = true;
+
+   }
+
+   return m_pathHome;
+
+}
+
+
+::file::path directory_system::ca2_config_path()
+{
+
+   critical_section_lock synchronouslock(&m_criticalsectionLazyPaths);
+
+   if (!m_bCa2ConfigPathCalculated)
+   {
+
+      m_pathCa2Config = ca2roaming() / "config";
+      m_bCa2ConfigPathCalculated = true;
+
+   }
+
+   return m_pathCa2Config;
 
 }
 
@@ -311,6 +526,26 @@ string directory_system::system_short_name()
    }
 
    return m_pathInstallFolder;
+
+}
+
+
+::file::path directory_system::installed_path()
+{
+
+   critical_section_lock synchronouslock(&m_criticalsectionLazyPaths);
+
+   if (!m_bInstallPathCalculated)
+   {
+
+      m_pathInstall = m_pathInstallFolder.is_empty()
+         ? default_install()
+         : m_pathInstallFolder;
+      m_bInstallPathCalculated = true;
+
+   }
+
+   return m_pathInstall;
 
 }
 
@@ -1011,6 +1246,17 @@ bool directory_system::defer_enumerate_media_library(::file::listing_base& listi
 
 bool directory_system::defer_enumerate_protocol(::file::listing_base& listing)
 {
+
+   if (listing.m_pathUser.case_insensitive_begins("google-drive://"))
+   {
+      auto path = application()->defer_process_path(listing.m_pathUser);
+      if (path.case_insensitive_begins("google-drive://"))
+      {
+         auto & pfactory = system()->factory("folder", "google_drive");
+         auto pfolder = createø < ::folder >(pfactory);
+         return pfolder->enumerate(listing);
+      }
+   }
    
    return node()->defer_enumerate_protocol(listing);
    
@@ -1536,145 +1782,9 @@ bool directory_system::contains_files(const ::file::path& path, const ::string_a
 void directory_system::init_system()
 {
 
-//   if (!update_module_path())
-//   {
-//
-//      return ::error_failed;
-//
-//   }
-//
-   m_pathInstall = this->install();
-
-   //auto psystem = system();
-
-   //auto pfile = psystem->m_pfilesystem;
-
-   //auto pathModule = pfile->m_pathModule;
-
-   //::file::path pathModuleFolder = pathModule.folder();
-
-//   m_pathModule = pathModuleFolder;
-
-   //m_pathModule = application()->get_module_folder();
-
-//   auto pathCa2Module = pfile->m_pathCa2Module;
-//
-//   ::file::path pathCa2ModuleFolder = pathCa2Module.folder();
-//
-//   m_pathCa2Module = pathCa2ModuleFolder;
-
-   //auto psystem = system();
-
-   auto pdirectorysystem = this;
-
-#if defined(__APPLE__) || (defined(_DEBUG)) || defined(__ANDROID__) || defined(UNIVERSAL_WINDOWS)
-
-   if ( pdirectorysystem->is(application()->side_get_matter_path("app/_matter/main")))
-   {
-
-      m_pathLocalAppMatterFolder = application()->side_get_matter_path("");
-
-      m_pathLocalAppMatterCacheFolder = system()->local_get_matter_cache_path();
-
-   }
-   else
-#endif
-   {
-
-      m_pathLocalAppMatterFolder = system()->local_get_matter_path();
-
-      m_pathLocalAppMatterCacheFolder = system()->local_get_matter_cache_path();
-
-   }
-
-   //constructø(m_pfilewatcher);
-
-   pdirectorysystem->create(this->bookmark());
-
-   //if (!update_module_path())
-   //{
-
-   //   return false;
-
-   //}
-
-   //if (m_pziputil == nullptr)
-   //{
-
-   //   m_pziputil = allocateø ::zip::util();
-
-   //}
-
-   ::string strAppId = this->appid();
-
-   debug() << "directory_system::init_system strAppId : " << strAppId;
-
-   m_pathDefaultAppData = compute_default_app_data_path();
-
-   string strAppFolder;
-
-   //if (psystem->m_plibrary)
-   //{
-
-   //   if (psystem->m_plibrary->get_ca2_library())
-   //   {
-
-   //      strAppFolder = psystem->m_plibrary->get_ca2_library()->m_strFolder;
-
-   //      if (strAppFolder.is_empty())
-   //      {
-
-   //         strAppFolder = psystem->m_plibrary->get_ca2_library()->m_strName;
-
-   //      }
-
-   //   }
-
-   //}
-
-   //if (strAppFolder.is_empty())
-   //{
-
-      //strAppFolder = _002Underscore(application()->m_strAppId);
-
-   //}
-
-   m_pathDefaultAppData /= strAppFolder;
-
-   //m_strCa2DefaultAppData /= psystem->get_system_platform();
-
-   //m_strCa2DefaultAppData /= psystem->get_system_configuration();
-
-   ::file::path pathAppData;
-
-   //auto psystem = system();
-
-   if (system()->has_property("app_folder"))
-   {
-
-      //pathAppData = psystem->payload("app_folder");
-
-      pathAppData = system()->payload("app_folder");
-
-   }
-
-   if (pathAppData.has_character())
-   {
-
-      m_pathAppData = pathAppData;
-
-   }
-   else
-   {
-
-      m_pathAppData = m_pathDefaultAppData;
-
-   }
-
-   debug() << "m_pathAppData : " << m_pathAppData;
+   STARTUP_DELAY_TRACE_SCOPE("directory_system::init_system");
 
 }
-
 
 void directory_system::on_system_termination()
 {

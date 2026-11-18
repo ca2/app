@@ -2,6 +2,7 @@
 
 
 #include "acme/handler/handler.h"
+#include "acme/parallelization/critical_section.h"
 #include "acme/parallelization/task.h"
 //#include "acme/platform/message_box.h"
 #include "acme/platform/context_acme.h"
@@ -85,6 +86,9 @@ namespace platform
          ::pointer<::image::image_context>               m_pimagecontext;
          ::pointer<::directory_context>                  m_pdirectorycontext;
          ::pointer<::file_context>                       m_pfilecontext;
+         critical_section                               m_criticalsectionFileContexts;
+         bool                                           m_bFileContextsInitializing = false;
+         bool                                           m_bFileContextsInitialized = false;
          //::pointer<::http::context>                      m_phttpcontext;
 
          //::pointer < ::os_context >                      m_poscontext;
@@ -134,6 +138,7 @@ namespace platform
       void initialize(::particle * pparticle) override;
 
       virtual void initialize_context() override;
+      void ensure_file_contexts();
 
       virtual void initialize_context_1() override;
 
@@ -187,6 +192,7 @@ namespace platform
       virtual ::file::path defer_process_path(::file::path path) override;
       virtual ::file::path _defer_process_path(::file::path path) override;
       virtual ::file::path __defer_process_path(::file::path path) override;
+      bool is_finally_processed_path(const ::file::path & path);
 
 
       virtual void fork_count(::collection::count iCount, const ::function < void(::collection::index, ::collection::index, ::collection::index, ::collection::index) > & function, const ::procedure & procedureCompletion, ::collection::index iStart = 0) override;

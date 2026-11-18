@@ -6,6 +6,7 @@
 #include "apex/gpu/approach.h"
 #include "aura/windowing/window.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/graphics.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/texture.h"
@@ -34,6 +35,64 @@ namespace gpu
 
       ::draw2d::bitmap::destroy();
       m_pgputexture.release();
+
+   }
+
+
+   void bitmap::update_bitmap_as_image_render_target(
+      ::image::image * pimage,
+      ::draw2d::domain * pdraw2ddomain,
+      ::draw2d::graphics * pdraw2dgraphics)
+   {
+
+      __UNREFERENCED_PARAMETER(pdraw2ddomain);
+
+      if (!pimage || pimage->raw_size().is_empty())
+      {
+
+         throw ::exception(error_bad_argument, "GPU image render target requires a nonempty image");
+
+      }
+
+      auto sizeRaw = pimage->raw_size();
+
+      if (!m_pgputexture || m_size != sizeRaw)
+      {
+
+         ::cast < ::gpu::graphics > pgpugraphics = pdraw2dgraphics;
+
+         if (pgpugraphics)
+         {
+
+            if (pimage->m_ppixmapOwned)
+            {
+
+               initialize_gpu_bitmap(
+                  pgpugraphics->gpu_context(),
+                  sizeRaw,
+                  *pimage->m_ppixmapOwned);
+
+            }
+            else
+            {
+
+               initialize_gpu_bitmap(pgpugraphics->gpu_context(), sizeRaw, {});
+
+            }
+
+         }
+         else
+         {
+
+            _create_gpu_bitmap(sizeRaw, pdraw2dgraphics, pimage->m_ppixmapOwned);
+
+         }
+
+         m_iStride = sizeRaw.cx * (::i32)sizeof(::image32_t);
+
+      }
+
+      pimage->m_pdraw2dbitmap = this;
 
    }
 
@@ -205,6 +264,11 @@ namespace gpu
    {
 
       m_pgputexture = pgputexture;
+
+      // A wrapped texture already supplies the render target storage. Keep its
+      // dimensions in sync so graphics acquisition does not replace that target.
+      m_size = pgputexture->raw_size();
+      m_iStride = m_size.cx * (::i32)sizeof(::image32_t);
 
       ///::cast < ::gpu::graphics > pdraw2dgraphics = pdraw2dgraphics;
 

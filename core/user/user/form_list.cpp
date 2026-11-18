@@ -1391,7 +1391,7 @@ namespace user
 
    //   void form_list::_000OnMouse(::message::mouse * pmouse)
    //   {
-   //      // must lock ::user::pointer < ::mutex >_children() at top stack chain
+   //      // must lock ::user::pointer < ::parallelization::mutex >_children() at top stack chain
    //// and only at top stack chain.
    //
    //      auto point = pmouse->m_point;

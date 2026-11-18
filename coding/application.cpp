@@ -915,71 +915,73 @@ namespace coding
 
       auto psummary = node()->operating_system_summary();
 
-      if (psummary->m_strSystem == "ubuntu")
-      {
-         if (psummary->m_strSystemBranch == "xfce")
-         {
-            return {"xubuntudeps"};
-         }
-         else if (psummary->m_strSystemBranch == "kde")
-         {
-            return {"ubuntuk6deps"};
-         }
-         else
-         {
-            if (atoi(psummary->m_strSystemRelease) >= 24)
-            {
-               return {"ubuntug4deps"};
-            }
-            else
-            {
-               return {"ubuntug3deps"};
-            }
-         }
-      }
-      else if (psummary->m_strSystem == "linuxmint")
-      {
-         return {"ubuntug3deps"};
-      }
-      else if (psummary->m_strSystem == "debian")
-      {
-         if (psummary->m_strSystemBranch == "xfce")
-         {
-            return {"xdebiandeps"};
-         }
-         else if (psummary->m_strSystemBranch == "kde")
-         {
-            return {"kdebiandeps"};
-         }
-         else
-         {
-            return {"debiangdeps"};
-         }
-      }
-       else if (psummary->m_strSystem == "fedora")
-       {
-           if (psummary->m_strSystemBranch == "xfce")
-           {
-               return {"fedorag3deps"};
-           }
-           else if (psummary->m_strSystemBranch == "kde")
-           {
-               return {"fedorak6deps"};
-           }
-           else
-           {
-               //if (atoi(psummary->m_strDistroRelease) >= 24)
-               //{
-                 //  return {"ubuntug4deps"};
-               //}
-               //else
-               //{
-                   return {"fedorag4deps"};
-               //}
-           }
-       }
+      return { psummary->m_strSystemAmbientReleaseArchitecture} ;
 
-      return {};
+      // if (psummary->m_strSystem == "ubuntu")
+      // {
+      //    if (psummary->m_strSystemBranch == "xfce")
+      //    {
+      //       return {"xubuntudeps"};
+      //    }
+      //    else if (psummary->m_strSystemBranch == "kde")
+      //    {
+      //       return {"ubuntuk6deps"};
+      //    }
+      //    else
+      //    {
+      //       if (atoi(psummary->m_strSystemRelease) >= 24)
+      //       {
+      //          return {"ubuntug4deps"};
+      //       }
+      //       else
+      //       {
+      //          return {"ubuntug3deps"};
+      //       }
+      //    }
+      // }
+      // else if (psummary->m_strSystem == "linuxmint")
+      // {
+      //    return {"ubuntug3deps"};
+      // }
+      // else if (psummary->m_strSystem == "debian")
+      // {
+      //    if (psummary->m_strSystemBranch == "xfce")
+      //    {
+      //       return {"xdebiandeps"};
+      //    }
+      //    else if (psummary->m_strSystemBranch == "kde")
+      //    {
+      //       return {"kdebiandeps"};
+      //    }
+      //    else
+      //    {
+      //       return {"debiangdeps"};
+      //    }
+      // }
+      //  else if (psummary->m_strSystem == "fedora")
+      //  {
+      //      if (psummary->m_strSystemBranch == "xfce")
+      //      {
+      //          return {"fedorag3deps"};
+      //      }
+      //      else if (psummary->m_strSystemBranch == "kde")
+      //      {
+      //          return {"fedorak6deps"};
+      //      }
+      //      else
+      //      {
+      //          //if (atoi(psummary->m_strDistroRelease) >= 24)
+      //          //{
+      //            //  return {"ubuntug4deps"};
+      //          //}
+      //          //else
+      //          //{
+      //              return {"fedorag4deps"};
+      //          //}
+      //      }
+      //  }
+
+      //return {};
    }
 
 
@@ -997,19 +999,28 @@ namespace coding
 
       }
 
+      if (depsa.get_count() != 1)
+      {
+
+         print_line("get_install_dep_script_names returned list with more than one item");
+
+         return {};
+
+      }
+
       ::string_array straPackageNames;
 
       for (auto& deps : depsa)
       {
 
-         if (deps.begins("____"))
-         {
+         // if (deps.begins("____"))
+         // {
+         //
+         //    continue;
+         //
+         // }
 
-            continue;
-
-         }
-
-         ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / (deps + ".package_names");
+         ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / deps / "packages.txt";
 
          if (file()->exists(path))
          {
@@ -1052,14 +1063,14 @@ namespace coding
       for (auto& deps : depsa)
       {
 
-         if (deps.begins("____"))
-         {
+         //if (deps.begins("____"))
+         //{
 
-            continue;
+           // continue;
 
-         }
+         //}
 
-         ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / (deps + ".install_group_names");
+         ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / deps / "groups.txt";
 
          auto lines = file()->lines(path);
 
@@ -1928,13 +1939,20 @@ namespace coding
 
       install_from_running_command_line_as_root(m_pathFscInstaller);
 
-      ::system("ln -s /c/Dropbox " + (directory_system()->home()/"dropbox"));
-      ::system("ln -s ~/dropbox/store " + (directory_system()->home()/"store"));
+      auto iError1 = ::system("ln -s /c/Dropbox " + (directory_system()->home()/"dropbox"));
+
+      auto iError2 = ::system("ln -s ~/dropbox/store " + (directory_system()->home()/"store"));
+
+      if (not iError1 and not iError2)
+      {
+
+         micro_preempt("~/dropbox and ~/store links seems to have been successfully created");
+
+      }
 
       auto pathFscSeemsInstalled = directory_system()->home() /".fsc";
 
       file()->put_text(pathFscSeemsInstalled, "");
-
 
    }
 
@@ -2070,7 +2088,14 @@ namespace coding
 
       install_from_running_command_line_as_root(strCommand);
 
-      ::system("fc-cache -v");
+      auto iError1 = ::system("fc-cache -v");
+
+      if (not iError1)
+      {
+
+         micro_preempt("Font cache seems to have been correctly updated. Some programs may see the update right away but some may need even a system restart to see new fonts.");
+
+      }
 
       auto pathUserFontsInstalled = directory_system()->home() /".config/.user_fonts";
 
@@ -2100,10 +2125,20 @@ namespace coding
    void application::__install_ssh_keys()
    {
 
-      ::system("mkdir -p ~/.ssh");
-      ::system("cp ~/dropbox/box/.ssh/* ~/.ssh/");
-      ::system("chmod 600 ~/.ssh/id_auth");
-      ::system("chmod 600 ~/.ssh/id_sign");
+      auto iError1 = ::system("mkdir -p ~/.ssh");
+
+      auto iError2 = ::system("cp ~/dropbox/box/.ssh/* ~/.ssh/");
+
+      auto iError3 = ::system("chmod 600 ~/.ssh/id_auth");
+
+      auto iError4 = ::system("chmod 600 ~/.ssh/id_sign");
+
+      if (not iError1 and not iError2 and not iError3 and not iError4)
+      {
+
+         micro_preempt("ssh-keys installation seems to have succeeded");
+
+      }
 
    }
 

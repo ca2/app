@@ -287,3 +287,11 @@ CLASS_DECL_ACME void memory_free_debug(void * p, ::i32 nType)
 
 
 
+
+
+void * main_memory_allocate(memsize size)
+{
+   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size, nullptr);
+}
+
+

@@ -1,5 +1,6 @@
 
 #include "acme/exception/exception.h"
+#include "acme/platform/console_lifecycle_trace.h"
 namespace APPLICATION_NAMESPACE
 {
 CLASS_DECL_IMPORT void application_factory(::factory::factory * pfactory);
@@ -83,7 +84,11 @@ extern char_pointer *environ;
    
 #endif
 
+   ::platform::console_lifecycle_trace lifecycleTrace;
+
    auto psystem = ::hold(new ::PLATFORM_LAYER_NAME::system);
+
+   lifecycleTrace.system_constructed();
 
    
 
@@ -107,6 +112,8 @@ extern char_pointer *environ;
 #endif
 
    psystem->initialize_system(argc, argv, envp);
+
+   lifecycleTrace.system_initialized();
 
    psystem->m_bConsole = true;
 
@@ -180,7 +187,7 @@ extern char_pointer *environ;
 
          pmessagebox->display(e_display_normal, {});
 
-         pmessagebox->wait_dialog_response();
+         pmessagebox->wait_for_dialog_response();
 
       }
 
@@ -252,7 +259,7 @@ extern char_pointer *environ;
 
          pmessagebox->display(e_display_normal, {});
 
-         pmessagebox->wait_dialog_response();
+         pmessagebox->wait_for_dialog_response();
 
       }
 
@@ -261,6 +268,8 @@ extern char_pointer *environ;
    //system.on_system_before_destroy();
    
    //return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
+
+   lifecycleTrace.start_shutdown();
 
    psystem->destroy();
 

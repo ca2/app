@@ -45,6 +45,10 @@ struct reference_count_debug_item;
 class reference_count_debug;
 CLASS_DECL_ACME::subparticle * refdbg_this();
 
+
+#define REFDBG_SYSTEM() auto refdbg_this = []() { return ::system(); }
+
+
 #define REFDBG_THIS(p) auto refdbg_this = [p]() { return p; }
 
 //#define createø __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create
@@ -211,6 +215,9 @@ CLASS_DECL_ACME ::reference_referer* refdbg_get_top_releaser();
 
 
 #else
+
+
+#define REFDBG_SYSTEM()
 
 
 #define REFDBG_THIS(p)

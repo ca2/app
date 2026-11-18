@@ -45,7 +45,7 @@ namespace userstack
       bool                       m_bDestroy;
       i32_rectangle_array_base                 m_rectangleaUpdate;
       class ::time                       m_timeLastUpdate;
-      ::pointer < ::mutex >                      m_pmutexDraw;
+      ::pointer < ::parallelization::mutex >                      m_pmutexDraw;
 
 
       impact(::particle * pparticle);

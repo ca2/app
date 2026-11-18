@@ -410,8 +410,8 @@ namespace subsystem_bsd_sockets
    {
 
       struct timeval tv;
-      tv.tv_sec = timeTimeout.m_iSecond;
-      tv.tv_usec = timeTimeout.m_iNanosecond / 1'000;
+      ::numeric::clip_assign(tv.tv_sec, timeTimeout.m_iSecond);
+      ::numeric::clip_assign(tv.tv_usec, timeTimeout.m_iNanosecond / 1'000);
       setSocketOptions(SOL_SOCKET, SO_RCVTIMEO, (char_pointer )&tv, sizeof tv);
       
    }
@@ -421,8 +421,8 @@ namespace subsystem_bsd_sockets
    {
 
       struct timeval tv;
-      tv.tv_sec = timeTimeout.m_iSecond;
-      tv.tv_usec = timeTimeout.m_iNanosecond / 1'000;
+      ::numeric::clip_assign(tv.tv_sec, timeTimeout.m_iSecond);
+      ::numeric::clip_assign(tv.tv_usec, timeTimeout.m_iNanosecond / 1'000);
 
       setSocketOptions(SOL_SOCKET, SO_SNDTIMEO,  (char_pointer )&tv, sizeof tv);
 

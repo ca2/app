@@ -31,7 +31,7 @@
 #include "acme/prototype/string/str.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/style.h"
-#include <nanosvg/nanosvg.h>
+#include "nanosvg/nanosvg.h"
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "aura/graphics/write_text/_defer_geometry2d_item.h"
 
@@ -143,6 +143,37 @@ namespace draw2d
    }
 
 
+   enum_image_opacity_policy graphics::get_effective_image_opacity_policy() const
+   {
+
+      if (m_eimageopacitypolicy != e_image_opacity_policy_inherit)
+      {
+
+         return m_eimageopacitypolicy;
+
+      }
+
+      if (!system())
+      {
+
+         return e_image_opacity_policy_disabled;
+
+      }
+
+      auto pdraw2d = system()->draw2d();
+
+      if (!pdraw2d)
+      {
+
+         return e_image_opacity_policy_disabled;
+
+      }
+
+      return pdraw2d->get_image_opacity_policy();
+
+   }
+
+
    void graphics::on_initialize_particle()
    {
 
@@ -177,9 +208,48 @@ namespace draw2d
 
    ::draw2d::frame * graphics::draw2d_frame()
    {
-      
+
+      if (!m_pdraw2dframe)
+      {
+
+         initialize_draw2d_frame();
+
+      }
+
       return m_pdraw2dframe;
       
+   }
+
+
+   void graphics::initialize_draw2d_frame()
+   {
+      
+      if (m_pdraw2dframe)
+      {
+
+         return;
+
+      }
+
+      if (!m_puserinteractionTopic)
+      {
+
+         ::string strErrorMessage;
+
+         strErrorMessage = "m_puserinteractionTopic is null";
+
+         error(strErrorMessage);
+
+         throw ::exception(error_wrong_state, strErrorMessage);
+
+      }
+
+      construct_newø(m_pdraw2dframe);
+
+      m_pdraw2dframe->initialize_draw2d_frame(draw2d_domain());
+
+      m_pdraw2dframe->m_pdraw2dwindowattachment = m_puserinteractionTopic->window()->m_pdraw2dwindowattachment;
+
    }
 
 
@@ -378,10 +448,11 @@ namespace draw2d
 
       //}
 
-      if (m_papplication->m_bGpu)
+      // Offscreen engines manage their own GPU frames; CPU window drawing does not.
+      if (m_papplication->m_bGpu2 && m_papplication->use_gpu_swap_chain())
       {
 
-         auto pwindowattachment = m_pdraw2dframe->window_attachment();
+         auto pwindowattachment = draw2d_frame()->window_attachment();
 
          if (!pwindowattachment)
          {
@@ -463,7 +534,8 @@ namespace draw2d
 
       }
 
-      if (m_papplication->m_bGpu)
+      // Offscreen engines manage their own GPU frames; CPU window drawing does not.
+      if (m_papplication->m_bGpu2 && m_papplication->use_gpu_swap_chain())
       {
 
          auto pgpuwindowattachment = pwindow->m_papexgpuwindowattachment;
@@ -3489,6 +3561,29 @@ namespace draw2d
    }
 
 
+   ::f32 graphics::get_density_dpi()
+   {
+
+      if (!m_puserinteractionTopic)
+      {
+
+         auto pdraw2ddomain = acme_draw2d_domain();
+
+         return pdraw2ddomain ? pdraw2ddomain->get_density_dpi() : 96.0f;
+
+      }
+
+      return m_puserinteractionTopic->get_density_dpi_for_window();
+
+   }
+
+
+   ::f32 graphics::point_pixel(::f32 fSize)
+   {
+
+      return get_density_dpi() * fSize / 72.0f;
+
+   }
 
 
    void graphics::send(const ::procedure & procedure)
@@ -5270,20 +5365,20 @@ namespace draw2d
    //}
 
 
-   ::f64 graphics::get_dpix()
-   {
+   //::f64 graphics::get_dpix()
+   //{
 
-      return 96.0;
+   //   return 96.0;
 
-   }
+   //}
 
 
-   ::f64 graphics::get_dpiy()
-   {
+   //::f64 graphics::get_dpiy()
+   //{
 
-      return 96.0;
+   //   return 96.0;
 
-   }
+   //}
 
 
    void graphics::set_fill_mode(::draw2d::enum_fill_mode efillmode)
@@ -5689,6 +5784,8 @@ namespace draw2d
 
       //pwritetextfont->get_os_data(this);
 
+      pwritetextfont->defer_update(this);
+
       string str(strParam);
 
       bool bParamBilboRaspiEtc = strParam.case_insensitive_begins("bilbo-raspi-");
@@ -5988,7 +6085,7 @@ namespace draw2d
 
       }
 
-      //::f64 dLineSpacing = pwritetextfont->m_textmetric2.get_line_spacing();
+      ::f64 dLineSpacing = pwritetextfont->m_textmetric4.get_line_height();
 
       //::draw2d::graphics * pdraw2dgraphics = this;
 
@@ -5999,8 +6096,8 @@ namespace draw2d
       rectangle.left = 0;
       rectangle.top = 0;
       rectangle.right = sz.cx;
-      rectangle.bottom = sz.cy;
-      //rectangle.bottom = (::i32) (dLineSpacing);
+      //rectangle.bottom = sz.cy;
+      rectangle.bottom = (::i32) (dLineSpacing);
 
       //::e_align ealign;
 
@@ -6127,7 +6224,7 @@ namespace draw2d
          //
          // }
 
-         text_out(rectangle.left, rectangle.top, { str.c_str(), (::i32)minimum(iUnderline, str.length()) });
+         text_out(rectangle.left, rectangle.top + pwritetextfont->m_textmetric4.m_dInternalLeading, { str.c_str(), (::i32)minimum(iUnderline, str.length()) });
          /*::TextOutU(
          (HDC)pdraw2dgraphics->get_os_data(),
          rectangle.left,
@@ -6167,7 +6264,7 @@ namespace draw2d
 
                character_count iCount = str.length() - iUnderline - 1;
 
-               text_out(rectangle.left + sz.cx, (::f64)rectangle.top, { ::string(str.right(iCount)).c_str(), (::i32)iCount });
+               text_out(rectangle.left + sz.cx, (::f64)rectangle.top + pwritetextfont->m_textmetric4.m_dInternalLeading, { ::string(str.right(iCount)).c_str(), (::i32)iCount });
 
                /*::TextOutU(
                (HDC)pdraw2dgraphics->get_os_data(),
@@ -6199,7 +6296,7 @@ namespace draw2d
          // else
          {
 
-            text_out(rectangle.left, rectangle.top, str);
+            text_out(rectangle.left, rectangle.top + pwritetextfont->m_textmetric4.m_dInternalLeading, str);
 
          }
 
@@ -7005,7 +7102,12 @@ namespace draw2d
 
       auto penumeration = system()->draw2d()->write_text()->fonts()->enumeration("system");
 
-      penumeration->m_happeningReady.wait(30_s);
+      // Called with backend/render locks held. Pumping the task loop here can
+      // reenter rendering or wait on the task's own synchronization locks.
+      if (!penumeration->m_happeningReady._wait(30_s))
+      {
+         return {};
+      }
 
       critical_section_lock synchronouslock(&system()->draw2d()->write_text()->m_csFont);
 

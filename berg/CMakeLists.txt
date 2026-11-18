@@ -150,6 +150,10 @@ list(APPEND library_source
    user/user/form_handler.cpp
    user/user/frame_window.cpp
    user/user/frame_window.h
+   user/user/render_lines.cpp
+   user/user/render_lines.h
+   user/user/fps_statistics.cpp
+   user/user/fps_statistics.h
    user/user/hotplugin.cpp
    user/user/image_list.cpp
    user/user/image_list.h
@@ -389,4 +393,36 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 
+if(BUILD_TESTING)
+    enable_testing()
+    add_executable(frame_control_bar_layout_test test/frame_control_bar_layout.cpp)
+    target_compile_features(frame_control_bar_layout_test PRIVATE cxx_std_20)
+    target_include_directories(frame_control_bar_layout_test PRIVATE ${library_include_directories})
+    target_link_libraries(frame_control_bar_layout_test PRIVATE berg axis aura aqua apex acme)
+    if(MSVC)
+        target_compile_options(frame_control_bar_layout_test PRIVATE /bigobj)
+    endif()
+    add_test(NAME frame_control_bar_layout_test COMMAND frame_control_bar_layout_test)
 
+    add_executable(form_impact_system_test test/form_impact_system.cpp)
+    target_compile_features(form_impact_system_test PRIVATE cxx_std_20)
+    target_include_directories(form_impact_system_test PRIVATE ${library_include_directories})
+    target_link_libraries(form_impact_system_test PRIVATE berg axis aura aqua apex acme)
+    if(MSVC)
+        target_compile_options(form_impact_system_test PRIVATE /bigobj)
+    endif()
+    add_test(NAME form_impact_system_test COMMAND form_impact_system_test)
+endif()
+
+
+
+if(BUILD_TESTING)
+    add_executable(owned_dialog_frame_test test/owned_dialog_frame.cpp)
+    target_compile_features(owned_dialog_frame_test PRIVATE cxx_std_20)
+    target_include_directories(owned_dialog_frame_test PRIVATE ${library_include_directories})
+    target_link_libraries(owned_dialog_frame_test PRIVATE berg axis aura aqua apex acme)
+    if(MSVC)
+        target_compile_options(owned_dialog_frame_test PRIVATE /bigobj)
+    endif()
+    add_test(NAME owned_dialog_frame_test COMMAND owned_dialog_frame_test)
+endif()

@@ -10,10 +10,10 @@
 //
 //   mutex::mutex(::particle * pparticle, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix) :
 //#ifdef WINDOWS_DESKTOP
-//      ::mutex(pmatter, false, "Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &((SECURITY_ATTRIBUTES &)m_securityattributes))
+//      ::parallelization::mutex(pmatter, false, "Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &((SECURITY_ATTRIBUTES &)m_securityattributes))
 //      , synchronization("Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 //#else
-//      ::mutex(pparticle, false, "Global\\::ca2::account::ccwarehouse::spa::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
+//      ::parallelization::mutex(pparticle, false, "Global\\::ca2::account::ccwarehouse::spa::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 //#endif
 //   {
 //

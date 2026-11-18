@@ -88,6 +88,15 @@ namespace windowing
    }
 
 
+   bool windowing::has_notify_icon_interface()
+   {
+
+      // Preserve the existing behavior until a backend supplies a runtime check.
+      return true;
+
+   }
+
+
    bool windowing::has_mouse_capture_capability()
    {
 
@@ -709,7 +718,7 @@ namespace windowing
 
       auto pwindow = get_new_window();
 
-      pwindow->create_window();
+      pwindow->create_window(::e_parallelization_asynchronous);
 
       return pwindow;
 

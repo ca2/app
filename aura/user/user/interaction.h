@@ -391,6 +391,7 @@ namespace user
 
 
       ::function < bool(::user::interaction *, ::item *, ::user::activation_token * puseractivationtoken) > m_callbackOnClick;
+      ::function < bool(::user::interaction *, ::item *, ::user::activation_token *) > m_callbackOnAction;
 
       
       //class draw_select
@@ -834,8 +835,8 @@ namespace user
 
 
 //      virtual bool add_control(arguments arguments);
-      virtual void create_window() override;
-       virtual void _create_window() override;
+      void create_window(::enum_parallelization eparallelization) override;
+      void _create_window() override;
       void create_window_object() override;
       void on_create_window_object() override;
 
@@ -1429,6 +1430,9 @@ namespace user
       ::user::element * get_keyboard_focus() override;
 
 
+      // Creation-order traversal within this subtree, with wrapping in either direction.
+      ::user::interaction * next_tab_focus(::user::interaction * current, bool backwards = false);
+      bool handle_tab_key(::message::message * pmessage);
       element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual prototype * keyboard_set_focus_next(prototype * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       
@@ -1448,6 +1452,10 @@ namespace user
 
       virtual void _extend_on_parent(::draw2d::graphics_pointer & pdraw2dgraphics);
       virtual void _extend_on_parent_hosting_area(::draw2d::graphics_pointer & pdraw2dgraphics);
+
+      virtual bool should_extend_on_parent() const;
+      virtual bool should_extend_on_parent_if_only_client() const;
+      virtual bool should_extend_on_parent_hosting_area() const;
 
 
       //virtual void top_sketch_to_lading();
@@ -2488,6 +2496,9 @@ namespace user
       virtual bool on_edit_delete(const ::action_context& action_context);
 
 
+      // Primary action, independent of mouse or keyboard input. A null token is allowed.
+      bool on_action(::item * pitem = nullptr, ::user::activation_token * puseractivationtoken = nullptr);
+
       virtual bool on_click_generation(::item * pitem, ::user::mouse * pmouse);
       virtual bool on_right_click_generation(::item * pitem, ::user::mouse * pmouse);
 
@@ -2516,6 +2527,8 @@ namespace user
       virtual bool is_window_docking();
 
       virtual void set_bitmap_source(const ::scoped_string & scopedstrBitmapFileTitle) override;
+      virtual void set_bitmap_source(const ::scoped_string & scopedstrAppId,
+         const ::scoped_string & scopedstrBitmapSource, bool bCreate = true);
       virtual void clear_bitmap_source() override;
 
 
@@ -2588,9 +2601,9 @@ namespace user
 
 //      virtual ::item_pointer add_user_item(::item * pitem);
 
-      virtual void _001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics);
+      virtual void _001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, const ::user::e_zorder & ezorder);
 
-      virtual void _001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iIdContainer, ::item_array * pitema);
+      virtual void _001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iIdContainer, ::item_array * pitema, const ::user::e_zorder & ezorder);
 
       virtual void _001DrawItem(::draw2d::graphics_pointer& pdraw2dgraphics, ::user::item & item, const ::user::e_state & estate);
 

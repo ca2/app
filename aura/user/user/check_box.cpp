@@ -19,6 +19,7 @@
 #include "check_box.h"
 #include "style.h"
 #include "aura/message/user.h"
+#include "graphics/draw2d/domain.h"
 #include "graphics/graphics/target.h"
 
 
@@ -209,7 +210,7 @@ namespace user
 
       {
 
-         ::i32 iSize = minimum(15 * w / 15, 15 * h / 15);
+         ::i32 iSize = minimum(w,  h);
 
          rectangleCheckBox.left = 0;
          rectangleCheckBox.top = 0;
@@ -241,7 +242,7 @@ namespace user
 
          pdraw2dgraphics->set_solid_color(colorText);
 
-         pdraw2dgraphics->draw_inset_rectangle(rectangleBorder, colorText, 1.0);
+         pdraw2dgraphics->draw_inset_rectangle(rectangleBorder, colorText, 1.0 * pdraw2dgraphics->draw2d_domain()->get_density());
 
          //if (drawcontext.m_bListItemHover)
          //{
@@ -675,6 +676,11 @@ namespace user
    }
 
 
+   bool check_box::keyboard_focus_is_focusable()
+   {
+      return is_window_enabled() && is_window_visible(::user::e_layout_sketch);
+   }
+
    void check_box::on_message_key_down(::message::message * pmessage)
    {
 
@@ -751,7 +757,7 @@ namespace user
       if (size(e_layout_sketch).is_empty())
       {
 
-         set_size({ 24, 24 });
+         set_size({ 24 * draw2d_domain()->get_density(), 24 * draw2d_domain()->get_density()});
 
       }
 

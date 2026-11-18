@@ -29,9 +29,9 @@ namespace windowing
 
       display_map                               m_displaymap;
 
-      ::pointer < ::mutex >                     m_pmutexDisplay;
-      ::pointer < ::mutex >                     m_pmutexWindow;
-      ::pointer < ::mutex >                     m_pmutexMonitor;
+      ::pointer < ::parallelization::mutex >                     m_pmutexDisplay;
+      ::pointer < ::parallelization::mutex >                     m_pmutexWindow;
+      ::pointer < ::parallelization::mutex >                     m_pmutexMonitor;
 
 
       bool                                      m_bSettingCursorMatter;
@@ -81,6 +81,9 @@ namespace windowing
 
       virtual bool has_readily_gettable_absolute_coordinates() const;
       virtual bool has_mouse_capture_capability();
+
+      // Whether the desktop currently provides a host for notification icons.
+      virtual bool has_notify_icon_interface();
 
       void on_prepare_application() override;
 

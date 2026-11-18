@@ -87,7 +87,9 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
 
 endif ()
 
-add_dependencies(${PROJECT_NAME} ${default_nano_graphics})
+if(default_nano_graphics)
+   add_dependencies(${PROJECT_NAME} ${default_nano_graphics})
+endif()
 add_dependencies(${PROJECT_NAME} folder_zip)
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

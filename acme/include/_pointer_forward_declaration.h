@@ -7,6 +7,12 @@ template<typename T>
 class pointer;
 
 
+namespace parallelization
+{
+   class mutex;
+}
+
+
 // template < typename TYPE, ::enum_flag t_eflag = e_flag_none, ::enum_status t_estatus = undefined >
 template<typename TYPE>
 class make_particle1;
@@ -96,7 +102,7 @@ namespace image
 } // namespace image
 
 
-using mutex_pointer = ::pointer<::mutex>;
+using mutex_pointer = ::pointer<::parallelization::mutex>;
 
 
 namespace write_text

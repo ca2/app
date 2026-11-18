@@ -4,6 +4,7 @@
 // app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSorensen!!
 #include "platform.h"
 #include "application.h"
+#include "startup_delay_debug.h"
 #include "message.h"
 #include "acme.h"
 #include "application_menu.h"
@@ -14,6 +15,7 @@
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/file_system_options.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/handler/request.h"
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -77,7 +79,7 @@ namespace platform
 
       m_bIsService = false;
       m_bUseCloudStorageForAppData = true;
-      m_gpu.m_bUseSwapChainWindow = false;
+      //use_gpu_swap_chain() = false;
       m_gpu.m_eoutputDraw2d = ::gpu::e_output_none;
       m_gpu.m_eoutputEngine = ::gpu::e_output_none;
 
@@ -527,9 +529,9 @@ namespace platform
    void application::initialize_application()
    {
 
-      information() << "startup: platform::application::initialize_application: before set_platform()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::initialize_application: before set_platform()");
       set_platform();
-      information() << "startup: platform::application::initialize_application: after set_platform()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::initialize_application: after set_platform()");
 
       // if (m_papplication == nullptr)
       // {
@@ -643,7 +645,7 @@ namespace platform
 
       pmessagebox->display(e_display_normal, {});
 
-      pmessagebox->wait_dialog_response();
+      pmessagebox->wait_for_dialog_response();
 
    }
 
@@ -1171,6 +1173,9 @@ namespace platform
 
    void application::post_request(::request * prequest)
    {
+
+      STARTUP_DELAY_TRACE_SCOPE_IF("platform::application::post_request",
+         prequest && prequest->m_strAppId == "app/app");
 
       if (prequest)
       {
@@ -1841,7 +1846,7 @@ namespace platform
       if (m_bUseCloudStorageForAppData)
       {
 
-         pathFolder = "dropbox-app://";
+         pathFolder = "cloud-app://";
 
       }
       else
@@ -2245,35 +2250,35 @@ namespace platform
 
    void application::process_init()
    {
-      information() << "startup: platform::application::process_init: enter";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: enter");
 
 
-      information() << "startup: platform::application::process_init: before initialize_context()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: before initialize_context()");
       initialize_context();
-      information() << "startup: platform::application::process_init: after initialize_context()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: after initialize_context()");
 
       if (m_strAppId.has_character())
       {
 
          string_array_base stra;
 
-         information() << "startup: platform::application::process_init: before stra.explode(\"/\", m_strAppId)";
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: before stra.explode(\"/\", m_strAppId)");
          stra.explode("/", m_strAppId);
-         information() << "startup: platform::application::process_init: after stra.explode(\"/\", m_strAppId)";
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: after stra.explode(\"/\", m_strAppId)");
 
          m_strRoot = stra[0];
 
-         information() << "startup: platform::application::process_init: before m_strDomain = stra.slice(1).implode(\"/\")";
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: before m_strDomain = stra.slice(1).implode(\"/\")");
          m_strDomain = stra.slice(1).implode("/");
-         information() << "startup: platform::application::process_init: after m_strDomain = stra.slice(1).implode(\"/\")";
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: after m_strDomain = stra.slice(1).implode(\"/\")");
 
-         information() << "startup: platform::application::process_init: before add_matter_locator(this)";
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: before add_matter_locator(this)");
          add_matter_locator(this);
-         information() << "startup: platform::application::process_init: after add_matter_locator(this)";
+         STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: after add_matter_locator(this)");
 
       }
 
-      information() << "startup: platform::application::process_init: leave";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::process_init: leave");
 
    }
 
@@ -2419,7 +2424,7 @@ namespace platform
 
          pmessagebox->display(e_display_normal, {});
 
-         pmessagebox->wait_dialog_response();
+         pmessagebox->wait_for_dialog_response();
 
          throw e;
 
@@ -2434,7 +2439,7 @@ namespace platform
 
          pmessagebox->display(e_display_normal, {});
 
-         pmessagebox->wait_dialog_response();
+         pmessagebox->wait_for_dialog_response();
 
          throw "Unknown exception";
 
@@ -2488,7 +2493,7 @@ namespace platform
 
          pmessagebox->display(e_display_normal, {});
 
-         pmessagebox->wait_dialog_response();
+         pmessagebox->wait_for_dialog_response();
 
          throw exception;
 
@@ -2503,7 +2508,7 @@ namespace platform
 
          pmessagebox->display(e_display_normal, {});
 
-         pmessagebox->wait_dialog_response();
+         pmessagebox->wait_for_dialog_response();
 
          throw "Unknown exception";
 
@@ -2613,22 +2618,22 @@ namespace platform
 
    void application::init_application()
    {
-      information() << "startup: platform::application::init_application: enter";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: enter");
 
 
-      information() << "startup: platform::application::init_application: before auto psystem = system()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before auto psystem = system()");
       auto psystem = system();
-      information() << "startup: platform::application::init_application: after auto psystem = system()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after auto psystem = system()");
 
       //information() << "apex::application::init_application";
 
-      information() << "startup: platform::application::init_application: before ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before ping()");
       ping();
-      information() << "startup: platform::application::init_application: after ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after ping()");
 
-      information() << "startup: platform::application::init_application: before init1()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before init1()");
       init1();
-      information() << "startup: platform::application::init_application: after init1()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after init1()");
 
       //if (!init1())
       //{
@@ -2643,13 +2648,13 @@ namespace platform
 
       //xxdebug_box("init1 ok", "init1 ok", ::user::e_message_box_icon_information);
 
-      information() << "startup: platform::application::init_application: before ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before ping()");
       ping();
-      information() << "startup: platform::application::init_application: after ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after ping()");
 
-      information() << "startup: platform::application::init_application: before init2()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before init2()");
       init2();
-      information() << "startup: platform::application::init_application: after init2()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after init2()");
 
       //if (!init2())
       //{
@@ -2664,13 +2669,13 @@ namespace platform
 
       //xxdebug_box("init2 ok", "init2 ok", ::user::e_message_box_icon_information);
 
-      information() << "startup: platform::application::init_application: before ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before ping()");
       ping();
-      information() << "startup: platform::application::init_application: after ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after ping()");
 
-      information() << "startup: platform::application::init_application: before init3()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before init3()");
       init3();
-      information() << "startup: platform::application::init_application: after init3()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after init3()");
 
       //if (!init3())
       //{
@@ -2685,18 +2690,18 @@ namespace platform
 
       //xxdebug_box("init3 ok", "init3 ok", ::user::e_message_box_icon_information);
 
-      information() << "startup: platform::application::init_application: before ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before ping()");
       ping();
-      information() << "startup: platform::application::init_application: after ping()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after ping()");
 
       //dappy(::platform::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
 
       //try
       //{
 
-      information() << "startup: platform::application::init_application: before init()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: before init()");
       init();
-      information() << "startup: platform::application::init_application: after init()";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: after init()");
       //{
       //
       ////dappy(::platform::type(this).name() + " : initialize failure : " + as_string(m_iErrorCode));
@@ -2726,7 +2731,7 @@ namespace platform
 
       //return true;
 
-      information() << "startup: platform::application::init_application: leave";
+      STARTUP_DELAY_TRACE_EVENT("startup: platform::application::init_application: leave");
 
    }
 
@@ -3294,7 +3299,23 @@ namespace platform
 
       ::file::path path;
 
-      path = "dropbox-app://" / scopedstrFileName;
+      path = "cloud-app://" / scopedstrFileName;
+
+#ifdef __APPLE__
+      // Startup settings must not wait for an iCloud metadata query or a
+      // dummy-file upload. Read the local container copy when it is available.
+      auto pathResolved = defer_process_path(path);
+      if (pathResolved.case_insensitive_begins("icloud://"))
+      {
+         ::string strName;
+         ::string strContainer;
+         path_system()->defer_get_icloud_container_path_name(strName, strContainer, pathResolved);
+         auto pathContainer = directory_system()->icloud_container2_final(strContainer);
+         if (pathContainer.is_empty())
+            return {};
+         path = pathContainer / strName;
+      }
+#endif
 
       ::string str = file()->safe_get_string(path);
 
@@ -3308,7 +3329,7 @@ namespace platform
    string application::app_roaming_application_file_setting(const ::scoped_string& scopedstrFileName)
    {
 
-      auto path = directory_system()->roaming() / m_strAppName / scopedstrFileName;
+      auto path = directory_system()->roaming() / m_strAppId / scopedstrFileName;
 
       auto str = file()->safe_get_string(path);
 
@@ -3344,7 +3365,7 @@ namespace platform
 
          ::file::path path;
 
-         path = "dropbox-app://" / scopedstrFileName;
+         path = "cloud-app://" / scopedstrFileName;
 
          bool bOk = false;
 
@@ -3415,15 +3436,11 @@ namespace platform
       if (str.is_empty())
       {
 
-         str = app_roaming_application_file_setting(strFilename);
+         str = app_roaming_application_file_setting(strFilenameWithOperatingSystem);
 
       }
 
       return str;
-
-
-
-      return application_file_setting(strFilename);
 
    }
 
@@ -3532,8 +3549,6 @@ void application_handle_command(::platform::application * papplication, const_ch
 }
 
 
-
-
 bool platform_application_is_swap_chain(::platform::application * papplication)
 {
    
@@ -3544,8 +3559,8 @@ bool platform_application_is_swap_chain(::platform::application * papplication)
       
    }
    
-   
-   bool bSwapChainWindow =papplication->m_gpu.m_bUseSwapChainWindow;
+   bool bSwapChainWindow =papplication->use_gpu_swap_chain();
+
    return bSwapChainWindow;
    
 }

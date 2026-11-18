@@ -7,6 +7,7 @@
 #include "acme/constant/user_key.h"
 #include "bred/graphics3d/key_map.h"
 #include "acme/user/key/state.h"
+#include "timed_keyboard_state.h"
 
 
 namespace graphics3d
@@ -25,6 +26,14 @@ namespace graphics3d
       virtual public ::particle
    {
    public:
+
+      enum keyboard_key { key_forward, key_backward, key_left, key_right, key_down, key_up, key_fast,
+         keyboard_key_count };
+      timed_keyboard_state<keyboard_key_count> m_keyboard;
+      void on_key_event(const ::user::e_key & key, bool pressed);
+      void reset_keyboard_input() { m_keyboard.reset(); }
+      void configure_keyboard_input(::f32 tapSeconds = 5.f / 60.f, ::f32 holdDelaySeconds = .25f)
+      { m_keyboard.configure(tapSeconds, holdDelaySeconds, key_fast); }
 
 
       //::pointer<::user::graphics3d> m_pusergraphics3d;

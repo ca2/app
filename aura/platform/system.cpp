@@ -101,7 +101,7 @@ CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level el
 
 void os_post_quit();
 
-//extern ::pointer< ::mutex > m_pmutexLibrary;
+//extern ::pointer< ::parallelization::mutex > m_pmutexLibrary;
 
 
 
@@ -936,7 +936,7 @@ namespace aura
 //      //add_factory_item < application_bias >();
 //      add_factory_item < command_line >();
 //      add_factory_item < http::context >();
-//      //add_factory_item < ::pointer < ::mutex > >();
+//      //add_factory_item < ::pointer < ::parallelization::mutex > >();
 //      //add_factory_item < happening >();
 //
 //      //if (!::aura::application::process_init())
@@ -1177,7 +1177,7 @@ namespace aura
 
          p->increment_reference_count();
 
-         ::write_text::font::s_pmutexFontTextMap = dynamic_cast < ::mutex *>( p.m_p);
+         ::write_text::font::s_pmutexFontTextMap = dynamic_cast < ::parallelization::mutex *>( p.m_p);
 
          information() << "creating write_text::font";
 
@@ -1268,69 +1268,69 @@ namespace aura
    }
 
 
-   string system::draw2d_get_default_implementation_name()
-   {
-
-      string strImplementationName;
-
-      strImplementationName = application()->draw2d_get_default_implementation_name();
-
-      if (strImplementationName.has_character())
-      {
-
-         return strImplementationName;
-
-      }
-
-      auto pdirectorysystem = directory_system();
-
-      ::file::path path = "dropbox://application" / application()->m_strAppId / "draw2d.txt";
-
-      strImplementationName = file()->safe_get_string(path);
-
-//      throw ::exception(todo);
-
-      if(strImplementationName.has_character())
-      {
-
-         return implementation_name("draw2d", strImplementationName);
-
-      }
-
-      path = directory_system()->roaming()/application()->m_strAppId / "draw2d.txt";
-
-      strImplementationName = file_system()->as_string(path);
-
-      if(strImplementationName.has_character())
-      {
-
-         return implementation_name("draw2d", strImplementationName);
-
-      }
-
-#ifdef WINDOWS_DESKTOP
-
-      return implementation_name("draw2d", "gdiplus");
-
-#elif __APPLE__
-      
-      return implementation_name("draw2d", "quartz2d");
-
-#elif defined(UNIVERSAL_WINDOWS)
-      
-      return implementation_name("draw2d", "direct2d");
-
-#elif defined(__HAIKU__)
-
-      return implementation_name("draw2d", "haiku");
-
-#else
-      
-      return implementation_name("draw2d", "cairo");
-
-#endif
-
-   }
+//   string system::draw2d_get_implementation_name()
+//   {
+//
+//      string strImplementationName;
+//
+//      strImplementationName = application()->draw2d_get_implementation_name();
+//
+//      if (strImplementationName.has_character())
+//      {
+//
+//         return strImplementationName;
+//
+//      }
+//
+//      auto pdirectorysystem = directory_system();
+//
+//      ::file::path path = "cloud://application" / application()->m_strAppId / "draw2d.txt";
+//
+//      strImplementationName = file()->safe_get_string(path);
+//
+////      throw ::exception(todo);
+//
+//      if(strImplementationName.has_character())
+//      {
+//
+//         return implementation_name("draw2d", strImplementationName);
+//
+//      }
+//
+//      path = directory_system()->roaming()/application()->m_strAppId / "draw2d.txt";
+//
+//      strImplementationName = file_system()->as_string(path);
+//
+//      if(strImplementationName.has_character())
+//      {
+//
+//         return implementation_name("draw2d", strImplementationName);
+//
+//      }
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      return implementation_name("draw2d", "gdiplus");
+//
+//#elif __APPLE__
+//      
+//      return implementation_name("draw2d", "quartz2d");
+//
+//#elif defined(UNIVERSAL_WINDOWS)
+//      
+//      return implementation_name("draw2d", "direct2d");
+//
+//#elif defined(__HAIKU__)
+//
+//      return implementation_name("draw2d", "haiku");
+//
+//#else
+//      
+//      return implementation_name("draw2d", "cairo");
+//
+//#endif
+//
+//   }
 
 
    ::factory::factory * system::draw2d_factory()
@@ -1361,7 +1361,7 @@ namespace aura
 
       }
 
-      strImplementationName = draw2d_get_default_implementation_name();
+      strImplementationName = application()->draw2d_get_implementation_name();
 
       if (strImplementationName.is_empty())
       {
@@ -1501,61 +1501,61 @@ namespace aura
    }
 
 
-   string system::typeface_get_default_implementation_name()
-   {
-
-      string strImplementationName;
-
-      strImplementationName = application()->typeface_get_default_implementation_name();
-
-      if (strImplementationName.has_character())
-      {
-
-         return strImplementationName;
-
-      }
-
-      ::file::path path = directory_system()->roaming() / "system/typeface.txt";
-
-      strImplementationName = file_system()->safe_get_string(path);
-
-      if (strImplementationName.has_character())
-      {
-
-         return implementation_name("typeface", strImplementationName);
-
-      }
-
-      path = directory_system()->roaming() / application()->m_strAppId / "typeface.txt";
-
-      strImplementationName = file_system()->as_string(path);
-
-      if (strImplementationName.has_character())
-      {
-
-         return implementation_name("typeface", strImplementationName);
-
-      }
-
-#ifdef WINDOWS_DESKTOP
-
-      return implementation_name("typeface", "gdiplus");
-
-#elif __APPLE__
-
-      return implementation_name("typeface", "quartz2d");
-
-#elif defined(UNIVERSAL_WINDOWS)
-
-      return implementation_name("typeface", "direct2d");
-
-#else
-
-      return implementation_name("typeface", "freetype");
-
-#endif
-
-   }
+//   string system::typeface_get_default_implementation_name()
+//   {
+//
+//      string strImplementationName;
+//
+//      strImplementationName = application()->typeface_get_default_implementation_name();
+//
+//      if (strImplementationName.has_character())
+//      {
+//
+//         return strImplementationName;
+//
+//      }
+//
+//      ::file::path path = directory_system()->roaming() / "system/typeface.txt";
+//
+//      strImplementationName = file_system()->safe_get_string(path);
+//
+//      if (strImplementationName.has_character())
+//      {
+//
+//         return implementation_name("typeface", strImplementationName);
+//
+//      }
+//
+//      path = directory_system()->roaming() / application()->m_strAppId / "typeface.txt";
+//
+//      strImplementationName = file_system()->as_string(path);
+//
+//      if (strImplementationName.has_character())
+//      {
+//
+//         return implementation_name("typeface", strImplementationName);
+//
+//      }
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      return implementation_name("typeface", "gdiplus");
+//
+//#elif __APPLE__
+//
+//      return implementation_name("typeface", "quartz2d");
+//
+//#elif defined(UNIVERSAL_WINDOWS)
+//
+//      return implementation_name("typeface", "direct2d");
+//
+//#else
+//
+//      return implementation_name("typeface", "freetype");
+//
+//#endif
+//
+//   }
 
 
    ::factory::factory * system::imaging_factory()
@@ -1588,7 +1588,7 @@ namespace aura
 
       }
 
-      strImplementationName = imaging_get_default_implementation_name();
+      strImplementationName = application()->imaging_get_implementation_name();
 
       if (strImplementationName.is_empty())
       {
@@ -1711,7 +1711,7 @@ namespace aura
 
       }
 
-      strImplementationName = typeface_get_default_implementation_name();
+      strImplementationName = application()->typeface_get_implementation_name();
 
       if (strImplementationName.is_empty())
       {
@@ -1825,41 +1825,41 @@ namespace aura
 
    }
 
-
-   string system::imaging_get_default_implementation_name()
-   {
-
-      string strImplementationName;
-
-      strImplementationName = application()->imaging_get_default_implementation_name();
-
-      if (strImplementationName.has_character())
-      {
-
-         return strImplementationName;
-
-      }
-
-#if defined(WINDOWS) && defined(__REACTOS__)
-
-      return implementation_name("imaging", "freeimage");
-
-#elif defined(WINDOWS)
-
-      return implementation_name("imaging", "wic");
-
-#elif defined(__APPLE__)
-
-      return implementation_name("imaging", "coreimage");
-
-#else
-
-      return implementation_name("imaging", "freeimage");
-
-#endif
-
-   }
-
+//
+//   string system::imaging_get_default_implementation_name()
+//   {
+//
+//      string strImplementationName;
+//
+//      strImplementationName = application()->imaging_get_default_implementation_name();
+//
+//      if (strImplementationName.has_character())
+//      {
+//
+//         return strImplementationName;
+//
+//      }
+//
+//#if defined(WINDOWS) && defined(__REACTOS__)
+//
+//      return implementation_name("imaging", "freeimage");
+//
+//#elif defined(WINDOWS)
+//
+//      return implementation_name("imaging", "wic");
+//
+//#elif defined(__APPLE__)
+//
+//      return implementation_name("imaging", "coreimage");
+//
+//#else
+//
+//      return implementation_name("imaging", "freeimage");
+//
+//#endif
+//
+//   }
+//
 
    //void system::init_task()
    //{
@@ -2638,7 +2638,7 @@ namespace aura
    //}
 
 
-//   ::pointer< ::mutex > system::get_openweather_city_mutex()
+//   ::pointer< ::parallelization::mutex > system::get_openweather_city_mutex()
 //   {
 //
 //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -2648,11 +2648,11 @@ namespace aura
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//         m_spmutexOpenweatherCity = allocateø ::pointer < ::mutex > ();
+//         m_spmutexOpenweatherCity = allocateø ::pointer < ::parallelization::mutex > ();
 //
 //#else
 //
-//         m_spmutexOpenweatherCity = allocateø ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
+//         m_spmutexOpenweatherCity = allocateø ::pointer < ::parallelization::mutex > (e_create_new, false, "Global\\ca2_weather_city");
 //
 //#endif
 //
@@ -2884,7 +2884,7 @@ namespace aura
 //      if(string(scopedstrId).has_character())
 //      {
 //         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(scopedstrAppName, pszId));
-//         ::pointer< ::mutex > pmutex = ::pointer < ::mutex >::open_mutex(get_global_id_mutex_name(scopedstrAppName,pszId));
+//         ::pointer< ::parallelization::mutex > pmutex = ::pointer < ::parallelization::mutex >::open_mutex(get_global_id_mutex_name(scopedstrAppName,pszId));
 //         if(pmutex == nullptr)
 //         {
 //
@@ -2921,7 +2921,7 @@ namespace aura
 //      else
 //      {
 //         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_mutex_name(scopedstrAppName));
-//         ::pointer< ::mutex > pmutex = ::pointer < ::mutex >::open_mutex(get_global_mutex_name(scopedstrAppName));
+//         ::pointer< ::parallelization::mutex > pmutex = ::pointer < ::parallelization::mutex >::open_mutex(get_global_mutex_name(scopedstrAppName));
 //         if(pmutex == nullptr)
 //         {
 //            string strApp = pszAppName;
@@ -2960,7 +2960,7 @@ namespace aura
 //      if(strId.has_character())
 //      {
 //         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_id_mutex_name(scopedstrAppName, strId));
-//         ::pointer< ::mutex > pmutex = ::pointer < ::mutex >::open_mutex(get_local_id_mutex_name(scopedstrAppName,strId));
+//         ::pointer< ::parallelization::mutex > pmutex = ::pointer < ::parallelization::mutex >::open_mutex(get_local_id_mutex_name(scopedstrAppName,strId));
 //         if(pmutex == nullptr)
 //         {
 //            string strApp;
@@ -2996,7 +2996,7 @@ namespace aura
 //      else
 //      {
 //         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_mutex_name(scopedstrAppName));
-//         ::pointer< ::mutex > pmutex = ::pointer < ::mutex >::open_mutex(get_local_mutex_name(scopedstrAppName));
+//         ::pointer< ::parallelization::mutex > pmutex = ::pointer < ::parallelization::mutex >::open_mutex(get_local_mutex_name(scopedstrAppName));
 //         if(pmutex == nullptr)
 //         {
 //            string strApp;

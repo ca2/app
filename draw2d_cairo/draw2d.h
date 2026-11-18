@@ -26,7 +26,7 @@ namespace draw2d_cairo
 
       string_map_base < ::pointer<private_font >>m_mapPrivateFont;
 
-      ::pointer< ::mutex > m_pmutex;
+      ::pointer< ::parallelization::mutex > m_pmutex;
 
       string_map_base < i32_map < FT_Face > >  m_mapFontFace;
 
@@ -42,7 +42,7 @@ namespace draw2d_cairo
 
 #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 
-      ::pointer< ::mutex > m_pmutexFc;
+      ::pointer< ::parallelization::mutex > m_pmutexFc;
 
       string_to_string_base     g_mapFontPath;
 

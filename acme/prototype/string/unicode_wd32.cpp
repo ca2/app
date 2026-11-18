@@ -298,12 +298,12 @@ character_count ansi_to_wd32(::wd32_character* pwsz, const_char_pointer psz, cha
 
 
 
-::wd32_character* ansi_to_wd32_dup(const_char_pointer input, character_count input_size)
+::wd32_character* ansi_to_wd32_alloc(const_char_pointer input, character_count input_size, MALLOC_FUNCTION * malloc_function)
 {
 
    character_count s = ansi_to_wd32_len(input, input_size);
 
-   ::wd32_character* v = (::wd32_character*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd32_character) * (s + 1), nullptr);
+   ::wd32_character* v = (::wd32_character*)malloc_function(sizeof(::wd32_character) * (s + 1));
 
    ansi_to_wd32(v, input, s);
 
@@ -514,3 +514,26 @@ CLASS_DECL_ACME character_count wd32_to_wd32(wd32_character *psz, const wd32_cha
       return count;
    }
 }
+
+
+CLASS_DECL_ACME::wd32_character * wd32_to_wd32_alloc(const ::wd32_character * pcwsz, character_count input_size, MALLOC_FUNCTION * malloc_function)
+{
+
+   auto p = (::wd32_character *)malloc(sizeof(wd32_character) * (input_size + 1));
+
+   if (!p)
+   {
+
+      throw ::exception(error_no_memory, "wd32_to_wd32_dup :: not enough memory");
+
+   }
+
+   wd32_to_wd32(p, pcwsz, input_size);
+
+   return p;
+
+}
+
+
+
+

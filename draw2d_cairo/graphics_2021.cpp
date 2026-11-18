@@ -43,7 +43,7 @@
 
 #include <pango/pangocairo.h>
 
-::pointer< ::mutex > g_pmutexFc = nullptr;
+::pointer< ::parallelization::mutex > g_pmutexFc = nullptr;
 
 FcBool g_fcResult;
 

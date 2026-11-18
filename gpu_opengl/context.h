@@ -72,6 +72,8 @@ namespace gpu_opengl
 
       ::memory circle_shader_vert() override;
       ::memory circle_shader_frag() override;
+      ::memory brush_fill_shader_vert() override;
+      ::memory brush_fill_shader_frag(bool bPattern) override;
 
 
       ::memory white_to_color_sampler_vert() override;

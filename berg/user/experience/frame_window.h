@@ -2,6 +2,7 @@
 
 
 #include "berg/user/user/frame_window.h"
+#include "berg/user/user/auto_hide.h"
 
 
 namespace experience
@@ -12,6 +13,10 @@ namespace experience
       virtual public ::user::frame_window
    {
    public:
+      ::pointer<::user::auto_hide> m_pAutoHide;
+      ::user::auto_hide * full_screen_auto_hide();
+      void route_as_parent_mouse_message(::message::mouse * pmouse) override;
+      bool on_window_mouse_move(const ::i32_point & point, const ::i32_point & pointAbsolute) override;
 
 
       bool                                         m_bHoverModeOn;

@@ -46,7 +46,7 @@ namespace innate_subsystem
 
 
     class TooltipInterface :
-    virtual public ::Particle
+    virtual public ::subsystem::Particle
     {
     public:
         //Tooltip();
@@ -68,7 +68,7 @@ namespace innate_subsystem
    //using TooltipInterface = particle_interface<TooltipInterface, WindowInterface>;
    
    class CLASS_DECL_INNATE_SUBSYSTEM TooltipComposite :
-   virtual public Composite<TooltipInterface>
+   virtual public ::subsystem::Composite <TooltipInterface>
    {
    public:
 
@@ -100,7 +100,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM TooltipAggregate :
-   virtual public Aggregate <TooltipComposite, ControlAggregate>
+   virtual public ::subsystem::Aggregate <TooltipComposite, ControlAggregate>
    {
    public:
 
@@ -110,7 +110,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM Tooltip :
-virtual public Object<TooltipAggregate>
+virtual public ::subsystem::Object<TooltipAggregate>
    {
    public:
 

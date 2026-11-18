@@ -7123,6 +7123,19 @@ void imaging::free_work_image(::image::image *pimage)
 void image_context::load_svg(::image::load_image *ploadimage, memory & memory)
 {
 
+   // Raster metadata can contain SVG text (for example a PNG caBX chunk).
+   // Only probe SVG when the input itself starts as an XML document.
+   auto data = memory.data();
+   auto size = memory.size();
+   memsize offset = 0;
+   if (size >= 3 && data[0] == 0xef && data[1] == 0xbb && data[2] == 0xbf)
+      offset = 3;
+   while (offset < size && (data[offset] == ' ' || data[offset] == '\t' ||
+      data[offset] == '\r' || data[offset] == '\n'))
+      ++offset;
+   if (offset >= size || data[offset] != '<')
+      return;
+
    if (::found(memory.find("<svg")))
    {
 

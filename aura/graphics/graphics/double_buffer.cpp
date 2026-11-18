@@ -48,12 +48,12 @@ namespace graphics
 
       construct_newø(m_bufferitema[0]);
       constructø(m_bufferitema[0]->m_pimageBufferItem);
-      constructø(m_bufferitema[0]->m_pmutex);
+      m_bufferitema[0]->m_pmutex = create_newø<::parallelization::mutex>();
       m_bufferitema[0]->m_pimageBufferItem->id() = 0;
 
       construct_newø(m_bufferitema[1]);
       constructø(m_bufferitema[1]->m_pimageBufferItem);
-      constructø(m_bufferitema[1]->m_pmutex);
+      m_bufferitema[1]->m_pmutex = create_newø<::parallelization::mutex>();
       m_bufferitema[1]->m_pimageBufferItem->id() = 1;
 
       //return estatus;
@@ -427,7 +427,7 @@ namespace graphics
       if (!pitemScreen->m_pimageBufferItem.ok())
       {
 
-         if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+         if (!m_papplication->use_gpu_swap_chain())
          {
 
             warning() << "pitemScreen->m_pimage2 not ok!";
@@ -440,7 +440,14 @@ namespace graphics
 
       }
 
-      on_update_screen(pitemScreen);
+      // A GPU swap chain presents the completed frame itself. Calling the
+      // native CPU-image path here can force a full GPU readback only to have
+      // its buffer rejected by the external presentation owner. Bitmap-source
+      // publication remains in the completed-buffer swap path.
+      if (!m_papplication->use_gpu_swap_chain())
+         on_update_screen(pitemScreen);
+
+      m_pwindow->record_output_frame();
 
    }
 

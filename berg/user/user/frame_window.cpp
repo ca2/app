@@ -1,5 +1,8 @@
 #include "platform.h"
 #include "frame_window.h"
+#include "render_lines.h"
+#include "fps_statistics.h"
+#include "fps_debug.h"
 #include "document.h"
 #include "impact.h"
 #include "impact_host.h"
@@ -662,6 +665,9 @@ namespace user
    void frame_window::destroy()
    {
 
+      m_pfpsstatistics.defer_destroy_and_release();
+      m_prenderlinesStatistics.defer_destroy_and_release();
+
       m_pimpactMain.defer_destroy_and_release();
 
       ::user::interaction::destroy();
@@ -1019,6 +1025,18 @@ namespace user
 
    void frame_window::on_message_create(::message::message * pmessage)
    {
+
+#if FPS_STATISTICS
+      if (get_parent() == nullptr && !m_prenderlinesStatistics)
+      {
+         construct_newø(m_prenderlinesStatistics);
+         construct_newø(m_pfpsstatistics);
+         m_pfpsstatistics->m_prenderlines = m_prenderlinesStatistics;
+         m_pfpsstatistics->m_pinteractionSource = this;
+         m_pfpsstatistics->m_strLabel = "Window FPS";
+         m_pfpsstatistics->m_iLine = 0;
+      }
+#endif
 
       //if (!m_pacmeuserinteractionMain)
       //{
@@ -1433,7 +1451,7 @@ namespace user
 
       //create_host(e_parallelization_asynchronous);
 
-      create_window();
+      create_window(e_parallelization_asynchronous);
 
       //if (!create_host())
       //{
@@ -3000,6 +3018,19 @@ namespace user
    }
 
 
+   void frame_window::_001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+      ::user::main_window::_001OnNcPostDraw(pgraphics);
+      if (!m_prenderlinesStatistics) return;
+
+      if (m_pfpsstatistics) m_pfpsstatistics->update();
+      ::draw2d::save_context context(pgraphics);
+      set_context_org(pgraphics);
+      pgraphics->reset_clip();
+      m_prenderlinesStatistics->draw(this, pgraphics);
+   }
+
+
    void frame_window::on_message_size(::message::message * pmessage)
    {
 
@@ -3264,10 +3295,29 @@ namespace user
    }
 
 
+   void frame_window::RepositionBars(::draw2d::graphics_pointer & pgraphics,
+      ::u32 nIDFirst, ::u32 nIDLast, ::user::interaction * pleftover,
+      ::u32 nFlags, ::i32_rectangle * prectParam, const ::i32_rectangle & rectangle, bool bStretch)
+   {
+      ::user::main_window::RepositionBars(pgraphics, nIDFirst, nIDLast,
+         pleftover, nFlags, prectParam, rectangle, bStretch);
+
+      if (_is_window() && pleftover && pleftover == m_pimpactMain
+         && pleftover->get_parent() == this
+         && (nFlags & ~reposNoPosLeftOver) != reposQuery
+         && !(nFlags & reposNoPosLeftOver))
+      {
+         // Impacts extend to hosting_rectangle during their own layout pass.
+         // Publish the space left by the bars so that pass preserves the inset.
+         m_rectangleHosting = pleftover->parent_client_rectangle(e_layout_sketch);
+      }
+   }
+
+
    ::i32_rectangle frame_window::hosting_rectangle(::user::enum_layout elayout)
    {
       
-      if(m_bWindowFrame)
+      if(m_bWindowFrame || m_controlbara.has_element())
       {
          
          return m_rectangleHosting;

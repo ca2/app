@@ -36,7 +36,7 @@ namespace universal_windows
 
       bool                             m_b3D;
       ::platform::system *                 system();
-      ::pointer < ::mutex >                          m_pmutexDc;
+      ::pointer < ::parallelization::mutex >                          m_pmutexDc;
       size                             m_size;
       ::windowing::window *       m_pimpl;
       bool                             m_bInitialized;
@@ -122,4 +122,4 @@ namespace universal_windows
 
 
 
-//CLASS_DECL_BASE ::pointer < ::mutex > & draw2d_mutex();
+//CLASS_DECL_BASE ::pointer < ::parallelization::mutex > & draw2d_mutex();

@@ -63,7 +63,7 @@ namespace acme
          //::pointer < ::acme::windowing::window >                   m_pwindowOwner;
 
          //::pointer<::micro::window_implementation>                 m_pnanouserwindowimplementation;
-         ::pointer < ::mutex >                                       m_pmutexBufferSizeAndPosition;
+         ::pointer < ::parallelization::mutex >                                       m_pmutexBufferSizeAndPosition;
 
          class ::time                                                m_timeHoverNoiseSuppression;
 
@@ -118,8 +118,8 @@ namespace acme
 
          ::pointer < ::acme::windowing::display >                    m_pacmewindowingdisplayWindow;
          class ::time m_timeLastPresentRequest;
-//         long                                                      m_lX11NativeVisualId;
-//         ::i32                                                     m_lX11MapNotify = -1;
+         long                                                        m_lX11NativeVisualId;
+         ::i32                                                       m_lX11MapNotify = -1;
 
          //::pointer < ::acme::draw2d::domain >         m_pacmedraw2ddomain;
 //enum_bias m_ebias;
@@ -194,6 +194,9 @@ namespace acme
 
          void set_cursor(enum_cursor ecursor) override;
 
+         // Borrowed surface. The windowing backend owns its lifetime; no GPU objects.
+         virtual void * native_wayland_surface() { return nullptr; }
+         virtual bool native_surface_configured() const { return true; }
          virtual bool _is_window();
 
          
@@ -226,7 +229,7 @@ namespace acme
 #endif
 
          virtual void on_window_paint(::nano::graphics::context * pgraphicscontext);
-         bool on_window_create(void * pCREATESTRUCT) override;
+         bool on_window_create(::user::window_create_t * pwindowcreate) override;
          void on_window_position(const ::i32_point & point) override;
          void on_window_size(const ::i32_size & size) override;
          void on_window_set_focus() override;
@@ -240,7 +243,7 @@ namespace acme
 
 
          void show_window(::user_interface::enum_show_window eshowwindow) override;
-         void set_window_style(::i32 iStyle) override;
+         void set_window_style(::i64 iStyle) override;
          ::i64 get_window_style() override;
          void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, ::i32 iSetWindowPosFlags) override;
          void window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase) override;
@@ -356,7 +359,7 @@ namespace acme
 
          //virtual void nano_window_on_create();
 
-         void create_window() override;
+         void create_window(::enum_parallelization eparallelization) override;
          void _create_window() override;
 
          //void on_create_window() override;

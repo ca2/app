@@ -26,10 +26,10 @@ namespace turboc
       //main_impact *             m_pmainimpact;
 
       string                  m_strServer;
-      ::pointer < ::mutex >                   m_pmutexWork;
-      ::pointer < ::mutex >                   m_pmutexDraw;
-      ::pointer < ::mutex >                   m_pmutexSwap;
-      ::pointer < ::mutex >                   m_pmutexText;
+      ::pointer < ::parallelization::mutex >                   m_pmutexWork;
+      ::pointer < ::parallelization::mutex >                   m_pmutexDraw;
+      ::pointer < ::parallelization::mutex >                   m_pmutexSwap;
+      ::pointer < ::parallelization::mutex >                   m_pmutexText;
       ::image::image_pointer        m_pimageAi1;
       ::image::image_pointer        m_pimageAi2;
 

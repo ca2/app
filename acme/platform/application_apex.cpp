@@ -135,6 +135,15 @@ void apex_application_layer::setResourceName(::i32 iId
    }
 
 
+   bool apex_application_layer::is_using_gpu()
+   {
+
+      throw ::exception(error_failed);
+
+      return false;
+   }
+
+
    // bool apex_application_layer::is_application() const override{}
    //
    //
@@ -842,8 +851,8 @@ void apex_application_layer::setResourceName(::i32 iId
    }
 
 
-   //virtual ::pointer< ::mutex > get_local_mutex(){}
-   //virtual ::pointer< ::mutex > get_global_mutex(){}
+   //virtual ::pointer< ::parallelization::mutex > get_local_mutex(){}
+   //virtual ::pointer< ::parallelization::mutex > get_global_mutex(){}
 
    ::string apex_application_layer::apex_application_layer::get_local_mutex_name()
    {

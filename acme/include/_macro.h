@@ -403,41 +403,11 @@ __FACTORY_EXPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfa
 TOKEN_CONCATENATE(name, _factory)(pfactory)
 
 
-#if defined(MACOS) || defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__BSD__) || defined(__SUNOS__)
-#define IS_DESKTOP_SYSTEM() (true)
-#else
-#define IS_DESKTOP_SYSTEM() (false)
-#endif
-
 
 #define sizeof_in_bits(TYPE) (sizeof(TYPE) * 8)
 
 
 
-
-_STUD_API bool is_system(enum_operating_system eoperatingsystem) noexcept {
-   if (eoperatingsystem == e_operating_system_windows) {
-      return is_windows();
-   }
-   else if (eoperatingsystem == e_operating_system_linux) {
-      return is_linux();
-   }
-   else if (eoperatingsystem == e_operating_system_unix) {
-      return is_unix();
-   }
-   else if (eoperatingsystem == e_operating_system_macos) {
-      return is_macos();
-   }
-   else if (eoperatingsystem == e_operating_system_freebsd) {
-      return is_freebsd();
-   }
-   else if (eoperatingsystem == e_operating_system_android) {
-      return is_android();
-   }
-   else {
-      return false;
-   }
-}
 
 #define _STUD_MAKE_NONCOPYABLE(type) _STUD_API type(const ::platform::type &) noexcept = delete; \
 _STUD_API type& operator=(const ::platform::type &) noexcept = delete

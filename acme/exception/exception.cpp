@@ -29,7 +29,6 @@ bool ::exception::s_bEnableCallStackBackTrace = true;
 exception::exception() : exception(error_exception)
 {
 
-
 }
 
 
@@ -37,7 +36,6 @@ exception::exception() : exception(error_exception)
 exception::exception(const ::e_status & estatus, const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrDetails, ::i32 iSkip, void * caller_address) :
 exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, scopedstrMessage, scopedstrDetails, iSkip, caller_address)
 {
-   
    
 }
 
@@ -117,7 +115,7 @@ m_errorcodea(errorcodea)
 
 void exception::log_constructor(const char * pszType, bool bIncludeStack) noexcept
 {
-#if defined(__SUNOS__) || defined(__HAIKU__)
+#if defined(__SUNOS__) || defined(__HAIKU__) || defined(NETBSD) || defined(__NetBSD__) || (defined(__linux__) && !defined(NDEBUG))
    // Logging may itself construct an exception. Avoid recursive diagnostics
    // and leave the original exception usable if the logger fails.
    static thread_local bool bLoggingException = false;

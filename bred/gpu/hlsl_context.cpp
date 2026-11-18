@@ -1,5 +1,6 @@
 // Created by camilo on 2025-07-05 07:15 <3ThomasBorregaardSørensen!!
 #include "platform.h"
+#include "bred/gpu/brush_fill_shader_source.h"
 #include "hlsl_context.h"
 
 
@@ -68,6 +69,27 @@ float4 main(PSInput input) : SV_Target {
 
       return ::as_memory_block(proto_frag);
 
+   }
+
+
+   ::memory hlsl_context::brush_fill_shader_vert()
+   {
+      auto source = ::gpu::brush_fill_source::source(true, false, false);
+      // The pointer/length memory constructor borrows the string's storage.
+      // Copy before the temporary source string is destroyed.
+      ::memory memory;
+      memory.assign(source.data(), source.size());
+      return memory;
+   }
+
+   ::memory hlsl_context::brush_fill_shader_frag(bool bPattern)
+   {
+      auto source = ::gpu::brush_fill_source::source(true, true, bPattern);
+      // The pointer/length memory constructor borrows the string's storage.
+      // Copy before the temporary source string is destroyed.
+      ::memory memory;
+      memory.assign(source.data(), source.size());
+      return memory;
    }
 
 

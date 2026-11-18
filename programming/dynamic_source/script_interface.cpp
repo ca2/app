@@ -102,8 +102,15 @@ namespace dynamic_source
 
                   m_pscriptmanager1 = m_pscriptmain1->m_pscriptmanager1;
 
-                  // ... a fair good guess for a parent instance
-                  m_pinstanceParent1 = m_pscriptmain1->m_pscriptinstanceLastlyInstantiated;
+                  // Included scripts may already have been destroyed. The last
+                  // instantiated script is not a safe source for a parent.
+                  // Preserve an explicit parent, or use the live request main.
+                  if (!m_pinstanceParent1 && m_pscriptmain1 != this)
+                  {
+
+                     m_pinstanceParent1 = m_pscriptmain1;
+
+                  }
 
                }
 

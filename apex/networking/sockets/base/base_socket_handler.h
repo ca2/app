@@ -91,7 +91,7 @@ namespace sockets
       ::string trace_prefix() const override;
 
 
-      ///** get ::pointer < ::mutex > object for threadsafe operations. */
+      ///** get ::pointer < ::parallelization::mutex > object for threadsafe operations. */
       //virtual clasync & GetMutex() const = 0;
 
       virtual void set_logger(::apex::log * plog);

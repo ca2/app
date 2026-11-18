@@ -1,4 +1,5 @@
 app/aura
+app/gpu
 default_opengl1
 port/graphics3d/assimp
 port/graphics3d/ktx

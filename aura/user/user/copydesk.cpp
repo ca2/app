@@ -89,27 +89,27 @@ namespace user
 
       for (auto & strPath : stra)
       {
-
-         if (strPath.has_character() && 
-            (
-               directory_system()->is(strPath)
-            || file_system()->exists(strPath)
-            || system()->internet()->is_common_internet_protocol(strPath)
-            )
-            )
+         strPath.trim();
+         if (strPath.is_empty()) continue;
+         ::file::path path(strPath);
+         // Plain clipboard text (including debugger output) is not a filename.
+         // File-list text must contain an absolute path or a supported URI.
+         if (path.is_relative() && !strPath.contains("://")) continue;
+         bool exists = false;
+         try
          {
-
-            if (ppatha == nullptr)
-            {
-
-               return true;
-
-            }
-
-            ppatha->add(::file::path(strPath));
-
+            exists = (strPath.contains("://") && system()->internet()->is_common_internet_protocol(strPath))
+               || directory_system()->is(strPath) || file_system()->exists(strPath);
          }
-
+         catch (...)
+         {
+            // Missing, malformed, inaccessible, and overlong paths are normal
+            // negative probe results; toolbar updates must not show dialogs.
+            continue;
+         }
+         if (!exists) continue;
+         if (ppatha == nullptr) return true;
+         ppatha->add(path);
       }
 
       if (ppatha != nullptr && ppatha->has_elements())
@@ -142,16 +142,11 @@ namespace user
          if(_get_plain_text(str))
          {
 
-            if(string_to_filea(nullptr, str))
-            {
-
-               return true;
-
-            }
+            return string_to_filea(nullptr, str);
 
          }
 
-         return true;
+         return false;
 
       }
 
@@ -186,6 +181,7 @@ namespace user
 
       }
 
+      eop = e_op_copy;
       return true;
 
    }

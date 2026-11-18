@@ -266,6 +266,22 @@ void timer_handler::erase_timer_dispatch(::timer_dispatch * ptimerdispatch)
 
 void timer_handler::handle_timers()
 {
+   // Synchronization waits can pump task_iteration(). Do not dispatch timers
+   // recursively while a callback on this thread is still running.
+   static thread_local bool bDispatchingTimers = false;
+   if (bDispatchingTimers)
+   {
+      return;
+   }
+   struct timer_dispatch_guard
+   {
+      bool & m_bDispatching;
+      timer_dispatch_guard(bool & bDispatching) : m_bDispatching(bDispatching)
+      {
+         m_bDispatching = true;
+      }
+      ~timer_dispatch_guard() { m_bDispatching = false; }
+   } dispatchguard(bDispatchingTimers);
 
    auto itNext = m_timermap.begin();
 

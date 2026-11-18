@@ -754,6 +754,46 @@ namespace url
    //}
 
 
+   static ::i32 parse_url_port(const_char_pointer begin, const_char_pointer end) noexcept
+   {
+
+      if (begin == end)
+      {
+
+         return -1;
+
+      }
+
+      ::i32 port = 0;
+
+      for (auto psz = begin; psz < end; psz++)
+      {
+
+         if (*psz < '0' || *psz > '9')
+         {
+
+            return -1;
+
+         }
+
+         auto digit = *psz - '0';
+
+         if (port > (65535 - digit) / 10)
+         {
+
+            return -1;
+
+         }
+
+         port = port * 10 + digit;
+
+      }
+
+      return port;
+
+   }
+
+
    ::i32 connect_range::port() const
    {
 
@@ -767,7 +807,7 @@ namespace url
       if (m_rangePort.has_character())
       {
 
-         return atoi(::string(m_rangePort));
+         return parse_url_port(m_rangePort.begin(), m_rangePort.end());
 
       }
 
@@ -1022,10 +1062,66 @@ namespace url
    }
 
 
+   static bool url_authority_is_healthy(const_char_pointer protocolBegin, const_char_pointer protocolEnd,
+      const_char_pointer hostBegin, const_char_pointer hostEnd,
+      const_char_pointer portBegin, const_char_pointer portEnd) noexcept
+   {
+
+      if (!protocolBegin || protocolBegin == protocolEnd || !hostBegin || hostBegin == hostEnd)
+      {
+
+         return false;
+
+      }
+
+      auto isLetter = [](char ch) { return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'); };
+
+      if (!isLetter(*protocolBegin)) return false;
+
+      for (auto psz = protocolBegin; psz < protocolEnd; psz++)
+      {
+
+         if (!isLetter(*psz) && (*psz < '0' || *psz > '9') && *psz != '+' && *psz != '-' && *psz != '.')
+            return false;
+
+      }
+
+      bool bracketed = *hostBegin == '[';
+
+      if (bracketed && (hostEnd - hostBegin < 4 || hostEnd[-1] != ']')) return false;
+
+      bool hasAddressColon = false;
+
+      for (auto psz = hostBegin + (bracketed ? 1 : 0); psz < hostEnd - (bracketed ? 1 : 0); psz++)
+      {
+
+         if ((unsigned char)*psz <= 32 || (unsigned char)*psz == 127 || *psz == '[' || *psz == ']' ||
+             *psz == '/' || *psz == '?' || *psz == '#' || *psz == '@' || *psz == '\\')
+            return false;
+
+         if (*psz == ':')
+         {
+
+            if (!bracketed) return false;
+            hasAddressColon = true;
+
+         }
+
+      }
+
+      if (bracketed && !hasAddressColon) return false;
+
+      return !portBegin || parse_url_port(portBegin, portEnd) >= 0;
+
+   }
+
+
    void url::parse(const ::scoped_string& scopedstr)
    {
 
       
+
+      m_bHealthy = false;
 
       m_str = scopedstr;
 
@@ -1035,6 +1131,14 @@ namespace url
          m_connectrange.parse(m_str);
 
          m_requestrange.parse(m_connectrange.request_range());
+
+         auto protocol = m_connectrange.protocol();
+         auto host = m_connectrange.host();
+         auto port = m_connectrange.port_range();
+
+         m_bHealthy = m_connectrange.is_url() && m_str.end() - protocol.end() >= 3 &&
+            protocol.end()[0] == ':' && protocol.end()[1] == '/' && protocol.end()[2] == '/' &&
+            url_authority_is_healthy(protocol.begin(), protocol.end(), host.begin(), host.end(), port.begin(), port.end());
 
       }
       catch (...)
@@ -1056,26 +1160,34 @@ namespace url
 
       m_bIsUrl = false;
 
+      m_range.clear();
+      m_rangeProtocol.clear();
+      m_rangeHost.clear();
+
       //url.m_str = scopedstr;
 
       m_rangeRequest.clear();
+
+      m_rangePort.clear();
 
       //purl->m_pszRequest = nullptr;
 
       m_iPort = -1;
 
+      if (range.is_empty()) return;
+
       auto pszStart = range.begin();
 
       auto psz = pszStart;
 
-      while (character_isalnum(*psz) || *psz == '-' || *psz == '_' || *psz == '.')
+      while (psz < range.end() && (character_isalnum(*psz) || *psz == '-' || *psz == '_' || *psz == '.' || *psz == '+'))
       {
 
          psz++;
 
       }
 
-      if (*psz != ':')
+      if (psz == range.end() || *psz != ':')
       {
 
          m_range.clear();
@@ -1092,7 +1204,7 @@ namespace url
 
       auto pszSlash = pszProtocolColon + 1;
 
-      if (*pszSlash != '/')
+      if (pszSlash == range.end() || *pszSlash != '/')
       {
 
          m_range.clear();
@@ -1154,12 +1266,52 @@ namespace url
 
       auto pszRequest = strchr(pszHost, '/');
 
+      // Colons inside a bracketed IPv6 literal are part of the host.
+      auto pszAuthorityEnd = pszRequest ? pszRequest : range.m_end;
+      const_char_pointer pszPortColon = nullptr;
+
+      if (pszHost < pszAuthorityEnd && *pszHost == '[')
+      {
+
+         auto pszHostEnd = pszHost + 1;
+
+         while (pszHostEnd < pszAuthorityEnd && *pszHostEnd != ']')
+         {
+
+            pszHostEnd++;
+
+         }
+
+         if (pszHostEnd < pszAuthorityEnd && pszHostEnd + 1 < pszAuthorityEnd && pszHostEnd[1] == ':')
+         {
+
+            pszPortColon = pszHostEnd + 1;
+
+         }
+
+      }
+      else
+      {
+
+         for (auto psz = pszHost; psz < pszAuthorityEnd; psz++)
+         {
+
+            if (*psz == ':')
+            {
+
+               pszPortColon = psz;
+               break;
+
+            }
+
+         }
+
+      }
+
       if (!pszRequest)
       {
 
          m_rangeHost.m_end = range.m_end;
-
-         auto pszPortColon = strchr(pszHost, ':');
 
          if (pszPortColon)
          {
@@ -1170,18 +1322,7 @@ namespace url
 
             m_rangePort.m_end = range.m_end;
 
-            try
-            {
-
-               m_iPort = ::as_i32(m_rangePort);
-
-            }
-            catch (...)
-            {
-
-               m_iPort = -1;
-
-            }
+            m_iPort = parse_url_port(m_rangePort.begin(), m_rangePort.end());
 
             m_range.m_end = m_rangePort.m_end;
 
@@ -1201,20 +1342,6 @@ namespace url
       }
 
       m_bIsUrl = true;
-
-      auto pszPortColon = strchr(pszHost, ':');
-
-      if (pszPortColon)
-      {
-
-         if (pszPortColon > pszRequest)
-         {
-
-            pszPortColon = nullptr;
-
-         }
-
-      }
 
       if (pszPortColon)
       {
@@ -1359,6 +1486,8 @@ namespace url
       m_str = url.m_str;
       m_connectrange = url.m_connectrange;
       m_requestrange = url.m_requestrange;
+
+      m_bHealthy = url.m_bHealthy;
 
       return *this;
 

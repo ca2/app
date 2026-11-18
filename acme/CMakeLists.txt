@@ -195,6 +195,8 @@ list(APPEND library_source
         filesystem/file/file.cpp
         filesystem/file/folder.cpp
         filesystem/file/folder.h
+        filesystem/file/folder_download.cpp
+        filesystem/file/folder_download.h
         filesystem/file/item.cpp
         filesystem/file/item_array.cpp
         filesystem/file/memory_file.cpp
@@ -287,6 +289,7 @@ list(APPEND library_source
         graphics/draw2d/color32.h
         graphics/draw2d/color_array.cpp
         graphics/draw2d/color_array.h
+        graphics/draw2d/domain.cpp
         graphics/draw2d/domain_consumer.cpp
         graphics/draw2d/domain_consumer.h
         graphics/draw2d/os_font_name.cpp
@@ -588,6 +591,8 @@ list(APPEND library_source
         parallelization/signalization.h
         parallelization/single_lock.cpp
         parallelization/socket_event.cpp
+   parallelization/synchronization_object.cpp
+   parallelization/synchronization_object.h
         parallelization/synchronizer.cpp
         parallelization/synchronizer.h
         parallelization/task.cpp
@@ -603,6 +608,8 @@ list(APPEND library_source
         platform/_main_hold_base.cpp
         platform/_synchronization.cpp
         platform/_synchronization.h
+        platform/_trace_message.cpp
+        platform/_trace_message.h
         platform/acme.cpp
         platform/acme.h
    platform/acme_message.cpp
@@ -899,6 +906,7 @@ list(APPEND library_source
         prototype/datetime/date_span.h
         prototype/datetime/datetime.cpp
         prototype/datetime/datetime.h
+        prototype/datetime/datetime1.cpp
         prototype/datetime/earth_gregorian_time.cpp
         prototype/datetime/earth_gregorian_time.h
         prototype/datetime/earth_time_shift.h
@@ -1346,7 +1354,6 @@ list(APPEND library_source
         prototype/string/unicode_wd16.cpp
         prototype/string/unicode_wd16_wd32.cpp
         prototype/string/unicode_wd32.cpp
-        prototype/string/unicode_wide.cpp
         prototype/string/wildcard.cpp
         #prototype/string/wstring_adaptor.h
         #prototype/string/x.cpp
@@ -1410,6 +1417,10 @@ list(APPEND library_source
         user/implementation/dialog_implementation.h
         user/implementation/message_box_implementation.cpp
         user/implementation/message_box_implementation.h
+        user/html/page.cpp
+        user/html/page.h
+        user/html/styling.cpp
+        user/html/styling.h
         user/interface/dialog.cpp
         user/interface/dialog.h
         user/interface/message_box.cpp
@@ -1433,6 +1444,7 @@ list(APPEND library_source
         user/micro/main_window.h
         user/micro/message_box.cpp
         user/micro/message_box.h
+        user/micro/command_message_box.h
         user/micro/popup_button.cpp
         user/micro/popup_button.h
         user/micro/still.cpp
@@ -1810,6 +1822,8 @@ list(APPEND library_source
         exception/exception.cpp
         exception/exception.h
         exception/exception2.h
+        exception/exception_pointer.cpp
+        exception/exception_pointer.h
         exception/exit.cpp
         exception/exit.h
         exception/runtime_check.cpp
@@ -2031,11 +2045,13 @@ list(APPEND library_source
         parallelization/common.h
         parallelization/condition.h
         parallelization/critical_section.h
+        parallelization/fast_critical_section.h
         parallelization/initial_single_lock.h
         #parallelization/manual_reset_event.h
         parallelization/message_queue.cpp
         parallelization/message_queue.h
         parallelization/message_queue_global.cpp
+        parallelization/fast_critical_section.h
         parallelization/mutex.h
         parallelization/pool.h
         parallelization/queue.cpp
@@ -2930,32 +2946,33 @@ if (${__ANDROID__})
 endif ()
 
 
-if (SOLARIS)
+if (${SOLARIS})
 
 
     list(APPEND library_source
-            operating_system/sunos/solaris.cpp
-            operating_system/sunos/cairo_keep.cpp
-            operating_system/sunos/cross_win_file.cpp
-            operating_system/sunos/cross_win_gdi.cpp
-            operating_system/sunos/display.cpp
-            operating_system/sunos/file.cpp
-            operating_system/sunos/file_watcher.cpp
-            operating_system/sunos/http.cpp
-            operating_system/sunos/http_lib.cpp
-            operating_system/sunos/launcher.cpp
-            operating_system/sunos/library.cpp
-            operating_system/sunos/lock.cpp
-            operating_system/sunos/message_loop.cpp
-            operating_system/sunos/process_process.cpp
-            operating_system/sunos/process_pid.cpp
-            operating_system/sunos/simple_shell_launcher.cpp
-            operating_system/sunos/simple_ui.cpp
-            operating_system/sunos/small_ipca_channel.cpp
-            operating_system/sunos/thread.cpp
-            operating_system/sunos/win_base.cpp
-            operating_system/sunos/window.cpp
-            operating_system/sunos/window_xlib.cpp)
+            #operating_system/sunos/solaris.cpp
+            #operating_system/sunos/cairo_keep.cpp
+            #operating_system/sunos/cross_win_file.cpp
+            #operating_system/sunos/cross_win_gdi.cpp
+            #operating_system/sunos/display.cpp
+            #operating_system/sunos/file.cpp
+            #operating_system/sunos/file_watcher.cpp
+            #operating_system/sunos/http.cpp
+            #operating_system/sunos/http_lib.cpp
+            #operating_system/sunos/launcher.cpp
+            #operating_system/sunos/library.cpp
+            #operating_system/sunos/lock.cpp
+            #operating_system/sunos/message_loop.cpp
+            #operating_system/sunos/process_process.cpp
+            #operating_system/sunos/process_pid.cpp
+            #operating_system/sunos/simple_shell_launcher.cpp
+            #operating_system/sunos/simple_ui.cpp
+            #operating_system/sunos/small_ipca_channel.cpp
+            #operating_system/sunos/thread.cpp
+            #operating_system/sunos/win_base.cpp
+            #operating_system/sunos/window.cpp
+            #operating_system/sunos/window_xlib.cpp
+    )
 
 
 endif ()
@@ -3151,6 +3168,8 @@ if (${NETBSD})
             operating_system/netbsd/_netbsd2.h
             operating_system/netbsd/application.h
             operating_system/netbsd/call_stack.cpp
+            operating_system/netbsd/console.cpp
+            operating_system/netbsd/cpu_features.cpp
             operating_system/netbsd/debug.cpp
             operating_system/netbsd/debug.h
             operating_system/netbsd/dumpinit.cpp
@@ -3188,6 +3207,12 @@ if (${NETBSD})
             operating_system/netbsd/util.cpp
             operating_system/netbsd/win_base.cpp
     )
+
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "^(x86_64|amd64|AMD64|i.86)$")
+    list(APPEND library_source operating_system/netbsd/cpu_features_amd64.cpp)
+else()
+    message(FATAL_ERROR "NetBSD CPU feature detection is not implemented for this architecture")
+endif()
 
 endif ()
 
@@ -3230,6 +3255,7 @@ if (${__SUNOS__})
             #operating_system/freebsd/user.cpp
             #operating_system/freebsd/
             operating_system/sunos/_.cpp
+            operating_system/sunos/call_stack.cpp
             #operating_system/freebsd/_.cpp
             #operating_system/freebsd/_.h
             #operating_system/freebsd/_.h
@@ -3383,7 +3409,7 @@ if (${LINUX} OR ${__BSD__} OR ${__SUNOS__})
 endif ()
 
 
-if (${LINUX} OR ${__BSD__})
+if (${LINUX} OR ${__BSD__} OR ${__SUNOS__})
 
 
     list(APPEND library_source
@@ -3500,10 +3526,10 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
         list(APPEND static_this_system_libraries z pthread iconv execinfo elf)
         message(STATUS "FREEBSD acme this_system_libraries ${this_system_libraries}")
     elseif (${NETBSD})
-        message(SEND_ERROR "test is really netbsd?!")
-        list(APPEND this_system_libraries util z pthread iconv execinfo c)
-        #list(APPEND static_this_system_libraries util z pthread iconv execinfo elf)
-        list(APPEND static_this_system_libraries util z pthread iconv execinfo elf)
+        #message(SEND_ERROR "test is really netbsd?!")
+        list(APPEND this_system_libraries util z pthread iconv execinfo rt c)
+        #list(APPEND static_this_system_libraries util z pthread iconv execinfo elf rt)
+        list(APPEND static_this_system_libraries util z pthread iconv execinfo elf rt)
         message(STATUS "NETBSD acme this_system_libraries ${this_system_libraries}")
     elseif (${__ANDROID__})
 
@@ -3518,6 +3544,10 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
     elseif (${__HAIKU__})
         list(APPEND this_system_libraries z pthread idn iconv)
         list(APPEND static_this_system_libraries pthread iconv)
+    elseif (__SUNOS__)
+        # IDN conversion belongs to nano_idn_libidn; acme uses its interface.
+        list(APPEND this_system_libraries z pthread)
+        list(APPEND static_this_system_libraries pthread)
     else ()
         list(APPEND this_system_libraries z pthread idn)
         list(APPEND static_this_system_libraries pthread)
@@ -3660,4 +3690,11 @@ else()
 endif()
 if(WIN32 AND NOT ca2_raw_stack_definition STREQUAL "")
    set_property(SOURCE operating_system/windows/callstack.cpp APPEND PROPERTY COMPILE_DEFINITIONS "${ca2_raw_stack_definition}")
+endif()
+
+if(BUILD_TESTING)
+   add_executable(file_icon_provider_test test/file_icon_provider.cpp)
+   target_compile_features(file_icon_provider_test PRIVATE cxx_std_20)
+   target_link_libraries(file_icon_provider_test PRIVATE acme)
+   add_test(NAME file_icon_provider_test COMMAND file_icon_provider_test)
 endif()

@@ -7,6 +7,7 @@
 //
 #include "platform.h"
 #include "tab.h"
+#include "fps_debug.h"
 #include "tab_data.h"
 #include "acme/handler/item.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -58,6 +59,11 @@ namespace user
       pdraw2dgraphics->get_clip_box(rClip);
 
       _001TabOnDrawSchema01(pdraw2dgraphics);
+#if FPS_DEBUG
+      auto rectangleTab = ::f64_rectangle(get_data()->m_rectangleTab);
+      if (m_pAutoHide && rectangleTab.area() > 0 && rClip.intersects(rectangleTab))
+         m_pAutoHide->debug_on_tab_draw(pdraw2dgraphics);
+#endif
 
    }
 
@@ -736,9 +742,18 @@ namespace user
 
       //}
 
-      auto_hide_calculate_control_visibility();
+      m_pAutoHide->auto_hide_calculate_control_visibility();
 
       _001OnTabLayout(pdraw2dgraphics);
+
+      // Publish the final strip size, including theme margins, after layout.
+      // Followers must not use the previous pass's (initially 16 px) height.
+      auto iStripHeight = get_data()->m_bVertical ? auto_hide_threshold_height()
+         : get_data()->m_rectangleTab.bottom;
+      if (m_pAutoHide->m_powner == this)
+         m_pAutoHide->m_iKeepOpenHeight = iStripHeight;
+      else
+         m_pAutoHide->add_auto_hide_interaction(this, iStripHeight);
 
    }
 
@@ -912,7 +927,7 @@ namespace user
          get_data()->m_rectangleTab.right = get_data()->m_rectangleTab.left + get_data()->m_iTabWidth;
          get_data()->m_rectangleTab.bottom = rectangleX.bottom;
 
-         get_data()->m_rectangleHosting.left = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.right : rectangleX.left;
+         get_data()->m_rectangleHosting.left = m_pAutoHide->m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.right : rectangleX.left;
          get_data()->m_rectangleHosting.top = get_data()->m_rectangleTab.top;
          get_data()->m_rectangleHosting.right = rectangleX.right;
          get_data()->m_rectangleHosting.bottom = get_data()->m_rectangleTab.bottom;
@@ -1028,7 +1043,7 @@ namespace user
          ::i32_rectangle & rectangleHosting = get_data()->m_rectangleHosting;
 
          rectangleHosting.left = get_data()->m_rectangleTab.left;
-         rectangleHosting.top = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.bottom : rectangleX.top;
+         rectangleHosting.top = m_pAutoHide->m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.bottom : rectangleX.top;
          rectangleHosting.right = get_data()->m_rectangleTab.right;
          rectangleHosting.bottom = rectangleX.bottom;
 

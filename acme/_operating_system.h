@@ -5,7 +5,7 @@
 #define ACME_OPERATING_SYSTEM
 
 
-#include "operating_system/operating_system.h"
+#include "system_software/operating_system.h"
 
 
 #include "acme/operating_system/_operating_system.h"

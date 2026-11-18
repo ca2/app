@@ -39,7 +39,7 @@
 #include <stdio.h>
 #endif
 
-//::pointer< ::mutex > g_pmutexUser = nullptr;
+//::pointer< ::parallelization::mutex > g_pmutexUser = nullptr;
 
 
 //CLASS_DECL_AURA void initialize_user_mutex();

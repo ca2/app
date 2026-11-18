@@ -64,7 +64,7 @@ namespace gpu
 
       //   constructø(m_pgpudevice);
 
-      //   if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      //   if (m_papplication->use_gpu_swap_chain())
       //   {
 
       //      m_pgpudevice->initialize_gpu_device_for_swap_chain(this, m_pacmeuserinteractionMain->window());
@@ -155,7 +155,7 @@ namespace gpu
 
          }
          
-         iSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow ? 1 : 0;
+         iSwapChain = m_papplication->use_gpu_swap_chain() ? 1 : 0;
 
 #ifdef WINDOWS
 
@@ -186,6 +186,63 @@ namespace gpu
 
          }
 
+#elif defined(LINUX)
+
+         if (strGpu == "opengl")
+         {
+
+            iStep = iSwapChain ? 1 : 0;
+
+            if (iSwapChain)
+            {
+
+               if (strDraw2d == "nanovg")
+               {
+
+                  iStep++;
+
+               }
+               else if (strDraw2d != "opengl")
+               {
+
+                  goto error;
+
+               }
+
+            }
+
+         }
+         else if (strGpu == "vulkan")
+         {
+
+            iStep = iSwapChain ? 4 : 3;
+
+            if (iSwapChain)
+            {
+
+               if (strDraw2d == "vkvg")
+               {
+
+                  iStep++;
+
+               }
+               else if (strDraw2d != "vulkan")
+               {
+
+                  goto error;
+
+               }
+
+            }
+
+         }
+         else
+         {
+
+            goto error;
+
+         }
+
 #endif
 
          m_iGraphicsModeStep = iStep + 1;
@@ -212,6 +269,10 @@ namespace gpu
 #ifdef WINDOWS_DESKTOP
 
          m_iGraphicsModeStepCount = 16;
+
+#elif defined(LINUX)
+
+         m_iGraphicsModeStepCount = 6;
 
 #endif
 

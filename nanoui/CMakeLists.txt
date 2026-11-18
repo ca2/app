@@ -56,7 +56,7 @@ list(APPEND library_source
    MessageDialog.cpp
    MessageDialog.h
    Object.h
-   platform.cpp
+   platform_platform.cpp
    Popup.cpp
    Popup.h
    PopupButton.cpp

@@ -18,6 +18,7 @@
 #include "acme/parallelization/_types.h"
 #include "acme/prototype/collection/map.h"
 #include "acme/prototype/prototype/factory.h"
+#include <mutex>
 
 
 namespace accessibility
@@ -133,7 +134,7 @@ namespace platform
       ::pointer<::apex::system>                                               m_psystemParent;
 
       ::pointer < ::prototype::prototype >                                    m_pprototype;
-      //::pointer < ::mutex >                                                 m_pmutexFactory;
+      //::pointer < ::parallelization::mutex >                                                 m_pmutexFactory;
       //string_map_base < ::pointer<::factory::factory >>                          m_mapFactory;
       //string_map_base < ::pointer<::factory::factory >>                          m_mapFactory;
 
@@ -190,12 +191,16 @@ namespace platform
       ::pointer<class ::directory_system>                                     m_pdirectorysystem;
       ::pointer<class ::file_system>                                          m_pfilesystem;
       ::pointer<class ::path_system>                                          m_ppathsystem;
+      ::std::recursive_mutex                                                  m_mutexFileSystemComponents;
+      bool                                                                    m_bFileSystemComponentsInitializing = false;
+      bool                                                                    m_bFileSystemComponentsInitialized = false;
+      bool                                                                    m_bDirectorySystemInitialized = false;
 
       //::pointer<::directory_system>                                         m_pdirectorysystem;
       //::pointer<::file_system>                                              m_pfilesystem;
 
 
-      ::pointer < ::mutex >                                                   m_pmutexMatter;
+      ::pointer < ::parallelization::mutex >                                                   m_pmutexMatter;
 
          //::pointer < ::windowing::windowing_base > m_pwindowingbase;
 //#if defined(WITH_X11) || defined(WITH_XCB)

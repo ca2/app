@@ -432,7 +432,7 @@ void file_context::set_length(const ::file::path & path, filesize size)
 
    auto pfilesystem = psystem->file_system();
 
-   return pfilesystem->m_pathModule;
+   return pfilesystem->module();
 
 }
 
@@ -1472,6 +1472,8 @@ void file_context::calculate_main_resource_memory()
 ::block file_context::get_main_resource_block()
 {
 
+   critical_section_lock synchronouslock(&m_criticalsectionMainResource);
+
    if (::system()->m_blockMatter.is_set())
    {
 
@@ -1482,9 +1484,9 @@ void file_context::calculate_main_resource_memory()
    if (!m_bMainResourceMemoryCalculated)
    {
 
-      m_bMainResourceMemoryCalculated = true;
-
       calculate_main_resource_memory();
+
+      m_bMainResourceMemoryCalculated = true;
 
    }
 
@@ -2595,7 +2597,7 @@ file_pointer file_context::get(const ::file::path & path)
 
    ::i32 i = 0;
 
-   //static ::pointer < ::mutex > s_mutex(nullptr);
+   //static ::pointer < ::parallelization::mutex > s_mutex(nullptr);
 
    //single_lock synchronouslock(&s_mutex, true);
 
@@ -3819,11 +3821,10 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 
    }
 
-   if (path.flags().is_clear(::file::e_flag_bypass_cache)
-         && ((eopen & ::file::e_open_no_cache) || payloadFile.is_property_true("nocache")))
+   if (eopen & ::file::e_open_no_exception_on_open)
    {
 
-      path.flags().set(::file::e_flag_bypass_cache);
+      path.flags().set(::file::e_flag_no_exception);
 
    }
 
@@ -3970,6 +3971,16 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 
 ::file_pointer file_context::defer_get_protocol_file(const ::scoped_string & scopedstrProtocol, const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
+
+   if (scopedstrProtocol.case_insensitive_equals("google-drive"))
+   {
+      // Native mirrors have already been resolved by defer_process_path.
+      if (eopen & (::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate))
+         throw ::exception(error_not_supported, "Google Drive browsing is read-only");
+      auto & pfactory = system()->factory("folder", "google_drive");
+      auto pfolder = createø < ::folder >(pfactory);
+      return pfolder->get_file(path);
+   }
 
    if(scopedstrProtocol == "mediastore"
    || scopedstrProtocol == "gdrive-appdata")

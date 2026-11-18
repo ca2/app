@@ -397,7 +397,14 @@ namespace sockets
             if (strFile.has_character())
             {
 
-               auto pfileIn = file()->get_reader(strFile);
+               auto pfileIn = file()->get_reader(strFile, ::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_write);
+
+               if (pfileIn.nok())
+               {
+
+                  throw ::io_exception(error_io, "http_base_socket::on_compress Failed to open source file");
+
+               }
 
                //iInputFileSize = pfileIn->size();
 

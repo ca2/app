@@ -3278,6 +3278,7 @@
     <ClInclude Include="operating_system\_operating_system.h" />
     <ClInclude Include="operating_system\_user.h" />
     <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\graphics_configuration.h" />
     <ClInclude Include="platform\aura.h" />
     <ClInclude Include="platform\context.h" />
     <ClInclude Include="platform\draw_context.h" />

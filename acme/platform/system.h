@@ -238,6 +238,8 @@ namespace platform
 
       virtual ::path_system * path_system() const;
 
+      void ensure_file_system_components();
+
       ::platform::system_factory * system_factory() override;
 
       ::xml::xml * _xml() override;
@@ -1045,7 +1047,7 @@ namespace platform
 //
 //       virtual void on_allocation_error(const ::scoped_string & scopedstrName, ::object * pobjectSometimes);
 //
-//       //::pointer< ::mutex > get_openweather_city_mutex();
+//       //::pointer< ::parallelization::mutex > get_openweather_city_mutex();
 //
 //
 //       template < typename T >

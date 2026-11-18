@@ -120,6 +120,7 @@
 		<Unit filename="platform.cpp">
 			<Option compiler="gcc" use="1" buildCommand="$compiler $options $includes -x c++-header platform.h -o platform.h.gch" />
 		</Unit>
+		<Unit filename="platform_platform.cpp" />
 		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />

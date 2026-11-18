@@ -36,8 +36,8 @@ namespace platform
 
       ::pointer<class machine_event_central>                m_pmachinehappeningcentral;
 
-      ::pointer < ::mutex >                                 m_pmutexUserAppData;
-      ::pointer < ::mutex >                                 m_pmutexSystemAppData;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexUserAppData;
+      ::pointer < ::parallelization::mutex >                                 m_pmutexSystemAppData;
 
       ::pointer<::operating_system::department>             m_poperatingsystem;
 

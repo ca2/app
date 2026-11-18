@@ -43,6 +43,14 @@ namespace user
 
    };
 
+   class CLASS_DECL_ACME window_create_t
+   {
+   public:
+
+      void * m_pCREATESTRUCT;
+
+   };
+
 
    class CLASS_DECL_ACME element :
       virtual public ::object,
@@ -115,7 +123,7 @@ namespace user
 
 
 
-      virtual void create_window();
+      virtual void create_window(::enum_parallelization eparallelization);
       virtual void _create_window();
 
 
@@ -946,7 +954,7 @@ namespace user
       ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;
 
 
-      virtual bool on_window_create(void * pCREATESTRUCT);
+      virtual bool on_window_create(window_create_t * pwindowcreate);
       virtual void on_window_position(const ::i32_point & point);
       virtual void on_window_size(const ::i32_size & size);
       virtual void on_window_set_focus();
@@ -974,7 +982,7 @@ namespace user
       virtual void set_active_window();
       virtual void set_window_text(const ::scoped_string & scopedstr);
       virtual void set_window_text_source(const ::a_string_function & astringfunction);
-      virtual void set_window_style(::i32 iStyle);
+      virtual void set_window_style(::i64 iStyle);
       virtual ::i64 get_window_style();
       virtual void show_window(::user_interface::enum_show_window eshowwindow);
       virtual void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, ::i32 iSetWindowPosFlags);

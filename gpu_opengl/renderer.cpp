@@ -7,6 +7,7 @@
 #include "device.h"
 #include "frame.h"
 #include "frame_buffer.h"
+#include "model_buffer.h"
 #include "lock.h"
 #include "offscreen_render_target.h"
 #include "renderer.h"
@@ -19,7 +20,7 @@
 #include "bred/gpu/layer.h"
 #include "bred/gpu/texture_site.h"
 //#include "bred/gpu/render_state.h"
-#include "bred/user/user/graphics3d.h"
+#include "bred/user/user/graphics3d_engine_host.h"
 #include "aura/windowing/window.h"
 //#include <glad/glad.h>
 
@@ -233,6 +234,8 @@ namespace gpu_opengl
    {
 
       ::gpu::context_lock contextlock(m_pgpucontext);
+
+      delete_pending_context_handles(m_pgpucontext->m_pgpudevice->current_operating_system_gpu_context());
 
       //m_pgpucontext->m_iTopicTexture = -1;
 

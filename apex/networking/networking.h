@@ -87,8 +87,8 @@ namespace networking
 
       //};
 
-      //::pointer < ::mutex >                                            m_pmutexCache;
-      //::pointer < ::mutex >                                            m_pmutexReverseCache;
+      //::pointer < ::parallelization::mutex >                                            m_pmutexCache;
+      //::pointer < ::parallelization::mutex >                                            m_pmutexReverseCache;
       //string_map_base < dns_cache_item >                      m_mapCache;
       //string_map_base < ::pointer<reverse_cache_item >>      m_mapReverseCache;
       //array < ::pointer<reverse_cache_item >>           m_reversecacheaRequest;

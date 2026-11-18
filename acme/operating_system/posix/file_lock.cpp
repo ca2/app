@@ -16,13 +16,7 @@
 
 
 #include <fcntl.h>
-#ifdef __SUNOS__
-#define file sunos_sys_file
-#define mutex sunos_sys_file_mutex
-#include <sys/file.h>
-#undef file
-#undef mutex
-#else
+#if !defined(__SUNOS__)
 #include <sys/file.h>
 #endif
 #undef USE_MISC
@@ -101,27 +95,30 @@ namespace file_lock
 
        }
 
-       if(flock(m_iFileDescriptor, LOCK_EX | LOCK_NB) == -1)
+#if defined(__SUNOS__)
+       struct flock filelock{};
+       filelock.l_type = F_WRLCK;
+       filelock.l_whence = SEEK_SET;
+       filelock.l_start = 0;
+       filelock.l_len = 0;
+       int lockResult = fcntl(m_iFileDescriptor, F_SETLK, &filelock);
+#else
+       int lockResult = flock(m_iFileDescriptor, LOCK_EX | LOCK_NB);
+#endif
+
+       if(lockResult == -1)
        {
 
-          if(errno == EWOULDBLOCK)
-          {
+          int lockError = errno;
+          close_file();
 
-             close_file();
+#if defined(__SUNOS__)
+          errno = (lockError == EACCES || lockError == EAGAIN) ? EWOULDBLOCK : lockError;
+#else
+          errno = lockError;
+#endif
 
-             errno = EWOULDBLOCK;
-
-             return 0;
-
-          }
-          else
-          {
-
-             close(m_iFileDescriptor);
-
-             return 0;
-
-          }
+          return false;
 
        }
 
@@ -141,7 +138,18 @@ namespace file_lock
        }
 
 
-       if(flock(m_iFileDescriptor, LOCK_EX | LOCK_NB | LOCK_UN) == -1)
+#if defined(__SUNOS__)
+       struct flock filelock{};
+       filelock.l_type = F_UNLCK;
+       filelock.l_whence = SEEK_SET;
+       filelock.l_start = 0;
+       filelock.l_len = 0;
+       int unlockResult = fcntl(m_iFileDescriptor, F_SETLK, &filelock);
+#else
+       int unlockResult = flock(m_iFileDescriptor, LOCK_EX | LOCK_NB | LOCK_UN);
+#endif
+
+       if(unlockResult == -1)
        {
 
           close_file();

@@ -257,7 +257,7 @@ public:
 
    
    ::procedure_array                               m_procedurea2;
-   ::procedure_list_base                           m_procedurelistHandling;
+   ::procedure                                     m_procedureHandling;
    
    ::pointer < ::locale >                          m_plocale;
 
@@ -367,7 +367,7 @@ private:
    void on_stop_timers_handling_hint() override;
 
 
-   virtual bool pick_next_posted_procedure();
+   virtual ::procedure pick_next_posted_procedure();
 
    virtual e_happening pick_happening();
 

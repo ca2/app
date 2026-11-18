@@ -937,7 +937,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
 //            throw ::exception(::exception("resource exception"));
 //         }
 
-         m_pmutexBitmap = ___new ::pointer < ::mutex (e_create_new, false, string("Global\\app_app_nest-") + hex::lower_from( >(iptr)this));
+         m_pmutexBitmap = ___new ::pointer < ::parallelization::mutex (e_create_new, false, string("Global\\app_app_nest-") + hex::lower_from( >(iptr)this));
 
       }
 

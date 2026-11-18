@@ -10,6 +10,7 @@
 #include "acme/exception/library_not_loaded.h"
 #include "acme/platform/application.h"
 #include "acme/_operating_system.h"
+#include <Shlwapi.h>
 
 
 #pragma comment(lib, "shlwapi.lib")
@@ -563,7 +564,9 @@ namespace windows
 
          auto strError = "LoadLibraryW Failed opening " + strPath;
 
-         warning() << strError << ": " << strMessage;
+         error() << strError << ": " << strMessage;
+
+         print_line(strError);
 
          throw library_not_loaded(strError, strDetails);
 

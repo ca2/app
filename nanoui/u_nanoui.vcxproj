@@ -136,6 +136,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="platform_platform.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="ImagePanel.cpp" />
     <ClCompile Include="ImageImpact.cpp" />
@@ -145,7 +146,7 @@
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="Layout.cpp" />
     <ClCompile Include="MessageDialog.cpp" />
-    <ClCompile Include="platform.cpp" />
+
     <ClCompile Include="Popup.cpp" />
     <ClCompile Include="PopupButton.cpp" />
     <ClCompile Include="ProgressBar.cpp" />

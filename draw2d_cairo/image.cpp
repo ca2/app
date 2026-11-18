@@ -522,6 +522,16 @@ namespace draw2d_cairo
 
       _tidy_map(rectangle);
 
+      // image_pixmap_lease maps again using the image's logical rectangle.
+      // Keep it in sync with this request, as the CPU-backed _map path does.
+      if (!rectangle.is_null())
+      {
+
+         m_point = rectangle.origin();
+         m_size = rectangle.size();
+
+      }
+
       // if (m_bMapped)
       // {
       //
@@ -674,7 +684,9 @@ namespace draw2d_cairo
 
       //_tidy_unmap(pimagepixmaplease);
 
+      const bool readOnly = m_eActiveAlphaMap == ::image::e_map_read_only;
       ::image::image::_unmap(pimagepixmaplease);
+      if (readOnly) return;
 
       // if (!m_bMapped)
       // {

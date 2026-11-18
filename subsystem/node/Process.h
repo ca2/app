@@ -40,7 +40,7 @@ namespace subsystem
     * Enables you to start and stop local processes.
     */
    class ProcessInterface :
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -152,7 +152,7 @@ namespace subsystem
     * Enables you to start and stop local processes.
     */
    class CLASS_DECL_SUBSYSTEM ProcessComposite :
-   virtual public Composite<ProcessInterface>
+   virtual public ::subsystem::Composite <ProcessInterface>
    {
    public:
 
@@ -329,7 +329,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM ProcessAggregate :
-    virtual public Aggregate< ProcessComposite >
+    virtual public ::subsystem::Aggregate< ProcessComposite >
     {
     public:
 
@@ -339,7 +339,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM Process :
- virtual public Object < ProcessAggregate >
+ virtual public ::subsystem::Object <ProcessAggregate >
    {
    public:
 

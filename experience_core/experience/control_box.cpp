@@ -1,6 +1,7 @@
 #include "platform.h"
 #include "control_box.h"
 #include "acme/constant/user_message.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/user/user/frame_interaction.h"
@@ -144,24 +145,28 @@ namespace experience_core
    ::i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      m_sizeButtonDefault={26, 26};
+      auto fDensity = pdraw2dgraphics->draw2d_domain()->get_density();
 
-      return 26;
+      m_sizeButtonDefault={26 * fDensity, 26 * fDensity};
+
+      return m_sizeButtonDefault.cy;
 
    }
 
 
-   ::i32_rectangle control_box::get_button_margin(::experience::enum_button ebutton)
+   ::i32_rectangle control_box::get_button_margin(::experience::enum_button ebutton, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
+
+      auto fDensity = pdraw2dgraphics->draw2d_domain()->get_density();
 
       if (::experience::e_button_close == ebutton)
       {
 
-         return ::i32_rectangle(1, 4, 4, 4);
+         return ::i32_rectangle(1 * fDensity, 4 * fDensity, 4 * fDensity, 4 * fDensity);
 
       }
 
-      return ::i32_rectangle(1, 4, 2, 4);
+      return ::i32_rectangle(1 * fDensity, 4 * fDensity, 2 * fDensity, 4 * fDensity);
 
    }
 

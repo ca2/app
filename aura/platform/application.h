@@ -75,7 +75,7 @@ namespace aura
 //
 //       particle_address_array                         m_particleaddressaEventHook;
 //
-//       ::pointer < ::mutex >                                           m_pmutexFrame;
+//       ::pointer < ::parallelization::mutex >                                           m_pmutexFrame;
 //       ::pointer<::user::interaction_array>           m_puserinteractiona;
 //       ::pointer<::user::interaction_array>           m_puserinteractionaFrame;
 //
@@ -91,9 +91,9 @@ namespace aura
 //
 //       ::user::interaction *                              m_puiMainContainer;
 //
-//       ::pointer < ::mutex >                                           m_pmutexMatterLocator;
+//       ::pointer < ::parallelization::mutex >                                           m_pmutexMatterLocator;
 //
-//       //::pointer < ::mutex >                                         m_pmutexStr;
+//       //::pointer < ::parallelization::mutex >                                         m_pmutexStr;
 //       //string_table_base                                    m_stringtable;
 //       //string_table_base                                    m_stringtableStd;
 //       //map_base < atom, atom, string, string >                  m_stringmap;
@@ -154,12 +154,6 @@ namespace aura
 //
 
       ::pointer<::gpu::approach>                         m_pgpu;
-      ::string                                           m_strGraphics3DImplementation;
-      ::string                                           m_strDraw2dImplementation;
-
-      ::string                                           m_strTypefaceImplementation;
-
-      ::string                                           m_strImagingImplementation;
 
 
       application();
@@ -167,6 +161,11 @@ namespace aura
       
 
       virtual void initialize(::particle * pparticle) override;
+      // Applications may override these before graphics/windowing initialization.
+      //virtual ::string graphics3d_get_implementation_setting();
+      //virtual ::string graphics3d_get_output_setting();
+
+      //void defer_initialize_graphics_configuration();
 
 
       //virtual string application_file_setting(const ::scoped_string& scopedstrFileName);
@@ -175,7 +174,7 @@ namespace aura
       void on_set_platform() override;
 
 
-         ::user::user * user() override;
+      ::user::user * user() override;
 
 
 //      // void assert_ok() const override;
@@ -684,8 +683,8 @@ namespace aura
       //virtual string get_local_mutex_id() override;
       //virtual string get_global_mutex_id() override;
 
-      //virtual ::pointer< ::mutex > get_local_mutex();
-      //virtual ::pointer< ::mutex > get_global_mutex();
+      //virtual ::pointer< ::parallelization::mutex > get_local_mutex();
+      //virtual ::pointer< ::parallelization::mutex > get_global_mutex();
 
       //virtual string get_local_mutex_name() override;
       //virtual string get_local_id_mutex_name() override;
@@ -1077,11 +1076,11 @@ void initialize_context() override;
 //
 //#endif
 
-      string draw2d_get_default_implementation_name() override;
+      //string draw2d_get_implementation_name() override;
 
-      string typeface_get_default_implementation_name() override;
+      //string typeface_get_implementation_name() override;
 
-      string imaging_get_default_implementation_name() override;
+      //string imaging_get_implementation_name() override;
 
 
       void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override;
@@ -1120,8 +1119,11 @@ void initialize_context() override;
 
       //::string draw2d_get_default_implementation_name() override;
 
-      virtual ::string graphics3d_get_implementation_name();
+      //virtual ::string graphics3d_get_implementation_name();
 
+
+      //virtual ::string get_gpu_implementation_name();
+      //virtual ::string get_graphics3d_output();
 
    };
 

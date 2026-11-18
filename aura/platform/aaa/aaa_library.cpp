@@ -4,7 +4,7 @@
 
 //extern string_map < ::pointer<::acme::library >>* g_pmapLibrary;
 
-//extern ::pointer< ::mutex > ::auraacmesystem()->m_pmutexLibrary;
+//extern ::pointer< ::parallelization::mutex > ::auraacmesystem()->m_pmutexLibrary;
 
 
 typedef  void(*PFN_create_factory)();

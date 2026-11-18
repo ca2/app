@@ -26,6 +26,8 @@ namespace gpu
 
       ::memory circle_shader_vert() override;
       ::memory circle_shader_frag() override;
+      ::memory brush_fill_shader_vert() override;
+      ::memory brush_fill_shader_frag(bool bPattern) override;
 
 
       //void white_to_color_sampler_shader_setup(gpu::shader* pshader) override;

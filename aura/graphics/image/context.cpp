@@ -415,7 +415,8 @@ namespace image
 
       }
 
-      constructø(pimage2);
+      pimage2 = get_image(pathProcessed,
+         {.draw2d_domain = system()->draw2d()->main_draw2d_domain()});
 
       pimage = pimage2;
 
@@ -476,7 +477,8 @@ namespace image
          if (pimage2.nok())
          {
 
-            pimage2 = get_image(path);
+            pimage2 = get_image(pathProcessed,
+               {.draw2d_domain = system()->draw2d()->main_draw2d_domain()});
 
          }
         
@@ -1676,7 +1678,20 @@ namespace image
       if (::is_null(psz) || size <= 0)
       {
 
-         throw ::image::load_exception(error_failed, "image load: file read returned no bytes: " + path);
+         //throw ::image::load_exception(error_failed, "image load: file read returned no bytes: " + path);
+
+         ::string strError;
+
+         strError = "image load: file read returned no bytes: " + path;
+
+         warning(strError);
+
+         ploadimage->set_nok();
+
+         ploadimage->m_estatus = ::error_failed;
+
+         return;
+
 
       }
 

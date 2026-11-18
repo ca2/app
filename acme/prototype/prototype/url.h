@@ -71,7 +71,7 @@ namespace url
       
       
       //::url::url* m_purl;
-      bool                    m_bIsUrl;
+      bool                    m_bIsUrl = false;
       ::ansi_range            m_range{ nullptr };
       //::string                m_str;
       ::logic::boolean        m_bSecure;
@@ -437,6 +437,8 @@ namespace url
 
       ::string                m_str;
 
+      bool                    m_bHealthy = false;
+
 
       //const_char_pointer m_pszRequest;
 
@@ -507,6 +509,10 @@ namespace url
       }
 
       bool is() const { return m_connectrange.is_url(); }
+
+      // Structural health of the parsed absolute URL, not DNS or reachability.
+      // Relative references and unsupported authority forms are not healthy.
+      bool is_healthy() const { return m_bHealthy; }
 
 
 

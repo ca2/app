@@ -3,6 +3,7 @@
 //
 #pragma once
 #include "selection.h"
+#include "window_geometry.h"
 
 
 namespace accessibility
@@ -32,6 +33,14 @@ namespace accessibility
 
 
       virtual ::pointer_array < main_window > system_get_main_windows();
+
+      // Nonblocking cache lookup. False means unavailable, not found, or ambiguous.
+      // Empty window ID selects by PID and optional exact title; use the returned ID thereafter.
+      // With no title, the process must have exactly one normal window.
+      // Failure leaves geometry unchanged. No Qt or compositor types cross this API.
+      virtual bool get_window_geometry(::process_identifier processidentifier,
+         const ::scoped_string & title, window_geometry & geometry,
+         const ::scoped_string & windowId = {});
 
       virtual automation::element_pointer automation_desktop();
 

@@ -183,6 +183,8 @@
       virtual ::file::path video();
       virtual ::file::path image();
 
+      virtual ::file::path cloud_app(const ::scoped_string & scopedstrAppId);
+
       //virtual ::file::path dropbox();
       virtual ::file::path onedrive();
 

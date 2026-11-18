@@ -53,7 +53,7 @@
 
 #ifdef __APPLE__
 
-::pointer< ::mutex > g_pmutexCvt = nullptr;
+::pointer< ::parallelization::mutex > g_pmutexCvt = nullptr;
 
 ::i32 ecvt_r(::f64 d, ::i32 i, ::i32 *__restrict pi1, ::i32 *__restrict pi2, char_pointer sz, size_t size) /* LEGACY */
 {

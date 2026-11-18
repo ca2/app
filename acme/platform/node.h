@@ -220,15 +220,18 @@ namespace platform
       //::file::path update_module_path();
 
 
-      ::pointer < ::mutex > create_local_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes = nullptr) override;
-      ::pointer < ::mutex > create_global_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes = nullptr) override;
+      ::pointer < ::parallelization::mutex > create_named_mutex(::particle * pparticleContext, bool bInitiallyOwn, const_char_pointer pszName, security_attributes * psecurityattributes);
 
 
-      ::pointer < ::mutex > open_local_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName) override;
-      ::pointer < ::mutex > open_global_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName) override;
+      ::pointer < ::parallelization::mutex > create_local_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes = nullptr) override;
+      ::pointer < ::parallelization::mutex > create_global_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes = nullptr) override;
 
 
-      ::pointer < ::mutex > get_install_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix) override;
+      ::pointer < ::parallelization::mutex > open_local_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName) override;
+      ::pointer < ::parallelization::mutex > open_global_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName) override;
+
+
+      ::pointer < ::parallelization::mutex > get_install_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix) override;
 
       ::pointer < ::acme::exclusive > _get_exclusive(::particle * pparticleContext, const ::scoped_string & scopedstrName, ::security_attributes * psecurityattributes = nullptr) override;
 
@@ -377,7 +380,7 @@ namespace platform
 
       virtual string file_memory_map_path_from_name(const ::scoped_string & scopedstrName) override;
 
-      virtual enum_operating_system get_operating_system() const override;
+      ///virtual enum_operating_system get_operating_system() const override;
 
       virtual void launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, ::i32 iFlags) override;
 

@@ -11,6 +11,7 @@
 #include "acme/platform/application.h"
 #include "bred/gpu/context_lock.h"
 #include "windowing_win32/window.h"
+#include "windowing_win32/draw2d_domain.h"
 #include <glad/glad_wgl.h>
 
 
@@ -56,11 +57,8 @@ namespace gpu_opengl
           throw ::exception(error_wrong_state);
 
        }
-       if (!m_pgpudevice->m_pwindow)
-       {
-
-          throw ::exception(error_wrong_state);
-       }
+       // Offscreen contexts own their WGL window; the shared device is
+       // initialized for a draw2d domain and need not have a window.
        //_create_offscreen_window(size);
 
       //_create_window_buffer();
@@ -237,9 +235,6 @@ namespace gpu_opengl
 
          //scoped_dummy_wgl_context wglcontextDummy(this);
 
-         ::cast<::gpu_opengl::device_win32> pdevice = m_pgpudevice;
-         ::cast<::win32::acme::windowing::window> pwindow = m_pgpudevice->m_pwindow;
-
          create_offscreen_wgl_context();
 
          pgpuapproach->defer_init_gpu_library();
@@ -287,7 +282,7 @@ namespace gpu_opengl
    }
 
 
-   void context_win32::_create_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
+   void context_win32::_create_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::draw2d::domain * pdraw2ddomain, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
    {
 
       //m_pgpudevice = pgpudevice;
@@ -296,12 +291,14 @@ namespace gpu_opengl
 
       //m_escene = escene;
 
-      ::gpu_opengl::context::_create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, pdraw2dgraphics, pointInput, pointOutput, size, sizeRaw);
+      ::gpu_opengl::context::_create_gpu_context(pgpudevice, eoutput, escene, pdraw2ddomain, pdraw2dgraphics, pointInput, pointOutput, size, sizeRaw);
       
       if (eoutput == ::gpu::e_output_swap_chain)
       {
 
-         ::cast < ::windowing_win32::window > pwin32windowingwindow = pacmewindowingwindow;
+         ::cast < ::windowing_win32::draw2d_domain > pwin32draw2ddomain = pdraw2ddomain;
+
+         ::cast < ::windowing_win32::window > pwin32windowingwindow = pwin32windowingwindow->draw2d_domain();
 
          create_window_wgl_context(pwin32windowingwindow);
 
@@ -462,7 +459,9 @@ namespace gpu_opengl
 
       m_pgpudevice = pgpudevice;
 
-      m_pacmeuserinteractionAffinity = pacmewindowingwindow->m_pacmeuserinteraction;
+      //m_pacmeuserinteractionAffinity = pacmewindowingwindow->m_pacmeuserinteraction;
+
+      //set_draw2d_domain(pacmewindowingwindow->m_pacmeuserinteraction->user_interaction()->draw2d_domain());
 
          ::cast < ::windowing_win32::window > pwindow = pacmewindowingwindow;
 
@@ -571,7 +570,7 @@ namespace gpu_opengl
 
          get_gpu_renderer();
 
-         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         if (m_papplication->use_gpu_swap_chain())
          {
 
             auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
@@ -583,7 +582,7 @@ namespace gpu_opengl
             if (!pswapchain->m_bSwapChainInitialized)
             {
 
-               pswapchain->initialize_swap_chain_window(pgpucontextWindow, m_pacmeuserinteractionAffinity->acme_windowing_window());
+               pswapchain->initialize_swap_chain_window(pgpucontextWindow, m_puserinteractionTopic->acme_windowing_window());
 
             }
 

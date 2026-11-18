@@ -88,12 +88,12 @@ namespace aura
 
    CLASS_DECL_AURA critical_section * g_pcsFont = nullptr;
 
-   CLASS_DECL_AURA ::pointer< ::mutex > g_pmutexWindowing = nullptr;
+   CLASS_DECL_AURA ::pointer< ::parallelization::mutex > g_pmutexWindowing = nullptr;
 
    CLASS_DECL_AURA string_map < i32_to_string > * g_pmapFontFaceName = nullptr;
 
-   ::pointer< ::mutex > g_pmutexChildren;
-   ::pointer< ::mutex > g_pmutexThreadWaitClose;
+   ::pointer< ::parallelization::mutex > g_pmutexChildren;
+   ::pointer< ::parallelization::mutex > g_pmutexThreadWaitClose;
    //string_map < ::pointer<::acme::library >> g_pmapLibrary;
    //string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
@@ -124,11 +124,11 @@ namespace aura
 #endif
 
 
-   //::pointer< ::mutex > psystem->g_mutexLibrary;
+   //::pointer< ::parallelization::mutex > psystem->g_mutexLibrary;
 
    //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
-   //::pointer< ::mutex > g_pmutexGlobals;
+   //::pointer< ::parallelization::mutex > g_pmutexGlobals;
 
    //critical_section* g_pcsGlobal;
 
@@ -156,12 +156,12 @@ namespace aura
 //#endif
 
 
-   //::pointer< ::mutex > g_pmutexCred;
+   //::pointer< ::parallelization::mutex > g_pmutexCred;
 
 
    //class ::exception_engine* g_pexceptionengine;
 
-   ::pointer< ::mutex > g_pmutexMessageDispatch;
+   ::pointer< ::parallelization::mutex > g_pmutexMessageDispatch;
 
 
    //array < matter* >* g_paAura;
@@ -199,15 +199,15 @@ namespace aura
 
    // aura commented
    //::i32 g_iMemoryCountersStartable;
-   //::pointer< ::mutex > g_pmutexTrait;
-   //::pointer< ::mutex > g_pmutexFactory;
+   //::pointer< ::parallelization::mutex > g_pmutexTrait;
+   //::pointer< ::parallelization::mutex > g_pmutexFactory;
 
    // aura commented
-   ::pointer< ::mutex > g_pmutexUiDestroyed;
+   ::pointer< ::parallelization::mutex > g_pmutexUiDestroyed;
 
 //#ifdef __ANDROID__
 //
-//   ::pointer< ::mutex > g_pmutexOutputDebugStringA;
+//   ::pointer< ::parallelization::mutex > g_pmutexOutputDebugStringA;
 //
 //#endif
 
@@ -215,23 +215,23 @@ namespace aura
 
    // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
-   // ::pointer< ::mutex > g_pmutexMq;
+   // ::pointer< ::parallelization::mutex > g_pmutexMq;
 
    // #endif
 
 //#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 //
-////::pointer< ::mutex > g_pmutexThreadIdHandleLock;
+////::pointer< ::parallelization::mutex > g_pmutexThreadIdHandleLock;
 //
-////::pointer< ::mutex > g_pmutexThreadIdLock;
+////::pointer< ::parallelization::mutex > g_pmutexThreadIdLock;
 //
 ////#if !defined(UNIVERSAL_WINDOWS)
 //
-////::pointer< ::mutex > g_pmutexPendingThreadsLock;
+////::pointer< ::parallelization::mutex > g_pmutexPendingThreadsLock;
 //
 ////#endif
 //
-////::pointer< ::mutex > g_pmutexTlsData;
+////::pointer< ::parallelization::mutex > g_pmutexTlsData;
 //
 //#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
 
@@ -239,9 +239,9 @@ namespace aura
 //#if defined(LINUX) || defined(__APPLE__)
 //
 //
-//   ::pointer< ::mutex > g_pmutexTz;
+//   ::pointer< ::parallelization::mutex > g_pmutexTz;
 //
-//   ::pointer< ::mutex > g_pmutexThreadHandleLock;
+//   ::pointer< ::parallelization::mutex > g_pmutexThreadHandleLock;
 //
 //
 //#endif // defined(LINUX) || defined(__APPLE__)
@@ -250,7 +250,7 @@ namespace aura
 //#ifdef __APPLE__
 //
 //
-//   ::pointer< ::mutex > g_pmutexCvt;
+//   ::pointer< ::parallelization::mutex > g_pmutexCvt;
 //
 //
 //#endif
@@ -339,7 +339,7 @@ namespace aura
 //
 //      //g_pmutexSystemHeap = nullptr;
 //
-//      //::pointer< ::mutex > g_pmutexThreadOn;
+//      //::pointer< ::parallelization::mutex > g_pmutexThreadOn;
 //
 ////#if defined(WINDOWS)
 ////
@@ -364,8 +364,8 @@ namespace aura
 //      //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
 //
 //      //g_iMemoryCountersStartable = 0;
-//      //::pointer< ::mutex > g_pmutexTrait;
-//      //::pointer< ::mutex > g_pmutexFactory;
+//      //::pointer< ::parallelization::mutex > g_pmutexTrait;
+//      //::pointer< ::parallelization::mutex > g_pmutexFactory;
 //
 //      g_pmutexUiDestroyed = 0;
 //
@@ -379,23 +379,23 @@ namespace aura
 //
 //      // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 //
-//      // ::pointer< ::mutex > g_pmutexMq;
+//      // ::pointer< ::parallelization::mutex > g_pmutexMq;
 //
 //      // #endif
 //
 //#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 //
-////::pointer< ::mutex > g_pmutexThreadIdHandleLock;
+////::pointer< ::parallelization::mutex > g_pmutexThreadIdHandleLock;
 //
-////::pointer< ::mutex > g_pmutexThreadIdLock;
+////::pointer< ::parallelization::mutex > g_pmutexThreadIdLock;
 //
 ////#if !defined(UNIVERSAL_WINDOWS)
 //
-////::pointer< ::mutex > g_pmutexPendingThreadsLock;
+////::pointer< ::parallelization::mutex > g_pmutexPendingThreadsLock;
 //
 ////#endif
 //
-////::pointer< ::mutex > g_pmutexTlsData;
+////::pointer< ::parallelization::mutex > g_pmutexTlsData;
 //
 //#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
 //
@@ -491,9 +491,9 @@ namespace aura
 //
 //      //g_pexceptionengine = aaa_primitive_new ::OPERATING_SYSTEM_NAMESPACE::exception_engine();
 //
-//      //g_pmutexGlobals = aaa_primitive_new ::pointer < ::mutex >();
+//      //g_pmutexGlobals = aaa_primitive_new ::pointer < ::parallelization::mutex >();
 //
-//      g_pmutexChildren = aaa_primitive_new ::pointer < ::mutex >();
+//      g_pmutexChildren = aaa_primitive_new ::pointer < ::parallelization::mutex >();
 //
 //      //g_pcsGlobal = aaa_primitive_new critical_section();
 //
@@ -507,7 +507,7 @@ namespace aura
 //
 ////#ifdef __ANDROID__
 ////
-////      g_pmutexOutputDebugStringA = aaa_primitive_new ::pointer < ::mutex >();
+////      g_pmutexOutputDebugStringA = aaa_primitive_new ::pointer < ::parallelization::mutex >();
 ////
 ////#endif
 //
@@ -525,20 +525,20 @@ namespace aura
 //
 ////#ifdef BSD_STYLE_SOCKETS
 ////
-////      ::sockets::base_socket::s_pmutex = aaa_primitive_new ::pointer < ::mutex >();
+////      ::sockets::base_socket::s_pmutex = aaa_primitive_new ::pointer < ::parallelization::mutex >();
 ////
 ////#endif
 //
 ////
 ////#ifdef __APPLE__
 ////
-////      g_pmutexCvt = aaa_primitive_new ::pointer < ::mutex >();
+////      g_pmutexCvt = aaa_primitive_new ::pointer < ::parallelization::mutex >();
 ////
 ////#endif
 //
-//      g_pmutexThreadWaitClose = aaa_primitive_new ::pointer < ::mutex >();
+//      g_pmutexThreadWaitClose = aaa_primitive_new ::pointer < ::parallelization::mutex >();
 //
-//      //g_pmutexThreadOn = aaa_primitive_new ::pointer < ::mutex >();
+//      //g_pmutexThreadOn = aaa_primitive_new ::pointer < ::parallelization::mutex >();
 //
 //      //g_pmapThreadOn = aaa_primitive_new ::map < itask, itask, itask, itask >;
 //
@@ -556,21 +556,21 @@ namespace aura
 //
 //      //g_pmapAura =aaa_primitive_new ::map < void *,void *,::aura::application *,::aura::application * >;
 //
-//      g_pmutexUiDestroyed = aaa_primitive_new ::pointer < ::mutex >();
+//      g_pmutexUiDestroyed = aaa_primitive_new ::pointer < ::parallelization::mutex >();
 //
-//      g_pmutexMessageDispatch = aaa_primitive_new ::pointer < ::mutex >();
+//      g_pmutexMessageDispatch = aaa_primitive_new ::pointer < ::parallelization::mutex >();
 //
-//      //g_pmutexCred = aaa_primitive_new ::pointer < ::mutex >();
+//      //g_pmutexCred = aaa_primitive_new ::pointer < ::parallelization::mutex >();
 //
 ////#if defined(LINUX) || defined(__APPLE__)
 ////
-////      g_pmutexTz = aaa_primitive_new ::pointer < ::mutex >();
+////      g_pmutexTz = aaa_primitive_new ::pointer < ::parallelization::mutex >();
 ////
 ////#endif // defined(LINUX) || defined(__APPLE__)
 //
 //      //g_pmapRTL = nullptr;
 //
-//      //psystem->g_mutexLibrary = aaa_primitive_new ::pointer < ::mutex >;
+//      //psystem->g_mutexLibrary = aaa_primitive_new ::pointer < ::parallelization::mutex >;
 //
 //      //g_pmapLibrary = aaa_primitive_new string_map < ::pointer<::acme::library >>);
 //
@@ -611,7 +611,7 @@ namespace aura
 //
 //      //sqlite3_config(SQLITE_CONFIG_MULTITHREAD);
 //
-//      //::channel::s_pmutexChannel = allocateø ::pointer < ::mutex > ();
+//      //::channel::s_pmutexChannel = allocateø ::pointer < ::parallelization::mutex > ();
 //
 //      //g_paurastrpool = aaa_primitive_new aura_str_pool();
 //
@@ -1007,9 +1007,9 @@ namespace aura
 } // namespace aura
 
 
-//static ::pointer< ::mutex > s_pmutexDraw2d = nullptr;
+//static ::pointer< ::parallelization::mutex > s_pmutexDraw2d = nullptr;
 //
-//CLASS_DECL_AURA ::pointer< ::mutex > draw2d_mutex()
+//CLASS_DECL_AURA ::pointer< ::parallelization::mutex > draw2d_mutex()
 //{
 //
 //   return s_pmutexDraw2d;
@@ -1020,7 +1020,7 @@ namespace aura
 //CLASS_DECL_AURA void init_draw2d_mutex()
 //{
 //
-//   s_pmutexDraw2d = aaa_primitive_new ::pointer < ::mutex >();
+//   s_pmutexDraw2d = aaa_primitive_new ::pointer < ::parallelization::mutex >();
 //
 //}
 
@@ -1034,7 +1034,7 @@ namespace aura
 
 
 
-//CLASS_DECL_AURA ::pointer< ::mutex > get_cred_mutex()
+//CLASS_DECL_AURA ::pointer< ::parallelization::mutex > get_cred_mutex()
 //{
 //
 //   return ::aura::g_pmutexCred;
@@ -1107,11 +1107,11 @@ namespace aura
 //         //
 //         //         oswindow_data::s_pdataptra = aaa_primitive_new oswindow_dataptra;
 //         //
-//         //         oswindow_data::s_pmutex = aaa_primitive_new ::pointer < ::mutex >;
+//         //         oswindow_data::s_pmutex = aaa_primitive_new ::pointer < ::parallelization::mutex >;
 //         //
 //         //         osdisplay_data::s_pdataptra = aaa_primitive_new osdisplay_dataptra;
 //         //
-//         //         osdisplay_data::s_pmutex = aaa_primitive_new ::pointer < ::mutex >;
+//         //         osdisplay_data::s_pmutex = aaa_primitive_new ::pointer < ::parallelization::mutex >;
 //
 //#endif // defined(LINUX)
 //
@@ -1245,7 +1245,7 @@ namespace aura
 ////         //
 ////         //         //oswindow_data::s_pdataptra = aaa_primitive_new oswindow_dataptra;
 ////         //
-////         //         //oswindow_data::s_pmutex = aaa_primitive_new ::pointer < ::mutex >;
+////         //         //oswindow_data::s_pmutex = aaa_primitive_new ::pointer < ::parallelization::mutex >;
 ////         //
 ////         //#endif
 ////

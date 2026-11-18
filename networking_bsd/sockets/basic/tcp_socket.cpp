@@ -97,7 +97,7 @@ void SSL_set_app_data2(SSL* ssl, void* arg)
       *key = c->m_ticketkeya.first();
       result = true;
    }
-   //apr_thread_rwlock_unlock(c->::pointer < ::mutex >);
+   //apr_thread_rwlock_unlock(c->::pointer < ::parallelization::mutex >);
    return result;
 }
 
@@ -3583,7 +3583,7 @@ meth = SSLv23_client_method();
 
       ::X509* cert = nullptr;
 
-      ::X509_name_st* topic = nullptr;
+      const ::X509_name_st* topic = nullptr;
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000L
 

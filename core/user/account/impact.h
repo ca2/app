@@ -16,7 +16,7 @@ namespace account
 
       
       ::pointer<::account::credentials>     m_pcredentials;
-      ::pointer < ::mutex >                                m_pmutexResponse;
+      ::pointer < ::parallelization::mutex >                                m_pmutexResponse;
       manual_reset_happening                     m_happeningSubmit;
       string                                 m_strResponse;
       ::user::still *                        m_pstillUser;

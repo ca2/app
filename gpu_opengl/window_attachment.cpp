@@ -36,13 +36,13 @@ namespace gpu_opengl
 
       ::gpu::window_attachment::initialize_gpu_window_attachment(pwindow);
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
          //::direct2d::get() -> d2d1_factory1()->CreateHwndRenderTarget(rendertargetproperties,
            // hwndrendertargetproperties)
       }
 
-      if (m_papplication->m_bGpu)
+      if (m_papplication->is_using_gpu())
       {
 
          auto pgpuapproach = m_papplication->get_gpu_approach();
@@ -57,13 +57,13 @@ namespace gpu_opengl
 
          information("gpu::approach::gpu_on_create_window for type {}", pszType);
 
-         auto pgpudevice = pgpuapproach->get_gpu_device(pwindow);
+         auto pgpudevice = pgpuapproach->get_gpu_device(pwindow->m_pacmeuserinteraction->user_interaction()->draw2d_domain());
 
          m_pgpucontextWindow = pgpudevice->allocate_gpu_context();
 
          ::gpu::enum_output eoutput = ::gpu::e_output_none;
 
-         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         if (m_papplication->use_gpu_swap_chain())
          {
 
             eoutput = ::gpu::e_output_swap_chain;

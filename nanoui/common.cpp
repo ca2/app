@@ -98,7 +98,7 @@ static ::f64 emscripten_last = 0;
 static ::f32 emscripten_refresh = 0;
 #endif
 
-//::pointer < ::mutex > m_async_mutex;
+//::pointer < ::parallelization::mutex > m_async_mutex;
 //::array<::function<void()>> m_async_functions;
 
 //void mainloop(::f32 refresh) {
@@ -118,7 +118,7 @@ static ::f32 emscripten_refresh = 0;
 //#endif
 //
 //      /* Run async functions */ {
-//         std::lock_guard<std::pointer < ::mutex >> guard(m_async_mutex);
+//         std::lock_guard<std::pointer < ::parallelization::mutex >> guard(m_async_mutex);
 //         for (auto & f : m_async_functions)
 //            f();
 //         m_async_functions.clear();
@@ -216,7 +216,7 @@ static ::f32 emscripten_refresh = 0;
 //}
 
 //void async(const ::function<void()> & func) {
-//   std::lock_guard<std::pointer < ::mutex >> guard(m_async_mutex);
+//   std::lock_guard<std::pointer < ::parallelization::mutex >> guard(m_async_mutex);
 //   m_async_functions.add(func);
 //}
 

@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "aura/graphics/graphics/frame_trace.h"
 #ifndef MORE_LOG
 #define MORE_LOG 0
 #endif
@@ -6,6 +7,7 @@
 #include "scroll_state.h"
 #include "alpha_source.h"
 #include "interaction.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "interaction_graphics_thread.h"
 #include "interaction_scaler.h"
 #include "interaction_thread.h"
@@ -1868,7 +1870,7 @@ namespace user
 
       bool bDuplicate = true;
 
-      //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+      //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children());
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -2944,7 +2946,7 @@ namespace user
 
          //pwindowNew->create_host(this);
 
-         create_window();
+         create_window(e_parallelization_asynchronous);
 
          on_after_set_parent();
 
@@ -3749,7 +3751,17 @@ namespace user
 
       information() << "display_visible_trying_to_restore_last_visible : " << edisplayPrevious;
 
-      if (!::is_screen_visible(edisplayPrevious))
+      // Full screen is visible, but it cannot be a useful destination when
+      // exiting full screen. This happens when the application starts in full
+      // screen and records that as its previous visible display.
+      if (edisplayPrevious == e_display_full_screen)
+      {
+
+         information() << "previous visible display is full screen; restoring normal placement";
+         edisplayPrevious = e_display_normal;
+
+      }
+      else if (!::is_screen_visible(edisplayPrevious))
       {
 
          information() << "edisplayPrevious isn't screen visible, using e_display_normal";
@@ -4352,7 +4364,7 @@ namespace user
       //   if (!window()->has_destroying_flag())
       //   {
 
-      //      //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+      //      //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children());
 
       //      auto children = synchronized_get_children();
 
@@ -4977,7 +4989,7 @@ namespace user
          try
          {
 
-            //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+            //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children());
 
             puserinteractionParent->on_erase_child(this);
 
@@ -5142,7 +5154,7 @@ namespace user
       if (this == psession->get_user_interaction_host())
       {
 
-         //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+         //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children());
 
          //auto children = synchronized_get_children();
 
@@ -5265,12 +5277,19 @@ namespace user
       //
       //#endif
 
-#if defined(WINDOWS_DESKTOP) || defined(HAS_GTK3)
+#if defined(WINDOWS_DESKTOP) || defined(HAS_GTK3) || defined(HAS_Q6) || defined(HAS_Q5) || defined(HAS_KDE6) || defined(HAS_KDE5)
 
                                                                                                                               //auto pwindowingicon = get_windowing_icon();
 
       if (get_parent() == nullptr)
       {
+#if defined(LINUX) || defined(__BSD__)
+         // Desktop identity and the icon cache are application services; neither
+         // KDE nor a native Wayland backend should duplicate this registration.
+         try { node()->defer_create_app_shortcut(application()); }
+         catch (...) { warning("Could not update the application's desktop icon registration"); }
+#endif
+
 
          if (application()->m_bImaging)
             //if (!window()->defer_set_icon())
@@ -6952,6 +6971,7 @@ namespace user
       //if (pdraw2dgraphics->m_egraphics & e_graphics_layout)
       //{
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
       ::string strType = typeid(*this).name();
 
       if (strType.contains("control_box_button"))
@@ -6973,6 +6993,8 @@ namespace user
 
       }
 
+
+#endif
 
       perform_layout(pdraw2dgraphics);
 
@@ -8459,6 +8481,54 @@ if(get_parent())
    }
 
 
+   namespace
+   {
+      void collect_tab_controls(::user::interaction * root, ::pointer_array<::user::interaction> & controls)
+      {
+         for_user_interaction_children(child, root)
+         {
+            if (!child->is_this_visible(::user::e_layout_sketch) || !child->is_window_enabled()) continue;
+            if (child->keyboard_focus_is_focusable()) controls.add(child);
+            collect_tab_controls(child, controls);
+         }
+      }
+   }
+
+   ::user::interaction * interaction::next_tab_focus(::user::interaction * current, bool backwards)
+   {
+      ::pointer_array<::user::interaction> controls;
+      collect_tab_controls(this, controls);
+      if (controls.is_empty()) return nullptr;
+      for (::collection::index i = 0; i < controls.size(); ++i)
+      {
+         if (controls[i] == current)
+         {
+            auto next = backwards ? (i + controls.size() - 1) % controls.size() : (i + 1) % controls.size();
+            return controls[next];
+         }
+      }
+      return backwards ? controls.last().m_p : controls.first().m_p;
+   }
+
+   bool interaction::handle_tab_key(::message::message * pmessage)
+   {
+      auto pkey = pmessage->m_union.m_pkey;
+      if (!pkey || pkey->m_ekey != ::user::e_key_tab) return false;
+      auto psession = session();
+      if (psession && (psession->is_key_pressed(::user::e_key_control) || psession->is_key_pressed(::user::e_key_alt)))
+         return false;
+      for (auto scope = this; scope; scope = scope->get_parent())
+      {
+         if (!scope->is_true("tab_focus_scope")) continue;
+         auto next = scope->next_tab_focus(this, psession && psession->is_key_pressed(::user::e_key_shift));
+         if (next) next->set_keyboard_focus();
+         pmessage->m_bRet = true;
+         pmessage->m_lresult = 1;
+         return true;
+      }
+      return false;
+   }
+
    element * interaction::keyboard_set_focus_next(bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
    {
 
@@ -9152,7 +9222,7 @@ if(get_parent())
    //void interaction::_000OnMouse(::message::mouse * pmouse)
    //{
 
-   //   // must lock ::user::pointer < ::mutex >_children() at top stack chain
+   //   // must lock ::user::pointer < ::parallelization::mutex >_children() at top stack chain
    //   // and only at top stack chain.
 
    //   bool bThisCapture = false;
@@ -9254,7 +9324,7 @@ if(get_parent())
    //void interaction::_000OnChildrenMouse(::message::mouse * pmouse)
    //{
 
-   //   // must lock ::user::pointer < ::mutex >_children() at top stack chain
+   //   // must lock ::user::pointer < ::parallelization::mutex >_children() at top stack chain
    //   // and only at top stack chain.
 
    //   // these try catchs are needed for multi threading : multi threaded windows: the hell
@@ -9555,6 +9625,7 @@ if(get_parent())
 
    void interaction::on_message_key_down(::message::message * pmessage)
    {
+      if (handle_tab_key(pmessage)) return;
 
       if (m_ekeyboardmode == e_keyboard_mode_reposition
          || m_ekeyboardmode == e_keyboard_mode_resize)
@@ -10853,7 +10924,7 @@ if(get_parent())
 
       //}
 
-      //_synchronous_lock synchronouslock(::user::pointer < ::mutex >_children());
+      //_synchronous_lock synchronouslock(::user::pointer < ::parallelization::mutex >_children());
 
       //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -10940,7 +11011,7 @@ if(get_parent())
 
       // {
 
-      //    //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+      //    //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children());
 
 
 
@@ -11211,7 +11282,7 @@ if(get_parent())
       if (!puserinteractionParent)
       {
 
-         create_window();
+         create_window(e_parallelization_asynchronous);
 
       }
       else
@@ -14802,8 +14873,8 @@ if(get_parent())
 
                   if (::is_set(pinteraction)
                   && (
-                        pinteraction->m_bExtendOnParent
-                        || pinteraction->m_bExtendOnParentIfOnlyClient
+                        pinteraction->should_extend_on_parent()
+                        || pinteraction->should_extend_on_parent_if_only_client()
                      )
                      )
                   {
@@ -15764,6 +15835,24 @@ if(get_parent())
    }
 
 
+   bool interaction::should_extend_on_parent() const
+   {
+      return m_bExtendOnParent;
+   }
+
+
+   bool interaction::should_extend_on_parent_if_only_client() const
+   {
+      return m_bExtendOnParentIfOnlyClient;
+   }
+
+
+   bool interaction::should_extend_on_parent_hosting_area() const
+   {
+      return m_bExtendOnParentHostingArea;
+   }
+
+
    void interaction::_extend_on_parent(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
@@ -16103,14 +16192,14 @@ if(get_parent())
 
       }
 
-      if (m_bExtendOnParent)
+      if (should_extend_on_parent())
       {
 
          _extend_on_parent(pdraw2dgraphics);
 
       }
 
-      if (m_bExtendOnParentHostingArea)
+      if (should_extend_on_parent_hosting_area())
       {
 
          _extend_on_parent_hosting_area(pdraw2dgraphics);
@@ -18860,7 +18949,7 @@ if(get_parent())
 
       ::pointer<::user::interaction> puiThis = this;
 
-      //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+      //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children());
 
       try
       {
@@ -19958,8 +20047,24 @@ if(get_parent())
 
    ::draw2d::domain * interaction::draw2d_domain()
    {
-   
-      return window()->draw2d_domain();
+      auto pwindowThis = window();
+      if (::is_null(pwindowThis))
+      {
+         return nullptr;
+      }
+
+      auto pdraw2ddomain = pwindowThis->draw2d_domain();
+
+      if (pdraw2ddomain)
+      {
+
+         pdraw2ddomain->initialize_density(
+            get_density_dpi_for_window(),
+            get_density_base_dpi_for_window());
+
+      }
+
+      return pdraw2ddomain;
       
    }
 
@@ -22778,10 +22883,13 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
          ::i32_size sizeMinimumBroad = sizeMin.maximum(rectangleWorkspace.size() * 7 / 10);
 
+         // Restored windows must leave a visible margin around the workspace.
+         ::i32_size sizeMaximumBroad = sizeMin.maximum(rectangleWorkspace.size() * 9 / 10);
+
          auto rectangleStoredBroad = get_window_broad_stored_rectangle();
 
          if (rectangleStoredBroad.size() >= sizeMinimumBroad
-             && rectangleStoredBroad.size() <= rectangleWorkspace.size())
+             && rectangleStoredBroad.size() <= sizeMaximumBroad)
          {
 
             m_rectangleRestoreBroad = rectangleStoredBroad;
@@ -22792,7 +22900,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
             m_rectangleRestoreBroad.set_size(sizeMin.maximum(rectangleWorkspace.size() * 4 / 5));
 
-            m_rectangleRestoreBroad.move_to(rectangleWorkspace.size() / 10);
+            m_rectangleRestoreBroad.move_to(rectangleWorkspace.top_left() + rectangleWorkspace.size() / 10);
 
          }
 
@@ -22814,7 +22922,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
             m_rectangleRestoreCompact.set_size(sizeMin.maximum(rectangleWorkspace.size() * 2 / 5));
 
-            m_rectangleRestoreCompact.move_to(rectangleWorkspace.size() / 10);
+            m_rectangleRestoreCompact.move_to(rectangleWorkspace.top_left() + rectangleWorkspace.size() / 10);
 
          }
 
@@ -23127,7 +23235,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
    }
 
 
-   void interaction::create_window()
+   void interaction::create_window(enum_parallelization eparallelization)
    {
 
       ::pointer < ::user::thread > puserthread;
@@ -23213,7 +23321,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
       ::pointer< ::exception > pexception;
 
-      main_send([this, &pexception]()
+      user_send([this, &pexception]()
          {
 
             try
@@ -23262,7 +23370,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
       else
       {
 
-         pwindow->create_window();
+         pwindow->create_window(::e_parallelization_synchronous);
 
       }
 
@@ -23362,7 +23470,7 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
       m_strName = scopedstrName;
 
-      create_window();
+      create_window(::e_parallelization_asynchronous);
 
       //window()->m_puserinteraction = this;
 
@@ -25383,6 +25491,13 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
    }
 
 
+   bool interaction::on_action(::item * pitem, ::user::activation_token * puseractivationtoken)
+   {
+      if (!is_window_enabled()) return false;
+      return m_callbackOnAction && m_callbackOnAction(this, pitem, puseractivationtoken);
+   }
+
+
    bool interaction::on_click_generation(::item * pitem, ::user::mouse * pmouse)
    {
 
@@ -25437,7 +25552,8 @@ void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, 
 
       information() << "interaction::on_click_generation going to call on_click";
 
-      return on_click(pitem, pmouse);
+      if (on_click(pitem, pmouse)) return true;
+      return on_action(pitem, pmouse ? pmouse->user_activation_token() : nullptr);
 
    }
 
@@ -25750,6 +25866,22 @@ void interaction::on_control_box_zoom(){
    }
 
 
+   void interaction::set_bitmap_source(const ::scoped_string & scopedstrAppId,
+      const ::scoped_string & scopedstrBitmapSource, bool bCreate)
+   {
+
+      if (!window())
+      {
+
+         throw ::exception(error_null_pointer);
+
+      }
+
+      window()->set_bitmap_source(scopedstrAppId, scopedstrBitmapSource, bCreate);
+
+   }
+
+
    void interaction::clear_bitmap_source()
    {
 
@@ -26003,10 +26135,10 @@ void interaction::on_control_box_zoom(){
    //   }
 
 
-   //   ::pointer< ::mutex > g_pmutexChildren;
+   //   ::pointer< ::parallelization::mutex > g_pmutexChildren;
    //
    //
-   //   CLASS_DECL_AURA::pointer< ::mutex > mutex_children()
+   //   CLASS_DECL_AURA::pointer< ::parallelization::mutex > mutex_children()
    //   {
    //
    //      return g_pmutexChildren;
@@ -29873,6 +30005,8 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
 
       //}
 
+      _001DrawItems(pdraw2dgraphics, ::user::e_zorder_front);
+
    }
 
 
@@ -29901,7 +30035,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
       //if (m_pitema && m_pitema->has_element())
       //{
 
-      _001DrawItems(pdraw2dgraphics);
+      _001DrawItems(pdraw2dgraphics, ::user::e_zorder_back);
 
       //}
 
@@ -29954,23 +30088,28 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    //}
 
 
-   void interaction::_001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics)
+   void interaction::_001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, const ::user::e_zorder & ezorder)
    {
 
-      //return;
+      _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (auto & [iIndex, pitemcontainer] : m_itemcontainermap)
       {
 
-         _001DrawItems(pdraw2dgraphics, iIndex, pitemcontainer->m_pitema);
+         if (pitemcontainer)
+         {
+            _001DrawItems(pdraw2dgraphics, iIndex, pitemcontainer->m_pitema, ezorder);
+         }
 
       }
 
    }
 
 
-   void interaction::_001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iIdContainer, ::item_array * pitema)
+   void interaction::_001DrawItems(::draw2d::graphics_pointer & pdraw2dgraphics, ::collection::index iIdContainer, ::item_array * pitema, const ::user::e_zorder & ezorder)
    {
+
+      _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (::is_null(pitema))
       {
@@ -29984,7 +30123,23 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
       for (auto & pitem : *pitema)
       {
 
+         // Indexed item arrays may have empty slots, just as in hit testing.
+         if (!pitem || pitem->is_hidden())
+         {
+            continue;
+         }
+
          auto puseritem = user_item(pitem);
+         if (!puseritem) continue;
+
+         if (!(puseritem->m_ezorder & ezorder) && 
+            !(puseritem->m_ezorder == ::user::e_zorder_none
+               && ezorder == ::user::e_zorder_none))
+         {
+            
+            continue;
+
+         }
 
          ::user::e_state estate = ::user::e_state_none;
 

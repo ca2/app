@@ -8,6 +8,7 @@
 // reengaged on 2024-10-25 02:49 <3ThomasBorregaardSorensen!!
 #include "platform.h"
 #include "handler.h"
+#include "startup_delay_debug.h"
 #include "request.h"
 #include "topic.h"
 #include "extended_topic.h"
@@ -125,6 +126,12 @@ namespace handler
    void handler::_post_request(::request* prequest)
    {
 
+      if (prequest && prequest->m_strAppId == "app/app")
+      {
+         STARTUP_DELAY_TRACE_EVENT("Startup request queue: enqueue handler=%p ready=%d request=%p",
+            this, (int)m_bReadyToAttendRequests, prequest);
+      }
+
       {
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -189,6 +196,12 @@ namespace handler
 
             continue;
 
+         }
+
+         if (prequest->m_strAppId == "app/app")
+         {
+            STARTUP_DELAY_TRACE_EVENT("Startup request queue: dequeue handler=%p ready=%d request=%p",
+               this, (int)m_bReadyToAttendRequests, prequest.get());
          }
 
          //if (m_requestaPosted.is_empty())
@@ -377,6 +390,12 @@ namespace handler
 
    void handler::handle(::request * prequest)
    {
+
+      if (prequest && prequest->m_strAppId == "app/app")
+      {
+         STARTUP_DELAY_TRACE_EVENT("Startup request queue: handle handler=%p request=%p",
+            this, prequest);
+      }
 
       m_prequestHandling = prequest;
       

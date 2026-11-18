@@ -73,11 +73,11 @@ namespace datetime
 
          ::earth::time timeFirstDayOfMonth(iYear, iMonth, 1, 0, 0, 0);
          ::earth::time_span timespanOneDay(1, 0, 0, 0);
-         int32_t iFirstDayOfWeek = timeFirstDayOfMonth.day_of_week();
+         int32_t iFirstDayWeekDay = timeFirstDayOfMonth.day_of_week();
 
-         if (pfile->m_strOptions.contains("<monday-first>")&& iFirstDayOfWeek == 1)
+         if (pfile->m_strOptions.contains("<monday-first>")&& iFirstDayWeekDay == 1)
          {
-            iFirstDayOfWeek = 8;
+            iFirstDayWeekDay = 8;
          }
 
          ::earth::time timeLastDayOfMonth((iMonth == 12) ? (iYear + 1) : iYear, (iMonth == 12) ? 1 : (iMonth + 1), 1, 0, 0, 0);
@@ -115,8 +115,8 @@ namespace datetime
 
 
          int32_t iDayCount = timeLastDayOfMonth.day();
-         int32_t iLineCount = (iDayCount + iFirstDayOfWeek - 1) / 7;
-         if (((iDayCount + iFirstDayOfWeek - 1) % 7) > 0)
+         int32_t iLineCount = (iDayCount + iFirstDayWeekDay - 1) / 7;
+         if (((iDayCount + iFirstDayWeekDay - 1) % 7) > 0)
             iLineCount++;
 
          auto psystem = system();
@@ -170,8 +170,8 @@ namespace datetime
                {
                   pfile->raw_print("<div class=\"" + pfile->m_strStyle + "calendar-sel\">");
                }
-               else if ((iWeek == 1 && iDayOfWeek < iFirstDayOfWeek) ||
-                  (iWeek == iLineCount && iDayOfWeek > iLastDayOfWeek))
+               else if ((iWeek == 1 && iDayOfWeek < iFirstDayWeekDay) ||
+                  (iFirstDayWeekDay != 1 && iWeek == iLineCount && iDayOfWeek > iLastDayOfWeek))
                {
                   pfile->raw_print("<div class=\"" + pfile->m_strStyle + "calendar-out-of-month-day\">");
                }
@@ -196,12 +196,12 @@ namespace datetime
                      pfile->raw_print("<div class=\"" + pfile->m_strStyle + "calendar-day\">");
                   }
                }
-               if (iWeek == 1 && iDayOfWeek < iFirstDayOfWeek)
+               if (iWeek == 1 && iDayOfWeek < iFirstDayWeekDay)
                {
-                  pfile->print_format("{}", iLastDayPreviousMonth + iDayOfWeek - iFirstDayOfWeek + 1);
+                  pfile->print_format("{}", iLastDayPreviousMonth + iDayOfWeek - iFirstDayWeekDay + 1);
                   iDay = 1;
                }
-               else if (iWeek == iLineCount && iDayOfWeek > iLastDayOfWeek)
+               else if (iFirstDayWeekDay != 1 && iWeek == iLineCount && iDayOfWeek > iLastDayOfWeek)
                {
                   pfile->print_format("{}", iDayOfWeek - iLastDayOfWeek);
                }

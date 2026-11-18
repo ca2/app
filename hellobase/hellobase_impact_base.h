@@ -32,7 +32,7 @@ namespace hellobase
       e_effect                m_eeffect;
 
 
-      ::pointer < ::mutex >                   m_pmutexText;
+      ::pointer < ::parallelization::mutex >                   m_pmutexText;
       string                  m_strNewHelloBase;
       string                  m_strHelloBase;
 

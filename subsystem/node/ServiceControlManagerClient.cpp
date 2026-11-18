@@ -33,7 +33,7 @@ namespace subsystem
    
    
    ServiceControlManagerClientException::ServiceControlManagerClientException(::i32 iServiceControlManagerErrorCode)
-   : SystemException("[::subsystem::Exception description is not avaliable]")
+   : SystemException("[::subsystem::Exception description is not available]")
    {
       switch (iServiceControlManagerErrorCode) {
          case ERROR_ALREADY_STOPPED:

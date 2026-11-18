@@ -5,6 +5,7 @@
 
 #include "apex/message/channel.h"
 #include "acme/prototype/collection/list.h"
+#include "acme/parallelization/critical_section.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "apex/windowing/window_base.h"
@@ -14,6 +15,9 @@
 #include "aura/user/user/notification_listener.h"
 #include "aura/user/user/redraw.h"
 
+
+
+#include <chrono>
 
 
 namespace windowing
@@ -65,6 +69,8 @@ namespace windowing
       class ::time                              m_timeLastMouseMove;
       ::cast < ::windowing::window >            m_pwindowParent;
       ::string                                  m_strBitmapSource;
+      ::string                                  m_strBitmapSourceAppId;
+      bool                                      m_bBitmapSourceCreate = true;
       mouse_reposition_throttling               m_mouserepositionthrottling;
       bool                                      m_bNewFrame;
       ::pointer<::windowing::icon>              m_picon;
@@ -118,6 +124,8 @@ namespace windowing
       ::frequency                               m_frequencyProdevianFramesPerSecond;
       ::frequency                               m_frequencyNominalFramesPerSecond;
       ::frequency                               m_frequencyOutputFramesPerSecond;
+      critical_section                          m_criticalsectionOutputFrames;
+      ::array < std::chrono::steady_clock::time_point > m_timeaOutputFrame;
       i32_point                                 m_pointMouseMove;
       particle_array                            m_particleaRedraw;
 
@@ -132,8 +140,8 @@ namespace windowing
       ::pointer<::graphics::graphics>           m_pgraphicsgraphics;
       ::draw2d::graphics_pointer                m_pdraw2dgraphics;
       //::pointer<::draw2d::domain>               m_pdraw2ddomain;
-      ::pointer < ::mutex >                     m_pmutexDraw;
-      ::pointer < ::mutex >                     m_pmutexRedraw;
+      ::pointer < ::parallelization::mutex >                     m_pmutexDraw;
+      ::pointer < ::parallelization::mutex >                     m_pmutexRedraw;
 
       ::user::interaction_ptra                  m_userinteractionaMouseHover;
 
@@ -153,7 +161,7 @@ namespace windowing
 
       ::i32_size                                m_sizeDrawnBuffer;
 
-      ::pointer < ::mutex >                     m_pmutexRedrawItem;
+      ::pointer < ::parallelization::mutex >                     m_pmutexRedrawItem;
       ::pointer_array < ::user::redraw_item >   m_redrawitema;
 
       ::pointer < ::user::interaction >         m_puiLastLButtonDown;
@@ -214,7 +222,7 @@ namespace windowing
       //::operating_system::window operating_system_window() const override;
       
       
-      void create_window() override;
+      void create_window(::enum_parallelization eparallelization) override;
 
       void _create_window() override;
       
@@ -626,6 +634,8 @@ namespace windowing
       virtual ::frequency get_prodevian_frames_per_second();
       virtual ::frequency get_nominal_frames_per_second();
       virtual ::frequency get_output_per_second();
+      // Called once after the graphics backend completes a screen update.
+      void record_output_frame();
 
       //void user_common_construct();
 
@@ -639,7 +649,7 @@ namespace windowing
 
       virtual void on_tsf_activate(bool bActivate);
 
-      virtual ::pointer< ::mutex > draw_mutex();
+      virtual ::pointer< ::parallelization::mutex > draw_mutex();
 
       //::windowing::window * get_user_interaction_impl() override;
 
@@ -647,6 +657,8 @@ namespace windowing
 
 
       void set_bitmap_source(const ::scoped_string & scopedstrBitmapSource) override;
+      virtual void set_bitmap_source(const ::scoped_string & scopedstrAppId,
+         const ::scoped_string & scopedstrBitmapSource, bool bCreate = true);
       void clear_bitmap_source() override;
 
 

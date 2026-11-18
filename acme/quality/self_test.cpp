@@ -49,7 +49,7 @@ void self_test::run()
 
    }
 
-   ::information("test group \"{}\" took {} ms", m_pszName, m_timeStart.elapsed().floating_millisecond());
+   ::debug("test group \"{}\" took {} ms", m_pszName, m_timeStart.elapsed().floating_millisecond());
 
 }
 

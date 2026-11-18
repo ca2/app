@@ -10,7 +10,7 @@
 
 //extern string_map < ::pointer<::acme::library >> g_pmapLibrary ;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
-//extern ::pointer < ::mutex >* ::auraacmesystem()->m_pmutexLibrary;
+//extern ::pointer < ::parallelization::mutex >* ::auraacmesystem()->m_pmutexLibrary;
 
 
 #ifdef RASPBERRYPIOS
@@ -345,7 +345,7 @@ void app_core::system_init()
 
       pmessagebox->display(e_display_normal, {});
 
-      pmessagebox->wait_dialog_response();
+      pmessagebox->wait_for_dialog_response();
 
       if (seteuid(uid) == 0)
       {
@@ -355,7 +355,7 @@ void app_core::system_init()
 
          pmessagebox->display(e_display_normal, {});
 
-         pmessagebox->wait_dialog_response();
+         pmessagebox->wait_for_dialog_response();
 
       }
       else
@@ -372,7 +372,7 @@ void app_core::system_init()
 
          pmessagebox->display(e_display_normal, {});
 
-         pmessagebox->wait_dialog_response();
+         pmessagebox->wait_for_dialog_response();
 
       }
 
@@ -2065,8 +2065,8 @@ bool app_core::has_aura_application_factory() const
    if (!papp->is_serviceable() || papp->is_user_service())
    {
 
-      ::auraacmesystem()->m_spmutexUserAppData = allocateø ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
-      ::auraacmesystem()->m_spmutexSystemAppData = allocateø ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
+      ::auraacmesystem()->m_spmutexUserAppData = allocateø ::pointer < ::parallelization::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
+      ::auraacmesystem()->m_spmutexSystemAppData = allocateø ::pointer < ::parallelization::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
 
    }
 

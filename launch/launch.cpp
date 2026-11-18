@@ -201,6 +201,18 @@ namespace launch
             m_strBranch = "";
 
          }
+         else if (strRelease == "22.3")
+         {
+
+            m_strSystem = "linuxmint";
+
+            m_strBranch = strBranch;
+
+            print_line("This is Linux Mint 22.3 System (1)...");
+
+            printf_line("This is \"%s\" Ambient...", m_strBranch.c_str());
+
+         }
          else
          {
 

@@ -37,7 +37,7 @@ namespace graphics
       // you may need to repeat much more times to train a biological neural network though....
       // so they learn what is really, actually and simpley and complexly and all good!!
       //::pointer<image_array>          m_pimageaBuffer;
-      //pointer_array < ::mutex >       m_mutexa;
+      //pointer_array < ::parallelization::mutex >       m_mutexa;
 
 
       multiple_buffer();

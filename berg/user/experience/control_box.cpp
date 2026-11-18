@@ -13,6 +13,7 @@
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/windowing/windowing.h"
 #include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/domain.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/message/user.h"
@@ -28,7 +29,7 @@ namespace experience
    control_box::control_box()
    {
 
-      m_bVisibleIfWindowActive = true;
+
 
       m_strInteractionTag = "control_box";
 
@@ -49,6 +50,7 @@ namespace experience
 
    control_box::~control_box()
    {
+      if (m_pAutoHide) m_pAutoHide->erase_auto_hide_interaction(this);
 
    }
 
@@ -110,7 +112,7 @@ namespace experience
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto_hide_on_message_mouse_move(pmessage);
+      if (m_pAutoHide) m_pAutoHide->auto_hide_on_message_mouse_move(pmessage);
 
       if (m_pframewindow != nullptr
           && m_pframewindow->m_pframe != nullptr
@@ -138,7 +140,7 @@ namespace experience
    void control_box::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      auto_hide_on_message_mouse_leave(pmessage);
+      if (m_pAutoHide) m_pAutoHide->auto_hide_on_message_mouse_leave(pmessage);
 
    }
 
@@ -220,143 +222,15 @@ namespace experience
 
    void control_box::operator()(::timer * ptimer)
    {
-
-      ::user::auto_hide::operator()(ptimer);
-
-      if (ptimer->m_etimer == e_timer_check_hover)
-      {
-
-         if (top_level()->layout().is_moving())
-         {
-
-            //informationf("experience control_box : top level is moving : ignoring ::user::e_message_timer");
-
-            //return true;
-
-            return;
-
-         }
-         else if (top_level()->layout().is_sizing())
-         {
-
-            //informationf("experience control_box : top level is sizing : ignoring ::user::e_message_timer");
-
-            //return true;
-
-            return;
-
-         }
-
-         ::i32_point pointCursorHost;
-
-         pointCursorHost = host_mouse_cursor_position();
-
-         if (is_window_visible())
-         {
-
-            if (m_bDrag)
-            {
-
-               m_timeShow.Now();
-
-            }
-            else
-            {
-
-               if (m_pframewindow != nullptr)
-               {
-
-                  if (m_pframewindow->layout().is_full_screen())
-                  {
-
-                     auto rectangleHost = host_rectangle();
-
-                     if (rectangleHost.contains(pointCursorHost))
-                     {
-
-                        m_timeShow.Now();
-
-                     }
-                     else
-                     {
-
-                        if (m_timeShow.elapsed() > 1_s)
-                        {
-
-                           display(e_display_none);
-
-                        }
-
-                     }
-
-                  }
-
-               }
-
-            }
-
-         } else if (m_bShowAttempt)
-         {
-            //if ((m_timeShowTime.elapsed()) > 284)
-            {
-               if (m_pframewindow != nullptr)
-               {
-
-                  if (m_pframewindow->layout().is_full_screen())
-                  {
-
-                     auto rectangleHost = host_rectangle();
-
-                     if (pointCursorHost.x >= rectangleHost.left
-                     && pointCursorHost.x <= rectangleHost.right &&
-                        pointCursorHost.y == 0)
-                     {
-
-                        order(e_zorder_top);
-
-                        display();
-
-                     }
-
-                     m_bShowAttempt = false;
-
-                  }
-
-               }
-
-            }
-         } else
-         {
-
-            if (m_pframewindow->layout().is_full_screen())
-            {
-
-               auto rectangleHost = host_rectangle();
-
-               if (pointCursorHost.x >= rectangleHost.left
-                   && pointCursorHost.x <= rectangleHost.right &&
-                   pointCursorHost.y == 0)
-               {
-
-                  m_bShowAttempt = true;
-
-                  m_timeShow.Now();
-
-               }
-
-            }
-
-         }
-
-      }
-
+      ::user::box::operator()(ptimer);
    }
 
 
    void control_box::on_message_create(::message::message * pmessage)
    {
 
-      auto_hide_on_message_create(pmessage);
+      m_pAutoHide = m_pframewindow->full_screen_auto_hide();
+      m_pAutoHide->add_auto_hide_interaction(this);
 
       constructø(m_pbrushButtonBack);
       constructø(m_pbrushButtonBackSel);
@@ -393,6 +267,8 @@ namespace experience
 
    void control_box::on_message_destroy(::message::message * pmessage)
    {
+      if (m_pAutoHide) m_pAutoHide->erase_auto_hide_interaction(this);
+      m_pAutoHide.release();
 
       m_pbrushButtonBack.release();
       m_pbrushButtonBackSel.release();
@@ -571,7 +447,7 @@ namespace experience
    }
 
 
-   void control_box::_layout_button(enum_button ebutton, ::i32_rectangle & rectangle)
+   void control_box::_layout_button(enum_button ebutton, ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto pbutton = get_box_button(ebutton);
@@ -579,9 +455,9 @@ namespace experience
       if (should_show_button(ebutton))
       {
 
-         auto sizeButton = get_button_size(ebutton);
+         auto sizeButton = get_button_size(ebutton, pdraw2dgraphics);
 
-         auto rectangleMargin = get_button_margin(ebutton);
+         auto rectangleMargin = get_button_margin(ebutton, pdraw2dgraphics);
 
          rectangle.right = rectangle.left - rectangleMargin.right;
 
@@ -656,7 +532,7 @@ namespace experience
    void control_box::on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      auto_hide_calculate_control_visibility();
+      if (m_pAutoHide) m_pAutoHide->auto_hide_calculate_control_visibility();
 //      ::i32_rectangle rectangleWindow = m_pframewindow->window_rectangle(::user::e_layout_lading);
 //
 //      ::i32_rectangle rectangleParent(rectangleWindow);
@@ -671,14 +547,14 @@ namespace experience
 
 //      reset_layout(pdraw2dgraphics);
 
-      layout_control_box_buttons();
+      layout_control_box_buttons(pdraw2dgraphics);
 
       order(e_zorder_top);
 
    }
 
 
-   void control_box::layout_control_box_buttons()
+   void control_box::layout_control_box_buttons(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangle = this->rectangle(::user::e_layout_layout);
@@ -687,23 +563,23 @@ namespace experience
 //
       rectangle.left = rectangle.right;
 
-      _layout_button(e_button_close, rectangle);
+      _layout_button(e_button_close, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_up, rectangle);
+      _layout_button(e_button_up, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_down, rectangle);
+      _layout_button(e_button_down, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_maximize, rectangle);
+      _layout_button(e_button_maximize, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_restore, rectangle);
+      _layout_button(e_button_restore, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_minimize, rectangle);
+      _layout_button(e_button_minimize, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_notify_icon, rectangle);
+      _layout_button(e_button_notify_icon, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_transparent_frame, rectangle);
+      _layout_button(e_button_transparent_frame, rectangle, pdraw2dgraphics);
 
-      _layout_button(e_button_dock, rectangle);
+      _layout_button(e_button_dock, rectangle, pdraw2dgraphics);
 
    }
 
@@ -1071,7 +947,7 @@ namespace experience
 //   }
 
 
-   i32_size control_box::get_button_size(enum_button ebutton)
+   i32_size control_box::get_button_size(enum_button ebutton, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       return m_sizeButtonDefault;
@@ -1079,15 +955,18 @@ namespace experience
    }
 
 
-   i32_rectangle control_box::get_button_margin(enum_button ebutton)
+   i32_rectangle control_box::get_button_margin(enum_button ebutton, ::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       ::i32_rectangle rectangleMargin;
 
+      auto fDensity = pdraw2dgraphics->draw2d_domain()->get_density();
+      auto iMargin = (::i32) (m_iDefaultButtonMargin * fDensity + 0.5f);
+
       rectangleMargin.left = 0;
-      rectangleMargin.top = m_iDefaultButtonMargin;
-      rectangleMargin.right = m_iDefaultButtonMargin;
-      rectangleMargin.bottom = m_iDefaultButtonMargin;
+      rectangleMargin.top = iMargin;
+      rectangleMargin.right = iMargin;
+      rectangleMargin.bottom = iMargin;
 
       return rectangleMargin;
 
@@ -1099,7 +978,10 @@ namespace experience
 
       auto dFontHeight = m_pfontMarlett->text_metric(pdraw2dgraphics).get_line_height();
 
-      ::i32 iButtonSize = (::i32) (dFontHeight + m_iDefaultButtonMargin * 3);
+      auto fDensity = pdraw2dgraphics->draw2d_domain()->get_density();
+      auto iMargin = (::i32) (m_iDefaultButtonMargin * fDensity + 0.5f);
+
+      ::i32 iButtonSize = (::i32) (dFontHeight + iMargin * 3);
 
       m_sizeButtonDefault = ::i32_size(iButtonSize, iButtonSize);
 
@@ -1149,7 +1031,8 @@ namespace experience
 
             iWidth += m_iDefaultButtonSize;
 
-            iWidth += m_iDefaultButtonMargin;
+            auto fDensity = m_pframewindow ? m_pframewindow->get_density_for_window() : get_density_for_window();
+            iWidth += (::i32) (m_iDefaultButtonMargin * fDensity + 0.5f);
 
          }
 
@@ -1399,7 +1282,28 @@ namespace experience
 
       ::user::box::handle(ptopic, phandlercontext);
 
-      ::user::auto_hide::handle(ptopic, phandlercontext);
+      if (ptopic->id() == "auto_hide_visibility"
+         && ptopic->payload("coordinated").is_true())
+      {
+         bool bVisible = ptopic->payload("visible").is_true();
+         if (const_layout().sketch().is_visible() != bVisible)
+         {
+            order(e_zorder_top);
+            display(bVisible ? e_display_normal : e_display_none);
+            set_need_redraw();
+            post_redraw();
+         }
+      }
+
+   }
+
+
+   void control_box::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
+   {
+
+      ::user::box::on_layout(pdraw2dgraphics);
+
+      layout_control_box_buttons(pdraw2dgraphics);
 
    }
 

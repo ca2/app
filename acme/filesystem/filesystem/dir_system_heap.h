@@ -30,7 +30,7 @@ namespace file
       public:
 
 
-         ::pointer < ::mutex >                m_pmutex;
+         ::pointer < ::parallelization::mutex >                m_pmutex;
          class ::time m_timeTimeout;
 
 

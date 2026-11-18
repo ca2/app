@@ -139,7 +139,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
 //::i32 g_iMemoryCounters = -1;
 //
-//CLASS_DECL_ACME::pointer< ::mutex > g_pmutexMemoryCounters = nullptr;
+//CLASS_DECL_ACME::pointer< ::parallelization::mutex > g_pmutexMemoryCounters = nullptr;
 //
 //::i32 g_iMemoryCountersStartable = 0;
 //
@@ -158,7 +158,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 //      if (g_iMemoryCounters)
 //      {
 //
-//         g_pmutexMemoryCounters = ___new ::pointer < ::mutex > (e_create_new, nullptr, false, "Global\\ca2_memory_counters");
+//         g_pmutexMemoryCounters = ___new ::pointer < ::parallelization::mutex > (e_create_new, nullptr, false, "Global\\ca2_memory_counters");
 //
 //      }
 //
@@ -409,7 +409,22 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 
    auto pplatform = ::platform::get();
 
-   if ((pplatform && pplatform->is_console()) || (!::is_debugger_attached() && g_bPrintfIfDebuggerIsNotAttached))
+   const bool bDebuggerAttached = ::is_debugger_attached();
+   const bool bStandardOutput = (pplatform && pplatform->is_console())
+      || (!bDebuggerAttached && g_bPrintfIfDebuggerIsNotAttached);
+#if defined(WINDOWS)
+   // Standard-stream mirroring must not replace Visual Studio's debugger output.
+   const bool bDebuggerOutput = bDebuggerAttached || !bStandardOutput;
+#else
+   const bool bDebuggerOutput = !bStandardOutput;
+#endif
+   if (bDebuggerOutput)
+   {
+      ::output_debug_string(str);
+      ::output_debug_string_flush();
+   }
+
+   if (bStandardOutput)
    {
 
       if (tracestatement.m_pparticleLogging)
@@ -450,14 +465,6 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
          }
 
       }
-
-   }
-   else
-   {
-
-      ::output_debug_string(str);
-
-      ::output_debug_string_flush();
 
    }
 

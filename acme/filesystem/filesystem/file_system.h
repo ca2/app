@@ -25,8 +25,9 @@ public:
    ::path_system *                                                m_ppathsystem;
 
    ::file::path                                                   m_pathExecutable;
+   critical_section                                               m_criticalsectionModule;
 
-   ::pointer < ::mutex >                                          m_pmutexFileSystemItem;
+   ::pointer < ::parallelization::mutex >                                          m_pmutexFileSystemItem;
    string_map_base < ::pointer < ::file_system_item > >           m_mapFileSystemItem;
 
 

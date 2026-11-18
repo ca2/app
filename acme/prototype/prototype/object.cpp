@@ -1631,7 +1631,7 @@ void object::delete_this()
 //}
 //
 
-CLASS_DECL_ACME::pointer < ::mutex >* get_children_mutex();
+CLASS_DECL_ACME::pointer < ::parallelization::mutex >* get_children_mutex();
 
 
 ///// tells if pparticle is dependant of this object or of any dependant objects
@@ -2064,7 +2064,7 @@ void object::handle_exception(const ::exception& e)
 
       pmessagebox->display(e_display_normal, {});
       
-      pmessagebox->wait_dialog_response();
+      pmessagebox->wait_for_dialog_response();
 
    }
 

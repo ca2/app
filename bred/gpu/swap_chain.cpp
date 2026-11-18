@@ -951,6 +951,15 @@ swap_chain::frame_sync &swap_chain::frame(::collection::index iFrameIndex)
       throw ::exception(error_failed, "invalid frame index!");
    }
 
+   // Frame slots are created lazily by the backend. Grow the common storage
+   // before accessing a slot; atø() requires that the slot already exists.
+   if (iFrameIndex >= m_framesynca.size())
+   {
+
+      m_framesynca.set_size(iFrameIndex + 1);
+
+   }
+
    auto &framesync = m_framesynca.atø(iFrameIndex);
 
    if (!framesync.m_pgpufenceInFlight)

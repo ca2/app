@@ -2,12 +2,12 @@
 ////#include "acme/exception/exception.h"
 
 
-::wd32_character* wd16_to_wd32_dup(const ::wd16_character* input, character_count input_size)
+::wd32_character* wd16_to_wd32_alloc(const ::wd16_character* input, character_count input_size, MALLOC_FUNCTION * malloc_function)
 {
 
    character_count s = wd16_to_wd32_len(input, input_size);
 
-   ::wd32_character* v = (::wd32_character*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd32_character) * (s + 1), nullptr);
+   ::wd32_character* v = (::wd32_character*)malloc_function(sizeof(::wd32_character) * (s + 1));
 
    wd16_to_wd32(v, input, s);
 
@@ -166,6 +166,55 @@ character_count wd32_to_wd16(::wd16_character *psz16, const ::wd32_character *co
    return len;
 
 }
+
+
+
+
+::wd16_character * wd32_to_wd16_alloc(const ::wd32_character * input, character_count input_size, MALLOC_FUNCTION * malloc_function)
+{
+
+   character_count s = wd32_to_wd16_len(input, input_size);
+
+   auto p = (::wd16_character *)malloc_function(sizeof(::wd16_character) * (s + 1));
+   //::wd32_character * v = (::wd32_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd32_character) * (s + 1), nullptr);
+
+   wd32_to_wd16(p, input, s);
+
+   p[s] = 0;
+
+   return p;
+
+}
+
+
+//::wd16_character * wd32_to_wd16_dup(const ::wd32_character * input, character_count input_size)
+//{
+//
+//   character_count s = wd32_to_wd16_len(input, input_size);
+//
+//   ::wd32_character * v = (::wd32_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd32_character) * (s + 1), nullptr);
+//
+//   wd32_to_wd16(v, input, s);
+//
+//   v[s] = 0;
+//
+//   return v;
+//
+//}
+
+//void * main_memory_allocate(memsize size)
+//{
+//   
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
+//
+//}
+//
+//::wd32_character * v = (::wd32_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd32_character) * (s + 1), nullptr);
+
+
+
+
+
 
 
 

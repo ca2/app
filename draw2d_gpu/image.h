@@ -53,7 +53,7 @@ namespace draw2d_gpu
       //bool host(::pixmap_t * ppixmap, ::windowing::window * pwindow) override;
       //bool host(::windowing::window_buffer * pwindowbuffer, ::windowing::window * pwindow, const ::i32_size & sizeRaw) override;
 
-      bool from(::draw2d::graphics * pdraw2dgraphics);
+      //bool from(::draw2d::graphics * pdraw2dgraphics);
       //bool from(i32_point ptDest, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & point, ::i32_size sz);
 
       //void to(::draw2d::graphics * pdraw2dgraphics, const ::i32_point& point, const ::i32_size& size, const ::i32_point& pointSrc) override;

@@ -4704,7 +4704,7 @@ namespace user
 
    //}
    
-   void element::create_window()
+   void element::create_window(enum_parallelization eparallelization)
    {
 
 
@@ -5304,7 +5304,7 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
    // }
 
 
-   bool element::on_window_create(void * pCREATESTRUCT)
+   bool element::on_window_create(::user::window_create_t * pwindowcreate)
    {
 
       information("::acme::user::element::on_window_create()");
@@ -5485,7 +5485,7 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
    }
 
 
-   void element::set_window_style(::i32 iStyle)
+   void element::set_window_style(::i64 iStyle)
    {
 
       //m_pacmewindowingwindow->set_window_style(iStyle);

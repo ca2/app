@@ -1,5 +1,6 @@
 #include "platform.h"
 #include "application.h"
+#include "startup_delay_debug.h"
 #include "shell_open.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
@@ -18,6 +19,7 @@
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "apex/graphics/early_configuration.h"
 #include "apex/handler/signal.h"
 #include "apex/platform/node.h"
 #include "apex/interprocess/communication.h"
@@ -266,7 +268,10 @@ namespace aura
       //auto estatus =
       
       information() << "startup: aura::application::initialize: before ::aqua::application::initialize(pparticle)";
-      ::aqua::application::initialize(pparticle);
+      {
+         STARTUP_DELAY_TRACE_SCOPE("aura::application::initialize - aqua::application::initialize");
+         ::aqua::application::initialize(pparticle);
+      }
       information() << "startup: aura::application::initialize: after ::aqua::application::initialize(pparticle)";
 
       //if (!estatus)
@@ -279,7 +284,10 @@ namespace aura
       //estatus =
       
       information() << "startup: aura::application::initialize: before construct_newø(m_puserinteractiona)";
-      construct_newø(m_puserinteractiona);
+      {
+         STARTUP_DELAY_TRACE_SCOPE("aura::application::initialize - construct user interaction array");
+         construct_newø(m_puserinteractiona);
+      }
       information() << "startup: aura::application::initialize: after construct_newø(m_puserinteractiona)";
 
       //if (!estatus)
@@ -292,7 +300,10 @@ namespace aura
       //estatus = 
       
       information() << "startup: aura::application::initialize: before construct_newø(m_puserinteractionaFrame)";
-      construct_newø(m_puserinteractionaFrame);
+      {
+         STARTUP_DELAY_TRACE_SCOPE("aura::application::initialize - construct frame interaction array");
+         construct_newø(m_puserinteractionaFrame);
+      }
       information() << "startup: aura::application::initialize: after construct_newø(m_puserinteractionaFrame)";
 
       //if (!estatus)
@@ -1790,239 +1801,294 @@ namespace aura
    //}
 
 
+   //::string application::graphics3d_get_implementation_override()
+   //{
+   //   return m_strGraphics3DImplementationOverride;
+   //}
+
+   //::string application::graphics3d_get_output_override()
+   //{
+   //   return m_strGraphics3DOutputOverride;
+   //}
+
+   //::string application::graphics3d_get_implementation_setting()
+   //{
+   //   auto value = graphics3d_get_implementation_override();
+   //   if (value.has_character()) return value;
+   //   return application_file_setting_by_operating_system("graphics3d.txt");
+   //}
+
+
+   //::string application::graphics3d_get_output_setting()
+   //{
+   //   auto value = graphics3d_get_output_override();
+   //   if (value.has_character()) return value;
+   //   return application_file_setting("graphics3d_output.txt");
+   //}
+
+
+//   void application::defer_initialize_graphics_configuration()
+//   {
+//
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//      if (payload("graphics_configuration_initialized").is_true())
+//      {
+//
+//         return;
+//
+//      }
+//
+//      {
+//
+//         ::string strImplementation = application_file_setting_by_operating_system("draw2d.txt");
+//
+//         strImplementation.make_lower();
+//
+//         strImplementation.case_insensitive_begins_eat("draw2d_");
+//
+//         if (strImplementation == "directx11")
+//         {
+//
+//            strImplementation = "directx11";
+//
+//         }
+//         else if (strImplementation == "directx12")
+//         {
+//
+//            strImplementation = "directx12";
+//
+//         }
+//         else if (strImplementation == "opengl")
+//         {
+//
+//            strImplementation = "opengl";
+//
+//         }
+//         else if (strImplementation == "vulkan")
+//         {
+//
+//            strImplementation = "vulkan";
+//
+//         }
+//         else if (strImplementation == "vkvg")
+//         {
+//
+//             strImplementation = "vkvg";
+//
+//         }
+//         else if (strImplementation == "nanovg")
+//         {
+//
+//            strImplementation = "nanovg";
+//
+//         }
+//         else if (strImplementation == "direct2d_for_directx11"
+//            || strImplementation == "direct2d_for_directx12"
+//            || strImplementation == "gdiplus" || strImplementation == "quartz2d")
+//         {
+//
+//            // Keep the explicit GPU-compatible Direct2D implementation.
+//
+//         }
+//         else if (strImplementation == "direct2d")
+//         {
+//
+//            strImplementation = "direct2d";
+//
+//         }
+//         else if (strImplementation == "cairo")
+//         {
+//
+//            strImplementation = "cairo";
+//
+//         }
+//         else
+//         {
+//
+//            strImplementation.empty();
+//
+//         }
+//
+//         m_strDraw2dImplementation = strImplementation;
+//
+//      }
+//
+//
+//      {
+//
+//         ::string strImplementation = application_file_setting("typeface.txt");
+//
+//         strImplementation.make_lower();
+//
+//         if (strImplementation == "directx11")
+//         {
+//
+//            strImplementation = "directx11";
+//
+//         }
+//         else if (strImplementation == "directx12")
+//         {
+//
+//            strImplementation = "directx12";
+//
+//         }
+//         else if (strImplementation == "opengl")
+//         {
+//
+//            strImplementation = "opengl";
+//
+//         }
+//         else if (strImplementation == "vulkan")
+//         {
+//
+//            strImplementation = "vulkan";
+//
+//         }
+//         else if (strImplementation == "direct2d")
+//         {
+//
+//            strImplementation = "direct2d";
+//
+//         }
+//         else
+//         {
+//
+//            strImplementation.empty();
+//
+//         }
+//
+//         m_strTypefaceImplementation = strImplementation;
+//
+//      }
+//
+//
+//      {
+//
+//         ::string strImplementation = application_file_setting("imaging.txt");
+//
+//         strImplementation.make_lower();
+//
+//         if (strImplementation == "wic")
+//         {
+//
+//            strImplementation = "wic";
+//
+//         }
+//         else if (strImplementation == "freeimage")
+//         {
+//
+//            strImplementation = "freeimage";
+//
+//         }
+//         else if (strImplementation == "quartz2d")
+//         {
+//
+//            strImplementation = "quartz2d";
+//
+//         }
+//         else
+//         {
+//
+//            strImplementation.empty();
+//
+//         }
+//
+//         m_strImagingImplementation = strImplementation;
+//
+//      }
+//
+//
+//      {
+//
+//         ::string strImplementation = graphics3d_get_implementation_setting();
+//
+//         strImplementation.trim();
+//
+//         strImplementation.make_lower();
+//
+//         if (strImplementation == "directx11")
+//         {
+//
+//#if defined(WIN32)
+//
+//            strImplementation = "directx11";
+//            
+//#else
+//            
+//            throw ::exception(error_wrong_state);
+//            
+//#endif
+//
+//
+//         }
+//         else if (strImplementation == "directx12")
+//         {
+//
+//            strImplementation = "directx12";
+//
+//         }
+//         else if (strImplementation == "opengl")
+//         {
+//
+//            strImplementation = "opengl";
+//
+//         }
+//         else if (strImplementation == "vulkan")
+//         {
+//
+//            strImplementation = "vulkan";
+//
+//         }
+//         else
+//         {
+//
+//            strImplementation = "opengl";
+//
+//         }
+//
+//         m_strGraphics3DImplementation = strImplementation;
+//
+//      }
+//
+//      {
+//
+//         ::string strOutput = graphics3d_get_output_setting();
+//
+//         strOutput.trim();
+//
+//         strOutput.make_lower();
+//
+//         if (strOutput.equals("swap_chain") || strOutput.equals("on_screen"))
+//         {
+//
+//            use_gpu_swap_chain() = true;
+//
+//         }
+//         else
+//         {
+//
+//            use_gpu_swap_chain() = false;
+//
+//         }
+//
+//      }
+//
+//      payload("graphics_configuration_initialized") = true;
+//
+//   }
+//
+
    void application::init_instance()
    {
 
       //auto estatus =
-      
+
       ::aqua::application::init_instance();
 
 
 
-      {
-
-         ::string strImplementation = application_file_setting_by_operating_system("draw2d.txt");
-
-         strImplementation.make_lower();
-
-         strImplementation.case_insensitive_begins_eat("draw2d_");
-
-         if (strImplementation == "directx11")
-         {
-
-            strImplementation = "directx11";
-
-         }
-         else if (strImplementation == "directx12")
-         {
-
-            strImplementation = "directx12";
-
-         }
-         else if (strImplementation == "opengl")
-         {
-
-            strImplementation = "opengl";
-
-         }
-         else if (strImplementation == "vulkan")
-         {
-
-            strImplementation = "vulkan";
-
-         }
-         else if (strImplementation == "vkvg")
-         {
-
-             strImplementation = "vkvg";
-
-         }
-         else if (strImplementation == "nanovg")
-         {
-
-            strImplementation = "nanovg";
-
-         }
-         else if (strImplementation == "direct2d")
-         {
-
-            strImplementation = "direct2d";
-
-         }
-         else if (strImplementation == "cairo")
-         {
-
-            strImplementation = "cairo";
-
-         }
-         else
-         {
-
-            strImplementation.empty();
-
-         }
-
-         m_strDraw2dImplementation = strImplementation;
-
-      }
-
-
-      {
-
-         ::string strImplementation = application_file_setting("typeface.txt");
-
-         strImplementation.make_lower();
-
-         if (strImplementation == "directx11")
-         {
-
-            strImplementation = "directx11";
-
-         }
-         else if (strImplementation == "directx12")
-         {
-
-            strImplementation = "directx12";
-
-         }
-         else if (strImplementation == "opengl")
-         {
-
-            strImplementation = "opengl";
-
-         }
-         else if (strImplementation == "vulkan")
-         {
-
-            strImplementation = "vulkan";
-
-         }
-         else if (strImplementation == "direct2d")
-         {
-
-            strImplementation = "direct2d";
-
-         }
-         else
-         {
-
-            strImplementation.empty();
-
-         }
-
-         m_strTypefaceImplementation = strImplementation;
-
-      }
-
-
-      {
-
-         ::string strImplementation = application_file_setting("imaging.txt");
-
-         strImplementation.make_lower();
-
-         if (strImplementation == "wic")
-         {
-
-            strImplementation = "wic";
-
-         }
-         else if (strImplementation == "freeimage")
-         {
-
-            strImplementation = "freeimage";
-
-         }
-         else if (strImplementation == "quartz2d")
-         {
-
-            strImplementation = "quartz2d";
-
-         }
-         else
-         {
-
-            strImplementation.empty();
-
-         }
-
-         m_strImagingImplementation = strImplementation;
-
-      }
-
-
-      {
-
-         ::string strImplementation = application_file_setting_by_operating_system("graphics3d.txt");
-
-         strImplementation.make_lower();
-
-         if (strImplementation == "directx11")
-         {
-
-#if defined(WIN32)
-
-            strImplementation = "directx11";
-            
-#else
-            
-            throw ::exception(error_wrong_state);
-            
-#endif
-
-
-         }
-         else if (strImplementation == "directx12")
-         {
-
-            strImplementation = "directx12";
-
-         }
-         else if (strImplementation == "opengl")
-         {
-
-            strImplementation = "opengl";
-
-         }
-         else if (strImplementation == "vulkan")
-         {
-
-            strImplementation = "vulkan";
-
-         }
-         else
-         {
-
-            strImplementation = "opengl";
-
-         }
-
-         m_strGraphics3DImplementation = strImplementation;
-
-      }
-
-      {
-
-         ::string strOutput = application_file_setting("graphics3d_output.txt");
-
-         strOutput.trim();
-
-         strOutput.make_lower();
-
-         if (strOutput.equals("swap_chain") || strOutput.equals("on_screen"))
-         {
-
-            m_gpu.m_bUseSwapChainWindow = true;
-
-         }
-         else
-         {
-
-            m_gpu.m_bUseSwapChainWindow = false;
-
-         }
-
-      }
+      //defer_initialize_graphics_configuration();
 
       ::cast < ::manager > pmanager = system();
  
@@ -3781,7 +3847,7 @@ retry_license:
 
       //_synchronous_lock synchronouslock(m_pmutexFrame, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //_synchronous_lock slChildren(::user::pointer < ::mutex >_children2());
+      //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children2());
 
       auto puserinteractionFrame = m_puserinteractionaFrame;
 
@@ -5645,9 +5711,9 @@ retry_license:
 //
 //      {
 //
-//         ::installpointer< class ::pointer < ::mutex > > ::pointer < ::mutex >(process_platform_name());
+//         ::installpointer< class ::pointer < ::parallelization::mutex > > ::pointer < ::parallelization::mutex >(process_platform_name());
 //
-//         if (::pointer < ::mutex >.already_exists())
+//         if (::pointer < ::parallelization::mutex >.already_exists())
 //         {
 //
 //            //            output_error_message("Could not launch spa installer. It is already running.", ::user::e_message_box_ok);
@@ -9484,47 +9550,23 @@ namespace aura
 
    void application::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine)
    {
-
-      auto prequest = create_newø<::request >();
-
+      auto prequest = create_newø<::request>();
       prequest->_001ParseCommandLine(scopedstrCommandLine);
-
-      ::cast < ::user::interaction > puserinteraction = m_pacmeuserinteractionMain;
-      
-      if(puserinteraction)
+      ::cast<::user::interaction> main = m_pacmeuserinteractionMain;
+      if (main)
       {
-         
-         puserinteraction->frame_toggle_restore(nullptr);
-         
+         // IPC can arrive on a worker thread. Activation belongs to the window's UI thread.
+         main->user_post([main]()
+         {
+            if (!main->is_window_visible() || main->layout().is_iconic())
+               main->display(e_display_normal);
+            main->order(e_zorder_top);
+            main->bring_to_front();
+            main->set_foreground_window(nullptr);
+         });
       }
-
-      //::user::impact * pinteraction = m_ptemplateWeatherMain->get_document(0)->get_impact();
-
-      //if (pinteraction != nullptr)
-      //{
-
-      //   ::user::frame_interaction * pframe = pinteraction->top_level_frame();
-
-      //   if (pframe != nullptr)
-      //   {
-
-      //      pframe->frame_toggle_restore();
-
-      //      //if (pframe->is_window_visible() && !pframe->layout().is_iconic())
-      //      //{
-
-      //      //   pframe->order(e_zorder_top);
-
-      //      //}
-
-      //      //pframe->display(e_display_normal);
-
-      //   }
-
-      //}
-
+      post_request(prequest);
       bHandled = true;
-
    }
 
 
@@ -9962,140 +10004,84 @@ namespace aura
    //}
 
 
-   ::string application::draw2d_get_default_implementation_name()
-   {
-
-      if (m_gpu.m_bUseSwapChainWindow)
-      {
-
-         ::string strGraphics3DImplementation = graphics3d_get_implementation_name();
-
-         if (strGraphics3DImplementation == "vulkan")
-         {
-
-             ::string strImpl = m_strDraw2dImplementation;
-
-             strImpl.trim();
-
-             strImpl.begins_eat("draw2d_");
-
-             if (strImpl.case_insensitive_equals("vkvg"))
-             {
-
-                 return system()->implementation_name("draw2d", "vkvg");
-
-             }
-
-             return system()->implementation_name("draw2d", "vulkan");
-
-         }
-         else if (strGraphics3DImplementation == "opengl")
-         {
-
-            ::string strImpl = m_strDraw2dImplementation;
-
-            strImpl.trim();
-
-            strImpl.begins_eat("draw2d_");
-
-            if (strImpl.case_insensitive_equals("nanovg"))
-            {
-
-               return system()->implementation_name("draw2d", "nanovg");
-
-            }
-
-            return system()->implementation_name("draw2d", "opengl");
-
-         }
-         else if (strGraphics3DImplementation.begins("directx"))
-         {
-
-            if (m_strDraw2dImplementation.case_insensitive_equals(strGraphics3DImplementation))
-            {
-
-               return m_strDraw2dImplementation;
-
-            }
-            else if (strGraphics3DImplementation.equals("directx11"))
-            {
-
-               return system()->implementation_name("draw2d", "direct2d_for_directx11");
-
-            }
-            else if (strGraphics3DImplementation.equals("directx12"))
-            {
-
-               return system()->implementation_name("draw2d", "direct2d_for_directx12");
-
-            }
-
-            return system()->implementation_name("draw2d", "direct2d");
-
-         }
-         else
-         {
-
-            return system()->implementation_name("draw2d", strGraphics3DImplementation);
-
-         }
-
-      }
-      else
-      {
-
-         return m_strDraw2dImplementation;
-
-      }
-
-   }
+//   ::string application::draw2d_get_default_implementation_name()
+//   {
+//
+//      // Windowing can request draw2d before application::init_instance().
+//      defer_initialize_graphics_configuration();
+//
+//      if (m_bGpu2 || use_gpu_swap_chain() || graphics3d_get_implementation_override().has_character())
+//      {
+//
+//         auto strGpuApi = graphics3d_get_implementation_name();
+//#ifdef WINDOWS_DESKTOP
+//         constexpr bool windows = true;
+//#else
+//         constexpr bool windows = false;
+//#endif
+//#ifdef __APPLE__
+//         constexpr bool apple = true;
+//#else
+//         constexpr bool apple = false;
+//#endif
+//         auto available = ::aura::graphics_configuration::draw2d_apis(
+//            strGpuApi.c_str(), !use_gpu_swap_chain(), windows, apple);
+//         auto strDraw2dApi = ::aura::graphics_configuration::draw2d_api(
+//            m_strDraw2dImplementation.c_str(), available);
+//         return system()->implementation_name("draw2d", strDraw2dApi.c_str());
+//
+//      }
+//
+//      return m_strDraw2dImplementation;
+//
+//   }
 
 
 
-   ::string application::typeface_get_default_implementation_name()
-   {
+   //::string application::typeface_get_default_implementation_name()
+   //{
 
-      if(m_strTypefaceImplementation)
-      {
+   //   if(m_strTypefaceImplementation)
+   //   {
 
-         return system()->implementation_name("typeface", m_strTypefaceImplementation);
+   //      return system()->implementation_name("typeface", m_strTypefaceImplementation);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         return ::aqua::application::draw2d_get_default_implementation_name();
+   //      return ::aqua::application::draw2d_get_default_implementation_name();
 
-      }
+   //   }
 
-   }
-
-
-   ::string application::imaging_get_default_implementation_name()
-   {
-
-      if(m_strImagingImplementation.has_character())
-      {
-
-         return system()->implementation_name("imaging", m_strImagingImplementation);
-
-      }
-      else
-      {
-
-         return ::aqua::application::imaging_get_default_implementation_name();
-
-      }
-
-   }
+   //}
 
 
-   ::string application::graphics3d_get_implementation_name()
-   {
+   //::string application::imaging_get_default_implementation_name()
+   //{
 
-      return m_strGraphics3DImplementation;
+   //   if(m_strImagingImplementation.has_character())
+   //   {
 
-   }
+   //      return system()->implementation_name("imaging", m_strImagingImplementation);
+
+   //   }
+   //   else
+   //   {
+
+   //      return ::aqua::application::imaging_get_default_implementation_name();
+
+   //   }
+
+   //}
+
+
+   //::string application::graphics3d_get_implementation_name()
+   //{
+
+   //   return m_strGraphics3DImplementation;
+
+   //}
 
 
    void application::on_set_main_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionMain)

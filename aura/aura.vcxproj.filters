@@ -1004,6 +1004,9 @@
     <ClInclude Include="platform\application.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="platform\graphics_configuration.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
     <ClInclude Include="platform\aura.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>

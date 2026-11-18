@@ -13,7 +13,7 @@
     <ClCompile Include="hellomultiverse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include=".\hellomultiverse_application.cpp">
@@ -60,7 +60,7 @@
     <ClInclude Include="hellomultiverse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="hellomultiverse_application.h">

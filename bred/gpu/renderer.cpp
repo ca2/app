@@ -983,7 +983,7 @@ namespace gpu
    void renderer::on_end_frame()
    {
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
 
          //if (pgpuwindowattachment->window_context() == m_pgpucontext)
@@ -1362,7 +1362,7 @@ namespace gpu
 
    //   //bool bLayerStarted = false;
 
-   //   //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   //if (m_papplication->use_gpu_swap_chain())
    //   //{
 
    //   //   if (m_pgpucontext->m_pgpucompositor)
@@ -1420,7 +1420,7 @@ namespace gpu
    //   /////if (!bLayerStarted)
    //   //{
 
-   //   //   //auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+   //   //   //auto bUseSwapChain = m_papplication->use_gpu_swap_chain();
 
    //   //   //auto etypeGpuContext = m_pgpucontext->m_etype;
 
@@ -1434,7 +1434,7 @@ namespace gpu
 
    //   //}
 
-   //   /////if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   /////if (m_papplication->use_gpu_swap_chain())
    //   //{
 
    //   //   if (m_pgpucontext->m_pgpucompositor)
@@ -1461,7 +1461,7 @@ namespace gpu
    void renderer::on_end_render(::gpu::layer * pgpulayer)
    {
 
-      /////if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      /////if (m_papplication->use_gpu_swap_chain())
       //{
 
       //   if (m_pgpucontext->m_pgpucompositor)
@@ -1477,7 +1477,7 @@ namespace gpu
 
       pgpulayer->layer_end();
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
 
          //if (m_pgpucontext->m_pgpucompositor)
@@ -1502,7 +1502,7 @@ namespace gpu
       if (!pgpulayer->m_bExternalRendering)
       {
 
-         auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+         auto bUseSwapChain = m_papplication->use_gpu_swap_chain();
          auto etypeGpuContext = m_pgpucontext->m_etype;
 
          if (!bUseSwapChain || etypeGpuContext != ::gpu::context::e_type_window)
@@ -1882,7 +1882,7 @@ namespace gpu
       /// if (!bLayerStarted)
       {
 
-         // auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+         // auto bUseSwapChain = m_papplication->use_gpu_swap_chain();
 
          // auto etypeGpuContext = m_pgpucontext->m_etype;
 
@@ -1896,7 +1896,7 @@ namespace gpu
          }
       }
 
-      ///// if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      ///// if (m_papplication->use_gpu_swap_chain())
       //{
 
       //   if (m_pgpucontext->m_pgpucompositor)
@@ -2626,7 +2626,7 @@ namespace gpu
 //
 //      //m_bFrameStarted = true;
 //
-//      //if (m_papplication->m_gpu.m_bUseSwapChainWindow
+//      //if (m_papplication->use_gpu_swap_chain()
 //      //   && m_pgpucontext->m_etype != ::gpu::context::e_type_window)
 //      //{
 //
@@ -2667,7 +2667,7 @@ namespace gpu
 //
 //      //render_target()->m_pgpulayer = pgpulayer;
 //
-//      auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+//      auto bUseSwapChain = m_papplication->use_gpu_swap_chain();
 //
 //      auto etypeGpuContext = m_pgpucontext->m_etype;
 //

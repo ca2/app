@@ -16,6 +16,7 @@
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/windowing/window.h"
 #include "bred/graphics3d/engine_instance.h"
+#include <atomic>
 
 
 #ifdef WINDOWS_DESKTOP
@@ -48,13 +49,34 @@ namespace gpu
 
       ::apex::gpu::window_attachment::initialize_gpu_window_attachment(pacmewindowingwindow);
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      // GPU contexts resolve their window attachment through the Aura
+      // windowing::window associated with this Acme window. Publish this
+      // attachment before creating the window context, whose initialization
+      // can immediately perform that lookup.
+      ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
+
+      if (!pwindow)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      information() << "GPU window attachment initialize: this="
+         << static_cast<void *>(this)
+         << " acmeWindow=" << static_cast<void *>(pacmewindowingwindow)
+         << " auraWindow=" << static_cast<void *>(pwindow.operator->())
+         << " interaction=" << static_cast<void *>(pacmewindowingwindow->m_pacmeuserinteraction);
+
+      pwindow->m_papexgpuwindowattachment = this;
+
+      if (m_papplication->use_gpu_swap_chain())
       {
          //::direct2d::get() -> d2d1_factory1()->CreateHwndRenderTarget(rendertargetproperties,
            // hwndrendertargetproperties)
       }
 
-      if (m_papplication->m_bGpu)
+      if (m_papplication->is_using_gpu())
       {
 
          auto pgpuapproach = m_papplication->get_gpu_approach();
@@ -91,9 +113,11 @@ namespace gpu
 
          m_pgpucontextWindow->m_sizeRaw = sizeRaw;
 
+         m_pgpucontextWindow->m_puserinteractionTopic = pacmewindowingwindow->m_pacmeuserinteraction;
+
          ::gpu::enum_scene escene = ::gpu::e_scene_2d;
 
-         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         if (m_papplication->use_gpu_swap_chain())
          {
 
             eoutput = ::gpu::e_output_swap_chain;
@@ -157,6 +181,16 @@ namespace gpu
 
 
 
+   void window_attachment::initialize_offscreen_frame(::gpu::context * pcontext)
+   {
+
+      m_pgpucontextOffscreen = pcontext;
+      m_iFrameCount = 1;
+      defer_create_synchronization();
+
+   }
+
+
    ::gpu::context * window_attachment::window_context()
    {
 
@@ -192,9 +226,11 @@ namespace gpu
 
          m_pgpucontextDraw2d->m_pgpudevice = m_pgpucontextWindow->m_pgpudevice;
 
-         auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
+         auto pacmeuserinteractionWindow = m_pgpucontextWindow->m_puserinteractionTopic;
 
-         ::cast < ::user::interaction > puserinteraction = pacmeuserinteractionMain;
+         ::cast < ::user::interaction > puserinteraction = pacmeuserinteractionWindow;
+
+         m_pgpucontextDraw2d->m_puserinteractionTopic = puserinteraction;
 
          if (!m_pgpucontextDraw2d->m_itask
             && puserinteraction->m_pacmewindowingwindow)
@@ -227,7 +263,7 @@ namespace gpu
                   m_pgpucontextDraw2d->create_draw2d_gpu_context(
 //>>>>>>> origin/main
 m_pgpucontextWindow->m_pgpudevice,
-pwindow,
+pwindow->draw2d_domain(),
 nullptr,
 {},
 pointTarget,
@@ -558,7 +594,7 @@ sizeRaw
    void window_attachment::do_output(::gpu::texture_site * pgputexturesite)
    {
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (m_papplication->use_gpu_swap_chain())
       {
 
          ::cast<gpu::render_target> pgpurendertarget = m_pgpucontextWindow->output_render_target();
@@ -616,9 +652,34 @@ sizeRaw
 
          auto prendertarget = render_target();
 
+         if (!prendertarget)
+         {
+
+            static std::atomic_bool s_bLoggedMissingRenderTarget = false;
+
+            if (!s_bLoggedMissingRenderTarget.exchange(true))
+            {
+
+               information("gpu::window_attachment::present skipped: compositor render target is not attached yet");
+
+            }
+
+            return;
+
+         }
+
          //auto ptextureBackBuffer = prendertarget->do_render(semaphoreaReady,
            // epipelinestageaReady);
          auto ptextureBackBuffer = prendertarget->do_render();
+
+         if (!ptextureBackBuffer)
+         {
+
+            information("gpu::window_attachment::present skipped: compositor render target returned no texture");
+
+            return;
+
+         }
 
 
 
@@ -665,6 +726,12 @@ sizeRaw
          m_pgpucontextWindow->on_new_frame();
 
       }
+      else if (m_pgpucontextOffscreen)
+      {
+
+         m_pgpucontextOffscreen->on_new_frame();
+
+      }
 
          // m_iCurrentFrame3 = (m_iCurrentFrame3 + 1) % iFrameCount;
 
@@ -681,6 +748,12 @@ sizeRaw
             {
 
                pgpudevice = m_pgpucontextWindow->m_pgpudevice;
+
+            }
+            else if (m_pgpucontextOffscreen)
+            {
+
+               pgpudevice = m_pgpucontextOffscreen->m_pgpudevice;
 
             }
             else if (m_pgraphics3dengineinstance)
@@ -790,6 +863,17 @@ sizeRaw
    void window_attachment::end_frame()
    {
 
+      static std::atomic_bool s_bLoggedFirstEndFrame = false;
+
+      if (!s_bLoggedFirstEndFrame.exchange(true))
+      {
+
+         informationf("gpu::window_attachment first end_frame attachment=%p context=%p offscreen=%d swap_chain=%d",
+            this, m_pgpucontextWindow.m_p, m_pgpucontextOffscreen != nullptr,
+            m_papplication ? m_papplication->use_gpu_swap_chain() : false);
+
+      }
+
       on_end_frame();
 
       {
@@ -809,7 +893,7 @@ sizeRaw
 
       //pgpuwindowattachment->present();
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_pgpucontextOffscreen && m_papplication->use_gpu_swap_chain())
       {
 
          present();
@@ -875,6 +959,13 @@ sizeRaw
       {
 
          return nullptr;
+
+      }
+
+      if (pgpucontext->m_pgpuwindowattachmentOffscreen)
+      {
+
+         return pgpucontext->m_pgpuwindowattachmentOffscreen;
 
       }
 
@@ -955,6 +1046,10 @@ sizeRaw
       if (!pwindow)
       {
 
+         std::printf("GPU window attachment lookup cannot cast Acme window to Aura window: acmeWindow=%p\n",
+            static_cast<void *>(pacmewindowingwindow));
+         std::fflush(stdout);
+
          return nullptr;
 
       }
@@ -963,6 +1058,11 @@ sizeRaw
 
       if (!pgpuwindowattachment)
       {
+
+         std::printf("GPU window attachment lookup found no attachment: acmeWindow=%p auraWindow=%p\n",
+            static_cast<void *>(pacmewindowingwindow),
+            static_cast<void *>(pwindow.operator->()));
+         std::fflush(stdout);
 
          return nullptr;
 

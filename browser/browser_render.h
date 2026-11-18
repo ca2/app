@@ -30,11 +30,11 @@ namespace browser
 
       bool                             m_bImageEnable;
 
-      ::pointer < ::mutex >                            m_pmutexWork;
-      ::pointer < ::mutex >                            m_pmutexDraw;
-      ::pointer < ::mutex >                            m_pmutexSwap;
-      ::pointer < ::mutex >                            m_pmutexDib;
-      //::pointer < ::mutex >                            m_pmutexDibSlideShow;
+      ::pointer < ::parallelization::mutex >                            m_pmutexWork;
+      ::pointer < ::parallelization::mutex >                            m_pmutexDraw;
+      ::pointer < ::parallelization::mutex >                            m_pmutexSwap;
+      ::pointer < ::parallelization::mutex >                            m_pmutexDib;
+      //::pointer < ::parallelization::mutex >                            m_pmutexDibSlideShow;
 
       bool                             m_bNewLayout;
       bool                             m_bHelloRender;
@@ -76,7 +76,7 @@ namespace browser
       ::i32_rectangle                           m_rectangleX;
 
 
-      ::pointer < ::mutex >                            m_pmutexText;
+      ::pointer < ::parallelization::mutex >                            m_pmutexText;
 
       impact *                           m_pimpact;
 

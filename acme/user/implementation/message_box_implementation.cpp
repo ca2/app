@@ -441,6 +441,9 @@ void message_box_implementation::initialize_message_box(const ::scoped_string &s
 
 void message_box_implementation::initialize_message_box(const ::exception & exception, const ::scoped_string & scopedstrMoreDetails)
 {
+
+   information() << "Initializing exception message box: title='" << exception.m_strTitle
+      << "' message='" << exception.m_strMessage << "' details='" << scopedstrMoreDetails << "'";
    
    m_strMessage = exception.m_strMessage;
    
@@ -493,6 +496,9 @@ void message_box_implementation::initialize_message_box(const ::exception &excep
                                          const ::scoped_string &scopedstrDetails,
                                          const ::string_array_base &straIconUrl)
 {
+
+   information() << "Initializing exception message box: title='" << exception.m_strTitle
+      << "' message='" << exception.m_strMessage << "' additional='" << strMessage << "'";
    
    m_strMessage = exception.m_strMessage;
    
@@ -744,6 +750,7 @@ message_box_implementation::~message_box_implementation()
             informationf("h(2)=%d", h);
 
          }
+
 
          ::i32 x = (wScreen - w) / 2;
 

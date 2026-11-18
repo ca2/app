@@ -41,7 +41,7 @@
 //#ifdef WINDOWS_DESKTOP
 //      public null_dacl_security_attributes,
 //#endif
-//      public ::pointer < ::mutex >
+//      public ::pointer < ::parallelization::mutex >
 //   {
 //   public:
 //
@@ -54,7 +54,7 @@
 //#ifdef WINDOWS_DESKTOP
 //      public null_dacl_security_attributes,
 //#endif
-//      public ::pointer < ::mutex >
+//      public ::pointer < ::parallelization::mutex >
 //   {
 //   public:
 //

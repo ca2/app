@@ -10,6 +10,8 @@
 #include "render_target.h"
 #include "acme/platform/application.h"
 #include "aura/windowing/window.h"
+#include "aura/user/user/interaction.h"
+#include "aura/graphics/draw2d/graphics.h"
 
 
 namespace gpu
@@ -60,7 +62,8 @@ namespace gpu
          const ::i32_point & pointTarget,
          const ::i32_point & pointSource,
          const ::i32_size & size,
-         ::acme::windowing::window *pacmewindowingwindow,
+         //::acme::windowing::window *pacmewindowingwindow,
+         ::draw2d::domain * pdraw2ddomain,   
          ::draw2d::graphics * pdraw2dgraphics)
    {
 
@@ -68,18 +71,32 @@ namespace gpu
       {
 
          auto pgpuapproach = application()->get_gpu_approach();
-         
-         ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
 
-         auto pgpudevice = pgpuapproach->get_gpu_device(pwindow->draw2d_domain());
+         // Memory graphics can be created before they have a GPU context or a
+         // window (for example, while measuring the font list on a worker).
+         auto sizeRaw = size;
 
-//<<<<<<< HEAD
-         //auto pgpucontext = pgpudevice->create_draw2d_context(::gpu::e_output_gpu_buffer, pacmewindowingwindow, rectanglePlacement.size());
-//=======
+         if (pdraw2dgraphics && pdraw2dgraphics->m_puserinteractionTopic)
+         {
+
+            auto pwindow = pdraw2dgraphics->m_puserinteractionTopic->acme_windowing_window();
+
+            if (pwindow)
+            {
+
+               sizeRaw = pwindow->get_raw_buffer_size().maximum(size);
+
+            }
+
+         }
+
+         auto pgpudevice = pgpuapproach->get_gpu_device(pdraw2ddomain);
+
          auto pgpucontext = pgpudevice->allocate_gpu_context();
-         
-         pgpucontext->create_draw2d_gpu_context(pgpudevice, pacmewindowingwindow, pdraw2dgraphics, pointSource, pointTarget, size, pacmewindowingwindow->m_sizeRaw);
-//>>>>>>> origin/main
+
+         pgpucontext->create_draw2d_gpu_context(
+            pgpudevice, pdraw2ddomain, pdraw2dgraphics,
+            pointSource, pointTarget, size, sizeRaw);
 
          auto pgpucontextNew = pgpucontext;
 

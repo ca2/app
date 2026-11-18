@@ -19,7 +19,7 @@ namespace acme
       ::factory::factory_pointer                      m_pfactory;
 
 
-      //static ::pointer< ::mutex >                                s_pmutexLoading;
+      //static ::pointer< ::parallelization::mutex >                                s_pmutexLoading;
       //static ::acme::library *                        s_plibraryLoading;
 
 

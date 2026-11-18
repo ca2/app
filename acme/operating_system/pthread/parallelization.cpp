@@ -57,33 +57,33 @@ namespace parallelization
    }
 
 
-   class mutex_impl
+   // class fast_critical_section_impl
+   // {
+   //
+   // public:
+   //
+   //
+   //    pthread_mutex_t m_lock{};
+   //
+   //
+   // };
+
+
+   fast_critical_section::fast_critical_section() noexcept
    {
 
-   public:
-
-
-      pthread_mutex_t m_lock{};
-
-
-   };
-
-
-   mutex::mutex() noexcept
-   {
-
-      m_pimpl = new mutex_impl;
+      m_pPthreadMutexT = new pthread_mutex_t{};
 
       int iError = pthread_mutex_init(
-         &m_pimpl->m_lock,
+         (pthread_mutex_t *) m_pPthreadMutexT,
          nullptr);
 
       if (iError != 0)
       {
 
-         delete m_pimpl;
+         delete (pthread_mutex_t *) m_pPthreadMutexT;
 
-         m_pimpl = nullptr;
+         m_pPthreadMutexT = nullptr;
 
          parallelization_terminate();
 
@@ -92,10 +92,10 @@ namespace parallelization
    }
 
 
-   mutex::~mutex() noexcept
+   fast_critical_section::~fast_critical_section() noexcept
    {
 
-      if (m_pimpl == nullptr)
+      if (m_pPthreadMutexT == nullptr)
       {
 
          return;
@@ -103,7 +103,7 @@ namespace parallelization
       }
 
       int iError = pthread_mutex_destroy(
-         &m_pimpl->m_lock);
+         (pthread_mutex_t *) m_pPthreadMutexT);
 
       if (iError != 0)
       {
@@ -114,18 +114,18 @@ namespace parallelization
 
       }
 
-      delete m_pimpl;
+      delete (pthread_mutex_t *) m_pPthreadMutexT;
 
-      m_pimpl = nullptr;
+      m_pPthreadMutexT = nullptr;
 
    }
 
 
-   void mutex::lock() noexcept
+   void fast_critical_section::lock() noexcept
    {
 
       int iError = pthread_mutex_lock(
-         &m_pimpl->m_lock);
+         (pthread_mutex_t *) m_pPthreadMutexT);
 
       if (iError != 0)
       {
@@ -137,11 +137,11 @@ namespace parallelization
    }
 
 
-   bool mutex::try_lock() noexcept
+   bool fast_critical_section::try_lock() noexcept
    {
 
       int iError = pthread_mutex_trylock(
-         &m_pimpl->m_lock);
+         (pthread_mutex_t *) m_pPthreadMutexT);
 
       if (iError == 0)
       {
@@ -162,11 +162,11 @@ namespace parallelization
    }
 
 
-   void mutex::unlock() noexcept
+   void fast_critical_section::unlock() noexcept
    {
 
       int iError = pthread_mutex_unlock(
-         &m_pimpl->m_lock);
+         (pthread_mutex_t *) m_pPthreadMutexT);
 
       if (iError != 0)
       {
@@ -178,23 +178,23 @@ namespace parallelization
    }
 
 
-   class condition_payload_impl
-   {
-
-   public:
-
-
-      pthread_cond_t m_condition{};
-
-
-   };
+   // class condition_payload_impl
+   // {
+   //
+   // public:
+   //
+   //
+   //    pthread_cond_t m_condition{};
+   //
+   //
+   // };
 
 
    static void condition_payload_validate_lock(
       const unique_lock & lock)
    {
 
-      if (lock.m_pmutex == nullptr || !lock.m_bOwnsLock)
+      if (lock.m_pcriticalsection == nullptr || !lock.m_bOwnsLock)
       {
 
          throw ::exception(
@@ -319,7 +319,9 @@ namespace parallelization
    condition_payload::condition_payload() noexcept
    {
 
-      m_pimpl = new condition_payload_impl;
+      //m_pimpl = new condition_payload_impl;
+
+      m_pThreadCondT = new pthread_cond_t;
 
       pthread_condattr_t attributes{};
 
@@ -329,9 +331,9 @@ namespace parallelization
       if (iError != 0)
       {
 
-         delete m_pimpl;
+         delete (pthread_cond_t *)m_pThreadCondT;
 
-         m_pimpl = nullptr;
+         m_pThreadCondT = nullptr;
 
          parallelization_terminate();
 
@@ -351,9 +353,9 @@ namespace parallelization
 
          pthread_condattr_destroy(&attributes);
 
-         delete m_pimpl;
+         delete (pthread_cond_t *)m_pThreadCondT;
 
-         m_pimpl = nullptr;
+         m_pThreadCondT = nullptr;
 
          parallelization_terminate();
 
@@ -362,7 +364,7 @@ namespace parallelization
 #endif
 
       iError = pthread_cond_init(
-         &m_pimpl->m_condition,
+         (pthread_cond_t *)m_pThreadCondT,
          &attributes);
 
       int iDestroyAttributesError =
@@ -371,9 +373,9 @@ namespace parallelization
       if (iError != 0)
       {
 
-         delete m_pimpl;
+         delete (pthread_cond_t *)m_pThreadCondT;
 
-         m_pimpl = nullptr;
+         m_pThreadCondT = nullptr;
 
          parallelization_terminate();
 
@@ -383,11 +385,11 @@ namespace parallelization
       {
 
          pthread_cond_destroy(
-            &m_pimpl->m_condition);
+            (pthread_cond_t *)m_pThreadCondT);
 
-         delete m_pimpl;
+         delete (pthread_cond_t *)m_pThreadCondT;
 
-         m_pimpl = nullptr;
+         m_pThreadCondT = nullptr;
 
          parallelization_terminate();
 
@@ -399,7 +401,7 @@ namespace parallelization
    condition_payload::~condition_payload()
    {
 
-      if (m_pimpl == nullptr)
+      if (m_pThreadCondT == nullptr)
       {
 
          return;
@@ -407,7 +409,7 @@ namespace parallelization
       }
 
       int iError = pthread_cond_destroy(
-         &m_pimpl->m_condition);
+         (pthread_cond_t *)m_pThreadCondT);
 
       if (iError != 0)
       {
@@ -418,9 +420,9 @@ namespace parallelization
 
       }
 
-      delete m_pimpl;
+      delete (pthread_cond_t *)m_pThreadCondT;
 
-      m_pimpl = nullptr;
+      m_pThreadCondT = nullptr;
 
    }
 
@@ -429,7 +431,7 @@ namespace parallelization
    {
 
       int iError = pthread_cond_signal(
-         &m_pimpl->m_condition);
+         (pthread_cond_t *)m_pThreadCondT);
 
       if (iError != 0)
       {
@@ -445,7 +447,7 @@ namespace parallelization
    {
 
       int iError = pthread_cond_broadcast(
-         &m_pimpl->m_condition);
+         (pthread_cond_t *)m_pThreadCondT);
 
       if (iError != 0)
       {
@@ -464,8 +466,8 @@ namespace parallelization
       condition_payload_validate_lock(lock);
 
       int iError = pthread_cond_wait(
-         &m_pimpl->m_condition,
-         &lock.m_pmutex->m_pimpl->m_lock);
+         (pthread_cond_t *)m_pThreadCondT,
+         (pthread_mutex_t *) lock.m_pcriticalsection->m_pPthreadMutexT);
 
       if (iError != 0)
       {
@@ -506,8 +508,8 @@ namespace parallelization
 
 #endif
 
-         &m_pimpl->m_condition,
-         &lock.m_pmutex->m_pimpl->m_lock,
+         (pthread_cond_t *)m_pThreadCondT,
+         (pthread_mutex_t *) lock.m_pcriticalsection->m_pPthreadMutexT,
          &waitTime);
 
       if (iError == 0)

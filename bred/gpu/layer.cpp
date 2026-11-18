@@ -243,7 +243,7 @@ namespace gpu
 
 //      m_pgpurenderer->on_end_layer(this);
 
-      if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_papplication->use_gpu_swap_chain())
       {
 
          auto pgpufence = m_pgpufence;
@@ -273,7 +273,9 @@ namespace gpu
 
       m_timeDuration = m_timeEnd - m_timeStart;
 
+#if defined(GPU_DEBUG_FRAME_TRACE)
       information("Layer {} duration : {} ms", m_iGpuLayerIndex, m_timeDuration.floating_millisecond());
+#endif
 
       finished_manual_reset_happening()->set_happening();
 

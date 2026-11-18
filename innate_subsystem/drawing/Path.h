@@ -12,7 +12,7 @@ namespace innate_subsystem
 
 
    class PathInterface : 
-      virtual public ::Particle
+      virtual public ::subsystem::Particle
    {
    public:
 
@@ -33,7 +33,7 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM PathComposite : virtual public Composite<PathInterface>
+   class CLASS_DECL_INNATE_SUBSYSTEM PathComposite : virtual public ::subsystem::Composite <PathInterface>
    {
    public:
 
@@ -77,14 +77,14 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM PathAggregate : virtual public Aggregate<PathComposite>
+   class CLASS_DECL_INNATE_SUBSYSTEM PathAggregate : virtual public ::subsystem::Aggregate<PathComposite>
    {
    public:
 
       ImplementBaseø(Path);
    };
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Path : virtual public Object<PathAggregate>
+   class CLASS_DECL_INNATE_SUBSYSTEM Path : virtual public ::subsystem::Object<PathAggregate>
    {
    public:
 

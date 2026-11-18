@@ -7,6 +7,7 @@
 #include "aura/graphics/image/image_pixmap_lease.h"
 //#include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction.h"
+#include "aura/windowing/window.h"
 
 
 namespace graphics
@@ -37,6 +38,8 @@ namespace graphics
       //auto bOk =
          
       on_update_screen(get_screen_item());
+
+      m_pwindow->record_output_frame();
 
       // 
       // 

@@ -75,7 +75,7 @@ public:
    //virtual void display_dialog(::dialog * pdialog);
    //virtual void display_dialog_and_wait_dialog_response(::dialog * pdialog);
    //virtual void display_dialog(::dialog * pdialog);
-   virtual void wait_dialog_response(const class ::time & timeTimeout = ::time::infinity());
+   virtual void wait_for_dialog_response(const class ::time & timeTimeout = ::time::infinity());
    
    
    virtual void set_dialog_result(const ::payload & payloadResult);

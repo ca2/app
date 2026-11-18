@@ -57,7 +57,7 @@ namespace platform
 
       ::f64                                            m_dDpi;
 
-      ::pointer < ::mutex >                             m_pmutexUserChildren;
+      ::pointer < ::parallelization::mutex >                             m_pmutexUserChildren;
       ::pointer<class ::image::imaging>                 m_pimaging;
 
       bool                                              m_bProdevianMouse;
@@ -330,7 +330,7 @@ namespace platform
 
       virtual void on_allocation_error(const ::scoped_string & scopedstrName, ::object * pobjectSometimes);
 
-      //::pointer< ::mutex > get_openweather_city_mutex();
+      //::pointer< ::parallelization::mutex > get_openweather_city_mutex();
 
 
       template < typename T >
@@ -411,14 +411,15 @@ namespace platform
       virtual void initialize_draw2d();
       //virtual void initialize_write_text();
       virtual ::factory::factory * draw2d_factory();
-      virtual ::string draw2d_get_default_implementation_name();
+      //virtual ::string draw2d_get_implementation_name();
 
+      virtual void initialize_imaging();
       virtual ::factory::factory * imaging_factory();
-      virtual ::string imaging_get_default_implementation_name();
+      //virtual ::string imaging_get_implementation_name();
 
       virtual void initialize_typeface();
       virtual ::factory::factory* typeface_factory();
-      virtual ::string typeface_get_default_implementation_name();
+      //virtual ::string typeface_get_implementation_name();
 
       //virtual void init_task() override;
       //virtual void term_task() override;

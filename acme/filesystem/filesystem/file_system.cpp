@@ -2,6 +2,7 @@
 // From acme_windows/file_system.cpp
 // 04:38 BRT <3ThomasBorregaardSorensen
 #include "platform.h"
+#include "startup_delay_debug.h"
 #include "file_system.h"
 #include "directory_system.h"
 #include "file_system_real_path_interface.h"
@@ -129,6 +130,8 @@ void file_system::overwrite_if_different(const ::file::path& pathTarget, const :
 ::file::path file_system::module()
 {
 
+   critical_section_lock synchronouslock(&m_criticalsectionModule);
+
    if (m_pathExecutable.is_empty())
    {
 
@@ -137,6 +140,7 @@ void file_system::overwrite_if_different(const ::file::path& pathTarget, const :
       auto pathModule = pnode->module_path_source();
 
       m_pathExecutable = pathModule;
+      m_pathModule = pathModule;
 
    }
 
@@ -1785,9 +1789,7 @@ void file_system::initialize(::particle* pparticle)
    //
    //}
 
-   ::file::path pathModule = this->module();
-
-   m_pathModule = pathModule;
+   // The executable path is resolved and cached by module() on first use.
 
    //return estatus;
 
@@ -1796,6 +1798,8 @@ void file_system::initialize(::particle* pparticle)
 
 void file_system::init_system()
 {
+
+   STARTUP_DELAY_TRACE_SCOPE("file_system::init_system");
 
    //   auto estatus = update_module_path();
    //

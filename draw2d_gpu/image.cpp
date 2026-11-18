@@ -208,12 +208,12 @@ namespace draw2d_gpu
       }
 
       //if (!create(pdraw2dbitmap->get_size()))
-      create_as_descriptor(pdraw2dbitmap->size());
+      create_as_descriptor(pdraw2dbitmap->size(), pdraw2dgraphics->draw2d_domain());
       {
          //return false;//
       }
 
-      from(pdraw2dgraphics);
+      //from(pdraw2dgraphics);
 
       //return true;
 
@@ -243,44 +243,46 @@ namespace draw2d_gpu
    //}
 
 
-   bool image::from(::draw2d::graphics * pdraw2dgraphics)
-   {
+   //bool image::from(::draw2d::graphics * pdraw2dgraphics)
+   //{
 
-      ::draw2d::bitmap_pointer bitmap;
+   //   ::draw2d::bitmap_pointer bitmap;
 
-      bitmap->CreateCompatibleBitmap(pdraw2dgraphics, 1, 1);
+   //   //bitmap->CreateCompatibleBitmap(pdraw2dgraphics, 1, 1);
 
-      //auto estatus =
+   //   bitmap->create_memo
 
-      ::cast < ::draw2d_gpu::graphics > pdraw2dgpugraphics = pdraw2dgraphics;
-      pdraw2dgraphics->set(bitmap);
+   //   //auto estatus =
 
-      //if (!estatus)
-      //{
+   //   ::cast < ::draw2d_gpu::graphics > pdraw2dgpugraphics = pdraw2dgraphics;
+   //   pdraw2dgraphics->set(bitmap);
 
-      //   return false;
+   //   //if (!estatus)
+   //   //{
 
-      //}
+   //   //   return false;
 
-      ::i32_size size = pdraw2dgraphics->m_pimageTarget->get_size();
+   //   //}
 
-      //if(!create(size))
-      create_as_descriptor(size);
-      //{
+   //   ::i32_size size = pdraw2dgraphics->m_pimageTarget->get_size();
 
-      //   return false;
+   //   //if(!create(size))
+   //   create_as_descriptor(size);
+   //   //{
 
-      //}
+   //   //   return false;
 
-      throw ::exception(todo, "::opengl::image::image");
+   //   //}
 
-      //bool bOk = GetDIBits(GL2D_HDC(pdraw2dgraphics), (HBITMAP) pdraw2dbitmap->get_os_data(), 0, m_size.cy, get_data(), &(m_bitmapinfo), DIB_RGB_COLORS) != false;
+   //   throw ::exception(todo, "::opengl::image::image");
 
-      //GL2D_GRAPHICS(pdraw2dgraphics)->set(pdraw2dbitmap);
+   //   //bool bOk = GetDIBits(GL2D_HDC(pdraw2dgraphics), (HBITMAP) pdraw2dbitmap->get_os_data(), 0, m_size.cy, get_data(), &(m_bitmapinfo), DIB_RGB_COLORS) != false;
 
-      //return bOk;
+   //   //GL2D_GRAPHICS(pdraw2dgraphics)->set(pdraw2dbitmap);
 
-   }
+   //   //return bOk;
+
+   //}
 
 
    //bool image::from(i32_point ptDest, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & point, ::i32_size sz)

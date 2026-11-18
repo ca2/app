@@ -404,7 +404,7 @@ void property_object::on_catch_all_exception()
 
    ::file::path path;
 
-   path = "dropbox-app://";
+   path = "cloud-app://";
 
    if (include_hostname_in_configuration_path())
    {

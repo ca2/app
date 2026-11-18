@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "aura/graphics/graphics/frame_trace.h"
 #include "list.h"
 #include "list_column.h"
 #include "list_column_array.h"
@@ -351,9 +352,11 @@ namespace user
 
       auto iItemFirst = m_iTopDisplayIndex;
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
       debug() << "m_nDisplayCount : " << m_nDisplayCount;
 
       debug() << "m_iTopDisplayIndex : " << m_iTopDisplayIndex;
+#endif
 
       decltype(iItemCount) iItemLast;
 
@@ -3491,6 +3494,15 @@ namespace user
    }
 
 
+   bool list::handle_edit_shortcut(::user::e_key key, bool control, ::user::activation_token * token)
+   {
+      if (!control || (key != ::user::e_key_c && key != ::user::e_key_v)) return false;
+      ::message::command command(key == ::user::e_key_c ? "edit_copy" : "edit_paste", token);
+      _001SendCommand(&command);
+      return command.m_bRet;
+   }
+
+
    void list::on_message_key_down(::message::message * pmessage)
    {
 
@@ -3499,7 +3511,37 @@ namespace user
       if (pkey->previous()) // give chance to child
          return;
 
+      if ((pkey->m_ekey == ::user::e_key_c || pkey->m_ekey == ::user::e_key_v)
+         && handle_edit_shortcut(pkey->m_ekey, session()->is_key_pressed(::user::e_key_control), pkey->user_activation_token()))
+      {
+         pmessage->m_bRet = true;
+         return;
+      }
+
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      if (m_bMultiSelect && pkey->m_ekey == ::user::e_key_a
+         && session()->is_key_pressed(::user::e_key_control))
+      {
+
+         m_rangeSelection.clear();
+
+         if (m_nItemCount > 0)
+         {
+
+            item_range itemrange;
+            itemrange.set(0, m_nItemCount - 1, 0, m_pcolumna->get_count() - 1, -1, -1);
+            m_rangeSelection.add_item(itemrange);
+
+         }
+
+         on_selection_change();
+         set_need_redraw();
+         post_redraw();
+         pmessage->m_bRet = true;
+         return;
+
+      }
 
       if (pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_up ||
             pkey->m_ekey == ::user::e_key_page_down || pkey->m_ekey == ::user::e_key_page_up)
@@ -3770,8 +3812,8 @@ namespace user
 
             if (m_bMeshSelect && m_bHoverSelect2 &&
                (m_iSubItemEnter != iSubItemEnter ||
-                  m_iItemEnter != iItemEnter)
-               && !m_rangeSelection.has_item(iItemEnter))
+                  m_iItemEnter != iItemEnter))
+               //&& !m_rangeSelection.has_item(iItemEnter))
             {
 
                m_keystateMouseEnter = session();//pmouse->m_ekeystate;

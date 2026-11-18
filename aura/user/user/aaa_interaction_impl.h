@@ -141,8 +141,8 @@ namespace user
       ::pointer<::graphics::graphics>           m_pgraphicsgraphics;
       ::pointer<::draw2d::graphics>             m_pdraw2dgraphics;
 
-      ::pointer < ::mutex >                     m_pmutexDraw;
-      ::pointer < ::mutex >                     m_pmutexRedraw;
+      ::pointer < ::parallelization::mutex >                     m_pmutexDraw;
+      ::pointer < ::parallelization::mutex >                     m_pmutexRedraw;
 
       ::user::interaction_ptra                  m_userinteractionaMouseHover;
 
@@ -211,7 +211,7 @@ namespace user
 
       virtual void on_tsf_activate(bool bActivate);
 
-      virtual ::pointer< ::mutex > draw_mutex();
+      virtual ::pointer< ::parallelization::mutex > draw_mutex();
 
       ::windowing::window * get_user_interaction_impl() override;
 

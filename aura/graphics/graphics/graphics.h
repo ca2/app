@@ -92,6 +92,8 @@ namespace graphics
       virtual bool ipc_copy(const pixmap* ppixmap);
 
       virtual void set_bitmap_source(const ::scoped_string & scopedstrBitmapSource, bool bCreate = true);
+      virtual void set_bitmap_source(const ::scoped_string & scopedstrAppId,
+         const ::scoped_string & scopedstrBitmapSource, bool bCreate = true);
 
       virtual void clear_bitmap_source();
 

@@ -73,7 +73,7 @@ namespace micro
          void on_before_create_window(acme::windowing::window* pacmewindowingwindow) override;
 
 
-         virtual void create_window() override;
+         void create_window(::enum_parallelization eparallelization) override;
 
 
          //void complete_step(sequencer & sequencer) override;

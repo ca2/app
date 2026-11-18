@@ -71,7 +71,7 @@ namespace subsystem
 
    // Class for intercepting keyboard on low level.
    class CLASS_DECL_SUBSYSTEM OperatingSystemHookComposite :
-   virtual public Composite< OperatingSystemHookInterface >
+   virtual public ::subsystem::Composite < OperatingSystemHookInterface >
    {
    public:
 
@@ -141,7 +141,7 @@ namespace subsystem
 
 
     class CLASS_DECL_SUBSYSTEM OperatingSystemHookAggregate :
-    virtual public Aggregate< OperatingSystemHookComposite >
+    virtual public ::subsystem::Aggregate< OperatingSystemHookComposite >
     {
     public:
 
@@ -150,7 +150,7 @@ namespace subsystem
     };
 
    class CLASS_DECL_SUBSYSTEM OperatingSystemHook :
-    virtual public Object < OperatingSystemHookAggregate >
+    virtual public ::subsystem::Object <OperatingSystemHookAggregate >
    {
    public:
 

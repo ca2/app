@@ -94,7 +94,7 @@ namespace gpu
 
          auto ptexturesiteDiffuseIrradianceCubemap = m_ptexturesiteDiffuseIrradianceCubemap->gpu_texture();
 
-         ::gpu::texture_attributes textureattributes({(::i32) m_udiffuse_irradiance_mapWidth, (::i32) m_udiffuse_irradiance_mapHeight});
+         ::gpu::texture_attributes textureattributes(::i32_size(m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight));
 
          textureattributes.set_cubemap();
 

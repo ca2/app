@@ -10,7 +10,7 @@
 #include "apex/message/simple_command.h"
 
 
-//::pointer < ::mutex >channel::s_pmutexChannel;
+//::pointer < ::parallelization::mutex >channel::s_pmutexChannel;
 
 
 channel::channel()

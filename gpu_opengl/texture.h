@@ -25,6 +25,7 @@ namespace gpu_opengl
       using base_context_handle = ::gpu_opengl::context_handle<GLuint, ::gpu_opengl::e_handle_fbo>;
       
 
+      void * m_pNativeAllocationContext = nullptr;
       GLuint            m_gluTextureID;
       GLuint            m_gluDepthStencilRBO;
       //GLuint            m_gluFbo;
@@ -76,7 +77,7 @@ namespace gpu_opengl
       void read_pixels(::gpu::command_buffer * commands, ::pixmap_t * ppixmap, const ::i32_point & pointOutput) override;
 
 
-      void set_pixels(bool bSync, const ::i32_rectangle & rectangle, const void * data) override;
+      void set_pixels(bool bSync, const ::i32_rectangle & rectangle, const void * data, bool bTopDown) override;
       void write_pixels(bool bSync, const ::pixmap_t * ppixmap, const ::i32_point & pointInput) override;
 
       //void write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::pixmap_t * ppixmap, const ::i32_point & pointInput) override;

@@ -214,3 +214,9 @@ namespace heap
 
 
 
+
+
+void * cpp_malloc(memsize size)
+{
+   return ::malloc(size);
+}

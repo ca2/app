@@ -6296,11 +6296,4 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-  <PropertyGroup>
-    <ApplicationBuildHelperExe Condition="'$(ApplicationBuildHelperExe)' == ''">application_build_helper</ApplicationBuildHelperExe>
-    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
-  </PropertyGroup>
-  <Target Name="SyncStorageLibraries" BeforeTargets="PrepareForBuild" Condition="'$(DesignTimeBuild)' != 'true' And !$([System.String]::Copy('$(Configuration)').StartsWith('StaticMeta'))">
-    <Exec WorkingDirectory="$(ProjectDir)." Command="&quot;$(ApplicationBuildHelperExe)&quot; --sync-storage-libraries --architecture=&quot;$(Platform)&quot; --configuration=&quot;$(Configuration)&quot;" IgnoreExitCode="false" />
-  </Target>
 </Project>

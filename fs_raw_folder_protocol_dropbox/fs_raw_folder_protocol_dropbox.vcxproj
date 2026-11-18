@@ -57,7 +57,7 @@
       <Configuration>StaticDebug</Configuration>
       <Platform>ARM64</Platform>
     </ProjectConfiguration>
-  <ProjectConfiguration Include="StaticMetaDebug|ARM64">
+    <ProjectConfiguration Include="StaticMetaDebug|ARM64">
       <Configuration>StaticMetaDebug</Configuration>
       <Platform>ARM64</Platform>
     </ProjectConfiguration>
@@ -65,7 +65,7 @@
       <Configuration>StaticDebug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-  <ProjectConfiguration Include="StaticMetaDebug|Win32">
+    <ProjectConfiguration Include="StaticMetaDebug|Win32">
       <Configuration>StaticMetaDebug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
@@ -73,7 +73,7 @@
       <Configuration>StaticDebug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-  <ProjectConfiguration Include="StaticMetaDebug|x64">
+    <ProjectConfiguration Include="StaticMetaDebug|x64">
       <Configuration>StaticMetaDebug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
@@ -81,7 +81,7 @@
       <Configuration>StaticRelease</Configuration>
       <Platform>ARM64</Platform>
     </ProjectConfiguration>
-  <ProjectConfiguration Include="StaticMetaRelease|ARM64">
+    <ProjectConfiguration Include="StaticMetaRelease|ARM64">
       <Configuration>StaticMetaRelease</Configuration>
       <Platform>ARM64</Platform>
     </ProjectConfiguration>
@@ -89,7 +89,7 @@
       <Configuration>StaticRelease</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-  <ProjectConfiguration Include="StaticMetaRelease|Win32">
+    <ProjectConfiguration Include="StaticMetaRelease|Win32">
       <Configuration>StaticMetaRelease</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
@@ -97,7 +97,7 @@
       <Configuration>StaticRelease</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-  <ProjectConfiguration Include="StaticMetaRelease|x64">
+    <ProjectConfiguration Include="StaticMetaRelease|x64">
       <Configuration>StaticMetaRelease</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
@@ -111,7 +111,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D91D5C1F-21E2-4661-8734-B8A7C70A9542}</ProjectGuid>
+    <ProjectGuid>{30F58257-D1A4-4F3B-855D-5723CC349FEF}</ProjectGuid>
     <RootNamespace>app</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>

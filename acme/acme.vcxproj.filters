@@ -4479,21 +4479,14 @@
     <ClInclude Include="operating_system\windows\window_util.h">
       <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
-<<<<<<< Updated upstream
-=======
     <ClInclude Include="graphics\image\aaa_lock.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
->>>>>>> Stashed changes
     <ClInclude Include="graphics\image\image32_t.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
     <ClInclude Include="graphics\image\image32_t_array.h">
       <Filter>Header Files\graphics\image</Filter>
-    </ClInclude>
-<<<<<<< Updated upstream
-    <ClInclude Include="graphics\image\aaa_lock.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\domain.h">
       <Filter>Header Files\graphics\draw2d</Filter>
@@ -4552,8 +4545,6 @@
     <ClInclude Include="prototype\string\c\encoding\_impl.h">
       <Filter>Header Files\prototype\string\c\encoding</Filter>
     </ClInclude>
-=======
->>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6503,7 +6494,6 @@
     <ClCompile Include="operating_system\windows\window_util.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
-<<<<<<< Updated upstream
     <ClCompile Include="graphics\image\image32_t_array.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
@@ -6573,14 +6563,6 @@
     <ClCompile Include="exception\exception_pointer.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-=======
-    <ClCompile Include="graphics\image\image32_t.cpp">
-      <Filter>Source Files\graphics\image</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\image\image32_t_array.cpp">
-      <Filter>Source Files\graphics\image</Filter>
-    </ClCompile>
->>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <None Include="prototype\string\_defer.h">

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <initializer_list>
 
 #include "acme/user/user/e_window_flag.h"
 #include "axis/platform/application.h"
@@ -12,6 +13,11 @@
 namespace berg
 {
 
+   struct authentication_provider
+   {
+      ::string m_strName;
+      ::api * m_papi = nullptr;
+   };
 
 
    class CLASS_DECL_BERG application :
@@ -75,6 +81,14 @@ namespace berg
       void create_options_header(const ::atom &atom, ::user::interaction *pparent) override;
       void create_options_body(const ::atom &atom, ::user::interaction *pparent) override;
       void create_options_footer(const ::atom &atom, ::user::interaction *pparent) override;
+
+      // Creates a clear-authentication button and a status label with a reserved blank line.
+      virtual void create_clear_authentication_option(::user::interaction * pparent, ::api * papi);
+
+      // Each provider gets its own heading, button, and reserved status line.
+      // API pointers are retained by the buttons when this function is called.
+      virtual void create_clear_authentication_options(::user::interaction * pparent,
+         std::initializer_list<authentication_provider> providers);
 
       void create_auto_start_option(const ::atom &atom, ::user::interaction *pparent) override;
 

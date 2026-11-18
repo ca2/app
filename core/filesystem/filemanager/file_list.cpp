@@ -2133,7 +2133,7 @@ namespace filemanager
       {
          m_bFolderLoading = false;
          m_bFolderLoadFailed = ptopic->id() == "filemanager_browse_failed";
-         payload("filemanager_browse_error") = m_bFolderLoadFailed ? ptopic->payload("error_message").as_string() : "";
+         payload("filemanager_browse_error") = m_bFolderLoadFailed ? ptopic->payload("error_message").as_string() : ::string("");
          kill_timer(e_timer_folder_loading);
          post_redraw();
          if (m_bFolderLoadFailed)

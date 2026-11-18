@@ -854,18 +854,6 @@ namespace platform
             return pathCloudOriginal;
          }
 
-         // Minimal console applications may not load a folder-sync provider.
-         // Honor the user's configured local Dropbox root without that plugin.
-         if (pathCloudRoot.case_insensitive_equals("dropbox://"))
-         {
-            auto localRoot = file_system()->safe_get_string(
-               directory_system()->userconfig() / "dropbox.txt");
-            localRoot.trim();
-            if (localRoot.has_character() && !localRoot.contains("://")
-               && path_system()->is_absolute_path(localRoot))
-               pathCloudRoot = localRoot;
-         }
-
          auto pathCloud = pathCloudRoot / path;
 
          pathCloud.flags() = flags;

@@ -127,6 +127,7 @@ namespace gpu_opengl
       m_gluType = 0;
       //m_gluFbo = 0;
       m_glsyncGpuCommandsCompleteFence = 0;
+      trace_opengl_texture_object_delta(+1);
 
 
    }
@@ -134,6 +135,8 @@ namespace gpu_opengl
 
    texture::~texture()
    {
+
+      trace_opengl_texture_object_delta(-1);
 
       // FBOs retain their attached texture/renderbuffer storage until deleted.
       // Their names belong to individual native contexts, unlike textures.
@@ -192,6 +195,7 @@ namespace gpu_opengl
       m_pNativeAllocationContext = m_pgpucontext->m_pgpudevice->current_operating_system_gpu_context();
       glGenTextures(1, &m_gluTextureID);
       ::opengl::check_error("");
+      trace_opengl_resource_created(e_handle_texture);
       glBindTexture(m_gluType, m_gluTextureID);
       ::opengl::check_error("");
 
@@ -803,6 +807,7 @@ namespace gpu_opengl
       {
 
          glDeleteTextures(1, &m_gluTextureID);
+         trace_opengl_resource_deleted(e_handle_texture);
          m_gluTextureID = 0;
 
       }
@@ -912,6 +917,7 @@ namespace gpu_opengl
          m_pNativeAllocationContext = m_pgpucontext->m_pgpudevice->current_operating_system_gpu_context();
          glGenTextures(1, &m_gluTextureID); // 1. Generate a texture ID
          ::opengl::check_error("");
+         trace_opengl_resource_created(e_handle_texture);
       }
 
       glBindTexture(m_gluType, m_gluTextureID); // 2. Bind the texture to the 2D texture target
@@ -1327,6 +1333,7 @@ namespace gpu_opengl
       glGenFramebuffers(1, &object.m_handle);
       ::opengl::check_error("");
       ::opengl::ensure_non_null_handle(object.m_handle, "glGenFramebuffers(1, ...)");
+      trace_opengl_resource_created(e_handle_fbo);
 
       object.m_bCreated = true;
 
@@ -2034,6 +2041,7 @@ namespace gpu_opengl
             GL_UNSIGNED_BYTE,
             nullptr);
          ::opengl::check_error("");
+         m_sizeAllocated = { requiredWidth, requiredHeight };
       }
 
       glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -2457,6 +2465,8 @@ namespace gpu_opengl
 
       }
 
+      trace_opengl_resource_created(e_handle_sync);
+
       glFlush(); // push commands to GPU
       ::opengl::check_error("glFlush after glFenceSync");
 
@@ -2472,6 +2482,10 @@ namespace gpu_opengl
          return;
 
       }
+
+      // Report any error already queued on this context before waiting on the
+      // fence so an unrelated earlier failure is not blamed on glWaitSync.
+      ::opengl::check_error("OpenGL error pending before glWaitSync");
 
       auto glsync = m_glsyncGpuCommandsCompleteFence;
 
@@ -2493,12 +2507,14 @@ namespace gpu_opengl
       {
 
          glDeleteSync(glsync);
+         trace_opengl_resource_deleted(e_handle_sync);
          throw;
 
       }
 
       glDeleteSync(glsync);
       ::opengl::check_error("glDeleteSync for texture completion");
+      trace_opengl_resource_deleted(e_handle_sync);
 
    }
 

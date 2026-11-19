@@ -255,6 +255,12 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
    message(STATUS "(G) PKGCONFIG_LDFLAGS is ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS}")
 endif ()
 
+if(APPLE)
+   target_link_libraries(${PROJECT_NAME} PRIVATE "-framework Security" "-framework CoreFoundation")
+   target_link_libraries(static_${PROJECT_NAME} PRIVATE "-framework Security" "-framework CoreFoundation")
+endif()
+
+
 if(LINUX OR __BSD__ OR __SUNOS__ OR __REACTOS__)
    # URL handling loads the IDN component dynamically at runtime.
    add_dependencies(${PROJECT_NAME} nano_idn_libidn)

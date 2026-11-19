@@ -79,6 +79,7 @@ namespace gpu_opengl
       {
          m_pNativeAllocationContext = m_pcontext->m_pgpudevice->current_operating_system_gpu_context();
          glGenBuffers(1, &m_gluVbo);
+         trace_opengl_resource_created(e_handle_vertex_buffer);
       }
       
       ::opengl::check_error("");

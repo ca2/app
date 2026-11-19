@@ -33,6 +33,10 @@ namespace gpu_opengl
    void defer_delete_context_sync(void * pNativeContext, GLsync sync);
    void delete_pending_context_handles(void * pNativeContext);
    void discard_pending_context_handles(void * pNativeContext);
+   void trace_opengl_resource_created(enum_handle ehandle);
+   void trace_opengl_resource_deleted(enum_handle ehandle);
+   void trace_opengl_texture_object_delta(int iDelta);
+   void trace_opengl_resource_stats_if_due();
 
 
    template < typename HANDLE_TYPE, enum_handle t_ehandle >

@@ -167,6 +167,8 @@ FragColor = texture(uTexture, TexCoord);
 
          ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
+         trace_opengl_resource_stats_if_due();
+
          //auto pshader = present_shader();
 
          dummy_model_buffer();

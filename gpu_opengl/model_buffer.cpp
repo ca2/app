@@ -15,6 +15,8 @@
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/types.h"
 #include "bred/graphics3d/types.h"
+#include <atomic>
+#include <chrono>
 
 
 namespace gpu_opengl
@@ -30,18 +32,120 @@ namespace gpu_opengl
       };
       ::critical_section g_csHandleDeletion;
       ::map<void *, ::array<pending_context_handle>> g_mapPendingHandles;
+
+      ::std::atomic<long long> g_cTextureObjectsLive{0};
+      ::std::atomic<long long> g_cTexturesCreated{0};
+      ::std::atomic<long long> g_cTexturesDeleted{0};
+      ::std::atomic<long long> g_cFbosCreated{0};
+      ::std::atomic<long long> g_cFbosDeleted{0};
+      ::std::atomic<long long> g_cVaosCreated{0};
+      ::std::atomic<long long> g_cVaosDeleted{0};
+      ::std::atomic<long long> g_cVbosCreated{0};
+      ::std::atomic<long long> g_cVbosDeleted{0};
+      ::std::atomic<long long> g_cSyncsCreated{0};
+      ::std::atomic<long long> g_cSyncsDeleted{0};
+      ::std::atomic<long long> g_cDroppedNullContextDeletes{0};
+      ::std::atomic<long long> g_cLastTraceNs{0};
+   }
+
+   void trace_opengl_resource_created(enum_handle ehandle)
+   {
+      if (ehandle == e_handle_texture)
+         g_cTexturesCreated.fetch_add(1, ::std::memory_order_relaxed);
+      else if (ehandle == e_handle_fbo)
+         g_cFbosCreated.fetch_add(1, ::std::memory_order_relaxed);
+      else if (ehandle == e_handle_buffer)
+         g_cVaosCreated.fetch_add(1, ::std::memory_order_relaxed);
+      else if (ehandle == e_handle_vertex_buffer)
+         g_cVbosCreated.fetch_add(1, ::std::memory_order_relaxed);
+      else if (ehandle == e_handle_sync)
+         g_cSyncsCreated.fetch_add(1, ::std::memory_order_relaxed);
+   }
+
+   void trace_opengl_resource_deleted(enum_handle ehandle)
+   {
+      if (ehandle == e_handle_texture)
+         g_cTexturesDeleted.fetch_add(1, ::std::memory_order_relaxed);
+      else if (ehandle == e_handle_fbo)
+         g_cFbosDeleted.fetch_add(1, ::std::memory_order_relaxed);
+      else if (ehandle == e_handle_buffer)
+         g_cVaosDeleted.fetch_add(1, ::std::memory_order_relaxed);
+      else if (ehandle == e_handle_vertex_buffer)
+         g_cVbosDeleted.fetch_add(1, ::std::memory_order_relaxed);
+      else if (ehandle == e_handle_sync)
+         g_cSyncsDeleted.fetch_add(1, ::std::memory_order_relaxed);
+   }
+
+   void trace_opengl_texture_object_delta(int iDelta)
+   {
+      g_cTextureObjectsLive.fetch_add(iDelta, ::std::memory_order_relaxed);
+   }
+
+   void trace_opengl_resource_stats_if_due()
+   {
+      auto nowNs = ::std::chrono::duration_cast<::std::chrono::nanoseconds>(
+         ::std::chrono::steady_clock::now().time_since_epoch()).count();
+      auto lastNs = g_cLastTraceNs.load(::std::memory_order_relaxed);
+      if (nowNs - lastNs < 1000000000LL)
+      {
+         return;
+      }
+      if (!g_cLastTraceNs.compare_exchange_strong(lastNs, nowNs, ::std::memory_order_relaxed))
+      {
+         return;
+      }
+
+      ::collection::count cPendingContexts = 0;
+      ::collection::count cPendingHandles = 0;
+      {
+         ::critical_section_lock lock(&g_csHandleDeletion);
+         cPendingContexts = g_mapPendingHandles.size();
+         for (auto & pair : g_mapPendingHandles)
+         {
+            cPendingHandles += pair.element2().size();
+         }
+      }
+
+      ::string strTrace;
+      strTrace.formatf(
+         "[gpu_opengl_mem] tex_obj_live=%lld gl_tex=%lld/%lld gl_fbo=%lld/%lld gl_vao=%lld/%lld gl_vbo=%lld/%lld gl_sync=%lld/%lld pending=%lld(ctx=%lld) null_ctx_drop=%lld",
+         g_cTextureObjectsLive.load(::std::memory_order_relaxed),
+         g_cTexturesCreated.load(::std::memory_order_relaxed),
+         g_cTexturesDeleted.load(::std::memory_order_relaxed),
+         g_cFbosCreated.load(::std::memory_order_relaxed),
+         g_cFbosDeleted.load(::std::memory_order_relaxed),
+         g_cVaosCreated.load(::std::memory_order_relaxed),
+         g_cVaosDeleted.load(::std::memory_order_relaxed),
+         g_cVbosCreated.load(::std::memory_order_relaxed),
+         g_cVbosDeleted.load(::std::memory_order_relaxed),
+         g_cSyncsCreated.load(::std::memory_order_relaxed),
+         g_cSyncsDeleted.load(::std::memory_order_relaxed),
+         (long long)cPendingHandles,
+         (long long)cPendingContexts,
+         g_cDroppedNullContextDeletes.load(::std::memory_order_relaxed));
+      ::information(strTrace);
    }
 
    void defer_delete_context_handle(void * pNativeContext, enum_handle ehandle, GLuint handle)
    {
-      if (!pNativeContext || !handle) return;
+      if (!handle) return;
+      if (!pNativeContext)
+      {
+         g_cDroppedNullContextDeletes.fetch_add(1, ::std::memory_order_relaxed);
+         return;
+      }
       ::critical_section_lock lock(&g_csHandleDeletion);
       g_mapPendingHandles[pNativeContext].add({ehandle, handle});
    }
 
    void defer_delete_context_sync(void * pNativeContext, GLsync sync)
    {
-      if (!pNativeContext || !sync) return;
+      if (!sync) return;
+      if (!pNativeContext)
+      {
+         g_cDroppedNullContextDeletes.fetch_add(1, ::std::memory_order_relaxed);
+         return;
+      }
       ::critical_section_lock lock(&g_csHandleDeletion);
       g_mapPendingHandles[pNativeContext].add({e_handle_sync, 0, sync});
    }
@@ -55,19 +159,38 @@ namespace gpu_opengl
       for (auto & object : p->payload())
       {
          if (object.m_ehandle == e_handle_buffer)
+         {
             glDeleteVertexArrays(1, &object.m_handle);
+            trace_opengl_resource_deleted(e_handle_buffer);
+         }
          else if (object.m_ehandle == e_handle_fbo)
+         {
             glDeleteFramebuffers(1, &object.m_handle);
+            trace_opengl_resource_deleted(e_handle_fbo);
+         }
          else if (object.m_ehandle == e_handle_texture)
+         {
             glDeleteTextures(1, &object.m_handle);
+            trace_opengl_resource_deleted(e_handle_texture);
+         }
          else if (object.m_ehandle == e_handle_renderbuffer)
+         {
             glDeleteRenderbuffers(1, &object.m_handle);
+         }
          else if (object.m_ehandle == e_handle_vertex_buffer)
+         {
             glDeleteBuffers(1, &object.m_handle);
+            trace_opengl_resource_deleted(e_handle_vertex_buffer);
+         }
          else if (object.m_ehandle == e_handle_sync)
+         {
             glDeleteSync(object.m_sync);
+            trace_opengl_resource_deleted(e_handle_sync);
+         }
          else if (object.m_ehandle == e_handle_program)
+         {
             glDeleteProgram(object.m_handle);
+         }
       }
       g_mapPendingHandles.erase(pNativeContext);
    }
@@ -232,6 +355,7 @@ namespace gpu_opengl
       {
          glGenVertexArrays(1, &gluVertexArrayObject);
          ::opengl::check_error("");
+         trace_opengl_resource_created(e_handle_buffer);
          
          if(gluVertexArrayObject == 74)
          {

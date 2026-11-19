@@ -3,6 +3,10 @@
 #if defined(WINDOWS_DESKTOP)
 #include <wincrypt.h>
 #pragma comment(lib, "Crypt32.lib")
+#elif defined(MACOS)
+#include <CoreFoundation/CoreFoundation.h>
+#include <Security/SecCertificate.h>
+#include <Security/SecTrust.h>
 #endif
 
 
@@ -62,6 +66,101 @@ namespace sockets_bsd
       ERR_clear_error();
 
       CertCloseStore(hStore, 0);
+
+   }
+#elif defined(MACOS)
+   static void add_macos_certificates_to_store(X509_STORE * pstore, CFArrayRef cfCerts)
+   {
+
+      if (!pstore || !cfCerts)
+      {
+
+         return;
+
+      }
+
+      CFIndex count = CFArrayGetCount(cfCerts);
+
+      for (CFIndex i = 0; i < count; i++)
+      {
+
+         SecCertificateRef certRef = (SecCertificateRef)CFArrayGetValueAtIndex(cfCerts, i);
+
+         if (!certRef)
+         {
+
+            continue;
+
+         }
+
+         CFDataRef cfDer = SecCertificateCopyData(certRef);
+
+         if (!cfDer)
+         {
+
+            continue;
+
+         }
+
+         const unsigned char * pEncoded = CFDataGetBytePtr(cfDer);
+
+         long length = (long)CFDataGetLength(cfDer);
+
+         if (pEncoded && length > 0)
+         {
+
+            X509 * pX509 = d2i_X509(nullptr, &pEncoded, length);
+
+            if (pX509)
+            {
+
+               X509_STORE_add_cert(pstore, pX509);
+
+               X509_free(pX509);
+
+            }
+
+         }
+
+         CFRelease(cfDer);
+
+      }
+
+   }
+
+
+   static void load_macos_root_certificates(SSL_CTX * psslcontext)
+   {
+
+      if (!psslcontext)
+      {
+
+         return;
+
+      }
+
+      X509_STORE * pstore = SSL_CTX_get_cert_store(psslcontext);
+
+      if (!pstore)
+      {
+
+         return;
+
+      }
+
+      CFArrayRef cfAnchors = nullptr;
+
+      if (SecTrustCopyAnchorCertificates(&cfAnchors) == errSecSuccess && cfAnchors != nullptr)
+      {
+
+         add_macos_certificates_to_store(pstore, cfAnchors);
+
+         CFRelease(cfAnchors);
+
+      }
+
+      // Clear any duplicate-cert errors pushed by X509_STORE_add_cert.
+      ERR_clear_error();
 
    }
 #endif
@@ -182,6 +281,8 @@ meth = SSLv23_client_method();
 
 #if defined(WINDOWS_DESKTOP)
          load_windows_root_certificates(m_psslcontext);
+#elif defined(MACOS)
+         load_macos_root_certificates(m_psslcontext);
 #endif
 
       }

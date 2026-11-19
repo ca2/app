@@ -509,14 +509,15 @@ namespace gpu_opengl
 
       auto hdcCurrent = ::wglGetCurrentDC();
 
-      if (hglrcCurrent)
-      {
-
-         wglMakeCurrent(nullptr, nullptr);
-      }
-
       if (hglrcCurrent != m_hglrc || hdcCurrent != m_hdc)
       {
+
+         if (hglrcCurrent)
+         {
+
+            wglMakeCurrent(nullptr, nullptr);
+
+         }
 
          bool bMakeCurrentOk = wglMakeCurrent(m_hdc, m_hglrc);
 

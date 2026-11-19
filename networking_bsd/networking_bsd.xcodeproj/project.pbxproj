@@ -791,6 +791,13 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				MACH_O_TYPE = mh_dylib;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					Security,
+					"-framework",
+					CoreFoundation,
+				);
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1042,6 +1049,13 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				MACH_O_TYPE = mh_dylib;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					Security,
+					"-framework",
+					CoreFoundation,
+				);
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;

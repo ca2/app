@@ -529,7 +529,7 @@ bool file_system::exists(const ::file::path& pathParam)
    if (pathParam.is_empty())
    {
 
-      throw ::exception(error_bad_argument);
+      return false;
 
    }
 

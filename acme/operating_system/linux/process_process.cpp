@@ -826,21 +826,35 @@ void get_proc_self_status_memory(
 
    // linux file contains this-process info
    FILE* file = fopen("/proc/self/status", "r");
-
    // read the entire file
    while (fscanf(file, " %1023s", buffer) == 1) {
-
       if (currRealMem && strcmp(buffer, "VmRSS:") == 0) {
-         fscanf(file, " %d", currRealMem);
+         auto iRead = fscanf(file, " %d", currRealMem);
+         if (!iRead)
+         {
+            *currRealMem = 0;
+         }
       }
       if (peakRealMem && strcmp(buffer, "VmHWM:") == 0) {
-         fscanf(file, " %d", peakRealMem);
+         auto iRead = fscanf(file, " %d", peakRealMem);
+         if (!iRead)
+         {
+            *currRealMem = 0;
+         }
       }
       if (currVirtMem && strcmp(buffer, "VmSize:") == 0) {
-         fscanf(file, " %d", currVirtMem);
+         auto iRead = fscanf(file, " %d", currVirtMem);
+         if (!iRead)
+         {
+            *currRealMem = 0;
+         }
       }
       if (peakVirtMem && strcmp(buffer, "VmPeak:") == 0) {
-         fscanf(file, " %d", peakVirtMem);
+         auto iRead = fscanf(file, " %d", peakVirtMem);
+         if (!iRead)
+         {
+            *currRealMem = 0;
+         }
       }
    }
    fclose(file);

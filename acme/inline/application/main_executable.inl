@@ -157,10 +157,18 @@ int main(int argc, char* argv[], char* envp[])
    const char * p2 = _binary__matter_zip_end;
    printf("_binary__matter_zip_start = %p\n", p1);
    printf("_binary__matter_zip_end = %p\n", p2);
-   char sz[8];
-   memcpy(sz, p1, 7);
-   sz[7]='\0';
-   printf("_binary__matter_zip_start beginning = %s\n", sz);
+   if (p1 != nullptr && p2 != nullptr && p2 > p1)
+   {
+      char sz[8] = {};
+      auto nCopy = (size_t)(p2 - p1);
+      if (nCopy > 7)
+      {
+         nCopy = 7;
+      }
+      memcpy(sz, p1, nCopy);
+      sz[nCopy] = '\0';
+      printf("_binary__matter_zip_start beginning = %s\n", sz);
+   }
    APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp, p1, p2);
 #else
    const char * p1 = nullptr; //_todo_begin;

@@ -478,6 +478,48 @@ namespace folder_zip
    }
 
 
+   static bool is_safe_archive_relative_path(const ::scoped_string & scopedstrRelative)
+   {
+
+      ::string strPath(scopedstrRelative);
+
+      if (strPath.is_empty())
+      {
+
+         return false;
+
+      }
+
+      if (strPath[0] == '/' || strPath[0] == '\\' || strPath.contains(':') || strPath.contains('\0'))
+      {
+
+         return false;
+
+      }
+
+      strPath.find_replace("\\", "/");
+
+      string_array_base straParts;
+
+      straParts.explode("/", strPath);
+
+      for (auto & strPart : straParts)
+      {
+
+         if (strPart == "..")
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
    void folder::e_extract_all(const ::file::path& pathTargetDir, ::file::path_array_base* ppatha, string_array_base* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback)
    {
 
@@ -521,6 +563,13 @@ namespace folder_zip
 
             if (memory.is_set())
             {
+
+               if (!is_safe_archive_relative_path(range))
+               {
+
+                  throw ::exception(error_failed, "Refusing to extract unsafe archive path: " + ::string(range));
+
+               }
 
                auto pathTarget = pathTargetFolder / range;
 
@@ -570,6 +619,13 @@ namespace folder_zip
             }
 
             {
+
+               if (!is_safe_archive_relative_path(path))
+               {
+
+                  throw ::exception(error_failed, "Refusing to extract unsafe archive path: " + ::string(path));
+
+               }
 
                auto pathTarget = pathTargetFolder / path;
 

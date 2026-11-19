@@ -1,6 +1,7 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "platform.h"
+#include "aura/graphics/graphics/frame_trace.h"
 #include <cstdlib>
 #include "acme/parallelization/mutex.h"
 #include "fps_debug.h"
@@ -12076,6 +12077,7 @@ namespace windowing
 
       m_bNewFrame = true;
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
       windowing_output_debug_string("windowing::window::do_graphics");
 
       string strType = ::platform::type(user_interaction()).name();
@@ -12086,6 +12088,8 @@ namespace windowing
          debug() << "not main_frame";
 
       }
+
+#endif
 
 #ifdef MORE_LOG
 
@@ -12133,7 +12137,9 @@ namespace windowing
                   };
 
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
                debug() << "windowing::window::do_graphics";
+#endif
 
                ::pointer<::graphics::buffer_item> pbufferitem;
 
@@ -12149,11 +12155,14 @@ namespace windowing
 
                   auto & bReposition = puserinteraction->m_bReposition;
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
                   if (!strType.case_insensitive_contains("main_frame"))
                   {
 
                      // information() << "not main_frame";
                   }
+
+#endif
 
                   {
 
@@ -12208,7 +12217,9 @@ namespace windowing
 
                         slGraphics.unlock();
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
                         windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+#endif
 
                         if (has_destroying_flag())
                         {
@@ -12940,7 +12951,9 @@ namespace windowing
       //pdraw2dgraphics->start_layer(true, user_interaction());
 
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
       windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+#endif
 
       if (has_destroying_flag())
       {

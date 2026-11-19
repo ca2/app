@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
@@ -9,6 +13,14 @@
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="StaticDebug|ARM64">
+      <Configuration>StaticDebug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="StaticDebug|Win32">
       <Configuration>StaticDebug</Configuration>
       <Platform>Win32</Platform>
@@ -16,6 +28,10 @@
     <ProjectConfiguration Include="StaticDebug|x64">
       <Configuration>StaticDebug</Configuration>
       <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="StaticRelease|ARM64">
+      <Configuration>StaticRelease</Configuration>
+      <Platform>ARM64</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="StaticRelease|Win32">
       <Configuration>StaticRelease</Configuration>
@@ -76,7 +92,21 @@
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfAtl>false</UseOfAtl>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
     <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -90,7 +120,21 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v145</PlatformToolset>
@@ -125,7 +169,17 @@
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
     <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
     <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
@@ -135,7 +189,17 @@
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
     <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
     <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
@@ -148,35 +212,48 @@
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</IgnoreImportLibrary>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">false</IgnoreImportLibrary>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">false</IgnoreImportLibrary>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">false</IgnoreImportLibrary>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">false</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">false</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">false</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">false</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">false</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">false</GenerateManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">false</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">false</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">false</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">false</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">false</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent />
@@ -514,6 +591,69 @@
     <PreBuildEvent />
     <PreBuildEvent />
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <PreBuildEvent />
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>$(ProjectDir)/win.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <SDLCheck>true</SDLCheck>
+      <OmitFramePointers>false</OmitFramePointers>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>GLAD_GLAPI_EXPORT;_$(ProjectName)_project;_output_type_$(OutputType);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>glad.lib;assimp.lib;glu32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <MapFileName>
+      </MapFileName>
+      <OptimizeReferences>false</OptimizeReferences>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <FixedBaseAddress>false</FixedBaseAddress>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>$(SolutionDir)../..core/include/manifest.dll.embed.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+    <Bscmake />
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake />
+    <PreBuildEvent />
+    <PreBuildEvent />
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <PreBuildEvent />
     <Midl>
@@ -573,7 +713,121 @@
     </Bscmake>
     <Bscmake />
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">
+    <PreBuildEvent />
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>$(ProjectDir)/win.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <SDLCheck>true</SDLCheck>
+      <OmitFramePointers>false</OmitFramePointers>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>windowscodecs.lib;FreeImaged.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <MapFileName>
+      </MapFileName>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>$(SolutionDir)../..core/include/manifest.dll.embed.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+    <Bscmake />
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake />
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEvent />
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>$(ProjectDir)/win.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <StringPooling>true</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>glad.lib;assimp.lib;glu32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>$(SolutionDir)../..core/include/manifest.dll.embed.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+    <Bscmake />
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake />
+    <PreBuildEvent />
+    <PreBuildEvent />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <PreBuildEvent />
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -697,6 +951,75 @@
     </Bscmake>
     <Bscmake />
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">
+    <PreBuildEvent />
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>$(ProjectDir)/win.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <OmitFramePointers>true</OmitFramePointers>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <BufferSecurityCheck>
+      </BufferSecurityCheck>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <SDLCheck>
+      </SDLCheck>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>windowscodecs.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>$(SolutionDir)../..core/include/manifest.dll.embed.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+    <Bscmake />
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake />
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="assimp.h" />
     <ClInclude Include="block.h" />
@@ -709,9 +1032,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="context_glx.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -719,9 +1046,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="context_win32.h" />
     <ClInclude Include="device.h" />
@@ -747,9 +1078,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="ibl\diffuse_irradiance_map.h" />
     <ClInclude Include="ibl\equirectangular_cubemap.h" />
@@ -759,9 +1094,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="ibl\shader\brdf_convolution_map.frag.h" />
     <ClInclude Include="ibl\shader\brdf_convolution_map.vert.h" />
@@ -778,9 +1117,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="ibl\_aaa\aaa_cubemap_framebuffer.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -788,9 +1131,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="ibl\_aaa\aaa_mipmap_cubemap_framebuffer.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -798,9 +1145,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="input_layout.h" />
     <ClInclude Include="lock.h" />
@@ -839,9 +1190,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="context_glx.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
@@ -849,9 +1204,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="device.cpp" />
     <ClCompile Include="device_win32.cpp" />
@@ -868,9 +1227,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ibl\diffuse_irradiance_map.cpp" />
     <ClCompile Include="ibl\equirectangular_cubemap.cpp" />
@@ -881,9 +1244,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ibl\_aaa\aaa_hdri_cube.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -891,9 +1258,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ibl\_aaa\aaa_mipmap_cubemap_framebuffer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -901,9 +1272,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="input_layout.cpp" />
     <ClCompile Include="lock.cpp" />
@@ -923,9 +1298,13 @@
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -976,17 +1355,25 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
     <CustomBuild Include="ibl\shader\brdf_convolution_map.vert">
       <FileType>Document</FileType>
@@ -995,17 +1382,25 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
     <CustomBuild Include="ibl\shader\diffuse_irradiance_map.frag">
       <FileType>Document</FileType>
@@ -1014,17 +1409,25 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
     <CustomBuild Include="ibl\shader\diffuse_irradiance_map.vert">
       <FileType>Document</FileType>
@@ -1033,17 +1436,25 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
     <CustomBuild Include="ibl\shader\equirectangular_cubemap.frag">
       <FileType>Document</FileType>
@@ -1052,17 +1463,25 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
     <CustomBuild Include="ibl\shader\equirectangular_cubemap.vert">
       <FileType>Document</FileType>
@@ -1071,17 +1490,25 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
     <CustomBuild Include="ibl\shader\prefiltered_environment_map.frag">
       <FileType>Document</FileType>
@@ -1090,17 +1517,25 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
     <CustomBuild Include="ibl\shader\prefiltered_environment_map.vert">
       <FileType>Document</FileType>
@@ -1109,17 +1544,25 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -1130,17 +1573,25 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
     <CustomBuild Include="shader\_001Blend.vert">
       <FileType>Document</FileType>
@@ -1149,17 +1600,25 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -1170,17 +1629,25 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
     <CustomBuild Include="shader\_001Image.vert">
       <FileType>Document</FileType>
@@ -1189,17 +1656,25 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

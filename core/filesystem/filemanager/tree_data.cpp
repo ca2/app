@@ -308,8 +308,8 @@ namespace filemanager
          }
          else
          {
-            listing.set_listing(pathUser);
-            directory()->enumerate(listing);
+            listing.set_folder_listing(pathUser);
+            filemanager_data()->fs_data()->enumerate(listing);
          }
 
       }
@@ -825,9 +825,15 @@ namespace filemanager
 //
       //set_context_offset(pointOffset);
 
-auto path = filemanager_data()->m_pitem->user_path();
-auto pchild = find_item_by_user_path(path);
-_001SelectItem(pchild);
+      auto path = filemanager_data()->m_pitem->user_path();
+      auto pchild = find_item_by_user_path(path);
+      if (pchild)
+      {
+         _001SelectItem(pchild);
+         // Expand the destination and its ancestors without triggering another
+         // provider enumeration or moving keyboard focus out of the file list.
+         if (context.is_user_source()) _001EnsureVisible(pchild);
+      }
 
       auto puser = user();
 
@@ -1009,6 +1015,12 @@ return;
 
                      }*/
 
+
+                     auto item1 = p1->m_pitem.template cast < ::userfs::item >();
+                     auto item2 = p2->m_pitem.template cast < ::userfs::item >();
+                     bool special1 = item1 && item1->special_folder_icon_path();
+                     bool special2 = item2 && item2->special_folder_icon_path();
+                     if (special1 != special2) return special1;
 
                      return pfileitem1->m_strName
                         .case_insensitive_order(pfileitem2->m_strName) < 0;

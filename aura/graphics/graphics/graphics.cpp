@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "aura/graphics/graphics/frame_trace.h"
 #include "buffer_item.h"
 #include "graphics.h"
 #include "acme/exception/interface_only.h"
@@ -269,15 +270,21 @@ namespace graphics
    ::draw2d::graphics_lease graphics::on_begin(::e_graphics egraphics)
    {
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
       debug() << "::graphics::graphics::on_begin_draw";
+#endif
 
       auto pbufferitem = get_buffer_item();
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
       debug() << "::graphics::graphics::on_begin_draw : " << (::uptr) pbufferitem;
+#endif
 
       pbufferitem->m_egraphics = egraphics;
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
       debug() << "::graphics::graphics::going to call buffer_size_and_position";
+#endif
 
       auto pacmeuserinteractionTopic = m_pwindow->m_pacmeuserinteraction;
 

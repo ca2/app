@@ -36,6 +36,7 @@ namespace userfs
       void complete_browse(::u64 uRequest, ::pointer<::file::item> pitem, const ::action_context & context,
          ::file::listing_base listing, ::file::listing_base listingRoot);
       void browse_failed(::u64 uRequest, const ::action_context & context);
+      void browse_failed(::u64 uRequest, const ::action_context & context, const ::string & error);
 
 
       data();

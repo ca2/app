@@ -2,6 +2,8 @@
 #include "frame.h"
 #include "tab_impact.h"
 #include "document.h"
+#include "file_list.h"
+#include "aura/message/user.h"
 #include "berg/user/user/toolbar.h"
 #include "acme/constant/user_message.h"
 
@@ -57,6 +59,25 @@ namespace filemanager
       m_ptoolbarFileManager = ptoolbar;
       if (ptoolbar && !ptoolbar->is_this_visible()) show_control_bar(ptoolbar);
    }
+
+   void frame::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
+   {
+      // Toolbar file operations belong to this File Manager's list, regardless
+      // of which tree, path editor, or split impact was last active.
+      if ((bRouteToKeyDescendant || pcommand->m_bProbing)
+         && (pcommand->command_id() == "edit_copy" || pcommand->command_id() == "edit_paste"))
+      {
+         auto document = m_pimpactMain ? m_pimpactMain->get_document() : get_active_document();
+         auto list = document ? document->get_typed_impact<file_list>() : nullptr;
+         if (list && !pcommand->is_handled(list))
+         {
+            list->route_command(pcommand, false);
+            if (pcommand->m_bRet) return;
+         }
+      }
+      ::simple_frame_window::route_command(pcommand, bRouteToKeyDescendant);
+   }
+
 
    void frame::hide_control_bar(::user::control_bar * pcontrolbar)
    {

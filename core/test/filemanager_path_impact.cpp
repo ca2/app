@@ -23,7 +23,8 @@ namespace
    public:
       ::i32 is_dir(const ::file::path & path) override
       {
-         return path == "test://root" || path == "test://root/child" ? 1 : -1;
+         return path == "test://root" || path == "test://root/child"
+            || path == "image://" || path == "google-drive://" || path == "google-drive://folder-id" ? 1 : -1;
       }
    };
 
@@ -34,7 +35,9 @@ namespace
       void browse(const ::file::path & path, const ::action_context &) override
       {
          ++m_iBrowses;
-         m_pfilemanagerdata->m_pitem = ::pointer < ::file::item >(allocate_t{}, path, path);
+         auto finalPath = path;
+         finalPath.flags() += ::file::e_flag_final_path;
+         m_pfilemanagerdata->m_pitem = ::pointer < ::file::item >(allocate_t{}, path, finalPath);
       }
    };
 
@@ -57,7 +60,9 @@ int main()
    ::pointer < path_filesystem > pfilesystem(allocate_t{});
    ::pointer < ::filemanager::data > pdata(allocate_t{});
    pdata->m_pfsset = pfilesystem;
-   pdata->m_pitem = ::pointer < ::file::item >(allocate_t{}, "test://root", "test://root");
+   ::file::path finalRoot("test://root");
+   finalRoot.flags() += ::file::e_flag_final_path;
+   pdata->m_pitem = ::pointer < ::file::item >(allocate_t{}, "test://root", finalRoot);
    ::pointer < path_document > pdocument(allocate_t{});
    pdocument->m_pfilemanagerdata = pdata;
    ::pointer < path_edit > pedit(allocate_t{});
@@ -105,5 +110,34 @@ int main()
    blur.m_iRouteIndex = 0;
    pedit->on_message_kill_focus(&blur);
    if (pedit->m_strEdit != "test://root") return 11;
+   // Friendly root titles must never replace editable, reusable provider URIs.
+   pdata->m_listingRoot2.add_get("image://").set_existent_folder();
+   pdata->m_listingRoot2.m_straTitle.add("Image");
+   pdata->m_listingRoot2.add_get("google-drive://").set_existent_folder();
+   pdata->m_listingRoot2.m_straTitle.add("Google Drive");
+   for (auto uri : {"image://", "google-drive://folder-id"})
+   {
+      pdocument->browse(uri, ::e_source_sync);
+      pedit->browse_sync(::e_source_sync);
+      if (pedit->get_text() != uri) return 12;
+   }
+   pedit->m_strEdit = "image://";
+   auto beforeTyping = pdocument->m_iBrowses;
+   ::topic changed(id_after_change_text);
+   changed.m_actioncontext = ::e_source_user;
+   pedit->handle(&changed, nullptr);
+   if (pdocument->m_iBrowses != beforeTyping) return 13;
+   pedit->on_message_key_down(&enter);
+   if (pdata->m_pitem->user_path() != "image://" || pedit->get_text() != "image://") return 14;
+   pedit->m_strEdit = "google-drive://folder-id";
+   pedit->handle(&changed, nullptr);
+   pedit->on_message_key_down(&enter);
+   if (pdata->m_pitem->user_path() != "google-drive://folder-id") return 15;
+   if (pedit->resolve_folder("google-drive://Pictures", true) != "google-drive://Pictures") return 16;
+   // Enter on the current address still goes through browse completion/focus.
+   auto beforeSameAddress = pdocument->m_iBrowses;
+   pedit->on_message_key_down(&enter);
+   if (pdocument->m_iBrowses != beforeSameAddress + 1) return 17;
+   pedit->destroy();
    return 0;
 }

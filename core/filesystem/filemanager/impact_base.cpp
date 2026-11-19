@@ -7,6 +7,9 @@
 #include "berg/user/simple/frame_window.h"
 #include "berg/user/experience/frame.h"
 #include "acme/filesystem/file/folder_importer.h"
+#include "acme/filesystem/file/file.h"
+#include "acme/user/interface/message_box.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/fs/set.h"
@@ -334,15 +337,19 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
    ::file::listing_base listing;
 
-   ::user::copydesk::enum_op eop;
+   ::user::copydesk::enum_op eop = ::user::copydesk::e_op_copy;
 
    auto pcopydesk = copydesk();
    
    bool bOk = pcopydesk->get_filea(listing, eop);
+   information() << "File Manager Paste: clipboard read " << bOk << ", files " << listing.size();
 
    if(!bOk || listing.is_empty())
    {
 
+      auto message = create_newø<::user_interface::message_box>();
+      message->initialize_message_box("The clipboard contains no files to paste. Select files and use Copy first.", "Paste files");
+      message->display(e_display_normal, {});
       pmessage->m_bRet = true;
 
       return;
@@ -355,7 +362,6 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
    auto provider = fs_data()->path_data(strDir);
    ::cast<::file::folder_importer> importer = provider;
-   if (importer)
    {
       pmessage->m_bRet = true;
       auto dialog = create_newø<paste_progress_dialog>();
@@ -371,7 +377,7 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
             {
                if (dialog->cancelled()) throw ::exception(error_cancelled, "Paste cancelled");
                int lastPercent = -1;
-               importer->import_file(strDir, source, [&](::f64 rate)
+               auto progress = [&](::f64 rate)
                {
                   if (dialog->cancelled()) return false;
                   int percent = (int)(rate * 100.0);
@@ -383,9 +389,47 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
                         (completed + rate) / (::f64)listing.size());
                   }
                   return true;
-               });
+               };
+               if (importer)
+               {
+                  importer->import_file(strDir, source, progress);
+               }
+               else
+               {
+                  auto filesystem = impact->fs_data();
+                  ::file::image_info info;
+                  auto name = source.name();
+                  if (filesystem->get_file_image_info(source, info) && info.m_strName.has_character())
+                     name = info.m_strName;
+                  // Provider display names must remain a single destination filename.
+                  if (name.is_empty() || name == "." || name == ".."
+                     || name.contains("/") || name.contains("\\") || name.contains(":"))
+                     throw ::exception(error_bad_argument, "Invalid source filename");
+                  auto destination = impact->application()->defer_process_path(::file::path(strDir) / name);
+                  if (destination.contains("://"))
+                     throw ::exception(error_not_supported, "This destination does not support pasting files.");
+                  if (impact->file()->exists(destination) || impact->directory()->is(destination))
+                     throw ::exception(error_failed, "Destination already exists: " + name);
+                  progress(0.0);
+                  if (filesystem->is_dir(source) > 0)
+                  {
+                     auto localSource = impact->application()->defer_process_path(source);
+                     if (localSource.contains("://"))
+                        throw ::exception(error_not_supported, "Copying virtual folders is not supported; select files instead.");
+                     impact->file()->copy(destination, localSource, true);
+                  }
+                  else
+                  {
+                     // Open through the owning provider so virtual URIs download correctly.
+                     auto input = filesystem->get_file(source, ::file::e_open_read | ::file::e_open_binary);
+                     if (!input) throw ::exception(error_failed, "Could not open source file");
+                     if (dialog->cancelled()) throw ::exception(error_cancelled, "Paste cancelled");
+                     impact->file()->copy(destination, input, true);
+                  }
+                  progress(1.0);
+               }
                ++completed;
-               // Never delete a cut source until the provider confirms the upload.
+               // Never delete a cut source until the destination copy succeeds.
                if (eop == ::user::copydesk::e_op_cut) impact->file()->erase(source);
             }
             dialog->finish("Pasted " + ::as_string(completed) + " file(s).");
@@ -403,37 +447,6 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
       return;
    }
 
-   auto pimpact  = this;
-
-   if(pimpact == nullptr)
-   {
-
-      return;
-
-   }
-
-   auto ptabimpact = get_typed_parent <::filemanager::tab_impact >();
-
-   if(ptabimpact != nullptr)
-   {
-
-      bool bDeleteOriginOnSuccessfulCopy = eop == ::user::copydesk::e_op_cut;
-
-      auto atomFileManager = get_document()->id();
-
-      auto pdocument = ptabimpact->filemanager_document(atomFileManager);
-
-      auto poperationdocument = pdocument->get_operation_doc(true);
-
-      auto poperationthread = poperationdocument->m_poperationthread;
-
-      poperationthread->queue_copy(listing, strDir, nullptr, true, false, bDeleteOriginOnSuccessfulCopy, this, WM_APP + 1024, 4096);
-
-      poperationthread->kick();
-
-   }
-
-   pmessage->m_bRet =true;
 
 }
 

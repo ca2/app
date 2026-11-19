@@ -22,6 +22,7 @@ namespace filemanager
       ~frame() override;
 
 
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = true) override;
       void on_create_bars() override;
       void ensure_filemanager_toolbar();
       void hide_control_bar(::user::control_bar * pcontrolbar) override;

@@ -2294,10 +2294,7 @@ m_ibuf(isize)
 
          long x509_err = cert_common_name_check(m_strHost);
 
-         if (x509_err != X509_V_OK
-            && x509_err != X509_V_ERR_SELF_SIGNED_CERT_IN_CHAIN
-            && x509_err != X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY
-            && x509_err != X509_V_ERR_APPLICATION_VERIFICATION)
+         if (x509_err != X509_V_OK)
          {
 
 

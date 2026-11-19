@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "aura/graphics/graphics/frame_trace.h"
 #ifndef MORE_LOG
 #define MORE_LOG 0
 #endif
@@ -6970,6 +6971,7 @@ namespace user
       //if (pdraw2dgraphics->m_egraphics & e_graphics_layout)
       //{
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
       ::string strType = typeid(*this).name();
 
       if (strType.contains("control_box_button"))
@@ -6991,6 +6993,8 @@ namespace user
 
       }
 
+
+#endif
 
       perform_layout(pdraw2dgraphics);
 

@@ -339,34 +339,64 @@ namespace berg
 
       if (m_papiCa2Authentication)
       {
-         create_label<::user::still>(pparent, "ca2 account authentication");
-         create_label<::user::still>(pparent,
-            "Clear the cached login token for this application. Sign-in will be required again.");
-         auto pbutton = create_button<::user::button>(pparent, "Clear authentication");
-         pbutton->m_callbackOnClick = [this](::user::interaction * pinteraction,
-            ::item *, ::user::activation_token *) -> bool
-         {
-            try
-            {
-               auto papi = m_papiCa2Authentication;
-               if (papi)
-               {
-                  papi->clear_profile();
-                  pinteraction->set_text("Authentication cleared", ::e_source_user);
-               }
-            }
-            catch (...)
-            {
-               pinteraction->set_text("Could not clear saved authentication. Click to retry.", ::e_source_user);
-            }
-            pinteraction->set_need_layout();
-            pinteraction->set_need_redraw();
-            pinteraction->post_redraw();
-            return true;
-         };
+         create_clear_authentication_options(pparent,
+            {{"ca2 account", m_papiCa2Authentication}});
       }
 
       create_about_option(atom, pparent);
+
+   }
+
+
+   void application::create_clear_authentication_options(::user::interaction * pparent,
+      std::initializer_list<authentication_provider> providers)
+   {
+
+      for (const auto & provider : providers)
+      {
+         create_label<::user::still>(pparent, provider.m_strName + " authentication");
+         create_label<::user::still>(pparent,
+            "Clear the cached login token for this provider. Sign-in will be required again.");
+         create_clear_authentication_option(pparent, provider.m_papi);
+      }
+
+   }
+
+
+   void application::create_clear_authentication_option(::user::interaction * pparent, ::api * papi)
+   {
+
+      // Keep the selected API alive for as long as the button can be used.
+      ::pointer<::api> papiAuthentication = papi;
+      auto pbutton = create_button<::user::button>(pparent, "Clear authentication");
+      // A blank line keeps the status area in the layout before any result is shown.
+      auto pstatus = create_label<::user::still>(pparent, " ");
+      pstatus->m_bFillParentWidth = true;
+      pbutton->m_callbackOnClick = [papiAuthentication, pstatus](::user::interaction *,
+         ::item *, ::user::activation_token *) -> bool
+      {
+         try
+         {
+            auto papi = papiAuthentication;
+            if (papi)
+            {
+               papi->clear_profile();
+               pstatus->set_text("Authentication cleared", ::e_source_user);
+            }
+            else
+            {
+               pstatus->set_text("Authentication is unavailable.", ::e_source_user);
+            }
+         }
+         catch (...)
+         {
+            pstatus->set_text("Could not clear saved authentication. Click Clear authentication to retry.", ::e_source_user);
+         }
+         pstatus->set_need_layout();
+         pstatus->set_need_redraw();
+         pstatus->post_redraw();
+         return true;
+      };
 
    }
 

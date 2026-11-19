@@ -1,5 +1,6 @@
 #include "platform.h"
 #include "data.h"
+#include "core/filesystem/filemanager/provider_path.h"
 #include "list_data.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/item.h"
@@ -523,6 +524,8 @@ namespace userfs
 
       auto ptopic = create_topic(id_browse);
 
+      ptopic->m_actioncontext = context;
+
       m_pusercontroller->on_update_data(this, ptopic, context);
 
    }
@@ -547,8 +550,17 @@ namespace userfs
 
    void data::browse_failed(::u64 uRequest, const ::action_context & context)
    {
+      browse_failed(uRequest, context, "Folder enumeration failed");
+   }
+
+   void data::browse_failed(::u64 uRequest, const ::action_context & context, const ::string & error)
+   {
       if (uRequest != m_uBrowseRequest) return;
       auto ptopic = create_topic("filemanager_browse_failed");
+      ptopic->payload("error_message") = error;
+      information() << "File Manager browse failed: " << error;
+
+      ptopic->m_actioncontext = context;
       m_pusercontroller->on_update_data(this, ptopic, context);
       m_pusercontroller->update_all_impacts(ptopic);
    }
@@ -572,6 +584,12 @@ namespace userfs
             try
             {
                if (listingRoot.is_empty()) pdata->fs_data()->root_ones(listingRoot);
+               auto resolved = ::filemanager::resolve_provider_folder(*pdata->fs_data(), pitem->user_path());
+               if (resolved != pitem->user_path())
+               {
+                  auto finalPath = pdata->m_papplication->defer_process_path(resolved);
+                  pitem = ::pointer<::file::item>(allocate_t{}, resolved, finalPath);
+               }
                ::file::listing_base listing;
                if (pitem->user_path().has_character())
                {
@@ -584,9 +602,14 @@ namespace userfs
                   pdata->complete_browse(uRequest, pitem, context, listing, listingRoot);
                });
             }
+            catch (const ::exception & exception)
+            {
+               auto error = exception.get_message();
+               pimpact->user_post([pdata, uRequest, context, error]() { pdata->browse_failed(uRequest, context, error); });
+            }
             catch (...)
             {
-               pimpact->user_post([pdata, uRequest, context]() { pdata->browse_failed(uRequest, context); });
+               pimpact->user_post([pdata, uRequest, context]() { pdata->browse_failed(uRequest, context, "Unexpected error while browsing this folder"); });
             }
          });
       }

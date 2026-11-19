@@ -228,7 +228,10 @@ namespace fs
 
       }
 
-      ::fs::data * pdata = path_data(listing.m_pathFinal);
+      // Fresh listings have a user path but no resolved final path yet.
+      // Route those by their user URI instead of looking up an empty path.
+      auto path = listing.m_pathFinal.has_character() ? listing.m_pathFinal : listing.m_pathUser;
+      ::fs::data * pdata = path_data(path);
 
       if(pdata != nullptr)
       {

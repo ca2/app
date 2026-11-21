@@ -9410,7 +9410,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
 
       ::string strHls;
 
-      strHls.formatf("\"hls://%::f32:%::f32:%::f32\"", m_hls.m_dH, m_hls.m_dL, m_hls.m_dS);
+      strHls.formatf("\"hls://%f:%f:%f\"", m_hls.m_dH, m_hls.m_dL, m_hls.m_dS);
 
       str += strHls;
 

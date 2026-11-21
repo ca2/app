@@ -446,6 +446,13 @@ namespace platform
       delete m_presourcefolderpool;
       m_presourcefolderpool = nullptr;
 
+      if (s_p == this)
+      {
+
+         s_p = nullptr;
+
+      }
+
       //::acme::get()->m_pmanualresethappeningReadyToExit->set_happening();
       //on_system_before_destroy();
 

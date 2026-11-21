@@ -1922,6 +1922,7 @@ namespace draw2d_cairo
          }
 
 #endif
+#if MORE_LOG >= 9
          if (bMultiframe)
          {
 
@@ -1979,6 +1980,7 @@ namespace draw2d_cairo
             }
 
          }
+#endif
 
          cairo_pattern_holder ppattern(cairo_pattern_create_for_surface(psurface));
 

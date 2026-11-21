@@ -1872,7 +1872,9 @@ namespace user
 
       //_synchronous_lock slChildren(::user::pointer < ::parallelization::mutex >_children());
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      auto pwindow = window();
+
+      _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
@@ -7122,20 +7124,47 @@ namespace user
 
       //_synchronous_lock synchronouslock(pwindowThis ? pwindowThis->m_pparticleChildrenSynchronization : nullptr);
 
-      for_user_interaction_children(puserinteraction, this)
+      ::pointer_array<::user::interaction> userinteractionaChild;
+
       {
 
-         //synchronouslock.unlock();
+         auto pwindowThis = window();
+
+         _synchronous_lock synchronouslock(pwindowThis ? pwindowThis->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         if (m_pacmeuserinteractionaChildren)
+         {
+
+            for (auto & pchild : *m_pacmeuserinteractionaChildren)
+            {
+
+               ::cast < ::user::interaction > puserinteractionChild = pchild;
+
+               if (puserinteractionChild)
+               {
+
+                  userinteractionaChild.add(puserinteractionChild);
+
+               }
+
+            }
+
+         }
+
+      }
+
+      for (auto & puserinteraction : userinteractionaChild)
+      {
 
          try
          {
 
-            //if (!pchild)
-            //{
+            if (!puserinteraction || puserinteraction->has_flag(e_flag_destroying) || puserinteraction->has_flag(e_flag_destroyed))
+            {
 
-            //   continue;
+               continue;
 
-            //}
+            }
 
             puserinteraction->defer_do_layout(pdraw2dgraphics);
 
@@ -7144,8 +7173,6 @@ namespace user
          {
 
          }
-
-         //synchronouslock.lock();
 
       }
 
@@ -10539,7 +10566,9 @@ if(get_parent())
 
       }
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      auto pwindow = window();
+
+      _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //auto puserinteractionpointeraChild = m_puserinteractionpointeraChild.m_p;
 
@@ -12133,7 +12162,9 @@ if(get_parent())
    ::user::interaction * interaction::get_first_child_window()
    {
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      auto pwindow = window();
+
+      _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
@@ -12188,7 +12219,9 @@ if(get_parent())
 
       {
 
-         _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         auto pwindow = window();
+
+      _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (!bIgnoreChildren)
          {
@@ -14003,7 +14036,9 @@ if(get_parent())
    ::collection::index interaction::child_zorder(::user::interaction * puserinteraction)
    {
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      auto pwindow = window();
+
+      _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pacmeuserinteractionaChildren)
       {
@@ -14029,7 +14064,9 @@ if(get_parent())
 
       }
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      auto pwindow = window();
+
+      _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pacmeuserinteractionaChildren)
       {
@@ -14525,7 +14562,9 @@ if(get_parent())
 
       //information() << "interaction::layout_children_zorder";
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      auto pwindow = window();
+
+      _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //auto preferenceitemaA1 = m_pacmeuserinteractionaChildren->m_preferenceitema;
 
@@ -14850,7 +14889,9 @@ if(get_parent())
 
       {
 
-         _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         auto pwindow = window();
+
+      _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
@@ -15821,7 +15862,9 @@ if(get_parent())
    pointer_array<::acme::user::interaction> * interaction::children()
    {
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      auto pwindow = window();
+
+      _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (::is_null(m_pacmeuserinteractionaChildren))
       {
@@ -16111,39 +16154,58 @@ if(get_parent())
 
       //auto children = synchronized_get_children();
 
-      for_user_interaction_children(puserinteraction, this)
-         //if (m_puserinteractionpointeraChild)
+      ::pointer_array<::user::interaction> userinteractionaChild;
+
       {
 
-         ///for (auto & puserinteraction : children)
+         auto pwindow = window();
+
+         _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         if (m_pacmeuserinteractionaChildren)
          {
 
-            //synchronouslock.unlock();
-
-            try
+            for (auto & pchild : *m_pacmeuserinteractionaChildren)
             {
 
-               if (!puserinteraction)
+               ::cast < ::user::interaction > puserinteractionChild = pchild;
+
+               if (puserinteractionChild)
                {
 
-                  continue;
-
-               }
-
-               if (puserinteraction->perform_layout(pdraw2dgraphics))
-               {
-
-                  bNeedPerformLayoutHere = true;
+                  userinteractionaChild.add(puserinteractionChild);
 
                }
 
             }
-            catch (...)
+
+         }
+
+      }
+
+      for (auto & puserinteraction : userinteractionaChild)
+      {
+
+         try
+         {
+
+            if (!puserinteraction || puserinteraction->has_flag(e_flag_destroying) || puserinteraction->has_flag(e_flag_destroyed))
             {
+
+               continue;
 
             }
 
-            //synchronouslock.lock();
+            if (puserinteraction->perform_layout(pdraw2dgraphics))
+            {
+
+               bNeedPerformLayoutHere = true;
+
+            }
+
+         }
+         catch (...)
+         {
 
          }
 
@@ -19038,7 +19100,9 @@ if(get_parent())
    {
 
       //information() << "interaction::on_add_child start\n";
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      auto pwindow = window();
+
+      _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       
 
 
@@ -19791,7 +19855,9 @@ if(get_parent())
 
       }
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      auto pwindow = window();
+
+      _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
@@ -20354,7 +20420,9 @@ if(get_parent())
    ::user::interaction * interaction::last_child()
    {
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      auto pwindow = window();
+
+      _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -20499,7 +20567,9 @@ if(get_parent())
    ::user::interaction * interaction::previous_sibling(::user::interaction * pinteraction)
    {
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      auto pwindow = window();
+
+      _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
@@ -30496,7 +30566,9 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    ::user::interaction * interaction::child_at(::collection::index iIndex)
    {
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      auto pwindow = window();
+
+      _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (::is_null(m_pacmeuserinteractionaChildren))
       {

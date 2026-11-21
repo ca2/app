@@ -159,6 +159,13 @@ namespace platform
 
       on_acme_before_destroy();
 
+      if (s_pplatform == this)
+      {
+
+         s_pplatform = nullptr;
+
+      }
+
    }
 
 

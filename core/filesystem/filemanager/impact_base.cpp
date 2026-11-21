@@ -321,7 +321,7 @@ void filemanager_impact_base::_001OnUpdateEditPaste(::message::message * pmessag
 
    auto pcopydesk = copydesk();
    
-   bool bHasFile = pcopydesk->has_filea();
+   bool bHasFile = ::is_set(pcopydesk) && pcopydesk->has_filea();
          
    pcommand->enable(bHasFile);
 
@@ -364,85 +364,108 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
    ::cast<::file::folder_importer> importer = provider;
    {
       pmessage->m_bRet = true;
-      auto dialog = create_newø<paste_progress_dialog>();
-      dialog->m_pdialogOwner = parent_frame();
-      if (!dialog->show()) throw ::exception(error_failed, "Could not display paste progress");
       ::pointer<filemanager_impact_base> impact = this;
-      get_document()->fork([impact, dialog, importer, listing, strDir, eop]()
+      ::pointer<::user::interaction> powner = parent_frame();
+      // Dialog creation uses user_send -> main_send; run off the GTK main thread to avoid deadlocking.
+      user_post([this, impact, powner, importer, listing, strDir, eop]()
       {
-         ::collection::count completed = 0;
+         ::pointer<paste_progress_dialog> dialog;
          try
          {
-            for (const auto & source : listing)
-            {
-               if (dialog->cancelled()) throw ::exception(error_cancelled, "Paste cancelled");
-               int lastPercent = -1;
-               auto progress = [&](::f64 rate)
-               {
-                  if (dialog->cancelled()) return false;
-                  int percent = (int)(rate * 100.0);
-                  if (percent != lastPercent)
-                  {
-                     lastPercent = percent;
-                     dialog->update("File " + ::as_string(completed + 1) + " of " + ::as_string(listing.size())
-                        + ": " + source.name() + " (" + ::as_string(percent) + "%)",
-                        (completed + rate) / (::f64)listing.size());
-                  }
-                  return true;
-               };
-               if (importer)
-               {
-                  importer->import_file(strDir, source, progress);
-               }
-               else
-               {
-                  auto filesystem = impact->fs_data();
-                  ::file::image_info info;
-                  auto name = source.name();
-                  if (filesystem->get_file_image_info(source, info) && info.m_strName.has_character())
-                     name = info.m_strName;
-                  // Provider display names must remain a single destination filename.
-                  if (name.is_empty() || name == "." || name == ".."
-                     || name.contains("/") || name.contains("\\") || name.contains(":"))
-                     throw ::exception(error_bad_argument, "Invalid source filename");
-                  auto destination = impact->application()->defer_process_path(::file::path(strDir) / name);
-                  if (destination.contains("://"))
-                     throw ::exception(error_not_supported, "This destination does not support pasting files.");
-                  if (impact->file()->exists(destination) || impact->directory()->is(destination))
-                     throw ::exception(error_failed, "Destination already exists: " + name);
-                  progress(0.0);
-                  if (filesystem->is_dir(source) > 0)
-                  {
-                     auto localSource = impact->application()->defer_process_path(source);
-                     if (localSource.contains("://"))
-                        throw ::exception(error_not_supported, "Copying virtual folders is not supported; select files instead.");
-                     impact->file()->copy(destination, localSource, true);
-                  }
-                  else
-                  {
-                     // Open through the owning provider so virtual URIs download correctly.
-                     auto input = filesystem->get_file(source, ::file::e_open_read | ::file::e_open_binary);
-                     if (!input) throw ::exception(error_failed, "Could not open source file");
-                     if (dialog->cancelled()) throw ::exception(error_cancelled, "Paste cancelled");
-                     impact->file()->copy(destination, input, true);
-                  }
-                  progress(1.0);
-               }
-               ++completed;
-               // Never delete a cut source until the destination copy succeeds.
-               if (eop == ::user::copydesk::e_op_cut) impact->file()->erase(source);
-            }
-            dialog->finish("Pasted " + ::as_string(completed) + " file(s).");
+            dialog = create_newø<paste_progress_dialog>();
+            dialog->m_pdialogOwner = powner;
+            if (!dialog->show()) throw ::exception(error_failed, "Could not display paste progress");
          }
          catch (const ::exception & exception)
          {
-            dialog->finish(exception.get_message() + " (" + ::as_string(completed) + " file(s) completed)");
+            auto message = create_newø<::user_interface::message_box>();
+            message->initialize_message_box(exception.get_message(), "Paste files");
+            message->display(e_display_normal, {});
+            return;
          }
          catch (...)
          {
-            dialog->finish("Paste failed. " + ::as_string(completed) + " file(s) completed.");
+            auto message = create_newø<::user_interface::message_box>();
+            message->initialize_message_box("Could not display paste progress.", "Paste files");
+            message->display(e_display_normal, {});
+            return;
          }
-         impact->user_post([impact]() { impact->_001Refresh(); });
+         impact->get_document()->fork([impact, dialog, importer, listing, strDir, eop]()
+         {
+            ::collection::count completed = 0;
+            try
+            {
+               for (const auto & source : listing)
+               {
+                  if (dialog->cancelled()) throw ::exception(error_cancelled, "Paste cancelled");
+                  int lastPercent = -1;
+                  auto progress = [&](::f64 rate)
+                  {
+                     if (dialog->cancelled()) return false;
+                     int percent = (int)(rate * 100.0);
+                     if (percent != lastPercent)
+                     {
+                        lastPercent = percent;
+                        dialog->update("File " + ::as_string(completed + 1) + " of " + ::as_string(listing.size())
+                           + ": " + source.name() + " (" + ::as_string(percent) + "%)",
+                           (completed + rate) / (::f64)listing.size());
+                     }
+                     return true;
+                  };
+                  if (importer)
+                  {
+                     importer->import_file(strDir, source, progress);
+                  }
+                  else
+                  {
+                     auto filesystem = impact->fs_data();
+                     ::file::image_info info;
+                     auto name = source.name();
+                     if (filesystem->get_file_image_info(source, info) && info.m_strName.has_character())
+                        name = info.m_strName;
+                     // Provider display names must remain a single destination filename.
+                     if (name.is_empty() || name == "." || name == ".."
+                        || name.contains("/") || name.contains("\\") || name.contains(":"))
+                        throw ::exception(error_bad_argument, "Invalid source filename");
+                     auto destination = impact->application()->defer_process_path(::file::path(strDir) / name);
+                     if (destination.contains("://"))
+                        throw ::exception(error_not_supported, "This destination does not support pasting files.");
+                     if (impact->file()->exists(destination) || impact->directory()->is(destination))
+                        throw ::exception(error_failed, "Destination already exists: " + name);
+                     progress(0.0);
+                     if (filesystem->is_dir(source) > 0)
+                     {
+                        auto localSource = impact->application()->defer_process_path(source);
+                        if (localSource.contains("://"))
+                           throw ::exception(error_not_supported, "Copying virtual folders is not supported; select files instead.");
+                        impact->file()->copy(destination, localSource, true);
+                     }
+                     else
+                     {
+                        // Open through the owning provider so virtual URIs download correctly.
+                        auto input = filesystem->get_file(source, ::file::e_open_read | ::file::e_open_binary);
+                        if (!input) throw ::exception(error_failed, "Could not open source file");
+                        if (dialog->cancelled()) throw ::exception(error_cancelled, "Paste cancelled");
+                        impact->file()->copy(destination, input, true);
+                     }
+                     progress(1.0);
+                  }
+                  ++completed;
+                  // Never delete a cut source until the destination copy succeeds.
+                  if (eop == ::user::copydesk::e_op_cut) impact->file()->erase(source);
+               }
+               dialog->finish("Pasted " + ::as_string(completed) + " file(s).");
+            }
+            catch (const ::exception & exception)
+            {
+               dialog->finish(exception.get_message() + " (" + ::as_string(completed) + " file(s) completed)");
+            }
+            catch (...)
+            {
+               dialog->finish("Paste failed. " + ::as_string(completed) + " file(s) completed.");
+            }
+            impact->user_post([impact]() { impact->_001Refresh(); });
+         });
       });
       return;
    }

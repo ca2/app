@@ -31,6 +31,10 @@
 #include "aura/message/user.h"
 #include "aura/user/user/frame_interaction.h"
 #include "core/platform/application.h"
+#if defined(LINUX) || defined(__LINUX__)
+#include <pthread.h>
+#include <sched.h>
+#endif
 
 
 namespace
@@ -105,10 +109,9 @@ namespace
             if (dialog->cancelled()) return;
             dialog->m_progress->m_rate = rate;
             dialog->m_progress->set_need_redraw();
-            dialog->m_progress->post_redraw();
             dialog->m_status->set_window_text(text);
             dialog->m_status->set_need_redraw();
-            dialog->m_status->post_redraw();
+            dialog->m_pform->post_redraw();
          });
       }
       void finish(const ::string & text)
@@ -392,22 +395,51 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
          }
          impact->get_document()->fork([impact, dialog, importer, listing, strDir, eop]()
          {
+            ::task_set_name("filemanager:paste");
+            ::parallelization::set_priority(::e_priority_idle);
+#if defined(LINUX) || defined(__LINUX__)
+            {
+               sched_param sp{};
+               pthread_setschedparam(pthread_self(), SCHED_IDLE, &sp);
+            }
+#endif
+            struct watch_suppress_guard
+            {
+               ::pointer<::filemanager::document> doc;
+               explicit watch_suppress_guard(::filemanager::document * d) : doc(d)
+               {
+                  if (doc) doc->m_iWatchRefreshSuppress.fetch_add(1, std::memory_order_relaxed);
+               }
+               ~watch_suppress_guard()
+               {
+                  if (doc) doc->m_iWatchRefreshSuppress.fetch_sub(1, std::memory_order_relaxed);
+               }
+            } watchGuard(impact->get_document());
             ::collection::count completed = 0;
+            class ::time timeLastProgressUpdate;
             try
             {
+               auto filesystem = impact->fs_data();
                for (const auto & source : listing)
                {
                   if (dialog->cancelled()) throw ::exception(error_cancelled, "Paste cancelled");
+                  if (completed > 0) preempt(15_ms);
+                  ::file::image_info info;
+                  auto displayName = source.name();
+                  if (filesystem && filesystem->get_file_image_info(source, info) && info.m_strName.has_character())
+                     displayName = info.m_strName;
                   int lastPercent = -1;
                   auto progress = [&](::f64 rate)
                   {
                      if (dialog->cancelled()) return false;
                      int percent = (int)(rate * 100.0);
-                     if (percent != lastPercent)
+                     if (percent != lastPercent
+                        && (timeLastProgressUpdate == 0_s || timeLastProgressUpdate.elapsed() >= 200_ms))
                      {
                         lastPercent = percent;
+                        timeLastProgressUpdate.Now();
                         dialog->update("File " + ::as_string(completed + 1) + " of " + ::as_string(listing.size())
-                           + ": " + source.name() + " (" + ::as_string(percent) + "%)",
+                           + ": " + displayName + " (" + ::as_string(percent) + "%)",
                            (completed + rate) / (::f64)listing.size());
                      }
                      return true;
@@ -418,11 +450,7 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
                   }
                   else
                   {
-                     auto filesystem = impact->fs_data();
-                     ::file::image_info info;
-                     auto name = source.name();
-                     if (filesystem->get_file_image_info(source, info) && info.m_strName.has_character())
-                        name = info.m_strName;
+                     auto name = displayName;
                      // Provider display names must remain a single destination filename.
                      if (name.is_empty() || name == "." || name == ".."
                         || name.contains("/") || name.contains("\\") || name.contains(":"))

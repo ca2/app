@@ -43,6 +43,7 @@ namespace filemanager
       };
       std::shared_ptr<folder_poll_state> m_folderPoll;
       std::atomic_bool m_bWatchRefreshPosted{false};
+      std::atomic<int> m_iWatchRefreshSuppress{0};
       bool m_bWatchDirty = false;
       ::u64 m_uWatchBrowseRequest = 0;
       void synchronize_folder_watch();

@@ -51,6 +51,10 @@ CLASS_DECL_ACME::subparticle * refdbg_this();
 
 #define REFDBG_THIS(p) auto refdbg_this = [p]() { return p; }
 
+
+#define REFDBG_POINTER(p) auto refdbg_this = [p]() { return p.m_p; }
+
+
 //#define createø __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create
 //#define constructø __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
 //#define øcreate_by_type __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_create
@@ -221,6 +225,9 @@ CLASS_DECL_ACME ::reference_referer* refdbg_get_top_releaser();
 
 
 #define REFDBG_THIS(p)
+
+
+#define REFDBG_POINTER(p)
 
 /// _____create
 #define createø __call__create

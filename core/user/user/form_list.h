@@ -82,6 +82,7 @@ namespace user
 
       void _001UpdateEdit(::user::interaction * pinteraction) override;
       bool _001SaveEdit(::user::interaction * pinteraction) override;
+      virtual void _001CancelEdit(::user::interaction * pinteraction);
 
       bool _001OnMouseActivate(::windowing::window * pDesktopWnd,::u32 nHitTest,const ::atom & atom,lresult & iResult) override;
 

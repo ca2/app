@@ -16,6 +16,9 @@
 #include "axis/user/user/validate.h"
 #include "axis/user/user/combo_box.h"
 #include "axis/user/user/list_box.h"
+#include "aura/user/user/button.h"
+#include "aura/user/user/check_box.h"
+#include "aura/user/user/plain_edit.h"
 #include "aura/message/user.h"
 #include "aura/user/user/interaction_array.h"
 #include "core/platform/session.h"
@@ -175,6 +178,13 @@ namespace user
 
          // Click in subitem without editing controls.
 
+         if (_001IsEditing())
+         {
+
+            _001CancelEdit(_001GetEditControl());
+
+         }
+
          _001HideEditingControls();
 
       }
@@ -192,6 +202,13 @@ namespace user
 
       if (!::is_set(pitem))
       {
+
+         if (_001IsEditing())
+         {
+
+            _001CancelEdit(_001GetEditControl());
+
+         }
 
          _001HideEditingControls();
 
@@ -263,6 +280,13 @@ namespace user
       {
 
          // Click in subitem without editing controls.
+
+         if (_001IsEditing())
+         {
+
+            _001CancelEdit(_001GetEditControl());
+
+         }
 
          _001HideEditingControls();
 
@@ -543,11 +567,63 @@ namespace user
       if (psubitem->m_bOk)
       {
 
-         ::f64_rectangle rectangleControl(psubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
+         ::f64_rectangle rectangleControl;
 
-         auto pointContext = get_context_offset();
+         if (m_eview == impact_icon)
+         {
 
-         rectangleControl.offset(pointContext);
+            rectangleControl = psubitem->m_pdrawmeshsubitem->m_rectangleText;
+
+         }
+         else
+         {
+
+            rectangleControl = psubitem->m_pdrawmeshsubitem->m_rectangleText;
+
+            if (rectangleControl.is_empty())
+            {
+
+               rectangleControl = psubitem->m_pdrawmeshsubitem->m_rectangleSubItem;
+
+            }
+
+            if (m_eview == impact_report)
+            {
+
+               auto pointContext = get_context_offset();
+
+               rectangleControl.offset(-pointContext);
+
+            }
+
+         }
+
+         if (rectangleControl.height() < 24.0)
+         {
+
+            rectangleControl.bottom = rectangleControl.top + 24.0;
+
+         }
+
+         if (rectangleControl.width() < 120.0)
+         {
+
+            rectangleControl.right = rectangleControl.left + 120.0;
+
+         }
+
+         auto rectangleClient = this->rectangle();
+
+         if (rectangleControl.right > rectangleClient.right)
+         {
+
+            ::f64 dShift = rectangleControl.right - rectangleClient.right;
+
+            rectangleControl.left = maximum(0.0, rectangleControl.left - dShift);
+
+            rectangleControl.right = rectangleClient.right;
+
+         }
 
          if (!bOnlySizeAndPosition)
          {
@@ -560,14 +636,13 @@ namespace user
 
          pinteraction->place(rectangleControl);
 
-         if (bOnlySizeAndPosition)
-         {
-
-            pinteraction->set_need_layout();
-
-         }
+         pinteraction->set_need_layout();
 
          pinteraction->display();
+
+         pinteraction->set_need_redraw();
+
+         pinteraction->post_redraw();
 
          //SWP_SHOWWINDOW | (bOnlySizeAndPosition ? SWP_CHANGEVIEWPORTOFFSET : 0));
 
@@ -623,6 +698,9 @@ namespace user
 
                }
 
+            }
+
+            {
 
                ::pointer<::user::plain_edit>pedit = pinteraction;
 
@@ -1237,6 +1315,14 @@ namespace user
    }
 
 
+   void form_list::_001CancelEdit(::user::interaction * pinteraction)
+   {
+
+      __UNREFERENCED_PARAMETER(pinteraction);
+
+   }
+
+
    void form_list::_001HideControl(::user::interaction * pinteraction)
    {
 
@@ -1251,7 +1337,16 @@ namespace user
 
       if (pkey->m_ekey == ::user::e_key_return)
       {
-         _001SaveEdit(_001GetEditControl());
+         if (_001SaveEdit(_001GetEditControl()))
+         {
+            _001HideEditingControls();
+         }
+         pmessage->m_bRet = true;
+         return;
+      }
+      else if (pkey->m_ekey == ::user::e_key_escape)
+      {
+         _001CancelEdit(_001GetEditControl());
          _001HideEditingControls();
          pmessage->m_bRet = true;
          return;
@@ -1987,9 +2082,27 @@ namespace user
          if (m_pcontrolEdit != nullptr)
          {
 
-            _001SaveEdit(m_pcontrolEdit);
+            if (_001SaveEdit(m_pcontrolEdit))
+            {
 
-            _001HideControl(m_pcontrolEdit);
+               _001HideEditingControls();
+
+            }
+
+            ptopic->m_bRet = true;
+
+         }
+
+      }
+      else if (ptopic->id() == ::id_escape)
+      {
+
+         if (m_pcontrolEdit != nullptr)
+         {
+
+            _001CancelEdit(m_pcontrolEdit);
+
+            _001HideEditingControls();
 
             ptopic->m_bRet = true;
 
@@ -2213,7 +2326,7 @@ namespace user
 
       defer_construct_newø(puserinteractiona);
 
-      ::collection::index iIndex = iItem - m_iTopDisplayIndex;
+      ::collection::index iIndex = maximum<::collection::index>(0, iItem - m_iTopDisplayIndex);
 
       auto & pinteraction = puserinteractiona->interactiona().element_at_grow(iIndex);
 
@@ -2229,14 +2342,45 @@ namespace user
       if (!pinteraction)
       {
 
-         pinteraction = pinteractionTemplate->clone();
+         auto econtroltype = pinteractionTemplate->get_control_type();
+
+         if (econtroltype == e_control_type_edit || econtroltype == e_control_type_edit_plain_text
+            || dynamic_cast<::user::plain_edit *>(pinteractionTemplate.m_p) != nullptr)
+         {
+
+            pinteraction = create_newø<::user::plain_edit>();
+
+         }
+         else if (econtroltype == e_control_type_combo_box
+            || dynamic_cast<::user::combo_box *>(pinteractionTemplate.m_p) != nullptr)
+         {
+
+            pinteraction = create_newø<::user::combo_box>();
+
+         }
+         else if (econtroltype == e_control_type_check_box
+            || dynamic_cast<::user::check_box *>(pinteractionTemplate.m_p) != nullptr)
+         {
+
+            pinteraction = create_newø<::user::check_box>();
+
+         }
+         else if (econtroltype == e_control_type_button
+            || dynamic_cast<::user::button *>(pinteractionTemplate.m_p) != nullptr)
+         {
+
+            pinteraction = create_newø<::user::button>();
+
+         }
+         else
+         {
+
+            pinteraction = pinteractionTemplate->clone();
+
+         }
 
          if (::is_set(pinteraction))
          {
-
-            pinteraction->create_child(get_parent());
-
-            pinteraction->initialize(this);
 
             pinteraction->create_child(this);
 
@@ -2244,9 +2388,24 @@ namespace user
 
             pinteraction->m_flagsfunction = pinteractionTemplate->m_flagsfunction;
 
+            pinteraction->m_econtroltype = pinteractionTemplate->m_econtroltype;
+
+            pinteraction->m_edatatype = pinteractionTemplate->m_edatatype;
+
+            pinteraction->m_strDataKey20 = pinteractionTemplate->m_strDataKey20;
+
+            pinteraction->display(e_display_none);
+
             _001OnInitializeControl(pinteraction);
 
          }
+
+      }
+
+      if (::is_null(pinteraction))
+      {
+
+         return nullptr;
 
       }
 
@@ -2261,6 +2420,8 @@ namespace user
       pinteraction->m_item.m_iItem = iItem;
 
       pinteraction->m_item.m_iSubItem = pcolumn->m_iSubItem;
+
+      pinteraction->m_iColumn = pcolumn->m_iColumn;
 
       return pinteraction;
 
@@ -2373,7 +2534,10 @@ namespace user
 
       ::user::list::_001DrawSubItem(pdraw2dgraphics, pdrawlistsubitem);
 
-      //if (pdrawitem->m_pcolumn->m_bCustomDraw)
+      if (pdrawlistsubitem->m_pcolumn && pdrawlistsubitem->m_pcolumn->m_bCustomDraw
+         && pdrawlistsubitem->m_pcolumn->m_puserinteractionTemplate
+         && pdrawlistsubitem->m_pcolumn->m_puserinteractionTemplate->get_control_type() != e_control_type_edit
+         && pdrawlistsubitem->m_pcolumn->m_puserinteractionTemplate->get_control_type() != e_control_type_edit_plain_text)
       {
          //
                // trigger control creation

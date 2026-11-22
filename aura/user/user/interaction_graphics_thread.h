@@ -76,6 +76,7 @@ namespace user
       //bool                                      m_bVisualUpdated;
 
       bool                                      m_bUpdatingScreen;
+      bool                                      m_bExplicitHidePosted;
 
 
       //bool                                      m_bUpdateBufferUpdateWindowPending;

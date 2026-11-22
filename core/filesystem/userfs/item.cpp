@@ -14,6 +14,8 @@
 #include "core/user/user/tree.h"
 #include "core/platform/session.h"
 
+#define DEEP_LOG_HERE 0
+
 
 namespace userfs
 {
@@ -126,6 +128,7 @@ namespace userfs
 
       ::string strPath = user_path();
 
+#if DEEP_LOG_HERE >= 9
       if (strPath == "C:/Users/camilo/OneDrive/Pictures/_")
       {
 
@@ -138,6 +141,7 @@ namespace userfs
          information() << "Ok... let's debug (3) " << strPath;
 
       }
+#endif
 
       auto pprovider = m_ptreedata->m_puserfsdocument && m_ptreedata->m_puserfsdocument->m_puserfsdata
          ? m_ptreedata->m_puserfsdocument->m_puserfsdata->fs_data() : nullptr;

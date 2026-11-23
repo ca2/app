@@ -76,6 +76,8 @@ public:
    // Returns the provider path, which may use an opaque ID instead of the name.
    virtual ::file::path create_folder(const ::file::path & pathParent, const ::scoped_string & scopedstrName);
 
+   virtual ::file::path rename_item(const ::file::path & pathItem, const ::scoped_string & scopedstrName);
+
 
 };
 

@@ -6,6 +6,8 @@
 #include "berg/user/form/impact.h"
 #include "berg/user/simple/frame_window.h"
 #include "berg/user/experience/frame.h"
+#include "berg/user/experience/control_box.h"
+#include "berg/user/experience/button.h"
 #include "acme/filesystem/file/folder_importer.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/user/interface/message_box.h"
@@ -62,12 +64,54 @@ namespace
       bool m_bCancelled = false;
       bool m_bFinished = false;
       paste_progress_dialog() { m_bResizable = false; defer_create_synchronization(); }
+      void set_close_button_enabled(bool bEnable)
+      {
+         if (m_pframe && m_pframe->m_pframe)
+         {
+            if (auto pcontrolbox = m_pframe->m_pframe->get_control_box())
+            {
+               if (auto pclose = pcontrolbox->get_box_button(::experience::e_button_close))
+               {
+                  pclose->enable_window(bEnable);
+                  pclose->set_need_redraw();
+               }
+            }
+         }
+      }
+      void request_cancel_or_close()
+      {
+         ::pointer<paste_progress_dialog> keepAlive = this;
+         bool finished;
+         bool alreadyCancelled;
+         {
+            _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            finished = m_bFinished;
+            alreadyCancelled = m_bCancelled;
+            if (!finished) m_bCancelled = true;
+         }
+         if (finished)
+         {
+            EndModalLoop("close");
+         }
+         else if (!alreadyCancelled)
+         {
+            m_status->set_window_text("Stopping transfer...");
+            m_cancel->enable_window(false);
+            set_close_button_enabled(false);
+            m_status->set_need_redraw();
+            m_pform->post_redraw();
+         }
+      }
+      void on_frame_close(::message::message * pmessage)
+      {
+         if (pmessage) pmessage->m_bRet = true;
+         request_cancel_or_close();
+      }
       ::i32_bool on_init_dialog() override
       {
          if (!::userex::dialog::on_init_dialog()) return false;
          m_pformdocument->set_title("Paste files");
-         // Keep the active transfer visible; cancellation goes through the Cancel button.
-         m_pframe->m_ebuttonaHide.add_unique(::experience::e_button_close);
+         USER_MESSAGE_LINK(::user::e_message_close, m_pframe, this, &paste_progress_dialog::on_frame_close);
          auto column = create_line_layout(m_pform, ::e_orientation_vertical);
          column->set_position({16, 16});
          m_status = create_label<::user::still>(column, "Preparing to paste files into the selected folder...");
@@ -77,21 +121,7 @@ namespace
          m_cancel = create_button(column, "Cancel");
          m_cancel->m_callbackOnAction = [this](::user::interaction *, ::item *, ::user::activation_token *)
          {
-            ::pointer<paste_progress_dialog> keepAlive = this;
-            bool finished;
-            {
-               _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-               finished = m_bFinished;
-               if (!finished) m_bCancelled = true;
-            }
-            if (finished) EndModalLoop("close");
-            else
-            {
-               m_status->set_window_text("Cancelling the transfer...");
-               m_cancel->enable_window(false);
-               m_status->set_need_redraw();
-               m_status->post_redraw();
-            }
+            request_cancel_or_close();
             return true;
          };
          return true;
@@ -114,6 +144,18 @@ namespace
             dialog->m_pform->post_redraw();
          });
       }
+      void dismiss(const ::atom & idResult)
+      {
+         ::pointer<paste_progress_dialog> dialog = this;
+         m_pform->user_post([dialog, idResult]()
+         {
+            {
+               _synchronous_lock lock(dialog->synchronization());
+               dialog->m_bFinished = true;
+            }
+            dialog->EndModalLoop(idResult);
+         });
+      }
       void finish(const ::string & text)
       {
          ::pointer<paste_progress_dialog> dialog = this;
@@ -125,9 +167,10 @@ namespace
             }
             dialog->m_status->set_window_text(text);
             dialog->m_status->set_need_redraw();
-            dialog->m_status->post_redraw();
             dialog->m_cancel->set_window_text("Close");
             dialog->m_cancel->enable_window(true);
+            dialog->set_close_button_enabled(true);
+            dialog->m_pform->post_redraw();
          });
       }
    };
@@ -482,15 +525,29 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
                   // Never delete a cut source until the destination copy succeeds.
                   if (eop == ::user::copydesk::e_op_cut) impact->file()->erase(source);
                }
-               dialog->finish("Pasted " + ::as_string(completed) + " file(s).");
+               dialog->dismiss("ok");
             }
             catch (const ::exception & exception)
             {
-               dialog->finish(exception.get_message() + " (" + ::as_string(completed) + " file(s) completed)");
+               if (dialog->cancelled() || exception.m_estatus == error_cancelled)
+               {
+                  dialog->dismiss("cancel");
+               }
+               else
+               {
+                  dialog->finish(exception.get_message() + " (" + ::as_string(completed) + " file(s) completed)");
+               }
             }
             catch (...)
             {
-               dialog->finish("Paste failed. " + ::as_string(completed) + " file(s) completed.");
+               if (dialog->cancelled())
+               {
+                  dialog->dismiss("cancel");
+               }
+               else
+               {
+                  dialog->finish("Paste failed. " + ::as_string(completed) + " file(s) completed.");
+               }
             }
             impact->user_post([impact]() { impact->_001Refresh(); });
          });

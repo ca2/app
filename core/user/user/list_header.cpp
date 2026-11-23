@@ -109,11 +109,18 @@ namespace user
 
          pdraw2dgraphics->set_solid_color(color);
          
-         ::e_align ealign = plist->get_draw_text_align(plist->m_eview);
-         
-         ::e_draw_text edrawtext = plist->get_draw_text_flags(plist->m_eview);
+         ::e_align ealign = ::e_align_left_center;
 
-         //rectangleColumn.bottom += rectangleColumn.height() * 2;
+         ::e_draw_text edrawtext = { ::e_draw_text_end_ellipsis, ::e_draw_text_single_line };
+
+         if (rectangleColumn.width() > 8)
+         {
+
+            rectangleColumn.left += 4;
+
+            rectangleColumn.right -= 4;
+
+         }
 
          pdraw2dgraphics->draw_text(str, rectangleColumn, ealign, edrawtext);
 
@@ -171,18 +178,12 @@ namespace user
 
       }
 
-      ::i32 x;
+      ::i32 x = plist->m_iLeftMargin;
 
       if(plist->m_bGroup && plist->m_bLateralGroup)
       {
 
-         x = plist->m_iLateralGroupWidth;
-
-      }
-      else
-      {
-
-         x = 0;
+         x += plist->m_iLateralGroupWidth;
 
       }
       
@@ -193,7 +194,7 @@ namespace user
          
          xLast = x;
          
-         auto pcolumn = plist->m_pcolumna->get_visible(iItem);
+         auto pcolumn = plist->m_pcolumna->get_visible(i);
          
          x += pcolumn->m_iWidth;
 
@@ -942,6 +943,28 @@ namespace user
 
       pdraw2dpen->create_solid(1.0, color);
 
+      ::i32 xLeftBoundary = plist->m_iLeftMargin;
+
+      if (plist->m_bGroup && plist->m_bLateralGroup)
+      {
+
+         xLeftBoundary += plist->m_iLateralGroupWidth;
+
+      }
+
+      if (xLeftBoundary > 0)
+      {
+
+         pdraw2dgraphics->set(pdraw2dpen);
+
+         pdraw2dgraphics->line(
+            xLeftBoundary, rectangleX.top,
+            xLeftBoundary, rectangleX.bottom);
+
+      }
+
+      ::i32 xLastColumnRight = xLeftBoundary;
+
       for(::i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
 
@@ -951,15 +974,37 @@ namespace user
 
          DrawItem(&drawitem);
 
-         GetItemRect(&rectangleDivider, ::e_element_divider, iItem);
+         ::i32_rectangle rectangleItem;
+
+         GetItemRect(&rectangleItem, ::e_element_item, iItem);
 
          pdraw2dgraphics->set(pdraw2dpen);
 
          pdraw2dgraphics->line(
-            rectangleDivider.left, rectangleDivider.top,
-               rectangleDivider.left, rectangleDivider.bottom);
+            rectangleItem.right, rectangleItem.top,
+            rectangleItem.right, rectangleItem.bottom);
 
-         //pdraw2dgraphics->draw_inset_3d_rectangle(rectangleDivider, crButtonShadow, psession->get_default_color(COLOR_BTNHIGHLIGHT));
+         xLastColumnRight = rectangleItem.right;
+
+      }
+
+      if (plist->m_iRightMargin > 0)
+      {
+
+         auto rectList = plist->rectangle();
+
+         ::i32 xRightMargin = rectList.right - plist->m_iRightMargin;
+
+         if (xRightMargin > xLeftBoundary && xLastColumnRight > xRightMargin)
+         {
+
+            pdraw2dgraphics->set(pdraw2dpen);
+
+            pdraw2dgraphics->line(
+               xRightMargin, rectangleX.top,
+               xRightMargin, rectangleX.bottom);
+
+         }
 
       }
 

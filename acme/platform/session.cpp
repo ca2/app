@@ -366,6 +366,8 @@ namespace platform
 
          ptask->m_bRunMainLoop = true;
 
+         ptask->m_timeSample = 50_ms;
+
          m_taskaTimer.add(ptask);
 
       }

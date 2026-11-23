@@ -50,6 +50,9 @@ namespace micro
    void dialog::set_dialog_response(const ::payload & payloadResult)
    {
 
+      destroy_window();
+
+      ::user_interface::dialog_implementation::set_dialog_response(payloadResult);
 
    }
 
@@ -57,7 +60,7 @@ namespace micro
    ::payload dialog::get_dialog_response()
    {
 
-      return {};
+      return ::user_interface::dialog_implementation::get_dialog_response();
 
    }
 

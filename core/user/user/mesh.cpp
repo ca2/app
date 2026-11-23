@@ -3960,13 +3960,6 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
             }
 
-            if (get_keyboard_focus() != this)
-            {
-
-               set_keyboard_focus();
-
-            }
-
          }
 
       }

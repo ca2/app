@@ -2925,6 +2925,9 @@ namespace windowing
 
       }
 
+      bool bArbitraryPositioning = user_interaction()
+         && (user_interaction()->m_ewindowflag & e_window_flag_arbitrary_positioning);
+
       auto pointDesign = stateDesign.origin();
 
       auto pointWindow = m_pointWindow;
@@ -2934,7 +2937,8 @@ namespace windowing
       if (bMove)
       {
 
-         if (system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
+         if (!bArbitraryPositioning
+            && system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
             bMove = false;
@@ -2954,7 +2958,8 @@ namespace windowing
       if (bSize)
       {
 
-         if (system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
+         if (!bArbitraryPositioning
+            && system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
             bSize = false;

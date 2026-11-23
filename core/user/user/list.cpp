@@ -2416,6 +2416,13 @@ namespace user
 
          }
 
+         if (m_iItemWidth > 0 && (point.x + pointOffset.x) >= (m_iLeftMargin + m_iItemWidth))
+         {
+
+            return false;
+
+         }
+
          if (m_iRightMargin > 0 && point.x > (rectangleX.right - m_iRightMargin))
          {
 
@@ -3537,7 +3544,7 @@ namespace user
 
          m_plistheader->order_bottom();
 
-         m_plistheader->place(::i32_rectangle_dimension(0, 0, (::i32)maximum(m_iItemWidth + 10, rectangleFocus.width()), (::i32)m_dItemHeight));
+         m_plistheader->place(::i32_rectangle_dimension(0, 0, (::i32)maximum(m_iLeftMargin + m_iItemWidth + m_iRightMargin, rectangleFocus.width()), (::i32)m_dItemHeight));
 
          m_plistheader->display();;
 

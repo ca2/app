@@ -302,6 +302,11 @@ add_subdirectory(port)
 add_subdirectory(source/app)
 add_subdirectory(source)
 
+if(WIN32 AND CMAKE_HOST_WIN32)
+   include("${CMAKE_CURRENT_LIST_DIR}/prepare-ca2-libraries.cmake")
+   ca2_add_library_preparation("${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
+
 
 #add_subdirectory(source/app/launch)
 #add_subdirectory(source/app/store)

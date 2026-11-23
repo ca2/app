@@ -453,7 +453,11 @@ namespace userfs
             if (psubitem->m_iImage < 0)
             {
 
-               auto & pathFinal = m_pitema->get_item((::collection::index)psubitem->m_pitem->m_iItem)->final_path();
+               auto pfsitem = m_pitema->get_item((::collection::index)psubitem->m_pitem->m_iItem);
+
+               auto & pathFinal = pfsitem->final_path();
+
+               bool bIsFolder = pathFinal.is_folder() || pfsitem->is_folder();
 
                auto psession = session();
 
@@ -461,7 +465,7 @@ namespace userfs
 
                psubitem->m_iImage = puser->shell()->get_file_image(
                   pathFinal,
-                  pathFinal.is_folder() ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
+                  bIsFolder ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
                   ::user::shell::e_icon_normal, m_pfsImageProvider, { psubitem->m_pitem->m_pmesh });
 
                if (psubitem->m_iImage < 0)

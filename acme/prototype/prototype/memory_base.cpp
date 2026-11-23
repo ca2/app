@@ -357,6 +357,22 @@ void memory_base::erase_offset()
 memsize memory_base::calc_allocation(memsize size)
 {
 
+   auto sizeStorage = this->m_sizeStorage;
+
+   if (sizeStorage > 0 && size > sizeStorage)
+   {
+
+      auto sizeGrown = sizeStorage + sizeStorage / 2;
+
+      if (sizeGrown > size + this->m_dwAllocationAddUp)
+      {
+
+         return sizeGrown;
+
+      }
+
+   }
+
    return (memsize) (size + this->m_dwAllocationAddUp);
 
 }

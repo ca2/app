@@ -203,6 +203,10 @@ namespace userex
       }
       m_pframe->disable_dock();
       m_pframe->enable_size(m_bResizable);
+      if (!m_bResizable)
+      {
+         m_pframe->payload("fixed_size") = true;
+      }
       m_pframe->m_bTransparentFrameEnable = false;
       m_pframe->m_bFullScreenEnable = false;
       m_pframe->erase_appearance(e_appearance_transparent_frame);

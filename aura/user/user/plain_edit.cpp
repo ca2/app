@@ -5528,7 +5528,7 @@ namespace user
 
          //lim = lim2;
 
-         ::i32 iMid = (lim2 - lim1) * 3 / 4;
+         ::i32 iMid = (lim2 - lim1) / 2;
 
          if (px >= lim1 && px <= lim1 + iMid)
          {
@@ -7784,9 +7784,9 @@ namespace user
 
             ptopic->m_puserelement = this;
 
-            ptopic->m_actioncontext.m_pmessage = pmessage;
-
             ptopic->m_actioncontext = ::e_source_user;
+
+            ptopic->m_actioncontext.m_pmessage = pmessage;
 
             route(ptopic);
 
@@ -8869,10 +8869,10 @@ namespace user
 
             str = pkey->m_strText;
 
-            if (str == "\b")
+            if (str == "\b" || str == "\x7f")
             {
 
-               // Ignores backspace
+               // Ignores backspace and delete control characters
 
                // Should be handled as key message (_001MessageKey)
 
@@ -10803,6 +10803,16 @@ namespace user
       set_need_redraw();
 
       post_redraw();
+
+      {
+
+         auto ptopic = create_topic(::id_kill_focus);
+
+         ptopic->m_puserelement = this;
+
+         route(ptopic);
+
+      }
 
    }
 

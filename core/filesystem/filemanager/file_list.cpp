@@ -6,9 +6,11 @@
 #include "acme/constant/id.h"
 #include "acme/constant/timer.h"
 #include "acme/constant/user_message.h"
+#include "acme/filesystem/file/folder.h"
 #include "acme/filesystem/file/item_array.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
 #include "acme/user/interface/message_box.h"
@@ -55,12 +57,16 @@ namespace filemanager
       m_bFileSize = false;
       m_bShow = false;
       m_bHoverSelect2 = true;
+      m_iLeftMargin = 24;
+      m_iRightMargin = 24;
 
    }
 
 
    file_list::~file_list()
    {
+
+      set_inplace_watch_suppressed(false);
 
    }
 
@@ -102,6 +108,8 @@ namespace filemanager
       //add_command_handler("spafy2", &file_list::_001OnSpafy2);
       add_command_prober("file_rename", { this,  &file_list::_001OnUpdateFileRename });
       add_command_handler("file_rename", { this,  &file_list::_001OnFileRename });
+      add_command_prober("new_folder_inplace", { this,  &file_list::_001OnUpdateNewFolderInPlace });
+      add_command_handler("new_folder_inplace", { this,  &file_list::_001OnNewFolderInPlace });
       add_command_handler("file_open", { this,  &file_list::_001OnFileOpen });
 
    }
@@ -181,7 +189,7 @@ namespace filemanager
 
       // auto pcontext = get_context();
 
-      file()->rename(filepathNew, filepath);
+      path_system()->rename(filepathNew, filepath);
 
       browse_sync(context);
 
@@ -193,77 +201,184 @@ namespace filemanager
 
       ::pointer<::message::mouse>pcontextmenu(pmessage);
 
-      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      if (_001IsEditing())
+      {
 
-      ::collection::index iItem;
+         if (!_001SaveEdit(_001GetEditControl()))
+         {
+
+            pmessage->m_bRet = true;
+
+            return;
+
+         }
+
+         _001HideEditingControls();
+
+      }
+
+      ::collection::index iItem = -1;
 
       auto point = pcontextmenu->m_pointHost;
 
       ::user::list::host_to_client()(point);
 
-      if (_001HitTest_(point, iItem))
+      m_pointContextMenuClient = point;
+
+      m_bHasContextMenuRenamePoint = false;
+
+      m_iContextMenuRenameItem = -1;
+
+      auto pointCursor = pcontextmenu->m_pointAbsolute;
+
+      auto r = ::i32_rectangle::square_with_center_and_apothem(pointCursor, 8);
+
+      const char * pszItemMenuXml =
+         "<menubar id=\"popup\">"
+         "   <item id=\"file_open\">Open</item>"
+         "   <item id=\"edit_copy\">Copy</item>"
+         "   <item id=\"edit_paste\">Paste</item>"
+         "   <item id=\"file_rename\">Rename</item>"
+         "</menubar>";
+
+      const char * pszEmptyAreaMenuXml =
+         "<menubar id=\"popup\">"
+         "   <menubar id=\"new_menu\" title=\"New\">"
+         "      <item id=\"new_folder_inplace\">Folder</item>"
+         "   </menubar>"
+         "   <item id=\"edit_paste\">Paste</item>"
+         "</menubar>";
+
+      bool bHitItem = false;
+      bool bIsFolder = false;
+      ::pointer<::file::item> pfolderItem;
+      ::string strXmlPopup;
+
       {
 
-         if (fs_list_item((::collection::index) iItem)->is_folder())
+         synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         bHitItem = _001HitTest_(point, iItem)
+            && iItem >= 0
+            && iItem < fs_list()->m_pitema->get_size();
+
+         if (bHitItem)
          {
 
-            _017OpenContextMenuFolder(fs_list_item((::collection::index) iItem), ::e_source_user);
+            m_bHasContextMenuRenamePoint = true;
+
+            m_iContextMenuRenameItem = iItem;
+
+            ::user::range range;
+
+            get_selection(range);
+
+            if (!range.has_item(iItem))
+            {
+
+               _001SelectItem(iItem);
+
+            }
+
+            pfolderItem = fs_list_item(iItem);
+
+            bIsFolder = pfolderItem && pfolderItem->is_folder();
+
+         }
+
+         strXmlPopup = filemanager_data()->m_strXmlPopup;
+
+      }
+
+      ::pointer<file_list> plist = this;
+
+      // Menu window creation uses user_send -> main_send; run off the Qt/GTK main thread to avoid deadlocking.
+      user_post([plist, bHitItem, bIsFolder, pfolderItem, strXmlPopup, pointCursor, r, pszItemMenuXml, pszEmptyAreaMenuXml]()
+      {
+
+         auto puser = plist->user();
+
+         auto trackXmlMenu = [&](const ::scoped_string & strXml)
+         {
+            auto pmenu = puser->menu_from_xml(plist, strXml);
+            if (!pmenu) return false;
+             REFDBG_POINTER(plist);
+            auto ptrackpopup = __initialize_pointer_with(plist) new ::menu::track_popup(
+               pmenu,
+               plist,
+               plist,
+               pointCursor,
+               r);
+            puser->track_popup_menu(ptrackpopup);
+            return true;
+         };
+
+         if (bHitItem)
+         {
+
+            if (bIsFolder && pfolderItem)
+            {
+
+               string_array_base straCommand;
+
+               string_array_base straCommandTitle;
+
+               plist->filemanager_document()->on_file_manager_open_context_menu_folder(
+                  pfolderItem, straCommand, straCommandTitle, ::e_source_user);
+
+               if (straCommand.get_size() > 0)
+               {
+
+                  if (!straCommand.contains("file_rename"))
+                  {
+
+                     straCommand.add("file_rename");
+
+                     straCommandTitle.add("Rename");
+
+                  }
+REFDBG_POINTER(plist);
+                  auto pmenu = plist->create_newø < ::user::menu >();
+
+                  if (pmenu->create_menu(straCommand, straCommandTitle))
+                  {
+
+                     auto ptrackpopup = __initialize_pointer_with(plist) new ::menu::track_popup(
+                        pmenu,
+                        plist,
+                        plist,
+                        pointCursor,
+                        r);
+
+                     puser->track_popup_menu(ptrackpopup);
+
+                     return;
+
+                  }
+
+               }
+
+               trackXmlMenu(pszItemMenuXml);
+
+            }
+            else
+            {
+
+               trackXmlMenu(pszItemMenuXml);
+
+            }
 
          }
          else
          {
 
-            auto pcontext = m_papplication;
-            
-            auto psession = pcontext->m_psession;
-            
-            auto puser = psession->m_puser;
-
-            auto pointCursor = pcontextmenu->m_pointHost;
-            
-            auto r = ::i32_rectangle::square_with_center_and_apothem(point, 8);
-
-//            host_to_client()(point);
-            
-            auto pusermenu = user()->menu_from_xml(this, filemanager_data()->m_strXmlPopup);
-            
-            auto ptrackpopup = ___new ::menu::track_popup(
-                                                             pusermenu,
-                                                             this,
-                                                             this,
-                                                             pointCursor,
-                                                             r);
-
-            puser->track_popup_menu(ptrackpopup);
+            trackXmlMenu(pszEmptyAreaMenuXml);
 
          }
 
-      }
-      else
-      {
+      });
 
-         auto pcontext = m_papplication;
-         
-         auto psession = pcontext->m_psession;
-         
-         auto puser = psession->m_puser;
-
-         auto pointCursor = pcontextmenu->m_pointHost;
-
-         auto r = ::i32_rectangle::square_with_center_and_apothem(point, 8);
-         
-         auto pmenu = puser->menu_from_xml(this, filemanager_data()->m_strXmlPopup);
-         
-         auto ptrackpopup = __initialize_new ::menu::track_popup(
-                                                             pmenu,
-                                                             this,
-                                                             this,
-                                                               pointCursor,
-                                                             r);
-
-         puser->track_popup_menu(ptrackpopup);
-
-      }
+      pmessage->m_bRet = true;
 
    }
 
@@ -577,23 +692,1183 @@ namespace filemanager
    }
 
 
+   void file_list::set_inplace_watch_suppressed(bool bSuppress)
+   {
+
+      if (m_bInPlaceWatchSuppressed == bSuppress)
+      {
+
+         return;
+
+      }
+
+      auto pdocument = filemanager_document();
+
+      if (pdocument)
+      {
+
+         if (bSuppress)
+         {
+
+            pdocument->m_iWatchRefreshSuppress.fetch_add(1, std::memory_order_relaxed);
+
+         }
+         else
+         {
+
+            pdocument->m_iWatchRefreshSuppress.fetch_sub(1, std::memory_order_relaxed);
+
+         }
+
+      }
+
+      m_bInPlaceWatchSuppressed = bSuppress;
+
+   }
+
+
+   ::collection::index file_list::calculate_insert_index_for_point(const ::i32_point & point)
+   {
+
+      auto iCount = fs_list()->m_pitema->get_size();
+
+      if (iCount <= 0)
+      {
+
+         return 0;
+
+      }
+
+      auto pointOffset = get_context_offset();
+
+      auto rectangleX = this->rectangle();
+
+      ::collection::index iInsert = iCount;
+
+      if (m_eview == impact_report)
+      {
+
+         ::f64 iy = point.y + pointOffset.y - (m_bHeaderCtrl ? m_dItemHeight : 0.0)
+            - (m_bTopText ? m_rectangleTopText.height() : 0.0);
+
+         if (m_dItemHeight > 0.0)
+         {
+
+            iInsert = (::collection::index)(iy / m_dItemHeight);
+
+         }
+
+      }
+      else if (m_eview == impact_list)
+      {
+
+         auto rectContent = rectangleX;
+
+         if (m_bTopText) rectContent.top += m_rectangleTopText.height();
+
+         if (m_bHeaderCtrl) rectContent.top += (::i32)m_dItemHeight;
+
+         if (m_dItemHeight > 0.0 && m_iItemWidth > 0)
+         {
+
+            ::i32 iRows = maximum<::i32>(1, (::i32)(rectContent.height() / m_dItemHeight));
+
+            ::i32 iCol = maximum<::i32>(0, (::i32)((point.x + pointOffset.x - m_iLeftMargin) / m_iItemWidth));
+
+            ::i32 iRow = maximum<::i32>(0, (::i32)((point.y + pointOffset.y - rectContent.top) / m_dItemHeight));
+
+            iInsert = iCol * iRows + iRow;
+
+         }
+
+      }
+      else if (m_eview == impact_icon)
+      {
+
+         auto sizeIconItem = get_list_icon_item_size();
+
+         auto iTop = m_bTopText ? m_rectangleTopText.height() : 0;
+
+         auto iAvailableWidth = maximum<::i32>(sizeIconItem.cx, rectangleX.width() - m_iLeftMargin - m_iRightMargin);
+
+         auto iCols = maximum<::i32>(1, iAvailableWidth / sizeIconItem.cx);
+
+         ::i32 ix = maximum<::i32>(0, minimum<::i32>(iCols - 1, (::i32)((point.x + pointOffset.x - m_iLeftMargin) / sizeIconItem.cx)));
+
+         ::i32 iy = maximum<::i32>(0, (::i32)((point.y + pointOffset.y - iTop) / sizeIconItem.cy));
+
+         iInsert = iy * iCols + ix;
+
+      }
+
+      if (iInsert < 0) iInsert = 0;
+
+      if (iInsert > iCount) iInsert = iCount;
+
+      return iInsert;
+
+   }
+
+
+   void file_list::_001OnUpdateNewFolderInPlace(::message::message * pmessage)
+   {
+
+      ::pointer<::message::command>pcommand(pmessage);
+
+      auto pitem = filemanager_item();
+
+      pcommand->enable(pitem && pitem->user_path().has_character());
+
+      pmessage->m_bRet = true;
+
+   }
+
+
+   void file_list::_001OnNewFolderInPlace(::message::message * pmessage)
+   {
+
+      pmessage->m_bRet = true;
+
+      auto pdirItem = filemanager_item();
+
+      if (!pdirItem || pdirItem->user_path().is_empty())
+      {
+
+         return;
+
+      }
+
+      if (_001IsEditing())
+      {
+
+         _001CancelEdit(_001GetEditControl());
+
+         _001HideEditingControls();
+
+      }
+
+      ::collection::index iInsert = 0;
+
+      {
+
+         synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         iInsert = calculate_insert_index_for_point(m_pointContextMenuClient);
+
+         auto pnewitem = create_newø<::userfs::list_item>();
+
+         pnewitem->m_strName = "";
+
+         // Use an existing regular folder path for final_path so the shell icon
+         // lookup resolves the regular folder icon instead of "unknown file type"
+         // for a not-yet-created path.
+         ::file::path pathFolderIcon;
+
+         for (::collection::index i = 0; i < fs_list()->m_pitema->get_size(); i++)
+         {
+
+            auto pexisting = fs_list_item(i);
+
+            if (pexisting && pexisting->is_folder() && pexisting->final_path().has_character())
+            {
+
+               pathFolderIcon = pexisting->final_path();
+
+               break;
+
+            }
+
+         }
+
+         if (pathFolderIcon.is_empty())
+         {
+
+            pathFolderIcon = pdirItem->final_path().has_character() ? pdirItem->final_path() : ::file::path("/tmp");
+
+         }
+
+         pnewitem->user_path_reference() = pdirItem->user_path() / "New Folder";
+
+         pnewitem->final_path_reference() = pathFolderIcon;
+
+         pnewitem->m_flags = ::file::e_flag_folder;
+
+         pnewitem->m_iImage = -1;
+
+         pnewitem->m_iImageSelected = -1;
+
+         fs_list()->m_pitema->insert_at(iInsert, pnewitem);
+
+      }
+
+      set_inplace_watch_suppressed(true);
+
+      on_update_item_count();
+
+      m_bCreatingNewFolderInPlace = true;
+
+      m_iInPlaceEditItem = iInsert;
+
+      ::user::interaction * pinteraction = _001GetControl(iInsert, m_iNameSubItem);
+
+      if (pinteraction)
+      {
+
+         _001PlaceControl(pinteraction, iInsert, true);
+
+      }
+      else
+      {
+
+         _001CancelEdit(nullptr);
+
+      }
+
+   }
+
+
    void file_list::_001OnFileRename(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      pmessage->m_bRet = true;
 
-      ::user::range range;
-
-      get_selection(range);
-
-      if (range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
+      if (_001IsEditing())
       {
 
-         ::collection::index iEditItem = range.ItemAt(0).get_lower_bound();
+         _001CancelEdit(_001GetEditControl());
+
+         _001HideEditingControls();
+
+      }
+
+      ::collection::index iEditItem = -1;
+
+      if (m_iContextMenuRenameItem >= 0)
+      {
+
+         iEditItem = m_iContextMenuRenameItem;
+
+         m_iContextMenuRenameItem = -1;
+
+      }
+      else
+      {
+
+         ::user::range range;
+
+         get_selection(range);
+
+         if (range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
+         {
+
+            iEditItem = range.ItemAt(0).get_lower_bound();
+
+         }
+
+      }
+
+      if (iEditItem >= 0)
+      {
+
+         if (iEditItem >= fs_list()->m_pitema->get_size())
+         {
+
+            m_bHasContextMenuRenamePoint = false;
+
+            return;
+
+         }
+
+         _001SelectItem(iEditItem);
+
+         m_bCreatingNewFolderInPlace = false;
+
+         m_iInPlaceEditItem = iEditItem;
+
+         set_inplace_watch_suppressed(true);
 
          ::user::interaction * pinteraction = _001GetControl(iEditItem, m_iNameSubItem);
 
-         _001PlaceControl(pinteraction, iEditItem);
+         if (pinteraction)
+         {
+
+            bool bPlaceCaretAtClick = m_bHasContextMenuRenamePoint;
+
+            ::i32_point pointClickClient = m_pointContextMenuClient;
+
+            m_bHasContextMenuRenamePoint = false;
+
+            _001PlaceControl(pinteraction, iEditItem, true);
+
+            if (bPlaceCaretAtClick)
+            {
+
+               ::pointer<::user::plain_edit> pedit = pinteraction;
+
+               if (pedit.is_set())
+               {
+
+                  ::i32_point pointInEdit = pointClickClient - pedit->const_layout().sketch().origin();
+
+                  ::pointer<file_list> plistHold = this;
+
+                  pedit->queue_graphics_call([plistHold, pedit, pointInEdit](::draw2d::graphics_pointer & pdraw2dgraphics)
+                  {
+
+                     if (plistHold->_001GetEditControl() != pedit.m_p)
+                     {
+
+                        return;
+
+                     }
+
+                     pedit->plain_edit_update(pdraw2dgraphics, true, -1);
+
+                     character_count iHit = pedit->plain_edit_line_char_hit_test(pdraw2dgraphics, pointInEdit.x, 0);
+
+                     character_count iLen = pedit->get_text_length();
+
+                     if (iHit < 0)
+                     {
+
+                        iHit = 0;
+
+                     }
+                     else if (iHit > iLen)
+                     {
+
+                        iHit = iLen;
+
+                     }
+
+                     pedit->set_text_selection(iHit, iHit, e_source_user);
+
+                     pedit->plain_edit_sel_to_column_x(pdraw2dgraphics, iHit, pedit->m_iColumnX);
+
+                     pedit->set_need_redraw();
+
+                     pedit->post_redraw();
+
+                  });
+
+               }
+
+            }
+
+         }
+         else
+         {
+
+            m_iInPlaceEditItem = -1;
+
+            set_inplace_watch_suppressed(false);
+
+         }
+
+      }
+
+   }
+
+
+   void file_list::_001OnShowControl(::user::interaction * pinteraction)
+   {
+
+      ::userfs::list::_001OnShowControl(pinteraction);
+
+      if (!pinteraction || pinteraction->m_item.m_iSubItem != m_iNameSubItem)
+      {
+
+         return;
+
+      }
+
+      ::collection::index iItem = pinteraction->m_item.m_iItem;
+
+      if (iItem < 0)
+      {
+
+         return;
+
+      }
+
+      m_iInPlaceEditItem = iItem;
+
+      set_inplace_watch_suppressed(true);
+
+      if (!m_bCreatingNewFolderInPlace)
+      {
+
+         ::pointer<::user::plain_edit> pedit = pinteraction;
+
+         if (pedit.is_set())
+         {
+
+            bool bIsFolder = false;
+
+            ::string strName;
+
+            {
+
+               synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+               if (iItem < fs_list()->m_pitema->get_size())
+               {
+
+                  auto pitem = fs_list_item(iItem);
+
+                  if (pitem)
+                  {
+
+                     bIsFolder = pitem->is_folder();
+
+                     strName = pitem->m_strName;
+
+                  }
+
+               }
+
+            }
+
+            character_count iCaretPos = strName.length();
+
+            if (!bIsFolder)
+            {
+
+               auto iDot = strName.rear_find_index('.');
+
+               if (iDot > 0)
+               {
+
+                  iCaretPos = iDot;
+
+               }
+
+            }
+
+            pedit->set_text_selection(iCaretPos, iCaretPos, e_source_user);
+
+         }
+
+      }
+
+   }
+
+
+   bool file_list::_001Validate(::user::interaction * pinteraction, ::payload & payload)
+   {
+
+      if (m_iInPlaceEditItem < 0)
+      {
+
+         return ::userfs::list::_001Validate(pinteraction, payload);
+
+      }
+
+      if (m_bValidationDialogOpen)
+      {
+
+         return false;
+
+      }
+
+      ::string strName = payload.as_string();
+
+      strName.trim();
+
+      bool bNewFolder = m_bCreatingNewFolderInPlace;
+
+      ::collection::index iEditItem = m_iInPlaceEditItem;
+
+      ::string strOldName;
+
+      bool bIsFolder = bNewFolder;
+
+      {
+
+         synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         if (iEditItem >= 0 && iEditItem < fs_list()->m_pitema->get_size())
+         {
+
+            auto pitem = fs_list_item(iEditItem);
+
+            if (pitem)
+            {
+
+               strOldName = pitem->m_strName;
+
+               bIsFolder = pitem->is_folder();
+
+            }
+
+         }
+
+      }
+
+      if (!bNewFolder && strName == strOldName)
+      {
+
+         payload = strName;
+
+         return true;
+
+      }
+
+      bool bExternalFocusLoss = m_bSavingOnExternalFocusLoss;
+
+      auto showValidationError = [&](const ::scoped_string & strReason)
+      {
+
+         m_bValidationDialogOpen = true;
+
+         ::pointer<file_list> plist = this;
+
+         ::pointer<::user::plain_edit> pedit = pinteraction;
+
+         auto pmsg = create_newø<::user_interface::message_box>();
+
+         ::string strMsg;
+
+         if (bExternalFocusLoss)
+         {
+
+            if (bNewFolder)
+            {
+
+               if (strName.has_character())
+               {
+
+                  strMsg = "Couldn't create folder \"" + strName + "\" because: " + ::string(strReason);
+
+               }
+               else
+               {
+
+                  strMsg = "Couldn't create folder because: " + ::string(strReason);
+
+               }
+
+            }
+            else
+            {
+
+               if (strName.has_character())
+               {
+
+                  strMsg = "Couldn't rename \"" + strOldName + "\" to \"" + strName + "\" because: " + ::string(strReason);
+
+               }
+               else
+               {
+
+                  strMsg = "Couldn't rename \"" + strOldName + "\" because: " + ::string(strReason);
+
+               }
+
+            }
+
+            pmsg->initialize_message_box(
+               strMsg,
+               bNewFolder ? "New Folder" : "Rename",
+               ::user::e_message_box_icon_exclamation);
+
+            pmsg->add_button("OK", e_dialog_result_ok, 'o');
+
+            pmsg->message_box_response_callback() = [plist](::user_interface::message_box * pmessagebox)
+            {
+
+               __UNREFERENCED_PARAMETER(pmessagebox);
+
+               plist->user_post([plist]()
+               {
+
+                  plist->m_bValidationDialogOpen = false;
+
+               });
+
+            };
+
+         }
+         else
+         {
+
+            if (bNewFolder)
+            {
+
+               if (strName.has_character())
+               {
+
+                  strMsg = "Cannot create folder \"" + strName + "\" because: " + ::string(strReason)
+                     + "\n\nChoose Edit to modify the name, or Cancel to exit.";
+
+               }
+               else
+               {
+
+                  strMsg = "Cannot create folder because: " + ::string(strReason)
+                     + "\n\nChoose Edit to enter a name, or Cancel to exit.";
+
+               }
+
+            }
+            else
+            {
+
+               if (strName.has_character())
+               {
+
+                  strMsg = "Cannot rename \"" + strOldName + "\" to \"" + strName + "\" because: " + ::string(strReason)
+                     + "\n\nChoose Edit to modify the name, Restore to restore the original name, or Cancel to exit rename mode.";
+
+               }
+               else
+               {
+
+                  strMsg = "Cannot rename \"" + strOldName + "\" because: " + ::string(strReason)
+                     + "\n\nChoose Edit to enter a name, Restore to restore the original name, or Cancel to exit rename mode.";
+
+               }
+
+            }
+
+            pmsg->initialize_message_box(
+               strMsg,
+               bNewFolder ? "New Folder" : "Rename",
+               ::user::e_message_box_icon_exclamation);
+
+            pmsg->add_button("Edit", e_dialog_result_retry, 'e');
+
+            if (!bNewFolder)
+            {
+
+               pmsg->add_button("Restore", e_dialog_result_yes, 'r');
+
+            }
+
+            pmsg->add_button("Cancel", e_dialog_result_cancel, 'c');
+
+            pmsg->message_box_response_callback() = [plist, pedit, bNewFolder, bIsFolder, strOldName](::user_interface::message_box * pmessagebox)
+            {
+
+               auto payloadResponse = pmessagebox->get_dialog_response();
+
+               plist->user_post([plist, pedit, bNewFolder, bIsFolder, strOldName, payloadResponse]()
+               {
+
+                  plist->m_bValidationDialogOpen = false;
+
+                  if (payloadResponse == e_dialog_result_cancel)
+                  {
+
+                     plist->_001CancelEdit(pedit);
+
+                     plist->_001HideEditingControls();
+
+                  }
+                  else if (payloadResponse == e_dialog_result_yes && !bNewFolder)
+                  {
+
+                     if (pedit.is_set() && plist->_001GetEditControl() == pedit.m_p)
+                     {
+
+                        pedit->set_text(strOldName, e_source_user);
+
+                        pedit->set_keyboard_focus();
+
+                        character_count iSelEnd = strOldName.length();
+
+                        if (!bIsFolder)
+                        {
+
+                           auto iDot = strOldName.rear_find_index('.');
+
+                           if (iDot > 0)
+                           {
+
+                              iSelEnd = iDot;
+
+                           }
+
+                        }
+
+                        pedit->set_text_selection(iSelEnd, iSelEnd, e_source_user);
+
+                        pedit->set_need_redraw();
+
+                        pedit->post_redraw();
+
+                     }
+
+                  }
+                  else
+                  {
+
+                     if (pedit.is_set() && plist->_001GetEditControl() == pedit.m_p)
+                     {
+
+                        character_count iBeg = 0;
+
+                        character_count iEnd = 0;
+
+                        pedit->get_text_selection(iBeg, iEnd);
+
+                        pedit->set_keyboard_focus();
+
+                        pedit->set_text_selection(iBeg, iEnd, e_source_user);
+
+                        pedit->set_need_redraw();
+
+                        pedit->post_redraw();
+
+                     }
+
+                  }
+
+               });
+
+            };
+
+         }
+
+         user_post([pmsg]()
+         {
+
+            pmsg->display(e_display_normal, {});
+
+         });
+
+      };
+
+      if (strName.is_empty())
+      {
+
+         showValidationError("the name cannot be empty.");
+
+         return false;
+
+      }
+
+      if (strName == "." || strName == "..")
+      {
+
+         showValidationError("\"" + strName + "\" is a reserved name.");
+
+         return false;
+
+      }
+
+      if (strName.contains("/") || strName.contains("\\") || strName.contains(":")
+         || strName.contains("*") || strName.contains("?") || strName.contains("\"")
+         || strName.contains("<") || strName.contains(">") || strName.contains("|"))
+      {
+
+         showValidationError("the name contains invalid characters (/, \\, :, *, ?, \", <, >, |).");
+
+         return false;
+
+      }
+
+      {
+
+         synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         auto iCount = fs_list()->m_pitema->get_size();
+
+         for (::collection::index i = 0; i < iCount; i++)
+         {
+
+            if (i == iEditItem) continue;
+
+            auto pexisting = fs_list_item(i);
+
+            if (pexisting && pexisting->m_strName == strName)
+            {
+
+               showValidationError("an item named \"" + strName + "\" already exists in this folder.");
+
+               return false;
+
+            }
+
+         }
+
+      }
+
+      payload = strName;
+
+      return true;
+
+   }
+
+
+   void file_list::_001SetSubItemText(::user::mesh_subitem * psubitem)
+   {
+
+      if (!psubitem || psubitem->m_iSubItem != m_iNameSubItem || m_iInPlaceEditItem < 0)
+      {
+
+         ::userfs::list::_001SetSubItemText(psubitem);
+
+         return;
+
+      }
+
+      bool bNewFolder = m_bCreatingNewFolderInPlace;
+
+      ::collection::index iItem = m_iInPlaceEditItem;
+
+      ::string strNewName = psubitem->m_strText;
+
+      strNewName.trim();
+
+      m_bCreatingNewFolderInPlace = false;
+
+      m_iInPlaceEditItem = -1;
+
+      if (bNewFolder)
+      {
+
+         {
+
+            synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+            if (iItem >= 0 && iItem < fs_list()->m_pitema->get_size())
+            {
+
+               fs_list_item(iItem)->m_strName = strNewName;
+
+            }
+
+         }
+
+         auto pdirItem = filemanager_item();
+
+         if (!pdirItem || pdirItem->user_path().is_empty())
+         {
+
+            return;
+
+         }
+
+         ::file::path pathParent = pdirItem->user_path();
+
+         ::pointer<file_list> plist = this;
+
+         ::pointer<::filemanager::document> pdocument = filemanager_document();
+
+         pdocument->fork([plist, pdocument, pathParent, strNewName]()
+         {
+
+            ::string strError;
+
+            try
+            {
+
+               pdocument->filemanager_data()->fs_data()->create_folder(pathParent, strNewName);
+
+            }
+            catch (const ::exception & exception)
+            {
+
+               strError = exception.get_message();
+
+            }
+            catch (...)
+            {
+
+               strError = "Could not create the folder.";
+
+            }
+
+            plist->user_post([plist, pdocument, strError]()
+            {
+
+               if (strError.has_character())
+               {
+
+                   REFDBG_POINTER(plist);
+
+                  auto pmsg = plist->create_newø<::user_interface::message_box>();
+
+                  pmsg->initialize_message_box(strError, "New Folder");
+
+                  pmsg->display(e_display_normal, {});
+
+               }
+
+               pdocument->_001Refresh();
+
+            });
+
+         });
+
+      }
+      else
+      {
+
+         ::file::path filepathOld;
+
+         ::string strOldName;
+
+         {
+
+            synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+            if (iItem < 0 || iItem >= fs_list()->m_pitema->get_size())
+            {
+
+               return;
+
+            }
+
+            auto pitem = fs_list_item(iItem);
+
+            strOldName = pitem->m_strName;
+
+            filepathOld = pitem->final_path();
+
+         }
+
+         if (strNewName == strOldName)
+         {
+
+            return;
+
+         }
+
+         if (filepathOld.case_insensitive_begins("google-drive://"))
+         {
+
+            {
+
+               synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+               if (iItem >= 0 && iItem < fs_list()->m_pitema->get_size())
+               {
+
+                  auto pitem = fs_list_item(iItem);
+
+                  if (pitem)
+                  {
+
+                     pitem->m_strName = strNewName;
+
+                  }
+
+               }
+
+            }
+
+            set_need_redraw();
+
+            post_redraw();
+
+            ::pointer<file_list> plist = this;
+
+            ::pointer<::filemanager::document> pdocument = filemanager_document();
+
+            auto & pfactory = system()->factory("folder", "google_drive");
+
+            auto pfolder = createø<::folder>(pfactory);
+
+            pdocument->fork([plist, pfolder, filepathOld, strOldName, strNewName]()
+            {
+
+               ::string strError;
+
+               try
+               {
+
+                  pfolder->rename_item(filepathOld, strNewName);
+
+               }
+               catch (const ::exception & exception)
+               {
+
+                  strError = exception.get_message();
+
+               }
+               catch (...)
+               {
+
+                  strError = "Could not rename the item on Google Drive.";
+
+               }
+
+               if (strError.has_character())
+               {
+
+                  plist->user_post([plist, filepathOld, strOldName, strError]()
+                  {
+
+                     {
+
+                        synchronous_lock synchronouslock(plist->fs_list()->synchronization(), plist.m_p, __FILE__, __LINE__);
+
+                        for (::collection::index i = 0; i < plist->fs_list()->m_pitema->get_size(); i++)
+                        {
+
+                           auto pitem = plist->fs_list_item(i);
+
+                           if (pitem && pitem->final_path() == filepathOld)
+                           {
+
+                              pitem->m_strName = strOldName;
+
+                              break;
+
+                           }
+
+                        }
+
+                     }
+
+                     plist->set_need_redraw();
+
+                     plist->post_redraw();
+
+                     REFDBG_POINTER(plist);
+
+                     auto pmsg = plist->create_newø<::user_interface::message_box>();
+
+                     pmsg->initialize_message_box(strError, "Rename");
+
+                     pmsg->display(e_display_normal, {});
+
+                  });
+
+               }
+
+            });
+
+            return;
+
+         }
+
+         try
+         {
+
+            ::file::path filepathNew = filepathOld.folder() / strNewName;
+
+            path_system()->rename(filepathNew, filepathOld);
+
+            {
+
+               synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+               if (iItem >= 0 && iItem < fs_list()->m_pitema->get_size())
+               {
+
+                  auto pitem = fs_list_item(iItem);
+
+                  if (pitem)
+                  {
+
+                     pitem->m_strName = strNewName;
+
+                     pitem->set_user_path(pitem->user_path().folder() / strNewName);
+
+                     filepathNew.flags() |= ::file::e_flag_final_path;
+
+                     filepathNew.m_etype = filepathOld.m_etype;
+
+                     pitem->set_final_path(filepathNew);
+
+                  }
+
+               }
+
+            }
+
+            set_need_redraw();
+
+            post_redraw();
+
+         }
+         catch (const ::exception & exception)
+         {
+
+            auto pmsg = create_newø<::user_interface::message_box>();
+
+            pmsg->initialize_message_box(exception.get_message(), "Rename");
+
+            user_post([pmsg]()
+            {
+
+               pmsg->display(e_display_normal, {});
+
+            });
+
+         }
+         catch (...)
+         {
+
+            auto pmsg = create_newø<::user_interface::message_box>();
+
+            pmsg->initialize_message_box("Could not rename the item.", "Rename");
+
+            user_post([pmsg]()
+            {
+
+               pmsg->display(e_display_normal, {});
+
+            });
+
+         }
+
+      }
+
+   }
+
+
+   void file_list::_001HideEditingControls()
+   {
+
+      ::userfs::list::_001HideEditingControls();
+
+      m_iInPlaceEditItem = -1;
+
+      set_inplace_watch_suppressed(false);
+
+   }
+
+
+   void file_list::_001CancelEdit(::user::interaction * pinteraction)
+   {
+
+      __UNREFERENCED_PARAMETER(pinteraction);
+
+      bool bNewFolder = m_bCreatingNewFolderInPlace;
+
+      ::collection::index iItem = m_iInPlaceEditItem;
+
+      m_bCreatingNewFolderInPlace = false;
+
+      m_iInPlaceEditItem = -1;
+
+      set_inplace_watch_suppressed(false);
+
+      if (bNewFolder && iItem >= 0)
+      {
+
+         {
+
+            synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+            if (iItem < fs_list()->m_pitema->get_size())
+            {
+
+               fs_list()->m_pitema->erase_at(iItem);
+
+            }
+
+         }
+
+         on_update_item_count();
+
+         set_need_redraw();
+
+         post_redraw();
 
       }
 
@@ -1411,16 +2686,18 @@ namespace filemanager
 
       }
 
-      if (filemanager_data()->m_bListSelection)
+      if (filemanager_data()->m_bListSelection && m_eview != impact_icon)
       {
+
+         ::i32 iIconSize = maximum(get_document()->m_iIconSize, filemanager_data()->m_iIconSize);
 
          m_iSelectionSubItem = i;
          m_iIconSubItem = m_iSelectionSubItem;
          auto pcolumn = new_list_column();
-         pcolumn->m_iWidth = filemanager_data()->m_iIconSize;
+         pcolumn->m_iWidth = iIconSize + 8;
          //pcolumn->m_bIcon                = true;
-         pcolumn->m_sizeIcon.cx = filemanager_data()->m_iIconSize;
-         pcolumn->m_sizeIcon.cy = filemanager_data()->m_iIconSize;
+         pcolumn->m_sizeIcon.cx = iIconSize;
+         pcolumn->m_sizeIcon.cy = iIconSize;
          //pcolumn->m_iControl = -1;
          pcolumn->m_strDataKey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = false;
@@ -1441,33 +2718,40 @@ namespace filemanager
          m_iSelectionSubItem = -1;
       }
 
-      bool bRenameEdit = false;
+      bool bRenameEdit = true;
 
       {
 
-         auto pcolumn = new_list_column();
+         ::pointer<::user::list_column> pcolumn;
 
          if (bRenameEdit)
          {
 
-            auto pinteraction = create_newø <  user::plain_edit > ();
-            //pinteraction->set_control_type(user::e_control_type_edit_plain_text);
+            auto pinteraction = create_newø < ::user::plain_edit > ();
+            pinteraction->m_econtroltype = ::user::e_control_type_edit_plain_text;
             pinteraction->m_strDataKey20 = "FILE_MANAGER_ID_FILE_NAME";
-            //pinteraction->id() = _vms::FILE_MANAGER_ID_FILE_NAME;
             pinteraction->set_data_type(user::e_control_data_type_string);
             pinteraction->add_function(user::e_control_function_vms_data_edit);
             pinteraction->m_type = ::type<::user::plain_edit>();
-            //pinteraction->m_iSubItem = i;
             pinteraction->id() = 1000 + i;
-            ::collection::index iControl = _001AddControl(pinteraction);
-            pcolumn->id() = pinteraction->id();
+            pinteraction->display(e_display_none);
+            pcolumn = new_list_column_with_control(pinteraction);
+
+         }
+         else
+         {
+
+            pcolumn = new_list_column();
 
          }
 
 
 
          m_iNameSubItem = i;
-         m_iIconSubItem = m_iNameSubItem;
+         if (m_iSelectionSubItem < 0)
+         {
+            m_iIconSubItem = m_iNameSubItem;
+         }
          pcolumn->m_iSubItem = m_iNameSubItem;
          if (filemanager_data()->m_bListText)
          {
@@ -1484,9 +2768,9 @@ namespace filemanager
          //pcolumn->m_bIcon                = true;
          pcolumn->m_sizeIcon.cx = get_document()->m_iIconSize;
          pcolumn->m_sizeIcon.cy = get_document()->m_iIconSize;
-         pcolumn->m_text = pcontext->__text("file:Name");
+         pcolumn->m_text = pcontext->__text("text://file/Name");
          pcolumn->m_strDataKey = "FILE_MANAGER_ID_FILE_NAME";
-         pcolumn->m_bEditOnSecondClick = true;
+         pcolumn->m_bEditOnSecondClick = false;
          ::i32 iIconSize = get_document()->m_iIconSize;
 
          auto pcontext = m_papplication;
@@ -1495,9 +2779,18 @@ namespace filemanager
          
          auto puser = psession->m_puser;
 
-         pcolumn->m_pimagelist = puser->shell()->GetImageList(iIconSize);
+         if (m_iSelectionSubItem < 0)
+         {
+            pcolumn->m_pimagelist = puser->shell()->GetImageList(iIconSize);
 
-         pcolumn->m_pimagelistHover = puser->shell()->GetImageListHover(iIconSize);
+            pcolumn->m_pimagelistHover = puser->shell()->GetImageListHover(iIconSize);
+         }
+         else
+         {
+            pcolumn->m_pimagelist = nullptr;
+
+            pcolumn->m_pimagelistHover = nullptr;
+         }
 
       }
 
@@ -1515,7 +2808,7 @@ namespace filemanager
 
          fs_list()->m_iSizeSubItem = m_iSizeSubItem;
 
-         pcolumn->m_text = pcontext->__text("file:Size");
+         pcolumn->m_text = pcontext->__text("text://file/Size");
 
          pcolumn->m_sizeIcon.cx = 0;
 
@@ -2113,6 +3406,17 @@ namespace filemanager
 
       if (!m_bStatic && ptopic->id() == "filemanager_browse_started")
       {
+         if (_001IsEditing())
+         {
+            auto pcontrol = _001GetEditControl();
+            m_bSavingOnExternalFocusLoss = true;
+            if (!_001SaveEdit(pcontrol))
+            {
+               _001CancelEdit(pcontrol);
+            }
+            m_bSavingOnExternalFocusLoss = false;
+            _001HideEditingControls();
+         }
          m_bFolderLoading = true;
          m_bFolderLoadFailed = false;
          payload("filemanager_browse_error") = "";
@@ -2148,6 +3452,15 @@ namespace filemanager
       ::filemanager_impact_base::handle(ptopic, phandlercontext);
 
       ::userfs::list::handle(ptopic, phandlercontext);
+
+      ::user::form_list::handle(ptopic, phandlercontext);
+
+      if (ptopic->m_bRet)
+      {
+
+         return;
+
+      }
 
       auto papp = get_app();
 

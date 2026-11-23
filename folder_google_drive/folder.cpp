@@ -184,6 +184,34 @@ namespace folder_google_drive
       return pathCreated;
    }
 
+   ::file::path folder::rename_item(const ::file::path & pathItem, const ::scoped_string & scopedstrName)
+   {
+      _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      ::string strName(scopedstrName);
+      strName.trim();
+      if (strName.is_empty() || strName == "." || strName == ".." || strName.contains("/") || strName.contains("\\"))
+         throw ::exception(error_bad_argument, "Enter a valid name without path separators");
+      auto strId = file_id(pathItem);
+      if (strId == "root")
+         throw ::exception(error_bad_argument, "Cannot rename the Google Drive root folder");
+      write_api();
+      ::property_set set;
+      set["http_method"] = "POST";
+      set["headers"]["X-HTTP-Method-Override"] = "PATCH";
+      auto & body = set["post"]["network_payload"];
+      body["name"] = strName;
+      auto result = api_request(m_papiclientWrite,
+         "https://www.googleapis.com/drive/v3/files/" + strId
+         + "?supportsAllDrives=true&fields=id,name,mimeType,size,version,modifiedTime,parents", set);
+      try
+      {
+         directory_system()->create(m_pathMetadata / "files");
+         file()->put_text(m_pathMetadata / "files" / (strId + ".json"), result.get_network_payload());
+      }
+      catch (...) { warning() << "The item was renamed, but its local metadata could not be cached"; }
+      return pathItem;
+   }
+
    ::api_client * folder::write_api()
    {
       // Request write permission only for an explicit mutation.

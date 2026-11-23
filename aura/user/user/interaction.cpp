@@ -3,6 +3,9 @@
 #ifndef MORE_LOG
 #define MORE_LOG 0
 #endif
+#ifndef DEEP_LOG_HERE
+#define DEEP_LOG_HERE 0
+#endif
 //#include "interaction_child.h"
 #include "scroll_state.h"
 #include "alpha_source.h"
@@ -6275,6 +6278,7 @@ namespace user
                   if (puserinteraction->has_destroying_flag() || !puserinteraction->is_window())
                   {
 
+#if DEEP_LOG_HERE >= 6
                      if(!puserinteraction->is_window())
                      {
                         informationf("trying to draw !window type=%s flags=%llx", ::platform::type(puserinteraction).name().c_str(), (unsigned long long)puserinteraction->m_ewindowflag);
@@ -6283,6 +6287,7 @@ namespace user
 
                         
                      }
+#endif
 
                      continue;
 
@@ -30466,7 +30471,8 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
       {
 
          if (!::is_null(puserinteraction->get_parent())
-         || (windowing() && windowing()->has_readily_gettable_absolute_coordinates()))
+            || (puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning)
+            || (windowing() && windowing()->has_readily_gettable_absolute_coordinates()))
          {
 
             point += puserinteraction->const_layout().origin(elayout);
@@ -30971,16 +30977,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    bool interaction::has_function(enum_control_function econtrolfunction)
    {
 
-      //if (m_pdescriptor.is_null())
-      //{
-
-      //   return false;
-
-      //}
-
-      //return ::user::interaction_base::has_function(econtrolfunction);
-
-      return false;
+      return m_flagsfunction.has(econtrolfunction);
 
    }
 

@@ -174,26 +174,8 @@ namespace netserver
 
                   while (m_psockethandlerIncoming->get_count() > 0 && task_get_run())
                   {
-                     
-#if defined(_DEBUG)
 
-#if THIS_FILE_DEBUG_LEVEL > 6
-                     
-                     printf_line("incoming_socket_thread select 30s incoming socket id %d", m_pincomingsocket->GetSocketId());
-                     
-                     m_psockethandlerIncoming->select(30, 0);
-                     
-#else
-                     
-                     m_psockethandlerIncoming->select(5, 0);
-                     
-#endif
-
-#else
-
-                     m_psockethandlerIncoming->select(1, 0);
-                     
-#endif
+                     m_psockethandlerIncoming->select(0, 200000);
 
                   }
 
@@ -201,7 +183,12 @@ namespace netserver
 
                }
 
-               sleep(5000_ms);
+               if (task_get_run())
+               {
+
+                  sleep(5000_ms);
+
+               }
 
             }
 

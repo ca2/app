@@ -1,5 +1,6 @@
 #include "platform.h"
 #include "script_cache.h"
+#include "browser_build_error.h"
 #include "script_manager.h"
 #include "script_instance.h"
 #include "ds_script.h"
@@ -526,6 +527,13 @@ namespace dynamic_source
 
             throw exception;
 
+         }
+         catch (const browser_build_error &)
+         {
+            slScript._lock();
+            pscript->m_bBuilding = false;
+            pscript->m_bShouldBuild = true;
+            throw;
          }
          catch (const ::exception& exception)
          {

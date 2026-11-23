@@ -104,9 +104,12 @@ mutex::mutex() //:
 {
 
 #if defined(WINDOWS)
+   m_bOwner = true;
    m_handle = ::CreateMutexExW(nullptr, nullptr, 0, MUTEX_ALL_ACCESS);
    if (!m_handle)
    {
+      const auto dwError = ::GetLastError();
+      ::warningf("CreateMutexExW failed for an unnamed mutex (Win32 error %lu)", dwError);
       throw ::exception(error_resource);
    }
 
@@ -184,6 +187,8 @@ mutex::mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pszN
    (LPSECURITY_ATTRIBUTES)nullptr : (LPSECURITY_ATTRIBUTES)psecurityattributes->get_os_security_attributes(), pszName ? wstrName.c_str() : nullptr, 0, MUTEX_ALL_ACCESS);
    if (!handle)
    {
+      const auto dwError = ::GetLastError();
+      ::warningf("CreateMutexExW failed for a mutex with explicit attributes (Win32 error %lu)", dwError);
       throw ::exception(error_resource);
    }
    ::CloseHandle(m_handle);

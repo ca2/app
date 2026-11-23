@@ -209,7 +209,7 @@ namespace httpd
          }
          catch (...)
          {
-
+            sleep(5000_ms);
          }
 
       }

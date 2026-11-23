@@ -8,6 +8,7 @@
 #include "script_instance.h"
 ////#include "acme/exception/exception.h"
 #include "acme/exception/parsing.h"
+#include "browser_source.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/filesystem/file/memory_file.h"
 //#include "acme/filesystem/file/text_stream.h"
@@ -1223,6 +1224,32 @@ namespace dynamic_source
          }
 
       }
+      string strBrowserSource;
+      string strBrowserLoader;
+      if (strSource.substr(0, 5) == "<?cpp")
+      {
+         m_pscriptmanager2->prepare_browser_page(pscript->m_strSourcePath);
+         strSource = file()->as_string(pscript->m_strSourcePath);
+      }
+      if (extract_browser_source(strSource, strBrowserSource))
+      {
+         string strRelative = pscript->m_strSourcePath;
+         string strRoot = m_pscriptmanager2->m_pathNetnodePath / "net";
+         strRelative.find_replace("\\", "/");
+         strRoot.find_replace("\\", "/");
+         strRoot += "/";
+         if (!strRelative.case_insensitive_begins_eat(strRoot)
+            || strRelative.contains("..") || !strRelative.ends_eat(".ds"))
+            throw ::parsing_exception("Browser page must be a .ds file within the net root");
+
+         auto pathAsset = m_pscriptmanager2->m_pathNetnodePath / "net/js/front_end_ca2" / strRelative;
+         if (!file()->exists(pathAsset + ".source") || !file()->exists(pathAsset + ".loader")
+            || file()->as_string(pathAsset + ".source") != strBrowserSource)
+            throw ::parsing_exception("Browser C++ assets missing or stale; run tools/front-end/build.py");
+
+         strBrowserLoader = "js/front_end_ca2/" + strRelative + ".loader";
+      }
+
       pscript->m_strClassNamePrefix = pscript->m_strSourcePath;
       pscript->m_strClassNamePrefix.find_replace("/", "_");
       pscript->m_strClassNamePrefix.find_replace("\\", "_");
@@ -1349,6 +1376,10 @@ namespace dynamic_source
          iStart = iLastEnd;
       }
       strDest += get_ds_print(strSource.substr(iStart));
+
+      if (strBrowserLoader.has_character())
+         strDest += "print(file()->as_string(manager()->m_pathNetnodePath / \"net\" / \""
+            + escape(strBrowserLoader) + "\"));\r\n";
 
       strDest += "//End parsed user script\r\n";
       //strDest += "return ::success;\r\n";

@@ -1,5 +1,6 @@
 #include "platform.h"
 #include "script_manager.h"
+#include "browser_build_error.h"
 #include "script_cache.h"
 #include "script_compiler.h"
 #include "script_instance.h"
@@ -8,6 +9,7 @@
 #include "session.h"
 #include "httpd_socket.h"
 #include "acme/exception/exit.h"
+#include "acme/exception/parsing.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
@@ -40,6 +42,8 @@
 
 namespace dynamic_source
 {
+   static string escape_diagnostics(string text);
+
 
 
 
@@ -157,6 +161,7 @@ namespace dynamic_source
       m_pathNetseedDsCa2Path = path_system()->logical_path(m_pathBase / "netnodenet/net");
 
       m_pmutexShouldBuild = node()->create_mutex();
+      m_pmutexBrowserPreparation = node()->create_mutex();
       m_pmutexSession = node()->create_mutex();
       m_pmutexOutLink = node()->create_mutex();
       m_pmutexInLink = node()->create_mutex();
@@ -177,6 +182,9 @@ namespace dynamic_source
       //estatus = 
 
       init1();
+
+      m_bPrepareBrowserCpp = get_app()->is_true("prepare_browser_cpp");
+      if (m_bPrepareBrowserCpp) start_browser_preparation();
 
       //if (!estatus)
       //{
@@ -228,12 +236,210 @@ namespace dynamic_source
    void script_manager::destroy()
    {
 
+      {
+         synchronous_lock lock(m_pmutexBrowserPreparation);
+         if (m_pprocessBrowserBuilder)
+            m_pprocessBrowserBuilder->kill();
+         m_pprocessBrowserBuilder.release();
+      }
+
       m_pcache.defer_destroy_and_release();
 
       m_pcompiler.defer_destroy_and_release();
 
       ::channel::destroy();
 
+   }
+
+
+   // Call with the manager lock held.
+   void script_manager::expire_debug_access_requests()
+   {
+      for (auto index = m_debugAccessRequests.get_count(); index > 0; --index)
+      {
+         auto & request = m_debugAccessRequests[index - 1];
+         if (request.approved ? request.approved_at.elapsed() >= 15_minutes
+                              : request.requested.elapsed() >= 5_minutes)
+            m_debugAccessRequests.erase_at(index - 1);
+      }
+   }
+
+   ::i64 script_manager::request_debug_access(const string & session, const string & address)
+   {
+      if (session.is_empty() || address.is_empty()) return 0;
+      synchronous_lock lock(synchronization());
+      expire_debug_access_requests();
+      for (const auto & request : m_debugAccessRequests)
+      {
+         if (request.session == session && request.address == address) return request.id;
+      }
+      if (m_debugAccessRequests.get_count() >= 16) return 0;
+      debug_access_request request;
+      request.id = ++m_nextDebugAccessRequest;
+      request.session = session;
+      request.address = address;
+      request.requested.Now();
+      m_debugAccessRequests.add(request);
+      return request.id;
+   }
+
+   bool script_manager::debug_access_approved(const string & session, const string & address)
+   {
+      if (session.is_empty() || address.is_empty()) return false;
+      synchronous_lock lock(synchronization());
+      expire_debug_access_requests();
+      for (const auto & request : m_debugAccessRequests)
+      {
+         if (request.approved && request.session == session && request.address == address) return true;
+      }
+      return false;
+   }
+
+   bool script_manager::approve_debug_access(::i64 id)
+   {
+      synchronous_lock lock(synchronization());
+      expire_debug_access_requests();
+      for (auto & request : m_debugAccessRequests)
+      {
+         if (request.id != id || request.approved) continue;
+         request.approved = true;
+         request.approved_at.Now();
+         return true;
+      }
+      return false;
+   }
+
+   bool script_manager::delete_pending_debug_access(::i64 id)
+   {
+      synchronous_lock lock(synchronization());
+      expire_debug_access_requests();
+      for (::collection::index index = 0; index < m_debugAccessRequests.get_count(); ++index)
+      {
+         const auto & request = m_debugAccessRequests[index];
+         if (request.id == id && !request.approved)
+         {
+            m_debugAccessRequests.erase_at(index);
+            return true;
+         }
+      }
+      return false;
+   }
+
+   void script_manager::pending_debug_access(::array < debug_access_request > & requests)
+   {
+      synchronous_lock lock(synchronization());
+      expire_debug_access_requests();
+      requests.erase_all();
+      for (const auto & request : m_debugAccessRequests)
+      {
+         if (!request.approved)
+         {
+            auto entry = request;
+            entry.session.empty();
+            requests.add(entry);
+         }
+      }
+   }
+
+
+   string script_manager::browser_build_command()
+   {
+      auto pathRoot = m_pathNetnodePath / "net";
+      auto pathBuilder = pathRoot / "tools/front-end/build.py";
+      if (!file()->exists(pathBuilder))
+         throw ::parsing_exception("Browser builder missing: tools/front-end/build.py");
+
+      string strPython = node()->get_environment_variable("NETNODE_BROWSER_PYTHON");
+      auto pathConfiguration = pathRoot / "tools/front-end/toolchain.local.json";
+      if (strPython.is_empty() && file()->exists(pathConfiguration))
+         strPython = file()->as_network_payload(pathConfiguration)["python"].as_string();
+      if (strPython.is_empty()) strPython = "python";
+      if (strPython.contains("\""))
+         throw ::parsing_exception("Browser Python setting must be an executable path, without arguments");
+      return "\"" + strPython + "\" -u \"" + pathBuilder + "\" --automatic --parent-pid "
+         + ::as_string(node()->current_process_identifier());
+   }
+
+
+   void script_manager::start_browser_preparation()
+   {
+      try
+      {
+         ::operating_system::process_pointer process(e_create, this);
+         if (!process->create_child_process(browser_build_command() + " --watch", true, m_pathNetnodePath / "net"))
+            throw ::parsing_exception("Unable to start automatic browser preparation; configure NETNODE_BROWSER_PYTHON");
+         {
+            synchronous_lock lock(m_pmutexBrowserPreparation);
+            m_pprocessBrowserBuilder = process;
+         }
+         fork([this, process]()
+         {
+            while (::task_get_run())
+            {
+               auto strOutput = process->read();
+               if (strOutput.has_character()) informationf("Browser preparation: %s", strOutput.c_str());
+               if (process->has_exited())
+               {
+                  auto strRemaining = process->read();
+                  if (strRemaining.has_character()) informationf("Browser preparation: %s", strRemaining.c_str());
+                  break;
+               }
+               preempt(100_ms);
+            }
+            if (!process->has_exited()) process->kill();
+         });
+      }
+      catch (...)
+      {
+         // Regular pages remain usable even if the optional toolchain is absent.
+         warningf("Automatic browser preparation unavailable; check Python and Emscripten configuration");
+      }
+   }
+
+
+   void script_manager::prepare_browser_page(const ::file::path & pathPage)
+   {
+      if (!m_bPrepareBrowserCpp) return;
+      synchronous_lock lock(m_pmutexBrowserPreparation);
+      string command;
+      try
+      {
+         command = browser_build_command();
+      }
+      catch (const ::parsing_exception & error)
+      {
+         throw browser_build_error(error.get_message());
+      }
+
+      ::operating_system::process_pointer process(e_create, this);
+      if (!process->create_child_process(command + " \"" + pathPage + "\"", true, m_pathNetnodePath / "net"))
+         throw browser_build_error("Unable to start the browser compiler. Check the Python configuration.");
+
+      string diagnostics;
+      auto collect = [&](const string & output)
+      {
+         if (output.is_empty()) return;
+         informationf("Browser compilation: %s", output.c_str());
+         constexpr character_count maximum = 64 * 1024;
+         if (diagnostics.length() < maximum)
+            diagnostics += output.left(maximum - diagnostics.length());
+      };
+
+      auto start = ::time::now();
+      while (::task_get_run())
+      {
+         collect(process->read());
+         if (process->has_exited())
+         {
+            collect(process->read());
+            if (process->m_exitstatus.m_iExitCode == 0) return;
+            throw browser_build_error("Browser build failed.\n\n" + diagnostics);
+         }
+         if (start.elapsed() > 180_s) break;
+         preempt(100_ms);
+      }
+      process->kill();
+      throw browser_build_error("Browser compilation cancelled or timed out.\n\n" + diagnostics);
    }
 
 
@@ -528,7 +734,7 @@ namespace dynamic_source
       if (pinstance->m_iDebug > 0)
       {
 
-         pinstance->print(pinstance->m_pscript1->m_strError);
+         pinstance->print("<pre>" + escape_diagnostics(pinstance->m_pscript1->m_strError) + "</pre>");
 
       }
 
@@ -608,6 +814,12 @@ namespace dynamic_source
          try
          {
 
+            if (pinstance->m_pscriptmain1->m_iDebug > 0)
+            {
+               pinstance->outheader("Cache-Control") = "private, no-store";
+               pinstance->outheader("Pragma") = "no-cache";
+               pinstance->outheader("Referrer-Policy") = "no-referrer";
+            }
             pinformation->m_itema.add(pinstance->m_itemN40585);
 
          }
@@ -716,6 +928,15 @@ namespace dynamic_source
    }
 
 
+   static string escape_diagnostics(string text)
+   {
+      text.find_replace("&", "&amp;");
+      text.find_replace("<", "&lt;");
+      text.find_replace(">", "&gt;");
+      return text;
+   }
+
+
    ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::file_system_cache_item & pfilesystemcacheitem)
    {
 
@@ -768,7 +989,23 @@ namespace dynamic_source
 
                timeGetHereStart.Now();
 
-               pinstance = get(pfilesystemcacheitem, pscript);
+               try
+               {
+                  pinstance = get(pfilesystemcacheitem, pscript);
+               }
+               catch (const browser_build_error & error)
+               {
+                  if (pscriptmain1->m_iDebug > 0)
+                  {
+                     pinstanceParent->outheader("Cache-Control") = "private, no-store";
+                     pinstanceParent->outheader("Referrer-Policy") = "no-referrer";
+                     pinstanceParent->output_file()->print(
+                        "<section aria-label=\"WebAssembly build diagnostics\"><h2>WebAssembly build diagnostics</h2>"
+                        "<p>Compilation or linking failed. Compiler output follows.</p><pre>"
+                        + escape_diagnostics(error.get_message()) + "</pre></section>");
+                  }
+                  return false;
+               }
 
                timeGetHereEnd.Now();
 
@@ -881,7 +1118,7 @@ namespace dynamic_source
                            if (pdsscript->m_strError.has_character())
                            {
 
-                              pinstanceParent->output_file()->print(pscript->m_strError);
+                              pinstanceParent->output_file()->print("<pre>" + escape_diagnostics(pscript->m_strError) + "</pre>");
 
                            }
 

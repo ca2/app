@@ -9,6 +9,7 @@
 #include "acme/filesystem/filesystem/file_system_cache_item.h"
 #include "acme/filesystem/filesystem/file_system_cache.h"
 #include "acme/filesystem/filesystem/file_system_real_path_interface.h"
+#include "acme/operating_system/process_process.h"
 
 
 namespace dynamic_source
@@ -145,6 +146,28 @@ namespace dynamic_source
 
 
       bool                                                  m_bCompiler;
+      struct debug_access_request
+      {
+         ::i64 id = 0;
+         string session;
+         string address;
+         class ::time requested;
+         class ::time approved_at;
+         bool approved = false;
+      };
+
+      ::array < debug_access_request > m_debugAccessRequests;
+      ::i64 m_nextDebugAccessRequest = 0;
+      ::i64 request_debug_access(const ::string & session, const ::string & address);
+      bool debug_access_approved(const ::string & session, const ::string & address);
+      bool approve_debug_access(::i64 id);
+      bool delete_pending_debug_access(::i64 id);
+      void pending_debug_access(::array < debug_access_request > & requests);
+      void expire_debug_access_requests();
+
+      bool                                                  m_bPrepareBrowserCpp = false;
+      ::pointer < ::parallelization::mutex >                 m_pmutexBrowserPreparation;
+      ::operating_system::process_pointer                    m_pprocessBrowserBuilder;
       class ::time                                          m_timeSessionExpiration;
       ///::pointer < ::programming::file_system_cache >        m_pfilesystemcache;
 
@@ -162,6 +185,10 @@ namespace dynamic_source
 
 
       virtual void init1();
+
+      void start_browser_preparation();
+      void prepare_browser_page(const ::file::path & pathPage);
+      string browser_build_command();
 
 
       ::file_system_real_path_interface* get_file_system_real_path_interface() override;

@@ -71,23 +71,29 @@ namespace user
 
       m_pmenuitem = pmenuitem;
 
+      m_econtroltype = e_control_type_menu;
+
       m_ewindowflag += e_window_flag_arbitrary_positioning;
 
-      //m_econtroltype = e_control_type_menu;
+      m_bCloseButton = false;
+
+      m_bCloseParentOnClose = true;
 
       m_bScreenHint = false;
       m_bCursorHint = false;
       m_iHoverSubMenu = -1;
       m_puserinteractionParent = nullptr;
       m_pchannelNotify = nullptr;
-      m_pmenuParent = pmenuitem->m_pmenu;
+      m_pmenuParent = pmenuitem ? pmenuitem->m_pmenu : nullptr;
+      m_pmenuitemSub = nullptr;
       //m_psubmenu = nullptr;
       m_bAutoDelete = true;
       m_bOwnItem = false;
       m_bInline = false;
       m_bMenuOk = false;
 
-
+      m_bEnableDragClient = true;
+      m_bDefaultParentMouseMessageHandling = true;
 
    }
 
@@ -1318,6 +1324,15 @@ namespace user
       if (pmenuitem)
       {
 
+         if (m_pitemClose && pmenuitem == m_pitemClose)
+         {
+
+            defer_close();
+
+            return true;
+
+         }
+
          if (pmenuitem->m_bPopup)
          {
 
@@ -1417,17 +1432,28 @@ namespace user
    void menu::show_sub_menu(::menu::item* pmenuitem)
    {
 
+      if (!pmenuitem || !pmenuitem->m_puserinteraction)
+      {
+
+         return;
+
+      }
+
       hide_sub_menu();
 
       auto pusermenu = allocateø::user::menu(pmenuitem);
 
       pusermenu->initialize(this);
 
+      pusermenu->m_pmenuParent = this;
+
       m_pmenuSubMenu = pusermenu;
 
       ::i32_rectangle rectangle;
 
       pmenuitem->m_puserinteraction->window_rectangle(rectangle);
+
+      information() << "menu::show_sub_menu item=" << pmenuitem->id().as_string() << " rect=" << rectangle;
 
       m_pmenuSubMenu->update_track_rectangle(rectangle);
 
@@ -1438,7 +1464,11 @@ namespace user
          rectangle,
          ::menu::e_track_popup_right);
 
-      m_pmenuSubMenu->track_popup_menu(ptrackpopup);
+      // Submenu window creation uses user_send -> main_send; run off the Qt/GTK main thread to avoid deadlocking.
+      user_post([pusermenu, ptrackpopup]()
+      {
+         pusermenu->track_popup_menu(ptrackpopup);
+      });
 
    }
 
@@ -1469,6 +1499,8 @@ namespace user
 
          hide_sub_menu_delayed();
 
+         return;
+
       }
 
       if (pmenuitem == m_pmenuitemShowSubMenu2)
@@ -1489,7 +1521,7 @@ namespace user
 
       m_pmenuitemShowSubMenu2 = pmenuitem;
 
-      set_timer(e_timer_menu, 300_ms);
+      set_timer(e_timer_menu, 150_ms);
 
    }
 
@@ -1543,26 +1575,39 @@ namespace user
 
          kill_timer(e_timer_menu);
 
-         //if (m_atomSubMenu.has_character())
-         //{
-         //   m_psubmenu->send_message(::user::e_message_close);
-         //   m_psubmenu = nullptr;
-         //   m_atomSubMenu.is_empty();
-         //}
+         ::pointer<::menu::item> pmenuitemShowSubMenu2;
+         bool bHideSubMenu2 = false;
 
-         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-         if (m_pmenuitemShowSubMenu2)
          {
 
-            auto pmenuitemShowSubMenu2 = m_pmenuitemShowSubMenu2;
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            m_pmenuitemShowSubMenu2 = nullptr;
+            if (m_pmenuitemShowSubMenu2)
+            {
+
+               pmenuitemShowSubMenu2 = m_pmenuitemShowSubMenu2;
+
+               m_pmenuitemShowSubMenu2 = nullptr;
+
+            }
+            else if (m_bHideSubMenu2)
+            {
+
+               bHideSubMenu2 = true;
+
+               m_bHideSubMenu2 = false;
+
+            }
+
+         }
+
+         if (pmenuitemShowSubMenu2)
+         {
 
             show_sub_menu(pmenuitemShowSubMenu2);
 
          }
-         else if (m_bHideSubMenu2)
+         else if (bHideSubMenu2)
          {
 
             hide_sub_menu();
@@ -1844,6 +1889,8 @@ namespace user
 
       if (!m_bInline)
       {
+
+         hide_sub_menu();
 
          if (m_bCloseParentOnClose)
          {
@@ -2254,7 +2301,7 @@ namespace user
 
       ::i32_size size;
 
-      if (m_bCloseButton)
+      if (m_bCloseButton && m_pitemClose && m_pitemClose->m_puserinteraction)
       {
 
          size = m_pitemClose->m_puserinteraction->get_preferred_size(pdraw2dgraphics);
@@ -2300,12 +2347,10 @@ namespace user
 
          auto puserinteraction = pmenuitem->m_puserinteraction;
 
-
-
-         string strButtonText = puserinteraction->get_window_text();
-
          if (puserinteraction)
          {
+
+            string strButtonText = puserinteraction->get_window_text();
 
             size = puserinteraction->get_preferred_size(pdraw2dgraphics);
 
@@ -2497,7 +2542,12 @@ namespace user
 
          }
 
-         pbergstyle->prepare_menu(pdraw2dgraphics, pitem);
+         if (pbergstyle)
+         {
+
+            pbergstyle->prepare_menu(pdraw2dgraphics, pitem);
+
+         }
 
          //pitem->m_rectangleUi.right = maximum(pitem->m_rectangleUi.right, pitem->m_rectangleUi.left + m_sizeMinimum.cx);
 
@@ -2507,7 +2557,7 @@ namespace user
 
       }
 
-      if (m_bCloseButton)
+      if (m_bCloseButton && m_pitemClose && m_pitemClose->m_puserinteraction)
       {
 
          if (pbergstyle)
@@ -2585,22 +2635,26 @@ namespace user
             if (bUp)
             {
 
-               rectangleWindow.top = rectangleScreenHint.top - 32 - m_size.cy;
+               rectangleWindow.top = pointCursorHint.y - 4 - m_size.cy;
 
             }
             else
             {
 
-               rectangleWindow.top = rectangleScreenHint.top + pointCursorHint.y + 8;
+               rectangleWindow.top = pointCursorHint.y + 4;
 
             }
-
-            rectangleWindow.left = rectangleScreenHint.left + pointCursorHint.x + 8;
 
             if (bLeft)
             {
 
-               rectangleWindow.left -= m_size.cx;
+               rectangleWindow.left = pointCursorHint.x - 4 - m_size.cx;
+
+            }
+            else
+            {
+
+               rectangleWindow.left = pointCursorHint.x + 4;
 
             }
 

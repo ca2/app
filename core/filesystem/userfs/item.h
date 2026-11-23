@@ -31,6 +31,7 @@ namespace userfs
       ::image::image_list * get_item_image_list(::user::item_base * pitemstate, ::collection::index iSubItem = 0) override;
 
       //static ::std::strong_ordering CompareArrangeByName(const ::pointer<::data::tree_item<item>>& pitema, const ::pointer<::data::tree_item<item>> pitemb);
+      const char * special_folder_icon_path() const;
       ::i32 get_index() const;
       i32_boolean is_folder() const override;
 

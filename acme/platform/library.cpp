@@ -257,7 +257,7 @@ namespace acme
       //
       // }
 
-      if (m_strName.has_character())
+      if (is_opened() && m_strName.has_character())
       {
 
          __refdbg_add_referer

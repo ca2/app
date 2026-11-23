@@ -313,6 +313,8 @@ namespace userfs
 
    void list_data::update(::userfs::data * puserfsdata)
    {
+      synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      m_pfsImageProvider = puserfsdata->m_pfsset;
 
       //ASSERT(listingUser.get_count() == listingFinal.get_count());
 
@@ -391,11 +393,14 @@ namespace userfs
 
          plistitem->user_path_reference() = pathUser;
 
-         plistitem->m_strName = pathUser.name();
+         plistitem->m_strName = i < listingUser.m_straTitle.size()
+            && listingUser.m_straTitle[i].has_character()
+            ? listingUser.m_straTitle[i] : pathUser.name();
 
          information() << "pathUser : " << pathUser;
 
-         if (puserfsdata->m_pfsset->is_dir(pathFinal))
+         if (pathFinal.is_folder()
+            || (pathFinal.not_file_or_folder() && puserfsdata->m_pfsset->is_dir(pathFinal) > 0))
          {
 
             plistitem->m_flags += ::file::e_flag_folder;
@@ -448,7 +453,11 @@ namespace userfs
             if (psubitem->m_iImage < 0)
             {
 
-               auto & pathFinal = m_pitema->get_item((::collection::index)psubitem->m_pitem->m_iItem)->final_path();
+               auto pfsitem = m_pitema->get_item((::collection::index)psubitem->m_pitem->m_iItem);
+
+               auto & pathFinal = pfsitem->final_path();
+
+               bool bIsFolder = pathFinal.is_folder() || pfsitem->is_folder();
 
                auto psession = session();
 
@@ -456,8 +465,8 @@ namespace userfs
 
                psubitem->m_iImage = puser->shell()->get_file_image(
                   pathFinal,
-                  pathFinal.is_folder() ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
-                  ::user::shell::e_icon_normal);
+                  bIsFolder ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
+                  ::user::shell::e_icon_normal, m_pfsImageProvider, { psubitem->m_pitem->m_pmesh });
 
                if (psubitem->m_iImage < 0)
                {

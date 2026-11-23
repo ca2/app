@@ -17,7 +17,8 @@ namespace gpu_opengl
 
 
       //::gpu::texture * m_ptextureBound = nullptr;
-      GLuint m_ProgramID;
+      void * m_pNativeAllocationContext = nullptr;
+      GLuint m_ProgramID = 0;
       mutable std::unordered_map<std::string, GLint> m_uniformLocations;
 
       //__creatable_from_base(shader, ::gpu::shader);

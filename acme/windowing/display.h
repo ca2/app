@@ -69,6 +69,8 @@ namespace acme
 
          virtual void * raw_x11_display();
 
+         virtual void * raw_xcb_connection();
+
 
          virtual bool is_dark_mode_through_theming();
          virtual ::string theming_ui_name();

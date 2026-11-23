@@ -111,8 +111,23 @@ namespace micro
    void message_box::_on_draw(::nano::graphics::context * pnanographicscontext)
    {
 
+      if (micro_button_count() > 0 && micro_button_at(0)->m_rectangle.is_empty())
+      {
 
-      on_draw(pnanographicscontext);
+         auto r = get_client_rectangle();
+
+         if (r.width() > 0 && r.height() > 0)
+         {
+
+            m_rectangle.set_size(r.size());
+
+         }
+
+         on_elemental_layout();
+
+      }
+
+      ::micro::dialog::_on_draw(pnanographicscontext);
 
    }
 
@@ -386,6 +401,15 @@ information("message_box::on_initialize_dialog");
       // //create_window();
       //
       // //display({});
+
+      if (m_rectangle.width() <= 0 || m_rectangle.height() <= 0)
+      {
+
+         m_rectangle = initial_frame_rectangle();
+
+      }
+
+      on_elemental_layout();
 
    }
 
@@ -698,6 +722,23 @@ information("message_box::on_initialize_dialog");
 
          return;
 
+      }
+
+      // Hit testing may return the dialog or a label for a background click.
+      // Only a button can supply a dialog result.
+      bool bButton = false;
+      for (::collection::index i = 0; i < micro_button_count(); ++i)
+      {
+         if (payload == micro_button_at(i)->id())
+         {
+            bButton = true;
+            break;
+         }
+      }
+      if (!bButton)
+      {
+         if (pmouse) pmouse->m_bRet = true;
+         return;
       }
 
       set_dialog_response(payload);

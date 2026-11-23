@@ -745,12 +745,12 @@ namespace apex
       if (pfilesystemoptions->m_bGoogleDrive)
       {
 
-         ::file::path pathGoogleDrive = m_papplication->defer_process_matter_path("google_drive://");
+         ::file::path pathGoogleDrive = m_papplication->defer_process_matter_path("google-drive://");
 
          if (pathGoogleDrive.has_character() && directory()->is(pathGoogleDrive))
          {
 
-            ::file::path &path = listing.insert_at(0, "google_drive://");
+            ::file::path &path = listing.insert_at(0, "google-drive://");
 
             path.set_existent_folder();
 

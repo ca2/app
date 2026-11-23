@@ -20,21 +20,15 @@ namespace file
    }
 
 
-   listing_base::listing_base(const listing_base & listing_base) :
-      LISTING(listing_base),
-      path_array_base(listing_base)
+   listing_base::listing_base(const listing_base & listing) : listing_base()
    {
-      
-      m_countAddUp = 128;
-      
+      operator=(listing);
    }
 
 
-   listing_base::listing_base(listing_base&& listing_base) :
-      LISTING(::transfer(listing_base)),
-      path_array_base(::transfer(listing_base))
+   listing_base::listing_base(listing_base && listing) : listing_base()
    {
-
+      operator=(::transfer(listing));
    }
 
 
@@ -407,6 +401,9 @@ namespace file
       *((LISTING *)this) = (const LISTING &)listing;
       m_pathUser = listing.m_pathUser;
       m_pathFinal = listing.m_pathFinal;
+      m_pathBasePath = listing.m_pathBasePath;
+      m_estatusListing = listing.m_estatusListing;
+      m_particleaMetaData = listing.m_particleaMetaData;
       m_eflag = listing.m_eflag;
       m_edepth = listing.m_edepth;
       m_straPattern = listing.m_straPattern;
@@ -434,6 +431,9 @@ namespace file
       *((LISTING*)this) = ::transfer((LISTING&&)listing);
       m_pathUser = ::transfer(listing.m_pathUser);
       m_pathFinal = ::transfer(listing.m_pathFinal);
+      m_pathBasePath = ::transfer(listing.m_pathBasePath);
+      m_estatusListing = listing.m_estatusListing;
+      m_particleaMetaData = ::transfer(listing.m_particleaMetaData);
       m_eflag = listing.m_eflag;
       m_edepth = listing.m_edepth;
       m_straPattern = ::transfer(listing.m_straPattern);

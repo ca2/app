@@ -205,7 +205,8 @@ namespace file
 
          }
 
-         if (directory()->is(m_pathFinal))
+         if (m_pathFinal.is_folder()
+            || (m_pathFinal.not_file_or_folder() && directory()->is(m_pathFinal)))
          {
 
             ((item*)this)->m_flags |= ::file::e_flag_folder;

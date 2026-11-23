@@ -15,6 +15,10 @@ namespace micro
 
       ::pointer<::nano::graphics::brush>        m_pbrushWindow;
       ::pointer<::nano::graphics::brush>        m_pbrushText;
+      ::pointer<::nano::graphics::brush>        m_pbrushButtonHover;
+      ::pointer<::nano::graphics::brush>        m_pbrushButtonPressed;
+      ::pointer<::nano::graphics::brush>        m_pbrushButtonHoverText;
+      ::pointer<::nano::graphics::brush>        m_pbrushButtonPressedText;
       ::pointer<::nano::graphics::brush>        m_pbrushHyperlink;
       ::pointer<::nano::graphics::brush>        m_pbrushHyperlinkHover;
       ::pointer<::nano::graphics::pen>          m_ppenBorder;

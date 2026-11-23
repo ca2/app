@@ -41,6 +41,7 @@ namespace user
       class ::time                 m_timeAnimationPeriod;
 
 
+      bool keyboard_focus_is_focusable() override;
       check_box(e_style estyle = style_normal);
       ~check_box() override;
 

@@ -167,6 +167,8 @@ FragColor = texture(uTexture, TexCoord);
 
          ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
+         trace_opengl_resource_stats_if_due();
+
          //auto pshader = present_shader();
 
          dummy_model_buffer();
@@ -210,6 +212,7 @@ FragColor = texture(uTexture, TexCoord);
          {
          }
 
+#if defined(GPU_DEBUG_FRAME_TRACE)
          GLint drawFramebuffer = -1;
          GLint readFramebuffer = -1;
          GLint drawBuffer = -1;
@@ -221,6 +224,8 @@ FragColor = texture(uTexture, TexCoord);
                        //"currentDrawSurface=%p expectedWindowSurface=%p "
                        //"EGL_RENDER_BUFFER=0x%04x",
                        drawFramebuffer, readFramebuffer, drawBuffer);
+
+#endif
 
          //WGLSurface currentDrawSurface = eglGetCurrentSurface(EGL_DRAW);
          //EGLSurface currentReadSurface = eglGetCurrentSurface(EGL_READ);
@@ -295,6 +300,7 @@ FragColor = texture(uTexture, TexCoord);
 
          auto sizeContext = m_pgpurenderer->m_pgpucontext->size();
          
+#if defined(GPU_DEBUG_FRAME_TRACE)
          GLint framebufferBefore = -1;
 
          glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &framebufferBefore);
@@ -302,8 +308,11 @@ FragColor = texture(uTexture, TexCoord);
    "before begin_render draw framebuffer=%d",
    framebufferBefore);
 
+#endif
+
          pcommandbuffer->begin_render(m_pshaderPresent, m_ptexturesitePresent);
 
+#if defined(GPU_DEBUG_FRAME_TRACE)
          GLint framebufferAfter = -1;
 
          glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &framebufferAfter);
@@ -311,6 +320,8 @@ FragColor = texture(uTexture, TexCoord);
          informationf(
             "after begin_render draw framebuffer=%d",
             framebufferAfter);
+
+#endif
 
          pcommandbuffer->set_viewport(sizeContext, sizeContext);
 
@@ -490,7 +501,7 @@ void swap_chain::on_gpu_context_render_frame(::i32 w, ::i32 h)
    //glEnable(GL_BLEND);
    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
    glViewport(0, 0, w, h);
-   ::f32 alpha = 0.69;
+   ::f32 alpha = 0.69f;
    glClearColor(0.2f * alpha, fGreen * alpha, 0.5f * alpha, 1.0f * alpha);
    glClear(GL_COLOR_BUFFER_BIT);
 #endif

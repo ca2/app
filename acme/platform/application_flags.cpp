@@ -60,7 +60,10 @@ static char_pointer * g_envp;
 APPLICATION_FLAGS::APPLICATION_FLAGS()
 {
 
-   memory_set(this, 0, sizeof(APPLICATION_FLAGS));
+   //memory_set(this, 0, sizeof(APPLICATION_FLAGS));
+   m_bFork = false;
+   m_emainuserinterface = e_main_user_interface_main_frame;
+   m_euserexperience = e_user_experience_none;
 
 }
 

@@ -5,6 +5,7 @@
 #include "device.h"
 #include "memory_buffer.h"
 #include "model_buffer.h"
+#include "context_handle.h"
 #include "renderer.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/layer.h"
@@ -25,7 +26,8 @@ namespace gpu_opengl
    memory_buffer::~memory_buffer()
    {
 
-      glDeleteBuffers(1, &m_gluVbo);
+      defer_delete_context_handle(m_pNativeAllocationContext, e_handle_vertex_buffer, m_gluVbo);
+      m_gluVbo = 0;
 
    }
 
@@ -73,7 +75,12 @@ namespace gpu_opengl
 
       }
       
-      glGenBuffers(1, &m_gluVbo);                            // Create a buffer ID
+      if (!m_gluVbo)
+      {
+         m_pNativeAllocationContext = m_pcontext->m_pgpudevice->current_operating_system_gpu_context();
+         glGenBuffers(1, &m_gluVbo);
+         trace_opengl_resource_created(e_handle_vertex_buffer);
+      }
       
       ::opengl::check_error("");
 

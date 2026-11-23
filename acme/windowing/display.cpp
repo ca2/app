@@ -215,6 +215,14 @@ namespace acme
       }
 
 
+      void* display::raw_xcb_connection()
+      {
+
+         return nullptr;
+
+      }
+
+
       // void display::release_mouse_capture()
       // {
       //

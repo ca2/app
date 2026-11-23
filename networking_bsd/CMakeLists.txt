@@ -199,7 +199,7 @@ if(${WIN32})
       target_compile_options(${PROJECT_NAME} PRIVATE    "/MD$<$<CONFIG:Debug>:d>")
       target_link_options(${PROJECT_NAME} PRIVATE    "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
       target_link_options(${PROJECT_NAME} PRIVATE    "/SUBSYSTEM:WINDOWS")
-      target_link_options(${PROJECT_NAME} PRIVATE    "/bigobj")
+      target_compile_options(${PROJECT_NAME} PRIVATE    "/bigobj")
       target_link_options(${PROJECT_NAME} PRIVATE    "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
       target_link_options(${PROJECT_NAME} PRIVATE    "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
 
@@ -215,7 +215,7 @@ if(${WIN32})
 
 
 
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} Ws2_32 libssl libcrypto dnsapi iphlpapi)
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} Ws2_32 libssl libcrypto dnsapi iphlpapi crypt32)
 elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
@@ -254,6 +254,12 @@ elseif (${LINUX} OR ${__BSD__} OR ${__ANDROID__} OR ${__SUNOS__} OR ${__HAIKU__}
    message(STATUS "(G) PKGCONFIG_LIBRARIES is ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES}")
    message(STATUS "(G) PKGCONFIG_LDFLAGS is ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS}")
 endif ()
+
+if(APPLE)
+   target_link_libraries(${PROJECT_NAME} PRIVATE "-framework Security" "-framework CoreFoundation")
+   target_link_libraries(static_${PROJECT_NAME} PRIVATE "-framework Security" "-framework CoreFoundation")
+endif()
+
 
 if(LINUX OR __BSD__ OR __SUNOS__ OR __REACTOS__)
    # URL handling loads the IDN component dynamically at runtime.

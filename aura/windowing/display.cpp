@@ -2179,10 +2179,16 @@ namespace windowing
    }
 
 
-void * display::raw_x11_display()
-{
-   return nullptr;
-}
+   void * display::raw_x11_display()
+   {
+      return nullptr;
+   }
+
+
+   void * display::raw_xcb_connection()
+   {
+      return nullptr;
+   }
 } // namespace windowing
 
 

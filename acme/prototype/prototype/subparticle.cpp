@@ -428,7 +428,10 @@ void subparticle::clear_node_data()
 void subparticle::delete_this()
 {
 
-   if (has_flag(e_flag_heap_allocated))
+   // Match particle::delete_this(): reference-owned allocations are deleted
+   // unless explicitly static. The legacy heap flag is no longer populated,
+   // so testing it prevented callbacks and synchronization objects from dying.
+   if (!has_flag(e_flag_statically_allocated))
    {
 
       delete this;

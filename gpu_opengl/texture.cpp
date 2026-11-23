@@ -36,18 +36,26 @@ namespace
       GLint m_iPackRowLength = 0;
       GLint m_iUnpackAlignment = 0;
       GLint m_iUnpackRowLength = 0;
+      bool m_bUploadOnly = false;
 
 
-      scoped_pixel_transfer_state()
+      scoped_pixel_transfer_state(bool bUploadOnly = false) : m_bUploadOnly(bUploadOnly)
       {
 
-         glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &m_iReadFramebuffer);
-         glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &m_iDrawFramebuffer);
-         glGetIntegerv(GL_RENDERBUFFER_BINDING, &m_iRenderbuffer);
-         glGetIntegerv(GL_READ_BUFFER, &m_iReadBuffer);
-         glGetIntegerv(GL_TEXTURE_BINDING_2D, &m_iTexture2d);
-         glGetIntegerv(GL_PACK_ALIGNMENT, &m_iPackAlignment);
-         glGetIntegerv(GL_PACK_ROW_LENGTH, &m_iPackRowLength);
+         if (!m_bUploadOnly)
+         {
+            glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &m_iReadFramebuffer);
+            glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &m_iDrawFramebuffer);
+            glGetIntegerv(GL_RENDERBUFFER_BINDING, &m_iRenderbuffer);
+            glGetIntegerv(GL_READ_BUFFER, &m_iReadBuffer);
+            glGetIntegerv(GL_TEXTURE_BINDING_2D, &m_iTexture2d);
+            glGetIntegerv(GL_PACK_ALIGNMENT, &m_iPackAlignment);
+            glGetIntegerv(GL_PACK_ROW_LENGTH, &m_iPackRowLength);
+         }
+         else
+         {
+            glGetIntegerv(GL_TEXTURE_BINDING_2D, &m_iTexture2d);
+         }
          glGetIntegerv(GL_UNPACK_ALIGNMENT, &m_iUnpackAlignment);
          glGetIntegerv(GL_UNPACK_ROW_LENGTH, &m_iUnpackRowLength);
 
@@ -57,13 +65,16 @@ namespace
       ~scoped_pixel_transfer_state() noexcept
       {
 
-         glBindFramebuffer(GL_READ_FRAMEBUFFER, m_iReadFramebuffer);
-         glReadBuffer(m_iReadBuffer);
-         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iDrawFramebuffer);
-         glBindRenderbuffer(GL_RENDERBUFFER, m_iRenderbuffer);
+         if (!m_bUploadOnly)
+         {
+            glBindFramebuffer(GL_READ_FRAMEBUFFER, m_iReadFramebuffer);
+            glReadBuffer(m_iReadBuffer);
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iDrawFramebuffer);
+            glBindRenderbuffer(GL_RENDERBUFFER, m_iRenderbuffer);
+            glPixelStorei(GL_PACK_ALIGNMENT, m_iPackAlignment);
+            glPixelStorei(GL_PACK_ROW_LENGTH, m_iPackRowLength);
+         }
          glBindTexture(GL_TEXTURE_2D, m_iTexture2d);
-         glPixelStorei(GL_PACK_ALIGNMENT, m_iPackAlignment);
-         glPixelStorei(GL_PACK_ROW_LENGTH, m_iPackRowLength);
          glPixelStorei(GL_UNPACK_ALIGNMENT, m_iUnpackAlignment);
          glPixelStorei(GL_UNPACK_ROW_LENGTH, m_iUnpackRowLength);
 
@@ -116,6 +127,7 @@ namespace gpu_opengl
       m_gluType = 0;
       //m_gluFbo = 0;
       m_glsyncGpuCommandsCompleteFence = 0;
+      trace_opengl_texture_object_delta(+1);
 
 
    }
@@ -124,19 +136,21 @@ namespace gpu_opengl
    texture::~texture()
    {
 
-      if (m_gluTextureID)
-      {
-         glDeleteTextures(1, &m_gluTextureID);
-         m_gluTextureID = 0;
-      }
+      trace_opengl_texture_object_delta(-1);
 
-      if (m_gluDepthStencilRBO)
-      {
+      // FBOs retain their attached texture/renderbuffer storage until deleted.
+      // Their names belong to individual native contexts, unlike textures.
+      for (auto & pair : m_mapContextHandleObject)
+         defer_delete_context_handle(pair.element1(), e_handle_fbo, pair.element2().m_handle);
 
-         glDeleteRenderbuffers(1, &m_gluDepthStencilRBO);
-         m_gluDepthStencilRBO = 0;
-
-      }
+      // Destruction can run on a UI/capture thread with no GL context current.
+      // Queue shared objects alongside their FBOs for a valid owning context.
+      defer_delete_context_sync(m_pNativeAllocationContext, m_glsyncGpuCommandsCompleteFence);
+      defer_delete_context_handle(m_pNativeAllocationContext, e_handle_texture, m_gluTextureID);
+      defer_delete_context_handle(m_pNativeAllocationContext, e_handle_renderbuffer, m_gluDepthStencilRBO);
+      m_glsyncGpuCommandsCompleteFence = nullptr;
+      m_gluTextureID = 0;
+      m_gluDepthStencilRBO = 0;
 
    }
 
@@ -178,8 +192,10 @@ namespace gpu_opengl
 
       m_gluType = GL_TEXTURE_2D;
 
+      m_pNativeAllocationContext = m_pgpucontext->m_pgpudevice->current_operating_system_gpu_context();
       glGenTextures(1, &m_gluTextureID);
       ::opengl::check_error("");
+      trace_opengl_resource_created(e_handle_texture);
       glBindTexture(m_gluType, m_gluTextureID);
       ::opengl::check_error("");
 
@@ -392,7 +408,7 @@ namespace gpu_opengl
    //
    //
    //          ::i32 samples = 0;
-   //          glGetIntegerv(GL_SAMPLES, &samples);
+   //             glGetIntegerv(GL_SAMPLES, &samples);
    //          printf("MSAA samples: %d\n", samples);
    //
    //
@@ -791,6 +807,7 @@ namespace gpu_opengl
       {
 
          glDeleteTextures(1, &m_gluTextureID);
+         trace_opengl_resource_deleted(e_handle_texture);
          m_gluTextureID = 0;
 
       }
@@ -897,8 +914,10 @@ namespace gpu_opengl
       if (!m_gluTextureID)
       {
 
+         m_pNativeAllocationContext = m_pgpucontext->m_pgpudevice->current_operating_system_gpu_context();
          glGenTextures(1, &m_gluTextureID); // 1. Generate a texture ID
          ::opengl::check_error("");
+         trace_opengl_resource_created(e_handle_texture);
       }
 
       glBindTexture(m_gluType, m_gluTextureID); // 2. Bind the texture to the 2D texture target
@@ -1314,6 +1333,7 @@ namespace gpu_opengl
       glGenFramebuffers(1, &object.m_handle);
       ::opengl::check_error("");
       ::opengl::ensure_non_null_handle(object.m_handle, "glGenFramebuffers(1, ...)");
+      trace_opengl_resource_created(e_handle_fbo);
 
       object.m_bCreated = true;
 
@@ -1955,6 +1975,11 @@ namespace gpu_opengl
    void texture::write_pixels(bool bSync, const ::pixmap_t * ppixmap, const ::i32_point & pointInput)
    {
 
+      if (!ppixmap)
+      {
+         throw ::exception(error_bad_argument);
+      }
+
       auto sizePixmap = ppixmap->size();
 
       auto iRequiredScan = ppixmap->width() * (int)sizeof(::image32_t);
@@ -1971,26 +1996,24 @@ namespace gpu_opengl
 
       }
 
-      //::memory memoryFlipped = m_pixmapFlipped;
-      auto &pixmapFlipped = m_pixmapFlipped;
-      pixmapFlipped.m_bTopLeft = false;
-      pixmapFlipped.create_as_descriptor(ppixmap->raw_size(), DEFAULT_CREATE_IMAGE_FLAG, ppixmap->m_iScan);
-      pixmapFlipped.m_colorindexes = ppixmap->m_colorindexes;
-      pixmapFlipped.copy(ppixmap);
+      // Bottom-up pixels already match GL row order. Upload them directly;
+      // only top-down sources need the reusable row-reversal buffer.
+      const ::pixmap_t * upload = ppixmap;
+      if (ppixmap->m_bTopLeft)
+      {
+         auto & flipped = m_pixmapFlipped;
+         flipped.m_bTopLeft = false;
+         flipped.create_as_descriptor(ppixmap->raw_size(), DEFAULT_CREATE_IMAGE_FLAG, ppixmap->m_iScan);
+         flipped.m_colorindexes = ppixmap->m_colorindexes;
+         flipped.copy(ppixmap);
+         upload = &flipped;
+      }
+      const int cx = ppixmap->width();
+      const int cy = ppixmap->height();
 
-      auto p = pixmapFlipped.map(ppixmap->rectangle());
-
-      //if (ppixmap->m_bTopLeft)
-      //{
-
-      //   pixmapFlipped.vertical_swap();
-
-      //}
-
-      int cx = p->width();
-      int cy = p->height();
-
-      scoped_pixel_transfer_state state;
+      // Uploads only change texture/unpack state. In particular, do not replay
+      // framebuffer read-buffer state in the producer context on every frame.
+      scoped_pixel_transfer_state state(true);
 
       glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
       ::opengl::check_error("");
@@ -2018,16 +2041,17 @@ namespace gpu_opengl
             GL_UNSIGNED_BYTE,
             nullptr);
          ::opengl::check_error("");
+         m_sizeAllocated = { requiredWidth, requiredHeight };
       }
 
       glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
       ::opengl::check_error("");
       glPixelStorei(
          GL_UNPACK_ROW_LENGTH,
-         pixmapFlipped.m_iScan / (int)sizeof(::image32_t));
+         upload->m_iScan / (int)sizeof(::image32_t));
       ::opengl::check_error("");
 
-      auto iPixelFormatFlipped = pixmap_pixel_format(&pixmapFlipped);
+      auto iPixelFormatFlipped = pixmap_pixel_format(upload);
       glTexSubImage2D(
          GL_TEXTURE_2D,
          0,
@@ -2037,7 +2061,7 @@ namespace gpu_opengl
          cy,
          iPixelFormatFlipped,
          GL_UNSIGNED_BYTE,
-         p->m_pimage32);
+         upload->m_pimage32);
       ::opengl::check_error("");
 
       if (m_textureattributes.m_size.cx < requiredWidth)
@@ -2420,6 +2444,10 @@ namespace gpu_opengl
    void texture::defer_fence()
    {
 
+      // Report errors left by upload state restoration at their actual stage,
+      // before creating a sync object that would otherwise be blamed for them.
+      ::opengl::check_error("texture upload/state restoration before glFenceSync");
+
       if (m_glsyncGpuCommandsCompleteFence)
       {
 
@@ -2437,6 +2465,8 @@ namespace gpu_opengl
 
       }
 
+      trace_opengl_resource_created(e_handle_sync);
+
       glFlush(); // push commands to GPU
       ::opengl::check_error("glFlush after glFenceSync");
 
@@ -2452,6 +2482,10 @@ namespace gpu_opengl
          return;
 
       }
+
+      // Report any error already queued on this context before waiting on the
+      // fence so an unrelated earlier failure is not blamed on glWaitSync.
+      ::opengl::check_error("OpenGL error pending before glWaitSync");
 
       auto glsync = m_glsyncGpuCommandsCompleteFence;
 
@@ -2473,12 +2507,14 @@ namespace gpu_opengl
       {
 
          glDeleteSync(glsync);
+         trace_opengl_resource_deleted(e_handle_sync);
          throw;
 
       }
 
       glDeleteSync(glsync);
       ::opengl::check_error("glDeleteSync for texture completion");
+      trace_opengl_resource_deleted(e_handle_sync);
 
    }
 

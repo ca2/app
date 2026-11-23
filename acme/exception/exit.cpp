@@ -48,7 +48,6 @@ exit_exception::exit_exception(::platform::system *psystem,
    exit_exception(error_exit_system, psystem, scopedstrMessage, estatusSecond)
 {
 
-
 }
 
 

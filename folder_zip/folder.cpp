@@ -145,6 +145,8 @@ namespace folder_zip
 
       auto zipfile = zipOpen2("pad", APPEND_STATUS_CREATE, nullptr, (zlib_filefunc_def*)&g_filefunctiondefinitions, pfile.m_p);
 
+      if (!zipfile)
+         throw ::exception(error_failed, "Cannot open ZIP archive for writing");
       m_zipfile = zipfile;
 
    }
@@ -195,7 +197,21 @@ namespace folder_zip
 
 #endif
 
-      zipOpenNewFileInZip(m_zipfile, pathRelative, &zipfi, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, Z_DEFAULT_COMPRESSION);
+      auto check_zip_result = [&](int iResult, const char * pszOperation)
+      {
+         if (iResult != ZIP_OK)
+         {
+            ::string strMessage;
+            strMessage.formatf("ZIP %s failed for '%s' (code %d)", pszOperation, pathRelative.c_str(), iResult);
+            throw ::exception(error_failed, strMessage);
+         }
+      };
+      if (!m_zipfile)
+         throw ::exception(error_failed, "ZIP archive is not open for writing");
+      auto iResult = zipOpenNewFileInZip(m_zipfile, pathRelative, &zipfi, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, Z_DEFAULT_COMPRESSION);
+      check_zip_result(iResult, "open entry");
+      auto iTotal = pfile->size();
+      filesize iProcessed = 0;
 
       memory mem;
 
@@ -206,11 +222,14 @@ namespace folder_zip
       while ((uRead = pfile->read(mem)) > 0)
       {
 
-         zipWriteInFileInZip(m_zipfile, mem.begin(), (::u32)uRead);
+         check_zip_result(zipWriteInFileInZip(m_zipfile, mem.begin(), (::u32)uRead), "write entry");
+         iProcessed += uRead;
+         if (m_functionAddFileProgress)
+            m_functionAddFileProgress(pathRelative, iProcessed, iTotal);
 
       }
 
-      zipCloseFileInZip(m_zipfile);
+      check_zip_result(zipCloseFileInZip(m_zipfile), "close entry");
 
    }
 
@@ -459,6 +478,48 @@ namespace folder_zip
    }
 
 
+   static bool is_safe_archive_relative_path(const ::scoped_string & scopedstrRelative)
+   {
+
+      ::string strPath(scopedstrRelative);
+
+      if (strPath.is_empty())
+      {
+
+         return false;
+
+      }
+
+      if (strPath[0] == '/' || strPath[0] == '\\' || strPath.contains(':') || strPath.contains('\0'))
+      {
+
+         return false;
+
+      }
+
+      strPath.find_replace("\\", "/");
+
+      string_array_base straParts;
+
+      straParts.explode("/", strPath);
+
+      for (auto & strPart : straParts)
+      {
+
+         if (strPart == "..")
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
    void folder::e_extract_all(const ::file::path& pathTargetDir, ::file::path_array_base* ppatha, string_array_base* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback)
    {
 
@@ -502,6 +563,13 @@ namespace folder_zip
 
             if (memory.is_set())
             {
+
+               if (!is_safe_archive_relative_path(range))
+               {
+
+                  throw ::exception(error_failed, "Refusing to extract unsafe archive path: " + ::string(range));
+
+               }
 
                auto pathTarget = pathTargetFolder / range;
 
@@ -551,6 +619,13 @@ namespace folder_zip
             }
 
             {
+
+               if (!is_safe_archive_relative_path(path))
+               {
+
+                  throw ::exception(error_failed, "Refusing to extract unsafe archive path: " + ::string(path));
+
+               }
 
                auto pathTarget = pathTargetFolder / path;
 

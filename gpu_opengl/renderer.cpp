@@ -7,6 +7,7 @@
 #include "device.h"
 #include "frame.h"
 #include "frame_buffer.h"
+#include "model_buffer.h"
 #include "lock.h"
 #include "offscreen_render_target.h"
 #include "renderer.h"
@@ -233,6 +234,8 @@ namespace gpu_opengl
    {
 
       ::gpu::context_lock contextlock(m_pgpucontext);
+
+      delete_pending_context_handles(m_pgpucontext->m_pgpudevice->current_operating_system_gpu_context());
 
       //m_pgpucontext->m_iTopicTexture = -1;
 

@@ -92,6 +92,8 @@ namespace user
 
       m_bUpdatingScreen = false;
 
+      m_bExplicitHidePosted = false;
+
       m_bGraphicsThreadEnabled = false;
 
       //m_happeningReady.reset_happening();
@@ -765,6 +767,8 @@ namespace user
 
       m_puserinteraction = pinteraction;
 
+      m_bExplicitHidePosted = false;
+
       //m_timeNow.Now();
 
       //m_iFrameId = m_timeNow / m_timeFrame;
@@ -1383,12 +1387,20 @@ namespace user
       // layout becomes hidden there may be no drawable frame to wake that
       // wait, leaving the native window visible and close teardown pending.
       const auto requestedDisplay = puserinteraction->const_layout().sketch().display();
-      if ((requestedDisplay == e_display_hide || requestedDisplay == e_display_none)
-         && pwindow->is_window_visible())
+      if (requestedDisplay == e_display_hide || requestedDisplay == e_display_none)
       {
-         ::pointer<::windowing::window> hold(pwindow);
-         hold->main_post([hold] { hold->show_window(::user_interface::e_show_window_hide); });
-         return true;
+         if (!m_bExplicitHidePosted && pwindow->is_window_visible())
+         {
+            m_bExplicitHidePosted = true;
+            m_iRedrawMessageCount = 0;
+            ::pointer<::windowing::window> hold(pwindow);
+            hold->main_post([hold] { hold->show_window(::user_interface::e_show_window_hide); });
+            return true;
+         }
+      }
+      else
+      {
+         m_bExplicitHidePosted = false;
       }
 
       if (m_puserinteraction->has_graphical_output_purpose())

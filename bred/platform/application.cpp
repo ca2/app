@@ -4,6 +4,7 @@
 #include "system.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 //#include "aura/graphics/write_text/_constant.h"
 #include "aura/graphics/write_text/font.h"
 #include "bred/gpu/bred_approach.h"
@@ -741,10 +742,43 @@ namespace bred
       // A fixed application GPU must also win over a component factory that
       // another draw2d implementation may already have registered.
       auto strGpuOverride = m_strGpuImplementation;
+      // Print before loading: a missing backend must not hide its selection reason.
+      // Console diagnostics deliberately remain enabled in Release builds.
+      auto log_gpu_request = [this, &strGpuOverride](const ::string & implementation,
+         const ::string & draw2dImplementation)
+      {
+         auto graphics3dSetting = _gpu_get_implementation_name_setting();
+         auto legacyGraphics3dSetting = file_system()->as_string(
+            directory_system()->roaming() / m_strAppId / "graphics3d.txt");
+         legacyGraphics3dSetting.trim();
+         auto draw2dSetting = _draw2d_get_implementation_name_setting();
+         const char * reason;
+         if (strGpuOverride.has_character())
+            reason = "explicit application GPU override";
+         else if (draw2dImplementation == "opengl" || draw2dImplementation == "nanovg"
+            || draw2dImplementation == "vulkan" || draw2dImplementation == "vkvg"
+            || draw2dImplementation == "directx11" || draw2dImplementation == "directx12")
+            reason = "selected draw2d backend requires this GPU API";
+         else
+            reason = "GPU API selection for this draw2d backend (settings or default fallback)";
+         ::string backend = implementation;
+         backend.begins_eat("gpu_");
+         printf_out("[gpu] Requesting gpu_%s: %s. app='%s'; "
+            "graphics3d.txt (OS-specific)='%s'; graphics3d.txt (legacy)='%s'; "
+            "draw2d.txt (OS-specific)='%s'; selected draw2d='%s'; application GPU override='%s'; "
+            "GPU flag=%d; GPU swap chain=%d.\n",
+            backend.c_str(), reason, m_strAppId.c_str(),
+            graphics3dSetting.c_str(), legacyGraphics3dSetting.c_str(),
+            draw2dSetting.c_str(), draw2dImplementation.c_str(), strGpuOverride.c_str(),
+            (int)(bool)m_bGpu2, (int)use_gpu_swap_chain());
+         fflush(stdout);
+      };
       ::factory::factory_pointer pfactoryGpu;
       if (strGpuOverride.has_character())
       {
-         pfactoryGpu = factory("gpu", gpu_get_implementation_name());
+         auto strGpuImplementation = gpu_get_implementation_name();
+         log_gpu_request(strGpuImplementation, "not consulted (application override)");
+         pfactoryGpu = factory("gpu", strGpuImplementation);
          pfactoryGpu->merge_to_global_factory();
       }
       else
@@ -766,6 +800,7 @@ namespace bred
 
          }
 
+         auto strSelectedDraw2dImplementation = strDraw2dImplementation;
          if (strDraw2dImplementation == "nanovg")
          {
 
@@ -840,6 +875,7 @@ namespace bred
 
          }
 
+         log_gpu_request(strGpuImplementation, strSelectedDraw2dImplementation);
          pfactoryGpu = factory("gpu", strGpuImplementation);
 
          pfactoryGpu->merge_to_global_factory();

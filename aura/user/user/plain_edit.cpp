@@ -5528,7 +5528,7 @@ namespace user
 
          //lim = lim2;
 
-         ::i32 iMid = (lim2 - lim1) * 3 / 4;
+         ::i32 iMid = (lim2 - lim1) / 2;
 
          if (px >= lim1 && px <= lim1 + iMid)
          {
@@ -7784,9 +7784,9 @@ namespace user
 
             ptopic->m_puserelement = this;
 
-            ptopic->m_actioncontext.m_pmessage = pmessage;
-
             ptopic->m_actioncontext = ::e_source_user;
+
+            ptopic->m_actioncontext.m_pmessage = pmessage;
 
             route(ptopic);
 
@@ -7826,6 +7826,19 @@ namespace user
 
                route(ptopic);
 
+               // Topic routing does not bubble through layout parents. Give the
+               // enclosing dialog form its default-action fallback explicitly.
+               if (!ptopic->m_bRet && ptopic->m_bOk && !m_bMultiLine)
+               {
+                  for (auto parent = static_cast<::user::interaction *>(this)->get_parent();
+                     parent; parent = parent->get_parent())
+                  {
+                     if (!parent->is_true("tab_focus_scope")) continue;
+                     parent->handle(ptopic, nullptr);
+                     break;
+                  }
+               }
+
                if (!ptopic->m_bRet && ptopic->m_bOk)
                {
 
@@ -7856,7 +7869,7 @@ namespace user
 
             if (!m_bMultiLine)
             {
-
+               if (handle_tab_key(pmessage)) return;
                pkey->previous();
 
                auto ptopic = create_topic(::id_tab_key);
@@ -8856,10 +8869,10 @@ namespace user
 
             str = pkey->m_strText;
 
-            if (str == "\b")
+            if (str == "\b" || str == "\x7f")
             {
 
-               // Ignores backspace
+               // Ignores backspace and delete control characters
 
                // Should be handled as key message (_001MessageKey)
 
@@ -10672,7 +10685,7 @@ namespace user
    bool plain_edit::keyboard_focus_is_focusable()
    {
 
-      return is_window_visible();
+      return is_window_enabled() && is_window_visible(::user::e_layout_sketch);
 
    }
 
@@ -10790,6 +10803,16 @@ namespace user
       set_need_redraw();
 
       post_redraw();
+
+      {
+
+         auto ptopic = create_topic(::id_kill_focus);
+
+         ptopic->m_puserelement = this;
+
+         route(ptopic);
+
+      }
 
    }
 

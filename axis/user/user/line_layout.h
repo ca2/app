@@ -26,6 +26,7 @@ namespace user
       enum_align_relative     m_ealignrelativeOrthogonal;
 
       ::i32 m_iPadding = 2;
+      bool m_bFillParentWidth = false;
 
 
       line_layout();
@@ -57,6 +58,7 @@ namespace user
       
       void on_perform_top_down_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
+      ::f64_size get_preferred_size(::draw2d::graphics_pointer & pgraphics) override;
       bool on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       
       

@@ -1,6 +1,7 @@
 #include "platform.h"
 #include "application_container.h"
 #include "acme/constant/user_message.h"
+#include "acme/exception/exception_pointer.h"
 #include "acme/exception/exit.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/path_system.h"
@@ -626,6 +627,12 @@ namespace platform
       {
 
          papplication = create_application(scopedstrAppId);
+
+      }
+      catch (const ::exception_pointer & e)
+      {
+
+         throw e;
 
       }
       catch (const ::exit_exception &e)

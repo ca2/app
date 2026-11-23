@@ -266,6 +266,7 @@ namespace user
 
 
       ::i32                                          m_iLeftMargin;
+      ::i32                                          m_iRightMargin;
       ::i32                                          m_iTopMargin;
 
       index_map_base < ::pointer<mesh_item >>          m_mapItem;
@@ -572,6 +573,7 @@ namespace user
       virtual void  set_selection(const range&range);
 
       virtual void  _001AddSelection(const item_range & itemrange);
+      virtual void  _001ClearSelection(const item_range& itemrange);
 
       void set_current_item(::item * pitem, const ::action_context & action_context) override;
 

@@ -1,6 +1,10 @@
 #include "platform.h"
 #include "item.h"
+#include "core/filesystem/filemanager/special_folder.h"
 #include "tree_data.h"
+#include "document.h"
+#include "data.h"
+#include "apex/filesystem/fs/set.h"
 #include "acme/constant/user_message.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/prototype/data/tree_item.h"
@@ -9,6 +13,8 @@
 #include "berg/user/user/user.h"
 #include "core/user/user/tree.h"
 #include "core/platform/session.h"
+
+#define DEEP_LOG_HERE 0
 
 
 namespace userfs
@@ -74,6 +80,13 @@ namespace userfs
    }
 
 
+   const char * item::special_folder_icon_path() const
+   {
+      if (!(m_flags & ::file::e_flag_folder)) return nullptr;
+      return ::filemanager::special_folder_icon(user_path().c_str(), m_strName.c_str());
+   }
+
+
    ::collection::index item::get_item_image(::user::item_base * pitembase, ::collection::index iSubItem)
    {
 
@@ -115,6 +128,7 @@ namespace userfs
 
       ::string strPath = user_path();
 
+#if DEEP_LOG_HERE >= 9
       if (strPath == "C:/Users/camilo/OneDrive/Pictures/_")
       {
 
@@ -127,8 +141,17 @@ namespace userfs
          information() << "Ok... let's debug (3) " << strPath;
 
       }
+#endif
 
-      auto iImage = pshell->get_file_image(strPath, efileattribute, eicon);
+      auto pprovider = m_ptreedata->m_puserfsdocument && m_ptreedata->m_puserfsdocument->m_puserfsdata
+         ? m_ptreedata->m_puserfsdocument->m_puserfsdata->fs_data() : nullptr;
+      if (auto iconPath = special_folder_icon_path())
+      {
+         // Reuse the root folder icon without changing navigation or provider lookup.
+         return pshell->get_file_image(iconPath, efileattribute, eicon, nullptr, m_ptreedata->m_usertreea);
+      }
+
+      auto iImage = pshell->get_file_image(strPath, efileattribute, eicon, pprovider, m_ptreedata->m_usertreea);
 
       if (iImage >= 0)
       {
@@ -139,7 +162,7 @@ namespace userfs
 
       pshell->warn_when_ok(user_path(), m_ptreedata->m_usertreea);
 
-      iImage = pshell->get_file_image(final_path(), efileattribute, eicon);
+      iImage = pshell->get_file_image(final_path(), efileattribute, eicon, pprovider, m_ptreedata->m_usertreea);
 
       if(iImage < 0)
       {

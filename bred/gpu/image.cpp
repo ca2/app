@@ -233,14 +233,43 @@ namespace gpu
 
       // if (m_pgputexture && m_pgraphics && m_pgputexture->size() == size)
 
-      destroy();
-
       if (sizeRaw.is_empty())
       {
+
+         destroy();
 
          return;
 
       }
+
+      if (!bTopDraw2d
+         && is_ok()
+         && m_size == sizeRaw
+         && m_sizeRaw == sizeRaw
+         && m_point.is_empty()
+         && draw2d_domain() == pdraw2ddomain)
+      {
+
+         ::cast<::gpu::bitmap> pgpubitmapExisting = m_pdraw2dbitmap;
+
+         if (pgpubitmapExisting
+            && pgpubitmapExisting->m_pgputexture
+            && pgpubitmapExisting->m_pgputexture->raw_size() == sizeRaw)
+         {
+
+            m_eflagElement = eflagCreate;
+
+            m_estatus = ::success;
+
+            set_ok_flag();
+
+            return;
+
+         }
+
+      }
+
+      destroy();
 
       create_as_descriptor(sizeRaw, pdraw2ddomain, eflagCreate, iGoodStride);
 
@@ -547,7 +576,11 @@ namespace gpu
 
          }
 
-         if (!pgputexture)
+         if (!pgputexture
+            || pgputexture->raw_size() != sizeRaw
+            || m_point.x < 0 || m_point.y < 0
+            || size.cx > pgputexture->raw_width() - m_point.x
+            || size.cy > pgputexture->raw_height() - m_point.y)
          {
 
             if (m_size.is_empty() && m_sizeRaw.is_empty())
@@ -606,9 +639,9 @@ namespace gpu
 
             }
 
-            pgputexture->wait_fence();
-
             ::gpu::context_lock contextlock(pgpucontext);
+
+            pgputexture->wait_fence();
 
             //pthis->pixmap_t::create(
             //   pthis->m_memoryPixmap,
@@ -807,6 +840,13 @@ namespace gpu
             }
 
             pgputexture->write_pixels(true, pthis->m_ppixmapOwned, {});
+
+            if (m_pdraw2dbitmap && m_pdraw2dbitmap->size() != pgputexture->raw_size())
+            {
+
+               m_pdraw2dbitmap->set_size(pgputexture->raw_size());
+
+            }
 
             auto uMicroseconds = (::u64)0;
 

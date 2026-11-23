@@ -27,7 +27,6 @@ public:
 
 
    ::e_status                 m_estatus;
-
    bool                       m_bDumpCallStackTrace;
    string                     m_strCallStackTrace;
    bool                       m_bHandled;

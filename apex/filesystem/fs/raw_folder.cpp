@@ -312,6 +312,18 @@ namespace fs
    }
 
 
+   ::file::path raw_folder::create_folder(const ::file::path & pathParent, const ::scoped_string & scopedstrName)
+   {
+      ::string strName(scopedstrName);
+      strName.trim();
+      if (strName.is_empty() || strName == "." || strName == ".." || strName.contains("/") || strName.contains("\\"))
+         throw ::exception(error_bad_argument, "Enter a folder name without path separators");
+      auto path = pathParent / strName;
+      directory()->create(path);
+      return path;
+   }
+
+
 } // namespace fs
 
 

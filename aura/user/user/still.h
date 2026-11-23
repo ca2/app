@@ -28,6 +28,7 @@ namespace user
       ::image::icon_pointer              m_picon;
       ::pointer < ::write_text::text_out_array > m_ptextouta;
       ::i32_size                          m_sizeFixed;
+      bool m_bFillParentWidth = false;
       //::string                            m_strTextOutArray;
       ::status<::color::color>            m_statuscolorBackground;
       ::status<::color::color>            m_statuscolorText;
@@ -118,6 +119,7 @@ namespace user
       ::item_pointer on_hit_test(const ::i32_point & point, e_zorder ezorder) override;
 
       void on_set_window_text() override;
+      ::f64_size get_preferred_size(::draw2d::graphics_pointer & pgraphics) override;
       bool on_perform_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
       void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 

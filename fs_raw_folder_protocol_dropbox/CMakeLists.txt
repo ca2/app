@@ -139,4 +139,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
+# Static consumers must use the same provider implementation and base classes.
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE _${PROJECT_NAME}_project)
+target_link_libraries(static_${PROJECT_NAME} PUBLIC static_acme static_apex)
+
 target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)

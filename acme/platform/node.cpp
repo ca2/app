@@ -5,6 +5,8 @@
 #include "acme/parallelization/mutex.h"
 #include "startup_delay_debug.h"
 #include "node.h"
+#include "acme/windowing/windowing.h"
+#include "acme/windowing/file_icon_provider.h"
 //#include "sequencer.h"
 #include "application.h"
 #include "session.h"
@@ -1490,9 +1492,9 @@ namespace platform
 
    string node::get_file_icon_path(const ::scoped_string & scopedstrPath, ::i32 iSize)
    {
-
-      return "";
-
+      auto windowing = system()->acme_windowing();
+      auto provider = dynamic_cast<::acme::windowing::file_icon_provider *>(windowing);
+      return provider ? provider->file_icon_path(scopedstrPath, iSize) : ::string();
    }
 
 
@@ -2431,7 +2433,9 @@ return false;
                                             , const ::scoped_string & scopedstrTarget)
    {
 
-      open_internet_link(scopedstrUrl, scopedstrProfile, scopedstrTarget);
+      // Use the platform shell when no browser-specific implementation exists.
+      // Calling open_internet_link here recurses through its base fallback.
+      shell_open(scopedstrUrl, {}, {});
 
    }
 

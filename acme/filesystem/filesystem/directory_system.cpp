@@ -6,6 +6,7 @@
 #include "path_system.h"
 //#include "path_array.h"
 #include "listing.h"
+#include "acme/filesystem/file/folder.h"
 #include "acme/exception/interface_only.h"
 #include "acme/operating_system/process_process.h"
 #include "acme/platform/application.h"
@@ -121,19 +122,7 @@ void directory_system::initialize(::particle * pparticle)
 ::file::path directory_system::appdata()
 {
 
-   critical_section_lock synchronouslock(&m_criticalsectionLazyPaths);
-
-   if (!m_bRoamingAppDataPathCalculated)
-   {
-
-      m_pathAppData = system()->has_property("app_folder")
-         ? ::file::path(system()->payload("app_folder"))
-         : roaming() / appid();
-      m_bRoamingAppDataPathCalculated = true;
-
-   }
-
-   return m_pathAppData;
+   return application_app_data_path();
 
 }
 
@@ -298,11 +287,14 @@ void directory_system::initialize(::particle * pparticle)
 
    critical_section_lock synchronouslock(&m_criticalsectionLazyPaths);
 
-   if (!m_bAppDataPathCalculated)
+   ::file::path pathOverride = system()->has_property("app_folder")
+      ? ::file::path(system()->payload("app_folder")) : ::file::path();
+
+   if (!m_bAppDataPathCalculated || m_pathAppDataOverride != pathOverride)
    {
 
-      m_pathAppData = default_app_data_path();
-
+      m_pathAppData = pathOverride.has_character() ? pathOverride : default_app_data_path();
+      m_pathAppDataOverride = pathOverride;
       m_bAppDataPathCalculated = true;
 
    }
@@ -315,30 +307,36 @@ void directory_system::initialize(::particle * pparticle)
 ::file::path directory_system::application_app_data_path()
 {
 
+   return application_app_data_path(appid());
+
+}
+
+
+::file::path directory_system::application_app_data_path(const ::scoped_string & scopedstrAppId)
+{
+
    critical_section_lock synchronouslock(&m_criticalsectionLazyPaths);
 
-   if (!m_bRoamingAppDataPathCalculated)
+   ::string strAppId(scopedstrAppId);
+   ::file::path pathOverride = system()->has_property("app_folder")
+      ? ::file::path(system()->payload("app_folder")) : ::file::path();
+
+   // The application id and override may become available after early startup.
+   if (!m_bRoamingAppDataPathCalculated
+      || m_strApplicationAppDataAppId != strAppId
+      || m_pathApplicationAppDataOverride != pathOverride)
    {
 
-      if (system()->has_property("app_folder"))
-      {
+      auto pathAppData = pathOverride.has_character() ? pathOverride : roaming() / strAppId;
 
-         m_pathAppData = system()->payload("app_folder");
-
-      }
-
-      if (m_pathAppData.is_empty())
-      {
-
-         m_pathAppData = roaming() / appid();
-
-      }
-
+      m_pathApplicationAppData = pathAppData;
+      m_strApplicationAppDataAppId = strAppId;
+      m_pathApplicationAppDataOverride = pathOverride;
       m_bRoamingAppDataPathCalculated = true;
 
    }
 
-   return m_pathAppData;
+   return m_pathApplicationAppData;
 
 }
 
@@ -1248,6 +1246,17 @@ bool directory_system::defer_enumerate_media_library(::file::listing_base& listi
 
 bool directory_system::defer_enumerate_protocol(::file::listing_base& listing)
 {
+
+   if (listing.m_pathUser.case_insensitive_begins("google-drive://"))
+   {
+      auto path = application()->defer_process_path(listing.m_pathUser);
+      if (path.case_insensitive_begins("google-drive://"))
+      {
+         auto & pfactory = system()->factory("folder", "google_drive");
+         auto pfolder = createø < ::folder >(pfactory);
+         return pfolder->enumerate(listing);
+      }
+   }
    
    return node()->defer_enumerate_protocol(listing);
    

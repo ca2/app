@@ -78,11 +78,20 @@ namespace micro
    void popup_button::create_window(enum_parallelization eparallelization)
    {
 
-      ::micro::main_window::create_window(eparallelization);
-
       m_bTopMost = true;
 
       m_bArbitraryPositioning = true;
+
+      if (m_pacmewindowingwindow && m_rectangle.width() > 0 && m_rectangle.height() > 0)
+      {
+
+         m_pacmewindowingwindow->m_pointWindow = m_rectangle.origin();
+
+         m_pacmewindowingwindow->m_sizeWindow = m_rectangle.size();
+
+      }
+
+      ::micro::main_window::create_window(eparallelization);
 
    }
 
@@ -174,11 +183,9 @@ namespace micro
    void popup_button::set_dialog_response(const ::payload & payloadResult)
    {
 
-      ::user_interface::dialog_implementation::set_dialog_response(payloadResult);
-//      ::dialog_reifier::set_dialog_result(payloadResult);
-      //m_payloadPopupButtonResult = payloadResult;
+      destroy_window();
 
-      //on_dialog_result_set();
+      ::user_interface::dialog_implementation::set_dialog_response(payloadResult);
 
    }
 

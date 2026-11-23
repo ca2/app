@@ -1,6 +1,7 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "platform.h"
+#include "aura/graphics/graphics/frame_trace.h"
 #include <cstdlib>
 #include "acme/parallelization/mutex.h"
 #include "fps_debug.h"
@@ -2924,6 +2925,9 @@ namespace windowing
 
       }
 
+      bool bArbitraryPositioning = user_interaction()
+         && (user_interaction()->m_ewindowflag & e_window_flag_arbitrary_positioning);
+
       auto pointDesign = stateDesign.origin();
 
       auto pointWindow = m_pointWindow;
@@ -2933,7 +2937,8 @@ namespace windowing
       if (bMove)
       {
 
-         if (system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
+         if (!bArbitraryPositioning
+            && system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
             bMove = false;
@@ -2953,7 +2958,8 @@ namespace windowing
       if (bSize)
       {
 
-         if (system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
+         if (!bArbitraryPositioning
+            && system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
             bSize = false;
@@ -12076,6 +12082,7 @@ namespace windowing
 
       m_bNewFrame = true;
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
       windowing_output_debug_string("windowing::window::do_graphics");
 
       string strType = ::platform::type(user_interaction()).name();
@@ -12086,6 +12093,8 @@ namespace windowing
          debug() << "not main_frame";
 
       }
+
+#endif
 
 #ifdef MORE_LOG
 
@@ -12133,7 +12142,9 @@ namespace windowing
                   };
 
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
                debug() << "windowing::window::do_graphics";
+#endif
 
                ::pointer<::graphics::buffer_item> pbufferitem;
 
@@ -12149,11 +12160,14 @@ namespace windowing
 
                   auto & bReposition = puserinteraction->m_bReposition;
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
                   if (!strType.case_insensitive_contains("main_frame"))
                   {
 
                      // information() << "not main_frame";
                   }
+
+#endif
 
                   {
 
@@ -12208,7 +12222,9 @@ namespace windowing
 
                         slGraphics.unlock();
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
                         windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+#endif
 
                         if (has_destroying_flag())
                         {
@@ -12473,6 +12489,18 @@ namespace windowing
                   return;
 
                }
+
+#ifdef WINDOWS_DESKTOP
+               if (m_papplication->use_gpu_swap_chain())
+               {
+
+                  // Swap-chain presentation bypasses the software buffer's
+                  // configure step. Commit native geometry independently so a
+                  // resize/full-screen request cannot wait on the old buffer.
+                  set_window_position_unlocked();
+
+               }
+#endif
 
                bool bPresentFrame;
 
@@ -12928,7 +12956,9 @@ namespace windowing
       //pdraw2dgraphics->start_layer(true, user_interaction());
 
 
+#if AURA_FRAME_TRACE_LEVEL >= 3
       windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+#endif
 
       if (has_destroying_flag())
       {

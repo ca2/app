@@ -446,6 +446,13 @@ namespace platform
       delete m_presourcefolderpool;
       m_presourcefolderpool = nullptr;
 
+      if (s_p == this)
+      {
+
+         s_p = nullptr;
+
+      }
+
       //::acme::get()->m_pmanualresethappeningReadyToExit->set_happening();
       //on_system_before_destroy();
 
@@ -878,8 +885,6 @@ namespace platform
       //m_pdirectorysystem = nullptr;
       //m_ppathsystem = nullptr;
 
-      defer_construct_newø(m_pmathematics);
-
       defer_construct_newø(m_pprototype);
 
       RUN_SELF_TEST(main);
@@ -1097,6 +1102,20 @@ namespace platform
 
    class ::mathematics::mathematics* system::mathematics()
    {
+
+      if (!m_pmathematics)
+      {
+
+         _synchronous_lock synchronouslock(this->synchronization());
+
+         if (!m_pmathematics)
+         {
+
+            defer_construct_newø(m_pmathematics);
+
+         }
+
+      }
 
       return m_pmathematics;
 
@@ -1636,7 +1655,7 @@ namespace platform
       //::acme::idpool::term();
 
       //m_pnode->user_post_quit();
-
+      m_pmicrouser.defer_destroy_and_release();
       m_pnode.release();
 
       //try
@@ -1863,6 +1882,8 @@ namespace platform
          m_pdirectorysystem.release();
          m_pfilesystem.release();
          m_ppathsystem.release();
+         m_bDirectorySystemInitialized = false;
+         m_bFileSystemComponentsInitialized = false;
          m_bFileSystemComponentsInitializing = false;
 
          throw;
@@ -2136,6 +2157,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       if (m_pacmewindowing)
       {
+
+         // Native event loops do not observe the task's finishing flag.
+         m_pacmewindowing->windowing_post_quit();
 
          m_pacmewindowing->set_finish();
 

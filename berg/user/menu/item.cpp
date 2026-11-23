@@ -7,6 +7,7 @@
 #include "item.h"
 #include "aura/user/user/interaction.h"
 #include "axis/user/user/user.h"
+#include "berg/user/menu/interaction.h"
 #include "berg/user/menu/menu.h"
 #include "item_ptra.h"
 
@@ -526,18 +527,27 @@ namespace menu
 
             pinteraction->destroy_window();
 
+            pinteraction = user()->create_menu_button(m_pmenu, pdraw2dgraphics, pitem);
+
+            if (pinteraction.is_null())
+            {
+
+               throw ::exception(error_failed);
+
+            }
+
          }
 
          pinteraction->create_control(pusermenu, pitem->id());
 
-         //if (!pinteraction->create_control(pmenu, pitem->id()))
-         //{
-
-         //   return false;
-
-         //}
-
          pinteraction->m_pmenuitem = pitem;
+
+         if (auto pmenuinteraction = dynamic_cast<::user::menu_interaction *>(pinteraction.m_p))
+         {
+
+            pmenuinteraction->m_pmenuitem = pitem;
+
+         }
 
          if (!pinteraction->is_this_window())
          {

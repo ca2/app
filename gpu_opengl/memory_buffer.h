@@ -16,6 +16,7 @@ namespace gpu_opengl
 
 
 
+      void * m_pNativeAllocationContext = nullptr;
       GLuint m_gluVbo;
       GLsizei m_iType;
       //::gpu_vulkan::context * m_pcontext;

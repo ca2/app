@@ -195,6 +195,8 @@ list(APPEND library_source
         filesystem/file/file.cpp
         filesystem/file/folder.cpp
         filesystem/file/folder.h
+        filesystem/file/folder_download.cpp
+        filesystem/file/folder_download.h
         filesystem/file/item.cpp
         filesystem/file/item_array.cpp
         filesystem/file/memory_file.cpp
@@ -1442,6 +1444,7 @@ list(APPEND library_source
         user/micro/main_window.h
         user/micro/message_box.cpp
         user/micro/message_box.h
+        user/micro/command_message_box.h
         user/micro/popup_button.cpp
         user/micro/popup_button.h
         user/micro/still.cpp
@@ -1819,6 +1822,8 @@ list(APPEND library_source
         exception/exception.cpp
         exception/exception.h
         exception/exception2.h
+        exception/exception_pointer.cpp
+        exception/exception_pointer.h
         exception/exit.cpp
         exception/exit.h
         exception/runtime_check.cpp
@@ -3685,4 +3690,11 @@ else()
 endif()
 if(WIN32 AND NOT ca2_raw_stack_definition STREQUAL "")
    set_property(SOURCE operating_system/windows/callstack.cpp APPEND PROPERTY COMPILE_DEFINITIONS "${ca2_raw_stack_definition}")
+endif()
+
+if(BUILD_TESTING)
+   add_executable(file_icon_provider_test test/file_icon_provider.cpp)
+   target_compile_features(file_icon_provider_test PRIVATE cxx_std_20)
+   target_link_libraries(file_icon_provider_test PRIVATE acme)
+   add_test(NAME file_icon_provider_test COMMAND file_icon_provider_test)
 endif()

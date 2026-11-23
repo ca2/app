@@ -1,6 +1,10 @@
 #include "platform.h"
 #include "document.h"
 #include "impact.h"
+#include "core/user/userex/dialog.h"
+#include "berg/user/form/impact.h"
+#include "berg/user/form/document.h"
+#include "acme/user/interface/message_box.h"
 #include "tab_impact.h"
 #include "data.h"
 #include "child_frame.h"
@@ -11,6 +15,8 @@
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/watcher/action.h"
 #include "acme/filesystem/watcher/watcher.h"
+#include "acme/filesystem/watcher/watch.h"
+#include "acme/filesystem/file/folder_change_poller.h"
 #include "acme/handler/request.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/topic.h"
@@ -26,6 +32,161 @@
 
 namespace filemanager
 {
+
+
+   class new_folder_dialog : public ::userex::dialog
+   {
+   public:
+      ::filemanager::document * m_pdocument = nullptr;
+      ::file::path m_pathParent;
+      bool m_bCreating = false;
+
+      ::pointer < ::user::plain_edit > m_peditFolderName;
+      ::pointer < ::user::button > m_pbuttonOk;
+      ::pointer < ::user::button > m_pbuttonCancel;
+
+
+      new_folder_dialog()
+      {
+         m_bResizable = false;
+      }
+      ~new_folder_dialog() override
+      {
+
+
+      }
+
+
+      ::i32_bool on_init_dialog() override
+      {
+
+         if (!::userex::dialog::on_init_dialog())
+         {
+
+            return false;
+
+         }
+
+         m_pformdocument->set_title("New Folder");
+         auto playoutMainColumn = create_line_layout(m_pform, ::e_orientation_vertical);
+         playoutMainColumn->set_position({16, 16});
+
+         //auto playoutLine1 = create_line_layout(this, ::e_orientation_horizontal);
+
+         create_label<::user::still>(playoutMainColumn, "New Folder");
+         create_label<::user::still>(playoutMainColumn, "Name:");
+         m_peditFolderName = create_edit<::user::plain_edit>(playoutMainColumn);
+         m_peditFolderName->m_bMultiLine = false;
+         m_peditFolderName->set_size({360, 32});
+
+         auto playoutLine1 = create_line_layout(playoutMainColumn, ::e_orientation_horizontal);
+
+         m_pbuttonOk = create_button(playoutLine1, "OK");
+
+         m_pbuttonCancel = create_button(playoutLine1, "Cancel");
+         set_action_button(m_pbuttonOk);
+
+         m_callbackOnAction = [this](::user::interaction* puserinteraction, ::item* pitem, ::user::activation_token* puseractivationtoken) -> bool
+            {
+
+
+               //auto pedit = get_child_by_id("name");
+               //if (!pedit) pedit = m_pform->get_child_by_name("name");
+               //if (!pedit) { show_error("The folder name field could not be loaded."); return; }
+               if (m_bCreating) return true;
+               auto strFolderName = m_peditFolderName->get_text();
+               strFolderName.trim();
+               if (strFolderName.is_empty() || strFolderName == "." || strFolderName == ".." ||
+                  strFolderName.contains("/") || strFolderName.contains("\\"))
+               {
+                  show_error("Enter a folder name without path separators.");
+                  return true;
+               }
+               m_bCreating = true;
+               m_pbuttonOk->enable_window(false);
+               m_pbuttonCancel->enable_window(false);
+               ::pointer < new_folder_dialog > pdialog = this;
+               ::pointer < ::filemanager::document > pdocument = m_pdocument;
+               auto pathParent = m_pathParent;
+               pdocument->fork([pdialog, pdocument, pathParent, strFolderName]()
+                  {
+                     ::string strError;
+                     bool bCreated = false;
+                     try
+                     {
+                        pdocument->filemanager_data()->fs_data()->create_folder(pathParent, strFolderName);
+                        bCreated = true;
+                     }
+                     catch (const ::exception& exception) { strError = exception.get_message(); }
+                     catch (...) { strError = "Could not create the folder."; }
+                     pdialog->m_pform->user_post([pdialog, pdocument, strError, bCreated]()
+                        {
+                           if (!pdialog->m_pform || !pdialog->m_pform->is_window()) return;
+                           pdialog->m_bCreating = false;
+                           if (bCreated)
+                           {
+                              pdialog->EndModalLoop("ok");
+                              try { pdocument->_001Refresh(); }
+                              catch (...) { pdialog->show_error("The folder was created, but the listing could not be refreshed."); }
+                           }
+                           else
+                           {
+                              pdialog->m_pbuttonOk->enable_window(true);
+                              pdialog->m_pbuttonCancel->enable_window(true);
+                              pdialog->show_error(strError);
+                           }
+                        });
+                  });
+
+               return true;
+            };
+
+         m_pbuttonCancel->m_callbackOnAction = [this](::user::interaction* puserinteraction, ::item* pitem, ::user::activation_token* puseractivationtoken) -> bool
+            {
+
+               if (!m_bCreating) EndModalLoop("cancel");
+
+               return true;
+
+            };
+
+      
+
+
+         return true;
+
+      
+
+      }
+
+      void on_show(const ::scoped_string & scopedstrMatter) override
+      {
+         ::userex::dialog::on_show(scopedstrMatter);
+         if (m_peditFolderName) m_peditFolderName->set_keyboard_focus();
+      }
+
+      void show_error(const ::scoped_string & scopedstrMessage)
+      {
+         auto pmessagebox = m_pdocument->createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box(scopedstrMessage, "New Folder");
+         pmessagebox->display(e_display_normal, {});
+      }
+
+      void handle(::topic * ptopic, ::handler_context * pcontext) override
+      {
+         ::userex::dialog::handle(ptopic, pcontext);
+         //if (ptopic->id() != ::id_click || !ptopic->user_interaction() || !m_pform) return;
+         //auto atom = ptopic->user_interaction()->id();
+         //if (atom == "cancel" && !m_bCreating)
+         //{
+         //   EndModalLoop("cancel");
+         //   ptopic->m_bRet = true;
+         //   return;
+         //}
+         //if (atom != "submit" || m_bCreating) return;
+         //ptopic->m_bRet = true;
+      }
+   };
 
 
    document::document()
@@ -402,15 +563,6 @@ namespace filemanager
    bool document::browse(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
-      if (m_pfilewatch)
-      {
-
-         // auto pcontext = get_context();
-
-         file_watcher()->erase_watch(m_pfilewatch);
-
-      }
-
       if (!::userfs::document::browse(pitem, context))
       {
 
@@ -428,12 +580,23 @@ namespace filemanager
    void document::on_update_data(::data::data * pdata, ::topic * ptopic, const ::action_context & context)
    {
 
-      if (ptopic->id() == id_browse)
+      if (ptopic->id() == "filemanager_browse_failed")
+      {
+         m_uWatchBrowseRequest = filemanager_data()->m_uBrowseRequest;
+         m_bWatchDirty = false;
+         if (m_folderPoll) m_folderPoll->refresh_needed = true;
+      }
+      else if (ptopic->id() == id_browse)
       {
 
          OnFileManagerBrowse(::e_source_sync);
-
+         synchronize_folder_watch();
          update_all_impacts(ptopic);
+         if (m_bWatchDirty)
+         {
+            m_bWatchDirty = false;
+            _001Refresh();
+         }
 
       }
 
@@ -807,24 +970,6 @@ namespace filemanager
       }
 
 
-      try
-      {
-
-         // auto pcontext = get_context();
-
-         auto pdir = directory();
-
-         //auto & watcher = pdir->watcher();
-
-         //m_pfilewatch = watcher.add_watch(filemanager_data()->m_pitem->final_path(), this, false);
-
-      }
-      catch (...)
-      {
-
-         m_pfilewatch = nullptr;
-
-      }
 
 
    }
@@ -1038,7 +1183,8 @@ namespace filemanager
 
       ::pointer<::message::command>pcommand(pmessage);
 
-      pcommand->enable(true);
+      auto pitem = filemanager_item();
+      pcommand->enable(pitem && pitem->user_path().has_character());
 
       pmessage->m_bRet = true;
 
@@ -1048,11 +1194,42 @@ namespace filemanager
    void document::_001OnNewFolder(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
-
-      id_update_all_impacts(id_new_folder);
-
       pmessage->m_bRet = true;
+      if (m_pdialogNewFolder && m_pdialogNewFolder->m_pframe
+         && m_pdialogNewFolder->m_pframe->is_this_visible())
+      {
+         m_pdialogNewFolder->m_pframe->ActivateFrame();
+         return;
+      }
+      auto pitem = filemanager_item();
+      if (!pitem || pitem->user_path().is_empty()) return;
+
+      if (m_bNewFolderDialogPending || m_impacta.is_empty()) return;
+      m_bNewFolderDialogPending = true;
+      ::pointer < ::filemanager::document > pdocument = this;
+      auto pathParent = pitem->user_path();
+      ::pointer<::user::interaction> powner = m_impacta.first()->parent_frame();
+      m_impacta.first()->user_post([this, pdocument, pathParent, powner]()
+      {
+         try
+         {
+            auto pdialog = create_newø < new_folder_dialog >();
+            pdialog->m_pdocument = pdocument;
+            pdialog->m_pathParent = pathParent;
+            pdialog->m_pdialogOwner = powner;
+            pdocument->m_pdialogNewFolder = pdialog;
+            if (!pdialog->show())
+               throw ::exception(error_failed, "Could not display the New Folder dialog");
+         }
+         catch (...)
+         {
+            pdocument->m_pdialogNewFolder.release();
+            auto pmessagebox = createø < ::user_interface::message_box >();
+            pmessagebox->initialize_message_box("Could not display the New Folder dialog.", "New Folder");
+            pmessagebox->display(e_display_normal, {});
+         }
+         pdocument->m_bNewFolderDialogPending = false;
+      });
 
    }
 
@@ -1690,20 +1867,147 @@ namespace filemanager
    }
 
 
+   void document::stop_folder_watch()
+   {
+      if (m_folderPoll)
+      {
+         m_folderPoll->stopped = true;
+         m_folderPoll.reset();
+      }
+      if (m_pfilewatch)
+      {
+         auto watch = m_pfilewatch;
+         m_pfilewatch.release();
+         file_watcher()->erase_watch(watch);
+      }
+      m_bWatchDirty = false;
+   }
+
+   void document::destroy()
+   {
+      stop_folder_watch();
+      ::userfs::document::destroy();
+   }
+
+   void document::on_close_document()
+   {
+      stop_folder_watch();
+      ::userfs::document::on_close_document();
+   }
+
+   void document::synchronize_folder_watch()
+   {
+      auto pdata = filemanager_data();
+      auto pitem = filemanager_item();
+      auto path = pitem ? pitem->final_path() : ::file::path();
+      auto provider = pitem ? pdata->fs_data()->path_data(pitem->user_path()) : nullptr;
+      auto poller = provider ? dynamic_cast<::file::folder_change_poller *>(provider.m_p) : nullptr;
+      if (poller)
+      {
+         auto userPath = pitem->user_path();
+         m_uWatchBrowseRequest = pdata->m_uBrowseRequest;
+         if (m_folderPoll && m_folderPoll->path == userPath)
+         {
+            m_folderPoll->refresh_needed = false;
+            return;
+         }
+         stop_folder_watch();
+         auto impact = get_impact();
+         if (!impact) return;
+         auto state = std::make_shared<folder_poll_state>();
+         state->path = userPath;
+         m_folderPoll = state;
+         ::pointer<document> hold = this;
+         fork([hold, provider, poller, impact, state]()
+         {
+            ::string cursor;
+            int delay = 15;
+            while (!state->stopped && ::task_get_run())
+            {
+               try
+               {
+                  bool changed = poller->poll_folder_changes(state->path, cursor);
+                  delay = 15;
+                  if (changed) state->refresh_needed = true;
+                  if (state->refresh_needed && !state->stopped && !state->refresh_posted.exchange(true))
+                  {
+                     impact->user_post([hold, state]()
+                     {
+                        state->refresh_posted = false;
+                        if (state->stopped || hold->m_folderPoll != state) return;
+                        auto data = hold->filemanager_data();
+                        if (!data || !data->m_pitem || data->m_pitem->user_path() != state->path) return;
+                        if (data->m_uBrowseRequest != hold->m_uWatchBrowseRequest)
+                           hold->m_bWatchDirty = true;
+                        else
+                           hold->_001Refresh();
+                     });
+                  }
+               }
+               catch (...)
+               {
+                  // Keep the current listing on transient network/auth failures.
+                  // No provider credentials or opaque cursors are logged.
+                  delay = minimum(delay * 2, 120);
+               }
+               for (int tick = 0; tick < delay * 2 && !state->stopped && ::task_get_run(); ++tick)
+                  ::get_task()->task_sleep(500_ms);
+            }
+         });
+         return;
+      }
+      if (m_folderPoll) stop_folder_watch();
+      // Watch native folders only. Remote providers keep their own refresh policy.
+      if (path.is_empty() || path.contains("://") || path.is_relative())
+      {
+         stop_folder_watch();
+         return;
+      }
+      if (!m_pfilewatch || m_pfilewatch->m_pathFolder != path)
+      {
+         stop_folder_watch();
+         try
+         {
+            m_pfilewatch = file_watcher()->add_watch(path, this, false);
+         }
+         catch (const ::exception & exception)
+         {
+            warning() << "Could not watch folder " << path << ": " << exception.get_message();
+         }
+      }
+      m_uWatchBrowseRequest = pdata->m_uBrowseRequest;
+   }
+
    void document::operator()(::file::action * paction)
    {
-
-      auto eaction = paction->m_eaction;
-
-      if (eaction == ::file::e_action_delete
-            || eaction == ::file::e_action_add
-            || eaction == ::file::e_action_modify)
+      if (!paction || (paction->m_eaction != ::file::e_action_add
+         && paction->m_eaction != ::file::e_action_delete
+         && paction->m_eaction != ::file::e_action_modify)) return;
+      if (m_iWatchRefreshSuppress.load(std::memory_order_relaxed) > 0) return;
+      if (m_bWatchRefreshPosted.exchange(true)) return;
+      ::pointer<::file::watch> watch = paction->m_pfilewatch;
+      ::pointer<document> hold = this;
+      auto pimpact = get_impact();
+      if (!pimpact)
       {
-
-         OnFileManagerBrowse(::e_source_sync);
-
+         m_bWatchRefreshPosted = false;
+         return;
       }
-
+      pimpact->user_post([hold, watch]()
+      {
+         hold->m_bWatchRefreshPosted = false;
+         if (!watch || hold->m_pfilewatch != watch) return;
+         auto pdata = hold->filemanager_data();
+         if (!pdata || !pdata->m_pitem
+            || pdata->m_pitem->final_path() != watch->m_pathFolder) return;
+         // A change during enumeration needs another pass after that browse completes.
+         if (pdata->m_uBrowseRequest != hold->m_uWatchBrowseRequest)
+         {
+            hold->m_bWatchDirty = true;
+            return;
+         }
+         hold->_001Refresh();
+      });
    }
 
 

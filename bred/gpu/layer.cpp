@@ -273,7 +273,9 @@ namespace gpu
 
       m_timeDuration = m_timeEnd - m_timeStart;
 
+#if defined(GPU_DEBUG_FRAME_TRACE)
       information("Layer {} duration : {} ms", m_iGpuLayerIndex, m_timeDuration.floating_millisecond());
+#endif
 
       finished_manual_reset_happening()->set_happening();
 

@@ -5,6 +5,7 @@
 
 //#include "acme/filesystem/filesystem/path.h"
 #include "acme/parallelization/task.h"
+#include "acme/filesystem/filesystem/enumerator.h"
 #include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/prototype/auto_pointer.h"
 #include "aura/graphics/draw2d/domain_consumer.h"
@@ -63,6 +64,8 @@ namespace user
          enumeration < enum_icon >              m_eicon;
          ::i32                                    m_iIcon;
          string                                 m_strExtension;
+         bool                                   m_bProviderImage = false;
+         string                                 m_strLocalThumbnailPath;
 
 
          image_key();
@@ -79,6 +82,8 @@ namespace user
          {
             // default identity hash - works for most prototype values
             return
+               as_hash32(m_strLocalThumbnailPath) +
+               as_hash32((::i32)m_bProviderImage) +
                as_hash32(m_strPath) +
                as_hash32(m_strShellThemePrefix) +
                as_hash32(m_strExtension) +
@@ -232,7 +237,10 @@ namespace user
 
 
       virtual ::i32 get_file_image(const ::file::path & path, const ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon);
+      virtual ::i32 get_file_image(const ::file::path & path, enum_file_attribute eattribute, enum_icon eicon,
+         ::file::enumerator * pprovider, const ::particle_array & particleaNotify);
       virtual ::i32 get_file_image(const image_key & imagekey);
+      bool defer_get_provider_image(_get_file_image_ & getfileimage);
       virtual ::i32 schedule_get_file_image(const image_key & imagekey);
 
       virtual void warn_when_ok(const ::file::path & path, const ::user::interaction_array & userinteractionaInterested);
@@ -280,7 +288,9 @@ namespace user
 
    inline bool shell::image_key::operator == (const image_key & key) const
    {
-      return m_eattribute == key.m_eattribute
+      return m_bProviderImage == key.m_bProviderImage
+         && m_strLocalThumbnailPath == key.m_strLocalThumbnailPath
+         && m_eattribute == key.m_eattribute
          && m_eicon == key.m_eicon
          && m_strExtension == key.m_strExtension
          && m_strShellThemePrefix == key.m_strShellThemePrefix

@@ -158,7 +158,9 @@ namespace windowing
 
       virtual bool would_be_restored_in_monitor(const ::i32_rectangle & rectangleWouldBeRestored, const ::i32_rectangle & rectangleMonitor);
 
-void * raw_x11_display() override;
+      void * raw_x11_display() override;
+
+      void * raw_xcb_connection() override;
    };
 
 

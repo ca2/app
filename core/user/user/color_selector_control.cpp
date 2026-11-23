@@ -676,6 +676,8 @@ namespace user
 
       release_mouse_capture();
 
+      bool bHandled = false;
+
       if (m_bColorWheel)
       {
 
@@ -684,13 +686,13 @@ namespace user
 
             pmouse->m_bRet = true;
 
-            return;
+            bHandled = true;
 
          }
 
       }
 
-      if (m_bMode0)
+      if (!bHandled && m_bMode0)
       {
 
          if (color_selector::on_mouse_up(point))
@@ -698,12 +700,13 @@ namespace user
 
             pmouse->m_bRet = true;
 
-            return;
+            bHandled = true;
+
          }
 
       }
 
-      if (is_ok_target(point))
+      if (bHandled || is_ok_target(point))
       {
 
          if (has_handler())

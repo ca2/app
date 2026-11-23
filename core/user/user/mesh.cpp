@@ -128,6 +128,7 @@ namespace user
 
 
       m_iLeftMargin                       = 0;
+      m_iRightMargin                      = 0;
       m_iTopMargin                        = 0;
 
       m_bAutoCreateMeshHeader = true;
@@ -1616,7 +1617,7 @@ namespace user
 
          ::collection::index iItem;
 
-         if(_001DisplayHitTest(::i32_point((::i32)(pointScroll.x < 0 ? -pointScroll.x : 0), (::i32)(m_dItemHeight + (pointScroll.y < -0 ? -pointScroll.y : 0))),iItem))
+         if(_001DisplayHitTest(::i32_point(m_iLeftMargin + (::i32)(pointScroll.x < 0 ? -pointScroll.x : 0), (::i32)(m_dItemHeight + (pointScroll.y < -0 ? -pointScroll.y : 0))),iItem))
          {
 
             return (::collection::index) iItem;
@@ -3956,13 +3957,6 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
                   set_selection(range);
 
                }
-
-            }
-
-            if (get_keyboard_focus() != this)
-            {
-
-               set_keyboard_focus();
 
             }
 

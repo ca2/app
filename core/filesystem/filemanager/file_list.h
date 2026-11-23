@@ -34,6 +34,13 @@ namespace filemanager
       bool                             m_bFolderLoading = false;
       bool                             m_bFolderLoadFailed = false;
       int                              m_iLoadingDots = 0;
+      ::i32_point                      m_pointContextMenuClient;
+      bool                             m_bHasContextMenuRenamePoint = false;
+      ::collection::index              m_iContextMenuRenameItem = -1;
+      bool                             m_bCreatingNewFolderInPlace = false;
+      ::collection::index              m_iInPlaceEditItem = -1;
+      bool                             m_bInPlaceWatchSuppressed = false;
+      bool                             m_bValidationDialogOpen = false;
 
 
       file_list();
@@ -91,6 +98,16 @@ namespace filemanager
 
       DECLARE_MESSAGE_HANDLER(_001OnFileRename);
       DECLARE_MESSAGE_HANDLER(_001OnUpdateFileRename);
+      DECLARE_MESSAGE_HANDLER(_001OnNewFolderInPlace);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateNewFolderInPlace);
+
+      bool _001Validate(::user::interaction * pinteraction, ::payload & payload) override;
+      void _001SetSubItemText(::user::mesh_subitem * psubitem) override;
+      void _001CancelEdit(::user::interaction * pinteraction) override;
+      void _001OnShowControl(::user::interaction * pinteraction) override;
+      void _001HideEditingControls() override;
+      ::collection::index calculate_insert_index_for_point(const ::i32_point & point);
+      void set_inplace_watch_suppressed(bool bSuppress);
 
       DECLARE_MESSAGE_HANDLER(_001OnTrashThatIsNotTrash);
       DECLARE_MESSAGE_HANDLER(_001OnUpdateTrashThatIsNotTrash);

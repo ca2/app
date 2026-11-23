@@ -167,15 +167,21 @@ void simple_frame_window::initialize(::particle * pparticle)
 bool simple_frame_window::has_notify_icon()
 {
 
-#if defined(HAS_GTK4)
+   if (!m_bDefaultNotifyIcon2)
+   {
 
-   return false;
+      return false;
 
-#else
+   }
+
+   if (auto psystem = system(); psystem && psystem->windowing())
+   {
+
+      return psystem->windowing()->has_notify_icon_interface();
+
+   }
 
    return m_bDefaultNotifyIcon2;
-
-#endif
 
 }
 

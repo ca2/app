@@ -10,6 +10,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/user/user/interaction_array.h"
+#include "aura/windowing/window.h"
 #include "core/platform/session.h"
 #include "core/user/user/user.h"
 
@@ -202,6 +203,10 @@ namespace userex
       }
       m_pframe->disable_dock();
       m_pframe->enable_size(m_bResizable);
+      if (!m_bResizable)
+      {
+         m_pframe->payload("fixed_size") = true;
+      }
       m_pframe->m_bTransparentFrameEnable = false;
       m_pframe->m_bFullScreenEnable = false;
       m_pframe->erase_appearance(e_appearance_transparent_frame);
@@ -354,6 +359,17 @@ namespace userex
       m_pframe->order(e_zorder_top);
 
       m_pframe->place(rectangleOpen);
+
+      if (auto pwindow = m_pframe->window())
+      {
+         // Apply the fitted dialog geometry to the native window before showing so an initial
+         // configure event from LoadFrame's default restore size cannot overwrite sketch state.
+         ::pointer<::windowing::window> pwindowHold = pwindow;
+         pwindow->main_send([pwindowHold, rectangleOpen]()
+         {
+            pwindowHold->set_rectangle_unlocked(rectangleOpen);
+         });
+      }
 
       m_pframe->ActivateFrame();
 

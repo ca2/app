@@ -2005,7 +2005,7 @@ namespace user
 
       ::collection::index iItem;
 
-      if (_001DisplayHitTest(i32_point(0,
+      if (_001DisplayHitTest(i32_point(m_iLeftMargin,
          pointOffset.y + (::i32) (m_bHeaderCtrl ? m_dItemHeight : 0.)), iItem))
       {
 
@@ -2327,7 +2327,7 @@ namespace user
 
       get_margin_rect(&rectangleMargin);
 
-      auto iLeft = (::collection::index)-pointOffset.x - (rectangleMargin.left * 2);
+      auto iLeft = (::collection::index)-pointOffset.x - (rectangleMargin.left * 2) + m_iLeftMargin;
 
       if (m_bGroup && m_bLateralGroup)
       {
@@ -2404,6 +2404,31 @@ namespace user
 //
       if (m_eview == impact_report)
       {
+
+         auto rectangleX = this->rectangle();
+
+         auto pointOffset = get_context_offset();
+
+         if (m_iLeftMargin > 0 && (point.x + pointOffset.x) < m_iLeftMargin)
+         {
+
+            return false;
+
+         }
+
+         if (m_iItemWidth > 0 && (point.x + pointOffset.x) >= (m_iLeftMargin + m_iItemWidth))
+         {
+
+            return false;
+
+         }
+
+         if (m_iRightMargin > 0 && point.x > (rectangleX.right - m_iRightMargin))
+         {
+
+            return false;
+
+         }
 
          //auto pointOffset = get_context_offset();
 
@@ -2493,6 +2518,20 @@ namespace user
 
          auto pointOffset = get_context_offset();
 
+         if (m_iLeftMargin > 0 && (point.x + pointOffset.x) < m_iLeftMargin)
+         {
+
+            return false;
+
+         }
+
+         if (m_iRightMargin > 0 && point.x > (rectangleX.right - m_iRightMargin))
+         {
+
+            return false;
+
+         }
+
          ::collection::index iy;
 
          if (m_iItemWidth <= 0)
@@ -2524,7 +2563,7 @@ namespace user
          if(m_iItemWidth > 0)
          {
 
-            iColumn = (::i32) ((point.x + pointOffset.x) / m_iItemWidth);
+            iColumn = (::i32) ((point.x + pointOffset.x - m_iLeftMargin) / m_iItemWidth);
 
          }
 
@@ -2611,29 +2650,51 @@ namespace user
 
          auto pointOffset = get_context_offset();
 
-         auto dx = point.x + pointOffset.x;
+         auto iAvailableWidth = maximum<::i32>(sizeIconItem.cx, rectangleX.width() - m_iLeftMargin - m_iRightMargin);
 
-         dx = maximum(pointOffset.x, dx);
+         auto iCols = maximum<::i32>(1, iAvailableWidth / sizeIconItem.cx);
 
-         dx = minimum(rectangleX.right, dx);
+         auto xContent = point.x + pointOffset.x;
 
-         dx = maximum(rectangleX.left, dx);
+         if (xContent < m_iLeftMargin || xContent >= m_iLeftMargin + iCols * sizeIconItem.cx)
+         {
 
-         dx /= sizeIconItem.cx;
+            return false;
+
+         }
+
+         if (m_iRightMargin > 0 && point.x > (rectangleX.right - m_iRightMargin))
+         {
+
+            return false;
+
+         }
+
+         auto dx = (xContent - m_iLeftMargin) / sizeIconItem.cx;
 
          auto dy = point.y + pointOffset.y;
 
-         dy = maximum(pointOffset.y, dy);
+         if (dy < rectangleX.top)
+         {
 
-         dy = maximum(rectangleX.top, dy);
+            return false;
 
-         dy /= sizeIconItem.cy;
+         }
+
+         dy = (dy - rectangleX.top) / sizeIconItem.cy;
 
          ::i32 ix = (::i32) dx;
 
          ::i32 iy = (::i32) dy;
 
-         iItemParam =  (::collection::index) (iy * (maximum(1, rectangleX.width() / sizeIconItem.cx)) + ix);
+         iItemParam = (::collection::index) (iy * iCols + ix);
+
+         if (iItemParam < 0 || iItemParam >= m_nItemCount)
+         {
+
+            return false;
+
+         }
 
          return true;
 
@@ -2870,9 +2931,9 @@ namespace user
          else
          {
 
-            pdrawitem->m_rectangleItem.left = 0;
+            pdrawitem->m_rectangleItem.left = m_iLeftMargin;
 
-            pdrawitem->m_rectangleItem.right = (::i32)m_iItemWidth;
+            pdrawitem->m_rectangleItem.right = (::i32)(m_iLeftMargin + m_iItemWidth);
 
             pdrawitem->m_rectangleItem.top = 0;
 
@@ -2938,7 +2999,7 @@ namespace user
 
             ::i32 iRow = pdrawitem->m_iItem % iImpactRowCount;
 
-            pdrawitem->m_rectangleItem.left = iColumn * m_iItemWidth;
+            pdrawitem->m_rectangleItem.left = m_iLeftMargin + iColumn * m_iItemWidth;
 
             pdrawitem->m_rectangleItem.top = (::i32)(iRow * m_dItemHeight);
 
@@ -2992,13 +3053,17 @@ namespace user
 
          auto sizeIconItem = get_list_icon_item_size();
 
-         pdrawitem->m_rectangleItem.left = (::i32)(sizeIconItem.cx * (pdrawitem->m_iDisplayItem % (maximum(1, rectangleX.width() / sizeIconItem.cx))));
+         auto iAvailableWidth = maximum<::i32>(sizeIconItem.cx, rectangleX.width() - m_iLeftMargin - m_iRightMargin);
 
-         pdrawitem->m_rectangleItem.top = (::i32)(sizeIconItem.cy * (pdrawitem->m_iDisplayItem / (maximum(1, rectangleX.width() / sizeIconItem.cx))));
+         auto iCols = maximum<::i32>(1, iAvailableWidth / sizeIconItem.cx);
 
-         pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + sizeIconItem.cx);
+         pdrawitem->m_rectangleItem.left = m_iLeftMargin + (::i32)(sizeIconItem.cx * (pdrawitem->m_iDisplayItem % iCols));
 
-         pdrawitem->m_rectangleItem.right = (::i32)(pdrawitem->m_rectangleItem.left + sizeIconItem.cy);
+         pdrawitem->m_rectangleItem.top = rectangleX.top + (::i32)(sizeIconItem.cy * (pdrawitem->m_iDisplayItem / iCols));
+
+         pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + sizeIconItem.cy);
+
+         pdrawitem->m_rectangleItem.right = (::i32)(pdrawitem->m_rectangleItem.left + sizeIconItem.cx);
 
          pdrawitem->m_rectangleItem.offset(-pointOffset.x, -pointOffset.y);
 
@@ -3066,9 +3131,9 @@ namespace user
 
       pdrawlistsubitem->m_rectangleSubItem.bottom = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.bottom;
 
-      pdrawlistsubitem->m_rectangleSubItem.left = pdrawlistsubitem->m_pcolumn->m_iPosition;
+      pdrawlistsubitem->m_rectangleSubItem.left = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.left + pdrawlistsubitem->m_pcolumn->m_iPosition;
 
-      pdrawlistsubitem->m_rectangleSubItem.right = pdrawlistsubitem->m_pcolumn->m_iPosition + pdrawlistsubitem->m_pcolumn->m_iWidth;
+      pdrawlistsubitem->m_rectangleSubItem.right = pdrawlistsubitem->m_rectangleSubItem.left + pdrawlistsubitem->m_pcolumn->m_iWidth;
 
       //index iLastOrder = _001GetColumnCount() - 1;
 
@@ -3479,7 +3544,7 @@ namespace user
 
          m_plistheader->order_bottom();
 
-         m_plistheader->place(::i32_rectangle_dimension(0, 0, (::i32)maximum(m_iItemWidth + 10, rectangleFocus.width()), (::i32)m_dItemHeight));
+         m_plistheader->place(::i32_rectangle_dimension(0, 0, (::i32)maximum(m_iLeftMargin + m_iItemWidth + m_iRightMargin, rectangleFocus.width()), (::i32)m_dItemHeight));
 
          m_plistheader->display();;
 

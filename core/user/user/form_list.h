@@ -17,6 +17,9 @@ namespace user
 
 
       //index_map_base < pointer_array < ::user::interaction > > m_mapControl;
+      ::i32                m_iEditStickyCaretX = -1;
+      character_count      m_iEditStickyCaret = -1;
+      bool                 m_bSavingOnExternalFocusLoss = false;
 
 
       form_list();
@@ -82,6 +85,7 @@ namespace user
 
       void _001UpdateEdit(::user::interaction * pinteraction) override;
       bool _001SaveEdit(::user::interaction * pinteraction) override;
+      virtual void _001CancelEdit(::user::interaction * pinteraction);
 
       bool _001OnMouseActivate(::windowing::window * pDesktopWnd,::u32 nHitTest,const ::atom & atom,lresult & iResult) override;
 

@@ -1983,6 +1983,7 @@ namespace filemanager
       if (!paction || (paction->m_eaction != ::file::e_action_add
          && paction->m_eaction != ::file::e_action_delete
          && paction->m_eaction != ::file::e_action_modify)) return;
+      if (m_iWatchRefreshSuppress.load(std::memory_order_relaxed) > 0) return;
       if (m_bWatchRefreshPosted.exchange(true)) return;
       ::pointer<::file::watch> watch = paction->m_pfilewatch;
       ::pointer<document> hold = this;

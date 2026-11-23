@@ -266,6 +266,7 @@ namespace user
 
 
       ::i32                                          m_iLeftMargin;
+      ::i32                                          m_iRightMargin;
       ::i32                                          m_iTopMargin;
 
       index_map_base < ::pointer<mesh_item >>          m_mapItem;

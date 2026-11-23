@@ -29,6 +29,7 @@ namespace folder_google_drive
       ::payload request(const ::scoped_string & scopedstrUrl);
       ::payload api_request(::api_client * pclient, const ::scoped_string & scopedstrUrl, ::property_set & set);
       ::file::path create_folder(const ::file::path & pathParent, const ::scoped_string & scopedstrName) override;
+      ::file::path rename_item(const ::file::path & pathItem, const ::scoped_string & scopedstrName) override;
       ::api_client * write_api();
       ::file::path import_file(const ::file::path & destination, const ::file::path & source,
          const ::function<bool(::f64)> & progress) override;

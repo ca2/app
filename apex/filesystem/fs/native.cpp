@@ -230,7 +230,10 @@ namespace fs
       strName.trim();
       if (strName.is_empty() || strName == "." || strName == ".." || strName.contains("/") || strName.contains("\\"))
          throw ::exception(error_bad_argument, "Enter a folder name without path separators");
-      auto path = pathParent / strName;
+      auto pathBase = m_papplication ? application()->defer_process_path(pathParent) : pathParent;
+      if (pathBase.contains("://"))
+         throw ::exception(error_not_supported, "Cannot create a local folder for an unresolved URI");
+      auto path = pathBase / strName;
       directory()->create(path);
       return path;
    }

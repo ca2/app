@@ -6,6 +6,8 @@
 #include "berg/user/form/impact.h"
 #include "berg/user/simple/frame_window.h"
 #include "berg/user/experience/frame.h"
+#include "berg/user/experience/control_box.h"
+#include "berg/user/experience/button.h"
 #include "acme/filesystem/file/folder_importer.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/user/interface/message_box.h"
@@ -31,6 +33,10 @@
 #include "aura/message/user.h"
 #include "aura/user/user/frame_interaction.h"
 #include "core/platform/application.h"
+#if defined(LINUX) || defined(__LINUX__)
+#include <pthread.h>
+#include <sched.h>
+#endif
 
 
 namespace
@@ -58,12 +64,54 @@ namespace
       bool m_bCancelled = false;
       bool m_bFinished = false;
       paste_progress_dialog() { m_bResizable = false; defer_create_synchronization(); }
+      void set_close_button_enabled(bool bEnable)
+      {
+         if (m_pframe && m_pframe->m_pframe)
+         {
+            if (auto pcontrolbox = m_pframe->m_pframe->get_control_box())
+            {
+               if (auto pclose = pcontrolbox->get_box_button(::experience::e_button_close))
+               {
+                  pclose->enable_window(bEnable);
+                  pclose->set_need_redraw();
+               }
+            }
+         }
+      }
+      void request_cancel_or_close()
+      {
+         ::pointer<paste_progress_dialog> keepAlive = this;
+         bool finished;
+         bool alreadyCancelled;
+         {
+            _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            finished = m_bFinished;
+            alreadyCancelled = m_bCancelled;
+            if (!finished) m_bCancelled = true;
+         }
+         if (finished)
+         {
+            EndModalLoop("close");
+         }
+         else if (!alreadyCancelled)
+         {
+            m_status->set_window_text("Stopping transfer...");
+            m_cancel->enable_window(false);
+            set_close_button_enabled(false);
+            m_status->set_need_redraw();
+            m_pform->post_redraw();
+         }
+      }
+      void on_frame_close(::message::message * pmessage)
+      {
+         if (pmessage) pmessage->m_bRet = true;
+         request_cancel_or_close();
+      }
       ::i32_bool on_init_dialog() override
       {
          if (!::userex::dialog::on_init_dialog()) return false;
          m_pformdocument->set_title("Paste files");
-         // Keep the active transfer visible; cancellation goes through the Cancel button.
-         m_pframe->m_ebuttonaHide.add_unique(::experience::e_button_close);
+         USER_MESSAGE_LINK(::user::e_message_close, m_pframe, this, &paste_progress_dialog::on_frame_close);
          auto column = create_line_layout(m_pform, ::e_orientation_vertical);
          column->set_position({16, 16});
          m_status = create_label<::user::still>(column, "Preparing to paste files into the selected folder...");
@@ -73,21 +121,7 @@ namespace
          m_cancel = create_button(column, "Cancel");
          m_cancel->m_callbackOnAction = [this](::user::interaction *, ::item *, ::user::activation_token *)
          {
-            ::pointer<paste_progress_dialog> keepAlive = this;
-            bool finished;
-            {
-               _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-               finished = m_bFinished;
-               if (!finished) m_bCancelled = true;
-            }
-            if (finished) EndModalLoop("close");
-            else
-            {
-               m_status->set_window_text("Cancelling the transfer...");
-               m_cancel->enable_window(false);
-               m_status->set_need_redraw();
-               m_status->post_redraw();
-            }
+            request_cancel_or_close();
             return true;
          };
          return true;
@@ -105,10 +139,21 @@ namespace
             if (dialog->cancelled()) return;
             dialog->m_progress->m_rate = rate;
             dialog->m_progress->set_need_redraw();
-            dialog->m_progress->post_redraw();
             dialog->m_status->set_window_text(text);
             dialog->m_status->set_need_redraw();
-            dialog->m_status->post_redraw();
+            dialog->m_pform->post_redraw();
+         });
+      }
+      void dismiss(const ::atom & idResult)
+      {
+         ::pointer<paste_progress_dialog> dialog = this;
+         m_pform->user_post([dialog, idResult]()
+         {
+            {
+               _synchronous_lock lock(dialog->synchronization());
+               dialog->m_bFinished = true;
+            }
+            dialog->EndModalLoop(idResult);
          });
       }
       void finish(const ::string & text)
@@ -122,9 +167,10 @@ namespace
             }
             dialog->m_status->set_window_text(text);
             dialog->m_status->set_need_redraw();
-            dialog->m_status->post_redraw();
             dialog->m_cancel->set_window_text("Close");
             dialog->m_cancel->enable_window(true);
+            dialog->set_close_button_enabled(true);
+            dialog->m_pform->post_redraw();
          });
       }
    };
@@ -321,7 +367,7 @@ void filemanager_impact_base::_001OnUpdateEditPaste(::message::message * pmessag
 
    auto pcopydesk = copydesk();
    
-   bool bHasFile = pcopydesk->has_filea();
+   bool bHasFile = ::is_set(pcopydesk) && pcopydesk->has_filea();
          
    pcommand->enable(bHasFile);
 
@@ -364,85 +410,147 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
    ::cast<::file::folder_importer> importer = provider;
    {
       pmessage->m_bRet = true;
-      auto dialog = create_newø<paste_progress_dialog>();
-      dialog->m_pdialogOwner = parent_frame();
-      if (!dialog->show()) throw ::exception(error_failed, "Could not display paste progress");
       ::pointer<filemanager_impact_base> impact = this;
-      get_document()->fork([impact, dialog, importer, listing, strDir, eop]()
+      ::pointer<::user::interaction> powner = parent_frame();
+      // Dialog creation uses user_send -> main_send; run off the GTK main thread to avoid deadlocking.
+      user_post([this, impact, powner, importer, listing, strDir, eop]()
       {
-         ::collection::count completed = 0;
+         ::pointer<paste_progress_dialog> dialog;
          try
          {
-            for (const auto & source : listing)
-            {
-               if (dialog->cancelled()) throw ::exception(error_cancelled, "Paste cancelled");
-               int lastPercent = -1;
-               auto progress = [&](::f64 rate)
-               {
-                  if (dialog->cancelled()) return false;
-                  int percent = (int)(rate * 100.0);
-                  if (percent != lastPercent)
-                  {
-                     lastPercent = percent;
-                     dialog->update("File " + ::as_string(completed + 1) + " of " + ::as_string(listing.size())
-                        + ": " + source.name() + " (" + ::as_string(percent) + "%)",
-                        (completed + rate) / (::f64)listing.size());
-                  }
-                  return true;
-               };
-               if (importer)
-               {
-                  importer->import_file(strDir, source, progress);
-               }
-               else
-               {
-                  auto filesystem = impact->fs_data();
-                  ::file::image_info info;
-                  auto name = source.name();
-                  if (filesystem->get_file_image_info(source, info) && info.m_strName.has_character())
-                     name = info.m_strName;
-                  // Provider display names must remain a single destination filename.
-                  if (name.is_empty() || name == "." || name == ".."
-                     || name.contains("/") || name.contains("\\") || name.contains(":"))
-                     throw ::exception(error_bad_argument, "Invalid source filename");
-                  auto destination = impact->application()->defer_process_path(::file::path(strDir) / name);
-                  if (destination.contains("://"))
-                     throw ::exception(error_not_supported, "This destination does not support pasting files.");
-                  if (impact->file()->exists(destination) || impact->directory()->is(destination))
-                     throw ::exception(error_failed, "Destination already exists: " + name);
-                  progress(0.0);
-                  if (filesystem->is_dir(source) > 0)
-                  {
-                     auto localSource = impact->application()->defer_process_path(source);
-                     if (localSource.contains("://"))
-                        throw ::exception(error_not_supported, "Copying virtual folders is not supported; select files instead.");
-                     impact->file()->copy(destination, localSource, true);
-                  }
-                  else
-                  {
-                     // Open through the owning provider so virtual URIs download correctly.
-                     auto input = filesystem->get_file(source, ::file::e_open_read | ::file::e_open_binary);
-                     if (!input) throw ::exception(error_failed, "Could not open source file");
-                     if (dialog->cancelled()) throw ::exception(error_cancelled, "Paste cancelled");
-                     impact->file()->copy(destination, input, true);
-                  }
-                  progress(1.0);
-               }
-               ++completed;
-               // Never delete a cut source until the destination copy succeeds.
-               if (eop == ::user::copydesk::e_op_cut) impact->file()->erase(source);
-            }
-            dialog->finish("Pasted " + ::as_string(completed) + " file(s).");
+            dialog = create_newø<paste_progress_dialog>();
+            dialog->m_pdialogOwner = powner;
+            if (!dialog->show()) throw ::exception(error_failed, "Could not display paste progress");
          }
          catch (const ::exception & exception)
          {
-            dialog->finish(exception.get_message() + " (" + ::as_string(completed) + " file(s) completed)");
+            auto message = create_newø<::user_interface::message_box>();
+            message->initialize_message_box(exception.get_message(), "Paste files");
+            message->display(e_display_normal, {});
+            return;
          }
          catch (...)
          {
-            dialog->finish("Paste failed. " + ::as_string(completed) + " file(s) completed.");
+            auto message = create_newø<::user_interface::message_box>();
+            message->initialize_message_box("Could not display paste progress.", "Paste files");
+            message->display(e_display_normal, {});
+            return;
          }
-         impact->user_post([impact]() { impact->_001Refresh(); });
+         impact->get_document()->fork([impact, dialog, importer, listing, strDir, eop]()
+         {
+            ::task_set_name("filemanager:paste");
+            ::parallelization::set_priority(::e_priority_idle);
+#if defined(LINUX) || defined(__LINUX__)
+            {
+               sched_param sp{};
+               pthread_setschedparam(pthread_self(), SCHED_IDLE, &sp);
+            }
+#endif
+            struct watch_suppress_guard
+            {
+               ::pointer<::filemanager::document> doc;
+               explicit watch_suppress_guard(::filemanager::document * d) : doc(d)
+               {
+                  if (doc) doc->m_iWatchRefreshSuppress.fetch_add(1, std::memory_order_relaxed);
+               }
+               ~watch_suppress_guard()
+               {
+                  if (doc) doc->m_iWatchRefreshSuppress.fetch_sub(1, std::memory_order_relaxed);
+               }
+            } watchGuard(impact->get_document());
+            ::collection::count completed = 0;
+            class ::time timeLastProgressUpdate;
+            try
+            {
+               auto filesystem = impact->fs_data();
+               for (const auto & source : listing)
+               {
+                  if (dialog->cancelled()) throw ::exception(error_cancelled, "Paste cancelled");
+                  if (completed > 0) preempt(15_ms);
+                  ::file::image_info info;
+                  auto displayName = source.name();
+                  if (filesystem && filesystem->get_file_image_info(source, info) && info.m_strName.has_character())
+                     displayName = info.m_strName;
+                  int lastPercent = -1;
+                  auto progress = [&](::f64 rate)
+                  {
+                     if (dialog->cancelled()) return false;
+                     int percent = (int)(rate * 100.0);
+                     if (percent != lastPercent
+                        && (timeLastProgressUpdate == 0_s || timeLastProgressUpdate.elapsed() >= 200_ms))
+                     {
+                        lastPercent = percent;
+                        timeLastProgressUpdate.Now();
+                        dialog->update("File " + ::as_string(completed + 1) + " of " + ::as_string(listing.size())
+                           + ": " + displayName + " (" + ::as_string(percent) + "%)",
+                           (completed + rate) / (::f64)listing.size());
+                     }
+                     return true;
+                  };
+                  if (importer)
+                  {
+                     importer->import_file(strDir, source, progress);
+                  }
+                  else
+                  {
+                     auto name = displayName;
+                     // Provider display names must remain a single destination filename.
+                     if (name.is_empty() || name == "." || name == ".."
+                        || name.contains("/") || name.contains("\\") || name.contains(":"))
+                        throw ::exception(error_bad_argument, "Invalid source filename");
+                     auto destination = impact->application()->defer_process_path(::file::path(strDir) / name);
+                     if (destination.contains("://"))
+                        throw ::exception(error_not_supported, "This destination does not support pasting files.");
+                     if (impact->file()->exists(destination) || impact->directory()->is(destination))
+                        throw ::exception(error_failed, "Destination already exists: " + name);
+                     progress(0.0);
+                     if (filesystem->is_dir(source) > 0)
+                     {
+                        auto localSource = impact->application()->defer_process_path(source);
+                        if (localSource.contains("://"))
+                           throw ::exception(error_not_supported, "Copying virtual folders is not supported; select files instead.");
+                        impact->file()->copy(destination, localSource, true);
+                     }
+                     else
+                     {
+                        // Open through the owning provider so virtual URIs download correctly.
+                        auto input = filesystem->get_file(source, ::file::e_open_read | ::file::e_open_binary);
+                        if (!input) throw ::exception(error_failed, "Could not open source file");
+                        if (dialog->cancelled()) throw ::exception(error_cancelled, "Paste cancelled");
+                        impact->file()->copy(destination, input, true);
+                     }
+                     progress(1.0);
+                  }
+                  ++completed;
+                  // Never delete a cut source until the destination copy succeeds.
+                  if (eop == ::user::copydesk::e_op_cut) impact->file()->erase(source);
+               }
+               dialog->dismiss("ok");
+            }
+            catch (const ::exception & exception)
+            {
+               if (dialog->cancelled() || exception.m_estatus == error_cancelled)
+               {
+                  dialog->dismiss("cancel");
+               }
+               else
+               {
+                  dialog->finish(exception.get_message() + " (" + ::as_string(completed) + " file(s) completed)");
+               }
+            }
+            catch (...)
+            {
+               if (dialog->cancelled())
+               {
+                  dialog->dismiss("cancel");
+               }
+               else
+               {
+                  dialog->finish("Paste failed. " + ::as_string(completed) + " file(s) completed.");
+               }
+            }
+            impact->user_post([impact]() { impact->_001Refresh(); });
+         });
       });
       return;
    }

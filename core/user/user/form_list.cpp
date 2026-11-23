@@ -16,6 +16,9 @@
 #include "axis/user/user/validate.h"
 #include "axis/user/user/combo_box.h"
 #include "axis/user/user/list_box.h"
+#include "aura/user/user/button.h"
+#include "aura/user/user/check_box.h"
+#include "aura/user/user/plain_edit.h"
 #include "aura/message/user.h"
 #include "aura/user/user/interaction_array.h"
 #include "core/platform/session.h"
@@ -105,6 +108,17 @@ namespace user
       if (!::is_set(pitem))
       {
 
+         if (_001IsEditing())
+         {
+
+            if (!_001SaveEdit(_001GetEditControl()))
+            {
+
+               return true;
+
+            }
+
+         }
 
          _001HideEditingControls();
 
@@ -175,6 +189,18 @@ namespace user
 
          // Click in subitem without editing controls.
 
+         if (_001IsEditing())
+         {
+
+            if (!_001SaveEdit(_001GetEditControl()))
+            {
+
+               return true;
+
+            }
+
+         }
+
          _001HideEditingControls();
 
       }
@@ -192,6 +218,18 @@ namespace user
 
       if (!::is_set(pitem))
       {
+
+         if (_001IsEditing())
+         {
+
+            if (!_001SaveEdit(_001GetEditControl()))
+            {
+
+               return true;
+
+            }
+
+         }
 
          _001HideEditingControls();
 
@@ -263,6 +301,18 @@ namespace user
       {
 
          // Click in subitem without editing controls.
+
+         if (_001IsEditing())
+         {
+
+            if (!_001SaveEdit(_001GetEditControl()))
+            {
+
+               return true;
+
+            }
+
+         }
 
          _001HideEditingControls();
 
@@ -479,7 +529,12 @@ namespace user
             if (!bOnlySizeAndPosition && _001GetEditControl() != nullptr)
             {
 
-               _001SaveEdit(_001GetEditControl());
+               if (!_001SaveEdit(_001GetEditControl()))
+               {
+
+                  return;
+
+               }
 
             }
 
@@ -494,14 +549,21 @@ namespace user
          else
          {
 
-            //bSameControl = true;
-
-            _001SaveEdit(_001GetEditControl());
-
             if (iEditItem == _001GetEditControl()->m_item.m_iItem)
             {
 
                bSameItemAndSubItem = true;
+
+            }
+            else if (!bOnlySizeAndPosition)
+            {
+
+               if (!_001SaveEdit(_001GetEditControl()))
+               {
+
+                  return;
+
+               }
 
             }
 
@@ -527,7 +589,7 @@ namespace user
 
       psubitem->m_pcolumn = m_pcolumna->get_visible((::collection::index)pinteraction->m_iColumn);
 
-      if (!bOnlySizeAndPosition)
+      if (!bOnlySizeAndPosition && m_eview != impact_report)
       {
 
          ensure_item_visible(psubitem->m_pitem->item_index());
@@ -543,11 +605,148 @@ namespace user
       if (psubitem->m_bOk)
       {
 
-         ::f64_rectangle rectangleControl(psubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
+         ::f64_rectangle rectangleControl;
 
-         auto pointContext = get_context_offset();
+         if (m_eview == impact_icon)
+         {
 
-         rectangleControl.offset(pointContext);
+            rectangleControl = psubitem->m_pdrawmeshsubitem->m_rectangleText;
+
+         }
+         else
+         {
+
+            rectangleControl = psubitem->m_pdrawmeshsubitem->m_rectangleText;
+
+            if (rectangleControl.is_empty())
+            {
+
+               rectangleControl = psubitem->m_pdrawmeshsubitem->m_rectangleSubItem;
+
+            }
+
+            if (rectangleControl.height() < 24.0)
+            {
+
+               rectangleControl.bottom = rectangleControl.top + 24.0;
+
+            }
+
+            if (m_eview == impact_report)
+            {
+
+               auto pointContext = get_context_offset();
+
+               if (!bOnlySizeAndPosition && m_dItemHeight > 0.0)
+               {
+
+                  auto rectangleClient = this->rectangle();
+
+                  ::f64 dTopVisible = m_bHeaderCtrl ? m_dItemHeight : 0.0;
+
+                  ::f64 dBottomVisible = (::f64)rectangleClient.height();
+
+                  ::f64 dVisibleHeight = maximum(m_dItemHeight, dBottomVisible - dTopVisible);
+
+                  ::f64 dEditTop = rectangleControl.top - pointContext.y;
+
+                  ::f64 dEditBottom = rectangleControl.bottom - pointContext.y;
+
+                  ::f64 dStep = minimum(8.0 * m_dItemHeight, maximum(m_dItemHeight, dVisibleHeight - rectangleControl.height()));
+
+                  ::f64 dMaxScrollY = maximum(0.0, (_001GetItemCount() + (m_bHeaderCtrl ? 1 : 0)) * m_dItemHeight - dBottomVisible);
+
+                  if (dEditBottom > dBottomVisible)
+                  {
+
+                     ::f64 dMinNeeded = rectangleControl.bottom - dBottomVisible;
+
+                     ::f64 dNewScrollY = maximum(dMinNeeded, pointContext.y + dStep);
+
+                     dNewScrollY = minimum(dNewScrollY, dMaxScrollY);
+
+                     dNewScrollY = minimum(dNewScrollY, rectangleControl.top - dTopVisible);
+
+                     dNewScrollY = maximum(dNewScrollY, 0.0);
+
+                     constrain_context_offset_y(dNewScrollY, ::user::e_layout_design);
+
+                     set_context_offset_y(dNewScrollY, ::user::e_layout_design);
+
+                     on_change_context_offset(::user::e_layout_design);
+
+                     set_need_layout();
+
+                     set_need_redraw();
+
+                     post_redraw();
+
+                     pointContext = get_context_offset();
+
+                  }
+                  else if (dEditTop < dTopVisible)
+                  {
+
+                     ::f64 dMaxAllowed = rectangleControl.top - dTopVisible;
+
+                     ::f64 dNewScrollY = minimum(dMaxAllowed, pointContext.y - dStep);
+
+                     dNewScrollY = maximum(dNewScrollY, 0.0);
+
+                     dNewScrollY = maximum(dNewScrollY, rectangleControl.bottom - dBottomVisible);
+
+                     dNewScrollY = minimum(dNewScrollY, dMaxScrollY);
+
+                     constrain_context_offset_y(dNewScrollY, ::user::e_layout_design);
+
+                     set_context_offset_y(dNewScrollY, ::user::e_layout_design);
+
+                     on_change_context_offset(::user::e_layout_design);
+
+                     set_need_layout();
+
+                     set_need_redraw();
+
+                     post_redraw();
+
+                     pointContext = get_context_offset();
+
+                  }
+
+               }
+
+               rectangleControl.offset(-pointContext);
+
+            }
+
+         }
+
+         if (rectangleControl.height() < 24.0)
+         {
+
+            rectangleControl.bottom = rectangleControl.top + 24.0;
+
+         }
+
+         if (rectangleControl.width() < 120.0)
+         {
+
+            rectangleControl.right = rectangleControl.left + 120.0;
+
+         }
+
+         auto rectangleClient = this->rectangle();
+
+         if (rectangleControl.right > rectangleClient.right)
+         {
+
+            ::f64 dShift = rectangleControl.right - rectangleClient.right;
+
+            rectangleControl.left = maximum(0.0, rectangleControl.left - dShift);
+
+            rectangleControl.right = rectangleClient.right;
+
+         }
 
          if (!bOnlySizeAndPosition)
          {
@@ -560,14 +759,13 @@ namespace user
 
          pinteraction->place(rectangleControl);
 
-         if (bOnlySizeAndPosition)
-         {
-
-            pinteraction->set_need_layout();
-
-         }
+         pinteraction->set_need_layout();
 
          pinteraction->display();
+
+         pinteraction->set_need_redraw();
+
+         pinteraction->post_redraw();
 
          //SWP_SHOWWINDOW | (bOnlySizeAndPosition ? SWP_CHANGEVIEWPORTOFFSET : 0));
 
@@ -623,6 +821,9 @@ namespace user
 
                }
 
+            }
+
+            {
 
                ::pointer<::user::plain_edit>pedit = pinteraction;
 
@@ -632,6 +833,38 @@ namespace user
                   pinteraction->set_keyboard_focus();
 
                   pedit->set_text_selection(0, pedit->get_text_length(), e_source_user);
+
+                  ::pointer<form_list> plistHold = this;
+
+                  user_post([plistHold, pedit]()
+                  {
+
+                     if (plistHold->_001GetEditControl() == pedit.m_p
+                        && pedit->is_window_visible(::user::e_layout_sketch))
+                     {
+
+                        if (!pedit->has_keyboard_focus())
+                        {
+
+                           character_count iBeg = 0;
+
+                           character_count iEnd = 0;
+
+                           pedit->get_text_selection(iBeg, iEnd);
+
+                           pedit->set_keyboard_focus();
+
+                           pedit->set_text_selection(iBeg, iEnd, e_source_user);
+
+                        }
+
+                        pedit->set_need_redraw();
+
+                        pedit->post_redraw();
+
+                     }
+
+                  });
 
                }
 
@@ -1214,6 +1447,10 @@ namespace user
    void form_list::_001HideEditingControls()
    {
 
+      m_iEditStickyCaretX = -1;
+
+      m_iEditStickyCaret = -1;
+
       form_mesh::_001HideEditingControls();
 
       m_item.m_iItem = -1;
@@ -1237,6 +1474,14 @@ namespace user
    }
 
 
+   void form_list::_001CancelEdit(::user::interaction * pinteraction)
+   {
+
+      __UNREFERENCED_PARAMETER(pinteraction);
+
+   }
+
+
    void form_list::_001HideControl(::user::interaction * pinteraction)
    {
 
@@ -1251,7 +1496,16 @@ namespace user
 
       if (pkey->m_ekey == ::user::e_key_return)
       {
-         _001SaveEdit(_001GetEditControl());
+         if (_001SaveEdit(_001GetEditControl()))
+         {
+            _001HideEditingControls();
+         }
+         pmessage->m_bRet = true;
+         return;
+      }
+      else if (pkey->m_ekey == ::user::e_key_escape)
+      {
+         _001CancelEdit(_001GetEditControl());
          _001HideEditingControls();
          pmessage->m_bRet = true;
          return;
@@ -1900,7 +2154,7 @@ namespace user
 
       ::collection::index iLowerItem = iItem + 1;
 
-      for (; iLowerItem < _001GetItemCount() - 1; iLowerItem++)
+      for (; iLowerItem < _001GetItemCount(); iLowerItem++)
       {
 
          if (_001GetControl(iLowerItem, iSubItem) != nullptr && _001IsSubItemEnabled(iLowerItem, iSubItem))
@@ -1981,15 +2235,74 @@ namespace user
          }
 
       }
+      else if (ptopic->id() == ::id_kill_focus)
+      {
+
+         if (m_pcontrolEdit != nullptr && m_pcontrolEdit == ptopic->user_interaction())
+         {
+
+            auto pcontrol = m_pcontrolEdit;
+
+            bool bExternal = !has_keyboard_focus();
+
+            m_bSavingOnExternalFocusLoss = bExternal;
+
+            bool bSaved = _001SaveEdit(pcontrol);
+
+            m_bSavingOnExternalFocusLoss = false;
+
+            if (m_pcontrolEdit == pcontrol)
+            {
+
+               if (bSaved)
+               {
+
+                  _001HideEditingControls();
+
+               }
+               else if (bExternal)
+               {
+
+                  _001CancelEdit(pcontrol);
+
+                  _001HideEditingControls();
+
+               }
+
+            }
+
+            ptopic->m_bRet = true;
+
+         }
+
+      }
       else if (ptopic->id() == ::id_enter_key)
       {
 
          if (m_pcontrolEdit != nullptr)
          {
 
-            _001SaveEdit(m_pcontrolEdit);
+            if (_001SaveEdit(m_pcontrolEdit))
+            {
 
-            _001HideControl(m_pcontrolEdit);
+               _001HideEditingControls();
+
+            }
+
+            ptopic->m_bRet = true;
+
+         }
+
+      }
+      else if (ptopic->id() == ::id_escape)
+      {
+
+         if (m_pcontrolEdit != nullptr)
+         {
+
+            _001CancelEdit(m_pcontrolEdit);
+
+            _001HideEditingControls();
 
             ptopic->m_bRet = true;
 
@@ -2010,9 +2323,18 @@ namespace user
 
             iSubItem = m_pcontrolEdit->m_item.m_iSubItem;
 
-            _001SaveEdit(m_pcontrolEdit);
+            if (!_001SaveEdit(m_pcontrolEdit))
+            {
+
+               ptopic->m_bRet = true;
+
+               return;
+
+            }
 
             _001HideControl(m_pcontrolEdit);
+
+            m_pcontrolEdit = nullptr;
 
             ptopic->m_bRet = true;
 
@@ -2050,11 +2372,34 @@ namespace user
       else if (ptopic->id() == ::id_key_down)
       {
 
-         auto pkey = ptopic->m_actioncontext.m_pmessage->m_union.m_pkey;
+         auto pmessage = ptopic->m_actioncontext.m_pmessage;
 
-         if (pkey->m_ekey == e_key_down || pkey->m_ekey == e_key_up
-            || pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
+         auto pkey = pmessage ? pmessage->m_union.m_pkey : nullptr;
+
+         if (pkey && (pkey->m_ekey == e_key_down || pkey->m_ekey == e_key_up
+            || pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right))
          {
+
+            if ((pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
+               && session()->is_key_pressed(::user::e_key_shift))
+            {
+
+               m_iEditStickyCaretX = -1;
+
+               m_iEditStickyCaret = -1;
+
+               return;
+
+            }
+
+            if (pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
+            {
+
+               m_iEditStickyCaretX = -1;
+
+               m_iEditStickyCaret = -1;
+
+            }
 
             ::collection::index iItem = 0;
 
@@ -2068,34 +2413,58 @@ namespace user
                if (pedit.is_set())
                {
 
-                  character_count iSel;
+                  character_count iSel = 0;
 
-                  character_count iSelEnd;
+                  character_count iSelEnd = 0;
 
                   pedit->get_text_selection(iSel, iSelEnd);
 
-                  if (iSel != iSelEnd)
+                  if (pkey->m_ekey == e_key_up || pkey->m_ekey == e_key_down)
                   {
 
-                     iSel = -1;
+                     if (pedit->m_iColumnX >= 0 && pedit->m_iColumnX != m_iEditStickyCaretX)
+                     {
+
+                        m_iEditStickyCaretX = pedit->m_iColumnX;
+
+                     }
+
+                     if (m_iEditStickyCaret < 0)
+                     {
+
+                        m_iEditStickyCaret = iSelEnd;
+
+                     }
 
                   }
 
-                  if (pkey->m_ekey == e_key_left && iSel != 0)
+                  if (pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
                   {
 
-                     return;
-
-                  }
-                  else if (pkey->m_ekey == e_key_right)
-                  {
-
-                     character_count iLen = pedit->get_text_length();
-
-                     if (iSel != iLen)
+                     if (iSel != iSelEnd)
                      {
 
                         return;
+
+                     }
+
+                     if (pkey->m_ekey == e_key_left && iSel > 0)
+                     {
+
+                        return;
+
+                     }
+                     else if (pkey->m_ekey == e_key_right)
+                     {
+
+                        character_count iLen = pedit->get_text_length();
+
+                        if (iSel < iLen)
+                        {
+
+                           return;
+
+                        }
 
                      }
 
@@ -2107,8 +2476,18 @@ namespace user
 
                iSubItem = m_pcontrolEdit->m_item.m_iSubItem;
 
-               _001SaveEdit(m_pcontrolEdit);
+               if (!_001SaveEdit(m_pcontrolEdit))
+               {
+
+                  ptopic->m_bRet = true;
+
+                  return;
+
+               }
+
                _001HideControl(m_pcontrolEdit);
+
+               m_pcontrolEdit = nullptr;
 
                ptopic->m_bRet = true;
 
@@ -2160,6 +2539,9 @@ namespace user
 
                      pedit->set_text_selection(iLen, iLen, e_source_user);
 
+                     pedit->set_need_redraw();
+
+                     pedit->post_redraw();
 
                   }
                   else if (pkey->m_ekey == e_key_right)
@@ -2167,6 +2549,64 @@ namespace user
 
                      pedit->set_text_selection(0, 0, e_source_user);
 
+                     pedit->set_need_redraw();
+
+                     pedit->post_redraw();
+
+                  }
+                  else if (pkey->m_ekey == e_key_up || pkey->m_ekey == e_key_down)
+                  {
+
+                     if (m_iEditStickyCaretX >= 0)
+                     {
+
+                        ::i32 iStickyX = m_iEditStickyCaretX;
+
+                        ::pointer<form_list> plistHold = this;
+
+                        pedit->queue_graphics_call([plistHold, pedit, iStickyX](::draw2d::graphics_pointer & pdraw2dgraphics)
+                        {
+
+                           if (plistHold->_001GetEditControl() != pedit.m_p)
+                           {
+
+                              return;
+
+                           }
+
+                           pedit->plain_edit_update(pdraw2dgraphics, true, -1);
+
+                           character_count iPos = pedit->plain_edit_line_x_to_sel(pdraw2dgraphics, 0, iStickyX);
+
+                           character_count iLen = pedit->get_text_length();
+
+                           iPos = minimum_maximum(iPos, (character_count)0, iLen);
+
+                           pedit->set_text_selection(iPos, iPos, e_source_user);
+
+                           pedit->m_iColumnX = iStickyX;
+
+                           pedit->set_need_redraw();
+
+                           pedit->post_redraw();
+
+                        });
+
+                     }
+                     else if (m_iEditStickyCaret >= 0)
+                     {
+
+                        character_count iLen = pedit->get_text_length();
+
+                        character_count iPos = minimum_maximum(m_iEditStickyCaret, (character_count)0, iLen);
+
+                        pedit->set_text_selection(iPos, iPos, e_source_user);
+
+                        pedit->set_need_redraw();
+
+                        pedit->post_redraw();
+
+                     }
 
                   }
 
@@ -2175,6 +2615,14 @@ namespace user
                ptopic->m_bRet = true;
 
             }
+
+         }
+         else
+         {
+
+            m_iEditStickyCaretX = -1;
+
+            m_iEditStickyCaret = -1;
 
          }
 
@@ -2213,7 +2661,7 @@ namespace user
 
       defer_construct_newø(puserinteractiona);
 
-      ::collection::index iIndex = iItem - m_iTopDisplayIndex;
+      ::collection::index iIndex = maximum<::collection::index>(0, iItem - m_iTopDisplayIndex);
 
       auto & pinteraction = puserinteractiona->interactiona().element_at_grow(iIndex);
 
@@ -2229,14 +2677,45 @@ namespace user
       if (!pinteraction)
       {
 
-         pinteraction = pinteractionTemplate->clone();
+         auto econtroltype = pinteractionTemplate->get_control_type();
+
+         if (econtroltype == e_control_type_edit || econtroltype == e_control_type_edit_plain_text
+            || dynamic_cast<::user::plain_edit *>(pinteractionTemplate.m_p) != nullptr)
+         {
+
+            pinteraction = create_newø<::user::plain_edit>();
+
+         }
+         else if (econtroltype == e_control_type_combo_box
+            || dynamic_cast<::user::combo_box *>(pinteractionTemplate.m_p) != nullptr)
+         {
+
+            pinteraction = create_newø<::user::combo_box>();
+
+         }
+         else if (econtroltype == e_control_type_check_box
+            || dynamic_cast<::user::check_box *>(pinteractionTemplate.m_p) != nullptr)
+         {
+
+            pinteraction = create_newø<::user::check_box>();
+
+         }
+         else if (econtroltype == e_control_type_button
+            || dynamic_cast<::user::button *>(pinteractionTemplate.m_p) != nullptr)
+         {
+
+            pinteraction = create_newø<::user::button>();
+
+         }
+         else
+         {
+
+            pinteraction = pinteractionTemplate->clone();
+
+         }
 
          if (::is_set(pinteraction))
          {
-
-            pinteraction->create_child(get_parent());
-
-            pinteraction->initialize(this);
 
             pinteraction->create_child(this);
 
@@ -2244,9 +2723,24 @@ namespace user
 
             pinteraction->m_flagsfunction = pinteractionTemplate->m_flagsfunction;
 
+            pinteraction->m_econtroltype = pinteractionTemplate->m_econtroltype;
+
+            pinteraction->m_edatatype = pinteractionTemplate->m_edatatype;
+
+            pinteraction->m_strDataKey20 = pinteractionTemplate->m_strDataKey20;
+
+            pinteraction->display(e_display_none);
+
             _001OnInitializeControl(pinteraction);
 
          }
+
+      }
+
+      if (::is_null(pinteraction))
+      {
+
+         return nullptr;
 
       }
 
@@ -2261,6 +2755,8 @@ namespace user
       pinteraction->m_item.m_iItem = iItem;
 
       pinteraction->m_item.m_iSubItem = pcolumn->m_iSubItem;
+
+      pinteraction->m_iColumn = pcolumn->m_iColumn;
 
       return pinteraction;
 
@@ -2373,7 +2869,10 @@ namespace user
 
       ::user::list::_001DrawSubItem(pdraw2dgraphics, pdrawlistsubitem);
 
-      //if (pdrawitem->m_pcolumn->m_bCustomDraw)
+      if (pdrawlistsubitem->m_pcolumn && pdrawlistsubitem->m_pcolumn->m_bCustomDraw
+         && pdrawlistsubitem->m_pcolumn->m_puserinteractionTemplate
+         && pdrawlistsubitem->m_pcolumn->m_puserinteractionTemplate->get_control_type() != e_control_type_edit
+         && pdrawlistsubitem->m_pcolumn->m_puserinteractionTemplate->get_control_type() != e_control_type_edit_plain_text)
       {
          //
                // trigger control creation

@@ -343,7 +343,12 @@ namespace platform
          if(!plogger)
          {
 
-            plogger = ::system()->m_plogger;
+            if (auto psystem = ::system())
+            {
+
+               plogger = psystem->m_plogger;
+
+            }
 
          }
 
@@ -358,7 +363,9 @@ namespace platform
       else
       {
 
-         if (tracestatement.m_etracelevel <= ::system()->m_etracelevelMinimum)
+         auto psystem = ::system();
+
+         if (!psystem || tracestatement.m_etracelevel <= psystem->m_etracelevelMinimum)
          {
 
             ::output_debug_string("output_debug_string: "+ tracestatement.as_string() + "\n");

@@ -985,6 +985,41 @@ namespace coding
    }
 
 
+   ::file::path application::install_deps_folder()
+   {
+
+      auto pathFolder = directory_system()->current();
+
+      while (pathFolder.has_character())
+      {
+
+         auto pathLinux = pathFolder / "operating_system/operating_system-linux";
+
+         if (directory()->is(pathLinux))
+         {
+
+            return pathLinux / "tool/install_deps";
+
+         }
+
+         auto pathParent = pathFolder.folder();
+
+         if (pathParent == pathFolder)
+         {
+
+            break;
+
+         }
+
+         pathFolder = pathParent;
+
+      }
+
+      return directory_system()->home() / "code/operating_system/tool/install_deps";
+
+   }
+
+
    ::string_array application::get_install_dep_package_names()
    {
 
@@ -1020,7 +1055,7 @@ namespace coding
          //
          // }
 
-         ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / deps / "packages.txt";
+         ::file::path path = install_deps_folder() / deps / "packages.txt";
 
          if (file()->exists(path))
          {
@@ -1070,7 +1105,7 @@ namespace coding
 
          //}
 
-         ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / deps / "groups.txt";
+         ::file::path path = install_deps_folder() / deps / "groups.txt";
 
          auto lines = file()->lines(path);
 

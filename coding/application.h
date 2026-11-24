@@ -178,6 +178,7 @@ class ::time      m_timeFoldersSetupDetected;
          virtual bool __are_deps_installed();
       virtual ::string_array get_install_setup_script_names();
       virtual ::string_array get_install_dep_script_names();
+      ::file::path install_deps_folder();
       virtual ::string_array get_install_dep_package_names();
       virtual ::string_array get_install_dep_install_group_names();
       virtual bool are_all_operating_system_packages_and_install_groups_installed();

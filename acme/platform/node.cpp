@@ -1180,7 +1180,7 @@ namespace platform
 
       }
 
-      ::file::path pathFile = directory_system()->roaming() / strAppId / "last_run_path.txt";
+      ::file::path pathFile = directory_system()->application_app_data_path(strAppId) / "last_run_path.txt";
 
       //const ::file::path & pathFile = pathFile;
 

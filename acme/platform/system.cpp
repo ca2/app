@@ -3735,21 +3735,20 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 #ifdef __ANDROID__
 
-         pathFolder = this->m_pathCacheDirectory;
+         pathFolder = this->m_pathCacheDirectory / strAppId;
 
 #else
 
          {
 
-            STARTUP_DELAY_TRACE_SCOPE("report_system_instance: resolve roaming folder");
+            STARTUP_DELAY_TRACE_SCOPE("report_system_instance: resolve application data folder");
 
-            pathFolder = directory_system()->roaming();
+            pathFolder = directory_system()->application_app_data_path(strAppId);
 
          }
 
 #endif
 
-         pathFolder /= strAppId;
 
          pathFolder /= "instance";
 

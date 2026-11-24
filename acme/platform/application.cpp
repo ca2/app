@@ -1852,7 +1852,7 @@ namespace platform
       else
       {
 
-         pathFolder = directory_system()->roaming() / m_strAppId;
+         pathFolder = directory_system()->application_app_data_path(m_strAppId);
 
       }
 

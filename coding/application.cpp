@@ -1,6 +1,7 @@
 #include "platform.h"
 #include "application.h"
 
+#include <cstdlib>
 #include <ranges>
 
 #include "code.h"
@@ -1135,6 +1136,10 @@ namespace coding
       m_timeLastInstallDepsCheck.Now();
 
       auto straPackageNames = get_install_dep_package_names();
+      straPackageNames.predicate_erase([](const ::string & strEntry)
+      {
+         return strEntry.begins("package_source=");
+      });
 
 
 #if defined(DEEP_DEBUG)
@@ -1213,6 +1218,53 @@ namespace coding
    {
 
       auto depsa = get_install_dep_package_names();
+      bool bRequiresRpmFusion = false;
+
+      depsa.predicate_erase([&](const ::string & strEntry)
+      {
+         if (!strEntry.begins("package_source="))
+         {
+            return false;
+         }
+
+         if (strEntry != "package_source=rpm-fusion" ||
+             node()->operating_system_summary()->m_strSystem != "fedora")
+         {
+            throw ::exception(error_failed, "Unsupported dependency repository: " + strEntry);
+         }
+
+         bRequiresRpmFusion = true;
+         return true;
+      });
+
+      if (bRequiresRpmFusion)
+      {
+         constexpr auto pszPrepareRpmFusion = R"sh(
+set -e
+rpm_fusion_enabled() {
+    LC_ALL=C dnf5 repo list --enabled | grep -E '^[[:space:]]*rpmfusion-free(-updates)?[[:space:]]' >/dev/null
+}
+
+if ! rpm_fusion_enabled; then
+    if rpm -q rpmfusion-free-release >/dev/null 2>&1; then
+        sudo dnf5 config-manager setopt rpmfusion-free.enabled=1 rpmfusion-free-updates.enabled=1
+    else
+        fedora_release=$(rpm -E '%fedora')
+        case "$fedora_release" in
+            ''|*[!0-9]*) exit 1 ;;
+        esac
+        sudo dnf install "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$fedora_release.noarch.rpm"
+    fi
+    rpm_fusion_enabled
+fi
+)sh";
+
+         if (std::system(pszPrepareRpmFusion) != 0)
+         {
+            print_line("RPM Fusion Free could not be enabled. Package installation stopped.");
+            throw ::exception(error_failed, "RPM Fusion Free is required for these dependencies");
+         }
+      }
 
       system()->defer_install_operating_system_packages(depsa);
 

@@ -206,8 +206,58 @@ bool rpm_is_package_installed(const ::scoped_string & scopedstrPackageName)
 
 
 
+static bool fedora_extract_group_id(::string & strGroupId)
+{
+
+   return strGroupId.begins_eat("install_groups=") || strGroupId.begins_eat("@");
+
+}
+
+
+static bool fedora_is_group_installed(const ::string & strGroupId)
+{
+
+   FILE * pipe = popen("LC_ALL=C dnf5 --disablerepo='*' group list --installed --hidden 2>/dev/null", "r");
+
+   if (!pipe)
+   {
+
+      return false;
+
+   }
+
+   bool bInstalled = false;
+   char szLine[1024];
+   char szGroupId[256];
+
+   while (fgets(szLine, sizeof(szLine), pipe))
+   {
+
+      if (sscanf(szLine, "%255s", szGroupId) == 1 && strGroupId == szGroupId)
+      {
+
+         bInstalled = true;
+
+      }
+
+   }
+
+   return pclose(pipe) == 0 && bInstalled;
+
+}
+
+
 bool fedora_is_package_installed(const ::scoped_string & scopedstrPackageName)
 {
+
+   ::string strGroupId(scopedstrPackageName);
+
+   if (fedora_extract_group_id(strGroupId))
+   {
+
+      return fedora_is_group_installed(strGroupId);
+
+   }
 
    return rpm_is_package_installed(scopedstrPackageName);
 
@@ -222,10 +272,10 @@ bool fedora_is_package_installed(const ::scoped_string & scopedstrPackageName)
    for (auto & strPackage : straPackages)
    {
 
-      if (!debian_is_package_installed(strPackage))
+      if (!fedora_is_package_installed(strPackage))
       {
 
-         straNotInstalledPackages.add_unique(strPackage);;
+         straNotInstalledPackages.add_unique(strPackage);
 
       }
 
@@ -239,11 +289,24 @@ bool fedora_is_package_installed(const ::scoped_string & scopedstrPackageName)
 ::string fedora_install_packages_command_line(const ::string_array_base & straPackageNames)
 {
 
-   auto stra = straPackageNames;
+   ::string_array_base straArguments;
 
-   stra.surround("'", "'");
+   for (auto strArgument : straPackageNames)
+   {
 
-   auto strPackages = stra.implode(" ");
+      if (fedora_extract_group_id(strArgument))
+      {
+
+         strArgument = "@" + strArgument;
+
+      }
+
+      strArgument.replace_with("'\\''", "'");
+      straArguments.add_unique("'" + strArgument + "'");
+
+   }
+
+   auto strPackages = straArguments.implode(" ");
 
    ::string strCommandLine;
 

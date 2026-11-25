@@ -91,12 +91,29 @@ if("${__UNAME_S}" STREQUAL "OpenBSD")
    
 elseif("${__UNAME_S}" STREQUAL "Linux")
 
-   execute_process(COMMAND lsb_release -is OUTPUT_VARIABLE __OPERATING_SYSTEM)
-   #message(STATUS "__OPERATING_SYSTEM (1) is ${__OPERATING_SYSTEM}")
-   string(STRIP ${__OPERATING_SYSTEM} __OPERATING_SYSTEM)
-   #message(STATUS "__OPERATING_SYSTEM (2) is ${__OPERATING_SYSTEM}")
-   string(TOLOWER ${__OPERATING_SYSTEM} __OPERATING_SYSTEM)
-   #message(STATUS "__OPERATING_SYSTEM (3) is ${__OPERATING_SYSTEM}")
+   execute_process(
+      COMMAND lsb_release -is
+      RESULT_VARIABLE LSB_RELEASE_RESULT
+      OUTPUT_VARIABLE __OPERATING_SYSTEM
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+      ERROR_QUIET
+   )
+   string(STRIP "${__OPERATING_SYSTEM}" __OPERATING_SYSTEM)
+
+   if(NOT "${LSB_RELEASE_RESULT}" STREQUAL "0" OR "${__OPERATING_SYSTEM}" STREQUAL "")
+      set(__OPERATING_SYSTEM "")
+      foreach(OS_RELEASE_FILE IN ITEMS /etc/os-release /usr/lib/os-release)
+         if(EXISTS "${OS_RELEASE_FILE}")
+            file(STRINGS "${OS_RELEASE_FILE}" OS_RELEASE_ID REGEX "^ID=" LIMIT_COUNT 1)
+            if(OS_RELEASE_ID MATCHES [=[^ID=["']?([a-zA-Z0-9._-]+)["']?$]=])
+               set(__OPERATING_SYSTEM "${CMAKE_MATCH_1}")
+            endif()
+            break()
+         endif()
+      endforeach()
+   endif()
+
+   string(TOLOWER "${__OPERATING_SYSTEM}" __OPERATING_SYSTEM)
 
 endif()
 

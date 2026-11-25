@@ -569,7 +569,10 @@ void channel::erase_all_routes()
 
       {
 
-         critical_section_lock synchronouslock(::system()->channel_critical_section());
+         // Application channels can outlive the global system during teardown.
+         auto psystem = ::system();
+
+         critical_section_lock synchronouslock(psystem ? psystem->channel_critical_section() : nullptr);
 
          //for (auto & i : m_dispatchermapNormal)
          //{

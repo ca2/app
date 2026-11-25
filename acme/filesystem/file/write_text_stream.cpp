@@ -15,11 +15,32 @@ write_text_stream_struct::write_text_stream_struct()
    if (!pcontext)
    {
 
-      pcontext = ::system()->application();
+      auto psystem = ::system();
+
+      if (psystem)
+      {
+
+         pcontext = psystem->application();
+
+      }
 
    }
 
-   m_pprintingformat = pcontext;
+   if (pcontext)
+   {
+
+      m_pprintingformat = pcontext;
+
+   }
+   else
+   {
+
+      // Streams can be created before startup or after the system is destroyed.
+      static thread_local print_formatting formatting;
+
+      m_pprintingformat = &formatting;
+
+   }
 
 }
 

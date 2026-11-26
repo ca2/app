@@ -787,7 +787,11 @@ namespace coding
    string application::__smart_git_download_url()
    {
 
+#ifdef LINUX
+      ::string pathUrl = "https://download.smartgit.dev/smartgit/smartgit-26_1_059-linux-amd64.tar.gz";
+#else
       auto pathUrl = fetch_download_link("linux/smartgit");
+#endif
 
       print_line("syntevo Smart Git download url : " + pathUrl);
 
@@ -817,6 +821,38 @@ namespace coding
    void application::__install_smart_git()
    {
 
+#ifdef LINUX
+      const bool bArm64 = ::operating_system::machine_architecture() == "aarch64";
+      if (bArm64)
+      {
+         auto psummary = node()->operating_system_summary();
+         const auto & strFamily = psummary->m_strSystemFamily;
+
+         // SmartGit requires Java 21 or later. Some Debian-family defaults are older.
+         if (strFamily.case_insensitive_equals("debian"))
+         {
+            system()->defer_install_operating_system_packages({"openjdk-21-jre", "git", "git-lfs"});
+         }
+         else if (strFamily.case_insensitive_equals("fedora") || strFamily.case_insensitive_equals("opensuse"))
+         {
+            system()->defer_install_operating_system_packages({"java-21-openjdk", "git", "git-lfs"});
+         }
+         else if (strFamily.case_insensitive_equals("arch"))
+         {
+            ::string_array_base straCommands{
+               "sudo pacman -S --needed jre21-openjdk git git-lfs", "exit"};
+            if (node()->pty2(straCommands) != 0)
+            {
+               throw ::exception(error_failed);
+            }
+         }
+         else
+         {
+            throw ::exception(error_failed, "SmartGit ARM64 runtime installation is unsupported on this distro family.");
+         }
+      }
+#endif
+
       __download_smart_git();
 
       print_line("Uncompressing syntevo Smart Git...");
@@ -825,7 +861,18 @@ namespace coding
 
       directory_system()->create(pathSyntevo);
 
-      node()->posix_shell_command("tar -xzvf \""+ m_pathSmartGitTarGz + "\" -C \"" + pathSyntevo + "\"",
+      ::string strExtract = "tar -xzvf \"" + m_pathSmartGitTarGz + "\" -C \"" + pathSyntevo + "\"";
+#ifdef LINUX
+      if (bArm64)
+      {
+         auto pathSmartGit = pathSyntevo / "smartgit";
+         strExtract += " && cd \"" + pathSmartGit + "\""
+            " && mv --backup=numbered -T jre jre1"
+            " && if [ -d git ]; then mv --backup=numbered -T git git1; fi";
+      }
+#endif
+
+      auto iExitCode = node()->posix_shell_command(strExtract,
          e_posix_shell_system_default,
    [this](auto etracelevel, auto & str, bool bCarriage)
       {
@@ -833,6 +880,11 @@ namespace coding
          print_line(str);
 
       });
+
+      if (iExitCode != 0)
+      {
+         throw ::exception(error_failed, "Could not unpack SmartGit or prepare its runtime.");
+      }
 
       print_line("Installing syntevo Smart Git...");
 
@@ -1584,14 +1636,30 @@ fi
       ::file::path pathUrl;
 
       auto psummary = node()->operating_system_summary();
+      auto strArch = ::operating_system::machine_architecture();
 
       if (psummary->m_strSystemFamily.case_insensitive_contains("debian"))
       {
-         pathUrl = "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb";
+         if (strArch == "aarch64")
+         {
+            pathUrl = "https://dl.google.com/linux/direct/google-chrome-stable_current_arm64.deb";
+         }
+         else if (strArch == "x86_64")
+         {
+            pathUrl = "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb";
+         }
       }
-      else if (psummary->m_strSystem == "fedora" || psummary->m_strSystem == "opensuse")
+      else if (psummary->m_strSystemFamily.case_insensitive_equals("fedora")
+         || psummary->m_strSystemFamily.case_insensitive_equals("opensuse"))
       {
-         pathUrl = "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm";
+         if (strArch == "aarch64")
+         {
+            pathUrl = "https://dl.google.com/linux/direct/google-chrome-stable_current_aarch64.rpm";
+         }
+         else if (strArch == "x86_64")
+         {
+            pathUrl = "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm";
+         }
       }
 
       return pathUrl;
@@ -1603,6 +1671,11 @@ fi
    {
 
       ::file::path pathSource = __google_chrome_download_url();
+      if (pathSource.is_empty())
+      {
+         print_line("Google Chrome installation is unsupported on this distro or architecture.");
+         return;
+      }
 
       ::file::path pathTarget = directory()->home() / "Downloads/Code!!" / pathSource.name();
 
@@ -1623,9 +1696,13 @@ fi
       if (m_strBrowser == "chrome")
       {
 
+         m_pathBrowserInstaller.clear();
          __download_google_chrome();
 
-         install_from_operating_system_package_file(m_pathBrowserInstaller);
+         if (m_pathBrowserInstaller.has_character())
+         {
+            install_from_operating_system_package_file(m_pathBrowserInstaller);
+         }
 
       }
 
@@ -1691,7 +1768,8 @@ fi
          }
 
       }
-      else if (psummary->m_strSystem == "fedora" || psummary->m_strSystem == "opensuse")
+      else if (psummary->m_strSystemFamily.case_insensitive_equals("fedora")
+         || psummary->m_strSystemFamily.case_insensitive_equals("opensuse"))
       {
 
          if (strArch == "x86_64")

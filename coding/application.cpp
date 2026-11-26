@@ -833,7 +833,12 @@ namespace coding
          {
             system()->defer_install_operating_system_packages({"openjdk-21-jre", "git", "git-lfs"});
          }
-         else if (strFamily.case_insensitive_equals("fedora") || strFamily.case_insensitive_equals("opensuse"))
+         else if (strFamily.case_insensitive_equals("fedora"))
+         {
+            // Fedora 44 removed OpenJDK 21 in favor of OpenJDK 25.
+            system()->defer_install_operating_system_packages({"java-25-openjdk", "git", "git-lfs"});
+         }
+         else if (strFamily.case_insensitive_equals("opensuse"))
          {
             system()->defer_install_operating_system_packages({"java-21-openjdk", "git", "git-lfs"});
          }

@@ -1046,6 +1046,13 @@ namespace coding
    ::file::path application::install_deps_folder()
    {
 
+      if (m_pathInstallationTool.has_character())
+      {
+
+         return m_pathInstallationTool / "install_deps";
+
+      }
+
       auto pathFolder = directory_system()->current();
 
       while (pathFolder.has_character())
@@ -1136,6 +1143,13 @@ namespace coding
          {
 
             print_line("File not found : \"" + path + "\".");
+
+            if (m_pathInstallationTool.has_character())
+            {
+
+               throw ::exception(error_failed, "Missing dependency list: " + path);
+
+            }
 
          }
 
@@ -1949,18 +1963,19 @@ fi
    void application::defer_run_installation_script(const ::scoped_string & scopedstrScript)
    {
 
+      auto pathTool = m_pathInstallationTool;
+      if (!pathTool.has_character())
+      {
 #ifdef CODING_WORKSPACE_ROOT
-      const ::file::path pathScript = ::file::path(CODING_WORKSPACE_ROOT)
-         / "operating_system/operating_system-linux/tool/bin" / scopedstrScript;
+         pathTool = ::file::path(CODING_WORKSPACE_ROOT) / "operating_system/operating_system-linux/tool";
+#else
+         pathTool = directory_system()->home() / "code/operating_system/tool";
+#endif
+      }
 
-      ::string strScript = pathScript;
+      ::string strScript = pathTool / "bin" / scopedstrScript;
       strScript.find_replace("'", "'\\''");
       auto strCommandLine = "'" + strScript + "'";
-#else
-      auto strCommandLine =directory_system()->home() / "code/operating_system/tool/bin" / scopedstrScript;
-
-      strCommandLine.find_replace("!", "\\!");
-#endif
 
       micro_preempt("Going to run script at: " + strCommandLine);
 

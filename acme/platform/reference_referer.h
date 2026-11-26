@@ -96,7 +96,7 @@ public:
    }
    template < non_primitive_subparticle NON_SUBPARTICLE >
    //reference_referer(::subparticle * psubparticleExisting, NON_SUBPARTICLE * p, const_char_pointer pszFunctionName, const_char_pointer pszDebug = nullptr) :
-   reference_referer(NON_SUBPARTICLE * p, const_char_poie
+   reference_referer(NON_SUBPARTICLE * p, const_char_pointer pszFunctionName, const_char_pointer pszDebug = nullptr) :
       //m_psubparticleExisting(psubparticleExisting),
       m_psubparticle(nullptr),
       m_cstringType(typeid(*p).name()),

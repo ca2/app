@@ -1949,9 +1949,18 @@ fi
    void application::defer_run_installation_script(const ::scoped_string & scopedstrScript)
    {
 
+#ifdef CODING_WORKSPACE_ROOT
+      const ::file::path pathScript = ::file::path(CODING_WORKSPACE_ROOT)
+         / "operating_system/operating_system-linux/tool/bin" / scopedstrScript;
+
+      ::string strScript = pathScript;
+      strScript.find_replace("'", "'\\''");
+      auto strCommandLine = "'" + strScript + "'";
+#else
       auto strCommandLine =directory_system()->home() / "code/operating_system/tool/bin" / scopedstrScript;
 
       strCommandLine.find_replace("!", "\\!");
+#endif
 
       micro_preempt("Going to run script at: " + strCommandLine);
 

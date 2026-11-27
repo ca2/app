@@ -946,13 +946,9 @@ namespace coding
 
       auto psummary = node()->operating_system_summary();
 
-      if (psummary->m_strSystem == "ubuntu")
+      if (psummary->m_strSystem == "ubuntu" || psummary->m_strSystem == "linuxmint")
       {
          return {"____install_setup_for_ubuntu"};
-      }
-      else if (psummary->m_strSystem == "linuxmint")
-      {
-         return {"____install_setup_for_linuxmint"};
       }
       else if (psummary->m_strSystem == "debian")
       {
@@ -1046,41 +1042,7 @@ namespace coding
    ::file::path application::install_deps_folder()
    {
 
-      if (m_pathInstallationTool.has_character())
-      {
-
-         return m_pathInstallationTool / "install_deps";
-
-      }
-
-      auto pathFolder = directory_system()->current();
-
-      while (pathFolder.has_character())
-      {
-
-         auto pathLinux = pathFolder / "operating_system/operating_system-linux";
-
-         if (directory()->is(pathLinux))
-         {
-
-            return pathLinux / "tool/install_deps";
-
-         }
-
-         auto pathParent = pathFolder.folder();
-
-         if (pathParent == pathFolder)
-         {
-
-            break;
-
-         }
-
-         pathFolder = pathParent;
-
-      }
-
-      return directory_system()->home() / "code/operating_system/tool/install_deps";
+      return get_repository_path(e_repository_tool_os) / "install_deps";
 
    }
 
@@ -1498,13 +1460,7 @@ fi
    bool application::__is_operating_system_tool_cloned()
    {
 
-      ::file::path pathCodeOperatingSystem;
-
-      pathCodeOperatingSystem = directory()->home() / "code/operating_system";
-
-      ::file::path pathCodeOperatingSystemTool;
-
-      pathCodeOperatingSystemTool = pathCodeOperatingSystem / "tool";
+      auto pathCodeOperatingSystemTool = get_repository_path(e_repository_tool_os);
 
       ::file::path pathCodeOperatingSystemToolBin;
 
@@ -1512,7 +1468,9 @@ fi
 
       bool bInstalled1 = directory()->is(pathCodeOperatingSystemToolBin);
 
-      bool bInstalled2 = directory()->is(pathCodeOperatingSystemTool /".git");
+      auto pathGit = pathCodeOperatingSystemTool / ".git";
+
+      bool bInstalled2 = directory()->is(pathGit) || file()->exists(pathGit);
 
       return bInstalled1 && bInstalled2;
 
@@ -1534,17 +1492,7 @@ fi
    void application::__clone_operating_system_tool()
    {
 
-      ::file::path pathCodeOperatingSystem;
-
-      pathCodeOperatingSystem = directory()->home() / "code/operating_system";
-
-      ::file::path pathCodeOperatingSystemTool;
-
-      pathCodeOperatingSystemTool = pathCodeOperatingSystem / "tool";
-
-      ::file::path pathCodeOperatingSystemToolBin;
-
-      pathCodeOperatingSystemToolBin = pathCodeOperatingSystemTool / "bin";
+      auto pathCodeOperatingSystemTool = get_repository_path(e_repository_tool_os);
 
       ::string strGitRepository = "git@github.com:ca2/tool-linux";
 
@@ -1669,7 +1617,8 @@ fi
          }
       }
       else if (psummary->m_strSystemFamily.case_insensitive_equals("fedora")
-         || psummary->m_strSystemFamily.case_insensitive_equals("opensuse"))
+         || psummary->m_strSystemFamily.case_insensitive_equals("opensuse")
+         || psummary->m_strSystemFamily.case_insensitive_equals("zypper"))
       {
          if (strArch == "aarch64")
          {
@@ -1788,7 +1737,8 @@ fi
 
       }
       else if (psummary->m_strSystemFamily.case_insensitive_equals("fedora")
-         || psummary->m_strSystemFamily.case_insensitive_equals("opensuse"))
+         || psummary->m_strSystemFamily.case_insensitive_equals("opensuse")
+         || psummary->m_strSystemFamily.case_insensitive_equals("zypper"))
       {
 
          if (strArch == "x86_64")
@@ -1900,7 +1850,8 @@ fi
          install_from_operating_system_package_file(m_pathVisualStudioCode);
 
       }
-      else if (psummary->m_strSystemFamily.case_insensitive_contains("opensuse"))
+      else if (psummary->m_strSystemFamily.case_insensitive_contains("opensuse")
+         || psummary->m_strSystemFamily.case_insensitive_equals("zypper"))
       {
 
          __download_visual_studio_code();
@@ -1963,17 +1914,7 @@ fi
    void application::defer_run_installation_script(const ::scoped_string & scopedstrScript)
    {
 
-      auto pathTool = m_pathInstallationTool;
-      if (!pathTool.has_character())
-      {
-#ifdef CODING_WORKSPACE_ROOT
-         pathTool = ::file::path(CODING_WORKSPACE_ROOT) / "operating_system/operating_system-linux/tool";
-#else
-         pathTool = directory_system()->home() / "code/operating_system/tool";
-#endif
-      }
-
-      ::string strScript = pathTool / "bin" / scopedstrScript;
+      ::string strScript = get_repository_path(e_repository_tool_os) / "bin" / scopedstrScript;
       strScript.find_replace("'", "'\\''");
       auto strCommandLine = "'" + strScript + "'";
 
@@ -2676,12 +2617,61 @@ fi
       {
 
       case e_repository_tool_os:
-            return directory_system()->home() / "code/operating_system/tool";
-//#ifdef WINDOWS
-  //       return "C:/operating_system/tool-windows";
-//#else
-  //       return directory_system()->home() / OPERATING_SYSTEM_WORKSPACE_DEFAULT_NAME / "operating_system/tool-" OPERATING_SYSTEM_NAME;
-//#endif
+#ifdef LINUX
+      {
+         if (m_pathInstallationTool.has_character())
+         {
+
+            return m_pathInstallationTool;
+
+         }
+
+         for (auto pathFolder : {get_module_path().folder(), directory_system()->current()})
+         {
+
+            while (pathFolder.has_character())
+            {
+
+               auto pathTool = pathFolder / "operating_system/operating_system-linux/tool";
+
+               if (directory()->is(pathTool / "bin"))
+               {
+
+                  return pathTool;
+
+               }
+
+               auto pathParent = pathFolder.folder();
+
+               if (pathParent == pathFolder)
+               {
+
+                  break;
+
+               }
+
+               pathFolder = pathParent;
+
+            }
+
+         }
+
+#ifdef CODING_WORKSPACE_ROOT
+         return ::file::path(CODING_WORKSPACE_ROOT) / "operating_system/operating_system-linux/tool";
+#else
+         throw ::exception(error_failed, "Could not locate operating_system/operating_system-linux/tool in the project checkout.");
+#endif
+      }
+#else
+         if (m_pathInstallationTool.has_character())
+         {
+
+            return m_pathInstallationTool;
+
+         }
+
+         return directory_system()->home() / "code/operating_system/tool";
+#endif
       case e_repository_simple:
 #ifdef WINDOWS
          return "C:/simple";

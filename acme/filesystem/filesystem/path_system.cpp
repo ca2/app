@@ -81,28 +81,39 @@ path_system::~path_system()
 ::file::path path_system::tool_folder_path()
 {
 
-   //::string strToolFolderName = "tool-" + tool_folder_operating_system_name();
-   ::string strToolFolderName = "tool";
+#ifdef LINUX
+   for (auto pathFolder : {application()->get_module_folder(), directory_system()->current()})
+   {
 
-   ::file::path pathToolFolder;
+      while (pathFolder.has_character())
+      {
 
-// #ifdef WINDOWS_DESKTOP
+         auto pathTool = pathFolder / "operating_system/operating_system-linux/tool";
 
-//    pathToolFolder = "C:" / strToolFolderName;
+         if (directory_system()->is(pathTool / "bin"))
+         {
 
-// #elif defined(MACOS)
+            return pathTool;
 
-//    pathToolFolder = directory_system()->home() / "workspace/operating_system" / strToolFolderName;
+         }
 
-// #else
+         auto pathParent = pathFolder.folder();
 
-//    pathToolFolder = directory_system()->home() / "cmake/operating_system" / strToolFolderName;
+         if (pathParent == pathFolder)
+         {
 
-// #endif
+            break;
 
-   pathToolFolder = directory_system()->home() / "code/operating_system" / strToolFolderName;
+         }
 
-   return pathToolFolder;
+         pathFolder = pathParent;
+
+      }
+
+   }
+#endif
+
+   return directory_system()->home() / "code/operating_system" / "tool";
 
 }
 

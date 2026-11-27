@@ -1083,11 +1083,13 @@ namespace coding
 
       information() << "install_patch_shell";
 
-      auto pathPatchShell = directory_system()->home() / "code/operating_system/tool/bin/patch_shell";
+      auto pathPatchShell = m_papp->get_repository_path(e_repository_tool_os) / "bin/patch_shell";
 
       information() << "Gonna run command : " << pathPatchShell;
 
-      ::i32 iExitCode = synchronous_posix_terminal("cd " + pathPatchShell.folder() + "; ./" + pathPatchShell.name());
+      ::string strPatchShellFolder = pathPatchShell.folder();
+      strPatchShellFolder.find_replace("'", "'\\''");
+      ::i32 iExitCode = synchronous_posix_terminal("cd '" + strPatchShellFolder + "' && ./patch_shell");
 
       information() << "patch shell exit code : " << iExitCode;
 

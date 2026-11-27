@@ -5028,7 +5028,8 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          return ::transfer(fedora_install_package_file_command_line(pathPackageFile));
 
       }
-      else if (strSystemFamily.case_insensitive_equals("opensuse"))
+      else if (strSystemFamily.case_insensitive_equals("opensuse")
+         || strSystemFamily.case_insensitive_equals("zypper"))
       {
 
          return ::transfer(opensuse_install_package_file_command_line(pathPackageFile));

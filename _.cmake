@@ -286,7 +286,12 @@ message(STATUS "going to include \"operating_system/_.cmake\"")
 include(operating_system/_.cmake)
 
 
-set(APPLICATION_BUILD_HELPER_BINARY "${HOME_DIR}/code/operating_system/tool/bin/${__TARGET_SYSTEM_ARCHITECTURE}/application_build_helper")
+if(LINUX)
+   set(TOOL_OS_BIN "${WORKSPACE_FOLDER}/operating_system/operating_system-linux/tool/bin")
+else()
+   set(TOOL_OS_BIN "${HOME_DIR}/code/operating_system/tool/bin")
+endif()
+set(APPLICATION_BUILD_HELPER_BINARY "${TOOL_OS_BIN}/${__TARGET_SYSTEM_ARCHITECTURE}/application_build_helper")
 
 
 

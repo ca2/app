@@ -28,7 +28,7 @@ namespace console
          throw ::exception(error_failed);
       }
 
-      information() << "Running with user ID: " << getuid();
+      debug() << "Running with user ID: " << getuid();
 
    }
 

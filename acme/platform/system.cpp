@@ -5383,7 +5383,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
             if (pfactory)
             {
 
-               printf_line("Merging factory of component \"%s\" with implementation \"%s\"",
+               debugf("Merging factory of component \"%s\" with implementation \"%s\"",
                   ::string(scopedstrComponent).c_str(), strComponentDefaultImplementation.c_str());
 
 

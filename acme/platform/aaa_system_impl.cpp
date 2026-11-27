@@ -3875,7 +3875,7 @@ namespace platform
             if (pfactory)
             {
 
-               informationf("Merging factory of component \"%s\" with implementation \"%s\"",
+               debugf("Merging factory of component \"%s\" with implementation \"%s\"",
                           ::string(scopedstrComponent).c_str(), strComponentDefaultImplementation.c_str());
 
                pfactory->merge_to_global_factory();

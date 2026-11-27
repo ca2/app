@@ -246,7 +246,9 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif ()
 
 if(${LINUX})
-add_dependencies(${PROJECT_NAME} nano_archive_libarchive fs_folder_sync_dropbox)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE CODING_WORKSPACE_ROOT="${WORKSPACE_FOLDER}")
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CODING_WORKSPACE_ROOT="${WORKSPACE_FOLDER}")
+    add_dependencies(${PROJECT_NAME} nano_archive_libarchive fs_folder_sync_dropbox)
 endif()
 
 

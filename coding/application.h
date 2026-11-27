@@ -46,6 +46,7 @@ class ::time      m_timeFoldersSetupDetected;
 
 
          //::string      m_strCloudDataProvider;
+      ::file::path m_pathInstallationTool;
       ::file::path m_pathBrowserInstaller;
       ::file::path m_pathSmartGitTarGz;
       ::file::path m_pathJetBrainsTarGz;

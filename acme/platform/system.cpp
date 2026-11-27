@@ -4991,6 +4991,15 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       }
 
+      else if (strSystemFamily.case_insensitive_equals("arch"))
+      {
+
+         ::string strCommandLine;
+         strCommandLine.format("sudo pacman -S --needed -- {}", straPackageNames.implode(" "));
+         return strCommandLine;
+
+      }
+
 #endif
 
       return "echo \"Unknown command line for installing operating packages.\"";

@@ -2695,7 +2695,7 @@ fi
 
          }
 
-         for (auto pathFolder : {get_module_path().folder(), directory_system()->current()})
+         for (auto pathFolder : {directory_system()->current(), get_module_path().folder()})
          {
 
             while (pathFolder.has_character())

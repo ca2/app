@@ -846,7 +846,8 @@ namespace coding
             // Fedora 44 removed OpenJDK 21 in favor of OpenJDK 25.
             system()->defer_install_operating_system_packages({"java-25-openjdk", "git", "git-lfs"});
          }
-         else if (strFamily.case_insensitive_equals("opensuse"))
+         else if (strFamily.case_insensitive_equals("opensuse")
+            || strFamily.case_insensitive_equals("zypper"))
          {
             system()->defer_install_operating_system_packages({"java-21-openjdk", "git", "git-lfs"});
          }

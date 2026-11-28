@@ -805,7 +805,9 @@ namespace coding
 
       ::property_set set;
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 
@@ -1511,7 +1513,9 @@ namespace coding
 
       ::property_set set;
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 
@@ -1676,7 +1680,9 @@ namespace coding
 
       get_http_user_agent(set);
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 
@@ -1889,7 +1895,9 @@ namespace coding
 
       ::property_set set;
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 
@@ -1949,7 +1957,9 @@ namespace coding
 
       ::property_set set;
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 
@@ -4164,7 +4174,9 @@ namespace coding
 
       ::property_set set;
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 
@@ -4870,7 +4882,9 @@ namespace coding
 
       ::property_set set;
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 
@@ -5035,7 +5049,9 @@ namespace coding
 
       get_http_user_agent(set);
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      print_line("Downloading \"" + pathSource+"\"");s
 
       http()->download(pathTarget, pathSource, set);
 
@@ -5248,7 +5264,9 @@ namespace coding
 
       ::property_set set;
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 
@@ -5308,7 +5326,9 @@ namespace coding
 
       ::property_set set;
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 

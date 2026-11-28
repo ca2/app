@@ -4914,7 +4914,8 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          return fedora_is_package_installed(scopedstrPackageName);
 
       }
-      else if (strSystemFamily.case_insensitive_equals("opensuse"))
+      else if (strSystemFamily.case_insensitive_equals("opensuse")
+         || strSystemFamily.case_insensitive_equals("zypper"))
       {
 
          return opensuse_is_package_installed(scopedstrPackageName);
@@ -4949,7 +4950,8 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          return ::transfer(fedora_not_installed_packages(straPackageNames));
 
       }
-      else if (strSystemFamily.case_insensitive_equals("opensuse"))
+      else if (strSystemFamily.case_insensitive_equals("opensuse")
+         || strSystemFamily.case_insensitive_equals("zypper"))
       {
 
          return ::transfer(opensuse_not_installed_packages(straPackageNames));
@@ -4984,7 +4986,8 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          return ::transfer(fedora_install_packages_command_line(straPackageNames));
 
       }
-      else if (strSystemFamily.case_insensitive_equals("opensuse"))
+      else if (strSystemFamily.case_insensitive_equals("opensuse")
+         || strSystemFamily.case_insensitive_equals("zypper"))
       {
 
          return ::transfer(opensuse_install_packages_command_line(straPackageNames));

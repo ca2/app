@@ -515,10 +515,10 @@ bool opensuse_is_package_installed(const ::scoped_string & scopedstrPackageName)
    for (auto & strPackage : straPackages)
    {
 
-      if (!debian_is_package_installed(strPackage))
+      if (!opensuse_is_package_installed(strPackage))
       {
 
-         straNotInstalledPackages.add_unique(strPackage);;
+         straNotInstalledPackages.add_unique(strPackage);
 
       }
 

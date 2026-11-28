@@ -3,6 +3,10 @@
 
 #include <cstdlib>
 #include <ranges>
+#if defined(LINUX)
+#include <cerrno>
+#include <mntent.h>
+#endif
 
 #include "code.h"
 // #include "document.h"
@@ -809,7 +813,11 @@ namespace coding
 
       ::property_set set;
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      get_http_user_agent(set);
+
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 
@@ -1649,7 +1657,10 @@ fi
 
       ::property_set set;
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      get_http_user_agent(set);
+
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 
@@ -1669,6 +1680,17 @@ fi
 
          if (m_pathBrowserInstaller.has_character())
          {
+#if defined(LINUX)
+            auto psummary = node()->operating_system_summary();
+            if (psummary && psummary->m_strSystemFamily == "zypper")
+            {
+               print_line("Importing Google's Linux package signing key for Chrome.");
+               if (node()->pty2({"sudo rpm --import https://dl.google.com/linux/linux_signing_key.pub", "exit"}) != 0)
+               {
+                  throw ::exception(error_failed, "Could not import Google's Linux package signing key for Chrome.");
+               }
+            }
+#endif
             install_from_operating_system_package_file(m_pathBrowserInstaller);
          }
 
@@ -1820,7 +1842,8 @@ fi
 
       get_http_user_agent(set);
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      //sprint_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 
@@ -1856,6 +1879,12 @@ fi
 
          __download_visual_studio_code();
 
+         print_line("Importing Microsoft's RPM signing key for Visual Studio Code.");
+         if (node()->pty2({"sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc", "exit"}) != 0)
+         {
+            throw ::exception(error_failed, "Could not import Microsoft's RPM signing key for Visual Studio Code.");
+         }
+
          install_from_operating_system_package_file(m_pathVisualStudioCode);
 
       }
@@ -1886,7 +1915,7 @@ fi
       if (iExitCode != 0)
       {
 
-         throw ::exception(error_failed);
+         throw ::exception(error_failed, "Could not install package: " + pathPackageFile);
 
       }
 
@@ -2034,7 +2063,11 @@ fi
 
       ::property_set set;
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      get_http_user_agent(set);
+
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 
@@ -2070,9 +2103,41 @@ fi
    void application::__install_fsc()
    {
 
-      __download_fsc();
+      bool bMountEntryExists = false;
+#if defined(LINUX)
+      if (auto * pfstab = setmntent("/etc/fstab", "r"))
+      {
+         while (const auto * pentry = getmntent(pfstab))
+         {
+            if (::string(pentry->mnt_dir) == "/c")
+            {
+               bMountEntryExists = true;
+               break;
+            }
+         }
 
-      install_from_running_command_line_as_root(m_pathFscInstaller);
+         const bool bReadError = ferror(pfstab);
+         endmntent(pfstab);
+         if (bReadError)
+         {
+            throw ::exception(error_failed, "Could not read /etc/fstab before installing Fsc.");
+         }
+      }
+      else if (errno != ENOENT)
+      {
+         throw ::exception(error_failed, "Could not open /etc/fstab before installing Fsc.");
+      }
+#endif
+
+      if (bMountEntryExists)
+      {
+         print_line("Using the existing /c mount entry in /etc/fstab.");
+      }
+      else
+      {
+         __download_fsc();
+         install_from_running_command_line_as_root(m_pathFscInstaller);
+      }
 
       auto iError1 = ::system("ln -s /c/Dropbox " + (directory_system()->home()/"dropbox"));
 
@@ -2101,7 +2166,11 @@ fi
 
       ::property_set set;
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      get_http_user_agent(set);
+
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 
@@ -3488,7 +3557,14 @@ fi
       if (iExitCode != 0)
       {
 
-         throw ::exception(error_failed, strError);
+         strError.trim();
+         ::string strMessage = "Could not set Git configuration '" + ::string(scopedstr) +
+            "' (git exited with status " + ::as_string(iExitCode) + ").";
+         if (strError.has_character())
+         {
+            strMessage += "\n" + strError;
+         }
+         throw ::exception(error_failed, strMessage);
 
       }
 

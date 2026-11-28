@@ -155,7 +155,9 @@ namespace coding
 
       get_http_user_agent(set);
 
-      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+      //print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      print_line("Downloading \"" + pathSource+"\"");
 
       http()->download(pathTarget, pathSource, set);
 
